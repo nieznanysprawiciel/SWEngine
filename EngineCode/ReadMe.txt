@@ -1,33 +1,33 @@
 ========================================================================
-    WIN32 APPLICATION : StarWars_engine Project Overview
+    WIN32 APPLICATION : SW_engine Project Overview
 ========================================================================
 
-AppWizard has created this StarWars_engine application for you.
+AppWizard has created this SW_engine application for you.
 
 This file contains a summary of what you will find in each of the files that
 make up your StarWars_engine application.
 
 
-StarWars_engine.vcxproj
+SW_engine.vcxproj
     This is the main project file for VC++ projects generated using an Application Wizard.
     It contains information about the version of Visual C++ that generated the file, and
     information about the platforms, configurations, and project features selected with the
     Application Wizard.
 
-StarWars_engine.vcxproj.filters
+SW_engine.vcxproj.filters
     This is the filters file for VC++ projects generated using an Application Wizard. 
     It contains information about the association between the files in your project 
     and the filters. This association is used in the IDE to show grouping of files with
     similar extensions under a specific node (for e.g. ".cpp" files are associated with the
     "Source Files" filter).
 
-StarWars_engine.cpp
+SW_engine.cpp
     This is the main application source file.
 
 /////////////////////////////////////////////////////////////////////////////
 AppWizard has created the following resources:
 
-StarWars_engine.rc
+SW_engine.rc
     This is a listing of all of the Microsoft Windows resources that the
     program uses.  It includes the icons, bitmaps, and cursors that are stored
     in the RES subdirectory.  This file can be directly edited in Microsoft
@@ -37,7 +37,7 @@ Resource.h
     This is the standard header file, which defines new resource IDs.
     Microsoft Visual C++ reads and updates this file.
 
-StarWars_engine.ico
+SW_engine.ico
     This is an icon file, which is used as the application's icon (32x32).
     This icon is included by the main resource file StarWars_engine.rc.
 
