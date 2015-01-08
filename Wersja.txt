@@ -1,0 +1,15 @@
+Wersja 1.001
+08.01.2015	godz. 16:04
+-	Struktura ModelsManagera w wersji testowej gotowa (docelowa powstanie póŸniej; jest ju¿ na papierze)
+-	Dzia³a wczytywanie plików FBX (nale¿y poprawiæ b³êdy przy materia³ach innych ni¿ Phong)
+-	Stworzone s¹ podstawowe interfejsy oraz szkielet g³ównych modu³ów.
+-	Napisany jest podstawowy potok renderingu ze sta³ym krokiem czasowym przeliczania pozycji
+	i interpolacj¹ po³o¿eñ miêdzy klatkami
+-	Dzia³a wyœwietlanie, ale tylko obiektów dynamicznych bez zadnych wiêkszych optymalizacji
+-	Podstawowa obs³uga kamery bez interpolacji.
+-	Napisana jest struktura wartstw abstrakcji wejœcia. Obs³ugiwana jest na razie tylko klawiatura
+	(mysz i joystick trzeba dopisaæ)
+-	Pliki w Visual Studio s¹ posegregowane w foldery tematycznie
+-	Struktura katalogowa projektu zosta³a polepszona. Stworzony katalog na wersjê Release. Pliki
+	tymczasowe powsta³e w wyniku budowania s¹ wrzucone w jeden folder, która ma nie byæ synchornizowany
+	z ca³ym projektem.

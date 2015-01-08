@@ -1,0 +1,20 @@
+W tym folderze znajduj¹ siê pliki wykonywalne w wersji 64-bitowej.
+
+Aby uruchomiæ tê wersjê bez u¿ycia œrodowiska Visual Studio nale¿y
+przekopiowac te pliki w miejsce plików w wersji 32-bitowej, czyli
+o katalog wy¿ej.
+
+Trzeba pamietaæ, ¿e po pierwsze wersje x86 i x64 s¹ kompilowane z osobna
+i jedna z nich mo¿e byæ nieaktualna, w zale¿noœci od tego, na której aktualnie
+pracowano.
+
+Po drugie ka¿da kompilacja tworzy plik wykonywalny dla wersji 32-bitowej
+- folder wy¿ej, a dla wersji 64-bitowej - w folderze binaries_x64.
+Z tego wzglêdu ponowana kompilacja owszem stworzy plik wykonywalny na swoim miejscu,
+ale mo¿e nie dzia³aæ, je¿eli wszystkie inne pliki zosta³y przekopiowane z wersji 64bit.
+Niestety nie da siê sprawiæ, aby libfbxsdk.dll dla wesji 64-btiowej nazywa³ siê inaczej,
+dlatego trzeba je trzymaæ w osobnych folderach.
+
+Tak wogóle to folder GameRelease powsta³, ¿eby wypuœciæ ostatecznie stworzon¹ grê, 
+a nie bawiæ siê w nim na wersjach roboczych, wiêc lepiej go sobie przekopiowaæ ca³ego
+gdzie indziej.

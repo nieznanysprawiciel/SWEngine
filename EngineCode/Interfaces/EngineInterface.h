@@ -1,0 +1,69 @@
+#pragma once
+
+/*Taki interfejs bêdzie widzia³ u¿ytkownik silnika z wnêtrza swoich klas odpowiedzialnych za fabu³ê.
+ *U¿ytkownik musi mieæ ograniczone mo¿liwoœci, ¿eby przypadkiem nie namiesza³. Szczególnie nie powinien
+ *mieæ mo¿liwoœci wysy³ania eventów, bo mog³oby to doprowadziæ do zapêtlenia.*/
+
+
+class ControllersEngine;
+struct IndexPrediction;
+
+class engine_interface
+{
+	friend class ControllersEngine;
+	friend class ModelsManager;
+	friend class PhysicEngine;
+	friend class FableEngine;
+	friend class MovementEngine;
+	friend class DisplayEngine;
+	friend class CollisionEngine;
+	friend class SoundEngine;
+	friend class UI_Engine;
+	friend class Object;
+protected:
+	//directX and windows variables
+	LPDIRECT3D9					directX_interface;		// the pointer to our Direct3D interface
+	LPDIRECT3DDEVICE9			directX_device;			// the pointer to the device class
+	bool						directX_ready;			// je¿eli zmienna jest niepoprawna, nie renderujemy
+
+	bool						full_screen;
+	HWND						window_handler;
+	HINSTANCE					instance_handler;
+	int							window_width;
+	int							window_height;
+
+	//Engines
+	ControllersEngine*			controllers_engine;		//kontroluje AI (klawiaturê trzeba przenieœæ)
+	MovementEngine*				movement_engine;		//przelicza pozycjê obiektów w nastêpnej klatce
+	DisplayEngine*				display_engine;			//wyœwietla obiekty na scenie
+	CollisionEngine*			collision_engine;		//liczy kolizje
+	PhysicEngine*				physic_engine;			//liczy oddzia³ywania fizyczne
+	ModelsManager*				models_manager;			//zarz¹dza modelami, teksturami i materia³ami
+	FableEngine*				fable_engine;			//zarz¹dza fabu³¹ gry, interakcjami obiektów itd. Odpowiada za treœæ
+	SoundEngine*				sound_engine;			//zarz¹dza muzyk¹ i dŸwiêkami
+	UI_Engine*					ui_engine;				//interfejs u¿ytkownika (tak¿e graficzny)
+
+	//Objects
+	std::vector<IndexPrediction>		index_predictor;
+
+	//time control
+	DWORD						time_previous;	//bêdziemy mierzyæ ró¿nicê miedzy czasami w kolejnych
+	DWORD						elapsed_time;	//do licznika FPSów, czas od ostatniej aktualizacji frames_per_sec
+	float						lag;			//opóŸnienie wzglêdem normalego tempa updatowania sceny
+	unsigned int				frames;
+	float						frames_per_sec;	//najwa¿niejszy licznik w grze
+
+	bool						pause;
+
+	//queue
+	std::queue<Event*>*			events_queue;	//wskaŸnik na kolejke komunikatów w celu szybszego dostêpu
+
+protected:
+	~engine_interface(){};
+
+	//FableEngine - ta klasa jest dostêpna bezpoœrednio z GamePlay
+
+public:
+
+
+};

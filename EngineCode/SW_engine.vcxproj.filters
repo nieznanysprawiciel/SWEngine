@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\ModelsManagment">
+      <UniqueIdentifier>{1767f2b9-5500-4542-ba8b-7bae84c40423}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ModelsManagment">
+      <UniqueIdentifier>{83f768ac-fc04-4cf3-b822-1ba7a94572b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Input_GUI">
+      <UniqueIdentifier>{4eacb3c4-ac28-4433-a5f9-9ae86b3921f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input_GUI">
+      <UniqueIdentifier>{6bba179b-7a11-4701-89a2-22900b92a635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Physic_Collisions">
+      <UniqueIdentifier>{071c9f44-d8d9-456e-a0cd-158de4ee3d1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Physic_Collisions">
+      <UniqueIdentifier>{2a60f048-e5ee-422c-b713-88dcae0e30dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MainEngine">
+      <UniqueIdentifier>{65ef9a5a-f358-484c-9f6b-abbd51af6c43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MainEngine">
+      <UniqueIdentifier>{f5108cd6-c6a5-4f66-b73f-3a93bc10eaa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Sound">
+      <UniqueIdentifier>{e9a0cedc-6c38-4eb3-bb08-cc92f3efed4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sound">
+      <UniqueIdentifier>{db0074be-24b2-40f8-add4-01a95ec3a7e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GamePlay">
+      <UniqueIdentifier>{1b92a4c1-e2ad-4cf9-b4e7-92e7efcd12ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GamePlay">
+      <UniqueIdentifier>{8bba6272-7863-4e61-858e-e389e5eb0e6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controllers">
+      <UniqueIdentifier>{e662f704-3493-494c-9f9a-78cc8e248b88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controllers">
+      <UniqueIdentifier>{ee2eab1b-7c5d-49e5-95dd-7b1c7177c5f9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces\basic_interfaces.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Events\Event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ModelsManager\Loaders\FBX_files_loader\FBX_loader.h">
+      <Filter>Header Files\ModelsManagment</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ModelsManager\Loaders\loader_interface.h">
+      <Filter>Header Files\ModelsManagment</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ModelsManager\meshes_textures_materials.h">
+      <Filter>Header Files\ModelsManagment</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ModelsManager\ModelsManager.h">
+      <Filter>Header Files\ModelsManagment</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\UI_Engine\UI_Engine.h">
+      <Filter>Header Files\Input_GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\CollisionEngine\CollisionEngine.h">
+      <Filter>Header Files\Physic_Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\PhysicEngine\PhysicEngine.h">
+      <Filter>Header Files\Physic_Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\MovementEngine\MovementEngine.h">
+      <Filter>Header Files\Physic_Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces\EngineInterface.h">
+      <Filter>Header Files\MainEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Engine.h">
+      <Filter>Header Files\MainEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\SoundEngine\SoundEngine.h">
+      <Filter>Header Files\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\DisplayEngine\DisplayEngine.h">
+      <Filter>Header Files\MainEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces\GamePlay.h">
+      <Filter>Header Files\GamePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\FableEngine\FableEngine.h">
+      <Filter>Header Files\GamePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\UI_Engine\InputAbstractionLayer.h">
+      <Filter>Header Files\Input_GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ControllersEngine\ControllersEngine.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ControllersEngine\camera_controller_PROTOTYPE.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="macros_switches.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SW_engine.h">
+      <Filter>Header Files\MainEngine</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Interfaces\basic_interfaces.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Events\Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ModelsManager\MaterialObject.cpp">
+      <Filter>Source Files\ModelsManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ModelsManager\MeshObject.cpp">
+      <Filter>Source Files\ModelsManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ModelsManager\Model3DFromFile.cpp">
+      <Filter>Source Files\ModelsManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ModelsManager\ModelsManager.cpp">
+      <Filter>Source Files\ModelsManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ModelsManager\TextureObject.cpp">
+      <Filter>Source Files\ModelsManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
+      <Filter>Source Files\ModelsManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\UI_Engine\UI_Engine.cpp">
+      <Filter>Source Files\Input_GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\CollisionEngine\CollisionEngine.cpp">
+      <Filter>Source Files\Physic_Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\PhysicEngine\PhysicEngine.cpp">
+      <Filter>Source Files\Physic_Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\MovementEngine\MovementEngine.cpp">
+      <Filter>Source Files\Physic_Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\EngineInterface.cpp">
+      <Filter>Source Files\MainEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\SoundEngine\SoundEngine.cpp">
+      <Filter>Source Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\DisplayEngine\DisplayEngine.cpp">
+      <Filter>Source Files\MainEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\FableEngine\FableEngine.cpp">
+      <Filter>Source Files\GamePlay</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\UI_Engine\InputAbstractionLayer.cpp">
+      <Filter>Source Files\Input_GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\UI_Engine\UI_Engine_AbstractionLayers.cpp">
+      <Filter>Source Files\Input_GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ControllersEngine\ControllersEngine.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ControllersEngine\camera_controller_PROTOTYPE.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="SW_engine.cpp">
+      <Filter>Source Files\MainEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Engine_window_functions.cpp">
+      <Filter>Source Files\MainEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Engine.cpp">
+      <Filter>Source Files\MainEngine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SW_engine.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="SW_engine.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
