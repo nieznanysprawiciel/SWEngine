@@ -5,6 +5,10 @@
     <GameReleaseDir>$(SolutionDir)..\GameRelease\</GameReleaseDir>
     <EngineBuildDir>$(SolutionDir)..\EngineBuildDir\</EngineBuildDir>
     <BuildFolder>SW_$(Configuration)_$(PlatformShortName)</BuildFolder>
+    <GameLibDir>$(SolutionDir)..\EngineLib\</GameLibDir>
+    <EngineLibName>SW_engine_$(Configuration)_$(PlatformShortName)</EngineLibName>
+    <EntryPointBuildFolder>EntryPoint_$(Configuration)_$(PlatformShortName)</EntryPointBuildFolder>
+    <EntryPointLink>$(GameLibDir)SW_engine_static_lib_$(Configuration)_$(PlatformShortName).lib</EntryPointLink>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>visual_macros</_PropertySheetDisplayName>
@@ -21,6 +25,22 @@
     </BuildMacro>
     <BuildMacro Include="BuildFolder">
       <Value>$(BuildFolder)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="GameLibDir">
+      <Value>$(GameLibDir)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="EngineLibName">
+      <Value>$(EngineLibName)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="EntryPointBuildFolder">
+      <Value>$(EntryPointBuildFolder)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="EntryPointLink">
+      <Value>$(EntryPointLink)</Value>
       <EnvironmentVariable>true</EnvironmentVariable>
     </BuildMacro>
   </ItemGroup>

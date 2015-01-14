@@ -3,10 +3,6 @@
 #include "ControllersEngine\ControllersEngine.h"
 
 
-#pragma comment (lib, "d3d9.lib")
-//#pragma comment (lib, "d3dx11.lib")
-//#pragma comment (lib, "d3dx10.lib")
-
 
 //interwa³, po którym nastêpuje kolejne przeliczenie po³o¿eñ obiektów (w sekundach)
 const float FIXED_MOVE_UPDATE_INTERVAL = ((float)1 / (float)56);
@@ -231,3 +227,46 @@ void Engine::send_event(Event* new_event)
 {
 	events_queue->push(new_event);
 }
+
+/*
+Funkcja wczytuj¹ca startowy level do silnika. Najczêœciej na tym etapie wczytuje siê tylko menu,
+oraz wszytkie elementy, które s¹ przydatne na ka¿dym etapie gry.
+
+Zawartosc klasy GamePlay powinna byæ jak najmniejsza, poniewa¿ wszystkie te rzeczy s¹ wczytywane
+zanim cokolwiek pojawi siê na ekranie. Z tego wzglêdu lepiej najpierw wczytaæ ma³o, ¿eby u¿ytkownik
+ju¿ coœ zobaczy³, a potem dopiero wczytaæ resztê wyœwietlaj¹c jednoczeœnie pasek wczytywania.
+
+Funkcja nie jest dostêpna w EngineInterface. S³u¿y do wczytania tylko pierwszej klasy GamePlay
+jaka istnieje, na póŸniejszych etapach gry robi siê to innymi funkcjami.
+
+Level siê nie wczyta, je¿eli nie zainicjowano DirectXa. Funkcje tworz¹ce bufory, textury
+i tym podobne rzeczy wymagaj¹ zainicjowanego kontekstu urz¹dzenia DirectX, dlatego 
+na wszelki wypadek zawsze inicjalizacja powinna byæ wczeœniej.*/
+void Engine::set_entry_point( GamePlay* game_play )
+{
+	if ( directX_ready )
+	{
+		fable_engine->set_game_play( game_play );
+		game_play->load_level();
+	}
+}
+
+#ifndef __UNUSED
+void Engine::set_entry_point( const std::wstring dll_name )
+{
+	HINSTANCE dll_entry_point;
+	dll_entry_point = LoadLibrary( dll_name.c_str() );
+
+	if ( dll_entry_point != NULL )
+	{
+		GamePlay* game_play;
+
+
+		if ( directX_ready )
+		{
+			fable_engine->set_game_play( game_play );
+			game_play->load_level( );
+		}
+	}
+}
+#endif

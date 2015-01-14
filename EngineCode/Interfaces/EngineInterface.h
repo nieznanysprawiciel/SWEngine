@@ -1,5 +1,7 @@
 #pragma once
 
+#include <queue>
+
 /*Taki interfejs bêdzie widzia³ u¿ytkownik silnika z wnêtrza swoich klas odpowiedzialnych za fabu³ê.
  *U¿ytkownik musi mieæ ograniczone mo¿liwoœci, ¿eby przypadkiem nie namiesza³. Szczególnie nie powinien
  *mieæ mo¿liwoœci wysy³ania eventów, bo mog³oby to doprowadziæ do zapêtlenia.*/
@@ -7,6 +9,11 @@
 
 class ControllersEngine;
 struct IndexPrediction;
+class Event;
+struct IDirect3DDevice9;
+struct IDirect3D;
+typedef struct IDirect3D9 *LPDIRECT3D9, *PDIRECT3D9;
+typedef struct IDirect3DDevice9 *LPDIRECT3DDEVICE9, *PDIRECT3DDEVICE9;
 
 class engine_interface
 {
@@ -44,7 +51,7 @@ protected:
 	UI_Engine*					ui_engine;				//interfejs u¿ytkownika (tak¿e graficzny)
 
 	//Objects
-	std::vector<IndexPrediction>		index_predictor;
+	//std::vector<IndexPrediction>		index_predictor;
 
 	//time control
 	DWORD						time_previous;	//bêdziemy mierzyæ ró¿nicê miedzy czasami w kolejnych

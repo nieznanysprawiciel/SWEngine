@@ -103,7 +103,8 @@ public:
 	//event functions
 	void send_event(Event* new_event);
 
-
+	void set_entry_point( GamePlay* game_play );
+	void set_entry_point( const std::wstring dll_name );
 
 #ifdef __TEST
 	void test();

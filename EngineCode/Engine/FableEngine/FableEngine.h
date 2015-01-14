@@ -34,5 +34,7 @@ public:
 protected:		//u¿ytkownik nie mo¿e dotykaæ
 	void proceed_fable(float time_interval);
 	void proceed_events( float time_interval );
+
+	inline void set_game_play( GamePlay* gameplay ) { game_play = gameplay; }	//tylko dla Engine
 };
 
