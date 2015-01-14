@@ -246,8 +246,14 @@ void Engine::set_entry_point( GamePlay* game_play )
 {
 	if ( directX_ready )
 	{
+		game_play->set_engine_and_fable( this, fable_engine );
 		fable_engine->set_game_play( game_play );
-		game_play->load_level();
+		
+		int result = game_play->load_level();
+		if ( result )
+		{//Tutaj mo¿e siê znaleŸæ obs³uga b³êdów
+
+		}
 	}
 }
 

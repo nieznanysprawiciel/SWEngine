@@ -34,8 +34,8 @@ protected:
 	engine_interface*				engine;
 	FableEngine*					fable_engine;
 public:
-	GamePlay(){}
-	virtual ~GamePlay();
+	GamePlay() = default;
+	virtual ~GamePlay() = default;
 
 	virtual void set_engine_and_fable( engine_interface* game_engine, FableEngine* fable ) { engine = game_engine; fable_engine = fable; }
 

@@ -41,7 +41,7 @@ protected:
 	void inline event(Event*);
 	inline engine_interface* get_interface(){ return reinterpret_cast<engine_interface*>(engine); }
 public:
-	virtual ~Object() {};
+	virtual ~Object() = default;
 	virtual void init(){};
 };
 
@@ -143,7 +143,7 @@ class Camera_object : public Dynamic_object
 class Controller
 {
 public:
-	virtual ~Controller() {};
+	virtual ~Controller() = default;
 	virtual void control_object( Dynamic_object* ) = 0;
 };
 

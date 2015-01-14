@@ -14,6 +14,7 @@ Ca³y kod gry powinien znajdowaæ siê w innych plikach.*/
 
 #include "stdafx.h"
 #include "Engine.h"
+#include "class_code\EntryPoint_class.h"
 
 
 /*Ustaw rozdzielczoœæ okna w jakim ma byæ wyœwietlana gra. Je¿eli ma byæ w trybie 
@@ -37,6 +38,8 @@ int APIENTRY _tWinMain( _In_ HINSTANCE hInstance,
 	int result;
 
 	engine = new Engine( hInstance );
+	EntryPoint* entry_point = new EntryPoint();	//UWAGA!! nie kasujemy zmiennej, robi to silnik.
+												//UWAGA2! Zmienna musi byæ alokowana na stercie, operatorem new z tego samego powodu co wy¿ej
 
 	// Tworzymy g³ówne okno aplikacji. Dla trybu pe³noekranowego nale¿y podaæ w trzecim parametrze wartoœæ TRUE
 	result = engine->init_window( WINDOW_WIDTH, WINDOW_HEIGHT, FALSE, nCmdShow );
@@ -61,7 +64,8 @@ int APIENTRY _tWinMain( _In_ HINSTANCE hInstance,
 		return FALSE;
 	}
 
-	engine->test( );
+	engine->set_entry_point( entry_point );
+	engine->test();		//to potem zniknie
 
 	result = engine->main_loop( );
 	delete engine;

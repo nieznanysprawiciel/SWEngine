@@ -25,6 +25,8 @@ FableEngine::~FableEngine()
 		Event* cur_event = events_queue.front();
 		delete cur_event;
 	}
+
+	delete game_play;
 }
 
 
