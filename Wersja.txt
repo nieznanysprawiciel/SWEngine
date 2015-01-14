@@ -1,3 +1,8 @@
+Wersja 1.002
+14.01.2015	godz. 16:14
+-	Projekt silnika kompilowany do wersji biblioteki statycznej
+-	Dodano szablon projektu gry u¿ywaj¹cego biblioteki statycznej
+
 Wersja 1.001
 08.01.2015	godz. 16:04
 -	Struktura ModelsManagera w wersji testowej gotowa (docelowa powstanie póŸniej; jest ju¿ na papierze)

@@ -70,3 +70,16 @@ Katalogiem wynikowym pliku .exe jest GameRelease\binaries_x64.
 Wersja 64-bitowa uruchamia siê w Visual Studio, ale poza nim nie, poniewa¿
 jest w z³ym katalogu. Instrukcja uruchamiania znajduje siê w pliku 
 GameRelease\binaries_x64\read_before_use.txt.
+
+3. Kompilowanie do biblioteki statycznej
+
+Za kompilowanie do wersji biblioteki statycznej odpowiadaj¹ konfiguracje static_lib_release
+i static_lib_debug. Istniej¹ te¿ odpowiedniki dla wersji 64-bitowej.
+
+W katalogu GameCode\EntryPoint powsta³ projekt bêd¹cy szablonem dla aplikacji korzystaj¹cej
+z silnika i linkuj¹cej biliotekê odpowiedni¹ do konfiguracji. Tworz¹c grê nale¿y u¿ywaæ tego szablonu.
+Nie nale¿y modyfikowaæ pliku zawieraj¹cego funkcjê WinMain.
+
+Aby stworzyæ grê nale¿y zaimplementowaæ w³asne klasy dziedzicz¹c po GamePlay. Szablon pierwszej klasy
+o nazwie EntryPoint jest zaimplementowany w projekcie i podawany przy starcie silnika.
+Nale¿y go zmodyfikowaæ do swoich potrzeb.
