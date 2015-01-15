@@ -1,3 +1,9 @@
+Wersja 1.003
+15.01.2015	godz. 16:32
+-	Dodano projekt i pliki do GUI
+-	Poprawiono obs³ugê czasu (wykorzystana funkcja o wiêkszej rozdzielczoœci), co zwiêksza
+	p³ynnoœæ animacji
+
 Wersja 1.002
 14.01.2015	godz. 16:14
 -	Projekt silnika kompilowany do wersji biblioteki statycznej

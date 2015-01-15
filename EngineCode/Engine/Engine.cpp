@@ -190,11 +190,14 @@ void Engine::render_frame()
  *Poza tym s¹ tu generowane eventy dotycz¹ce czasu, opóŸnieñ itp.*/
 void Engine::time_controller(float& time_interval)
 {
-	DWORD time_current = GetTickCount();
+	__int64 time_current;
+	LARGE_INTEGER time_temp;
+	QueryPerformanceCounter( &time_temp );
+	time_current = time_temp.QuadPart;
 	
-	DWORD time_diff;
+	__int64 time_diff;
 	time_diff = time_current - time_previous;
-	time_interval = (float)time_diff / 1000;	//funkcja zwraca czas z dok³adnoœci¹ do milisekund, przeliczamy na sekundy
+	time_interval = (float)time_diff / timer_frequency;	//funkcja zwraca czas z dok³adnoœci¹ do milisekund, przeliczamy na sekundy
 
 	lag += time_interval;
 

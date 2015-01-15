@@ -54,8 +54,9 @@ protected:
 	//std::vector<IndexPrediction>		index_predictor;
 
 	//time control
-	DWORD						time_previous;	//bêdziemy mierzyæ ró¿nicê miedzy czasami w kolejnych
-	DWORD						elapsed_time;	//do licznika FPSów, czas od ostatniej aktualizacji frames_per_sec
+	__int64						timer_frequency;//czêstotliwoœæ timera
+	__int64						time_previous;	//bêdziemy mierzyæ ró¿nicê miedzy czasami w kolejnych
+	__int64						elapsed_time;	//do licznika FPSów, czas od ostatniej aktualizacji frames_per_sec
 	float						lag;			//opóŸnienie wzglêdem normalego tempa updatowania sceny
 	unsigned int				frames;
 	float						frames_per_sec;	//najwa¿niejszy licznik w grze
