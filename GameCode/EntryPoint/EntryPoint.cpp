@@ -41,24 +41,11 @@ int APIENTRY _tWinMain( _In_ HINSTANCE hInstance,
 	EntryPoint* entry_point = new EntryPoint();	//UWAGA!! nie kasujemy zmiennej, robi to silnik.
 												//UWAGA2! Zmienna musi byæ alokowana na stercie, operatorem new z tego samego powodu co wy¿ej
 
-	// Tworzymy g³ówne okno aplikacji. Dla trybu pe³noekranowego nale¿y podaæ w trzecim parametrze wartoœæ TRUE
-	result = engine->init_window( WINDOW_WIDTH, WINDOW_HEIGHT, FALSE, nCmdShow );
+	// Tworzymy g³ówne okno aplikacji, inicjalizujemy DirectX, Directinput i DirectSound.
+	//Dla trybu pe³noekranowego nale¿y podaæ w trzecim parametrze wartoœæ TRUE. Wysokoœæ i szerokoœæ
+	//okna s¹ w takim przypadku ignorowane.
+	result = engine->init_engine( WINDOW_WIDTH, WINDOW_HEIGHT, FALSE, nCmdShow );
 	if ( !result )
-	{
-		delete engine;
-		return FALSE;
-	}
-
-	// Inicjalizacja zmiennych DirectXa
-	result = engine->init_directX( );
-	if ( result != GRAPHIC_ENGINE_INIT_OK )
-	{
-		delete engine;
-		return FALSE;
-	}
-	// Inicjalizacja directXinputa
-	result = engine->init_directXinput( );
-	if ( result != DIRECT_INPUT_OK )
 	{
 		delete engine;
 		return FALSE;

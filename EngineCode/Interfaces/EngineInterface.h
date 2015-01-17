@@ -1,6 +1,7 @@
 #pragma once
 
 #include <queue>
+#include "..\Engine\DX11_interfaces_container.h"
 
 /*Taki interfejs bêdzie widzia³ u¿ytkownik silnika z wnêtrza swoich klas odpowiedzialnych za fabu³ê.
  *U¿ytkownik musi mieæ ograniczone mo¿liwoœci, ¿eby przypadkiem nie namiesza³. Szczególnie nie powinien
@@ -10,12 +11,8 @@
 class ControllersEngine;
 struct IndexPrediction;
 class Event;
-struct IDirect3DDevice9;
-struct IDirect3D;
-typedef struct IDirect3D9 *LPDIRECT3D9, *PDIRECT3D9;
-typedef struct IDirect3DDevice9 *LPDIRECT3DDEVICE9, *PDIRECT3DDEVICE9;
 
-class engine_interface
+class engine_interface : public DX11_interfaces_container
 {
 	friend class ControllersEngine;
 	friend class ModelsManager;

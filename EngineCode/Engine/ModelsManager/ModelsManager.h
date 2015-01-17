@@ -44,7 +44,6 @@ private:
 	bool is_equal(LPDIRECT3DVERTEXBUFFER9 vertex_buffer, Vertex_Normal_TexCords1* vertices, unsigned int vert_num);
 	Loader* find_loader(const std::wstring& path);
 
-#define __TEST
 #ifdef __TEST
 public:
 	void test();

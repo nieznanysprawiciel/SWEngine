@@ -26,29 +26,16 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	engine = new Engine(hInstance);
 
 	//creating aplication window
-	result = engine->init_window(WINDOW_WIDTH, WINDOW_HEIGHT, FALSE, nCmdShow);
+	result = engine->init_engine(WINDOW_WIDTH, WINDOW_HEIGHT, FALSE, nCmdShow);
 	if (!result)
 	{
 		delete engine;
 		return FALSE;
 	}
 
-	//initializing directX
-	result = engine->init_directX();
-	if (result != GRAPHIC_ENGINE_INIT_OK)
-	{
-		delete engine;
-		return FALSE;
-	}
-	//initializing directXinput
-	result = engine->init_directXinput();
-	if (result != DIRECT_INPUT_OK)
-	{
-		delete engine;
-		return FALSE;
-	}
-
+#ifdef __TEST
 	engine->test();
+#endif
 
 	result = engine->main_loop();
 	delete engine;

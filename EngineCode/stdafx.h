@@ -24,6 +24,8 @@
 #include <DirectXMath.h>
 #include <dinput.h>
 #include <D3DX9.h>
+#include <D3DX11.h>
+#include <d3d11.h>
 #include <string>
 #include <codecvt>
 #include <vector>

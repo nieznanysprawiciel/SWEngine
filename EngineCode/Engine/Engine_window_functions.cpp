@@ -54,7 +54,7 @@ BOOL Engine::InitInstance(int nCmdShow)
 										0, 0, window_width, window_height,
 										NULL, NULL, instance_handler, NULL);
 	else
-		window_handler = CreateWindowEx(NULL, szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+		window_handler = CreateWindowEx( NULL, szWindowClass, szTitle, WS_OVERLAPPEDWINDOW^WS_THICKFRAME,
 										CW_USEDEFAULT, 0, window_width, window_height,
 										NULL, NULL, instance_handler, NULL);
 

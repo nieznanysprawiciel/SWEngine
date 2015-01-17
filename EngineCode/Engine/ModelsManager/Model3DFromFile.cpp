@@ -10,10 +10,8 @@ ModelsManager* Model3DFromFile::models_manager = nullptr;
 //----------------------------------------------------------------------------------------------//
 
 Model3DFromFile::Model3DFromFile(int id)
-{
-	references = 0;
-	unique_id = id;
-}
+//: referenced_object(id)
+{}
 
 
 Model3DFromFile::~Model3DFromFile()

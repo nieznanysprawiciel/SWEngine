@@ -31,6 +31,7 @@ DisplayEngine::~DisplayEngine()
  *Jest to konieczne, gdy chcemy renderowaæ GUI za pomoc¹ obiektu UI_Engine.*/
 void DisplayEngine::display_scene(float time_interval)
 {
+	/*
 	LPDIRECT3DDEVICE9 directX_device = engine->directX_device;
 
 	set_view_matrix();
@@ -90,7 +91,7 @@ void DisplayEngine::display_scene(float time_interval)
 			}
 		}
 	}
-
+	*/
 }
 
 
@@ -136,7 +137,7 @@ void DisplayEngine::set_view_matrix()
 	XMStoreFloat4x4( &view, view_matrix );
 
 	//ustawiamy macierz w directXie
-	engine->directX_device->SetTransform(D3DTS_VIEW, (D3DMATRIX*)&view);
+	//engine->directX_device->SetTransform(D3DTS_VIEW, (D3DMATRIX*)&view);
 }
 
 void DisplayEngine::add_dynamic_mesh_object( Dynamic_mesh_object* object )

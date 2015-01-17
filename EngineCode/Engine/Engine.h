@@ -17,10 +17,6 @@
 #include "UI_Engine\UI_Engine.h"
 
 
-//	defines
-//	Engine defines
-#define GRAPHIC_ENGINE_INIT_OK		D3D_OK
-
 
 //	window defines
 #define		MAX_LOADSTRING			100
@@ -85,6 +81,7 @@ public:
 	int init_directXinput();
 
 	//window fuctions
+	int init_engine( int width, int height, BOOL full_screen, int nCmdShow );
 	BOOL init_window(int width, int height, BOOL full_screen, int nCmdShow);
 	void end_aplication();
 	int main_loop();

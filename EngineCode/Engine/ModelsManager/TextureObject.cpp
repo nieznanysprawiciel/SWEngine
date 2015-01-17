@@ -12,12 +12,22 @@ TextureObject::TextureObject(unsigned int id)
 	texture = nullptr;
 }
 
-TextureObject::TextureObject(unsigned int id, const std::wstring& path, LPDIRECT3DTEXTURE9 tex)
+//do wywalenia
+TextureObject::TextureObject( unsigned int id, const std::wstring& path, LPDIRECT3DTEXTURE9 tex )
+: referenced_object( id )
+{
+	file_path = path;
+	texture = tex;
+}
+
+/*
+TextureObject::TextureObject( unsigned int id, const std::wstring& path, ID3D11ShaderResourceView* tex )
 	: referenced_object(id)
 {
 	file_path = path;
 	texture = tex;
 }
+*/
 
 
 TextureObject::~TextureObject()
@@ -41,3 +51,11 @@ bool TextureObject::operator==(const std::wstring& file_name)
 		return TRUE;
 	return FALSE;
 }
+
+/*
+int TextureObject::create_from_file( const std::wstring& file_name )
+{
+
+}
+
+*/

@@ -8,6 +8,19 @@
 const float FIXED_MOVE_UPDATE_INTERVAL = ((float)1 / (float)56);
 
 
+ID3D11Device* DX11_interfaces_container::device = nullptr;
+ID3D11DeviceContext* DX11_interfaces_container::device_context = nullptr;
+IDXGISwapChain* DX11_interfaces_container::swap_chain = nullptr;
+ID3D11RenderTargetView* DX11_interfaces_container::render_target = nullptr;
+ID3D11DepthStencilView*	DX11_interfaces_container::z_buffer_view = nullptr;
+D3D_FEATURE_LEVEL DX11_interfaces_container::feature_level = D3D_FEATURE_LEVEL_11_0;
+
+
+//----------------------------------------------------------------------------------------------//
+//								konstruktor i destruktor										//
+//----------------------------------------------------------------------------------------------//
+
+
 Engine::Engine(HINSTANCE instance)
 {
 	directX_interface = nullptr;
@@ -64,17 +77,51 @@ Engine::~Engine()
 	delete collision_engine;
 	delete physic_engine;
 	delete fable_engine;
-	delete ui_engine;
+	delete ui_engine;			//sprz¹ta po directinpucie
 	delete models_manager;		//musi byæ kasowany na koñcu
 
 	clean_DirectX();
 }
 
 
+//----------------------------------------------------------------------------------------------//
+//								inicjalizacja okna i DirectXa									//
+//----------------------------------------------------------------------------------------------//
+
+int Engine::init_engine( int width, int height, BOOL full_screen, int nCmdShow )
+{
+	int result;
+
+	//Tworzenie okna aplikacji
+	result = init_window( width, height, full_screen, nCmdShow );
+	if ( !result )
+		return FALSE;
+
+	//Inicjalizowanie directXa
+	result = init_directX( );
+	if ( result != GRAPHIC_ENGINE_INIT_OK )
+		return FALSE;
+
+	//Inicjalizowanie directXinputa
+	result = ui_engine->init_direct_input( );
+	if ( result != DIRECT_INPUT_OK )
+	{
+		clean_DirectX( );
+		return FALSE;
+	}
+	//todo:
+	//Inicjalizowanie DirectXSound
+
+	directX_ready = true;		//jesteœmy gotowi do renderowania
+
+	return TRUE;
+}
+
 
 
 int Engine::init_directX()
 {
+	/*
 	directX_interface = Direct3DCreate9(D3D_SDK_VERSION);    // create the Direct3D interface
 
 	D3DPRESENT_PARAMETERS d3dpp;    // create a struct to hold various device information
@@ -118,7 +165,26 @@ int Engine::init_directX()
 		directX_device->SetRenderState( D3DRS_LIGHTING, TRUE );
 	}
 
-	return result;
+	return result;*/
+
+	int result = init_devices( window_width, window_height, window_handler, full_screen );
+	
+	if ( result != GRAPHIC_ENGINE_INIT_OK )
+		return result;
+
+	result = init_zBuffer( window_width, window_height );
+
+	if ( result != GRAPHIC_ENGINE_INIT_OK )
+		return result;
+	//W przypadku niepowodzeni, wszystko jest zwalniane wewn¹trz tamtych funkcji.
+	//Je¿eli do tej pory nic siê nie wywali³o to znaczy, ¿e mo¿emy zacz¹æ robiæ bardziej
+	//z³o¿one rzeczy.
+
+	display_engine->set_projection_matrix( D3DXToRadian( 45 ),
+										   (float)window_width / (float)window_height, 1, 100000 );
+
+
+	return GRAPHIC_ENGINE_INIT_OK;
 }
 
 int Engine::init_directXinput()
@@ -127,14 +193,19 @@ int Engine::init_directXinput()
 }
 
 
+//----------------------------------------------------------------------------------------------//
+//								czyszczenie po DirectX											//
+//----------------------------------------------------------------------------------------------//
+
 void Engine::clean_DirectX()
 {
-	// close and release all existing COM objects
-	if (directX_interface != nullptr)
-		directX_interface->Release();
-	if (directX_device != nullptr)
-		directX_device->Release();
+	release_DirectX();
 }
+
+
+//----------------------------------------------------------------------------------------------//
+//								potok przetwarzania obiektów									//
+//----------------------------------------------------------------------------------------------//
 
 /*To tutaj dziej¹ siê wszystkie rzeczy, które s¹ wywo³ywane co ka¿d¹ klatkê*/
 void Engine::render_frame()
@@ -172,15 +243,12 @@ void Engine::render_frame()
 #endif
 
 	//Renderujemy scenê oraz interfejs u¿ytkownika
-	directX_device->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
-	directX_device->Clear( 0, nullptr, D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB( 0, 0, 0 ), 1.0f, 0 );
-	directX_device->BeginScene();    // begins the 3D scene
+	begin_scene();
 
 	display_engine->display_scene(time_interval);
 	ui_engine->draw_GUI(time_interval);
 
-	directX_device->EndScene();    // ends the 3D scene
-	directX_device->Present(NULL, NULL, NULL, NULL);    // displays the created frame
+	end_scene_and_present();
 }
 
 
@@ -216,6 +284,11 @@ void Engine::time_controller(float& time_interval)
 	time_previous = time_current;
 	++frames;		//inkrementujemy licznik klatek
 }
+
+//----------------------------------------------------------------------------------------------//
+//								funkcje pomocnicze												//
+//----------------------------------------------------------------------------------------------//
+
 
 /*Funkcja pozwala wys³aæ event, który bêdzie potem przetworzony przez klase FableEngine.
  *Eventy s¹ metod¹ komunikacji pomiedzy silnikiem graficznym, silnikiem fizycznym, AI i silnikiem kolizji,
@@ -261,6 +334,8 @@ void Engine::set_entry_point( GamePlay* game_play )
 }
 
 #ifndef __UNUSED
+//Nie bêdzie wczytywania z bibliotek DLL. Maj¹ one ddzieln¹ stertê i powoduje to problemy ze zwalnianiem
+//pamiêci. Poza tym taka architektura nie nadaje siê do przeci¹¿ania operatorów new i delete.
 void Engine::set_entry_point( const std::wstring dll_name )
 {
 	HINSTANCE dll_entry_point;

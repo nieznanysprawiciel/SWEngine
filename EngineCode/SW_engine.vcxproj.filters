@@ -132,6 +132,9 @@
     <ClInclude Include="SW_engine.h">
       <Filter>Header Files\MainEngine</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\DX11_interfaces_container.h">
+      <Filter>Header Files\MainEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -204,6 +207,18 @@
       <Filter>Source Files\MainEngine</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Engine.cpp">
+      <Filter>Source Files\MainEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ModelsManager\VertexShaderObject.cpp">
+      <Filter>Source Files\ModelsManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ModelsManager\PixelShaderObject.cpp">
+      <Filter>Source Files\ModelsManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ModelsManager\BufferObject.cpp">
+      <Filter>Source Files\ModelsManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\DX11_interfaces_container.cpp">
       <Filter>Source Files\MainEngine</Filter>
     </ClCompile>
   </ItemGroup>

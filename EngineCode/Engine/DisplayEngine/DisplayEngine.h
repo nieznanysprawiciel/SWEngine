@@ -9,7 +9,7 @@
 
 class Engine;
 
-class DisplayEngine
+class DisplayEngine	:	public DX11_interfaces_container
 {
 private:
 	Engine* engine;

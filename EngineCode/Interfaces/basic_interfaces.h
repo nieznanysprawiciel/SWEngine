@@ -117,6 +117,7 @@ protected:
 	std::vector<MeshPart*>			mesh_parts;
 	std::vector<TextureObject*>		textures;
 	std::vector<MaterialObject*>	materials;
+	bool							model_changed;
 public:
 	Dynamic_mesh_object();
 	virtual ~Dynamic_mesh_object();

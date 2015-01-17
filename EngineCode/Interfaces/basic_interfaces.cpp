@@ -187,6 +187,7 @@ Physical_object::Physical_object()
 Dynamic_mesh_object::Dynamic_mesh_object()
 {
 	model_reference = nullptr;
+	model_changed = false;
 #ifdef _SCALEABLE_OBJECTS
 	scale = 1.0;
 #endif
@@ -273,6 +274,8 @@ int Dynamic_mesh_object::set_model(Model3DFromFile* model)
 	mesh_parts.shrink_to_fit();
 	materials.shrink_to_fit();
 	textures.shrink_to_fit();
+
+	model_changed = false;		//Zawartoœæ tablic odpowiada modelowi
 
 	return 0;
 }
