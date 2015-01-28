@@ -3,7 +3,7 @@
 
 #include "..\..\stdafx.h"
 #include "..\DX11_interfaces_container.h"
-
+#include "ResourceContainer.h"
 
 //definicje
 #define WRONG_ID						0
@@ -211,6 +211,7 @@ class TextureObject : public referenced_object, public DX11_interfaces_container
 {
 	friend TextureObject;
 	friend ModelsManager;
+	friend ResourceContainer<TextureObject*>;
 private:
 	std::wstring					file_path;			//œcie¿ka do tekstury (nie do pliku z meshem)
 	ID3D11ShaderResourceView*		texture;
@@ -232,6 +233,7 @@ public:
 class VertexShaderObject : public referenced_object, public DX11_interfaces_container
 {
 	friend ModelsManager;
+	friend ResourceContainer<VertexShaderObject*>;
 private:
 	ID3D11VertexShader*		vertex_shader;
 protected:
@@ -247,6 +249,7 @@ public:
 class PixelShaderObject : public referenced_object, public DX11_interfaces_container
 {
 	friend ModelsManager;
+	friend ResourceContainer<PixelShaderObject*>;
 private:
 	ID3D11PixelShader*		pixel_shader;
 protected:
@@ -265,6 +268,7 @@ Obiekty tego typu mog¹ tak¿e s³u¿yæ do przekazywania parametrów shaderom.*/
 class BufferObject : public referenced_object, public DX11_interfaces_container
 {
 	friend ModelsManager;
+	friend ResourceContainer<BufferObject*>;
 private:
 	ID3D11Buffer*		buffer;
 protected:
@@ -338,6 +342,7 @@ struct EditTMP
 class Model3DFromFile : public referenced_object
 {
 	friend class ModelsManager;
+	friend ResourceContainer<Model3DFromFile*>;
 private:
 	static ModelsManager* models_manager;
 
@@ -362,7 +367,7 @@ public:
 	void EndPart();
 
 	unsigned int add_texture( const std::wstring& file_name, TEXTURES_TYPES type = TEX_DIFFUSE );
-	unsigned int add_material( const MaterialObject* material );
+	unsigned int add_material( const MaterialObject* material, const std::wstring& material_name );
 	unsigned int add_vertex_shader( const std::wstring& file_name );
 	unsigned int add_pixel_shader( const std::wstring& file_name );
 	unsigned int add_vertex_buffer( const VertexNormalTexCord1* buffer, unsigned int vert_count );

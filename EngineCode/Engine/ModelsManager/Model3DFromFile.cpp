@@ -180,7 +180,7 @@ unsigned int Model3DFromFile::add_texture( const std::wstring& file_name, TEXTUR
 	return WRONG_ID;
 }
 
-unsigned int Model3DFromFile::add_material( const MaterialObject* material )
+unsigned int Model3DFromFile::add_material( const MaterialObject* material, const std::wstring& material_name )
 {
 
 	return WRONG_ID;

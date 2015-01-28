@@ -2,6 +2,17 @@
 #include "FBX_loader.h"
 
 
+/*Obecna wersja FBX_loadera jest jedynie lekko zmodyfikowan¹ wersj¹ tego, który
+dzia³a³ pod DirectX 9. Zmiany, które zasz³y, to jedynie dopasowanie do nowego modelu
+przechowywania danych.
+
+Niestety nie czerpiemy korzyœci z takich rzeczy jak bufor indeksów oraz
+multitekturing. Nie jest równie¿ u¿ywany bumpmapping. Domyœlnie tekstura 
+wczytana jest traktowana jakby by³a dla kana³u diffuse.
+
+To trzeba kiedyœ zmieniæ, aby po pierwsze optymalniej wykorzystywaæ silnik, a po
+drugie, ¿eby wykorzystywaæ wszystkie jego mo¿liwoœci.*/
+
 
 FBX_loader::FBX_loader(ModelsManager* models_manager)
 	: Loader(models_manager)
@@ -196,22 +207,23 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 		//teraz wszystkie inne przypadki; iterujemy po materia³ach
 		for ( int i = 0; i < material_count; ++i )
 		{
+			// Obiekty do konwertowania stringów
+			typedef std::codecvt_utf8<wchar_t> convert_type;
+			std::wstring_convert<convert_type, wchar_t> converter;
+
+			// Pobieramy materia³
 			FbxSurfacePhong* material = static_cast<FbxSurfacePhong*>(node->GetMaterial( i ));
-			MaterialObject engine_material(WRONG_MATERIAL_ID);
-			copy_material( engine_material, *material );
-			cur_model->add_material( &engine_material );
+			MaterialObject engine_material(WRONG_MATERIAL_ID);		// Ten materia³ jest tylko tymczasowy
+			copy_material( engine_material, *material );			// Konwertujemy z formatu FBX na MaterialObject
+			// Dodajemy do silnika, podajemy w drugim parametrze nazwê materia³u, która zostanie doklejona do œcie¿ki pliku
+			cur_model->add_material( &engine_material, converter.from_bytes( material->GetName( )) );
 
 			if ( material->Diffuse.GetSrcObjectCount() > 0 )
 			{
 				FbxFileTexture* texture = static_cast<FbxFileTexture*>(material->Diffuse.GetSrcObject());
 				if ( texture != nullptr )
-				{
-					typedef std::codecvt_utf8<wchar_t> convert_type;
-					std::wstring_convert<convert_type, wchar_t> converter;
-
 					cur_model->add_texture( converter.from_bytes( texture->GetFileName() ), TEXTURES_TYPES::TEX_DIFFUSE );
-					// Je¿eli dodawanie siê nie uda, to tekstura pzostanie nullptrem
-				}
+					// Je¿eli dodawanie siê nie uda, to tekstura pozostanie nullptrem
 				//else //tutaj tekstura ma byæ nullem, ale tak siê dzieje domyœlnie
 			}
 			//else //tutaj tekstura ma byæ nullem, ale tak siê dzieje domyœlnie

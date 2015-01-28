@@ -11,7 +11,18 @@ class Loader;
 //							wersja DirectX11
 //-------------------------------------------------------------------------------//
 
+/*Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dŸwiêków, które raczej
+zostan¹ oddelegowane w inne miejsce).
 
+Zasoby s¹ identyfikowane jednoznacznym identyfikatorem, który jest unikalny
+jedynie w danej grupie zasobów, lub te¿ nazw¹ pliku na podstawie którego dany zasób powsta³.
+
+Materia³y s¹ specyficzne, poniewa¿ jeden plik z programu do modelowania raczej zawiera
+wiele ró¿nych materia³ów. ¯eby je mo¿na by³o w ten sposób jednoznacznie identyfikowaæ,
+do nazwy pliku doklejane s¹ dwa dwukropki :: i nazwa materia³u, jaka zosta³a mu nadana
+w pliku, z którego pochodzi.
+Oczywiœcie, jezeli materia³ zosta³ stworzony rêcznie w silniku, to nie ma potrzeby
+nadawania mu takiej nazwy, wystarczy, ¿eby by³a ona unikatowa.*/
 class ModelsManager
 {
 private:
@@ -23,6 +34,7 @@ private:
 	ResourceContainer<BufferObject*>			vertex_buffer;
 	ResourceContainer<BufferObject*>			index_buffer;
 	ResourceContainer<Model3DFromFile*>			file_model;
+	ResourceContainer<MaterialObject*>			material;
 
 	/*loadery dla ró¿nych formatów plików z modelami*/
 	std::vector<Loader*>			loader;
