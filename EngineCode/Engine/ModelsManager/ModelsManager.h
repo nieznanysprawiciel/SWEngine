@@ -2,9 +2,52 @@
 
 #include "..\..\stdafx.h"
 #include "meshes_textures_materials.h"
+#include "ResourceContainer.h"
 
 class Engine;
 class Loader;
+
+//-------------------------------------------------------------------------------//
+//							wersja DirectX11
+//-------------------------------------------------------------------------------//
+
+
+class ModelsManager
+{
+private:
+	Engine* engine;
+
+	ResourceContainer<VertexShaderObject*>		vertex_shader;
+	ResourceContainer<PixelShaderObject*>		pixel_shader;
+	ResourceContainer<TextureObject*>			texture;
+	ResourceContainer<BufferObject*>			vertex_buffer;
+	ResourceContainer<BufferObject*>			index_buffer;
+	ResourceContainer<Model3DFromFile*>			file_model;
+
+	/*loadery dla ró¿nych formatów plików z modelami*/
+	std::vector<Loader*>			loader;
+
+public:
+	ModelsManager( Engine* engine );
+	~ModelsManager( );
+
+
+
+private:
+	Loader* find_loader( const std::wstring& path );
+
+#ifdef __TEST
+public:
+	void test( );
+#endif
+};
+
+//-------------------------------------------------------------------------------//
+//							wersja DirectX9
+//-------------------------------------------------------------------------------//
+
+#ifndef __UNUSED
+
 
 class ModelsManager
 {
@@ -50,3 +93,4 @@ public:
 #endif
 };
 
+#endif

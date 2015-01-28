@@ -114,15 +114,19 @@ public:
 #endif
 protected:
 	Model3DFromFile*				model_reference;					//zapisujemy odwo³anie, ¿ebyœmy wiedzieli, ¿e nie mo¿emy kasowaæ tego obiektu
-	std::vector<MeshPart*>			mesh_parts;
-	std::vector<TextureObject*>		textures;
-	std::vector<MaterialObject*>	materials;
+	BufferObject*					vertex_buffer;						//ca³y bufor przechowujemy w jednym obiekcie
+	std::vector<ModelPart>			model_parts;
+
 	bool							model_changed;
 public:
 	Dynamic_mesh_object();
 	virtual ~Dynamic_mesh_object();
 
 	int set_model( Model3DFromFile* model );
+
+private:
+	void add_references(const ModelPart* part);
+	void delete_all_references();
 
 };
 

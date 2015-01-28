@@ -59,6 +59,7 @@ private:
 	//window functions
 	ATOM MyRegisterClass();
 	BOOL InitInstance(int);
+	int init_shaders_vertex_layouts();
 
 	//DirectX functions
 	void clean_DirectX();

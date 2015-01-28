@@ -12,6 +12,8 @@ TextureObject::TextureObject(unsigned int id)
 	texture = nullptr;
 }
 
+
+/*
 //do wywalenia
 TextureObject::TextureObject( unsigned int id, const std::wstring& path, LPDIRECT3DTEXTURE9 tex )
 : referenced_object( id )
@@ -20,7 +22,7 @@ TextureObject::TextureObject( unsigned int id, const std::wstring& path, LPDIREC
 	texture = tex;
 }
 
-/*
+
 TextureObject::TextureObject( unsigned int id, const std::wstring& path, ID3D11ShaderResourceView* tex )
 	: referenced_object(id)
 {

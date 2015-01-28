@@ -188,6 +188,7 @@ Dynamic_mesh_object::Dynamic_mesh_object()
 {
 	model_reference = nullptr;
 	model_changed = false;
+	vertex_buffer = nullptr;
 #ifdef _SCALEABLE_OBJECTS
 	scale = 1.0;
 #endif
@@ -196,22 +197,10 @@ Dynamic_mesh_object::Dynamic_mesh_object()
 Dynamic_mesh_object::~Dynamic_mesh_object()
 {
 	//Kasujac obiekt nie wolno nam niczego usuwaæ, bo nic nie nale¿y do nas
-	//jedynie ksujemy referencje
-
-	if( model_reference != nullptr )
-		model_reference->delete_reference();
+	//jedynie kasujemy referencje
 
 	//kasujemy referencje bezpoœrednie
-	//zak³adamy, ¿e tablice s¹ takie same, bo z takim warunkiem je stworzyliœmy
-	for (unsigned int k = 0; k < materials.size(); ++k)
-	{//ka¿dy element mo¿e byæ nullptrem
-		if( mesh_parts[k] != nullptr )
-			mesh_parts[k]->mesh_object->delete_object_reference();
-		if( materials[k] != nullptr )
-			materials[k]->delete_object_reference();
-		if( textures[k] != nullptr )
-			textures[k]->delete_object_reference();
-	}
+	delete_all_references();
 }
 
 int Dynamic_mesh_object::set_model(Model3DFromFile* model)
@@ -220,64 +209,96 @@ int Dynamic_mesh_object::set_model(Model3DFromFile* model)
 		return 1;
 
 	//najpierw czyœcimy poprzedni¹ zawartoœæ
-	//kasujemy odwo³anie plikowe
-	if( model_reference != nullptr )
-		model_reference->delete_reference();
-
 	//kasujemy referencje bezpoœrednie
-	//zak³adamy, ¿e tablice s¹ takie same, bo z takim warunkiem je stworzyliœmy
-	for (unsigned int k = 0; k < materials.size(); ++k)
-	{//ka¿dy element mo¿e byæ nullptrem
-		if( mesh_parts[k] != nullptr )
-			mesh_parts[k]->mesh_object->delete_object_reference();
-		if( materials[k] != nullptr )
-			materials[k]->delete_object_reference();
-		if( textures[k] != nullptr )
-			textures[k]->delete_object_reference();
-	}
+	delete_all_references();
 
-	mesh_parts.clear();
-	materials.clear();
-	textures.clear();
-
-
+	//dodajemy now¹ zawartoœæ
 	model_reference = model;
-	model->add_reference();
-	unsigned int count = model->get_parts_count();
+	model->add_object_reference();
 
-	mesh_parts.reserve( count );
-	materials.reserve( count );
-	textures.reserve( count );
+	vertex_buffer = model->get_vertex_buffer();
+	vertex_buffer->add_object_reference();
+
+	unsigned int count = model->get_parts_count();
+	model_parts.reserve( count );
 
 	for (unsigned int i = 0; i < count; ++i)
 	{//przepisujemy sobie wskaŸniki
-		MeshPart* mesh = model->get_mesh_part(i);
-		MaterialObject* material = model->get_material(i);
-		TextureObject* texture = model->get_texture(i);
+		register const ModelPart* part = model->get_part( i );
 
-		mesh_parts.push_back(mesh);
-		materials.push_back(material);
-		textures.push_back(texture);
-
-	//ka¿dy element mo¿e byæ nullptrem
-		if( mesh != nullptr )
-			mesh->mesh_object->add_object_reference();
-		if( material != nullptr )
-			material->add_object_reference();
-		if( texture != nullptr )
-			texture->add_object_reference();
+		model_parts.push_back( *part );
+		add_references(part);			//Dodajemy odwo³ania
 	}
 
 	//Pytanie czy to ma sens. Funkcja reserve ustawi³a wielkoœæ wektora na przynajmniej count.
 	//Je¿eli da³a wiêcej, to warto by by³o zmniejszyæ, bo zawartoœæ tych wektorów siê ju¿ nie zmieni.
 	//Problemem jest, ¿e obie te funkcje wed³ug dokumentacji nie s¹ wi¹¿¹ce.
-	mesh_parts.shrink_to_fit();
-	materials.shrink_to_fit();
-	textures.shrink_to_fit();
+	model_parts.shrink_to_fit( );
 
 	model_changed = false;		//Zawartoœæ tablic odpowiada modelowi
 
 	return 0;
+}
+
+/* #private
+Dodajemy odwo³ania do wszystkich istniej¹cych elementów w przekazanym wskaŸniku.*/
+void Dynamic_mesh_object::add_references( const ModelPart* part )
+{
+	if ( part == nullptr )
+		return;
+
+	if ( part->material )
+		part->material->add_object_reference();
+	if ( part->index_buffer )
+		part->index_buffer->add_object_reference();
+	if ( part->mesh )
+		part->mesh->add_object_reference();
+	if ( part->pixel_shader )
+		part->pixel_shader->add_object_reference();
+	for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
+		if ( part->texture )
+			part->texture[i]->add_object_reference( );
+	if ( part->vertex_shader )
+		part->vertex_shader->add_object_reference();
+
+}
+
+/* #private
+Kasuje odwo³ania do obiektów, których w³asnoœci¹ jest ModelsManager albo Model3DFromFile
+w tablicy model_parts raz wskaŸniku model_reference i vertex_buffer;
+
+¯adne obiekty nie s¹ kasowane, poniewa¿ nie nale¿¹ one do nas.
+Wszystkie zmienne s¹ za to czyszczone.*/
+void Dynamic_mesh_object::delete_all_references( )
+{
+	if ( model_reference != nullptr )
+		model_reference->delete_object_reference( );
+	model_reference = nullptr;
+
+	if ( vertex_buffer )
+		vertex_buffer->delete_object_reference();
+	vertex_buffer = nullptr;
+
+	for ( unsigned int k = 0; k < model_parts.size( ); ++k )
+	{//ka¿dy element mo¿e byæ nullptrem
+		register ModelPart* part = &model_parts[k];
+
+		//ka¿dy element mo¿e byæ nullptrem
+		if ( part->material )
+			part->material->delete_object_reference();
+		if ( part->index_buffer )
+			part->index_buffer->delete_object_reference( );
+		if ( part->mesh )
+			part->mesh->delete_object_reference( );
+		if ( part->pixel_shader )
+			part->pixel_shader->delete_object_reference( );
+		for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
+			if ( part->texture )
+				part->texture[i]->delete_object_reference( );
+		if ( part->vertex_shader )
+			part->vertex_shader->delete_object_reference( );
+	}
+	model_parts.clear();
 }
 
 //----------------------------------------------------------------------------------------------//

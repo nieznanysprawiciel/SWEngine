@@ -186,6 +186,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalOptions>/arch:SSE2 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalIncludeDirectories>$(DXSDK_DIR)\Include;$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\include</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -207,6 +208,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalOptions>/arch:SSE2 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalIncludeDirectories>$(DXSDK_DIR)\Include;$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\include</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -283,6 +285,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(DXSDK_DIR)\Include;$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\include</AdditionalIncludeDirectories>
       <AdditionalOptions>/arch:SSE2 %(AdditionalOptions)</AdditionalOptions>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -308,6 +311,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(DXSDK_DIR)\Include;$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\include</AdditionalIncludeDirectories>
       <AdditionalOptions>/arch:SSE2 %(AdditionalOptions)</AdditionalOptions>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -391,6 +395,7 @@
     <ClInclude Include="Engine\CollisionEngine\CollisionEngine.h" />
     <ClInclude Include="Engine\ControllersEngine\camera_controller_PROTOTYPE.h" />
     <ClInclude Include="Engine\ControllersEngine\ControllersEngine.h" />
+    <ClInclude Include="Engine\DisplayEngine\ConstantBuffersFormat.h" />
     <ClInclude Include="Engine\DisplayEngine\DisplayEngine.h" />
     <ClInclude Include="Engine\DX11_interfaces_container.h" />
     <ClInclude Include="Engine\Engine.h" />
@@ -400,6 +405,7 @@
     <ClInclude Include="Engine\ModelsManager\Loaders\loader_interface.h" />
     <ClInclude Include="Engine\ModelsManager\meshes_textures_materials.h" />
     <ClInclude Include="Engine\ModelsManager\ModelsManager.h" />
+    <ClInclude Include="Engine\ModelsManager\ResourceContainer.h" />
     <ClInclude Include="Engine\MovementEngine\MovementEngine.h" />
     <ClInclude Include="Engine\PhysicEngine\PhysicEngine.h" />
     <ClInclude Include="Engine\SoundEngine\SoundEngine.h" />
@@ -531,7 +537,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">..\..\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="Engine\ModelsManager\MeshObject.cpp">
+    <ClCompile Include="Engine\ModelsManager\MeshPartObject.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\stdafx.h</PrecompiledHeaderFile>
@@ -575,6 +581,9 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">..\..\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Engine\ModelsManager\VertexShaderObject.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="Engine\ModelsManager\vertex_layouts.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Engine\MovementEngine\MovementEngine.cpp">

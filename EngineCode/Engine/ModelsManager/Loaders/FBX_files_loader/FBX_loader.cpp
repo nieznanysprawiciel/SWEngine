@@ -122,7 +122,7 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 		return;*/
 
 	int material_count = node->GetMaterialCount();
-	std::vector<Vertex_Normal_TexCords1>** triangles;		//nasza tablica wierzcho³ków, normalnych i UVs (ta tablica bêdzie tylko tymczasowa)
+	std::vector<VertexNormalTexCord1>** triangles;		//nasza tablica wierzcho³ków, normalnych i UVs (ta tablica bêdzie tylko tymczasowa)
 	unsigned int polygon_count = mesh->GetPolygonCount();	//liczba wielok¹tów
 	unsigned int vertex_counter = 0;						//potrzebne przy trybie mapowania FbxGeometryElement::eByPolygonVertex
 	unsigned int polygon_counter = 0;						//potrzebne przy trybie mapowania materia³ów FbxGeometryElement::eByPolygon
@@ -131,9 +131,9 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 	//tworzymy tyle vectorów na wierzcho³ki, ile mamy materia³ów
 	if (material_count == 0)
 		material_count = 1;		//potrzebujemy przynajmniej jednej tablicy
-	triangles = new std::vector<Vertex_Normal_TexCords1>*[material_count];
+	triangles = new std::vector<VertexNormalTexCord1>*[material_count];
 	for (int i = 0; i < material_count; ++i)
-		triangles[i] = new std::vector < Vertex_Normal_TexCords1 > ;
+		triangles[i] = new std::vector < VertexNormalTexCord1 >;
 
 
 	/*Iterujemy po wierzcho³kach i wpisujemy je do odpowiedniej tablicy w zaleznoœci od materia³u.*/
@@ -148,7 +148,7 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 		do g³owy, ¿eby u¿yæ czegoœ innego ni¿ trojk¹tów, no ale trudno.*/
 		for (int j = 0; j < 3; ++j)
 		{
-			Vertex_Normal_TexCords1 cur_vertex;		//tutaj zapisujemy dane o wierzcho³ku
+			VertexNormalTexCord1 cur_vertex;		//tutaj zapisujemy dane o wierzcho³ku
 			int ctr_point = mesh->GetPolygonVertex(i, j);
 
 			//przepisujemy pozycjê wierzcho³ka
@@ -169,7 +169,7 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 			mesh->GetPolygonVertexUV(i, j, "DiffuseUV", UVs, mapped);
 			cur_vertex.tex_cords1.x = static_cast<float>(UVs.mData[0]);
 			cur_vertex.tex_cords1.y = static_cast<float>(UVs.mData[1]);*/
-			read_UVs(mesh, ctr_point, vertex_counter, cur_vertex.tex_cords1);
+			read_UVs(mesh, ctr_point, vertex_counter, cur_vertex.tex_cords);
 
 			//dodajemy wierzcho³ek do odpowiedniej tablicy
 			triangles[material_index]->push_back(cur_vertex);
@@ -185,9 +185,11 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 		//najpierw przypadek, w którym nie ma materia³u (czyli tekstury te¿ nie ma)
 	if (node->GetMaterialCount() == 0)
 	{
-		cur_model->add_null_material();
-		cur_model->add_null_texture();
-		cur_model->add_mesh(triangles[0]->data(), triangles[0]->size(), transformation);
+		//Nie trzeba dodawaæ nulli tak jak wczeœniej, bo one siê domyœlnie tam znajduj¹
+		//cur_model->add_null_material();
+		//cur_model->add_null_texture();
+		cur_model->add_vertex_buffer( triangles[0]->data(), triangles[0]->size());
+		cur_model->add_transformation( transformation );
 	}
 	else
 	{
@@ -195,9 +197,9 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 		for ( int i = 0; i < material_count; ++i )
 		{
 			FbxSurfacePhong* material = static_cast<FbxSurfacePhong*>(node->GetMaterial( i ));
-			D3DMATERIAL9 directXmaterial;
-			copy_material( directXmaterial, *material );
-			cur_model->add_material( directXmaterial );
+			MaterialObject engine_material(WRONG_MATERIAL_ID);
+			copy_material( engine_material, *material );
+			cur_model->add_material( &engine_material );
 
 			if ( material->Diffuse.GetSrcObjectCount() > 0 )
 			{
@@ -207,16 +209,15 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 					typedef std::codecvt_utf8<wchar_t> convert_type;
 					std::wstring_convert<convert_type, wchar_t> converter;
 
-					if ( cur_model->add_texture( converter.from_bytes( texture->GetFileName() ) ) == WRONG_TEXTURE_ID )
-						cur_model->add_null_texture();
+					cur_model->add_texture( converter.from_bytes( texture->GetFileName() ), TEXTURES_TYPES::TEX_DIFFUSE );
+					// Je¿eli dodawanie siê nie uda, to tekstura pzostanie nullptrem
 				}
-				else
-					cur_model->add_null_texture();
+				//else //tutaj tekstura ma byæ nullem, ale tak siê dzieje domyœlnie
 			}
-			else
-				cur_model->add_null_texture();
+			//else //tutaj tekstura ma byæ nullem, ale tak siê dzieje domyœlnie
 
-			cur_model->add_mesh( triangles[i]->data(), triangles[i]->size(), transformation );
+			cur_model->add_vertex_buffer( triangles[i]->data( ), triangles[i]->size( ));
+			cur_model->add_transformation( transformation );
 		}
 	}
 
@@ -306,7 +307,7 @@ void FBX_loader::read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_
 
 
 /*Kopiujemy materia³ konwertuj¹c go z formatu u¿ywanego przez FBX SDK do formatu directX.*/
-void FBX_loader::copy_material(D3DMATERIAL9& directXmaterial, FbxSurfacePhong& FBXmaterial)
+void FBX_loader::copy_material(D3DMATERIAL9& directXmaterial, const FbxSurfacePhong& FBXmaterial)
 {
 	FbxDouble3 diffuse = static_cast<FbxDouble3>(FBXmaterial.Diffuse.Get());
 	FbxDouble3 ambient = static_cast<FbxDouble3>(FBXmaterial.Ambient.Get());
@@ -340,7 +341,40 @@ void FBX_loader::copy_material(D3DMATERIAL9& directXmaterial, FbxSurfacePhong& F
 	directXmaterial.Power = static_cast<float>(power);
 }
 
+/*Kopiujemy materia³ konwertuj¹c go z formatu u¿ywanego przez FBX SDK do formatu u¿ywanego w silniku.*/
+void FBX_loader::copy_material( MaterialObject& engine_material, const FbxSurfacePhong& FBXmaterial )
+{
+	FbxDouble3 diffuse = static_cast<FbxDouble3>(FBXmaterial.Diffuse.Get( ));
+	FbxDouble3 ambient = static_cast<FbxDouble3>(FBXmaterial.Ambient.Get( ));
+	FbxDouble3 emissive = static_cast<FbxDouble3>(FBXmaterial.Emissive.Get( ));
+	FbxDouble3 specular = static_cast<FbxDouble3>(FBXmaterial.Specular.Get( ));
+	FbxDouble diffuse_factor = static_cast<FbxDouble>(FBXmaterial.DiffuseFactor.Get( ));
+	FbxDouble ambient_factor = static_cast<FbxDouble>(FBXmaterial.AmbientFactor.Get( ));
+	FbxDouble emissive_factor = static_cast<FbxDouble>(FBXmaterial.EmissiveFactor.Get( ));
+	FbxDouble specular_factor = static_cast<FbxDouble>(FBXmaterial.SpecularFactor.Get( ));
+	FbxDouble power = static_cast<FbxDouble>(FBXmaterial.Shininess.Get( ));
+	FbxDouble transparent = static_cast<FbxDouble>(FBXmaterial.TransparencyFactor.Get( ));
 
+	engine_material.Diffuse.w = static_cast<float>(transparent);
+
+	engine_material.Diffuse.x = static_cast<float>(diffuse[0] * diffuse_factor);
+	engine_material.Diffuse.y = static_cast<float>(diffuse[1] * diffuse_factor);
+	engine_material.Diffuse.z = static_cast<float>(diffuse[2] * diffuse_factor);
+
+	engine_material.Ambient.x = static_cast<float>(ambient[0] * ambient_factor);
+	engine_material.Ambient.y = static_cast<float>(ambient[1] * ambient_factor);
+	engine_material.Ambient.z = static_cast<float>(ambient[2] * ambient_factor);
+
+	engine_material.Emissive.x = static_cast<float>(emissive[0] * emissive_factor);
+	engine_material.Emissive.y = static_cast<float>(emissive[1] * emissive_factor);
+	engine_material.Emissive.z = static_cast<float>(emissive[2] * emissive_factor);
+
+	engine_material.Specular.x = static_cast<float>(specular[0] * specular_factor);
+	engine_material.Specular.y = static_cast<float>(specular[1] * specular_factor);
+	engine_material.Specular.z = static_cast<float>(specular[2] * specular_factor);
+
+	engine_material.Power = static_cast<float>(power);
+}
 
 
 //--------------------------------------------------------------------------------------//

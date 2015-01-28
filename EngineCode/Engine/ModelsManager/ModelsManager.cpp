@@ -5,7 +5,192 @@
 #include "Loaders\FBX_files_loader\FBX_loader.h"
 
 
+//-------------------------------------------------------------------------------//
+//							wersja DirectX11
+//-------------------------------------------------------------------------------//
 
+ModelsManager::ModelsManager( Engine* engine )
+: engine( engine )
+{
+	Model3DFromFile::models_manager = this;
+
+	//Loader plików FBX jest domyœlnym narzêdziem do wczytywania
+	FBX_loader* fbx_loader = new FBX_loader( this );
+	loader.push_back( fbx_loader );
+}
+
+
+
+ModelsManager::~ModelsManager( )
+{
+	// Kasujemy obiekty do wczytywania danych
+	for ( unsigned int i = 0; i < loader.size(); ++i )
+		delete loader[i];
+}
+
+
+
+#ifdef __TEST
+void ModelsManager::test( )
+{
+	/*
+	//stworzymy sobie prosty obiekt do wyœwietlania
+	Vertex_Normal_TexCords1 g_Vertices[] =
+	{
+	// front
+	{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT3(0.0f, 0.0f, -1.0f), XMFLOAT2(0.0f, 3.0f), },
+	{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT3(0.0f, 0.0f, -1.0f), XMFLOAT2(0.0f, 0.0f), },
+	{ XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT3(0.0f, 0.0f, -1.0f), XMFLOAT2(3.0f, 3.0f), },
+
+	{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT3(0.0f, 0.0f, -1.0f), XMFLOAT2(0.0f, 0.0f), },
+	{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT3(0.0f, 0.0f, -1.0f), XMFLOAT2(3.0f, 0.0f), },
+	{ XMFLOAT3( 1.0f, -1.0f, -1.0f ), XMFLOAT3( 0.0f, 0.0f, -1.0f ), XMFLOAT2( 3.0f, 3.0f ), },
+
+	// right
+	{ XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT2(0.0f, 1.0f), },
+	{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT2(0.0f, 0.0f), },
+	{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT2(1.0f, 1.0f), },
+
+	{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT2(0.0f, 0.0f), },
+	{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT2(1.0f, 0.0f), },
+	{ XMFLOAT3( 1.0f, -1.0f, 1.0f ), XMFLOAT3( 1.0f, 0.0f, 0.0f ), XMFLOAT2( 1.0f, 1.0f ), },
+
+	// back
+	{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT3(0.0f, 0.0f, 1.0f), XMFLOAT2(0.0f, 1.0f), },
+	{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT3(0.0f, 0.0f, 1.0f), XMFLOAT2(0.0f, 0.0f), },
+	{ XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT3(0.0f, 0.0f, 1.0f), XMFLOAT2(1.0f, 1.0f), },
+
+	{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT3(0.0f, 0.0f, 1.0f), XMFLOAT2(0.0f, 0.0f), },
+	{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT3(0.0f, 0.0f, 1.0f), XMFLOAT2(1.0f, 0.0f), },
+	{ XMFLOAT3( -1.0f, -1.0f, 1.0f ), XMFLOAT3( 0.0f, 0.0f, 1.0f ), XMFLOAT2( 1.0f, 1.0f ), },
+
+	// left/ left
+	{ XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT3(-1.0f, 0.0f, 0.0f), XMFLOAT2(0.0f, 1.0f), },
+	{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT3(-1.0f, 0.0f, 0.0f), XMFLOAT2(0.0f, 0.0f), },
+	{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT3(-1.0f, 0.0f, 0.0f), XMFLOAT2(1.0f, 1.0f), },
+
+	{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT3(-1.0f, 0.0f, 0.0f), XMFLOAT2(0.0f, 0.0f), },
+	{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT3(-1.0f, 0.0f, 0.0f), XMFLOAT2(1.0f, 0.0f), },
+	{ XMFLOAT3( -1.0f, -1.0f, -1.0f ), XMFLOAT3( -1.0f, 0.0f, 0.0f ), XMFLOAT2( 1.0f, 1.0f ), },
+
+	// top/ top
+	{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT3(0.0f, 1.0f, 0.0f), XMFLOAT2(0.0f, 1.0f), },
+	{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT3(0.0f, 1.0f, 0.0f), XMFLOAT2(0.0f, 0.0f), },
+	{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT3(0.0f, 1.0f, 0.0f), XMFLOAT2(1.0f, 1.0f), },
+
+	{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT3(0.0f, 1.0f, 0.0f), XMFLOAT2(0.0f, 0.0f), },
+	{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT3(0.0f, 1.0f, 0.0f), XMFLOAT2(1.0f, 0.0f), },
+	{ XMFLOAT3( 1.0f, 1.0f, -1.0f ), XMFLOAT3( 0.0f, 1.0f, 0.0f ), XMFLOAT2( 1.0f, 1.0f ), },
+
+	// bootom/ bootom
+	{ XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT3(0.0f, -1.0f, 0.0f), XMFLOAT2(0.0f, 1.0f), },
+	{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT3(0.0f, -1.0f, 0.0f), XMFLOAT2(0.0f, 0.0f), },
+	{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT3(0.0f, -1.0f, 0.0f), XMFLOAT2(1.0f, 1.0f), },
+
+	{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT3(0.0f, -1.0f, 0.0f), XMFLOAT2(0.0f, 0.0f), },
+	{ XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT3(0.0f, -1.0f, 0.0f), XMFLOAT2(1.0f, 0.0f), },
+	{ XMFLOAT3( 1.0f, -1.0f, 1.0f ), XMFLOAT3( 0.0f, -1.0f, 0.0f ), XMFLOAT2( 1.0f, 1.0f ), },
+	};
+
+	D3DMATERIAL9 mat;
+
+	// Set the RGBA for diffuse reflection.
+	mat.Diffuse.r = 0.5f;
+	mat.Diffuse.g = 0.5f;
+	mat.Diffuse.b = 0.67f;
+	mat.Diffuse.a = 1.0f;
+
+	// Set the RGBA for ambient reflection.
+	mat.Ambient.r = 0.3f;
+	mat.Ambient.g = 0.5f;
+	mat.Ambient.b = 0.3f;
+	mat.Ambient.a = 1.0f;
+
+	// Set the color and sharpness of specular highlights.
+	mat.Specular.r = 1.0f;
+	mat.Specular.g = 1.0f;
+	mat.Specular.b = 1.0f;
+	mat.Specular.a = 1.0f;
+	mat.Power = 50.0f;
+
+	// Set the RGBA for emissive color.
+	mat.Emissive.r = 0.0f;
+	mat.Emissive.g = 0.0f;
+	mat.Emissive.b = 0.0f;
+	mat.Emissive.a = 0.0f;*/
+
+	Model3DFromFile* new_model = new Model3DFromFile( models_count );
+	++models_count;
+	/*
+	XMMATRIX matrix1 = XMMatrixIdentity();
+	DirectX::XMFLOAT4X4 matrix;
+	XMStoreFloat4x4(&matrix, matrix1);
+	new_model->add_mesh(g_Vertices, 36, matrix);
+	//"..\tylko_do_testow\tex.bmp"
+	if ( new_model->add_texture( L"tylko_do_testow/tex.bmp" ) == WRONG_TEXTURE_ID )
+	new_model->add_null_texture();
+	new_model->add_material(mat);
+	*/
+	new_model->file_path = "tylko_do_testow/clone_fighter_rel.FBX";
+	int result = loader[0]->load_mesh( new_model, L"tylko_do_testow/clone_fighter_rel.FBX" );
+	models.push_back( new_model );
+
+	new_model = new Model3DFromFile( models_count );
+	++models_count;
+
+	new_model->file_path = "tylko_do_testow/moon/moon.FBX";
+	result = loader[0]->load_mesh( new_model, L"tylko_do_testow/moon/moon.FBX" );
+	models.push_back( new_model );
+
+	new_model = new Model3DFromFile( models_count );
+	++models_count;
+
+	new_model->file_path = "tylko_do_testow/Nebulon/Nebulon.FBX";
+	result = loader[0]->load_mesh( new_model, L"tylko_do_testow/Nebulon/Nebulon.FBX" );
+	models.push_back( new_model );
+
+
+	new_model = new Model3DFromFile( models_count );
+	++models_count;
+
+	new_model->file_path = "tylko_do_testow/VadersTIE.FBX";
+	result = loader[0]->load_mesh( new_model, L"tylko_do_testow/VadersTIE.FBX" );
+	models.push_back( new_model );
+
+	new_model = new Model3DFromFile( models_count );
+	++models_count;
+
+	new_model->file_path = "tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX";
+	result = loader[0]->load_mesh( new_model, L"tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX" );
+	models.push_back( new_model );
+
+}
+#endif
+
+
+
+
+
+
+
+
+
+
+/*Znajduje Loader pasuj¹cy do pliku podanego w parametrze. */
+Loader* ModelsManager::find_loader( const std::wstring& path )
+{
+	for ( unsigned int i = 0; i < loader.size( ); ++i )
+	if ( loader[i]->can_load( path ) )
+		return loader[i];
+	return nullptr;
+}
+
+
+//-------------------------------------------------------------------------------//
+//							wersja DirectX9
+//-------------------------------------------------------------------------------//
+
+#ifndef __UNUSED
 
 ModelsManager::ModelsManager(Engine* engine)
 	: engine(engine)
@@ -444,3 +629,6 @@ Loader* ModelsManager::find_loader(const std::wstring& path)
 			return loaders[i];
 	return nullptr;
 }
+
+
+#endif

@@ -2,6 +2,9 @@
 #include "meshes_textures_materials.h"
 
 
+
+#ifndef __UNUSED
+
 //----------------------------------------------------------------------------------------------//
 //								contructors, destructors										//
 //----------------------------------------------------------------------------------------------//
@@ -125,3 +128,6 @@ bool VertexFormat3::operator!=(VertexFormat3& vertex2)
 
 	return FALSE;
 }
+
+
+#endif

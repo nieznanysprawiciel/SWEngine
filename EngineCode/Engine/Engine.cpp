@@ -8,13 +8,6 @@
 const float FIXED_MOVE_UPDATE_INTERVAL = ((float)1 / (float)56);
 
 
-ID3D11Device* DX11_interfaces_container::device = nullptr;
-ID3D11DeviceContext* DX11_interfaces_container::device_context = nullptr;
-IDXGISwapChain* DX11_interfaces_container::swap_chain = nullptr;
-ID3D11RenderTargetView* DX11_interfaces_container::render_target = nullptr;
-ID3D11DepthStencilView*	DX11_interfaces_container::z_buffer_view = nullptr;
-D3D_FEATURE_LEVEL DX11_interfaces_container::feature_level = D3D_FEATURE_LEVEL_11_0;
-
 
 //----------------------------------------------------------------------------------------------//
 //								konstruktor i destruktor										//
@@ -121,52 +114,6 @@ int Engine::init_engine( int width, int height, BOOL full_screen, int nCmdShow )
 
 int Engine::init_directX()
 {
-	/*
-	directX_interface = Direct3DCreate9(D3D_SDK_VERSION);    // create the Direct3D interface
-
-	D3DPRESENT_PARAMETERS d3dpp;    // create a struct to hold various device information
-
-	ZeroMemory(&d3dpp, sizeof(d3dpp));    // clear out the struct for use
-
-	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;    // discard old frames
-	d3dpp.hDeviceWindow = window_handler;		// set the window to be used by Direct3D
-	d3dpp.EnableAutoDepthStencil = TRUE;		//z - buffer
-	d3dpp.AutoDepthStencilFormat = D3DFMT_D24X8;					//format z - buffera
-	d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;		//bufor jest odœwie¿any niezale¿nie od czêstotliwoœci monitora
-
-	if (full_screen)
-	{
-		d3dpp.Windowed = FALSE;
-		d3dpp.BackBufferFormat = D3DFMT_X8R8G8B8;    // set the back buffer format to 32-bit
-		d3dpp.BackBufferWidth = window_width;    // set the width of the buffer
-		d3dpp.BackBufferHeight = window_height;    // set the height of the buffer
-	}
-	else
-	{
-		d3dpp.Windowed = TRUE;    // program windowed, not fullscreen
-	}
-
-	// create a device class using this information and information from the d3dpp stuct
-	int result = directX_interface->CreateDevice(D3DADAPTER_DEFAULT,
-		D3DDEVTYPE_HAL,
-		window_handler,
-		D3DCREATE_HARDWARE_VERTEXPROCESSING,
-		&d3dpp,
-		&directX_device);
-
-	if (result == GRAPHIC_ENGINE_INIT_OK)
-	{
-		directX_ready = true;
-		//przy okazji inicjujemy macierz projekcji jakimiœ domyœlnymi wartoœciami
-		display_engine->set_projection_matrix(D3DXToRadian(45),
-			(float)window_width / (float)window_height, 1, 100000);
-		//w³¹czamy z - buffer
-		directX_device->SetRenderState(D3DRS_ZENABLE, TRUE);
-		directX_device->SetRenderState( D3DRS_LIGHTING, TRUE );
-	}
-
-	return result;*/
-
 	int result = init_devices( window_width, window_height, window_handler, full_screen );
 	
 	if ( result != GRAPHIC_ENGINE_INIT_OK )
@@ -176,13 +123,60 @@ int Engine::init_directX()
 
 	if ( result != GRAPHIC_ENGINE_INIT_OK )
 		return result;
-	//W przypadku niepowodzeni, wszystko jest zwalniane wewn¹trz tamtych funkcji.
+	//W przypadku niepowodzenia, wszystko jest zwalniane wewn¹trz tamtych funkcji.
 	//Je¿eli do tej pory nic siê nie wywali³o to znaczy, ¿e mo¿emy zacz¹æ robiæ bardziej
 	//z³o¿one rzeczy.
+
+	result = init_shaders_vertex_layouts();
+	if ( result != GRAPHIC_ENGINE_INIT_OK )
+		return result;
+
+	display_engine->init_const_buffers();
 
 	display_engine->set_projection_matrix( D3DXToRadian( 45 ),
 										   (float)window_width / (float)window_height, 1, 100000 );
 
+
+	return GRAPHIC_ENGINE_INIT_OK;
+}
+
+
+int Engine::init_shaders_vertex_layouts( )
+{
+	HRESULT result;
+
+	result = init_vertex_shader( L"default_shaders.fx", "vertex_shader" );
+	if ( FAILED( result ) )
+	{//Musimy sami zwalniaæ, bo funkcje tego nie robi¹
+		release_DirectX( );
+		return result;
+	}
+
+	result = init_pixel_shader( L"default_shaders.fx", "pixel_shader" );
+	if ( FAILED( result ) )
+	{
+		release_DirectX( );
+		return result;
+	}
+
+	result = init_mesh_vertex_format( VertexNormalTexCord1_desc,
+									  VertexNormalTexCord1_desc_num_of_elements,
+									  compiled_vertex_shader );
+	if ( FAILED( result ) )
+	{
+		release_DirectX( );
+		return result;
+	}
+
+	result = init_ui_vertex_format( VertexTexCord1_desc,
+									VertexTexCord1_desc_num_of_elements,
+									compiled_vertex_shader );
+
+	if ( FAILED( result ) )
+	{
+		release_DirectX( );
+		return result;
+	}
 
 	return GRAPHIC_ENGINE_INIT_OK;
 }

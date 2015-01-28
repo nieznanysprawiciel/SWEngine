@@ -135,6 +135,12 @@
     <ClInclude Include="Engine\DX11_interfaces_container.h">
       <Filter>Header Files\MainEngine</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\DisplayEngine\ConstantBuffersFormat.h">
+      <Filter>Header Files\MainEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ModelsManager\ResourceContainer.h">
+      <Filter>Header Files\ModelsManagment</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -147,9 +153,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Engine\ModelsManager\MaterialObject.cpp">
-      <Filter>Source Files\ModelsManagment</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\ModelsManager\MeshObject.cpp">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClCompile>
     <ClCompile Include="Engine\ModelsManager\Model3DFromFile.cpp">
@@ -220,6 +223,12 @@
     </ClCompile>
     <ClCompile Include="Engine\DX11_interfaces_container.cpp">
       <Filter>Source Files\MainEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ModelsManager\vertex_layouts.cpp">
+      <Filter>Source Files\ModelsManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ModelsManager\MeshPartObject.cpp">
+      <Filter>Source Files\ModelsManagment</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

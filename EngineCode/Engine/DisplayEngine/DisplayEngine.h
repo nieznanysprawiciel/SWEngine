@@ -3,18 +3,18 @@
 
 #include "..\..\stdafx.h"
 #include "..\..\Interfaces\basic_interfaces.h"
-
+#include "ConstantBuffersFormat.h"
 
 
 
 class Engine;
 
-class DisplayEngine	:	public DX11_interfaces_container
+class DisplayEngine : public DX11_constant_buffers_container
 {
 private:
 	Engine* engine;
 
-	XMFLOAT4X4						projection_matrix;
+	ConstantPerFrame				shader_data_per_frame;
 	Camera_object*					current_camera;
 
 	std::vector<Dynamic_mesh_object*>		meshes;		//modele nieanimowane
@@ -25,6 +25,8 @@ private:
 public:
 	DisplayEngine(Engine* engine);
 	~DisplayEngine();
+
+	void init_const_buffers();
 
 	void display_scene(float time_interval);
 	void interpolate_positions(float time_lag);

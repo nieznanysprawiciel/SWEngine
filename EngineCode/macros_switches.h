@@ -15,3 +15,4 @@ w docelowej wersji silnika trzeba bêdzie siê zdecydowaæ na któr¹œ z nich.*/
 
 #define _SCALEABLE_OBJECTS		//umo¿liwia ustawienie skalowania dla meshy
 #define ENGINE_MAX_TEXTURES		8	//maksymalna liczba tekstur w silniku
+#define ENGINE_MAX_LIGHTS		2	//maksymalna liczba œwiate³ w silniku

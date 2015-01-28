@@ -25,6 +25,12 @@ DisplayEngine::~DisplayEngine()
 	delete[] interpolated_matrixes;
 }
 
+void DisplayEngine::init_const_buffers()
+{
+	init_buffers( sizeof(ConstantPerFrame), sizeof( ConstantPerMesh ));
+}
+
+
 
 /*Funkcja renderuj¹ca obiekty 3d
  *Wywo³ania BeginScene() i EndScen() s¹ wykonywane przez klasê Engine.
@@ -35,7 +41,7 @@ void DisplayEngine::display_scene(float time_interval)
 	LPDIRECT3DDEVICE9 directX_device = engine->directX_device;
 
 	set_view_matrix();
-	directX_device->SetTransform(D3DTS_PROJECTION, (D3DMATRIX*)&projection_matrix);	//macierz projekcji jest zawsze ta sama chyba ¿e j¹ ktoœ jawnie zmodyfikuje
+	directX_device->SetTransform(D3DTS_PROJECTION, (D3DMATRIX*)&projection_matrix);	//macierz projekcji jest zawsze ta sama, chyba ¿e j¹ ktoœ jawnie zmodyfikuje
 
 	directX_device->SetVertexShader( nullptr );
 	directX_device->SetFVF(VERTEX_NORMAL_TEXTCORDS1);
@@ -92,6 +98,28 @@ void DisplayEngine::display_scene(float time_interval)
 		}
 	}
 	*/
+
+	set_view_matrix();
+
+
+
+	//na razie pêtla bez optymalizacji
+	for ( unsigned int i = 0; i < meshes.size(); ++i )
+	{
+		register Dynamic_mesh_object* object = meshes[i];
+
+#ifdef _INTERPOLATE_POSITIONS
+		XMMATRIX transformation = XMLoadFloat4x4( &(interpolated_matrixes[i]) );
+#else
+		XMVECTOR translation = XMLoadFloat3( &(object->position) );
+		XMVECTOR orientation = XMLoadFloat4( &(object->orientation) );
+		XMMATRIX transformation = XMMatrixRotationQuaternion( orientation );
+		transformation = transformation * XMMatrixTranslationFromVector( translation );
+#endif
+
+
+
+	}
 }
 
 
@@ -100,7 +128,7 @@ display_scene ustawiana jest macierz zapisana w tym polu.*/
 void DisplayEngine::set_projection_matrix(float angle, float X_to_Y, float near_plane, float far_plane)
 {
 	XMMATRIX proj_matrix = XMMatrixPerspectiveFovLH(angle, X_to_Y, near_plane, far_plane);
-	XMStoreFloat4x4(&projection_matrix, proj_matrix);
+	XMStoreFloat4x4( &shader_data_per_frame.projection_matrix, proj_matrix );
 }
 
 
@@ -133,11 +161,9 @@ void DisplayEngine::set_view_matrix()
 		view_matrix = view_matrix * rotation_matrix;
 	}
 
-	XMFLOAT4X4 view;
-	XMStoreFloat4x4( &view, view_matrix );
-
-	//ustawiamy macierz w directXie
-	//engine->directX_device->SetTransform(D3DTS_VIEW, (D3DMATRIX*)&view);
+	//Wstawiamy macierz do zmiennej, która stanie siê potem zawartoœci¹ bufora,
+	//który zostanie przekazany do shadera.
+	XMStoreFloat4x4( &shader_data_per_frame.view_matrix, view_matrix );
 }
 
 void DisplayEngine::add_dynamic_mesh_object( Dynamic_mesh_object* object )

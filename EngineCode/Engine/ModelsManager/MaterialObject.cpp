@@ -2,6 +2,8 @@
 #include "meshes_textures_materials.h"
 
 
+
+#ifndef __UNUSED
 //----------------------------------------------------------------------------------------------//
 //								contructors, destructors										//
 //----------------------------------------------------------------------------------------------//
@@ -64,3 +66,5 @@ bool MaterialObject::operator==(const D3DMATERIAL9& object)
 
 	return TRUE;;
 }
+
+#endif
