@@ -3,6 +3,21 @@
 
 
 
+
+
+
+//----------------------------------------------------------------------------------------------//
+//								contructors, destructors										//
+//----------------------------------------------------------------------------------------------//
+
+MaterialObject::MaterialObject( const MaterialObject* material )
+: referenced_object(WRONG_ID)
+{
+	memcpy( this, material, sizeof(MaterialObject) );
+}
+
+
+
 #ifndef __UNUSED
 //----------------------------------------------------------------------------------------------//
 //								contructors, destructors										//

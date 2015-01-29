@@ -302,7 +302,7 @@ int DX11_interfaces_container::init_pixel_shader( const std::wstring& file_name,
 
 	HRESULT result;
 
-	D3DX11CompileFromFile( file_name.c_str( ), 0, 0, shader_name.c_str( ), "vs_4_0",
+	D3DX11CompileFromFile( file_name.c_str( ), 0, 0, shader_name.c_str( ), "ps_4_0",
 						   0, 0, 0, &compiled_pixel_shader, 0, &result );
 
 	if ( FAILED( result ) )

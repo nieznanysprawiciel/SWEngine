@@ -54,9 +54,10 @@ bool referenced_object::can_delete(unsigned int& file_ref, unsigned int& other_r
 //								contructor, destructor											//
 //----------------------------------------------------------------------------------------------//
 
-Model3DFromFile::Model3DFromFile( int id )
-: referenced_object( id )
+Model3DFromFile::Model3DFromFile( const std::wstring& file_name )
+: referenced_object( WRONG_ID )
 {
+	file_path = file_name;
 	vertex_buffer = nullptr;
 	tmp_data = nullptr;
 }
@@ -201,37 +202,155 @@ unsigned int Model3DFromFile::add_texture( const std::wstring& file_name, TEXTUR
 
 unsigned int Model3DFromFile::add_material( const MaterialObject* material, const std::wstring& material_name )
 {
+	std::wstring name = file_path;
+	name += L"::";
+	name += material_name;
 
-	return WRONG_ID;
+	MaterialObject* new_material = models_manager->material.get( name );
+	if ( !new_material )
+	{
+		// Nie by³o materia³u, trzeba j¹ stworzyæ i dodaæ
+		new_material = new MaterialObject( material );
+
+		models_manager->material.unsafe_add( name, new_material );	// Dodaliœmy teksturê
+	}
+
+	// Teraz musimy dodaæ materia³ na odpowiednie miejsce w tablicy
+	tmp_data->table[tmp_data->current_pointer]->new_part.material = new_material;
+
+	// Zwracamy id materia³y, ale w zasadzie tylko po to, ¿eby ktoœ móg³ sprawdziæ czy wszystko posz³o dobrze
+	// Akurat w przypadku materia³ów nic nie mo¿e pójœæ Ÿle
+	return new_material->get_id( );
 }
 
 unsigned int Model3DFromFile::add_vertex_shader( const std::wstring& file_name )
 {
+	VertexShaderObject* vertex_shader = models_manager->vertex_shader.get( file_name );
+	if ( !vertex_shader )
+	{
+		// Nie by³o shadera, trzeba go stworzyæ i dodaæ
+		vertex_shader = VertexShaderObject::create_from_file( file_name, "VS" );
+		if ( !vertex_shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
+			return WRONG_ID;
 
-	return WRONG_ID;
+		models_manager->vertex_shader.unsafe_add( file_name, vertex_shader );	// Dodaliœmy teksturê
+	}
+
+	// Teraz musimy dodaæ teksturê na odpowiednie miejsce w tablicy
+	tmp_data->table[tmp_data->current_pointer]->new_part.vertex_shader = vertex_shader;
+
+	// Zwracamy id tekstury, ale w zasadzie tylko po to, ¿eby ktoœ móg³ sprawdziæ czy wszystko posz³o dobrze
+	return vertex_shader->get_id( );
 }
 
 unsigned int Model3DFromFile::add_pixel_shader( const std::wstring& file_name )
 {
+	PixelShaderObject* pixel_shader = models_manager->pixel_shader.get( file_name );
+	if ( !pixel_shader )
+	{
+		// Nie by³o tekstury, trzeba j¹ stworzyæ i dodaæ
+		pixel_shader = PixelShaderObject::create_from_file( file_name, "PS" );
+		if ( !pixel_shader )		// Tekstura mog³a mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
+			return WRONG_ID;
 
-	return WRONG_ID;
+		models_manager->pixel_shader.unsafe_add( file_name, pixel_shader );	// Dodaliœmy teksturê
+	}
+
+	// Teraz musimy dodaæ teksturê na odpowiednie miejsce w tablicy
+	tmp_data->table[tmp_data->current_pointer]->new_part.pixel_shader = pixel_shader;
+
+	// Zwracamy id tekstury, ale w zasadzie tylko po to, ¿eby ktoœ móg³ sprawdziæ czy wszystko posz³o dobrze
+	return pixel_shader->get_id( );
 }
 
+
+/*Funkcja dodaje do tymczasowej tablicy bufor wierzcho³ków.
+Podane dane s¹ przepisywane, a za zwolnienie pamiêci odpowiada ten kto wywo³a³ funkcjê.
+
+Bufory wierzcho³ków s¹ ³¹czone w jedna ca³oœæ w funkcji EndEdit.*/
 unsigned int Model3DFromFile::add_vertex_buffer( const VertexNormalTexCord1* buffer, unsigned int vert_count )
 {
+	if ( vert_count == 0 )
+		return WRONG_ID;		// Nie damy siê zrobiæ w balona
+
+	auto data = tmp_data->table[tmp_data->current_pointer];
+
+	if ( data->vertices_tab )
+		return WRONG_ID;		// Je¿eli jakaœ tablica ju¿ istania³a, to ktoœ pope³ni³ b³¹d
+
+	data->vertices_count = vert_count;							// Zapisujemy liczbê wierzcho³ków
+	data->vertices_tab = new VertexNormalTexCord1[vert_count];	// Tworzymy now¹ tablice wierzcho³ków
+	memcpy( data->vertices_tab, buffer, vert_count );			// Przepisujemy tablicê
 
 	return WRONG_ID;
 }
 
+
+/*Ka¿da czêœæ mesha ma przypisan¹ do siebie transformacjê, któr¹ dodaje w³asnie ta funkcja.
+Je¿eli dla jakiegoœ bufora wierzcho³ków nie zostanie przydzielona transformacja, to 
+domyslnie znajduje siê tu macierz identycznoœciowa.*/
 void Model3DFromFile::add_transformation( const DirectX::XMFLOAT4X4& transform )
 {
 	tmp_data->table[tmp_data->current_pointer]->new_part.mesh->transform_matrix = transform;
 }
 
-unsigned int Model3DFromFile::add_index_buffer( unsigned int* buffer, unsigned int ind_count, int vertex_buffer_offset )
-{
 
-	return WRONG_ID;
+/*Funkcja dodaje do tymczasowej tablicy dane potrzebne do stworzenia bufora wierzcho³ków.
+Indeksy s¹ przepsiywane z podanej tablicy i trzeba j¹ zwolniæ samemu.
+
+Je¿eli tablica indeksów zosta³a wczeœniej stworzona, zostanie zwrócona wartoœæ
+WRONG_ID. W przeciwnym razie zostanie zwrócona wartoœæ 1.*/
+unsigned int Model3DFromFile::add_index_buffer( const unsigned int* buffer, unsigned int ind_count, int vertex_buffer_offset )
+{
+	if ( ind_count == 0 )
+		return WRONG_ID;		// Nie damy siê zrobiæ w balona
+
+	// Bufor indeksów przepisujemy do tablicy tymczasowej. Zostanie on potem scalony z reszt¹ buforów
+	// indeksów w funkcji EndEdit.
+	unsigned int cur_ptr = tmp_data->current_pointer;
+
+	if ( tmp_data->table[cur_ptr]->indicies_tab )
+		return WRONG_ID;		// Je¿eli jakaœ tablica ju¿ istania³a, to ktoœ pope³ni³ b³¹d
+
+	tmp_data->table[cur_ptr]->indicies_count = ind_count;			// Przepisujemy liczbê indeksów
+	tmp_data->table[cur_ptr]->indicies_tab = new unsigned int[ind_count];	// Alokujemy now¹ tablicê indeksów
+	memcpy( tmp_data->table[cur_ptr]->indicies_tab, buffer, ind_count );	// Przepisujemy tablicê
+
+	switch ( vertex_buffer_offset )
+	{
+		case VERTEX_BUFFER_OFFSET::BEGIN:
+			tmp_data->table[cur_ptr]->indicies_offset = 0;
+			break;
+		case VERTEX_BUFFER_OFFSET::LAST:
+			tmp_data->table[cur_ptr]->indicies_offset = get_buffer_offset_to_last();
+			break;
+	}
+
+	return 1;
+}
+
+//----------------------------------------------------------------------------------------------//
+//								funkcje pomocnicze												//
+//----------------------------------------------------------------------------------------------//
+
+/*Zwraca offset o jaki trzeba przesun¹c bufor indeksów wzglêdem pocz¹tka
+bufora wierzcho³ków, je¿eli podano opcjê VERTEX_BUFFER_OFFSET::LAST.
+Oznacza to zliczenie wszystkich wierzcho³ków we wszystkich poprzedzaj¹cych
+buforach wierzcho³ków.*/
+unsigned int Model3DFromFile::get_buffer_offset_to_last( )
+{
+	unsigned int offset = 0;
+	unsigned int max_ptr = 0;
+	// Znajdujemy ostatni bufor wierzcho³ków istniej¹cy w tablicy
+	for ( unsigned int i = tmp_data->current_pointer; i >= 0; --i )
+		if ( tmp_data->table[i]->vertices_tab != nullptr )
+			max_ptr = i;
+
+	// Sumujemy liczbê wierzcho³ków we wszystkich wczeœniejszych buforach (ostatniego nie wliczaj¹c)
+	for ( unsigned int i = 0; i < max_ptr; ++i )
+		offset += tmp_data->table[tmp_data->current_pointer]->vertices_count;
+
+	return offset;
 }
 
 

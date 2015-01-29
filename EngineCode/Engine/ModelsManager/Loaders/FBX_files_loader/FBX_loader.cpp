@@ -213,7 +213,7 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 
 			// Pobieramy materia³
 			FbxSurfacePhong* material = static_cast<FbxSurfacePhong*>(node->GetMaterial( i ));
-			MaterialObject engine_material(WRONG_MATERIAL_ID);		// Ten materia³ jest tylko tymczasowy
+			MaterialObject engine_material;							// Ten materia³ jest tylko tymczasowy
 			copy_material( engine_material, *material );			// Konwertujemy z formatu FBX na MaterialObject
 			// Dodajemy do silnika, podajemy w drugim parametrze nazwê materia³u, która zostanie doklejona do œcie¿ki pliku
 			cur_model->add_material( &engine_material, converter.from_bytes( material->GetName( )) );

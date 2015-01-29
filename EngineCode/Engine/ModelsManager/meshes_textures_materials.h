@@ -244,10 +244,11 @@ private:
 protected:
 	~VertexShaderObject( ) override;
 public:
-	VertexShaderObject( unsigned int id );
+	VertexShaderObject();
+	VertexShaderObject( ID3D11VertexShader* shader ) : referenced_object( WRONG_ID ), vertex_shader( shader ){}
 
 	inline ID3D11VertexShader* get( ) { return vertex_shader; }
-	VertexShaderObject* create_from_file( const std::wstring& file_name );
+	static VertexShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name );
 };
 
 
@@ -260,10 +261,11 @@ private:
 protected:
 	~PixelShaderObject( ) override;
 public:
-	PixelShaderObject( unsigned int id );
+	PixelShaderObject();
+	PixelShaderObject( ID3D11PixelShader* shader ) : referenced_object( WRONG_ID ), pixel_shader( shader ){}
 
 	inline ID3D11PixelShader* get( ) { return pixel_shader; }
-	PixelShaderObject* create_from_file( const std::wstring& file_name );
+	static PixelShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name );
 };
 
 /*Bufor wierzcho³ków i bufor u¿ywaj¹ tego samego interfejsu ID3D11Buffer,
@@ -291,13 +293,16 @@ mu siê takie dane, jakie siê chce dostarczyæ. Dlatego informacja o materia³ach b
 przekazywana z buforze sta³ych.*/
 typedef struct MaterialObject : public referenced_object
 {
+	friend ResourceContainer<MaterialObject*>;
+
 	DirectX::XMFLOAT4		Diffuse;		//Sk³adowa przezroczystoœci odnosi siê do ca³ego materia³u
 	DirectX::XMFLOAT3		Ambient;
 	DirectX::XMFLOAT3		Specular;
 	DirectX::XMFLOAT3		Emissive;
 	float					Power;
 
-	MaterialObject( unsigned int id ) : referenced_object( id ){}
+	MaterialObject( unsigned int id = WRONG_ID ) : referenced_object( id ){}
+	MaterialObject( const MaterialObject* material );
 } MaterialObject;
 
 
@@ -354,6 +359,7 @@ private:
 	//tekstura i materia³ odpowiadaj¹ meshowi spod danego indeksu
 	std::vector<ModelPart>			model_parts;
 	BufferObject*					vertex_buffer;
+	std::wstring					file_path;
 
 	//wskaxnik na tymczasow¹ strukture, która bêdzie u¿ywana podczas wype³niania obiektu danymi
 	EditTMP*						tmp_data;
@@ -361,8 +367,10 @@ private:
 protected:
 	//¯eby unikn¹æ pomy³ki, obiekt mo¿e byœ kasowany tylko przez ModelsManager.
 	~Model3DFromFile() override;
+
+	unsigned int get_buffer_offset_to_last();
 public:
-	Model3DFromFile( int id );
+	Model3DFromFile( const std::wstring& name );
 
 
 	// Tworzenie obiektu
@@ -377,13 +385,8 @@ public:
 	unsigned int add_pixel_shader( const std::wstring& file_name );
 	unsigned int add_vertex_buffer( const VertexNormalTexCord1* buffer, unsigned int vert_count );
 	void add_transformation( const DirectX::XMFLOAT4X4& transform );
-	unsigned int add_index_buffer( unsigned int* buffer, unsigned int ind_count, int vertex_buffer_offset );
+	unsigned int add_index_buffer( const unsigned int* buffer, unsigned int ind_count, int vertex_buffer_offset );
 
-	/*
-	MaterialObject* get_material( unsigned int index );
-	TextureObject* get_texture( unsigned int index );
-	MeshPart* get_mesh_part( unsigned int index );
-	*/
 
 	unsigned int get_parts_count( );
 	const ModelPart* get_part( unsigned int index );
