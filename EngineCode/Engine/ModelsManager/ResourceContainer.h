@@ -26,7 +26,7 @@ public:
 	int remove_unused();
 
 	// Dodawanie obiektów
-	void add( const std::wstring& name, TYPE resource );
+	void unsafe_add( const std::wstring& name, TYPE resource );
 
 	// Dostêp do obiektów
 	TYPE get( unsigned int id );
@@ -72,16 +72,23 @@ TYPE ResourceContainer<TYPE>::get( unsigned int id )
 //							dodawanie obiektów
 //-------------------------------------------------------------------------------//
 
-/*Dodaje element do kontanera.
+/*Dodaje element do kontanera + nadaje mu unikalny identyfikator.
 Je¿eli element ju¿ istnia³, to po prostu nie zostanie wstawiony, dlatego
 przed uzyciem warto pobraæ element o danej nazwie, ¿eby sprawdziæ
 czy dodawanie jest konieczne.*/
-template <class TYPE>
-void ResourceContainer<TYPE>::add( const std::wstring& name, TYPE resource )
-{
-	auto new_element = make_pair<std::wstring, TYPE>( name, resource );
-	container.insert( new_element );
+// Mo¿e kiedyœ zrobie wstawianie ze sprawdzaniem, na razie nie wydaje siê potrzebne
 
+
+/*Dodaje element do kontanera + nadaje mu unikalny identyfikator.
+Je¿eli element ju¿ istnia³, to zostanie nadpisany nowym, dlatego nale¿y
+zawsze przed u¿yciem sprawdziæ czy pod tak¹ nazw¹, coœ ju¿ siê nie 
+znajduje.*/
+template <class TYPE>
+void ResourceContainer<TYPE>::unsafe_add( const std::wstring& name, TYPE resource )
+{
+	container[name] = resource;
+
+	resource->set_id( count );
 	++count;			// Inkrementujemy licznik
 }
 

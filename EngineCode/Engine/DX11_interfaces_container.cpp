@@ -73,7 +73,7 @@ int DX11_interfaces_container::init_devices( int width, int height, HWND window,
 	createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
 	if ( single_thread )
-		//Renderujemy z jednego w¹tku, a o synchronizacjê dbamy sami
+		// Domyœlnie obiekt ID3D11Device jest synchronizowany, ale mo¿na to wy³¹czyæ
 		createDeviceFlags |= D3D11_CREATE_DEVICE_SINGLETHREADED;
 
 	D3D_FEATURE_LEVEL featureLevels[] =

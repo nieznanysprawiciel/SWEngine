@@ -173,11 +173,30 @@ void Model3DFromFile::EndPart()
 
 
 
-
+/*Dodaje teksturê na aktualnej pozycji w tablicy.
+Tekstura jest umieszczana zgodnie z indeksem reprezentowanym przez type.*/
 unsigned int Model3DFromFile::add_texture( const std::wstring& file_name, TEXTURES_TYPES type )
 {
+	// Ktoœ móg³ podaæ indeks w tablicy zamiast jednego z enumów, wiêc musimy pilnowaæ czy nie przekroczy³ zakresu
+	if ( type > ENGINE_MAX_TEXTURES )
+		return WRONG_ID;
 
-	return WRONG_ID;
+	TextureObject* texture = models_manager->texture.get( file_name );
+	if ( !texture )
+	{
+		// Nie by³o tekstury, trzeba j¹ stworzyæ i dodaæ
+		texture = TextureObject::create_from_file( file_name );
+		if ( !texture )		// Tekstura mog³a mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
+			return WRONG_ID;
+
+		models_manager->texture.unsafe_add( file_name, texture );	// Dodaliœmy teksturê
+	}
+
+	// Teraz musimy dodaæ teksturê na odpowiednie miejsce w tablicy
+	tmp_data->table[tmp_data->current_pointer]->new_part.texture[type] = texture;
+
+	// Zwracamy id tekstury, ale w zasadzie tylko po to, ¿eby ktoœ móg³ sprawdziæ czy wszystko posz³o dobrze
+	return texture->get_id();
 }
 
 unsigned int Model3DFromFile::add_material( const MaterialObject* material, const std::wstring& material_name )

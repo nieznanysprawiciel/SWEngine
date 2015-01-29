@@ -96,6 +96,9 @@ typedef enum VERTEX_BUFFER_OFFSET
 *Druga zmienna okreœla, ile wystepuje odwo³añ bezpoœrednich przez obiekty, które bêd¹ nastêpnie wyœwietlane. Oznacza to, ¿e przypisuj¹c
 *jakiemus obiektowi plik z modelem, musimy zinkrementowaæ other_references o tyle, ile by³o odwo³añ w tym pliku.
 *¯aden obiekt nie powinien byæ kasowany, dopóki istniej¹ do niego odwo³ania.
+
+Zmienna unique_id jest na pocz¹tku ustawiana na 0. Jej faktyczne ustawienie odbywa robi klasa ResourceContainer.
+Jest to wymagane do u³atwienia wielow¹tkowoœci. Inaczej mog³yby siê zacz¹æ powtarzaæ identyfikatory.
 **/
 
 class referenced_object
@@ -108,6 +111,8 @@ private:
 
 protected:
 	virtual ~referenced_object( );		//Nie ka¿dy mo¿e skasowaæ obiekt
+
+	inline void set_id( unsigned int id ) { unique_id = id; }
 public:
 	referenced_object( int id );
 
@@ -226,7 +231,7 @@ public:
 	bool operator==(const std::wstring& file_name);
 
 	inline ID3D11ShaderResourceView* get( ) { return texture; }
-	int create_from_file( const std::wstring& file_name );
+	static TextureObject* create_from_file( const std::wstring& file_name );
 };
 
 
@@ -242,7 +247,7 @@ public:
 	VertexShaderObject( unsigned int id );
 
 	inline ID3D11VertexShader* get( ) { return vertex_shader; }
-	int create_from_file( const std::wstring& file_name );
+	VertexShaderObject* create_from_file( const std::wstring& file_name );
 };
 
 
@@ -258,7 +263,7 @@ public:
 	PixelShaderObject( unsigned int id );
 
 	inline ID3D11PixelShader* get( ) { return pixel_shader; }
-	int create_from_file( const std::wstring& file_name );
+	PixelShaderObject* create_from_file( const std::wstring& file_name );
 };
 
 /*Bufor wierzcho³ków i bufor u¿ywaj¹ tego samego interfejsu ID3D11Buffer,

@@ -114,7 +114,8 @@ int Engine::init_engine( int width, int height, BOOL full_screen, int nCmdShow )
 
 int Engine::init_directX()
 {
-	int result = init_devices( window_width, window_height, window_handler, full_screen );
+	// Inicjujemy urz¹dzenia. Ostatni parametr oznacza, ¿e bêdziemy u¿ywaæ zmiennej device z wielu w¹tków
+	int result = init_devices( window_width, window_height, window_handler, full_screen, false );
 	
 	if ( result != GRAPHIC_ENGINE_INIT_OK )
 		return result;

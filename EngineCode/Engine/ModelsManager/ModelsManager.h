@@ -25,6 +25,7 @@ Oczywiœcie, jezeli materia³ zosta³ stworzony rêcznie w silniku, to nie ma potrze
 nadawania mu takiej nazwy, wystarczy, ¿eby by³a ona unikatowa.*/
 class ModelsManager
 {
+	friend Model3DFromFile;
 private:
 	Engine* engine;
 
