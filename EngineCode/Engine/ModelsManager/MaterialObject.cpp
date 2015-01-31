@@ -16,7 +16,27 @@ MaterialObject::MaterialObject( const MaterialObject* material )
 	memcpy( this, material, sizeof(MaterialObject) );
 }
 
+void MaterialObject::set_null_material( )
+{
+	Diffuse.x = 1.0f;
+	Diffuse.y = 1.0f;
+	Diffuse.z = 1.0f;
+	Diffuse.w = 1.0f;
 
+	Ambient.x = 1.0f;
+	Ambient.y = 1.0f;
+	Ambient.z = 1.0f;
+
+	Specular.x = 1.0f;
+	Specular.y = 1.0f;
+	Specular.z = 1.0f;
+
+	Emissive.x = 1.0f;
+	Emissive.y = 1.0f;
+	Emissive.z = 1.0f;
+
+	Power = 1.0f;
+}
 
 #ifndef __UNUSED
 //----------------------------------------------------------------------------------------------//

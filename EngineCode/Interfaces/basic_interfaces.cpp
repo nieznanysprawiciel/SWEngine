@@ -219,6 +219,9 @@ int Dynamic_mesh_object::set_model(Model3DFromFile* model)
 	vertex_buffer = model->get_vertex_buffer();
 	vertex_buffer->add_object_reference();
 
+	index_buffer = model->get_index_buffer();
+	index_buffer->add_object_reference();
+
 	unsigned int count = model->get_parts_count();
 	model_parts.reserve( count );
 
@@ -249,8 +252,6 @@ void Dynamic_mesh_object::add_references( const ModelPart* part )
 
 	if ( part->material )
 		part->material->add_object_reference();
-	if ( part->index_buffer )
-		part->index_buffer->add_object_reference();
 	if ( part->mesh )
 		part->mesh->add_object_reference();
 	if ( part->pixel_shader )
@@ -279,6 +280,10 @@ void Dynamic_mesh_object::delete_all_references( )
 		vertex_buffer->delete_object_reference();
 	vertex_buffer = nullptr;
 
+	if ( index_buffer )
+		index_buffer->delete_object_reference( );
+	index_buffer = nullptr;
+
 	for ( unsigned int k = 0; k < model_parts.size( ); ++k )
 	{//ka¿dy element mo¿e byæ nullptrem
 		register ModelPart* part = &model_parts[k];
@@ -286,8 +291,6 @@ void Dynamic_mesh_object::delete_all_references( )
 		//ka¿dy element mo¿e byæ nullptrem
 		if ( part->material )
 			part->material->delete_object_reference();
-		if ( part->index_buffer )
-			part->index_buffer->delete_object_reference( );
 		if ( part->mesh )
 			part->mesh->delete_object_reference( );
 		if ( part->pixel_shader )

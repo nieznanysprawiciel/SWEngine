@@ -27,6 +27,20 @@ class PixelShaderObject;
 struct MeshPartObject;
 struct MaterialObject;
 
+/*
+// Definicja typu w buforze indeksów znajduje siê w pliku macros_switches.h i wygl¹da tak:
+
+#if defined(INDEX_BUFFER_UINT16)
+typedef UINT16 VERT_INDEX;
+#elif defined(INDEX_BUFFER_UINT32)
+typedef UINT32 VERT_INDEX;
+#else
+typedef UINT32 VERT_INDEX;
+#endif
+
+*/
+
+
 //-------------------------------------------------------------------------------//
 //	definicje wierzcho³ków
 
@@ -66,14 +80,31 @@ W przypadku w³asnorêcznie pisanych shaderów nie trzeba siê trzymaæ
 tych sta³ych.*/
 typedef enum
 {
-	TEX_DIFFUSE,
-	TEX_AMBIENT,
-	TEX_SPECULAR,
-	TEX_LIGHTMAP,
-	TEX_BUMP_MAP,
-	TEX_OTHER1,
-	TEX_OTHER2,
-	TEX_OTHER3
+#if ENGINE_MAX_TEXTURES > 0
+	TEX_DIFFUSE
+#endif
+#if ENGINE_MAX_TEXTURES > 1
+	, TEX_LIGHTMAP
+#endif
+#if ENGINE_MAX_TEXTURES > 2
+	, TEX_SPECULAR
+#endif
+#if ENGINE_MAX_TEXTURES > 3
+	, TEX_BUMP_MAP
+#endif
+#if ENGINE_MAX_TEXTURES > 4
+	, TEX_AMBIENT
+#endif
+#if ENGINE_MAX_TEXTURES > 5
+	, TEX_OTHER1
+#endif
+#if ENGINE_MAX_TEXTURES > 6
+	, TEX_OTHER2
+#endif
+#if ENGINE_MAX_TEXTURES > 7
+	, TEX_OTHER3
+#endif
+
 } TEXTURES_TYPES;
 
 
@@ -158,12 +189,16 @@ struct MeshPartObject : public referenced_object
 	DirectX::XMFLOAT4X4		transform_matrix;	//macierz przekszta³cenia wzglêdem œrodka modelu
 	unsigned int			buffer_offset;
 	unsigned int			vertices_count;
-
+	int						base_vertex;		// Dodajemy do k¹zdego indeksu przed przeczytaniem wierzcho³ka
+												// Tylko w wersji indeksowanej
+	bool					use_index_buf;
 	MeshPartObject( )
 		: referenced_object( 0 )		//W tym przypadku identyfikator nie ma znaczenia
 	{
 		buffer_offset = 0;
 		vertices_count = 0;
+		base_vertex = 0;
+		use_index_buf = false;
 		//domyœlnie nie wykonujemy ¿adnego przekszta³cenia
 		DirectX::XMMATRIX identity = DirectX::XMMatrixIdentity( );
 		XMStoreFloat4x4( &transform_matrix, identity );
@@ -188,7 +223,6 @@ struct ModelPart
 	MaterialObject*			material;
 	TextureObject*			texture[ENGINE_MAX_TEXTURES];
 	MeshPartObject*			mesh;
-	BufferObject*			index_buffer;
 
 	ModelPart( )
 	{
@@ -196,15 +230,31 @@ struct ModelPart
 		pixel_shader = nullptr;
 		material = nullptr;
 		mesh = nullptr;
-		index_buffer = nullptr;
+
+#if ENGINE_MAX_TEXTURES > 0
 		texture[0] = nullptr;
+#endif
+#if ENGINE_MAX_TEXTURES > 1
 		texture[1] = nullptr;
+#endif
+#if ENGINE_MAX_TEXTURES > 2
 		texture[2] = nullptr;
+#endif
+#if ENGINE_MAX_TEXTURES > 3
 		texture[3] = nullptr;
+#endif
+#if ENGINE_MAX_TEXTURES > 4
 		texture[4] = nullptr;
+#endif
+#if ENGINE_MAX_TEXTURES > 5
 		texture[5] = nullptr;
+#endif
+#if ENGINE_MAX_TEXTURES > 6
 		texture[6] = nullptr;
+#endif
+#if ENGINE_MAX_TEXTURES > 7
 		texture[7] = nullptr;
+#endif
 	}
 };
 
@@ -278,12 +328,21 @@ class BufferObject : public referenced_object, public DX11_interfaces_container
 	friend ResourceContainer<BufferObject*>;
 private:
 	ID3D11Buffer*		buffer;
+	unsigned int		stride;
 protected:
 	~BufferObject( ) override;
 public:
-	BufferObject( unsigned int id );
+	BufferObject( unsigned int element_size );
+	BufferObject( unsigned int element_size, ID3D11Buffer* buff );
 
 	inline ID3D11Buffer* get( ) { return buffer; }
+	inline unsigned int get_stride() { return stride; }
+
+	static BufferObject* create_from_memory( const void* buffer,
+											 unsigned int element_size,
+											 unsigned int vert_count,
+											 unsigned int bind_flag,
+											 D3D11_USAGE usage = D3D11_USAGE_DEFAULT );
 };
 
 
@@ -303,6 +362,8 @@ typedef struct MaterialObject : public referenced_object
 
 	MaterialObject( unsigned int id = WRONG_ID ) : referenced_object( id ){}
 	MaterialObject( const MaterialObject* material );
+
+	void set_null_material();
 } MaterialObject;
 
 
@@ -319,7 +380,7 @@ struct TMP_data
 {
 	VertexNormalTexCord1*		vertices_tab	= nullptr;
 	unsigned int				vertices_count	= 0;
-	unsigned int*				indicies_tab	= nullptr;
+	VERT_INDEX*					indicies_tab = nullptr;
 	unsigned int				indicies_count	= 0;
 	unsigned int				indicies_offset	= 0;	//offset w buforze wierzcho³ków, wzglêdem którego lic¿a siê indexy 
 	ModelPart					new_part;
@@ -359,6 +420,7 @@ private:
 	//tekstura i materia³ odpowiadaj¹ meshowi spod danego indeksu
 	std::vector<ModelPart>			model_parts;
 	BufferObject*					vertex_buffer;
+	BufferObject*					index_buffer;
 	std::wstring					file_path;
 
 	//wskaxnik na tymczasow¹ strukture, która bêdzie u¿ywana podczas wype³niania obiektu danymi
@@ -369,6 +431,10 @@ protected:
 	~Model3DFromFile() override;
 
 	unsigned int get_buffer_offset_to_last();
+
+	void EndEdit_vertex_buffer_processing();
+	void EndEdit_index_buffer_processing();
+	void EndEdit_prepare_ModelPart();
 public:
 	Model3DFromFile( const std::wstring& name );
 
@@ -385,13 +451,14 @@ public:
 	unsigned int add_pixel_shader( const std::wstring& file_name );
 	unsigned int add_vertex_buffer( const VertexNormalTexCord1* buffer, unsigned int vert_count );
 	void add_transformation( const DirectX::XMFLOAT4X4& transform );
-	unsigned int add_index_buffer( const unsigned int* buffer, unsigned int ind_count, int vertex_buffer_offset );
+	unsigned int add_index_buffer( const VERT_INDEX* buffer, unsigned int ind_count, int vertex_buffer_offset );
 
 
 	unsigned int get_parts_count( );
 	const ModelPart* get_part( unsigned int index );
 
 	inline BufferObject* get_vertex_buffer() { return vertex_buffer; }
+	inline BufferObject* get_index_buffer() { return index_buffer; }
 };
 
 

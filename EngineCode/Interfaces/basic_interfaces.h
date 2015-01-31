@@ -115,6 +115,7 @@ public:
 protected:
 	Model3DFromFile*				model_reference;					//zapisujemy odwo³anie, ¿ebyœmy wiedzieli, ¿e nie mo¿emy kasowaæ tego obiektu
 	BufferObject*					vertex_buffer;						//ca³y bufor przechowujemy w jednym obiekcie
+	BufferObject*					index_buffer;						//tak samo bufor indeksów
 	std::vector<ModelPart>			model_parts;
 
 	bool							model_changed;

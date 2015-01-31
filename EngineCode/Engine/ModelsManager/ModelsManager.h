@@ -7,6 +7,8 @@
 class Engine;
 class Loader;
 
+
+
 //-------------------------------------------------------------------------------//
 //							wersja DirectX11
 //-------------------------------------------------------------------------------//
@@ -44,10 +46,14 @@ public:
 	ModelsManager( Engine* engine );
 	~ModelsManager( );
 
+	VertexShaderObject* find_best_vertex_shader( TextureObject** textures );
+	PixelShaderObject* find_best_pixel_shader( TextureObject** textures );
 
+	void set_default_assets( ID3D11VertexShader* vert_shader, ID3D11PixelShader* pix_shader );
 
 private:
 	Loader* find_loader( const std::wstring& path );
+	
 
 #ifdef __TEST
 public:

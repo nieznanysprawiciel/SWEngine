@@ -16,6 +16,10 @@ const float FIXED_MOVE_UPDATE_INTERVAL = ((float)1 / (float)56);
 
 Engine::Engine(HINSTANCE instance)
 {
+
+	//dziêki tej zmiennej bêdzie mo¿na wysy³aæ eventy
+	Object::engine = this;
+
 	directX_interface = nullptr;
 	directX_device = nullptr;
 
@@ -44,9 +48,6 @@ Engine::Engine(HINSTANCE instance)
 	sound_engine		=	new SoundEngine(this);
 	ui_engine			=	new UI_Engine(this);
 
-	//dziêki tej zmiennej bêdzie mo¿na wysy³aæ eventy
-	Object::engine = this;
-
 	//inicjujemy licznik klatek
 	frames = 0;
 	frames_per_sec = 0;
@@ -70,6 +71,7 @@ Engine::~Engine()
 	delete collision_engine;
 	delete physic_engine;
 	delete fable_engine;
+	delete sound_engine;
 	delete ui_engine;			//sprz¹ta po directinpucie
 	delete models_manager;		//musi byæ kasowany na koñcu
 
@@ -137,6 +139,7 @@ int Engine::init_directX()
 	display_engine->set_projection_matrix( D3DXToRadian( 45 ),
 										   (float)window_width / (float)window_height, 1, 100000 );
 
+	models_manager->set_default_assets( default_vertex_shader, default_pixel_shader );
 
 	return GRAPHIC_ENGINE_INIT_OK;
 }

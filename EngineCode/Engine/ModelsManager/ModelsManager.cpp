@@ -172,11 +172,34 @@ void ModelsManager::test( )
 
 
 
+/*Dopasowuje najlepszy z domyœlnych shaderów, który pasuje do podanej tablicy
+tekstur. Tablica ma tyle elementów ile zmienna ENGINE_MAX_TEXTURES.
+
+Ka¿da pozycja w tablicy ma przypisane domyœlne znaczenie zgodnie z enumeracj¹ 
+TEXTURES_TYPES. Najlepszy shader jest wybierany na podstawie obecnoœci
+lub nieobecnoœci tekstury w tablicy.*/
+VertexShaderObject* ModelsManager::find_best_vertex_shader( TextureObject** textures )
+{
+	// Na razie nie mamy innych domyœlnych shaderów
+	return vertex_shader.get( L"default_vertex_shader" );
+}
 
 
+/*Dopasowuje najlepszy z domyœlnych shaderów, który pasuje do podanej tablicy
+tekstur. Tablica ma tyle elementów ile zmienna ENGINE_MAX_TEXTURES.
+
+Ka¿da pozycja w tablicy ma przypisane domyœlne znaczenie zgodnie z enumeracj¹
+TEXTURES_TYPES. Najlepszy shader jest wybierany na podstawie obecnoœci
+lub nieobecnoœci tekstury w tablicy.*/
+PixelShaderObject* ModelsManager::find_best_pixel_shader( TextureObject** textures )
+{
+	// Na razie nie mamy innych domyœlnych shaderów
+	return pixel_shader.get( L"default_pixel_shader" );
+}
 
 
-/*Znajduje Loader pasuj¹cy do pliku podanego w parametrze. */
+/* #private
+Znajduje Loader pasuj¹cy do pliku podanego w parametrze. */
 Loader* ModelsManager::find_loader( const std::wstring& path )
 {
 	for ( unsigned int i = 0; i < loader.size( ); ++i )
@@ -186,11 +209,32 @@ Loader* ModelsManager::find_loader( const std::wstring& path )
 }
 
 
+/* #private
+Tworzy i wstawia domyœlne wartoœci assetów do swoich tablic.
+Najwa¿niejsze s¹ vertex shadery i pixel shadery, bo bez nich siê nie obejdzie,
+ale w tej funkcji mo¿na te¿ stworzyæ inne obiekty.*/
+void ModelsManager::set_default_assets( ID3D11VertexShader* vert_shader, ID3D11PixelShader* pix_shader )
+{
+	// Podane w parametrach shadery nie maj¹ jeszcze swojego obiektu-opakowania, wiêc trzeba go stworzyæ
+	VertexShaderObject* new_vertex_shader = new VertexShaderObject( vert_shader );
+	PixelShaderObject* new_pixel_shader = new PixelShaderObject( pix_shader );
+
+	// Dodajemy shadery. Takich nazwa na pewno nie ma w tablicach i nie bêdzie
+	vertex_shader.unsafe_add( DEFAULT_VERTEX_SHADER_STRING, new_vertex_shader );
+	pixel_shader.unsafe_add( DEFAULT_PIXEL_SHADER_STRING, new_pixel_shader );
+
+	// Tworzymy defaultowy materai³
+	MaterialObject* new_material = new MaterialObject();
+	new_material->set_null_material();
+	material.unsafe_add( DEFAULT_MATERIAL_STRING, new_material );
+}
+
+#ifndef __UNUSED
 //-------------------------------------------------------------------------------//
 //							wersja DirectX9
 //-------------------------------------------------------------------------------//
 
-#ifndef __UNUSED
+
 
 ModelsManager::ModelsManager(Engine* engine)
 	: engine(engine)
