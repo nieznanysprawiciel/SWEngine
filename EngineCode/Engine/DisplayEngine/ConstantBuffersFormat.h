@@ -16,6 +16,10 @@ typedef struct ConstantPerFrame
 
 typedef struct ConstantPerMesh
 {
-	XMFLOAT4X4		world_matrix;
-	MaterialObject	material;
+	XMMATRIX				world_matrix;
+	DirectX::XMFLOAT4		Diffuse;		//Sk³adowa przezroczystoœci odnosi siê do ca³ego materia³u
+	DirectX::XMFLOAT3		Ambient;
+	DirectX::XMFLOAT3		Specular;
+	DirectX::XMFLOAT3		Emissive;
+	float					Power;
 } ConstantPerMesh;

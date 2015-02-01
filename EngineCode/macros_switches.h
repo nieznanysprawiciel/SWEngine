@@ -41,8 +41,15 @@ w docelowej wersji silnika trzeba bêdzie siê zdecydowaæ na któr¹œ z nich.*/
 // Definiujemy typ w buforze indeksów
 #if defined(INDEX_BUFFER_UINT16)
 	typedef UINT16 VERT_INDEX;
+	#define INDEX_BUFFER_FORMAT DXGI_FORMAT_R16_UINT
 #elif defined(INDEX_BUFFER_UINT32)
 	typedef UINT32 VERT_INDEX;
+	#define INDEX_BUFFER_FORMAT DXGI_FORMAT_R32_UINT
 #else
 	typedef UINT32 VERT_INDEX;
+	#define INDEX_BUFFER_FORMAT DXGI_FORMAT_R32_UINT
+#endif
+
+#ifdef _DEBUG
+	#define SHOW_MEMORY_LEAKS			// W³¹cza do kodu wszystkie elementy niezbêdne do wykrywania wycieków
 #endif

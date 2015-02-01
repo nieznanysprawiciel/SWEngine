@@ -31,9 +31,31 @@ FBX_loader::~FBX_loader()
 	//nie zwalniamy fbx_IOsettings, bo zajmuje siê tym fbx_manager
 }
 
-/*Sprawdza czy umie wczytaæ podany plik.*/
+/*Sprawdza czy umie wczytaæ podany plik.
+Funkcja robi to na podstawie rozszerzenia pliku.*/
 bool FBX_loader::can_load(const std::wstring& name)
 {
+	// Funkcja porównujaca rozszerzenia ignoruj¹c ró¿nice w wielkoœci liter
+	auto compare_fun = []( wchar_t* str1, wchar_t* str2 )->bool
+	{
+		for ( int i = 0; i < 4; ++i )
+			if ( toupper( str1[i] ) != toupper( str2[i] ) )
+				 return false;
+		return true;
+	};
+
+	// Wyjmujemy z nazwy pliku jego rozszerzenie (razem z kropk¹)
+	wchar_t extension[4];
+	extension[0] = name[name.length() - 4];
+	extension[1] = name[name.length( ) - 3];
+	extension[2] = name[name.length( ) - 2];
+	extension[3] = name[name.length( ) - 1];
+
+
+	// Porównujemy rozszerzenie z obs³ugiwanymi formatami plików
+	if ( compare_fun( extension, L".FBX" ) )
+		return true;
+
 	return false;
 }
 
@@ -43,7 +65,7 @@ Po zakoñczeniu dzia³ania obiekt powinien byæ w stanie umo¿liwiaj¹cym natychmiast
 do wczytania innego modelu. Ewentualne b³edy mo¿na sygnalizowaæ przez wartoœæ zwracan¹.
 
 Poprawne wykonanie funkcji powinno zwróciæ wartoœæ MESH_LOADING_OK.*/
-int FBX_loader::load_mesh(Model3DFromFile* new_file_mesh, const std::wstring& name)
+LOADER_RESULT FBX_loader::load_mesh( Model3DFromFile* new_file_mesh, const std::wstring& name )
 {
 	if (new_file_mesh == nullptr)
 		return MESH_LOADING_WRONG;
@@ -196,17 +218,23 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 		//najpierw przypadek, w którym nie ma materia³u (czyli tekstury te¿ nie ma)
 	if (node->GetMaterialCount() == 0)
 	{
+		cur_model->BeginPart();		// Te funkcje maj¹ otaczaæ dodawanie ka¿dego kolejnego parta
+
 		//Nie trzeba dodawaæ nulli tak jak wczeœniej, bo one siê domyœlnie tam znajduj¹
 		//cur_model->add_null_material();
 		//cur_model->add_null_texture();
 		cur_model->add_vertex_buffer( triangles[0]->data(), triangles[0]->size());
 		cur_model->add_transformation( transformation );
+
+		cur_model->EndPart( );		// Te funkcje maj¹ otaczaæ dodawanie ka¿dego kolejnego parta
 	}
 	else
 	{
 		//teraz wszystkie inne przypadki; iterujemy po materia³ach
 		for ( int i = 0; i < material_count; ++i )
 		{
+			cur_model->BeginPart( );		// Te funkcje maj¹ otaczaæ dodawanie ka¿dego kolejnego parta
+
 			// Obiekty do konwertowania stringów
 			typedef std::codecvt_utf8<wchar_t> convert_type;
 			std::wstring_convert<convert_type, wchar_t> converter;
@@ -230,6 +258,8 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 
 			cur_model->add_vertex_buffer( triangles[i]->data( ), triangles[i]->size( ));
 			cur_model->add_transformation( transformation );
+
+			cur_model->EndPart( );		// Te funkcje maj¹ otaczaæ dodawanie ka¿dego kolejnego parta
 		}
 	}
 
@@ -260,8 +290,6 @@ int FBX_loader::read_material_index(FbxMesh* mesh, unsigned int polygon_counter)
 	case FbxGeometryElement::eByPolygon:
 		index = material->GetIndexArray()[polygon_counter];
 		break;
-	default:
-		throw std::exception("FBX loader: invalid material mapping mode");
 	}
 	return index;
 }
@@ -290,9 +318,6 @@ void FBX_loader::read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_
 			UV_cords.x = static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[0]);
 			UV_cords.y = static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[1]);
 			break;
-
-		default:
-			throw std::exception("FBX loader: invalid UV reference mode");
 		}
 		break;
 
@@ -309,9 +334,6 @@ void FBX_loader::read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_
 			UV_cords.x = static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[0]);
 			UV_cords.y = static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[1]);
 			break;
-
-		default:
-			throw std::exception("FBX loader: invalid UV reference mode");
 		}
 		break;
 	}

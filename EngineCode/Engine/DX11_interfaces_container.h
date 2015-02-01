@@ -44,6 +44,7 @@ protected:
 	static ID3DBlob*				compiled_pixel_shader;
 	static ID3D11VertexShader*		default_vertex_shader;
 	static ID3D11PixelShader*		default_pixel_shader;
+	static ID3D11SamplerState*		default_sampler;
 
 	DX11_interfaces_container() = default;
 	~DX11_interfaces_container() = default;
@@ -54,8 +55,10 @@ protected:
 	int init_pixel_shader( const std::wstring& file_name, const std::string& shader_name);
 	int init_mesh_vertex_format( D3D11_INPUT_ELEMENT_DESC* layout_desc, unsigned int array_size, ID3DBlob* shader );
 	int init_ui_vertex_format( D3D11_INPUT_ELEMENT_DESC* layout_desc, unsigned int array_size, ID3DBlob* shader );
+	int init_sampler();
 
-	void release_DirectX();
+
+	virtual void release_DirectX();
 
 	void begin_scene( );
 	inline void end_scene_and_present( ) { swap_chain->Present( 0, 0 ); }
@@ -72,5 +75,7 @@ protected:
 	static ID3D11Buffer*		const_per_mesh;
 
 	void init_buffers(unsigned int size_per_frame, unsigned int size_per_mesh);
+
+	void release_DirectX() override;
 };
 

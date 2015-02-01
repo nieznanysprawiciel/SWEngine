@@ -195,6 +195,9 @@ int Engine::main_loop()
 		}
 	}
 
+#ifdef SHOW_MEMORY_LEAKS
+	_CrtDumpMemoryLeaks();
+#endif
 	return (int)msg.wParam;
 }
 

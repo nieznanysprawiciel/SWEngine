@@ -28,7 +28,7 @@ public:
 	FBX_loader(ModelsManager* models_manager);
 	~FBX_loader();
 
-	int load_mesh(Model3DFromFile* new_file_mesh, const std::wstring& name);
+	LOADER_RESULT load_mesh( Model3DFromFile* new_file_mesh, const std::wstring& name );
 	bool can_load(const std::wstring& name);
 
 

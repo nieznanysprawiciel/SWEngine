@@ -119,8 +119,6 @@ void ModelsManager::test( )
 	mat.Emissive.b = 0.0f;
 	mat.Emissive.a = 0.0f;*/
 
-	Model3DFromFile* new_model = new Model3DFromFile( models_count );
-	++models_count;
 	/*
 	XMMATRIX matrix1 = XMMatrixIdentity();
 	DirectX::XMFLOAT4X4 matrix;
@@ -131,39 +129,13 @@ void ModelsManager::test( )
 	new_model->add_null_texture();
 	new_model->add_material(mat);
 	*/
-	new_model->file_path = "tylko_do_testow/clone_fighter_rel.FBX";
-	int result = loader[0]->load_mesh( new_model, L"tylko_do_testow/clone_fighter_rel.FBX" );
-	models.push_back( new_model );
-
-	new_model = new Model3DFromFile( models_count );
-	++models_count;
-
-	new_model->file_path = "tylko_do_testow/moon/moon.FBX";
-	result = loader[0]->load_mesh( new_model, L"tylko_do_testow/moon/moon.FBX" );
-	models.push_back( new_model );
-
-	new_model = new Model3DFromFile( models_count );
-	++models_count;
-
-	new_model->file_path = "tylko_do_testow/Nebulon/Nebulon.FBX";
-	result = loader[0]->load_mesh( new_model, L"tylko_do_testow/Nebulon/Nebulon.FBX" );
-	models.push_back( new_model );
 
 
-	new_model = new Model3DFromFile( models_count );
-	++models_count;
-
-	new_model->file_path = "tylko_do_testow/VadersTIE.FBX";
-	result = loader[0]->load_mesh( new_model, L"tylko_do_testow/VadersTIE.FBX" );
-	models.push_back( new_model );
-
-	new_model = new Model3DFromFile( models_count );
-	++models_count;
-
-	new_model->file_path = "tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX";
-	result = loader[0]->load_mesh( new_model, L"tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX" );
-	models.push_back( new_model );
-
+	load_model_from_file("tylko_do_testow/clone_fighter_rel.FBX");
+	load_model_from_file("tylko_do_testow/moon/moon.FBX");
+	load_model_from_file("tylko_do_testow/Nebulon/Nebulon.FBX");
+	load_model_from_file("tylko_do_testow/VadersTIE.FBX");
+	load_model_from_file("tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX");
 }
 #endif
 
@@ -228,6 +200,42 @@ void ModelsManager::set_default_assets( ID3D11VertexShader* vert_shader, ID3D11P
 	new_material->set_null_material();
 	material.unsafe_add( DEFAULT_MATERIAL_STRING, new_material );
 }
+
+/*Wczytuje model z podanego pliku.*/
+MODELS_MANAGER_RESULT ModelsManager::load_model_from_file( const std::wstring& file )
+{
+	// Sprawdzamy czy plik nie zosta³ ju¿ wczytany
+	Model3DFromFile* new_model = file_model.get( file );
+	if ( new_model != nullptr )
+		return MODELS_MANAGER_RESULT::MODELS_MANAGER_OK;	// Udajemy, ¿e wszystko posz³o dobrze
+
+	// Sprawdzamy, który loader potrafi otworzyæ plik
+	Loader* loader = find_loader( file );
+	if ( loader == nullptr )
+		return MODELS_MANAGER_RESULT::MODELS_MANAGER_LOADER_NOT_FOUND;		// ¯aden nie potrafi
+
+	// Tworzymy obiekt Model3DFromFile, do którego loader wpisze zawartoœæ pliku
+	new_model = new Model3DFromFile( file );
+
+	// Wszystkie operacje wpisywania musz¹ byæ zamkniête tymi wywo³aniami
+	new_model->BeginEdit();
+	LOADER_RESULT result = loader->load_mesh( new_model, file );
+	new_model->EndEdit();
+
+	if ( result != LOADER_RESULT::MESH_LOADING_OK )
+	{
+		// load_mesh powinno zwróciæ 0
+		delete new_model;
+		return MODELS_MANAGER_RESULT::MODELS_MANAGER_CANNOT_LOAD;
+	}
+
+	// Dodajemy model do tablic
+	file_model.unsafe_add( file, new_model );
+
+	return MODELS_MANAGER_RESULT::MODELS_MANAGER_OK;
+}
+
+
 
 #ifndef __UNUSED
 //-------------------------------------------------------------------------------//

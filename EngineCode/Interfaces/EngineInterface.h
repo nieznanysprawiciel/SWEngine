@@ -12,8 +12,12 @@ class ControllersEngine;
 struct IndexPrediction;
 class Event;
 
-class engine_interface : public DX11_interfaces_container
+
+class engine_interface : public DX11_constant_buffers_container
 {
+	// Dziedziczymy z DX11_constant_buffers_container a nie z DX11_interfaces_container, poniewa¿
+	// musimy wywo³aæ funkcjê release_DirectX z klasy pochodnej. Inaczej nie zwolnimy tamtych obiektów wogóle.
+
 	friend class ControllersEngine;
 	friend class ModelsManager;
 	friend class PhysicEngine;

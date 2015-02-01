@@ -68,6 +68,13 @@ Model3DFromFile::~Model3DFromFile( )
 {
 	if ( tmp_data )
 	{
+		for ( int i = 0; i < tmp_data->current_pointer; ++i )
+		{
+			delete[] tmp_data->table[i]->indicies_tab;
+			delete[] tmp_data->table[i]->vertices_tab;
+			delete tmp_data->table[i]->new_part.mesh;
+		}
+
 		delete[] tmp_data->table;
 		delete tmp_data;
 		tmp_data = nullptr;
@@ -140,6 +147,10 @@ void Model3DFromFile::EndEdit()
 	// Dodajemy do strutkury ModelPart dane o buforach wierzcho³ków oraz przypisujemy wbudowane
 	// shadery, je¿eli nie podano ¿adnych
 	EndEdit_prepare_ModelPart();
+
+	// Zapisujemy gotowe struktury
+	for ( int i = 0; i < tmp_data->current_pointer; ++i )
+		model_parts.push_back( tmp_data->table[i]->new_part );
 
 	//zwalniamy pamiêæ
 	delete[] tmp_data->table;
@@ -298,6 +309,7 @@ unsigned int Model3DFromFile::add_vertex_buffer( const VertexNormalTexCord1* buf
 
 	data->vertices_count = vert_count;							// Zapisujemy liczbê wierzcho³ków
 	data->vertices_tab = new VertexNormalTexCord1[vert_count];	// Tworzymy now¹ tablice wierzcho³ków
+	// Tablica zwalniana w funkcji EndEdit_vertex_buffer_processing()
 	memcpy( data->vertices_tab, buffer, vert_count );			// Przepisujemy tablicê
 
 	return WRONG_ID;
@@ -332,6 +344,7 @@ unsigned int Model3DFromFile::add_index_buffer( const VERT_INDEX* buffer, unsign
 
 	tmp_data->table[cur_ptr]->indicies_count = ind_count;			// Przepisujemy liczbê indeksów
 	tmp_data->table[cur_ptr]->indicies_tab = new VERT_INDEX[ind_count];	// Alokujemy now¹ tablicê indeksów
+	// Tablica zwalniana w funkcji EndEdit_index_buffer_processing()
 	memcpy( tmp_data->table[cur_ptr]->indicies_tab, buffer, ind_count );	// Przepisujemy tablicê
 
 	switch ( vertex_buffer_offset )
@@ -399,6 +412,8 @@ void Model3DFromFile::EndEdit_vertex_buffer_processing( )
 			tmp_data->table[i]->new_part.mesh->buffer_offset = offset;
 
 		offset += tmp_data->table[i]->vertices_count;
+
+		delete[] tmp_data->table[i]->vertices_tab;		// Tablica alokowana w add_vertex_buffer()
 	}
 	// Tworzymy obiekt bufora wierzcho³ków i go zapisujemy
 	vertex_buffer = BufferObject::create_from_memory( verticies,
@@ -441,6 +456,9 @@ void Model3DFromFile::EndEdit_index_buffer_processing( )
 			tmp_data->table[i]->new_part.mesh->buffer_offset = offset;
 
 		offset += tmp_data->table[i]->indicies_count;
+
+		delete[] tmp_data->table[i]->indicies_tab;		// Tablica alokowana w add_index_buffer()
+		// UWAGA!! Nie przypisujemy nullptra, bo chcemy wiedzieæ, ¿e jest bufor indeksów !!!!
 	}
 	// Tworzymy obiekt bufora indeksów i go zapisujemy
 	index_buffer = BufferObject::create_from_memory( indicies,
@@ -456,7 +474,8 @@ void Model3DFromFile::EndEdit_index_buffer_processing( )
 
 
 /*Dodajemy do strutkury ModelPart dane o buforach wierzcho³ków oraz przypisujemy wbudowane
-shadery, je¿eli nie podano ¿adnych.*/
+shadery, je¿eli nie podano ¿adnych.
+Dodajemy te¿ domyœlny materia³, je¿eli nie podano ¿adnego.*/
 void Model3DFromFile::EndEdit_prepare_ModelPart( )
 {
 	for ( int i = 0; i < tmp_data->current_pointer; ++i )
@@ -485,6 +504,9 @@ void Model3DFromFile::EndEdit_prepare_ModelPart( )
 
 		part.pixel_shader = models_manager->find_best_pixel_shader( part.texture );
 		part.vertex_shader = models_manager->find_best_vertex_shader( part.texture );
+
+		if ( part.material == nullptr )
+			part.material = models_manager->material.get( DEFAULT_MATERIAL_STRING );
 	}
 
 }

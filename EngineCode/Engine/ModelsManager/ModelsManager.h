@@ -13,6 +13,15 @@ class Loader;
 //							wersja DirectX11
 //-------------------------------------------------------------------------------//
 
+
+typedef enum MODELS_MANAGER_RESULT
+{
+	MODELS_MANAGER_OK,
+	MODELS_MANAGER_LOADER_NOT_FOUND,
+	MODELS_MANAGER_CANNOT_LOAD
+};
+
+
 /*Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dŸwiêków, które raczej
 zostan¹ oddelegowane w inne miejsce).
 
@@ -50,6 +59,8 @@ public:
 	PixelShaderObject* find_best_pixel_shader( TextureObject** textures );
 
 	void set_default_assets( ID3D11VertexShader* vert_shader, ID3D11PixelShader* pix_shader );
+
+	MODELS_MANAGER_RESULT load_model_from_file( const std::wstring& file );
 
 private:
 	Loader* find_loader( const std::wstring& path );

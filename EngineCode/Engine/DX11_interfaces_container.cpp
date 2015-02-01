@@ -16,7 +16,7 @@ ID3DBlob* DX11_interfaces_container::compiled_vertex_shader = nullptr;
 ID3DBlob* DX11_interfaces_container::compiled_pixel_shader = nullptr;
 ID3D11VertexShader* DX11_interfaces_container::default_vertex_shader = nullptr;
 ID3D11PixelShader* DX11_interfaces_container::default_pixel_shader = nullptr;
-
+ID3D11SamplerState*		DX11_interfaces_container::default_sampler = nullptr;
 
 ID3D11Buffer* DX11_constant_buffers_container::const_per_frame = nullptr;
 ID3D11Buffer* DX11_constant_buffers_container::const_per_mesh = nullptr;
@@ -41,6 +41,8 @@ void DX11_interfaces_container::release_DirectX( )
 		default_vertex_shader->Release( );
 	if ( default_pixel_shader )
 		default_pixel_shader->Release( );
+	if ( default_sampler )
+		default_sampler->Release( );
 
 	if ( swap_chain )
 		//DirectX nie potrafi siê zamkn¹æ w trybie pe³noekranowym, wiêc musimy go zmieniæ
@@ -294,7 +296,9 @@ int DX11_interfaces_container::init_vertex_shader(const std::wstring& file_name,
 bêd¹c¹ interfejsem shadera. Parametr shader_name oznacza nazwê funkcji, od której zaczyna
 siê wykonanie kodu shadera.
 
-Funkcja ustawia ten shader w kontekœcie urz¹dzenia jako aktywny*/
+Poza tworzeniem domyœlnego shadera, funkcja tworzy domyœlny sampler.
+
+Funkcja ustawia ten shader i sampler w kontekœcie urz¹dzenia jako aktywny.*/
 int DX11_interfaces_container::init_pixel_shader( const std::wstring& file_name, const std::string& shader_name )
 {
 	if ( !device || !device_context )
@@ -319,10 +323,40 @@ int DX11_interfaces_container::init_pixel_shader( const std::wstring& file_name,
 		return result;
 	}
 
+	// Przy okazji tworzymy domyslny sampler
+	result = init_sampler();
+	if ( FAILED( result ) )
+	{
+		compiled_pixel_shader->Release( );
+		compiled_pixel_shader = nullptr;
+		default_pixel_shader->Release();
+		default_pixel_shader = nullptr;
+		return result;
+	}
+
 	device_context->PSSetShader( default_pixel_shader, nullptr, 0 );
+	device_context->PSSetSamplers( 0, 1, &default_sampler );
 	return GRAPHIC_ENGINE_INIT_OK;
 }
 
+
+int DX11_interfaces_container::init_sampler( )
+{
+	D3D11_SAMPLER_DESC sampDesc;
+	ZeroMemory( &sampDesc, sizeof(sampDesc) );
+	sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+	sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+	sampDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+	sampDesc.MinLOD = 0;
+	sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
+
+	HRESULT result = device->CreateSamplerState( &sampDesc, &default_sampler );
+
+	// Niech funkcje zewnêtrzne sie martwi¹ jak by³ b³¹d
+	return result;
+}
 
 //----------------------------------------------------------------------------------------------//
 //								Funkcje pomocne przy wyœwietlaniu								//
@@ -364,3 +398,13 @@ void DX11_constant_buffers_container::init_buffers( unsigned int size_per_frame,
 
 }
 
+void DX11_constant_buffers_container::release_DirectX()
+{
+	if ( const_per_frame )
+		const_per_frame->Release();
+	if ( const_per_mesh )
+		const_per_mesh->Release();
+
+	// Zwalniamy te¿ wszystkie obiekty, które zwalnia³a klasa bazowa
+	DX11_interfaces_container::release_DirectX();
+}

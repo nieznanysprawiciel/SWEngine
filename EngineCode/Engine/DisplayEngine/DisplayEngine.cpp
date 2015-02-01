@@ -37,77 +37,37 @@ void DisplayEngine::init_const_buffers()
  *Jest to konieczne, gdy chcemy renderowaæ GUI za pomoc¹ obiektu UI_Engine.*/
 void DisplayEngine::display_scene(float time_interval)
 {
-	/*
-	LPDIRECT3DDEVICE9 directX_device = engine->directX_device;
-
-	set_view_matrix();
-	directX_device->SetTransform(D3DTS_PROJECTION, (D3DMATRIX*)&projection_matrix);	//macierz projekcji jest zawsze ta sama, chyba ¿e j¹ ktoœ jawnie zmodyfikuje
-
-	directX_device->SetVertexShader( nullptr );
-	directX_device->SetFVF(VERTEX_NORMAL_TEXTCORDS1);
-
-	//parametry tekstur
-	directX_device->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_MODULATE );
-	directX_device->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE );
-	directX_device->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE );
-	directX_device->SetTextureStageState( 0, D3DTSS_ALPHAOP, D3DTOP_DISABLE );
-
-
-	//na razie pêtla bez optymalizacji
-	for (unsigned int i = 0; i < meshes.size(); ++i)
-	{
-		register Dynamic_mesh_object* object = meshes[i];
-
-#ifdef _INTERPOLATE_POSITIONS
-		XMMATRIX transformation = XMLoadFloat4x4( &(interpolated_matrixes[i]) );
-#else
-		XMVECTOR translation = XMLoadFloat3( &(object->position) );
-		XMVECTOR orientation = XMLoadFloat4( &(object->orientation) );
-		XMMATRIX transformation = XMMatrixRotationQuaternion( orientation );
-		transformation = transformation * XMMatrixTranslationFromVector( translation );
-#endif
-
-		for (unsigned int j = 0; j < object->materials.size(); ++j)
-		{
-			if ( object->materials[j] != nullptr )
-				directX_device->SetMaterial( object->materials[j]->get_material() );
-			else
-				directX_device->SetMaterial( nullptr );
-
-			if ( object->textures[j] != nullptr )
-				directX_device->SetTexture( 0, object->textures[j]->get_texture() );
-			else
-				directX_device->SetTexture( 0, nullptr );
-
-			XMMATRIX world_transform;
-			if ( object->mesh_parts[j] != nullptr )
-			{
-				world_transform = XMLoadFloat4x4( &(object->mesh_parts[j]->transform_matrix) );
-				world_transform = world_transform * transformation;
-				//ustawiamy macierz przekszta³cenia dla danego modelu
-				directX_device->SetTransform( D3DTS_WORLD, (D3DMATRIX*)&world_transform );
-
-				MeshObject* mesh = object->mesh_parts[j]->mesh_object;
-
-				directX_device->SetStreamSource(
-					0, mesh->vertex_buffer,
-					0, sizeof( Vertex_Normal_TexCords1 ) );
-
-				directX_device->DrawPrimitive( D3DPT_TRIANGLELIST, 0, mesh->primitives_count );
-			}
-		}
-	}
-	*/
-
 	set_view_matrix();
 
+	// Ustawiamy format wierzcho³ków i topologiê
+	device_context->IASetInputLayout( mesh_vertex_format );
+	device_context->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 
+	// Ustawiamy bufor sta³y dla wszystkich meshy
+	//shader_data_per_frame.time_lag = 
+
+	device_context->UpdateSubresource( const_per_frame, 0, nullptr, &shader_data_per_frame, 0, 0 );
+	device_context->VSSetConstantBuffers( 0, 1, &const_per_frame );
+
+	// Ustawiamy smapler
+	device_context->PSSetSamplers( 0, 1, &default_sampler );
 
 	//na razie pêtla bez optymalizacji
 	for ( unsigned int i = 0; i < meshes.size(); ++i )
 	{
 		register Dynamic_mesh_object* object = meshes[i];
 
+		// Ustawiamy bufor wierzcho³ków
+		ID3D11Buffer* vertex_buffer = object->vertex_buffer->get();
+		unsigned int stride = object->vertex_buffer->get_stride();
+		device_context->IASetVertexBuffers( 0, 1, &vertex_buffer, &stride, 0 );
+
+		// Ustawiamy bufor indeksów, je¿eli istnieje
+		ID3D11Buffer* index_buffer = object->index_buffer->get();
+		if ( index_buffer )
+			device_context->IASetIndexBuffer( index_buffer, INDEX_BUFFER_FORMAT, 0 );
+
+
 #ifdef _INTERPOLATE_POSITIONS
 		XMMATRIX transformation = XMLoadFloat4x4( &(interpolated_matrixes[i]) );
 #else
@@ -118,6 +78,48 @@ void DisplayEngine::display_scene(float time_interval)
 #endif
 
 
+		for ( unsigned int j = 0; j < object->model_parts.size( ); ++j )
+		{
+			ModelPart& model = object->model_parts[j];
+
+			// Wyliczamy macierz transformacji
+			XMMATRIX world_transform;
+			world_transform = XMLoadFloat4x4( &(model.mesh->transform_matrix) );
+			world_transform = world_transform * transformation;
+
+			// Wype³niamy bufor sta³ych
+			ConstantPerMesh shader_data_per_mesh;
+			MaterialObject* material = model.material;
+			shader_data_per_mesh.world_matrix = XMMatrixTranspose( world_transform );	// Transformacja wierzcho³ków
+				// Przepisujemy materia³
+			shader_data_per_mesh.Diffuse = material->Diffuse;
+			shader_data_per_mesh.Ambient = material->Ambient;
+			shader_data_per_mesh.Specular = material->Specular;
+			shader_data_per_mesh.Emissive = material->Emissive;
+			shader_data_per_mesh.Power = material->Power;
+			
+			// Aktualizujemy bufor sta³ych
+			device_context->UpdateSubresource( const_per_mesh, 0, nullptr, &shader_data_per_mesh, 0, 0 );
+			device_context->VSSetConstantBuffers( 1, 1, &const_per_mesh );
+
+			device_context->VSSetShader( model.vertex_shader->get(), nullptr, 0 );
+			device_context->PSSetShader( model.pixel_shader->get(), nullptr, 0 );
+
+			// Ustawiamy tekstury
+			for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
+				if ( model.texture[i] )		// Nie ka¿da tekstura w tablicy istnieje
+				{
+					ID3D11ShaderResourceView* tex = model.texture[i]->get( );
+					device_context->PSSetShaderResources( i, 1, &tex );
+				}
+
+			// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
+			MeshPartObject* part = model.mesh;
+			if ( part->use_index_buf )
+				device_context->DrawIndexed( part->vertices_count, part->buffer_offset, part->base_vertex );
+			else // Tryb bezpoœredni
+				device_context->Draw( part->vertices_count, part->buffer_offset );
+		}
 
 	}
 }
@@ -128,6 +130,7 @@ display_scene ustawiana jest macierz zapisana w tym polu.*/
 void DisplayEngine::set_projection_matrix(float angle, float X_to_Y, float near_plane, float far_plane)
 {
 	XMMATRIX proj_matrix = XMMatrixPerspectiveFovLH(angle, X_to_Y, near_plane, far_plane);
+	proj_matrix = XMMatrixTranspose( proj_matrix );
 	XMStoreFloat4x4( &shader_data_per_frame.projection_matrix, proj_matrix );
 }
 
@@ -163,6 +166,7 @@ void DisplayEngine::set_view_matrix()
 
 	//Wstawiamy macierz do zmiennej, która stanie siê potem zawartoœci¹ bufora,
 	//który zostanie przekazany do shadera.
+	view_matrix = XMMatrixTranspose( view_matrix );
 	XMStoreFloat4x4( &shader_data_per_frame.view_matrix, view_matrix );
 }
 
@@ -277,3 +281,76 @@ void DisplayEngine::interpolate_positions( float time_lag )
 		XMStoreFloat4x4( &(interpolated_matrixes[i]), transformation );
 	}
 }
+
+
+#ifndef __UNUSED
+
+//-------------------------------------------------------------------------------//
+//							wersja DirectX 9
+//-------------------------------------------------------------------------------//
+
+void DisplayEngine::display_scene( float time_interval )
+{
+	LPDIRECT3DDEVICE9 directX_device = engine->directX_device;
+
+	set_view_matrix();
+	directX_device->SetTransform(D3DTS_PROJECTION, (D3DMATRIX*)&projection_matrix);	//macierz projekcji jest zawsze ta sama, chyba ¿e j¹ ktoœ jawnie zmodyfikuje
+
+	directX_device->SetVertexShader( nullptr );
+	directX_device->SetFVF(VERTEX_NORMAL_TEXTCORDS1);
+
+	//parametry tekstur
+	directX_device->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_MODULATE );
+	directX_device->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE );
+	directX_device->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE );
+	directX_device->SetTextureStageState( 0, D3DTSS_ALPHAOP, D3DTOP_DISABLE );
+
+
+	//na razie pêtla bez optymalizacji
+	for (unsigned int i = 0; i < meshes.size(); ++i)
+	{
+		register Dynamic_mesh_object* object = meshes[i];
+
+		#ifdef _INTERPOLATE_POSITIONS
+		XMMATRIX transformation = XMLoadFloat4x4( &(interpolated_matrixes[i]) );
+		#else
+		XMVECTOR translation = XMLoadFloat3( &(object->position) );
+		XMVECTOR orientation = XMLoadFloat4( &(object->orientation) );
+		XMMATRIX transformation = XMMatrixRotationQuaternion( orientation );
+		transformation = transformation * XMMatrixTranslationFromVector( translation );
+		#endif
+
+		for (unsigned int j = 0; j < object->materials.size(); ++j)
+		{
+			if ( object->materials[j] != nullptr )
+				directX_device->SetMaterial( object->materials[j]->get_material() );
+			else
+				directX_device->SetMaterial( nullptr );
+
+			if ( object->textures[j] != nullptr )
+				directX_device->SetTexture( 0, object->textures[j]->get_texture() );
+			else
+				directX_device->SetTexture( 0, nullptr );
+
+			XMMATRIX world_transform;
+			if ( object->mesh_parts[j] != nullptr )
+			{
+				world_transform = XMLoadFloat4x4( &(object->mesh_parts[j]->transform_matrix) );
+				world_transform = world_transform * transformation;
+				//ustawiamy macierz przekszta³cenia dla danego modelu
+				directX_device->SetTransform( D3DTS_WORLD, (D3DMATRIX*)&world_transform );
+
+				MeshObject* mesh = object->mesh_parts[j]->mesh_object;
+
+				directX_device->SetStreamSource(
+				0, mesh->vertex_buffer,
+				0, sizeof( Vertex_Normal_TexCords1 ) );
+
+				directX_device->DrawPrimitive( D3DPT_TRIANGLELIST, 0, mesh->primitives_count );
+			}
+		}
+	}
+}
+
+
+#endif
