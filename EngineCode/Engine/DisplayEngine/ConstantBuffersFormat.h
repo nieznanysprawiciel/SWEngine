@@ -3,6 +3,12 @@
 
 using namespace DirectX;
 
+/* Bufory sta³ych dla shaderów musz¹ miec wielkoœæ bêd¹c¹ wielokrotnoœci¹ 16.
+Nie trzeba o to dbaæ w tym przypadku, bo funkcja tworz¹ca bufory alokuje
+odrobinê wiêksze.
+Ale skoro i tak ma siê pamiêæ i przepustowoœæ marnowaæ to mo¿na spokojnie dope³niæ
+jakimiœ informacjami do tych 16.*/
+
 typedef struct ConstantPerFrame
 {
 	XMFLOAT4X4		view_matrix;

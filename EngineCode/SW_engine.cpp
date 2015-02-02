@@ -39,6 +39,10 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	result = engine->main_loop();
 	delete engine;
+
+#ifdef SHOW_MEMORY_LEAKS
+	_CrtDumpMemoryLeaks( );
+#endif
 	return result;
 }
 

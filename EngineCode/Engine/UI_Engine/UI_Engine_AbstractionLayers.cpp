@@ -4,6 +4,9 @@
 #include "..\..\Interfaces\basic_interfaces.h"
 
 
+#include "..\..\memory_leaks.h"
+
+
 
 void UI_Engine::init_abstraction_layers( )
 {

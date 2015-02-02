@@ -4,6 +4,8 @@
 
 
 
+#include "..\memory_leaks.h"
+
 //interwa³, po którym nastêpuje kolejne przeliczenie po³o¿eñ obiektów (w sekundach)
 const float FIXED_MOVE_UPDATE_INTERVAL = ((float)1 / (float)56);
 
@@ -19,9 +21,6 @@ Engine::Engine(HINSTANCE instance)
 
 	//dziêki tej zmiennej bêdzie mo¿na wysy³aæ eventy
 	Object::engine = this;
-
-	directX_interface = nullptr;
-	directX_device = nullptr;
 
 #ifndef __UNUSED
 	//Zmienna decyduje o konczeniu w¹tków
@@ -139,7 +138,13 @@ int Engine::init_directX()
 	display_engine->set_projection_matrix( D3DXToRadian( 45 ),
 										   (float)window_width / (float)window_height, 1, 100000 );
 
+	// W tej funkcji s¹ tworzone domyœlne shadery, materia³y itp.
+	// Przekazujemy shadery, które ju¿ stworzyliœmy
 	models_manager->set_default_assets( default_vertex_shader, default_pixel_shader );
+	default_vertex_shader = nullptr;
+	default_pixel_shader = nullptr;
+	// Poniewa¿ oddaliœmy te obiekty do zarz¹dzania ModelsManagerowi, to musimy skasowaæ odwo³ania, ¿eby
+	// nie zwalniaæ obiektów dwukrotnie. Nie jest to eleganckie, no ale lepiej mieæ wszystko w jednym miejscu.
 
 	return GRAPHIC_ENGINE_INIT_OK;
 }
@@ -149,14 +154,14 @@ int Engine::init_shaders_vertex_layouts( )
 {
 	HRESULT result;
 
-	result = init_vertex_shader( L"default_shaders.fx", "vertex_shader" );
+	result = init_vertex_shader( L"shaders/default_shaders.fx", "vertex_shader" );
 	if ( FAILED( result ) )
 	{//Musimy sami zwalniaæ, bo funkcje tego nie robi¹
 		release_DirectX( );
 		return result;
 	}
 
-	result = init_pixel_shader( L"default_shaders.fx", "pixel_shader" );
+	result = init_pixel_shader( L"shaders/default_shaders.fx", "pixel_shader" );
 	if ( FAILED( result ) )
 	{
 		release_DirectX( );
@@ -172,7 +177,8 @@ int Engine::init_shaders_vertex_layouts( )
 		return result;
 	}
 
-	result = init_ui_vertex_format( VertexTexCord1_desc,
+	// Na razie nie mo¿emy tego zrobiæ, bo podawany shader musi mieæ zgodne wejœcie z layoutem
+	/*result = init_ui_vertex_format( VertexTexCord1_desc,
 									VertexTexCord1_desc_num_of_elements,
 									compiled_vertex_shader );
 
@@ -180,7 +186,7 @@ int Engine::init_shaders_vertex_layouts( )
 	{
 		release_DirectX( );
 		return result;
-	}
+	}*/
 
 	return GRAPHIC_ENGINE_INIT_OK;
 }

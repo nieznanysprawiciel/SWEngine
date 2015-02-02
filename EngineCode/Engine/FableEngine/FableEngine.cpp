@@ -3,11 +3,15 @@
 #include "..\Engine.h"
 
 
+#include "..\..\memory_leaks.h"
+
 FableEngine::FableEngine(Engine* engine)
 	: engine(engine)
 {
 	//klasa engine musi mieæ latwy dostêp do naszej kolejki, wiêc mu j¹ przypisujemy
 	engine->events_queue = &events_queue;
+
+	game_play = nullptr;
 
 	//wype³niamy tablicê delegatów nullptrami
 	for (unsigned int i = 0; i < BUILD_IN_EVENTS; ++i)
@@ -26,7 +30,8 @@ FableEngine::~FableEngine()
 		delete cur_event;
 	}
 
-	delete game_play;
+	if ( game_play )
+		delete game_play;
 }
 
 

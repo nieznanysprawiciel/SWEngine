@@ -3,6 +3,9 @@
 
 
 
+#include "..\memory_leaks.h"
+
+
 /*Inicjalizacja zmiennych statycznych.*/
 ID3D11Device* DX11_interfaces_container::device = nullptr;
 ID3D11DeviceContext* DX11_interfaces_container::device_context = nullptr;
@@ -30,19 +33,19 @@ void DX11_interfaces_container::release_DirectX( )
 {
 	//Zmienne pomocnicze
 	if ( mesh_vertex_format )
-		mesh_vertex_format->Release( );
+		mesh_vertex_format->Release( ), mesh_vertex_format = nullptr;
 	if ( ui_vertex_format )
-		ui_vertex_format->Release( );
+		ui_vertex_format->Release( ), ui_vertex_format = nullptr;
 	if ( compiled_vertex_shader )
-		compiled_vertex_shader->Release( );
+		compiled_vertex_shader->Release( ), compiled_vertex_shader = nullptr;
 	if ( compiled_pixel_shader )
-		compiled_pixel_shader->Release( );
+		compiled_pixel_shader->Release( ), compiled_pixel_shader = nullptr;
 	if ( default_vertex_shader )
-		default_vertex_shader->Release( );
+		default_vertex_shader->Release( ), default_vertex_shader = nullptr;
 	if ( default_pixel_shader )
-		default_pixel_shader->Release( );
+		default_pixel_shader->Release( ), default_pixel_shader = nullptr;
 	if ( default_sampler )
-		default_sampler->Release( );
+		default_sampler->Release( ), default_sampler = nullptr;
 
 	if ( swap_chain )
 		//DirectX nie potrafi siê zamkn¹æ w trybie pe³noekranowym, wiêc musimy go zmieniæ
@@ -50,15 +53,15 @@ void DX11_interfaces_container::release_DirectX( )
 
 	//Zmienne s³u¿¹ce do wyœwietlania
 	if ( z_buffer_view )
-		z_buffer_view->Release( );
+		z_buffer_view->Release( ), z_buffer_view = nullptr;
 	if ( swap_chain )
-		swap_chain->Release( );
+		swap_chain->Release( ), swap_chain = nullptr;
 	if ( render_target )
-		render_target->Release( );
+		render_target->Release( ), render_target = nullptr;
 	if ( device )
-		device->Release( );
+		device->Release( ), device = nullptr;
 	if ( device_context )
-		device_context->Release( );
+		device_context->Release( ), device_context = nullptr;
 }
 
 //----------------------------------------------------------------------------------------------//
@@ -237,7 +240,9 @@ Wynik jest zapisywany w polu ui_vertex_format.
 
 Aby stworzyæ layouty trzeba koniecznie podaæ jakiœ skompilowany obiekt shadera.
 Nie jest to wygodne, ale tak niestety dzia³a DirectX 11.
-Oznacza to, ¿e funkcjê tê mo¿na wywo³aæ dopiero wtedy, kiedy taki obiekt zostanie stworzony.*/
+Oznacza to, ¿e funkcjê tê mo¿na wywo³aæ dopiero wtedy, kiedy taki obiekt zostanie stworzony.
+
+Niestety podany shader musi mieæ zgodne wejœcie z layoutem, który tworzymy.*/
 int DX11_interfaces_container::init_ui_vertex_format( D3D11_INPUT_ELEMENT_DESC* layout_desc, unsigned int array_size, ID3DBlob* shader )
 {
 	if ( !shader )
@@ -270,12 +275,31 @@ int DX11_interfaces_container::init_vertex_shader(const std::wstring& file_name,
 		return DXGI_ERROR_CANNOT_PROTECT_CONTENT;
 
 	HRESULT result;
+	// Troszkê zamieszania, ale w trybie debug warto wiedzieæ co jest nie tak przy kompilacji shadera
+#ifdef _DEBUG
+	ID3D10Blob* error_blob = nullptr;
+#endif
 
 	D3DX11CompileFromFile( file_name.c_str(), 0, 0, shader_name.c_str(), "vs_4_0",
-						   0, 0, 0, &compiled_vertex_shader, 0, &result );
+						   0, 0, 0, &compiled_vertex_shader,
+#ifdef _DEBUG
+						   &error_blob,
+#else
+						   0,
+#endif
+						   &result );
 
 	if ( FAILED( result ) )
+	{
+#ifdef _DEBUG
+		if ( error_blob )
+		{
+			OutputDebugStringA( (char*)error_blob->GetBufferPointer( ) );
+			error_blob->Release( );
+		}
+#endif
 		return result;
+	}
 
 	result = device->CreateVertexShader( compiled_vertex_shader->GetBufferPointer(),
 										 compiled_vertex_shader->GetBufferSize( ),
@@ -305,12 +329,30 @@ int DX11_interfaces_container::init_pixel_shader( const std::wstring& file_name,
 		return DXGI_ERROR_CANNOT_PROTECT_CONTENT;
 
 	HRESULT result;
+#ifdef _DEBUG
+	ID3D10Blob* error_blob = nullptr;
+#endif
 
 	D3DX11CompileFromFile( file_name.c_str( ), 0, 0, shader_name.c_str( ), "ps_4_0",
-						   0, 0, 0, &compiled_pixel_shader, 0, &result );
+						   0, 0, 0, &compiled_pixel_shader,
+#ifdef _DEBUG
+						   &error_blob,
+#else
+						   0,
+#endif
+						   &result );
 
 	if ( FAILED( result ) )
+	{
+#ifdef _DEBUG
+		if ( error_blob )
+		{
+			OutputDebugStringA( (char*)error_blob->GetBufferPointer( ) );
+			error_blob->Release( );
+		}
+#endif
 		return result;
+	}
 
 	result = device->CreatePixelShader( compiled_pixel_shader->GetBufferPointer( ),
 										compiled_pixel_shader->GetBufferSize( ),
@@ -380,6 +422,17 @@ void DX11_interfaces_container::begin_scene( )
 //----------------------------------------------------------------------------------------------//
 void DX11_constant_buffers_container::init_buffers( unsigned int size_per_frame, unsigned int size_per_mesh )
 {
+	HRESULT result;
+
+	// Bufory sta³ych musz¹ mieæ rozmiar bêd¹cy wielokrotnoœci¹ 16
+	// Dobrze ¿e DirectX wypluwa jakieœ debugowe informacje, bo nie wiem, jakbym na to wpad³
+	size_per_frame = size_per_frame >> 4;		// Dzielimy na 16 (dzielenie ca³kowite)
+	size_per_frame = (size_per_frame + 1) << 4;	// Najbli¿sza wielokrotnoœæ 16
+
+	size_per_mesh = size_per_mesh >> 4;			// Dzielimy na 16 (dzielenie ca³kowite)
+	size_per_mesh = (size_per_mesh + 1) << 4;	// Najbli¿sza wielokrotnoœæ 16
+
+	// Tworzymy bufor sta³ych w ka¿dej ramce
 	D3D11_BUFFER_DESC buffer_desc;
 	ZeroMemory( &buffer_desc, sizeof(buffer_desc) );
 	buffer_desc.Usage = D3D11_USAGE_DEFAULT;
@@ -388,22 +441,21 @@ void DX11_constant_buffers_container::init_buffers( unsigned int size_per_frame,
 	buffer_desc.CPUAccessFlags = 0;
 
 	//Tworzymy bufor sta³ych, który jest niezmienny podczas wyœwietlania ramki
-	device->CreateBuffer( &buffer_desc, nullptr, &const_per_frame );
+	result = device->CreateBuffer( &buffer_desc, nullptr, &const_per_frame );
 
 	//Drugi bufor ró¿ni siê tylko wielkoœci¹
 	buffer_desc.ByteWidth = size_per_mesh;
 
 	//Tworzymy bufor sta³ych, do którego bêdziemy wpisywaæ wartoœci sta³e dla ka¿dego mesha (albo czêœci mesha)
-	device->CreateBuffer( &buffer_desc, nullptr, &const_per_mesh );
-
+	result = device->CreateBuffer( &buffer_desc, nullptr, &const_per_mesh );
 }
 
 void DX11_constant_buffers_container::release_DirectX()
 {
 	if ( const_per_frame )
-		const_per_frame->Release();
+		const_per_frame->Release( ), const_per_frame = nullptr;
 	if ( const_per_mesh )
-		const_per_mesh->Release();
+		const_per_mesh->Release( ), const_per_mesh = nullptr;
 
 	// Zwalniamy te¿ wszystkie obiekty, które zwalnia³a klasa bazowa
 	DX11_interfaces_container::release_DirectX();

@@ -415,6 +415,7 @@
     <ClInclude Include="Interfaces\EngineInterface.h" />
     <ClInclude Include="Interfaces\GamePlay.h" />
     <ClInclude Include="macros_switches.h" />
+    <ClInclude Include="memory_leaks.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SW_engine.h" />
     <ClInclude Include="stdafx.h" />

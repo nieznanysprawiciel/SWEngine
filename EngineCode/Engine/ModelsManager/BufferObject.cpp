@@ -2,6 +2,8 @@
 #include "meshes_textures_materials.h"
 
 
+#include "..\..\memory_leaks.h"
+
 //----------------------------------------------------------------------------------------------//
 //								contructors, destructors										//
 //----------------------------------------------------------------------------------------------//
@@ -27,6 +29,7 @@ BufferObject::~BufferObject( )
 {
 	if ( buffer )
 		buffer->Release( );
+	//buffer = nullptr;
 }
 
 BufferObject* BufferObject::create_from_memory( const void* buffer,

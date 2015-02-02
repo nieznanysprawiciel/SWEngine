@@ -3,6 +3,11 @@
 #include "..\Engine.h"
 #include "..\..\Interfaces\basic_interfaces.h"
 
+
+
+#include "..\..\memory_leaks.h"
+
+
 UI_Engine::UI_Engine(Engine* engine)
 	: engine(engine)
 {

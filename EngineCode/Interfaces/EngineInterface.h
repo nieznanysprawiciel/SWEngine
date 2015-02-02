@@ -30,8 +30,6 @@ class engine_interface : public DX11_constant_buffers_container
 	friend class Object;
 protected:
 	//directX and windows variables
-	LPDIRECT3D9					directX_interface;		// the pointer to our Direct3D interface
-	LPDIRECT3DDEVICE9			directX_device;			// the pointer to the device class
 	bool						directX_ready;			// je¿eli zmienna jest niepoprawna, nie renderujemy
 
 	bool						full_screen;

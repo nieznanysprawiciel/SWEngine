@@ -28,7 +28,8 @@ struct MeshPartObject;
 struct MaterialObject;
 
 /*
-// Definicja typu w buforze indeksów znajduje siê w pliku macros_switches.h i wygl¹da tak:
+// W buforze wierzcho³ków znajduj¹ siê elementy typu VERT_INDEX.
+// Definicja typu VERT_INDEX znajduje siê w pliku macros_switches.h i wygl¹da tak:
 
 #if defined(INDEX_BUFFER_UINT16)
 typedef UINT16 VERT_INDEX;

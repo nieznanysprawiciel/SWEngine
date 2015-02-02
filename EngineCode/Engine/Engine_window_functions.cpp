@@ -4,6 +4,10 @@
 
 
 
+#include "..\memory_leaks.h"
+
+
+
 //global variables
 TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
 TCHAR szWindowClass[MAX_LOADSTRING];			// the main window class name
@@ -195,9 +199,6 @@ int Engine::main_loop()
 		}
 	}
 
-#ifdef SHOW_MEMORY_LEAKS
-	_CrtDumpMemoryLeaks();
-#endif
 	return (int)msg.wParam;
 }
 

@@ -8,14 +8,24 @@
 //--------------------------------------------------------------------------------------
 // Constant Buffer Variables
 //--------------------------------------------------------------------------------------
-cbuffer ConstantBuffer : register( b0 )
+cbuffer ConstantPerFrame : register( b0 )
 {
-	matrix World;
 	matrix View;
 	matrix Projection;
 	float4 vLightDir[2];
 	float4 vLightColor[2];
-	float4 vOutputColor;
+	float time;
+	float time_lag;
+}
+
+cbuffer ConstantPerMesh : register( b1 )
+{
+	matrix World;
+	float4 Diffuse;
+	float3 Ambient;
+	float3 Specular;
+	float3 Emissive;
+	float Power;
 }
 
 
@@ -24,6 +34,7 @@ struct VS_INPUT
 {
     float4 Pos : POSITION;
     float3 Norm : NORMAL;
+	float2 Tex : TEXCOORD0;
 };
 
 struct PS_INPUT
@@ -64,7 +75,7 @@ float4 pixel_shader( PS_INPUT input) : SV_Target
     return finalColor;
 }
 
-
+/*
 //--------------------------------------------------------------------------------------
 // PSSolid - render a solid color
 //--------------------------------------------------------------------------------------
@@ -72,3 +83,4 @@ float4 PSSolid( PS_INPUT input) : SV_Target
 {
     return vOutputColor;
 }
+*/

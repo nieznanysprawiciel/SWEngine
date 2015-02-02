@@ -10,7 +10,7 @@ w docelowej wersji silnika trzeba bêdzie siê zdecydowaæ na któr¹œ z nich.*/
 4-elementowy, w którym pierwsze 3 sk³adowe opisuj¹ wektor obrotu, a sk³adowa w k¹t obrotu*/
 
 
-//#define __TEST		//w³¹cza funkcje testuj¹ce
+#define __TEST		//w³¹cza funkcje testuj¹ce
 #define FIXED_FRAMES_COUNT		//ustawia w funkcji Engine::render_frame() sta³¹ liczbê klatek na sekundê
 
 #define _SCALEABLE_OBJECTS		//umo¿liwia ustawienie skalowania dla meshy

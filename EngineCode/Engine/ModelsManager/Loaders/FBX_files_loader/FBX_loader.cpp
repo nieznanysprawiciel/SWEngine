@@ -2,6 +2,8 @@
 #include "FBX_loader.h"
 
 
+#include "..\..\..\..\memory_leaks.h"
+
 /*Obecna wersja FBX_loadera jest jedynie lekko zmodyfikowan¹ wersj¹ tego, który
 dzia³a³ pod DirectX 9. Zmiany, które zasz³y, to jedynie dopasowanie do nowego modelu
 przechowywania danych.

@@ -36,8 +36,8 @@
 
 #include "macros_switches.h"
 
-#ifdef SHOW_MEMORY_LEAKS
-	#define _CRTDBG_MAP_ALLOC
-	#include <cstdlib>
-	#include <crtdbg.h>
-#endif
+//#ifdef SHOW_MEMORY_LEAKS
+//	#define _CRTDBG_MAP_ALLOC
+//	#include <cstdlib>
+//	#include <crtdbg.h>
+//#endif

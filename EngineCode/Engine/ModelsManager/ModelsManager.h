@@ -45,8 +45,10 @@ private:
 	ResourceContainer<TextureObject*>			texture;
 	ResourceContainer<BufferObject*>			vertex_buffer;
 	ResourceContainer<BufferObject*>			index_buffer;
-	ResourceContainer<Model3DFromFile*>			file_model;
 	ResourceContainer<MaterialObject*>			material;
+	// UWAGA! file_model musi byæ na koñcu. Jego destruktor kasuje odwo³ania do obiektów powy¿ej.
+	// Musz¹ one w tym czasie istnieæ, a destruktory s¹ wywo³ywane w kolejnoœci odwrotnej do zadeklarowanej w klasie.
+	ResourceContainer<Model3DFromFile*>			file_model;
 
 	/*loadery dla ró¿nych formatów plików z modelami*/
 	std::vector<Loader*>			loader;
@@ -55,12 +57,16 @@ public:
 	ModelsManager( Engine* engine );
 	~ModelsManager( );
 
+	// Funkcje pomocnicze
 	VertexShaderObject* find_best_vertex_shader( TextureObject** textures );
 	PixelShaderObject* find_best_pixel_shader( TextureObject** textures );
-
 	void set_default_assets( ID3D11VertexShader* vert_shader, ID3D11PixelShader* pix_shader );
 
+
+	// Funkcje do zarz¹dzania assetami
 	MODELS_MANAGER_RESULT load_model_from_file( const std::wstring& file );
+
+	inline Model3DFromFile* get_model( const std::wstring& name ) { return file_model.get( name ); }
 
 private:
 	Loader* find_loader( const std::wstring& path );

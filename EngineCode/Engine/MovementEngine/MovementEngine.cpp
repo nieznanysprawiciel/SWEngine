@@ -2,6 +2,9 @@
 #include "MovementEngine.h"
 
 
+#include "..\..\memory_leaks.h"
+
+
 MovementEngine::MovementEngine(Engine* engine)
 	: engine(engine)
 {

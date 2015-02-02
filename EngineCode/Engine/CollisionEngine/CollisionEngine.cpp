@@ -2,6 +2,9 @@
 #include "CollisionEngine.h"
 
 
+#include "..\..\memory_leaks.h"
+
+
 CollisionEngine::CollisionEngine(Engine* engine)
 	: engine(engine)
 {

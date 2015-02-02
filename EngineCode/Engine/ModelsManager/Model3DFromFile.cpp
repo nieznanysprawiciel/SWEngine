@@ -6,7 +6,7 @@
 ModelsManager* Model3DFromFile::models_manager = nullptr;
 
 
-
+#include "..\..\memory_leaks.h"
 
 //-------------------------------------------------------------------------------//
 //							wersja DirectX11
@@ -74,15 +74,19 @@ Model3DFromFile::~Model3DFromFile( )
 			delete[] tmp_data->table[i]->vertices_tab;
 			delete tmp_data->table[i]->new_part.mesh;
 		}
-
+		
+		for ( int i = 0; i < tmp_data->current_pointer; ++i )
+			delete tmp_data->table[i];
 		delete[] tmp_data->table;
 		delete tmp_data;
 		tmp_data = nullptr;
 	}
 
-	// Kasujemy odwo³ania plikowe d buforów
-	vertex_buffer->delete_file_reference();
-	index_buffer->delete_file_reference();
+	// Kasujemy odwo³ania plikowe do buforów
+	if ( vertex_buffer )
+		vertex_buffer->delete_file_reference();
+	if ( index_buffer )
+		index_buffer->delete_file_reference();
 
 	// Kasujemy odwo³ania plikowe do obiektów w talicach
 	for ( unsigned int k = 0; k < model_parts.size( ); ++k )
@@ -102,7 +106,7 @@ Model3DFromFile::~Model3DFromFile( )
 		if ( part->pixel_shader )
 			part->pixel_shader->delete_file_reference( );
 		for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
-			if ( part->texture )
+			if ( part->texture[i] )
 				part->texture[i]->delete_file_reference( );
 		if ( part->vertex_shader )
 			part->vertex_shader->delete_file_reference( );
@@ -127,7 +131,7 @@ BeginEdit przygotowuje strukturê pod wpisywanie danych.*/
 void Model3DFromFile::BeginEdit()
 {
 	tmp_data = new EditTMP;
-	//Inicjujemy tablicê o pocz¹tkowej d³ugoœci domyœ³nej
+	//Inicjujemy tablicê o pocz¹tkowej d³ugoœci domyœlnej
 	tmp_data->table = new TMP_data*[tmp_data->table_length];
 }
 
@@ -153,6 +157,8 @@ void Model3DFromFile::EndEdit()
 		model_parts.push_back( tmp_data->table[i]->new_part );
 
 	//zwalniamy pamiêæ
+	for ( int i = 0; i < tmp_data->current_pointer; ++i )
+		delete tmp_data->table[i];
 	delete[] tmp_data->table;
 	delete tmp_data;
 	tmp_data = nullptr;
@@ -164,7 +170,7 @@ jedn¹ czêœæ mesha do struktury.*/
 void Model3DFromFile::BeginPart()
 {
 	//sprawdzamy czy tablica nam siê nie skoñczy³a
-	if ( tmp_data->current_pointer <= tmp_data->table_length )
+	if ( tmp_data->current_pointer >= tmp_data->table_length )
 	{//alokujemy troszke wiêcej pamiêci i przepisujemy
 		unsigned int new_length = tmp_data->table_length << 1;
 

@@ -3,6 +3,9 @@
 #include "..\Engine\Engine.h"
 
 
+#include "..\memory_leaks.h"
+
+
 Engine* Object::engine = nullptr;		//po stworzeniu obiektu klasy Engine, zmienna ta jest uzupe³niana wskaxnikiem this
 
 
@@ -189,6 +192,7 @@ Dynamic_mesh_object::Dynamic_mesh_object()
 	model_reference = nullptr;
 	model_changed = false;
 	vertex_buffer = nullptr;
+	index_buffer = nullptr;
 #ifdef _SCALEABLE_OBJECTS
 	scale = 1.0;
 #endif
@@ -216,11 +220,17 @@ int Dynamic_mesh_object::set_model(Model3DFromFile* model)
 	model_reference = model;
 	model->add_object_reference();
 
+	if ( !vertex_buffer )
+		return 1;
+
 	vertex_buffer = model->get_vertex_buffer();
 	vertex_buffer->add_object_reference();
 
-	index_buffer = model->get_index_buffer();
-	index_buffer->add_object_reference();
+	if ( index_buffer )
+	{
+		index_buffer = model->get_index_buffer();
+		index_buffer->add_object_reference();
+	}
 
 	unsigned int count = model->get_parts_count();
 	model_parts.reserve( count );
@@ -257,7 +267,7 @@ void Dynamic_mesh_object::add_references( const ModelPart* part )
 	if ( part->pixel_shader )
 		part->pixel_shader->add_object_reference();
 	for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
-		if ( part->texture )
+		if ( part->texture[i] )
 			part->texture[i]->add_object_reference( );
 	if ( part->vertex_shader )
 		part->vertex_shader->add_object_reference();
@@ -296,7 +306,7 @@ void Dynamic_mesh_object::delete_all_references( )
 		if ( part->pixel_shader )
 			part->pixel_shader->delete_object_reference( );
 		for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
-			if ( part->texture )
+			if ( part->texture[i] )
 				part->texture[i]->delete_object_reference( );
 		if ( part->vertex_shader )
 			part->vertex_shader->delete_object_reference( );

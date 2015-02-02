@@ -5,6 +5,8 @@
 #include "Loaders\FBX_files_loader\FBX_loader.h"
 
 
+#include "..\..\memory_leaks.h"
+
 //-------------------------------------------------------------------------------//
 //							wersja DirectX11
 //-------------------------------------------------------------------------------//
@@ -131,11 +133,11 @@ void ModelsManager::test( )
 	*/
 
 
-	load_model_from_file("tylko_do_testow/clone_fighter_rel.FBX");
-	load_model_from_file("tylko_do_testow/moon/moon.FBX");
-	load_model_from_file("tylko_do_testow/Nebulon/Nebulon.FBX");
-	load_model_from_file("tylko_do_testow/VadersTIE.FBX");
-	load_model_from_file("tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX");
+	load_model_from_file(L"tylko_do_testow/clone_fighter_rel.FBX");
+	load_model_from_file(L"tylko_do_testow/moon/moon.FBX");
+	load_model_from_file( L"tylko_do_testow/Nebulon/Nebulon.FBX" );
+	load_model_from_file( L"tylko_do_testow/VadersTIE.FBX" );
+	load_model_from_file( L"tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX" );
 }
 #endif
 

@@ -2,6 +2,10 @@
 #include "InputAbstractionLayer.h"
 #include "..\Engine.h"
 
+
+#include "..\..\memory_leaks.h"
+
+
 //=================================================================//
 //					InputAbstractionLayer_base
 //=================================================================//

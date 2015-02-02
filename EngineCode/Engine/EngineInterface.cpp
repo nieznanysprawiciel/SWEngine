@@ -2,6 +2,9 @@
 #include "Engine.h"
 
 
+#include "..\memory_leaks.h"
+
+
 /*Plik zawiera implementacjê interfejsu engine_interface dla klasy Engine*/
 
 #ifdef __TEST
@@ -10,14 +13,24 @@
 
 void Engine::test()
 {
-	models_manager->test();
+	const wchar_t CLONE_FIGHTER[] = L"tylko_do_testow/clone_fighter_rel.FBX";
+	const wchar_t MOON[] = L"tylko_do_testow/moon/moon.FBX";
+	const wchar_t NEBULON[] = L"tylko_do_testow/Nebulon/Nebulon.FBX";
+	const wchar_t VADER_TIE[] = L"tylko_do_testow/VadersTIE.FBX";
+	const wchar_t TIE_FIGHTER[] = L"tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX";
+
+	models_manager->load_model_from_file( CLONE_FIGHTER );
+	models_manager->load_model_from_file( MOON );
+	models_manager->load_model_from_file( NEBULON );
+	models_manager->load_model_from_file( VADER_TIE );
+	models_manager->load_model_from_file( TIE_FIGHTER );
 
 	//dodawanie ksiê¿yca
 	Dynamic_mesh_object* moon = new Dynamic_mesh_object;
 	XMVECTOR position = XMVectorSet( 4000.0, 0.0, 8000.0, 0.0 );
 	moon->set_position( position );
 
-	moon->set_model( models_manager->get_model( 2 ) );
+	moon->set_model( models_manager->get_model( MOON ) );
 	moon->set_scale( 30.0 );
 
 	object_list.push_back( moon );
@@ -28,7 +41,7 @@ void Engine::test()
 	position = XMVectorSet( 400.0, 0.0, -6000.0, 0.0 );
 	nebulon->set_position( position );
 
-	nebulon->set_model( models_manager->get_model( 3 ) );
+	nebulon->set_model( models_manager->get_model( NEBULON ) );
 	nebulon->set_scale( 0.1 );
 
 	object_list.push_back( nebulon );
@@ -39,7 +52,7 @@ void Engine::test()
 	position = XMVectorSet( -400.0, 0.0, 800.0, 0.0 );
 	TIE->set_position( position );
 
-	TIE->set_model( models_manager->get_model( 5 ) );
+	TIE->set_model( models_manager->get_model( TIE_FIGHTER ) );
 	TIE->set_scale( 10 );
 
 	object_list.push_back( TIE );
@@ -51,7 +64,7 @@ void Engine::test()
 	position = XMVectorSet( -400.0, 0.0, -3000.0, 0.0 );
 	VaderTIE->set_position( position );
 
-	VaderTIE->set_model( models_manager->get_model( 4 ) );
+	VaderTIE->set_model( models_manager->get_model( VADER_TIE ) );
 	//VaderTIE->set_scale( 1.0 );
 
 	object_list.push_back( VaderTIE );
@@ -74,7 +87,7 @@ void Engine::test()
 #endif
 	skrzynia->set_rotation_speed(axis_angle);
 
-	skrzynia->set_model( models_manager->get_model( 1 ) );
+	skrzynia->set_model( models_manager->get_model( CLONE_FIGHTER ) );
 	//skrzynia->set_scale( 0.1 );
 
 	object_list.push_back( skrzynia );
@@ -85,7 +98,7 @@ void Engine::test()
 	Camera_object* camera = new Camera_object();
 	XMVECTOR camera_pos = XMVectorSet( 0.0, 0.0, 0.0, 0.0 );
 	camera->set_position( camera_pos );
-	//przypisujemy kontroler
+	//przypisujemy kontroler ( dla kontrolerów trzeba zrobiæ jakiœ mechanizm przechowywania i zwalniania)
 	camera_controller_PROTOTYPE* controller = new camera_controller_PROTOTYPE(
 		ui_engine->get_standard_abstraction_layer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE ) );
 	camera->set_controller(controller);
@@ -96,7 +109,6 @@ void Engine::test()
 	movement_engine->add_moveable_object( camera );
 	controllers_engine->add_pre_controlled( camera );
 
-	directX_device->SetRenderState( D3DRS_AMBIENT, D3DCOLOR_XRGB( 20, 20, 20 ) );
 
 	//rzuæmy na to troszkê œwiat³a
 	D3DLIGHT9 light;    // create the light struct
@@ -111,9 +123,6 @@ void Engine::test()
 	light.Attenuation0 = 1.0;
 	light.Attenuation1 = 0.0;
 	light.Attenuation2 = 0.0;
-
-	directX_device->SetLight( 0, &light );    // send the light struct properties to light #0
-	directX_device->LightEnable( 0, TRUE );    // turn on light #0
 
 }
 

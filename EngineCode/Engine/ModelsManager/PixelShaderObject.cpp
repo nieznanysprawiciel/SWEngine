@@ -1,7 +1,7 @@
 #include "..\..\stdafx.h"
 #include "meshes_textures_materials.h"
 
-
+#include "..\..\memory_leaks.h"
 //----------------------------------------------------------------------------------------------//
 //								contructors, destructors										//
 //----------------------------------------------------------------------------------------------//
@@ -27,13 +27,33 @@ PixelShaderObject* PixelShaderObject::create_from_file( const std::wstring& file
 	HRESULT result;
 	ID3DBlob* compiled_shader;
 	ID3D11PixelShader* pixel_shader;
+	// Troszkê zamieszania, ale w trybie debug warto wiedzieæ co jest nie tak przy kompilacji shadera
+#ifdef _DEBUG
+	ID3D10Blob* error_blob = nullptr;	// Tu znajdzie siê komunikat o b³êdzie
+#endif
 
 	// Kompilujemy shader znaleziony w pliku
 	D3DX11CompileFromFile( file_name.c_str( ), 0, 0, shader_name.c_str( ), "ps_4_0",
-						   0, 0, 0, &compiled_shader, 0, &result );
+						   0, 0, 0, &compiled_shader,
+#ifdef _DEBUG
+						   &error_blob,	// Funkcja wsadzi informacje o b³êdzie w to miejsce
+#else
+						   0,	// W trybie Release nie chcemy dostawaæ b³êdów
+#endif
+						   &result );
 
 	if ( FAILED( result ) )
+	{
+#ifdef _DEBUG
+		if ( error_blob )
+		{
+			// B³¹d zostanie wypisany na standardowe wyjœcie
+			OutputDebugStringA( (char*)error_blob->GetBufferPointer( ) );
+			error_blob->Release( );
+		}
+#endif
 		return nullptr;
+	}
 
 	// Tworzymy obiekt shadera na podstawie tego co sie skompilowa³o
 	result = device->CreatePixelShader( compiled_shader->GetBufferPointer( ),

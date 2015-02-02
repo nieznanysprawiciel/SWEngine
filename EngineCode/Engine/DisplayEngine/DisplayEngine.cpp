@@ -3,6 +3,8 @@
 #include "..\Engine.h"
 
 
+#include "..\..\memory_leaks.h"
+
 DisplayEngine::DisplayEngine(Engine* engine)
 	: engine(engine)
 {
@@ -10,6 +12,11 @@ DisplayEngine::DisplayEngine(Engine* engine)
 
 	interpol_matrixes_count = 16;
 	interpolated_matrixes = new XMFLOAT4X4[interpol_matrixes_count];
+
+	shader_data_per_frame.light_direction[0] = XMFLOAT3( 0, 0, 0 );
+	shader_data_per_frame.light_direction[1] = XMFLOAT3( 0, 0, 0 );
+	shader_data_per_frame.light_color[0] = XMFLOAT3( 0, 0, 0 );
+	shader_data_per_frame.light_color[1] = XMFLOAT3( 0, 0, 0 );
 }
 
 
@@ -58,14 +65,23 @@ void DisplayEngine::display_scene(float time_interval)
 		register Dynamic_mesh_object* object = meshes[i];
 
 		// Ustawiamy bufor wierzcho³ków
-		ID3D11Buffer* vertex_buffer = object->vertex_buffer->get();
-		unsigned int stride = object->vertex_buffer->get_stride();
-		device_context->IASetVertexBuffers( 0, 1, &vertex_buffer, &stride, 0 );
+		ID3D11Buffer* vertex_buffer = nullptr;
+		if ( object->vertex_buffer )
+		{
+			vertex_buffer = object->vertex_buffer->get();
+			unsigned int stride = object->vertex_buffer->get_stride();
+			device_context->IASetVertexBuffers( 0, 1, &vertex_buffer, &stride, 0 );
+		}
+		else
+			continue;
 
 		// Ustawiamy bufor indeksów, je¿eli istnieje
-		ID3D11Buffer* index_buffer = object->index_buffer->get();
-		if ( index_buffer )
+		ID3D11Buffer* index_buffer = nullptr;
+		if ( object->index_buffer )
+		{
+			index_buffer = object->index_buffer->get();
 			device_context->IASetIndexBuffer( index_buffer, INDEX_BUFFER_FORMAT, 0 );
+		}
 
 
 #ifdef _INTERPOLATE_POSITIONS

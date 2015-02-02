@@ -141,6 +141,9 @@
     <ClInclude Include="Engine\ModelsManager\ResourceContainer.h">
       <Filter>Header Files\ModelsManagment</Filter>
     </ClInclude>
+    <ClInclude Include="memory_leaks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

@@ -3,6 +3,9 @@
 #include "..\UI_Engine\InputAbstractionLayer.h"
 
 
+#include "..\..\memory_leaks.h"
+
+
 camera_controller_PROTOTYPE::camera_controller_PROTOTYPE( InputAbstractionLayer_base* layer )
 	:	Base_input_controller(layer)
 {
