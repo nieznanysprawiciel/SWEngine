@@ -19,11 +19,14 @@ void Engine::test()
 	const wchar_t VADER_TIE[] = L"tylko_do_testow/VadersTIE.FBX";
 	const wchar_t TIE_FIGHTER[] = L"tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX";
 
+	/*
 	models_manager->load_model_from_file( CLONE_FIGHTER );
 	models_manager->load_model_from_file( MOON );
 	models_manager->load_model_from_file( NEBULON );
 	models_manager->load_model_from_file( VADER_TIE );
 	models_manager->load_model_from_file( TIE_FIGHTER );
+	*/
+	models_manager->test();			// Tu sie odbywa wczytywanie
 
 	//dodawanie ksiê¿yca
 	Dynamic_mesh_object* moon = new Dynamic_mesh_object;
@@ -71,9 +74,9 @@ void Engine::test()
 	display_engine->add_dynamic_mesh_object( VaderTIE );
 
 	//dodawanie myœliwca
-	Dynamic_mesh_object* skrzynia = new Dynamic_mesh_object;
+	Dynamic_mesh_object* clone_fighter = new Dynamic_mesh_object;
 	position = XMVectorSet(0.0, 0.0, 6000.0, 0.0);
-	skrzynia->set_position(position);
+	clone_fighter->set_position( position );
 
 #ifdef _QUATERNION_SPEED
 	XMVECTOR rot_vector = { 1.0f, 0.0f, 0.0f, 0.0f };
@@ -85,14 +88,41 @@ void Engine::test()
 	axis_angle.z = 0.0;
 	axis_angle.w = XMConvertToRadians(30);
 #endif
-	skrzynia->set_rotation_speed(axis_angle);
+	clone_fighter->set_rotation_speed( axis_angle );
 
-	skrzynia->set_model( models_manager->get_model( CLONE_FIGHTER ) );
+	clone_fighter->set_model( models_manager->get_model( CLONE_FIGHTER ) );
+
+	object_list.push_back( clone_fighter );
+	display_engine->add_dynamic_mesh_object( clone_fighter );
+	movement_engine->add_moveable_object( clone_fighter );
+
+
+	//dodawanie skrzyni
+	Dynamic_mesh_object* skrzynia = new Dynamic_mesh_object;
+	position = XMVectorSet( 0.0, 0.0, 2.0, 0.0 );
+	skrzynia->set_position( position );
+
+#ifdef _QUATERNION_SPEED
+	XMVECTOR rot_vector = { 1.0f, 0.0f, 0.0f, 0.0f };
+	XMVECTOR axis_angle = XMQuaternionRotationAxis( rot_vector, XMConvertToRadians( 30 ) );
+#else
+	XMFLOAT4 axis_angle2;
+	axis_angle2.x = 1.0;
+	axis_angle2.y = 0.0;
+	axis_angle2.z = 0.0;
+	axis_angle2.w = XMConvertToRadians( 30 );
+#endif
+	//skrzynia->set_rotation_speed( axis_angle2 );
+
+	Model3DFromFile* new_model = models_manager->get_model( L"skrzynia" );
+	skrzynia->set_model( new_model );
 	//skrzynia->set_scale( 0.1 );
 
 	object_list.push_back( skrzynia );
 	display_engine->add_dynamic_mesh_object( skrzynia );
 	movement_engine->add_moveable_object( skrzynia );
+
+
 
 	//ustawienie aktywnej kamery
 	Camera_object* camera = new Camera_object();
@@ -110,20 +140,12 @@ void Engine::test()
 	controllers_engine->add_pre_controlled( camera );
 
 
-	//rzuæmy na to troszkê œwiat³a
-	D3DLIGHT9 light;    // create the light struct
+	DirectX::XMFLOAT4 color( 0.8f, 0.8f, 0.8f, 1.0f );
+	DirectX::XMFLOAT4 direction( 0.9f, 0.8f, 1.0f, 1.0f );
 
-	ZeroMemory( &light, sizeof( light ) );    // clear out the light struct for use
-	light.Type = D3DLIGHT_DIRECTIONAL;
-	//light.Type = D3DLIGHT_POINT;
-	light.Diffuse = D3DXCOLOR( 0.8f, 0.8f, 0.8f, 1.0f );    // set the light's color
-	light.Direction = D3DXVECTOR3( 1.0f, -0.8f, 1.0f );
-	light.Position = D3DXVECTOR3( -500.0f, -500.3f, -500.0f );
-	light.Range = 100000;
-	light.Attenuation0 = 1.0;
-	light.Attenuation1 = 0.0;
-	light.Attenuation2 = 0.0;
-
+	// Ustawiamy œwiat³o pod indeksem 0
+	display_engine->set_directional_light( direction, color, 0 );
+	display_engine->set_ambient_light( DirectX::XMFLOAT4( 0.2, 0.2, 0.2, 1.0f ) );
 }
 
 #endif

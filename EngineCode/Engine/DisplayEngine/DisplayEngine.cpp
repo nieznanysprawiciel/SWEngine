@@ -13,10 +13,11 @@ DisplayEngine::DisplayEngine(Engine* engine)
 	interpol_matrixes_count = 16;
 	interpolated_matrixes = new XMFLOAT4X4[interpol_matrixes_count];
 
-	shader_data_per_frame.light_direction[0] = XMFLOAT3( 0, 0, 0 );
-	shader_data_per_frame.light_direction[1] = XMFLOAT3( 0, 0, 0 );
-	shader_data_per_frame.light_color[0] = XMFLOAT3( 0, 0, 0 );
-	shader_data_per_frame.light_color[1] = XMFLOAT3( 0, 0, 0 );
+	shader_data_per_frame.light_direction[0] = XMFLOAT4( 0, 0, 0, 0 );
+	shader_data_per_frame.light_direction[1] = XMFLOAT4( 0, 0, 0, 0 );
+	shader_data_per_frame.light_color[0] = XMFLOAT4( 0, 0, 0, 0 );
+	shader_data_per_frame.light_color[1] = XMFLOAT4( 0, 0, 0, 0 );
+	shader_data_per_frame.ambient_light = XMFLOAT4( 0, 0, 0, 0 );
 }
 
 
@@ -55,6 +56,7 @@ void DisplayEngine::display_scene(float time_interval)
 
 	device_context->UpdateSubresource( const_per_frame, 0, nullptr, &shader_data_per_frame, 0, 0 );
 	device_context->VSSetConstantBuffers( 0, 1, &const_per_frame );
+	device_context->PSSetConstantBuffers( 0, 1, &const_per_frame );
 
 	// Ustawiamy smapler
 	device_context->PSSetSamplers( 0, 1, &default_sampler );
@@ -70,17 +72,19 @@ void DisplayEngine::display_scene(float time_interval)
 		{
 			vertex_buffer = object->vertex_buffer->get();
 			unsigned int stride = object->vertex_buffer->get_stride();
-			device_context->IASetVertexBuffers( 0, 1, &vertex_buffer, &stride, 0 );
+			unsigned int offset = 0;
+			device_context->IASetVertexBuffers( 0, 1, &vertex_buffer, &stride, &offset );
 		}
 		else
-			continue;
+			continue;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
 
 		// Ustawiamy bufor indeksów, je¿eli istnieje
 		ID3D11Buffer* index_buffer = nullptr;
 		if ( object->index_buffer )
 		{
 			index_buffer = object->index_buffer->get();
-			device_context->IASetIndexBuffer( index_buffer, INDEX_BUFFER_FORMAT, 0 );
+			unsigned int offset = 0;
+			device_context->IASetIndexBuffer( index_buffer, INDEX_BUFFER_FORMAT, offset );
 		}
 
 
@@ -114,12 +118,14 @@ void DisplayEngine::display_scene(float time_interval)
 			shader_data_per_mesh.Emissive = material->Emissive;
 			shader_data_per_mesh.Power = material->Power;
 			
+			// Ustawiamy shadery
+			device_context->VSSetShader( model.vertex_shader->get( ), nullptr, 0 );
+			device_context->PSSetShader( model.pixel_shader->get( ), nullptr, 0 );
+
 			// Aktualizujemy bufor sta³ych
 			device_context->UpdateSubresource( const_per_mesh, 0, nullptr, &shader_data_per_mesh, 0, 0 );
 			device_context->VSSetConstantBuffers( 1, 1, &const_per_mesh );
-
-			device_context->VSSetShader( model.vertex_shader->get(), nullptr, 0 );
-			device_context->PSSetShader( model.pixel_shader->get(), nullptr, 0 );
+			device_context->PSSetConstantBuffers( 1, 1, &const_per_mesh );
 
 			// Ustawiamy tekstury
 			for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
@@ -298,6 +304,37 @@ void DisplayEngine::interpolate_positions( float time_lag )
 	}
 }
 
+
+//=================================================================//
+//					light functions
+//=================================================================//
+
+int DisplayEngine::set_directional_light( const DirectX::XMFLOAT4& direction,
+										  const DirectX::XMFLOAT4& color,
+										  unsigned int index )
+{
+	if ( index >= ENGINE_MAX_LIGHTS )
+		return -1;
+
+	XMVECTOR light_dir = XMLoadFloat4( &direction );
+	XMVECTOR light_color = XMLoadFloat4( &color );
+
+	// Normalizujemy wektor
+	light_dir = XMVector3Normalize( light_dir );
+	light_dir = XMVectorNegate( light_dir );		// Robimy to, ¿eby shader nie musia³ odwracaæ
+	XMStoreFloat4( &shader_data_per_frame.light_direction[index], light_dir );
+	
+	// Przycinamy wektor do przedzia³u [0.0 , 1.0]
+	light_color = XMVectorSaturate( light_color );
+	XMStoreFloat4( &shader_data_per_frame.light_color[index], light_color );
+
+	return 0;
+}
+
+void DisplayEngine::set_ambient_light( const DirectX::XMFLOAT4& color )
+{
+	shader_data_per_frame.ambient_light = color;
+}
 
 #ifndef __UNUSED
 

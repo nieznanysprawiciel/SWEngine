@@ -356,9 +356,9 @@ typedef struct MaterialObject : public referenced_object
 	friend ResourceContainer<MaterialObject*>;
 
 	DirectX::XMFLOAT4		Diffuse;		//Sk³adowa przezroczystoœci odnosi siê do ca³ego materia³u
-	DirectX::XMFLOAT3		Ambient;
-	DirectX::XMFLOAT3		Specular;
-	DirectX::XMFLOAT3		Emissive;
+	DirectX::XMFLOAT4		Ambient;
+	DirectX::XMFLOAT4		Specular;
+	DirectX::XMFLOAT4		Emissive;
 	float					Power;
 
 	MaterialObject( unsigned int id = WRONG_ID ) : referenced_object( id ){}

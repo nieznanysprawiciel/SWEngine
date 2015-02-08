@@ -220,17 +220,15 @@ int Dynamic_mesh_object::set_model(Model3DFromFile* model)
 	model_reference = model;
 	model->add_object_reference();
 
-	if ( !vertex_buffer )
-		return 1;
-
 	vertex_buffer = model->get_vertex_buffer();
+	if ( !vertex_buffer )
+		return 1;	// Nie ma bufora wierzcho³ków, to nie ma dalej czego szukaæ
 	vertex_buffer->add_object_reference();
 
-	if ( index_buffer )
-	{
-		index_buffer = model->get_index_buffer();
-		index_buffer->add_object_reference();
-	}
+
+	index_buffer = model->get_index_buffer();
+	if ( index_buffer )		// Jak nie ma bufora indeksów to w zasadzie krzywda siê nikomu nie dzieje
+		index_buffer->add_object_reference();		// Ale trzeba pilnowaæ, ¿eby nie dodawaæ odwo³añ do obiektu, którego nie ma
 
 	unsigned int count = model->get_parts_count();
 	model_parts.reserve( count );

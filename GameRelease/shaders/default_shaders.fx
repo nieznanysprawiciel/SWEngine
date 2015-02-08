@@ -12,8 +12,9 @@ cbuffer ConstantPerFrame : register( b0 )
 {
 	matrix View;
 	matrix Projection;
-	float4 vLightDir[2];
-	float4 vLightColor[2];
+	float3 LightDir[2];
+	float3 LightColor[2];
+	float3 AmbientLight;
 	float time;
 	float time_lag;
 }
@@ -34,7 +35,7 @@ struct VS_INPUT
 {
     float4 Pos : POSITION;
     float3 Norm : NORMAL;
-	float2 Tex : TEXCOORD0;
+	float2 Tex : TEXCOORD;
 };
 
 struct PS_INPUT
@@ -62,16 +63,18 @@ PS_INPUT vertex_shader( VS_INPUT input )
 //--------------------------------------------------------------------------------------
 // Pixel Shader
 //--------------------------------------------------------------------------------------
-float4 pixel_shader( PS_INPUT input) : SV_Target
+float3 pixel_shader( PS_INPUT input) : SV_Target
 {
-    float4 finalColor = 0;
-    
+    float3 finalColor = Ambient*AmbientLight;
+    float dot_product = 0;
+	
     //do NdotL lighting for 2 lights
-    for(int i=0; i<2; i++)
+    for(int i=0; i<1; i++)
     {
-        finalColor += saturate( dot( (float3)vLightDir[i],input.Norm) * vLightColor[i] );
+		dot_product = dot( (float3)LightDir[i],input.Norm);
+        finalColor += dot_product * LightColor[i] * (float3)Diffuse;
     }
-    finalColor.a = 1;
+
     return finalColor;
 }
 

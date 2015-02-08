@@ -32,9 +32,14 @@ public:
 	void interpolate_positions(float time_lag);
 	void set_projection_matrix(float angle, float X_to_Y, float near_plane, float far_plane);
 
+	// Zarz¹dzanie meshami
 	void add_dynamic_mesh_object( Dynamic_mesh_object* object );
 
-	//camera functions
+	// Œwiat³a
+	int set_directional_light( const DirectX::XMFLOAT4& direction, const DirectX::XMFLOAT4& color, unsigned int index );
+	void set_ambient_light( const DirectX::XMFLOAT4& color );
+
+	// camera functions
 	int add_camera( Camera_object* camera );
 	int set_current_camera( Camera_object* camera );
 private:

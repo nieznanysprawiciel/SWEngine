@@ -426,11 +426,17 @@ void DX11_constant_buffers_container::init_buffers( unsigned int size_per_frame,
 
 	// Bufory sta³ych musz¹ mieæ rozmiar bêd¹cy wielokrotnoœci¹ 16
 	// Dobrze ¿e DirectX wypluwa jakieœ debugowe informacje, bo nie wiem, jakbym na to wpad³
-	size_per_frame = size_per_frame >> 4;		// Dzielimy na 16 (dzielenie ca³kowite)
-	size_per_frame = (size_per_frame + 1) << 4;	// Najbli¿sza wielokrotnoœæ 16
+	if ( size_per_frame % 16 )
+	{
+		size_per_frame = size_per_frame >> 4;		// Dzielimy na 16 (dzielenie ca³kowite)
+		size_per_frame = (size_per_frame + 1) << 4;	// Najbli¿sza wielokrotnoœæ 16
+	}
 
-	size_per_mesh = size_per_mesh >> 4;			// Dzielimy na 16 (dzielenie ca³kowite)
-	size_per_mesh = (size_per_mesh + 1) << 4;	// Najbli¿sza wielokrotnoœæ 16
+	if ( size_per_mesh % 16 )
+	{
+		size_per_mesh = size_per_mesh >> 4;			// Dzielimy na 16 (dzielenie ca³kowite)
+		size_per_mesh = (size_per_mesh + 1) << 4;	// Najbli¿sza wielokrotnoœæ 16
+	}
 
 	// Tworzymy bufor sta³ych w ka¿dej ramce
 	D3D11_BUFFER_DESC buffer_desc;

@@ -316,7 +316,7 @@ unsigned int Model3DFromFile::add_vertex_buffer( const VertexNormalTexCord1* buf
 	data->vertices_count = vert_count;							// Zapisujemy liczbê wierzcho³ków
 	data->vertices_tab = new VertexNormalTexCord1[vert_count];	// Tworzymy now¹ tablice wierzcho³ków
 	// Tablica zwalniana w funkcji EndEdit_vertex_buffer_processing()
-	memcpy( data->vertices_tab, buffer, vert_count );			// Przepisujemy tablicê
+	memcpy( data->vertices_tab, buffer, sizeof(VertexNormalTexCord1)*vert_count );	// Przepisujemy tablicê
 
 	return WRONG_ID;
 }
@@ -351,7 +351,7 @@ unsigned int Model3DFromFile::add_index_buffer( const VERT_INDEX* buffer, unsign
 	tmp_data->table[cur_ptr]->indicies_count = ind_count;			// Przepisujemy liczbê indeksów
 	tmp_data->table[cur_ptr]->indicies_tab = new VERT_INDEX[ind_count];	// Alokujemy now¹ tablicê indeksów
 	// Tablica zwalniana w funkcji EndEdit_index_buffer_processing()
-	memcpy( tmp_data->table[cur_ptr]->indicies_tab, buffer, ind_count );	// Przepisujemy tablicê
+	memcpy( tmp_data->table[cur_ptr]->indicies_tab, buffer, sizeof(VERT_INDEX)*ind_count );	// Przepisujemy tablicê
 
 	switch ( vertex_buffer_offset )
 	{
@@ -411,9 +411,10 @@ void Model3DFromFile::EndEdit_vertex_buffer_processing( )
 	for ( int i = 0; i < tmp_data->current_pointer; ++i )
 	{
 		// verticies + offset - tu jest stosowana arytmetyka dla wskaŸników, a nie zwyk³e dodawanie
-		memcpy( verticies + offset, tmp_data->table[i]->vertices_tab, tmp_data->table[i]->vertices_count );
+		VertexNormalTexCord1* dest_ptr = verticies + offset;
+		memcpy( dest_ptr, tmp_data->table[i]->vertices_tab, sizeof(VertexNormalTexCord1)*tmp_data->table[i]->vertices_count );
 		
-		// Je¿eli nie ma bufora indeksów to zapisujemy offset wzglêdem pocz¹tku bofora wierzcho³ków
+		// Je¿eli nie ma bufora indeksów to zapisujemy offset wzglêdem pocz¹tku bufora wierzcho³ków
 		if ( !tmp_data->table[i]->indicies_tab )
 			tmp_data->table[i]->new_part.mesh->buffer_offset = offset;
 
@@ -455,7 +456,7 @@ void Model3DFromFile::EndEdit_index_buffer_processing( )
 	for ( int i = 0; i < tmp_data->current_pointer; ++i )
 	{
 		// verticies + offset - tu jest stosowana arytmetyka dla wskaŸników, a nie zwyk³e dodawanie
-		memcpy( indicies + offset, tmp_data->table[i]->indicies_tab, tmp_data->table[i]->indicies_count );
+		memcpy( indicies + offset, tmp_data->table[i]->indicies_tab, sizeof(VERT_INDEX)*tmp_data->table[i]->indicies_count );
 
 		// Je¿eli jest bufor indeksów, to zapisujemy offset wzglêdem pocz¹tku tego bufora
 		if ( tmp_data->table[i]->indicies_tab )
@@ -500,17 +501,18 @@ void Model3DFromFile::EndEdit_prepare_ModelPart( )
 		}
 		else // W przeciwnym razie jest tryb bezpoœredni
 		{
-			part.mesh->use_index_buf = false;		// Co prawda tak jest domyœlnie, ale nie szkodzi
+			part.mesh->use_index_buf = false;		// Co prawda tak jest domyœlnie, ale nie zaszkodzi jawnie to napisaæ
 			part.mesh->vertices_count = tmp_data->table[i]->vertices_count;
 
 			// buffer_offset jest ju¿ za³atwiony w funkcjach EndEdit_index_buffer_processing i EndEdit_vertex_buffer_processing
 		}
 
 		// Teraz trzeba dopisaæ shadery
-
-		part.pixel_shader = models_manager->find_best_pixel_shader( part.texture );
-		part.vertex_shader = models_manager->find_best_vertex_shader( part.texture );
-
+		if ( !part.pixel_shader )
+			part.pixel_shader = models_manager->find_best_pixel_shader( part.texture );
+		if ( !part.vertex_shader )
+			part.vertex_shader = models_manager->find_best_vertex_shader( part.texture );
+		// I materia³
 		if ( part.material == nullptr )
 			part.material = models_manager->material.get( DEFAULT_MATERIAL_STRING );
 	}
