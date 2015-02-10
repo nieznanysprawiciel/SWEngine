@@ -32,7 +32,7 @@ TextureObject::TextureObject( unsigned int id, const std::wstring& path, ID3D11S
 }
 
 
-
+///@brief Zwalnia obiekt shadera z directXa
 TextureObject::~TextureObject()
 {
 	if (texture != nullptr)
@@ -40,7 +40,10 @@ TextureObject::~TextureObject()
 }
 
 
-//Obiekty s¹ takie same, kiedy odwo³uj¹ siê do tego samego pliku.
+/**@brief Porównuje ze soba dwa obiekty tekstur.
+
+Obiekty s¹ takie same, kiedy odwo³uj¹ siê do tego samego pliku.
+*/
 bool TextureObject::operator==(const TextureObject& object)
 {
 	if (this->file_path == object.file_path)
@@ -48,6 +51,10 @@ bool TextureObject::operator==(const TextureObject& object)
 	return FALSE;
 }
 
+/**@brief Porównuje ze soba dwa obiekty tekstur.
+
+Obiekty s¹ takie same, kiedy odwo³uj¹ siê do tego samego pliku.
+*/
 bool TextureObject::operator==(const std::wstring& file_name)
 {
 	if (this->file_path == file_name)
@@ -55,7 +62,7 @@ bool TextureObject::operator==(const std::wstring& file_name)
 	return FALSE;
 }
 
-/*Tworzy z podanego pliku obiekt tekstury o identyfikatorze z pola id.
+/** @brief Tworzy z podanego pliku obiekt tekstury o identyfikatorze z pola id.
 
 Generalnie ta funkcja nadaje siê do u¿ywania wielow¹tkowego. Obiekt directXa
 ID3D11Device jest synchronizowany wewnêtrznie i nie trzeba siê o to martwiæ.
@@ -63,6 +70,9 @@ Z tego wzglêdu mo¿na tworzyæ wiele ró¿nych zasobów jednoczeœnie.
 
 W przeciwieñstwie do ID3D11Device, ID3D11DeviceContext nie jest synchronizowany,
 wiêc nie mo¿na renderowaæ z wielu w¹tków jednoczeœnie przy u¿yciu jednego obiektu.
+
+@param[in] file_name Nazwa pliku zawieraj¹cego teksturê
+@return Zawraca stworzony wewn¹trz obiekt TextureObject z wczytan¹ tekstur¹ lub nullptr w przypadku niepowodzenia.
 */
 TextureObject* TextureObject::create_from_file( const std::wstring& file_name )
 {

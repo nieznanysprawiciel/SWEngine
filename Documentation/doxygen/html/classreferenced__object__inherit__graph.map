@@ -1,0 +1,9 @@
+<map id="referenced_object" name="referenced_object">
+<area shape="rect" id="node2" href="$class_buffer_object.html" title="Obiekt opakowujący bufor DirectXa. " alt="" coords="200,5,293,32"/>
+<area shape="rect" id="node3" href="$struct_material_object.html" title="Struktura przechowująca materiał. " alt="" coords="193,56,300,83"/>
+<area shape="rect" id="node4" href="$struct_mesh_part_object.html" title="Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach. " alt="" coords="189,107,305,133"/>
+<area shape="rect" id="node5" href="$class_model3_d_from_file.html" title="Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ..." alt="" coords="185,157,309,184"/>
+<area shape="rect" id="node6" href="$class_pixel_shader_object.html" title="Klasa przechowująca pixel shader. " alt="" coords="181,208,312,235"/>
+<area shape="rect" id="node7" href="$class_texture_object.html" title="Klasa przechowująca tekstury. " alt="" coords="195,259,298,285"/>
+<area shape="rect" id="node8" href="$class_vertex_shader_object.html" title="Klasa przechowująca vertex shader. " alt="" coords="177,309,316,336"/>
+</map>

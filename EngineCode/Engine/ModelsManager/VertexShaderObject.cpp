@@ -13,7 +13,7 @@ VertexShaderObject::VertexShaderObject()
 }
 
 
-
+///@brief Zwalnia obiekt shadera z directXa
 VertexShaderObject::~VertexShaderObject( )
 {
 	if ( vertex_shader )
@@ -21,8 +21,14 @@ VertexShaderObject::~VertexShaderObject( )
 }
 
 
-/*Tworzy obiekt VertexShaderObject na podstawie pliku.
-Na razie obs³uguje tylko nieskompilowane pliki.*/
+/**@briefTworzy obiekt VertexShaderObject na podstawie pliku.
+
+W przypadku b³êdów kompilacji w trybie debug s¹ one przekierowane do okna Output.
+
+Na razie obs³uguje tylko nieskompilowane pliki.
+@param[in] file_name Nazwa pliku, z którego zostanie wczytany shader
+@param[in] shader_name Nazwa funkcji, która jest punktem poczatkowym wykonania shadera
+@return Zwraca wskaŸnik na obiekt VertexShaderObject lub nullptr w przypadku niepowodzenia.*/
 VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& file_name, const std::string& shader_name )
 {
 	HRESULT result;

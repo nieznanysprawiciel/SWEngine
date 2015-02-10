@@ -6,7 +6,7 @@
 
 #include "..\memory_leaks.h"
 
-//interwa³, po którym nastêpuje kolejne przeliczenie po³o¿eñ obiektów (w sekundach)
+///interwa³, po którym nastêpuje kolejne przeliczenie po³o¿eñ obiektów (w sekundach)
 const float FIXED_MOVE_UPDATE_INTERVAL = ((float)1 / (float)56);
 
 

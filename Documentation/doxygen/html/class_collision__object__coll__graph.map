@@ -1,0 +1,30 @@
+<map id="Collision_object" name="Collision_object">
+<area shape="rect" id="node23" href="$class_dynamic__object.html" title="Dynamic_object" alt="" coords="254,848,369,875"/>
+<area shape="rect" id="node2" href="$class_static__object.html" title="Static_object" alt="" coords="1844,1060,1943,1087"/>
+<area shape="rect" id="node3" href="$class_object.html" title="Object" alt="" coords="1627,573,1687,600"/>
+<area shape="rect" id="node4" href="$class_engine.html" title="Engine" alt="" coords="1317,536,1380,563"/>
+<area shape="rect" id="node8" href="$class_movement_engine.html" title="MovementEngine" alt="" coords="1596,484,1717,511"/>
+<area shape="rect" id="node9" href="$class_u_i___engine.html" title="UI_Engine" alt="" coords="1616,160,1697,187"/>
+<area shape="rect" id="node12" href="$class_sound_engine.html" title="SoundEngine" alt="" coords="1607,423,1706,449"/>
+<area shape="rect" id="node13" href="$class_models_manager.html" title="ModelsManager" alt="" coords="1599,945,1714,972"/>
+<area shape="rect" id="node20" href="$class_display_engine.html" title="DisplayEngine" alt="" coords="791,740,896,767"/>
+<area shape="rect" id="node25" href="$class_collision_engine.html" title="CollisionEngine" alt="" coords="1601,335,1712,361"/>
+<area shape="rect" id="node26" href="$class_fable_engine.html" title="FableEngine" alt="" coords="1609,239,1704,265"/>
+<area shape="rect" id="node28" href="$class_controllers_engine.html" title="ControllersEngine" alt="" coords="1595,704,1719,731"/>
+<area shape="rect" id="node29" href="$class_physic_engine.html" title="PhysicEngine" alt="" coords="1605,635,1708,661"/>
+<area shape="rect" id="node5" href="$classengine__interface.html" title="engine_interface" alt="" coords="1068,492,1184,519"/>
+<area shape="rect" id="node27" href="$class_game_play.html" title="GamePlay" alt="" coords="1852,193,1935,220"/>
+<area shape="rect" id="node6" href="$class_d_x11__constant__buffers__container.html" title="DX11_constant_buffers\l_container" alt="" coords="448,665,603,706"/>
+<area shape="rect" id="node7" href="$class_d_x11__interfaces__container.html" title="DX11_interfaces_container" alt="" coords="224,672,399,699"/>
+<area shape="rect" id="node10" href="$class_input_abstraction_layer.html" title="InputAbstractionLayer" alt="" coords="1275,5,1423,32"/>
+<area shape="rect" id="node11" href="$class_input_abstraction_layer__base.html" title="InputAbstractionLayer_base" alt="" coords="1035,5,1217,32"/>
+<area shape="rect" id="node14" href="$class_resource_container.html" title="ResourceContainer\&lt;\l PixelShaderObject * \&gt;" alt="" coords="1271,1102,1426,1143"/>
+<area shape="rect" id="node15" href="$class_resource_container.html" title="ResourceContainer\&lt;\l MaterialObject * \&gt;" alt="" coords="1279,1167,1419,1209"/>
+<area shape="rect" id="node16" href="$class_resource_container.html" title="ResourceContainer\&lt;\l TextureObject * \&gt;" alt="" coords="1279,841,1419,882"/>
+<area shape="rect" id="node17" href="$class_resource_container.html" title="ResourceContainer\&lt;\l BufferObject * \&gt;" alt="" coords="1279,906,1419,947"/>
+<area shape="rect" id="node18" href="$class_resource_container.html" title="ResourceContainer\&lt;\l VertexShaderObject * \&gt;" alt="" coords="1267,971,1431,1013"/>
+<area shape="rect" id="node19" href="$class_resource_container.html" title="ResourceContainer\&lt;\l Model3DFromFile * \&gt;" alt="" coords="1274,1037,1423,1078"/>
+<area shape="rect" id="node21" href="$struct_constant_per_frame.html" title="Bufor stałych dla shadera zmieniający się raz na klatkę. " alt="" coords="460,791,591,817"/>
+<area shape="rect" id="node22" href="$class_camera__object.html" title="Camera_object" alt="" coords="471,740,580,767"/>
+<area shape="rect" id="node24" href="$class_controller.html" title="Controller" alt="" coords="23,848,101,875"/>
+</map>

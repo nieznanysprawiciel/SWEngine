@@ -1,3 +1,16 @@
+Wersja 1.004
+08.02.2015	godz. 13:48
+-	Kod przepisany na DirectX 11
+-	Stworzona specjalna klasa do inicjalizowania podstawowych obiektów DirectXa
+-	Nowa struktura modeli umo¿liwiaj¹ca obs³ugê shaderów, multiteksturing, bufory indeksów.
+	Dla ka¿dego modelu istnieje tylko jeden bufor wierzcho³ków i jeden (lub zero) bufor indeksów.
+	Klasa Model3DFromFile dostosowana do obs³ugi nowego formatu danych.
+-	Wprowadzona obs³ug œwiate³ kierunkowych i ambientowych w DisplayEngine.
+-	Nowa struktura ModelsManagera. Assety przechowywane s¹ w specjalnej klasie szablonowej
+	ResourceContainer. Zapewnia to bardziej jednolity dostêp do zasobów.
+-	FBXLoader dostosowany do nowej struktury
+-	Dodana kontrola wycieków pamiêci w aplikacji w pliku memory_leaks.h
+
 Wersja 1.003
 15.01.2015	godz. 16:32
 -	Dodano projekt i pliki do GUI

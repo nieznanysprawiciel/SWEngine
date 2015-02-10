@@ -12,6 +12,7 @@
 #define WRONG_TEXTURE_ID				WRONG_ID
 #define WRONG_MATERIAL_ID				WRONG_ID
 
+/// \def WRONG_ID B³êdny identyfikator assetu w klasie referenced_obbject
 
 //-------------------------------------------------------------------------------//
 //							wersja DirectX11
@@ -47,7 +48,7 @@ typedef UINT32 VERT_INDEX;
 
 
 
-// Strutkura dla standardowego wierzcho³ka
+/// @brief Strutkura dla standardowego wierzcho³ka
 typedef struct VertexNormalTexCord1
 {
 	DirectX::XMFLOAT3	position;
@@ -59,7 +60,7 @@ typedef struct VertexNormalTexCord1
 extern D3D11_INPUT_ELEMENT_DESC VertexNormalTexCord1_desc[];
 extern unsigned int VertexNormalTexCord1_desc_num_of_elements;
 
-// Struktura stworzona z myœl¹ o GUI
+/// \brief Struktura wierzcho³ka stworzona z myœl¹ o GUI
 typedef struct VertexTexCord1
 {
 	DirectX::XMFLOAT3	position;
@@ -75,11 +76,11 @@ extern unsigned int VertexTexCord1_desc_num_of_elements;
 //	Enumeracje dla klasy Model3DFromFile i wszystkich obiektów zasobów
 
 
-/*Indeksy tekstur w tablicy ModelPart.
+/** \brief Indeksy tekstur w tablicy ModelPart.
+
 S¹ to wartoœci domyœlne u¿ywane przez wbudowane shadery.
-W przypadku w³asnorêcznie pisanych shaderów nie trzeba siê trzymaæ
-tych sta³ych.*/
-typedef enum
+W przypadku w³asnorêcznie pisanych shaderów nie trzeba siê trzymaæ tych sta³ych.*/
+typedef enum TEXTURES_TYPES
 {
 #if ENGINE_MAX_TEXTURES > 0
 	TEX_DIFFUSE
@@ -108,7 +109,7 @@ typedef enum
 
 } TEXTURES_TYPES;
 
-
+/// \brief Definiuje offset bufora indeksów wzglêdem bufora wierzcho³ków. (Dla funkcji Model3DFromFile::add_index_buffer)
 typedef enum VERTEX_BUFFER_OFFSET
 {
 	LAST = -1,
@@ -116,8 +117,9 @@ typedef enum VERTEX_BUFFER_OFFSET
 };
 
 
-/*Obiekty MaterialObject, TextureObject i MeshObject przechowuj¹ odpowiednio dane materia³ów,
-*dane tekstur lub bufor wierzcho³ków.
+/** \brief Klasa u³atwiaj¹ca zarz¹dzanie odwo³aniami do assetów.
+*
+*Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagaj¹ jakiegoœ systemu zapewniaj¹cego wspó³dzielenie miêdzy innymi obiektami.
 *
 *Do ka¿dego pojedynczego obiektu mog¹ istnieæ wilokrotne odwo³ania w klasie Model3DFromFile,
 *a tak¿e w obiektach dziedzicz¹cych po Dynamic_mesh_object.
@@ -130,16 +132,16 @@ typedef enum VERTEX_BUFFER_OFFSET
 *¯aden obiekt nie powinien byæ kasowany, dopóki istniej¹ do niego odwo³ania.
 
 Zmienna unique_id jest na pocz¹tku ustawiana na 0. Jej faktyczne ustawienie odbywa robi klasa ResourceContainer.
-Jest to wymagane do u³atwienia wielow¹tkowoœci. Inaczej mog³yby siê zacz¹æ powtarzaæ identyfikatory.
+Jest to wymagane do u³atwienia obs³ugi wielow¹tkowoœci. Inaczej mog³yby siê pokrywaæ identyfikatory.
 **/
 
 class referenced_object
 {//definicja w pliku Model3DFormFile
 	friend ModelsManager;
 private:
-	unsigned int	file_references;	//liczba plików, które sie odwo³uj¹
-	unsigned int	object_references;	//liczba modeli, które siê odwo³uj¹
-	unsigned int	unique_id;			//unikalny identyfikator materia³u
+	unsigned int	file_references;	///< Liczba plików, które sie odwo³uj¹
+	unsigned int	object_references;	///< Liczba modeli, które siê odwo³uj¹
+	unsigned int	unique_id;			///< Unikalny identyfikator materia³u
 
 protected:
 	virtual ~referenced_object( );		//Nie ka¿dy mo¿e skasowaæ obiekt
@@ -157,42 +159,42 @@ public:
 	*do tekstur, materia³ów i meshy, modyfikowa³y równie¿ iloœæ odwo³añ.
 	*U¿ytkownik silnika powinien mieæ udostêpnion¹ wartstwê poœredniczac¹, ¿eby nie musia³
 	*pamiêtaæ o odwo³aniach.*/
-	inline void add_file_reference( ) { ++file_references; }
-	inline void add_object_reference( ) { ++object_references; }
-	inline void delete_file_reference( ) { --file_references; }
-	inline void delete_object_reference( ) { --object_references; }
+	inline void add_file_reference( ) { ++file_references; }		///< Dodaje odwo³anie plikowe do assetu
+	inline void add_object_reference( ) { ++object_references; }	///< Dodaje odwo³anie bezpoœrednie obiektu do assetu
+	inline void delete_file_reference( ) { --file_references; }		///< Kasuje odwo³anie plikowe do assetu
+	inline void delete_object_reference( ) { --object_references; }	///< Kasuje odwo³anie bezpoœrednie obiektu do assetu
 
-	inline unsigned int get_id() { return unique_id; }
+	inline unsigned int get_id() { return unique_id; }				///< Zwraca identyfikator nadany assetowi
 };
 
 
 
 
 
-/*Struktura opisuje pojedyncz¹ cz¹stkê mesha o jednym materiale, teksturze i shaderach.
+/** @brief Struktura opisuje pojedyncz¹ cz¹stkê mesha o jednym materiale, teksturze i shaderach.
+
 W zale¿noœci od zawartoœci pola index_buffer w strukturze ModelPart, mesh jest wyœwietlany w trybie
 indeksowanym lub nie.
-
-Je¿eli wartoœæ tego pola wynosi nullptr, to wtedy u¿ywane s¹
-zmienne buffer offset i vertices count, które jednoznacznie wskazuj¹, która czêœæ bufora
-wierzcho³ków ma zostaæ wyœwietlona.
+Je¿eli wartoœæ tego pola wynosi nullptr, to wtedy u¿ywane s¹ zmienne buffer offset i vertices count, które jednoznacznie wskazuj¹, która czêœæ bufora wierzcho³ków ma zostaæ wyœwietlona.
 
 Je¿eli wskaŸnik index_buffer wskazuje na obiekt, to wtedy u¿ywany jest tryb indeksowany
-i zmienne buffer_offset i vertices_count s¹ u¿ywane wzglêdem bufora indeksów.
+i zmienne buffer_offset, vertices_count i base_vertex.
 
-Klasa jest alokowana w Model3DFromFile i to w³asnie ta klasa odpowiada za zwolnienie pamiêci.
+Klasa jest alokowana w Model3DFromFile i to w³aœnie ta klasa odpowiada za zwolnienie pamiêci.
 
 Pomimo dziedziczenia po klasie referenced_object, nie jest u¿ywane pole unique_id. Dlatego
-jest ono w kontruktorze ustawiane na 0. MeshPartObjecty nie mog¹ byc wspó³dzielone
+jest ono w kontruktorze ustawiane na WRONG_ID. MeshPartObject nie mog¹ byæ wspó³dzielone
 miêdzy obiektami.*/
 struct MeshPartObject : public referenced_object
 {
-	DirectX::XMFLOAT4X4		transform_matrix;	//macierz przekszta³cenia wzglêdem œrodka modelu
-	unsigned int			buffer_offset;
-	unsigned int			vertices_count;
-	int						base_vertex;		// Dodajemy do k¹zdego indeksu przed przeczytaniem wierzcho³ka
-												// Tylko w wersji indeksowanej
-	bool					use_index_buf;
+	DirectX::XMFLOAT4X4		transform_matrix;	///<Macierz przekszta³cenia wzglêdem œrodka modelu
+	unsigned int			buffer_offset;		///<Offset wzglêdem pocz¹tku bufora indeksów albo wierzcho³ków (zobacz: opis klasy)
+	unsigned int			vertices_count;		///<Liczba wierzcho³ków do wyœwietlenia
+	int						base_vertex;		///<Wartoœæ dodawana do ka¿dego indeksu przed przeczytaniem wierzcho³ka z bufora. (Tylko wersja indeksowana)
+	bool					use_index_buf;		///<Informacja czy jest u¿ywany bufor indeksów czy nie
+	
+	/** @brief inicjuje objekt neutralnymi wartoœciami tzn. zerami, ustawia use_index_buf na false i
+	ustawia macierz przekszta³cenia na macierz identycznoœciow¹.*/
 	MeshPartObject( )
 		: referenced_object( 0 )		//W tym przypadku identyfikator nie ma znaczenia
 	{
@@ -206,17 +208,23 @@ struct MeshPartObject : public referenced_object
 	}
 };
 
-/*Meshe s¹ przechowywane w czêœciach, poniewa¿ do ró¿nych wierzcho³ków mog¹ byæ przypisane ró¿ne
-materia³y, tekstury i inne elementy. Ta struktura zawiera wszystkie mo¿liwe elementy dla pojedynczej
-czêœci mesha.
+/** @brief Struktura opisuj¹ca pojedyncz¹ czêœæ mesha gotow¹ do wyœwietlenia.
 
-Je¿eli index_buffer jest nullptrem, oznacza to, ¿e u¿ywany jest tryb bezpoœredni dostêpu
-do bufora wierzcho³ków, je¿eli jest tam wskaŸnik na bufor indeksów, to u¿ywany jest tryb indeksowany.
+Meshe s¹ przechowywane w czêœciach, poniewa¿ do ró¿nych wierzcho³ków mog¹ byæ przypisane ró¿ne
+materia³y, tekstury i inne elementy. Ta struktura zawiera wskaŸniki na te elementy.
 
-Zasadniczo bufor indeksów podobnie jak bufor wierzcho³ków, wystêpuje jeden na ca³y mesh.
-Jednak nie ca³y mesh musi byæ nim indeksowany, niektóre fragmenty mog¹ byæ wyœwietlane w
-trybie bezpoœrednim. Dlatego wskaŸnik na bufor indeksów znajduje sie na tym poziomie, ¿eby
-informowaæ, który tryb jest u¿ywany.*/
+Struktura nie zawiera bufora wierzcho³ków ani bufora indeksów. S¹ one przechowywane zewnêtrznie
+w klasie Model3DFromFile lub Dynamic_mesh_object i na jeden mesh przypada tylko jeden bufor wierzcho³ków i maksymalnie
+jeden bufor indeksów (mo¿e go nie byæ). 
+
+Obecnoœc bufora indeksów nie oznacza, ¿e ca³y mesh jest wyœwietlany w trybie indeksowanym. Mozliwe jest mieszanie trybów.
+Tryb odnosi siê wiêc nie do ca³ego mesha, a pojednyczego obiektu ModelPart.
+
+Tablica texture zawiera wskaŸniki na obiekty tekstur, których maksymalna liczba wynosi ENGINE_MAX_TEXTURES.
+Aby obs³u¿yæ wszystkie tekstury jakie mog¹ byc przypisane do obiektu, nale¿y podaæ mu odpowiedni shader, który
+umie to zrobiæ. Znaczenie poszczególnych pól tablicy tekstur jest opisywane przez enumeracjê TEXTURES_TYPES
+i w taki sposób wykorzystuj¹ je domyœlne shadery.
+*/
 struct ModelPart
 {
 	VertexShaderObject*		vertex_shader;
@@ -260,7 +268,9 @@ struct ModelPart
 };
 
 
-/*Istniej¹ obiekty nazywaj¹ce siê ID3D11Texture2D i s¹ teksturami, ale stworzenie takiego
+/** @brief Klasa przechowuj¹ca tekstury.
+
+Istniej¹ obiekty nazywaj¹ce siê ID3D11Texture2D i s¹ teksturami, ale stworzenie takiego
 nie wystarczy, ¿eby shader móg³ go u¿yæ. Do tego trzeba stworzyæ widok i w³aœnie jego
 przechowuje ta funkcja.*/
 class TextureObject : public referenced_object, public DX11_interfaces_container
@@ -281,11 +291,11 @@ public:
 	bool operator==(const TextureObject& object);
 	bool operator==(const std::wstring& file_name);
 
-	inline ID3D11ShaderResourceView* get( ) { return texture; }
+	inline ID3D11ShaderResourceView* get( ) { return texture; }		///<Zwraca widok tekstury obs³ugiwany przez DirectX11
 	static TextureObject* create_from_file( const std::wstring& file_name );
 };
 
-
+/** @brief Klasa przechowuj¹ca vertex shader*/
 class VertexShaderObject : public referenced_object, public DX11_interfaces_container
 {
 	friend ModelsManager;
@@ -298,11 +308,11 @@ public:
 	VertexShaderObject();
 	VertexShaderObject( ID3D11VertexShader* shader ) : referenced_object( WRONG_ID ), vertex_shader( shader ){}
 
-	inline ID3D11VertexShader* get( ) { return vertex_shader; }
+	inline ID3D11VertexShader* get( ) { return vertex_shader; }		///<Zwraca obiekt vertex shadera, któy mo¿na podaæ do potoku przetwarzania
 	static VertexShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name );
 };
 
-
+/**@brief Klasa przechowuj¹ca pixel shader*/
 class PixelShaderObject : public referenced_object, public DX11_interfaces_container
 {
 	friend ModelsManager;
@@ -315,14 +325,16 @@ public:
 	PixelShaderObject();
 	PixelShaderObject( ID3D11PixelShader* shader ) : referenced_object( WRONG_ID ), pixel_shader( shader ){}
 
-	inline ID3D11PixelShader* get( ) { return pixel_shader; }
+	inline ID3D11PixelShader* get( ) { return pixel_shader; }	///<Zwraca obiekt pixel shadera, któy mo¿na podaæ do potoku przetwarzania
 	static PixelShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name );
 };
 
-/*Bufor wierzcho³ków i bufor u¿ywaj¹ tego samego interfejsu ID3D11Buffer,
-dlatego nie ma oddzielnych klas.
+/** \brief Obiekt opakowuj¹cy bufor DirectXa.
 
-Obiekty tego typu mog¹ tak¿e s³u¿yæ do przekazywania parametrów shaderom.*/
+Bufor wierzcho³ków i bufor u¿ywaj¹ tego samego interfejsu ID3D11Buffer,
+dlatego nie ma potrzeby tworzenia oddzielnych klas.
+Obiekty tego typu mog¹ tak¿e s³u¿yæ do przekazywania parametrów shaderom, jako bufory sta³ych.
+*/
 class BufferObject : public referenced_object, public DX11_interfaces_container
 {
 	friend ModelsManager;
@@ -336,8 +348,8 @@ public:
 	BufferObject( unsigned int element_size );
 	BufferObject( unsigned int element_size, ID3D11Buffer* buff );
 
-	inline ID3D11Buffer* get( ) { return buffer; }
-	inline unsigned int get_stride() { return stride; }
+	inline ID3D11Buffer* get( ) { return buffer; }			///<Zwraca wskaŸnik na bufor
+	inline unsigned int get_stride() { return stride; }		///<Zwraca rozmiar pojedynczego elementu w buforze
 
 	static BufferObject* create_from_memory( const void* buffer,
 											 unsigned int element_size,
@@ -347,10 +359,23 @@ public:
 };
 
 
-/*DirectX 11 nie ma w³asnych obiektów na materia³y, poniewa¿ nie ma ju¿ domyœlnego
+/**@brief Struktura przechowuj¹ca materia³.
+
+DirectX 11 nie ma w³asnych obiektów na materia³y, poniewa¿ nie ma ju¿ domyœlnego
 potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisaæ shader i dostarcza
 mu siê takie dane, jakie siê chce dostarczyæ. Dlatego informacja o materia³ach bêdzie
-przekazywana z buforze sta³ych.*/
+przekazywana z buforze sta³ych.
+
+Struktura zachowuje siê jak asset w zwiazku z czym mo¿e
+byæ wspó³dzielona przez wiele obiektów. Z tego wzglêdu nie mo¿na jej u¿yæ bezpoœrednio w ConstantPerMesh,
+poniewa¿ nie chcemy przekazywaæ do bufora sta³ych zmiennych odziedziczonych po referenced_object.
+Zamiast tego trzeba tê strukture przepisaæ.
+
+Zwracam uwagê, ¿e tylko kana³ Diffuse jest wektorem 4 wymiarowym, w którym sk³adowa w jest odpowiedzialna
+za przezroczystoœæ. Pozosta³e s¹ takie tylko dlatego, ¿e jest to domyœlny format przechowywania danych 
+w rejestrach karty graficznej i przypsiesza to operacjê kopiowania.
+@see ConstantPerFrame
+*/
 typedef struct MaterialObject : public referenced_object
 {
 	friend ResourceContainer<MaterialObject*>;
@@ -374,8 +399,8 @@ typedef struct MaterialObject : public referenced_object
 
 
 
-/*Struktury tymczasowe dla klasy Model3DFromFile, u¿ywane podczas wype³niania
-obiektu danymi. Wszystkie te struktury s¹ kasowane po zakoñczeniu edycji.*/
+/** @brief Struktura tymczasowe dla klasy Model3DFromFile, u¿ywane podczas wype³niania
+obiektu danymi. Struktura jest kasowana po zakonczeniu edycji.*/
 
 struct TMP_data
 {
@@ -387,7 +412,8 @@ struct TMP_data
 	ModelPart					new_part;
 };
 
-
+/** @brief Struktura tymczasowe dla klasy Model3DFromFile, u¿ywane podczas wype³niania
+obiektu danymi. Struktura jest kasowana po zakonczeniu edycji.*/
 struct EditTMP
 {
 	int			current_pointer		= 0;
@@ -395,21 +421,53 @@ struct EditTMP
 	int			table_length	= 20;
 };
 
-/*Klasa s³u¿y do przechowywania danych modelu wczytanego z pliku.
-*Dziêki temu po ponownym u¿yciu pliku dla innego obiektu, nie musimy wczytywaæ modelu ponownie.
-*Plik(i model jednoczeœnie) mo¿e byæ identyfikowany po œcie¿ce do pliku lub unikalnym identyfikatorem.
-*
-*Klasa zawiera tablicê elementów ModelPart, które przechowuj¹ informacje potrzebne do wyrenderowania
-*poszczególnych czêœci mesha. Meshe musza byæ trzymane w czêœciach, ¿eby mo¿na by³o ka¿dej z tych czêœci
-*przypisaæ ró¿ne materia³y i parametry. Gdyby nie taka struktura, to wczytanie pliku nie by³oby mo¿liwe.
-*Meshe rzadko sk³adaj¹ siê z jednego kawa³ka.
-*
-*Wszystkie wierzcho³ki przechowywane s¹ tylko w jednym buforze vertex_buffer. Na podstawie zaleceñ
-*w dokumentacji DrectXa, lepiej jest mieæ jeden du¿y bufor ni¿ wiele ma³ych.
-*Poszczególne czêœci mesha zawieraj¹ albo bufor indeksów, który decyduje, które wierzcho³ki
-*s¹ wyœwietlane, albo odpowiedni offset od pocz¹tku bufora i iloœæ trójk¹tów.
-*Mo¿liwe jest równie¿, ¿e mesh bêdzie wyœwietlany w trybie mieszanym, u¿ywaj¹c
-*dla ka¿dej czêœci raz bufora indeksów, a raz offsetów.*/
+/** @brief Klasa s³u¿y do przechowywania danych modelu wczytanego z pliku.
+Dziêki temu po ponownym u¿yciu pliku dla innego obiektu, nie musimy wczytywaæ modelu ponownie.
+Plik(i model jednoczeœnie) mo¿e byæ identyfikowany po œcie¿ce do pliku lub unikalnym identyfikatorem.
+
+Klasa zawiera tablicê elementów ModelPart, które przechowuj¹ informacje potrzebne do wyrenderowania
+poszczególnych czêœci mesha. Meshe musza byæ trzymane w czêœciach, ¿eby mo¿na by³o ka¿dej z tych czêœci
+przypisaæ ró¿ne materia³y i parametry. Gdyby nie taka struktura, to wczytanie pliku nie by³oby mo¿liwe.
+Meshe rzadko sk³adaj¹ siê z jednego kawa³ka.
+
+Wszystkie wierzcho³ki przechowywane s¹ tylko w jednym buforze vertex_buffer. Na podstawie zaleceñ
+w dokumentacji DrectXa, lepiej jest mieæ jeden du¿y bufor ni¿ wiele ma³ych.
+Poszczególne czêœci mesha zawieraj¹ albo bufor indeksów, który decyduje, które wierzcho³ki
+s¹ wyœwietlane, albo odpowiedni offset od pocz¹tku bufora i iloœæ trójk¹tów.
+Mo¿liwe jest równie¿, ¿e mesh bêdzie wyœwietlany w trybie mieszanym, u¿ywaj¹c
+dla ka¿dej czêœci raz bufora indeksów, a raz offsetów.
+
+## Wype³nianie obiektów danymi
+Obiekty s¹ wype³niane najczêœciej przez loadery dla odpowiednich formatów. Wiêcej o pisaniu loaderów znajduje siê
+tutaj: $ref MakingLoaders.
+
+Aby wype³niæ obiekt danymi nale¿y wywo³aæ funkcjê BeginEdit, a po zakoñczeniu EndEdit. BeginEdit tworzy strukturê
+tymczasow¹, do której bêd¹ zapisywane informacje. EndEdit przetwarza tê strutkurê do postaci docelowej. Struktura poœrednia
+jest konieczna, poniewa¿ bufory wierzcho³ków i indeksów bêdziemy dostawali w czêœciach, a musimy je scaliæ do pojedynczych
+buforów i stworzyæ obiekt DirectXa.
+
+Nastêpnie miêdzy wywo³aniami BeginEdit i EndEdit podaje siê wszystkie informacje, jakie maj¹ zostaæ zawarte w poszczególnych
+obiektach ModelPart. Wype³nianie ka¿dego parta musi byæ otoczone wywo³aniem funkcji BeginPart i EndPart. BeginPart alokuje
+pamiêæ dla kolejnego ModelParta, a EndEdit przesuwa aktualny indeks, pod którego dodajemy czêœæ mesha.
+
+Niedodanie bufora indeksów powoduje, ¿e aktualny Part jest wyœwietlany w trybie bezpoœrednim, w przeciwnym razie
+jest u¿ywany tryb indeksowany.
+W strukturze musi istnieæ przynajmniej jeden bufor wierzcho³ków. Brak bufora wierzcho³ków jest b³êdem, ale zasadniczo
+nie skutkuje niczym powa¿nym, bo DisplayEngine pomija takie obiekty.
+
+Nie ma koniecznoœci podawania bufora wierzcho³ków dla ka¿dego ModelParta. Bufory indeksów mog¹ byæ ustawiane wzglêdem
+poprzednio dodanych buforów wierzcho³ków. B³êdem jest za to niepodanie ani bufora wierzcho³ków ani bufora indeksów.
+DisplayEngine bêdzie próbowa³ wyœwietliæ takiego mesha o liczbie wierzcho³ków równej 0, co niepotrzebnie spowalnia
+program.
+
+Je¿eli dodane tekstury s¹ zgodne z domyœlnym przeznaczeniem (zdefiniowanym enumeracj¹ TEXTURES_TYPES), to nie ma potrzeby
+dodawania w³asnych shaderów. Funkcja ModelsManager::find_best_vertex_shader i ModelsManager::find_best_pixel_shader znajd¹
+najlepiej pasuj¹cy shader do podanej tablicy tekstur.
+
+Je¿eli nie zostanie podany ¿aden materia³, ModelPart dostanie domyœlny materia³, który jest ustawiany przez funkcjê
+MaterialObject::set_null_material.
+
+@see BufferObject, ModelPart, TextureObject, VertexShaderObject, PixelShaderObject, MaterialObject, MeshPartObject*/
 
 class Model3DFromFile : public referenced_object
 {
@@ -419,13 +477,13 @@ private:
 	static ModelsManager* models_manager;
 
 	//tekstura i materia³ odpowiadaj¹ meshowi spod danego indeksu
-	std::vector<ModelPart>			model_parts;
-	BufferObject*					vertex_buffer;
-	BufferObject*					index_buffer;
-	std::wstring					file_path;
+	std::vector<ModelPart>			model_parts;		///<Vector zawieraj¹cy info o poszczególnych czêœciach mesha
+	BufferObject*					vertex_buffer;		///<Bufor wierzcho³ków
+	BufferObject*					index_buffer;		///<Bufor indeksów
+	std::wstring					file_path;			///<Plik, z którego powsta³ obiekt
 
 	//wskaxnik na tymczasow¹ strukture, która bêdzie u¿ywana podczas wype³niania obiektu danymi
-	EditTMP*						tmp_data;
+	EditTMP*						tmp_data;			///<Dane tymczasowe u¿ywane podczas wype³niania
 
 protected:
 	//¯eby unikn¹æ pomy³ki, obiekt mo¿e byœ kasowany tylko przez ModelsManager.
@@ -446,6 +504,7 @@ public:
 	void BeginPart();
 	void EndPart();
 
+	// Wype³nianie danymi
 	unsigned int add_texture( const std::wstring& file_name, TEXTURES_TYPES type = TEX_DIFFUSE );
 	unsigned int add_material( const MaterialObject* material, const std::wstring& material_name );
 	unsigned int add_vertex_shader( const std::wstring& file_name );
@@ -458,240 +517,7 @@ public:
 	unsigned int get_parts_count( );
 	const ModelPart* get_part( unsigned int index );
 
-	inline BufferObject* get_vertex_buffer() { return vertex_buffer; }
-	inline BufferObject* get_index_buffer() { return index_buffer; }
+	inline BufferObject* get_vertex_buffer() { return vertex_buffer; }		///<Zwraca wskaŸnik na bufor wierzcho³ków
+	inline BufferObject* get_index_buffer() { return index_buffer; }		///<Zwraca wskaŸnik na bufor indeksów
 };
 
-
-
-
-#ifndef __UNUSED
-
-
-//-------------------------------------------------------------------------------//
-//					wersja DirectX 9 ze star¹ struktur¹ danych
-//-------------------------------------------------------------------------------//
-
-
-class ModelsManager;
-class TextureObject;
-class MaterialObject;
-class MeshObject;
-class MeshPart;
-class referenced_object;
-
-//-------------------------------------------------------------------------------//
-//	definicje wierzcho³ków
-
-using namespace DirectX;
-
-//#define		VERTEX_NORMAL_TEXTCORDS1		(D3DFVF_XYZ  | D3DFVF_NORMAL | D3DFVF_TEX1 | D3DFVF_TEXCOORDSIZE2(0))
-#define		VERTEX_NORMAL_TEXTCORDS1		(D3DFVF_XYZ  | D3DFVF_NORMAL | D3DFVF_TEX1)
-typedef struct VertexFormat1
-{
-	XMFLOAT3	position;
-	XMFLOAT3	normal;
-	XMFLOAT2	tex_cords1;
-
-	bool operator==(VertexFormat1& vertex2);
-	bool operator!=(VertexFormat1& vertex2);
-} Vertex_Normal_TexCords1;
-
-
-
-#define		VERTEX_NORMAL_TEXTCORDS2		(D3DFVF_XYZ  | D3DFVF_NORMAL | D3DFVF_TEX2 | D3DFVF_TEXCOORDSIZE2(0) | D3DFVF_TEXCOORDSIZE2(1))
-typedef struct VertexFormat2
-{
-	XMFLOAT3	position;
-	XMFLOAT3	normal;
-	XMFLOAT2	tex_cords1;
-	XMFLOAT2	tex_cords2;
-
-	bool operator==(VertexFormat2& vertex2);
-	bool operator!=(VertexFormat2& vertex2);
-} Vertex_Normal_TexCords2;
-
-
-#define		VERTEX_TEXTCORDS1		(D3DFVF_XYZ  | D3DFVF_TEX2 | D3DFVF_TEXCOORDSIZE2(0))
-typedef struct VertexFormat3
-{
-	XMFLOAT3	position;
-	XMFLOAT2	tex_cords1;
-
-	bool operator==(VertexFormat3& vertex2);
-	bool operator!=(VertexFormat3& vertex2);
-} Vertex_TexCords1;
-
-typedef Vertex_TexCords1 VertexUI;
-
-
-
-
-/*Klasa s³u¿y do przechowywania danych modelu wczytanego z pliku.
-*Dziêki temu po ponownym u¿yciu pliku dla innego obiektu, nie musimy wczytywaæ modelu ponownie.
-*Plik(i model jednoczesnie) mo¿e byæ identyfikowany po œcie¿ce do pliku lub unikalnym identyfikatorem.
-*
-*Konwecja dotycz¹ca wektorów mesh_parts, materials i textures jest taka, ¿e
-*meshowi pod danym indeksem w wektorze odpowiadaj¹ dane z pozosta³ych wektorów pod tymi samymi indeksami.
-*Wektory przechowuj¹ jedynie wskaŸniki, które mog¹ wystêpowaæ wielokrotnie w jednym wektorze.
-*Meshe maj¹ dodatkowo macierz odpowiadaj¹c¹ pierwotnemu przekszta³ceniu, jakiemu nale¿y poddaæ dan¹ czêœæ mesha.
-*W ten sposób jedna siatka trojk¹tów, mo¿e byæ wyœwietlona wielokrotnie z ró¿nymi materia³ami i teksturami oraz
-*w ró¿nych miejscach, obrócona i przeskalowana.
-*
-*Pe³ny zbiór meshy, materia³ów i tekstur zawieraj¹ tablice w klasie ModelsManager.
-*
-*Aby usun¹æ obiekt, powinniœmy miec pewnoœæ, ¿e ¿aden inny obiekt siê do niego nie odwo³uje.
-*Do tego s³u¿y zmienna references, przechowuj¹ca liczbê obiektów, które siê odwo³uj¹ oraz funkcja
-*can_delete(), która pozwala sprawdziæ tê zmienn¹.
-*
-*Z wyj¹tkiem zawartoœci wektora mesh_parts, wszystkie pozosta³e obiekty s¹ tylko kopiami wskaŸników
-*za zwolnienie pamiêci odpowiada klasa ModelsManager.*/
-
-class Model3DFromFile
-{
-	friend class ModelsManager;
-private:
-	static ModelsManager* models_manager;
-
-	unsigned int	references;			//liczba obiektów, które siê odwo³uj¹
-	unsigned int	unique_id;			//unikalny identyfikator pliku (mozna siê odwo³ywaæ po nazwie pliku lub po tym id)
-	std::string		file_path;
-
-	//tekstura i materia³ odpowiadaj¹ meshowi spod danego indeksu
-	std::vector<MeshPart*>			mesh_parts;
-	std::vector<TextureObject*>		textures;
-	std::vector<MaterialObject*>	materials;
-
-public:
-	Model3DFromFile( int id );
-	~Model3DFromFile( );
-
-	unsigned int add_material( const D3DMATERIAL9 &material );
-	unsigned int add_texture( const std::wstring& path );
-	unsigned int add_mesh( Vertex_Normal_TexCords1* vertices, unsigned int vert_num, const DirectX::XMFLOAT4X4& matrix );
-	MaterialObject* add_material( unsigned int id );
-	TextureObject* add_texture( unsigned int id );
-	MeshPart* add_mesh( unsigned int id, DirectX::XMFLOAT4X4& matrix );
-	void add_null_material( );
-	void add_null_texture( );
-
-	unsigned int get_parts_count( );
-	MaterialObject* get_material( unsigned int index );
-	TextureObject* get_texture( unsigned int index );
-	MeshPart* get_mesh_part( unsigned int index );
-
-	//zarz¹dzanie odwo³aniami
-	bool can_delete( unsigned int& ref );
-	void add_reference( );
-	void delete_reference( );
-};
-
-
-
-/*Obiekty MaterialObject, TextureObject i MeshObject przechowuj¹ odpowiednio dane materia³ów,
-*dane tekstur lub bufor wierzcho³ków.
-*
-*Do ka¿dego pojedynczego obiektu mog¹ istnieæ wilokrotne odwo³ania w klasie Model3DFromFile,
-*a tak¿e w obiektach dziedzicz¹cych po Dynamic_mesh_object.
-*Z tego wzglêdu istniej¹ zmienne file_references i object_references.
-*Pierwsza okreœla, ile razy wystêpuj¹ odwo³ania do obiektu w klasie Model3DFromFile.
-*(uwaga: nie zliczamy, ile klas siê odwo³uje. Je¿eli w klasie pojawiaj¹ siê 3 odwo³ania, to licz¹ siê jako 3. Taka konwencja
-*u³atwia zliczanie)
-*Druga zmienna okreœla, ile wystepuje odwo³añ bezpoœrednich przez obiekty, które bêd¹ nastêpnie wyœwietlane. Oznacza to, ¿e przypisuj¹c
-*jakiemus obiektowi plik z modelem, musimy zinkrementowaæ other_references o tyle, ile by³o odwo³añ w tym pliku.
-*¯aden obiekt nie powinien byæ kasowany, dopóki istniej¹ do niego odwo³ania.
-**/
-
-class referenced_object
-{//definicja w pliku Model3DFormFile
-	friend ModelsManager;
-private:
-	unsigned int	file_references;	//liczba plików, które sie odwo³uj¹
-	unsigned int	object_references;	//liczba modeli, które siê odwo³uj¹
-	unsigned int	unique_id;			//unikalny identyfikator materia³u
-public:
-	referenced_object( int id );
-	virtual ~referenced_object( );
-
-	//sprawdza czy mo¿na zwolniæ zmienn¹
-	bool can_delete( unsigned int& file_ref, unsigned int& other_ref );
-
-	/*Funkcje s³u¿¹ce do zarz¹dzania odwo³aniami.
-	*Nale¿y pilnowaæ, aby wszystkie funkcje, które modyfikuj¹ jakiekolwiek przypisania obiektów
-	*do tekstur, materia³ów i meshy, modyfikowa³y równie¿ iloœæ odwo³añ.
-	*U¿ytkownik silnika powinien mieæ udostêpnion¹ wartstwe poœredniczac¹, ¿eby nie musia³
-	*pamiêtaæ o odwo³aniach.*/
-	inline void add_file_reference( ) { ++file_references; }
-	inline void add_object_reference( ) { ++object_references; }
-	inline void delete_file_reference( ) { --file_references; }
-	inline void delete_object_reference( ) { --object_references; }
-};
-
-
-class TextureObject : public referenced_object
-{
-	friend TextureObject;
-	friend ModelsManager;
-private:
-	std::wstring			file_path;			//œciezka do tekstury (nie do pliku z meshem)
-public:
-	LPDIRECT3DTEXTURE9		texture;
-
-	TextureObject( unsigned int id );
-	TextureObject( unsigned int id, const std::wstring& path, LPDIRECT3DTEXTURE9 tex );
-	~TextureObject( ) override;
-
-	bool operator==(const TextureObject& object);
-	bool operator==(const std::wstring& file_name);
-
-	inline LPDIRECT3DTEXTURE9 get_texture( ) { return texture; }
-};
-
-
-class MeshPart
-{
-	friend MeshPart;
-public:
-	MeshObject*				mesh_object;		//klasa zawieraj¹ca wierzcho³ki danego mesha
-	DirectX::XMFLOAT4X4		transform_matrix;	//macierz przekszta³cenia wstêpnego
-};
-
-
-class MeshObject : public referenced_object
-{
-	friend MeshObject;
-	friend ModelsManager;
-private:
-public:
-	LPDIRECT3DVERTEXBUFFER9	vertex_buffer;		//bufor wierzcho³ków
-	unsigned int			primitives_count;
-
-	MeshObject( int id );
-	~MeshObject( );
-
-	inline LPDIRECT3DVERTEXBUFFER9 get_vertex_buffer( ) { return vertex_buffer; }
-
-	//bool operator==(const Vertex_Normal_TexCords1& vertex);
-};
-
-class MaterialObject : public referenced_object
-{
-	friend MaterialObject;
-	friend ModelsManager;
-private:
-	D3DMATERIAL9	material;
-
-public:
-	MaterialObject( unsigned int id );
-	MaterialObject( unsigned int id, const MaterialObject& object );
-	MaterialObject( unsigned int id, const D3DMATERIAL9& material2 );
-	~MaterialObject( );
-
-	bool operator==(const MaterialObject& object);
-	bool operator==(const D3DMATERIAL9& object);
-
-	inline D3DMATERIAL9* get_material( ) { return &material; }
-};
-
-
-#endif

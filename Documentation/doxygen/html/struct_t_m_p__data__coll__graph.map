@@ -1,0 +1,11 @@
+<map id="TMP_data" name="TMP_data">
+<area shape="rect" id="node2" href="$struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. " alt="" coords="302,171,383,197"/>
+<area shape="rect" id="node3" href="$class_vertex_shader_object.html" title="Klasa przechowująca vertex shader. " alt="" coords="560,81,699,108"/>
+<area shape="rect" id="node4" href="$classreferenced__object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów. " alt="" coords="269,5,393,32"/>
+<area shape="rect" id="node6" href="$struct_mesh_part_object.html" title="Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach. " alt="" coords="137,81,253,108"/>
+<area shape="rect" id="node7" href="$class_pixel_shader_object.html" title="Klasa przechowująca pixel shader. " alt="" coords="277,81,408,108"/>
+<area shape="rect" id="node8" href="$class_texture_object.html" title="Klasa przechowująca tekstury. " alt="" coords="433,81,535,108"/>
+<area shape="rect" id="node9" href="$struct_material_object.html" title="Struktura przechowująca materiał. " alt="" coords="5,81,112,108"/>
+<area shape="rect" id="node5" href="$class_d_x11__interfaces__container.html" title="DX11_interfaces_container" alt="" coords="417,5,591,32"/>
+<area shape="rect" id="node10" href="$struct_vertex_normal_tex_cord1.html" title="Strutkura dla standardowego wierzchołka. " alt="" coords="407,171,563,197"/>
+</map>

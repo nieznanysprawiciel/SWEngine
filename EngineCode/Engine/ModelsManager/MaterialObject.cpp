@@ -16,6 +16,10 @@ MaterialObject::MaterialObject( const MaterialObject* material )
 	memcpy( this, material, sizeof(MaterialObject) );
 }
 
+/**@brief Ustawia materia³ na wartoœci domyœlne dla silnika.
+
+Te wartoœci s¹ najbardziej neutralne, w przypadku gdy nie ma materia³u, a jest ustawiona tekstura.
+Wtedy shadery wymana¿aj¹ jasnoœæ piksela przez 1.0 i nic sie nie zmienia.*/
 void MaterialObject::set_null_material( )
 {
 	Diffuse.x = 1.0f;
@@ -26,45 +30,23 @@ void MaterialObject::set_null_material( )
 	Ambient.x = 1.0f;
 	Ambient.y = 1.0f;
 	Ambient.z = 1.0f;
+	Ambient.w = 1.0f;
 
 	Specular.x = 1.0f;
 	Specular.y = 1.0f;
 	Specular.z = 1.0f;
+	Specular.w = 1.0f;
 
 	Emissive.x = 1.0f;
 	Emissive.y = 1.0f;
 	Emissive.z = 1.0f;
+	Emissive.w = 1.0f;
 
 	Power = 1.0f;
 }
 
 #ifndef __UNUSED
-//----------------------------------------------------------------------------------------------//
-//								contructors, destructors										//
-//----------------------------------------------------------------------------------------------//
 
-MaterialObject::MaterialObject(unsigned int id)
-	: referenced_object(id)
-{
-}
-
-MaterialObject::MaterialObject(unsigned int id, const MaterialObject& object)
-	: referenced_object(id)
-{
-	memcpy(&material, &object.material, sizeof(_D3DMATERIAL9));
-}
-
-MaterialObject::MaterialObject(unsigned int id, const D3DMATERIAL9& material2)
-	: referenced_object(id)
-{
-	memcpy(&material, &material2, sizeof(_D3DMATERIAL9));
-}
-
-
-MaterialObject::~MaterialObject()
-{
-
-}
 
 //Obiekty s¹ takie, kiedy struktury materia³ów maj¹ tak¹ sam¹ zawartoœæ
 bool MaterialObject::operator==(const MaterialObject& object)

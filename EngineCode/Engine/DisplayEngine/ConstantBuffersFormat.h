@@ -3,11 +3,15 @@
 
 using namespace DirectX;
 
-/* Bufory sta³ych dla shaderów musz¹ miec wielkoœæ bêd¹c¹ wielokrotnoœci¹ 16.
-Nie trzeba o to dbaæ w tym przypadku, bo funkcja tworz¹ca bufory alokuje
-odrobinê wiêksze.
-Ale skoro i tak ma siê pamiêæ i przepustowoœæ marnowaæ to mo¿na spokojnie dope³niæ
-jakimiœ informacjami do tych 16.*/
+/** \brief Bufor sta³ych dla shadera zmieniaj¹cy siê raz na klatkê. 
+
+Bufory sta³ych dla shaderów musz¹ mieæ wielkoœæ bêd¹c¹ wielokrotnoœci¹ 16.
+Wszystkie dane w GPU s¹ przechowywane w postaci wektorów 4-wymiarowych.
+Dlatego lepiej nie wysy³aæ danych o innej liczbie wymiarów, bo na pewno coœ 
+siê zepsuje.
+
+Ewentualnie je¿eli chcemy usprawniæ dostêp do danych po strnie CPU i podawaæ
+wektory 3-wymiarowe, to trzeba uzupe³niæ czwarta wspó³rzêdn¹ jakimœ pustym floatem.*/
 
 typedef struct ConstantPerFrame
 {
@@ -21,6 +25,12 @@ typedef struct ConstantPerFrame
 } ConstantPerFrame;
 
 
+/** \brief Bufor sta³ych dla shadera zmieniaj¹cy siê dla ka¿dej czêœci mesha.
+
+Obiekt zawiera macierz przekszta³cenia œwiata dla danej czêœci obiektu oraz dane o materia³ach.
+Materia³y s¹ wektorami 4-wymiarowymi tylko ze wzglêdu na to, ¿e takie s¹ rejestry na GPU.
+U¿ywane s¹ tylko pierwsze 3 elementy wektora. Jedynie w kanale Diffuse ostatnia wspó³rzêdna odpowiada za przezroczystoœæ.
+*/
 typedef struct ConstantPerMesh
 {
 	XMMATRIX				world_matrix;

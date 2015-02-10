@@ -1,0 +1,91 @@
+/**
+@mainpage Dokumentacja silnika SW_engine
+
+# Spis Treœci
+
+- Przewodnik dla u¿ytkowników
+- Dokumentacja dla twórców
+	- Opis tematyczny
+		- @ref Events
+		- @ref EngineInit
+		- @ref GUI
+		- @ref CameraView
+		- @ref Controllers
+		- @ref Input
+		- @ref MainLoop
+		- @ref MakingLoaders
+		- @ref ObjectPipeline
+		- @ref GUIRender
+		- @ref SceneRender
+		- @ref CoorinatesSystem
+	- Podstawowe obiekty i struktury danych
+		- BufferObject
+		- event_mapping
+		- InputAbstractionLayer
+		- InputAbstractionLayer_base
+		- input_mapping
+		- MaterialObject
+		- MeshPartObject
+		- Model3DFromFile
+		- ModelPart
+		- PixelShaderObject
+		- referenced_object
+		- TextureObject
+		- VertexNormalTexCord1
+		- VertexShaderObject
+		- VertexTexCord1
+	- Klasy predefiniowane
+		- camera_controller_PROTOTYPE
+	- Klasy bazowe dla obiektów predefiniowanych
+		- Animation_object
+		- Base_AI_controller
+		- Base_input_controller
+		- Camera_object
+		- Collision_object
+		- Complex_object
+		- Controller
+		- Dynamic_mesh_object
+		- Dynamic_object
+		- Event
+		- Instanced_mesh
+		- Object
+		- Physical_object
+		- Static_object
+		- Trigger_object
+	- Interfejsy
+		- engine_interface
+		- GamePlay
+		- Loader
+	- Modu³y silnika
+		- CollisionEngine
+		- ControllersEngine
+		- DisplayEngine
+		- Engine
+		- FableEngine
+		- ModelsManager
+		- MovementEngine
+		- PhysicEngine
+		- SoundEngine
+		- UI_Engine
+	- Sta³e i makrodefinicje
+		- __UNUSED
+		- EVENT_TYPE
+		- FIXED_MOVE_UPDATE_INTERVAL
+		- FRAMES_PER_SEC_UPDATE
+		- MESH_LOADING
+		- @ref MODELS_MANAGER_RESULT
+		- Modules
+		- @ref SHOW_MEMORY_LEAKS
+		- STANDARD_ABSTRACTION_LAYER
+		- STANDARD_ABSTRACTION_LAYER_COUNT
+		- WRONG_ID
+		- WRONG_MATERIAL_ID
+		- WRONG_MESH_ID
+		- WRONG_MODEL_FILE_ID
+		- WRONG_TEXTURE_ID
+
+
+
+
+
+*/

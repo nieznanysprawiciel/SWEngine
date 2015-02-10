@@ -24,7 +24,7 @@ BufferObject::BufferObject( unsigned int element_size, ID3D11Buffer* buff )
 }
 
 
-
+///@brief Zwalnia obiekt shadera z directXa
 BufferObject::~BufferObject( )
 {
 	if ( buffer )
@@ -32,6 +32,16 @@ BufferObject::~BufferObject( )
 	//buffer = nullptr;
 }
 
+/**@brief Tworzy bufor wierzcho³ków lub indeksów o podanych parametrach.
+
+@param[in] buffer WskaŸnik na bufor z danym, które maj¹ byæ przeniesione do bufora DirectXowego.
+@param[in] element_size Rozmiar pojedynczego elementu w buforze
+@param[in] vert_count Liczba wierzcho³ków/indeksów w buforze
+@param[in] bind_flag Okreœla z czym zwi¹zaæ podany bufor w potoku graficznym.
+Dla bufora wierzcho³ków nale¿y podaæ D3D11_BIND_VERTEX_BUFFER, a dla bufora indeksów
+D3D11_BIND_INDEX_BUFFER.
+@param[in] usage Jedna z wartoœci D3D11_USAGE, któr¹ nale¿y podaæ DirectXowi.
+@return WskaŸnik na BufferObject w przypadku powodzenia lub nullptr, je¿eli coœ pójdzie nie tak.*/
 BufferObject* BufferObject::create_from_memory( const void* buffer,
 												unsigned int element_size,
 												unsigned int vert_count,

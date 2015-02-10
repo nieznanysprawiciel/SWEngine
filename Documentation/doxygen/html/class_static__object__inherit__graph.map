@@ -1,0 +1,10 @@
+<map id="Static_object" name="Static_object">
+<area shape="rect" id="node3" href="$class_collision__object.html" title="Collision_object" alt="" coords="139,155,253,181"/>
+<area shape="rect" id="node2" href="$class_object.html" title="Object" alt="" coords="166,5,226,32"/>
+<area shape="rect" id="node4" href="$class_dynamic__object.html" title="Dynamic_object" alt="" coords="139,229,253,256"/>
+<area shape="rect" id="node5" href="$class_camera__object.html" title="Camera_object" alt="" coords="5,304,115,331"/>
+<area shape="rect" id="node6" href="$class_complex__object.html" title="Complex_object" alt="" coords="139,304,253,331"/>
+<area shape="rect" id="node7" href="$class_physical__object.html" title="Physical_object" alt="" coords="277,304,392,331"/>
+<area shape="rect" id="node8" href="$class_animation__object.html" title="Animation_object" alt="" coords="192,379,315,405"/>
+<area shape="rect" id="node9" href="$class_dynamic__mesh__object.html" title="Dynamic_mesh_object" alt="" coords="339,379,493,405"/>
+</map>

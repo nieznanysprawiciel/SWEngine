@@ -13,15 +13,21 @@ PixelShaderObject::PixelShaderObject()
 }
 
 
-
+///@brief Zwalnia obiekt shadera z directXa
 PixelShaderObject::~PixelShaderObject( )
 {
 	if ( pixel_shader )
 		pixel_shader->Release( );
 }
 
-/*Tworzy obiekt PixelShaderObject na podstawie pliku.
-Na razie obs³uguje tylko nieskompilowane pliki.*/
+/**@bref Tworzy obiekt PixelShaderObject na podstawie pliku.
+
+W przypadku b³êdów kompilacji w trybie debug s¹ one przekierowane do okna Output.
+
+Na razie obs³uguje tylko nieskompilowane pliki.
+@param[in] file_name Nazwa pliku, z którego zostanie wczytany shader
+@param[in] shader_name Nazwa funkcji, która jest punktem poczatkowym wykonania shadera
+*/
 PixelShaderObject* PixelShaderObject::create_from_file( const std::wstring& file_name, const std::string& shader_name )
 {
 	HRESULT result;

@@ -71,7 +71,7 @@ float3 pixel_shader( PS_INPUT input) : SV_Target
     //do NdotL lighting for 2 lights
     for(int i=0; i<1; i++)
     {
-		dot_product = dot( (float3)LightDir[i],input.Norm);
+		dot_product = dot( (float3)LightDir[i], input.Norm);
         finalColor += dot_product * LightColor[i] * (float3)Diffuse;
     }
 

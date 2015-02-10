@@ -21,7 +21,8 @@ ModelsManager* Model3DFromFile::models_manager = nullptr;
 
 //==============================================================================================//
 
-
+/**
+Ustawia zerow¹ liczbê odwo³añ.*/
 referenced_object::referenced_object(int id)
 {
 	file_references = 0;
@@ -33,6 +34,12 @@ referenced_object::referenced_object(int id)
 referenced_object::~referenced_object()
 {}
 
+/** \brief Funkcja informuje czy obiekt s¹ obiektu, które odwo³uj¹ siê do assetu.
+
+@param[out] file_ref W zmiennej zostanie umieszczona liczba referencji plikowych.
+@param[out] other_ref W zmiennej zostanie umieszczona liczba referencji bezpoœrednich od obiektów.
+@return Zwraca wartoœæ logiczn¹ mówi¹c¹ czy asset nadaje siê do usuniêcia.
+*/
 bool referenced_object::can_delete(unsigned int& file_ref, unsigned int& other_ref)
 {
 	file_ref = file_references;
@@ -54,6 +61,7 @@ bool referenced_object::can_delete(unsigned int& file_ref, unsigned int& other_r
 //								contructor, destructor											//
 //----------------------------------------------------------------------------------------------//
 
+/**@brief Inicjuje obiekt œcie¿k¹ do pliku, który zostanie do niego wczytany ( nie wczytuje pliku).*/
 Model3DFromFile::Model3DFromFile( const std::wstring& file_name )
 : referenced_object( WRONG_ID )
 {
@@ -124,10 +132,11 @@ Model3DFromFile::~Model3DFromFile( )
 //----------------------------------------------------------------------------------------------//
 
 
-/*Funkcje BeginEdit i EndEdit maj¹ byæ wywo³ane przez klasê ModelsManager przed podaniem do loadera
-i po zakoñczeniu wpisywania danych.
+/**@brief BeginEdit przygotowuje strukturê pod wpisywanie danych.
 
-BeginEdit przygotowuje strukturê pod wpisywanie danych.*/
+Funkcje BeginEdit i EndEdit maj¹ byæ wywo³ane przez klasê ModelsManager przed podaniem do loadera
+i po zakoñczeniu wpisywania danych.
+*/
 void Model3DFromFile::BeginEdit()
 {
 	tmp_data = new EditTMP;
@@ -136,11 +145,12 @@ void Model3DFromFile::BeginEdit()
 }
 
 
-/*Funkcje BeginEdit i EndEdit maj¹ byæ wywo³ane przez klasê ModelsManager przed podaniem do loadera
-i po zakoñczeniu wpisywania danych.
+/**@brief EndEdit zatwierdza wpisane dane, tworzy w³aœciwa strukturê i wpisuje nie istniej¹ce jeszcze obiekty
+do ModelsManagera.
 
-EndEdit zatwierdza wpisane dane, tworzy w³aœciwa strukturê i wpisuje nie istniej¹ce jeszcze obiekty
-do ModelsManagera.*/
+Funkcje BeginEdit i EndEdit maj¹ byæ wywo³ane przez klasê ModelsManager przed podaniem do loadera
+i po zakoñczeniu wpisywania danych.
+*/
 void Model3DFromFile::EndEdit()
 {
 	// Najpierw scalamy bufory wierzcho³ków.
@@ -165,7 +175,7 @@ void Model3DFromFile::EndEdit()
 }
 
 
-/*Funkcje BeginPart i EndPart s¹ wywo³ywane przez loader i maj¹ otaczaæ wszystkie instrukcje dodaj¹ce
+/**@brief Funkcje BeginPart i EndPart s¹ wywo³ywane przez loader i maj¹ otaczaæ wszystkie instrukcje dodaj¹ce
 jedn¹ czêœæ mesha do struktury.*/
 void Model3DFromFile::BeginPart()
 {
@@ -191,7 +201,7 @@ void Model3DFromFile::BeginPart()
 	tmp_data->table[tmp_data->current_pointer]->new_part.mesh->add_file_reference();
 }
 
-/*Funkcje BeginPart i EndPart s¹ wywo³ywane przez loader i maj¹ otaczaæ wszystkie instrukcje dodaj¹ce
+/**@brief Funkcje BeginPart i EndPart s¹ wywo³ywane przez loader i maj¹ otaczaæ wszystkie instrukcje dodaj¹ce
 jedn¹ czêœæ mesha do struktury.*/
 void Model3DFromFile::EndPart()
 {
@@ -201,8 +211,14 @@ void Model3DFromFile::EndPart()
 
 
 
-/*Dodaje teksturê na aktualnej pozycji w tablicy.
-Tekstura jest umieszczana zgodnie z indeksem reprezentowanym przez type.*/
+/**@brief Dodaje teksturê na aktualnej pozycji w tablicy.
+
+Tekstura jest umieszczana w tablicy ModelPart.texture zgodnie z indeksem reprezentowanym przez type.
+Obiekt jest dodawany do ModelsManagera je¿eli jeszcze nie istnia³. Je¿eli istnia³
+nie jest duplikowany, ale zamiast niego wstawia siê wskaŸnik na istniej¹cy obiekt.
+@param[in] file_name Œcie¿ka do tekstury
+@param[in] type Type tekstury. Zobacz definicjê TEXTURES_TYPES.
+@return Identyfiaktor tekstury lub WRONG_ID, je¿eli coœ posz³o nie tak.*/
 unsigned int Model3DFromFile::add_texture( const std::wstring& file_name, TEXTURES_TYPES type )
 {
 	// Ktoœ móg³ podaæ indeks w tablicy zamiast jednego z enumów, wiêc musimy pilnowaæ czy nie przekroczy³ zakresu
@@ -229,6 +245,16 @@ unsigned int Model3DFromFile::add_texture( const std::wstring& file_name, TEXTUR
 	return texture->get_id();
 }
 
+/**@brief Dodaje materia³ na aktualnej pozycji w tablicy.
+
+Obiekt jest dodawany do ModelsManagera je¿eli jeszcze nie istnia³. Je¿eli istnia³
+nie jest duplikowany, ale zamiast niego wstawia siê wskaŸnik na istniej¹cy obiekt.
+
+@param[in] material Materia³, który ma zostaæ dodany
+@param[in] material_name Nazwa materia³u. Do materia³u bêdzie mo¿na siê odwo³aæ podaj¹c ci¹g znaków
+[nazwa_pliku]::[nazwa_materia³u]. Oznacza to, ¿e mog¹ istnieæ dwa takie same materia³y, poniewa¿ nie jest sprawdzana
+zawartoœæ, a jedynie nazwy.
+@return Indentyfikator obiektu.*/
 unsigned int Model3DFromFile::add_material( const MaterialObject* material, const std::wstring& material_name )
 {
 	std::wstring name = file_path;
@@ -254,13 +280,21 @@ unsigned int Model3DFromFile::add_material( const MaterialObject* material, cons
 	return new_material->get_id( );
 }
 
+/**@brief Dodaje vertex shader na aktualnej pozycji ModelPart.
+
+Obiekt jest dodawany do ModelsManagera je¿eli jeszcze nie istnia³. Je¿eli istnia³
+nie jest duplikowany, ale zamiast niego wstawia siê wskaŸnik na istniej¹cy obiekt.
+
+@param[in] Nazwa pliku, w którym znajduje siê vertex shader. Nazwa funkcji na razie jest niezmienna
+i okreœla j¹ makro DEFAULT_VERTEX_SHADER_ENTRY.
+@return Indentyfikator obiektu.*/
 unsigned int Model3DFromFile::add_vertex_shader( const std::wstring& file_name )
 {
 	VertexShaderObject* vertex_shader = models_manager->vertex_shader.get( file_name );
 	if ( !vertex_shader )
 	{
 		// Nie by³o shadera, trzeba go stworzyæ i dodaæ
-		vertex_shader = VertexShaderObject::create_from_file( file_name, "VS" );
+		vertex_shader = VertexShaderObject::create_from_file( file_name, DEFAULT_VERTEX_SHADER_ENTRY );
 		if ( !vertex_shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 			return WRONG_ID;
 
@@ -276,13 +310,21 @@ unsigned int Model3DFromFile::add_vertex_shader( const std::wstring& file_name )
 	return vertex_shader->get_id( );
 }
 
+/**@brief Dodaje pixel shader na aktualnej pozycji ModelPart.
+
+Obiekt jest dodawany do ModelsManagera je¿eli jeszcze nie istnia³. Je¿eli istnia³
+nie jest duplikowany, ale zamiast niego wstawia siê wskaŸnik na istniej¹cy obiekt.
+
+@param[in] Nazwa pliku, w którym znajduje siê pixel shader. Nazwa funkcji na razie jest niezmienna
+i okreœla j¹ makro DEFAULT_PIXEL_SHADER_ENTRY.
+@return Indentyfikator obiektu.*/
 unsigned int Model3DFromFile::add_pixel_shader( const std::wstring& file_name )
 {
 	PixelShaderObject* pixel_shader = models_manager->pixel_shader.get( file_name );
 	if ( !pixel_shader )
 	{
 		// Nie by³o shadera, trzeba go stworzyæ i dodaæ
-		pixel_shader = PixelShaderObject::create_from_file( file_name, "PS" );
+		pixel_shader = PixelShaderObject::create_from_file( file_name, DEFAULT_PIXEL_SHADER_ENTRY );
 		if ( !pixel_shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 			return WRONG_ID;
 
@@ -299,10 +341,18 @@ unsigned int Model3DFromFile::add_pixel_shader( const std::wstring& file_name )
 }
 
 
-/*Funkcja dodaje do tymczasowej tablicy bufor wierzcho³ków.
-Podane dane s¹ przepisywane, a za zwolnienie pamiêci odpowiada ten kto wywo³a³ funkcjê.
+/**@brief Funkcja dodaje do tymczasowej tablicy bufor wierzcho³ków.
 
-Bufory wierzcho³ków s¹ ³¹czone w jedna ca³oœæ w funkcji EndEdit.*/
+Funkcja dodaje do tymczasowej tablicy bufor wierzcho³ków.
+Podane dane s¹ przepisywane, a za zwolnienie pamiêci odpowiada ten kto wywo³a³ funkcjê.
+Nie wolno dodaæ kolejnego bufora, je¿eli w danym ModelPart jakiœ juz istania³.
+W takiej sytuacji funkcja natychmiast powraca.
+
+Bufory wierzcho³ków s¹ ³¹czone w jedna ca³oœæ w funkcji EndEdit.
+
+@param[in] buffer WskaŸnik na tablicê wierzcho³ków. Zwalnia wywo³uj¹cy.
+@param[in] vert_count Liczba wierzcho³ków w buforze.
+@return Funkcja zawsze zwraca WRONG_ID.*/
 unsigned int Model3DFromFile::add_vertex_buffer( const VertexNormalTexCord1* buffer, unsigned int vert_count )
 {
 	if ( vert_count == 0 )
@@ -318,24 +368,26 @@ unsigned int Model3DFromFile::add_vertex_buffer( const VertexNormalTexCord1* buf
 	// Tablica zwalniana w funkcji EndEdit_vertex_buffer_processing()
 	memcpy( data->vertices_tab, buffer, sizeof(VertexNormalTexCord1)*vert_count );	// Przepisujemy tablicê
 
-	return WRONG_ID;
+	return 1;
 }
 
 
-/*Ka¿da czêœæ mesha ma przypisan¹ do siebie transformacjê, któr¹ dodaje w³asnie ta funkcja.
+/**@brief Nadaje aktualnej czêœci mesha macierz transformacji.
+
+Ka¿da czêœæ mesha ma przypisan¹ do siebie transformacjê wzglêdem œrodka uk³adu wspó³rzednych modelu.
 Je¿eli dla jakiegoœ bufora wierzcho³ków nie zostanie przydzielona transformacja, to 
-domyslnie znajduje siê tu macierz identycznoœciowa.*/
+domyœlnie znajduje siê tu macierz identycznoœciowa.
+
+@param[in] Macierz transformacji*/
 void Model3DFromFile::add_transformation( const DirectX::XMFLOAT4X4& transform )
 {
 	tmp_data->table[tmp_data->current_pointer]->new_part.mesh->transform_matrix = transform;
 }
 
 
-/*Funkcja dodaje do tymczasowej tablicy dane potrzebne do stworzenia bufora wierzcho³ków.
-Indeksy s¹ przepsiywane z podanej tablicy i trzeba j¹ zwolniæ samemu.
-
-Je¿eli tablica indeksów zosta³a wczeœniej stworzona, zostanie zwrócona wartoœæ
-WRONG_ID. W przeciwnym razie zostanie zwrócona wartoœæ 1.*/
+/**@brief Funkcja dodaje do tymczasowej tablicy dane potrzebne do stworzenia bufora wierzcho³ków.
+Indeksy s¹ przepisywane z podanej tablicy i trzeba j¹ zwolniæ samemu.
+*/
 unsigned int Model3DFromFile::add_index_buffer( const VERT_INDEX* buffer, unsigned int ind_count, int vertex_buffer_offset )
 {
 	if ( ind_count == 0 )
@@ -363,17 +415,20 @@ unsigned int Model3DFromFile::add_index_buffer( const VERT_INDEX* buffer, unsign
 			break;
 	}
 
-	return 1;
+	return WRONG_ID;
 }
 
 //----------------------------------------------------------------------------------------------//
 //								funkcje pomocnicze												//
 //----------------------------------------------------------------------------------------------//
 
-/*Zwraca offset o jaki trzeba przesun¹c bufor indeksów wzglêdem pocz¹tka
+/**@brief Zwraca offset o jaki trzeba przesun¹æ bufor indeksów wzglêdem pocz¹tka
 bufora wierzcho³ków, je¿eli podano opcjê VERTEX_BUFFER_OFFSET::LAST.
 Oznacza to zliczenie wszystkich wierzcho³ków we wszystkich poprzedzaj¹cych
-buforach wierzcho³ków.*/
+buforach wierzcho³ków.
+
+@note Funkcja do wywo³ywania wewêtrznego przez Model3DFromFile.
+*/
 unsigned int Model3DFromFile::get_buffer_offset_to_last( )
 {
 	unsigned int offset = 0;
@@ -391,9 +446,11 @@ unsigned int Model3DFromFile::get_buffer_offset_to_last( )
 }
 
 
-/*Tworzymy z rozproszonych buforów wierzcho³ków jeden wiêkszy.
+/**@brief Tworzymy z rozproszonych buforów wierzcho³ków jeden wiêkszy.
 Nastêpnie tworzymy obiekt bufora i dodajemy go do ModelsManagera
-oraz przypisujemy zmiennej vertex_buffer.*/
+oraz przypisujemy zmiennej vertex_buffer.
+
+@note Funkcja do wywo³ywania wewêtrznego przez Model3DFromFile.*/
 void Model3DFromFile::EndEdit_vertex_buffer_processing( )
 {
 	// Podliczamy ile miejsca potrzeba dla bufora wierzcho³ków
@@ -438,7 +495,9 @@ void Model3DFromFile::EndEdit_vertex_buffer_processing( )
 	// z innymi plikami, to trzeba to zmodyfikowaæ.
 }
 
-/*Scalamy tymczasowe bufory indeksów w jeden du¿y*/
+/**@brief Scalamy tymczasowe bufory indeksów w jeden du¿y
+
+@note Funkcja do wywo³ywania wewêtrznego przez Model3DFromFile.*/
 void Model3DFromFile::EndEdit_index_buffer_processing( )
 {
 	// Podliczamy ile miejsca potrzeba dla bufora indeksów, a ile dla bufora wierzcho³ków
@@ -480,9 +539,11 @@ void Model3DFromFile::EndEdit_index_buffer_processing( )
 }
 
 
-/*Dodajemy do strutkury ModelPart dane o buforach wierzcho³ków oraz przypisujemy wbudowane
+/**@brief Dodajemy do strutkury ModelPart dane o buforach wierzcho³ków oraz przypisujemy wbudowane
 shadery, je¿eli nie podano ¿adnych.
-Dodajemy te¿ domyœlny materia³, je¿eli nie podano ¿adnego.*/
+Dodajemy te¿ domyœlny materia³, je¿eli nie ma.
+
+@note Funkcja do wywo³ywania wewêtrznego przez Model3DFromFile.*/
 void Model3DFromFile::EndEdit_prepare_ModelPart( )
 {
 	for ( int i = 0; i < tmp_data->current_pointer; ++i )
@@ -524,7 +585,9 @@ void Model3DFromFile::EndEdit_prepare_ModelPart( )
 //									Funkcje do korzystania z obiektów							//
 //----------------------------------------------------------------------------------------------//
 
-
+/**@brief zwraca wskaŸnik na ModelPart spod podanego indeksu.
+@param[in] Indeks.
+@return WskaŸnik na ModelPart lub nullptr, je¿eli indeks by³ nieprawid³owy.*/
 const ModelPart* Model3DFromFile::get_part( unsigned int index )
 {
 	if ( index < model_parts.size( ) )
@@ -532,7 +595,7 @@ const ModelPart* Model3DFromFile::get_part( unsigned int index )
 	return nullptr;
 }
 
-
+/**@brief Zwraca liczbê obiektów ModelPart w tablicy.*/
 unsigned int Model3DFromFile::get_parts_count()
 {
 	return model_parts.size();
