@@ -1,7 +1,0 @@
-<map id="Animation_object" name="Animation_object">
-<area shape="rect" id="node2" href="$class_physical__object.html" title="Physical_object" alt="" coords="9,304,124,331"/>
-<area shape="rect" id="node3" href="$class_dynamic__object.html" title="Dynamic_object" alt="" coords="9,229,124,256"/>
-<area shape="rect" id="node4" href="$class_collision__object.html" title="Collision_object" alt="" coords="10,155,123,181"/>
-<area shape="rect" id="node5" href="$class_static__object.html" title="Static_object" alt="" coords="17,80,116,107"/>
-<area shape="rect" id="node6" href="$class_object.html" title="Object" alt="" coords="37,5,97,32"/>
-</map>
