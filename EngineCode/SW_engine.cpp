@@ -1,7 +1,9 @@
 #include "stdafx.h"
 #include "Engine\Engine.h"
 
-
+/**@file SW_engine.cpp
+@brief Plik zawiera funkcjê WinMain i instrukcje tworz¹ce obiekt silnika, inicjuj¹ce go
+i wywo³uj¹ce pêtlê g³ówn¹ aplikacji.*/
 
 #define WINDOW_WIDTH		1280
 #define WINDOW_HEIGHT		800

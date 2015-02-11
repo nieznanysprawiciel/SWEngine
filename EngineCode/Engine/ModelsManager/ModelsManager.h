@@ -13,6 +13,18 @@ class Loader;
 
 
 
+// Nazwy dla domyœlnych shaderów i materia³u
+const wchar_t DEFAULT_MATERIAL_STRING[] = L"::default_material";			///<Neutralny materia³
+const wchar_t DEFAULT_VERTEX_SHADER_STRING[] = L"default_vertex_shader";	///<Shader bez obs³ugi tekstur
+const wchar_t DEFAULT_PIXEL_SHADER_STRING[] = L"default_pixel_shader";		///<Shader bez obs³ugi tekstur
+//const wchar_t DEFAULT_TEX_DIFFUSE_VERTEX_SHADER_PATH[] = L"shaders\\tex_diffuse_shader.fx";	///<Shader z obs³ug¹ tesktury diffuse
+const wchar_t DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH[] = L"shaders\\tex_diffuse_shader.fx";	///<Shader z obs³ug¹ tesktury diffuse
+
+
+// Domyœlne nazwy funkcji w vertex i pixel shaderze
+const char DEFAULT_VERTEX_SHADER_ENTRY[] = "vertex_shader";		///<Domyœlna nazwa funkcji, od której zaczyna siê wykonanie vertex shadera
+const char DEFAULT_PIXEL_SHADER_ENTRY[] = "pixel_shader";		///<Domyœlna nazwa funkcji, od której zaczyna siê wykonanie pixel shadera
+
 //-------------------------------------------------------------------------------//
 //							wersja DirectX11
 //-------------------------------------------------------------------------------//

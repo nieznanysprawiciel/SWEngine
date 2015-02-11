@@ -1,11 +1,12 @@
 #pragma once
 
+/**@file EngineInterface.h
+@brief Plik zawiera deklaracjê klasy engine_interface.*/
+
 #include <queue>
 #include "..\Engine\DX11_interfaces_container.h"
 
-/*Taki interfejs bêdzie widzia³ u¿ytkownik silnika z wnêtrza swoich klas odpowiedzialnych za fabu³ê.
- *U¿ytkownik musi mieæ ograniczone mo¿liwoœci, ¿eby przypadkiem nie namiesza³. Szczególnie nie powinien
- *mieæ mo¿liwoœci wysy³ania eventów, bo mog³oby to doprowadziæ do zapêtlenia.*/
+
 
 
 class ControllersEngine;
@@ -13,6 +14,16 @@ struct IndexPrediction;
 class Event;
 
 
+/**@brief Klasa jest interfejsem dla u¿ytkownika u¿ytkuj¹cego silnik.
+
+Taki interfejs bêdzie widzia³ u¿ytkownik silnika z wnêtrza swoich klas odpowiedzialnych za fabu³ê.
+U¿ytkownik musi mieæ ograniczone mo¿liwoœci, ¿eby przypadkiem nie namiesza³.
+Szczególnie nie powinien mieæ mo¿liwoœci wysy³ania eventów, bo mog³oby to doprowadziæ do zapêtlenia.
+Wszystkie funkcje jakie powinien mieæ dostêpne nale¿y deklarowaæ w tej klasie w sekcji publicznej.
+Wszystkie pozosta³e funkcje powinny siê znaleŸæ w deklaracji klasy Engine.
+Wszystkie zmienne silnika powinny byæ deklarowane na tym poziomie, aby równie¿ metody tej klasy dostêpne
+dla u¿ytkownika mia³y do nich dostêp.
+*/
 class engine_interface : public DX11_constant_buffers_container
 {
 	// Dziedziczymy z DX11_constant_buffers_container a nie z DX11_interfaces_container, poniewa¿
@@ -30,40 +41,40 @@ class engine_interface : public DX11_constant_buffers_container
 	friend class Object;
 protected:
 	//directX and windows variables
-	bool						directX_ready;			// je¿eli zmienna jest niepoprawna, nie renderujemy
+	bool						directX_ready;			///<Je¿eli zmienna jest niepoprawna, nie renderujemy
 
-	bool						full_screen;
-	HWND						window_handler;
-	HINSTANCE					instance_handler;
-	int							window_width;
-	int							window_height;
+	bool						full_screen;			///<Pe³ny ekran lub renderowanie w oknie
+	HWND						window_handler;			///<Uchwyt okna aplikacji
+	HINSTANCE					instance_handler;		///<Uchwyt instancji procesu
+	int							window_width;			///<Szerokoœæ okna/ekranu
+	int							window_height;			///<Wysokoœæ okna/ekranu
 
 	//Engines
-	ControllersEngine*			controllers_engine;		//kontroluje AI (klawiaturê trzeba przenieœæ)
-	MovementEngine*				movement_engine;		//przelicza pozycjê obiektów w nastêpnej klatce
-	DisplayEngine*				display_engine;			//wyœwietla obiekty na scenie
-	CollisionEngine*			collision_engine;		//liczy kolizje
-	PhysicEngine*				physic_engine;			//liczy oddzia³ywania fizyczne
-	ModelsManager*				models_manager;			//zarz¹dza modelami, teksturami i materia³ami
-	FableEngine*				fable_engine;			//zarz¹dza fabu³¹ gry, interakcjami obiektów itd. Odpowiada za treœæ
-	SoundEngine*				sound_engine;			//zarz¹dza muzyk¹ i dŸwiêkami
-	UI_Engine*					ui_engine;				//interfejs u¿ytkownika (tak¿e graficzny)
+	ControllersEngine*			controllers_engine;		///<kontroluje AI (klawiaturê trzeba przenieœæ)
+	MovementEngine*				movement_engine;		///<przelicza pozycjê obiektów w nastêpnej klatce
+	DisplayEngine*				display_engine;			///<wyœwietla obiekty na scenie
+	CollisionEngine*			collision_engine;		///<liczy kolizje
+	PhysicEngine*				physic_engine;			///<liczy oddzia³ywania fizyczne
+	ModelsManager*				models_manager;			///<zarz¹dza modelami, teksturami i materia³ami
+	FableEngine*				fable_engine;			///<zarz¹dza fabu³¹ gry, interakcjami obiektów itd. Odpowiada za treœæ
+	SoundEngine*				sound_engine;			///<zarz¹dza muzyk¹ i dŸwiêkami
+	UI_Engine*					ui_engine;				///<interfejs u¿ytkownika (tak¿e graficzny)
 
 	//Objects
 	//std::vector<IndexPrediction>		index_predictor;
 
 	//time control
-	__int64						timer_frequency;//czêstotliwoœæ timera
-	__int64						time_previous;	//bêdziemy mierzyæ ró¿nicê miedzy czasami w kolejnych
-	__int64						elapsed_time;	//do licznika FPSów, czas od ostatniej aktualizacji frames_per_sec
-	float						lag;			//opóŸnienie wzglêdem normalego tempa updatowania sceny
-	unsigned int				frames;
-	float						frames_per_sec;	//najwa¿niejszy licznik w grze
+	__int64						timer_frequency;///<czêstotliwoœæ timera
+	__int64						time_previous;	///<bêdziemy mierzyæ ró¿nicê miedzy czasami w kolejnych
+	__int64						elapsed_time;	///<do licznika FPSów, czas od ostatniej aktualizacji frames_per_sec
+	float						lag;			///<opóŸnienie wzglêdem normalego tempa updatowania sceny
+	unsigned int				frames;			///<zlicza ramki od ostatniego wyzerowania
+	float						frames_per_sec;	///<najwa¿niejszy licznik w grze
 
-	bool						pause;
+	bool						pause;			///<Pauza
 
 	//queue
-	std::queue<Event*>*			events_queue;	//wskaŸnik na kolejke komunikatów w celu szybszego dostêpu
+	std::queue<Event*>*			events_queue;	///<WskaŸnik na kolejke komunikatów w celu szybszego dostêpu
 
 protected:
 	~engine_interface(){};

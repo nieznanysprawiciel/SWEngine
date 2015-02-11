@@ -1,5 +1,9 @@
 #pragma once
 
+/**@file DX11_interfaces_container.h
+@brief Zaiwiera deklaracjê klasy DX11_interfaces_container i DX11_constant_buffers_container s³u¿¹cych do
+Inicjowania i przechowywania obiektów DirectXa.*/
+
 #include "WinDef.h"
 #include "..\stdafx.h"
 
@@ -11,8 +15,10 @@ struct ID3D11RenderTargetView;
 #define GRAPHIC_ENGINE_INIT_OK		S_OK
 
 
-/*Klasa przechowuje w zmiennych statycznych najwa¿niejsze interfejsy
-DirectX11. Obiekty, które ich potrzebuj¹, powinny odziedziczyæ po tej klasie,
+/**@brief Klasa przechowuje w zmiennych statycznych najwa¿niejsze interfejsy
+DirectX11.
+
+Obiekty, które ich potrzebuj¹, powinny odziedziczyæ po tej klasie,
 dziêki czemu maj¹ bezpoœredni dostêp.
 
 Poza tym zawiera troszkê funkcji u³atwiaj¹cych tworzenie projektu DirectX.
@@ -32,19 +38,19 @@ jakiego klucza s¹ tworzone te kody b³êdów, wiêc nie moge stworzyæ swojego.*/
 class DX11_interfaces_container
 {
 protected:
-	static ID3D11Device*			device;
-	static ID3D11DeviceContext*		device_context;
-	static IDXGISwapChain*			swap_chain;
-	static ID3D11RenderTargetView*	render_target;
-	static ID3D11DepthStencilView*	z_buffer_view;
-	static ID3D11InputLayout*		mesh_vertex_format;
-	static ID3D11InputLayout*		ui_vertex_format;
-	static D3D_FEATURE_LEVEL		feature_level;
-	static ID3DBlob*				compiled_vertex_shader;
-	static ID3DBlob*				compiled_pixel_shader;
-	static ID3D11VertexShader*		default_vertex_shader;
-	static ID3D11PixelShader*		default_pixel_shader;
-	static ID3D11SamplerState*		default_sampler;
+	static ID3D11Device*			device;					///<Zmienna s³u¿y do tworzenia obiektó, buforów tekstur i zasobów
+	static ID3D11DeviceContext*		device_context;			///<Zmienna u¿ywana do renderowania sceny, ustawiania buforów, shaderów itp.
+	static IDXGISwapChain*			swap_chain;				///<S³u¿y do prezentowania ramki na ekranie
+	static ID3D11RenderTargetView*	render_target;			///<Widok bufora docelowego renderowania, czyli bufora tylnego
+	static ID3D11DepthStencilView*	z_buffer_view;			///<Widok z-buffora
+	static ID3D11InputLayout*		mesh_vertex_format;		///<Layout formatu wierzcho³ka u¿ywanego dla meshy
+	static ID3D11InputLayout*		ui_vertex_format;		///<Layout formatu wierzcho³ka u¿ywanego w GUI
+	static D3D_FEATURE_LEVEL		feature_level;			///<Opisuje zdolnoœci naszego sprzêtu
+	static ID3DBlob*				compiled_vertex_shader;	///<Bufor zawieraj¹cy skompilowany domyœlny vertex shader
+	static ID3DBlob*				compiled_pixel_shader;	///<Bufor zawieraj¹cy skompilowany domyœlny pixel shader
+	static ID3D11VertexShader*		default_vertex_shader;	///<Obiekt domyœlnego vertex shadera
+	static ID3D11PixelShader*		default_pixel_shader;	///<Obiekt domyœlnego piksel shadera
+	static ID3D11SamplerState*		default_sampler;		///<Obiekt domyœlnego samplera
 
 	DX11_interfaces_container() = default;
 	~DX11_interfaces_container() = default;
@@ -61,18 +67,23 @@ protected:
 	virtual void release_DirectX();
 
 	void begin_scene( );
-	inline void end_scene_and_present( ) { swap_chain->Present( 0, 0 ); }
+	inline void end_scene_and_present( ) { swap_chain->Present( 0, 0 ); }	///<Wywo³uje funkcjê swap_chain->Present w celu wyœwietlenia narysowanej sceny na monitorze
 };
 
 
 
-/*Klasa zawiera wskaŸniki na bufory sta³ych zawieraj¹ce podstawowe zestawy
-elementów przekazywanych do shaderów. S¹ to miedzy innymi macierze transformacji.*/
+/**@brief Klasa zawiera wskaŸniki na bufory sta³ych zawieraj¹ce podstawowe zestawy
+elementów przekazywanych do shaderów. S¹ to miedzy innymi macierze transformacji.
+
+@note Je¿eli w jakimkolwiek miejscu s¹ u¿ywane obiekty z tej klasy (DX11_constant_buffers_container), a nie tylko z klasy bazowej,
+to przy zwalnianiu nale¿y koniecznie wywo³aæ funkcjê release_DirectX tego obiektu, a nie klasy bazowej. Czyli innymi s³owy klasa
+odpowiedzialna za zwalnianie musi odziedziczyæ po tym obiekcie nawet, je¿eli nie u¿ywa jego zmiennych.
+W przeciwnym razie zostanie wywo³any funkcja wirtualna dla klasy bazowej.*/
 class DX11_constant_buffers_container : public DX11_interfaces_container
 {
 protected:
-	static ID3D11Buffer*		const_per_frame;
-	static ID3D11Buffer*		const_per_mesh;
+	static ID3D11Buffer*		const_per_frame;	///<Bufor sta³ych zmieniaj¹cych siê nie czêœciej ni¿ co ramkê
+	static ID3D11Buffer*		const_per_mesh;		///<Bufor sta³ych zmieniaj¹cy siê dla ka¿dej czêœci mesha
 
 	void init_buffers(unsigned int size_per_frame, unsigned int size_per_mesh);
 

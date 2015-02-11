@@ -1,5 +1,8 @@
 #pragma once
 
+/**@file meshes_textures_materials.h
+@brief plik zawieta deklaracje foramtów wierzcho³ków, klas zawieraj¹cych assety oraz Model3DFromFile.*/
+
 
 #include "..\..\stdafx.h"
 #include "..\DX11_interfaces_container.h"
@@ -83,28 +86,28 @@ W przypadku w³asnorêcznie pisanych shaderów nie trzeba siê trzymaæ tych sta³ych.
 typedef enum TEXTURES_TYPES
 {
 #if ENGINE_MAX_TEXTURES > 0
-	TEX_DIFFUSE
+	TEX_DIFFUSE			///<Tekstura dla kana³u diffuse
 #endif
 #if ENGINE_MAX_TEXTURES > 1
-	, TEX_LIGHTMAP
+	, TEX_LIGHTMAP		///<Lightmapa
 #endif
 #if ENGINE_MAX_TEXTURES > 2
-	, TEX_SPECULAR
+	, TEX_SPECULAR		///<Tekstura dla kana³u specular
 #endif
 #if ENGINE_MAX_TEXTURES > 3
-	, TEX_BUMP_MAP
+	, TEX_BUMP_MAP		///<Bump mapa
 #endif
 #if ENGINE_MAX_TEXTURES > 4
-	, TEX_AMBIENT
+	, TEX_AMBIENT		///<Tekstura dla kana³y ambient
 #endif
 #if ENGINE_MAX_TEXTURES > 5
-	, TEX_OTHER1
+	, TEX_DISPLACEMENT_MAP	///<Tekstura przemieszczeñ wierzcho³ków, w przypadku u¿ywania teselacji wierzcho³ków
 #endif
 #if ENGINE_MAX_TEXTURES > 6
-	, TEX_OTHER2
+	, TEX_OTHER1		///<Tekstura o dowolnym znaczeniu
 #endif
 #if ENGINE_MAX_TEXTURES > 7
-	, TEX_OTHER3
+	, TEX_OTHER2		///<Tekstura o dowolnym znaczeniu
 #endif
 
 } TEXTURES_TYPES;
@@ -146,7 +149,7 @@ private:
 protected:
 	virtual ~referenced_object( );		//Nie ka¿dy mo¿e skasowaæ obiekt
 
-	inline void set_id( unsigned int id ) { unique_id = id; }
+	inline void set_id( unsigned int id ) { unique_id = id; }	///<Ustawia identyfikator obiektu
 public:
 	referenced_object( int id );
 

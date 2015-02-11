@@ -1,17 +1,33 @@
 #pragma once
 
+
+/**@file 
+@brief Plik zawiera deklaracjê klasy FBX_loader s³u¿¹cej do wczytywania plików w formacie FBX.
+
+Obecna wersja FBX_loadera jest jedynie lekko zmodyfikowan¹ wersj¹ tego, który
+dzia³a³ pod DirectX 9. Zmiany, które zasz³y, to jedynie dopasowanie do nowego modelu
+przechowywania danych.
+
+Niestety nie czerpiemy korzyœci z takich rzeczy jak bufor indeksów oraz
+multitekturing. Nie jest równie¿ u¿ywany bumpmapping. Domyœlnie tekstura
+wczytana jest traktowana jakby by³a dla kana³u diffuse.
+
+To trzeba kiedyœ zmieniæ, aby po pierwsze optymalniej wykorzystywaæ silnik, a po
+drugie, ¿eby wykorzystywaæ wszystkie jego mo¿liwoœci.*/
+
 #include "..\..\..\..\stdafx.h"
 #include "..\loader_interface.h"
 #include "fbxsdk.h"
 
 using namespace DirectX;
 
+/**@brief Klasa s³u¿y do wczytywania plików w formacie Autodesk FBX.*/
 class FBX_loader	:	public Loader
 {
 private:
 	FbxManager*			fbx_manager;
 	FbxIOSettings*		fbx_IOsettings;
-	Model3DFromFile*	cur_model;
+	Model3DFromFile*	cur_model;		///<Na czas wczytywania zapisujemy sobie obiekt, do którego wczytujemy dane
 
 
 	void process_node(FbxNode* node);
@@ -28,8 +44,8 @@ public:
 	FBX_loader(ModelsManager* models_manager);
 	~FBX_loader();
 
-	LOADER_RESULT load_mesh( Model3DFromFile* new_file_mesh, const std::wstring& name );
-	bool can_load(const std::wstring& name);
+	LOADER_RESULT load_mesh( Model3DFromFile* new_file_mesh, const std::wstring& name ) override;
+	bool can_load(const std::wstring& name) override;
 
 
 private:

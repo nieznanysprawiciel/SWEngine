@@ -29,8 +29,12 @@ ID3D11Buffer* DX11_constant_buffers_container::const_per_mesh = nullptr;
 //								Zwalnianie obiektów DirectXa									//
 //----------------------------------------------------------------------------------------------//
 
+/**@brief Zwalnia wszystkie stworzone obiekty DirectXa.
+*/
 void DX11_interfaces_container::release_DirectX( )
 {
+	// Bardzo wa¿ne jest ustawienie zmiennych na nullptr w razie, gdyby jakaœ inna klasa wywo³ywa³a destruktor
+
 	//Zmienne pomocnicze
 	if ( mesh_vertex_format )
 		mesh_vertex_format->Release( ), mesh_vertex_format = nullptr;
@@ -68,7 +72,15 @@ void DX11_interfaces_container::release_DirectX( )
 //								Tworzenie obiektów DirectXa										//
 //----------------------------------------------------------------------------------------------//
 
-/*Tworzy obiekty swap_chain, device i device_context.*/
+/**@brief Tworzy obiekty swap_chain, device i device_context.
+
+@param[in] width Szerokoœæ ekranu w pikselach
+@param[in] height Wysokoœæ ekranu w pikselach
+@param[in] window Uchwyt okna, w którym renderujemy
+@param[in] fullscreen Tryb pe³noekranowy lub w oknie.
+@param[in] single_thread Ustawiæ na true, je¿eli mamy tylko jeden w¹tek, który tworzy wszystkie obiekty
+DirectXa typu bufory i shadery. Domyœlnie false.
+@return Zwraca jedn¹ ze sta³ych, jak¹ zwraca DirectX.*/
 int DX11_interfaces_container::init_devices( int width, int height, HWND window, bool fullscreen, bool single_thread )
 {
 	HRESULT result = S_OK;
@@ -150,10 +162,14 @@ int DX11_interfaces_container::init_devices( int width, int height, HWND window,
 	return GRAPHIC_ENGINE_INIT_OK;
 }
 
-/*Funkcja tworzy z-bufffer. Nastêpnie widok z bufora i widok tylnego bufora
+/**@brief Funkcja tworzy z-bufffer. Nastêpnie widok z bufora i widok tylnego bufora
 s¹ ustawione jako cel dla funkcji renderuj¹cych renderowania.
 
-Funkcji nie wolno wywo³ywaæ przed zainicjowaniem directXa.*/
+Funkcji nie wolno wywo³ywaæ przed zainicjowaniem directXa.
+@param[in] width Szerokoœæ ekranu w pikselach
+@param[in] height Wysokoœæ ekranu w pikselach
+@return Zwraca jedn¹ ze sta³ych, jak¹ zwraca DirectX.
+*/
 int DX11_interfaces_container::init_zBuffer( int width, int height )
 {
 	if ( !device )
@@ -213,12 +229,17 @@ int DX11_interfaces_container::init_zBuffer( int width, int height )
 //								Tworzenie formatów wierzcho³ków									//
 //----------------------------------------------------------------------------------------------//
 
-/*Tworzy layout dla formatu wierzcho³ka podanego w parametrze.
+/**@brief Tworzy layout dla formatu wierzcho³ka podanego w parametrze.
 Wynik jest zapisywany w polu mesh_vertex_format.
 
 Aby stworzyæ layouty trzeba koniecznie podaæ jakiœ skompilowany obiekt shadera.
 Nie jest to wygodne, ale tak niestety dzia³a DirectX 11.
-Oznacza to, ¿e funkcjê tê mo¿na wywo³aæ dopiero wtedy, kiedy taki obiekt zostanie stworzony.*/
+Oznacza to, ¿e funkcjê tê mo¿na wywo³aæ dopiero wtedy, kiedy taki obiekt zostanie stworzony.
+@param[in] layout_desc Deskryptor formatu layoutu.
+@param[in] array_size Iloœc rekordów w layout_desc.
+@param[in] shader WskaŸnik na bufor ze skompilowanym shaderem.
+@return Zwraca jedn¹ ze sta³ych, jak¹ zwraca DirectX.
+*/
 int DX11_interfaces_container::init_mesh_vertex_format( D3D11_INPUT_ELEMENT_DESC* layout_desc, unsigned int array_size, ID3DBlob* shader )
 {
 	if ( !shader )
@@ -235,14 +256,18 @@ int DX11_interfaces_container::init_mesh_vertex_format( D3D11_INPUT_ELEMENT_DESC
 	return GRAPHIC_ENGINE_INIT_OK;
 }
 
-/*Tworzy layout dla formatu wierzcho³ka podanego w parametrze.
+/**@brief Tworzy layout dla formatu wierzcho³ka podanego w parametrze.
 Wynik jest zapisywany w polu ui_vertex_format.
 
 Aby stworzyæ layouty trzeba koniecznie podaæ jakiœ skompilowany obiekt shadera.
 Nie jest to wygodne, ale tak niestety dzia³a DirectX 11.
 Oznacza to, ¿e funkcjê tê mo¿na wywo³aæ dopiero wtedy, kiedy taki obiekt zostanie stworzony.
 
-Niestety podany shader musi mieæ zgodne wejœcie z layoutem, który tworzymy.*/
+Niestety podany shader musi mieæ zgodne wejœcie z layoutem, który tworzymy.
+@param[in] layout_desc Deskryptor formatu layoutu.
+@param[in] array_size Iloœc rekordów w layout_desc.
+@param[in] shader WskaŸnik na bufor ze skompilowanym shaderem.
+@return Zwraca jedn¹ ze sta³ych, jak¹ zwraca DirectX.*/
 int DX11_interfaces_container::init_ui_vertex_format( D3D11_INPUT_ELEMENT_DESC* layout_desc, unsigned int array_size, ID3DBlob* shader )
 {
 	if ( !shader )
@@ -264,11 +289,16 @@ int DX11_interfaces_container::init_ui_vertex_format( D3D11_INPUT_ELEMENT_DESC* 
 //								Tworzenie domyœlnych shaderów									//
 //----------------------------------------------------------------------------------------------//
 
-/*Funkcja tworzy shader na podstawie podanego pliku, kompiluje go, a potem obudowuje klas¹
+/**@brief Funkcja tworzy shader na podstawie podanego pliku, kompiluje go, a potem obudowuje klas¹
 bêd¹c¹ interfejsem shadera. Parametr shader_name oznacza nazwê funkcji, od której zaczyna
 siê wykonanie kodu shadera.
 
-Funkcja ustawia ten shader w kontekœcie urz¹dzenia jako aktywny*/
+Funkcja ustawia ten shader w kontekœcie urz¹dzenia jako aktywny.
+W trybie debug komunikaty kompilacji shadera s¹ przekazywane do okna output.
+
+@param[in] file_name Nazwa pliku zawieraj¹cego shader.
+@param[in] shader_name Nazwa shadera.
+@return Zwraca jedn¹ ze sta³ych, jak¹ zwraca DirectX.*/
 int DX11_interfaces_container::init_vertex_shader(const std::wstring& file_name, const std::string& shader_name)
 {
 	if ( !device || !device_context )
@@ -316,13 +346,17 @@ int DX11_interfaces_container::init_vertex_shader(const std::wstring& file_name,
 	return GRAPHIC_ENGINE_INIT_OK;
 }
 
-/*Funkcja tworzy shader na podstawie podanego pliku, kompiluje go, a potem obudowuje klas¹
+/**@brief Funkcja tworzy shader na podstawie podanego pliku, kompiluje go, a potem obudowuje klas¹
 bêd¹c¹ interfejsem shadera. Parametr shader_name oznacza nazwê funkcji, od której zaczyna
 siê wykonanie kodu shadera.
 
 Poza tworzeniem domyœlnego shadera, funkcja tworzy domyœlny sampler.
+W trybie debug komunikaty kompilacji shadera s¹ przekazywane do okna output.
 
-Funkcja ustawia ten shader i sampler w kontekœcie urz¹dzenia jako aktywny.*/
+Funkcja ustawia ten shader i sampler w kontekœcie urz¹dzenia jako aktywny.
+@param[in] file_name Nazwa pliku zawieraj¹cego shader.
+@param[in] shader_name Nazwa shadera.
+@return Zwraca jedn¹ ze sta³ych, jak¹ zwraca DirectX.*/
 int DX11_interfaces_container::init_pixel_shader( const std::wstring& file_name, const std::string& shader_name )
 {
 	if ( !device || !device_context )
@@ -381,7 +415,8 @@ int DX11_interfaces_container::init_pixel_shader( const std::wstring& file_name,
 	return GRAPHIC_ENGINE_INIT_OK;
 }
 
-
+/**@brief Tworzy domyœlny smapler.
+@return Zwraca jedn¹ ze sta³ych, jak¹ zwraca DirectX.*/
 int DX11_interfaces_container::init_sampler( )
 {
 	D3D11_SAMPLER_DESC sampDesc;
@@ -405,7 +440,7 @@ int DX11_interfaces_container::init_sampler( )
 //----------------------------------------------------------------------------------------------//
 
 
-/*Czyœcimy tylny bufor oraz z-bufor i wywo³ujemy funcjê inicjuj¹c¹ renderowanie.*/
+/**@brief Czyœcimy tylny bufor oraz z-bufor i wywo³ujemy funcjê inicjuj¹c¹ renderowanie.*/
 void DX11_interfaces_container::begin_scene( )
 {
 	//Bufor tylny
@@ -420,6 +455,15 @@ void DX11_interfaces_container::begin_scene( )
 //----------------------------------------------------------------------------------------------//
 //								Funkcje dla klasy DX11_constant_buffers_container				//
 //----------------------------------------------------------------------------------------------//
+
+/**@brief Tworzy bufory sta³ych dla shadera.
+
+Bufory musz¹ mieæ rozmiar bêd¹cy wielokrotnoœci¹ 16 bajtów ze wzglêdu na rozmiar rejestrów GPU.
+Je¿eli podane wartoœci takie nie s¹, to s¹ rozszerzane do tej wielokrotnoœci, ale taka sytuacja mo¿e to oznaczaæ,
+¿e jest jakiœ b³¹d w programie.
+
+@param[in] size_per_frame Rozmiar bufora const_per_frame.
+@param[in] size_per_mesh Rozmiar bufora const_per_mesh.*/
 void DX11_constant_buffers_container::init_buffers( unsigned int size_per_frame, unsigned int size_per_mesh )
 {
 	HRESULT result;
@@ -456,6 +500,8 @@ void DX11_constant_buffers_container::init_buffers( unsigned int size_per_frame,
 	result = device->CreateBuffer( &buffer_desc, nullptr, &const_per_mesh );
 }
 
+/**@brief Zwalania obiekty DirectXa. Funkcja wywo³uje tê sam¹ funkcjê z obiektu potomnego, ¿eby
+zwolniæ wszystkie obiekty, które istniej¹.*/
 void DX11_constant_buffers_container::release_DirectX()
 {
 	if ( const_per_frame )

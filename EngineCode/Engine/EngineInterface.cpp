@@ -13,20 +13,19 @@
 
 void Engine::test()
 {
-	const wchar_t CLONE_FIGHTER[] = L"tylko_do_testow/clone_fighter_rel.FBX";
+	const wchar_t CLONE_FIGHTER[] = L"tylko_do_testow/ARC.FBX";
 	const wchar_t MOON[] = L"tylko_do_testow/moon/moon.FBX";
 	const wchar_t NEBULON[] = L"tylko_do_testow/Nebulon/Nebulon.FBX";
 	const wchar_t VADER_TIE[] = L"tylko_do_testow/VadersTIE.FBX";
 	const wchar_t TIE_FIGHTER[] = L"tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX";
 
-	/*
 	models_manager->load_model_from_file( CLONE_FIGHTER );
 	models_manager->load_model_from_file( MOON );
 	models_manager->load_model_from_file( NEBULON );
 	models_manager->load_model_from_file( VADER_TIE );
 	models_manager->load_model_from_file( TIE_FIGHTER );
-	*/
-	models_manager->test();			// Tu sie odbywa wczytywanie
+	
+	//models_manager->test();			// Tu sie odbywa wczytywanie
 
 	//dodawanie ksiê¿yca
 	Dynamic_mesh_object* moon = new Dynamic_mesh_object;
@@ -97,6 +96,7 @@ void Engine::test()
 	movement_engine->add_moveable_object( clone_fighter );
 
 
+	/*
 	//dodawanie skrzyni
 	Dynamic_mesh_object* skrzynia = new Dynamic_mesh_object;
 	position = XMVectorSet( 0.0, 0.0, 2.0, 0.0 );
@@ -122,7 +122,7 @@ void Engine::test()
 	display_engine->add_dynamic_mesh_object( skrzynia );
 	movement_engine->add_moveable_object( skrzynia );
 
-
+	*/
 
 	//ustawienie aktywnej kamery
 	Camera_object* camera = new Camera_object();

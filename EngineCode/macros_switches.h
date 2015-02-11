@@ -32,26 +32,6 @@ Je¿eli to makro nie jest zdefiniowane, to prêdkoœæ obrotowa jest wyra¿ona jako w
 #define ENGINE_MAX_LIGHTS		2
 
 
-
-// Nazwy dla domyœlnych shaderów i materia³u
-#define DEFAULT_VERTEX_SHADER_STRING	L"default_vertex_shader"
-#define DEFAULT_PIXEL_SHADER_STRING		L"default_pixel_shader"
-#define DEFAULT_MATERIAL_STRING			L"::default_material"
-
-
-/**
-@def DEFAULT_VERTEX_SHADER_STRING
-@brief Nazwa domyœlnego vertex shadera w ModelsManager.
-@def DEFAULT_PIXEL_SHADER_STRING
-@brief Nazwa domyœlnego pixel shadera w ModelsManager.
-@def DEFAULT_MATERIAL_STRING
-@brief Nazwa domyœlnego materia³u w ModelsManager.
-*/
-
-#define DEFAULT_VERTEX_SHADER_ENTRY		"VS"
-#define DEFAULT_PIXEL_SHADER_ENTRY		"PS"
-
-
 //#define INDEX_BUFFER_UINT16		// Definiujemy czy chcemy mieæ bufor indeksów 16-bitowy czy 32-bitowy
 #define INDEX_BUFFER_UINT32			// Wybraæ tylko jedno, inaczej bêdzie b³¹d kompilacji
 

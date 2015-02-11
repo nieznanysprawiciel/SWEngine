@@ -1,16 +1,27 @@
 #pragma once
 
+/**@file ResourceContainer.h
+#brief Zawiera deklaracjê szblonu klasy kontenera dla assetów.
+*/
+
 #include <map>
 
+
+/**@brief Szablon klasy do przechowywania assetów.
+
+Wszystkie assety s¹ identyfikowane po nazwie, która najczêœciej jest nazw¹ pliku, z którego asset
+pochodzi. Mapa zapewnia logarytmiczny czas dostêpu po nazwie. Istnieje te¿ mo¿liwoœæ odwo³ania siê
+po identyfikatorze, wtedy czas dostêpu jest liniowy (chyba ¿e iterowanie po kolejnych elementacj mapy
+nie odbywa siê liniowo.*/
 template <class TYPE>
 class ResourceContainer
 {
 	friend class ModelsManager;
 private:
-	unsigned int count;
+	unsigned int count;		///<Indentyfikator jaki zostanie przydzielony kolejnemy elementowi
 
 protected:
-	std::map<std::wstring, TYPE> container;
+	std::map<std::wstring, TYPE> container;	///<Kontener zawieraj¹cy assety powiazane z ich nazw¹
 
 	// Kasowanie obiektów
 	int force_remove( const std::wstring& name );
@@ -30,8 +41,11 @@ public:
 
 	// Dostêp do obiektów
 	TYPE get( unsigned int id );
-	inline unsigned int get_next_id() { return count; }
+	inline unsigned int get_next_id() { return count; }	///<Zwraca identyfikator, który zostanie przydzielony kolejnemu elementowi
 
+	/**@brief Zwraca element na podstawie jego nazwy
+	@param[in] name Nazwa elementu, który chcemy dostaæ
+	@return WskaŸnik na obiekt assetu*/
 	inline TYPE get( const std::wstring& name )
 	{
 		auto iter = container.find( name );
@@ -47,6 +61,7 @@ ResourceContainer<TYPE>::ResourceContainer()
 	count = 1;
 }
 
+/**@brief Destruktor zwalnia wszystkie elementy w mapie (tak¿e pamiêæ po nich)*/
 template <class TYPE>
 ResourceContainer<TYPE>::~ResourceContainer( )
 {
@@ -57,6 +72,12 @@ ResourceContainer<TYPE>::~ResourceContainer( )
 	container.clear();
 }
 
+/**@brief Zwraca element na podstawie identyfikatora.
+
+Wyszukiwanie po identyfikatorze jest liniowe, a po nazwie logarytmiczne.
+Jednak¿e porównania stringów mog¹ siê okazaæ bardziej kosztowne.
+@param[in] id Identyfikator elementu.
+@return WskaŸnik na poszukiwany element.*/
 template <class TYPE>
 TYPE ResourceContainer<TYPE>::get( unsigned int id )
 {
@@ -79,13 +100,19 @@ czy dodawanie jest konieczne.*/
 // Mo¿e kiedyœ zrobie wstawianie ze sprawdzaniem, na razie nie wydaje siê potrzebne
 
 
-/*Dodaje element do kontanera + nadaje mu unikalny identyfikator.
+/**@brief Dodaje element do kontanera + nadaje mu unikalny identyfikator.
+
 Je¿eli element ju¿ istnia³, to zostanie nadpisany nowym, dlatego nale¿y
 zawsze przed u¿yciem sprawdziæ czy pod tak¹ nazw¹, coœ ju¿ siê nie 
-znajduje.*/
+znajduje.
+@param[in] name Nazwa elementu, pod jak¹ zostanie dodany.
+@param[in] resource Element dodania.*/
 template <class TYPE>
 void ResourceContainer<TYPE>::unsafe_add( const std::wstring& name, TYPE resource )
 {
+	if ( !resource )
+		return;	//Nie mo¿emy potem ustawiæ id
+
 	container[name] = resource;
 
 	resource->set_id( count );
@@ -96,11 +123,13 @@ void ResourceContainer<TYPE>::unsafe_add( const std::wstring& name, TYPE resourc
 //							kasowanie obiektów
 //-------------------------------------------------------------------------------//
 
-/*Usuwa element o podanej nazwie, je¿eli nie ma do niego odwo³añ.
-Zwracana wartoœæ:
-0	-	w przypadku powodzenia
--1	-	nie znaleziono elementu
-1	-	nie da siê usun¹æ, bo jest w u¿yciu*/
+/**@brief Usuwa element o podanej nazwie, je¿eli nie ma do niego odwo³añ.
+
+@param[in] name nazwa elementu do usuniêcia.
+@return Zwracana wartoœæ:
+- 0	-	w przypadku powodzenia,
+- -1	-	nie znaleziono elementu,
+- 1	-	nie da siê usun¹æ, bo jest w u¿yciu*/
 template <class TYPE>
 int ResourceContainer<TYPE>::remove( const std::wstring& name )
 {
@@ -118,11 +147,13 @@ int ResourceContainer<TYPE>::remove( const std::wstring& name )
 }
 
 
-/*Usuwa element o podanym indeksie, je¿eli nie ma do niego odwo³añ.
-Zwracana wartoœæ:
-0	-	w przypadku powodzenia
--1	-	nie znaleziono elementu
-1	-	nie da siê usun¹æ, bo jest w u¿yciu*/
+/**@brief Usuwa element o podanym indeksie, je¿eli nie ma do niego odwo³añ.
+
+@param[in] id Identyfikator elementu
+@return Zwracana wartoœæ:
+- 0	-	w przypadku powodzenia,
+- -1	-	nie znaleziono elementu,
+- 1	-	nie da siê usun¹æ, bo jest w u¿yciu*/
 template <class TYPE>
 int ResourceContainer<TYPE>::remove( unsigned int id )
 {
@@ -143,10 +174,10 @@ int ResourceContainer<TYPE>::remove( unsigned int id )
 	return -1;		// Nie znaleŸliœmy elementu
 }
 
-/* Kasuje wszystkie elementy w kontenerze, które nie s¹ u¿ywane przez
+/**@brief Kasuje wszystkie elementy w kontenerze, które nie s¹ u¿ywane przez
 ¿aden obiekt. Kasowanie jest w pe³ni bezpieczne.
 
-Zwraca liczbe usuniêtych elementów.*/
+@return Zwraca liczbê usuniêtych elementów.*/
 template <class TYPE>
 int ResourceContainer<TYPE>::remove_unused()
 {
@@ -167,12 +198,12 @@ int ResourceContainer<TYPE>::remove_unused()
 }
 
 
-/* #protected
-Wymusza skasowanie podanego elementu
+/**@brief Wymusza skasowanie podanego elementu, nawet je¿eli jest u¿ywany
 
-Zwracana wartoœæ:
-0	-	w przypadku powodzenia
--1	-	nie znaleziono elementu*/
+@param[in] name Nazwa elementu do usuniêcia.
+@return Zwracana wartoœæ:
+- 0	-	w przypadku powodzenia,
+- -1	-	nie znaleziono elementu*/
 template <class TYPE>
 int ResourceContainer<TYPE>::force_remove( const std::wstring& name )
 {
@@ -184,12 +215,12 @@ int ResourceContainer<TYPE>::force_remove( const std::wstring& name )
 	return 0;
 }
 
-/* #protected
-Wymusza skasowanie podanego elementu
+/**@brief Wymusza skasowanie podanego elementu
 
-Zwracana wartoœæ:
-0	-	w przypadku powodzenia
--1	-	nie znaleziono elementu*/
+@param[in] id Identyfkator elementu do usuniêcia
+@return Zwracana wartoœæ:
+- 0	-	w przypadku powodzenia,
+- -1	-	nie znaleziono elementu*/
 template <class TYPE>
 int ResourceContainer<TYPE>::force_remove( unsigned int id )
 {
@@ -204,7 +235,7 @@ int ResourceContainer<TYPE>::force_remove( unsigned int id )
 	return -1;		// Nie znaleziono elementu
 }
 
-/*Kasuje wszystkie elementy niezale¿nie od tego czy by³y u¿ywane,
+/**@brief Kasuje wszystkie elementy niezale¿nie od tego czy by³y u¿ywane,
 a nastêpnie czyœci mapê.*/
 template <class TYPE>
 void ResourceContainer<TYPE>::force_remove_all( )

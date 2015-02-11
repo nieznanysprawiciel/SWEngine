@@ -4,18 +4,8 @@
 
 #include "..\..\..\..\memory_leaks.h"
 
-/*Obecna wersja FBX_loadera jest jedynie lekko zmodyfikowan¹ wersj¹ tego, który
-dzia³a³ pod DirectX 9. Zmiany, które zasz³y, to jedynie dopasowanie do nowego modelu
-przechowywania danych.
 
-Niestety nie czerpiemy korzyœci z takich rzeczy jak bufor indeksów oraz
-multitekturing. Nie jest równie¿ u¿ywany bumpmapping. Domyœlnie tekstura 
-wczytana jest traktowana jakby by³a dla kana³u diffuse.
-
-To trzeba kiedyœ zmieniæ, aby po pierwsze optymalniej wykorzystywaæ silnik, a po
-drugie, ¿eby wykorzystywaæ wszystkie jego mo¿liwoœci.*/
-
-
+///@brief Kontruktr inicjuje obiekty FBX SDK, konieczne do wczytania modelu.
 FBX_loader::FBX_loader(ModelsManager* models_manager)
 	: Loader(models_manager)
 {
@@ -33,8 +23,11 @@ FBX_loader::~FBX_loader()
 	//nie zwalniamy fbx_IOsettings, bo zajmuje siê tym fbx_manager
 }
 
-/*Sprawdza czy umie wczytaæ podany plik.
-Funkcja robi to na podstawie rozszerzenia pliku.*/
+/**@brief Sprawdza czy umie wczytaæ podany plik.
+Funkcja robi to na podstawie rozszerzenia pliku.
+
+Obs³ugiwane formatu plików to:
+- FBX*/
 bool FBX_loader::can_load(const std::wstring& name)
 {
 	// Funkcja porównujaca rozszerzenia ignoruj¹c ró¿nice w wielkoœci liter
@@ -100,9 +93,13 @@ LOADER_RESULT FBX_loader::load_mesh( Model3DFromFile* new_file_mesh, const std::
 	return MESH_LOADING_OK;
 }
 
-/*Dobieramy siê do drzewa.
+/**@brief Dobieramy siê do drzewa, zwróconego przez FBX SDK.
+
+FBX SDK wczytuje plik i tworzy dla niego drzewo. Teraz naszym zadaniem jest przejœæ siê po tym drzewie
+i wyci¹gn¹æ wszystkie istotne informacje.
 (nie stosujemy tu zwyk³ej funkcji process_node, poniewa¿ root_node nie zawiera ¿adnych istotnych informacji
-co wynika z za³o¿eñ przyjêtych przez twórców formatu FBX.*/
+co wynika z za³o¿eñ przyjêtych przez twórców formatu FBX.
+@param[in] root_node WskaŸnik na korzeñ drzewa rozk³adu pliku.*/
 int FBX_loader::process_tree(FbxNode* root_node)
 {
 	if (root_node == nullptr)
@@ -114,10 +111,11 @@ int FBX_loader::process_tree(FbxNode* root_node)
 	return MESH_LOADING_OK;
 }
 
-/*Przetwarzamy jeden wêze³ drzewa oraz rekurencyjnie wszystkie jego dzieci.
+/**@brief Przetwarzamy jeden wêze³ drzewa oraz rekurencyjnie wszystkie jego dzieci.
 Wszystkie dane zostan¹ umieszczone w zmiennej cur_model.
 
-Mo¿na bezpiecznie podaæ nullptr w pierwszym parametrze.*/
+Mo¿na bezpiecznie podaæ nullptr w parametrze.
+@param[in] node Wêze³ drzewa do przetworzenia.*/
 void FBX_loader::process_node(FbxNode* node)
 {
 	if (node == nullptr)
@@ -145,10 +143,15 @@ void FBX_loader::process_node(FbxNode* node)
 }
 
 
-/*Przetwarzamy mesha przypisanego do jednego z node'ów drzewa. Poniewa¿ do ró¿nych wierzcho³ków
+/**@brief Przetwarzamy mesha przypisanego do jednego z node'ów drzewa.
+
+Poniewa¿ do ró¿nych wierzcho³ków
 w tym meshu mog¹ byæ przypisane ró¿ne materia³y, to musimy na tym etapie podzieliæ mesha na kilka czêœci
 o tym samym materiale (teksturze). Potem meshe zostaj¹ dodane do klasy ModelsManager, a odpowiednie odwo³ania
-umieszczone w obiekcie Model3DFromFile, który dostalismy przy wywo³aniu funkcji wczytuj¹cej plik.*/
+umieszczone w obiekcie Model3DFromFile, który dostalismy przy wywo³aniu funkcji wczytuj¹cej plik.
+@param[in] node Node zawieraj¹cy danego mesha
+@param[in] mesh Obiekt zawieraj¹cy mesha
+@param[in] transformation Macierz transformacji podanego node'a.*/
 void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLOAT4X4& transformation)
 {
 	//je¿eli mesh siê ju¿ wczeœniej pojawi³ w innym nodzie, to mamy go zapisanego.
@@ -272,7 +275,7 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 }
 
 
-/*Dla podanego polygona odczytujemy jego indeks materia³u. Je¿eli nie ma ¿adnych materia³ów przypisanych
+/**@brief Dla podanego polygona odczytujemy jego indeks materia³u. Je¿eli nie ma ¿adnych materia³ów przypisanych
 to dostajemy 0. Kiedy potem bêdziemy wybieraæ, do której tablicy mesha zapisaæ wierzcho³ek, wszystko
 bêdzie dzia³a³o poprawnie nawet, jak materi¹³u nie bêdzie.*/
 int FBX_loader::read_material_index(FbxMesh* mesh, unsigned int polygon_counter)
@@ -296,7 +299,7 @@ int FBX_loader::read_material_index(FbxMesh* mesh, unsigned int polygon_counter)
 	return index;
 }
 
-
+/**@brief Wczytuje UVs dla podanego wierzcho³ka.*/
 void FBX_loader::read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_counter, XMFLOAT2& UV_cords)
 {
 	if (mesh->GetUVLayerCount() < 1)
@@ -342,7 +345,7 @@ void FBX_loader::read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_
 }
 
 
-/*Kopiujemy materia³ konwertuj¹c go z formatu u¿ywanego przez FBX SDK do formatu directX.*/
+/**@brief Kopiujemy materia³ konwertuj¹c go z formatu u¿ywanego przez FBX SDK do formatu directX.*/
 void FBX_loader::copy_material(D3DMATERIAL9& directXmaterial, const FbxSurfacePhong& FBXmaterial)
 {
 	FbxDouble3 diffuse = static_cast<FbxDouble3>(FBXmaterial.Diffuse.Get());
@@ -377,7 +380,7 @@ void FBX_loader::copy_material(D3DMATERIAL9& directXmaterial, const FbxSurfacePh
 	directXmaterial.Power = static_cast<float>(power);
 }
 
-/*Kopiujemy materia³ konwertuj¹c go z formatu u¿ywanego przez FBX SDK do formatu u¿ywanego w silniku.*/
+/**@brief Kopiujemy materia³ konwertuj¹c go z formatu u¿ywanego przez FBX SDK do formatu u¿ywanego w silniku.*/
 void FBX_loader::copy_material( MaterialObject& engine_material, const FbxSurfacePhong& FBXmaterial )
 {
 	FbxDouble3 diffuse = static_cast<FbxDouble3>(FBXmaterial.Diffuse.Get( ));

@@ -28,7 +28,9 @@ UI_Engine::~UI_Engine()
 
 
 
+/**@brief Inicjalizuje obiekty Direct Inputa
 
+@return Zwraca tak¹ wartoœæ jak funkcje Directinput.*/
 int UI_Engine::init_direct_input()
 {
 	int result = DirectInput8Create(engine->instance_handler,
@@ -65,6 +67,8 @@ int UI_Engine::init_direct_input()
 	return result;
 }
 
+
+/**@brief Zwalnia obiekty Direct Inputa.*/
 void UI_Engine::clean_direct_input()
 {
 	if (direct_input != nullptr)
@@ -84,9 +88,9 @@ void UI_Engine::clean_direct_input()
 	}
 }
 
-//Funkcja wywo³ywana przez klasê Engine w ka¿dym obiegu g³ównej petli programu.
-//Przechwytujemy klawiaturê, wykonujemy wszytkie funkcje obs³ugi obiektów sterowanych.
-//Parametrem jest czas który up³yn¹³ od ostatniego wywo³ania
+///@brief Funkcja wywo³ywana przez klasê Engine w ka¿dym obiegu g³ównej petli programu.
+///Przechwytujemy klawiaturê, wykonujemy wszytkie funkcje obs³ugi obiektów sterowanych.
+///@param[in] time_interval Parametrem jest czas który up³yn¹³ od ostatniego wywo³ania
 void UI_Engine::proceed_input(float time_interval)
 {
 	keyboard_input->GetDeviceState(256, keyboard_state);
@@ -98,8 +102,10 @@ void UI_Engine::proceed_input(float time_interval)
 	update_abstraction_layer();
 }
 
-/*Funkcja rysuj¹ca graficzny interfejs u¿ytkownika.
- *Jest wywo³ywana zaraz po wszystkich procedurach rysuj¹cych obiekty na scenie/
+/** @brief Funkcja rysuj¹ca graficzny interfejs u¿ytkownika.
+Jest wywo³ywana zaraz po wszystkich procedurach rysuj¹cych obiekty na scenie.
+
+@param[in] time_interval Parametrem jest czas który up³yn¹³ od ostatniego wywo³ania
  */
 void UI_Engine::draw_GUI(float time_interval)
 {

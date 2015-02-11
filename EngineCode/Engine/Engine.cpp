@@ -82,6 +82,12 @@ Engine::~Engine()
 //								inicjalizacja okna i DirectXa									//
 //----------------------------------------------------------------------------------------------//
 
+///@brief Inicjuje dzia³anie silnika.
+///W trybie fullscreen szerokoœæ i wysokoœæ okna jest ignorowana, a dane s¹ pobierane z systemu.
+///@param[in] width Szerokoœæ okna
+///@param[in] height Wysokoœæ okna
+///@param[in] fullscreen Pe³ny ekran lub renderowanie w oknie
+///@param[in] nCmdShow Czwarty parametr funkcji WinMain
 int Engine::init_engine( int width, int height, BOOL full_screen, int nCmdShow )
 {
 	int result;
@@ -211,7 +217,7 @@ void Engine::clean_DirectX()
 //								potok przetwarzania obiektów									//
 //----------------------------------------------------------------------------------------------//
 
-/*To tutaj dziej¹ siê wszystkie rzeczy, które s¹ wywo³ywane co ka¿d¹ klatkê*/
+/**@brief To tutaj dziej¹ siê wszystkie rzeczy, które s¹ wywo³ywane co ka¿d¹ klatkê.*/
 void Engine::render_frame()
 {
 	float time_interval;
@@ -258,8 +264,9 @@ void Engine::render_frame()
 
 
 
-/*Funkcja oblicza interwa³ czasowy jaki up³yn¹³ od ostatniej ramki.
- *Poza tym s¹ tu generowane eventy dotycz¹ce czasu, opóŸnieñ itp.*/
+/**@brief Funkcja oblicza interwa³ czasowy jaki up³yn¹³ od ostatniej ramki.
+ *Poza tym s¹ tu generowane eventy dotycz¹ce czasu, opóŸnieñ itp.
+ @param[out] time_interval Zwraca interwa³ jaki up³yn¹³ od ostatniego wywo³ania.*/
 void Engine::time_controller(float& time_interval)
 {
 	__int64 time_current;
@@ -294,25 +301,19 @@ void Engine::time_controller(float& time_interval)
 //----------------------------------------------------------------------------------------------//
 
 
-/*Funkcja pozwala wys³aæ event, który bêdzie potem przetworzony przez klase FableEngine.
- *Eventy s¹ metod¹ komunikacji pomiedzy silnikiem graficznym, silnikiem fizycznym, AI i silnikiem kolizji,
- *a modu³em silnika odpowiedzialnym za fabu³ê. Istnieje szereg eventów wbudowanych, wysy³anych przez silnik,
- *mo¿na równie¿ definiowaæ w³asne nowe eventy poprzez dziedziczenie z klasy Event. Event mo¿e byæ wys³any przez dowolny
- *objekt poprzez wywo³anie funkcji Object::event. Aby wys³aæ w³asny event trzeba przeci¹¿yæ jedn¹ z funkcji klas wbudowanych,
- *która jest potem wywo³ywana przez silnik i wywo³aæ tê funkjê.
- *
- *Za zwolnienie pamiêci po klasie Event odpowiada klasa FabelEngine (jest to robione automatycznie po wywo³aniu funkcji obs³ugi,
- *u¿ytkownik nie musi siê tym przejmowac).*/
+/**@brief Funkcja pozwala wys³aæ event, który bêdzie potem przetworzony przez klase FableEngine.
+
+@see Events
+@param[in] new_event Event do wys³ania.*/
 void Engine::send_event(Event* new_event)
 {
 	events_queue->push(new_event);
 }
 
-/*
-Funkcja wczytuj¹ca startowy level do silnika. Najczêœciej na tym etapie wczytuje siê tylko menu,
+/**@brief Funkcja wczytuj¹ca startowy level do silnika. Najczêœciej na tym etapie wczytuje siê tylko menu,
 oraz wszytkie elementy, które s¹ przydatne na ka¿dym etapie gry.
 
-Zawartosc klasy GamePlay powinna byæ jak najmniejsza, poniewa¿ wszystkie te rzeczy s¹ wczytywane
+Zawartoœæ klasy GamePlay powinna byæ jak najmniejsza, poniewa¿ wszystkie te rzeczy s¹ wczytywane
 zanim cokolwiek pojawi siê na ekranie. Z tego wzglêdu lepiej najpierw wczytaæ ma³o, ¿eby u¿ytkownik
 ju¿ coœ zobaczy³, a potem dopiero wczytaæ resztê wyœwietlaj¹c jednoczeœnie pasek wczytywania.
 
@@ -321,7 +322,10 @@ jaka istnieje, na póŸniejszych etapach gry robi siê to innymi funkcjami.
 
 Level siê nie wczyta, je¿eli nie zainicjowano DirectXa. Funkcje tworz¹ce bufory, textury
 i tym podobne rzeczy wymagaj¹ zainicjowanego kontekstu urz¹dzenia DirectX, dlatego 
-na wszelki wypadek zawsze inicjalizacja powinna byæ wczeœniej.*/
+na wszelki wypadek zawsze inicjalizacja powinna byæ wczeœniej.
+
+@param[in] game_play Obiekt do wczytania, jako pocz¹tek gry.
+@see GamePlay*/
 void Engine::set_entry_point( GamePlay* game_play )
 {
 	if ( directX_ready )
@@ -338,8 +342,8 @@ void Engine::set_entry_point( GamePlay* game_play )
 }
 
 #ifndef __UNUSED
-//Nie bêdzie wczytywania z bibliotek DLL. Maj¹ one ddzieln¹ stertê i powoduje to problemy ze zwalnianiem
-//pamiêci. Poza tym taka architektura nie nadaje siê do przeci¹¿ania operatorów new i delete.
+///@brief Nie bêdzie wczytywania z bibliotek DLL. Maj¹ one ddzieln¹ stertê i powoduje to problemy ze zwalnianiem
+///pamiêci. Poza tym taka architektura nie nadaje siê do przeci¹¿ania operatorów new i delete.
 void Engine::set_entry_point( const std::wstring dll_name )
 {
 	HINSTANCE dll_entry_point;

@@ -44,7 +44,7 @@ InputAbstractionLayer::~InputAbstractionLayer()
 }
 
 
-/*Funkcja zapisuje wszystkie wartoœci przycisków, które potencjalnie mog¹ wys³aæ
+/**@brief Funkcja zapisuje wszystkie wartoœci przycisków, które potencjalnie mog¹ wys³aæ
 eventy. Nastêpnie tablice s¹ zerowane.
 
 Po dostarczeniu klasie wszystkich informacji o urzadzeniach wejœciowych, nast¹pi
@@ -68,7 +68,11 @@ void InputAbstractionLayer::begin_event_collection()
 
 }
 
+/**@brief Funkcja wysy³a eventy, je¿eli jakieœ przyciski wirtualne zosta³y wciœniête.
+Aby tak siê sta³o, musi znajdowaæ siê odpowiedni wpis w tablicy event_mapping_table.
 
+@param[in] engine WskaŸnik jest potrzebny, aby móc wys³aæ event.
+*/
 void InputAbstractionLayer::send_events(Engine* engine)
 {
 //Przechodzimy po tablicy eventów i sprawdzamy czy zapisane wartoœci siê zmieni³y.
@@ -113,9 +117,13 @@ void InputAbstractionLayer::send_events(Engine* engine)
 //=================================================================//
 //						ustawianie stanu przycisków
 //=================================================================//
-/*Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków na podstawie
+
+/**@brief Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków na podstawie
 wejœcia o intefejsie klawiatury. Zazwyczaj wywo³uje siê j¹ dla klawiatury, ale mo¿e byæ te¿ tak,
-¿e directX reprezentuje jakieœ inne urz¹dzenie takim samym interfejsem.*/
+¿e directX reprezentuje jakieœ inne urz¹dzenie takim samym interfejsem.
+
+@param[in] device_nr Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci @ref DEVICE_IDs.
+@param[in] keyboard_state Tablica 255 elementów opisuj¹ca stan klawiatury.*/
 
 void InputAbstractionLayer::update_keyboard_device( short device_nr, const char* keyboard_state )
 {
@@ -135,19 +143,28 @@ void InputAbstractionLayer::update_keyboard_device( short device_nr, const char*
 		
 }
 
-/*Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków oraz osi na podstawie
+/**@brief Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków oraz osi na podstawie
 wejœcia o intefejsie myszy. Zazwyczaj wywo³uje siê j¹ dla myszy, ale mo¿e byæ te¿ tak,
-¿e directX reprezentuje jakieœ inne urz¹dzenie takim samym interfejsem.*/
+¿e directX reprezentuje jakieœ inne urz¹dzenie takim samym interfejsem.
+
+@param[in] device_nr Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci @ref DEVICE_IDs.
+@param[in] mouse_state Struktura opisuj¹ca stan urz¹dzenia, które da siê opisaæ takim interfejsem.
+*/
 void InputAbstractionLayer::update_mouse_device( short device_nr, const DIMOUSESTATE2* mouse_state )
 {
 
 
 }
 
-/*Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków oraz osi na podstawie
-wejœcia o intefejsie joysticka. Zazwyczaj wywo³uje siê j¹ dla joysticka i wszystkich innych urz¹dzeñ,
+/**@brief Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków oraz osi na podstawie
+wejœcia o intefejsie joysticka.
+
+Zazwyczaj wywo³uje siê j¹ dla joysticka i wszystkich innych urz¹dzeñ,
 które nie sa klawiatur¹ albo mysz¹, ale mo¿e byæ te¿ tak, ¿e directX reprezentuje jakieœ
-inne urz¹dzenie takim samym interfejsem.*/
+inne urz¹dzenie takim samym interfejsem.
+
+@param[in] device_nr Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci @ref DEVICE_IDs.
+@param[in] joystick_state Struktura opisuj¹ca stan urz¹dzenia, które da siê opisaæ takim interfejsem.*/
 void InputAbstractionLayer::update_joystick_device( short device_nr, const DIJOYSTATE* joystick_state )
 {
 
@@ -157,6 +174,9 @@ void InputAbstractionLayer::update_joystick_device( short device_nr, const DIJOY
 //	w³¹czanie i wy³¹czanie eventów
 //=================================================================//
 
+/**@brief ¯¹da wysy³ania eventów o wciœniêciu wirtualnego przycisku 
+o podanym indeksie.
+@param[in] v_index Indeks wirtualnego przycisku w tablicy.*/
 void InputAbstractionLayer::demand_down_event( unsigned short v_index )
 {
 	unsigned int i = 0;
@@ -176,6 +196,9 @@ void InputAbstractionLayer::demand_down_event( unsigned short v_index )
 	}
 }
 
+/**@brief ¯¹da wysy³ania eventów o puszczeniu wirtualnego przycisku
+o podanym indeksie.
+@param[in] v_index Indeks wirtualnego przycisku w tablicy.*/
 void InputAbstractionLayer::demand_up_event( unsigned short v_index )
 {
 	unsigned int i = 0;
@@ -195,6 +218,9 @@ void InputAbstractionLayer::demand_up_event( unsigned short v_index )
 	}
 }
 
+/**@brief ¯¹da zaprzestania wysy³ania eventów o wciœniêciu wirtualnego przycisku
+o podanym indeksie.
+@param[in] v_index Indeks wirtualnego przycisku w tablicy.*/
 void InputAbstractionLayer::delete_up_event( unsigned short v_index )
 {
 	for( unsigned int i = 0; i < event_mapping_table.size(); ++i )
@@ -209,6 +235,9 @@ void InputAbstractionLayer::delete_up_event( unsigned short v_index )
 	}
 }
 
+/**@brief ¯¹da zaprzestania wysy³ania eventów o puszczeniu wirtualnego przycisku
+o podanym indeksie.
+@param[in] v_index Indeks wirtualnego przycisku w tablicy.*/
 void InputAbstractionLayer::delete_down_event( unsigned short v_index )
 {
 	for( unsigned int i = 0; i < event_mapping_table.size( ); ++i )
@@ -228,7 +257,11 @@ void InputAbstractionLayer::delete_down_event( unsigned short v_index )
 //	ustawienie mapowania
 //=================================================================//
 
+/**@brief Funkcja s³u¿y do zdefiniowania wartstwy abstrakcji dla przycisków.
 
+@param[in] mapping Tablica struktur, która mapuj¹ przyciski fizyczne na przyciski wirtualne.
+@param[in] length D³ugoœæ podanej w pierwszym parametrze tablicy
+*/
 void InputAbstractionLayer::setup_buttons_layer( input_mapping* mapping, unsigned int length )
 {
 	unsigned int max = 0;
@@ -245,6 +278,12 @@ void InputAbstractionLayer::setup_buttons_layer( input_mapping* mapping, unsigne
 	virtual_button = new char[num_buttons];
 }
 
+
+/**@brief Funkcja s³u¿y do zdefiniowania wartstwy abstrakcji dla osi.
+
+@param[in] mapping Tablica struktur, która mapuj¹ osie fizyczne na osie wirtualne.
+@param[in] length D³ugoœæ podanej w pierwszym parametrze tablicy
+*/
 void InputAbstractionLayer::setup_axis_layer( input_mapping* mapping, unsigned int length )
 {
 	unsigned int max = 0;
@@ -261,6 +300,12 @@ void InputAbstractionLayer::setup_axis_layer( input_mapping* mapping, unsigned i
 	virtual_axis = new float[num_axis];
 }
 
+/**@brief Funkcja tworz¹ca warstwê abstrakcji na podstawie podanego pliku.
+@todo Funkcja do napisania, struktura pliku musi zostaæ okreœlona.
+
+@param[in] file_name Nazwa pliku do wczytania.
+@return Zwraca 0 w przypadku poprawnego wczytania.
+*/
 int InputAbstractionLayer::setup_layer_from_file( const std::string& file_name )
 {
 	return 0;

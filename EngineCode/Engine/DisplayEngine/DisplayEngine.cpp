@@ -33,6 +33,7 @@ DisplayEngine::~DisplayEngine()
 	delete[] interpolated_matrixes;
 }
 
+/**@brief Inicjuje bufory sta³ych.*/
 void DisplayEngine::init_const_buffers()
 {
 	init_buffers( sizeof(ConstantPerFrame), sizeof( ConstantPerMesh ));
@@ -40,9 +41,18 @@ void DisplayEngine::init_const_buffers()
 
 
 
-/*Funkcja renderuj¹ca obiekty 3d
- *Wywo³ania BeginScene() i EndScen() s¹ wykonywane przez klasê Engine.
- *Jest to konieczne, gdy chcemy renderowaæ GUI za pomoc¹ obiektu UI_Engine.*/
+/**@brief Funkcja do renderowania sceny
+
+Poniewa¿ klasa UI_Engine tak¿e wykonuje renderowanie( wyœwietla elementy interfejsu graficznego ),
+funkcja display_engine nie mo¿e sama wywo³ywaæ  BeginScene( ) i EndScene( ) z bilbioteki directX, aby nie
+by³o podwojnego wywo³ania. Z tego wzglêdu powy¿sze funkcje s¹ wywo³ywane zewnetrznie w pêtli g³ównej przez klasê Engine.
+
+Funkcja display_engine ma obowi¹zek za ka¿dym razem od nowa ustawiæ macierz widoku i projekcji, poniewa¿
+mog¹ byæ zmodyfikowane przez UI_Engine.Innymi s³owy nie mo¿na za³o¿yæ, ¿e jak siê raz ustawi³o macierze,
+to przy nastêpnym wywo³aniu bêd¹ takie same.
+
+@param[in] time_interval Czas od ostatniego wywo³ania.
+*/
 void DisplayEngine::display_scene(float time_interval)
 {
 	set_view_matrix();
@@ -147,8 +157,12 @@ void DisplayEngine::display_scene(float time_interval)
 }
 
 
-/*Tworzy macierz projekcji i zapamiêtuje j¹ w polu projection_matrix klasy. W ka¿dym wywo³aniu funkcji
-display_scene ustawiana jest macierz zapisana w tym polu.*/
+/**@brief Tworzy macierz projekcji i zapamiêtuje j¹ w polu projection_matrix klasy. W ka¿dym wywo³aniu funkcji
+display_scene ustawiana jest macierz zapisana w tym polu.
+@param[in] angle K¹t widzenia w pionie
+@param[in] X_to_Y Stosunek Szerokoœci do wysokoœci ekranu
+@param[in] near_plane Bli¿sza p³aszczyzna obcinania
+@param[in] far_plane Dalsza p³aszczyzna obcinania*/
 void DisplayEngine::set_projection_matrix(float angle, float X_to_Y, float near_plane, float far_plane)
 {
 	XMMATRIX proj_matrix = XMMatrixPerspectiveFovLH(angle, X_to_Y, near_plane, far_plane);
@@ -162,7 +176,7 @@ void DisplayEngine::set_projection_matrix(float angle, float X_to_Y, float near_
 //=================================================================//
 
 
-/*U¿ywa aktualnie ustawionej kamery, ¿eby stworzyæ macierz widoku. Macierz widoku jest ustawiana w directX.
+/**@brief U¿ywa aktualnie ustawionej kamery, ¿eby stworzyæ macierz widoku. Macierz widoku jest ustawiana w directX.
 Funkcja jest prywatna, poniewa¿ jest wywo³ywana podczas renderowania sceny. Aby ingerowaæ z zewn¹trz
 w ustawienie kamery nale¿y zmieniæ aktualnie ustawion¹ kamerê na jedn¹ z innych zapisanych w silniku.
 */
@@ -192,6 +206,9 @@ void DisplayEngine::set_view_matrix()
 	XMStoreFloat4x4( &shader_data_per_frame.view_matrix, view_matrix );
 }
 
+/**@brief Dodaje obiekt, który ma zostaæ wyœwietlony.
+
+@param[in] object Object, który ma zostaæ dopisany do tablic wyœwietlania.*/
 void DisplayEngine::add_dynamic_mesh_object( Dynamic_mesh_object* object )
 {
 	realocate_interpolation_memory( );		//powiêkszamy tablicê macierzy interpolacji
@@ -200,7 +217,10 @@ void DisplayEngine::add_dynamic_mesh_object( Dynamic_mesh_object* object )
 }
 
 
-/*Dodaje kamerê do spisu kamer w silniku.
+/**@brief Dodaje kamerê do spisu kamer w silniku.
+
+@param[in] camera Kamera do dodania.
+@return
 Funkcja zwraca 0 w przypadku powodzenia.
 Je¿eli kamera ju¿ istnia³a wczesniej, to zwracan¹ wartoœci¹ jest 1.
 Je¿eli podano wskaŸnik nullptr, zwrócona zostanie wartoœæ 2.*/
@@ -216,6 +236,10 @@ int DisplayEngine::add_camera( Camera_object* camera )
 	return 0;
 }
 
+/**@brief Ustawia aktualnie u¿ywan¹ kamerê.
+@param[in] camera Kamera do ustawienia
+@return 0 w przypadku powodzenia, 1 je¿eli kamera by³a nullptrem.
+Zasadniczo nie ma po co sprawdzaæ wartoœci zwracanej.*/
 int DisplayEngine::set_current_camera( Camera_object* camera )
 {
 	if ( camera == nullptr )
@@ -229,7 +253,7 @@ int DisplayEngine::set_current_camera( Camera_object* camera )
 //					interpolation
 //=================================================================//
 
-/*Powiêkszamy tablicê macierzy, w których umieszcza siê wyniki interpolacji
+/**@brief Powiêkszamy tablicê macierzy, w których umieszcza siê wyniki interpolacji
 po³o¿eñ obiektów tu¿ przed ich wyœwietleniem w kolejnej klatce animacji.
 
 W parametrze nale¿y podaæ minimaln¹ liczbê macierzy o jak¹ siê ma zwiêkszyæ dotychczasowa
@@ -237,7 +261,8 @@ tablica.
 
 Nie ma potrzeby przepisywania danych ze starej tablicy nowoutworzonej.
 Wyniki s¹ niepotrzebne po ka¿dym wyœwietleniu klatki, a iloœæ obiektów
-w silniku nie mo¿e siê zwiêkszyæ miêdzy interpolacj¹, a wyœwietleniem.*/
+w silniku nie mo¿e siê zwiêkszyæ miêdzy interpolacj¹, a wyœwietleniem.
+@param[in] min Minimalna liczba macierzy o jak¹ nale¿y zwiekszyæ tablicê.*/
 void DisplayEngine::realocate_interpolation_memory( unsigned int min )
 {
 	if ( interpol_matrixes_count < min + meshes.size() )
@@ -250,8 +275,10 @@ void DisplayEngine::realocate_interpolation_memory( unsigned int min )
 	}
 }
 
-/*Funkcja wykonuje interpolacjê po³o¿eñ dla wszystkich obiektów dynamicznych
-w silniku. S¹ one przesuwane o tak¹ odleg³oœæ jaka wynika z ich prêdkoœci
+/**@brief Funkcja wykonuje interpolacjê po³o¿eñ dla wszystkich obiektów dynamicznych
+w silniku.
+
+Obiekty s¹ one przesuwane o tak¹ odleg³oœæ jaka wynika z ich prêdkoœci
 oraz ze zmiennej time_lag, która oznacza czas, jaki up³yn¹³ od ostatniego
 przeliczenia klatki.
 
@@ -260,7 +287,9 @@ i orientation obiektów dynamicznych. Docelowe macierze przekszta³ceñ obiektów
 zostan¹ umieszczone w tablicy interpolated_matrixes, w których indeks elementu
 odpowiada indeksom w tablicy meshes.
 
-[docelowo do wykonania wielow¹tkowego]*/
+@todo [docelowo do wykonania wielow¹tkowego]
+
+@param[in] time_lag Czas jaki up³yn¹³ od wygenerowania po³o¿eñ obiektów.*/
 void DisplayEngine::interpolate_positions( float time_lag )
 {
 	for ( unsigned int i = 0; i < meshes.size(); ++i )
@@ -309,6 +338,12 @@ void DisplayEngine::interpolate_positions( float time_lag )
 //					light functions
 //=================================================================//
 
+/**@brief Ustawia œwiat³o kierunkowe
+@param[in] direction Kierunek œwiecenia œwiat³a
+@param[in] color Kolor œwiat³a
+@param[in] index Indeks œwiat³a w tablicy œwiate³. Maksymalnie wynosi @ref ENGINE_MAX_LIGHTS - 1.
+@return 0 w przypadku powodzenia, -1 je¿eli jest niepoprawny indeks.
+*/
 int DisplayEngine::set_directional_light( const DirectX::XMFLOAT4& direction,
 										  const DirectX::XMFLOAT4& color,
 										  unsigned int index )
@@ -331,6 +366,8 @@ int DisplayEngine::set_directional_light( const DirectX::XMFLOAT4& direction,
 	return 0;
 }
 
+/**@brief Ustawia œwiat³o ambient.
+@param[in] color Kolor œwiat³a.*/
 void DisplayEngine::set_ambient_light( const DirectX::XMFLOAT4& color )
 {
 	shader_data_per_frame.ambient_light = color;

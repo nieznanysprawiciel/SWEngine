@@ -156,8 +156,8 @@ void ModelsManager::test( )
 	file_model.unsafe_add( L"skrzynia", new_model );
 
 
-	load_model_from_file(L"tylko_do_testow/clone_fighter_rel.FBX");
-	load_model_from_file(L"tylko_do_testow/moon/moon.FBX");
+	load_model_from_file( L"tylko_do_testow/ARC.FBX" );
+	load_model_from_file( L"tylko_do_testow/moon/moon.FBX" );
 	load_model_from_file( L"tylko_do_testow/Nebulon/Nebulon.FBX" );
 	load_model_from_file( L"tylko_do_testow/VadersTIE.FBX" );
 	load_model_from_file( L"tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX" );
@@ -181,7 +181,7 @@ lub nieobecnoœci tekstury w tablicy.
 VertexShaderObject* ModelsManager::find_best_vertex_shader( TextureObject** textures )
 {
 	// Na razie nie mamy innych domyœlnych shaderów
-	return vertex_shader.get( L"default_vertex_shader" );
+	return vertex_shader.get( DEFAULT_VERTEX_SHADER_STRING );
 }
 
 
@@ -196,8 +196,17 @@ lub nieobecnoœci tekstury w tablicy.
 @return Zwraca obiekt pixel shadera.*/
 PixelShaderObject* ModelsManager::find_best_pixel_shader( TextureObject** textures )
 {
-	// Na razie nie mamy innych domyœlnych shaderów
-	return pixel_shader.get( L"default_pixel_shader" );
+	PixelShaderObject* return_shader = nullptr;
+
+	// Na razie nie ma innych tekstur ni¿ diffuse, wiêc algorytm nie jest skomplikowany
+	if ( textures[TEXTURES_TYPES::TEX_DIFFUSE] )
+		return_shader = pixel_shader.get( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH );
+	
+	
+	if ( !return_shader )	// Je¿eli nadal jest nullptrem to dajemy mu domyœlny shader
+		return_shader = pixel_shader.get( DEFAULT_PIXEL_SHADER_STRING );
+
+	return return_shader;
 }
 
 
@@ -234,6 +243,12 @@ void ModelsManager::set_default_assets( ID3D11VertexShader* vert_shader, ID3D11P
 	MaterialObject* new_material = new MaterialObject();
 	new_material->set_null_material();
 	material.unsafe_add( DEFAULT_MATERIAL_STRING, new_material );
+
+	// Teraz tworzymy shadery, których jeszcze nie skompilowaliœmy wczeœniej
+	// Dla tekstury diffuse vertex shader jest taki sam, wiêc nie ma po co go kompilowaæ jeszcze raz
+	new_pixel_shader = PixelShaderObject::create_from_file( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH, DEFAULT_PIXEL_SHADER_ENTRY );
+	pixel_shader.unsafe_add( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH, new_pixel_shader );
+
 }
 
 /**@brief Wczytuje model z podanego pliku.

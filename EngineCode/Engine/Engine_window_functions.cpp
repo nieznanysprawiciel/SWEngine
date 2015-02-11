@@ -71,8 +71,12 @@ BOOL Engine::InitInstance(int nCmdShow)
 	return TRUE;
 }
 
-//	w³aœciwa funkcja inicjujaca okno
-//	w tryvie fullscreen szerokoœæ i wysokoœæ okna jest ignorowana a dane s¹ pobierane z systemu
+///@brief	W³aœciwa funkcja inicjujaca okno
+///W trybie fullscreen szerokoœæ i wysokoœæ okna jest ignorowana, a dane s¹ pobierane z systemu.
+///@param[in] width Szerokoœæ okna
+///@param[in] height Wysokoœæ okna
+///@param[in] fullscreen Pe³ny ekran lub renderowanie w oknie
+///@param[in] nCmdShow Czwarty parametr funkcji WinMain
 BOOL Engine::init_window(int width, int height, BOOL fullscreen, int nCmdShow)
 {
 	window_height = height;
@@ -91,7 +95,7 @@ BOOL Engine::init_window(int width, int height, BOOL fullscreen, int nCmdShow)
 	return InitInstance(nCmdShow);
 }
 
-//Funkcja wstawia do kolejki komunikatów aplikacji wiadomoœc QUIT_MESSAGE
+///@brief Funkcja wstawia do kolejki komunikatów aplikacji wiadomoœc QUIT_MESSAGE
 void Engine::end_aplication()
 {
 	PostQuitMessage( 0 );
@@ -158,6 +162,8 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 //								main program loop												//
 //----------------------------------------------------------------------------------------------//
 
+/**@brief G³ówna pêtla programu.
+@ref MainLoop*/
 int Engine::main_loop()
 {
 	MSG msg;

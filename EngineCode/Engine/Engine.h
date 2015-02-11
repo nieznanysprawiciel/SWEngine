@@ -1,5 +1,7 @@
 #pragma once
 
+/**@file Engine.h
+@brief Plik zawiera deklaracjê g³ównego obiektu silnika.*/
 
 #include "..\stdafx.h"
 #include "..\SW_engine.h"
@@ -28,18 +30,18 @@
 
 
 
-
+/**@brief Enumeracja zawieraj¹ca identyfikatory dla poszczegolnych modu³ów silnika.*/
 typedef enum
 {
-	E_CONTROLLERS = 0,
-	E_PHYSIC = 1,
-	E_FABLE = 2,
-	E_MOVEMENT_DYNAMIC = 3,
-	E_MOVEMENT_COMPLEX = 4,
-	E_DISPLAY = 5,
-	E_COLLISION = 6,
-	E_UI = 7,
-	E_MODELS_MANAGER = 8
+	E_CONTROLLERS = 0,			///<Klasa ControllersEngine
+	E_PHYSIC = 1,				///<Klasa PhysicEngine
+	E_FABLE = 2,				///<Klasa FableEngine
+	E_MOVEMENT_DYNAMIC = 3,		///<Obiekty dynamiczne w klasie MovementEngine
+	E_MOVEMENT_COMPLEX = 4,		///<Obiekty z³o¿one w klasie MovementEngine
+	E_DISPLAY = 5,				///<Klasa DisplayEngine
+	E_COLLISION = 6,			///<Klasa CollisionEngine
+	E_UI = 7,					///<Klasa UI_engine
+	E_MODELS_MANAGER = 8		///<Klasa ModelsManager
 } Modules;
 
 
@@ -49,7 +51,15 @@ extern TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
 extern TCHAR szWindowClass[MAX_LOADSTRING];				// the main window class name
 
 
+/**@brief Klasa Engine jest nadrzêdnym obiektem zarzadzaj¹cym wszystkimi modu³ami silnika.
+W aplikacji powinien istnieæ tylko jeden obiekt podanego typu.O tym, jak siê inicjuje dzia³anie silnika,
+mo¿na przeczytaæ w temacie Inicjowanie silnika.
 
+W tej klasie powinny byæ umieszczane wszystkie funkcje, które nie powinny byæ dostêpne
+dla u¿ytkownika silnika.Interfejsem dla u¿ytkownika jest klasa engine_interface i tam nale¿y umieszczaæ
+pozosta³e funkcje.Co do zmiennych klasy, wszystki powinny siê znaleŸæ w klasie engine_interface, aby wszystkie
+funkcje mog³y mieæ do nich dostêp.
+*/
 class Engine : public engine_interface
 {
 private:		//zmienne, które nie maj¹ prawa zostaæ u¿yte przez engine_interface
@@ -111,7 +121,7 @@ public:
 
 };
 
-/*Celem wprowadzenia wektora index_predictor jest optymalizacja dostêpu do danych 
+/**Celem wprowadzenia wektora index_predictor jest optymalizacja dostêpu do danych 
  *obiektów w modu³ach silnika. Ka¿dy modu³ zawiera tablicê obiektów, które ma obs³ugiwaæ.
  *Obiekty mog¹ byæ do tych tablic dodawane i usuwane.
  *Z tego powodu nie jesteœmy w stanie ca³y czas przechowywaæ aktualnego indeksu obiektów w kazdym module,

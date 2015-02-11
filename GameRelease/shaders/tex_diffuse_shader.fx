@@ -1,12 +1,15 @@
 //--------------------------------------------------------------------------------------
-// Domyślne shadery obsługujące kanały Ambient i Diffuse raz światła kierunkowe.
-// Nie używają tekstur.
+// Domy�lne shadery dla meshy z tekstur� w kanale Diffuse
+//
 //--------------------------------------------------------------------------------------
-
 
 //--------------------------------------------------------------------------------------
 // Constant Buffer Variables
 //--------------------------------------------------------------------------------------
+
+Texture2D texDiffuse : register( t0 );
+SamplerState default_sampler : register( s0 );
+
 cbuffer ConstantPerFrame : register( b0 )
 {
 	matrix View;
@@ -47,7 +50,6 @@ struct PS_INPUT
 
 //--------------------------------------------------------------------------------------
 // Vertex Shader
-// Ten shader jest taki jaki domyślny dla aplikacji więc nie jest wczytywany
 //--------------------------------------------------------------------------------------
 PS_INPUT vertex_shader( VS_INPUT input )
 {
@@ -56,8 +58,8 @@ PS_INPUT vertex_shader( VS_INPUT input )
     output.Pos = mul( output.Pos, View );
     output.Pos = mul( output.Pos, Projection );
     output.Norm = mul( input.Norm, World );
-    output.Tex = input.Tex;
-	
+	output.Tex = input.Tex;
+    
     return output;
 }
 
@@ -69,6 +71,8 @@ float3 pixel_shader( PS_INPUT input) : SV_Target
 {
     float3 finalColor = Ambient*AmbientLight;
     float dot_product = 0;
+	float3 tex_sample = texDiffuse.Sample( default_sampler, input.Tex );
+	
 	
     //do NdotL lighting for 2 lights
     for(int i=0; i<1; i++)
@@ -76,17 +80,7 @@ float3 pixel_shader( PS_INPUT input) : SV_Target
 		dot_product = dot( (float3)LightDir[i], input.Norm);
         finalColor += dot_product * LightColor[i];
     }
-	finalColor *= (float3)Diffuse;
+	finalColor *= tex_sample * (float3)Diffuse;
 
     return finalColor;
 }
-
-/*
-//--------------------------------------------------------------------------------------
-// PSSolid - render a solid color
-//--------------------------------------------------------------------------------------
-float4 PSSolid( PS_INPUT input) : SV_Target
-{
-    return vOutputColor;
-}
-*/
