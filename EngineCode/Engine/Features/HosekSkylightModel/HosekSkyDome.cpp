@@ -35,6 +35,11 @@ HosekSkyDome::~HosekSkyDome()
 W tej funkcji jest tworzony mesh kopu³y, nastêpnie tworzone s¹ bufory indeksów i wierzcho³ków
 oraz layout struktury wierzcho³ka. Kompilowane i dodawane s¹ równie¿ shadery.
 
+Zalecam u¿ywanie nieaprzystej liczby wierzcho³ków w pionie. Wtedy utworzy siê równik
+na kopule nieba, dziêki czemu niebo bêdzie lepiej wygl¹da³o. Wartoœci kolorów obliczane s¹
+dla wierzcho³ków, a pomiêdzy nimi s¹ interpolowane przez rasterizer. Poni¿ej równika
+brany jest jeden z kolorów wygenerowanych powy¿ej i ustawiany dla ca³ej kopu³y.
+
 @note Raz utworzony mesh kopu³y ju¿ nigdy siê nie zmienia. Ta funkcja powinna zostaæ
 wywo³ana tylko raz na pocz¹tku, potem nale¿y wywo³ywaæ funkcjê update_sky_dome.
 
@@ -124,7 +129,7 @@ void HosekSkyDome::update_sky_dome( XMVECTOR sun_direction,
 		
 		if ( theta > XM_PIDIV2 )
 		{	// Je¿eli jestesmy poni¿ej horyzontu to na razie malujemy na czerwono
-			back_vert_buffer[i].color = XMFLOAT3( 0.0f, 0.0f, 0.0f );
+			back_vert_buffer[i].color = back_vert_buffer[vert_count/2 - 2].color;
 			continue;
 		}
 

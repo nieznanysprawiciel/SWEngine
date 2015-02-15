@@ -221,7 +221,7 @@
       <Path>$(EngineBuildDir)$(BuildFolder)\$(MSBuildProjectName).log</Path>
     </BuildLog>
     <Lib>
-      <AdditionalDependencies>d3dx9.lib;d3d9.lib;Dinput8.lib;vs2013\x86\debug\libfbxsdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3dx9.lib;d3d9.lib;Dinput8.lib;vs2013\x86\debug\libfbxsdk.lib;%(AdditionalDependencies);d3d11.lib;d3dx11.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib</AdditionalLibraryDirectories>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalOptions>/ignore:4006 /ignore:4221 %(AdditionalOptions)</AdditionalOptions>
@@ -293,7 +293,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Dinput8.lib;d3dx9.lib;d3d9.lib;vs2013\x86\release\libfbxsdk.lib;%(AdditionalDependencies);d3d11.lib;d3d10.lib</AdditionalDependencies>
+      <AdditionalDependencies>Dinput8.lib;d3dx9.lib;d3d9.lib;vs2013\x86\release\libfbxsdk.lib;%(AdditionalDependencies);d3d11.lib;d3dx11.lib</AdditionalDependencies>
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <BuildLog>
@@ -327,7 +327,7 @@
     </BuildLog>
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>Dinput8.lib;d3dx9.lib;d3d9.lib;vs2013\x86\release\libfbxsdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Dinput8.lib;d3dx9.lib;d3d9.lib;vs2013\x86\release\libfbxsdk.lib;%(AdditionalDependencies);d3d11.lib;d3dx11.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4006 /ignore:4221 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
@@ -468,6 +468,9 @@
     </ClCompile>
     <ClCompile Include="Engine\DX11_interfaces_container.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'">..\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Engine\Engine.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\stdafx.h</PrecompiledHeaderFile>
@@ -521,12 +524,21 @@
     </ClCompile>
     <ClCompile Include="Engine\Features\HosekSkylightModel\HosekSkyDome.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">..\..\..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'">..\..\..\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Engine\Features\HosekSkylightModel\HosekSkylightModel.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">..\..\..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'">..\..\..\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Engine\ModelsManager\BufferObject.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Engine\ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\..\stdafx.h</PrecompiledHeaderFile>
@@ -580,6 +592,9 @@
     </ClCompile>
     <ClCompile Include="Engine\ModelsManager\PixelShaderObject.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Engine\ModelsManager\TextureObject.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
@@ -593,9 +608,13 @@
     </ClCompile>
     <ClCompile Include="Engine\ModelsManager\VertexShaderObject.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Engine\ModelsManager\vertex_layouts.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Engine\MovementEngine\MovementEngine.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>

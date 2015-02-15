@@ -140,20 +140,22 @@ void Engine::test()
 	movement_engine->add_moveable_object( camera );
 	controllers_engine->add_pre_controlled( camera );
 
-
-	DirectX::XMFLOAT4 color( 0.8f, 0.8f, 0.8f, 1.0f );
-	DirectX::XMFLOAT4 direction( 0.9f, 0.8f, 1.0f, 1.0f );
-
-	// Ustawiamy œwiat³o pod indeksem 0
-	display_engine->set_directional_light( direction, color, 0 );
-	display_engine->set_ambient_light( DirectX::XMFLOAT4( 0.2, 0.2, 0.2, 1.0f ) );
-
 	double albedo[3] = { 0.8, 0.8, 0.8 };
 	double turbidity = 5;
 	XMVECTOR sun_dir = XMVectorSet( -0.2, 0.6, 0.6, 1.0 );
 	HosekSkyDome* sky_dome = new HosekSkyDome(models_manager);
-	sky_dome->init_sky_dome( sun_dir, turbidity, albedo, 50, 50, 100, 5.0 );
+	sky_dome->init_sky_dome( sun_dir, turbidity, albedo, 101, 101, 100, 5.0 );
 	display_engine->set_skydome( sky_dome );
+
+	sun_dir = XMVectorNegate( sun_dir );
+
+	DirectX::XMFLOAT4 color( 0.8f, 0.8f, 0.8f, 1.0f );
+	DirectX::XMFLOAT4 direction;
+	XMStoreFloat4( &direction, sun_dir );
+
+	// Ustawiamy œwiat³o pod indeksem 0
+	display_engine->set_directional_light( direction, color, 0 );
+	display_engine->set_ambient_light( DirectX::XMFLOAT4( 0.2, 0.2, 0.2, 1.0f ) );
 }
 
 #endif
