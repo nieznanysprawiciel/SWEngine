@@ -57,6 +57,7 @@
 		- engine_interface
 		- GamePlay
 		- Loader
+		- SkyDome
 	- Modu³y silnika
 		- CollisionEngine
 		- ControllersEngine

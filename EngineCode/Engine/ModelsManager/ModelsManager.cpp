@@ -251,6 +251,12 @@ void ModelsManager::set_default_assets( ID3D11VertexShader* vert_shader, ID3D11P
 
 }
 
+//-------------------------------------------------------------------------------//
+//							funkcje do zarzadzania assetami
+//-------------------------------------------------------------------------------//
+
+
+
 /**@brief Wczytuje model z podanego pliku.
 @param[in] file Plik do wczytania
 @return Jedna z wartoœci @ref MODELS_MANAGER_RESULT. Funkcja mo¿e zwróciæ @ref MODELS_MANAGER_RESULT::MODELS_MANAGER_OK,
@@ -286,5 +292,220 @@ MODELS_MANAGER_RESULT ModelsManager::load_model_from_file( const std::wstring& f
 	file_model.unsafe_add( file, new_model );
 
 	return MODELS_MANAGER_RESULT::MODELS_MANAGER_OK;
+}
+
+
+
+/**@brief Dodaje materia³ do ModelsManagera, je¿eli jeszcze nie istnia³.
+@note Funkcja nie dodaje odwo³ania do obiektu, bo nie zak³ada, ¿e ktoœ go od razu u¿yje.
+W ka¿dym miejscu, gdzie zostanie przypisany zwrócony obiekt, nale¿y pamiêtaæ o dodaniu odwo³ania oraz
+skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
+
+@param[in] material Materia³, który ma zostaæ dodany
+@param[in] material_name Nazwa materia³u. Do materia³u bêdzie mo¿na siê odwo³aæ podaj¹c ci¹g znaków
+[nazwa_pliku]::[nazwa_materia³u]. Oznacza to, ¿e mog¹ istnieæ dwa takie same materia³y, poniewa¿ nie jest sprawdzana
+zawartoœæ, a jedynie nazwy.
+@return Zwraca wskaŸnik na dodany materia³.*/
+MaterialObject* ModelsManager::add_material( const MaterialObject* add_material, const std::wstring& material_name )
+{
+	MaterialObject* new_material = material.get( material_name );
+	if ( !new_material )
+	{
+		// Nie by³o materia³u, trzeba j¹ stworzyæ i dodaæ
+		new_material = new MaterialObject( add_material );
+
+		material.unsafe_add( material_name, new_material );	// Dodaliœmy teksturê
+	}
+
+	return new_material;
+}
+
+
+/**@brief Dodaje vertex shader do ModelsManagera. Je¿eli obiekt ju¿ istnia³, to nie jest tworzony nowy.
+@note Funkcja nie dodaje odwo³ania do obiektu, bo nie zak³ada, ¿e ktoœ go od razu u¿yje.
+W ka¿dym miejscu, gdzie zostanie przypisany zwrócony obiekt, nale¿y pamiêtaæ o dodaniu odwo³ania oraz
+skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
+
+@param[in] file_name Nazwa pliku, w którym znajduje siê vertex shader.
+@param[in] shader_entry Nazwa funkcji od której ma siê zacz¹æ wykonywanie shadera.
+@return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
+VertexShaderObject* ModelsManager::add_vertex_shader( const std::wstring& file_name, const std::string& shader_entry )
+{
+	VertexShaderObject* shader = vertex_shader.get( file_name );
+	if ( !shader )
+	{
+		// Nie by³o shadera, trzeba go stworzyæ i dodaæ
+		shader = VertexShaderObject::create_from_file( file_name, shader_entry );
+		if ( !shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
+			return nullptr;
+
+		vertex_shader.unsafe_add( file_name, shader );	// Dodaliœmy teksturê
+	}
+
+	return shader;
+}
+
+/**@brief Dodaje vertex shader do ModelsManagera. Je¿eli obiekt ju¿ istnia³, to nie jest tworzony nowy.
+Tworzy te¿ layout wierzcho³ka zwi¹zany z tym shaderem i zwraca go w zmiennej layout. Layout nie jest
+dodawany do ModelsManagera ( bo i nie ma gdzie go dodaæ ).
+
+Je¿eli vertex shader wczeœniej istnia³, to stworzenie layoutu wymaga ponownego skompilowania shadera. Shader taki jest potem
+kasowany i nie zostaje zdublowany w ModelsManagerze, ale niepotrzebna praca zostaje w³o¿ona. Jest wiêc zadaniem programisty, ¿eby
+do takich rzeczy dochodzi³o jak najrzadziej.
+
+@note Funkcja nie dodaje odwo³ania do obiektu, bo nie zak³ada, ¿e ktoœ go od razu u¿yje.
+W ka¿dym miejscu, gdzie zostanie przypisany zwrócony obiekt, nale¿y pamiêtaæ o dodaniu odwo³ania oraz
+skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
+
+@param[in] file_name Nazwa pliku, w którym znajduje siê vertex shader.
+@param[in] shader_entry Nazwa funkcji od której ma siê zacz¹æ wykonywanie shadera.
+@param[out] layout W zmiennej umieszczany jest wskaŸnik na layout wierzcho³ka. Nale¿y pamiêtaæ o zwolnieniu go kiedy bêdzie niepotrzebny.
+@attention Je¿eli vertex shader wczeœniej istnia³, to stworzenie layoutu wymaga ponownego skompilowania shadera. Shader taki jest potem 
+kasowany i nie zostaje zdublowany w ModelsManagerze, ale niepotrzebna praca zostaje w³o¿ona. Jest wiêc zadaniem programisty, ¿eby
+do takich rzeczy dochodzi³o jak najrzadziej.
+@param[in] layout_desc Deskryptor opisujacy tworzony layout.
+@param[in] array_size Liczba elementów tablicy layout_desc.
+@return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
+VertexShaderObject* ModelsManager::add_vertex_shader( const std::wstring& file_name,
+									   const std::string& shader_entry,
+									   ID3D11InputLayout** layout,
+									   D3D11_INPUT_ELEMENT_DESC* layout_desc,
+									   unsigned int array_size )
+{
+	*layout = nullptr;
+	VertexShaderObject* shader = vertex_shader.get( file_name );
+	
+	// Tworzymy shader bo i tak usimy, potem go najwy¿ej skasujemy
+	VertexShaderObject* new_shader = VertexShaderObject::create_from_file( file_name, shader_entry, layout, layout_desc, array_size );
+	if ( !new_shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
+		return nullptr;
+	
+	if ( !shader )
+	{
+		// Nie by³o shadera, trzeba go dodaæ
+		vertex_shader.unsafe_add( file_name, new_shader );	// Dodaliœmy teksturê
+		shader = new_shader;
+	}
+	else
+		// Shader ju¿ by³, wiêc kasujemy nowy
+		delete new_shader;
+
+	return shader;
+}
+
+
+/**@brief Dodaje pixel shader do ModelsManagera. Je¿eli obiekt ju¿ istnia³, to nie jest tworzony nowy.
+@note Funkcja nie dodaje odwo³ania do obiektu, bo nie zak³ada, ¿e ktoœ go od razu u¿yje.
+W ka¿dym miejscu, gdzie zostanie przypisany zwrócony obiekt, nale¿y pamiêtaæ o dodaniu odwo³ania oraz
+skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
+
+@param[in] file_name Nazwa pliku, w którym znajduje siê pixel shader.
+@param[in] shader_entry Nazwa funkcji od której ma siê zacz¹æ wykonywanie shadera.
+@return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
+PixelShaderObject* ModelsManager::add_pixel_shader( const std::wstring& file_name, const std::string& shader_entry )
+{
+	PixelShaderObject* shader = pixel_shader.get( file_name );
+	if ( !shader )
+	{
+		// Nie by³o shadera, trzeba go stworzyæ i dodaæ
+		shader = PixelShaderObject::create_from_file( file_name, shader_entry );
+		if ( !shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
+			return nullptr;
+
+		pixel_shader.unsafe_add( file_name, shader );	// Dodaliœmy teksturê
+	}
+
+	return shader;
+}
+
+/**@brief Dodaje teksturê do ModelManagera, je¿eli jeszcze nie istnia³a.
+@note Funkcja nie dodaje odwo³ania do obiektu, bo nie zak³ada, ¿e ktoœ go od razu u¿yje.
+W ka¿dym miejscu, gdzie zostanie przypisany zwrócony obiekt, nale¿y pamiêtaæ o dodaniu odwo³ania oraz
+skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
+
+@param[in] file_name Œcie¿ka do tekstury
+
+@return Zwraca wskaŸnik na dodan¹ teksturê lub nullptr, je¿eli nie da³o siê wczytaæ.*/
+TextureObject* ModelsManager::add_texture( const std::wstring& file_name )
+{
+
+	TextureObject* tex = texture.get( file_name );
+	if ( !tex )
+	{
+		// Nie by³o tekstury, trzeba j¹ stworzyæ i dodaæ
+		tex = TextureObject::create_from_file( file_name );
+		if ( !tex )		// Tekstura mog³a mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
+			return nullptr;
+
+		texture.unsafe_add( file_name, tex );	// Dodaliœmy teksturê
+	}
+
+	return tex;
+}
+
+/**@brief Dodaje do ModelsManagera bufor wierzcho³ków.
+Je¿eli pod tak¹ nazw¹ istnieje jakiœ bufor, to zostanie zwrócony wskaŸnik na niego.
+@note Funkcja nie dodaje odwo³ania do obiektu, bo nie zak³ada, ¿e ktoœ go od razu u¿yje.
+W ka¿dym miejscu, gdzie zostanie przypisany zwrócony obiekt, nale¿y pamiêtaæ o dodaniu odwo³ania oraz
+skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
+
+@param[in] name Nazwa bufora, po której mo¿na siê bêdzie odwo³aæ.
+@param[in] buffer WskaŸnik na bufor z danym, które maj¹ byæ przeniesione do bufora DirectXowego.
+@param[in] element_size Rozmiar pojedynczego elementu w buforze.
+@param[in] vert_count Liczba wierzcho³ków/indeksów w buforze.
+@return Dodany bufor wierzcho³ków. Zwraca nullptr, je¿eli nie uda³o siê stworzyæ bufora.*/
+BufferObject* ModelsManager::add_vertex_buffer( const std::wstring& name,
+												const void* buffer,
+												unsigned int element_size,
+												unsigned int vert_count )
+{
+	BufferObject* vertex_buff = vertex_buffer.get( name );
+	if ( vertex_buff )	// Je¿eli znaleŸliœmy bufor, to go zwracamy
+		return vertex_buff;
+
+	// Tworzymy obiekt bufora indeksów i go zapisujemy
+	vertex_buff = BufferObject::create_from_memory( buffer,
+													element_size,
+													vert_count,
+													D3D11_BIND_VERTEX_BUFFER );
+	if ( !vertex_buff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
+		return nullptr;
+
+	vertex_buffer.unsafe_add( name, vertex_buff );	// Dodaliœmy bufor
+
+	return vertex_buff;
+}
+
+/**@brief Dodaje do ModelsManagera bufor indeksów.
+Je¿eli pod tak¹ nazw¹ istnieje jakiœ bufor, to zostanie zwrócony wskaŸnik na niego.
+@note Funkcja nie dodaje odwo³ania do obiektu, bo nie zak³ada, ¿e ktoœ go od razu u¿yje.
+W ka¿dym miejscu, gdzie zostanie przypisany zwrócony obiekt, nale¿y pamiêtaæ o dodaniu odwo³ania oraz
+skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
+
+@param[in] name Nazwa bufora, po której mo¿na siê bêdzie odwo³aæ.
+@param[in] buffer WskaŸnik na bufor z danym, które maj¹ byæ przeniesione do bufora DirectXowego.
+@param[in] element_size Rozmiar pojedynczego elementu w buforze.
+@param[in] vert_count Liczba wierzcho³ków/indeksów w buforze.
+@return Dodany bufor indeksów. Zwraca nullptr, je¿eli nie uda³o siê stworzyæ bufora.*/
+BufferObject* ModelsManager::add_index_buffer( const std::wstring& name,
+											   const void* buffer,
+											   unsigned int element_size,
+											   unsigned int vert_count )
+{
+	BufferObject* index_buff = index_buffer.get( name );
+	if ( index_buff )	// Je¿eli znaleŸliœmy bufor, to go zwracamy
+		return index_buff;
+
+	// Tworzymy obiekt bufora indeksów i go zapisujemy
+	index_buff = BufferObject::create_from_memory( buffer,
+												   element_size,
+												   vert_count,
+												   D3D11_BIND_INDEX_BUFFER );
+	if ( !index_buff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
+		return nullptr;
+
+	index_buffer.unsafe_add( name, index_buff );	// Dodaliœmy bufor
+
+	return index_buff;
 }
 

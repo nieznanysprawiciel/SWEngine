@@ -19,10 +19,13 @@ ID3DBlob* DX11_interfaces_container::compiled_vertex_shader = nullptr;
 ID3DBlob* DX11_interfaces_container::compiled_pixel_shader = nullptr;
 ID3D11VertexShader* DX11_interfaces_container::default_vertex_shader = nullptr;
 ID3D11PixelShader* DX11_interfaces_container::default_pixel_shader = nullptr;
-ID3D11SamplerState*		DX11_interfaces_container::default_sampler = nullptr;
+ID3D11SamplerState*	DX11_interfaces_container::default_sampler = nullptr;
 
 ID3D11Buffer* DX11_constant_buffers_container::const_per_frame = nullptr;
 ID3D11Buffer* DX11_constant_buffers_container::const_per_mesh = nullptr;
+ID3D11DepthStencilState* DX11_constant_buffers_container::depth_enabled = nullptr;		///<Do w³¹czania z-bufora
+ID3D11DepthStencilState* DX11_constant_buffers_container::depth_disabled = nullptr;		///<D wy³¹czania z-bufora
+
 
 
 //----------------------------------------------------------------------------------------------//
@@ -500,6 +503,42 @@ void DX11_constant_buffers_container::init_buffers( unsigned int size_per_frame,
 	result = device->CreateBuffer( &buffer_desc, nullptr, &const_per_mesh );
 }
 
+
+void  DX11_constant_buffers_container::init_depth_states( )
+{
+	D3D11_DEPTH_STENCIL_DESC dsDesc;
+
+	// Depth test parameters
+	dsDesc.DepthEnable = true;
+	dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+	dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
+
+	// Stencil test parameters
+	dsDesc.StencilEnable = false;
+	dsDesc.StencilReadMask = 0xFF;
+	dsDesc.StencilWriteMask = 0xFF;
+
+	// Stencil operations if pixel is front-facing
+	dsDesc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	dsDesc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_INCR;
+	dsDesc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	dsDesc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+
+	// Stencil operations if pixel is back-facing
+	dsDesc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	dsDesc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_DECR;
+	dsDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	dsDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+
+	// Create depth stencil state
+	device->CreateDepthStencilState( &dsDesc, &depth_enabled );
+
+	device_context->OMSetDepthStencilState( depth_enabled, 1 );
+
+	dsDesc.DepthEnable = false;
+	device->CreateDepthStencilState( &dsDesc, &depth_disabled );
+}
+
 /**@brief Zwalania obiekty DirectXa. Funkcja wywo³uje tê sam¹ funkcjê z obiektu potomnego, ¿eby
 zwolniæ wszystkie obiekty, które istniej¹.*/
 void DX11_constant_buffers_container::release_DirectX()
@@ -508,6 +547,10 @@ void DX11_constant_buffers_container::release_DirectX()
 		const_per_frame->Release( ), const_per_frame = nullptr;
 	if ( const_per_mesh )
 		const_per_mesh->Release( ), const_per_mesh = nullptr;
+	if ( depth_enabled )
+		depth_enabled->Release();
+	if ( depth_disabled )
+		depth_disabled->Release();
 
 	// Zwalniamy te¿ wszystkie obiekty, które zwalnia³a klasa bazowa
 	DX11_interfaces_container::release_DirectX();

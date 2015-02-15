@@ -397,10 +397,14 @@
     <ClInclude Include="Engine\ControllersEngine\ControllersEngine.h" />
     <ClInclude Include="Engine\DisplayEngine\ConstantBuffersFormat.h" />
     <ClInclude Include="Engine\DisplayEngine\DisplayEngine.h" />
+    <ClInclude Include="Engine\DisplayEngine\SkyDome.h" />
     <ClInclude Include="Engine\DX11_interfaces_container.h" />
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Engine\Events\Event.h" />
     <ClInclude Include="Engine\FableEngine\FableEngine.h" />
+    <ClInclude Include="Engine\Features\HosekSkylightModel\ArHosekSkyModelData_RGB.h" />
+    <ClInclude Include="Engine\Features\HosekSkylightModel\HosekSkyDome.h" />
+    <ClInclude Include="Engine\Features\HosekSkylightModel\HosekSkyModel.h" />
     <ClInclude Include="Engine\ModelsManager\Loaders\FBX_files_loader\FBX_loader.h" />
     <ClInclude Include="Engine\ModelsManager\Loaders\loader_interface.h" />
     <ClInclude Include="Engine\ModelsManager\meshes_textures_materials.h" />
@@ -514,6 +518,12 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">..\..\stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="Engine\Features\HosekSkylightModel\HosekSkyDome.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="Engine\Features\HosekSkylightModel\HosekSkylightModel.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Engine\ModelsManager\BufferObject.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\stdafx.h</PrecompiledHeaderFile>

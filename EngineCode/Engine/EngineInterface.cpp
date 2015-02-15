@@ -10,6 +10,7 @@
 #ifdef __TEST
 
 #include "ControllersEngine\camera_controller_PROTOTYPE.h"
+#include "Features\HosekSkylightModel\HosekSkyDome.h"
 
 void Engine::test()
 {
@@ -146,6 +147,13 @@ void Engine::test()
 	// Ustawiamy œwiat³o pod indeksem 0
 	display_engine->set_directional_light( direction, color, 0 );
 	display_engine->set_ambient_light( DirectX::XMFLOAT4( 0.2, 0.2, 0.2, 1.0f ) );
+
+	double albedo[3] = { 0.8, 0.8, 0.8 };
+	double turbidity = 5;
+	XMVECTOR sun_dir = XMVectorSet( -0.2, 0.6, 0.6, 1.0 );
+	HosekSkyDome* sky_dome = new HosekSkyDome(models_manager);
+	sky_dome->init_sky_dome( sun_dir, turbidity, albedo, 50, 50, 100, 5.0 );
+	display_engine->set_skydome( sky_dome );
 }
 
 #endif

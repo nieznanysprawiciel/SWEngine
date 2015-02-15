@@ -55,6 +55,18 @@
     <Filter Include="Header Files\Controllers">
       <UniqueIdentifier>{ee2eab1b-7c5d-49e5-95dd-7b1c7177c5f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Features">
+      <UniqueIdentifier>{e1327c40-d2f8-4eca-8c02-727f4e70d31e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Features">
+      <UniqueIdentifier>{50847fdb-8565-46d1-838e-58f574b4317b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Features\HosekSkylightModel">
+      <UniqueIdentifier>{0c072b3b-8c7e-4adf-94af-a402f3a82e8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Features\HosekSkylightModel">
+      <UniqueIdentifier>{04e0e7ce-71ce-4577-a1ec-ea7432743dd2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -144,6 +156,18 @@
     <ClInclude Include="memory_leaks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\DisplayEngine\SkyDome.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Features\HosekSkylightModel\HosekSkyModel.h">
+      <Filter>Header Files\Features\HosekSkylightModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Features\HosekSkylightModel\ArHosekSkyModelData_RGB.h">
+      <Filter>Header Files\Features\HosekSkylightModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Features\HosekSkylightModel\HosekSkyDome.h">
+      <Filter>Header Files\Features\HosekSkylightModel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -232,6 +256,12 @@
     </ClCompile>
     <ClCompile Include="Engine\ModelsManager\MeshPartObject.cpp">
       <Filter>Source Files\ModelsManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Features\HosekSkylightModel\HosekSkylightModel.cpp">
+      <Filter>Source Files\Features\HosekSkylightModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Features\HosekSkylightModel\HosekSkyDome.cpp">
+      <Filter>Source Files\Features\HosekSkylightModel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

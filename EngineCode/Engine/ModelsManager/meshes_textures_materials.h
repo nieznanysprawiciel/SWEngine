@@ -54,9 +54,9 @@ typedef UINT32 VERT_INDEX;
 /// @brief Strutkura dla standardowego wierzcho³ka
 typedef struct VertexNormalTexCord1
 {
-	DirectX::XMFLOAT3	position;
-	DirectX::XMFLOAT3	normal;
-	DirectX::XMFLOAT2	tex_cords;
+	DirectX::XMFLOAT3	position;		///<Pozycja wierzcho³ka
+	DirectX::XMFLOAT3	normal;			///<Wektor normalny wierzcho³ka
+	DirectX::XMFLOAT2	tex_cords;		///<Wspó³rzêdne tekstury
 } VertexNormalTexCord1;
 
 // Opis s³u¿¹cy do stworzenia layoutu zrozumia³ego dla shaderów w pliku vertex_layouts.cpp
@@ -66,8 +66,8 @@ extern unsigned int VertexNormalTexCord1_desc_num_of_elements;
 /// \brief Struktura wierzcho³ka stworzona z myœl¹ o GUI
 typedef struct VertexTexCord1
 {
-	DirectX::XMFLOAT3	position;
-	DirectX::XMFLOAT2	tex_cords;
+	DirectX::XMFLOAT3	position;		///<Pozycja wierzcho³ka
+	DirectX::XMFLOAT2	tex_cords;		///<Wspó³rzêdne tekstury
 } VertexTexCord1;
 
 // Opis s³u¿¹cy do stworzenia layoutu zrozumia³ego dla shaderów w pliku vertex_layouts.cpp
@@ -313,6 +313,8 @@ public:
 
 	inline ID3D11VertexShader* get( ) { return vertex_shader; }		///<Zwraca obiekt vertex shadera, któy mo¿na podaæ do potoku przetwarzania
 	static VertexShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name );
+	static VertexShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name, ID3D11InputLayout** layout,
+												 D3D11_INPUT_ELEMENT_DESC* layout_desc, unsigned int array_size );
 };
 
 /**@brief Klasa przechowuj¹ca pixel shader*/

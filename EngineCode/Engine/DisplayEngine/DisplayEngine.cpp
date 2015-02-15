@@ -9,6 +9,7 @@ DisplayEngine::DisplayEngine(Engine* engine)
 	: engine(engine)
 {
 	current_camera = nullptr;
+	sky_dome = nullptr;
 
 	interpol_matrixes_count = 16;
 	interpolated_matrixes = new XMFLOAT4X4[interpol_matrixes_count];
@@ -31,15 +32,101 @@ DisplayEngine::~DisplayEngine()
 
 	//kasujemy tablicê interpolowanych macierzy
 	delete[] interpolated_matrixes;
+
+	if ( sky_dome )
+		delete sky_dome;
 }
 
-/**@brief Inicjuje bufory sta³ych.*/
+/**@brief Inicjuje bufory sta³ych. Przy okazji inicjuje te¿ stany z-bufora do szybkiego
+w³¹czania i wy³¹czania algorytmu.*/
 void DisplayEngine::init_const_buffers()
 {
 	init_buffers( sizeof(ConstantPerFrame), sizeof( ConstantPerMesh ));
+	init_depth_states();
 }
 
 
+//-------------------------------------------------------------------------------//
+//							Funkcje pomocnicze do renderingu
+//-------------------------------------------------------------------------------//
+
+/**@brief Funkcja ustawia tesktury z danego ModelParta w DirectXie.
+
+@param[in] model ModelPart z którego pochodz¹ tekstury do ustawienia.*/
+void DisplayEngine::set_textures( const ModelPart& model )
+{
+	for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
+		if ( model.texture[i] )		// Nie ka¿da tekstura w tablicy istnieje
+		{
+			ID3D11ShaderResourceView* tex = model.texture[i]->get( );
+			device_context->PSSetShaderResources( i, 1, &tex );
+		}
+}
+
+/**@brief Ustawia w kontekœcie urz¹dzenia bufor indeksów.
+
+@param[in] buffer Bufor do ustawienia.*/
+void DisplayEngine::set_index_buffer( BufferObject* buffer )
+{
+	// Ustawiamy bufor indeksów, je¿eli istnieje
+	ID3D11Buffer* index_buffer = nullptr;
+	if ( buffer )
+	{
+		index_buffer = buffer->get( );
+		unsigned int offset = 0;
+		device_context->IASetIndexBuffer( index_buffer, INDEX_BUFFER_FORMAT, offset );
+	}
+}
+
+/**@brief Ustawia w kontekœcie urz¹dzenia bufor wierzcho³ków.
+
+@param[in] buffer Bufor do ustawienia.
+@return Je¿eli bufor nie istnieje to zwraca wartoœæ true. Inaczej false.
+Wywo³anie if( set_vertex_buffer() ) ma zwróciæ tak¹ wartoœæ, ¿eby w ifie mo¿na by³o
+wywo³aæ return lub continue, w przypadku braku bufora.*/
+bool DisplayEngine::set_vertex_buffer( BufferObject* buffer )
+{
+	ID3D11Buffer* vertex_buffer = nullptr;
+	if ( buffer )
+	{
+		vertex_buffer = buffer->get( );
+		unsigned int stride = buffer->get_stride( );
+		unsigned int offset = 0;
+		device_context->IASetVertexBuffers( 0, 1, &vertex_buffer, &stride, &offset );
+
+		return false;
+	}
+	return true;
+}
+
+/**@brief kopiuje materia³ do struktury, która pos³u¿y do zaktualizowania bufora sta³ych.
+
+@param[in] shader_data_per_mesh Struktura docelowa.
+@param[in] model ModelPart z którego pobieramy dane.*/
+void DisplayEngine::copy_material( ConstantPerMesh* shader_data_per_mesh, const ModelPart* model )
+{
+	MaterialObject* material = model->material;
+	shader_data_per_mesh->Diffuse = material->Diffuse;
+	shader_data_per_mesh->Ambient = material->Ambient;
+	shader_data_per_mesh->Specular = material->Specular;
+	shader_data_per_mesh->Emissive = material->Emissive;
+	shader_data_per_mesh->Power = material->Power;
+}
+
+/**@brief Funkcja w³¹cza lub wy³¹cza z-bufor.
+
+@param[in] state True je¿eli z-bufor ma byæ w³¹czony, false je¿eli wy³¹czony.*/
+void DisplayEngine::depth_buffer_enable( bool state )
+{
+	if ( state )
+		device_context->OMSetDepthStencilState( depth_enabled, 1 );
+	else
+		device_context->OMSetDepthStencilState( depth_disabled, 1 );
+}
+
+//-------------------------------------------------------------------------------//
+//							W³aœciwe funkcje do renderingu
+//-------------------------------------------------------------------------------//
 
 /**@brief Funkcja do renderowania sceny
 
@@ -57,45 +144,62 @@ void DisplayEngine::display_scene(float time_interval)
 {
 	set_view_matrix();
 
-	// Ustawiamy format wierzcho³ków i topologiê
-	device_context->IASetInputLayout( mesh_vertex_format );
-	device_context->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
-
 	// Ustawiamy bufor sta³y dla wszystkich meshy
 	//shader_data_per_frame.time_lag = 
+
+	// Ustawiamy topologiê
+	// D3D11_PRIMITIVE_TOPOLOGY_POINTLIST
+	// D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST
+	// D3D11_PRIMITIVE_TOPOLOGY_LINELIST
+	device_context->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 
 	device_context->UpdateSubresource( const_per_frame, 0, nullptr, &shader_data_per_frame, 0, 0 );
 	device_context->VSSetConstantBuffers( 0, 1, &const_per_frame );
 	device_context->PSSetConstantBuffers( 0, 1, &const_per_frame );
 
-	// Ustawiamy smapler
+	// Ustawiamy sampler
 	device_context->PSSetSamplers( 0, 1, &default_sampler );
 
+	// Zaczynamy wyswietlanie
+	display_sky_box( time_interval );
+
+	// Ustawiamy format wierzcho³ków
+	device_context->IASetInputLayout( mesh_vertex_format );
+
+	display_instanced_meshes( time_interval );
+	display_dynamic_objects( time_interval );
+	display_particles( time_interval );
+	display_short_live_objects( time_interval );
+	display_skeletons( time_interval );
+}
+
+/**@brief Funkcja s³u¿y do wyœwietlania meshy instancjonowanych, które s¹ jednoczeœniej obiektami statycznymi
+w scenie.
+
+
+@param[in] time_interval Czas od ostatniej klatki.*/
+void DisplayEngine::display_instanced_meshes( float time_interval )
+{
+
+}
+
+/**@brief Funkcja s³u¿y do wyœwietlania obiektów dynamicznych, które s¹ rzadko niszczone.
+
+
+@param[in] time_interval Czas od ostatniej klatki.*/
+void DisplayEngine::display_dynamic_objects( float time_interval )
+{
 	//na razie pêtla bez optymalizacji
-	for ( unsigned int i = 0; i < meshes.size(); ++i )
+	for ( unsigned int i = 0; i < meshes.size( ); ++i )
 	{
 		register Dynamic_mesh_object* object = meshes[i];
 
 		// Ustawiamy bufor wierzcho³ków
-		ID3D11Buffer* vertex_buffer = nullptr;
-		if ( object->vertex_buffer )
-		{
-			vertex_buffer = object->vertex_buffer->get();
-			unsigned int stride = object->vertex_buffer->get_stride();
-			unsigned int offset = 0;
-			device_context->IASetVertexBuffers( 0, 1, &vertex_buffer, &stride, &offset );
-		}
-		else
+		if ( set_vertex_buffer( object->vertex_buffer ) )
 			continue;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
 
 		// Ustawiamy bufor indeksów, je¿eli istnieje
-		ID3D11Buffer* index_buffer = nullptr;
-		if ( object->index_buffer )
-		{
-			index_buffer = object->index_buffer->get();
-			unsigned int offset = 0;
-			device_context->IASetIndexBuffer( index_buffer, INDEX_BUFFER_FORMAT, offset );
-		}
+		set_index_buffer( object->index_buffer );
 
 
 #ifdef _INTERPOLATE_POSITIONS
@@ -119,15 +223,10 @@ void DisplayEngine::display_scene(float time_interval)
 
 			// Wype³niamy bufor sta³ych
 			ConstantPerMesh shader_data_per_mesh;
-			MaterialObject* material = model.material;
 			shader_data_per_mesh.world_matrix = XMMatrixTranspose( world_transform );	// Transformacja wierzcho³ków
-				// Przepisujemy materia³
-			shader_data_per_mesh.Diffuse = material->Diffuse;
-			shader_data_per_mesh.Ambient = material->Ambient;
-			shader_data_per_mesh.Specular = material->Specular;
-			shader_data_per_mesh.Emissive = material->Emissive;
-			shader_data_per_mesh.Power = material->Power;
-			
+			// Przepisujemy materia³
+			copy_material( &shader_data_per_mesh, &model );
+
 			// Ustawiamy shadery
 			device_context->VSSetShader( model.vertex_shader->get( ), nullptr, 0 );
 			device_context->PSSetShader( model.pixel_shader->get( ), nullptr, 0 );
@@ -138,12 +237,7 @@ void DisplayEngine::display_scene(float time_interval)
 			device_context->PSSetConstantBuffers( 1, 1, &const_per_mesh );
 
 			// Ustawiamy tekstury
-			for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
-				if ( model.texture[i] )		// Nie ka¿da tekstura w tablicy istnieje
-				{
-					ID3D11ShaderResourceView* tex = model.texture[i]->get( );
-					device_context->PSSetShaderResources( i, 1, &tex );
-				}
+			set_textures( model );
 
 			// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
 			MeshPartObject* part = model.mesh;
@@ -156,6 +250,109 @@ void DisplayEngine::display_scene(float time_interval)
 	}
 }
 
+/**@brief Funkcja s³u¿y do wyœwietlania systemów cz¹stek.
+
+
+@param[in] time_interval Czas od ostatniej klatki.*/
+void DisplayEngine::display_particles( float time_interval )
+{
+
+}
+
+/**@brief Funkcja s³u¿y do wyœwietlania obiektów dynamicznych o krótkim czasie ¿ycia
+jak np. pociski.
+
+@param[in] time_interval Czas od ostatniej klatki.*/
+void DisplayEngine::display_short_live_objects( float time_interval )
+{
+
+
+}
+
+/**@brief Funkcja s³u¿y do wyœwietlania skyboxa lub te¿ ka¿dej innej formy, która s³u¿y za t³o.
+
+Funkcja ma specyficznym sposób przekazywania sta³ych do shaderów.
+Z racji tego, ¿e kopu³ê nieba zawsze wyœwietlamy tak, jakbyœmy stali w œrodku kuli, standardowa
+macierz widoku nie ma zbytniego zastosowania, bo zawiera równie¿ translacjê. Z tego powodu sam
+obrót kamery jest umieszczany w macierzy œwiata. Oznacza to, ¿e nie ma mo¿liwoœci wykonywania
+przekszta³ceñ na wierzcho³kach, musz¹ one byæ w tych pozycjach, w których s¹ w buforze.
+
+Drug¹ spraw¹ jest to, ¿e w zasadzie œrednica kopu³y nie ma wiekszego znaczenia, poniewa¿ na czas renderowania
+kopu³y, wy³¹czany jest algorytm z-bufora. Niebo zawsze ma siê znajdowaæ za wszystkimi obiektami, wiêc
+dziêki temu kopu³a nie musi obejmowaæ ca³ej sceny.
+
+@param[in] time_interval Czas od ostatniej klatki.*/
+void DisplayEngine::display_sky_box( float time_interval )
+{
+	if ( !sky_dome )
+		return;
+
+	// Ustawiamy format wierzcho³ków
+	device_context->IASetInputLayout( sky_dome->get_vertex_layout() );
+
+	// Aktualizuje bufor wierzcho³ków. Wstawiane s¹ nowe kolory.
+	// Powinna byæ to raczej rzadka czynnoœæ, poniewa¿ aktualizacja jest kosztowna czasowo
+	if ( sky_dome->update_vertex_buffer )
+		sky_dome->update_buffers();
+
+	// Ustawiamy bufor wierzcho³ków
+	if ( set_vertex_buffer( sky_dome->get_vertex_buffer() ) )
+		return;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
+	// Ustawiamy bufor indeksów, je¿eli istnieje
+	set_index_buffer( sky_dome->get_index_buffer() );
+
+
+	ModelPart* model = sky_dome->get_model_part();
+
+	// Wyliczamy macierz transformacji
+	XMVECTOR quaternion = XMLoadFloat4( &(current_camera->orientation) );
+	quaternion = XMVectorNegate( quaternion );
+	quaternion = XMVectorSetW( quaternion, -XMVectorGetW( quaternion ) );
+
+	XMMATRIX rotation_matrix = XMMatrixRotationQuaternion( quaternion );
+
+	// Wype³niamy bufor sta³ych
+	ConstantPerMesh shader_data_per_mesh;
+	shader_data_per_mesh.world_matrix = XMMatrixTranspose( rotation_matrix );	// Transformacja wierzcho³ków
+	// Przepisujemy materia³
+	copy_material( &shader_data_per_mesh, model );
+
+	// Ustawiamy shadery
+	device_context->VSSetShader( model->vertex_shader->get( ), nullptr, 0 );
+	device_context->PSSetShader( model->pixel_shader->get( ), nullptr, 0 );
+
+	// Aktualizujemy bufor sta³ych
+	device_context->UpdateSubresource( const_per_mesh, 0, nullptr, &shader_data_per_mesh, 0, 0 );
+	device_context->VSSetConstantBuffers( 1, 1, &const_per_mesh );
+	device_context->PSSetConstantBuffers( 1, 1, &const_per_mesh );
+
+	ID3D11Buffer* const_buffer = sky_dome->get_constant_buffer();
+	device_context->VSSetConstantBuffers( 2, 1, &const_buffer );
+	device_context->PSSetConstantBuffers( 2, 1, &const_buffer );
+
+	// Ustawiamy tekstury
+	set_textures( *model );
+
+	depth_buffer_enable( false );		// Wy³¹czamy z-bufor
+
+	// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
+	const MeshPartObject* part = model->mesh;
+	if ( part->use_index_buf )
+		device_context->DrawIndexed( part->vertices_count, part->buffer_offset, part->base_vertex );
+	else // Tryb bezpoœredni
+		device_context->Draw( part->vertices_count, part->buffer_offset );
+
+	depth_buffer_enable( true );		// W³¹czamy z-bufor spowrotem
+}
+
+/**@brief Funkcja s³u¿y do wyœwietlania obiektów z animacj¹ szkieletow¹, czyli g³ównie postaci
+
+
+@param[in] time_interval Czas od ostatniej klatki.*/
+void DisplayEngine::display_skeletons( float time_interval )
+{
+
+}
 
 /**@brief Tworzy macierz projekcji i zapamiêtuje j¹ w polu projection_matrix klasy. W ka¿dym wywo³aniu funkcji
 display_scene ustawiana jest macierz zapisana w tym polu.
@@ -372,6 +569,24 @@ void DisplayEngine::set_ambient_light( const DirectX::XMFLOAT4& color )
 {
 	shader_data_per_frame.ambient_light = color;
 }
+
+/**@brief Ustawia nowego skydome'a dla gry.
+
+Nale¿y podaæ w pe³ni skonstruowanego i gotowego do wyœwietlania SkyDome'a.
+Funkcja zwraca poprzednio ustawionego SkyDome'a, którego nale¿y zwolniæ samemu.
+Aktualnie ustawiony SkyDome jest pod koniec programu zwalniany w destruktorze.
+
+@note Je¿eli t³o ma nie byæ wyœwietlane nale¿y podaæ w parametrze nullptr.
+
+@param[in] dome Nowy SkyDome, który ma zostaæ ustawiony.
+@return Zwraca poprzedniego SkyDome'a.*/
+SkyDome* DisplayEngine::set_skydome( SkyDome* dome )
+{
+	SkyDome* old = sky_dome;
+	sky_dome = dome;
+	return old;
+}
+
 
 #ifndef __UNUSED
 

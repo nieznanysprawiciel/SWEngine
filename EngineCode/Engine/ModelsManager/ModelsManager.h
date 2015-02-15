@@ -83,7 +83,13 @@ public:
 	MODELS_MANAGER_RESULT load_model_from_file( const std::wstring& file );
 
 	inline Model3DFromFile* get_model( const std::wstring& name ) { return file_model.get( name ); }	///<Zwraca model z pliku o podanej nazwie
-
+	TextureObject* add_texture( const std::wstring& file_name );
+	MaterialObject* add_material( const MaterialObject* material, const std::wstring& material_name );
+	VertexShaderObject* add_vertex_shader( const std::wstring& file_name, const std::string& shader_entry );
+	VertexShaderObject* add_vertex_shader( const std::wstring& file_name, const std::string& shader_entry, ID3D11InputLayout** layout, D3D11_INPUT_ELEMENT_DESC* layout_desc, unsigned int array_size );
+	PixelShaderObject* add_pixel_shader( const std::wstring& file_name, const std::string& shader_entry );
+	BufferObject* add_vertex_buffer( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
+	BufferObject* add_index_buffer( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
 private:
 	Loader* find_loader( const std::wstring& path );
 	

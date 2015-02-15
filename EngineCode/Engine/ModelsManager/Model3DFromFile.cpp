@@ -285,7 +285,7 @@ unsigned int Model3DFromFile::add_material( const MaterialObject* material, cons
 Obiekt jest dodawany do ModelsManagera je¿eli jeszcze nie istnia³. Je¿eli istnia³
 nie jest duplikowany, ale zamiast niego wstawia siê wskaŸnik na istniej¹cy obiekt.
 
-@param[in] Nazwa pliku, w którym znajduje siê vertex shader. Nazwa funkcji na razie jest niezmienna
+@param[in] file_name Nazwa pliku, w którym znajduje siê vertex shader. Nazwa funkcji na razie jest niezmienna
 i okreœla j¹ makro DEFAULT_VERTEX_SHADER_ENTRY.
 @return Indentyfikator obiektu.*/
 unsigned int Model3DFromFile::add_vertex_shader( const std::wstring& file_name )
@@ -315,7 +315,7 @@ unsigned int Model3DFromFile::add_vertex_shader( const std::wstring& file_name )
 Obiekt jest dodawany do ModelsManagera je¿eli jeszcze nie istnia³. Je¿eli istnia³
 nie jest duplikowany, ale zamiast niego wstawia siê wskaŸnik na istniej¹cy obiekt.
 
-@param[in] Nazwa pliku, w którym znajduje siê pixel shader. Nazwa funkcji na razie jest niezmienna
+@param[in] file_name Nazwa pliku, w którym znajduje siê pixel shader. Nazwa funkcji na razie jest niezmienna
 i okreœla j¹ makro DEFAULT_PIXEL_SHADER_ENTRY.
 @return Indentyfikator obiektu.*/
 unsigned int Model3DFromFile::add_pixel_shader( const std::wstring& file_name )

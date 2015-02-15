@@ -1,3 +1,8 @@
+Wersja 1.006
+15.02.2015	godz. 16:54
+-	Dodane interfejsy do robienia skydome'ów
+-	Dodany model Hoseka-Wilkiego
+
 Wersja 1.005
 11.02.2015	godz. 13:17
 -	Dodany pixel shader do obs³ugi tekstury diffuse
