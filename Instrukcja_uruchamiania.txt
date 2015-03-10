@@ -83,3 +83,24 @@ Nie nale¿y modyfikowaæ pliku zawieraj¹cego funkcjê WinMain.
 Aby stworzyæ grê nale¿y zaimplementowaæ w³asne klasy dziedzicz¹c po GamePlay. Szablon pierwszej klasy
 o nazwie EntryPoint jest zaimplementowany w projekcie i podawany przy starcie silnika.
 Nale¿y go zmodyfikowaæ do swoich potrzeb.
+
+4. Generowanie dokumentacji
+
+Nale¿y œci¹gn¹æ program doxywizard ze strony: http://www.stack.nl/~dimitri/doxygen/download.html
+
+Plik konfiguracyjny silnika znajduje siê w katalogu:
+SW_engine\EngineCode\documentation i nazywa siê Doxyfile
+
+Trzeba go wczytaæ doxywizardem, przejœæ do zak³adki Run i klikn¹æ Run doxygen.
+
+Dokumentacja zostanie wygenerowana w katalogu:
+SW_engine\Documentation\SWEngine_documentation\html
+
+Aby obejrzeæ j¹ w przegl¹darce offline mo¿na:
+-	klikn¹æ na przycisk Show HTML output w programie doxywizard
+-	poszukaæ pliu index.html w katalogu z dokumentacj¹
+
+Dokumentacja jest generowana na podstawie kodu Ÿród³owego.
+Jak ktoœ bêdzie kiedyœ implementowa³ jakieœ funkcje, to musi na bie¿¹co komentowaæ
+swoje osi¹gniêcia.
+
