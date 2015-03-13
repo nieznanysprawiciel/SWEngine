@@ -1,3 +1,11 @@
+Wersja 1.007
+13.03.2015	godz. 20:25
+-	Dodana interpolacja po³o¿enia kamery, co znacznie poprawia p³ynnoœæ animacji przy
+	przesuwaniu siê.
+-	Poprawiony b³¹d interpolacji obiektów sceny.
+-	Ustawiona jest synchronizacja wyœwietlania klatek z czêstotliwoœci¹ odœwie¿ania ekranu, co ogranicza
+	liczbe FPSów do czêstotliwoœci ekranu, ale za to zmniejsza zu¿ycie procesora i karty graficznej.
+
 Wersja 1.006
 15.02.2015	godz. 16:54
 -	Dodane interfejsy do robienia skydome'ów
