@@ -251,8 +251,10 @@ int Dynamic_mesh_object::set_model(Model3DFromFile* model)
 	return 0;
 }
 
-/* #private
-Dodajemy odwo³ania do wszystkich istniej¹cych elementów w przekazanym wskaŸniku.*/
+/**
+Dodajemy odwo³ania do wszystkich istniej¹cych elementów w przekazanym wskaŸniku.
+
+@param[in] part Struktura ModelPart opisuj¹ce czêœæ mesha, w której dodajemy referencje.*/
 void Dynamic_mesh_object::add_references( const ModelPart* part )
 {
 	if ( part == nullptr )
@@ -272,9 +274,9 @@ void Dynamic_mesh_object::add_references( const ModelPart* part )
 
 }
 
-/* #private
+/**
 Kasuje odwo³ania do obiektów, których w³asnoœci¹ jest ModelsManager albo Model3DFromFile
-w tablicy model_parts raz wskaŸniku model_reference i vertex_buffer;
+w tablicy model_parts oraz wskaŸniku model_reference i vertex_buffer.
 
 ¯adne obiekty nie s¹ kasowane, poniewa¿ nie nale¿¹ one do nas.
 Wszystkie zmienne s¹ za to czyszczone.*/
@@ -322,3 +324,21 @@ Base_input_controller::Base_input_controller( InputAbstractionLayer_base* layer 
 
 Base_input_controller::~Base_input_controller(){};
 
+
+//----------------------------------------------------------------------------------------------//
+//									Camera_object
+//----------------------------------------------------------------------------------------------//
+
+
+/**@brief Tworzy macierz projekcji dla danej kamery i umieszcza w polu projection_matrix
+
+@param[in] angle K¹t widzenia w pionie
+@param[in] X_to_Y Stosunek Szerokoœci do wysokoœci ekranu
+@param[in] near_plane Bli¿sza p³aszczyzna obcinania
+@param[in] far_plane Dalsza p³aszczyzna obcinania*/
+void Camera_object::set_projection_matrix( float angle, float X_to_Y, float near_plane, float far_plane )
+{
+	XMMATRIX proj_matrix = XMMatrixPerspectiveFovLH( angle, X_to_Y, near_plane, far_plane );
+	proj_matrix = XMMatrixTranspose( proj_matrix );
+	XMStoreFloat4x4( &projection_matrix, proj_matrix );
+}

@@ -1,22 +1,4 @@
 /**
-@page Events Eventy
-
-@section Contents Spis Treœci
-- @ref EventgeneralInfo
-
-@subsection EventgeneralInfo Informacje ogólne o mechanizmie eventów
-
-Eventy s¹ metod¹ komunikacji pomiedzy silnikiem graficznym, silnikiem fizycznym, AI i silnikiem kolizji,
-a modu³em silnika odpowiedzialnym za fabu³ê. Istnieje szereg eventów wbudowanych, wysy³anych przez silnik,
-mo¿na równie¿ definiowaæ w³asne nowe eventy poprzez dziedziczenie z klasy Event. Event mo¿e byæ wys³any przez dowolny
-objekt poprzez wywo³anie funkcji Object::event. Aby wys³aæ w³asny event trzeba przeci¹¿yæ jedn¹ z funkcji klas wbudowanych,
-która jest potem wywo³ywana przez silnik i wywo³aæ tê funkjê.
-
-Za zwolnienie pamiêci po klasie Event odpowiada klasa FabelEngine (jest to robione automatycznie po wywo³aniu funkcji obs³ugi,
-u¿ytkownik nie musi siê tym przejmowaæ).
-*/
-
-/**
 @page EngineInit Inicjowanie silnika
 
 */
@@ -29,103 +11,6 @@ u¿ytkownik nie musi siê tym przejmowaæ).
 @page CameraView Kamera i sterowanie widokiem
 */
 
-Kontrolery
-/**
-@page Controllers Kontrolery
-
-@section Contents Spis Treœci
-- @ref mainUse
-- @ref PrePostControllers
-
-@subsection mainUse Do czego s³u¿¹ kotrolery
-
-@subsection PrePostControllers Kotrolery pre i post
-Istniej¹ kotrolery, których ruch uzale¿niony jest od po³o¿enia innych obiektów. Z racji tego nie mog¹ one zostaæ wywo³ane przed policzeniem przemieszczeñ, bo by³yby zawsze opóŸnione o jedn¹ klatkê. Pozosta³e kotrolery s³u¿¹ do wp³ywania na ruch obiektów, dlatego nie mog¹ byæ wywo³ane, po obliczeniu po³o¿eñ obiektów. Z tego wzglêdu kotrolery obs³ugiwane s¹ dwukrotnie, jedne w funkcji ControllersEngine:: proceed_controllers_pre tu¿ przed wywo³aniem MovementEngine::proceed_movement, a drugie tu¿ po tym wywo³aniu w funkcji ControllersEngine::proceed_controllers_post.
-
-Do kontrolerów post zaliczamy kotrolery œledz¹ce jakis obiekt, do kotrolerów pre wszystkie kontrolery odpowiedzialne za AI oraz steruj¹ce ruchem na podstawie klawiatury czy myszy.
-
-*/
-
-Input Obs³uga klawiatury, myszy itp.
-/**
-@page Input Obs³uga klawiatury, myszy itp.
-
-@section Contents Spis Treœci
-- @ref briefInfo
-- @ref AbstractionLayers
-
-@subsection briefInfo Informacje ogólne
-Za obs³ugê urz¹dzeñ wejœciowych odpowiada klasa UI_engine. Inicjalizacja odpowiednich modu³ów DirectXa nastêpuje w funkcji UI_engine::init_direct_input. Stan urz¹dzeñ wejœciowych sprawdzany jest w ka¿dym obiegu pêtli przetwarzania obiektów (patrz: Potok przetwarzania obiektów) w funkcji UI_engine::proceed_input.
-
-Obs³uga urz¹dzeñ za pomoc¹ DirectXa polega na odczytywaniu stanów wszystkich przycisków z odpowiednich tablic.(Po dok³adniejsze informacje odsy³am do MSDNu temat Direct Input). Nie istnieje tu mechanizm wysy³ania komunikatów systemowych tak jak w WinAPI lub innych platformach obs³uguj¹cych GUI, dlatego , tak gdzie taka funkcjonalnoœæ jest potrzebna, musimy j¹ napisaæ sami u¿ywaj¹c mechanizmu eventów.
-
-@subsection  AbstractionLayers Warstwa abstrakcji
-{do przemyœlenia, stworzenia, napisania}
-Ten sam klawisz na klawiaturze mo¿e robiæ ró¿ne rzeczy w zale¿noœci od kontekstu w jakim zosta³ przyciœniety. Inaczej trzeba zareagowaæ, kiedy myszka jest klikniêta w g³ównej fazie gry, inaczej gdy jesteœmy w menu. Silnik musi dawaæ mo¿liwoœæ ³atwej obs³ugi oraz tworznia wielu ró¿nych kontekstów, do czego potrzebne jest wprowadzenie dodatkowej warstwy abstrakcji pomiêdzy bezpoœrednim odczytem stanu urz¹dzeñ wejœciowych, a wykonaniem jakiejœ akcji.
-
-Zacznijmy od zdefiniowania kto i w jaki sposób mo¿e uzyskaæ dostêp do odczytu z urz¹dzeñ wejœciowych. S¹ to:
-- kontrolery dziedzicz¹ce po Standard_input_controller – wymagaj¹ dostêpu do jednej lub kilku warstw abstrakcji w zale¿noœci od tego, co obs³uguj¹
-- obiekt GamePlay – powinien dostaæ event informuj¹cy o wciœniêciu (puszczeniu) klawisza
-- obiekt GamePlay – mo¿e chcieæ w dowolnym momencie sprawdziæ czy jakiœ przycisk jest wcisniêty {opcja do rozwa¿enia}
-- obiekt UI_engine – musi odczytywaæ stany urz¹dzeñ, aby sprawdzaæ wciœniêcie przycisku (przycisku GUI, nie na klawiaturze) lub interakcjê z innymi kontrolkami. Nastêpnie ma wys³aæ event wysokopoziomowy o interakcji.
-
-*/
-
-Pêtla g³ówna silnika
-/**
-@page MainLoop Pêtla g³ówna silnika
-
-@section Contents Spis Treœci
-- @ref Code
-- @ref Description
-
-
-@subsection Code Kod
-@code
-int Engine::main_loop()
-{
-	MSG msg;
-	LARGE_INTEGER time_temp;
-
-	//Sprawdzamy czêstotliwoœæ timera systemowego, a potem inicjujemy licznik czasu
-	QueryPerformanceFrequency( &time_temp );
-	timer_frequency = time_temp.QuadPart;
-	QueryPerformanceCounter( &time_temp );		//inicjujemy licznik czasu
-	time_previous = time_temp.QuadPart;
-	elapsed_time = time_previous;
-
-	// Main message loop:
-	while (TRUE)
-	{
-		if ( directX_ready )
-			render_frame();
-
-		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-		//while (GetMessage(&msg, NULL, 0, 0))
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-
-		if (msg.message == WM_QUIT)
-		{
-			break;
-		}
-	}
-
-	return (int)msg.wParam;
-}
-@endcode
-@subsection Description Opis
-Pêtla g³ówna silnika zastêpuje Windowsowsk¹ pêtlê komunikatów, wywo³uj¹c jednoczeœnie pêtlê g³ówn¹ silnika (zobacz temat: Potok przetwarzania obiektów). Musimy obs³ugiwaæ komunikaty windowsa, poniewa¿ w przeciwnym razie móg³by on uznaæ, ¿e nasz program siê zawiesi³, i spróbowaæ zabiæ nasz proces. Dlatego pobieramy wiadomoœci z kolejki komunikatów i przekazujemy do dalszego przetwarzania. Do pobierania komunikatów u¿ywamy nieblokuj¹cej funkcji PeekMessage (nie GetMessage). 
-
-Jako pêtla g³ówna silnika s³u¿y funkcja render_frame. Jest ona wywo³ywana tylko pod warunkiem, ¿e wczeœniejsza inicjalizacja directXa w pe³ni powiod³a siê. Wa¿nym punktem jest inicjacja zmiennej time_previous. Niezainicjowanie tej zmiennej, mog³oby spowodowaæ, ¿e w pierwszej klatce nast¹pi³aby nieprzewidywalna zmiana po³o¿eñ i orientacji wszystkich obiektów na scenie.
-
-Wyjœcie z aplikacji nastêpuje kiedy w kolejce komunikatów windowsa znajdzie siê komunikat WM_QUIT. Z wnêtrza silnika mo¿na to osi¹gn¹æ przez wywo³anie funkcji end_aplication.
-
-Definicja: "Engine_window_functions.cpp"
-*/
-
 /**
 @page MakingLoaders Pisanie loaderów plików z modelami
 
@@ -133,81 +18,7 @@ Definicja: "Engine_window_functions.cpp"
 
 */
 
-/**
-@page ObjectPipeline Potok przetwarzania obiektów
 
-@section Contents Spis Treœci
-- @ref Code
-- @ref generalInfo
-- @ref pipelineScheme
-
-@subsection Code
-@code
-void Engine::render_frame()
-{
-	float time_interval;
-	time_controller( time_interval );
-
-
-#ifdef FIXED_FRAMES_COUNT
-	while ( lag >= FIXED_MOVE_UPDATE_INTERVAL )
-	{
-		ui_engine->proceed_input( time_interval );
-		physic_engine->proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );
-		controllers_engine->proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );
-		movement_engine->proceed_movement( FIXED_MOVE_UPDATE_INTERVAL );
-		controllers_engine->proceed_controllers_post( FIXED_MOVE_UPDATE_INTERVAL );
-		collision_engine->proceed_collisions( FIXED_MOVE_UPDATE_INTERVAL );
-		fable_engine->proceed_fable( FIXED_MOVE_UPDATE_INTERVAL );
-
-		lag -= FIXED_MOVE_UPDATE_INTERVAL;
-	}
-#else
-	ui_engine->proceed_input( time_interval );
-	physic_engine->proceed_physic(time_interval);
-	controllers_engine->proceed_controllers_pre(time_interval);
-	movement_engine->proceed_movement(time_interval);
-	controllers_engine->proceed_controllers_post(time_interval);
-	collision_engine->proceed_collisions(time_interval);
-	fable_engine->proceed_fable(time_interval);
-
-#endif
-
-#ifdef _INTERPOLATE_POSITIONS
-	display_engine->interpolate_positions(lag);
-#endif
-
-	//Renderujemy scenê oraz interfejs u¿ytkownika
-	begin_scene();
-
-	display_engine->display_scene(time_interval);
-	ui_engine->draw_GUI(time_interval);
-
-	end_scene_and_present();
-}
-@endcode
-
-@subsection generalInfo Ogólne informacje
-Za potok przetwarzania obiektów odpowiada funkcja Engine::render_frame. Funkcja ta jest wywo³ywana w pêtli g³ównej silnika, konkretniej w funkcji Engine::main_loop, w ka¿dym mo¿liwym momencie, kiedy nie s¹ przetwarzane komunikaty z kolejki komunikatów WinApi.
-
-Funkcja wywo³uje w odpowiedniej kolejnoœci poszczególne modu³y silnika. Modu³y odpowiedzialne za ruch obiektów na scenie i ich interakcje wywo³ywane s¹ ze sta³¹ czêstotliwoœci¹ okreœlon¹ przez sta³¹ FIXED_MOVE_UPDATE_INTERVAL. Oznacza to, ¿e w niektórych obiegach pêtli mog¹ nie zostaæ wywo³ane, je¿eli odleg³oœæ w czasie od odstatniego wywo³ania jest za ma³a. Taka architektura ma na celu spowodowanie, ¿eby gra dzia³a³a tak samo zarówno na szybkim sprzêcie jak i na wolnym. Zauwa¿my, ¿e jedno przesuniêcie obiektów po czasie t, nie jest równowa¿ne dwóm przesuniêciom po czasie t/2. Dzieje siê tak ze wzglêdu na niedok³adnoœæ obliczeñ wykonywanych na floatach. O ile w tym przypadku ró¿nice nie musz¹ byæ du¿e, to ró¿nica zachowania sztucznej inteligencji w tych dwóch sytuacjach jest nie do przewidzenia.
-Za pomoc¹ tego samego mechanizmu realizowane jest pauzowanie gry. Wtedy czas nie przyrasta, wiêc odpowiednie bloki nie zostaj¹ wywo³ane.
-
-@deprecated
-Modu³y silnika odpowiedzialne za renderowanie obiektów, GUI oraz przechwytywanie urz¹dzeñ wejœciowych s¹ wywo³ywane w ka¿dym obiegu pêtli.
-Obs³uga eventów wywo³ywana jest wed³ug schematu dwukrotnie. Jest to konieczne, gdy¿ chcemy obs³ugiwaæ eventy tak¿e wtedy, kiedy jesteœmy w trybie pauzy. Nie mo¿emy zabraæ obs³ugi eventów z bloku wykonywanego warunkowo, poniewa¿ po ka¿dym przeliczeniu po³o¿eñ i parametrów obiektów, mog¹ zostaæ wygenerowane nowe zdarzenia, które trzeba obs³u¿yæ. Blok mo¿e zostaæ wtedy ponownie wykonany, z powodu opóŸnienia. W takiej sytuacji obs³uga eventów poza pêtl¹ odby³aby siê za póŸno.
-Z tych wzglêdów musimy wywo³aæ obs³ugê zarówno po ka¿dym obiegu bloku warunkowego jak i po wyjœciu z niego. Nie powoduje to ¿adnego spowolnienia. Nadmiarowa procedura natrafia w takim wypadku na pust¹ kolejkê eventów i natychmiast powraca.
-
-Jak widaæ ze schematu obs³uga kontrolerów podzielona jest na dwie czêœci: kontrolery pre i kontrolery post. Dla niektórych grup kotrolerów wymagane jest, aby pozycje pozosta³ych obiektów dynamicznych by³ ju¿ znane, inne maj¹ wp³yw na póŸniejsze przeliczenie pozycji, dlatego musz¹ byæ wywo³ane wczeœniej. Aby przeczytaæ wiêcej o tym temacie odsy³am do @ref PrePostControllers.
-
-Renderowanie klatki podzielone jest na dwa etapy: pierwszym jest renderowanie sceny, drugim renderowanie graficznego interfejsu u¿ytkownika. Aby dowiedzieæ siê wiêcej zalecam przeczytaæ tematy: @ref SceneRender i @ref GUIRender. Ze wzglêdu na to, ¿e funkcje BeginScene i EndScene mog¹ byæ wywo³ane tylko raz podczas renderowania jednej klatki, dzieje siê to na tym poziomie, nie wen¹trz jednej z tych funkcji. Podobnie na tym poziomie realizowane jest czyszczenie bufora kolorów oraz z-bufora.
-
-Funkcja Engine::time_controller wywo³ywana na pocz¹tku robi dwie rzeczy. Po pierwsze liczy czas jaki up³yn¹³ od ostatniego wywo³ania i ustawia zmienn¹ lag. Przy ustawianiu bierze pod uwagê czy jesteœmy w trybie pauzy czy nie, w zwi¹zku z czym na tym poziomie nie musimy siê o nic martwiæ.
-Drugim zadaniem jest generowanie eventów zwi¹zanych z czasem i opóŸnieniami.
-
-@subsection pipelineScheme Schemat potoku przetwarzania obiektów
-@image html "documentation/pipeline.jpg"
-*/
 
 /**
 @page GUIRender Renderowanie GUI
@@ -215,12 +26,4 @@ Drugim zadaniem jest generowanie eventów zwi¹zanych z czasem i opóŸnieniami.
 
 /**
 @page SceneRender Renderowanie sceny
-*/
-
-/**
-@page CoorinatesSystem Uk³ad wspó³rzêdnych
-
-Podobnie jak directX, silnik u¿ywa lewoskrêtnego uk³adu wspó³rzêdnych. Oœ x skierowana jest w praw¹ stronê ekranu, oœ y w górê ekranu, a oœ z w kierunku ekranu.
-Domyœlne ustawienie kamery, która nie zosta³a przekszta³cona ¿adn¹ macierza widoku jest takie, ¿e z punktu ( 0, 0, 0 ) patrzy w g³¹b ekranu, czyli patrzy wzd³u¿ wektora ( 0, 0, 1 ). Kierunek do góry wyznaczony jest przez wektor ( 0, 1, 0 ).
-
 */

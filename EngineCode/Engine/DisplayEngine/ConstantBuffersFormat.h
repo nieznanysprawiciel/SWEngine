@@ -19,13 +19,13 @@ wektory 3-wymiarowe, to trzeba uzupe³niæ czwarta wspó³rzêdn¹ jakimœ pustym float
 
 typedef struct ConstantPerFrame
 {
-	XMFLOAT4X4		view_matrix;
-	XMFLOAT4X4		projection_matrix;
-	XMFLOAT4		light_direction[ENGINE_MAX_LIGHTS];		// Wspó³rzêdne s¹ zanegowane, ¿eby shader mia³ mniej roboty
-	XMFLOAT4		light_color[ENGINE_MAX_LIGHTS];
-	XMFLOAT4		ambient_light;
-	float			time;
-	float			time_lag;
+	DirectX::XMFLOAT4X4		view_matrix;
+	DirectX::XMFLOAT4X4		projection_matrix;
+	DirectX::XMFLOAT4		light_direction[ENGINE_MAX_LIGHTS];		// Wspó³rzêdne s¹ zanegowane, ¿eby shader mia³ mniej roboty
+	DirectX::XMFLOAT4		light_color[ENGINE_MAX_LIGHTS];
+	DirectX::XMFLOAT4		ambient_light;
+	float					time;
+	float					time_lag;
 } ConstantPerFrame;
 
 
@@ -37,7 +37,8 @@ U¿ywane s¹ tylko pierwsze 3 elementy wektora. Jedynie w kanale Diffuse ostatnia 
 */
 typedef struct ConstantPerMesh
 {
-	XMMATRIX				world_matrix;
+	DirectX::XMMATRIX		world_matrix;
+	DirectX::XMVECTOR		mesh_scale;
 	DirectX::XMFLOAT4		Diffuse;		//Sk³adowa przezroczystoœci odnosi siê do ca³ego materia³u
 	DirectX::XMFLOAT4		Ambient;
 	DirectX::XMFLOAT4		Specular;

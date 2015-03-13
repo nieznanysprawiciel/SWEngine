@@ -19,12 +19,14 @@ void Engine::test()
 	const wchar_t NEBULON[] = L"tylko_do_testow/Nebulon/Nebulon.FBX";
 	const wchar_t VADER_TIE[] = L"tylko_do_testow/VadersTIE.FBX";
 	const wchar_t TIE_FIGHTER[] = L"tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX";
+	const wchar_t IMPERIAL_STAR_DESTROYER[] = L"tylko_do_testow/ImperialStarDestroyer.FBX";
 
 	models_manager->load_model_from_file( CLONE_FIGHTER );
 	models_manager->load_model_from_file( MOON );
 	models_manager->load_model_from_file( NEBULON );
 	models_manager->load_model_from_file( VADER_TIE );
 	models_manager->load_model_from_file( TIE_FIGHTER );
+	//models_manager->load_model_from_file( IMPERIAL_STAR_DESTROYER );
 	
 	//models_manager->test();			// Tu sie odbywa wczytywanie
 
@@ -45,7 +47,7 @@ void Engine::test()
 	nebulon->set_position( position );
 
 	nebulon->set_model( models_manager->get_model( NEBULON ) );
-	nebulon->set_scale( 0.1 );
+	nebulon->set_scale( 1 );	//Nebulon ma Ÿle ustawiony pivot, wiêc jak siê przeskaluje to odleci gdzieœ w kosmos i go nie widaæ.
 
 	object_list.push_back( nebulon );
 	display_engine->add_dynamic_mesh_object( nebulon );
@@ -96,6 +98,17 @@ void Engine::test()
 	display_engine->add_dynamic_mesh_object( clone_fighter );
 	movement_engine->add_moveable_object( clone_fighter );
 
+
+	// Dodawanie gwiezdnego niszczyciela Imperial
+	/*Dynamic_mesh_object* Imperial = new Dynamic_mesh_object;
+	position = XMVectorSet( -4000.0, 0.0, -3000.0, 0.0 );
+	Imperial->set_position( position );
+
+	Imperial->set_model( models_manager->get_model( IMPERIAL_STAR_DESTROYER ) );
+
+	object_list.push_back( Imperial );
+	display_engine->add_dynamic_mesh_object( Imperial );
+	*/
 
 	/*
 	//dodawanie skrzyni

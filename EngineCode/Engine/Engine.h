@@ -25,8 +25,7 @@
 
 //	engines defines
 #define		NUM_OF_MODULES			8
-//co tyle ms aktualizujemy frames_per_sec
-#define		FRAMES_PER_SEC_UPDATE	10000
+
 
 
 

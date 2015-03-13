@@ -1,6 +1,6 @@
 #include "..\stdafx.h"
 #include "DX11_interfaces_container.h"
-
+#include "DXGI.h"
 
 
 #include "..\memory_leaks.h"
@@ -118,7 +118,7 @@ int DX11_interfaces_container::init_devices( int width, int height, HWND window,
 	swap_chain_desc.SampleDesc.Count = 1;
 	swap_chain_desc.SampleDesc.Quality = 0;
 	swap_chain_desc.Windowed = TRUE;
-	//swap_chain_desc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
+	swap_chain_desc.SwapEffect = DXGI_SWAP_EFFECT::DXGI_SWAP_EFFECT_DISCARD;
 	swap_chain_desc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
 	result = D3D11CreateDeviceAndSwapChain( nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr,

@@ -15,6 +15,7 @@ cbuffer ConstantPerFrame : register( b0 )
 cbuffer ConstantPerMesh : register( b1 )
 {
 	matrix World;
+	float4 mesh_scale;
 	float4 Diffuse;
 	float3 Ambient;
 	float3 Specular;

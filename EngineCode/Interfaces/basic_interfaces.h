@@ -57,8 +57,8 @@ public:
 
 	inline void set_position(const XMVECTOR& pos) { XMStoreFloat3(&position, pos); }
 	inline void set_orientation(const XMVECTOR& quaternion) { XMStoreFloat4(&orientation, quaternion); }
-	inline XMVECTOR get_position() { return XMLoadFloat3( &position ); };
-	inline XMVECTOR get_orientation() { return XMLoadFloat4( &orientation ); };
+	inline XMVECTOR get_position() const { return XMLoadFloat3( &position ); };
+	inline XMVECTOR get_orientation() const { return XMLoadFloat4( &orientation ); };
 };
 
 
@@ -83,8 +83,8 @@ public:
 	inline void set_speed( const XMVECTOR& vector ) { XMStoreFloat3( &speed, vector ); }
 	inline void set_rotation_speed( const XMVECTOR& quaternion ) { XMStoreFloat4( &rotation_speed, quaternion ); }
 	inline void set_rotation_speed( const XMFLOAT4 axis_angle ) { rotation_speed = axis_angle; }
-	inline XMVECTOR get_speed( ) { return XMLoadFloat3( &speed ); };
-	inline XMVECTOR get_rotation_speed( ) { return XMLoadFloat4( &rotation_speed ); };
+	inline XMVECTOR get_speed() const { return XMLoadFloat3( &speed ); };
+	inline XMVECTOR get_rotation_speed() const { return XMLoadFloat4( &rotation_speed ); };
 
 	inline void set_controller( Controller* ctrl ) { controller = ctrl; };
 
@@ -103,6 +103,8 @@ public:
 	void pulse();
 };
 
+/**@brief Klasa bazowa dla obiektów, które bêd¹ renderowane.
+*/
 class Dynamic_mesh_object : public Physical_object
 {
 	friend class DisplayEngine;
@@ -129,6 +131,20 @@ private:
 	void add_references(const ModelPart* part);
 	void delete_all_references();
 
+	/**@brief Funkcja wywo³ywana dla obiektów samo-renderuj¹cych. Ma za zadanie narysowaæ
+	obiekt, dla którego zosta³a wywo³ana.
+
+	Je¿eli obiekt ma siê renderowaæ w sposób standardowy, nie ma potrzeby implementowania tej funkcji.
+	Zasadniczo nie powinno siê u¿ywaæ tego sposoby renderowania, je¿eli nie ma ku temu wa¿nych powodów,
+	poniewa¿ uniemo¿liwia on skuteczn¹ optymalizacjê renderowania.
+
+	@see @ref selfDrawingObjects
+
+	@param[in] device_context WskaŸnik do obiektu directXa s³u¿¹cego do renderowania sceny.
+	@param[in] time_interval Czas od ostatniej klatki.
+	@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ.
+	*/
+	virtual void draw( DeviceContext* device_context, float time_interval, float time_lag ) {}
 };
 
 class Animation_object : public Physical_object
@@ -139,10 +155,15 @@ protected:
 
 };
 
+/**@brief Klasa bazowa dla wszystkich obiektów kamer w silniku.
+*/
 class Camera_object : public Dynamic_object
 {
 	friend class DisplayEngine;
-
+protected:
+	DirectX::XMFLOAT4X4		projection_matrix;		///<Macierz projekcji. Dla ka¿dej kamery mo¿e byæ inna. @attention Na razie nieu¿ywane. Macierz projekcji jest ustawiana na sta³e w DisplayEngine.
+public:
+	void set_projection_matrix( float angle, float X_to_Y, float near_plane, float far_plane );
 };
 
 

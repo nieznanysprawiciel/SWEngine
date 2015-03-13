@@ -138,11 +138,14 @@ Funkcja display_engine ma obowi¹zek za ka¿dym razem od nowa ustawiæ macierz wido
 mog¹ byæ zmodyfikowane przez UI_Engine.Innymi s³owy nie mo¿na za³o¿yæ, ¿e jak siê raz ustawi³o macierze,
 to przy nastêpnym wywo³aniu bêd¹ takie same.
 
-@param[in] time_interval Czas od ostatniego wywo³ania.
+@param[in] time_interval Czas od ostatniej klatki. Przy ustawionej sta³ej @ref FIXED_FRAMES_COUNT czas ten jest sta³y
+i wynosi tyle ile wartoœæ sta³ej FIXED_MOVE_UPDATE_INTERVAL.
+@param[in] time_lag Je¿eli po³o¿enia obiektów przeliczane s¹ co sta³y interwa³ czasowy, to ta zmienna zawiera opóŸnienie
+wzglêdem tego interwa³u, pozwalaj¹ce interpolowaæ pozycje obiektów.
 */
-void DisplayEngine::display_scene(float time_interval)
+void DisplayEngine::display_scene(float time_interval, float time_lag)
 {
-	set_view_matrix();
+	set_view_matrix( time_lag );
 
 	// Ustawiamy bufor sta³y dla wszystkich meshy
 	//shader_data_per_frame.time_lag = 
@@ -161,24 +164,27 @@ void DisplayEngine::display_scene(float time_interval)
 	device_context->PSSetSamplers( 0, 1, &default_sampler );
 
 	// Zaczynamy wyswietlanie
-	display_sky_box( time_interval );
+	display_sky_box( time_interval, time_lag );
 
 	// Ustawiamy format wierzcho³ków
 	device_context->IASetInputLayout( mesh_vertex_format );
 
-	display_instanced_meshes( time_interval );
-	display_dynamic_objects( time_interval );
-	display_particles( time_interval );
-	display_short_live_objects( time_interval );
-	display_skeletons( time_interval );
+	display_instanced_meshes( time_interval, time_lag );
+	display_dynamic_objects( time_interval, time_lag );
+	display_particles( time_interval, time_lag );
+	display_short_live_objects( time_interval, time_lag );
+	display_skeletons( time_interval, time_lag );
+	display_self_drawing_objects( time_interval, time_lag );
 }
 
 /**@brief Funkcja s³u¿y do wyœwietlania meshy instancjonowanych, które s¹ jednoczeœniej obiektami statycznymi
 w scenie.
 
 
-@param[in] time_interval Czas od ostatniej klatki.*/
-void DisplayEngine::display_instanced_meshes( float time_interval )
+@param[in] time_interval Czas od ostatniej klatki.
+@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ.
+*/
+void DisplayEngine::display_instanced_meshes( float time_interval, float time_lag )
 {
 
 }
@@ -186,8 +192,10 @@ void DisplayEngine::display_instanced_meshes( float time_interval )
 /**@brief Funkcja s³u¿y do wyœwietlania obiektów dynamicznych, które s¹ rzadko niszczone.
 
 
-@param[in] time_interval Czas od ostatniej klatki.*/
-void DisplayEngine::display_dynamic_objects( float time_interval )
+@param[in] time_interval Czas od ostatniej klatki.
+@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ.
+*/
+void DisplayEngine::display_dynamic_objects( float time_interval, float time_lag )
 {
 	//na razie pêtla bez optymalizacji
 	for ( unsigned int i = 0; i < meshes.size( ); ++i )
@@ -224,6 +232,8 @@ void DisplayEngine::display_dynamic_objects( float time_interval )
 			// Wype³niamy bufor sta³ych
 			ConstantPerMesh shader_data_per_mesh;
 			shader_data_per_mesh.world_matrix = XMMatrixTranspose( world_transform );	// Transformacja wierzcho³ków
+			shader_data_per_mesh.mesh_scale = XMVectorSetW( XMVectorReplicate( object->scale ), 1.0f );
+
 			// Przepisujemy materia³
 			copy_material( &shader_data_per_mesh, &model );
 
@@ -253,8 +263,10 @@ void DisplayEngine::display_dynamic_objects( float time_interval )
 /**@brief Funkcja s³u¿y do wyœwietlania systemów cz¹stek.
 
 
-@param[in] time_interval Czas od ostatniej klatki.*/
-void DisplayEngine::display_particles( float time_interval )
+@param[in] time_interval Czas od ostatniej klatki.
+@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ.
+*/
+void DisplayEngine::display_particles( float time_interval, float time_lag )
 {
 
 }
@@ -262,8 +274,10 @@ void DisplayEngine::display_particles( float time_interval )
 /**@brief Funkcja s³u¿y do wyœwietlania obiektów dynamicznych o krótkim czasie ¿ycia
 jak np. pociski.
 
-@param[in] time_interval Czas od ostatniej klatki.*/
-void DisplayEngine::display_short_live_objects( float time_interval )
+@param[in] time_interval Czas od ostatniej klatki.
+@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ.
+*/
+void DisplayEngine::display_short_live_objects( float time_interval, float time_lag )
 {
 
 
@@ -281,8 +295,10 @@ Drug¹ spraw¹ jest to, ¿e w zasadzie œrednica kopu³y nie ma wiekszego znaczenia, 
 kopu³y, wy³¹czany jest algorytm z-bufora. Niebo zawsze ma siê znajdowaæ za wszystkimi obiektami, wiêc
 dziêki temu kopu³a nie musi obejmowaæ ca³ej sceny.
 
-@param[in] time_interval Czas od ostatniej klatki.*/
-void DisplayEngine::display_sky_box( float time_interval )
+@param[in] time_interval Czas od ostatniej klatki.
+@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ.
+*/
+void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 {
 	if ( !sky_dome )
 		return;
@@ -305,9 +321,9 @@ void DisplayEngine::display_sky_box( float time_interval )
 	ModelPart* model = sky_dome->get_model_part();
 
 	// Wyliczamy macierz transformacji
-	XMVECTOR quaternion = XMLoadFloat4( &(current_camera->orientation) );
-	quaternion = XMVectorNegate( quaternion );
-	quaternion = XMVectorSetW( quaternion, -XMVectorGetW( quaternion ) );
+	XMVECTOR quaternion;
+	interpolate_orientation( time_lag, current_camera, quaternion );
+	inverse_camera_orientation( quaternion );
 
 	XMMATRIX rotation_matrix = XMMatrixRotationQuaternion( quaternion );
 
@@ -348,8 +364,23 @@ void DisplayEngine::display_sky_box( float time_interval )
 /**@brief Funkcja s³u¿y do wyœwietlania obiektów z animacj¹ szkieletow¹, czyli g³ównie postaci
 
 
-@param[in] time_interval Czas od ostatniej klatki.*/
-void DisplayEngine::display_skeletons( float time_interval )
+@param[in] time_interval Czas od ostatniej klatki.
+@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ.
+*/
+void DisplayEngine::display_skeletons( float time_interval, float time_lag )
+{
+
+}
+
+/**@brief Funkcja wyœwietla obiekty, które maj¹ zaimplementowany inny
+ni¿ domyœlny algorytm wyswietlania.
+
+@see @ref self_drawing_objects
+
+@param[in] time_interval Czas od ostatniej klatki.
+@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ
+*/
+void DisplayEngine::display_self_drawing_objects( float time_interval, float time_lag )
 {
 
 }
@@ -373,17 +404,24 @@ void DisplayEngine::set_projection_matrix(float angle, float X_to_Y, float near_
 //=================================================================//
 
 
-/**@brief U¿ywa aktualnie ustawionej kamery, ¿eby stworzyæ macierz widoku. Macierz widoku jest ustawiana w directX.
+/**@brief U¿ywa aktualnie ustawionej kamery, ¿eby stworzyæ macierz widoku.
+
+Macierz widoku jest zapisywana w strukturze, która pos³u¿y do wype³nienia bufora sta³ych
 Funkcja jest prywatna, poniewa¿ jest wywo³ywana podczas renderowania sceny. Aby ingerowaæ z zewn¹trz
 w ustawienie kamery nale¿y zmieniæ aktualnie ustawion¹ kamerê na jedn¹ z innych zapisanych w silniku.
+
+@param[in] time_lag Zmienna pozwala interpolowaæ pozycjê kamery pomiêdzy kolejnym przeliczeniem po³o¿eñ obiektów.
+Wszystkie widoczne obiekty s¹ interpolowane w celu uzyskania lepszej p³ynnoœci, dlatego trzeba interpolowaæ
+równie¿ kamerê, ¿eby nie by³o skoków obrazu.
 */
-void DisplayEngine::set_view_matrix()
+void DisplayEngine::set_view_matrix( float time_lag )
 {
 	XMMATRIX view_matrix;
 	if ( current_camera == nullptr )
 		view_matrix  = XMMatrixIdentity( );	//tymczasowe
 	else
 	{
+#ifndef _INTERPOLATE_POSITIONS
 		//bêdziemy mno¿yæ macierz translacji * macierz obrotu
 		view_matrix = XMMatrixTranslation(
 			-current_camera->position.x,
@@ -395,6 +433,18 @@ void DisplayEngine::set_view_matrix()
 
 		XMMATRIX rotation_matrix = XMMatrixRotationQuaternion(quaternion);
 		view_matrix = view_matrix * rotation_matrix;
+#else
+		XMVECTOR position;
+		XMVECTOR orientation;
+		interpolate_position( time_lag, current_camera, position );
+		interpolate_orientation( time_lag, current_camera, orientation );
+		inverse_camera_position( position );
+		inverse_camera_orientation( orientation );
+
+		view_matrix = XMMatrixTranslationFromVector( position );
+		XMMATRIX rotation_matrix = XMMatrixRotationQuaternion( orientation );
+		view_matrix = view_matrix * rotation_matrix;
+#endif
 	}
 
 	//Wstawiamy macierz do zmiennej, która stanie siê potem zawartoœci¹ bufora,
@@ -492,43 +542,53 @@ void DisplayEngine::interpolate_positions( float time_lag )
 	for ( unsigned int i = 0; i < meshes.size(); ++i )
 	{
 		Dynamic_mesh_object* object = meshes[i];
+		interpolate_object( time_lag, object, &(interpolated_matrixes[i]) );
+	}
+}
 
-		XMVECTOR position = object->get_position();
-		XMVECTOR orientation = object->get_orientation( );
-		XMVECTOR velocity = object->get_speed();
-		XMVECTOR rotation_velocity = object->get_rotation_speed();
 
-		position += velocity*time_lag;
+/**@brief Funkcja tworzy macierz przekszta³cenia dla podanego obiektu, interpoluj¹c jego pozycjê
+z prêdkoœci postêpowej i k¹towej.
+
+@param[in] tima_lag Czas jaki up³yn¹³ od ostatniego przeliczenia pozycji obiektów.
+@param[in] object Objekt, dla którego liczymy macierz przekszta³cenia.
+@param[out] transform_matrix Zmienna, w której zostanie umieszczona interpolowana macierz przekszta³cenia.
+*/
+void DisplayEngine::interpolate_object( float time_lag, const Dynamic_object* object, DirectX::XMFLOAT4X4* result_matrix )
+{
+	XMVECTOR position = object->get_position( );
+	XMVECTOR orientation = object->get_orientation( );
+	XMVECTOR velocity = object->get_speed( );
+	XMVECTOR rotation_velocity = object->get_rotation_speed( );
+
+	position += velocity * time_lag;
 
 #ifdef _QUATERNION_SPEED
-		//najpierw liczymy nowy kwaternion dla obrotu w czasie sekundy
-		rotation_velocity = XMQuaternionMultiply( orientation, rotation_velocity );
-		//teraz interpolujemy poprzedni¹ orientacjê i orientacjê po sekundzie
-		//ze wspóczynnikiem równym czasowi jaki up³yn¹³ faktycznie
-		orientation = XMQuaternionSlerp( orientation, rotation_velocity, time_lag );
+	//najpierw liczymy nowy kwaternion dla obrotu w czasie sekundy
+	rotation_velocity = XMQuaternionMultiply( orientation, rotation_velocity );
+	//teraz interpolujemy poprzedni¹ orientacjê i orientacjê po sekundzie
+	//ze wspóczynnikiem równym czasowi jaki up³yn¹³ faktycznie
+	orientation = XMQuaternionSlerp( orientation, rotation_velocity, time_lag );
 
-		/*Du¿o obliczeñ, mo¿e da siê to jakoœ za³atwiæ bez interpolacji...*/
+	/*Du¿o obliczeñ, mo¿e da siê to jakoœ za³atwiæ bez interpolacji...*/
 #else
 
 
-		if ( XMVector3Equal( rotation_velocity, XMVectorZero()) )
-			orientation = XMQuaternionIdentity();
-		else		
-		{
-			float rot_angle = XMVectorGetW( rotation_velocity ) * time_lag;					//liczymy k¹t obrotu
-			rotation_velocity = XMQuaternionRotationAxis( rotation_velocity, rot_angle );	//przerabiamy na kwaternion
-			orientation = XMQuaternionMultiply( orientation, rotation_velocity );			//liczymy nowy kwaternion orientacji
-		}		
-#endif
-		XMMATRIX transformation = XMMatrixRotationQuaternion( orientation );
-#ifdef _SCALEABLE_OBJECTS
-		//skalowanie ca³ego mesha
-		transformation = XMMatrixScaling( object->scale, object->scale, object->scale ) * transformation;
-#endif
-		transformation = transformation * XMMatrixTranslationFromVector( position );
-		XMStoreFloat4x4( &(interpolated_matrixes[i]), transformation );
+	if ( !XMVector3Equal( rotation_velocity, XMVectorZero( ) ) )
+	{
+		float rot_angle = XMVectorGetW( rotation_velocity ) * time_lag;					// liczymy k¹t obrotu
+		rotation_velocity = XMQuaternionRotationAxis( rotation_velocity, rot_angle );	// przerabiamy na kwaternion
+		orientation = XMQuaternionMultiply( orientation, rotation_velocity );			// liczymy nowy kwaternion orientacji
 	}
+#endif
+
+	XMMATRIX transformation = XMMatrixRotationQuaternion( orientation );
+	transformation = transformation * XMMatrixTranslationFromVector( position );
+
+	XMStoreFloat4x4( result_matrix, transformation );
 }
+
+
 
 
 //=================================================================//

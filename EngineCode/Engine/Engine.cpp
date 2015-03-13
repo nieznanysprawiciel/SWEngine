@@ -6,7 +6,7 @@
 
 #include "..\memory_leaks.h"
 
-///interwa³, po którym nastêpuje kolejne przeliczenie po³o¿eñ obiektów (w sekundach)
+///Interwa³, po którym nastêpuje kolejne przeliczenie po³o¿eñ obiektów (w sekundach)
 const float FIXED_MOVE_UPDATE_INTERVAL = ((float)1 / (float)56);
 
 
@@ -255,8 +255,8 @@ void Engine::render_frame()
 	//Renderujemy scenê oraz interfejs u¿ytkownika
 	begin_scene();
 
-	display_engine->display_scene(time_interval);
-	ui_engine->draw_GUI(time_interval);
+	display_engine->display_scene(time_interval, lag);
+	ui_engine->draw_GUI(time_interval, lag);
 
 	end_scene_and_present();
 }
@@ -276,16 +276,16 @@ void Engine::time_controller(float& time_interval)
 	
 	__int64 time_diff;
 	time_diff = time_current - time_previous;
-	time_interval = (float)time_diff / timer_frequency;	//funkcja zwraca czas z dok³adnoœci¹ do milisekund, przeliczamy na sekundy
+	time_interval = (float)time_diff / timer_frequency;
 
 	lag += time_interval;
 
 	//zliczanie FPSów
 	elapsed_time += time_diff;
-	if ( elapsed_time >= FRAMES_PER_SEC_UPDATE )	//aktualizujemy co 10 sekund
+	if ( elapsed_time >= FRAMES_PER_SEC_UPDATE * timer_frequency )	//aktualizujemy co 10 sekund
 	{
-		frames_per_sec = (float)frames / FRAMES_PER_SEC_UPDATE * 1000;	//FRAMES_PER_SEC_UPDATE w milisekundach wiêc mno¿ymy przez 1000
-		elapsed_time = elapsed_time % FRAMES_PER_SEC_UPDATE;
+		frames_per_sec = (float)frames / FRAMES_PER_SEC_UPDATE;	//FRAMES_PER_SEC_UPDATE w sekundach
+		elapsed_time = elapsed_time % FRAMES_PER_SEC_UPDATE * timer_frequency;
 		frames = 0;		//zerujemy liczbê klatek
 	}
 

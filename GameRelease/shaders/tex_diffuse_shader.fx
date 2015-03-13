@@ -24,6 +24,7 @@ cbuffer ConstantPerFrame : register( b0 )
 cbuffer ConstantPerMesh : register( b1 )
 {
 	matrix World;
+	float4 mesh_scale;
 	float4 Diffuse;
 	float3 Ambient;
 	float3 Specular;
@@ -54,7 +55,8 @@ struct PS_INPUT
 PS_INPUT vertex_shader( VS_INPUT input )
 {
     PS_INPUT output = (PS_INPUT)0;
-    output.Pos = mul( input.Pos, World );
+	output.Pos = input.Pos * mesh_scale;
+    output.Pos = mul( output.Pos, World );
     output.Pos = mul( output.Pos, View );
     output.Pos = mul( output.Pos, Projection );
     output.Norm = mul( input.Norm, World );

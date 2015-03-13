@@ -105,8 +105,8 @@ void camera_controller_PROTOTYPE::control_object( Dynamic_object* object )
 		left_rotate *= rot_speed;
 	}
 
-	down_rotate = down_rotate + left_rotate;		//obroty siê dodaj¹ jak wektory
-	XMVECTOR length = XMVector3Length( down_rotate );	//d³ugoœæ wektora jest jednoczeœnie szybkoœci¹ obrotu
+	down_rotate = down_rotate + left_rotate;				//obroty siê dodaj¹ jak wektory
+	XMVECTOR length = XMVector3Length( down_rotate );		//d³ugoœæ wektora jest jednoczeœnie szybkoœci¹ obrotu
 	float f_length = XMVectorGetX( length );
 	down_rotate = XMVectorSetW( down_rotate, f_length );	//zapisujemy szybkoœæ obrotu w sk³adowej w
 

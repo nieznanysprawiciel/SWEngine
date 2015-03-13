@@ -156,9 +156,6 @@
     <ClInclude Include="memory_leaks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\DisplayEngine\SkyDome.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\Features\HosekSkylightModel\HosekSkyModel.h">
       <Filter>Header Files\Features\HosekSkylightModel</Filter>
     </ClInclude>
@@ -167,6 +164,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Features\HosekSkylightModel\HosekSkyDome.h">
       <Filter>Header Files\Features\HosekSkylightModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\DisplayEngine\SkyDome.h">
+      <Filter>Header Files\Features</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

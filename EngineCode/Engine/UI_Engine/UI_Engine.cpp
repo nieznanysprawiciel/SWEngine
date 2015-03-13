@@ -107,7 +107,7 @@ Jest wywo³ywana zaraz po wszystkich procedurach rysuj¹cych obiekty na scenie.
 
 @param[in] time_interval Parametrem jest czas który up³yn¹³ od ostatniego wywo³ania
  */
-void UI_Engine::draw_GUI(float time_interval)
+void UI_Engine::draw_GUI( float time_interval, float time_lag )
 {
 
 }

@@ -16,8 +16,9 @@
 		- @ref MakingLoaders
 		- @ref ObjectPipeline
 		- @ref GUIRender
+		- @ref selfDrawingObjects
 		- @ref SceneRender
-		- @ref CoorinatesSystem
+		- @ref CoordinatesSystem
 	- Podstawowe obiekty i struktury danych
 		- BufferObject
 		- event_mapping

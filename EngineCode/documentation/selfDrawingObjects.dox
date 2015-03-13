@@ -1,0 +1,41 @@
+/**
+@page selfDrawingObjects Samo-redneruj¹ce siê obiekty
+
+@section Contents Spis Treœci
+- @ref selfDrawingObjects_briefDescription
+- @ref writing_selfDrawingObjects
+
+@subsection selfDrawingObjects_briefDescription Ogólny opis koncepcji
+
+Normalny tryb renderowania nie pozwala na pe³ne wykorzystanie mo¿liwoœci directXa. Je¿eli u¿ytkownik
+chcia³by zmieniaæ wiêcej parametrów renderowania, ni¿ jest to udostêpnione w zwyk³ym potoku renderowania
+(zobacz @ref SceneRender), mo¿e stworzyæ obiekt samo-renderuj¹cy.
+
+W takim obiekcie funkcja renderuj¹ca jest napisana ca³a przez programistê, dziêki czemu
+ma on wiêszy wp³yw na to jak obiekt bêdzie wygl¹da³.
+
+Zasadniczo nie nale¿y stosowaæ samo-renderujacych siê obiektów, je¿eli nie ma ku temu wa¿nych powodów.
+Renderowanie wed³ug ustalonego schematu i przy ograniczeniach nak³adanych przez model przechowywania
+meshy, pozwala na lepsze zoptymalizowanie wyœwietlania.
+Wynika to z tego, ¿e obiekty o tych samych parametrach mog¹ byæ renderowane obok siebie, dziêki czemu zmniejsza siê zu¿ycie przepustowoœci szyny danych na kartê graficzn¹ oraz jest mniej zmian parametrów
+renderowania.
+
+Samo-redneruj¹ce siê obiekty s¹ renderowane ka¿dy z osobna, poniewa¿ wywo³ywana jest po prostu
+zaimplementowana przez programistê funkcja. Nie daje to ¿adnych dodatkowych mo¿liwoœci optymalizacji.
+Poza tym istnieje narzut zwi¹zany z ustawianiem stanu karty graficznej.
+
+Z tego wzglêdu zalecam stosowanie standardowego modelu wyœwietlania wszêdzie, gdzie to jest mo¿liwe.
+
+@subsection writing_selfDrawingObjects Pisanie obiektów samo-renderujacych
+
+Aby napisaæ samo-renderujacy siê obiekt nale¿y odziedziczyæ now¹ klasê po @ref Dynamic_mesh_object.
+Nastêpnie trzeba zaimplementowaæ funkcjê wirtualn¹ @ref Dynamic_mesh_object::Draw.
+
+Funkcja ta dostaje w pierwszym parametrze wskaŸnik na kontekst urz¹dzenia DirectXa, którego trzeba
+u¿yæ do wywo³ywania funkcji biliotecznych do renderowania.
+
+@attention
+Do rejestru pierwszego vertex i pixel shadera jest przypisana zawartoœæ struktury @ref ConstantPerFrame.
+Nie wolno modyfikowac jej zawartoœci, poniewa¿ ka¿dy obiekt samo-renderujacy ma mieæ zagwarantowany
+dostêp do niej.
+*/

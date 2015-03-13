@@ -12,6 +12,8 @@ struct ID3D11DeviceContext;
 struct IDXGISwapChain;
 struct ID3D11RenderTargetView;
 
+typedef ID3D11DeviceContext DeviceContext;
+
 #define GRAPHIC_ENGINE_INIT_OK		S_OK
 
 
@@ -67,7 +69,7 @@ protected:
 	virtual void release_DirectX();
 
 	void begin_scene( );
-	inline void end_scene_and_present( ) { swap_chain->Present( 0, 0 ); }	///<Wywo³uje funkcjê swap_chain->Present w celu wyœwietlenia narysowanej sceny na monitorze
+	inline void end_scene_and_present( ) { swap_chain->Present( 1, 0 ); }	///<Wywo³uje funkcjê swap_chain->Present w celu wyœwietlenia narysowanej sceny na monitorze
 };
 
 

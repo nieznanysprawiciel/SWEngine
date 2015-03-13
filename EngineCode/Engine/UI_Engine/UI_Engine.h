@@ -40,7 +40,7 @@ public:
 
 	//called by Engine in main loop
 	void proceed_input(float time_interval);
-	void draw_GUI(float time_interval);
+	void draw_GUI( float time_interval, float time_lag );
 
 	//abstraction layers
 	int change_abstraction_layer( InputAbstractionLayer* next_layer );

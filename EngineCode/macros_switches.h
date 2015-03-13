@@ -6,6 +6,10 @@
 Wiêkszoœæ z tych makrodefinicji pozwala na wybór jednej z opcji tylko tymczasowo,
 w docelowej wersji silnika trzeba bêdzie siê zdecydowaæ na któr¹œ z nich.*/
 
+
+//co tyle sekund aktualizujemy frames_per_sec
+#define		FRAMES_PER_SEC_UPDATE	10
+
 ///@def _INTERPOLATE_POSITIONS
 ///@brief W³¹cza funkcjê interpoluj¹ca po³o¿enia obiektów.
 #define _INTERPOLATE_POSITIONS
