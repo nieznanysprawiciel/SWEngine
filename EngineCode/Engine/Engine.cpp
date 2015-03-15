@@ -19,8 +19,8 @@ const float FIXED_MOVE_UPDATE_INTERVAL = ((float)1 / (float)56);
 Engine::Engine(HINSTANCE instance)
 {
 
-	//dziêki tej zmiennej bêdzie mo¿na wysy³aæ eventy
-	Object::engine = this;
+	// Dziêki tej zmiennej bêdzie mo¿na wysy³aæ eventy
+	Object::set_engine( this );
 
 #ifndef __UNUSED
 	//Zmienna decyduje o konczeniu w¹tków

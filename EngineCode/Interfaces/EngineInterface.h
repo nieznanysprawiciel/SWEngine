@@ -13,6 +13,17 @@ class ControllersEngine;
 struct IndexPrediction;
 class Event;
 
+class ControllersEngine;
+class ModelsManager;
+class PhysicEngine;
+class FableEngine;
+class MovementEngine;
+class DisplayEngine;
+class CollisionEngine;
+class SoundEngine;
+class UI_Engine;
+class Object;
+
 
 /**@brief Klasa jest interfejsem dla u¿ytkownika u¿ytkuj¹cego silnik.
 
@@ -29,16 +40,6 @@ class engine_interface : public DX11_constant_buffers_container
 	// Dziedziczymy z DX11_constant_buffers_container a nie z DX11_interfaces_container, poniewa¿
 	// musimy wywo³aæ funkcjê release_DirectX z klasy pochodnej. Inaczej nie zwolnimy tamtych obiektów wogóle.
 
-	friend class ControllersEngine;
-	friend class ModelsManager;
-	friend class PhysicEngine;
-	friend class FableEngine;
-	friend class MovementEngine;
-	friend class DisplayEngine;
-	friend class CollisionEngine;
-	friend class SoundEngine;
-	friend class UI_Engine;
-	friend class Object;
 protected:
 	//directX and windows variables
 	bool						directX_ready;			///<Je¿eli zmienna jest niepoprawna, nie renderujemy

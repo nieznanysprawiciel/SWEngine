@@ -118,6 +118,11 @@ public:
 	std::vector<Object*>	object_list;
 #endif
 
+
+	inline std::queue<Event*>* get_events_queue() { return events_queue; }
+	inline void set_events_queue( std::queue<Event*>* queue ) { events_queue = queue; }
+	inline HINSTANCE get_instance_handler() { return instance_handler; }
+	inline HWND get_window_handler() { return window_handler; }
 };
 
 /**Celem wprowadzenia wektora index_predictor jest optymalizacja dostêpu do danych 

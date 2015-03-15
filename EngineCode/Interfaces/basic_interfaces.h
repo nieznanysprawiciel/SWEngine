@@ -29,20 +29,31 @@ class Controller;
 class Event;
 class InputAbstractionLayer_base;
 
+/**@brief Klasa bazowa dla wszystkich obiektów w grze (aktorów).
+*/
 class Object
 {
-	friend class Engine;
 private:
-	static Engine*	engine;
+	static Engine*	engine;		///< WskaŸnik na g³ówny obiekt silnika.
 protected:
 	short			class_type;
 	short			object_type;
 
 	void inline event(Event*);
-	inline engine_interface* get_interface(){ return reinterpret_cast<engine_interface*>(engine); }
+	/**@brief Zwraca wskaŸnik na interfejs silnika, który nadaje siê do u¿ywania przez
+	programistê gry.
+	@attention Nie wolno rzutowaæ obiektu na Engine.
+	*/
+	inline engine_interface* get_engine_interface(){ return reinterpret_cast<engine_interface*>(engine); }
 public:
 	virtual ~Object() = default;
 	virtual void init(){};
+
+	/**@brief Funkcja ustawia wskaŸnik na g³ówny obiekt silnika.
+	@attention Wolno u¿ywaæ tylko klasie Engine w konstruktorze.
+	@param[in] engine_ptr WskaŸnik na g³ówny obiekt silnika.
+	*/
+	static void set_engine( Engine* engine_ptr ) { if( !engine ) engine = engine_ptr; }
 };
 
 
@@ -70,8 +81,6 @@ class Collision_object : public Static_object
 
 class Dynamic_object : public Collision_object
 {
-	friend class ControllersEngine;
-	friend class DisplayEngine;
 protected:
 	XMFLOAT3		speed;
 	XMFLOAT4		rotation_speed;
@@ -83,10 +92,11 @@ public:
 	inline void set_speed( const XMVECTOR& vector ) { XMStoreFloat3( &speed, vector ); }
 	inline void set_rotation_speed( const XMVECTOR& quaternion ) { XMStoreFloat4( &rotation_speed, quaternion ); }
 	inline void set_rotation_speed( const XMFLOAT4 axis_angle ) { rotation_speed = axis_angle; }
-	inline XMVECTOR get_speed() const { return XMLoadFloat3( &speed ); };
-	inline XMVECTOR get_rotation_speed() const { return XMLoadFloat4( &rotation_speed ); };
+	inline XMVECTOR get_speed() const { return XMLoadFloat3( &speed ); }
+	inline XMVECTOR get_rotation_speed() const { return XMLoadFloat4( &rotation_speed ); }
 
-	inline void set_controller( Controller* ctrl ) { controller = ctrl; };
+	inline void set_controller( Controller* ctrl ) { controller = ctrl; }
+	inline Controller* get_controller() { return controller; }
 
 	void move(float time_interval);
 	virtual void move_complex(float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation);
@@ -182,7 +192,6 @@ class Base_AI_controller : public Controller
 
 class Base_input_controller : public Controller
 {
-	friend class UI_Engine;
 protected:
 	InputAbstractionLayer_base*		abstraction_layer;
 

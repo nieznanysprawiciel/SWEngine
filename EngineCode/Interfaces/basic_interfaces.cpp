@@ -21,7 +21,7 @@ Engine* Object::engine = nullptr;		//po stworzeniu obiektu klasy Engine, zmienna
 *u¿ytkownik nie musi siê tym przejmowac).*/
 void inline Object::event(Event* new_event)
 {
-	engine->events_queue->push(new_event);
+	engine->send_event(new_event);
 }
 
 

@@ -140,7 +140,6 @@ Jest to wymagane do u³atwienia obs³ugi wielow¹tkowoœci. Inaczej mog³yby siê pokr
 
 class referenced_object
 {//definicja w pliku Model3DFormFile
-	friend ModelsManager;
 private:
 	unsigned int	file_references;	///< Liczba plików, które sie odwo³uj¹
 	unsigned int	object_references;	///< Liczba modeli, które siê odwo³uj¹
@@ -278,8 +277,6 @@ nie wystarczy, ¿eby shader móg³ go u¿yæ. Do tego trzeba stworzyæ widok i w³aœnie
 przechowuje ta funkcja.*/
 class TextureObject : public referenced_object, public DX11_interfaces_container
 {
-	friend TextureObject;
-	friend ModelsManager;
 	friend ResourceContainer<TextureObject*>;
 private:
 	std::wstring					file_path;			//œcie¿ka do tekstury (nie do pliku z meshem)
@@ -320,7 +317,6 @@ public:
 /**@brief Klasa przechowuj¹ca pixel shader*/
 class PixelShaderObject : public referenced_object, public DX11_interfaces_container
 {
-	friend ModelsManager;
 	friend ResourceContainer<PixelShaderObject*>;
 private:
 	ID3D11PixelShader*		pixel_shader;
@@ -342,7 +338,6 @@ Obiekty tego typu mog¹ tak¿e s³u¿yæ do przekazywania parametrów shaderom, jako b
 */
 class BufferObject : public referenced_object, public DX11_interfaces_container
 {
-	friend ModelsManager;
 	friend ResourceContainer<BufferObject*>;
 private:
 	ID3D11Buffer*		buffer;
