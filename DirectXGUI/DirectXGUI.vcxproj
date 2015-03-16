@@ -96,10 +96,16 @@
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="XGUIcode\XGUI.h" />
+    <ClInclude Include="XGUIcode\include\AbstractButton.h" />
+    <ClInclude Include="XGUIcode\include\AbstractText.h" />
+    <ClInclude Include="XGUIcode\include\FastDelegate.h" />
+    <ClInclude Include="XGUIcode\include\XGUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="XGUIcode\source\AbstractButton.cpp" />
+    <ClCompile Include="XGUIcode\source\AbstractText.cpp" />
+    <ClCompile Include="XGUIcode\source\Control.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
