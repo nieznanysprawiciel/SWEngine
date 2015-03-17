@@ -36,6 +36,9 @@
     <ClInclude Include="XGUIcode\include\FastDelegate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="XGUIcode\include\GUIEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

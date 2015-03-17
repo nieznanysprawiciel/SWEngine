@@ -99,6 +99,7 @@
     <ClInclude Include="XGUIcode\include\AbstractButton.h" />
     <ClInclude Include="XGUIcode\include\AbstractText.h" />
     <ClInclude Include="XGUIcode\include\FastDelegate.h" />
+    <ClInclude Include="XGUIcode\include\GUIEvent.h" />
     <ClInclude Include="XGUIcode\include\XGUI.h" />
   </ItemGroup>
   <ItemGroup>

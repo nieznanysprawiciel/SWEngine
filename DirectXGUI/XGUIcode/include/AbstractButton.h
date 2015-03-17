@@ -37,6 +37,10 @@ namespace XGUI
 		inline bool isChecked() const { return pushed; }	///<Zwraca informacjê czy przycisk jest wciœniêty
 		inline bool isSwitch() const { return work_as_switch; }	///<Zwraca informacje czy przycisk jest switchem czy przyciskiem wciskanym
 
+
+		XGUIEventDelegate		eventPush;			///<Delegat, który zostanie wywo³any w momencie powstania eventu.
+		XGUIEventDelegate		eventPull;			///<Delegat, który zostanie wywo³any w momencie powstania eventu.
+		XGUIEventDelegate		eventChangeState;	///<Delegat, który zostanie wywo³any w momencie powstania eventu.
 	};
 
 

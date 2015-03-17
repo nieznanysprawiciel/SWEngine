@@ -6,6 +6,7 @@ Zawiera podstawowe deklaracje.*/
 //#include <D3DX11.h>
 #include <DirectXMath.h>
 #include "FastDelegate.h"
+#include "GUIEvent.h"
 
 
 namespace XGUI
@@ -13,6 +14,41 @@ namespace XGUI
 	class Control;
 	class Root;
 
+	/**@typedef fastdelegate::FastDelegate1<GUIEvent*> XGUIEventDelegate
+	@brief Definicja delegata u¿ywanego przez XGUI.
+
+	Aby zdarzenia generowane wewnatrz GUI mog³y zostaæ obs³u¿one na zewn¹trz,
+	u¿ytkownik GUI musi przypisaæ temu delegatowi odpowiedni¹ funkcjê obs³ugi.
+	Funkcja ta dostaje w parametrze wskaŸnik na strukturê @ref Event, która zawiera
+	wszystkie informacje o danym zdarzeniu. WskaŸnik ten trzeba sobie zrzutowaæ w funkcji
+	obs³ugi na wskaŸnik na jeden z obiektów pochodnych odpowiadaj¹cych konkretnemu typowi zdarzenia.
+
+	Ustawienie delegata mo¿na przeprowadziæ przypisuj¹c mu po prostu odpowiedni¹ funkcjê (delegaci s¹ sk³adowymi publicznymi).
+	Dla funkcji globalnych i metod statycznych dostêpne s¹ opcje:
+	- Delegat.bind(&Funkcja);
+	- Delegat.bind(&Klasa::MetodaStatyczna);
+	- Delegat = &FunkcjaGlobalna;
+	- Delegat = &Klasa::MetodaStatyczna;
+
+	Dla normalnych metod sk³adowych:
+	- Delegat.bind(&ObjektKlasy, &Klasa::Metoda);
+	- Delegat = fastdelegate::MakeDelegate(&ObjektKlasy, &Klasa::Metoda);
+
+	@attention W przypadku implementowania w³asnych klas GUI, nie nale¿y u¿ywaæ delegatów do
+	implementowania wewnêtrzych funkcjonalnoœci jakiejœ kontrolki. Do takiego celu s¹ przygotowane
+	specjalne funkcje virtualne, które mo¿na napisaæ.
+
+	Konwencja nazewnictwa jest nastêpuj¹ca:
+	- delegaci maj¹ nazwy postaci event[nazwa_zdarzenia]
+	- funkcje wewnêtrzne obs³ugi zdarzeñ dla kontrolek maj¹ nazwy on[nazwa_zdarzenia]
+
+	Oba typy funkcji s¹ wywo³ywane w tych samych okolicznoœciach. Najpierw jest wywo³ywana obs³uga funkcji
+	wewnêtrznej, a dopiero potem zdarzenie zewnêtrzne (zak³adaj¹c, ¿e oba typy bœ³ugi s¹ przez kontrolkê u¿ywane).
+
+	@attention Je¿eli jakieœ niuanse sprawi¹, ¿e zdarzenia o tej samej nazwie nie bêd¹ wywo³ywane w tych samych
+	okolicznoœciach to trzeba nadaæ im inne nazwy.
+	*/
+	typedef fastdelegate::FastDelegate1<GUIEvent*> XGUIEventDelegate;
 
 	/**@brief Struktura opisuj¹ca czworok¹t.*/
 	struct Rect
@@ -20,6 +56,7 @@ namespace XGUI
 		DirectX::XMFLOAT2 top_left;		///<Wspó³rzêdne lewego górnego rogu.
 		DirectX::XMFLOAT2 bottom_right;	///<Wspó³rzêdne prawego dolnego rogu.
 	};
+
 
 	/**@brief Enumeracja opisuj¹ca mo¿liwe wyrównanie kontrolek wzglêdem rodzica.
 	
@@ -62,6 +99,16 @@ namespace XGUI
 		ALIGNMENT				align;		///<Identyfikuje wzglêdem czego s¹ podawane wspó³rzêdne position
 	public:
 		Control( Control* set_parent ) { parent = set_parent; }
+
+		XGUIEventDelegate		eventMouseOn;
+		XGUIEventDelegate		eventMouseOut;
+		XGUIEventDelegate		eventLeftClick;
+		XGUIEventDelegate		eventLeftUnClick;
+		XGUIEventDelegate		eventRightClick;
+		XGUIEventDelegate		eventRightUnClick;
+		XGUIEventDelegate		eventFocusSet;
+		XGUIEventDelegate		eventFocusLost;
+
 
 		inline bool isMouseOn() { return mouse_on; }	///<Funkcja zwraca wartoœæ zmiennej @ref mouse_on
 		inline bool isVisible() { return visible; }		///<Funkcja zwraca wartoœæ pola @ref visible
@@ -181,7 +228,7 @@ namespace XGUI
 		@param clipping_rect Obszar rodzica wzglêdem którego jest liczone po³o¿enie kontrolki.
 		@param buttons Tablica przycisków. @todo: Trzeba wymyœleæ format tej tablicy
 		*/
-		virtual void onOnClick( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons );
+		virtual void onLeftClick( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons );
 
 		/**@brief Lewy przycisk myszy zosta³ puszczony.
 
@@ -202,7 +249,7 @@ namespace XGUI
 		@param clipping_rect Obszar rodzica wzglêdem którego jest liczone po³o¿enie kontrolki.
 		@param buttons Tablica przycisków. @todo: Trzeba wymyœleæ format tej tablicy
 		*/
-		virtual void onUnClick( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons );
+		virtual void onLeftUnClick( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons );
 
 		/**@brief Funkcja wywo³ywana w momencie, gdy kontrolka zostanie klikniêta prawym przyciskiem myszy.
 
