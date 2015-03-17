@@ -24,12 +24,33 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="XGUIcode\XGUI.h">
+    <ClInclude Include="XGUIcode\include\AbstractButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XGUIcode\include\AbstractText.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XGUIcode\include\XGUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XGUIcode\include\FastDelegate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XGUIcode\include\GUIEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XGUIcode\source\AbstractText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XGUIcode\source\AbstractButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XGUIcode\source\Control.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

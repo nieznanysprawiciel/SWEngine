@@ -3,8 +3,10 @@
 @brief Ten plik nale¿y za³¹czyæ w projekcie u¿ywaj¹cym biblioteki DirectXGUI.
 Zawiera podstawowe deklaracje.*/
 
-#include <D3DX11.h>
+//#include <D3DX11.h>
 #include <DirectXMath.h>
+#include "FastDelegate.h"
+#include "GUIEvent.h"
 
 
 namespace XGUI
@@ -12,6 +14,41 @@ namespace XGUI
 	class Control;
 	class Root;
 
+	/**@typedef fastdelegate::FastDelegate1<GUIEvent*> XGUIEventDelegate
+	@brief Definicja delegata u¿ywanego przez XGUI.
+
+	Aby zdarzenia generowane wewnatrz GUI mog³y zostaæ obs³u¿one na zewn¹trz,
+	u¿ytkownik GUI musi przypisaæ temu delegatowi odpowiedni¹ funkcjê obs³ugi.
+	Funkcja ta dostaje w parametrze wskaŸnik na strukturê @ref Event, która zawiera
+	wszystkie informacje o danym zdarzeniu. WskaŸnik ten trzeba sobie zrzutowaæ w funkcji
+	obs³ugi na wskaŸnik na jeden z obiektów pochodnych odpowiadaj¹cych konkretnemu typowi zdarzenia.
+
+	Ustawienie delegata mo¿na przeprowadziæ przypisuj¹c mu po prostu odpowiedni¹ funkcjê (delegaci s¹ sk³adowymi publicznymi).
+	Dla funkcji globalnych i metod statycznych dostêpne s¹ opcje:
+	- Delegat.bind(&Funkcja);
+	- Delegat.bind(&Klasa::MetodaStatyczna);
+	- Delegat = &FunkcjaGlobalna;
+	- Delegat = &Klasa::MetodaStatyczna;
+
+	Dla normalnych metod sk³adowych:
+	- Delegat.bind(&ObjektKlasy, &Klasa::Metoda);
+	- Delegat = fastdelegate::MakeDelegate(&ObjektKlasy, &Klasa::Metoda);
+
+	@attention W przypadku implementowania w³asnych klas GUI, nie nale¿y u¿ywaæ delegatów do
+	implementowania wewnêtrzych funkcjonalnoœci jakiejœ kontrolki. Do takiego celu s¹ przygotowane
+	specjalne funkcje virtualne, które mo¿na napisaæ.
+
+	Konwencja nazewnictwa jest nastêpuj¹ca:
+	- delegaci maj¹ nazwy postaci event[nazwa_zdarzenia]
+	- funkcje wewnêtrzne obs³ugi zdarzeñ dla kontrolek maj¹ nazwy on[nazwa_zdarzenia]
+
+	Oba typy funkcji s¹ wywo³ywane w tych samych okolicznoœciach. Najpierw jest wywo³ywana obs³uga funkcji
+	wewnêtrznej, a dopiero potem zdarzenie zewnêtrzne (zak³adaj¹c, ¿e oba typy bœ³ugi s¹ przez kontrolkê u¿ywane).
+
+	@attention Je¿eli jakieœ niuanse sprawi¹, ¿e zdarzenia o tej samej nazwie nie bêd¹ wywo³ywane w tych samych
+	okolicznoœciach to trzeba nadaæ im inne nazwy.
+	*/
+	typedef fastdelegate::FastDelegate1<GUIEvent*> XGUIEventDelegate;
 
 	/**@brief Struktura opisuj¹ca czworok¹t.*/
 	struct Rect
@@ -20,20 +57,27 @@ namespace XGUI
 		DirectX::XMFLOAT2 bottom_right;	///<Wspó³rzêdne prawego dolnego rogu.
 	};
 
+
 	/**@brief Enumeracja opisuj¹ca mo¿liwe wyrównanie kontrolek wzglêdem rodzica.
 	
 	Zmienne enumeracjê mo¿na sk³adaæ za pomoca operatora sumy bitowej.
 	U¿ytkownik jest odpowiedzialny za sk³adanie zmiennej z sensem.*/
 	enum ALIGNMENT
 	{
-		LEFT			= 1,
-		RIGHT			= 2,
-		TOP				= 4,
-		TOP_LEFT		= LEFT | TOP,
-		TOP_RIGHT		= RIGHT | TOP,
-		BOTTOM			= 8,
-		BOTTOM_LEFT		= BOTTOM | LEFT,
-		BOTTOM_RIGHT	= BOTTOM | RIGHT
+		LEFT				= 1,
+		RIGHT				= 2,
+		TOP					= 4,
+		BOTTOM				= 8,
+		VERTICAL_CENTER		= 16,
+		HORIZONTAL_CENTER	= 32,
+		TOP_LEFT			= LEFT | TOP,
+		TOP_RIGHT			= RIGHT | TOP,
+		CENTER_LEFT			= VERTICAL_CENTER | LEFT,
+		CENTER_RIGHT		= VERTICAL_CENTER | RIGHT,
+		BOTTOM_LEFT			= BOTTOM | LEFT,
+		BOTTOM_RIGHT		= BOTTOM | RIGHT,
+		TOP_CENTER			= TOP | HORIZONTAL_CENTER,
+		BOTTOM_CENTER		= BOTTOM | HORIZONTAL_CENTER
 	};
 
 
@@ -48,13 +92,32 @@ namespace XGUI
 
 		bool					visible;	///<Widocznoœæ kontrolki
 		bool					mouse_on;	///<Przy ostatnim sprawdzaniu myszka by³a w obszarze kontrolki.
+		bool					focus_change_order;	///<W przypadku dostania focusa kontrolka mo¿e zostaæ przeniesiona na pocz¹tek listy, ¿eby byæ renderowan¹ na wierzchu.
 
 		DirectX::XMFLOAT2		relative_position;	///<Pozycja wzglêdem rodzica (we wspó³rzêdnych ekranu [-1;1])
 		DirectX::XMFLOAT2		dimension;	///<Rozmiar kontrolki (we wspó³rzêdnych ekranu [-1;1])
 		ALIGNMENT				align;		///<Identyfikuje wzglêdem czego s¹ podawane wspó³rzêdne position
 	public:
-		inline bool is_mouse_on() { return mouse_on; }	///<Funkcja zwraca wartoœæ zmiennej mouse_on
-		inline bool is_visible() { return visible; }	///<Funkcja zwraca wartoœæ pola visible
+		Control( Control* set_parent ) { parent = set_parent; }
+
+		XGUIEventDelegate		eventMouseOn;
+		XGUIEventDelegate		eventMouseOut;
+		XGUIEventDelegate		eventLeftClick;
+		XGUIEventDelegate		eventLeftUnClick;
+		XGUIEventDelegate		eventRightClick;
+		XGUIEventDelegate		eventRightUnClick;
+		XGUIEventDelegate		eventFocusSet;
+		XGUIEventDelegate		eventFocusLost;
+
+
+		inline bool isMouseOn() { return mouse_on; }	///<Funkcja zwraca wartoœæ zmiennej @ref mouse_on
+		inline bool isVisible() { return visible; }		///<Funkcja zwraca wartoœæ pola @ref visible
+		inline bool isChangeOrder() { return focus_change_order; } ///<Zwraca wartoœæ pola @ref focus_change_order
+		inline Control* getParent() { return parent; }	///<Zwraca rodzica kontrolki
+		inline ALIGNMENT getAlignment() { return align; }	///<Zwraca enum opisuj¹cy wyrównanie kontrolki wzglêdem rodzica
+		inline DirectX::XMFLOAT2 getDimension() { return dimension; }	///<Zwraca rozmiar kontrolki
+		inline DirectX::XMFLOAT2 getRelativePosition() { return relative_position; }	///<Zwraca pozycjê kontrolki wzglêdem rodzica
+
 
 		/**@brief Funkcja sprawdza czy mysz znajduje siê wewn¹trz obszaru danej kontrolki.
 
@@ -102,7 +165,7 @@ namespace XGUI
 		Funkcja pozwala dowolnej kontrolce na zaimplementowanie jakiejœ typowej dla siebie funkcjonalnoœci,
 		wywo³ywanej przez najechanie mysz¹, bez przedefiniowywania funkcji on_mouse_reaction.
 		Tak¹ funkcjonalnoœci¹ mo¿e byæ np. zmiana wygl¹du kontrolki po najechaniu i po zjechaniu myszy
-		z jej obszaru ( @ref mouse_out ).
+		z jej obszaru ( @ref onMouseOut ).
 
 		@attention
 		Do renderingu przeznaczona jest tylko i wy³¹cznie funkcja @ref draw_clipped. W tej funkcji mo¿na
@@ -117,7 +180,7 @@ namespace XGUI
 		@param clipping_rect Obszar rodzica wzglêdem którego jest liczone po³o¿enie kontrolki.
 		@param buttons Tablica przycisków. @todo: Trzeba wymyœleæ format tej tablicy
 		*/
-		virtual void mouse_on( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons ) = 0;
+		virtual void onMouseOn( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons ) = 0;
 		
 		/**@brief Funkcja wywo³ywana w momencie przekazania kontrolce focusa.
 
@@ -131,7 +194,7 @@ namespace XGUI
 
 		@param prev_focus Zwraca wskaŸnik na kontrolkê, która poprzednio mia³a ustawionego focusa.
 		*/
-		virtual void focus_set( Control* prev_focus ) = 0;
+		virtual void onFocusSet( Control* prev_focus ) = 0;
 
 		/**@brief Funkcja wywo³ywana w momencie, gdy kontrolka traci focusa.
 
@@ -149,7 +212,7 @@ namespace XGUI
 
 		@param next_focus WskaŸnik na kontrolkê, która otrzyma³a focusa.
 		*/
-		virtual void focus_lost( Control* next_focus ) = 0;
+		virtual void onFocusLost( Control* next_focus ) = 0;
 
 		/**@brief Funkcja wywo³ywana w momencie, gdy kontrolka zostanie klikniêta lewym przyciskiem myszy.
 
@@ -165,7 +228,7 @@ namespace XGUI
 		@param clipping_rect Obszar rodzica wzglêdem którego jest liczone po³o¿enie kontrolki.
 		@param buttons Tablica przycisków. @todo: Trzeba wymyœleæ format tej tablicy
 		*/
-		virtual void on_click( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons );
+		virtual void onLeftClick( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons );
 
 		/**@brief Lewy przycisk myszy zosta³ puszczony.
 
@@ -186,7 +249,7 @@ namespace XGUI
 		@param clipping_rect Obszar rodzica wzglêdem którego jest liczone po³o¿enie kontrolki.
 		@param buttons Tablica przycisków. @todo: Trzeba wymyœleæ format tej tablicy
 		*/
-		virtual void un_click( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons );
+		virtual void onLeftUnClick( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons );
 
 		/**@brief Funkcja wywo³ywana w momencie, gdy kontrolka zostanie klikniêta prawym przyciskiem myszy.
 
@@ -202,7 +265,7 @@ namespace XGUI
 		@param clipping_rect Obszar rodzica wzglêdem którego jest liczone po³o¿enie kontrolki.
 		@param buttons Tablica przycisków. @todo: Trzeba wymyœleæ format tej tablicy
 		*/
-		virtual void right_click( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons );
+		virtual void onRightClick( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons );
 
 		/**@brief Prawy przycisk myszy zosta³ puszczony.
 
@@ -223,14 +286,14 @@ namespace XGUI
 		@param clipping_rect Obszar rodzica wzglêdem którego jest liczone po³o¿enie kontrolki.
 		@param buttons Tablica przycisków. @todo: Trzeba wymyœleæ format tej tablicy
 		*/
-		virtual void right_un_click( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons );
+		virtual void onRightUnClick( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons );
 
 		/**@brief Funkcja u¿ywana do zakomunikowania dzieciom jakiejœ kontrolki, ¿e mysz opuœci³a
 		obszar rodzica.
 
 		Funkcja jest wywo³ywana w trzech sytuacjach:
 		- Rodzic kontrolki przy poprzednim wywo³aniu test_mouse mia³ nad sob¹ kursor myszy, a w kolejnym
-		go utraci³. Wtedy musi on wywo³aæ mouse_out dla wszystkich swoich dzieci, które tak¿e mia³y
+		go utraci³. Wtedy musi on wywo³aæ onMouseOut dla wszystkich swoich dzieci, które tak¿e mia³y
 		nad sob¹ kursor, sprawdzaj¹c wartoœæ zmiennej mouse_on.
 		- Rodzic kontrolki otrzyma³ komunikat mouse_out, wiêc przekazuje je wszystkim potomkom, którzy
 		maj¹ ustawion¹ zmienn¹ mouse_on na true.
@@ -244,27 +307,34 @@ namespace XGUI
 
 		@param point Wspó³rzêdne myszy.
 		*/
-		virtual void mouse_out( const DirectX::XMFLOAT2& point );
+		virtual void onMouseOut( const DirectX::XMFLOAT2& point );
+		void draw_clipped( const Rect& clipping_rect );
 
+	private:
+		/**@brief Funkcja rysuj¹ca, która powinna zostaæ zaimplementowana w klasach potomnych.
 
-		/**@brief Rysuje kontrolkê wzglêdem czworok¹ta clipping_rect.
+		Rysowanie kontrolki zaczyna siê od funkcji draw_clipped, która jest wywo³ywana przez rodzica
+		kontrolki.
+		Wykonywane s¹ nastêpuj¹ce czynnoœci:
+		- Sprawdzane jest czy kontrolka jest widoczna. Nie jest renderowana, je¿eli visible jest ustawione na false.
+		- Obszar obcinania podany w parametrze jest ustawiany w zmiennych DirectX.
+		- Wywo³ywana jest funkcja onDraw, która powinna byc zaimplementowana w klasie pochodnej.
 
-		Funkcja nie ma prawa wyjœæ poza podany w parametrze czworok¹t. Je¿eli wyjdzie
-		to mo¿e narysowaæ siê na miejscu zajmowanym przez jak¹œ inn¹ kontrolkê.
+		Funkcja ta powinna wywo³aæ funkcje draw_clipped wszystkich kontrolek, które s¹ jej dzieæmi i powinny
+		siê narysowaæ.
 
-		Kontrolka ma siê na rysowaæ w po³o¿eniu okreœlanym przez zmienn¹ position wzglêdem tej krawêdzi,
-		na która wskazuje zmienna align. Wszystkim obiektom potomnym nale¿y podaæ swój w³asny obszar obcinania
-		i wywo³aæ funkcjê rekurencyjnie. Nale¿y pamiêtaæ o w³aœciwej kolejnoœci wywo³ania, aby kontrolki
-		w³aœciwie siê przys³ania³y. Co prawda kontrolki musz¹ byæ wewn¹trz obszaru rodzica, ale nie ma gwarancji,
-		¿e na siebie nie wchodz¹. Je¿eli w funkcji test_mouse schodzono rekurencyjnie od pocz¹tku listy,
-		to rysowaæ wypada w odwrotnej kolejnoœci.
+		Co prawda kontrolki musz¹ byæ wewn¹trz obszaru rodzica, ale nie ma gwarancji,
+		¿e na siebie nie wchodz¹. Je¿eli w funkcji test_mouse schodzono rekurencyjnie od pocz¹tku listy
+		dzieci, to rysowaæ wypada w odwrotnej kolejnoœci.
 
-		@attention
-		Kontrolka nie jest rysowana, je¿eli zmienna visible jest ustawiona na false.
+		Wewn¹trz funkcji nie ma koniecznoœci pilnowania prostok¹ta obcinania, poniewa¿ jest to robione
+		sprzêtowo przez DirectXa. Mimo to podawany jest w parametrze prostok¹t, wewn¹trz którego odbywa siê
+		rysowanie. Mo¿na to wykorzystaæ w celu optymalizacji, aby nie rysowaæ kontrolek, które i tak zostan¹
+		obciête.
 
 		@param clipping_rect Czworok¹t, wewn¹trz którego ma zostaæ narysowana kontrolka.
 		*/
-		virtual void draw_clipped( const Rect& clipping_rect );
+		virtual void onDraw( const Rect& clipping_rect ) = 0;
 	};
 
 
