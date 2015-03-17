@@ -1,4 +1,4 @@
-#include "..\..\stdafx.h"
+ï»¿#include "..\..\stdafx.h"
 #include "InputAbstractionLayer.h"
 #include "..\Engine.h"
 
@@ -44,23 +44,23 @@ InputAbstractionLayer::~InputAbstractionLayer()
 }
 
 
-/**@brief Funkcja zapisuje wszystkie wartoœci przycisków, które potencjalnie mog¹ wys³aæ
-eventy. Nastêpnie tablice s¹ zerowane.
+/**@brief Funkcja zapisuje wszystkie wartoÅ“ci przyciskÃ³w, ktÃ³re potencjalnie mogÂ¹ wysÂ³aÃ¦
+eventy. NastÃªpnie tablice sÂ¹ zerowane.
 
-Po dostarczeniu klasie wszystkich informacji o urzadzeniach wejœciowych, nast¹pi
-sprawdzenie, gdzie zmieni³y siê stany przycisków i wys³anie eventów.
-Do tego nale¿y wywo³aæ funkcjê end_events.
+Po dostarczeniu klasie wszystkich informacji o urzadzeniach wejÅ“ciowych, nastÂ¹pi
+sprawdzenie, gdzie zmieniÂ³y siÃª stany przyciskÃ³w i wysÂ³anie eventÃ³w.
+Do tego naleÂ¿y wywoÂ³aÃ¦ funkcjÃª end_events.
 
-Wszystkie wywo³ania funkcji ustawiaj¹cych stan przycisków i osi powinny
-znajdowaæ siê pomiêdzy wywo³aniami begin_event_collection i send_events.
-Inaczej nic nie zadzia³a, poniewa¿ funkcje zak³adaj¹, ¿e tablice s¹ wyzerowane.*/
+Wszystkie wywoÂ³ania funkcji ustawiajÂ¹cych stan przyciskÃ³w i osi powinny
+znajdowaÃ¦ siÃª pomiÃªdzy wywoÂ³aniami begin_event_collection i send_events.
+Inaczej nic nie zadziaÂ³a, poniewaÂ¿ funkcje zakÂ³adajÂ¹, Â¿e tablice sÂ¹ wyzerowane.*/
 void InputAbstractionLayer::begin_event_collection()
 {
-	//przegl¹damy tablicê eventów i zapisujemy wartoœci z poprzedniej klatki
+	//przeglÂ¹damy tablicÃª eventÃ³w i zapisujemy wartoÅ“ci z poprzedniej klatki
 	for ( unsigned int i = 0; i < event_mapping_table.size(); ++i)
 		event_mapping_table[i].value = virtual_button[event_mapping_table[i].virtual_index];
-	//zerujemy wartoœci w tablicach
-	//kolejne funkcje bêd¹ zak³ada³y, ¿e tablice s¹ wyzerowane, wiêc nie wolno tego zmieniaæ
+	//zerujemy wartoÅ“ci w tablicach
+	//kolejne funkcje bÃªdÂ¹ zakÂ³adaÂ³y, Â¿e tablice sÂ¹ wyzerowane, wiÃªc nie wolno tego zmieniaÃ¦
 	for (int i = 0; i < num_buttons; ++i)
 		virtual_button[i] = 0;
 	for (int i = 0; i < num_axis; ++i)
@@ -68,26 +68,26 @@ void InputAbstractionLayer::begin_event_collection()
 
 }
 
-/**@brief Funkcja wysy³a eventy, je¿eli jakieœ przyciski wirtualne zosta³y wciœniête.
-Aby tak siê sta³o, musi znajdowaæ siê odpowiedni wpis w tablicy event_mapping_table.
+/**@brief Funkcja wysyÂ³a eventy, jeÂ¿eli jakieÅ“ przyciski wirtualne zostaÂ³y wciÅ“niÃªte.
+Aby tak siÃª staÂ³o, musi znajdowaÃ¦ siÃª odpowiedni wpis w tablicy event_mapping_table.
 
-@param[in] engine WskaŸnik jest potrzebny, aby móc wys³aæ event.
+@param[in] engine WskaÅ¸nik jest aby, potrzebny mÃ³c wysÂ³aÃ¦ event.
 */
 void InputAbstractionLayer::send_events(Engine* engine)
 {
-//Przechodzimy po tablicy eventów i sprawdzamy czy zapisane wartoœci siê zmieni³y.
-//Je¿eli siê zmieni³y, znaczy to, ¿e trzeba wys³aæ jakiœ event, bo przycisk albo zosta³
-//wciœniêty albo puszczony.
+//Przechodzimy po tablicy eventÃ³w i sprawdzamy czy zapisane wartoÅ“ci siÃª zmieniÂ³y.
+//JeÂ¿eli siÃª zmieniÂ³y, znaczy to, Â¿e trzeba wysÂ³aÃ¦ jakiÅ“ event, bo przycisk albo zostaÂ³
+//wciÅ“niÃªty albo puszczony.
 	for( unsigned int i = 0; i < event_mapping_table.size(); ++i )
 	{
 		char button_state = virtual_button[event_mapping_table[i].virtual_index];
 		if( event_mapping_table[i].value != button_state )
-		{//zmieni³a siê wartoœæ, byæ mo¿e czas na event
+		{//zmieniÂ³a siÃª wartoÅ“Ã¦, byÃ¦ moÂ¿e czas na event
 			if( button_state == 0 )
 			{
 				if( event_mapping_table[i].up_event && !active_changed )
-				{//je¿eli dopiero co staliœmy siê aktywn¹ wartw¹ to eventów nie wysy³amy, bo prawdopodobnie wciœniêcie
-				//dotyczy³o jeszcze poprzedniej warstwy
+				{//jeÂ¿eli dopiero co staliÅ“my siÃª aktywnÂ¹ wartwÂ¹ to eventÃ³w nie wysyÂ³amy, bo prawdopodobnie wciÅ“niÃªcie
+				//dotyczyÂ³o jeszcze poprzedniej warstwy
 					KeyUpEvent* event = new KeyUpEvent( event_mapping_table[i].virtual_index );
 					event->mouseX = mouseX;
 					event->mouseY = mouseY;
@@ -115,15 +115,15 @@ void InputAbstractionLayer::send_events(Engine* engine)
 }
 
 //=================================================================//
-//						ustawianie stanu przycisków
+//						ustawianie stanu przyciskÃ³w
 //=================================================================//
 
-/**@brief Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków na podstawie
-wejœcia o intefejsie klawiatury. Zazwyczaj wywo³uje siê j¹ dla klawiatury, ale mo¿e byæ te¿ tak,
-¿e directX reprezentuje jakieœ inne urz¹dzenie takim samym interfejsem.
+/**@brief Funkcja wywoÂ³ywana w kaÂ¿dej klatce do ustawienia stanu wirtualnych przyciskÃ³w na podstawie
+wejÅ“cia o intefejsie klawiatury. Zazwyczaj wywoÂ³uje siÃª jÂ¹ dla klawiatury, ale moÂ¿e byÃ¦ teÂ¿ tak,
+Â¿e directX reprezentuje jakieÅ“ inne urzÂ¹dzenie takim samym interfejsem.
 
-@param[in] device_nr Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci @ref DEVICE_IDs.
-@param[in] keyboard_state Tablica 255 elementów opisuj¹ca stan klawiatury.*/
+@param[in] device_nr Identyfikator urzÂ¹dzenia, ktÃ³re aktualizujemy, jedna z wartoÅ“ci @ref DEVICE_IDs.
+@param[in] keyboard_state Tablica 255 elementÃ³w opisujÂ¹ca stan klawiatury.*/
 
 void InputAbstractionLayer::update_keyboard_device( short device_nr, const char* keyboard_state )
 {
@@ -133,9 +133,9 @@ void InputAbstractionLayer::update_keyboard_device( short device_nr, const char*
 		{
 			short dev_index = buttons_mapping_table[i].button_axis_id;
 			if ( keyboard_state[dev_index] )
-			{//tablica jest wyzerowana, wiêc iteresuj¹ nas jedynie w³¹czone przyciski
-			//je¿eli wiele przycisków fizycznych odnosi siê do jednego wirtualnego, to wtedy
-			//wystarczy jeden wciœniêty, ¿eby stan przycisku wirtualnego zosta³ ustawiony
+			{//tablica jest wyzerowana, wiÃªc iteresujÂ¹ nas jedynie wÂ³Â¹czone przyciski
+			//jeÂ¿eli wiele przyciskÃ³w fizycznych odnosi siÃª do jednego wirtualnego, to wtedy
+			//wystarczy jeden wciÅ“niÃªty, Â¿eby stan przycisku wirtualnego zostaÂ³ ustawiony
 				short v_index = buttons_mapping_table[i].virtual_index;
 				virtual_button[v_index] = 1;
 			}
@@ -143,38 +143,75 @@ void InputAbstractionLayer::update_keyboard_device( short device_nr, const char*
 		
 }
 
-/**@brief Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków oraz osi na podstawie
-wejœcia o intefejsie myszy. Zazwyczaj wywo³uje siê j¹ dla myszy, ale mo¿e byæ te¿ tak,
-¿e directX reprezentuje jakieœ inne urz¹dzenie takim samym interfejsem.
+/**@brief Funkcja wywoÂ³ywana w kaÂ¿dej klatce do ustawienia stanu wirtualnych przyciskÃ³w oraz osi na podstawie
+wejÅ“cia o intefejsie myszy. Zazwyczaj wywoÂ³uje siÃª jÂ¹ dla myszy, ale moÂ¿e byÃ¦ teÂ¿ tak,
+Â¿e directX reprezentuje jakieÅ“ inne urzÂ¹dzenie takim samym interfejsem.
 
-@param[in] device_nr Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci @ref DEVICE_IDs.
-@param[in] mouse_state Struktura opisuj¹ca stan urz¹dzenia, które da siê opisaæ takim interfejsem.
+@param[in] device_nr Identyfikator urzÂ¹dzenia, ktÃ³re aktualizujemy, jedna z wartoÅ“ci @ref DEVICE_IDs.
+@param[in] mouse_state Struktura opisujÂ¹ca stan urzÂ¹dzenia, ktÃ³re da siÃª opisaÃ¦ takim interfejsem.
+@param[in] window_width SzerokoÅ›Ä‡ okna
+@param[in] window_height WysokoÅ›Ä‡ okna
 */
-void InputAbstractionLayer::update_mouse_device( short device_nr, const DIMOUSESTATE2* mouse_state )
+void InputAbstractionLayer::update_mouse_device( short device_nr, const DIMOUSESTATE2* mouse_state, int window_width, int window_height)
 {
+	//TODO:	przyciski
 
+	//osie
+	for ( unsigned int i = 0; i < axis_mapping_table.size(); ++i )
+	{
+		if (axis_mapping_table[i].device_nr == device_nr)
+		{
+			unsigned int dev_index = axis_mapping_table[i].button_axis_id;
+
+			switch (dev_index)
+			{
+			case DIMOUSE_XAXIS:
+			{
+				short v_x_index = axis_mapping_table[i].virtual_index;
+				float virtual_x_axis_value = (float)mouse_state->lX / (float)window_width;
+				virtual_x_axis_value = (virtual_x_axis_value > 1.0f ? 1.0f : virtual_x_axis_value);
+				virtual_axis[v_x_index] = virtual_x_axis_value;
+				break;
+			}
+			case DIMOUSE_YAXIS:
+			{
+				short v_y_index = axis_mapping_table[i].virtual_index;
+				float virtual_y_axis_value = (float)mouse_state->lY / (float)window_width;
+				virtual_y_axis_value = (virtual_y_axis_value > 1.0f ? 1.0f : virtual_y_axis_value);
+				virtual_axis[v_y_index] = virtual_y_axis_value;
+				break;
+			}
+			case DIMOUSE_WHEEL:
+			{
+				//TODO: wheel
+				break;
+			}
+			}
+		}
+
+	}
 
 }
 
-/**@brief Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków oraz osi na podstawie
-wejœcia o intefejsie joysticka.
+/**@brief Funkcja wywoÂ³ywana w kaÂ¿dej klatce do ustawienia stanu wirtualnych przyciskÃ³w oraz osi na podstawie
+wejÅ“cia o intefejsie joysticka.
 
-Zazwyczaj wywo³uje siê j¹ dla joysticka i wszystkich innych urz¹dzeñ,
-które nie sa klawiatur¹ albo mysz¹, ale mo¿e byæ te¿ tak, ¿e directX reprezentuje jakieœ
-inne urz¹dzenie takim samym interfejsem.
+Zazwyczaj wywoÂ³uje siÃª jÂ¹ dla joysticka i wszystkich innych urzÂ¹dzeÃ±,
+ktÃ³re nie sa klawiaturÂ¹ albo myszÂ¹, ale moÂ¿e byÃ¦ teÂ¿ tak, Â¿e directX reprezentuje jakieÅ“
+inne urzÂ¹dzenie takim samym interfejsem.
 
-@param[in] device_nr Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci @ref DEVICE_IDs.
-@param[in] joystick_state Struktura opisuj¹ca stan urz¹dzenia, które da siê opisaæ takim interfejsem.*/
+@param[in] device_nr Identyfikator urzÂ¹dzenia, ktÃ³re aktualizujemy, jedna z wartoÅ“ci @ref DEVICE_IDs.
+@param[in] joystick_state Struktura opisujÂ¹ca stan urzÂ¹dzenia, ktÃ³re da siÃª opisaÃ¦ takim interfejsem.*/
 void InputAbstractionLayer::update_joystick_device( short device_nr, const DIJOYSTATE* joystick_state )
 {
 
 }
 
 //=================================================================//
-//	w³¹czanie i wy³¹czanie eventów
+//	wÂ³Â¹czanie i wyÂ³Â¹czanie eventÃ³w
 //=================================================================//
 
-/**@brief ¯¹da wysy³ania eventów o wciœniêciu wirtualnego przycisku 
+/**@brief Â¯Â¹da wysyÂ³ania eventÃ³w o wciÅ“niÃªciu wirtualnego przycisku 
 o podanym indeksie.
 @param[in] v_index Indeks wirtualnego przycisku w tablicy.*/
 void InputAbstractionLayer::demand_down_event( unsigned short v_index )
@@ -196,7 +233,7 @@ void InputAbstractionLayer::demand_down_event( unsigned short v_index )
 	}
 }
 
-/**@brief ¯¹da wysy³ania eventów o puszczeniu wirtualnego przycisku
+/**@brief Â¯Â¹da wysyÂ³ania eventÃ³w o puszczeniu wirtualnego przycisku
 o podanym indeksie.
 @param[in] v_index Indeks wirtualnego przycisku w tablicy.*/
 void InputAbstractionLayer::demand_up_event( unsigned short v_index )
@@ -218,7 +255,7 @@ void InputAbstractionLayer::demand_up_event( unsigned short v_index )
 	}
 }
 
-/**@brief ¯¹da zaprzestania wysy³ania eventów o wciœniêciu wirtualnego przycisku
+/**@brief Â¯Â¹da zaprzestania wysyÂ³ania eventÃ³w o wciÅ“niÃªciu wirtualnego przycisku
 o podanym indeksie.
 @param[in] v_index Indeks wirtualnego przycisku w tablicy.*/
 void InputAbstractionLayer::delete_up_event( unsigned short v_index )
@@ -228,14 +265,14 @@ void InputAbstractionLayer::delete_up_event( unsigned short v_index )
 		if( event_mapping_table[i].virtual_index == v_index )
 		{
 			event_mapping_table[i].up_event = 0;
-			if( event_mapping_table[i].down_event == 0 )	//nikt nie ¿¹da ¿adnego z eventów, kasujemy wpis
+			if( event_mapping_table[i].down_event == 0 )	//nikt nie Â¿Â¹da Â¿adnego z eventÃ³w, kasujemy wpis
 				event_mapping_table.erase( event_mapping_table.begin() + i );
-			break;		//znalexliœmy element, wiêc przerywamy pêtlê
+			break;		//znalexliÅ“my element, wiÃªc przerywamy pÃªtlÃª
 		}
 	}
 }
 
-/**@brief ¯¹da zaprzestania wysy³ania eventów o puszczeniu wirtualnego przycisku
+/**@brief Â¯Â¹da zaprzestania wysyÂ³ania eventÃ³w o puszczeniu wirtualnego przycisku
 o podanym indeksie.
 @param[in] v_index Indeks wirtualnego przycisku w tablicy.*/
 void InputAbstractionLayer::delete_down_event( unsigned short v_index )
@@ -245,9 +282,9 @@ void InputAbstractionLayer::delete_down_event( unsigned short v_index )
 		if( event_mapping_table[i].virtual_index == v_index )
 		{
 			event_mapping_table[i].down_event = 0;
-			if( event_mapping_table[i].up_event == 0 )	//nikt nie ¿¹da ¿adnego z eventów, kasujemy wpis
+			if( event_mapping_table[i].up_event == 0 )	//nikt nie Â¿Â¹da Â¿adnego z eventÃ³w, kasujemy wpis
 				event_mapping_table.erase( event_mapping_table.begin( ) + i );
-			break;		//znaleŸliœmy element, wiêc przerywamy pêtlê
+			break;		//znaleÅ¸liÅ“my element, wiÃªc przerywamy pÃªtlÃª
 		}
 	}
 }
@@ -257,10 +294,10 @@ void InputAbstractionLayer::delete_down_event( unsigned short v_index )
 //	ustawienie mapowania
 //=================================================================//
 
-/**@brief Funkcja s³u¿y do zdefiniowania wartstwy abstrakcji dla przycisków.
+/**@brief Funkcja sÂ³uÂ¿y do zdefiniowania wartstwy abstrakcji dla przyciskÃ³w.
 
-@param[in] mapping Tablica struktur, która mapuj¹ przyciski fizyczne na przyciski wirtualne.
-@param[in] length D³ugoœæ podanej w pierwszym parametrze tablicy
+@param[in] mapping Tablica struktur, ktÃ³ra mapujÂ¹ przyciski fizyczne na przyciski wirtualne.
+@param[in] length DÂ³ugoÅ“Ã¦ podanej w pierwszym parametrze tablicy
 */
 void InputAbstractionLayer::setup_buttons_layer( input_mapping* mapping, unsigned int length )
 {
@@ -279,10 +316,10 @@ void InputAbstractionLayer::setup_buttons_layer( input_mapping* mapping, unsigne
 }
 
 
-/**@brief Funkcja s³u¿y do zdefiniowania wartstwy abstrakcji dla osi.
+/**@brief Funkcja sÂ³uÂ¿y do zdefiniowania wartstwy abstrakcji dla osi.
 
-@param[in] mapping Tablica struktur, która mapuj¹ osie fizyczne na osie wirtualne.
-@param[in] length D³ugoœæ podanej w pierwszym parametrze tablicy
+@param[in] mapping Tablica struktur, ktÃ³ra mapujÂ¹ osie fizyczne na osie wirtualne.
+@param[in] length DÂ³ugoÅ“Ã¦ podanej w pierwszym parametrze tablicy
 */
 void InputAbstractionLayer::setup_axis_layer( input_mapping* mapping, unsigned int length )
 {
@@ -300,8 +337,8 @@ void InputAbstractionLayer::setup_axis_layer( input_mapping* mapping, unsigned i
 	virtual_axis = new float[num_axis];
 }
 
-/**@brief Funkcja tworz¹ca warstwê abstrakcji na podstawie podanego pliku.
-@todo Funkcja do napisania, struktura pliku musi zostaæ okreœlona.
+/**@brief Funkcja tworzÂ¹ca warstwÃª abstrakcji na podstawie podanego pliku.
+@todo Funkcja do napisania, struktura pliku musi zostaÃ¦ okreÅ“lona.
 
 @param[in] file_name Nazwa pliku do wczytania.
 @return Zwraca 0 w przypadku poprawnego wczytania.
@@ -314,19 +351,28 @@ int InputAbstractionLayer::setup_layer_from_file( const std::string& file_name )
 namespace STANDARD_LAYERS
 {
 
-	input_mapping PROTOTYPE_mapping[PROTOTYPE_MAPPING_COUNT] =
+	input_mapping PROTOTYPE_BUTTONS_mapping[PROTOTYPE_BUTTONS_MAPPING_COUNT] =
 	{
-		{ DEVICE_IDs::KEYBOARD, PROTOTYPE::FORWARD, DIK_W },
-		{ DEVICE_IDs::KEYBOARD, PROTOTYPE::BACKWARD, DIK_S },
-		{ DEVICE_IDs::KEYBOARD, PROTOTYPE::LEFT, DIK_A },
-		{ DEVICE_IDs::KEYBOARD, PROTOTYPE::RIGHT, DIK_D },
-		{ DEVICE_IDs::KEYBOARD, PROTOTYPE::TURN_RIGHT, DIK_X },
-		{ DEVICE_IDs::KEYBOARD, PROTOTYPE::TURN_LEFT, DIK_Z },
-		{ DEVICE_IDs::KEYBOARD, PROTOTYPE::UP, DIK_Q },
-		{ DEVICE_IDs::KEYBOARD, PROTOTYPE::DOWN, DIK_E },
-		{ DEVICE_IDs::KEYBOARD, PROTOTYPE::SHOT1, DIK_LCONTROL },
-		{ DEVICE_IDs::KEYBOARD, PROTOTYPE::SHOT2, DIK_RCONTROL },
-		{ DEVICE_IDs::KEYBOARD, PROTOTYPE::ESCAPE, DIK_ESCAPE }
+
+		{ DEVICE_IDs::KEYBOARD, PROTOTYPE_BUTTONS::FORWARD, DIK_W },
+		{ DEVICE_IDs::KEYBOARD, PROTOTYPE_BUTTONS::BACKWARD, DIK_S },
+		{ DEVICE_IDs::KEYBOARD, PROTOTYPE_BUTTONS::LEFT, DIK_A },
+		{ DEVICE_IDs::KEYBOARD, PROTOTYPE_BUTTONS::RIGHT, DIK_D },
+		{ DEVICE_IDs::KEYBOARD, PROTOTYPE_BUTTONS::TURN_RIGHT, DIK_X },
+		{ DEVICE_IDs::KEYBOARD, PROTOTYPE_BUTTONS::TURN_LEFT, DIK_Z },
+		{ DEVICE_IDs::KEYBOARD, PROTOTYPE_BUTTONS::UP, DIK_Q },
+		{ DEVICE_IDs::KEYBOARD, PROTOTYPE_BUTTONS::DOWN, DIK_E },
+		{ DEVICE_IDs::KEYBOARD, PROTOTYPE_BUTTONS::SHOT1, DIK_LCONTROL },
+		{ DEVICE_IDs::KEYBOARD, PROTOTYPE_BUTTONS::SHOT2, DIK_RCONTROL },
+		{ DEVICE_IDs::KEYBOARD, PROTOTYPE_BUTTONS::ESCAPE, DIK_ESCAPE }
+
+	};
+
+	input_mapping PROTOTYPE_AXES_mapping[PROTOTYPE_AXES_MAPPING_COUNT] =
+	{
+		{ DEVICE_IDs::MOUSE, PROTOTYPE_AXES::X_AXIS, DIMOUSE_XAXIS },
+		{ DEVICE_IDs::MOUSE, PROTOTYPE_AXES::Y_AXIS, DIMOUSE_YAXIS }, 
+		{ DEVICE_IDs::MOUSE, PROTOTYPE_AXES::Z_AXIS, DIMOUSE_WHEEL }
 	};
 
 }

@@ -141,7 +141,7 @@ public:
 	void send_events(Engine*);
 
 	void update_keyboard_device( short device_nr, const char* keyboard_state );
-	void update_mouse_device( short device_nr, const DIMOUSESTATE2* mouse_state );
+	void update_mouse_device( short device_nr, const DIMOUSESTATE2* mouse_state, int window_width, int window_height);
 	void update_joystick_device( short device_nr, const DIJOYSTATE* joystick_state );
 
 	void demand_down_event( unsigned short v_index );
@@ -161,7 +161,7 @@ W przypadku modyfikacji zmieniæ te¿ sta³¹ STANDARD_ABSTRACTION_LAYER_COUNT
 */
 typedef enum
 {
-	PROTOTYPE
+	PROTOTYPE_BUTTONS
 } STANDARD_ABSTRACTION_LAYER;
 
 /*Trzeba pamiêtaæ, ¿eby aktualizowac tê zmienn¹. Je¿eli siê tego nie zrobi,
@@ -179,7 +179,7 @@ typedef enum
 
 namespace STANDARD_LAYERS
 {
-//STANDARD_ABSTRACTION_LAYER::PROTOTYPE
+//STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS
 	typedef enum
 	{
 		FORWARD,
@@ -196,11 +196,19 @@ namespace STANDARD_LAYERS
 		MENU,
 		PAUSE,
 		ESCAPE
-	} PROTOTYPE;
+	} PROTOTYPE_BUTTONS;
 
+	#define PROTOTYPE_BUTTONS_MAPPING_COUNT		11
+	extern input_mapping PROTOTYPE_BUTTONS_mapping[PROTOTYPE_BUTTONS_MAPPING_COUNT];
 
-#define PROTOTYPE_MAPPING_COUNT		11
-extern input_mapping PROTOTYPE_mapping[PROTOTYPE_MAPPING_COUNT];
+	typedef enum
+	{
+		X_AXIS,
+		Y_AXIS, 
+		Z_AXIS
+	} PROTOTYPE_AXES;
 
+	#define PROTOTYPE_AXES_MAPPING_COUNT		3
+	extern input_mapping PROTOTYPE_AXES_mapping[PROTOTYPE_AXES_MAPPING_COUNT];
 
 }

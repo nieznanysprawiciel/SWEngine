@@ -11,7 +11,7 @@ PROTOTYPE.*/
 
 Kontroler implementuje podstawowe operacje
 jak przesuwanie w przód, ty³, obrót góra, dó³ i brót wzglêdem osi pionowej.
-Prêdkoœæ poszczególnych ruchów jest sta³a i zale¿na od zmiennych move_speed i rot_speed.
+Prêdkoœæ poszczególnych ruchów jest sta³a i zale¿na od zmiennych move_speed i button_rot_speed.
 
 Sterowanie:
 - PROTOTYPE::FORWARD Ruch do przodu wzd³u¿ kierunku patrzenia
@@ -26,8 +26,9 @@ Sterowanie:
 class camera_controller_PROTOTYPE	:	public Base_input_controller
 {
 private:
-	float move_speed;		///<Prêdkoœæ poruszania posuwistego
-	float rot_speed;		///<Prêdkoœæ ruchu obrotowego
+	float move_speed;			///<Prêdkoœæ poruszania posuwistego
+	float button_rot_speed;		///<Prêdkoœæ ruchu obrotowego (dla przycisku)
+	float axis_rot_speed;		///<Prêdkoœæ ruchu obrotowego (dla myszy/jousticka)
 public:
 	camera_controller_PROTOTYPE( InputAbstractionLayer_base* layer );
 	virtual ~camera_controller_PROTOTYPE();

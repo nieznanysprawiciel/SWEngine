@@ -123,6 +123,9 @@ public:
 	inline void set_events_queue( std::queue<Event*>* queue ) { events_queue = queue; }
 	inline HINSTANCE get_instance_handler() { return instance_handler; }
 	inline HWND get_window_handler() { return window_handler; }
+
+	inline int get_window_widht() { return window_width; }
+	inline int get_window_height() { return window_height; }
 };
 
 /**Celem wprowadzenia wektora index_predictor jest optymalizacja dostêpu do danych 

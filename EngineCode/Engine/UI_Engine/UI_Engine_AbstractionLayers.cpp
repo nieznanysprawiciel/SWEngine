@@ -13,7 +13,8 @@ void UI_Engine::init_abstraction_layers( )
 	//kolejnoœæ dodawania powinna byæ zgodna z enumem STANDARD_ABSTRACTION_LAYER,
 	//poniewa¿ s³u¿y on potem jako indeks do odwo³ywania siê do tablicy
 	InputAbstractionLayer* new_layer = new InputAbstractionLayer;
-	new_layer->setup_buttons_layer( STANDARD_LAYERS::PROTOTYPE_mapping, PROTOTYPE_MAPPING_COUNT );
+	new_layer->setup_buttons_layer( STANDARD_LAYERS::PROTOTYPE_BUTTONS_mapping, PROTOTYPE_BUTTONS_MAPPING_COUNT );
+	new_layer->setup_axis_layer(STANDARD_LAYERS::PROTOTYPE_AXES_mapping, PROTOTYPE_AXES_MAPPING_COUNT);
 	abstraction_layers.push_back( new_layer );
 
 	current_abstraction_layer = new_layer;
@@ -107,7 +108,7 @@ void UI_Engine::clear_abstraction_layers( )
 	for ( unsigned int i = STANDARD_ABSTRACTION_LAYER_COUNT; i < abstraction_layers.size(); ++i )
 	{
 		if ( current_abstraction_layer == abstraction_layers[i] )
-			set_standard_abstraction_layer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE );
+			set_standard_abstraction_layer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS );
 		delete abstraction_layers[i];
 	}
 	abstraction_layers.erase( abstraction_layers.begin() + STANDARD_ABSTRACTION_LAYER_COUNT,
@@ -123,7 +124,7 @@ void UI_Engine::update_abstraction_layer( )
 	current_abstraction_layer->begin_event_collection();
 
 	current_abstraction_layer->update_keyboard_device( DEVICE_IDs::KEYBOARD, keyboard_state );
-	current_abstraction_layer->update_mouse_device( DEVICE_IDs::MOUSE, &mouse_state );
+	current_abstraction_layer->update_mouse_device( DEVICE_IDs::MOUSE, &mouse_state, engine->get_window_widht(), engine->get_window_height());
 
 	current_abstraction_layer->send_events( engine );
 }
