@@ -5,6 +5,7 @@
 *.suo
 *.user
 *.sln.docstates
+EngineCode/SW_engine.v12.suo
 
 # Build results
 

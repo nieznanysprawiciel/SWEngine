@@ -321,8 +321,8 @@ void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 	ModelPart* model = sky_dome->get_model_part();
 
 	// Wyliczamy macierz transformacji
-	XMVECTOR quaternion;
-	interpolate_orientation( time_lag, current_camera, quaternion );
+	XMVECTOR quaternion = current_camera->get_interpolated_orientation( time_lag );
+	//interpolate_orientation( time_lag, current_camera, quaternion );
 	inverse_camera_orientation( quaternion );
 
 	XMMATRIX rotation_matrix = XMMatrixRotationQuaternion( quaternion );
@@ -434,10 +434,10 @@ void DisplayEngine::set_view_matrix( float time_lag )
 		XMMATRIX rotation_matrix = XMMatrixRotationQuaternion(quaternion);
 		view_matrix = view_matrix * rotation_matrix;
 #else
-		XMVECTOR position;
-		XMVECTOR orientation;
-		interpolate_position( time_lag, current_camera, position );
-		interpolate_orientation( time_lag, current_camera, orientation );
+		XMVECTOR position = current_camera->get_interpolated_position( time_lag );
+		XMVECTOR orientation = current_camera->get_interpolated_orientation( time_lag );
+		//interpolate_position( time_lag, current_camera, position );
+		//interpolate_orientation( time_lag, current_camera, orientation );
 		inverse_camera_position( position );
 		inverse_camera_orientation( orientation );
 
@@ -542,7 +542,7 @@ void DisplayEngine::interpolate_positions( float time_lag )
 	for ( unsigned int i = 0; i < meshes.size(); ++i )
 	{
 		Dynamic_mesh_object* object = meshes[i];
-		interpolate_object( time_lag, object, &(interpolated_matrixes[i]) );
+		interpolate_object2( time_lag, object, &(interpolated_matrixes[i]) );
 	}
 }
 
@@ -588,8 +588,23 @@ void DisplayEngine::interpolate_object( float time_lag, const Dynamic_object* ob
 	XMStoreFloat4x4( result_matrix, transformation );
 }
 
+/**@brief Funkcja tworzy macierz przekszta³cenia dla podanego obiektu, interpoluj¹c jego pozycjê
+z prêdkoœci postêpowej i k¹towej.
 
+@param[in] tima_lag Procent czasu jaki up³yn¹³ od ostaniej klatki do nastêpnej.
+@param[in] object Objekt, dla którego liczymy macierz przekszta³cenia.
+@param[out] transform_matrix Zmienna, w której zostanie umieszczona interpolowana macierz przekszta³cenia.
+*/
+void DisplayEngine::interpolate_object2( float time_lag, const Dynamic_object* object, DirectX::XMFLOAT4X4* result_matrix )
+{
+	XMVECTOR position = object->get_interpolated_position( time_lag );
+	XMVECTOR orientation = object->get_interpolated_orientation( time_lag );
 
+	XMMATRIX transformation = XMMatrixRotationQuaternion( orientation );
+	transformation = transformation * XMMatrixTranslationFromVector( position );
+
+	XMStoreFloat4x4( result_matrix, transformation );
+}
 
 //=================================================================//
 //					light functions

@@ -33,7 +33,7 @@ void Engine::test()
 	//dodawanie ksiê¿yca
 	Dynamic_mesh_object* moon = new Dynamic_mesh_object;
 	XMVECTOR position = XMVectorSet( 4000.0, 0.0, 8000.0, 0.0 );
-	moon->set_position( position );
+	moon->teleport( position );
 
 	moon->set_model( models_manager->get_model( MOON ) );
 	moon->set_scale( 30.0 );
@@ -44,7 +44,7 @@ void Engine::test()
 	//dodawanie Nebulona
 	Dynamic_mesh_object* nebulon = new Dynamic_mesh_object;
 	position = XMVectorSet( 400.0, 0.0, -6000.0, 0.0 );
-	nebulon->set_position( position );
+	nebulon->teleport( position );
 
 	nebulon->set_model( models_manager->get_model( NEBULON ) );
 	nebulon->set_scale( 1 );	//Nebulon ma Ÿle ustawiony pivot, wiêc jak siê przeskaluje to odleci gdzieœ w kosmos i go nie widaæ.
@@ -55,7 +55,7 @@ void Engine::test()
 	//dodawanie TIE Fightera
 	Dynamic_mesh_object* TIE = new Dynamic_mesh_object;
 	position = XMVectorSet( -400.0, 0.0, 800.0, 0.0 );
-	TIE->set_position( position );
+	TIE->teleport( position );
 
 	TIE->set_model( models_manager->get_model( TIE_FIGHTER ) );
 	TIE->set_scale( 10 );
@@ -67,7 +67,7 @@ void Engine::test()
 	//dodawanie TIE Fightera Vadera
 	Dynamic_mesh_object* VaderTIE = new Dynamic_mesh_object;
 	position = XMVectorSet( -400.0, 0.0, -3000.0, 0.0 );
-	VaderTIE->set_position( position );
+	VaderTIE->teleport( position );
 
 	VaderTIE->set_model( models_manager->get_model( VADER_TIE ) );
 	//VaderTIE->set_scale( 1.0 );
@@ -78,7 +78,7 @@ void Engine::test()
 	//dodawanie myœliwca
 	Dynamic_mesh_object* clone_fighter = new Dynamic_mesh_object;
 	position = XMVectorSet(0.0, 0.0, 6000.0, 0.0);
-	clone_fighter->set_position( position );
+	clone_fighter->teleport( position );
 
 #ifdef _QUATERNION_SPEED
 	XMVECTOR rot_vector = { 1.0f, 0.0f, 0.0f, 0.0f };
@@ -141,7 +141,7 @@ void Engine::test()
 	//ustawienie aktywnej kamery
 	Camera_object* camera = new Camera_object();
 	XMVECTOR camera_pos = XMVectorSet( 0.0, 0.0, 0.0, 0.0 );
-	camera->set_position( camera_pos );
+	camera->teleport( camera_pos );
 	//przypisujemy kontroler ( dla kontrolerów trzeba zrobiæ jakiœ mechanizm przechowywania i zwalniania)
 	camera_controller_PROTOTYPE* controller = new camera_controller_PROTOTYPE(
 		ui_engine->get_standard_abstraction_layer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ) );

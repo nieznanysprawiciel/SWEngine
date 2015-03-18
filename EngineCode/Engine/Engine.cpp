@@ -249,14 +249,14 @@ void Engine::render_frame()
 #endif
 
 #ifdef _INTERPOLATE_POSITIONS
-	display_engine->interpolate_positions(lag);
+	display_engine->interpolate_positions( lag / FIXED_MOVE_UPDATE_INTERVAL );
 #endif
 
 	//Renderujemy scenê oraz interfejs u¿ytkownika
 	begin_scene();
 
-	display_engine->display_scene(time_interval, lag);
-	ui_engine->draw_GUI(time_interval, lag);
+	display_engine->display_scene( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
+	ui_engine->draw_GUI( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
 
 	end_scene_and_present();
 }

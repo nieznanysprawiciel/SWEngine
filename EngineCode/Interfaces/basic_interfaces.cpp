@@ -43,18 +43,18 @@ void inline Object::event(Event* new_event)
 void Dynamic_object::move(float time_interval)
 {
 //translacja
-	XMVECTOR pos = XMLoadFloat3(&position);
+	XMVECTOR pos = get_position();
 	XMVECTOR time = XMVectorReplicate(time_interval);
-	XMVECTOR translate = XMLoadFloat3(&speed);
+	XMVECTOR translate = get_speed();
 	translate *= time;
 	pos = pos + translate;
-	XMStoreFloat3(&position, pos);
+	set_position( pos );
 
 //w docelowej wersji trzeba siê zdecydowaæ, co lepsze i resztê wywaliæ
 #ifdef _QUATERNION_SPEED
 //orientacja
-	XMVECTOR orient = XMLoadFloat4(&orientation);
-	XMVECTOR rot = XMLoadFloat4(&rotation_speed);
+	XMVECTOR orient = get_orientation();
+	XMVECTOR rot = get_rotation_speed();
 
 	//najpierw liczymy nowy kwaternion dla obrotu w czasie sekundy
 	rot = XMQuaternionMultiply(orient, rot);
@@ -64,22 +64,23 @@ void Dynamic_object::move(float time_interval)
 
 	/*Du¿o obliczeñ, mo¿e da siê to jakoœ za³atwiæ bez interpolacji...*/
 
-	XMStoreFloat4(&orientation, orient);
+	set_orientation( orient );
 #else
-	XMVECTOR orient = XMLoadFloat4( &orientation );		//pobieramy orientacjê
-	XMVECTOR rot = XMLoadFloat4( &rotation_speed );		//pobieramy oœ obrotu (k¹t te¿, ale on nie ma znaczenia)
+	XMVECTOR orient = get_orientation();				//pobieramy orientacjê
+	XMVECTOR rot = get_rotation_speed();				//pobieramy oœ obrotu (k¹t te¿, ale on nie ma znaczenia)
 
-	if ( !XMVector3Equal( rot, XMVectorZero( ) ) )
+	if ( !XMVector3Equal( rot, XMVectorZero() ) )
 	{
 		float rot_angle = rotation_speed.w * time_interval;	//liczymy k¹t obrotu
 
 		rot = XMQuaternionRotationAxis( rot, rot_angle );		//przerabiamy na kwaternion
 		orient = XMQuaternionMultiply( orient, rot );			//liczymy nowy kwaternion orientacji
-
-		XMStoreFloat4( &orientation, orient );
 	}
-	//else: wtedy orientacja siê nie zmienia
+		
+	set_orientation( orient );
 #endif
+
+	swap();
 }
 
 /*Funkcja o zastosowaniu tym samym co move, z t¹ ró¿nic¹, ¿e wykonywana dla obiektów z³o¿onych. Przesuniêcie
@@ -96,7 +97,7 @@ void Dynamic_object::move_complex(float time_interval, const XMFLOAT3& parent_sp
 	//DOKOÑCZYC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 	//translacja
-	XMVECTOR pos = XMLoadFloat3(&position);
+	XMVECTOR pos = get_position();
 	XMVECTOR time = XMVectorReplicate(time_interval);
 	XMVECTOR translate = XMLoadFloat3(&speed);
 	XMVECTOR parent_translate = XMLoadFloat3(&parent_speed);
@@ -104,10 +105,10 @@ void Dynamic_object::move_complex(float time_interval, const XMFLOAT3& parent_sp
 	translate += parent_translate;		//g³ówna ró¿nica: dodajemy przesuniêcie rodzica
 	translate *= time;
 	pos = pos + translate;
-	XMStoreFloat3(&position, pos);
+	set_position( pos );
 
 	//orientacja
-	XMVECTOR orient = XMLoadFloat4(&orientation);
+	XMVECTOR orient = get_orientation();
 	XMVECTOR rot = XMLoadFloat4(&rotation_speed);
 	XMVECTOR parent_rotn = XMLoadFloat4(&parent_rotation);
 
@@ -119,7 +120,9 @@ void Dynamic_object::move_complex(float time_interval, const XMFLOAT3& parent_sp
 
 	/*Du¿o obliczeñ, mo¿e da siê to jakoœ za³atwiæ bez interpolacji...*/
 
-	XMStoreFloat4(&orientation, orient);
+	set_orientation( orient );
+
+	swap();
 }
 
 void Complex_object::move_complex(float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation)
@@ -137,14 +140,61 @@ Static_object::Static_object()
 	position.y = 0.0;
 	position.z = 0.0;
 
+	position_back = position;
+
 	XMVECTOR quaternion = XMQuaternionIdentity();
 	XMStoreFloat4(&orientation,quaternion);
+
+	orientation_back = orientation;
+
+	swap_data = false;
 }
 
 Static_object::Static_object(const XMFLOAT3& pos, const XMFLOAT4& orient)
 {
 	position = pos;
+	position_back = pos;
 	orientation = orient;
+	orientation_back = orient;
+
+	swap_data = false;
+}
+
+/**@brief Zwraca interpolowan¹ pozycjê obiektu miêdzy przechowywanymi po³o¿eniami.
+
+@param[in] tima_lag Procent czasu jaki up³yn¹³ od ostaniej klatki do nastêpnej
+Zakres [0,1].*/
+XMVECTOR Static_object::get_interpolated_position( float time_lag ) const
+{
+	XMVECTOR pos2 = XMLoadFloat3( &position );
+	XMVECTOR pos1 = XMLoadFloat3( &position_back );
+	if ( XMVector3Equal( pos1, pos2 ) )
+		return pos1;
+
+	if ( swap_data )
+		pos1 = XMVectorLerp( pos2, pos1, time_lag );
+	else
+		pos1 = XMVectorLerp( pos1, pos2, time_lag );
+
+	pos1 = XMVectorSetW( pos1, 1 );
+	return pos1;
+}
+
+/**@brief Zwraca interpolowan¹ orientacjê obiektu miêdzy przechowywanymi po³o¿eniami.
+
+@param[in] tima_lag Procent czasu jaki up³yn¹³ od ostaniej klatki do nastêpnej
+Zakres [0,1].*/
+XMVECTOR Static_object::get_interpolated_orientation( float time_lag ) const
+{
+	XMVECTOR orient2 = XMLoadFloat4( &orientation );
+	XMVECTOR orient1 = XMLoadFloat4( &orientation_back );
+	if ( XMVector3Equal( orient1, orient2 ) )	// Wa¿ne! Oblcizenia na floatach s¹ niedok³adne i troszkê wszystko lata.
+		return orient1;
+
+	if ( swap_data )
+		return XMQuaternionSlerp( orient2, orient1, time_lag );
+	else
+		return XMQuaternionSlerp( orient1, orient2, time_lag );
 }
 
 //----------------------------------------------------------------------------------------------//

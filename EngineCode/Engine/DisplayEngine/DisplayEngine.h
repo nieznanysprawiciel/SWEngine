@@ -71,6 +71,7 @@ private:
 
 	void realocate_interpolation_memory(unsigned int min = 1);
 	void interpolate_object( float time_lag, const Dynamic_object* object, DirectX::XMFLOAT4X4* result_matrix );
+	void interpolate_object2( float time_lag, const Dynamic_object* object, DirectX::XMFLOAT4X4* result_matrix );
 
 	// Wyœwietlanie (funkcje wewnêtrzne)
 	void display_instanced_meshes( float time_interval, float time_lag );
