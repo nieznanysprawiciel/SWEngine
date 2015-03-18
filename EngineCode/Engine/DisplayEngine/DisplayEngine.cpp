@@ -1,3 +1,8 @@
+/**@file DisplayEngine.cpp
+@brief Plik zawiera definicje metod klasy DispalyEngine.
+*/
+
+
 #include "..\..\stdafx.h"
 #include "DisplayEngine.h"
 #include "..\Engine.h"
@@ -140,8 +145,8 @@ to przy nastêpnym wywo³aniu bêd¹ takie same.
 
 @param[in] time_interval Czas od ostatniej klatki. Przy ustawionej sta³ej @ref FIXED_FRAMES_COUNT czas ten jest sta³y
 i wynosi tyle ile wartoœæ sta³ej FIXED_MOVE_UPDATE_INTERVAL.
-@param[in] time_lag Je¿eli po³o¿enia obiektów przeliczane s¹ co sta³y interwa³ czasowy, to ta zmienna zawiera opóŸnienie
-wzglêdem tego interwa³u, pozwalaj¹ce interpolowaæ pozycje obiektów.
+@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
+Zakres [0,1].
 */
 void DisplayEngine::display_scene(float time_interval, float time_lag)
 {
@@ -182,7 +187,8 @@ w scenie.
 
 
 @param[in] time_interval Czas od ostatniej klatki.
-@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ.
+@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
+Zakres [0,1].
 */
 void DisplayEngine::display_instanced_meshes( float time_interval, float time_lag )
 {
@@ -193,7 +199,8 @@ void DisplayEngine::display_instanced_meshes( float time_interval, float time_la
 
 
 @param[in] time_interval Czas od ostatniej klatki.
-@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ.
+@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
+Zakres [0,1].
 */
 void DisplayEngine::display_dynamic_objects( float time_interval, float time_lag )
 {
@@ -264,7 +271,8 @@ void DisplayEngine::display_dynamic_objects( float time_interval, float time_lag
 
 
 @param[in] time_interval Czas od ostatniej klatki.
-@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ.
+@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
+Zakres [0,1].
 */
 void DisplayEngine::display_particles( float time_interval, float time_lag )
 {
@@ -275,7 +283,8 @@ void DisplayEngine::display_particles( float time_interval, float time_lag )
 jak np. pociski.
 
 @param[in] time_interval Czas od ostatniej klatki.
-@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ.
+@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
+Zakres [0,1].
 */
 void DisplayEngine::display_short_live_objects( float time_interval, float time_lag )
 {
@@ -296,7 +305,8 @@ kopu³y, wy³¹czany jest algorytm z-bufora. Niebo zawsze ma siê znajdowaæ za wszys
 dziêki temu kopu³a nie musi obejmowaæ ca³ej sceny.
 
 @param[in] time_interval Czas od ostatniej klatki.
-@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ.
+@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
+Zakres [0,1].
 */
 void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 {
@@ -365,7 +375,8 @@ void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 
 
 @param[in] time_interval Czas od ostatniej klatki.
-@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ.
+@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
+Zakres [0,1].
 */
 void DisplayEngine::display_skeletons( float time_interval, float time_lag )
 {
@@ -378,7 +389,8 @@ ni¿ domyœlny algorytm wyswietlania.
 @see @ref self_drawing_objects
 
 @param[in] time_interval Czas od ostatniej klatki.
-@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ
+@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
+Zakres [0,1].
 */
 void DisplayEngine::display_self_drawing_objects( float time_interval, float time_lag )
 {
@@ -410,9 +422,8 @@ Macierz widoku jest zapisywana w strukturze, która pos³u¿y do wype³nienia bufora
 Funkcja jest prywatna, poniewa¿ jest wywo³ywana podczas renderowania sceny. Aby ingerowaæ z zewn¹trz
 w ustawienie kamery nale¿y zmieniæ aktualnie ustawion¹ kamerê na jedn¹ z innych zapisanych w silniku.
 
-@param[in] time_lag Zmienna pozwala interpolowaæ pozycjê kamery pomiêdzy kolejnym przeliczeniem po³o¿eñ obiektów.
-Wszystkie widoczne obiekty s¹ interpolowane w celu uzyskania lepszej p³ynnoœci, dlatego trzeba interpolowaæ
-równie¿ kamerê, ¿eby nie by³o skoków obrazu.
+@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
+Zakres [0,1].
 */
 void DisplayEngine::set_view_matrix( float time_lag )
 {
@@ -436,8 +447,6 @@ void DisplayEngine::set_view_matrix( float time_lag )
 #else
 		XMVECTOR position = current_camera->get_interpolated_position( time_lag );
 		XMVECTOR orientation = current_camera->get_interpolated_orientation( time_lag );
-		//interpolate_position( time_lag, current_camera, position );
-		//interpolate_orientation( time_lag, current_camera, orientation );
 		inverse_camera_position( position );
 		inverse_camera_orientation( orientation );
 
@@ -536,7 +545,8 @@ odpowiada indeksom w tablicy meshes.
 
 @todo [docelowo do wykonania wielow¹tkowego]
 
-@param[in] time_lag Czas jaki up³yn¹³ od wygenerowania po³o¿eñ obiektów.*/
+@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
+Zakres [0,1].*/
 void DisplayEngine::interpolate_positions( float time_lag )
 {
 	for ( unsigned int i = 0; i < meshes.size(); ++i )
@@ -547,7 +557,8 @@ void DisplayEngine::interpolate_positions( float time_lag )
 }
 
 
-/**@brief Funkcja tworzy macierz przekszta³cenia dla podanego obiektu, interpoluj¹c jego pozycjê
+/**@deprecated
+@brief Funkcja tworzy macierz przekszta³cenia dla podanego obiektu, interpoluj¹c jego pozycjê
 z prêdkoœci postêpowej i k¹towej.
 
 @param[in] tima_lag Czas jaki up³yn¹³ od ostatniego przeliczenia pozycji obiektów.
@@ -591,7 +602,8 @@ void DisplayEngine::interpolate_object( float time_lag, const Dynamic_object* ob
 /**@brief Funkcja tworzy macierz przekszta³cenia dla podanego obiektu, interpoluj¹c jego pozycjê
 z prêdkoœci postêpowej i k¹towej.
 
-@param[in] tima_lag Procent czasu jaki up³yn¹³ od ostaniej klatki do nastêpnej.
+@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
+Zakres [0,1].
 @param[in] object Objekt, dla którego liczymy macierz przekszta³cenia.
 @param[out] transform_matrix Zmienna, w której zostanie umieszczona interpolowana macierz przekszta³cenia.
 */
@@ -662,75 +674,3 @@ SkyDome* DisplayEngine::set_skydome( SkyDome* dome )
 	return old;
 }
 
-
-#ifndef __UNUSED
-
-//-------------------------------------------------------------------------------//
-//							wersja DirectX 9
-//-------------------------------------------------------------------------------//
-
-void DisplayEngine::display_scene( float time_interval )
-{
-	LPDIRECT3DDEVICE9 directX_device = engine->directX_device;
-
-	set_view_matrix();
-	directX_device->SetTransform(D3DTS_PROJECTION, (D3DMATRIX*)&projection_matrix);	//macierz projekcji jest zawsze ta sama, chyba ¿e j¹ ktoœ jawnie zmodyfikuje
-
-	directX_device->SetVertexShader( nullptr );
-	directX_device->SetFVF(VERTEX_NORMAL_TEXTCORDS1);
-
-	//parametry tekstur
-	directX_device->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_MODULATE );
-	directX_device->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE );
-	directX_device->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE );
-	directX_device->SetTextureStageState( 0, D3DTSS_ALPHAOP, D3DTOP_DISABLE );
-
-
-	//na razie pêtla bez optymalizacji
-	for (unsigned int i = 0; i < meshes.size(); ++i)
-	{
-		register Dynamic_mesh_object* object = meshes[i];
-
-		#ifdef _INTERPOLATE_POSITIONS
-		XMMATRIX transformation = XMLoadFloat4x4( &(interpolated_matrixes[i]) );
-		#else
-		XMVECTOR translation = XMLoadFloat3( &(object->position) );
-		XMVECTOR orientation = XMLoadFloat4( &(object->orientation) );
-		XMMATRIX transformation = XMMatrixRotationQuaternion( orientation );
-		transformation = transformation * XMMatrixTranslationFromVector( translation );
-		#endif
-
-		for (unsigned int j = 0; j < object->materials.size(); ++j)
-		{
-			if ( object->materials[j] != nullptr )
-				directX_device->SetMaterial( object->materials[j]->get_material() );
-			else
-				directX_device->SetMaterial( nullptr );
-
-			if ( object->textures[j] != nullptr )
-				directX_device->SetTexture( 0, object->textures[j]->get_texture() );
-			else
-				directX_device->SetTexture( 0, nullptr );
-
-			XMMATRIX world_transform;
-			if ( object->mesh_parts[j] != nullptr )
-			{
-				world_transform = XMLoadFloat4x4( &(object->mesh_parts[j]->transform_matrix) );
-				world_transform = world_transform * transformation;
-				//ustawiamy macierz przekszta³cenia dla danego modelu
-				directX_device->SetTransform( D3DTS_WORLD, (D3DMATRIX*)&world_transform );
-
-				MeshObject* mesh = object->mesh_parts[j]->mesh_object;
-
-				directX_device->SetStreamSource(
-				0, mesh->vertex_buffer,
-				0, sizeof( Vertex_Normal_TexCords1 ) );
-
-				directX_device->DrawPrimitive( D3DPT_TRIANGLELIST, 0, mesh->primitives_count );
-			}
-		}
-	}
-}
-
-
-#endif

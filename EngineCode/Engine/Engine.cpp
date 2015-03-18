@@ -1,3 +1,8 @@
+/**@file Engine.cpp
+@brief Plik zawiera definicje metod klasy Engine dotycz¹cych inicjacji i zwalniania DirectXa
+oraz g³ówne funkcje do renderingu.
+*/
+
 #include "..\stdafx.h"
 #include "Engine.h"
 #include "ControllersEngine\ControllersEngine.h"
@@ -6,8 +11,8 @@
 
 #include "..\memory_leaks.h"
 
-///Interwa³, po którym nastêpuje kolejne przeliczenie po³o¿eñ obiektów (w sekundach)
-const float FIXED_MOVE_UPDATE_INTERVAL = ((float)1 / (float)56);
+
+const float FIXED_MOVE_UPDATE_INTERVAL = ((float)1 / (float)56);	///<Interwa³, po którym nastêpuje kolejne przeliczenie po³o¿eñ obiektów (w sekundach).
 
 
 

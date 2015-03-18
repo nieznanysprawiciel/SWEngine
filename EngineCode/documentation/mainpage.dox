@@ -12,6 +12,7 @@
 		- @ref CameraView
 		- @ref Controllers
 		- @ref Input
+		- @ref ObjectInterpolation
 		- @ref MainLoop
 		- @ref MakingLoaders
 		- @ref ObjectPipeline

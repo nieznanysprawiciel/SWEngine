@@ -91,7 +91,8 @@ private:
 };
 
 
-/**@brief Funkcja interpoluje wartoœæ po³o¿enia obiektu.
+/**@deprecated
+@brief Funkcja interpoluje wartoœæ po³o¿enia obiektu.
 
 @param[in] tima_lag Czas jaki up³yn¹³ od ostatniego przeliczenia pozycji obiektów.
 @param[in] object Objekt, dla którego liczymy macierz przekszta³cenia.
@@ -105,7 +106,8 @@ inline void interpolate_position( float time_lag, const Dynamic_object* object, 
 	result_vector = velocity * time_lag + position;
 }
 
-/**@brief Funkcja interpoluje orientacjê obiektu.
+/**@deprecated
+@brief Funkcja interpoluje orientacjê obiektu.
 
 @param[in] tima_lag Czas jaki up³yn¹³ od ostatniego przeliczenia pozycji obiektów.
 @param[in] object Objekt, dla którego liczymy macierz przekszta³cenia.

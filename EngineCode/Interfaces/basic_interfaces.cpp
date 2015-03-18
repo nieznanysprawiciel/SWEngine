@@ -1,3 +1,7 @@
+/**@file basic_interfaces.cpp
+@brief Plik zawiera definicje metod klas z pliku basic_interfaces.h
+*/
+
 #include "..\stdafx.h"
 #include "basic_interfaces.h"
 #include "..\Engine\Engine.h"
@@ -79,8 +83,6 @@ void Dynamic_object::move(float time_interval)
 		
 	set_orientation( orient );
 #endif
-
-	swap();
 }
 
 /*Funkcja o zastosowaniu tym samym co move, z t¹ ró¿nic¹, ¿e wykonywana dla obiektów z³o¿onych. Przesuniêcie
@@ -121,8 +123,6 @@ void Dynamic_object::move_complex(float time_interval, const XMFLOAT3& parent_sp
 	/*Du¿o obliczeñ, mo¿e da siê to jakoœ za³atwiæ bez interpolacji...*/
 
 	set_orientation( orient );
-
-	swap();
 }
 
 void Complex_object::move_complex(float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation)
@@ -162,7 +162,7 @@ Static_object::Static_object(const XMFLOAT3& pos, const XMFLOAT4& orient)
 
 /**@brief Zwraca interpolowan¹ pozycjê obiektu miêdzy przechowywanymi po³o¿eniami.
 
-@param[in] tima_lag Procent czasu jaki up³yn¹³ od ostaniej klatki do nastêpnej
+@param[in] time_lag Procent czasu jaki up³yn¹³ od ostaniej klatki do nastêpnej
 Zakres [0,1].*/
 XMVECTOR Static_object::get_interpolated_position( float time_lag ) const
 {
@@ -182,7 +182,7 @@ XMVECTOR Static_object::get_interpolated_position( float time_lag ) const
 
 /**@brief Zwraca interpolowan¹ orientacjê obiektu miêdzy przechowywanymi po³o¿eniami.
 
-@param[in] tima_lag Procent czasu jaki up³yn¹³ od ostaniej klatki do nastêpnej
+@param[in] time_lag Procent czasu jaki up³yn¹³ od ostaniej klatki do nastêpnej
 Zakres [0,1].*/
 XMVECTOR Static_object::get_interpolated_orientation( float time_lag ) const
 {

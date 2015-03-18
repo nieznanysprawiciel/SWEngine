@@ -1,3 +1,8 @@
+/**@file Engine_window_functions.cpp
+@brief Plik zawiera definicje metod klasy Engine dotycz¹ce tworzenia okna, obs³ugi pêtli komunikatów
+WinAPI oraz g³ówn¹ pêtlê programu @ref Engine::main_loop.
+*/
+
 #include "..\stdafx.h"
 #include "Engine.h"
 #include <thread>

@@ -1,4 +1,9 @@
-﻿#include "..\..\stdafx.h"
+﻿/**@file InputAbstractionLayer.cpp
+@brief Plik zawiera definicje metod klasy InputAbstractionLayer_base, InputAbstractionLayer
+oraz definicje standardowych warstw abstrakcji.
+*/
+
+#include "..\..\stdafx.h"
 #include "InputAbstractionLayer.h"
 #include "..\Engine.h"
 

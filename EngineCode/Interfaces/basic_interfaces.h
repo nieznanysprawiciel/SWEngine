@@ -1,7 +1,9 @@
 #pragma once
 
-/*
-includes classes:
+/**
+@file basic_interfaces.h
+@brief Zawiera deklaracje klas bazowych dla obiektów(aktorów):
+
 Object
 Static_object
 Dynamic_object
@@ -70,10 +72,10 @@ i jakoœ rozwi¹zaæ tê sytuacjê.
 class Static_object : public Object
 {
 private:
-	DirectX::XMFLOAT3		position;
-	DirectX::XMFLOAT4		orientation;			//quaternion
-	DirectX::XMFLOAT3		position_back;
-	DirectX::XMFLOAT4		orientation_back;		//quaternion
+	DirectX::XMFLOAT3		position;				///< Pozycja obiektu (lub bufor tylny)
+	DirectX::XMFLOAT4		orientation;			///< Orientacja obiektu wyra¿ona kwaternionem (lub bufor tylny)
+	DirectX::XMFLOAT3		position_back;			///< Pozycja obiektu (lub bufor tylny)
+	DirectX::XMFLOAT4		orientation_back;		///< Orientacja obiektu wyra¿ona kwaternionem (lub bufor tylny)
 
 	bool					swap_data;	///< Zmienna identyfikuj¹ca, które zmienne opisuj¹ce po³o¿enie s¹ u¿ywane.
 protected:
@@ -106,8 +108,8 @@ protected:
 			XMStoreFloat4( &orientation_back, quaternion );
 	}
 public:
-	Static_object();
-	Static_object(const XMFLOAT3& pos, const XMFLOAT4& orient);
+	Static_object();			///< Kontruktor domyœlny inicjuje obiekt w œrodku uk³adu wspó³rzêdnych.
+	Static_object(const XMFLOAT3& pos, const XMFLOAT4& orient);	///< Inicjuje obiekt w podanym po³o¿eniu
 
 	/**@brief Przemieszcza obiekt w podane miejsce.
 	
@@ -155,30 +157,36 @@ public:
 	XMVECTOR get_interpolated_orientation( float frame_percent ) const;
 };
 
-
+/**@brief Klasa bazowa dla obiektów zdolnych do kolizji.*/
 class Collision_object : public Static_object
 {
 
 };
 
+/**@brief Klasa bazowa dla obiektów dynamicznych.
 
+Je¿eli jest zdefiniowana sta³a _QUATERNION_SPEED, to prêdkoœci k¹towe s¹ wyra¿one
+kwaternionem w przeciwnym razie jest to wektor, w którym sk³adowa w jest k¹tem obrotu.
+W docelowej wersji bêdzie najprawdopodobniej wybrana opcja z wetorem a nie kwaternionem.
+
+@note Niezaleznie od tego jak jest wyra¿ona prêdkoœæ, orientacja zawsze jest kwaternionem.*/
 class Dynamic_object : public Collision_object
 {
 protected:
-	XMFLOAT3		speed;
-	XMFLOAT4		rotation_speed;
-	Controller*		controller;
+	XMFLOAT3		speed;				///< Prêdkoœæ postepowa obiektu.
+	XMFLOAT4		rotation_speed;		///< Prêdkoœæ k¹towa obiektu (wyra¿ona wektorem i k¹tem obrotu w sk³adowej w).
+	Controller*		controller;			///< WskaŸnik na kontroler, poruszaj¹cy obiektem.
 public:
-	Dynamic_object();
-	Dynamic_object( const XMFLOAT3& move_speed, const XMFLOAT4& rot_speed );
+	Dynamic_object();	///< Kontruktor ustawi¹j¹cy zerow¹ prêdkoœæ k¹tow¹ i postêpow¹.
+	Dynamic_object( const XMFLOAT3& move_speed, const XMFLOAT4& rot_speed );	///< Kontruktor ustawia podan¹ w parametrach prêdkoœæ.
 
-	inline void set_speed( const XMVECTOR& vector ) { XMStoreFloat3( &speed, vector ); }
-	inline void set_rotation_speed( const XMVECTOR& quaternion ) { XMStoreFloat4( &rotation_speed, quaternion ); }
-	inline void set_rotation_speed( const XMFLOAT4 axis_angle ) { rotation_speed = axis_angle; }
-	inline XMVECTOR get_speed() const { return XMLoadFloat3( &speed ); }
-	inline XMVECTOR get_rotation_speed() const { return XMLoadFloat4( &rotation_speed ); }
+	inline void set_speed( const XMVECTOR& vector ) { XMStoreFloat3( &speed, vector ); }	///<Ustawia prêdkoœæ obiektu @param[in] vector Wektor prêdkoœci.
+	inline void set_rotation_speed( const XMVECTOR& quaternion ) { XMStoreFloat4( &rotation_speed, quaternion ); }	///<Ustawia prêdkoœæ obrotow¹ @param[in] quaternion Wektor prêdkoœci.
+	inline void set_rotation_speed( const XMFLOAT4 axis_angle ) { rotation_speed = axis_angle; }		///<Ustawia prêdkoœæ obrotow¹ @param[in] quaternion Wektor prêdkoœci.
+	inline XMVECTOR get_speed() const { return XMLoadFloat3( &speed ); }	///< Zwraca prêdkoœæ postêpow¹ obiektu.
+	inline XMVECTOR get_rotation_speed() const { return XMLoadFloat4( &rotation_speed ); }	///< Zwraca prêdkoœæ obrotow¹ obiektu.
 
-	inline void set_controller( Controller* ctrl ) { controller = ctrl; }
+	inline void set_controller( Controller* ctrl ) { controller = ctrl; }	///< Ustawia podany w parametrze kotroler
 	inline Controller* get_controller() { return controller; }
 
 	void move(float time_interval);
@@ -203,7 +211,7 @@ class Dynamic_mesh_object : public Physical_object
 	friend class DisplayEngine;
 #ifdef _SCALEABLE_OBJECTS
 private:
-	float							scale;
+	float							scale;		///<Skalowanie wzglêdem wszystkich osi.
 public:
 	inline void set_scale( float sc ) { scale = sc; };
 #endif
@@ -259,7 +267,7 @@ public:
 	void set_projection_matrix( float angle, float X_to_Y, float near_plane, float far_plane );
 };
 
-
+/**@brief Klasa bazowa dla wszystkich kontrolerów dla obiektów.*/
 class Controller
 {
 public:
@@ -267,12 +275,14 @@ public:
 	virtual void control_object( Dynamic_object* ) = 0;
 };
 
+/**@brief Klasa bazowa dla wszystkich kontrolerów sztucznej inteligencji.*/
 class Base_AI_controller : public Controller
 {
 
 	virtual void control_object( Dynamic_object* ) = 0;
 };
 
+/**@brief Klasa bazowa dla wszystkich kontrolerów do sterowania przez u¿ytkownika.*/
 class Base_input_controller : public Controller
 {
 protected:
