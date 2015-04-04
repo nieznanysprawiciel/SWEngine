@@ -56,15 +56,15 @@ class ModelsManager
 private:
 	Engine* engine;			///<WskaŸnik na obiekt g³ówny silnika
 
-	ResourceContainer<VertexShaderObject*>		vertex_shader;		///<Vertex shadery
-	ResourceContainer<PixelShaderObject*>		pixel_shader;		///<Pixel shadery
-	ResourceContainer<TextureObject*>			texture;			///<Tekstury
-	ResourceContainer<BufferObject*>			vertex_buffer;		///<Bufory wierzcho³ków
-	ResourceContainer<BufferObject*>			index_buffer;		///<Bufory indeksów
-	ResourceContainer<MaterialObject*>			material;			///<Materia³y
+	ResourceContainer<VertexShaderObject>		vertex_shader;		///<Vertex shadery
+	ResourceContainer<PixelShaderObject>		pixel_shader;		///<Pixel shadery
+	ResourceContainer<TextureObject>			texture;			///<Tekstury
+	ResourceContainer<BufferObject>				vertex_buffer;		///<Bufory wierzcho³ków
+	ResourceContainer<BufferObject>				index_buffer;		///<Bufory indeksów
+	ResourceContainer<MaterialObject>			material;			///<Materia³y
 	// UWAGA! file_model musi byæ na koñcu. Jego destruktor kasuje odwo³ania do obiektów powy¿ej.
 	// Musz¹ one w tym czasie istnieæ, a destruktory s¹ wywo³ywane w kolejnoœci odwrotnej do zadeklarowanej w klasie.
-	ResourceContainer<Model3DFromFile*>			file_model;			///<Obiekty modeli 3D z plików
+	ResourceContainer<Model3DFromFile>			file_model;			///<Obiekty modeli 3D z plików
 
 	/*loadery dla ró¿nych formatów plików z modelami*/
 	std::vector<Loader*>			loader;			///<Loadery do plików z modelami 3D

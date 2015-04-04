@@ -411,6 +411,7 @@
     <ClInclude Include="Engine\ModelsManager\ModelsManager.h" />
     <ClInclude Include="Engine\ModelsManager\ResourceContainer.h" />
     <ClInclude Include="Engine\MovementEngine\MovementEngine.h" />
+    <ClInclude Include="Engine\ObjectDeleter.h" />
     <ClInclude Include="Engine\PhysicEngine\PhysicEngine.h" />
     <ClInclude Include="Engine\SoundEngine\SoundEngine.h" />
     <ClInclude Include="Engine\UI_Engine\InputAbstractionLayer.h" />

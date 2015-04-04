@@ -21,12 +21,13 @@ private:
 	unsigned int count;		///<Indentyfikator jaki zostanie przydzielony kolejnemy elementowi
 
 protected:
-	std::map<std::wstring, TYPE> container;	///<Kontener zawieraj¹cy assety powiazane z ich nazw¹
+	std::map<std::wstring, TYPE*> container;	///<Kontener zawieraj¹cy assety powiazane z ich nazw¹
 
 	// Kasowanie obiektów
 	int force_remove( const std::wstring& name );
 	int force_remove( unsigned int id );
 	void force_remove_all();
+	void release_memory( TYPE* );
 public:
 	ResourceContainer();
 	~ResourceContainer();
@@ -37,16 +38,16 @@ public:
 	int remove_unused();
 
 	// Dodawanie obiektów
-	void unsafe_add( const std::wstring& name, TYPE resource );
+	void unsafe_add( const std::wstring& name, TYPE* resource );
 
 	// Dostêp do obiektów
-	TYPE get( unsigned int id );
+	TYPE* get( unsigned int id );
 	inline unsigned int get_next_id() { return count; }	///<Zwraca identyfikator, który zostanie przydzielony kolejnemu elementowi
 
 	/**@brief Zwraca element na podstawie jego nazwy
 	@param[in] name Nazwa elementu, który chcemy dostaæ
 	@return WskaŸnik na obiekt assetu*/
-	inline TYPE get( const std::wstring& name )
+	inline TYPE* get( const std::wstring& name )
 	{
 		auto iter = container.find( name );
 		if ( iter != container.end() )
@@ -67,7 +68,7 @@ ResourceContainer<TYPE>::~ResourceContainer( )
 {
 	for ( auto iter = container.begin( ); iter != container.end( ); iter++ )
 	{
-		delete iter->second;
+		release_memory( iter->second );
 	}
 	container.clear();
 }
@@ -79,7 +80,7 @@ Jednak¿e porównania stringów mog¹ siê okazaæ bardziej kosztowne.
 @param[in] id Identyfikator elementu.
 @return WskaŸnik na poszukiwany element.*/
 template <class TYPE>
-TYPE ResourceContainer<TYPE>::get( unsigned int id )
+TYPE* ResourceContainer<TYPE>::get( unsigned int id )
 {
 	for ( auto iter = container.begin(); iter != container.end(); iter++ )
 	{
@@ -108,7 +109,7 @@ znajduje.
 @param[in] name Nazwa elementu, pod jak¹ zostanie dodany.
 @param[in] resource Element dodania.*/
 template <class TYPE>
-void ResourceContainer<TYPE>::unsafe_add( const std::wstring& name, TYPE resource )
+void ResourceContainer<TYPE>::unsafe_add( const std::wstring& name, TYPE* resource )
 {
 	if ( !resource )
 		return;	//Nie mo¿emy potem ustawiæ id
@@ -122,6 +123,22 @@ void ResourceContainer<TYPE>::unsafe_add( const std::wstring& name, TYPE resourc
 //-------------------------------------------------------------------------------//
 //							kasowanie obiektów
 //-------------------------------------------------------------------------------//
+/**@brief Zwalnia obiekt podany w parametrze.
+
+Kasowanie pamiêci nie jest mo¿liwe przy pomocy operatora delete,
+poniewa¿ destruktory w tych klasach s¹ prywatne. Dlatego trzeba zrobiæ to 
+za poœrednictwem obiektu, który ma uprawnienia do tego.
+
+@param[in] object Objekt do skasowania.
+*/
+template <class TYPE>
+void ResourceContainer<TYPE>::release_memory( TYPE* object )
+{
+	// Destruktor jest prywatny, wiêc nie mo¿emy kasowaæ obiektu bezpoœrednio.
+	ObjectDeleterKey<TYPE> key;							// Tworzymy klucz.
+	ObjectDeleter<TYPE> model_deleter( key );			// Tworzymy obiekt kasuj¹cy i podajemy mu nasz klucz.
+	model_deleter.delete_object( object );				// Kasujemy obiekt za poœrednictwem klucza.
+}
 
 /**@brief Usuwa element o podanej nazwie, je¿eli nie ma do niego odwo³añ.
 
@@ -140,7 +157,7 @@ int ResourceContainer<TYPE>::remove( const std::wstring& name )
 	if ( !iter->second->can_delete() )
 		return 1;		// Nie mo¿emy skasowaæ, bo s¹ odwo³ania
 
-	delete iter->second;		// Zwalniamy pamiêæ spod wskaŸnika
+	release_memory( iter->second );		// Zwalniamy pamiêæ spod wskaŸnika
 	container.erase( iter );	// Kasujemy element z mapy
 
 	return 0;			// Wychodzimy z powodzeniem
@@ -165,7 +182,7 @@ int ResourceContainer<TYPE>::remove( unsigned int id )
 			if ( !iter->second->can_delete() )
 				return 1;				// S¹ odwo³ania, wiêc nie kasujemy
 
-			delete iter->second;		// Zwalniamy pamiêæ spod wskaŸnika
+			release_memory( iter->second );		// Zwalniamy pamiêæ spod wskaŸnika
 			container.erase( iter );	// Kasujemy element z mapy
 
 			return 0;					// Zwracamy 0 jako powodzenie operacji
@@ -187,7 +204,7 @@ int ResourceContainer<TYPE>::remove_unused()
 		if ( iter->second->can_delete() )
 		{
 			// Mo¿emy skasowaæ obiekt, bo nikt go nie u¿ywa
-			delete iter->second;		// Zwalniamy pamiêæ spod wskaŸnika
+			release_memory( iter->second );		// Zwalniamy pamiêæ spod wskaŸnika
 			container.erase( iter );	// Kasujemy element z mapy
 
 			++count;
@@ -246,3 +263,5 @@ void ResourceContainer<TYPE>::force_remove_all( )
 	}
 	container.clear();
 }
+
+

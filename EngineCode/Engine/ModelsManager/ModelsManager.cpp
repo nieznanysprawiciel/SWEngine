@@ -3,6 +3,7 @@
 #include "..\Engine.h"
 #include "Loaders\loader_interface.h"
 #include "Loaders\FBX_files_loader\FBX_loader.h"
+#include "..\ObjectDeleter.h"
 
 
 #include "..\..\memory_leaks.h"
@@ -282,9 +283,11 @@ MODELS_MANAGER_RESULT ModelsManager::load_model_from_file( const std::wstring& f
 	new_model->EndEdit();
 
 	if ( result != LOADER_RESULT::MESH_LOADING_OK )
-	{
-		// load_mesh powinno zwróciæ 0
-		delete new_model;
+	{	// load_mesh powinno zwróciæ 0
+		// Destruktor jest prywatny, wiêc nie mo¿emy kasowaæ obiektu bezpoœrednio.
+		ObjectDeleterKey<Model3DFromFile> key;					// Tworzymy klucz.
+		ObjectDeleter<Model3DFromFile> model_deleter( key );	// Tworzymy obiekt kasuj¹cy i podajemy mu nasz klucz.
+		model_deleter.delete_object( new_model );				// Kasujemy obiekt za poœrednictwem klucza.
 		return MODELS_MANAGER_RESULT::MODELS_MANAGER_CANNOT_LOAD;
 	}
 
@@ -387,8 +390,12 @@ VertexShaderObject* ModelsManager::add_vertex_shader( const std::wstring& file_n
 		shader = new_shader;
 	}
 	else
-		// Shader ju¿ by³, wiêc kasujemy nowy
-		delete new_shader;
+	{	// Shader ju¿ by³, wiêc kasujemy nowy
+		// Destruktor jest prywatny, wiêc nie mo¿emy kasowaæ obiektu bezpoœrednio.
+		ObjectDeleterKey<VertexShaderObject> key;					// Tworzymy klucz.
+		ObjectDeleter<VertexShaderObject> model_deleter( key );	// Tworzymy obiekt kasuj¹cy i podajemy mu nasz klucz.
+		model_deleter.delete_object( new_shader );				// Kasujemy obiekt za poœrednictwem klucza.
+	}
 
 	return shader;
 }

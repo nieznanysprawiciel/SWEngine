@@ -6,7 +6,8 @@
 
 #include "..\..\stdafx.h"
 #include "..\DX11_interfaces_container.h"
-#include "ResourceContainer.h"
+#include "..\ObjectDeleter.h"
+//#include "ResourceContainer.h"
 
 //definicje
 #define WRONG_ID						0
@@ -148,10 +149,11 @@ private:
 protected:
 	virtual ~referenced_object( );		//Nie ka¿dy mo¿e skasowaæ obiekt
 
-	inline void set_id( unsigned int id ) { unique_id = id; }	///<Ustawia identyfikator obiektu
 public:
 	referenced_object( int id );
 
+
+	inline void set_id( unsigned int id ) { unique_id = id; }	///<Ustawia identyfikator obiektu
 
 	//sprawdza czy mo¿na zwolniæ zmienn¹
 	bool can_delete( unsigned int& file_ref, unsigned int& other_ref );
@@ -277,7 +279,7 @@ nie wystarczy, ¿eby shader móg³ go u¿yæ. Do tego trzeba stworzyæ widok i w³aœnie
 przechowuje ta funkcja.*/
 class TextureObject : public referenced_object, public DX11_interfaces_container
 {
-	friend ResourceContainer<TextureObject*>;
+	friend ObjectDeleter<TextureObject>;
 private:
 	std::wstring					file_path;			//œcie¿ka do tekstury (nie do pliku z meshem)
 	ID3D11ShaderResourceView*		texture;
@@ -298,8 +300,7 @@ public:
 /** @brief Klasa przechowuj¹ca vertex shader*/
 class VertexShaderObject : public referenced_object, public DX11_interfaces_container
 {
-	friend ModelsManager;
-	friend ResourceContainer<VertexShaderObject*>;
+	friend ObjectDeleter<VertexShaderObject>;
 private:
 	ID3D11VertexShader*		vertex_shader;
 protected:
@@ -317,7 +318,7 @@ public:
 /**@brief Klasa przechowuj¹ca pixel shader*/
 class PixelShaderObject : public referenced_object, public DX11_interfaces_container
 {
-	friend ResourceContainer<PixelShaderObject*>;
+	friend ObjectDeleter<PixelShaderObject>;
 private:
 	ID3D11PixelShader*		pixel_shader;
 protected:
@@ -338,7 +339,7 @@ Obiekty tego typu mog¹ tak¿e s³u¿yæ do przekazywania parametrów shaderom, jako b
 */
 class BufferObject : public referenced_object, public DX11_interfaces_container
 {
-	friend ResourceContainer<BufferObject*>;
+	friend ObjectDeleter<BufferObject>;
 private:
 	ID3D11Buffer*		buffer;
 	unsigned int		stride;
@@ -366,7 +367,7 @@ potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisaæ shader i d
 mu siê takie dane, jakie siê chce dostarczyæ. Dlatego informacja o materia³ach bêdzie
 przekazywana z buforze sta³ych.
 
-Struktura zachowuje siê jak asset w zwiazku z czym mo¿e
+Struktura zachowuje siê jak asset w zwi¹zku z czym mo¿e
 byæ wspó³dzielona przez wiele obiektów. Z tego wzglêdu nie mo¿na jej u¿yæ bezpoœrednio w ConstantPerMesh,
 poniewa¿ nie chcemy przekazywaæ do bufora sta³ych zmiennych odziedziczonych po referenced_object.
 Zamiast tego trzeba tê strukture przepisaæ.
@@ -378,7 +379,7 @@ w rejestrach karty graficznej i przypsiesza to operacjê kopiowania.
 */
 typedef struct MaterialObject : public referenced_object
 {
-	friend ResourceContainer<MaterialObject*>;
+	friend ObjectDeleter<MaterialObject>;
 
 	DirectX::XMFLOAT4		Diffuse;		//Sk³adowa przezroczystoœci odnosi siê do ca³ego materia³u
 	DirectX::XMFLOAT4		Ambient;
@@ -471,8 +472,8 @@ MaterialObject::set_null_material.
 
 class Model3DFromFile : public referenced_object
 {
-	friend class ModelsManager;
-	friend ResourceContainer<Model3DFromFile*>;
+	friend ObjectDeleter<Model3DFromFile>;
+	friend ModelsManager;
 private:
 	static ModelsManager* models_manager;
 

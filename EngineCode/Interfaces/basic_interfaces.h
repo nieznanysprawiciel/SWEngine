@@ -186,7 +186,7 @@ public:
 	inline XMVECTOR get_speed() const { return XMLoadFloat3( &speed ); }	///< Zwraca prêdkoœæ postêpow¹ obiektu.
 	inline XMVECTOR get_rotation_speed() const { return XMLoadFloat4( &rotation_speed ); }	///< Zwraca prêdkoœæ obrotow¹ obiektu.
 
-	inline void set_controller( Controller* ctrl ) { controller = ctrl; }	///< Ustawia podany w parametrze kotroler
+	inline void set_controller( Controller* ctrl ) { controller = ctrl; }	///< Ustawia podany w parametrze kontroler
 	inline Controller* get_controller() { return controller; }
 
 	void move(float time_interval);

@@ -89,7 +89,8 @@ public:
 	
 	Zadaniem funkcji jest wype³nienie bufora indeksów lub wierzcho³ków nowymi danymi, które zosta³y przygotowane
 	gdzieœ w buforach tylnich. Dane powinny byæ generowane inn¹ funkcj¹, której nie ma w tym interfejsie, przez
-	jak¹œ funkcjê spoza klasy DisplayEngine i najlepiej w innym w¹tku.
+	jak¹œ funkcjê spoza klasy DisplayEngine i najlepiej w innym w¹tku. Zadaniem tej funkcji jest jedynie
+	wywo³anie funkcji UpdateSubresource na tych buforach, które wymagaj¹ aktualizacji.
 	
 	@attention Nie nale¿y generowaæ danych w tej funkcji chyba, ¿e jest ich naprawdê niewiele. Ta funkcja
 	bêdzie wywo³ywana w pêtli g³ównej i mo¿e zaburzyæ renderowanie.

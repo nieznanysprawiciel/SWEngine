@@ -332,7 +332,6 @@ void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 
 	// Wyliczamy macierz transformacji
 	XMVECTOR quaternion = current_camera->get_interpolated_orientation( time_lag );
-	//interpolate_orientation( time_lag, current_camera, quaternion );
 	inverse_camera_orientation( quaternion );
 
 	XMMATRIX rotation_matrix = XMMatrixRotationQuaternion( quaternion );
