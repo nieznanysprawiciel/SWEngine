@@ -84,8 +84,8 @@ W przeciwnym razie zostanie wywo³any funkcja wirtualna dla klasy bazowej.*/
 class DX11_constant_buffers_container : public DX11_interfaces_container
 {
 protected:
-	static ID3D11Buffer*		const_per_frame;	///<Bufor sta³ych zmieniaj¹cych siê nie czêœciej ni¿ co ramkê
-	static ID3D11Buffer*		const_per_mesh;		///<Bufor sta³ych zmieniaj¹cy siê dla ka¿dej czêœci mesha
+	static ID3D11Buffer*				const_per_frame;	///<Bufor sta³ych zmieniaj¹cych siê nie czêœciej ni¿ co ramkê
+	static ID3D11Buffer*				const_per_mesh;		///<Bufor sta³ych zmieniaj¹cy siê dla ka¿dej czêœci mesha
 	static ID3D11DepthStencilState*		depth_enabled;		///<Do w³¹czania z-bufora
 	static ID3D11DepthStencilState*		depth_disabled;		///<D wy³¹czania z-bufora
 

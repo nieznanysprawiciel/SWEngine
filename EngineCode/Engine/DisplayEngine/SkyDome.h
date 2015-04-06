@@ -34,7 +34,7 @@ class SkyDome : protected DX11_interfaces_container
 public:
 	bool update_vertex_buffer;			///<Ustawiane w momencie zakoñczenia generowania nieba, w celu zaktualizowania bufora
 private:
-	ModelsManager* models_manager;		///<WskaŸnik na models_manager. Bufory s¹ zarz¹dzane przez niego.
+	ModelsManager* models_manager;		///<WskaŸnik na ModelsManager. Bufory s¹ zarz¹dzane przez niego.
 
 protected:
 	BufferObject* vertex_buffer;		///<Bufor wierzcho³ków

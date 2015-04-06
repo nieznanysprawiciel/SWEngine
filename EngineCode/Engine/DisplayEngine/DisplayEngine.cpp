@@ -57,7 +57,9 @@ void DisplayEngine::init_const_buffers()
 
 /**@brief Funkcja ustawia tesktury z danego ModelParta w DirectXie.
 
-@param[in] model ModelPart z którego pochodz¹ tekstury do ustawienia.*/
+@param[in] model ModelPart z którego pochodz¹ tekstury do ustawienia.
+@todo SetShaderResource mo¿na u¿yæ do ustawienia od razu ca³ej tablicy. Trzeba umo¿liwiæ ustawianie
+do VS i innych.*/
 void DisplayEngine::set_textures( const ModelPart& model )
 {
 	for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
