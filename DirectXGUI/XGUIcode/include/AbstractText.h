@@ -28,17 +28,19 @@ namespace XGUI
 		unsigned char		font_size;		///<Rozmiar czcionki.
 
 	protected:
-		bool enable_onTextChange;			///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
-		bool enable_onTextSizeChange;		///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
-		bool enable_onTextColorChange;		///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
-		bool enable_onFontChange;			///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
-		bool enable_onAlignmentChange;		///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
+		int8	enable_onTextChange : 1;			///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
+		int8	enable_onTextSizeChange : 1;		///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
+		int8	enable_onTextColorChange : 1;		///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
+		int8	enable_onFontChange : 1;			///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
+		int8	enable_onAlignmentChange : 1;		///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
 
 		virtual void onTextChange();
 		virtual void onTextSizeChange();
 		virtual void onTextColorChange();
 		virtual void onFontChange();
 		virtual void onAlignmentChange();
+
+		//inline const std::wstring& getTextStringRef() const { return text; }	///<Zwraca referencjê na przechowywanego stringa.
 	public:
 		AbstractText( Control* parent );
 		~AbstractText();

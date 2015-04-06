@@ -97,15 +97,24 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="XGUIcode\include\AbstractButton.h" />
+    <ClInclude Include="XGUIcode\include\AbstractItem.h" />
+    <ClInclude Include="XGUIcode\include\AbstractMenu.h" />
     <ClInclude Include="XGUIcode\include\AbstractText.h" />
+    <ClInclude Include="XGUIcode\include\AbstractTextInput.h" />
+    <ClInclude Include="XGUIcode\include\AbstractTexturedRegion.h" />
     <ClInclude Include="XGUIcode\include\FastDelegate.h" />
     <ClInclude Include="XGUIcode\include\GUIEvent.h" />
+    <ClInclude Include="XGUIcode\include\Renderer.h" />
     <ClInclude Include="XGUIcode\include\XGUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="XGUIcode\source\AbstractButton.cpp" />
+    <ClCompile Include="XGUIcode\source\AbstractItem.cpp" />
+    <ClCompile Include="XGUIcode\source\AbstractMenu.cpp" />
     <ClCompile Include="XGUIcode\source\AbstractText.cpp" />
+    <ClCompile Include="XGUIcode\source\AbstractTextInput.cpp" />
+    <ClCompile Include="XGUIcode\source\AbstractTexturedRegion.cpp" />
     <ClCompile Include="XGUIcode\source\Control.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

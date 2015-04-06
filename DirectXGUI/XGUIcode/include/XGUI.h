@@ -3,16 +3,17 @@
 @brief Ten plik nale¿y za³¹czyæ w projekcie u¿ywaj¹cym biblioteki DirectXGUI.
 Zawiera podstawowe deklaracje.*/
 
-//#include <D3DX11.h>
 #include <DirectXMath.h>
 #include "FastDelegate.h"
 #include "GUIEvent.h"
+#include "TypesDefinitions.h"
 
 
 namespace XGUI
 {
 	class Control;
 	class Root;
+	class Renderer;
 
 	/**@typedef fastdelegate::FastDelegate1<GUIEvent*> XGUIEventDelegate
 	@brief Definicja delegata u¿ywanego przez XGUI.
@@ -57,6 +58,18 @@ namespace XGUI
 		DirectX::XMFLOAT2 bottom_right;	///<Wspó³rzêdne prawego dolnego rogu.
 	};
 
+	/**@brief Klasa bazowa dla obiektów reprezentuj¹cych teksturê.
+	
+	Klasa nie zawiera niczego. S³u¿y jedynie do dalszego dziedziczenia.
+	Jest potrzebna obiektom GUI, które musz¹ przechowywaæ jakiœ identyfikator
+	tekstury, ale nie mog¹ znaæ jej implementacji (bo zale¿y ona od klasy Renderer,
+	której implementacji równie¿ nie znamy z poziomy kontrolki).*/
+	class Texture{};
+	class PixelShader{};	///<Klasa bazowa dla pixel shaderów. @see Texture
+	class VertexShader{};	///<Klasa bazowa dla vertex shaderów. @see Texture
+
+	/**@brief Klasa s³u¿¹ca do przekazywania zawartoœci schowak windows do kontrolek.*/
+	class ClipboardData{};
 
 	/**@brief Enumeracja opisuj¹ca mo¿liwe wyrównanie kontrolek wzglêdem rodzica.
 	
@@ -86,39 +99,72 @@ namespace XGUI
 	{
 	private:
 		static Root*			root;		///<Korzeñ drzewa kontrolek bêd¹cy jednoczeœnie zarz¹dc¹ ca³ego GUI
+		static Renderer*		renderer;	///<Obiekt poœrednicz¹cy w renderowaniu GUI.
 
-	protected:
 		Control*				parent;		///<Rodzic kontrolki.
 
-		bool					visible;	///<Widocznoœæ kontrolki
-		bool					mouse_on;	///<Przy ostatnim sprawdzaniu myszka by³a w obszarze kontrolki.
-		bool					focus_change_order;	///<W przypadku dostania focusa kontrolka mo¿e zostaæ przeniesiona na pocz¹tek listy, ¿eby byæ renderowan¹ na wierzchu.
+		// W³aœciwoœci ustawiane przez u¿ytkownika GUI lub implementacjê (decyzja podejmowana przez klasê potomn¹).
+		DirectX::XMFLOAT2		dimension;			///<Rozmiar kontrolki (we wspó³rzêdnych ekranu [-1;1])
 
+		// W³aœciwoœci ustawiane przez u¿ytkownika GUI.
 		DirectX::XMFLOAT2		relative_position;	///<Pozycja wzglêdem rodzica (we wspó³rzêdnych ekranu [-1;1])
-		DirectX::XMFLOAT2		dimension;	///<Rozmiar kontrolki (we wspó³rzêdnych ekranu [-1;1])
-		ALIGNMENT				align;		///<Identyfikuje wzglêdem czego s¹ podawane wspó³rzêdne position
+		ALIGNMENT				alignment;			///<Identyfikuje wzglêdem czego s¹ podawane wspó³rzêdne position
+
+		// W³aœciwoœci ustawiane przez mechanizmy GUI.
+		int8					mouse_on : 1;				///<Przy ostatnim sprawdzaniu myszka by³a w obszarze kontrolki.
+
+		// W³aœciwoœci ustawiane przez u¿ytkownika.
+		int8					visible : 1;				///<Widocznoœæ kontrolki
+		int8					disabled : 1;				///<Umo¿liwia wy³¹czenie przycisku (mimo ¿e jest widoczny)
+	protected:
+		// W³aœciwoœci ustawiane przez implementacjê kontrolki.	
+		int8					focus_change_order : 1;		///<W przypadku dostania focusa kontrolka mo¿e zostaæ przeniesiona na pocz¹tek listy, ¿eby byæ renderowan¹ na wierzchu.
+
+		int8					enable_onMouseOn : 1;		///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
+		int8					enable_onMouseOut : 1;		///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
+		int8					enable_onLeftClick : 1;		///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
+		int8					enable_onLeftUnClick : 1;	///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
+		int8					enable_onRightClick : 1;	///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
+		int8					enable_onRightUnClick : 1;	///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
+		int8					enable_onFocusSet : 1;		///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
+		int8					enable_onFocusLost : 1;		///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
+		int8					enable_onDisable : 1;		///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
 	public:
 		Control( Control* set_parent ) { parent = set_parent; }
 
-		XGUIEventDelegate		eventMouseOn;
-		XGUIEventDelegate		eventMouseOut;
-		XGUIEventDelegate		eventLeftClick;
-		XGUIEventDelegate		eventLeftUnClick;
-		XGUIEventDelegate		eventRightClick;
-		XGUIEventDelegate		eventRightUnClick;
-		XGUIEventDelegate		eventFocusSet;
-		XGUIEventDelegate		eventFocusLost;
+		// Delegaci ustawiani przez u¿ytkownika GUI.
+		XGUIEventDelegate		eventMouseOn;			///<Delegat, który zostanie wywo³any w momencie powstania eventu.
+		XGUIEventDelegate		eventMouseOut;			///<Delegat, który zostanie wywo³any w momencie powstania eventu.
+		XGUIEventDelegate		eventLeftClick;			///<Delegat, który zostanie wywo³any w momencie powstania eventu.
+		XGUIEventDelegate		eventLeftUnClick;		///<Delegat, który zostanie wywo³any w momencie powstania eventu.
+		XGUIEventDelegate		eventRightClick;		///<Delegat, który zostanie wywo³any w momencie powstania eventu.
+		XGUIEventDelegate		eventRightUnClick;		///<Delegat, który zostanie wywo³any w momencie powstania eventu.
+		XGUIEventDelegate		eventFocusSet;			///<Delegat, który zostanie wywo³any w momencie powstania eventu.
+		XGUIEventDelegate		eventFocusLost;			///<Delegat, który zostanie wywo³any w momencie powstania eventu.
 
 
-		inline bool isMouseOn() { return mouse_on; }	///<Funkcja zwraca wartoœæ zmiennej @ref mouse_on
-		inline bool isVisible() { return visible; }		///<Funkcja zwraca wartoœæ pola @ref visible
-		inline bool isChangeOrder() { return focus_change_order; } ///<Zwraca wartoœæ pola @ref focus_change_order
-		inline Control* getParent() { return parent; }	///<Zwraca rodzica kontrolki
-		inline ALIGNMENT getAlignment() { return align; }	///<Zwraca enum opisuj¹cy wyrównanie kontrolki wzglêdem rodzica
-		inline DirectX::XMFLOAT2 getDimension() { return dimension; }	///<Zwraca rozmiar kontrolki
+		inline bool isMouseOn() const  { return mouse_on && 1; }				///<Funkcja zwraca wartoœæ zmiennej @ref mouse_on
+		inline bool isVisible() const { return visible && 1; }					///<Funkcja zwraca wartoœæ pola @ref visible
+		inline bool isChangeOrder() const { return focus_change_order && 1; }	///<Zwraca wartoœæ pola @ref focus_change_order
+		inline bool isDisabled() const { return disabled && 1; }				///<Zwraca wartoœæ pola disabled.
+		
+		void setVisible( bool value );		///<Ustawia widocznoœæ kontrolki (niewidoczne nie s¹ renderowane).
+		void setDisabled( bool value );		///<Blokuje lub odblokowuje kontrolkê (kontrolka jest renderowana, ale nie mo¿na jej u¿yæ).
+		
+		inline Control* getParent() { return parent; }						///<Zwraca rodzica kontrolki
+		inline ALIGNMENT getAlignment() { return alignment; }				///<Zwraca enum opisuj¹cy wyrównanie kontrolki wzglêdem rodzica
+		inline DirectX::XMFLOAT2 getDimension() { return dimension; }		///<Zwraca rozmiar kontrolki
 		inline DirectX::XMFLOAT2 getRelativePosition() { return relative_position; }	///<Zwraca pozycjê kontrolki wzglêdem rodzica
+		inline Renderer* getRenderer() const { return renderer; }			///<Zwraca obiekt renderer.
 
+		void setAlignment( ALIGNMENT align );						///<Ustawia wyrównanie kontrolkie wzglêdem rodziaca.
+		void setRelativePosition( DirectX::XMFLOAT2 position );		///<Ustawia pozycje kontrolki wzgldem rodzica. O wyrówaniu do krawêdzi decyduje zmienna alignment.
 
+	private:
+		/**Ustawia rozmiar kontrolki. Klasa pochodna mo¿e udostêpniæ metodê publiczn¹ do tego,
+		je¿eli chce, aby u¿ytkownik móg³ zmieniaæ rozmiar.*/
+		void setDimmension( DirectX::XMFLOAT2 dimm );
+	public:
 		/**@brief Funkcja sprawdza czy mysz znajduje siê wewn¹trz obszaru danej kontrolki.
 
 		Domyœlnie zaimplementowane jest sprawdzanie czy kursor znajduje siê w odpowiednim
@@ -158,7 +204,7 @@ namespace XGUI
 		@param buttons Tablica przycisków. @todo: Trzeba wymyœleæ format tej tablicy
 		*/
 		virtual void on_mouse_reaction( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons );
-
+	protected:
 		/**@brief Funkcja zostaje wywo³ana, kiedy mysz najedzie na kontrolkê. Wywo³ywana tylko
 		raz za pierwszym razem, kiedy zostanie wykryta mysz nad kontrolk¹.
 
@@ -180,7 +226,7 @@ namespace XGUI
 		@param clipping_rect Obszar rodzica wzglêdem którego jest liczone po³o¿enie kontrolki.
 		@param buttons Tablica przycisków. @todo: Trzeba wymyœleæ format tej tablicy
 		*/
-		virtual void onMouseOn( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons ) = 0;
+		virtual void onMouseOn( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons );
 		
 		/**@brief Funkcja wywo³ywana w momencie przekazania kontrolce focusa.
 
@@ -194,7 +240,7 @@ namespace XGUI
 
 		@param prev_focus Zwraca wskaŸnik na kontrolkê, która poprzednio mia³a ustawionego focusa.
 		*/
-		virtual void onFocusSet( Control* prev_focus ) = 0;
+		virtual void onFocusSet( Control* prev_focus );
 
 		/**@brief Funkcja wywo³ywana w momencie, gdy kontrolka traci focusa.
 
@@ -212,7 +258,7 @@ namespace XGUI
 
 		@param next_focus WskaŸnik na kontrolkê, która otrzyma³a focusa.
 		*/
-		virtual void onFocusLost( Control* next_focus ) = 0;
+		virtual void onFocusLost( Control* next_focus );
 
 		/**@brief Funkcja wywo³ywana w momencie, gdy kontrolka zostanie klikniêta lewym przyciskiem myszy.
 
@@ -288,29 +334,37 @@ namespace XGUI
 		*/
 		virtual void onRightUnClick( const DirectX::XMFLOAT2& point, const Rect& clipping_rect, const char* buttons );
 
-		/**@brief Funkcja u¿ywana do zakomunikowania dzieciom jakiejœ kontrolki, ¿e mysz opuœci³a
-		obszar rodzica.
 
-		Funkcja jest wywo³ywana w trzech sytuacjach:
-		- Rodzic kontrolki przy poprzednim wywo³aniu test_mouse mia³ nad sob¹ kursor myszy, a w kolejnym
-		go utraci³. Wtedy musi on wywo³aæ onMouseOut dla wszystkich swoich dzieci, które tak¿e mia³y
-		nad sob¹ kursor, sprawdzaj¹c wartoœæ zmiennej mouse_on.
-		- Rodzic kontrolki otrzyma³ komunikat mouse_out, wiêc przekazuje je wszystkim potomkom, którzy
-		maj¹ ustawion¹ zmienn¹ mouse_on na true.
-		- Rodzic odpytuj¹c swoje dzieci znalaz³ ju¿ kontrolkê w której obszarze znajduje siê mysz.
-		Musi teraz poinformowaæ rodzeñstwo tamtej kontrolki, ¿e utraci³y mysz je¿eli j¹ mia³y.
+		/**@brief Mysz opuœci³a obszar rodzica. Sytuacje, w których jest wywo³ywana funkcja,
+		s¹ opisane w opisie funkcji @ref Control::mouse_out.
 
-		Mysz mo¿e siê znajdowaæ jednoczeœnie w obszarze tylko jednej kontrolki spoœród dzieci.
-		Jednak poniewa¿ kotrolki mog¹ siê przys³aniaæ, to funkcja test_mouse mo¿e wielokrotnie
-		zwróciæ wartoœæ true. Z tego wzglêdu bierze siê pod uwagê zawsze pierwsz¹ kontrolkê na liœcie,
-		która zwróci te wartoœæ.
+		Funkcja pozwala dowolnej kontrolce na zaimplementowanie jakiejœ typowej dla siebie funkcjonalnoœci
+		w reakcji na puszczenie przycisku.
 
+		@note
+		Informacja o zajœciu zdarzenia zostaje równie¿ przekazana na zewn¹trz GUI w postaci wywo³ania
+		odpowiedniej funkcji obs³ugi lub wys³ania eventu do kolejki komunikatów. Nie nale¿y samodzielnie
+		implementowaæ takiego zachowania, poniewa¿ jest ono zaimplementowane w funkcji on_mouse_reaction.
+		
 		@param point Wspó³rzêdne myszy.
 		*/
 		virtual void onMouseOut( const DirectX::XMFLOAT2& point );
-		void draw_clipped( const Rect& clipping_rect );
 
-	private:
+		/**@brief Kontrolka zosta³a zablokowana (lub odblokowana).
+
+		Funkcja pozwala dowolnej kontrolce na zaimplementowanie jakiejœ typowej dla siebie funkcjonalnoœci
+		w reakcji na zablokowanie.
+
+		@note
+		Informacja o zajœciu zdarzenia zostaje równie¿ przekazana na zewn¹trz GUI w postaci wywo³ania
+		odpowiedniej funkcji obs³ugi lub wys³ania eventu do kolejki komunikatów. Nie nale¿y samodzielnie
+		implementowaæ takiego zachowania, poniewa¿ jest ono zaimplementowane w funkcji on_mouse_reaction.
+
+		$param[in] disable Je¿eli wartoœæ jest ustawiona na true, to kontrolka zosta³a zablokowana, w przeciwnym
+		razie zosta³a odblokowana.
+		*/
+		virtual void onDisable( bool disable );
+
 		/**@brief Funkcja rysuj¹ca, która powinna zostaæ zaimplementowana w klasach potomnych.
 
 		Rysowanie kontrolki zaczyna siê od funkcji draw_clipped, która jest wywo³ywana przez rodzica
@@ -335,6 +389,53 @@ namespace XGUI
 		@param clipping_rect Czworok¹t, wewn¹trz którego ma zostaæ narysowana kontrolka.
 		*/
 		virtual void onDraw( const Rect& clipping_rect ) = 0;
+	public:
+		/**@brief Funkcja u¿ywana do zakomunikowania dzieciom jakiejœ kontrolki, ¿e mysz opuœci³a
+		obszar rodzica.
+
+		Funkcja jest wywo³ywana w trzech sytuacjach:
+		- Rodzic kontrolki przy poprzednim wywo³aniu test_mouse mia³ nad sob¹ kursor myszy, a w kolejnym
+		go utraci³. Wtedy musi on wywo³aæ mouse_out dla wszystkich swoich dzieci, które tak¿e mia³y
+		nad sob¹ kursor, sprawdzaj¹c wartoœæ zmiennej mouse_on.
+		- Rodzic kontrolki otrzyma³ komunikat mouse_out, wiêc przekazuje je wszystkim potomkom, którzy
+		maj¹ ustawion¹ zmienn¹ mouse_on na true.
+		- Rodzic odpytuj¹c swoje dzieci znalaz³ ju¿ kontrolkê w której obszarze znajduje siê mysz.
+		Musi teraz poinformowaæ rodzeñstwo tamtej kontrolki, ¿e utraci³y mysz je¿eli j¹ mia³y.
+
+		Mysz mo¿e siê znajdowaæ jednoczeœnie w obszarze tylko jednej kontrolki spoœród dzieci.
+		Jednak poniewa¿ kotrolki mog¹ siê przys³aniaæ, to funkcja test_mouse mo¿e wielokrotnie
+		zwróciæ wartoœæ true. Z tego wzglêdu bierze siê pod uwagê zawsze pierwsz¹ kontrolkê na liœcie,
+		która zwróci tê wartoœæ.
+
+		@param point Wspó³rzêdne myszy.
+		*/
+		void mouse_out( const DirectX::XMFLOAT2& point );
+		void draw_clipped( const Rect& clipping_rect );
+
+		/**@brief Funkcja wywo³ywana w momencie, gdy u¿ytkownik chce przenieœæ zawartoœæ kontrolki
+		do schowka windows. Typ danych zale¿y od kontrolki i ustala go implementacja klas pochodnych.
+
+		@note Funkcja musi zostaæ zaimplementowana, nawet je¿eli kontrolka nic nie zamierza przekazywaæ.
+		Domyœlna implementacja zwraca nullptr, co oznacza, ¿e kotrolka nie chowa niczego do schowka
+		i nale¿y j¹ zachowaæ, je¿eli nie zamierza siê korzystaæ z dobrodziejstw schowka. Zwracam
+		jednak uwagê, jakie wkurzaj¹ce jest dla u¿ytkownika kiedy nie mo¿e zrobiæ kopiuj-wklej.
+
+		@return data Dane, które kontrolka przekazuje do schowka. Nale¿y zwróciæ nullptr, je¿eli
+		nie chce siê przekazaæ ¿adnych danych.*/
+		virtual ClipboardData* onGetClipboardData() { return nullptr; }
+
+		/**@brief Funkcja wywo³ywana w momencie, gdy u¿ytkownik chce przenieœæ zawartoœæ schowka windows
+		do kontrolki.
+
+		@note Funkcja musi zostaæ zaimplementowana, nawet je¿eli kontrolka nic nie zamierza przekazywaæ.
+		Domyœlna implementacja zwraca wartoœæ false i nale¿y j¹ zachowaæ, je¿eli nie zamierza siê 
+		korzystaæ z dobrodziejstw schowka. Zwracam jednak uwagê, jakie wkurzaj¹ce jest dla u¿ytkownika
+		kiedy nie mo¿e zrobiæ kopiuj-wklej.
+
+		@param[in] data Dane, które kontrolka powinna przyj¹æ.
+		@return Informacja o tym czy dane zosta³y u¿yte (true) czy zignorowane (false).
+		*/
+		virtual bool onSetClipboardData( ClipboardData* data ) { return false; };
 	};
 
 

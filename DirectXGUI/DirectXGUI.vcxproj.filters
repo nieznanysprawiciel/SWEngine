@@ -39,6 +39,21 @@
     <ClInclude Include="XGUIcode\include\GUIEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="XGUIcode\include\AbstractTexturedRegion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XGUIcode\include\AbstractTextInput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XGUIcode\include\Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XGUIcode\include\AbstractItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XGUIcode\include\AbstractMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -51,6 +66,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="XGUIcode\source\Control.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XGUIcode\source\AbstractTexturedRegion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XGUIcode\source\AbstractTextInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XGUIcode\source\AbstractItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XGUIcode\source\AbstractMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

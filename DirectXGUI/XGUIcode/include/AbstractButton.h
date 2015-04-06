@@ -14,28 +14,27 @@ namespace XGUI
 	class AbstractButton : public Control
 	{
 	private:
-		bool			pushed;				///<Identyfikuje czy przycisk jest aktualnie wciœniêty
-		bool			disabled;			///<Umo¿liwia wy³¹czenie przycisku (mimo ¿e jest widoczny)
+		int8			pushed : 1;				///<Identyfikuje czy przycisk jest aktualnie wciœniêty
 	protected:
-		bool			work_as_switch;		///<Tryb pracy przycisku. Zmienn¹ trzeba ustawiæ w konstruktorze klasy pochodnej.
+		int8			work_as_switch : 1;		///<Tryb pracy przycisku. Zmienn¹ trzeba ustawiæ w konstruktorze klasy pochodnej.
 
-		bool			enable_onPush;		///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
-		bool			enable_onPull;		///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
-		bool			enable_onChange;	///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
-		bool			enable_onDisable;	///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
+		int8			enable_onPush : 1;		///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
+		int8			enable_onPull : 1;		///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
+		int8			enable_onChange : 1;	///<W³¹cza wywo³ywanie funkcji w momencie powstania eventu
 
 		virtual void onPush();
 		virtual void onPull();
 		virtual void onChangeState();
-		virtual void onDisable( bool disable );
+
+		void pushButton();		///<Programowe wciœniêcie przycisku. Klasa pochodna mo¿e zdecydowaæ, ¿e trzeba wcisn¹æ przycisk mimo, ¿e nie kliknieto go.
 	public:
 		AbstractButton( Control* parent );
 		~AbstractButton();
 
-		inline bool isUp() const { return !pushed; }		///<Zwraca informacjê czy przycisk jest niewciœniêty
-		inline bool isDown() const { return pushed; }		///<Zwraca informacjê czy przycisk jest wciœniêty
-		inline bool isChecked() const { return pushed; }	///<Zwraca informacjê czy przycisk jest wciœniêty
-		inline bool isSwitch() const { return work_as_switch; }	///<Zwraca informacje czy przycisk jest switchem czy przyciskiem wciskanym
+		inline bool isUp() const { return !pushed && 1; }		///<Zwraca informacjê czy przycisk jest niewciœniêty
+		inline bool isDown() const { return pushed && 1; }		///<Zwraca informacjê czy przycisk jest wciœniêty
+		inline bool isChecked() const { return pushed && 1; }	///<Zwraca informacjê czy przycisk jest wciœniêty
+		inline bool isSwitch() const { return work_as_switch && 1; }	///<Zwraca informacje czy przycisk jest switchem czy przyciskiem wciskanym
 
 
 		XGUIEventDelegate		eventPush;			///<Delegat, który zostanie wywo³any w momencie powstania eventu.
