@@ -50,7 +50,7 @@ namespace XGUI
 		inline std::wstring getTextString() const { return text; }		///<Zwraca string zawieraj¹cy tekst.
 		inline unsigned char getFontSize() const { return font_size; }	///<Zwraca rozmiar czcionki.
 		inline ALIGNMENT getTextAlignment() const { return text_alignment; }	///<Zwraca wyrównanie tekstu wzglêdem swojego obszzaru renderowania.
-		inline DirectX::XMFLOAT4 getTextColor() const { return text_color; }	///<Zwraca color tekstu.
+		inline DirectX::XMFLOAT4 getTextColor() const { return text_color; }	///<Zwraca kolor tekstu.
 
 		void setFont( Font* new_font );									///<Ustawia czcionkê.
 		void setFontSize( unsigned char new_size );						///<Ustawia wielkoœæ czcionki.

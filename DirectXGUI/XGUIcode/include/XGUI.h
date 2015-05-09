@@ -1,3 +1,5 @@
+#pragma once
+
 /**
 @file XGUI.h
 @brief Ten plik nale¿y za³¹czyæ w projekcie u¿ywaj¹cym biblioteki DirectXGUI.

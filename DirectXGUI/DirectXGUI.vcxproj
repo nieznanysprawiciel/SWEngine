@@ -102,6 +102,7 @@
     <ClInclude Include="XGUIcode\include\AbstractText.h" />
     <ClInclude Include="XGUIcode\include\AbstractTextInput.h" />
     <ClInclude Include="XGUIcode\include\AbstractTexturedRegion.h" />
+    <ClInclude Include="XGUIcode\include\AbstractWindow.h" />
     <ClInclude Include="XGUIcode\include\FastDelegate.h" />
     <ClInclude Include="XGUIcode\include\GUIEvent.h" />
     <ClInclude Include="XGUIcode\include\Renderer.h" />
@@ -115,6 +116,7 @@
     <ClCompile Include="XGUIcode\source\AbstractText.cpp" />
     <ClCompile Include="XGUIcode\source\AbstractTextInput.cpp" />
     <ClCompile Include="XGUIcode\source\AbstractTexturedRegion.cpp" />
+    <ClCompile Include="XGUIcode\source\AbstractWindow.cpp" />
     <ClCompile Include="XGUIcode\source\Control.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
