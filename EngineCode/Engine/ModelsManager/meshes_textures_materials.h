@@ -308,9 +308,9 @@ public:
 	VertexShaderObject( ID3D11VertexShader* shader ) : referenced_object( WRONG_ID ), vertex_shader( shader ){}
 
 	inline ID3D11VertexShader* get( ) { return vertex_shader; }		///<Zwraca obiekt vertex shadera, któy mo¿na podaæ do potoku przetwarzania
-	static VertexShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name );
+	static VertexShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name, const char* shader_model = "vs_4_0" );
 	static VertexShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name, ID3D11InputLayout** layout,
-												 D3D11_INPUT_ELEMENT_DESC* layout_desc, unsigned int array_size );
+												 D3D11_INPUT_ELEMENT_DESC* layout_desc, unsigned int array_size, const char* shader_model = "vs_4_0" );
 };
 
 /**@brief Klasa przechowuj¹ca pixel shader*/
@@ -326,7 +326,7 @@ public:
 	PixelShaderObject( ID3D11PixelShader* shader ) : referenced_object( WRONG_ID ), pixel_shader( shader ){}
 
 	inline ID3D11PixelShader* get( ) { return pixel_shader; }	///<Zwraca obiekt pixel shadera, któy mo¿na podaæ do potoku przetwarzania
-	static PixelShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name );
+	static PixelShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name, const char* shader_model = "ps_4_0" );
 };
 
 /** \brief Obiekt opakowuj¹cy bufor DirectXa.

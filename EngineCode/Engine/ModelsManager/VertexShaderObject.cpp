@@ -28,8 +28,9 @@ W przypadku b³êdów kompilacji w trybie debug s¹ one przekierowane do okna Output
 Na razie obs³uguje tylko nieskompilowane pliki.
 @param[in] file_name Nazwa pliku, z którego zostanie wczytany shader
 @param[in] shader_name Nazwa funkcji, która jest punktem poczatkowym wykonania shadera
+@param[in] shader_model £añcuch znaków opisuj¹cy shader model.
 @return Zwraca wskaŸnik na obiekt VertexShaderObject lub nullptr w przypadku niepowodzenia.*/
-VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& file_name, const std::string& shader_name )
+VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& file_name, const std::string& shader_name, const char* shader_model )
 {
 	HRESULT result;
 	ID3DBlob* compiled_shader;
@@ -40,7 +41,7 @@ VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& fi
 #endif
 
 	// Kompilujemy shader znaleziony w pliku
-	D3DX11CompileFromFile( file_name.c_str( ), 0, 0, shader_name.c_str( ), "vs_4_0",
+	D3DX11CompileFromFile( file_name.c_str( ), 0, 0, shader_name.c_str( ), shader_model,
 						   0, 0, 0, &compiled_shader,
 #ifdef _DEBUG
 						   &error_blob,	// Funkcja wsadzi informacje o b³êdzie w to miejsce
@@ -90,12 +91,14 @@ Na razie obs³uguje tylko nieskompilowane pliki.
 @param[out] layout W zmiennej umieszczany jest wskaŸnik na layout wierzcho³ka. Nale¿y pamiêtaæ o zwolnieniu go kiedy bêdzie niepotrzebny.
 @param[in] layout_desc Deskryptor opisujacy tworzony layout.
 @param[in] array_size Liczba elementów tablicy layout_desc.
+@param[in] shader_model £añcuch znaków opisuj¹cy shader model.
 @return Zwraca wskaŸnik na obiekt VertexShaderObject lub nullptr w przypadku niepowodzenia.*/
 VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& file_name,
 														  const std::string& shader_name,
 														  ID3D11InputLayout** layout,
 														  D3D11_INPUT_ELEMENT_DESC* layout_desc,
-														  unsigned int array_size )
+														  unsigned int array_size,
+														  const char* shader_model )
 {
 	HRESULT result;
 	ID3DBlob* compiled_shader;
@@ -106,7 +109,7 @@ VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& fi
 #endif
 
 	// Kompilujemy shader znaleziony w pliku
-	D3DX11CompileFromFile( file_name.c_str( ), 0, 0, shader_name.c_str( ), "vs_4_0",
+	D3DX11CompileFromFile( file_name.c_str( ), 0, 0, shader_name.c_str( ), shader_model,
 						   0, 0, 0, &compiled_shader,
 #ifdef _DEBUG
 						   &error_blob,	// Funkcja wsadzi informacje o b³êdzie w to miejsce

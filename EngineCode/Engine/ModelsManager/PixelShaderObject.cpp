@@ -25,10 +25,11 @@ PixelShaderObject::~PixelShaderObject( )
 W przypadku b³êdów kompilacji w trybie debug s¹ one przekierowane do okna Output.
 
 Na razie obs³uguje tylko nieskompilowane pliki.
-@param[in] file_name Nazwa pliku, z którego zostanie wczytany shader
-@param[in] shader_name Nazwa funkcji, która jest punktem poczatkowym wykonania shadera
+@param[in] file_name Nazwa pliku, z którego zostanie wczytany shader.
+@param[in] shader_name Nazwa funkcji, która jest punktem poczatkowym wykonania shadera.
+@param[in] shader_model £añcuch znaków opisuj¹cy shader model.
 */
-PixelShaderObject* PixelShaderObject::create_from_file( const std::wstring& file_name, const std::string& shader_name )
+PixelShaderObject* PixelShaderObject::create_from_file( const std::wstring& file_name, const std::string& shader_name, const char* shader_model )
 {
 	HRESULT result;
 	ID3DBlob* compiled_shader;
@@ -39,7 +40,7 @@ PixelShaderObject* PixelShaderObject::create_from_file( const std::wstring& file
 #endif
 
 	// Kompilujemy shader znaleziony w pliku
-	D3DX11CompileFromFile( file_name.c_str( ), 0, 0, shader_name.c_str( ), "ps_4_0",
+	D3DX11CompileFromFile( file_name.c_str( ), 0, 0, shader_name.c_str( ), shader_model,
 						   0, 0, 0, &compiled_shader,
 #ifdef _DEBUG
 						   &error_blob,	// Funkcja wsadzi informacje o b³êdzie w to miejsce
