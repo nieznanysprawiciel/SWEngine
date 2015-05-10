@@ -344,8 +344,9 @@ void FBX_loader::read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_
 	}
 }
 
-
-/**@brief Kopiujemy materia³ konwertuj¹c go z formatu u¿ywanego przez FBX SDK do formatu directX.*/
+#ifndef __UNUSED
+/**@depracated Wersja dla DirectX11 nie potrzebuje ju¿ materia³ów DirectX9
+@brief Kopiujemy materia³ konwertuj¹c go z formatu u¿ywanego przez FBX SDK do formatu directX.*/
 void FBX_loader::copy_material(D3DMATERIAL9& directXmaterial, const FbxSurfacePhong& FBXmaterial)
 {
 	FbxDouble3 diffuse = static_cast<FbxDouble3>(FBXmaterial.Diffuse.Get());
@@ -379,6 +380,8 @@ void FBX_loader::copy_material(D3DMATERIAL9& directXmaterial, const FbxSurfacePh
 
 	directXmaterial.Power = static_cast<float>(power);
 }
+
+#endif
 
 /**@brief Kopiujemy materia³ konwertuj¹c go z formatu u¿ywanego przez FBX SDK do formatu u¿ywanego w silniku.*/
 void FBX_loader::copy_material( MaterialObject& engine_material, const FbxSurfacePhong& FBXmaterial )

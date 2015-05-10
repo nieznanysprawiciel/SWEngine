@@ -146,7 +146,7 @@ int Engine::init_directX()
 
 	display_engine->init_const_buffers();
 
-	display_engine->set_projection_matrix( D3DXToRadian( 45 ),
+	display_engine->set_projection_matrix( XMConvertToRadians( 45 ),
 										   (float)window_width / (float)window_height, 1, 100000 );
 
 	// W tej funkcji s¹ tworzone domyœlne shadery, materia³y itp.

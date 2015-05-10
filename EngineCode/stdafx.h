@@ -20,19 +20,19 @@
 
 #define D3D_DEBUG_INFO
 // TODO: reference additional headers your program requires here
-#include <d3d9.h>
-#include <DirectXMath.h>
-#include <dinput.h>
-#include <D3DX9.h>
-#include <D3DX11.h>
-#include <d3d11.h>
+
 #include <string>
 #include <codecvt>
 #include <vector>
 #include <list>
 #include <queue>
 
-
+#pragma warning( disable : 4005 )
+#include <DirectXMath.h>
+#include <dinput.h>
+#include <d3d11.h>
+#include <d3dx11.h>
+#pragma warning( default : 4005 )
 
 #include "macros_switches.h"
 
