@@ -6,9 +6,9 @@
 Wiêkszoœæ z tych makrodefinicji pozwala na wybór jednej z opcji tylko tymczasowo,
 w docelowej wersji silnika trzeba bêdzie siê zdecydowaæ na któr¹œ z nich.*/
 
+#include "types_definitions.h"
 
-//co tyle sekund aktualizujemy frames_per_sec
-#define		FRAMES_PER_SEC_UPDATE	10
+extern const unsigned int FRAMES_PER_SEC_UPDATE;	///<Co tyle sekund aktualizujemy frames_per_sec.
 
 ///@def _INTERPOLATE_POSITIONS
 ///@brief W³¹cza funkcjê interpoluj¹ca po³o¿enia obiektów.
@@ -29,38 +29,29 @@ Je¿eli to makro nie jest zdefiniowane, to prêdkoœæ obrotowa jest wyra¿ona jako w
 /**@def ENGINE_MAX_TEXTURES
 @brief Maksymalna liczba tekstur w silniku
 */
+
 #define ENGINE_MAX_TEXTURES		8
-/**@def ENGINE_MAX_LIGHTS
-@brief Maksymalna liczba œwiate³ w silniku
-*/
 #define ENGINE_MAX_LIGHTS		2
 
 
 //#define INDEX_BUFFER_UINT16		// Definiujemy czy chcemy mieæ bufor indeksów 16-bitowy czy 32-bitowy
 #define INDEX_BUFFER_UINT32			// Wybraæ tylko jedno, inaczej bêdzie b³¹d kompilacji
 
-///@def VERTICIES_MAX_COUNT
-///@brief VERTICIES_MAX_COUNT zawiera sta³¹, która jest maksymaln¹ liczb¹ wierzcho³ków w buforze
-#if defined(INDEX_BUFFER_UINT16)
-	#define VERTICIES_MAX_COUNT 0xFFFF
-#elif defined(INDEX_BUFFER_UINT32)
-	#define VERTICIES_MAX_COUNT 0xFFFFFFFF
-#else
-	#define VERTICIES_MAX_COUNT	0xFFFFFFFF
-#endif
+extern const unsigned int VERTICIES_MAX_COUNT;		///<Zawiera maksymalny rozmiar bufora indeksów, czyli jednoczeœnie liczbê wierzcho³ków mesha.
+
 
 ///@typedef VERT_INDEX
 ///@brief Definiujemy typ w buforze indeksów.
 
 ///W zale¿noœci od tego czy wybierzemy bufor 16 bitowy czy 32 bitowy VERT_INDEX jest ustawiany jako UINT16 lub UINT32.
 #if defined(INDEX_BUFFER_UINT16)
-	typedef UINT16 VERT_INDEX;
+	typedef uint16 VERT_INDEX;
 	#define INDEX_BUFFER_FORMAT DXGI_FORMAT_R16_UINT
 #elif defined(INDEX_BUFFER_UINT32)
-	typedef UINT32 VERT_INDEX;
+	typedef uint32 VERT_INDEX;
 	#define INDEX_BUFFER_FORMAT DXGI_FORMAT_R32_UINT
 #else
-	typedef UINT32 VERT_INDEX;
+	typedef uint32 VERT_INDEX;
 	#define INDEX_BUFFER_FORMAT DXGI_FORMAT_R32_UINT
 #endif
 

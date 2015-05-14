@@ -140,6 +140,9 @@
     <ClInclude Include="Engine\Interfaces\basic_interfaces.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\types_definitions.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\ModelsManager\MaterialObject.cpp">
@@ -233,6 +236,9 @@
       <Filter>Source Files\MainEngine</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Events\Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\macros_switches.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

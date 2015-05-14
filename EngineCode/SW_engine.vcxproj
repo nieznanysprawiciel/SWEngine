@@ -430,6 +430,7 @@
     <ClInclude Include="Engine\ObjectDeleter.h" />
     <ClInclude Include="Engine\PhysicEngine\PhysicEngine.h" />
     <ClInclude Include="Engine\SoundEngine\SoundEngine.h" />
+    <ClInclude Include="Engine\types_definitions.h" />
     <ClInclude Include="Engine\UI_Engine\InputAbstractionLayer.h" />
     <ClInclude Include="Engine\UI_Engine\UI_Engine.h" />
     <ClInclude Include="Engine\Interfaces\basic_interfaces.h" />
@@ -462,6 +463,16 @@
     <ClCompile Include="Engine\FableEngine\FableEngine.cpp" />
     <ClCompile Include="Engine\Features\HosekSkylightModel\HosekSkyDome.cpp" />
     <ClCompile Include="Engine\Features\HosekSkylightModel\HosekSkylightModel.cpp" />
+    <ClCompile Include="Engine\macros_switches.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Engine\ModelsManager\BufferObject.cpp" />
     <ClCompile Include="Engine\ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h</PrecompiledHeaderFile>
