@@ -1,4 +1,4 @@
-#include "..\include\AbstractItem.h"
+#include "AbstractItem.h"
 
 using namespace XGUI;
 

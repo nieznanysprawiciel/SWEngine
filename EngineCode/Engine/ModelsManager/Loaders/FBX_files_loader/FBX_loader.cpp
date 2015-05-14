@@ -1,8 +1,8 @@
-#include "..\..\..\..\stdafx.h"
+#include "stdafx.h"
 #include "FBX_loader.h"
 
 
-#include "..\..\..\..\memory_leaks.h"
+#include "memory_leaks.h"
 
 
 ///@brief Kontruktr inicjuje obiekty FBX SDK, konieczne do wczytania modelu.

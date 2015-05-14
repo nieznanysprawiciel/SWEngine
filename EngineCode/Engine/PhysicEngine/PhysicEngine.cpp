@@ -1,8 +1,8 @@
-#include "..\..\stdafx.h"
+#include "stdafx.h"
 #include "PhysicEngine.h"
 
 
-#include "..\..\memory_leaks.h"
+#include "memory_leaks.h"
 
 
 PhysicEngine::PhysicEngine(Engine* engine)

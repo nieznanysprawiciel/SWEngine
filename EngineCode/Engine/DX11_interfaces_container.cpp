@@ -1,9 +1,9 @@
-#include "..\stdafx.h"
+#include "stdafx.h"
 #include "DX11_interfaces_container.h"
 #include "DXGI.h"
 
 
-#include "..\memory_leaks.h"
+#include "memory_leaks.h"
 
 
 /*Inicjalizacja zmiennych statycznych.*/

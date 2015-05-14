@@ -4,8 +4,8 @@
 @brief plik zawieta deklaracje foramtów wierzcho³ków, klas zawieraj¹cych assety oraz Model3DFromFile.*/
 
 
-#include "..\DX11_interfaces_container.h"
-#include "..\ObjectDeleter.h"
+#include "DX11_interfaces_container.h"
+#include "ObjectDeleter.h"
 
 //definicje
 #define WRONG_ID						0

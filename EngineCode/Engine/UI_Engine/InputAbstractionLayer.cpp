@@ -3,12 +3,12 @@
 oraz definicje standardowych warstw abstrakcji.
 */
 
-#include "..\..\stdafx.h"
+#include "stdafx.h"
 #include "InputAbstractionLayer.h"
-#include "..\Engine.h"
+#include "Engine.h"
 
 
-#include "..\..\memory_leaks.h"
+#include "memory_leaks.h"
 
 
 //=================================================================//

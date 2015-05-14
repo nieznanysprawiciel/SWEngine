@@ -1,9 +1,9 @@
-#include "..\..\stdafx.h"
+#include "stdafx.h"
 #include "FableEngine.h"
-#include "..\Engine.h"
+#include "Engine.h"
 
 
-#include "..\..\memory_leaks.h"
+#include "memory_leaks.h"
 
 FableEngine::FableEngine(Engine* engine)
 	: engine(engine)

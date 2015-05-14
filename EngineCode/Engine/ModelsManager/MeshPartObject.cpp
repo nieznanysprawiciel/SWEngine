@@ -1,7 +1,7 @@
-#include "..\..\stdafx.h"
+#include "stdafx.h"
 #include "meshes_textures_materials.h"
 
-#include "..\..\memory_leaks.h"
+#include "memory_leaks.h"
 
 #ifndef __UNUSED
 

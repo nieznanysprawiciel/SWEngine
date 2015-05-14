@@ -3,13 +3,13 @@
 oraz g³ówne funkcje do renderingu.
 */
 
-#include "..\stdafx.h"
+#include "stdafx.h"
 #include "Engine.h"
 #include "ControllersEngine\ControllersEngine.h"
 
 
 
-#include "..\memory_leaks.h"
+#include "memory_leaks.h"
 
 
 const float FIXED_MOVE_UPDATE_INTERVAL = ((float)1 / (float)56);	///<Interwa³, po którym nastêpuje kolejne przeliczenie po³o¿eñ obiektów (w sekundach).

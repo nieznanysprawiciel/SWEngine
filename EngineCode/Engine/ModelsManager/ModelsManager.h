@@ -4,7 +4,7 @@
 Plik zawiera deklaracjê klasy ModelsManager.
 */
 
-#include "..\..\stdafx.h"
+#include "stdafx.h"
 #include "meshes_textures_materials.h"
 #include "ResourceContainer.h"
 

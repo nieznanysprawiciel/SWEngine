@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "SW_engine.vcxproj", "{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}"
 EndProject
@@ -23,8 +23,8 @@ Global
 		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}.Debug|Mixed Platforms.Build.0 = Debug|Win32
 		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}.Debug|Win32.ActiveCfg = static_lib_release|x64
 		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}.Debug|Win32.Build.0 = static_lib_release|x64
-		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}.Debug|x64.ActiveCfg = static_lib_release|Win32
-		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}.Debug|x64.Build.0 = static_lib_release|Win32
+		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}.Debug|x64.ActiveCfg = Debug|Win32
+		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}.Debug|x64.Build.0 = Debug|Win32
 		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}.Release|Mixed Platforms.ActiveCfg = Release|Win32
 		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}.Release|Win32.ActiveCfg = static_lib_release|Win32

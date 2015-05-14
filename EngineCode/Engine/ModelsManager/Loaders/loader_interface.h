@@ -4,9 +4,9 @@
 @brief Zawiera deklaracjê interfejsu dla loaderów plików z modelami.
 */
 
-#include "..\..\..\stdafx.h"
-#include "..\meshes_textures_materials.h"
-#include "..\..\ModelsManager\ModelsManager.h"
+#include "stdafx.h"
+#include "ModelsManager\meshes_textures_materials.h"
+#include "ModelsManager\ModelsManager.h"
 
 /**@brief Wartoœci, mo¿liwe do zwrócenia przez klasê Loader
 */

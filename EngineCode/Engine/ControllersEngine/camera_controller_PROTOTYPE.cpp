@@ -1,9 +1,9 @@
-#include "..\..\stdafx.h"
+#include "stdafx.h"
 #include "camera_controller_PROTOTYPE.h"
-#include "..\UI_Engine\InputAbstractionLayer.h"
+#include "UI_Engine\InputAbstractionLayer.h"
 
 
-#include "..\..\memory_leaks.h"
+#include "memory_leaks.h"
 
 
 camera_controller_PROTOTYPE::camera_controller_PROTOTYPE( InputAbstractionLayer_base* layer )

@@ -1,8 +1,8 @@
-#include "..\..\stdafx.h"
+#include "stdafx.h"
 #include "CollisionEngine.h"
 
 
-#include "..\..\memory_leaks.h"
+#include "memory_leaks.h"
 
 
 CollisionEngine::CollisionEngine(Engine* engine)

@@ -59,7 +59,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(DXSDK_DIR)\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(XGUIIncludeDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -78,7 +78,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(DXSDK_DIR)\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(XGUIIncludeDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -94,8 +94,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
+    <ClInclude Include="XGUIcode\include\stdafx.h" />
+    <ClInclude Include="XGUIcode\include\targetver.h" />
     <ClInclude Include="XGUIcode\include\AbstractButton.h" />
     <ClInclude Include="XGUIcode\include\AbstractItem.h" />
     <ClInclude Include="XGUIcode\include\AbstractMenu.h" />
@@ -109,7 +109,7 @@
     <ClInclude Include="XGUIcode\include\XGUI.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="XGUIcode\source\stdafx.cpp" />
     <ClCompile Include="XGUIcode\source\AbstractButton.cpp" />
     <ClCompile Include="XGUIcode\source\AbstractItem.cpp" />
     <ClCompile Include="XGUIcode\source\AbstractMenu.cpp" />

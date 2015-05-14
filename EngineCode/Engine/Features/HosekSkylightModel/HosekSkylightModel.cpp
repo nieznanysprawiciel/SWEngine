@@ -91,7 +91,7 @@ an updated version of this code has been published!
 
 ============================================================================ */
 
-#include "..\..\..\stdafx.h"
+#include "stdafx.h"
 #include "HosekSkyModel.h"
 #include "ArHosekSkyModelData_RGB.h"
 
@@ -116,7 +116,7 @@ an updated version of this code has been published!
 #endif
 
 
-#include "..\..\..\memory_leaks.h"
+#include "memory_leaks.h"
 
 using namespace DirectX;
 

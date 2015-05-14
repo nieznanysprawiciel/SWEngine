@@ -1,7 +1,8 @@
 /**@file AbstractTexturedRegion.cpp
 @brief Plik zawiera definicjê klasy AbstractTexturedRegion.*/
 
-#include "..\include\AbstractTexturedRegion.h"
+#include "AbstractTexturedRegion.h"
+
 
 using namespace XGUI;
 

@@ -1,7 +1,7 @@
 #pragma once
-#include "..\..\stdafx.h"
-#include "..\Events\Event.h"
-#include "..\..\Interfaces\GamePlay.h"
+#include "stdafx.h"
+#include "Events\Event.h"
+#include "Interfaces\GamePlay.h"
 
 
 class Engine;

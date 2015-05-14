@@ -1,4 +1,4 @@
-#include "..\..\stdafx.h"
+#include "stdafx.h"
 
 #include "meshes_textures_materials.h"
 #include "ModelsManager.h"
@@ -6,7 +6,7 @@
 ModelsManager* Model3DFromFile::models_manager = nullptr;
 
 
-#include "..\..\memory_leaks.h"
+#include "memory_leaks.h"
 
 //-------------------------------------------------------------------------------//
 //							wersja DirectX11

@@ -1,9 +1,9 @@
-#include "..\..\..\stdafx.h"
+#include "stdafx.h"
 #include "HosekSkyDome.h"
 
 using namespace DirectX;
 
-#include "..\..\..\memory_leaks.h"
+#include "memory_leaks.h"
 
 /**@brief Opis wierzcho³ka SkyDomeVertex.*/
 D3D11_INPUT_ELEMENT_DESC SkyDomeVertex_desc[] =

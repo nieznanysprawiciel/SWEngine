@@ -1,11 +1,11 @@
-#include "..\..\stdafx.h"
+#include "stdafx.h"
 #include "UI_Engine.h"
-#include "..\Engine.h"
-#include "..\..\Interfaces\basic_interfaces.h"
+#include "Engine.h"
+#include "Interfaces\basic_interfaces.h"
 
 
 
-#include "..\..\memory_leaks.h"
+#include "memory_leaks.h"
 
 
 UI_Engine::UI_Engine(Engine* engine)

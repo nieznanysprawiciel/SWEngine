@@ -3,10 +3,10 @@
 /**@file Engine.h
 @brief Plik zawiera deklaracjê g³ównego obiektu silnika.*/
 
-#include "..\stdafx.h"
-#include "..\SW_engine.h"
-#include "..\Interfaces\basic_interfaces.h"
-#include "..\Interfaces\EngineInterface.h"
+#include "stdafx.h"
+#include "SW_engine.h"
+#include "Interfaces\basic_interfaces.h"
+#include "Interfaces\EngineInterface.h"
 #include "Events\Event.h"
 #include "CollisionEngine\CollisionEngine.h"
 #include "ControllersEngine\ControllersEngine.h"

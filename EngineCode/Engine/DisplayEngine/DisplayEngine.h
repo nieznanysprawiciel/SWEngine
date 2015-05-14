@@ -4,8 +4,8 @@
 @brief Plik zawiera deklaracjê klasy DisplayEngine.
 */
 
-#include "..\..\stdafx.h"
-#include "..\..\Interfaces\basic_interfaces.h"
+#include "stdafx.h"
+#include "Interfaces\basic_interfaces.h"
 #include "ConstantBuffersFormat.h"
 #include "SkyDome.h"
 

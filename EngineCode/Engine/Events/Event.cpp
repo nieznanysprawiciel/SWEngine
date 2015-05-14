@@ -1,8 +1,8 @@
-#include "..\..\stdafx.h"
+#include "stdafx.h"
 #include "Event.h"
 
 
-#include "..\..\memory_leaks.h"
+#include "memory_leaks.h"
 
 //=================================================================//
 //								Event

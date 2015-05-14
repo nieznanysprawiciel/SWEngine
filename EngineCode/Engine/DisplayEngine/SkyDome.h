@@ -5,8 +5,8 @@
 obiekty typu skyboxy, skydome'y i wszystkie inne twory, wyœwietlaj¹ce t³o.*/
 
 
-#include "..\ModelsManager\meshes_textures_materials.h"
-#include "..\ModelsManager\ModelsManager.h"
+#include "ModelsManager\meshes_textures_materials.h"
+#include "ModelsManager\ModelsManager.h"
 
 
 /**@brief Klasa jest interfejsem dla wszystkich klas, które maj¹ wyœwietlaæ jakieœ t³o.

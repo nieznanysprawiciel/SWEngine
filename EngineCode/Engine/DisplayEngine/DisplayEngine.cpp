@@ -3,12 +3,12 @@
 */
 
 
-#include "..\..\stdafx.h"
+#include "stdafx.h"
 #include "DisplayEngine.h"
-#include "..\Engine.h"
+#include "Engine.h"
 
 
-#include "..\..\memory_leaks.h"
+#include "memory_leaks.h"
 
 DisplayEngine::DisplayEngine(Engine* engine)
 	: engine(engine)

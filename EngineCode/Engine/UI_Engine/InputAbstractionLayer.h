@@ -5,7 +5,7 @@
 struktur input_mapping i event_mapping oraz definicje standardowych warstw abstrakcji. */
 
 
-#include "..\..\stdafx.h"
+#include "stdafx.h"
 
 
 class Engine;

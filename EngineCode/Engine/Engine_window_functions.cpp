@@ -3,13 +3,13 @@
 WinAPI oraz g³ówn¹ pêtlê programu @ref Engine::main_loop.
 */
 
-#include "..\stdafx.h"
+#include "stdafx.h"
 #include "Engine.h"
 #include <thread>
 
 
 
-#include "..\memory_leaks.h"
+#include "memory_leaks.h"
 
 
 

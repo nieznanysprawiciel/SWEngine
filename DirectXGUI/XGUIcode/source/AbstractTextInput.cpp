@@ -2,7 +2,7 @@
 @brief Plik zawiera definicjê klasy AbstractTextInput.*/
 
 
-#include "..\include\AbstractTextInput.h"
+#include "AbstractTextInput.h"
 
 using namespace XGUI;
 
