@@ -26,6 +26,7 @@
 #include <vector>
 #include <list>
 #include <queue>
+#include <unordered_map>
 
 #pragma warning( disable : 4005 )
 #include <DirectXMath.h>

@@ -143,6 +143,9 @@
     <ClInclude Include="Engine\types_definitions.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\FableEngine\ActorCreator.h">
+      <Filter>Source Files\GamePlay</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\ModelsManager\MaterialObject.cpp">
@@ -240,6 +243,9 @@
     </ClCompile>
     <ClCompile Include="Engine\macros_switches.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\FableEngine\ActorCreator.cpp">
+      <Filter>Source Files\GamePlay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

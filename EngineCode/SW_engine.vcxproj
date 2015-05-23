@@ -417,6 +417,7 @@
     <ClInclude Include="Engine\DX11_interfaces_container.h" />
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Engine\Engine\Events\Event.h" />
+    <ClInclude Include="Engine\FableEngine\ActorCreator.h" />
     <ClInclude Include="Engine\FableEngine\FableEngine.h" />
     <ClInclude Include="Engine\Features\HosekSkylightModel\ArHosekSkyModelData_RGB.h" />
     <ClInclude Include="Engine\Features\HosekSkylightModel\HosekSkyDome.h" />
@@ -460,6 +461,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="Engine\FableEngine\ActorCreator.cpp" />
     <ClCompile Include="Engine\FableEngine\FableEngine.cpp" />
     <ClCompile Include="Engine\Features\HosekSkylightModel\HosekSkyDome.cpp" />
     <ClCompile Include="Engine\Features\HosekSkylightModel\HosekSkylightModel.cpp" />
