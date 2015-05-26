@@ -44,7 +44,7 @@ void inline Object::event(Event* new_event)
  *XMFloat, dlatego trzeba wykonywaæ operacjê XMLoadFloat4 i XMStoreFloat4. 
  *Uwaga zmienne XMVECTOR i XMMATRIX nie mog¹ byc alokowane na stercie, poniewa¿ nie jest tam gwarantowane 
  *16bitowe wyrównanie. Po dok³adny opis odsy³am do MSDNu.*/
-void Dynamic_object::move(float time_interval)
+void DynamicObject::move(float time_interval)
 {
 //translacja
 	XMVECTOR pos = get_position();
@@ -88,12 +88,12 @@ void Dynamic_object::move(float time_interval)
 /*Funkcja o zastosowaniu tym samym co move, z t¹ ró¿nic¹, ¿e wykonywana dla obiektów z³o¿onych. Przesuniêcie
 jest z³o¿eniem ruchu rodzica i danegi obiektu.
 
-Funkcja jest wirtualna i w klasie Complex_object (implementacja poni¿ej) wywo³uje rekurencyjnie tê funkcjê
+Funkcja jest wirtualna i w klasie ComplexObject (implementacja poni¿ej) wywo³uje rekurencyjnie tê funkcjê
 dla wszystkich swoich dzieci.
 
-UWAGA!! nale¿y pamiêtaæ, ¿e w klasie MovementEngine nie powinno wyst¹piæ ¿adne dziecko klasy Complex_object.
+UWAGA!! nale¿y pamiêtaæ, ¿e w klasie MovementEngine nie powinno wyst¹piæ ¿adne dziecko klasy ComplexObject.
 W przeciwnym razie niektóre przesuniecia i obroty zostan¹ zastosowane wielokrotnie do jednego obiektu.*/
-void Dynamic_object::move_complex(float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation)
+void DynamicObject::move_complex(float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation)
 {
 	return;
 	//DOKOÑCZYC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -125,7 +125,7 @@ void Dynamic_object::move_complex(float time_interval, const XMFLOAT3& parent_sp
 	set_orientation( orient );
 }
 
-void Complex_object::move_complex(float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation)
+void ComplexObject::move_complex(float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation)
 {
 
 }
@@ -134,7 +134,7 @@ void Complex_object::move_complex(float time_interval, const XMFLOAT3& parent_sp
 //									Static_object
 //----------------------------------------------------------------------------------------------//
 
-Static_object::Static_object()
+StaticObject::StaticObject()
 {//inicjujemy obiekt w punkcie ( 0.0, 0.0, 0.0 ) i zorientowany tak jak jego mesh
 	position.x = 0.0;
 	position.y = 0.0;
@@ -150,7 +150,7 @@ Static_object::Static_object()
 	swap_data = false;
 }
 
-Static_object::Static_object(const XMFLOAT3& pos, const XMFLOAT4& orient)
+StaticObject::StaticObject(const XMFLOAT3& pos, const XMFLOAT4& orient)
 {
 	position = pos;
 	position_back = pos;
@@ -164,7 +164,7 @@ Static_object::Static_object(const XMFLOAT3& pos, const XMFLOAT4& orient)
 
 @param[in] time_lag Procent czasu jaki up³yn¹³ od ostaniej klatki do nastêpnej
 Zakres [0,1].*/
-XMVECTOR Static_object::get_interpolated_position( float time_lag ) const
+XMVECTOR StaticObject::get_interpolated_position( float time_lag ) const
 {
 	XMVECTOR pos2 = XMLoadFloat3( &position );
 	XMVECTOR pos1 = XMLoadFloat3( &position_back );
@@ -184,7 +184,7 @@ XMVECTOR Static_object::get_interpolated_position( float time_lag ) const
 
 @param[in] time_lag Procent czasu jaki up³yn¹³ od ostaniej klatki do nastêpnej
 Zakres [0,1].*/
-XMVECTOR Static_object::get_interpolated_orientation( float time_lag ) const
+XMVECTOR StaticObject::get_interpolated_orientation( float time_lag ) const
 {
 	XMVECTOR orient2 = XMLoadFloat4( &orientation );
 	XMVECTOR orient1 = XMLoadFloat4( &orientation_back );
@@ -198,10 +198,10 @@ XMVECTOR Static_object::get_interpolated_orientation( float time_lag ) const
 }
 
 //----------------------------------------------------------------------------------------------//
-//									Dynamic_object
+//									DynamicObject
 //----------------------------------------------------------------------------------------------//
 
-Dynamic_object::Dynamic_object()
+DynamicObject::DynamicObject()
 {
 	speed.x = 0.0;
 	speed.y = 0.0;
@@ -218,26 +218,26 @@ Dynamic_object::Dynamic_object()
 #endif
 }
 
-Dynamic_object::Dynamic_object( const XMFLOAT3& move_speed, const XMFLOAT4& rot_speed )
+DynamicObject::DynamicObject( const XMFLOAT3& move_speed, const XMFLOAT4& rot_speed )
 {
 	speed = move_speed;
 	rotation_speed = rot_speed;
 }
 
 //----------------------------------------------------------------------------------------------//
-//									Physical_object
+//									PhysicalObject
 //----------------------------------------------------------------------------------------------//
 
-Physical_object::Physical_object()
+PhysicalObject::PhysicalObject()
 {
 	mass = 1;
 }
 
 //----------------------------------------------------------------------------------------------//
-//									Dynamic_mesh_object
+//									DynamicMeshObject
 //----------------------------------------------------------------------------------------------//
 
-Dynamic_mesh_object::Dynamic_mesh_object()
+DynamicMeshObject::DynamicMeshObject()
 {
 	model_reference = nullptr;
 	model_changed = false;
@@ -248,7 +248,7 @@ Dynamic_mesh_object::Dynamic_mesh_object()
 #endif
 }
 
-Dynamic_mesh_object::~Dynamic_mesh_object()
+DynamicMeshObject::~DynamicMeshObject()
 {
 	//Kasujac obiekt nie wolno nam niczego usuwaæ, bo nic nie nale¿y do nas
 	//jedynie kasujemy referencje
@@ -257,7 +257,7 @@ Dynamic_mesh_object::~Dynamic_mesh_object()
 	delete_all_references();
 }
 
-int Dynamic_mesh_object::set_model(Model3DFromFile* model)
+int DynamicMeshObject::set_model(Model3DFromFile* model)
 {
 	if( model == nullptr )
 		return 1;
@@ -305,7 +305,7 @@ int Dynamic_mesh_object::set_model(Model3DFromFile* model)
 Dodajemy odwo³ania do wszystkich istniej¹cych elementów w przekazanym wskaŸniku.
 
 @param[in] part Struktura ModelPart opisuj¹ce czêœæ mesha, w której dodajemy referencje.*/
-void Dynamic_mesh_object::add_references( const ModelPart* part )
+void DynamicMeshObject::add_references( const ModelPart* part )
 {
 	if ( part == nullptr )
 		return;
@@ -330,7 +330,7 @@ w tablicy model_parts oraz wskaŸniku model_reference i vertex_buffer.
 
 ¯adne obiekty nie s¹ kasowane, poniewa¿ nie nale¿¹ one do nas.
 Wszystkie zmienne s¹ za to czyszczone.*/
-void Dynamic_mesh_object::delete_all_references( )
+void DynamicMeshObject::delete_all_references( )
 {
 	if ( model_reference != nullptr )
 		model_reference->delete_object_reference( );
@@ -365,18 +365,18 @@ void Dynamic_mesh_object::delete_all_references( )
 }
 
 //----------------------------------------------------------------------------------------------//
-//									Base_input_controller
+//									BaseInputController
 //----------------------------------------------------------------------------------------------//
 
-Base_input_controller::Base_input_controller( InputAbstractionLayer_base* layer )
+BaseInputController::BaseInputController( InputAbstractionLayer_base* layer )
 : abstraction_layer( layer )
 {}
 
-Base_input_controller::~Base_input_controller(){};
+BaseInputController::~BaseInputController(){};
 
 
 //----------------------------------------------------------------------------------------------//
-//									Camera_object
+//									CameraObject
 //----------------------------------------------------------------------------------------------//
 
 
@@ -386,7 +386,7 @@ Base_input_controller::~Base_input_controller(){};
 @param[in] X_to_Y Stosunek Szerokoœci do wysokoœci ekranu
 @param[in] near_plane Bli¿sza p³aszczyzna obcinania
 @param[in] far_plane Dalsza p³aszczyzna obcinania*/
-void Camera_object::set_projection_matrix( float angle, float X_to_Y, float near_plane, float far_plane )
+void CameraObject::set_projection_matrix( float angle, float X_to_Y, float near_plane, float far_plane )
 {
 	XMMATRIX proj_matrix = XMMatrixPerspectiveFovLH( angle, X_to_Y, near_plane, far_plane );
 	proj_matrix = XMMatrixTranspose( proj_matrix );

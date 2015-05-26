@@ -20,13 +20,13 @@ void MovementEngine::proceed_movement(float time_interval)
 {
 	for ( unsigned int i = 0; i < dynamic_objects.size(); ++i )
 	{
-		Dynamic_object* object = dynamic_objects[i];
+		DynamicObject* object = dynamic_objects[i];
 		object->move( time_interval );
 		object->swap();		// Zamieniamy bufory wewn¹trz obiektu
 	}
 }
 
-unsigned int MovementEngine::add_moveable_object(Dynamic_object* dyn_object)
+unsigned int MovementEngine::add_moveable_object(DynamicObject* dyn_object)
 {
 	dynamic_objects.push_back(dyn_object);
 	return dynamic_objects.size() - 1;		//zwracamy indeks elementu dodanego

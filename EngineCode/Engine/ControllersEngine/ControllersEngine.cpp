@@ -42,7 +42,7 @@ void ControllersEngine::proceed_controllers_post( float time_interval )
 
 
 
-int ControllersEngine::add_pre_controlled( Dynamic_object* object )
+int ControllersEngine::add_pre_controlled( DynamicObject* object )
 {
 	if ( object == nullptr )
 		return 1;
@@ -50,7 +50,7 @@ int ControllersEngine::add_pre_controlled( Dynamic_object* object )
 	return 0;
 }
 
-int ControllersEngine::add_post_controlled( Dynamic_object* object )
+int ControllersEngine::add_post_controlled( DynamicObject* object )
 {
 	if ( object == nullptr )
 		return 1;

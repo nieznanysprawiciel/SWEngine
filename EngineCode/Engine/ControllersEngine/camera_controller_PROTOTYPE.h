@@ -23,7 +23,7 @@ Sterowanie:
 - PROTOTYPE::TURN_LEFT Obrót w lewo wokó³ osi pionowej
 - PROTOTYPE::TURN_RIGHT Obrót w prawo wokó³ osi pionowej
 */
-class camera_controller_PROTOTYPE	:	public Base_input_controller
+class camera_controller_PROTOTYPE	:	public BaseInputController
 {
 private:
 	float move_speed;			///<Prêdkoœæ poruszania posuwistego
@@ -33,6 +33,6 @@ public:
 	camera_controller_PROTOTYPE( InputAbstractionLayer_base* layer );
 	virtual ~camera_controller_PROTOTYPE();
 
-	virtual void control_object( Dynamic_object* );
+	virtual void control_object( DynamicObject* );
 };
 

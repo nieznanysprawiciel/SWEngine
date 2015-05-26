@@ -31,7 +31,7 @@ void Engine::test()
 	//models_manager->test();			// Tu sie odbywa wczytywanie
 
 	//dodawanie ksiê¿yca
-	Dynamic_mesh_object* moon = new Dynamic_mesh_object;
+	DynamicMeshObject* moon = new DynamicMeshObject;
 	XMVECTOR position = XMVectorSet( 4000.0, 0.0, 8000.0, 0.0 );
 	moon->teleport( position );
 
@@ -42,7 +42,7 @@ void Engine::test()
 	display_engine->add_dynamic_mesh_object( moon );
 
 	//dodawanie Nebulona
-	Dynamic_mesh_object* nebulon = new Dynamic_mesh_object;
+	DynamicMeshObject* nebulon = new DynamicMeshObject;
 	position = XMVectorSet( 400.0, 0.0, -6000.0, 0.0 );
 	nebulon->teleport( position );
 
@@ -53,7 +53,7 @@ void Engine::test()
 	display_engine->add_dynamic_mesh_object( nebulon );
 
 	//dodawanie TIE Fightera
-	Dynamic_mesh_object* TIE = new Dynamic_mesh_object;
+	DynamicMeshObject* TIE = new DynamicMeshObject;
 	position = XMVectorSet( -400.0, 0.0, 800.0, 0.0 );
 	TIE->teleport( position );
 
@@ -65,7 +65,7 @@ void Engine::test()
 
 
 	//dodawanie TIE Fightera Vadera
-	Dynamic_mesh_object* VaderTIE = new Dynamic_mesh_object;
+	DynamicMeshObject* VaderTIE = new DynamicMeshObject;
 	position = XMVectorSet( -400.0, 0.0, -3000.0, 0.0 );
 	VaderTIE->teleport( position );
 
@@ -76,7 +76,7 @@ void Engine::test()
 	display_engine->add_dynamic_mesh_object( VaderTIE );
 
 	//dodawanie myœliwca
-	Dynamic_mesh_object* clone_fighter = new Dynamic_mesh_object;
+	DynamicMeshObject* clone_fighter = new DynamicMeshObject;
 	position = XMVectorSet(0.0, 0.0, 6000.0, 0.0);
 	clone_fighter->teleport( position );
 
@@ -100,7 +100,7 @@ void Engine::test()
 
 
 	// Dodawanie gwiezdnego niszczyciela Imperial
-	/*Dynamic_mesh_object* Imperial = new Dynamic_mesh_object;
+	/*DynamicMeshObject* Imperial = new DynamicMeshObject;
 	position = XMVectorSet( -4000.0, 0.0, -3000.0, 0.0 );
 	Imperial->set_position( position );
 
@@ -112,7 +112,7 @@ void Engine::test()
 
 	/*
 	//dodawanie skrzyni
-	Dynamic_mesh_object* skrzynia = new Dynamic_mesh_object;
+	DynamicMeshObject* skrzynia = new DynamicMeshObject;
 	position = XMVectorSet( 0.0, 0.0, 2.0, 0.0 );
 	skrzynia->set_position( position );
 
@@ -139,7 +139,7 @@ void Engine::test()
 	*/
 
 	//ustawienie aktywnej kamery
-	Camera_object* camera = new Camera_object();
+	CameraObject* camera = new CameraObject();
 	XMVECTOR camera_pos = XMVectorSet( 0.0, 0.0, 0.0, 0.0 );
 	camera->teleport( camera_pos );
 	//przypisujemy kontroler ( dla kontrolerów trzeba zrobiæ jakiœ mechanizm przechowywania i zwalniania)

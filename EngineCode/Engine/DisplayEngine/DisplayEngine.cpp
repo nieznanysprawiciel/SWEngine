@@ -209,7 +209,7 @@ void DisplayEngine::display_dynamic_objects( float time_interval, float time_lag
 	//na razie pêtla bez optymalizacji
 	for ( unsigned int i = 0; i < meshes.size( ); ++i )
 	{
-		register Dynamic_mesh_object* object = meshes[i];
+		register DynamicMeshObject* object = meshes[i];
 
 		// Ustawiamy bufor wierzcho³ków
 		if ( set_vertex_buffer( object->vertex_buffer ) )
@@ -466,7 +466,7 @@ void DisplayEngine::set_view_matrix( float time_lag )
 /**@brief Dodaje obiekt, który ma zostaæ wyœwietlony.
 
 @param[in] object Object, który ma zostaæ dopisany do tablic wyœwietlania.*/
-void DisplayEngine::add_dynamic_mesh_object( Dynamic_mesh_object* object )
+void DisplayEngine::add_dynamic_mesh_object( DynamicMeshObject* object )
 {
 	realocate_interpolation_memory( );		//powiêkszamy tablicê macierzy interpolacji
 							//wykona siê tylko je¿eli jest konieczne
@@ -481,7 +481,7 @@ void DisplayEngine::add_dynamic_mesh_object( Dynamic_mesh_object* object )
 Funkcja zwraca 0 w przypadku powodzenia.
 Je¿eli kamera ju¿ istnia³a wczesniej, to zwracan¹ wartoœci¹ jest 1.
 Je¿eli podano wskaŸnik nullptr, zwrócona zostanie wartoœæ 2.*/
-int DisplayEngine::add_camera( Camera_object* camera )
+int DisplayEngine::add_camera( CameraObject* camera )
 {
 	if ( camera == nullptr )
 		return 2;
@@ -497,7 +497,7 @@ int DisplayEngine::add_camera( Camera_object* camera )
 @param[in] camera Kamera do ustawienia
 @return 0 w przypadku powodzenia, 1 je¿eli kamera by³a nullptrem.
 Zasadniczo nie ma po co sprawdzaæ wartoœci zwracanej.*/
-int DisplayEngine::set_current_camera( Camera_object* camera )
+int DisplayEngine::set_current_camera( CameraObject* camera )
 {
 	if ( camera == nullptr )
 		return 1;
@@ -552,7 +552,7 @@ void DisplayEngine::interpolate_positions( float time_lag )
 {
 	for ( unsigned int i = 0; i < meshes.size(); ++i )
 	{
-		Dynamic_mesh_object* object = meshes[i];
+		DynamicMeshObject* object = meshes[i];
 		interpolate_object2( time_lag, object, &(interpolated_matrixes[i]) );
 	}
 }
@@ -566,7 +566,7 @@ z prêdkoœci postêpowej i k¹towej.
 @param[in] object Objekt, dla którego liczymy macierz przekszta³cenia.
 @param[out] transform_matrix Zmienna, w której zostanie umieszczona interpolowana macierz przekszta³cenia.
 */
-void DisplayEngine::interpolate_object( float time_lag, const Dynamic_object* object, DirectX::XMFLOAT4X4* result_matrix )
+void DisplayEngine::interpolate_object( float time_lag, const DynamicObject* object, DirectX::XMFLOAT4X4* result_matrix )
 {
 	XMVECTOR position = object->get_position( );
 	XMVECTOR orientation = object->get_orientation( );
@@ -608,7 +608,7 @@ Zakres [0,1].
 @param[in] object Objekt, dla którego liczymy macierz przekszta³cenia.
 @param[out] transform_matrix Zmienna, w której zostanie umieszczona interpolowana macierz przekszta³cenia.
 */
-void DisplayEngine::interpolate_object2( float time_lag, const Dynamic_object* object, DirectX::XMFLOAT4X4* result_matrix )
+void DisplayEngine::interpolate_object2( float time_lag, const DynamicObject* object, DirectX::XMFLOAT4X4* result_matrix )
 {
 	XMVECTOR position = object->get_interpolated_position( time_lag );
 	XMVECTOR orientation = object->get_interpolated_orientation( time_lag );

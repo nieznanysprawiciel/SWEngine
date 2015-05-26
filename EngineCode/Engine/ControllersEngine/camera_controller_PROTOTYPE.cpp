@@ -7,7 +7,7 @@
 
 
 camera_controller_PROTOTYPE::camera_controller_PROTOTYPE( InputAbstractionLayer_base* layer )
-	:	Base_input_controller(layer)
+	:	BaseInputController(layer)
 {
 	move_speed = 1000.0;
 	button_rot_speed = 1.0;
@@ -22,7 +22,7 @@ camera_controller_PROTOTYPE::~camera_controller_PROTOTYPE()
 /*Funkcja g³ówna odpowiedzialna za sterowanie ruchem obiektu.*/
 using namespace STANDARD_LAYERS;
 
-void camera_controller_PROTOTYPE::control_object( Dynamic_object* object )
+void camera_controller_PROTOTYPE::control_object( DynamicObject* object )
 {
 	if ( !abstraction_layer->is_active() )
 		return;

@@ -40,20 +40,20 @@
 	- Klasy predefiniowane
 		- camera_controller_PROTOTYPE
 	- Klasy bazowe dla obiektów predefiniowanych
-		- Animation_object
-		- Base_AI_controller
-		- Base_input_controller
-		- Camera_object
-		- Collision_object
+		- AnimationObject
+		- BaseAIController
+		- BaseInputController
+		- CameraObject
+		- CollisionObject
 		- Complex_object
 		- Controller
-		- Dynamic_mesh_object
-		- Dynamic_object
+		- DynamicMeshObject
+		- DynamicObject
 		- Event
 		- Instanced_mesh
 		- Object
-		- Physical_object
-		- Static_object
+		- PhysicalObject
+		- StaticObject
 		- Trigger_object
 	- Interfejsy
 		- engine_interface

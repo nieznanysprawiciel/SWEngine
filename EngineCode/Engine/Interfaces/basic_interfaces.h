@@ -6,15 +6,15 @@
 
 Object
 Static_object
-Dynamic_object
+DynamicObject
 Collision_object
-Physical_object
-Dynamic_mesh_object
-Animation_object
+PhysicalObject
+DynamicMeshObject
+AnimationObject
 Controller
 Standard_AI_controller
 Standard_input_controller
-Camera_object
+CameraObject
 */
 #include "stdafx.h"
 #include "ModelsManager\meshes_textures_materials.h"
@@ -65,11 +65,11 @@ Obiekty posiadaj¹ po dwie zmienne na orientacjê i pozycjê. Przechowywana jest za
 z poprzedniej klatki, dziêki czemu mo¿na interpolowaæ po³o¿enie. (Wyœwietlanie jest opóŸnione
 w czasie o jedn¹ klatkê, ¿eby interpolacja nie musia³a wyprzedzaæ faktycznych po³o¿eñ).
 
-Swapowanie nastêpujê w funkcji @ref Dynamic_object::move. @todo Trzeba zbadaæ czy nie ma przypadków,
+Swapowanie nastêpujê w funkcji @ref DynamicObject::move. @todo Trzeba zbadaæ czy nie ma przypadków,
 w których nie bêdzie zachodziæ swapowanie, a powinno (wydaje mi siê ¿e przy niektórych kontrolerach)
 i jakoœ rozwi¹zaæ tê sytuacjê.
 */
-class Static_object : public Object
+class StaticObject : public Object
 {
 private:
 	DirectX::XMFLOAT3		position;				///< Pozycja obiektu (lub bufor tylny)
@@ -108,8 +108,8 @@ protected:
 			XMStoreFloat4( &orientation_back, quaternion );
 	}
 public:
-	Static_object();			///< Kontruktor domyœlny inicjuje obiekt w œrodku uk³adu wspó³rzêdnych.
-	Static_object(const XMFLOAT3& pos, const XMFLOAT4& orient);	///< Inicjuje obiekt w podanym po³o¿eniu
+	StaticObject();			///< Kontruktor domyœlny inicjuje obiekt w œrodku uk³adu wspó³rzêdnych.
+	StaticObject(const XMFLOAT3& pos, const XMFLOAT4& orient);	///< Inicjuje obiekt w podanym po³o¿eniu
 
 	/**@brief Przemieszcza obiekt w podane miejsce.
 	
@@ -158,7 +158,7 @@ public:
 };
 
 /**@brief Klasa bazowa dla obiektów zdolnych do kolizji.*/
-class Collision_object : public Static_object
+class CollisionObject : public StaticObject
 {
 
 };
@@ -170,15 +170,15 @@ kwaternionem w przeciwnym razie jest to wektor, w którym sk³adowa w jest k¹tem o
 W docelowej wersji bêdzie najprawdopodobniej wybrana opcja z wetorem a nie kwaternionem.
 
 @note Niezaleznie od tego jak jest wyra¿ona prêdkoœæ, orientacja zawsze jest kwaternionem.*/
-class Dynamic_object : public Collision_object
+class DynamicObject : public CollisionObject
 {
 protected:
 	XMFLOAT3		speed;				///< Prêdkoœæ postepowa obiektu.
 	XMFLOAT4		rotation_speed;		///< Prêdkoœæ k¹towa obiektu (wyra¿ona wektorem i k¹tem obrotu w sk³adowej w).
 	Controller*		controller;			///< WskaŸnik na kontroler, poruszaj¹cy obiektem.
 public:
-	Dynamic_object();	///< Kontruktor ustawi¹j¹cy zerow¹ prêdkoœæ k¹tow¹ i postêpow¹.
-	Dynamic_object( const XMFLOAT3& move_speed, const XMFLOAT4& rot_speed );	///< Kontruktor ustawia podan¹ w parametrach prêdkoœæ.
+	DynamicObject();	///< Kontruktor ustawi¹j¹cy zerow¹ prêdkoœæ k¹tow¹ i postêpow¹.
+	DynamicObject( const XMFLOAT3& move_speed, const XMFLOAT4& rot_speed );	///< Kontruktor ustawia podan¹ w parametrach prêdkoœæ.
 
 	inline void set_speed( const XMVECTOR& vector ) { XMStoreFloat3( &speed, vector ); }	///<Ustawia prêdkoœæ obiektu @param[in] vector Wektor prêdkoœci.
 	inline void set_rotation_speed( const XMVECTOR& quaternion ) { XMStoreFloat4( &rotation_speed, quaternion ); }	///<Ustawia prêdkoœæ obrotow¹ @param[in] quaternion Wektor prêdkoœci.
@@ -194,19 +194,19 @@ public:
 };
 
 
-class Physical_object : public Dynamic_object
+class PhysicalObject : public DynamicObject
 {
 protected:
 	float			mass;
 public:
-	Physical_object();
+	PhysicalObject();
 
 	void pulse();
 };
 
 /**@brief Klasa bazowa dla obiektów, które bêd¹ renderowane.
 */
-class Dynamic_mesh_object : public Physical_object
+class DynamicMeshObject : public PhysicalObject
 {
 	friend class DisplayEngine;
 #ifdef _SCALEABLE_OBJECTS
@@ -223,8 +223,8 @@ protected:
 
 	bool							model_changed;
 public:
-	Dynamic_mesh_object();
-	virtual ~Dynamic_mesh_object();
+	DynamicMeshObject();
+	virtual ~DynamicMeshObject();
 
 	int set_model( Model3DFromFile* model );
 
@@ -248,7 +248,7 @@ private:
 	virtual void draw( DeviceContext* deviceContext, float timeInterval, float timeLag ) {}
 };
 
-class Animation_object : public Physical_object
+class AnimationObject : public PhysicalObject
 {
 	friend class DisplayEngine;
 protected:
@@ -258,7 +258,7 @@ protected:
 
 /**@brief Klasa bazowa dla wszystkich obiektów kamer w silniku.
 */
-class Camera_object : public Dynamic_object
+class CameraObject : public DynamicObject
 {
 	friend class DisplayEngine;
 protected:
@@ -272,29 +272,29 @@ class Controller
 {
 public:
 	virtual ~Controller() = default;
-	virtual void control_object( Dynamic_object* ) = 0;
+	virtual void control_object( DynamicObject* ) = 0;
 };
 
 /**@brief Klasa bazowa dla wszystkich kontrolerów sztucznej inteligencji.*/
-class Base_AI_controller : public Controller
+class BaseAIController : public Controller
 {
 
-	virtual void control_object( Dynamic_object* ) = 0;
+	virtual void control_object( DynamicObject* ) = 0;
 };
 
 /**@brief Klasa bazowa dla wszystkich kontrolerów do sterowania przez u¿ytkownika.*/
-class Base_input_controller : public Controller
+class BaseInputController : public Controller
 {
 protected:
 	InputAbstractionLayer_base*		abstraction_layer;
 
 public:
-	Base_input_controller( InputAbstractionLayer_base* layer );
-	virtual ~Base_input_controller();
+	BaseInputController( InputAbstractionLayer_base* layer );
+	virtual ~BaseInputController();
 
 	inline void set_abstraction_layer( InputAbstractionLayer_base* layer ) { abstraction_layer = layer; };
 
-	virtual void control_object( Dynamic_object* ) = 0;
+	virtual void control_object( DynamicObject* ) = 0;
 };
 
 
@@ -304,10 +304,10 @@ s¹ liczone wzglêdem danego obiektu. do tego celu zamiast funkcji move u¿ywa siê 
 której dodatkowymi paramterami s¹ przesuniêcie i obrót rodzica. Objekty z³o¿one mog¹ siê zagnie¿d¿aæ.
 Trzeba jednak uwa¿aæ, aby do klasy MovementEngine podaæ tylko obiekt nadrzêdny, w innym wypadku przesuniêcia
 bêd¹ siê wlicza³y wielokrotnie. Obiekty bêd¹ce sk³adowymi Complex_obiekt tak¿e mog¹ wykonywaæ w³asne ruchy.*/
-class Complex_object : public Dynamic_object
+class ComplexObject : public DynamicObject
 {
 protected:
-	std::vector<Dynamic_object*>	part;
+	std::vector<DynamicObject*>	part;
 public:
 	void move_complex(float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation);
 };
