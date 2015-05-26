@@ -1,14 +1,13 @@
 #include "stdafx.h"
 #include "TimeManager.h"
 
-
+/**@brief Kontruktor inicjuje wartoœci frames i frames_per_sec na 0.*/
 TimeManager::TimeManager()
 {
-}
-
-
-TimeManager::~TimeManager()
-{
+	frames = 0;
+	frames_per_sec = 0;
+	lag = 0.0;
+	timer_frequency = 1;	// ¯eby unikn¹æ dzielenia przez zero, je¿eli ktoœ nie zainicjuje timera.
 }
 
 /**@brief Funkcja wywo³ywana po zainicjowaniu silnika i przed wejœciem

@@ -30,7 +30,7 @@ private:
 	float						frames_per_sec;		///<Najwa¿niejszy licznik w grze
 public:
 	TimeManager();
-	~TimeManager();
+	~TimeManager() = default;
 
 	void initTimer();
 	float onStartRenderFrame();

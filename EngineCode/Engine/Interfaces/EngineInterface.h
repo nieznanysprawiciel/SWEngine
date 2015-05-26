@@ -5,6 +5,7 @@
 
 #include <queue>
 #include "..\Engine\DX11_interfaces_container.h"
+#include "MainEngine\TimeManager.h"
 
 
 
@@ -64,13 +65,7 @@ protected:
 	//Objects
 	//std::vector<IndexPrediction>		index_predictor;
 
-	//time control
-	__int64						timer_frequency;///<Czêstotliwoœæ timera
-	__int64						time_previous;	///<Bêdziemy mierzyæ ró¿nicê miedzy czasami w kolejnych
-	__int64						elapsed_time;	///<Do licznika FPSów, czas od ostatniej aktualizacji frames_per_sec
-	float						lag;			///<OpóŸnienie wzglêdem normalego tempa updatowania sceny
-	unsigned int				frames;			///<Zlicza ramki od ostatniego wyzerowania
-	float						frames_per_sec;	///<Najwa¿niejszy licznik w grze
+	TimeManager					time_manager;	///<Obiekt do zarz¹dzania czasem.
 
 	bool						pause;			///<Pauza
 

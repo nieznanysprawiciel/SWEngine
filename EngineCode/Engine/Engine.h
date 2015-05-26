@@ -105,7 +105,9 @@ public:
 
 
 	//Engine functions
+#ifndef __UNUSED
 	void time_controller(float& time_interval);
+#endif
 
 	//event functions
 	void send_event(Event* new_event);

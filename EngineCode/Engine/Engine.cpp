@@ -53,9 +53,6 @@ Engine::Engine(HINSTANCE instance)
 	ui_engine			=	new UI_Engine(this);
 
 	//inicjujemy licznik klatek
-	frames = 0;
-	frames_per_sec = 0;
-	lag = 0.0;
 	pause = false;
 }
 
@@ -225,8 +222,8 @@ void Engine::clean_DirectX()
 /**@brief To tutaj dziej¹ siê wszystkie rzeczy, które s¹ wywo³ywane co ka¿d¹ klatkê.*/
 void Engine::render_frame()
 {
-	float time_interval;
-	time_controller( time_interval );
+	float time_interval = time_manager.onStartRenderFrame();
+	float lag = time_manager.getTimeLag();
 
 
 	while ( lag >= FIXED_MOVE_UPDATE_INTERVAL )
@@ -240,6 +237,7 @@ void Engine::render_frame()
 		fable_engine->proceed_fable( FIXED_MOVE_UPDATE_INTERVAL );
 
 		lag -= FIXED_MOVE_UPDATE_INTERVAL;
+		time_manager.updateTimeLag( lag );
 	}
 
 
@@ -257,7 +255,7 @@ void Engine::render_frame()
 }
 
 
-
+#ifndef __UNUSED
 
 /**@brief Funkcja oblicza interwa³ czasowy jaki up³yn¹³ od ostatniej ramki.
  *Poza tym s¹ tu generowane eventy dotycz¹ce czasu, opóŸnieñ itp.
@@ -290,6 +288,8 @@ void Engine::time_controller(float& time_interval)
 	time_previous = time_current;
 	++frames;		//inkrementujemy licznik klatek
 }
+
+#endif
 
 //----------------------------------------------------------------------------------------------//
 //								funkcje pomocnicze												//

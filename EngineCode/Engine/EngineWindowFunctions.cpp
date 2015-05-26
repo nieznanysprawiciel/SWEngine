@@ -172,14 +172,8 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 int Engine::main_loop()
 {
 	MSG msg;
-	LARGE_INTEGER time_temp;
 
-	//Sprawdzamy czêstotliwoœæ timera systemowego, a potem inicjujemy licznik czasu
-	QueryPerformanceFrequency( &time_temp );
-	timer_frequency = time_temp.QuadPart;
-	QueryPerformanceCounter( &time_temp );		//inicjujemy licznik czasu
-	time_previous = time_temp.QuadPart;
-	elapsed_time = time_previous;
+	time_manager.initTimer();		// Inicjujemy obiekt do mierzenia czasu.
 
 #ifndef __UNUSED
 	//w³¹czamy g³ówny w¹tek do renderingu
