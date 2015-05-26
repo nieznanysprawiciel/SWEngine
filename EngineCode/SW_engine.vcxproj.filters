@@ -83,9 +83,6 @@
     <ClInclude Include="Engine\Engine.h">
       <Filter>Source Files\MainEngine</Filter>
     </ClInclude>
-    <ClInclude Include="Interfaces\EngineInterface.h">
-      <Filter>Source Files\MainEngine</Filter>
-    </ClInclude>
     <ClInclude Include="SW_engine.h">
       <Filter>Source Files\MainEngine</Filter>
     </ClInclude>
@@ -146,6 +143,12 @@
     <ClInclude Include="Engine\FableEngine\ActorCreator.h">
       <Filter>Source Files\GamePlay</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\MainEngine\TimeManager.h">
+      <Filter>Source Files\MainEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Interfaces\EngineInterface.h">
+      <Filter>Source Files\MainEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\ModelsManager\MaterialObject.cpp">
@@ -199,9 +202,6 @@
     <ClCompile Include="Engine\ControllersEngine\camera_controller_PROTOTYPE.cpp">
       <Filter>Source Files\Controllers</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Engine_window_functions.cpp">
-      <Filter>Source Files\MainEngine</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Engine.cpp">
       <Filter>Source Files\MainEngine</Filter>
     </ClCompile>
@@ -246,6 +246,12 @@
     </ClCompile>
     <ClCompile Include="Engine\FableEngine\ActorCreator.cpp">
       <Filter>Source Files\GamePlay</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\EngineWindowFunctions.cpp">
+      <Filter>Source Files\MainEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\MainEngine\TimeManager.cpp">
+      <Filter>Source Files\MainEngine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

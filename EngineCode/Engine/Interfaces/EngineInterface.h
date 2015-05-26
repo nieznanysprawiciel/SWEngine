@@ -51,26 +51,26 @@ protected:
 	int							window_height;			///<Wysokoœæ okna/ekranu
 
 	//Engines
-	ControllersEngine*			controllers_engine;		///<kontroluje AI (klawiaturê trzeba przenieœæ)
-	MovementEngine*				movement_engine;		///<przelicza pozycjê obiektów w nastêpnej klatce
-	DisplayEngine*				display_engine;			///<wyœwietla obiekty na scenie
-	CollisionEngine*			collision_engine;		///<liczy kolizje
-	PhysicEngine*				physic_engine;			///<liczy oddzia³ywania fizyczne
-	ModelsManager*				models_manager;			///<zarz¹dza modelami, teksturami i materia³ami
-	FableEngine*				fable_engine;			///<zarz¹dza fabu³¹ gry, interakcjami obiektów itd. Odpowiada za treœæ
-	SoundEngine*				sound_engine;			///<zarz¹dza muzyk¹ i dŸwiêkami
-	UI_Engine*					ui_engine;				///<interfejs u¿ytkownika (tak¿e graficzny)
+	ControllersEngine*			controllers_engine;		///<Kontroluje AI (klawiaturê trzeba przenieœæ)
+	MovementEngine*				movement_engine;		///<Przelicza pozycjê obiektów w nastêpnej klatce
+	DisplayEngine*				display_engine;			///<Wyœwietla obiekty na scenie
+	CollisionEngine*			collision_engine;		///<Liczy kolizje
+	PhysicEngine*				physic_engine;			///<Liczy oddzia³ywania fizyczne
+	ModelsManager*				models_manager;			///<Zarz¹dza modelami, teksturami i materia³ami
+	FableEngine*				fable_engine;			///<Zarz¹dza fabu³¹ gry, interakcjami obiektów itd. Odpowiada za treœæ
+	SoundEngine*				sound_engine;			///<Zarz¹dza muzyk¹ i dŸwiêkami
+	UI_Engine*					ui_engine;				///<Interfejs u¿ytkownika (tak¿e graficzny)
 
 	//Objects
 	//std::vector<IndexPrediction>		index_predictor;
 
 	//time control
-	__int64						timer_frequency;///<czêstotliwoœæ timera
-	__int64						time_previous;	///<bêdziemy mierzyæ ró¿nicê miedzy czasami w kolejnych
-	__int64						elapsed_time;	///<do licznika FPSów, czas od ostatniej aktualizacji frames_per_sec
-	float						lag;			///<opóŸnienie wzglêdem normalego tempa updatowania sceny
-	unsigned int				frames;			///<zlicza ramki od ostatniego wyzerowania
-	float						frames_per_sec;	///<najwa¿niejszy licznik w grze
+	__int64						timer_frequency;///<Czêstotliwoœæ timera
+	__int64						time_previous;	///<Bêdziemy mierzyæ ró¿nicê miedzy czasami w kolejnych
+	__int64						elapsed_time;	///<Do licznika FPSów, czas od ostatniej aktualizacji frames_per_sec
+	float						lag;			///<OpóŸnienie wzglêdem normalego tempa updatowania sceny
+	unsigned int				frames;			///<Zlicza ramki od ostatniego wyzerowania
+	float						frames_per_sec;	///<Najwa¿niejszy licznik w grze
 
 	bool						pause;			///<Pauza
 

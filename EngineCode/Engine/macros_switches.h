@@ -22,8 +22,6 @@ Je¿eli to makro nie jest zdefiniowane, to prêdkoœæ obrotowa jest wyra¿ona jako w
 ///@def __TEST
 ///@brief W³¹cza funkcje testuj¹ce
 #define __TEST
-///@brief Ustawia w funkcji Engine::render_frame() sta³¹ liczbê klatek na sekundê
-#define FIXED_FRAMES_COUNT
 
 #define _SCALEABLE_OBJECTS			///umo¿liwia ustawienie skalowania dla meshy
 /**@def ENGINE_MAX_TEXTURES

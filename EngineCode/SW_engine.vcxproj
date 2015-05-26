@@ -422,6 +422,7 @@
     <ClInclude Include="Engine\Features\HosekSkylightModel\ArHosekSkyModelData_RGB.h" />
     <ClInclude Include="Engine\Features\HosekSkylightModel\HosekSkyDome.h" />
     <ClInclude Include="Engine\Features\HosekSkylightModel\HosekSkyModel.h" />
+    <ClInclude Include="Engine\MainEngine\TimeManager.h" />
     <ClInclude Include="Engine\ModelsManager\Loaders\FBX_files_loader\FBX_loader.h" />
     <ClInclude Include="Engine\ModelsManager\Loaders\loader_interface.h" />
     <ClInclude Include="Engine\ModelsManager\meshes_textures_materials.h" />
@@ -435,7 +436,7 @@
     <ClInclude Include="Engine\UI_Engine\InputAbstractionLayer.h" />
     <ClInclude Include="Engine\UI_Engine\UI_Engine.h" />
     <ClInclude Include="Engine\Interfaces\basic_interfaces.h" />
-    <ClInclude Include="Interfaces\EngineInterface.h" />
+    <ClInclude Include="Engine\Interfaces\EngineInterface.h" />
     <ClInclude Include="Interfaces\GamePlay.h" />
     <ClInclude Include="Engine\macros_switches.h" />
     <ClInclude Include="Engine\memory_leaks.h" />
@@ -454,7 +455,7 @@
     <ClCompile Include="Engine\DX11_interfaces_container.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
     <ClCompile Include="Engine\EngineInterface.cpp" />
-    <ClCompile Include="Engine\Engine_window_functions.cpp" />
+    <ClCompile Include="Engine\EngineWindowFunctions.cpp" />
     <ClCompile Include="Engine\Events\Event.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'">stdafx.h</PrecompiledHeaderFile>
@@ -475,6 +476,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Engine\MainEngine\TimeManager.cpp" />
     <ClCompile Include="Engine\ModelsManager\BufferObject.cpp" />
     <ClCompile Include="Engine\ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h</PrecompiledHeaderFile>

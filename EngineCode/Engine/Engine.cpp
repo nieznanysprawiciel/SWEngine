@@ -229,10 +229,9 @@ void Engine::render_frame()
 	time_controller( time_interval );
 
 
-#ifdef FIXED_FRAMES_COUNT
 	while ( lag >= FIXED_MOVE_UPDATE_INTERVAL )
 	{
-		ui_engine->proceed_input( time_interval );
+		ui_engine->proceed_input( FIXED_MOVE_UPDATE_INTERVAL );
 		physic_engine->proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );
 		controllers_engine->proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );
 		movement_engine->proceed_movement( FIXED_MOVE_UPDATE_INTERVAL );
@@ -242,16 +241,7 @@ void Engine::render_frame()
 
 		lag -= FIXED_MOVE_UPDATE_INTERVAL;
 	}
-#else
-	ui_engine->proceed_input( time_interval );
-	physic_engine->proceed_physic(time_interval);
-	controllers_engine->proceed_controllers_pre(time_interval);
-	movement_engine->proceed_movement(time_interval);
-	controllers_engine->proceed_controllers_post(time_interval);
-	collision_engine->proceed_collisions(time_interval);
-	fable_engine->proceed_fable(time_interval);
 
-#endif
 
 #ifdef _INTERPOLATE_POSITIONS
 	display_engine->interpolate_positions( lag / FIXED_MOVE_UPDATE_INTERVAL );
