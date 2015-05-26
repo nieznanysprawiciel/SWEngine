@@ -245,7 +245,7 @@ private:
 	@param[in] time_interval Czas od ostatniej klatki.
 	@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ.
 	*/
-	virtual void draw( DeviceContext* device_context, float time_interval, float time_lag ) {}
+	virtual void draw( DeviceContext* deviceContext, float timeInterval, float timeLag ) {}
 };
 
 class Animation_object : public Physical_object

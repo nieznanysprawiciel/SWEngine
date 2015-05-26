@@ -174,7 +174,7 @@ void DisplayEngine::display_scene(float time_interval, float time_lag)
 	display_sky_box( time_interval, time_lag );
 
 	// Ustawiamy format wierzcho³ków
-	device_context->IASetInputLayout( mesh_vertex_format );
+	device_context->IASetInputLayout( default_vertex_layout );
 
 	display_instanced_meshes( time_interval, time_lag );
 	display_dynamic_objects( time_interval, time_lag );

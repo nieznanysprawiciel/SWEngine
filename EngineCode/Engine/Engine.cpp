@@ -101,11 +101,13 @@ int Engine::init_engine( int width, int height, BOOL full_screen, int nCmdShow )
 
 	//Inicjalizowanie directXa
 	result = init_directX( );
-	if ( result != GRAPHIC_ENGINE_INIT_OK )
+		assert( result == DX11_INIT_OK );		//Dzia³a tylko w trybie DEBUG
+	if ( result != DX11_INIT_OK )
 		return FALSE;
 
 	//Inicjalizowanie directXinputa
 	result = ui_engine->init_direct_input( );
+		assert( result == DIRECT_INPUT_OK );	//Dzia³a tylko w trybie DEBUG
 	if ( result != DIRECT_INPUT_OK )
 	{
 		clean_DirectX( );
@@ -123,23 +125,16 @@ int Engine::init_engine( int width, int height, BOOL full_screen, int nCmdShow )
 
 int Engine::init_directX()
 {
-	// Inicjujemy urz¹dzenia. Ostatni parametr oznacza, ¿e bêdziemy u¿ywaæ zmiennej device z wielu w¹tków
-	int result = init_devices( window_width, window_height, window_handler, full_screen, false );
-	
-	if ( result != GRAPHIC_ENGINE_INIT_OK )
+	set_vertex_layout( DX11_DEFAULT_VERTEX_LAYOUT::VERTEX_NORMAL_TEXTURE );
+	set_depth_stencil_format( DXGI_FORMAT_D24_UNORM_S8_UINT );		// Je¿eli ma byæ inny to trzeba to jawnie zmieniæ.
+
+	DX11_INIT_RESULT result = init_DX11( window_width, window_height, window_handler, full_screen,
+										 L"shaders/default_shaders.fx", "pixel_shader",
+										 L"shaders/default_shaders.fx", "vertex_shader", false );
+
+	if ( result != DX11_INIT_OK )
 		return result;
 
-	result = init_zBuffer( window_width, window_height );
-
-	if ( result != GRAPHIC_ENGINE_INIT_OK )
-		return result;
-	//W przypadku niepowodzenia, wszystko jest zwalniane wewn¹trz tamtych funkcji.
-	//Je¿eli do tej pory nic siê nie wywali³o to znaczy, ¿e mo¿emy zacz¹æ robiæ bardziej
-	//z³o¿one rzeczy.
-
-	result = init_shaders_vertex_layouts();
-	if ( result != GRAPHIC_ENGINE_INIT_OK )
-		return result;
 
 	display_engine->init_const_buffers();
 
@@ -154,50 +149,9 @@ int Engine::init_directX()
 	// Poniewa¿ oddaliœmy te obiekty do zarz¹dzania ModelsManagerowi, to musimy skasowaæ odwo³ania, ¿eby
 	// nie zwalniaæ obiektów dwukrotnie. Nie jest to eleganckie, no ale lepiej mieæ wszystko w jednym miejscu.
 
-	return GRAPHIC_ENGINE_INIT_OK;
+	return DX11_INIT_OK;
 }
 
-
-int Engine::init_shaders_vertex_layouts( )
-{
-	HRESULT result;
-
-	result = init_vertex_shader( L"shaders/default_shaders.fx", "vertex_shader" );
-	if ( FAILED( result ) )
-	{//Musimy sami zwalniaæ, bo funkcje tego nie robi¹
-		release_DirectX( );
-		return result;
-	}
-
-	result = init_pixel_shader( L"shaders/default_shaders.fx", "pixel_shader" );
-	if ( FAILED( result ) )
-	{
-		release_DirectX( );
-		return result;
-	}
-
-	result = init_mesh_vertex_format( VertexNormalTexCord1_desc,
-									  VertexNormalTexCord1_desc_num_of_elements,
-									  compiled_vertex_shader );
-	if ( FAILED( result ) )
-	{
-		release_DirectX( );
-		return result;
-	}
-
-	// Na razie nie mo¿emy tego zrobiæ, bo podawany shader musi mieæ zgodne wejœcie z layoutem
-	/*result = init_ui_vertex_format( VertexTexCord1_desc,
-									VertexTexCord1_desc_num_of_elements,
-									compiled_vertex_shader );
-
-	if ( FAILED( result ) )
-	{
-		release_DirectX( );
-		return result;
-	}*/
-
-	return GRAPHIC_ENGINE_INIT_OK;
-}
 
 int Engine::init_directXinput()
 {
