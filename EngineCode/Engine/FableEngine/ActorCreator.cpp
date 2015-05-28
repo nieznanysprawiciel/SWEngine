@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ActorCreator.h"
 
-
+#include "memory_leaks.h"
 
 
 ActorCreator::ActorCreator()

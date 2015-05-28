@@ -4,6 +4,9 @@
 #include "Interfaces\basic_interfaces.h"
 
 
+#include "EngineHelpers\PerformanceCheck.h"
+bool pushedF1 = false;		///< Zapamiêtuje stan przycisku odpowiedzialnego za wys³anie statystyk do pliku, ¿eby nie by³o zdublowanych wywo³añ.
+
 
 #include "memory_leaks.h"
 
@@ -96,8 +99,18 @@ void UI_Engine::proceed_input(float time_interval)
 	keyboard_input->GetDeviceState(256, keyboard_state);
 	mouse_input->GetDeviceState(sizeof(mouse_state), &mouse_state);
 
+	///<@fixme Wy³¹czenia aplikacji musi siê odbywaæ w jakiœ inny sposób. Powinien byæ jakiœ domyœlny mechanizm, ¿eby u¿ytkownik nie zapomnia³ zrobiæ wy³¹czania.
 	if ( keyboard_state[DIK_ESCAPE] & 0x80 )
 		engine->end_aplication();
+
+	///<@fixme To jest hack i nie mam pojêcia jak to robiæ w wersji docelowej.
+	if ( (keyboard_state[DIK_F1] & 0x80) && !pushedF1 )
+	{
+		pushedF1 = true;
+		PRINT_STATISTICS( PERFORMANCE_STATISTICS_FILE_PATH );
+	}
+	if ( !(keyboard_state[DIK_F1] & 0x80) )
+		pushedF1 = false;
 
 	update_abstraction_layer();
 }
@@ -105,7 +118,7 @@ void UI_Engine::proceed_input(float time_interval)
 /** @brief Funkcja rysuj¹ca graficzny interfejs u¿ytkownika.
 Jest wywo³ywana zaraz po wszystkich procedurach rysuj¹cych obiekty na scenie.
 
-@param[in] time_interval Parametrem jest czas który up³yn¹³ od ostatniego wywo³ania
+@param[in] time_interval Parametrem jest czas który up³yn¹³ od ostatniego wywo³ania.
  */
 void UI_Engine::draw_GUI( float time_interval, float time_lag )
 {

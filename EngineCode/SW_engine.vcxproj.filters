@@ -36,6 +36,9 @@
     <Filter Include="Source Files\Features\HosekSkylightModel">
       <UniqueIdentifier>{04e0e7ce-71ce-4577-a1ec-ea7432743dd2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\EngineHelpers">
+      <UniqueIdentifier>{a92fa370-613c-48bf-9b89-7c4ae7f99d02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -149,6 +152,9 @@
     <ClInclude Include="Engine\Interfaces\EngineInterface.h">
       <Filter>Source Files\MainEngine</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\EngineHelpers\PerformanceCheck.h">
+      <Filter>Source Files\EngineHelpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\ModelsManager\MaterialObject.cpp">
@@ -252,6 +258,9 @@
     </ClCompile>
     <ClCompile Include="Engine\MainEngine\TimeManager.cpp">
       <Filter>Source Files\MainEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\EngineHelpers\PerformanceCheck.cpp">
+      <Filter>Source Files\EngineHelpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

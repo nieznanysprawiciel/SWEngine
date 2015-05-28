@@ -36,7 +36,7 @@ private:
 	CameraObject*					current_camera;				///<Akutalnie aktywna kamera
 	SkyDome*						sky_dome;					///<Klasa odpowiedzialna za kopu³ê nieba
 
-	std::vector<DynamicMeshObject*>		meshes;					///<Modele nieanimowane
+	std::vector<DynamicMeshObject*>			meshes;					///<Modele nieanimowane
 	XMFLOAT4X4*								interpolated_matrixes;	///<Tablica macierzy interpolowanych po³o¿eñ obiektów
 	unsigned int							interpol_matrixes_count;///<Liczba macierzy interpolowanych
 

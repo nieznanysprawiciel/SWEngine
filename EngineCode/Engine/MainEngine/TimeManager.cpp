@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "TimeManager.h"
 
+#include "memory_leaks.h"
+
 /**@brief Kontruktor inicjuje wartoœci frames i frames_per_sec na 0.*/
 TimeManager::TimeManager()
 {
@@ -14,13 +16,13 @@ TimeManager::TimeManager()
 w pêtlê renderingu. Ustawia odpowiednie dane dla zegara, w tym czêstotliwoœæ oraz czas pocz¹tkowy.*/
 void TimeManager::initTimer()
 {
-	LARGE_INTEGER time_temp;
+	LARGE_INTEGER timeTemp;
 
 	//Sprawdzamy czêstotliwoœæ timera systemowego, a potem inicjujemy licznik czasu
-	QueryPerformanceFrequency( &time_temp );
-	timer_frequency = time_temp.QuadPart;
-	QueryPerformanceCounter( &time_temp );		//inicjujemy licznik czasu
-	time_previous = time_temp.QuadPart;
+	QueryPerformanceFrequency( &timeTemp );
+	timer_frequency = timeTemp.QuadPart;
+	QueryPerformanceCounter( &timeTemp );		//inicjujemy licznik czasu
+	time_previous = timeTemp.QuadPart;
 	elapsed_time = time_previous;
 
 	begin_time = time_previous;			// Poniewa¿ w³aœnie zainicjowaliœmy timer, to zapisujemy czas inicjacji.

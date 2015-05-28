@@ -3,17 +3,23 @@
 oraz g³ówne funkcje do renderingu.
 */
 
+
 #include "stdafx.h"
 #include "Engine.h"
 #include "ControllersEngine\ControllersEngine.h"
 
 
+#include "EngineHelpers\PerformanceCheck.h"
 
 #include "memory_leaks.h"
 
 
+
+
 const float FIXED_MOVE_UPDATE_INTERVAL = ((float)1 / (float)56);	///<Interwa³, po którym nastêpuje kolejne przeliczenie po³o¿eñ obiektów (w sekundach).
 
+USE_PERFORMANCE_CHECK(RENDERING_TIME)
+USE_PERFORMANCE_CHECK(FRAME_COMPUTING_TIME)
 
 
 //----------------------------------------------------------------------------------------------//
@@ -23,6 +29,8 @@ const float FIXED_MOVE_UPDATE_INTERVAL = ((float)1 / (float)56);	///<Interwa³, p
 
 Engine::Engine(HINSTANCE instance)
 {
+	REGISTER_PERFORMANCE_TASK(RENDERING_TIME)
+	REGISTER_PERFORMANCE_TASK(FRAME_COMPUTING_TIME)
 
 	// Dziêki tej zmiennej bêdzie mo¿na wysy³aæ eventy
 	Object::set_engine( this );
@@ -77,6 +85,7 @@ Engine::~Engine()
 	delete models_manager;		//musi byæ kasowany na koñcu
 
 	clean_DirectX();
+
 }
 
 
@@ -182,6 +191,8 @@ void Engine::render_frame()
 
 	while ( lag >= FIXED_MOVE_UPDATE_INTERVAL )
 	{
+		START_PERFORMANCE_CHECK(FRAME_COMPUTING_TIME)
+
 		ui_engine->proceed_input( FIXED_MOVE_UPDATE_INTERVAL );
 		physic_engine->proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );
 		controllers_engine->proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );
@@ -192,6 +203,8 @@ void Engine::render_frame()
 
 		lag -= FIXED_MOVE_UPDATE_INTERVAL;
 		time_manager.updateTimeLag( lag );
+
+		END_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
 	}
 
 
@@ -199,11 +212,15 @@ void Engine::render_frame()
 	display_engine->interpolate_positions( lag / FIXED_MOVE_UPDATE_INTERVAL );
 #endif
 
+	START_PERFORMANCE_CHECK(RENDERING_TIME)
+
 	//Renderujemy scenê oraz interfejs u¿ytkownika
 	begin_scene();
 
 	display_engine->display_scene( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
 	ui_engine->draw_GUI( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
+
+	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
 
 	end_scene_and_present();
 }

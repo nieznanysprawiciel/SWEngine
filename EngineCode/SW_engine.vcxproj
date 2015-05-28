@@ -416,6 +416,7 @@
     <ClInclude Include="Engine\DisplayEngine\SkyDome.h" />
     <ClInclude Include="Engine\DX11_interfaces_container.h" />
     <ClInclude Include="Engine\Engine.h" />
+    <ClInclude Include="Engine\EngineHelpers\PerformanceCheck.h" />
     <ClInclude Include="Engine\Engine\Events\Event.h" />
     <ClInclude Include="Engine\FableEngine\ActorCreator.h" />
     <ClInclude Include="Engine\FableEngine\FableEngine.h" />
@@ -454,6 +455,7 @@
     <ClCompile Include="Engine\DisplayEngine\DisplayEngine.cpp" />
     <ClCompile Include="Engine\DX11_interfaces_container.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
+    <ClCompile Include="Engine\EngineHelpers\PerformanceCheck.cpp" />
     <ClCompile Include="Engine\EngineInterface.cpp" />
     <ClCompile Include="Engine\EngineWindowFunctions.cpp" />
     <ClCompile Include="Engine\Events\Event.cpp">

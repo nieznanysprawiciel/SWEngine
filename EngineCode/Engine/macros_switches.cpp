@@ -7,6 +7,8 @@
 
 const unsigned int FRAMES_PER_SEC_UPDATE = 10;			///<Co tyle sekund aktualizujemy frames_per_sec.
 
+const char* PERFORMANCE_STATISTICS_FILE_PATH = "logs/performance.txt";
+
 #if defined(INDEX_BUFFER_UINT16)
 	const unsigned int VERTICIES_MAX_COUNT = 0xFFFF;
 #elif defined(INDEX_BUFFER_UINT32)

@@ -23,6 +23,11 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
+#ifdef SHOW_MEMORY_LEAKS
+	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
+#endif
+
+
 	int result;
 
 	engine = new Engine(hInstance);
@@ -42,9 +47,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	result = engine->main_loop();
 	delete engine;
 
-#ifdef SHOW_MEMORY_LEAKS
-	_CrtDumpMemoryLeaks( );
-#endif
+
 	return result;
 }
 

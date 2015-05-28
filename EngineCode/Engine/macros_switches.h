@@ -37,6 +37,7 @@ Je¿eli to makro nie jest zdefiniowane, to prêdkoœæ obrotowa jest wyra¿ona jako w
 
 extern const unsigned int VERTICIES_MAX_COUNT;		///<Zawiera maksymalny rozmiar bufora indeksów, czyli jednoczeœnie liczbê wierzcho³ków mesha.
 
+extern const char* PERFORMANCE_STATISTICS_FILE_PATH;		///<Klasa PerformanceCheck bêdzie wysy³a³a tutaj zarejestrowane dane.
 
 ///@typedef VERT_INDEX
 ///@brief Definiujemy typ w buforze indeksów.
@@ -52,6 +53,12 @@ extern const unsigned int VERTICIES_MAX_COUNT;		///<Zawiera maksymalny rozmiar b
 	typedef uint32 VERT_INDEX;
 	#define INDEX_BUFFER_FORMAT DXGI_FORMAT_R32_UINT
 #endif
+
+
+/**@def PERFORMANCE_CHECK
+@brief W³¹cza funkcje klasy PerformaceCheck do kodu silnika. Mierzy wydajnoœæ wybranych fragmentów kodu.
+*/
+#define PERFORMANCE_CHECK
 
 #ifdef _DEBUG
 	/**@def SHOW_MEMORY_LEAKS
