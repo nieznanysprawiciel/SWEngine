@@ -6,9 +6,20 @@
 #include "stdafx.h"
 #include "DisplayEngine.h"
 #include "Engine.h"
+#include "EngineHelpers\PerformanceCheck.h"
 
 
 #include "memory_leaks.h"
+
+
+USE_PERFORMANCE_CHECK( SKYBOX_RENDERING )
+USE_PERFORMANCE_CHECK( INSTANCE_OBJECT_RENDERING )
+USE_PERFORMANCE_CHECK( DYNAMIC_OBJECT_RENDERING )
+USE_PERFORMANCE_CHECK( PARTICLES_RENDERING )
+USE_PERFORMANCE_CHECK( SHORT_LIVE_OBJECTS_RENDERING )
+USE_PERFORMANCE_CHECK( SKELETNS_RENDERING )
+USE_PERFORMANCE_CHECK( SELF_DRAWING_OBJECTS_RENDERING )
+
 
 DisplayEngine::DisplayEngine(Engine* engine)
 	: engine(engine)
@@ -24,6 +35,14 @@ DisplayEngine::DisplayEngine(Engine* engine)
 	shader_data_per_frame.light_color[0] = XMFLOAT4( 0, 0, 0, 0 );
 	shader_data_per_frame.light_color[1] = XMFLOAT4( 0, 0, 0, 0 );
 	shader_data_per_frame.ambient_light = XMFLOAT4( 0, 0, 0, 0 );
+
+	REGISTER_PERFORMANCE_TASK( SKYBOX_RENDERING )
+	REGISTER_PERFORMANCE_TASK( INSTANCE_OBJECT_RENDERING )
+	REGISTER_PERFORMANCE_TASK( DYNAMIC_OBJECT_RENDERING )
+	REGISTER_PERFORMANCE_TASK( PARTICLES_RENDERING )
+	REGISTER_PERFORMANCE_TASK( SHORT_LIVE_OBJECTS_RENDERING )
+	REGISTER_PERFORMANCE_TASK( SKELETNS_RENDERING )
+	REGISTER_PERFORMANCE_TASK( SELF_DRAWING_OBJECTS_RENDERING )
 }
 
 
@@ -194,7 +213,10 @@ Zakres [0,1].
 */
 void DisplayEngine::display_instanced_meshes( float time_interval, float time_lag )
 {
+	START_PERFORMANCE_CHECK( INSTANCE_OBJECT_RENDERING )
 
+
+	END_PERFORMANCE_CHECK( INSTANCE_OBJECT_RENDERING )
 }
 
 /**@brief Funkcja s³u¿y do wyœwietlania obiektów dynamicznych, które s¹ rzadko niszczone.
@@ -206,6 +228,8 @@ Zakres [0,1].
 */
 void DisplayEngine::display_dynamic_objects( float time_interval, float time_lag )
 {
+	START_PERFORMANCE_CHECK( DYNAMIC_OBJECT_RENDERING )
+
 	//na razie pêtla bez optymalizacji
 	for ( unsigned int i = 0; i < meshes.size( ); ++i )
 	{
@@ -267,6 +291,8 @@ void DisplayEngine::display_dynamic_objects( float time_interval, float time_lag
 		}
 
 	}
+
+	END_PERFORMANCE_CHECK( DYNAMIC_OBJECT_RENDERING )
 }
 
 /**@brief Funkcja s³u¿y do wyœwietlania systemów cz¹stek.
@@ -278,7 +304,9 @@ Zakres [0,1].
 */
 void DisplayEngine::display_particles( float time_interval, float time_lag )
 {
+	START_PERFORMANCE_CHECK( PARTICLES_RENDERING )
 
+	END_PERFORMANCE_CHECK( PARTICLES_RENDERING )
 }
 
 /**@brief Funkcja s³u¿y do wyœwietlania obiektów dynamicznych o krótkim czasie ¿ycia
@@ -290,8 +318,9 @@ Zakres [0,1].
 */
 void DisplayEngine::display_short_live_objects( float time_interval, float time_lag )
 {
+	START_PERFORMANCE_CHECK( SHORT_LIVE_OBJECTS_RENDERING )
 
-
+	END_PERFORMANCE_CHECK( SHORT_LIVE_OBJECTS_RENDERING )
 }
 
 /**@brief Funkcja s³u¿y do wyœwietlania skyboxa lub te¿ ka¿dej innej formy, która s³u¿y za t³o.
@@ -312,6 +341,8 @@ Zakres [0,1].
 */
 void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 {
+	START_PERFORMANCE_CHECK( SKYBOX_RENDERING )
+
 	if ( !sky_dome )
 		return;
 
@@ -370,6 +401,8 @@ void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 		device_context->Draw( part->vertices_count, part->buffer_offset );
 
 	depth_buffer_enable( true );		// W³¹czamy z-bufor spowrotem
+
+	END_PERFORMANCE_CHECK( SKYBOX_RENDERING )
 }
 
 /**@brief Funkcja s³u¿y do wyœwietlania obiektów z animacj¹ szkieletow¹, czyli g³ównie postaci
@@ -381,7 +414,10 @@ Zakres [0,1].
 */
 void DisplayEngine::display_skeletons( float time_interval, float time_lag )
 {
+	START_PERFORMANCE_CHECK( SKELETNS_RENDERING )
 
+
+	END_PERFORMANCE_CHECK( SKELETNS_RENDERING )
 }
 
 /**@brief Funkcja wyœwietla obiekty, które maj¹ zaimplementowany inny
@@ -395,7 +431,9 @@ Zakres [0,1].
 */
 void DisplayEngine::display_self_drawing_objects( float time_interval, float time_lag )
 {
+	START_PERFORMANCE_CHECK( SELF_DRAWING_OBJECTS_RENDERING )
 
+	END_PERFORMANCE_CHECK( SELF_DRAWING_OBJECTS_RENDERING )
 }
 
 /**@brief Tworzy macierz projekcji i zapamiêtuje j¹ w polu projection_matrix klasy. W ka¿dym wywo³aniu funkcji

@@ -18,8 +18,9 @@ oraz g³ówne funkcje do renderingu.
 
 const float FIXED_MOVE_UPDATE_INTERVAL = ((float)1 / (float)56);	///<Interwa³, po którym nastêpuje kolejne przeliczenie po³o¿eñ obiektów (w sekundach).
 
-USE_PERFORMANCE_CHECK(RENDERING_TIME)
-USE_PERFORMANCE_CHECK(FRAME_COMPUTING_TIME)
+USE_PERFORMANCE_CHECK( RENDERING_TIME )
+USE_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
+USE_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 
 
 //----------------------------------------------------------------------------------------------//
@@ -31,6 +32,7 @@ Engine::Engine(HINSTANCE instance)
 {
 	REGISTER_PERFORMANCE_TASK(RENDERING_TIME)
 	REGISTER_PERFORMANCE_TASK(FRAME_COMPUTING_TIME)
+	REGISTER_PERFORMANCE_TASK(INTERPOLATION_TIME)
 
 	// Dziêki tej zmiennej bêdzie mo¿na wysy³aæ eventy
 	Object::set_engine( this );
@@ -209,7 +211,11 @@ void Engine::render_frame()
 
 
 #ifdef _INTERPOLATE_POSITIONS
+	START_PERFORMANCE_CHECK( INTERPOLATION_TIME )
+
 	display_engine->interpolate_positions( lag / FIXED_MOVE_UPDATE_INTERVAL );
+
+	END_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 #endif
 
 	START_PERFORMANCE_CHECK(RENDERING_TIME)

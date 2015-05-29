@@ -91,11 +91,11 @@ void PerformanceCheck::print( const std::string& outputFile, std::vector<_perfor
 	if ( !output.good() )
 		return;
 
-	output << "Performance test:		Average			Minimum			Maximum" << std::endl;
+	output << "Performance test:				Average			Minimum			Maximum" << std::endl;
 
 	for ( auto taskData : data_copy )
 	{
-		output.width( 24 );
+		output.width( 32 );
 		output << std::left;
 		output << taskData.task_name;
 		output.width( 0 );
