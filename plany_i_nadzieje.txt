@@ -1,0 +1,77 @@
+Czyli co jest do zrobienia!!!
+
+Do wymyœlenia:
+-	nowe struktury obiektów gotowe do instancjonowania, interpolowania po³o¿eñ, obs³ugi gry sieciowej oraz
+	wykorzystania wielu procesorów
+-	obs³uga gry sieciowej
+-	architektura wielow¹tkowa
+ok	realizacja instancjonowania obiektów
+-	tworzenie dialogów i grafów dialogów albo grafów wyborów. Najlepiej, ¿eby da³o siê to robiæ gdzieœ na
+	zewn¹trz, a potem importowaæ
+-	drzewa behawioralne
+-	maszyny stanów
+-	optymalny system dodawania obiektów do silnika i do poszczególnych modu³ów (oczywiœcie mo¿na sprawiæ,
+	¿e trzeba by wywo³aæ tysi¹c funkcji dla ka¿dego dodawanego obiektu, ale tego nie chcemy)
+-	sposób tworzenia GamePlaya, trzeba dodaæ jakieœ nowe rozwi¹zania, byæ mo¿e same eventy nie wystarcz¹
+	albo po prostu bêd¹ niewygodne.
+-	deffered shading
+-	renderowanie wieloprzebiegowe
+-	przewidwywanie czasu, w którym pojawi siê nastêpna klatka - synchronizacja z monitorem + dodanie pobierania czasu tu¿ przed interpolacj¹
+-	robienie statystyk czasu poœwiêconego na liczenie poszczególnych czynnoœci silnika
+-	obiekty z³o¿one - dziecko dziedziczy ruch po rodzicu, mo¿liwoœæ ustawienia pivota (?)
+-	kompilowanie projektu pod WindowsPhone, WindowsStoreApp (je¿eli da siê to zrobiæ z minimalnymi przeróbkami)
+-	odtwarzanie dŸwiêków (Problemem jest sytuacja, w której odtwarzamy dŸwiêk w reakcji na uderzenie pocisku. Dostêp musi byæ
+	z poziomu obiektu reprezentuj¹cego pocisk.)
+-	struktury pod Level of Detailes dla meshy
+
+
+Do napisania:
+-	wszystko to co zostanie wymyœlone + reszta poni¿ej
+-	optymalizacja danych pobranych z pliku modelu (klasa Model3DFromFile)
+-	poprawienie wyœwietlania w tym:
+	- u¿ycie bry³ kolizji w celu wyeliminowania obiektów niewidocznych
+	- napisanie algorytmu, który najlepiej wykorzysta optymalizacjê w klasie Model3DFormFile)
+	ok interpolowanie po³o¿eñ i rotacji obiektów (do tego trzeba mieæ wymyœlone nowe struktury)
+	- u¿ycie instancjonowanych obiektów (do tego trzeba wymyœleæ nowe struktury)
+-	system do tworzenia lightmap
+-	tablica hashuj¹ca dla obiektów przechowywanych w silniku, z u³atwieniem dostêpu do wskaŸników
+	na obiekty w poszczególnych modu³ach
+-	stworzenie interfejsu, dziêki któremu mo¿na bêdzie u¿ywaæ silnika z klas GamePlay (a nie tak jak teraz,
+	¿e jest funkcja test wywo³ywana w klasie engine, która ustawia testow¹ scenê
+-	DirectXMath streaming - u¿ycie funkcji, do strumieniowego przetwarzania danych tam gdzie siê da
+-	instancjonowanie obiektów
+-	FBXLoader - wczytywanie meshy w trybie indeksowanym (w tej chwili s¹ wczytywane jako TRIANGLE_LIST - marnotrawstwo)
+
+Do przeczytania, dowiedzenia siê, ogarniêcia, zorientowania, zrozumienia itd:
+-	animacja szkieletowa
+-	jêzyk skryptowy LUA (byæ mo¿e jakieœ zewnêtrzne narzêdzia u¿ywaj¹, wiêc warto wiedzieæ czy siê przyda)
+ok	DirectX 11
+-	DirectX 12
+ok	instancjonowanie obiektów w DirectX
+-	pomyœleæ czy nie da siê rozszerzyæ mo¿liwoœci kompilacji gier dla innych platform (xbox, playstation )
+-	pomyœleæ czy nie lepiej obs³ugiwaæ DirectInput w trybie buforowanym, zamiast dostêpu do ca³ej klawiatury
+
+//====================================================================================//
+DirectXGUI
+
+Do wymyœlenia:
+-	tworzenie GUI, dostêpne kontrolki i jak to wszystko ma dzia³aæ
+-	obs³uga urz¹dzeñ wejœciowych (w po³¹czeniu z GUI)
+-	stworzenie parsera do wczytywania GUI z plików XML (http://pugixml.org/)
+-	renderowanie tylko gdy konieczne (renderowanie do tekstury, u¿ycie rect scissor itd.)
+
+
+Do napisania:
+-	napisanie definicji istniej¹cych interfejsów kontrolek
+
+
+//====================================================================================//
+Edytor Scen
+-	system, w którym mia³yby byæ tworzone lightmapy. Poniewa¿ do tego potrzebna jest wiedza o wszystkich
+	obiektach statycznych w danej scenie, to a¿ siê prosi, ¿eby zrobiæ jakiœ edytor scen, z którego bêdzie
+	mo¿na potem sceny importowaæ do silnika, a nie jest to raczej ma³a rzecz, wiêc trzeba to najlepiej jak siê
+	da przemyœleæ)
+-	optymalizacja meshy, tworzenie LODów
+
+
+
