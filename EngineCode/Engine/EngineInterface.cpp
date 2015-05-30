@@ -154,7 +154,7 @@ void Engine::test()
 	controllers_engine->add_pre_controlled( camera );
 
 	double albedo[3] = { 0.8, 0.8, 0.8 };
-	double turbidity = 5;
+	double turbidity = 4;
 	XMVECTOR sun_dir = XMVectorSet( -0.2f, 0.6f, 0.6f, 1.0f );
 	HosekSkyDome* sky_dome = new HosekSkyDome(models_manager);
 	sky_dome->init_sky_dome( sun_dir, turbidity, albedo, 101, 101, 100, 5.0 );

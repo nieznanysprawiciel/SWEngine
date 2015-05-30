@@ -115,7 +115,7 @@ void HosekSkyDome::update_sky_dome( XMVECTOR sun_direction,
 	XMVECTOR zenith = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
 	sun_direction = XMVector3Normalize( sun_direction );
 	XMVECTOR solar_elevation = XMVector3AngleBetweenNormals( sun_direction, zenith );
-	float elevation = XMVectorGetX( solar_elevation );
+	float elevation = DirectX::XM_PIDIV2 - XMVectorGetX( solar_elevation );
 
 	skylight_model.init( turbidity, albedo, elevation, sky_intensity, sun_intensity );
 
