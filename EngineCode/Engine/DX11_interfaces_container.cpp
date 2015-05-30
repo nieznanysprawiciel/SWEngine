@@ -298,6 +298,7 @@ void DX11_interfaces_container::set_vertex_layout( D3D11_INPUT_ELEMENT_DESC* lay
 	_layout_elements_count = array_size;
 }
 
+/**Ustawia podany w parametrze deskryptor samplera.*/
 void DX11_interfaces_container::set_sampler_desc( D3D11_SAMPLER_DESC sampler_desc )
 {
 	_sampler_desc = sampler_desc;
@@ -306,6 +307,24 @@ void DX11_interfaces_container::set_sampler_desc( D3D11_SAMPLER_DESC sampler_des
 //----------------------------------------------------------------------------------------------//
 //					Jedna du¿a funkcja, która za³atwia jak najwiêcej							//
 //----------------------------------------------------------------------------------------------//
+
+/**@brief Funkcja do pe³nej inicjalizacji DirectXa.
+
+Je¿eli chcesz zainicjowaæ wszystko na raz, to wywo³aj tê funkcjê.
+Przed wywo³aniem ustaw odpowiednie deskryptory, je¿eli chcesz, ¿eby u¿yte zosta³y
+inne wartoœci ni¿ domyœlne.
+
+@param[in] width Szerokoœæ okna.
+@param[in] height Wysokoœæ okna.
+@param[in] window Uchwyt g³ównego okna aplikacji.
+@param[in] fullscreen Ustaw na true, je¿eli aplikacja ma dzia³aæ w trybie pe³noekranowym.
+@param[in] pix_shader_file Plik zawieraj¹cy shader.
+@param[in] pix_shader_name Nazwa funkcji, od której ma siê zacz¹æ wykonywanie shadera.
+@param[in] vert_shader_file Plik zawieraj¹cy shader.
+@param[in] vert_shader_name Nazwa funkcji, od której ma siê zacz¹æ wykonywanie shadera.
+@param[in] single_thread Ustaw na true, je¿eli nie zamierzasz korzystaæ z ID3D11Device wielow¹tkowo (pozwala to na przyspieszenie dzia³ania
+ze wzglêdu na to, ¿e nie jest konieczna synchronizacja. Nie wiem jak du¿y to ma wp³yw.)
+@return Zwraca jedn¹ ze sta³ych DX11_INIT_RESULT.*/
 DX11_INIT_RESULT DX11_interfaces_container::init_DX11(
 	int width, int height, HWND window, bool fullscreen,
 	const std::wstring& pix_shader_file, const std::string& pix_shader_name,
