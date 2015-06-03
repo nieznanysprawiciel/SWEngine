@@ -23,7 +23,10 @@ void TimeManager::initTimer()
 	timer_frequency = timeTemp.QuadPart;
 	QueryPerformanceCounter( &timeTemp );		//inicjujemy licznik czasu
 	time_previous = timeTemp.QuadPart;
-	elapsed_time = time_previous;
+
+	//FPS counter
+	elapsed_time = 0.0;
+	frames = 0;
 
 	begin_time = time_previous;			// Poniewa¿ w³aœnie zainicjowaliœmy timer, to zapisujemy czas inicjacji.
 }
@@ -47,7 +50,7 @@ float TimeManager::onStartRenderFrame()
 	if ( elapsed_time >= FRAMES_PER_SEC_UPDATE * timer_frequency )	//aktualizujemy co 10 sekund
 	{
 		frames_per_sec = (float)frames / FRAMES_PER_SEC_UPDATE;	//FRAMES_PER_SEC_UPDATE w sekundach
-		elapsed_time = elapsed_time % FRAMES_PER_SEC_UPDATE * timer_frequency;
+		elapsed_time = elapsed_time % ( FRAMES_PER_SEC_UPDATE * timer_frequency );
 		frames = 0;		//zerujemy liczbê klatek
 	}
 

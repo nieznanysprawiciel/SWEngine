@@ -24,8 +24,20 @@ typedef struct ConstantPerFrame
 	DirectX::XMFLOAT4		light_direction[ENGINE_MAX_LIGHTS];		// Wspó³rzêdne s¹ zanegowane, ¿eby shader mia³ mniej roboty
 	DirectX::XMFLOAT4		light_color[ENGINE_MAX_LIGHTS];
 	DirectX::XMFLOAT4		ambient_light;
-	float					time;
-	float					time_lag;
+	DirectX::XMFLOAT4		time;				///< Czas. Wartoœæ jest powielona do wszystkich komponentów.
+	DirectX::XMFLOAT4		time_lag;			///< Czas wzglêdem ostatniej klatki. Wartoœæ jest powielona do wszystkich komponentów.
+
+	ConstantPerFrame()
+	{
+		DirectX::XMStoreFloat4x4( &view_matrix, DirectX::XMMatrixIdentity() );
+		DirectX::XMStoreFloat4x4( &projection_matrix, DirectX::XMMatrixIdentity() );
+		light_direction[0] = XMFLOAT4( 0, 0, 0, 0 );
+		light_direction[1] = XMFLOAT4( 0, 0, 0, 0 );
+		light_color[0] = XMFLOAT4( 0, 0, 0, 0 );
+		light_color[1] = XMFLOAT4( 0, 0, 0, 0 );
+		ambient_light = XMFLOAT4( 0, 0, 0, 0 );
+	}
+
 } ConstantPerFrame;
 
 

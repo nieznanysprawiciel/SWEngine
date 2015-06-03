@@ -30,12 +30,6 @@ DisplayEngine::DisplayEngine(Engine* engine)
 	interpol_matrixes_count = 16;
 	interpolated_matrixes = new XMFLOAT4X4[interpol_matrixes_count];
 
-	shader_data_per_frame.light_direction[0] = XMFLOAT4( 0, 0, 0, 0 );
-	shader_data_per_frame.light_direction[1] = XMFLOAT4( 0, 0, 0, 0 );
-	shader_data_per_frame.light_color[0] = XMFLOAT4( 0, 0, 0, 0 );
-	shader_data_per_frame.light_color[1] = XMFLOAT4( 0, 0, 0, 0 );
-	shader_data_per_frame.ambient_light = XMFLOAT4( 0, 0, 0, 0 );
-
 	REGISTER_PERFORMANCE_TASK( SKYBOX_RENDERING )
 	REGISTER_PERFORMANCE_TASK( INSTANCE_OBJECT_RENDERING )
 	REGISTER_PERFORMANCE_TASK( DYNAMIC_OBJECT_RENDERING )
