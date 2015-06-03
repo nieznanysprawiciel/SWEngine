@@ -4,7 +4,7 @@
 @brief Plik zawiera deklaracjê klasy engine_interface.*/
 
 #include <queue>
-#include "..\Engine\DX11_interfaces_container.h"
+#include "DX11_interfaces_container.h"
 #include "MainEngine\TimeManager.h"
 
 

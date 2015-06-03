@@ -1,5 +1,4 @@
 #pragma once
-
 /**
 @file macros_switches.h
 @brief Ten plik zawiera makrodefinicje bêd¹ce prze³¹cznikami miêdzy ró¿nymi opcjami kompilacji.
@@ -7,6 +6,15 @@ Wiêkszoœæ z tych makrodefinicji pozwala na wybór jednej z opcji tylko tymczasowo
 w docelowej wersji silnika trzeba bêdzie siê zdecydowaæ na któr¹œ z nich.*/
 
 #include "types_definitions.h"
+
+///Definicje Rendererów. Nale¿y przypisaæ sta³ej ENABLE_RENDERER jedn¹ z poni¿szych wartoœci.
+#define DX11	0
+#define DX12	1
+
+
+///@def ENABLE_RENDERER
+///@brief Definiuje renderer, który bêdzie u¿ywany.
+#define ENABLE_RENDERER DX11
 
 extern const unsigned int FRAMES_PER_SEC_UPDATE;	///<Co tyle sekund aktualizujemy frames_per_sec.
 
