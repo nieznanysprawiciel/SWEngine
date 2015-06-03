@@ -9,6 +9,12 @@ za³¹czany jest plik z odpowiednim rendererem.
 
 #include "macros_switches.h"
 
+enum RENDERER_USAGE
+{
+	USE_AS_DEFERRED,
+	USE_AS_IMMEDIATE
+};
+
 
 #if ENABLE_RENDERER == DX11
 	#include "DisplayEngine\Renderer\DX11Renderer.h"

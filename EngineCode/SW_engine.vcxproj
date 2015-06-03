@@ -413,6 +413,8 @@
     <ClInclude Include="Engine\ControllersEngine\ControllersEngine.h" />
     <ClInclude Include="Engine\DisplayEngine\ConstantBuffersFormat.h" />
     <ClInclude Include="Engine\DisplayEngine\DisplayEngine.h" />
+    <ClInclude Include="Engine\DisplayEngine\Renderer\DX11Renderer.h" />
+    <ClInclude Include="Engine\DisplayEngine\Renderer\Renderer.h" />
     <ClInclude Include="Engine\DisplayEngine\SkyDome.h" />
     <ClInclude Include="Engine\DX11_interfaces_container.h" />
     <ClInclude Include="Engine\Engine.h" />
@@ -544,6 +546,9 @@
   <ItemGroup>
     <Image Include="small.ico" />
     <Image Include="SW_engine.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Engine\DisplayEngine\Renderer\DX11Renderer.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -25,7 +25,7 @@ void TimeManager::initTimer()
 	time_previous = timeTemp.QuadPart;
 
 	//FPS counter
-	elapsed_time = 0.0;
+	elapsed_time = 0;
 	frames = 0;
 
 	begin_time = time_previous;			// Poniewa¿ w³aœnie zainicjowaliœmy timer, to zapisujemy czas inicjacji.

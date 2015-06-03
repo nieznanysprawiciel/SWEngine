@@ -39,6 +39,9 @@
     <Filter Include="Source Files\EngineHelpers">
       <UniqueIdentifier>{a92fa370-613c-48bf-9b89-7c4ae7f99d02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\MainEngine\Renderer">
+      <UniqueIdentifier>{9ec6d297-3a85-4d74-9108-58efd1c8bb9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -154,6 +157,12 @@
     </ClInclude>
     <ClInclude Include="Engine\EngineHelpers\PerformanceCheck.h">
       <Filter>Source Files\EngineHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\DisplayEngine\Renderer\DX11Renderer.h">
+      <Filter>Source Files\MainEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\DisplayEngine\Renderer\Renderer.h">
+      <Filter>Source Files\MainEngine\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -275,5 +284,10 @@
     <ResourceCompile Include="Engine\SW_engine.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Engine\DisplayEngine\Renderer\DX11Renderer.inl">
+      <Filter>Source Files\MainEngine\Renderer</Filter>
+    </None>
   </ItemGroup>
 </Project>
