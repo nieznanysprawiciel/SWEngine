@@ -8,6 +8,7 @@
 #include "Interfaces\basic_interfaces.h"
 #include "ConstantBuffersFormat.h"
 #include "SkyDome.h"
+#include "Renderer\Renderer.h"
 
 void interpolate_position( float time_lag, const DynamicObject* object, DirectX::XMVECTOR& result_vector );
 void interpolate_orientation( float time_lag, const DynamicObject* object, DirectX::XMVECTOR& result_vector );
@@ -32,6 +33,8 @@ class DisplayEngine : public DX11_constant_buffers_container
 private:
 	Engine* engine;
 
+	std::vector<Renderer*>			renderers;		///< Zawiera wszystkie renderery. Ka¿dy odpowiada za jeden w¹tek renderuj¹cy.
+
 	ConstantPerFrame				shader_data_per_frame;		///<Bufor sta³ych zmiennych co ramkê animacji
 	CameraObject*					current_camera;				///<Akutalnie aktywna kamera
 	SkyDome*						sky_dome;					///<Klasa odpowiedzialna za kopu³ê nieba
@@ -45,7 +48,7 @@ public:
 	DisplayEngine(Engine* engine);
 	~DisplayEngine();
 
-	void init_const_buffers();
+	void initRenderer();
 
 	// G³ówna funkcja do wyœwietlania sceny
 	void display_scene( float time_interval, float time_lag );

@@ -20,7 +20,9 @@ const float FIXED_MOVE_UPDATE_INTERVAL = ((float)1 / (float)56);	///<Interwa³, p
 
 USE_PERFORMANCE_CHECK( RENDERING_TIME )
 USE_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
-USE_PERFORMANCE_CHECK( INTERPOLATION_TIME )
+#ifdef _INTERPOLATE_POSITIONS
+	USE_PERFORMANCE_CHECK( INTERPOLATION_TIME )
+#endif
 
 
 //----------------------------------------------------------------------------------------------//
@@ -32,7 +34,9 @@ Engine::Engine(HINSTANCE instance)
 {
 	REGISTER_PERFORMANCE_TASK(RENDERING_TIME)
 	REGISTER_PERFORMANCE_TASK(FRAME_COMPUTING_TIME)
+#ifdef _INTERPOLATE_POSITIONS
 	REGISTER_PERFORMANCE_TASK(INTERPOLATION_TIME)
+#endif
 
 	// Dziêki tej zmiennej bêdzie mo¿na wysy³aæ eventy
 	Object::set_engine( this );
@@ -147,7 +151,7 @@ int Engine::init_directX()
 		return result;
 
 
-	display_engine->init_const_buffers();
+	display_engine->initRenderer();
 
 	display_engine->set_projection_matrix( XMConvertToRadians( 45 ),
 										   (float)window_width / (float)window_height, 1, 100000 );

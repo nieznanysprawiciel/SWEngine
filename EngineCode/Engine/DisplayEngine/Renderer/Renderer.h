@@ -8,16 +8,15 @@ za³¹czany jest plik z odpowiednim rendererem.
 @attention Nigdy nie nale¿y includowaæ renderera bezpoœrednio. Zawsze za poœrednictwem tego pliku.*/
 
 #include "macros_switches.h"
+#include "RendererConstants.h"
 
-enum RENDERER_USAGE
-{
-	USE_AS_DEFERRED,
-	USE_AS_IMMEDIATE
-};
+#define RENDERER_H_INCLUDE
 
 
 #if ENABLE_RENDERER == DX11
 	#include "DisplayEngine\Renderer\DX11Renderer.h"
 #else
-	#error No renderer set. Define macro ENABLE_RENDERER in file macros_switches.h to one of right values.
+	#error Renderer nie zosta³ ustawiony. Zdefiniuj makro ENABLE_RENDERER w pliku macros_switches.h.
 #endif
+
+#undef RENDERER_H_INCLUDE

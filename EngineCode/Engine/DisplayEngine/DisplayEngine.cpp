@@ -48,6 +48,9 @@ DisplayEngine::~DisplayEngine()
 	for ( unsigned int i = 0; i < cameras.size(); ++i )
 		delete cameras[i];
 
+	for ( Renderer* renderer : renderers )
+		if ( renderer )		delete renderer;
+
 	//kasujemy tablicê interpolowanych macierzy
 	delete[] interpolated_matrixes;
 
@@ -55,12 +58,18 @@ DisplayEngine::~DisplayEngine()
 		delete sky_dome;
 }
 
-/**@brief Inicjuje bufory sta³ych. Przy okazji inicjuje te¿ stany z-bufora do szybkiego
-w³¹czania i wy³¹czania algorytmu.*/
-void DisplayEngine::init_const_buffers()
+/**@brief Inicjuje renderer (lub kilka je¿eli renderujemy wielow¹tkowo).
+Poza tym inicjuje bufory sta³ych. Przy okazji inicjuje te¿ stany z-bufora do szybkiego
+w³¹czania i wy³¹czania algorytmu.
+
+@todo Zrobiæ inicjacjê wielow¹tkow¹. Gdzieœ musi zostaæ podjêta decyzja o liczbie w¹tków.
+Trzeba pomyœleæ gdzie.*/
+void DisplayEngine::initRenderer()
 {
-	init_buffers( sizeof(ConstantPerFrame), sizeof( ConstantPerMesh ));
-	init_depth_states();
+	renderers.push_back( new Renderer( USE_AS_IMMEDIATE ) );		// Na razie nie robimy deferred renderingu.
+
+	renderers[0]->initBuffers( sizeof(ConstantPerFrame), sizeof( ConstantPerMesh ));
+	renderers[0]->initDepthStates();
 }
 
 
@@ -72,7 +81,9 @@ void DisplayEngine::init_const_buffers()
 
 @param[in] model ModelPart z którego pochodz¹ tekstury do ustawienia.
 @todo SetShaderResource mo¿na u¿yæ do ustawienia od razu ca³ej tablicy. Trzeba umo¿liwiæ ustawianie
-do VS i innych.*/
+do VS i innych.
+
+@deprecated Funkcjonalnoœæ przeniesiona do klasy Renderer.*/
 void DisplayEngine::set_textures( const ModelPart& model )
 {
 	for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
@@ -85,7 +96,9 @@ void DisplayEngine::set_textures( const ModelPart& model )
 
 /**@brief Ustawia w kontekœcie urz¹dzenia bufor indeksów.
 
-@param[in] buffer Bufor do ustawienia.*/
+@param[in] buffer Bufor do ustawienia.
+
+@deprecated Funkcjonalnoœæ przeniesiona do klasy Renderer.*/
 void DisplayEngine::set_index_buffer( BufferObject* buffer )
 {
 	// Ustawiamy bufor indeksów, je¿eli istnieje
@@ -103,7 +116,9 @@ void DisplayEngine::set_index_buffer( BufferObject* buffer )
 @param[in] buffer Bufor do ustawienia.
 @return Je¿eli bufor nie istnieje to zwraca wartoœæ true. Inaczej false.
 Wywo³anie if( set_vertex_buffer() ) ma zwróciæ tak¹ wartoœæ, ¿eby w ifie mo¿na by³o
-wywo³aæ return lub continue, w przypadku braku bufora.*/
+wywo³aæ return lub continue, w przypadku braku bufora.
+
+@deprecated Funkcjonalnoœæ przeniesiona do klasy Renderer.*/
 bool DisplayEngine::set_vertex_buffer( BufferObject* buffer )
 {
 	ID3D11Buffer* vertex_buffer = nullptr;
@@ -165,6 +180,8 @@ Zakres [0,1].
 */
 void DisplayEngine::display_scene(float time_interval, float time_lag)
 {
+	register Renderer* renderer = renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
+
 	set_view_matrix( time_lag );
 
 	// Ustawiamy bufor sta³y dla wszystkich meshy
@@ -174,20 +191,20 @@ void DisplayEngine::display_scene(float time_interval, float time_lag)
 	// D3D11_PRIMITIVE_TOPOLOGY_POINTLIST
 	// D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST
 	// D3D11_PRIMITIVE_TOPOLOGY_LINELIST
-	device_context->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+	renderer->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );		///<@todo Docelowo ma byæ w³asny zestaw sta³ych a nie DirectXowy. @see DX11Renderer
 
-	device_context->UpdateSubresource( const_per_frame, 0, nullptr, &shader_data_per_frame, 0, 0 );
-	device_context->VSSetConstantBuffers( 0, 1, &const_per_frame );
-	device_context->PSSetConstantBuffers( 0, 1, &const_per_frame );
+	renderer->UpdateSubresource( const_per_frame, &shader_data_per_frame );
+	renderer->VSSetConstantBuffers( 0, 1, &const_per_frame );
+	renderer->PSSetConstantBuffers( 0, 1, &const_per_frame );
 
 	// Ustawiamy sampler
-	device_context->PSSetSamplers( 0, 1, &default_sampler );
+	renderer->setDefaultSampler();
 
 	// Zaczynamy wyswietlanie
 	display_sky_box( time_interval, time_lag );
 
 	// Ustawiamy format wierzcho³ków
-	device_context->IASetInputLayout( default_vertex_layout );
+	renderer->setDefaultVertexLayout();
 
 	display_instanced_meshes( time_interval, time_lag );
 	display_dynamic_objects( time_interval, time_lag );
@@ -224,17 +241,19 @@ void DisplayEngine::display_dynamic_objects( float time_interval, float time_lag
 {
 	START_PERFORMANCE_CHECK( DYNAMIC_OBJECT_RENDERING )
 
+	register Renderer* renderer = renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
+
 	//na razie pêtla bez optymalizacji
 	for ( unsigned int i = 0; i < meshes.size( ); ++i )
 	{
 		register DynamicMeshObject* object = meshes[i];
 
 		// Ustawiamy bufor wierzcho³ków
-		if ( set_vertex_buffer( object->vertex_buffer ) )
+		if ( renderer->setVertexBuffer( object->vertex_buffer ) )
 			continue;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
 
 		// Ustawiamy bufor indeksów, je¿eli istnieje
-		set_index_buffer( object->index_buffer );
+		renderer->setIndexBuffer( object->index_buffer );
 
 
 #ifdef _INTERPOLATE_POSITIONS
@@ -265,23 +284,22 @@ void DisplayEngine::display_dynamic_objects( float time_interval, float time_lag
 			copy_material( &shader_data_per_mesh, &model );
 
 			// Ustawiamy shadery
-			device_context->VSSetShader( model.vertex_shader->get( ), nullptr, 0 );
-			device_context->PSSetShader( model.pixel_shader->get( ), nullptr, 0 );
+			renderer->setShaders( model );
 
 			// Aktualizujemy bufor sta³ych
-			device_context->UpdateSubresource( const_per_mesh, 0, nullptr, &shader_data_per_mesh, 0, 0 );
-			device_context->VSSetConstantBuffers( 1, 1, &const_per_mesh );
-			device_context->PSSetConstantBuffers( 1, 1, &const_per_mesh );
+			renderer->UpdateSubresource( const_per_mesh, &shader_data_per_mesh );
+			renderer->VSSetConstantBuffers( 1, 1, &const_per_mesh );
+			renderer->PSSetConstantBuffers( 1, 1, &const_per_mesh );
 
 			// Ustawiamy tekstury
-			set_textures( model );
+			renderer->setTextures( model );
 
 			// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
 			MeshPartObject* part = model.mesh;
 			if ( part->use_index_buf )
-				device_context->DrawIndexed( part->vertices_count, part->buffer_offset, part->base_vertex );
+				renderer->DrawIndexed( part->vertices_count, part->buffer_offset, part->base_vertex );
 			else // Tryb bezpoœredni
-				device_context->Draw( part->vertices_count, part->buffer_offset );
+				renderer->Draw( part->vertices_count, part->buffer_offset );
 		}
 
 	}
@@ -340,8 +358,11 @@ void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 	if ( !sky_dome )
 		return;
 
+	register Renderer* renderer = renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
+
+
 	// Ustawiamy format wierzcho³ków
-	device_context->IASetInputLayout( sky_dome->get_vertex_layout() );
+	renderer->IASetInputLayout( sky_dome->get_vertex_layout() );
 
 	// Aktualizuje bufor wierzcho³ków. Wstawiane s¹ nowe kolory.
 	// Powinna byæ to raczej rzadka czynnoœæ, poniewa¿ aktualizacja jest kosztowna czasowo
@@ -349,10 +370,10 @@ void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 		sky_dome->update_buffers();
 
 	// Ustawiamy bufor wierzcho³ków
-	if ( set_vertex_buffer( sky_dome->get_vertex_buffer() ) )
+	if ( renderer->setVertexBuffer( sky_dome->get_vertex_buffer() ) )
 		return;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
 	// Ustawiamy bufor indeksów, je¿eli istnieje
-	set_index_buffer( sky_dome->get_index_buffer() );
+	renderer->setIndexBuffer( sky_dome->get_index_buffer() );
 
 
 	ModelPart* model = sky_dome->get_model_part();
@@ -370,31 +391,30 @@ void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 	copy_material( &shader_data_per_mesh, model );
 
 	// Ustawiamy shadery
-	device_context->VSSetShader( model->vertex_shader->get( ), nullptr, 0 );
-	device_context->PSSetShader( model->pixel_shader->get( ), nullptr, 0 );
+	renderer->setShaders( *model );
 
 	// Aktualizujemy bufor sta³ych
-	device_context->UpdateSubresource( const_per_mesh, 0, nullptr, &shader_data_per_mesh, 0, 0 );
-	device_context->VSSetConstantBuffers( 1, 1, &const_per_mesh );
-	device_context->PSSetConstantBuffers( 1, 1, &const_per_mesh );
+	renderer->UpdateSubresource( const_per_mesh, &shader_data_per_mesh );
+	renderer->VSSetConstantBuffers( 1, 1, &const_per_mesh );
+	renderer->PSSetConstantBuffers( 1, 1, &const_per_mesh );
 
-	ID3D11Buffer* const_buffer = sky_dome->get_constant_buffer();
-	device_context->VSSetConstantBuffers( 2, 1, &const_buffer );
-	device_context->PSSetConstantBuffers( 2, 1, &const_buffer );
+	ID3D11Buffer* const_buffer = sky_dome->get_constant_buffer();	///< @todo Trzeba pobraæ tutaj BufferObject zamiast ID3D11Buffer.
+	renderer->VSSetConstantBuffers( 2, 1, &const_buffer );
+	renderer->PSSetConstantBuffers( 2, 1, &const_buffer );
 
 	// Ustawiamy tekstury
-	set_textures( *model );
+	renderer->setTextures( *model );
 
-	depth_buffer_enable( false );		// Wy³¹czamy z-bufor
+	renderer->depthBufferEnable( false );		///< Wy³¹czamy z-bufor. @todo To musi robiæ renderer.
 
 	// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
 	const MeshPartObject* part = model->mesh;
 	if ( part->use_index_buf )
-		device_context->DrawIndexed( part->vertices_count, part->buffer_offset, part->base_vertex );
+		renderer->DrawIndexed( part->vertices_count, part->buffer_offset, part->base_vertex );
 	else // Tryb bezpoœredni
-		device_context->Draw( part->vertices_count, part->buffer_offset );
+		renderer->Draw( part->vertices_count, part->buffer_offset );
 
-	depth_buffer_enable( true );		// W³¹czamy z-bufor spowrotem
+	renderer->depthBufferEnable( true );		///< W³¹czamy z-bufor spowrotem. @todo To musi robiæ renderer.
 
 	END_PERFORMANCE_CHECK( SKYBOX_RENDERING )
 }

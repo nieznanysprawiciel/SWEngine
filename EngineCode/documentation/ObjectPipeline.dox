@@ -10,14 +10,15 @@
 @code
 void Engine::render_frame()
 {
-	float time_interval;
-	time_controller( time_interval );
+	float time_interval = time_manager.onStartRenderFrame();
+	float lag = time_manager.getTimeLag();
 
 
-#ifdef FIXED_FRAMES_COUNT
 	while ( lag >= FIXED_MOVE_UPDATE_INTERVAL )
 	{
-		ui_engine->proceed_input( time_interval );
+		START_PERFORMANCE_CHECK(FRAME_COMPUTING_TIME)
+
+		ui_engine->proceed_input( FIXED_MOVE_UPDATE_INTERVAL );
 		physic_engine->proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );
 		controllers_engine->proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );
 		movement_engine->proceed_movement( FIXED_MOVE_UPDATE_INTERVAL );
@@ -26,21 +27,21 @@ void Engine::render_frame()
 		fable_engine->proceed_fable( FIXED_MOVE_UPDATE_INTERVAL );
 
 		lag -= FIXED_MOVE_UPDATE_INTERVAL;
-	}
-#else
-	ui_engine->proceed_input( time_interval );
-	physic_engine->proceed_physic(time_interval);
-	controllers_engine->proceed_controllers_pre(time_interval);
-	movement_engine->proceed_movement(time_interval);
-	controllers_engine->proceed_controllers_post(time_interval);
-	collision_engine->proceed_collisions(time_interval);
-	fable_engine->proceed_fable(time_interval);
+		time_manager.updateTimeLag( lag );
 
-#endif
+		END_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
+	}
+
 
 #ifdef _INTERPOLATE_POSITIONS
+	START_PERFORMANCE_CHECK( INTERPOLATION_TIME )
+
 	display_engine->interpolate_positions( lag / FIXED_MOVE_UPDATE_INTERVAL );
+
+	END_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 #endif
+
+	START_PERFORMANCE_CHECK(RENDERING_TIME)
 
 	//Renderujemy scenê oraz interfejs u¿ytkownika
 	begin_scene();
@@ -48,7 +49,10 @@ void Engine::render_frame()
 	display_engine->display_scene( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
 	ui_engine->draw_GUI( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
 
+	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
+
 	end_scene_and_present();
+}
 @endcode
 
 @subsection generalInfo Ogólne informacje
