@@ -394,7 +394,7 @@ typedef struct MaterialObject : public referenced_object
 
 
 //-------------------------------------------------------------------------------//
-//	Model3DFronFile
+//	Model3DFromFile
 
 
 
