@@ -164,7 +164,7 @@
     <ClInclude Include="Engine\DisplayEngine\Renderer\Renderer.h">
       <Filter>Source Files\MainEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\DisplayEngine\Renderer\RendererConstants.h">
+    <ClInclude Include="Engine\DisplayEngine\Renderer\IRenderer.h">
       <Filter>Source Files\MainEngine\Renderer</Filter>
     </ClInclude>
   </ItemGroup>

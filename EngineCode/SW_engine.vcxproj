@@ -415,7 +415,7 @@
     <ClInclude Include="Engine\DisplayEngine\DisplayEngine.h" />
     <ClInclude Include="Engine\DisplayEngine\Renderer\DX11Renderer.h" />
     <ClInclude Include="Engine\DisplayEngine\Renderer\Renderer.h" />
-    <ClInclude Include="Engine\DisplayEngine\Renderer\RendererConstants.h" />
+    <ClInclude Include="Engine\DisplayEngine\Renderer\IRenderer.h" />
     <ClInclude Include="Engine\DisplayEngine\SkyDome.h" />
     <ClInclude Include="Engine\DX11_interfaces_container.h" />
     <ClInclude Include="Engine\Engine.h" />

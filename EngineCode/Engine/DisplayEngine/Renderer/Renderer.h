@@ -8,9 +8,11 @@ za³¹czany jest plik z odpowiednim rendererem.
 @attention Nigdy nie nale¿y includowaæ renderera bezpoœrednio. Zawsze za poœrednictwem tego pliku.*/
 
 #include "macros_switches.h"
-#include "RendererConstants.h"
+
 
 #define RENDERER_H_INCLUDE
+
+#include "IRenderer.h"
 
 
 #if ENABLE_RENDERER == DX11

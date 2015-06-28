@@ -48,13 +48,13 @@ public:
 	DisplayEngine(Engine* engine);
 	~DisplayEngine();
 
-	void initRenderer();
+	void InitRenderer();
 
 	// G³ówna funkcja do wyœwietlania sceny
 	void display_scene( float time_interval, float time_lag );
 	// Funkcja do interpolacji pozycji obiektów
 	void interpolate_positions(float time_lag);
-	void set_projection_matrix(float angle, float X_to_Y, float near_plane, float far_plane);
+	void SetProjectionMatrix(float angle, float X_to_Y, float near_plane, float far_plane);
 
 	// Zarz¹dzanie meshami
 	void add_dynamic_mesh_object( DynamicMeshObject* object );

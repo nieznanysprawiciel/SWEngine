@@ -264,7 +264,7 @@ class CameraObject : public DynamicObject
 protected:
 	DirectX::XMFLOAT4X4		projection_matrix;		///<Macierz projekcji. Dla ka¿dej kamery mo¿e byæ inna. @attention Na razie nieu¿ywane. Macierz projekcji jest ustawiana na sta³e w DisplayEngine.
 public:
-	void set_projection_matrix( float angle, float X_to_Y, float near_plane, float far_plane );
+	void SetProjectionMatrix( float angle, float X_to_Y, float near_plane, float far_plane );
 };
 
 /**@brief Klasa bazowa dla wszystkich kontrolerów dla obiektów.*/

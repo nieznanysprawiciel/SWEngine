@@ -13,17 +13,17 @@ inline DX11Renderer::DX11Renderer( RENDERER_USAGE usage )
 
 	if ( usage == RENDERER_USAGE::USE_AS_IMMEDIATE )
 	{
-		local_device_context = device_context;
-		valid = true;
+		m_localDeviceContext = device_context;
+		m_valid = true;
 	}
 	else if ( usage == RENDERER_USAGE::USE_AS_DEFERRED )		// Will not work, if the device was created with the D3D11_CREATE_DEVICE_SINGLETHREADED value.
 	{
-		device->CreateDeferredContext( 0, &local_device_context );
-		valid = true;
+		device->CreateDeferredContext( 0, &m_localDeviceContext );
+		m_valid = true;
 	}
 	else
 	{
-		valid = false;
+		m_valid = false;
 		assert( false );
 	}
 }
@@ -31,9 +31,9 @@ inline DX11Renderer::DX11Renderer( RENDERER_USAGE usage )
 
 inline DX11Renderer::~DX11Renderer()
 {
-	if ( usage_type == RENDERER_USAGE::USE_AS_DEFERRED )	/// Tylko w takim wypadku alokowaliœmy nowy kontekst. Inaczej zwalanianie nale¿y do klasy DX11_interfaces_container.
-		if ( local_device_context )
-			local_device_context->Release();
+	if ( m_usageType == RENDERER_USAGE::USE_AS_DEFERRED )	/// Tylko w takim wypadku alokowaliœmy nowy kontekst. Inaczej zwalanianie nale¿y do klasy DX11_interfaces_container.
+		if ( m_localDeviceContext )
+			m_localDeviceContext->Release();
 }
 
 
@@ -42,20 +42,20 @@ inline DX11Renderer::~DX11Renderer()
 @param[in] model ModelPart z którego pochodz¹ tekstury do ustawienia.
 @todo SetShaderResource mo¿na u¿yæ do ustawienia od razu ca³ej tablicy. Trzeba umo¿liwiæ ustawianie
 do VS i innych.*/
-inline void DX11Renderer::setTextures( const ModelPart& model )
+inline void DX11Renderer::SetTextures( const ModelPart& model )
 {
 	for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
 		if ( model.texture[i] )		// Nie ka¿da tekstura w tablicy istnieje
 		{
 			ID3D11ShaderResourceView* tex = model.texture[i]->get();
-			local_device_context->PSSetShaderResources( i, 1, &tex );
+			m_localDeviceContext->PSSetShaderResources( i, 1, &tex );
 		}
 }
 
 /**@brief Ustawia w kontekœcie urz¹dzenia bufor indeksów.
 
 @param[in] buffer Bufor do ustawienia.*/
-inline void DX11Renderer::setIndexBuffer( BufferObject* buffer )
+inline void DX11Renderer::SetIndexBuffer( BufferObject* buffer )
 {
 	// Ustawiamy bufor indeksów, je¿eli istnieje
 	ID3D11Buffer* indexBuffer = nullptr;
@@ -63,7 +63,7 @@ inline void DX11Renderer::setIndexBuffer( BufferObject* buffer )
 	{
 		indexBuffer = buffer->get();
 		unsigned int offset = 0;
-		local_device_context->IASetIndexBuffer( indexBuffer, INDEX_BUFFER_FORMAT, offset );
+		m_localDeviceContext->IASetIndexBuffer( indexBuffer, INDEX_BUFFER_FORMAT, offset );
 	}
 }
 
@@ -74,14 +74,14 @@ inline void DX11Renderer::setIndexBuffer( BufferObject* buffer )
 @return Je¿eli bufor nie istnieje to zwraca wartoœæ true. Inaczej false.
 Wywo³anie if( set_vertex_buffer() ) ma zwróciæ tak¹ wartoœæ, ¿eby w ifie mo¿na by³o
 wywo³aæ return lub continue, w przypadku braku bufora.*/
-inline bool DX11Renderer::setVertexBuffer( BufferObject* buffer, unsigned int offset )
+inline bool DX11Renderer::SetVertexBuffer( BufferObject* buffer, unsigned int offset )
 {
 	ID3D11Buffer* vertexBuffer = nullptr;
 	if ( buffer )
 	{
 		vertexBuffer = buffer->get();
 		unsigned int stride = buffer->get_stride();
-		local_device_context->IASetVertexBuffers( 0, 1, &vertexBuffer, &stride, &offset );
+		m_localDeviceContext->IASetVertexBuffers( 0, 1, &vertexBuffer, &stride, &offset );
 
 		return false;
 	}
@@ -92,43 +92,43 @@ inline bool DX11Renderer::setVertexBuffer( BufferObject* buffer, unsigned int of
 /**@brief Funkcja w³¹cza lub wy³¹cza z-bufor.
 
 @param[in] state True je¿eli z-bufor ma byæ w³¹czony, false je¿eli wy³¹czony.*/
-inline void DX11Renderer::depthBufferEnable( bool state )
+inline void DX11Renderer::DepthBufferEnable( bool state )
 {
 	if ( state )
-		local_device_context->OMSetDepthStencilState( depth_enabled, 1 );
+		m_localDeviceContext->OMSetDepthStencilState( depth_enabled, 1 );
 	else
-		local_device_context->OMSetDepthStencilState( depth_disabled, 1 );
+		m_localDeviceContext->OMSetDepthStencilState( depth_disabled, 1 );
 }
 
 /**@brief Ustawia domyœlny layout z DX11_interfaces_container.
 
 @todo Wymyœleæ lepsz¹ implementacjê i sposób przechowywania layoutów.*/
-inline void DX11Renderer::setDefaultVertexLayout()
+inline void DX11Renderer::SetDefaultVertexLayout()
 {
-	local_device_context->IASetInputLayout( default_vertex_layout );
+	m_localDeviceContext->IASetInputLayout( default_vertex_layout );
 }
 
 /**@brief Ustawia domyœlny sampler z DX11_interfaces_container.
 
 @todo Wymyœleæ lepsz¹ implementacjê i sposób przechowywania samplerów. (W zasadzie mo¿na je definiowaæ w shaderach.)*/
-inline void DX11Renderer::setDefaultSampler()
+inline void DX11Renderer::SetDefaultSampler()
 {
-	local_device_context->PSSetSamplers( 0, 1, &default_sampler );
+	m_localDeviceContext->PSSetSamplers( 0, 1, &default_sampler );
 }
 
 /**@brief Inicjuje bufory sta³ych dla shaderów.
 
 @todo: Ta funkcja powinna znikn¹æ. Bufory powinny byæ inicjowane w DisplayEngine, ale jako BufferObject,
 a nie bufory DirectXowe.*/
-inline void DX11Renderer::initBuffers( unsigned int size_per_frame, unsigned int size_per_mesh )
+inline void DX11Renderer::InitBuffers( unsigned int sizePerFrame, unsigned int sizePerMesh )
 {
-	init_buffers( size_per_frame, size_per_mesh );
+	init_buffers( sizePerFrame, sizePerMesh );
 }
 
 /**@brief Inicjuje pomocnicze stany bufora g³êbokoœci (do w³¹czania i wy³¹czania depth testu)
 
 @todo To trzeba za³atwiaæ w jakiœ bardziej elegancki sposób.*/
-inline void DX11Renderer::initDepthStates()
+inline void DX11Renderer::InitDepthStates()
 {
 	init_depth_states();
 }
@@ -144,7 +144,7 @@ Po wiêcej informacji wysy³am do MSDNu.
 Nale¿y zrobiæ w³asny zestaw sta³ych, ¿eby uniezale¿niæ interfejs renderera od implementacji.*/
 inline void DX11Renderer::IASetPrimitiveTopology( D3D_PRIMITIVE_TOPOLOGY topology )
 {
-	local_device_context->IASetPrimitiveTopology( topology );
+	m_localDeviceContext->IASetPrimitiveTopology( topology );
 }
 
 /**@brief Funkcja robi dok³adnie to samo, co tak samo nazywaj¹ca siê funkcja DirectXa.
@@ -154,7 +154,7 @@ Po wiêcej informacji wysy³am do MSDNu.
 Trzeba coœ z tym zrobiæ. Nie wiem co*/
 inline void DX11Renderer::IASetInputLayout( ID3D11InputLayout *pInputLayout )
 {
-	local_device_context->IASetInputLayout( pInputLayout );
+	m_localDeviceContext->IASetInputLayout( pInputLayout );
 }
 
 /**@brief Funkcja robi dok³adnie to samo, co tak samo nazywaj¹ca siê funkcja DirectXa.
@@ -162,9 +162,9 @@ Po wiêcej informacji wysy³am do MSDNu.
 
 @deprecated Powinniœmy u¿yæ bufora silnikowego, a nie DirectXowego, ¿eby ukryæ implementacjê.
 Funkcja zniknie w póŸniejszej wersji.*/
-inline void DX11Renderer::VSSetConstantBuffers( UINT StartSlot, UINT NumBuffers, ID3D11Buffer *const *ppConstantBuffers )
+inline void DX11Renderer::VSSetConstantBuffers( UINT startSlot, UINT numBuffers, ID3D11Buffer *const *ppConstantBuffers )
 {
-	local_device_context->VSSetConstantBuffers( StartSlot, NumBuffers, ppConstantBuffers );
+	m_localDeviceContext->VSSetConstantBuffers( startSlot, numBuffers, ppConstantBuffers );
 }
 
 /**@brief Funkcja robi dok³adnie to samo, co tak samo nazywaj¹ca siê funkcja DirectXa.
@@ -172,25 +172,25 @@ Po wiêcej informacji wysy³am do MSDNu.
 
 @deprecated Powinniœmy u¿yæ bufora silnikowego, a nie DirectXowego, ¿eby ukryæ implementacjê.
 Funkcja zniknie w póŸniejszej wersji.*/
-inline void DX11Renderer::PSSetConstantBuffers( UINT StartSlot, UINT NumBuffers, ID3D11Buffer *const *ppConstantBuffers )
+inline void DX11Renderer::PSSetConstantBuffers( UINT startSlot, UINT numBuffers, ID3D11Buffer *const *ppConstantBuffers )
 {
-	local_device_context->PSSetConstantBuffers( StartSlot, NumBuffers, ppConstantBuffers );
+	m_localDeviceContext->PSSetConstantBuffers( startSlot, numBuffers, ppConstantBuffers );
 }
 
 /**@brief Funkcja robi dok³adnie to samo, co tak samo nazywaj¹ca siê funkcja DirectXa.
 Po wiêcej informacji wysy³am do MSDNu.*/
-inline void DX11Renderer::VSSetConstantBuffers( UINT StartSlot, UINT NumBuffers, BufferObject* buffer )
+inline void DX11Renderer::VSSetConstantBuffers( UINT startSlot, UINT numBuffers, BufferObject* buffer )
 {
 	ID3D11Buffer* directXBuffer = buffer->get();
-	local_device_context->VSSetConstantBuffers( StartSlot, NumBuffers, &directXBuffer );
+	m_localDeviceContext->VSSetConstantBuffers( startSlot, numBuffers, &directXBuffer );
 }
 
 /**@brief Funkcja robi dok³adnie to samo, co tak samo nazywaj¹ca siê funkcja DirectXa.
 Po wiêcej informacji wysy³am do MSDNu.*/
-inline void DX11Renderer::PSSetConstantBuffers( UINT StartSlot, UINT NumBuffers, BufferObject* buffer )
+inline void DX11Renderer::PSSetConstantBuffers( UINT startSlot, UINT numBuffers, BufferObject* buffer )
 {
 	ID3D11Buffer* directXBuffer = buffer->get();
-	local_device_context->PSSetConstantBuffers( StartSlot, NumBuffers, &directXBuffer );
+	m_localDeviceContext->PSSetConstantBuffers( startSlot, numBuffers, &directXBuffer );
 }
 
 /**@brief Funkcja robi dok³adnie to samo, co tak samo nazywaj¹ca siê funkcja DirectXa.
@@ -200,13 +200,13 @@ Po wiêcej informacji wysy³am do MSDNu.
 sam siê updatowaæ.*/
 inline void DX11Renderer::UpdateSubresource( ID3D11Resource *pDstResource, const void *pSrcData )
 {
-	local_device_context->UpdateSubresource( pDstResource, 0, nullptr, pSrcData, 0, 0 );
+	m_localDeviceContext->UpdateSubresource( pDstResource, 0, nullptr, pSrcData, 0, 0 );
 }
 
-inline void DX11Renderer::setShaders( ModelPart& model )
+inline void DX11Renderer::SetShaders( ModelPart& model )
 {
-	local_device_context->VSSetShader( model.vertex_shader->get(), nullptr, 0 );
-	local_device_context->PSSetShader( model.pixel_shader->get(), nullptr, 0 );
+	m_localDeviceContext->VSSetShader( model.vertex_shader->get(), nullptr, 0 );
+	m_localDeviceContext->PSSetShader( model.pixel_shader->get(), nullptr, 0 );
 }
 
 //----------------------------------------------------------------------------------------------//
@@ -215,15 +215,15 @@ inline void DX11Renderer::setShaders( ModelPart& model )
 
 /**@brief Funkcja robi dok³adnie to samo, co tak samo nazywaj¹ca siê funkcja DirectXa.
 Po wiêcej informacji wysy³am do MSDNu.*/
-inline void DX11Renderer::Draw( unsigned int VertexCount, unsigned int StartVertexLocation )
+inline void DX11Renderer::Draw( unsigned int vertexCount, unsigned int startVertexLocation )
 {
-	local_device_context->Draw( VertexCount, StartVertexLocation );
+	m_localDeviceContext->Draw( vertexCount, startVertexLocation );
 }
 
 /**@brief Funkcja robi dok³adnie to samo, co tak samo nazywaj¹ca siê funkcja DirectXa.
 Po wiêcej informacji wysy³am do MSDNu.*/
-inline void DX11Renderer::DrawIndexed( unsigned int IndexCount, unsigned int StartIndexLocation, int BaseVertexLocation )
+inline void DX11Renderer::DrawIndexed( unsigned int indexCount, unsigned int startIndexLocation, int baseVertexLocation )
 {
-	local_device_context->DrawIndexed( IndexCount, StartIndexLocation, BaseVertexLocation );
+	m_localDeviceContext->DrawIndexed( indexCount, startIndexLocation, baseVertexLocation );
 }
 

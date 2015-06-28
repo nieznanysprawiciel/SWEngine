@@ -64,12 +64,12 @@ w³¹czania i wy³¹czania algorytmu.
 
 @todo Zrobiæ inicjacjê wielow¹tkow¹. Gdzieœ musi zostaæ podjêta decyzja o liczbie w¹tków.
 Trzeba pomyœleæ gdzie.*/
-void DisplayEngine::initRenderer()
+void DisplayEngine::InitRenderer()
 {
 	renderers.push_back( new Renderer( USE_AS_IMMEDIATE ) );		// Na razie nie robimy deferred renderingu.
 
-	renderers[0]->initBuffers( sizeof(ConstantPerFrame), sizeof( ConstantPerMesh ));
-	renderers[0]->initDepthStates();
+	renderers[0]->InitBuffers( sizeof(ConstantPerFrame), sizeof( ConstantPerMesh ));
+	renderers[0]->InitDepthStates();
 }
 
 
@@ -77,6 +77,7 @@ void DisplayEngine::initRenderer()
 //							Funkcje pomocnicze do renderingu
 //-------------------------------------------------------------------------------//
 
+#ifndef __UNUSED
 /**@brief Funkcja ustawia tesktury z danego ModelParta w DirectXie.
 
 @param[in] model ModelPart z którego pochodz¹ tekstury do ustawienia.
@@ -134,6 +135,8 @@ bool DisplayEngine::set_vertex_buffer( BufferObject* buffer )
 	return true;
 }
 
+#endif
+
 /**@brief kopiuje materia³ do struktury, która pos³u¿y do zaktualizowania bufora sta³ych.
 
 @param[in] shader_data_per_mesh Struktura docelowa.
@@ -148,6 +151,7 @@ void DisplayEngine::copy_material( ConstantPerMesh* shader_data_per_mesh, const 
 	shader_data_per_mesh->Power = material->Power;
 }
 
+#ifndef __UNUSED
 /**@brief Funkcja w³¹cza lub wy³¹cza z-bufor.
 
 @param[in] state True je¿eli z-bufor ma byæ w³¹czony, false je¿eli wy³¹czony.*/
@@ -158,6 +162,7 @@ void DisplayEngine::depth_buffer_enable( bool state )
 	else
 		device_context->OMSetDepthStencilState( depth_disabled, 1 );
 }
+#endif
 
 //-------------------------------------------------------------------------------//
 //							W³aœciwe funkcje do renderingu
@@ -198,13 +203,13 @@ void DisplayEngine::display_scene(float time_interval, float time_lag)
 	renderer->PSSetConstantBuffers( 0, 1, &const_per_frame );
 
 	// Ustawiamy sampler
-	renderer->setDefaultSampler();
+	renderer->SetDefaultSampler();
 
 	// Zaczynamy wyswietlanie
 	display_sky_box( time_interval, time_lag );
 
 	// Ustawiamy format wierzcho³ków
-	renderer->setDefaultVertexLayout();
+	renderer->SetDefaultVertexLayout();
 
 	display_instanced_meshes( time_interval, time_lag );
 	display_dynamic_objects( time_interval, time_lag );
@@ -249,11 +254,11 @@ void DisplayEngine::display_dynamic_objects( float time_interval, float time_lag
 		register DynamicMeshObject* object = meshes[i];
 
 		// Ustawiamy bufor wierzcho³ków
-		if ( renderer->setVertexBuffer( object->vertex_buffer ) )
+		if ( renderer->SetVertexBuffer( object->vertex_buffer ) )
 			continue;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
 
 		// Ustawiamy bufor indeksów, je¿eli istnieje
-		renderer->setIndexBuffer( object->index_buffer );
+		renderer->SetIndexBuffer( object->index_buffer );
 
 
 #ifdef _INTERPOLATE_POSITIONS
@@ -284,7 +289,7 @@ void DisplayEngine::display_dynamic_objects( float time_interval, float time_lag
 			copy_material( &shader_data_per_mesh, &model );
 
 			// Ustawiamy shadery
-			renderer->setShaders( model );
+			renderer->SetShaders( model );
 
 			// Aktualizujemy bufor sta³ych
 			renderer->UpdateSubresource( const_per_mesh, &shader_data_per_mesh );
@@ -292,7 +297,7 @@ void DisplayEngine::display_dynamic_objects( float time_interval, float time_lag
 			renderer->PSSetConstantBuffers( 1, 1, &const_per_mesh );
 
 			// Ustawiamy tekstury
-			renderer->setTextures( model );
+			renderer->SetTextures( model );
 
 			// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
 			MeshPartObject* part = model.mesh;
@@ -370,10 +375,10 @@ void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 		sky_dome->update_buffers();
 
 	// Ustawiamy bufor wierzcho³ków
-	if ( renderer->setVertexBuffer( sky_dome->get_vertex_buffer() ) )
+	if ( renderer->SetVertexBuffer( sky_dome->get_vertex_buffer() ) )
 		return;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
 	// Ustawiamy bufor indeksów, je¿eli istnieje
-	renderer->setIndexBuffer( sky_dome->get_index_buffer() );
+	renderer->SetIndexBuffer( sky_dome->get_index_buffer() );
 
 
 	ModelPart* model = sky_dome->get_model_part();
@@ -391,7 +396,7 @@ void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 	copy_material( &shader_data_per_mesh, model );
 
 	// Ustawiamy shadery
-	renderer->setShaders( *model );
+	renderer->SetShaders( *model );
 
 	// Aktualizujemy bufor sta³ych
 	renderer->UpdateSubresource( const_per_mesh, &shader_data_per_mesh );
@@ -403,9 +408,9 @@ void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 	renderer->PSSetConstantBuffers( 2, 1, &const_buffer );
 
 	// Ustawiamy tekstury
-	renderer->setTextures( *model );
+	renderer->SetTextures( *model );
 
-	renderer->depthBufferEnable( false );		///< Wy³¹czamy z-bufor. @todo To musi robiæ renderer.
+	renderer->DepthBufferEnable( false );		///< Wy³¹czamy z-bufor. @todo To musi robiæ renderer.
 
 	// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
 	const MeshPartObject* part = model->mesh;
@@ -414,7 +419,7 @@ void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 	else // Tryb bezpoœredni
 		renderer->Draw( part->vertices_count, part->buffer_offset );
 
-	renderer->depthBufferEnable( true );		///< W³¹czamy z-bufor spowrotem. @todo To musi robiæ renderer.
+	renderer->DepthBufferEnable( true );		///< W³¹czamy z-bufor spowrotem. @todo To musi robiæ renderer.
 
 	END_PERFORMANCE_CHECK( SKYBOX_RENDERING )
 }
@@ -456,7 +461,7 @@ display_scene ustawiana jest macierz zapisana w tym polu.
 @param[in] X_to_Y Stosunek Szerokoœci do wysokoœci ekranu
 @param[in] near_plane Bli¿sza p³aszczyzna obcinania
 @param[in] far_plane Dalsza p³aszczyzna obcinania*/
-void DisplayEngine::set_projection_matrix(float angle, float X_to_Y, float near_plane, float far_plane)
+void DisplayEngine::SetProjectionMatrix(float angle, float X_to_Y, float near_plane, float far_plane)
 {
 	XMMATRIX proj_matrix = XMMatrixPerspectiveFovLH(angle, X_to_Y, near_plane, far_plane);
 	proj_matrix = XMMatrixTranspose( proj_matrix );

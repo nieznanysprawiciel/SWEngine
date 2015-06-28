@@ -386,7 +386,7 @@ BaseInputController::~BaseInputController(){};
 @param[in] X_to_Y Stosunek Szerokoœci do wysokoœci ekranu
 @param[in] near_plane Bli¿sza p³aszczyzna obcinania
 @param[in] far_plane Dalsza p³aszczyzna obcinania*/
-void CameraObject::set_projection_matrix( float angle, float X_to_Y, float near_plane, float far_plane )
+void CameraObject::SetProjectionMatrix( float angle, float X_to_Y, float near_plane, float far_plane )
 {
 	XMMATRIX proj_matrix = XMMatrixPerspectiveFovLH( angle, X_to_Y, near_plane, far_plane );
 	proj_matrix = XMMatrixTranspose( proj_matrix );

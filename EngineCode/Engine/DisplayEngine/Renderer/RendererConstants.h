@@ -1,9 +1,0 @@
-#pragma once
-
-enum RENDERER_USAGE
-{
-	USE_AS_DEFERRED,
-	USE_AS_IMMEDIATE
-};
-
-
