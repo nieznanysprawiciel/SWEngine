@@ -3,10 +3,10 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <RootDir>$(SolutionDir)..\</RootDir>
-    <GameReleaseDir>$(SolutionDir)..\GameRelease\</GameReleaseDir>
-    <GameLibDir>$(SolutionDir)..\EngineLib\</GameLibDir>
-    <EngineBuildDir>$(SolutionDir)..\EngineBuildDir\</EngineBuildDir>
-    <EngineSourceDir>$(SolutionDir)\Engine\</EngineSourceDir>
+    <GameReleaseDir>$(RootDir)GameRelease\</GameReleaseDir>
+    <GameLibDir>$(RootDir)EngineLib\</GameLibDir>
+    <EngineBuildDir>$(RootDir)EngineBuildDir\</EngineBuildDir>
+    <EngineSourceDir>$(RootDir)EngineCode\Engine\</EngineSourceDir>
     <EngineDir>$(RootDir)EngineCode\</EngineDir>
     <EngineLibName>SW_engine_$(Configuration)_$(PlatformShortName)</EngineLibName>
     <BuildFolder>SW_$(Configuration)_$(PlatformShortName)</BuildFolder>
@@ -14,7 +14,7 @@
     <EntryPointLink>$(GameLibDir)SW_engine_static_lib_$(Configuration)_$(PlatformShortName).lib</EntryPointLink>
     <XGUIDir>$(RootDir)DirectXGUI\</XGUIDir>
     <XGUIBuildFolder>XGUI_$(Configuration)_$(PlatformShortName)</XGUIBuildFolder>
-    <XGUILibDir>$(SolutionDir)..\DirectXGUILib\</XGUILibDir>
+    <XGUILibDir>$(RootDir)DirectXGUILib\</XGUILibDir>
     <XGUILibName>XGUI_$(Configuration)_$(PlatformShortName)</XGUILibName>
     <XGUIIncludeDir>$(XGUIDir)XGUIcode\include\</XGUIIncludeDir>
   </PropertyGroup>

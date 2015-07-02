@@ -241,10 +241,13 @@ class TextureObject : public ITexture
 	friend ObjectDeleter<TextureObject>;
 private:
 protected:
+	std::wstring				m_fileName;		///<Plik, z którego powsta³a tekstura lub po prostu nazwa tekstury, je¿eli zosta³a wygenerowana.
+
 	//¯eby unikn¹æ pomy³ki, obiekt mo¿e byœ kasowany tylko przez ModelsManager. Zapewnia to ObjectDeleter.
 	~TextureObject() default;
 public:
-	TextureObject( unsigned int id );
+	TextureObject();
+	std::wstring&	GetFileName() { return m_fileName; }		///<Zwraca nazwê pliku, który pos³u¿y³ do stworzenia obiektu.
 
 	inline bool operator==(const TextureObject& object);
 	inline bool operator==(const std::wstring& file_name);
@@ -252,6 +255,20 @@ public:
 	static TextureObject* create_from_file( const std::wstring& file_name );
 };
 
+
+/**Klasa dla render targetów.
+
+Klasa jest jednoczeœnie tekstur¹. Umo¿liwia ustawienie zarówno jako tekstura
+obiektu, jak i bufor do renderowania.*/
+class RenderTargetObject : public TextureObject, public IRenderTarget
+{
+private:
+
+protected:
+
+public:
+
+};
 
 
 /** @brief Klasa przechowuj¹ca vertex shader*/

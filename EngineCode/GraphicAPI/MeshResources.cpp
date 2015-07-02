@@ -136,8 +136,8 @@ VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& fi
 //								TextureObject													//
 //----------------------------------------------------------------------------------------------//
 
-TextureObject::TextureObject(unsigned int id)
-	: referenced_object(id)
+TextureObject::TextureObject()
+	: referenced_object( WRONG_ID )
 {
 }
 
