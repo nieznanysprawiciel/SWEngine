@@ -208,7 +208,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>vs2013\x86\debug\libfbxsdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib;$(DXSDK_DIR)\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\EngineCore\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib;$(DXSDK_DIR)\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <BuildLog>
@@ -230,7 +230,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Dinput8.lib;d3dx9.lib;vs2013\x86\debug\libfbxsdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib;$(DXSDK_DIR)\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\EngineCore\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib;$(DXSDK_DIR)\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <BuildLog>
@@ -238,7 +238,7 @@
     </BuildLog>
     <Lib>
       <AdditionalDependencies>vs2013\x86\debug\libfbxsdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;$(ProjectDir)\EngineCore\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib</AdditionalLibraryDirectories>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalOptions>/ignore:4006 /ignore:4221 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
@@ -257,7 +257,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>\vs2013\x64\debug\libfbxsdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib;$(DXSDK_DIR)\Lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\EngineCore\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib;$(DXSDK_DIR)\Lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <BuildLog>
@@ -278,7 +278,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Dinput8.lib;d3dx9.lib;vs2013\x64\debug\libfbxsdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib;$(DXSDK_DIR)\Lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\EngineCore\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib;$(DXSDK_DIR)\Lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
     <BuildLog>
@@ -287,7 +287,7 @@
     <Lib>
       <AdditionalDependencies>\vs2013\x64\debug\libfbxsdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4006 /ignore:4221 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x64;$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x64;$(ProjectDir)\EngineCore\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -308,7 +308,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;$(ProjectDir)\EngineCore\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>vs2013\x86\release\libfbxsdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -334,7 +334,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;$(ProjectDir)\EngineCore\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Dinput8.lib;d3dx9.lib;vs2013\x86\release\libfbxsdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -344,7 +344,7 @@
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalDependencies>vs2013\x86\release\libfbxsdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x86;$(ProjectDir)\EngineCore\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4006 /ignore:4221 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -365,7 +365,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x64;$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x64;$(ProjectDir)\EngineCore\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>vs2013\x64\release\libfbxsdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
@@ -390,7 +390,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x64;$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x64;$(ProjectDir)\EngineCore\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Dinput8.lib;d3d9.lib;d3dx9.lib;vs2013\x64\release\libfbxsdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
       <AdditionalOptions>/ignore:4006 /ignore:4221 %(AdditionalOptions)</AdditionalOptions>
@@ -400,7 +400,7 @@
     </BuildLog>
     <Lib>
       <AdditionalDependencies>vs2013\x64\release\libfbxsdk.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x64;$(ProjectDir)\Engine\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\x64;$(ProjectDir)\EngineCore\ModelsManager\Loaders\FBX_files_loader\FBX_SDK\lib</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4006 /ignore:4221 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
   </ItemDefinitionGroup>
@@ -408,70 +408,70 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\CollisionEngine\CollisionEngine.h" />
-    <ClInclude Include="Engine\ControllersEngine\camera_controller_PROTOTYPE.h" />
-    <ClInclude Include="Engine\ControllersEngine\ControllersEngine.h" />
-    <ClInclude Include="Engine\DisplayEngine\ConstantBuffersFormat.h" />
-    <ClInclude Include="Engine\DisplayEngine\DisplayEngine.h" />
-    <ClInclude Include="Engine\DisplayEngine\Renderer\DX11Renderer.h" />
-    <ClInclude Include="Engine\DisplayEngine\Renderer\Renderer.h" />
-    <ClInclude Include="Engine\DisplayEngine\Renderer\IRenderer.h" />
-    <ClInclude Include="Engine\DisplayEngine\SkyDome.h" />
-    <ClInclude Include="Engine\DX11_interfaces_container.h" />
+    <ClInclude Include="EngineCore\CollisionEngine\CollisionEngine.h" />
+    <ClInclude Include="EngineCore\ControllersEngine\camera_controller_PROTOTYPE.h" />
+    <ClInclude Include="EngineCore\ControllersEngine\ControllersEngine.h" />
+    <ClInclude Include="EngineCore\DisplayEngine\ConstantBuffersFormat.h" />
+    <ClInclude Include="EngineCore\DisplayEngine\DisplayEngine.h" />
+    <ClInclude Include="EngineCore\DisplayEngine\Renderer\DX11Renderer.h" />
+    <ClInclude Include="EngineCore\DisplayEngine\Renderer\Renderer.h" />
+    <ClInclude Include="EngineCore\DisplayEngine\Renderer\IRenderer.h" />
+    <ClInclude Include="EngineCore\DisplayEngine\SkyDome.h" />
+    <ClInclude Include="EngineCore\DX11_interfaces_container.h" />
     <ClInclude Include="Engine\Engine.h" />
-    <ClInclude Include="Engine\EngineHelpers\PerformanceCheck.h" />
-    <ClInclude Include="Engine\Engine\Events\Event.h" />
-    <ClInclude Include="Engine\FableEngine\ActorCreator.h" />
-    <ClInclude Include="Engine\FableEngine\FableEngine.h" />
-    <ClInclude Include="Engine\Features\HosekSkylightModel\ArHosekSkyModelData_RGB.h" />
-    <ClInclude Include="Engine\Features\HosekSkylightModel\HosekSkyDome.h" />
-    <ClInclude Include="Engine\Features\HosekSkylightModel\HosekSkyModel.h" />
-    <ClInclude Include="Engine\MainEngine\TimeManager.h" />
-    <ClInclude Include="Engine\ModelsManager\Loaders\FBX_files_loader\FBX_loader.h" />
-    <ClInclude Include="Engine\ModelsManager\Loaders\loader_interface.h" />
-    <ClInclude Include="Engine\ModelsManager\meshes_textures_materials.h" />
-    <ClInclude Include="Engine\ModelsManager\ModelsManager.h" />
-    <ClInclude Include="Engine\ModelsManager\ResourceContainer.h" />
-    <ClInclude Include="Engine\MovementEngine\MovementEngine.h" />
-    <ClInclude Include="Engine\ObjectDeleter.h" />
-    <ClInclude Include="Engine\PhysicEngine\PhysicEngine.h" />
-    <ClInclude Include="Engine\SoundEngine\SoundEngine.h" />
-    <ClInclude Include="Engine\types_definitions.h" />
-    <ClInclude Include="Engine\UI_Engine\InputAbstractionLayer.h" />
-    <ClInclude Include="Engine\UI_Engine\UI_Engine.h" />
-    <ClInclude Include="Engine\Interfaces\basic_interfaces.h" />
-    <ClInclude Include="Engine\Interfaces\EngineInterface.h" />
+    <ClInclude Include="EngineCore\EngineHelpers\PerformanceCheck.h" />
+    <ClInclude Include="Engine\EngineCore\Events\Event.h" />
+    <ClInclude Include="EngineCore\FableEngine\ActorCreator.h" />
+    <ClInclude Include="EngineCore\FableEngine\FableEngine.h" />
+    <ClInclude Include="EngineCore\Features\HosekSkylightModel\ArHosekSkyModelData_RGB.h" />
+    <ClInclude Include="EngineCore\Features\HosekSkylightModel\HosekSkyDome.h" />
+    <ClInclude Include="EngineCore\Features\HosekSkylightModel\HosekSkyModel.h" />
+    <ClInclude Include="EngineCore\MainEngine\TimeManager.h" />
+    <ClInclude Include="EngineCore\ModelsManager\Loaders\FBX_files_loader\FBX_loader.h" />
+    <ClInclude Include="EngineCore\ModelsManager\Loaders\loader_interface.h" />
+    <ClInclude Include="EngineCore\ModelsManager\meshes_textures_materials.h" />
+    <ClInclude Include="EngineCore\ModelsManager\ModelsManager.h" />
+    <ClInclude Include="EngineCore\ModelsManager\ResourceContainer.h" />
+    <ClInclude Include="EngineCore\MovementEngineCore\MovementEngine.h" />
+    <ClInclude Include="EngineCore\ObjectDeleter.h" />
+    <ClInclude Include="EngineCore\PhysicEngine\PhysicEngine.h" />
+    <ClInclude Include="EngineCore\SoundEngine\SoundEngine.h" />
+    <ClInclude Include="EngineCore\types_definitions.h" />
+    <ClInclude Include="EngineCore\UI_Engine\InputAbstractionLayer.h" />
+    <ClInclude Include="EngineCore\UI_Engine\UI_Engine.h" />
+    <ClInclude Include="EngineCore\Interfaces\basic_interfaces.h" />
+    <ClInclude Include="EngineCore\Interfaces\EngineInterface.h" />
     <ClInclude Include="Interfaces\GamePlay.h" />
-    <ClInclude Include="Engine\macros_switches.h" />
-    <ClInclude Include="Engine\memory_leaks.h" />
-    <ClInclude Include="Engine\Resource.h" />
+    <ClInclude Include="EngineCore\macros_switches.h" />
+    <ClInclude Include="EngineCore\memory_leaks.h" />
+    <ClInclude Include="EngineCore\Resource.h" />
     <ClInclude Include="SW_engine.h" />
-    <ClInclude Include="Engine\stdafx.h" />
-    <ClInclude Include="Engine\targetver.h" />
+    <ClInclude Include="EngineCore\stdafx.h" />
+    <ClInclude Include="EngineCore\targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Engine\CollisionEngine\CollisionEngine.cpp" />
-    <ClCompile Include="Engine\ControllersEngine\camera_controller_PROTOTYPE.cpp" />
-    <ClCompile Include="Engine\ControllersEngine\ControllersEngine.cpp">
+    <ClCompile Include="EngineCore\CollisionEngine\CollisionEngine.cpp" />
+    <ClCompile Include="EngineCore\ControllersEngine\camera_controller_PROTOTYPE.cpp" />
+    <ClCompile Include="EngineCore\ControllersEngine\ControllersEngine.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Engine\DisplayEngine\DisplayEngine.cpp" />
-    <ClCompile Include="Engine\DX11_interfaces_container.cpp" />
-    <ClCompile Include="Engine\Engine.cpp" />
-    <ClCompile Include="Engine\EngineHelpers\PerformanceCheck.cpp" />
-    <ClCompile Include="Engine\EngineInterface.cpp" />
-    <ClCompile Include="Engine\EngineWindowFunctions.cpp" />
-    <ClCompile Include="Engine\Events\Event.cpp">
+    <ClCompile Include="EngineCore\DisplayEngine\DisplayEngine.cpp" />
+    <ClCompile Include="EngineCore\DX11_interfaces_container.cpp" />
+    <ClCompile Include="EngineCore\Engine.cpp" />
+    <ClCompile Include="EngineCore\EngineHelpers\PerformanceCheck.cpp" />
+    <ClCompile Include="EngineCore\EngineInterface.cpp" />
+    <ClCompile Include="EngineCore\EngineWindowFunctions.cpp" />
+    <ClCompile Include="EngineCore\Events\Event.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="Engine\FableEngine\ActorCreator.cpp" />
-    <ClCompile Include="Engine\FableEngine\FableEngine.cpp" />
-    <ClCompile Include="Engine\Features\HosekSkylightModel\HosekSkyDome.cpp" />
-    <ClCompile Include="Engine\Features\HosekSkylightModel\HosekSkylightModel.cpp" />
-    <ClCompile Include="Engine\macros_switches.cpp">
+    <ClCompile Include="EngineCore\FableEngine\ActorCreator.cpp" />
+    <ClCompile Include="EngineCore\FableEngine\FableEngine.cpp" />
+    <ClCompile Include="EngineCore\Features\HosekSkylightModel\HosekSkyDome.cpp" />
+    <ClCompile Include="EngineCore\Features\HosekSkylightModel\HosekSkylightModel.cpp" />
+    <ClCompile Include="EngineCore\macros_switches.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -481,56 +481,56 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Engine\MainEngine\TimeManager.cpp" />
-    <ClCompile Include="Engine\ModelsManager\BufferObject.cpp" />
-    <ClCompile Include="Engine\ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
+    <ClCompile Include="EngineCore\MainEngine\TimeManager.cpp" />
+    <ClCompile Include="EngineCore\ModelsManager\BufferObject.cpp" />
+    <ClCompile Include="EngineCore\ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="Engine\ModelsManager\MaterialObject.cpp">
+    <ClCompile Include="EngineCore\ModelsManager\MaterialObject.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="Engine\ModelsManager\MeshPartObject.cpp">
+    <ClCompile Include="EngineCore\ModelsManager\MeshPartObject.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="Engine\ModelsManager\Model3DFromFile.cpp">
+    <ClCompile Include="EngineCore\ModelsManager\Model3DFromFile.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="Engine\ModelsManager\ModelsManager.cpp">
+    <ClCompile Include="EngineCore\ModelsManager\ModelsManager.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="Engine\ModelsManager\PixelShaderObject.cpp" />
-    <ClCompile Include="Engine\ModelsManager\TextureObject.cpp">
+    <ClCompile Include="EngineCore\ModelsManager\PixelShaderObject.cpp" />
+    <ClCompile Include="EngineCore\ModelsManager\TextureObject.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="Engine\ModelsManager\VertexShaderObject.cpp" />
-    <ClCompile Include="Engine\ModelsManager\vertex_layouts.cpp" />
-    <ClCompile Include="Engine\MovementEngine\MovementEngine.cpp" />
-    <ClCompile Include="Engine\PhysicEngine\PhysicEngine.cpp" />
-    <ClCompile Include="Engine\SoundEngine\SoundEngine.cpp" />
-    <ClCompile Include="Engine\UI_Engine\InputAbstractionLayer.cpp" />
-    <ClCompile Include="Engine\UI_Engine\UI_Engine.cpp" />
-    <ClCompile Include="Engine\UI_Engine\UI_Engine_AbstractionLayers.cpp" />
-    <ClCompile Include="Engine\Interfaces\basic_interfaces.cpp" />
-    <ClCompile Include="Engine\SW_engine.cpp" />
-    <ClCompile Include="Engine\stdafx.cpp">
+    <ClCompile Include="EngineCore\ModelsManager\VertexShaderObject.cpp" />
+    <ClCompile Include="EngineCore\ModelsManager\vertex_layouts.cpp" />
+    <ClCompile Include="EngineCore\MovementEngine\MovementEngine.cpp" />
+    <ClCompile Include="EngineCore\PhysicEngine\PhysicEngine.cpp" />
+    <ClCompile Include="EngineCore\SoundEngine\SoundEngine.cpp" />
+    <ClCompile Include="EngineCore\UI_Engine\InputAbstractionLayer.cpp" />
+    <ClCompile Include="EngineCore\UI_Engine\UI_Engine.cpp" />
+    <ClCompile Include="EngineCore\UI_Engine\UI_Engine_AbstractionLayers.cpp" />
+    <ClCompile Include="EngineCore\Interfaces\basic_interfaces.cpp" />
+    <ClCompile Include="EngineCore\SW_engine.cpp" />
+    <ClCompile Include="EngineCore\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -542,14 +542,14 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Engine\SW_engine.rc" />
+    <ResourceCompile Include="EngineCore\SW_engine.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico" />
     <Image Include="SW_engine.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Engine\DisplayEngine\Renderer\DX11Renderer.inl" />
+    <None Include="EngineCore\DisplayEngine\Renderer\DX11Renderer.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

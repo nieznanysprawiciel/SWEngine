@@ -6,7 +6,7 @@
     <GameReleaseDir>$(RootDir)GameRelease\</GameReleaseDir>
     <GameLibDir>$(RootDir)EngineLib\</GameLibDir>
     <EngineBuildDir>$(RootDir)EngineBuildDir\</EngineBuildDir>
-    <EngineSourceDir>$(RootDir)EngineCode\Engine\</EngineSourceDir>
+    <EngineSourceDir>$(RootDir)EngineCode\EngineCore\</EngineSourceDir>
     <EngineDir>$(RootDir)EngineCode\</EngineDir>
     <EngineLibName>SW_engine_$(Configuration)_$(PlatformShortName)</EngineLibName>
     <BuildFolder>SW_$(Configuration)_$(PlatformShortName)</BuildFolder>
