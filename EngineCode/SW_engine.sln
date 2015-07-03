@@ -9,6 +9,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EntryPoint", "..\GameCode\E
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectXGUI", "..\DirectXGUI\DirectXGUI.vcxproj", "{A1818AD0-1A11-4E7F-B548-349699A56F66}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DX11API", "..\Projects\DX11API\DX11API.vcxproj", "{44643D7F-1C71-41C1-B452-B2DC5E088A58}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GraphicAPI", "GraphicAPI", "{9634F687-32C9-4597-9A29-FD49A2B9BB5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -24,7 +28,6 @@ Global
 		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}.Debug|Win32.ActiveCfg = static_lib_release|x64
 		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}.Debug|Win32.Build.0 = static_lib_release|x64
 		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}.Debug|x64.ActiveCfg = Debug|Win32
-		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}.Debug|x64.Build.0 = Debug|Win32
 		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}.Release|Mixed Platforms.ActiveCfg = Release|Win32
 		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}.Release|Win32.ActiveCfg = static_lib_release|Win32
@@ -51,8 +54,21 @@ Global
 		{A1818AD0-1A11-4E7F-B548-349699A56F66}.Release|Win32.ActiveCfg = Release|Win32
 		{A1818AD0-1A11-4E7F-B548-349699A56F66}.Release|Win32.Build.0 = Release|Win32
 		{A1818AD0-1A11-4E7F-B548-349699A56F66}.Release|x64.ActiveCfg = Release|Win32
+		{44643D7F-1C71-41C1-B452-B2DC5E088A58}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{44643D7F-1C71-41C1-B452-B2DC5E088A58}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{44643D7F-1C71-41C1-B452-B2DC5E088A58}.Debug|Win32.ActiveCfg = Debug|Win32
+		{44643D7F-1C71-41C1-B452-B2DC5E088A58}.Debug|Win32.Build.0 = Debug|Win32
+		{44643D7F-1C71-41C1-B452-B2DC5E088A58}.Debug|x64.ActiveCfg = Debug|x64
+		{44643D7F-1C71-41C1-B452-B2DC5E088A58}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{44643D7F-1C71-41C1-B452-B2DC5E088A58}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{44643D7F-1C71-41C1-B452-B2DC5E088A58}.Release|Win32.ActiveCfg = Release|Win32
+		{44643D7F-1C71-41C1-B452-B2DC5E088A58}.Release|Win32.Build.0 = Release|Win32
+		{44643D7F-1C71-41C1-B452-B2DC5E088A58}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{44643D7F-1C71-41C1-B452-B2DC5E088A58} = {9634F687-32C9-4597-9A29-FD49A2B9BB5F}
 	EndGlobalSection
 EndGlobal
