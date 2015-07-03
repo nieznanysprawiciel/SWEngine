@@ -10,6 +10,7 @@
     <EngineBuildDir>$(RootDir)EngineBuildDir\</EngineBuildDir>
     <EngineSourceDir>$(RootDir)EngineCode\</EngineSourceDir>
     <EngineLibName>SWEngine_$(Configuration)_$(PlatformShortName)</EngineLibName>
+    <CommonDir>$(EngineSourceDir)Common\</CommonDir>
     <BuildFolder>$(EngineShortcut)_$(Configuration)_$(PlatformShortName)</BuildFolder>
     <EngineCoreName>EngineCore</EngineCoreName>
     <EngineCoreSourceDir>$(EngineSourceDir)$(EngineCoreName)\</EngineCoreSourceDir>
@@ -46,6 +47,10 @@
     </BuildMacro>
     <BuildMacro Include="EngineLibName">
       <Value>$(EngineLibName)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="CommonDir">
+      <Value>$(CommonDir)</Value>
       <EnvironmentVariable>true</EnvironmentVariable>
     </BuildMacro>
     <BuildMacro Include="BuildFolder">
