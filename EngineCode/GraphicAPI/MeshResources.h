@@ -5,10 +5,12 @@
 
 
 #include "Common\ObjectDeleter.h"
+#include "Common\macros_switches.h"
 #include "ReferencedObject.h"
 #include "ITexture.h"
 #include "IShader.h"
 #include "IBuffer.h"
+#include "IRenderTarget.h"
 #include "DirectXMath.h"
 
 
@@ -249,8 +251,8 @@ public:
 	TextureObject();
 	std::wstring&	GetFileName() { return m_fileName; }		///<Zwraca nazwê pliku, który pos³u¿y³ do stworzenia obiektu.
 
-	inline bool operator==(const TextureObject& object);
-	inline bool operator==(const std::wstring& file_name);
+	inline bool operator==( TextureObject& object );
+	inline bool operator==( const std::wstring& file_name );
 
 	static TextureObject* create_from_file( const std::wstring& file_name );
 };

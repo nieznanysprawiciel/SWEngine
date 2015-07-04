@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ReferencedObject.h"
 #include <string>
 
 class IShader	:	public referenced_object
@@ -8,6 +9,9 @@ private:
 protected:
 	std::string				m_shaderEntry;			///< Nazwa g³ownej funkcji shadera.
 	std::wstring			m_shaderFile;			///< Œcie¿ka do pliku z shaderem.
+protected:
+	IShader() : referenced_object( 0 ) {}
+
 public:
 	virtual ~IShader();
 

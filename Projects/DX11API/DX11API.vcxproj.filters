@@ -82,6 +82,9 @@
     <ClInclude Include="..\..\EngineCode\Common\types_definitions.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11APIObjects.h">
+      <Filter>Source Files\DX11API\DX11Initializer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\GraphicAPI\MeshResources.cpp">
@@ -107,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11VertexShader.cpp">
       <Filter>Source Files\DX11API\DX11Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11APIObjects.cpp">
+      <Filter>Source Files\DX11API\DX11Initializer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

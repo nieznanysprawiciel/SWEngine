@@ -5,7 +5,6 @@
 //----------------------------------------------------------------------------------------------//
 
 PixelShaderObject::PixelShaderObject()
-: referenced_object( WRONG_ID )
 {
 }
 
@@ -30,7 +29,6 @@ PixelShaderObject* PixelShaderObject::create_from_file( const std::wstring& file
 //----------------------------------------------------------------------------------------------//
 
 VertexShaderObject::VertexShaderObject()
-: referenced_object( WRONG_ID )
 {
 }
 
@@ -137,7 +135,6 @@ VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& fi
 //----------------------------------------------------------------------------------------------//
 
 TextureObject::TextureObject()
-	: referenced_object( WRONG_ID )
 {
 }
 
@@ -147,9 +144,9 @@ TextureObject::TextureObject()
 
 Obiekty s¹ takie same, kiedy odwo³uj¹ siê do tego samego pliku.
 */
-bool TextureObject::operator==(const TextureObject& object)
+bool TextureObject::operator==( TextureObject& object)
 {
-	if (this->file_path == object.file_path)
+	if (this->GetFileName() == object.GetFileName())
 		return true;
 	return false;
 }
@@ -160,7 +157,7 @@ Obiekty s¹ takie same, kiedy odwo³uj¹ siê do tego samego pliku.
 */
 bool TextureObject::operator==(const std::wstring& file_name)
 {
-	if (this->file_path == file_name)
+	if (this->GetFileName() == file_name)
 		return true;
 	return false;
 }
@@ -180,7 +177,6 @@ TextureObject* TextureObject::create_from_file( const std::wstring& file_name )
 //----------------------------------------------------------------------------------------------//
 
 BufferObject::BufferObject( unsigned int element_size )
-: referenced_object( WRONG_ID )
 {
 }
 
@@ -252,8 +248,8 @@ void MaterialObject::set_null_material( )
 bool MaterialObject::operator==(const MaterialObject& object)
 {
 	if (*this == object.material)
-		return TRUE;
-	return FALSE;
+		return true;
+	return false;
 }
 
 bool MaterialObject::operator==(const D3DMATERIAL9& object)
@@ -262,26 +258,26 @@ bool MaterialObject::operator==(const D3DMATERIAL9& object)
 		|| material.Diffuse.b != object.Diffuse.b
 		|| material.Diffuse.g != object.Diffuse.g
 		|| material.Diffuse.r != object.Diffuse.r)
-		return FALSE;
+		return false;
 	if (material.Ambient.a != object.Ambient.a
 		|| material.Ambient.b != object.Ambient.b
 		|| material.Ambient.g != object.Ambient.g
 		|| material.Ambient.r != object.Ambient.r)
-		return FALSE;
+		return false;
 	if (material.Emissive.a != object.Emissive.a
 		|| material.Emissive.b != object.Emissive.b
 		|| material.Emissive.g != object.Emissive.g
 		|| material.Emissive.r != object.Emissive.r)
-		return FALSE;
+		return false;
 	if (material.Specular.a != object.Specular.a
 		|| material.Specular.b != object.Specular.b
 		|| material.Specular.g != object.Specular.g
 		|| material.Specular.r != object.Specular.r)
-		return FALSE;
+		return false;
 	if (material.Power != object.Power)
-		return FALSE;
+		return false;
 
-	return TRUE;;
+	return true;
 }
 
 #endif

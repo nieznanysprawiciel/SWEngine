@@ -163,6 +163,7 @@
     <ClInclude Include="..\..\EngineCode\Common\memory_leaks.h" />
     <ClInclude Include="..\..\EngineCode\Common\ObjectDeleter.h" />
     <ClInclude Include="..\..\EngineCode\Common\types_definitions.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11APIObjects.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11Buffer.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11ComputeShader.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11PixelShader.h" />
@@ -179,6 +180,7 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcesFactory.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11APIObjects.cpp" />
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11Buffer.cpp" />
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11ComputeShader.cpp" />
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11PixelShader.cpp" />
