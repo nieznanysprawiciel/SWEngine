@@ -2,7 +2,7 @@
 #include "DX11_interfaces_container.h"
 
 
-#include "memory_leaks.h"
+#include "Common\memory_leaks.h"
 
 //----------------------------------------------------------------------------------------------//
 //								Zmienne statyczne klasy											//

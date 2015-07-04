@@ -116,7 +116,7 @@ an updated version of this code has been published!
 #endif
 
 
-#include "memory_leaks.h"
+#include "Common\memory_leaks.h"
 
 using namespace DirectX;
 

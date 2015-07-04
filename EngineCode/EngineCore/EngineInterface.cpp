@@ -2,7 +2,7 @@
 #include "Engine.h"
 
 
-#include "memory_leaks.h"
+#include "Common\memory_leaks.h"
 
 
 /*Plik zawiera implementacjê interfejsu engine_interface dla klasy Engine*/

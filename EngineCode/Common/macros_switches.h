@@ -18,7 +18,7 @@ w docelowej wersji silnika trzeba bêdzie siê zdecydowaæ na któr¹œ z nich.*/
 
 
 
-extern const unsigned int FRAMES_PER_SEC_UPDATE;	///<Co tyle sekund aktualizujemy frames_per_sec.
+static const unsigned int FRAMES_PER_SEC_UPDATE = 10;			///<Co tyle sekund aktualizujemy frames_per_sec.
 
 ///@def _INTERPOLATE_POSITIONS
 ///@brief W³¹cza funkcjê interpoluj¹ca po³o¿enia obiektów.
@@ -45,9 +45,16 @@ Je¿eli to makro nie jest zdefiniowane, to prêdkoœæ obrotowa jest wyra¿ona jako w
 //#define INDEX_BUFFER_UINT16		// Definiujemy czy chcemy mieæ bufor indeksów 16-bitowy czy 32-bitowy
 #define INDEX_BUFFER_UINT32			// Wybraæ tylko jedno, inaczej bêdzie b³¹d kompilacji
 
-extern const unsigned int VERTICIES_MAX_COUNT;		///<Zawiera maksymalny rozmiar bufora indeksów, czyli jednoczeœnie liczbê wierzcho³ków mesha.
+#if defined(INDEX_BUFFER_UINT16)
+	static const unsigned int VERTICIES_MAX_COUNT = 0xFFFF;
+#elif defined(INDEX_BUFFER_UINT32)
+	static const unsigned int VERTICIES_MAX_COUNT = 0xFFFFFFFF;
+#else
+	static const unsigned int VERTICIES_MAX_COUNT = 0xFFFFFFFF;
+#endif
 
-extern const char* PERFORMANCE_STATISTICS_FILE_PATH;		///<Klasa PerformanceCheck bêdzie wysy³a³a tutaj zarejestrowane dane.
+
+static const char* PERFORMANCE_STATISTICS_FILE_PATH = "logs/performance.txt";
 
 ///@typedef VERT_INDEX
 ///@brief Definiujemy typ w buforze indeksów.

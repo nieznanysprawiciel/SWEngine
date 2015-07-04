@@ -1,5 +1,19 @@
 #include "ResourcesFactory.h"
 
+#if ENABLE_RENDERER == DX11
+	#include "DX11API/DX11VertexShader.h"
+	#include "DX11API/DX11PixelShader.h"
+	#include "DX11API/DX11Buffer.h"
+	#include "DX11API/DX11Texture.h"
+
+	typedef DX11Texture				Texture;
+	typedef DX11VertexShader		VertexShader;
+	typedef DX11PixelShader			PixelShader;
+	typedef DX11Buffer				Buffer;
+#else
+	#error Nie zdefiniowano API graficznego. Zdefiniuj makro ENABLE_RENDERER w pliku macros_switches.h.
+#endif
+
 
 
 TextureObject*			ResourcesFactory::CreateTextureFromFile( const std::wstring& fileName )

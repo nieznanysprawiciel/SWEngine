@@ -7,7 +7,7 @@
 #include "Engine.h"
 
 
-#include "memory_leaks.h"
+#include "Common\memory_leaks.h"
 
 
 Engine* Object::engine = nullptr;		//po stworzeniu obiektu klasy Engine, zmienna ta jest uzupe³niana wskaxnikiem this

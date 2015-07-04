@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TimeManager.h"
 
-#include "memory_leaks.h"
+#include "Common\memory_leaks.h"
 
 /**@brief Kontruktor inicjuje wartoœci frames i frames_per_sec na 0.*/
 TimeManager::TimeManager()

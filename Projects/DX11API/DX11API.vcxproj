@@ -158,6 +158,36 @@
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\EngineCode\Common\macros_switches.h" />
+    <ClInclude Include="..\..\EngineCode\Common\memory_leaks.h" />
+    <ClInclude Include="..\..\EngineCode\Common\ObjectDeleter.h" />
+    <ClInclude Include="..\..\EngineCode\Common\types_definitions.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11Buffer.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11ComputeShader.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11PixelShader.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11RenderTarget.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11Texture.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11VertexShader.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IBuffer.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderTarget.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IShader.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ITexture.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IVertexLayout.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\MeshResources.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ReferencedObject.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcesFactory.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11Buffer.cpp" />
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11ComputeShader.cpp" />
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11PixelShader.cpp" />
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11RenderTarget.cpp" />
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11Texture.cpp" />
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11VertexShader.cpp" />
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\MeshResources.cpp" />
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\ResourcesFactory.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

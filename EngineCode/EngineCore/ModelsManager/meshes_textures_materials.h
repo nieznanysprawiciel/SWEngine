@@ -5,7 +5,7 @@
 
 
 #include "DX11_interfaces_container.h"
-#include "ObjectDeleter.h"
+#include "Common\ObjectDeleter.h"
 
 //definicje
 #define WRONG_ID						0

@@ -4,11 +4,11 @@
 @brief plik zawieta deklaracje foramtów wierzcho³ków, klas zawieraj¹cych assety oraz Model3DFromFile.*/
 
 
-#include "ObjectDeleter.h"
+#include "Common\ObjectDeleter.h"
 #include "ReferencedObject.h"
-#include "Interfaces/ITexture.h"
-#include "Interfaces/IShader.h"
-#include "Interfaces/IBuffer.h"
+#include "ITexture.h"
+#include "IShader.h"
+#include "IBuffer.h"
 #include "DirectXMath.h"
 
 

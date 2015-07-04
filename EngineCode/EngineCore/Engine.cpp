@@ -11,7 +11,7 @@ oraz g³ówne funkcje do renderingu.
 
 #include "EngineHelpers\PerformanceCheck.h"
 
-#include "memory_leaks.h"
+#include "Common\memory_leaks.h"
 
 
 

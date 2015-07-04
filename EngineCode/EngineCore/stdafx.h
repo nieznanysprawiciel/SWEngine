@@ -35,7 +35,7 @@
 #include <d3dx11.h>
 #pragma warning( default : 4005 )
 
-#include "macros_switches.h"
+#include "Common\macros_switches.h"
 
 //#ifdef SHOW_MEMORY_LEAKS
 //	#define _CRTDBG_MAP_ALLOC

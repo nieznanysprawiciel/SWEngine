@@ -9,7 +9,7 @@ WinAPI oraz g³ówn¹ pêtlê programu @ref Engine::main_loop.
 
 
 
-#include "memory_leaks.h"
+#include "Common\memory_leaks.h"
 
 
 

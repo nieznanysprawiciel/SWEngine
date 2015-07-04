@@ -7,7 +7,7 @@ za³¹czany jest plik z odpowiednim rendererem.
 
 @attention Nigdy nie nale¿y includowaæ renderera bezpoœrednio. Zawsze za poœrednictwem tego pliku.*/
 
-#include "macros_switches.h"
+#include "Common\macros_switches.h"
 
 
 #define RENDERER_H_INCLUDE

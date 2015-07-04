@@ -3,7 +3,7 @@
 czasu zu¿ywanego na wykonanie wybranych zadañ.*/
 
 #include <string>
-#include "types_definitions.h"
+#include "Common\types_definitions.h"
 
 
 

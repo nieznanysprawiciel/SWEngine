@@ -2,4 +2,13 @@
 
 
 
+class IBuffer
+{
+private:
+
+protected:
+
+public:
+
+};
 

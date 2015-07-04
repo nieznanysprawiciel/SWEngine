@@ -3,7 +3,7 @@
 
 using namespace DirectX;
 
-#include "memory_leaks.h"
+#include "Common\memory_leaks.h"
 
 /**@brief Opis wierzcho³ka SkyDomeVertex.*/
 D3D11_INPUT_ELEMENT_DESC SkyDomeVertex_desc[] =

@@ -6,7 +6,7 @@
 ModelsManager* Model3DFromFile::models_manager = nullptr;
 
 
-#include "memory_leaks.h"
+#include "Common\memory_leaks.h"
 
 //-------------------------------------------------------------------------------//
 //							wersja DirectX11

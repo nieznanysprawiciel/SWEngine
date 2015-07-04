@@ -40,7 +40,7 @@ public:
 	inline void set_id( unsigned int id ) { unique_id = id; }	///<Ustawia identyfikator obiektu
 
 	//sprawdza czy mo¿na zwolniæ zmienn¹
-	bool can_delete( unsigned int& file_ref, unsigned int& other_ref );
+	inline bool can_delete( unsigned int& file_ref, unsigned int& other_ref );
 
 	/*Funkcje s³u¿¹ce do zarz¹dzania odwo³aniami.
 	*Nale¿y pilnowaæ, aby wszystkie funkcje, które modyfikuj¹ jakiekolwiek przypisania obiektów
@@ -89,6 +89,6 @@ bool referenced_object::can_delete(unsigned int& file_ref, unsigned int& other_r
 	other_ref = object_references;
 
 	if (file_references == 0 && object_references == 0)
-		return TRUE;
-	return FALSE;
+		return true;
+	return false;
 }

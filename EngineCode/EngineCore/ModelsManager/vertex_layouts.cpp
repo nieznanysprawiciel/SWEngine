@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include "meshes_textures_materials.h"
 
-#include "memory_leaks.h"
+#include "Common\memory_leaks.h"
 
 // Opis s³u¿¹cy do stworzenia layoutu zrozumia³ego dla shaderów.
 // Ten format wierzcho³ka jest docelowo przeznaczony do przetrzymywania standardowych

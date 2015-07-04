@@ -4,7 +4,7 @@
 #include "Interfaces\basic_interfaces.h"
 
 
-#include "memory_leaks.h"
+#include "Common\memory_leaks.h"
 
 
 /**@brief Funkcja ustawia domyœlne warstwy abstrakcji w klasie UI_engine.*/

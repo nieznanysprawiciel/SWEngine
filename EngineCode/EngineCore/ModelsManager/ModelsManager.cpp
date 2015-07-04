@@ -3,10 +3,10 @@
 #include "Engine.h"
 #include "Loaders\loader_interface.h"
 #include "Loaders\FBX_files_loader\FBX_loader.h"
-#include "ObjectDeleter.h"
+#include "Common\ObjectDeleter.h"
 
 
-#include "memory_leaks.h"
+#include "Common\memory_leaks.h"
 
 //-------------------------------------------------------------------------------//
 //							wersja DirectX11

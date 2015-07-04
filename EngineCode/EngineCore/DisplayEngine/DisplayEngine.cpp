@@ -9,7 +9,7 @@
 #include "EngineHelpers\PerformanceCheck.h"
 
 
-#include "memory_leaks.h"
+#include "Common\memory_leaks.h"
 
 
 USE_PERFORMANCE_CHECK( SKYBOX_RENDERING )

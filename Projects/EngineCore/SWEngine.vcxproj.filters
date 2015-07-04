@@ -42,14 +42,14 @@
     <Filter Include="Source Files\MainEngine\Renderer">
       <UniqueIdentifier>{9ec6d297-3a85-4d74-9108-58efd1c8bb9a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{3428394e-015c-411c-8168-bf68a509f622}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(EngineCoreSourceDir)ObjectDeleter.h">
-      <Filter>Source Files\MainEngine</Filter>
-    </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
       <Filter>Source Files\Sound</Filter>
     </ClInclude>
@@ -122,16 +122,7 @@
     <ClInclude Include="$(EngineCoreSourceDir)Resource.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)memory_leaks.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)macros_switches.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)Interfaces\basic_interfaces.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)types_definitions.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)FableEngine\ActorCreator.h">
@@ -166,6 +157,18 @@
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)SW_engine.h">
       <Filter>Source Files\MainEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\types_definitions.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\macros_switches.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\memory_leaks.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ObjectDeleter.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -259,9 +262,6 @@
     <ClCompile Include="$(EngineCoreSourceDir)Events\Event.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)macros_switches.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)FableEngine\ActorCreator.cpp">
       <Filter>Source Files\GamePlay</Filter>
     </ClCompile>
@@ -274,14 +274,6 @@
     <ClCompile Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.cpp">
       <Filter>Source Files\EngineHelpers</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="small.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="SW_engine.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(EngineCoreSourceDir)SW_engine.rc">
