@@ -47,231 +47,231 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EngineCore\ObjectDeleter.h">
+    <ClInclude Include="$(EngineCoreSourceDir)ObjectDeleter.h">
       <Filter>Source Files\MainEngine</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\SoundEngine\SoundEngine.h">
+    <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
       <Filter>Source Files\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\PhysicEngine\PhysicEngine.h">
+    <ClInclude Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.h">
       <Filter>Source Files\Physic_Collisions</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\CollisionEngine\CollisionEngine.h">
+    <ClInclude Include="$(EngineCoreSourceDir)CollisionEngine\CollisionEngine.h">
       <Filter>Source Files\Physic_Collisions</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\ModelsManager\ResourceContainer.h">
+    <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ResourceContainer.h">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\ModelsManager\Loaders\FBX_files_loader\FBX_loader.h">
+    <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.h">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\ModelsManager\Loaders\loader_interface.h">
+    <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\loader_interface.h">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\ModelsManager\meshes_textures_materials.h">
+    <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\meshes_textures_materials.h">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\ModelsManager\ModelsManager.h">
+    <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ModelsManager.h">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\DisplayEngine\ConstantBuffersFormat.h">
+    <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\ConstantBuffersFormat.h">
       <Filter>Source Files\MainEngine</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\DisplayEngine\DisplayEngine.h">
+    <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.h">
       <Filter>Source Files\MainEngine</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\DX11_interfaces_container.h">
+    <ClInclude Include="$(EngineCoreSourceDir)DX11_interfaces_container.h">
       <Filter>Source Files\MainEngine</Filter>
     </ClInclude>
-    <ClInclude Include="SW_engine.h">
-      <Filter>Source Files\MainEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="EngineCore\UI_Engine\UI_Engine.h">
+    <ClInclude Include="$(EngineCoreSourceDir)UI_Engine\UI_Engine.h">
       <Filter>Source Files\Input_GUI</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\UI_Engine\InputAbstractionLayer.h">
+    <ClInclude Include="$(EngineCoreSourceDir)UI_Engine\InputAbstractionLayer.h">
       <Filter>Source Files\Input_GUI</Filter>
     </ClInclude>
-    <ClInclude Include="Interfaces\GamePlay.h">
+    <ClInclude Include="$(EngineCoreSourceDir)Interfaces\GamePlay.h">
       <Filter>Source Files\GamePlay</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\FableEngine\FableEngine.h">
+    <ClInclude Include="$(EngineCoreSourceDir)FableEngine\FableEngine.h">
       <Filter>Source Files\GamePlay</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\DisplayEngine\SkyDome.h">
+    <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\SkyDome.h">
       <Filter>Source Files\Features</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\Features\HosekSkylightModel\HosekSkyModel.h">
+    <ClInclude Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkyModel.h">
       <Filter>Source Files\Features\HosekSkylightModel</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\Features\HosekSkylightModel\ArHosekSkyModelData_RGB.h">
+    <ClInclude Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\ArHosekSkyModelData_RGB.h">
       <Filter>Source Files\Features\HosekSkylightModel</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\Features\HosekSkylightModel\HosekSkyDome.h">
+    <ClInclude Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkyDome.h">
       <Filter>Source Files\Features\HosekSkylightModel</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\ControllersEngine\ControllersEngine.h">
+    <ClInclude Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.h">
       <Filter>Source Files\Controllers</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\ControllersEngine\camera_controller_PROTOTYPE.h">
+    <ClInclude Include="$(EngineCoreSourceDir)ControllersEngine\camera_controller_PROTOTYPE.h">
       <Filter>Source Files\Controllers</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\stdafx.h">
+    <ClInclude Include="$(EngineCoreSourceDir)stdafx.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\targetver.h">
+    <ClInclude Include="$(EngineCoreSourceDir)targetver.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\Resource.h">
+    <ClInclude Include="$(EngineCoreSourceDir)Resource.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\memory_leaks.h">
+    <ClInclude Include="$(EngineCoreSourceDir)memory_leaks.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\macros_switches.h">
+    <ClInclude Include="$(EngineCoreSourceDir)macros_switches.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\Interfaces\basic_interfaces.h">
+    <ClInclude Include="$(EngineCoreSourceDir)Interfaces\basic_interfaces.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\types_definitions.h">
+    <ClInclude Include="$(EngineCoreSourceDir)types_definitions.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\FableEngine\ActorCreator.h">
+    <ClInclude Include="$(EngineCoreSourceDir)FableEngine\ActorCreator.h">
       <Filter>Source Files\GamePlay</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\MainEngine\TimeManager.h">
+    <ClInclude Include="$(EngineCoreSourceDir)MainEngine\TimeManager.h">
       <Filter>Source Files\MainEngine</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\Interfaces\EngineInterface.h">
+    <ClInclude Include="$(EngineCoreSourceDir)Interfaces\EngineInterface.h">
       <Filter>Source Files\MainEngine</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\EngineHelpers\PerformanceCheck.h">
+    <ClInclude Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.h">
       <Filter>Source Files\EngineHelpers</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\DisplayEngine\Renderer\Renderer.h">
+    <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\Renderer\Renderer.h">
       <Filter>Source Files\MainEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\DisplayEngine\Renderer\IRenderer.h">
+    <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\Renderer\IRenderer.h">
       <Filter>Source Files\MainEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\MovementEngineCore\MovementEngine.h">
+    <ClInclude Include="$(EngineCoreSourceDir)MovementEngine\MovementEngine.h">
       <Filter>Source Files\Physic_Collisions</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Engine.h">
-      <Filter>Source Files\MainEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\EngineCore\Events\Event.h">
+    <ClInclude Include="$(EngineCoreSourceDir)Events\Event.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="EngineCore\DisplayEngine\Renderer\DX11Renderer.h">
+    <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\Renderer\DX11Renderer.h">
       <Filter>Source Files\MainEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(EngineCoreSourceDir)Engine.h">
+      <Filter>Source Files\MainEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="$(EngineCoreSourceDir)SW_engine.h">
+      <Filter>Source Files\MainEngine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EngineCore\ModelsManager\MaterialObject.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\MaterialObject.cpp">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\ModelsManager\Model3DFromFile.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\ModelsManager\ModelsManager.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\ModelsManager.cpp">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\ModelsManager\TextureObject.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\TextureObject.cpp">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\UI_Engine\UI_Engine.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)UI_Engine\UI_Engine.cpp">
       <Filter>Source Files\Input_GUI</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\CollisionEngine\CollisionEngine.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)CollisionEngine\CollisionEngine.cpp">
       <Filter>Source Files\Physic_Collisions</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\PhysicEngine\PhysicEngine.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.cpp">
       <Filter>Source Files\Physic_Collisions</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\MovementEngine\MovementEngine.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)MovementEngine\MovementEngine.cpp">
       <Filter>Source Files\Physic_Collisions</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\EngineInterface.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)EngineInterface.cpp">
       <Filter>Source Files\MainEngine</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\SoundEngine\SoundEngine.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.cpp">
       <Filter>Source Files\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\DisplayEngine\DisplayEngine.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.cpp">
       <Filter>Source Files\MainEngine</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\FableEngine\FableEngine.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)FableEngine\FableEngine.cpp">
       <Filter>Source Files\GamePlay</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\UI_Engine\InputAbstractionLayer.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)UI_Engine\InputAbstractionLayer.cpp">
       <Filter>Source Files\Input_GUI</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\UI_Engine\UI_Engine_AbstractionLayers.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)UI_Engine\UI_Engine_AbstractionLayers.cpp">
       <Filter>Source Files\Input_GUI</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\ControllersEngine\ControllersEngine.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.cpp">
       <Filter>Source Files\Controllers</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\ControllersEngine\camera_controller_PROTOTYPE.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)ControllersEngine\camera_controller_PROTOTYPE.cpp">
       <Filter>Source Files\Controllers</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\Engine.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)Engine.cpp">
       <Filter>Source Files\MainEngine</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\ModelsManager\VertexShaderObject.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\VertexShaderObject.cpp">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\ModelsManager\PixelShaderObject.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\PixelShaderObject.cpp">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\ModelsManager\BufferObject.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\BufferObject.cpp">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\DX11_interfaces_container.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)DX11_interfaces_container.cpp">
       <Filter>Source Files\MainEngine</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\ModelsManager\vertex_layouts.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\vertex_layouts.cpp">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\ModelsManager\MeshPartObject.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\MeshPartObject.cpp">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\Features\HosekSkylightModel\HosekSkylightModel.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkylightModel.cpp">
       <Filter>Source Files\Features\HosekSkylightModel</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\Features\HosekSkylightModel\HosekSkyDome.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkyDome.cpp">
       <Filter>Source Files\Features\HosekSkylightModel</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\stdafx.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\Interfaces\basic_interfaces.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)Interfaces\basic_interfaces.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\SW_engine.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)SW_engine.cpp">
       <Filter>Source Files\MainEngine</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\Events\Event.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)Events\Event.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\macros_switches.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)macros_switches.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\FableEngine\ActorCreator.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)FableEngine\ActorCreator.cpp">
       <Filter>Source Files\GamePlay</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\EngineWindowFunctions.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)EngineWindowFunctions.cpp">
       <Filter>Source Files\MainEngine</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\MainEngine\TimeManager.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)MainEngine\TimeManager.cpp">
       <Filter>Source Files\MainEngine</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCore\EngineHelpers\PerformanceCheck.cpp">
+    <ClCompile Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.cpp">
       <Filter>Source Files\EngineHelpers</Filter>
     </ClCompile>
   </ItemGroup>
@@ -284,12 +284,12 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="EngineCore\SW_engine.rc">
+    <ResourceCompile Include="$(EngineCoreSourceDir)SW_engine.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="EngineCore\DisplayEngine\Renderer\DX11Renderer.inl">
+    <None Include="$(EngineCoreSourceDir)DisplayEngine\Renderer\DX11Renderer.inl">
       <Filter>Source Files\MainEngine\Renderer</Filter>
     </None>
   </ItemGroup>

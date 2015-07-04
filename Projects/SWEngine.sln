@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineCore", "..\EngineCode\SW_engine.vcxproj", "{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineCore", "EngineCore\SWEngine.vcxproj", "{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EntryPoint", "..\GameCode\EntryPoint\EntryPoint.vcxproj", "{54E051AE-2782-4386-B9B9-4239CAECA41D}"
 EndProject
