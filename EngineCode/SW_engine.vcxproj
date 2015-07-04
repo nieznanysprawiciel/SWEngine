@@ -38,7 +38,7 @@
     <ProjectGuid>{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SW_engine</RootNamespace>
-    <ProjectName>Engine</ProjectName>
+    <ProjectName>EngineCore</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -100,7 +100,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Projects\Props\DebugConfig.props" />
     <Import Project="..\Projects\Props\PathsMacros.props" />
-    <Import Project="LinkDirectX.props" />
+    <Import Project="..\Projects\Props\LinkDirectX11.props" />
     <Import Project="..\Projects\Props\IncludeDirectX11.props" />
     <Import Project="..\Projects\Props\LinkDirectInput.props" />
     <Import Project="..\Projects\Props\IncludeDirectInput.props" />
