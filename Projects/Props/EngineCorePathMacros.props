@@ -3,7 +3,10 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <EngineCoreName>EngineCore</EngineCoreName>
-    <EngineCoreSourceDir>$(EngineSourceDir)EngineCore\</EngineCoreSourceDir>
+    <EngineCoreLibDir>$(EngineLibDir)$(EngineCoreName)\</EngineCoreLibDir>
+    <EngineCoreSourceDir>$(EngineSourceDir)$(EngineCoreName)\</EngineCoreSourceDir>
+    <EngineCoreFileName>$(EngineShortcut)$(EngineCoreName)_$(Configuration)_$(PlatformShortName)</EngineCoreFileName>
+    <EngineCoreBuildDir>$(EngineBuildDir)$(EngineShortcut)$(EngineCoreName)_$(Configuration)_$(PlatformShortName)\</EngineCoreBuildDir>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup />
@@ -11,9 +14,17 @@
     <BuildMacro Include="EngineCoreName">
       <Value>$(EngineCoreName)</Value>
     </BuildMacro>
+    <BuildMacro Include="EngineCoreLibDir">
+      <Value>$(EngineCoreLibDir)</Value>
+    </BuildMacro>
     <BuildMacro Include="EngineCoreSourceDir">
       <Value>$(EngineCoreSourceDir)</Value>
-      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="EngineCoreFileName">
+      <Value>$(EngineCoreFileName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="EngineCoreBuildDir">
+      <Value>$(EngineCoreBuildDir)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

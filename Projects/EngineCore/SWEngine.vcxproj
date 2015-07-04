@@ -107,7 +107,7 @@
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="..\Props\LinkFBX_SDK.props" />
     <Import Project="..\Props\EngineCorePathMacros.props" />
-    <Import Project="..\EngineCore\EngineCoreConfiguration.props" />
+    <Import Project="EngineCoreConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -119,7 +119,7 @@
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="..\Props\LinkFBX_SDK.props" />
     <Import Project="..\Props\EngineCorePathMacros.props" />
-    <Import Project="EngineCore\EngineCoreConfiguration.props" />
+    <Import Project="EngineCoreConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -131,7 +131,7 @@
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="..\Props\LinkFBX_SDK.props" />
     <Import Project="..\Props\EngineCorePathMacros.props" />
-    <Import Project="EngineCore\EngineCoreConfiguration.props" />
+    <Import Project="EngineCoreConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -143,7 +143,7 @@
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="..\Props\LinkFBX_SDK.props" />
     <Import Project="..\Props\EngineCorePathMacros.props" />
-    <Import Project="EngineCore\EngineCoreConfiguration.props" />
+    <Import Project="EngineCoreConfiguration.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -155,7 +155,7 @@
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="..\Props\LinkFBX_SDK.props" />
     <Import Project="..\Props\EngineCorePathMacros.props" />
-    <Import Project="EngineCore\EngineCoreConfiguration.props" />
+    <Import Project="EngineCoreConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -167,7 +167,7 @@
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="..\Props\LinkFBX_SDK.props" />
     <Import Project="..\Props\EngineCorePathMacros.props" />
-    <Import Project="EngineCore\EngineCoreConfiguration.props" />
+    <Import Project="EngineCoreConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -179,7 +179,7 @@
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="..\Props\LinkFBX_SDK.props" />
     <Import Project="..\Props\EngineCorePathMacros.props" />
-    <Import Project="EngineCore\EngineCoreConfiguration.props" />
+    <Import Project="EngineCoreConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -196,50 +196,38 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(EngineBuildDir)$(BuildFolder)\</OutDir>
-    <IntDir>$(EngineBuildDir)$(BuildFolder)\</IntDir>
+    <OutDir>$(EngineCoreBuildDir)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(EngineLibDir)</OutDir>
-    <IntDir>$(EngineBuildDir)$(BuildFolder)\</IntDir>
     <TargetExt>.lib</TargetExt>
-    <TargetName>$(EngineLibName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(EngineBuildDir)$(BuildFolder)\</OutDir>
-    <IntDir>$(EngineBuildDir)$(BuildFolder)\</IntDir>
+    <OutDir>$(EngineCoreBuildDir)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(EngineLibDir)</OutDir>
-    <IntDir>$(EngineBuildDir)$(BuildFolder)\</IntDir>
-    <TargetName>$(EngineLibName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(GameReleaseDir)</OutDir>
-    <IntDir>$(EngineBuildDir)$(BuildFolder)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(EngineLibDir)</OutDir>
-    <IntDir>$(EngineBuildDir)$(BuildFolder)\</IntDir>
     <TargetExt>.lib</TargetExt>
-    <TargetName>$(EngineLibName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(GameReleaseDir)\binaries_x64\</OutDir>
-    <IntDir>$(EngineBuildDir)$(BuildFolder)\</IntDir>
-    <TargetName>$(ProjectName)_x64</TargetName>
+    <TargetName>$(EngineCoreName)_x64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(EngineLibDir)</OutDir>
-    <IntDir>$(EngineBuildDir)$(BuildFolder)\</IntDir>
-    <TargetName>$(EngineLibName)</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -257,9 +245,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(IntDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
-    <BuildLog>
-      <Path>$(EngineBuildDir)$(BuildFolder)\$(MSBuildProjectName).log</Path>
-    </BuildLog>
+    <BuildLog />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'">
     <ClCompile>

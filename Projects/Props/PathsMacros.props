@@ -12,10 +12,6 @@
     <EngineLibName>SWEngine_$(Configuration)_$(PlatformShortName)</EngineLibName>
     <CommonDir>$(EngineSourceDir)Common\</CommonDir>
     <BuildFolder>$(EngineShortcut)_$(Configuration)_$(PlatformShortName)</BuildFolder>
-    <EngineCoreName>EngineCore</EngineCoreName>
-    <EngineCoreSourceDir>$(EngineSourceDir)$(EngineCoreName)\</EngineCoreSourceDir>
-    <EngineCoreLibDir>$(EngineLibDir)$(EngineCoreName)\</EngineCoreLibDir>
-    <EngineCoreFileName>$(EngineShortcut)$(EngineCoreName)_$(Configuration)_$(PlatformShortName)</EngineCoreFileName>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>PathsMacros</_PropertySheetDisplayName>
@@ -56,18 +52,6 @@
     <BuildMacro Include="BuildFolder">
       <Value>$(BuildFolder)</Value>
       <EnvironmentVariable>true</EnvironmentVariable>
-    </BuildMacro>
-    <BuildMacro Include="EngineCoreName">
-      <Value>$(EngineCoreName)</Value>
-    </BuildMacro>
-    <BuildMacro Include="EngineCoreSourceDir">
-      <Value>$(EngineCoreSourceDir)</Value>
-    </BuildMacro>
-    <BuildMacro Include="EngineCoreLibDir">
-      <Value>$(EngineCoreLibDir)</Value>
-    </BuildMacro>
-    <BuildMacro Include="EngineCoreFileName">
-      <Value>$(EngineCoreFileName)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>
