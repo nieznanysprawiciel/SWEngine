@@ -20,8 +20,8 @@ public:
 	std::string&			GetShaderEntry()	{ return m_shaderEntry; }
 
 
-	virtual bool			CreateFromFile			( const std::wstring& file_name, const std::string& shader_name, const char* shader_model ) = 0;
-	virtual bool			CreateFromBinFile		( const std::wstring& file_name ) = 0;
+	virtual bool			ReloadFromFile			() = 0;
+	virtual bool			ReloadFromBinFile		() = 0;
 	virtual void			SaveShaderBinFile		( const std::wstring& file_name ) = 0;
 };
 

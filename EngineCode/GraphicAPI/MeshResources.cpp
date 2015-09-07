@@ -59,73 +59,15 @@ Na razie obs³uguje tylko nieskompilowane pliki.
 @param[in] shader_name Nazwa funkcji, która jest punktem poczatkowym wykonania shadera
 @param[out] layout W zmiennej umieszczany jest wskaŸnik na layout wierzcho³ka. Nale¿y pamiêtaæ o zwolnieniu go kiedy bêdzie niepotrzebny.
 @param[in] layout_desc Deskryptor opisujacy tworzony layout.
-@param[in] array_size Liczba elementów tablicy layout_desc.
 @param[in] shader_model £añcuch znaków opisuj¹cy shader model.
 @return Zwraca wskaŸnik na obiekt VertexShaderObject lub nullptr w przypadku niepowodzenia.*/
 VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& file_name,
 														  const std::string& shader_name,
-														  ID3D11InputLayout** layout,
-														  D3D11_INPUT_ELEMENT_DESC* layout_desc,
-														  unsigned int array_size,
+														  ShaderInputLayout** layout,
+														  InputLayoutDescriptor* layout_desc,
 														  const char* shader_model )
 {
-	HRESULT result;
-	ID3DBlob* compiled_shader;
-	ID3D11VertexShader* vertex_shader;
-	// Troszkê zamieszania, ale w trybie debug warto wiedzieæ co jest nie tak przy kompilacji shadera
-#ifdef _DEBUG
-	ID3D10Blob* error_blob = nullptr;	// Tu znajdzie siê komunikat o b³êdzie
-#endif
 
-	// Kompilujemy shader znaleziony w pliku
-	D3DX11CompileFromFile( file_name.c_str( ), 0, 0, shader_name.c_str( ), shader_model,
-						   0, 0, 0, &compiled_shader,
-#ifdef _DEBUG
-						   &error_blob,	// Funkcja wsadzi informacje o b³êdzie w to miejsce
-#else
-						   0,	// W trybie Release nie chcemy dostawaæ b³êdów
-#endif
-						   &result );
-
-	if ( FAILED( result ) )
-	{
-#ifdef _DEBUG
-		if ( error_blob )
-		{
-			// B³¹d zostanie wypisany na standardowe wyjœcie
-			OutputDebugStringA( (char*)error_blob->GetBufferPointer( ) );
-			error_blob->Release( );
-		}
-#endif
-		layout = nullptr;
-		return nullptr;
-	}
-
-	// Tworzymy obiekt shadera na podstawie tego co sie skompilowa³o
-	result = device->CreateVertexShader( compiled_shader->GetBufferPointer( ),
-										 compiled_shader->GetBufferSize( ),
-										 nullptr, &vertex_shader );
-
-	if ( FAILED( result ) )
-	{
-		compiled_shader->Release();
-		layout = nullptr;
-		return nullptr;
-	}
-
-	// Tworzymy layout
-	result = device->CreateInputLayout( layout_desc, array_size, compiled_shader->GetBufferPointer( ),
-												compiled_shader->GetBufferSize( ), layout );
-	compiled_shader->Release( );
-	if ( FAILED( result ) )
-	{
-		layout = nullptr;
-		return nullptr;
-	}
-
-	// Tworzymy obiekt nadaj¹cy siê do u¿ycia w silniku i zwracamy wskaŸnik na niego
-	VertexShaderObject* new_shader = new VertexShaderObject( vertex_shader );
-	return new_shader;
 }
 
 
@@ -176,7 +118,9 @@ TextureObject* TextureObject::create_from_file( const std::wstring& file_name )
 //								BufferObject													//
 //----------------------------------------------------------------------------------------------//
 
-BufferObject::BufferObject( unsigned int element_size )
+BufferObject::BufferObject( unsigned int elementSize, unsigned int elementCount )
+	:	m_elementSize( elementSize ),
+		m_elementCount( elementCount )
 {
 }
 
@@ -196,7 +140,7 @@ BufferObject* BufferObject::create_from_memory( const void* buffer,
 												unsigned int element_size,
 												unsigned int vert_count,
 												unsigned int bind_flag,
-												D3D11_USAGE usage )
+												ResourceUsage usage )
 {
 	return ResourcesFactory::CreateBufferFormMemory( buffer, element_size, vert_count, bind_flag, usage );
 }

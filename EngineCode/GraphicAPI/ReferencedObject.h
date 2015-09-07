@@ -31,10 +31,17 @@ private:
 	unsigned int	unique_id;			///< Unikalny identyfikator materia³u
 
 protected:
-	virtual ~referenced_object( );		//Nie ka¿dy mo¿e skasowaæ obiekt
+	virtual ~referenced_object() = default;		///<Nie ka¿dy mo¿e skasowaæ obiekt
 
 public:
-	referenced_object( int id );
+	/**
+	Ustawia zerow¹ liczbê odwo³añ.*/
+	referenced_object( int id )
+	{
+		file_references = 0;
+		object_references = 0;
+		unique_id = id;
+	}
 
 
 	inline void set_id( unsigned int id ) { unique_id = id; }	///<Ustawia identyfikator obiektu
@@ -64,18 +71,7 @@ public:
 
 //==============================================================================================//
 
-/**
-Ustawia zerow¹ liczbê odwo³añ.*/
-referenced_object::referenced_object(int id)
-{
-	file_references = 0;
-	object_references = 0;
-	unique_id = id;
-}
 
-
-referenced_object::~referenced_object()
-{}
 
 /** \brief Funkcja informuje czy obiekt s¹ obiektu, które odwo³uj¹ siê do assetu.
 

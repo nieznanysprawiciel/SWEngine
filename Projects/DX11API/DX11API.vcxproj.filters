@@ -40,9 +40,6 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ITexture.h">
       <Filter>GraphicAPI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IVertexLayout.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\MeshResources.h">
       <Filter>GraphicAPI</Filter>
     </ClInclude>
@@ -85,12 +82,21 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11APIObjects.h">
       <Filter>Source Files\DX11API\DX11Initializer</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\GraphicAPIConstants.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11ConstantsMapper.h">
+      <Filter>Source Files\DX11API\DX11Initializer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11InputLayout.h">
+      <Filter>Source Files\DX11API\DX11Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11InputLayoutDescriptor.h">
+      <Filter>Source Files\DX11API\DX11Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\GraphicAPI\MeshResources.cpp">
-      <Filter>GraphicAPI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\GraphicAPI\ResourcesFactory.cpp">
       <Filter>GraphicAPI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11Buffer.cpp">
@@ -113,6 +119,18 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11APIObjects.cpp">
       <Filter>Source Files\DX11API\DX11Initializer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\ResourcesFactory.cpp">
+      <Filter>Source Files\DX11API\DX11Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11ConstantsMapper.cpp">
+      <Filter>Source Files\DX11API\DX11Initializer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11InputLayout.cpp">
+      <Filter>Source Files\DX11API\DX11Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11InputLayoutDescriptor.cpp">
+      <Filter>Source Files\DX11API\DX11Resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

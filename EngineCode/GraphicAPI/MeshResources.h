@@ -11,6 +11,7 @@
 #include "IShader.h"
 #include "IBuffer.h"
 #include "IRenderTarget.h"
+#include "GraphicAPIConstants.h"
 #include "DirectXMath.h"
 
 
@@ -246,7 +247,7 @@ protected:
 	std::wstring				m_fileName;		///<Plik, z którego powsta³a tekstura lub po prostu nazwa tekstury, je¿eli zosta³a wygenerowana.
 
 	//¯eby unikn¹æ pomy³ki, obiekt mo¿e byœ kasowany tylko przez ModelsManager. Zapewnia to ObjectDeleter.
-	~TextureObject() default;
+	~TextureObject() = default;
 public:
 	TextureObject();
 	std::wstring&	GetFileName() { return m_fileName; }		///<Zwraca nazwê pliku, który pos³u¿y³ do stworzenia obiektu.
@@ -272,6 +273,31 @@ public:
 
 };
 
+/**@brief Klasa przechowuje layout wierzcho³ka trafiaj¹cego do
+vertex shadera.*/
+class ShaderInputLayout
+{
+	friend ObjectDeleter<VertexShaderObject>;
+private:
+protected:
+	virtual ~ShaderInputLayout() = default;
+public:
+	ShaderInputLayout() = default;
+};
+
+/**@brief Klasa przechowuje opis layutu wierzcho³ka, na podstawie którego
+tworzony jest obiekt layoutu.*/
+class InputLayoutDescriptor
+{
+private:
+protected:
+public:
+	InputLayoutDescriptor() = default;
+	virtual ~InputLayoutDescriptor() = default;
+
+	virtual void AddRow( wchar_t* semanticName, ResourceFormat format, unsigned int inputSlot, unsigned int byteOffset, bool perInstance, unsigned int instanceDataStep );
+};
+
 
 /** @brief Klasa przechowuj¹ca vertex shader*/
 class VertexShaderObject : public IShader
@@ -279,13 +305,13 @@ class VertexShaderObject : public IShader
 	friend ObjectDeleter<VertexShaderObject>;
 private:
 protected:
-	~VertexShaderObject() default;
+	~VertexShaderObject() = default;
 public:
 	VertexShaderObject();
 
-	static VertexShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name, const char* shader_model = "vs_4_0" );
-	static VertexShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name, ID3D11InputLayout** layout,
-												 D3D11_INPUT_ELEMENT_DESC* layout_desc, unsigned int array_size, const char* shader_model = "vs_4_0" );
+	static VertexShaderObject* create_from_file( const std::wstring& fileName, const std::string& shader_name, const char* shader_model = "vs_4_0" );
+	static VertexShaderObject* create_from_file( const std::wstring& fileName, const std::string& shader_name, ShaderInputLayout** layout,
+												 InputLayoutDescriptor* layout_desc, const char* shader_model = "vs_4_0" );
 };
 
 /**@brief Klasa przechowuj¹ca pixel shader*/
@@ -294,11 +320,24 @@ class PixelShaderObject : public IShader
 	friend ObjectDeleter<PixelShaderObject>;
 private:
 protected:
-	~PixelShaderObject() default;
+	~PixelShaderObject() = default;
 public:
 	PixelShaderObject();
 
 	static PixelShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name, const char* shader_model = "ps_4_0" );
+};
+
+/**@brief Klasa przechowuj¹ca compute shader*/
+class ComputeShaderObject : public IShader
+{
+	friend ObjectDeleter<PixelShaderObject>;
+private:
+protected:
+	~ComputeShaderObject() = default;
+public:
+	ComputeShaderObject();
+
+	static ComputeShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name, const char* shader_model = "ps_4_0" );
 };
 
 
@@ -316,7 +355,7 @@ protected:
 
 	~BufferObject() override;
 public:
-	BufferObject();
+	BufferObject( unsigned int elementSize, unsigned int elementCount );
 
 	inline unsigned int GetStride()				{ return m_elementSize; }		///<Zwraca rozmiar pojedynczego elementu w buforze.
 	inline unsigned int	GetElementSize()		{ return m_elementSize; }		///<Zwraca rozmiar pojedynczego elementu w buforze.
@@ -326,7 +365,7 @@ public:
 											 unsigned int element_size,
 											 unsigned int vert_count,
 											 unsigned int bind_flag,
-											 D3D11_USAGE usage = D3D11_USAGE_DEFAULT );
+											 ResourceUsage usage = ResourceUsage::RESOURCE_USAGE_STATIC );
 };
 
 

@@ -90,28 +90,28 @@ protected:
 	static ID3D11PixelShader*		default_pixel_shader;	///<Obiekt domyœlnego piksel shadera
 protected:	//public:	Inicjalizacje powinien zrobiæ obiekt, który dzidziczy po tej klasie, dlatego zmieni³em.
 	// Funkcje do ustawiania deskryptorów i innych parametrów
-	void set_swapchain_desc( const DXGI_SWAP_CHAIN_DESC& swap_chain_desc );
-	void set_viewport_desc( const D3D11_VIEWPORT& view_port_desc );
-	void set_feature_levels( D3D_FEATURE_LEVEL* feature_levels, unsigned int elements );
-	void set_window_resolution( unsigned int window_width, unsigned int window_height );
-	void set_depth_stencil_format( DXGI_FORMAT depth_stencil_format );
-	void set_vertex_layout( DX11_DEFAULT_VERTEX_LAYOUT layout );
-	void set_vertex_layout( D3D11_INPUT_ELEMENT_DESC* layout, unsigned int array_size );
-	void set_sampler_desc( D3D11_SAMPLER_DESC sampler_desc );
+	void set_swapchain_desc				( const DXGI_SWAP_CHAIN_DESC& swap_chain_desc );
+	void set_viewport_desc				( const D3D11_VIEWPORT& view_port_desc );
+	void set_feature_levels				( D3D_FEATURE_LEVEL* feature_levels, unsigned int elements );
+	void set_window_resolution			( unsigned int window_width, unsigned int window_height );
+	void set_depth_stencil_format		( DXGI_FORMAT depth_stencil_format );
+	void set_vertex_layout				( DX11_DEFAULT_VERTEX_LAYOUT layout );
+	void set_vertex_layout				( D3D11_INPUT_ELEMENT_DESC* layout, unsigned int array_size );
+	void set_sampler_desc				( D3D11_SAMPLER_DESC sampler_desc );
 
 	// Pobieranie deskryptorów
-	DXGI_SWAP_CHAIN_DESC get_swap_chain_desc() { return _swap_chain_desc; }
-	D3D11_VIEWPORT get_viewport_desc() { return _view_port_desc; }
-	D3D_FEATURE_LEVEL get_current_feature_level() { return _current_feature_level; }
-	D3D11_TEXTURE2D_DESC get_z_buffer_desc() { return _z_buffer_desc; }
-	D3D11_DEPTH_STENCIL_VIEW_DESC get_z_buffer_view_desc() { return _z_buffer_view_desc; }
-	D3D11_SAMPLER_DESC get_sampler_desc() { return _sampler_desc; }
+	DXGI_SWAP_CHAIN_DESC				get_swap_chain_desc()		{ return _swap_chain_desc; }
+	D3D11_VIEWPORT						get_viewport_desc()			{ return _view_port_desc; }
+	D3D_FEATURE_LEVEL					get_current_feature_level() { return _current_feature_level; }
+	D3D11_TEXTURE2D_DESC				get_z_buffer_desc()			{ return _z_buffer_desc; }
+	D3D11_DEPTH_STENCIL_VIEW_DESC		get_z_buffer_view_desc()	{ return _z_buffer_view_desc; }
+	D3D11_SAMPLER_DESC					get_sampler_desc()			{ return _sampler_desc; }
 
-	ID3D11VertexShader* load_vertex_shader( const std::wstring& file_name, const std::string& shader_name, const char* shader_model );
-	ID3D11VertexShader* load_vertex_shader( const std::wstring& file_name, const std::string& shader_name,
+	ID3D11VertexShader*		load_vertex_shader( const std::wstring& file_name, const std::string& shader_name, const char* shader_model );
+	ID3D11VertexShader*		load_vertex_shader( const std::wstring& file_name, const std::string& shader_name,
 											ID3D11InputLayout** layout, D3D11_INPUT_ELEMENT_DESC* layout_desc,
 											unsigned int array_size, const char* shader_model );
-	ID3D11PixelShader* load_pixel_shader( const std::wstring& file_name, const std::string& shader_name, const char* shader_model );
+	ID3D11PixelShader*		load_pixel_shader( const std::wstring& file_name, const std::string& shader_name, const char* shader_model );
 
 
 	// Funkcje inicjuj¹ce
