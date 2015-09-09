@@ -40,7 +40,7 @@ VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile( const std::ws
 @param[in] layoutDesc Deskryptor opisuj¹cy layout.
 @param[in] shaderModel Shader model.
 @return Zwraca obiekt vertex shadera lub nullptr w przypadku niepowodzenia.*/
-VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile		( const std::wstring& fileName,
+VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile	( const std::wstring& fileName,
 																		const std::string& shaderName,
 																		ShaderInputLayout** layout,
 																		InputLayoutDescriptor* layoutDesc,

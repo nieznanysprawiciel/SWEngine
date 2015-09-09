@@ -190,10 +190,10 @@ void DX11_interfaces_container::release_DirectX()
 		swap_chain->Release(), swap_chain = nullptr;
 	if ( render_target )
 		render_target->Release(), render_target = nullptr;
-	if ( device )
-		device->Release(), device = nullptr;
 	if ( device_context )
 		device_context->Release(), device_context = nullptr;
+	if ( device )
+		device->Release(), device = nullptr;
 }
 
 
