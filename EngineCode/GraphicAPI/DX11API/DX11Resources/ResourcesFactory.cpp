@@ -1,5 +1,5 @@
 #include "../../ResourcesFactory.h"
-
+#include "../DX11Initializer/DX11Initializer.h"
 
 #include "DX11VertexShader.h"
 #include "DX11PixelShader.h"
@@ -12,6 +12,11 @@ typedef DX11VertexShader		VertexShader;
 typedef DX11PixelShader			PixelShader;
 typedef DX11Buffer				Buffer;
 
+
+IGraphicAPIInitializer* ResourcesFactory::CreateAPIInitializer()
+{
+	return DX11Initializer();
+}
 
 /**@brief Tworzy teksturê z podanego pliku.
 @param[in] fileName Nazwa pliku.

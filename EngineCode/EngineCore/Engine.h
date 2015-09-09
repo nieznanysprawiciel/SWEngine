@@ -1,6 +1,9 @@
 #pragma once
 
 /**@file Engine.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
 @brief Plik zawiera deklaracjê g³ównego obiektu silnika.*/
 
 #include "stdafx.h"

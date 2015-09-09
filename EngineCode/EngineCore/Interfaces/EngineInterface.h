@@ -1,6 +1,9 @@
 #pragma once
 
 /**@file EngineInterface.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
 @brief Plik zawiera deklaracjê klasy engine_interface.*/
 
 #include <queue>

@@ -6,6 +6,7 @@
 */
 
 #include "MeshResources.h"
+#include "IGraphicAPIInitializer.h"
 
 /**@brief Klasa ze statycznymi funkcjami do tworzenia obiektów assetów.
 
@@ -15,6 +16,8 @@ Ka¿de API graficzne powinno zaimplementowaæ tê klasê.
 class ResourcesFactory
 {
 public:
+	static IGraphicAPIInitializer*	CreateAPIInitializer			();
+
 	static TextureObject*			CreateTextureFromFile			( const std::wstring& fileName );
 	static VertexShaderObject*		CreateVertexShaderFromFile		( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel );
 	static PixelShaderObject*		CreatePixelShaderFromFile		( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel );
