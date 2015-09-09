@@ -125,6 +125,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\DebugConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
+    <Import Project="..\Props\LinkDirectX11.props" />
     <Import Project="..\Props\IncludeDirectX11.props" />
     <Import Project="..\Props\LinkDirectInput.props" />
     <Import Project="..\Props\IncludeDirectInput.props" />
@@ -149,6 +150,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\ReleaseConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
+    <Import Project="..\Props\LinkDirectX11.props" />
     <Import Project="..\Props\IncludeDirectX11.props" />
     <Import Project="..\Props\LinkDirectInput.props" />
     <Import Project="..\Props\IncludeDirectInput.props" />
@@ -173,6 +175,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\ReleaseConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
+    <Import Project="..\Props\LinkDirectX11.props" />
     <Import Project="..\Props\IncludeDirectX11.props" />
     <Import Project="..\Props\LinkDirectInput.props" />
     <Import Project="..\Props\IncludeDirectInput.props" />

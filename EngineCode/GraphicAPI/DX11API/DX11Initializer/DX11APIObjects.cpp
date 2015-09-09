@@ -8,7 +8,7 @@
 #pragma warning( default : 4005 )
 
 
-#include "Common\memory_leaks.h"
+#include "Common/memory_leaks.h"
 
 //----------------------------------------------------------------------------------------------//
 //								Zmienne statyczne klasy											//
@@ -83,10 +83,12 @@ D3D11_INPUT_ELEMENT_DESC vertex_normal_color[] =
 	{ "COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 24, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 };
 
-D3D11_INPUT_ELEMENT_DESC* layouts[] = { vertex_normal_texture,
-vertex_texture,
-vertex_color,
-vertex_normal_color
+D3D11_INPUT_ELEMENT_DESC* layouts[] =
+{
+	vertex_normal_texture,
+	vertex_texture,
+	vertex_color,
+	vertex_normal_color
 };
 unsigned int layouts_elements[] = { ARRAYSIZE( vertex_normal_texture ),
 ARRAYSIZE( vertex_texture ),
@@ -248,7 +250,7 @@ D3D_FEATURE_LEVEL_9_3,
 D3D_FEATURE_LEVEL_9_2,
 D3D_FEATURE_LEVEL_9_1,
 
-Zasadniczo lepiej nie modyfikowaæ tego parametru, jezeli nie ma takiej koniecznoœci.
+Zasadniczo lepiej nie modyfikowaæ tego parametru, je¿eli nie ma takiej koniecznoœci.
 
 @param[in] elements Liczba elementów w tablicy.*/
 void DX11APIObjects::set_feature_levels( D3D_FEATURE_LEVEL* feature_levels, unsigned int elements )
@@ -328,7 +330,7 @@ inne wartoœci ni¿ domyœlne.
 @param[in] pix_shader_name Nazwa funkcji, od której ma siê zacz¹æ wykonywanie shadera.
 @param[in] vert_shader_file Plik zawieraj¹cy shader.
 @param[in] vert_shader_name Nazwa funkcji, od której ma siê zacz¹æ wykonywanie shadera.
-@param[in] single_thread Ustaw na true, je¿eli nie zamierzasz korzystaæ z ID3D11Device wielow¹tkowo (pozwala to na przyspieszenie dzia³ania
+@param[in] singleThread Ustaw na true, je¿eli nie zamierzasz korzystaæ z ID3D11Device wielow¹tkowo (pozwala to na przyspieszenie dzia³ania
 ze wzglêdu na to, ¿e nie jest konieczna synchronizacja. Nie wiem jak du¿y to ma wp³yw.)
 @return Zwraca jedn¹ ze sta³ych DX11_INIT_RESULT.*/
 DX11_INIT_RESULT DX11APIObjects::init_DX11(
@@ -381,6 +383,46 @@ DX11_INIT_RESULT DX11APIObjects::init_DX11(
 	return DX11_INIT_OK;
 }
 
+/**@brief Funkcja do pe³nej inicjalizacji DirectXa.
+
+Je¿eli chcesz zainicjowaæ wszystko na raz, to wywo³aj tê funkcjê.
+Przed wywo³aniem ustaw odpowiednie deskryptory, je¿eli chcesz, ¿eby u¿yte zosta³y
+inne wartoœci ni¿ domyœlne.
+
+Funkcja nie inicjuje shaderów, nie tworzy layoutu wierzcho³ka ani nie ustawia samplera.
+
+@param[in] width Szerokoœæ okna.
+@param[in] height Wysokoœæ okna.
+@param[in] window Uchwyt g³ównego okna aplikacji.
+@param[in] fullscreen Ustaw na true, je¿eli aplikacja ma dzia³aæ w trybie pe³noekranowym.
+@param[in] singleThread Ustaw na true, je¿eli nie zamierzasz korzystaæ z ID3D11Device wielow¹tkowo (pozwala to na przyspieszenie dzia³ania
+ze wzglêdu na to, ¿e nie jest konieczna synchronizacja. Nie wiem jak du¿y to ma wp³yw.)
+@return Zwraca jedn¹ ze sta³ych DX11_INIT_RESULT.*/
+DX11_INIT_RESULT DX11APIObjects::init_DX11( int width, int height, HWND window, bool fullscreen, bool singleThread )
+{
+	DX11_INIT_RESULT result;
+
+	set_window_resolution( width, height );
+	_swap_chain_desc.OutputWindow = window;
+
+	result = init_devices( window, fullscreen, singleThread );	// Funkcja sama sprz¹ta po sobie
+	if ( result != DX11_INIT_OK )
+		return result;
+
+	result = init_z_buffer_and_render_target();		// Funkcja sama sprz¹ta po sobie
+	if ( result != DX11_INIT_OK )
+		return result;
+
+	result = init_viewport();		// Funkcja nie sprz¹ta, bo byæ mo¿e nie ma czego, je¿eli siê nie uda³o.
+	if ( result != DX11_INIT_OK )
+	{
+		release_DirectX();	// Sprz¹tamy na wszelki wypadek, ale w gruncie rzeczy najprawdopodobniej nie ma czego.
+		return result;
+	}
+
+	return DX11_INIT_OK;
+}
+
 //----------------------------------------------------------------------------------------------//
 //								Tworzenie obiektów DirectXa										//
 //----------------------------------------------------------------------------------------------//
@@ -391,7 +433,7 @@ DX11_INIT_RESULT DX11APIObjects::init_DX11(
 @param[in] height Wysokoœæ ekranu w pikselach
 @param[in] window Uchwyt okna, w którym renderujemy
 @param[in] fullscreen Tryb pe³noekranowy lub w oknie.
-@param[in] single_thread Ustawiæ na true, je¿eli mamy tylko jeden w¹tek, który tworzy wszystkie obiekty
+@param[in] singleThread Ustawiæ na true, je¿eli mamy tylko jeden w¹tek, który tworzy wszystkie obiekty
 DirectXa typu bufory i shadery. Domyœlnie false.
 @return Zwraca jedn¹ z wartoœci DX11_INIT_RESULT.*/
 DX11_INIT_RESULT DX11APIObjects::init_devices( HWND window, bool fullscreen, bool single_thread )

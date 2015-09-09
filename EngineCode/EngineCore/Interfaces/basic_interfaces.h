@@ -41,21 +41,21 @@ protected:
 	short			class_type;
 	short			object_type;
 
-	void inline event(Event*);
+	void event(Event*);
 	/**@brief Zwraca wskaŸnik na interfejs silnika, który nadaje siê do u¿ywania przez
 	programistê gry.
 	@attention Nie wolno rzutowaæ obiektu na Engine.
 	*/
-	inline engine_interface* get_engine_interface(){ return reinterpret_cast<engine_interface*>(engine); }
+	engine_interface* get_engine_interface(){ return reinterpret_cast<engine_interface*>(engine); }
 public:
 	virtual ~Object() = default;
-	virtual void init(){};
+	virtual void		init(){};
 
 	/**@brief Funkcja ustawia wskaŸnik na g³ówny obiekt silnika.
 	@attention Wolno u¿ywaæ tylko klasie Engine w konstruktorze.
 	@param[in] engine_ptr WskaŸnik na g³ówny obiekt silnika.
 	*/
-	static void set_engine( Engine* engine_ptr ) { if( !engine ) engine = engine_ptr; }
+	static void			set_engine( Engine* engine_ptr ) { if( !engine ) engine = engine_ptr; }
 };
 
 
@@ -86,7 +86,7 @@ protected:
 
 	@param[in] pos Po³o¿enie docelowe obiektu.
 	*/
-	inline void set_position( const XMVECTOR& pos )
+	void set_position( const XMVECTOR& pos )
 	{
 		if ( swap_data )
 			XMStoreFloat3( &position, pos );
@@ -100,7 +100,7 @@ protected:
 
 	@param[in] quaternion Orientacja docelowa obiektu.
 	*/
-	inline void set_orientation( const XMVECTOR& quaternion )
+	void set_orientation( const XMVECTOR& quaternion )
 	{
 		if ( swap_data )
 			XMStoreFloat4( &orientation, quaternion );
@@ -117,7 +117,8 @@ public:
 	Wartoœci poœrednie nie bêd¹ interpolowane. Funkcjê nale¿y tak¿e wywo³aæ przy inicjacji obiektu.
 	
 	@param[in] pos Nowe po³o¿enie obiektu.*/
-	inline void teleport( const XMVECTOR& pos ) { XMStoreFloat3( &position, pos ); XMStoreFloat3( &position_back, pos ); }
+	void teleport						( const XMVECTOR& pos )
+	{ XMStoreFloat3( &position, pos ); XMStoreFloat3( &position_back, pos ); }
 
 	/**@brief Zmienia orientacjê obiektu na podan¹.
 
@@ -125,13 +126,14 @@ public:
 	Wartoœci poœrednie nie bêd¹ interpolowane. Funkcjê nale¿y tak¿e wywo³aæ przy inicjacji obiektu.
 
 	@param[in] quaternion Kwaternion nowego obrotu.*/
-	inline void teleport_orientation( const XMVECTOR& quaternion ) { XMStoreFloat4( &orientation, quaternion ); XMStoreFloat4( &orientation_back, quaternion ); }
+	void teleport_orientation			( const XMVECTOR& quaternion )
+	{ XMStoreFloat4( &orientation, quaternion ); XMStoreFloat4( &orientation_back, quaternion ); }
 
 
 	/**@brief Pobiera aktualn¹ pozycjê obiektu.
 	
 	@return Wektor zawieraj¹cy pozycjê obiektu.*/
-	inline XMVECTOR get_position() const
+	XMVECTOR get_position() const
 	{
 		if ( swap_data )
 			return XMLoadFloat3( &position_back );
@@ -142,7 +144,7 @@ public:
 	/**@brief Pobiera aktualn¹ orientacjê obiektu.
 
 	@return Wektor zawieraj¹cy orientacjê obiektu.*/
-	inline XMVECTOR get_orientation() const
+	XMVECTOR get_orientation() const
 	{
 		if ( swap_data )
 			return XMLoadFloat4( &orientation_back );
@@ -151,7 +153,7 @@ public:
 	}
 
 	/**@brief Funkcja zamienia aktualne bufory na pozycjê i orientacjê.*/
-	inline void swap() { if ( swap_data ) swap_data = false; else swap_data = true; }
+	void swap() { if ( swap_data ) swap_data = false; else swap_data = true; }
 
 	XMVECTOR get_interpolated_position( float frame_percent ) const;
 	XMVECTOR get_interpolated_orientation( float frame_percent ) const;
@@ -180,17 +182,17 @@ public:
 	DynamicObject();	///< Kontruktor ustawi¹j¹cy zerow¹ prêdkoœæ k¹tow¹ i postêpow¹.
 	DynamicObject( const XMFLOAT3& move_speed, const XMFLOAT4& rot_speed );	///< Kontruktor ustawia podan¹ w parametrach prêdkoœæ.
 
-	inline void set_speed( const XMVECTOR& vector ) { XMStoreFloat3( &speed, vector ); }	///<Ustawia prêdkoœæ obiektu @param[in] vector Wektor prêdkoœci.
-	inline void set_rotation_speed( const XMVECTOR& quaternion ) { XMStoreFloat4( &rotation_speed, quaternion ); }	///<Ustawia prêdkoœæ obrotow¹ @param[in] quaternion Wektor prêdkoœci.
-	inline void set_rotation_speed( const XMFLOAT4 axis_angle ) { rotation_speed = axis_angle; }		///<Ustawia prêdkoœæ obrotow¹ @param[in] quaternion Wektor prêdkoœci.
-	inline XMVECTOR get_speed() const { return XMLoadFloat3( &speed ); }	///< Zwraca prêdkoœæ postêpow¹ obiektu.
-	inline XMVECTOR get_rotation_speed() const { return XMLoadFloat4( &rotation_speed ); }	///< Zwraca prêdkoœæ obrotow¹ obiektu.
+	void			set_speed				( const XMVECTOR& vector )		{ XMStoreFloat3( &speed, vector ); }	///<Ustawia prêdkoœæ obiektu @param[in] vector Wektor prêdkoœci.
+	void			set_rotation_speed		( const XMVECTOR& quaternion )	{ XMStoreFloat4( &rotation_speed, quaternion ); }	///<Ustawia prêdkoœæ obrotow¹ @param[in] quaternion Wektor prêdkoœci.
+	void			set_rotation_speed		( const XMFLOAT4 axis_angle )	{ rotation_speed = axis_angle; }		///<Ustawia prêdkoœæ obrotow¹ @param[in] quaternion Wektor prêdkoœci.
+	XMVECTOR		get_speed				() const						{ return XMLoadFloat3( &speed ); }	///< Zwraca prêdkoœæ postêpow¹ obiektu.
+	XMVECTOR		get_rotation_speed		() const						{ return XMLoadFloat4( &rotation_speed ); }	///< Zwraca prêdkoœæ obrotow¹ obiektu.
 
-	inline void set_controller( Controller* ctrl ) { controller = ctrl; }	///< Ustawia podany w parametrze kontroler
-	inline Controller* get_controller() { return controller; }
+	void			set_controller			( Controller* ctrl )			{ controller = ctrl; }	///< Ustawia podany w parametrze kontroler
+	Controller*		get_controller			()								{ return controller; }
 
-	void move(float time_interval);
-	virtual void move_complex(float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation);
+	void			move					(float time_interval);
+	virtual void	move_complex			(float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation);
 };
 
 
@@ -213,7 +215,7 @@ class DynamicMeshObject : public PhysicalObject
 private:
 	float							scale;		///<Skalowanie wzglêdem wszystkich osi.
 public:
-	inline void set_scale( float sc ) { scale = sc; };
+	void set_scale( float sc ) { scale = sc; };
 #endif
 protected:
 	Model3DFromFile*				model_reference;					//zapisujemy odwo³anie, ¿ebyœmy wiedzieli, ¿e nie mo¿emy kasowaæ tego obiektu
@@ -292,7 +294,7 @@ public:
 	BaseInputController( InputAbstractionLayer_base* layer );
 	virtual ~BaseInputController();
 
-	inline void set_abstraction_layer( InputAbstractionLayer_base* layer ) { abstraction_layer = layer; };
+	void set_abstraction_layer( InputAbstractionLayer_base* layer ) { abstraction_layer = layer; };
 
 	virtual void control_object( DynamicObject* ) = 0;
 };

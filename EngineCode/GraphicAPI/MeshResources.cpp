@@ -4,34 +4,24 @@
 //								PixelShaderObject												//
 //----------------------------------------------------------------------------------------------//
 
-PixelShaderObject::PixelShaderObject()
-{
-}
-
-
 
 /**@bref Tworzy obiekt PixelShaderObject na podstawie pliku.
 
 W przypadku b³êdów kompilacji w trybie debug s¹ one przekierowane do okna Output.
 
 Na razie obs³uguje tylko nieskompilowane pliki.
-@param[in] file_name Nazwa pliku, z którego zostanie wczytany shader.
-@param[in] shader_name Nazwa funkcji, która jest punktem poczatkowym wykonania shadera.
-@param[in] shader_model £añcuch znaków opisuj¹cy shader model.
+@param[in] fileName Nazwa pliku, z którego zostanie wczytany shader.
+@param[in] shaderName Nazwa funkcji, która jest punktem poczatkowym wykonania shadera.
+@param[in] shaderModel £añcuch znaków opisuj¹cy shader model.
 */
-PixelShaderObject* PixelShaderObject::create_from_file( const std::wstring& file_name, const std::string& shader_name, const char* shader_model )
+PixelShaderObject* PixelShaderObject::create_from_file( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
 {
-	return ResourcesFactory::CreatePixelShaderFromFile( file_name, shader_name, shader_model );
+	return ResourcesFactory::CreatePixelShaderFromFile( fileName, shaderName, shaderModel );
 }
 
 //----------------------------------------------------------------------------------------------//
 //								VertexShaderObject												//
 //----------------------------------------------------------------------------------------------//
-
-VertexShaderObject::VertexShaderObject()
-{
-}
-
 
 
 /**@brief Tworzy obiekt VertexShaderObject na podstawie pliku.
@@ -39,13 +29,13 @@ VertexShaderObject::VertexShaderObject()
 W przypadku b³êdów kompilacji w trybie debug s¹ one przekierowane do okna Output.
 
 Na razie obs³uguje tylko nieskompilowane pliki.
-@param[in] file_name Nazwa pliku, z którego zostanie wczytany shader
-@param[in] shader_name Nazwa funkcji, która jest punktem poczatkowym wykonania shadera
-@param[in] shader_model £añcuch znaków opisuj¹cy shader model.
+@param[in] fileName Nazwa pliku, z którego zostanie wczytany shader
+@param[in] shaderName Nazwa funkcji, która jest punktem poczatkowym wykonania shadera
+@param[in] shaderModel £añcuch znaków opisuj¹cy shader model.
 @return Zwraca wskaŸnik na obiekt VertexShaderObject lub nullptr w przypadku niepowodzenia.*/
-VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& file_name, const std::string& shader_name, const char* shader_model )
+VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
 {
-	return ResourcesFactory::CreateVertexShaderFromFile( file_name, shader_name, shader_model );
+	return ResourcesFactory::CreateVertexShaderFromFile( fileName, shaderName, shaderModel );
 }
 
 /**@brief Tworzy obiekt VertexShaderObject na podstawie pliku. Zwraca równie¿ layout dla podanej struktury wierzcho³ka.
@@ -55,19 +45,19 @@ go, kiedy przestanie byæ potrzebny.
 W przypadku b³êdów kompilacji w trybie debug s¹ one przekierowane do okna Output.
 
 Na razie obs³uguje tylko nieskompilowane pliki.
-@param[in] file_name Nazwa pliku, z którego zostanie wczytany shader
-@param[in] shader_name Nazwa funkcji, która jest punktem poczatkowym wykonania shadera
+@param[in] fileName Nazwa pliku, z którego zostanie wczytany shader
+@param[in] shaderName Nazwa funkcji, która jest punktem poczatkowym wykonania shadera
 @param[out] layout W zmiennej umieszczany jest wskaŸnik na layout wierzcho³ka. Nale¿y pamiêtaæ o zwolnieniu go kiedy bêdzie niepotrzebny.
-@param[in] layout_desc Deskryptor opisujacy tworzony layout.
-@param[in] shader_model £añcuch znaków opisuj¹cy shader model.
+@param[in] layoutDesc Deskryptor opisujacy tworzony layout.
+@param[in] shaderModel £añcuch znaków opisuj¹cy shader model.
 @return Zwraca wskaŸnik na obiekt VertexShaderObject lub nullptr w przypadku niepowodzenia.*/
-VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& file_name,
-														  const std::string& shader_name,
+VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& fileName,
+														  const std::string& shaderName,
 														  ShaderInputLayout** layout,
-														  InputLayoutDescriptor* layout_desc,
-														  const char* shader_model )
+														  InputLayoutDescriptor* layoutDesc,
+														  const char* shaderModel )
 {
-
+	return ResourcesFactory::CreateVertexShaderFromFile( fileName, shaderName, layout, layoutDesc, shaderModel );
 }
 
 
@@ -75,11 +65,6 @@ VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& fi
 //----------------------------------------------------------------------------------------------//
 //								TextureObject													//
 //----------------------------------------------------------------------------------------------//
-
-TextureObject::TextureObject()
-{
-}
-
 
 
 /**@brief Porównuje ze soba dwa obiekty tekstur.
@@ -97,21 +82,54 @@ bool TextureObject::operator==( TextureObject& object)
 
 Obiekty s¹ takie same, kiedy odwo³uj¹ siê do tego samego pliku.
 */
-bool TextureObject::operator==(const std::wstring& file_name)
+bool TextureObject::operator==(const std::wstring& fileName)
 {
-	if (this->GetFileName() == file_name)
+	if (this->GetFileName() == fileName)
 		return true;
 	return false;
 }
 
 /** @brief Tworzy z podanego pliku obiekt tekstury.
 
-@param[in] file_name Nazwa pliku zawieraj¹cego teksturê
+@param[in] fileName Nazwa pliku zawieraj¹cego teksturê
 @return Zawraca stworzony wewn¹trz obiekt TextureObject z wczytan¹ tekstur¹ lub nullptr w przypadku niepowodzenia.
 */
-TextureObject* TextureObject::create_from_file( const std::wstring& file_name )
+TextureObject* TextureObject::create_from_file( const std::wstring& fileName )
 {
-	return ResourcesFactory::CreateTextureFromFile( file_name );
+	return ResourcesFactory::CreateTextureFromFile( fileName );
+}
+//----------------------------------------------------------------------------------------------//
+//								RenderTargetObject												//
+//----------------------------------------------------------------------------------------------//
+
+
+RenderTargetObject::RenderTargetObject( TextureObject* colorBuffer, TextureObject* depthStencil )
+	: m_colorBuffer( colorBuffer ),
+	m_depthStencilBuffer( depthStencil )
+{
+	if( m_colorBuffer )
+		m_colorBuffer->add_file_reference();
+	if( m_depthStencilBuffer )
+		m_depthStencilBuffer->add_file_reference();
+}
+
+/**@brief Destruktor kasuje obiekty tekstury g³êbokoœci i bufora koloru, je¿eli nie s¹ u¿ywane.
+Je¿eli istniej¹ odwo³ania do tych obiektów, to nie s¹ one kasowane, a jedynie usuwa siê odwo³ania
+pochodz¹ce od RenderTargetObject.*/
+RenderTargetObject::~RenderTargetObject()
+{
+	if( m_colorBuffer )
+	{
+		m_colorBuffer->delete_file_reference();
+		if( m_colorBuffer->can_delete() )
+			ObjectDeleter<TextureObject>::delete_object( m_colorBuffer, ObjectDeleterKey<TextureObject>() );		
+	}
+	if( m_depthStencilBuffer )
+	{
+		m_depthStencilBuffer->delete_file_reference();
+		if( m_depthStencilBuffer->can_delete() )
+			ObjectDeleter<TextureObject>::delete_object( m_depthStencilBuffer, ObjectDeleterKey<TextureObject>() );
+	}
 }
 
 //----------------------------------------------------------------------------------------------//

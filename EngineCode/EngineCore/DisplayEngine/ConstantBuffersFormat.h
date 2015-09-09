@@ -1,5 +1,9 @@
 #pragma once
-/**@file ConstantBuffersFormat.h
+/**
+@file ConstantBuffersFormat.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
 @brief Plik zawiera deklaracje buforów sta³ych dla vertex i piksel shadera.*/
 
 #include "stdafx.h"

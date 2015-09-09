@@ -94,6 +94,18 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11InputLayoutDescriptor.h">
       <Filter>Source Files\DX11API\DX11Resources</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Renderer\DX11Renderer.h">
+      <Filter>Source Files\DX11API\DX11Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderer.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IGraphicAPIInitializer.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11Initializer.h">
+      <Filter>Source Files\DX11API\DX11Initializer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\GraphicAPI\MeshResources.cpp">
@@ -131,6 +143,12 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11InputLayoutDescriptor.cpp">
       <Filter>Source Files\DX11API\DX11Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Renderer\DX11Renderer.cpp">
+      <Filter>Source Files\DX11API\DX11Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11Initializer.cpp">
+      <Filter>Source Files\DX11API\DX11Initializer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

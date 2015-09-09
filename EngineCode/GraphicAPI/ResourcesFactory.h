@@ -1,11 +1,17 @@
 #pragma once
-
+/**
+@file ResourcesFactory.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+*/
 
 #include "MeshResources.h"
 
-/**Klasa ze statycznymi funkcjami do tworzenia obiektów assetów.
+/**@brief Klasa ze statycznymi funkcjami do tworzenia obiektów assetów.
 
-Jest potrzebna, ¿eby wybraæ inplementacjê zgodn¹ z typem renderera.*/
+Jest potrzebna, ¿eby wybraæ implementacjê resourców zgodn¹ z typem renderera.
+Ka¿de API graficzne powinno zaimplementowaæ tê klasê.
+*/
 class ResourcesFactory
 {
 public:
@@ -23,5 +29,7 @@ public:
 																	ShaderInputLayout** layout,
 																	InputLayoutDescriptor* layout_desc,
 																	const char* shaderModel = "vs_4_0" );
+
+	static RenderTargetObject*		CreateScreenRenderTarget		();
 };
 

@@ -1,7 +1,12 @@
 #pragma once
+/**
+@file ITexture.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+*/
+
 
 #include "ReferencedObject.h"
-#include <string>
 
 class ITexture	:	public referenced_object
 {

@@ -1,8 +1,12 @@
 #pragma once
 
 /**@file DX11APIObjects.h
-@brief Zaiwiera deklaracjê klasy DX11APIObjects i DX11_constant_buffers_container s³u¿¹cych do
-inicjowania i przechowywania obiektów DirectXa.*/
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
+@brief Zawiera deklaracjê klasy DX11APIObjects i DX11_constant_buffers_container s³u¿¹cych do
+inicjowania i przechowywania obiektów DirectXa.
+*/
 
 #include <string>
 
@@ -130,7 +134,7 @@ protected:
 								const std::wstring& pix_shader_file, const std::string& pix_shader_name,
 								const std::wstring& vert_shader_file, const std::string& vert_shader_name,
 								bool single_thread = true );
-
+	DX11_INIT_RESULT init_DX11( int width, int height, HWND window, bool fullscreen, bool single_thread = true );
 
 
 	virtual void release_DirectX();

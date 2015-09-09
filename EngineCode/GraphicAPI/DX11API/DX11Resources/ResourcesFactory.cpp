@@ -1,24 +1,22 @@
 #include "../../ResourcesFactory.h"
 
-//#if ENABLE_RENDERER == DX11
+
 #include "DX11VertexShader.h"
 #include "DX11PixelShader.h"
 #include "DX11Buffer.h"
 #include "DX11Texture.h"
+#include "DX11RenderTarget.h"
 
 typedef DX11Texture				Texture;
 typedef DX11VertexShader		VertexShader;
 typedef DX11PixelShader			PixelShader;
 typedef DX11Buffer				Buffer;
-//#else
-//	#error Nie zdefiniowano API graficznego. Zdefiniuj makro ENABLE_RENDERER w pliku macros_switches.h.
-//#endif
 
 
 /**@brief Tworzy teksturê z podanego pliku.
 @param[in] fileName Nazwa pliku.
 @return Zwraca wskaŸnik na obiekt tekstury lub nullptr w przypadku niepowodzenia.*/
-TextureObject*		ResourcesFactory::CreateTextureFromFile( const std::wstring& fileName )
+TextureObject*			ResourcesFactory::CreateTextureFromFile( const std::wstring& fileName )
 {
 	return Texture::CreateFromFile( fileName );
 }
@@ -29,7 +27,7 @@ TextureObject*		ResourcesFactory::CreateTextureFromFile( const std::wstring& fil
 @param[in] shaderName Nazwa funkcji, od której ma siê rozpocz¹æ wykonanie programu shadera.
 @param[in] shaderModel Shader model.
 @return Zwraca obiekt vertex shadera lub nullptr w przypadku niepowodzenia.*/
-VertexShaderObject* ResourcesFactory::CreateVertexShaderFromFile( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
+VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
 {
 	return VertexShader::CreateFromFile( fileName, shaderName, shaderModel );
 }
@@ -42,13 +40,21 @@ VertexShaderObject* ResourcesFactory::CreateVertexShaderFromFile( const std::wst
 @param[in] layoutDesc Deskryptor opisuj¹cy layout.
 @param[in] shaderModel Shader model.
 @return Zwraca obiekt vertex shadera lub nullptr w przypadku niepowodzenia.*/
-VertexShaderObject* ResourcesFactory::CreateVertexShaderFromFile		( const std::wstring& fileName,
+VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile		( const std::wstring& fileName,
 																		const std::string& shaderName,
 																		ShaderInputLayout** layout,
 																		InputLayoutDescriptor* layoutDesc,
 																		const char* shaderModel/* = "vs_4_0"*/ )
 {
 	return VertexShader::CreateFromFile( fileName, shaderName, layout, layoutDesc, shaderModel );
+}
+
+/**Tworzy object RenderTargetObject z bufora tylnego ekranu.
+
+@return Zwraca object RenderTargetObject.*/
+RenderTargetObject*		ResourcesFactory::CreateScreenRenderTarget()
+{
+	return DX11RenderTarget::CreateScreenRenderTarget();
 }
 
 /**@brief Tworzy obekt pixel shadera.

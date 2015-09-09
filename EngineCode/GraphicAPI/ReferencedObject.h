@@ -1,11 +1,14 @@
 #pragma once
 
 /**@file ReferencedObject.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
 @brief Plik zawiera deklaracjê i definicjê klasy referenced_object s³u¿¹c¹
 do zliczania odwo³añ do obiektu.*/
 
 
-/** \brief Klasa u³atwiaj¹ca zarz¹dzanie odwo³aniami do assetów.
+/**@brief Klasa u³atwiaj¹ca zarz¹dzanie odwo³aniami do assetów.
 *
 *Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagaj¹ jakiegoœ systemu zapewniaj¹cego wspó³dzielenie miêdzy innymi obiektami.
 *
@@ -48,6 +51,7 @@ public:
 
 	//sprawdza czy mo¿na zwolniæ zmienn¹
 	inline bool can_delete( unsigned int& file_ref, unsigned int& other_ref );
+	inline bool can_delete();
 
 	/*Funkcje s³u¿¹ce do zarz¹dzania odwo³aniami.
 	*Nale¿y pilnowaæ, aby wszystkie funkcje, które modyfikuj¹ jakiekolwiek przypisania obiektów
@@ -73,17 +77,28 @@ public:
 
 
 
-/** \brief Funkcja informuje czy obiekt s¹ obiektu, które odwo³uj¹ siê do assetu.
+/**@brief Funkcja informuje czy obiekt s¹ obiektu, które odwo³uj¹ siê do assetu.
 
 @param[out] file_ref W zmiennej zostanie umieszczona liczba referencji plikowych.
 @param[out] other_ref W zmiennej zostanie umieszczona liczba referencji bezpoœrednich od obiektów.
 @return Zwraca wartoœæ logiczn¹ mówi¹c¹ czy asset nadaje siê do usuniêcia.
 */
-bool referenced_object::can_delete(unsigned int& file_ref, unsigned int& other_ref)
+inline bool referenced_object::can_delete(unsigned int& file_ref, unsigned int& other_ref)
 {
 	file_ref = file_references;
 	other_ref = object_references;
 
+	if (file_references == 0 && object_references == 0)
+		return true;
+	return false;
+}
+
+/**@brief Funkcja informuje czy obiekt s¹ obiektu, które odwo³uj¹ siê do assetu.
+
+@return Zwraca wartoœæ logiczn¹ mówi¹c¹ czy asset nadaje siê do usuniêcia.
+*/
+inline bool referenced_object::can_delete()
+{
 	if (file_references == 0 && object_references == 0)
 		return true;
 	return false;

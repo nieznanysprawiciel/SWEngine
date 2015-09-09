@@ -1,7 +1,11 @@
 #pragma once
+/**
+@file ResourcesFactory.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 
-/**@file meshes_textures_materials.h
-@brief plik zawieta deklaracje foramtów wierzcho³ków, klas zawieraj¹cych assety oraz Model3DFromFile.*/
+@brief Plik zawiera deklaracje formatów wierzcho³ków oraz klas zawieraj¹cych assety shadery itp.
+*/
 
 
 #include "Common\ObjectDeleter.h"
@@ -249,7 +253,7 @@ protected:
 	//¯eby unikn¹æ pomy³ki, obiekt mo¿e byœ kasowany tylko przez ModelsManager. Zapewnia to ObjectDeleter.
 	~TextureObject() = default;
 public:
-	TextureObject();
+	TextureObject() = default;
 	std::wstring&	GetFileName() { return m_fileName; }		///<Zwraca nazwê pliku, który pos³u¿y³ do stworzenia obiektu.
 
 	inline bool operator==( TextureObject& object );
@@ -261,16 +265,20 @@ public:
 
 /**Klasa dla render targetów.
 
-Klasa jest jednoczeœnie tekstur¹. Umo¿liwia ustawienie zarówno jako tekstura
-obiektu, jak i bufor do renderowania.*/
-class RenderTargetObject : public TextureObject, public IRenderTarget
+Klasa jest jednoczeœnie tekstur¹. Umo¿liwia pobranie tekstury i ustawienie
+jej do odczytu dla shadera.*/
+class RenderTargetObject : public IRenderTarget
 {
 private:
-
 protected:
-
+	TextureObject*			m_colorBuffer;			///<Pozwala na dostêp do bufora kolorów dla innych obiektów. Mo¿e byæ nullptrem.
+	TextureObject*			m_depthStencilBuffer;	///<Pozwala na dostêp do bufora g³êbokoœci. Mo¿e byæ nullptrem.
 public:
+	RenderTargetObject( TextureObject* colorBuffer, TextureObject* depthStencil );
+	virtual ~RenderTargetObject();
 
+	inline TextureObject*		GetColorBuffer()			{ return m_colorBuffer; }
+	inline TextureObject*		GetDepthStencilBuffer()		{ return m_depthStencilBuffer; }
 };
 
 /**@brief Klasa przechowuje layout wierzcho³ka trafiaj¹cego do
@@ -307,7 +315,7 @@ private:
 protected:
 	~VertexShaderObject() = default;
 public:
-	VertexShaderObject();
+	VertexShaderObject() = default;
 
 	static VertexShaderObject* create_from_file( const std::wstring& fileName, const std::string& shader_name, const char* shader_model = "vs_4_0" );
 	static VertexShaderObject* create_from_file( const std::wstring& fileName, const std::string& shader_name, ShaderInputLayout** layout,
@@ -322,7 +330,7 @@ private:
 protected:
 	~PixelShaderObject() = default;
 public:
-	PixelShaderObject();
+	PixelShaderObject() = default;
 
 	static PixelShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name, const char* shader_model = "ps_4_0" );
 };

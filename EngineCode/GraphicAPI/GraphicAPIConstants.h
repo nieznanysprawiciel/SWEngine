@@ -1,4 +1,9 @@
 #pragma once
+/**
+@file GraphicAPIConstants.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+*/
 
 enum class ResourceUsage
 {
@@ -6,6 +11,19 @@ enum class ResourceUsage
 	RESOURCE_USAGE_DYNAMIC		= 1,
 	RESOURCE_USAGE_STATIC		= 2,
 	RESOURCE_USAGE_STAGING		= 3
+};
+
+enum class PrimitiveTopology
+{
+  PRIMITIVE_TOPOLOGY_POINTLIST                     = 0,
+  PRIMITIVE_TOPOLOGY_LINELIST                      = 1,
+  PRIMITIVE_TOPOLOGY_LINESTRIP                     = 2,
+  PRIMITIVE_TOPOLOGY_TRIANGLELIST                  = 3,
+  PRIMITIVE_TOPOLOGY_TRIANGLESTRIP                 = 4,
+  PRIMITIVE_TOPOLOGY_LINELIST_ADJ                  = 5,
+  PRIMITIVE_TOPOLOGY_LINESTRIP_ADJ                 = 6,
+  PRIMITIVE_TOPOLOGY_TRIANGLELIST_ADJ              = 7,
+  PRIMITIVE_TOPOLOGY_TRIANGLESTRIP_ADJ             = 8
 };
 
 enum class ResourceFormat
