@@ -8,14 +8,14 @@
 */
 
 
-#include "Common\ObjectDeleter.h"
-#include "Common\macros_switches.h"
-#include "ReferencedObject.h"
-#include "ITexture.h"
-#include "IShader.h"
-#include "IBuffer.h"
-#include "IRenderTarget.h"
-#include "GraphicAPIConstants.h"
+#include "Common/ObjectDeleter.h"
+#include "Common/macros_switches.h"
+#include "GraphicAPI/ReferencedObject.h"
+#include "GraphicAPI/ITexture.h"
+#include "GraphicAPI/IShader.h"
+#include "GraphicAPI/IBuffer.h"
+#include "GraphicAPI/IRenderTarget.h"
+#include "GraphicAPI/GraphicAPIConstants.h"
 #include "DirectXMath.h"
 
 

@@ -6,7 +6,7 @@
 */
 
 
-#include "ReferencedObject.h"
+#include "GraphicAPI/ReferencedObject.h"
 
 class ITexture	:	public referenced_object
 {

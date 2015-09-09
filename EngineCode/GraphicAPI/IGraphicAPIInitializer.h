@@ -7,7 +7,7 @@
 @brief Deklaracja interfejsu IGraphicAPIInitializer.
 */
 
-#include "IRenderer.h"
+#include "GraphicAPI/IRenderer.h"
 #include "Common/types_definitions.h"
 
 #include <string>

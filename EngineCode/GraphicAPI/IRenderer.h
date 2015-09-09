@@ -6,7 +6,7 @@
 */
 
 
-#include "MeshResources.h"
+#include "GraphicAPI/MeshResources.h"
 
 enum RendererUsage
 {

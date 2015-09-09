@@ -5,8 +5,8 @@
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
-#include "MeshResources.h"
-#include "IGraphicAPIInitializer.h"
+#include "GraphicAPI/MeshResources.h"
+#include "GraphicAPI/IGraphicAPIInitializer.h"
 
 /**@brief Klasa ze statycznymi funkcjami do tworzenia obiektów assetów.
 

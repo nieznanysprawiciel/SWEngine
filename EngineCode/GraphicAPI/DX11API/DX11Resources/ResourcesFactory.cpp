@@ -15,7 +15,7 @@ typedef DX11Buffer				Buffer;
 
 IGraphicAPIInitializer* ResourcesFactory::CreateAPIInitializer()
 {
-	return DX11Initializer();
+	return new DX11Initializer();
 }
 
 /**@brief Tworzy teksturê z podanego pliku.

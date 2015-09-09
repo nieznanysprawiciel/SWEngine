@@ -6,7 +6,7 @@
 */
 
 
-#include "ReferencedObject.h"
+#include "GraphicAPI/ReferencedObject.h"
 #include <string>
 
 class IShader	:	public referenced_object

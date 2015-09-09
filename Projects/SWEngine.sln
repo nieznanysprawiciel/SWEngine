@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineCore", "EngineCore\SWEngine.vcxproj", "{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}"
 EndProject
@@ -64,6 +64,7 @@ Global
 		{44643D7F-1C71-41C1-B452-B2DC5E088A58}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{44643D7F-1C71-41C1-B452-B2DC5E088A58}.Release|Win32.ActiveCfg = Release|Win32
 		{44643D7F-1C71-41C1-B452-B2DC5E088A58}.Release|Win32.Build.0 = Release|Win32
+		{44643D7F-1C71-41C1-B452-B2DC5E088A58}.Release|Win32.Deploy.0 = Release|Win32
 		{44643D7F-1C71-41C1-B452-B2DC5E088A58}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
