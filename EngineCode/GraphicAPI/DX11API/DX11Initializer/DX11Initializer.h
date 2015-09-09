@@ -9,7 +9,7 @@
 #include "../../IGraphicAPIInitializer.h"
 #include "DX11APIObjects.h"
 
-class DX11Initializer : public IGraphicAPIInitializer, public DX11APIObjects
+class DX11Initializer : public IGraphicAPIInitializer, public DX11AuxiliaryObjects
 {
 private:
 protected:

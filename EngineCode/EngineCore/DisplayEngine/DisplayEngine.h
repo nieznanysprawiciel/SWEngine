@@ -1,7 +1,10 @@
 #pragma once
 
 /**@file DisplayEngine.h
-@brief Plik zawiera deklaracjê klasy DisplayEngine.
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
+@brief Plik zawiera deklaracjê klasy DisplayEngine i funkcje pomocnicze.
 */
 
 #include "stdafx.h"

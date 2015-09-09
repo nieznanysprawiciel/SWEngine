@@ -5,17 +5,18 @@
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
-#include "GraphicAPI\MeshResources.h"
+#include "GraphicAPI/MeshResources.h"
 #include "../DX11Initializer/DX11APIObjects.h"
 
 
-class DX11InputLayout : public ShaderInputLayout
+class DX11InputLayout : public ShaderInputLayout, public DX11APIObjects
 {
 private:
 	ID3D11InputLayout*				m_vertexLayout;
+protected:
+	~DX11InputLayout();
 public:
 	DX11InputLayout( ID3D11InputLayout* layout );
-	~DX11InputLayout();
 
 	inline ID3D11InputLayout*		Get() { return m_vertexLayout; }
 };

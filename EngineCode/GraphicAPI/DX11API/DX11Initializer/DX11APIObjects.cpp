@@ -49,10 +49,10 @@ ID3D11VertexShader*					DX11APIObjects::default_vertex_shader = nullptr;
 ID3D11PixelShader*					DX11APIObjects::default_pixel_shader = nullptr;
 ID3D11SamplerState*					DX11APIObjects::default_sampler = nullptr;
 
-ID3D11Buffer*						DX11_constant_buffers_container::const_per_frame = nullptr;
-ID3D11Buffer*						DX11_constant_buffers_container::const_per_mesh = nullptr;
-ID3D11DepthStencilState*			DX11_constant_buffers_container::depth_enabled = nullptr;		///<Do w³¹czania z-bufora
-ID3D11DepthStencilState*			DX11_constant_buffers_container::depth_disabled = nullptr;		///<D0 wy³¹czania z-bufora
+ID3D11Buffer*						DX11AuxiliaryObjects::const_per_frame = nullptr;
+ID3D11Buffer*						DX11AuxiliaryObjects::const_per_mesh = nullptr;
+ID3D11DepthStencilState*			DX11AuxiliaryObjects::depth_enabled = nullptr;		///<Do w³¹czania z-bufora
+ID3D11DepthStencilState*			DX11AuxiliaryObjects::depth_disabled = nullptr;		///<D0 wy³¹czania z-bufora
 
 //----------------------------------------------------------------------------------------------//
 //								Layouty dla bufora wierzcho³ków									//
@@ -117,7 +117,7 @@ DX11APIObjects::DX11APIObjects()
 		_swap_chain_desc.BufferCount = 1;
 		_swap_chain_desc.BufferDesc.Width = _window_width;
 		_swap_chain_desc.BufferDesc.Height = _window_height;
-		_swap_chain_desc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+		_swap_chain_desc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
 		_swap_chain_desc.BufferDesc.RefreshRate.Numerator = 60;
 		_swap_chain_desc.BufferDesc.RefreshRate.Denominator = 1;
 		_swap_chain_desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
@@ -827,7 +827,7 @@ void DX11APIObjects::begin_scene()
 
 
 //----------------------------------------------------------------------------------------------//
-//								Funkcje dla klasy DX11_constant_buffers_container				//
+//								Funkcje dla klasy DX11AuxiliaryObjects				//
 //----------------------------------------------------------------------------------------------//
 
 /**@brief Tworzy bufory sta³ych dla shadera.
@@ -838,7 +838,7 @@ Je¿eli podane wartoœci takie nie s¹, to s¹ rozszerzane do tej wielokrotnoœci, al
 
 @param[in] size_per_frame Rozmiar bufora const_per_frame.
 @param[in] size_per_mesh Rozmiar bufora const_per_mesh.*/
-void DX11_constant_buffers_container::init_buffers( unsigned int size_per_frame, unsigned int size_per_mesh )
+void DX11AuxiliaryObjects::init_buffers( unsigned int size_per_frame, unsigned int size_per_mesh )
 {
 	HRESULT result;
 
@@ -875,7 +875,7 @@ void DX11_constant_buffers_container::init_buffers( unsigned int size_per_frame,
 }
 
 
-void  DX11_constant_buffers_container::init_depth_states()
+void  DX11AuxiliaryObjects::init_depth_states()
 {
 	D3D11_DEPTH_STENCIL_DESC dsDesc;
 
@@ -912,7 +912,7 @@ void  DX11_constant_buffers_container::init_depth_states()
 
 /**@brief Zwalania obiekty DirectXa. Funkcja wywo³uje tê sam¹ funkcjê z obiektu potomnego, ¿eby
 zwolniæ wszystkie obiekty, które istniej¹.*/
-void DX11_constant_buffers_container::release_DirectX()
+void DX11AuxiliaryObjects::release_DirectX()
 {
 	if ( const_per_frame )
 		const_per_frame->Release(), const_per_frame = nullptr;

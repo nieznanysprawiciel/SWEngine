@@ -4,7 +4,7 @@
 @author nieznanysprawiciel
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 
-@brief Zawiera deklaracjê klasy DX11APIObjects i DX11_constant_buffers_container s³u¿¹cych do
+@brief Zawiera deklaracjê klasy DX11APIObjects i DX11AuxiliaryObjects s³u¿¹cych do
 inicjowania i przechowywania obiektów DirectXa.
 */
 
@@ -148,11 +148,11 @@ protected:
 /**@brief Klasa zawiera wskaŸniki na bufory sta³ych zawieraj¹ce podstawowe zestawy
 elementów przekazywanych do shaderów. S¹ to miedzy innymi macierze transformacji.
 
-@note Je¿eli w jakimkolwiek miejscu s¹ u¿ywane obiekty z tej klasy (DX11_constant_buffers_container), a nie tylko z klasy bazowej,
+@note Je¿eli w jakimkolwiek miejscu s¹ u¿ywane obiekty z tej klasy (DX11AuxiliaryObjects), a nie tylko z klasy bazowej,
 to przy zwalnianiu nale¿y koniecznie wywo³aæ funkcjê release_DirectX tego obiektu, a nie klasy bazowej. Czyli innymi s³owy klasa
 odpowiedzialna za zwalnianie musi odziedziczyæ po tym obiekcie nawet, je¿eli nie u¿ywa jego zmiennych.
 W przeciwnym razie zostanie wywo³any funkcja wirtualna dla klasy bazowej.*/
-class DX11_constant_buffers_container : public DX11APIObjects
+class DX11AuxiliaryObjects : public DX11APIObjects
 {
 protected:
 	static ID3D11Buffer*				const_per_frame;	///<Bufor sta³ych zmieniaj¹cych siê nie czêœciej ni¿ co ramkê

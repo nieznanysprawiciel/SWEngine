@@ -303,7 +303,7 @@ public:
 	InputLayoutDescriptor() = default;
 	virtual ~InputLayoutDescriptor() = default;
 
-	virtual void AddRow( wchar_t* semanticName, ResourceFormat format, unsigned int inputSlot, unsigned int byteOffset, bool perInstance, unsigned int instanceDataStep );
+	virtual void AddRow( const char* semanticName, ResourceFormat format, unsigned int inputSlot, unsigned int byteOffset, bool perInstance, unsigned int instanceDataStep );
 };
 
 

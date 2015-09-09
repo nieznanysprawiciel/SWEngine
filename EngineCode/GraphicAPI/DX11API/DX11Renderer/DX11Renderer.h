@@ -19,7 +19,7 @@ typedef DX11Renderer Renderer;
 
 
 /**@brief Renderer obs³uguj¹cy DirectX 11.*/
-class DX11Renderer	: public IRenderer,	public DX11_constant_buffers_container
+class DX11Renderer	: public IRenderer,	public DX11AuxiliaryObjects
 {
 private:
 	/**Kontekst urz¹dzenia s³u¿¹cy do renderowania. W zale¿noœci czy stosujemy opóŸnione renderowanie (deferred rendering) czy nie,

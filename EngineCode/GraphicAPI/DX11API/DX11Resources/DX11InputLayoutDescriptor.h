@@ -17,11 +17,13 @@ public:
 	size_t							GetNumElements()		{ return m_inputElement.size(); }
 	D3D11_INPUT_ELEMENT_DESC*		GetDescriptorPtr()		{ return m_inputElement.data(); }
 
-	virtual void					AddRow( wchar_t* semanticName,
+	virtual void					AddRow( const char* semanticName,
 											ResourceFormat format,
 											unsigned int inputSlot,
 											unsigned int byteOffset,
 											bool perInstance,
 											unsigned int instanceDataStep );
+
+	unsigned int					CountSemantic( const char* semanticName );
 };
 
