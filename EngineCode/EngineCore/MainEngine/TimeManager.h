@@ -1,8 +1,11 @@
 #pragma once
 /**@file TimeManager.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
 @brief Plik zawiera deklaracjê klasy TimeManager do obs³ugi rzeczy zwi¹zanych z czasem.*/
 
-#include "Common\types_definitions.h"
+#include "Common/types_definitions.h"
 
 /**@brief Klasa obs³uguje wszystko co zwi¹zane z czasem.
 
@@ -31,14 +34,14 @@ public:
 	TimeManager();
 	~TimeManager() = default;
 
-	void initTimer();
-	float onStartRenderFrame();
-	int64 queryCurrentTime();
-	double queryTimeFromBegin();
-	inline int64 getBeginTime() { return begin_time; }				///<Zwraca czas jaki zosta³ zarejestrowany przy inicjacji silnika.
-	inline int64 getTimerFrequency() { return timer_frequency; }	///<Zwraca czêstotliwoœæ taktowania uzywanego timera.
-	inline float getTimeLag() { return lag; }						///<Zwraca zmienn¹ lag.
-	inline int64 getTime() { return time_previous; }				///<Zwraca czas, jaki zosta³ ostatnio zarejestrowany przy wywo³aniu onStartRenderFrame.
-	inline void updateTimeLag( float timeLag ) { lag = timeLag; }	///<Aktualizuje zmienn¹ lag.
+	void			initTimer();
+	float			onStartRenderFrame();
+	int64			queryCurrentTime();
+	double			queryTimeFromBegin();
+	inline int64	getBeginTime()					{ return begin_time; }				///<Zwraca czas jaki zosta³ zarejestrowany przy inicjacji silnika.
+	inline int64	getTimerFrequency()				{ return timer_frequency; }			///<Zwraca czêstotliwoœæ taktowania uzywanego timera.
+	inline float	getTimeLag()					{ return lag; }						///<Zwraca zmienn¹ lag.
+	inline int64	getTime()						{ return time_previous; }			///<Zwraca czas, jaki zosta³ ostatnio zarejestrowany przy wywo³aniu onStartRenderFrame.
+	inline void		updateTimeLag( float timeLag )	{ lag = timeLag; }					///<Aktualizuje zmienn¹ lag.
 };
 

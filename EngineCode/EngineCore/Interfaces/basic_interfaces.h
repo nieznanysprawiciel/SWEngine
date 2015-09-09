@@ -2,6 +2,9 @@
 
 /**
 @file basic_interfaces.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
 @brief Zawiera deklaracje klas bazowych dla obiektów(aktorów):
 
 Object
