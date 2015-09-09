@@ -14,7 +14,7 @@ typedef void (*EventDelegate)(GamePlay*, Event*);
  *dodawanie, modyfikowanie i usuwanie obiektów, zmiana stanów silnika i wszystkie inne dzia³ania
  *podchodz¹ce pod gameplay.
  *
- *Klasa komunikuje siê z silnikiem za pomoc¹ interfejsu engine_interface.
+ *Klasa komunikuje siê z silnikiem za pomoc¹ interfejsu EngineInterface.
  *
  *W ka¿dym obiegu g³ównej pêtli silnika wywo³ywane s¹ funkcje dla poszczególnych modu³ów.
  *Obiekt GamePlay nalezy do klasy FableEngine. Klasa ta najpierw wywo³uje funkcje obs³ugi dla 
@@ -31,13 +31,13 @@ class GamePlay
 private:
 
 protected:
-	engine_interface*				engine;
+	EngineInterface*				engine;
 	FableEngine*					fable_engine;
 public:
 	GamePlay() = default;
 	virtual ~GamePlay() = default;
 
-	virtual void set_engine_and_fable( engine_interface* game_engine, FableEngine* fable ) { engine = game_engine; fable_engine = fable; }
+	virtual void set_engine_and_fable( EngineInterface* game_engine, FableEngine* fable ) { engine = game_engine; fable_engine = fable; }
 
 	virtual void proceed_game_play(float time_interval) = 0;
 	virtual int load_level() = 0;

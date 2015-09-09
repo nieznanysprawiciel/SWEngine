@@ -6,12 +6,11 @@ oraz g³ówne funkcje do renderingu.
 
 #include "stdafx.h"
 #include "Engine.h"
-#include "ControllersEngine\ControllersEngine.h"
+#include "ControllersEngine/ControllersEngine.h"
+#include "GraphicAPI/ResourcesFactory.h"
+#include "EngineHelpers/PerformanceCheck.h"
 
-
-#include "EngineHelpers\PerformanceCheck.h"
-
-#include "Common\memory_leaks.h"
+#include "Common/memory_leaks.h"
 
 
 
@@ -49,12 +48,14 @@ Engine::Engine(HINSTANCE instance)
 	events_queue = nullptr;
 
 	full_screen = false;			//inicjalizacja jako false potrzebna w funkcji init_window
-	directX_ready = false;			//jeszcze nie zainicjowaliœmy
+	m_engineReady = false;			//jeszcze nie zainicjowaliœmy
 	instance_handler = instance;
 
 	// Initialize global strings
 	LoadString(instance_handler, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
 	LoadString(instance_handler, IDC_SW_ENGINE, szWindowClass, MAX_LOADSTRING);
+
+	m_graphicInitializer = ResourcesFactory::CreateAPIInitializer();
 
 	controllers_engine	=	new ControllersEngine(this);
 	movement_engine		=	new MovementEngine(this);
@@ -105,7 +106,7 @@ Engine::~Engine()
 ///@param[in] height Wysokoœæ okna
 ///@param[in] fullscreen Pe³ny ekran lub renderowanie w oknie
 ///@param[in] nCmdShow Czwarty parametr funkcji WinMain
-int Engine::init_engine( int width, int height, BOOL full_screen, int nCmdShow )
+int Engine::init_engine( int width, int height, bool full_screen, int nCmdShow )
 {
 	int result;
 
@@ -114,10 +115,16 @@ int Engine::init_engine( int width, int height, BOOL full_screen, int nCmdShow )
 	if ( !result )
 		return FALSE;
 
-	//Inicjalizowanie directXa
-	result = init_directX( );
-		assert( result == DX11_INIT_OK );		//Dzia³a tylko w trybie DEBUG
-	if ( result != DX11_INIT_OK )
+	//Inicjalizowanie API graficznego
+	GraphicAPIInitData initData;
+	initData.fullScreen			= full_screen;
+	initData.singleThreaded		= false;
+	initData.windowHandle		= (uint32)window_handler;
+	initData.windowHeight		= height;
+	initData.windowWidth		= width;
+	result = m_graphicInitializer->InitAPI( initData );
+	assert( result != 0 );
+	if( result == 0 )
 		return FALSE;
 
 	//Inicjalizowanie directXinputa
@@ -131,7 +138,7 @@ int Engine::init_engine( int width, int height, BOOL full_screen, int nCmdShow )
 	//todo:
 	//Inicjalizowanie DirectXSound
 
-	directX_ready = true;		//jesteœmy gotowi do renderowania
+	m_engineReady = true;		//jesteœmy gotowi do renderowania
 
 	return TRUE;
 }
@@ -304,7 +311,7 @@ na wszelki wypadek zawsze inicjalizacja powinna byæ wczeœniej.
 @see GamePlay*/
 void Engine::set_entry_point( GamePlay* game_play )
 {
-	if ( directX_ready )
+	if ( m_engineReady )
 	{
 		game_play->set_engine_and_fable( this, fable_engine );
 		fable_engine->set_game_play( game_play );

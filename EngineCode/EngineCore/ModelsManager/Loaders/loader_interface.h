@@ -1,12 +1,14 @@
 #pragma once
 
 /**@file loader_interface.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
 @brief Zawiera deklaracjê interfejsu dla loaderów plików z modelami.
 */
 
-#include "stdafx.h"
-#include "ModelsManager\meshes_textures_materials.h"
-#include "ModelsManager\ModelsManager.h"
+#include "GraphicAPI/MeshResources.h"
+#include "ModelsManager/ModelsManager.h"
 
 /**@brief Wartoœci, mo¿liwe do zwrócenia przez klasê Loader
 */
@@ -26,13 +28,13 @@ Dok³adniejsze informacje o tworzeniu w³asnych loaderów znajduj¹ siê w paragrafie
 @note Po wywo³aniu konstruktora klasa ma byæ w pe³ni gotowa do dzia³ania. Podobnie po ka¿dym wywo³aniu funkcji ³aduj¹cej
 plik, klasa tak¿e ma byæ gotowa do wczytania kolejnego.
 */
-class Loader
+class ILoader
 {
 protected:
 	ModelsManager*		models_manager;
 public:
-	Loader(ModelsManager* models_manager) : models_manager(models_manager){};
-	virtual ~Loader(){};
+	ILoader(ModelsManager* models_manager) : models_manager(models_manager){};
+	virtual ~ILoader(){};
 
 	/**@brief Funkcja ma za zadanie poinformowaæ czy jest w stanie wczytaæ podany plik.
 

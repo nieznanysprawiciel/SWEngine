@@ -1,15 +1,17 @@
 #pragma once
-
 /**@file ModelsManager.h
-Plik zawiera deklaracjê klasy ModelsManager.
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
+@brief Plik zawiera deklaracjê klasy ModelsManager.
 */
 
-#include "stdafx.h"
-#include "meshes_textures_materials.h"
+#include "GraphicAPI/MeshResources.h"
+#include "Model3DFromFile.h"
 #include "ResourceContainer.h"
 
 class Engine;
-class Loader;
+class ILoader;
 
 
 
@@ -67,31 +69,31 @@ private:
 	ResourceContainer<Model3DFromFile>			file_model;			///<Obiekty modeli 3D z plików
 
 	/*loadery dla ró¿nych formatów plików z modelami*/
-	std::vector<Loader*>						loader;				///<Loadery do plików z modelami 3D
+	std::vector<ILoader*>						loader;				///<Loadery do plików z modelami 3D
 
 public:
 	ModelsManager( Engine* engine );
-	~ModelsManager( );
+	~ModelsManager();
 
 	// Funkcje pomocnicze
-	VertexShaderObject*				find_best_vertex_shader( TextureObject** textures );
-	PixelShaderObject*				find_best_pixel_shader( TextureObject** textures );
-	void							set_default_assets( ID3D11VertexShader* vert_shader, ID3D11PixelShader* pix_shader );
+	VertexShaderObject*				find_best_vertex_shader		( TextureObject** textures );
+	PixelShaderObject*				find_best_pixel_shader		( TextureObject** textures );
+	void							set_default_assets			( ID3D11VertexShader* vert_shader, ID3D11PixelShader* pix_shader );
 
 
 	// Funkcje do zarz¹dzania assetami
-	MODELS_MANAGER_RESULT			load_model_from_file( const std::wstring& file );
+	MODELS_MANAGER_RESULT			load_model_from_file		( const std::wstring& file );
 
-	inline Model3DFromFile*			get_model( const std::wstring& name ) { return file_model.get( name ); }	///<Zwraca model z pliku o podanej nazwie
-	TextureObject*					add_texture( const std::wstring& file_name );
-	MaterialObject*					add_material( const MaterialObject* material, const std::wstring& material_name );
-	VertexShaderObject*				add_vertex_shader( const std::wstring& file_name, const std::string& shader_entry );
-	VertexShaderObject*				add_vertex_shader( const std::wstring& file_name, const std::string& shader_entry, ID3D11InputLayout** layout, D3D11_INPUT_ELEMENT_DESC* layout_desc, unsigned int array_size );
-	PixelShaderObject*				add_pixel_shader( const std::wstring& file_name, const std::string& shader_entry );
-	BufferObject*					add_vertex_buffer( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
-	BufferObject*					add_index_buffer( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
+	inline Model3DFromFile*			get_model					( const std::wstring& name ) { return file_model.get( name ); }	///<Zwraca model z pliku o podanej nazwie
+	TextureObject*					add_texture					( const std::wstring& file_name );
+	MaterialObject*					add_material				( const MaterialObject* material, const std::wstring& material_name );
+	VertexShaderObject*				add_vertex_shader			( const std::wstring& file_name, const std::string& shader_entry );
+	VertexShaderObject*				add_vertex_shader			( const std::wstring& file_name, const std::string& shader_entry, ID3D11InputLayout** layout, D3D11_INPUT_ELEMENT_DESC* layout_desc, unsigned int array_size );
+	PixelShaderObject*				add_pixel_shader			( const std::wstring& file_name, const std::string& shader_entry );
+	BufferObject*					add_vertex_buffer			( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
+	BufferObject*					add_index_buffer			( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
 private:
-	Loader*							find_loader( const std::wstring& path );
+	ILoader*						find_loader					( const std::wstring& path );
 	
 
 #ifdef __TEST

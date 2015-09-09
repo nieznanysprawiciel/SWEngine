@@ -7,7 +7,7 @@
 
 ///@brief Kontruktr inicjuje obiekty FBX SDK, konieczne do wczytania modelu.
 FBX_loader::FBX_loader(ModelsManager* models_manager)
-	: Loader(models_manager)
+	: ILoader(models_manager)
 {
 	fbx_manager = FbxManager::Create();
 	fbx_IOsettings = FbxIOSettings::Create(fbx_manager, IOSROOT);

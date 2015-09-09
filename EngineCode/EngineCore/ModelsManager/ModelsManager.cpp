@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "ModelsManager.h"
 #include "Engine.h"
-#include "Loaders\loader_interface.h"
-#include "Loaders\FBX_files_loader\FBX_loader.h"
-#include "Common\ObjectDeleter.h"
+#include "Loaders/loader_interface.h"
+#include "Loaders/FBX_files_loader/FBX_loader.h"
+#include "Common/ObjectDeleter.h"
 
 
-#include "Common\memory_leaks.h"
+#include "Common/memory_leaks.h"
 
 //-------------------------------------------------------------------------------//
 //							wersja DirectX11
@@ -214,7 +214,7 @@ PixelShaderObject* ModelsManager::find_best_pixel_shader( TextureObject** textur
 /** @brief Znajduje Loader pasuj¹cy do pliku podanego w parametrze.
 @param[in] path Œcie¿ka do pliku, dla której szukamy loadera.
 @return WskaŸnik na odpowiedni loader lub nullptr, je¿eli nie znaleziono pasuj¹cego.*/
-Loader* ModelsManager::find_loader( const std::wstring& path )
+ILoader* ModelsManager::find_loader( const std::wstring& path )
 {
 	for ( unsigned int i = 0; i < loader.size( ); ++i )
 	if ( loader[i]->can_load( path ) )

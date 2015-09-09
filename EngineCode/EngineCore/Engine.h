@@ -6,20 +6,19 @@
 
 @brief Plik zawiera deklaracjê g³ównego obiektu silnika.*/
 
-#include "stdafx.h"
 #include "SW_engine.h"
-#include "Interfaces\basic_interfaces.h"
-#include "Interfaces\EngineInterface.h"
-#include "Events\Event.h"
-#include "CollisionEngine\CollisionEngine.h"
-#include "ControllersEngine\ControllersEngine.h"
-#include "FableEngine\FableEngine.h"
-#include "DisplayEngine\DisplayEngine.h"
-#include "ModelsManager\ModelsManager.h"
-#include "PhysicEngine\PhysicEngine.h"
-#include "MovementEngine\MovementEngine.h"
-#include "SoundEngine\SoundEngine.h"
-#include "UI_Engine\UI_Engine.h"
+#include "Interfaces/basic_interfaces.h"
+#include "Interfaces/EngineInterface.h"
+#include "Events/Event.h"
+#include "CollisionEngine/CollisionEngine.h"
+#include "ControllersEngine/ControllersEngine.h"
+#include "FableEngine/FableEngine.h"
+#include "DisplayEngine/DisplayEngine.h"
+#include "ModelsManager/ModelsManager.h"
+#include "PhysicEngine/PhysicEngine.h"
+#include "PhysicEngine/MovementEngine.h"
+#include "SoundEngine/SoundEngine.h"
+#include "UI_Engine/UI_Engine.h"
 
 
 
@@ -27,7 +26,7 @@
 #define		MAX_LOADSTRING			100
 
 //	engines defines
-#define		NUM_OF_MODULES			8
+#define		NUM_OF_MODULES			9
 
 
 
@@ -53,16 +52,16 @@ extern TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
 extern TCHAR szWindowClass[MAX_LOADSTRING];				// the main window class name
 
 
-/**@brief Klasa Engine jest nadrzêdnym obiektem zarzadzaj¹cym wszystkimi modu³ami silnika.
-W aplikacji powinien istnieæ tylko jeden obiekt podanego typu.O tym, jak siê inicjuje dzia³anie silnika,
+/**@brief Klasa Engine jest nadrzêdnym obiektem zarz¹dzaj¹cym wszystkimi modu³ami silnika.
+W aplikacji powinien istnieæ tylko jeden obiekt podanego typu. O tym, jak siê inicjuje dzia³anie silnika,
 mo¿na przeczytaæ w temacie Inicjowanie silnika.
 
 W tej klasie powinny byæ umieszczane wszystkie funkcje, które nie powinny byæ dostêpne
-dla u¿ytkownika silnika.Interfejsem dla u¿ytkownika jest klasa engine_interface i tam nale¿y umieszczaæ
-pozosta³e funkcje.Co do zmiennych klasy, wszystki powinny siê znaleŸæ w klasie engine_interface, aby wszystkie
+dla u¿ytkownika silnika. Interfejsem dla u¿ytkownika jest klasa engine_interface i tam nale¿y umieszczaæ
+pozosta³e funkcje. Co do zmiennych klasy, wszystki powinny siê znaleŸæ w klasie EnigneInterface, aby wszystkie
 funkcje mog³y mieæ do nich dostêp.
 */
-class Engine : public engine_interface
+class Engine : public EngineInterface
 {
 private:		//zmienne, które nie maj¹ prawa zostaæ u¿yte przez engine_interface
 
@@ -93,7 +92,7 @@ public:
 	int init_directXinput();
 
 	//window fuctions
-	int init_engine( int width, int height, BOOL full_screen, int nCmdShow );
+	int init_engine( int width, int height, bool full_screen, int nCmdShow );
 	BOOL init_window(int width, int height, BOOL full_screen, int nCmdShow);
 	void end_aplication();
 	int main_loop();
@@ -112,10 +111,10 @@ public:
 #endif
 
 	//event functions
-	void send_event(Event* new_event);
+	void							send_event				(Event* new_event);
 
-	void set_entry_point( GamePlay* game_play );
-	void set_entry_point( const std::wstring dll_name );
+	void							set_entry_point			( GamePlay* game_play );
+	void							set_entry_point			( const std::wstring dll_name );
 
 #ifdef __TEST
 	void test();
@@ -123,13 +122,13 @@ public:
 #endif
 
 
-	inline std::queue<Event*>* get_events_queue() { return events_queue; }
-	inline void set_events_queue( std::queue<Event*>* queue ) { events_queue = queue; }
-	inline HINSTANCE get_instance_handler() { return instance_handler; }
-	inline HWND get_window_handler() { return window_handler; }
+	inline std::queue<Event*>*		get_events_queue()									{ return events_queue; }
+	inline void						set_events_queue( std::queue<Event*>* queue )		{ events_queue = queue; }
+	inline HINSTANCE				get_instance_handler()								{ return instance_handler; }
+	inline HWND						get_window_handler()								{ return window_handler; }
 
-	inline int get_window_widht() { return window_width; }
-	inline int get_window_height() { return window_height; }
+	inline int						get_window_widht()									{ return window_width; }
+	inline int						get_window_height()									{ return window_height; }
 };
 
 /**Celem wprowadzenia wektora index_predictor jest optymalizacja dostêpu do danych 

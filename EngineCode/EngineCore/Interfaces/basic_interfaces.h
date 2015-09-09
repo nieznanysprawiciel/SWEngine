@@ -27,7 +27,7 @@ CameraObject
 
 using namespace DirectX;
 
-class engine_interface;
+class EngineInterface;
 class Engine;
 class ControllersEngine;
 class Controller;
@@ -49,7 +49,7 @@ protected:
 	programistê gry.
 	@attention Nie wolno rzutowaæ obiektu na Engine.
 	*/
-	engine_interface* get_engine_interface(){ return reinterpret_cast<engine_interface*>(engine); }
+	EngineInterface* get_engine_interface(){ return reinterpret_cast<EngineInterface*>(engine); }
 public:
 	virtual ~Object() = default;
 	virtual void		init(){};

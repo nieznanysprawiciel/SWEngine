@@ -1,12 +1,15 @@
 #pragma once
 
 /**@file SkyDome.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
 @brief Plik zawiera deklracjê interfejsu SkyDome, po którym dziedzicz¹ klasy obs³uguj¹ce 
 obiekty typu skyboxy, skydome'y i wszystkie inne twory, wyœwietlaj¹ce t³o.*/
 
 
-#include "ModelsManager\meshes_textures_materials.h"
-#include "ModelsManager\ModelsManager.h"
+#include "GraphicAPI/MeshResources.h"
+#include "ModelsManager/ModelsManager.h"
 
 
 /**@brief Klasa jest interfejsem dla wszystkich klas, które maj¹ wyœwietlaæ jakieœ t³o.
@@ -29,7 +32,7 @@ co siê dzieje podczas wyœwietlania kopu³y.
 dodawania odwo³añ. Funkcje pilnuj¹ tak¿e, ¿eby kasowaæ odwo³ania w przypadku, gdy jakieœ pole zosta³o nadpisane.
 Wszystkie odwo³ania do obiektów s¹ kasowane w destruktorze, wiêc nie trzeba siê wogóle przejmowaæ ¿adnymi odwo³aniami.
 */
-class SkyDome : protected DX11_interfaces_container
+class SkyDome
 {
 public:
 	bool update_vertex_buffer;			///<Ustawiane w momencie zakoñczenia generowania nieba, w celu zaktualizowania bufora
@@ -79,11 +82,11 @@ public:
 				display_data.texture[i]->delete_object_reference(), display_data.texture[i] = nullptr;
 	}
 
-	inline BufferObject* get_vertex_buffer( ) { return vertex_buffer; }			///<Zwraca bufor wierzcho³ków
-	inline BufferObject* get_index_buffer( ) { return index_buffer; }			///<Zwraca bufor indeksów
-	inline ID3D11Buffer* get_constant_buffer( ) { return constant_buffer; }		///<Zwraca bufor sta³ych dla shaderów
-	inline ID3D11InputLayout* get_vertex_layout() { return layout; }			///<Zwraca layout wierzcho³ka
-	inline ModelPart* get_model_part( ) { return &display_data; }				///<Zwraca dane potrzebne do wyœwietlania
+	inline BufferObject*		get_vertex_buffer()		{ return vertex_buffer; }				///<Zwraca bufor wierzcho³ków
+	inline BufferObject*		get_index_buffer()		{ return index_buffer; }				///<Zwraca bufor indeksów
+	inline ID3D11Buffer*		get_constant_buffer()	{ return constant_buffer; }				///<Zwraca bufor sta³ych dla shaderów
+	inline ID3D11InputLayout*	get_vertex_layout()		{ return layout; }						///<Zwraca layout wierzcho³ka
+	inline ModelPart*			get_model_part()		{ return &display_data; }				///<Zwraca dane potrzebne do wyœwietlania
 
 	/**@brief Funkcja jest wywo³ywana w momencie kiedy zmienna update_vertex_buffer zawiera wartoœæ true.
 	

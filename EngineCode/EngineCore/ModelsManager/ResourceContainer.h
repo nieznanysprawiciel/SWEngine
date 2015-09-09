@@ -1,7 +1,11 @@
 #pragma once
 
 /**@file ResourceContainer.h
-#brief Zawiera deklaracjê szblonu klasy kontenera dla assetów.
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
+
+@brief Zawiera deklaracjê szblonu klasy kontenera dla assetów.
 */
 
 #include <map>
@@ -24,25 +28,25 @@ protected:
 	std::map<std::wstring, TYPE*> container;	///<Kontener zawieraj¹cy assety powiazane z ich nazw¹
 
 	// Kasowanie obiektów
-	int force_remove( const std::wstring& name );
-	int force_remove( unsigned int id );
-	void force_remove_all();
-	void release_memory( TYPE* );
+	int		force_remove		( const std::wstring& name );
+	int		force_remove		( unsigned int id );
+	void	force_remove_all	();
+	void	release_memory		( TYPE* );
 public:
 	ResourceContainer();
 	~ResourceContainer();
 
 	// Kasowanie obiektów
-	int remove( const std::wstring& name );
-	int remove( unsigned int id );
-	int remove_unused();
+	int		remove				( const std::wstring& name );
+	int		remove				( unsigned int id );
+	int		remove_unused		();
 
 	// Dodawanie obiektów
-	void unsafe_add( const std::wstring& name, TYPE* resource );
+	void	unsafe_add			( const std::wstring& name, TYPE* resource );
 
 	// Dostêp do obiektów
-	TYPE* get( unsigned int id );
-	inline unsigned int get_next_id() { return count; }	///<Zwraca identyfikator, który zostanie przydzielony kolejnemu elementowi
+	TYPE*	get					( unsigned int id );
+	inline unsigned int			get_next_id() { return count; }	///<Zwraca identyfikator, który zostanie przydzielony kolejnemu elementowi
 
 	/**@brief Zwraca element na podstawie jego nazwy
 	@param[in] name Nazwa elementu, który chcemy dostaæ

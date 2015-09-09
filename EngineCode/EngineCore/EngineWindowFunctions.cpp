@@ -183,7 +183,7 @@ int Engine::main_loop()
 	// Main message loop:
 	while (TRUE)
 	{
-		if ( directX_ready )
+		if ( m_engineReady )
 			render_frame();
 
 		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))

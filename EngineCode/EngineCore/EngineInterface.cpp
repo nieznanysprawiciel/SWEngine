@@ -2,15 +2,15 @@
 #include "Engine.h"
 
 
-#include "Common\memory_leaks.h"
+#include "Common/memory_leaks.h"
 
 
 /*Plik zawiera implementacjê interfejsu engine_interface dla klasy Engine*/
 
 #ifdef __TEST
 
-#include "ControllersEngine\camera_controller_PROTOTYPE.h"
-#include "Features\HosekSkylightModel\HosekSkyDome.h"
+#include "ControllersEngine/camera_controller_PROTOTYPE.h"
+#include "Features/HosekSkylightModel/HosekSkyDome.h"
 
 void Engine::test()
 {

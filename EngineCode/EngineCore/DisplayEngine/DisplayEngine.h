@@ -7,16 +7,16 @@
 @brief Plik zawiera deklaracjê klasy DisplayEngine i funkcje pomocnicze.
 */
 
-#include "stdafx.h"
-#include "Interfaces\basic_interfaces.h"
+
+#include "Interfaces/basic_interfaces.h"
 #include "ConstantBuffersFormat.h"
 #include "SkyDome.h"
-#include "Renderer\Renderer.h"
+#include "GraphicAPI/IRenderer.h"
 
-void interpolate_position( float time_lag, const DynamicObject* object, DirectX::XMVECTOR& result_vector );
-void interpolate_orientation( float time_lag, const DynamicObject* object, DirectX::XMVECTOR& result_vector );
-void inverse_camera_position( DirectX::XMVECTOR& result_vector );
-void inverse_camera_orientation( DirectX::XMVECTOR& result_vector );
+void interpolate_position			( float time_lag, const DynamicObject* object, DirectX::XMVECTOR& result_vector );
+void interpolate_orientation		( float time_lag, const DynamicObject* object, DirectX::XMVECTOR& result_vector );
+void inverse_camera_position		( DirectX::XMVECTOR& result_vector );
+void inverse_camera_orientation		( DirectX::XMVECTOR& result_vector );
 
 class Engine;
 
@@ -31,16 +31,16 @@ Obiekty s¹ rozdzielone na kilka grup:
 Ka¿da z tych grup ma swój w³asny sposób reprezentacji i wyœwietlania ze wzglêdu na odmienny charakter
 i inne mo¿liwoœci optymalizacji.
 */
-class DisplayEngine : public DX11_constant_buffers_container
+class DisplayEngine
 {
 private:
 	Engine* engine;
 
-	std::vector<Renderer*>			renderers;		///< Zawiera wszystkie renderery. Ka¿dy odpowiada za jeden w¹tek renderuj¹cy.
+	std::vector<IRenderer*>					renderers;		///< Zawiera wszystkie renderery. Ka¿dy odpowiada za jeden w¹tek renderuj¹cy.
 
-	ConstantPerFrame				shader_data_per_frame;		///<Bufor sta³ych zmiennych co ramkê animacji
-	CameraObject*					current_camera;				///<Akutalnie aktywna kamera
-	SkyDome*						sky_dome;					///<Klasa odpowiedzialna za kopu³ê nieba
+	ConstantPerFrame						shader_data_per_frame;		///<Bufor sta³ych zmiennych co ramkê animacji
+	CameraObject*							current_camera;				///<Akutalnie aktywna kamera
+	SkyDome*								sky_dome;					///<Klasa odpowiedzialna za kopu³ê nieba
 
 	std::vector<DynamicMeshObject*>			meshes;					///<Modele nieanimowane
 	XMFLOAT4X4*								interpolated_matrixes;	///<Tablica macierzy interpolowanych po³o¿eñ obiektów
@@ -51,49 +51,49 @@ public:
 	DisplayEngine(Engine* engine);
 	~DisplayEngine();
 
-	void InitRenderer();
+	void InitRenderer( IRenderer* renderer );
 
 	// G³ówna funkcja do wyœwietlania sceny
-	void display_scene( float time_interval, float time_lag );
+	void display_scene						( float time_interval, float time_lag );
 	// Funkcja do interpolacji pozycji obiektów
-	void interpolate_positions(float time_lag);
-	void SetProjectionMatrix(float angle, float X_to_Y, float near_plane, float far_plane);
+	void interpolate_positions				(float time_lag);
+	void SetProjectionMatrix				(float angle, float X_to_Y, float near_plane, float far_plane);
 
 	// Zarz¹dzanie meshami
-	void add_dynamic_mesh_object( DynamicMeshObject* object );
+	void add_dynamic_mesh_object			( DynamicMeshObject* object );
 
 	// Œwiat³a
-	int set_directional_light( const DirectX::XMFLOAT4& direction, const DirectX::XMFLOAT4& color, unsigned int index );
-	void set_ambient_light( const DirectX::XMFLOAT4& color );
+	int set_directional_light				( const DirectX::XMFLOAT4& direction, const DirectX::XMFLOAT4& color, unsigned int index );
+	void set_ambient_light					( const DirectX::XMFLOAT4& color );
 
 	// camera functions
-	int add_camera( CameraObject* camera );
-	int set_current_camera( CameraObject* camera );
+	int add_camera							( CameraObject* camera );
+	int set_current_camera					( CameraObject* camera );
 
 	// SkyDome
-	SkyDome* set_skydome( SkyDome* dome );
+	SkyDome* set_skydome					( SkyDome* dome );
 private:
-	void set_view_matrix( float time_lag );
+	void set_view_matrix					( float time_lag );
 
-	void realocate_interpolation_memory(unsigned int min = 1);
-	void interpolate_object( float time_lag, const DynamicObject* object, DirectX::XMFLOAT4X4* result_matrix );
-	void interpolate_object2( float time_lag, const DynamicObject* object, DirectX::XMFLOAT4X4* result_matrix );
+	void realocate_interpolation_memory		(unsigned int min = 1);
+	void interpolate_object					( float time_lag, const DynamicObject* object, DirectX::XMFLOAT4X4* result_matrix );
+	void interpolate_object2				( float time_lag, const DynamicObject* object, DirectX::XMFLOAT4X4* result_matrix );
 
 	// Wyœwietlanie (funkcje wewnêtrzne)
-	void display_instanced_meshes( float time_interval, float time_lag );
-	void display_dynamic_objects( float time_interval, float time_lag );
-	void display_particles( float time_interval, float time_lag );
-	void display_short_live_objects( float time_interval, float time_lag );
-	void display_sky_box( float time_interval, float time_lag );
-	void display_skeletons( float time_interval, float time_lag );
-	void display_self_drawing_objects( float time_interval, float time_lag );
+	void display_instanced_meshes			( float time_interval, float time_lag );
+	void display_dynamic_objects			( float time_interval, float time_lag );
+	void display_particles					( float time_interval, float time_lag );
+	void display_short_live_objects			( float time_interval, float time_lag );
+	void display_sky_box					( float time_interval, float time_lag );
+	void display_skeletons					( float time_interval, float time_lag );
+	void display_self_drawing_objects		( float time_interval, float time_lag );
 
 	// Funkcje pomocnicze do renderingu
-	void set_textures( const ModelPart& model );
-	void set_index_buffer( BufferObject* buffer );
-	bool set_vertex_buffer( BufferObject* buffer );
-	void copy_material( ConstantPerMesh* shader_data_per_mesh, const ModelPart* model );
-	void depth_buffer_enable( bool state );
+	void set_textures						( const ModelPart& model );
+	void set_index_buffer					( BufferObject* buffer );
+	bool set_vertex_buffer					( BufferObject* buffer );
+	void copy_material						( ConstantPerMesh* shader_data_per_mesh, const ModelPart* model );
+	void depth_buffer_enable				( bool state );
 };
 
 

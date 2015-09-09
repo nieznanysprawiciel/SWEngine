@@ -1,4 +1,7 @@
 /**@file DisplayEngine.cpp
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
 @brief Plik zawiera definicje metod klasy DispalyEngine.
 */
 
@@ -6,10 +9,10 @@
 #include "stdafx.h"
 #include "DisplayEngine.h"
 #include "Engine.h"
-#include "EngineHelpers\PerformanceCheck.h"
+#include "EngineHelpers/PerformanceCheck.h"
 
 
-#include "Common\memory_leaks.h"
+#include "Common/memory_leaks.h"
 
 
 USE_PERFORMANCE_CHECK( SKYBOX_RENDERING )
@@ -48,7 +51,7 @@ DisplayEngine::~DisplayEngine()
 	for ( unsigned int i = 0; i < cameras.size(); ++i )
 		delete cameras[i];
 
-	for ( Renderer* renderer : renderers )
+	for ( IRenderer* renderer : renderers )
 		if ( renderer )		delete renderer;
 
 	//kasujemy tablicê interpolowanych macierzy
@@ -64,9 +67,9 @@ w³¹czania i wy³¹czania algorytmu.
 
 @todo Zrobiæ inicjacjê wielow¹tkow¹. Gdzieœ musi zostaæ podjêta decyzja o liczbie w¹tków.
 Trzeba pomyœleæ gdzie.*/
-void DisplayEngine::InitRenderer()
+void DisplayEngine::InitRenderer( IRenderer* renderer )
 {
-	renderers.push_back( new Renderer( USE_AS_IMMEDIATE ) );		// Na razie nie robimy deferred renderingu.
+	renderers.push_back( renderer );		// Na razie nie robimy deferred renderingu.
 
 	renderers[0]->InitBuffers( sizeof(ConstantPerFrame), sizeof( ConstantPerMesh ));
 	renderers[0]->InitDepthStates();
@@ -84,7 +87,7 @@ void DisplayEngine::InitRenderer()
 @todo SetShaderResource mo¿na u¿yæ do ustawienia od razu ca³ej tablicy. Trzeba umo¿liwiæ ustawianie
 do VS i innych.
 
-@deprecated Funkcjonalnoœæ przeniesiona do klasy Renderer.*/
+@deprecated Funkcjonalnoœæ przeniesiona do klasy IRenderer.*/
 void DisplayEngine::set_textures( const ModelPart& model )
 {
 	for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
@@ -99,7 +102,7 @@ void DisplayEngine::set_textures( const ModelPart& model )
 
 @param[in] buffer Bufor do ustawienia.
 
-@deprecated Funkcjonalnoœæ przeniesiona do klasy Renderer.*/
+@deprecated Funkcjonalnoœæ przeniesiona do klasy IRenderer.*/
 void DisplayEngine::set_index_buffer( BufferObject* buffer )
 {
 	// Ustawiamy bufor indeksów, je¿eli istnieje
@@ -119,7 +122,7 @@ void DisplayEngine::set_index_buffer( BufferObject* buffer )
 Wywo³anie if( set_vertex_buffer() ) ma zwróciæ tak¹ wartoœæ, ¿eby w ifie mo¿na by³o
 wywo³aæ return lub continue, w przypadku braku bufora.
 
-@deprecated Funkcjonalnoœæ przeniesiona do klasy Renderer.*/
+@deprecated Funkcjonalnoœæ przeniesiona do klasy IRenderer.*/
 bool DisplayEngine::set_vertex_buffer( BufferObject* buffer )
 {
 	ID3D11Buffer* vertex_buffer = nullptr;
@@ -185,7 +188,7 @@ Zakres [0,1].
 */
 void DisplayEngine::display_scene(float time_interval, float time_lag)
 {
-	register Renderer* renderer = renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
+	register IRenderer* renderer = renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
 
 	set_view_matrix( time_lag );
 
@@ -196,7 +199,7 @@ void DisplayEngine::display_scene(float time_interval, float time_lag)
 	// D3D11_PRIMITIVE_TOPOLOGY_POINTLIST
 	// D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST
 	// D3D11_PRIMITIVE_TOPOLOGY_LINELIST
-	renderer->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );		///<@todo Docelowo ma byæ w³asny zestaw sta³ych a nie DirectXowy. @see DX11Renderer
+	renderer->IASetPrimitiveTopology( PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );		///<@todo Docelowo ma byæ w³asny zestaw sta³ych a nie DirectXowy. @see DX11Renderer
 
 	renderer->UpdateSubresource( const_per_frame, &shader_data_per_frame );
 	renderer->VSSetConstantBuffers( 0, 1, &const_per_frame );
@@ -246,7 +249,7 @@ void DisplayEngine::display_dynamic_objects( float time_interval, float time_lag
 {
 	START_PERFORMANCE_CHECK( DYNAMIC_OBJECT_RENDERING )
 
-	register Renderer* renderer = renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
+	register IRenderer* renderer = renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
 
 	//na razie pêtla bez optymalizacji
 	for ( unsigned int i = 0; i < meshes.size( ); ++i )
@@ -363,7 +366,7 @@ void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 	if ( !sky_dome )
 		return;
 
-	register Renderer* renderer = renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
+	register IRenderer* renderer = renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
 
 
 	// Ustawiamy format wierzcho³ków

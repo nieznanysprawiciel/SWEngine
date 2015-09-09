@@ -15,20 +15,11 @@
     <Filter Include="Source Files\Input_GUI">
       <UniqueIdentifier>{6bba179b-7a11-4701-89a2-22900b92a635}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Physic_Collisions">
-      <UniqueIdentifier>{2a60f048-e5ee-422c-b713-88dcae0e30dc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\MainEngine">
       <UniqueIdentifier>{f5108cd6-c6a5-4f66-b73f-3a93bc10eaa5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Sound">
-      <UniqueIdentifier>{db0074be-24b2-40f8-add4-01a95ec3a7e1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GamePlay">
       <UniqueIdentifier>{8bba6272-7863-4e61-858e-e389e5eb0e6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Controllers">
-      <UniqueIdentifier>{e662f704-3493-494c-9f9a-78cc8e248b88}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Features">
       <UniqueIdentifier>{e1327c40-d2f8-4eca-8c02-727f4e70d31e}</UniqueIdentifier>
@@ -45,19 +36,31 @@
     <Filter Include="Common">
       <UniqueIdentifier>{3428394e-015c-411c-8168-bf68a509f622}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\SoundEngine">
+      <UniqueIdentifier>{db0074be-24b2-40f8-add4-01a95ec3a7e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\PhysicEngine">
+      <UniqueIdentifier>{a639ee46-d361-41bb-b5dc-9824e223e87d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ControllersEngine">
+      <UniqueIdentifier>{e662f704-3493-494c-9f9a-78cc8e248b88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CollisionEngine">
+      <UniqueIdentifier>{2a60f048-e5ee-422c-b713-88dcae0e30dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DisplayEngine">
+      <UniqueIdentifier>{3f99a4a6-a6b3-4938-be1a-674961b15ae0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
-      <Filter>Source Files\Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.h">
-      <Filter>Source Files\Physic_Collisions</Filter>
+      <Filter>Source Files\SoundEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)CollisionEngine\CollisionEngine.h">
-      <Filter>Source Files\Physic_Collisions</Filter>
+      <Filter>Source Files\CollisionEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ResourceContainer.h">
       <Filter>Source Files\ModelsManagment</Filter>
@@ -68,17 +71,8 @@
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\loader_interface.h">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\meshes_textures_materials.h">
-      <Filter>Source Files\ModelsManagment</Filter>
-    </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ModelsManager.h">
       <Filter>Source Files\ModelsManagment</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\ConstantBuffersFormat.h">
-      <Filter>Source Files\MainEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.h">
-      <Filter>Source Files\MainEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)DX11_interfaces_container.h">
       <Filter>Source Files\MainEngine</Filter>
@@ -108,10 +102,10 @@
       <Filter>Source Files\Features\HosekSkylightModel</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.h">
-      <Filter>Source Files\Controllers</Filter>
+      <Filter>Source Files\ControllersEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ControllersEngine\camera_controller_PROTOTYPE.h">
-      <Filter>Source Files\Controllers</Filter>
+      <Filter>Source Files\ControllersEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)stdafx.h">
       <Filter>Source Files</Filter>
@@ -143,9 +137,6 @@
     <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\Renderer\IRenderer.h">
       <Filter>Source Files\MainEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)MovementEngine\MovementEngine.h">
-      <Filter>Source Files\Physic_Collisions</Filter>
-    </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)Events\Event.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -170,18 +161,27 @@
     <ClInclude Include="..\..\EngineCode\Common\ObjectDeleter.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.h">
+      <Filter>Source Files\PhysicEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\MovementEngine.h">
+      <Filter>Source Files\PhysicEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.h">
+      <Filter>Source Files\DisplayEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\ConstantBuffersFormat.h">
+      <Filter>Source Files\DisplayEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Model3DFromFile.h">
+      <Filter>Source Files\ModelsManagment</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\MaterialObject.cpp">
-      <Filter>Source Files\ModelsManagment</Filter>
-    </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\ModelsManager.cpp">
-      <Filter>Source Files\ModelsManagment</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\TextureObject.cpp">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
@@ -191,22 +191,13 @@
       <Filter>Source Files\Input_GUI</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)CollisionEngine\CollisionEngine.cpp">
-      <Filter>Source Files\Physic_Collisions</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.cpp">
-      <Filter>Source Files\Physic_Collisions</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)MovementEngine\MovementEngine.cpp">
-      <Filter>Source Files\Physic_Collisions</Filter>
+      <Filter>Source Files\CollisionEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)EngineInterface.cpp">
       <Filter>Source Files\MainEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.cpp">
-      <Filter>Source Files\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.cpp">
-      <Filter>Source Files\MainEngine</Filter>
+      <Filter>Source Files\SoundEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)FableEngine\FableEngine.cpp">
       <Filter>Source Files\GamePlay</Filter>
@@ -218,31 +209,16 @@
       <Filter>Source Files\Input_GUI</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.cpp">
-      <Filter>Source Files\Controllers</Filter>
+      <Filter>Source Files\ControllersEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)ControllersEngine\camera_controller_PROTOTYPE.cpp">
-      <Filter>Source Files\Controllers</Filter>
+      <Filter>Source Files\ControllersEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)Engine.cpp">
       <Filter>Source Files\MainEngine</Filter>
     </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\VertexShaderObject.cpp">
-      <Filter>Source Files\ModelsManagment</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\PixelShaderObject.cpp">
-      <Filter>Source Files\ModelsManagment</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\BufferObject.cpp">
-      <Filter>Source Files\ModelsManagment</Filter>
-    </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)DX11_interfaces_container.cpp">
       <Filter>Source Files\MainEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\vertex_layouts.cpp">
-      <Filter>Source Files\ModelsManagment</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\MeshPartObject.cpp">
-      <Filter>Source Files\ModelsManagment</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkylightModel.cpp">
       <Filter>Source Files\Features\HosekSkylightModel</Filter>
@@ -273,6 +249,15 @@
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.cpp">
       <Filter>Source Files\EngineHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.cpp">
+      <Filter>Source Files\PhysicEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\MovementEngine.cpp">
+      <Filter>Source Files\PhysicEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.cpp">
+      <Filter>Source Files\DisplayEngine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

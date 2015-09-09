@@ -4,11 +4,10 @@
 @author nieznanysprawiciel
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 
-@brief Plik zawiera deklaracjê klasy engine_interface.*/
+@brief Plik zawiera deklaracjê klasy EngineInterface.*/
 
 #include <queue>
-#include "DX11_interfaces_container.h"
-#include "MainEngine\TimeManager.h"
+#include "MainEngine/TimeManager.h"
 
 
 
@@ -27,6 +26,7 @@ class CollisionEngine;
 class SoundEngine;
 class UI_Engine;
 class Object;
+class IGraphicAPIInitializer;
 
 
 /**@brief Klasa jest interfejsem dla u¿ytkownika u¿ytkuj¹cego silnik.
@@ -39,14 +39,14 @@ Wszystkie pozosta³e funkcje powinny siê znaleŸæ w deklaracji klasy Engine.
 Wszystkie zmienne silnika powinny byæ deklarowane na tym poziomie, aby równie¿ metody tej klasy dostêpne
 dla u¿ytkownika mia³y do nich dostêp.
 */
-class engine_interface : public DX11_constant_buffers_container
+class EngineInterface
 {
 	// Dziedziczymy z DX11_constant_buffers_container a nie z DX11_interfaces_container, poniewa¿
 	// musimy wywo³aæ funkcjê release_DirectX z klasy pochodnej. Inaczej nie zwolnimy tamtych obiektów wogóle.
 
 protected:
 	//directX and windows variables
-	bool						directX_ready;			///<Je¿eli zmienna jest niepoprawna, nie renderujemy
+	bool						m_engineReady;			///<Je¿eli zmienna jest niepoprawna, nie renderujemy
 
 	bool						full_screen;			///<Pe³ny ekran lub renderowanie w oknie
 	HWND						window_handler;			///<Uchwyt okna aplikacji
@@ -54,7 +54,9 @@ protected:
 	int							window_width;			///<Szerokoœæ okna/ekranu
 	int							window_height;			///<Wysokoœæ okna/ekranu
 
-	//Engines
+	IGraphicAPIInitializer*		m_graphicInitializer;	///<Obs³uguje u¿ywane API graficzne.
+
+	//Modules
 	ControllersEngine*			controllers_engine;		///<Kontroluje AI (klawiaturê trzeba przenieœæ)
 	MovementEngine*				movement_engine;		///<Przelicza pozycjê obiektów w nastêpnej klatce
 	DisplayEngine*				display_engine;			///<Wyœwietla obiekty na scenie
@@ -76,7 +78,7 @@ protected:
 	std::queue<Event*>*			events_queue;	///<WskaŸnik na kolejke komunikatów w celu szybszego dostêpu
 
 protected:
-	~engine_interface(){};
+	~EngineInterface(){};
 
 	//FableEngine - ta klasa jest dostêpna bezpoœrednio z GamePlay
 
