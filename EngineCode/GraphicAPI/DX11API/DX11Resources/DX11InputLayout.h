@@ -9,7 +9,7 @@
 #include "../DX11Initializer/DX11APIObjects.h"
 
 
-class DX11InputLayout : public ShaderInputLayout, public DX11APIObjects
+class DX11InputLayout : public ShaderInputLayoutObject, public DX11APIObjects
 {
 private:
 	ID3D11InputLayout*				m_vertexLayout;

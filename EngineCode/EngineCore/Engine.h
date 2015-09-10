@@ -71,9 +71,6 @@ private:
 	ATOM MyRegisterClass();
 	BOOL InitInstance(int);
 
-	//DirectX functions
-	void clean_DirectX();
-
 	//rendering
 	void render_frame();
 
@@ -87,13 +84,20 @@ public:
 	Engine(HINSTANCE instance);
 	~Engine();
 
-	//DirectX
-	int init_directX();
-	int init_directXinput();
+	// Init external modules
+	int InitEngine				( int width, int height, bool full_screen, int nCmdShow );
+private:
+	BOOL InitWindow				( int width, int height, BOOL full_screen, int nCmdShow );
+	bool InitGraphicAPI			( int width, int height, bool full_screen );
+	bool InitInputModule		();
+	bool InitSoundModule		();
 
+	// Init internal modules
+	bool InitDefaultAssets		();
+	bool InitDisplayer			();
+
+public:
 	//window fuctions
-	int init_engine( int width, int height, bool full_screen, int nCmdShow );
-	BOOL init_window(int width, int height, BOOL full_screen, int nCmdShow);
 	void end_aplication();
 	int main_loop();
 

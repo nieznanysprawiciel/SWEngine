@@ -28,11 +28,10 @@
 #include <queue>
 #include <unordered_map>
 
-#pragma warning( disable : 4005 )
 #include <DirectXMath.h>
+
+#pragma warning( disable : 4005 )
 #include <dinput.h>
-#include <d3d11.h>
-#include <d3dx11.h>
 #pragma warning( default : 4005 )
 
 #include "Common/macros_switches.h"

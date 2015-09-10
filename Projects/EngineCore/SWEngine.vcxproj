@@ -429,11 +429,7 @@
     <ClInclude Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.h" />
     <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\ConstantBuffersFormat.h" />
     <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.h" />
-    <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\Renderer\DX11Renderer.h" />
-    <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\Renderer\Renderer.h" />
-    <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\Renderer\IRenderer.h" />
     <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\SkyDome.h" />
-    <ClInclude Include="$(EngineCoreSourceDir)DX11_interfaces_container.h" />
     <ClInclude Include="$(EngineCoreSourceDir)Engine.h" />
     <ClInclude Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.h" />
     <ClInclude Include="$(EngineCoreSourceDir)Events\Event.h" />
@@ -472,7 +468,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.cpp" />
-    <ClCompile Include="$(EngineCoreSourceDir)DX11_interfaces_container.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)Engine.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)EngineInterface.cpp" />
@@ -527,9 +522,6 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(EngineCoreSourceDir)SW_engine.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="$(EngineCoreSourceDir)DisplayEngine\Renderer\DX11Renderer.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

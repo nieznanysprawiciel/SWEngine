@@ -30,9 +30,6 @@
     <Filter Include="Source Files\EngineHelpers">
       <UniqueIdentifier>{a92fa370-613c-48bf-9b89-7c4ae7f99d02}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\MainEngine\Renderer">
-      <UniqueIdentifier>{9ec6d297-3a85-4d74-9108-58efd1c8bb9a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Common">
       <UniqueIdentifier>{3428394e-015c-411c-8168-bf68a509f622}</UniqueIdentifier>
     </Filter>
@@ -73,9 +70,6 @@
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ModelsManager.h">
       <Filter>Source Files\ModelsManagment</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)DX11_interfaces_container.h">
-      <Filter>Source Files\MainEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)UI_Engine\UI_Engine.h">
       <Filter>Source Files\Input_GUI</Filter>
@@ -131,17 +125,8 @@
     <ClInclude Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.h">
       <Filter>Source Files\EngineHelpers</Filter>
     </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\Renderer\Renderer.h">
-      <Filter>Source Files\MainEngine\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\Renderer\IRenderer.h">
-      <Filter>Source Files\MainEngine\Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)Events\Event.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\Renderer\DX11Renderer.h">
-      <Filter>Source Files\MainEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)Engine.h">
       <Filter>Source Files\MainEngine</Filter>
@@ -217,9 +202,6 @@
     <ClCompile Include="$(EngineCoreSourceDir)Engine.cpp">
       <Filter>Source Files\MainEngine</Filter>
     </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)DX11_interfaces_container.cpp">
-      <Filter>Source Files\MainEngine</Filter>
-    </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkylightModel.cpp">
       <Filter>Source Files\Features\HosekSkylightModel</Filter>
     </ClCompile>
@@ -264,10 +246,5 @@
     <ResourceCompile Include="$(EngineCoreSourceDir)SW_engine.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="$(EngineCoreSourceDir)DisplayEngine\Renderer\DX11Renderer.inl">
-      <Filter>Source Files\MainEngine\Renderer</Filter>
-    </None>
   </ItemGroup>
 </Project>

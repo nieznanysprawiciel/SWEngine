@@ -19,6 +19,7 @@ struct GraphicAPIInitData
 	uint32 windowHandle;
 	bool singleThreaded;
 	bool fullScreen;
+	ResourceFormat depthStencilFormat;
 
 	void DefaultSettings()
 	{
@@ -26,6 +27,7 @@ struct GraphicAPIInitData
 		windowHeight = 768;
 		singleThreaded = true;
 		fullScreen = false;
+		depthStencilFormat = ResourceFormat::RESOURCE_FORMAT_D24_UNORM_S8_UINT;
 	}
 };
 

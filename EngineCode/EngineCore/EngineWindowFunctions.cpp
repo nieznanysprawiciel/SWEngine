@@ -9,7 +9,7 @@ WinAPI oraz g³ówn¹ pêtlê programu @ref Engine::main_loop.
 
 
 
-#include "Common\memory_leaks.h"
+#include "Common/memory_leaks.h"
 
 
 
@@ -82,7 +82,7 @@ BOOL Engine::InitInstance(int nCmdShow)
 ///@param[in] height Wysokoœæ okna
 ///@param[in] fullscreen Pe³ny ekran lub renderowanie w oknie
 ///@param[in] nCmdShow Czwarty parametr funkcji WinMain
-BOOL Engine::init_window(int width, int height, BOOL fullscreen, int nCmdShow)
+BOOL Engine::InitWindow(int width, int height, BOOL fullscreen, int nCmdShow)
 {
 	window_height = height;
 	window_width = width;
@@ -99,6 +99,7 @@ BOOL Engine::init_window(int width, int height, BOOL fullscreen, int nCmdShow)
 
 	return InitInstance(nCmdShow);
 }
+
 
 ///@brief Funkcja wstawia do kolejki komunikatów aplikacji wiadomoœc QUIT_MESSAGE
 void Engine::end_aplication()

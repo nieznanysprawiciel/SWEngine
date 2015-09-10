@@ -47,7 +47,7 @@ VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile( const std::ws
 @return Zwraca obiekt vertex shadera lub nullptr w przypadku niepowodzenia.*/
 VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile	( const std::wstring& fileName,
 																		const std::string& shaderName,
-																		ShaderInputLayout** layout,
+																		ShaderInputLayoutObject** layout,
 																		InputLayoutDescriptor* layoutDesc,
 																		const char* shaderModel/* = "vs_4_0"*/ )
 {
@@ -80,12 +80,12 @@ PixelShaderObject*		ResourcesFactory::CreatePixelShaderFromFile( const std::wstr
 @param[in] bindFlag Sposób wykorzystania bufora (bufor wierzcho³ków, sta³ych, indeksów itp).
 @param[in] usage Sposób korzystania z bufora.
 @return Zwraca wskaŸnik na obiekt bufora lub nullptr w przypadku niepowodzenia.*/
-BufferObject*			ResourcesFactory::CreateBufferFormMemory( const void* buffer,
+BufferObject*			ResourcesFactory::CreateBufferFromMemory( const void* buffer,
 																  unsigned int elementSize,
 																  unsigned int vertCount,
-																  unsigned int bindFlag,
+																  ResourceBinding binding,
 																  ResourceUsage usage/* = ResourceUsage::RESOURCE_USAGE_STATIC*/ )
 {
-	return Buffer::CreateFromMemory( buffer, elementSize, vertCount, bindFlag, usage );
+	return Buffer::CreateFromMemory( buffer, elementSize, vertCount, binding, usage );
 }
 

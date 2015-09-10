@@ -40,7 +40,7 @@ public:
 	virtual void InitDepthStates					() = 0;
 
 	virtual void IASetPrimitiveTopology				( PrimitiveTopology topology ) = 0;
-	virtual void IASetInputLayout					( ShaderInputLayout* inputLayout ) = 0;
+	virtual void IASetInputLayout					( ShaderInputLayoutObject* inputLayout ) = 0;
 
 
 	//virtual void VSSetConstantBuffers				( uint32 startSlot, uint32 numBuffers, ID3D11Buffer *const *ppConstantBuffers ) = 0;

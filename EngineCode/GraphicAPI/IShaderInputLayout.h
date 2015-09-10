@@ -1,19 +1,19 @@
 #pragma once
 /**
-@file IBuffer.h
+@file IShader.h
 @author nieznanysprawiciel
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
+
 #include "GraphicAPI/ResourceObject.h"
 
-class IBuffer	:	public ResourceObject
+class IShaderInputLayout : public ResourceObject
 {
 private:
-
 protected:
-	IBuffer() : ResourceObject( 0 ) {}
-	virtual ~IBuffer() = 0;
+	IShaderInputLayout() : ResourceObject( 0 ) {}
+	virtual ~IShaderInputLayout();
 public:
 
 };

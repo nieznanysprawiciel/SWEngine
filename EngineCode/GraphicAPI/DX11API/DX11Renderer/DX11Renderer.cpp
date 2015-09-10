@@ -154,7 +154,7 @@ void DX11Renderer::IASetPrimitiveTopology( PrimitiveTopology topology )
 
 /**@brief Funkcja robi dok³adnie to samo, co tak samo nazywaj¹ca siê funkcja DirectXa.
 Po wiêcej informacji wysy³am do MSDNu.*/
-void DX11Renderer::IASetInputLayout( ShaderInputLayout* inputLayout )
+void DX11Renderer::IASetInputLayout( ShaderInputLayoutObject* inputLayout )
 {
 	m_localDeviceContext->IASetInputLayout( static_cast<DX11InputLayout*>( inputLayout )->Get() );
 }

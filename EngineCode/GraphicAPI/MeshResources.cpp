@@ -53,7 +53,7 @@ Na razie obs≥uguje tylko nieskompilowane pliki.
 @return Zwraca wskaünik na obiekt VertexShaderObject lub nullptr w przypadku niepowodzenia.*/
 VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& fileName,
 														  const std::string& shaderName,
-														  ShaderInputLayout** layout,
+														  ShaderInputLayoutObject** layout,
 														  InputLayoutDescriptor* layoutDesc,
 														  const char* shaderModel )
 {
@@ -157,10 +157,10 @@ D3D11_BIND_INDEX_BUFFER.
 BufferObject* BufferObject::create_from_memory( const void* buffer,
 												unsigned int element_size,
 												unsigned int vert_count,
-												unsigned int bind_flag,
+												ResourceBinding bind_flag,
 												ResourceUsage usage )
 {
-	return ResourcesFactory::CreateBufferFormMemory( buffer, element_size, vert_count, bind_flag, usage );
+	return ResourcesFactory::CreateBufferFromMemory( buffer, element_size, vert_count, bind_flag, usage );
 }
 
 
@@ -169,7 +169,7 @@ BufferObject* BufferObject::create_from_memory( const void* buffer,
 //----------------------------------------------------------------------------------------------//
 
 MaterialObject::MaterialObject( const MaterialObject* material )
-: referenced_object(WRONG_ID)
+: ResourceObject(WRONG_ID)
 {
 	memcpy( this, material, sizeof(MaterialObject) );
 }

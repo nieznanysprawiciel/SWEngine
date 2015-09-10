@@ -28,14 +28,14 @@ D3D11_BIND_INDEX_BUFFER.
 DX11Buffer* DX11Buffer::CreateFromMemory(	const void* buffer,
 											unsigned int elementSize,
 											unsigned int vertCount,
-											unsigned int bindFlag,
+											ResourceBinding bindFlag,
 											ResourceUsage usage )
 {
 	// Wype³niamy deskryptor bufora
 	D3D11_BUFFER_DESC buffer_desc;
 	ZeroMemory( &buffer_desc, sizeof( buffer_desc ) );
 	buffer_desc.Usage = DX11ConstantsMapper::Get( usage );
-	buffer_desc.BindFlags = bindFlag;
+	buffer_desc.BindFlags = DX11ConstantsMapper::Get( bindFlag );
 	buffer_desc.ByteWidth = vertCount * elementSize;
 
 	D3D11_SUBRESOURCE_DATA InitData;

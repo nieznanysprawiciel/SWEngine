@@ -1,10 +1,10 @@
 #pragma once
 
-/**@file ReferencedObject.h
+/**@file ResourceObject.h
 @author nieznanysprawiciel
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 
-@brief Plik zawiera deklaracjê i definicjê klasy referenced_object s³u¿¹c¹
+@brief Plik zawiera deklaracjê i definicjê klasy ResourceObject s³u¿¹c¹
 do zliczania odwo³añ do obiektu.*/
 
 
@@ -26,20 +26,20 @@ Zmienna unique_id jest na pocz¹tku ustawiana na 0. Jej faktyczne ustawienie odby
 Jest to wymagane do u³atwienia obs³ugi wielow¹tkowoœci. Inaczej mog³yby siê pokrywaæ identyfikatory.
 **/
 
-class referenced_object
-{//definicja w pliku Model3DFormFile
+class ResourceObject
+{
 private:
 	unsigned int	file_references;	///< Liczba plików, które sie odwo³uj¹
 	unsigned int	object_references;	///< Liczba modeli, które siê odwo³uj¹
-	unsigned int	unique_id;			///< Unikalny identyfikator materia³u
+	unsigned int	unique_id;			///< Unikalny identyfikator zasobu
 
 protected:
-	virtual ~referenced_object() = default;		///<Nie ka¿dy mo¿e skasowaæ obiekt
+	virtual ~ResourceObject() = default;		///<Nie ka¿dy mo¿e skasowaæ obiekt
 
 public:
 	/**
 	Ustawia zerow¹ liczbê odwo³añ.*/
-	referenced_object( int id )
+	ResourceObject( int id )
 	{
 		file_references = 0;
 		object_references = 0;
@@ -70,7 +70,7 @@ public:
 
 
 //----------------------------------------------------------------------------------------------//
-//									referenced_object											//
+//									ResourceObject											//
 //----------------------------------------------------------------------------------------------//
 
 //==============================================================================================//
@@ -83,7 +83,7 @@ public:
 @param[out] other_ref W zmiennej zostanie umieszczona liczba referencji bezpoœrednich od obiektów.
 @return Zwraca wartoœæ logiczn¹ mówi¹c¹ czy asset nadaje siê do usuniêcia.
 */
-inline bool referenced_object::can_delete(unsigned int& file_ref, unsigned int& other_ref)
+inline bool ResourceObject::can_delete(unsigned int& file_ref, unsigned int& other_ref)
 {
 	file_ref = file_references;
 	other_ref = object_references;
@@ -97,7 +97,7 @@ inline bool referenced_object::can_delete(unsigned int& file_ref, unsigned int& 
 
 @return Zwraca wartoœæ logiczn¹ mówi¹c¹ czy asset nadaje siê do usuniêcia.
 */
-inline bool referenced_object::can_delete()
+inline bool ResourceObject::can_delete()
 {
 	if (file_references == 0 && object_references == 0)
 		return true;

@@ -6,8 +6,8 @@
 
 @brief Plik zawiera deklaracje buforów sta³ych dla vertex i piksel shadera.*/
 
-#include "stdafx.h"
-#include "ModelsManager\meshes_textures_materials.h"
+//#include "stdafx.h"
+#include "DirectXMath.h"
 
 using namespace DirectX;
 

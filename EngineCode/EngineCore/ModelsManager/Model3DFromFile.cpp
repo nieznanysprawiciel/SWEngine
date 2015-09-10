@@ -1,54 +1,13 @@
 #include "stdafx.h"
 
-#include "meshes_textures_materials.h"
 #include "ModelsManager.h"
 
 ModelsManager* Model3DFromFile::models_manager = nullptr;
 
 
-#include "Common\memory_leaks.h"
-
-//-------------------------------------------------------------------------------//
-//							wersja DirectX11
-//-------------------------------------------------------------------------------//
+#include "Common/memory_leaks.h"
 
 
-
-
-//----------------------------------------------------------------------------------------------//
-//									referenced_object											//
-//----------------------------------------------------------------------------------------------//
-
-//==============================================================================================//
-
-/**
-Ustawia zerow¹ liczbê odwo³añ.*/
-referenced_object::referenced_object(int id)
-{
-	file_references = 0;
-	object_references = 0;
-	unique_id = id;
-}
-
-
-referenced_object::~referenced_object()
-{}
-
-/** \brief Funkcja informuje czy obiekt s¹ obiektu, które odwo³uj¹ siê do assetu.
-
-@param[out] file_ref W zmiennej zostanie umieszczona liczba referencji plikowych.
-@param[out] other_ref W zmiennej zostanie umieszczona liczba referencji bezpoœrednich od obiektów.
-@return Zwraca wartoœæ logiczn¹ mówi¹c¹ czy asset nadaje siê do usuniêcia.
-*/
-bool referenced_object::can_delete(unsigned int& file_ref, unsigned int& other_ref)
-{
-	file_ref = file_references;
-	other_ref = object_references;
-
-	if (file_references == 0 && object_references == 0)
-		return TRUE;
-	return FALSE;
-}
 
 //----------------------------------------------------------------------------------------------//
 //									Model3DFromFile												//
@@ -63,7 +22,7 @@ bool referenced_object::can_delete(unsigned int& file_ref, unsigned int& other_r
 
 /**@brief Inicjuje obiekt œcie¿k¹ do pliku, który zostanie do niego wczytany ( nie wczytuje pliku).*/
 Model3DFromFile::Model3DFromFile( const std::wstring& file_name )
-: referenced_object( WRONG_ID )
+: ResourceObject( WRONG_ID )
 {
 	file_path = file_name;
 	vertex_buffer = nullptr;

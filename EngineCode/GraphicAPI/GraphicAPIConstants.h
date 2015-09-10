@@ -5,14 +5,16 @@
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
+/**Specyfikuje typ dostêpu do pamiêci danego zasobu.*/
 enum class ResourceUsage
 {
-	RESOURCE_USAGE_DEFAULT		= 0,
-	RESOURCE_USAGE_DYNAMIC		= 1,
-	RESOURCE_USAGE_STATIC		= 2,
-	RESOURCE_USAGE_STAGING		= 3
+	RESOURCE_USAGE_DEFAULT		= 0,		///<Pozawala GPU na zapis i odczyt.
+	RESOURCE_USAGE_DYNAMIC		= 1,		///<Pozwala GPU na odczyt, a CPU na zapis. Dobre do czêsto updatowanych zasobów.
+	RESOURCE_USAGE_STATIC		= 2,		///<Zasób raz stworzony i nigdy nie jest zmieniany.
+	RESOURCE_USAGE_STAGING		= 3			///<GPU mo¿e jedynie kopiowaæ, poza tym wszystkie prawa dostêpu s¹ po stronie CPU. Zobacz D3D11_USAGE_STAGING.
 };
 
+/**Topologia wierzcho³ków.*/
 enum class PrimitiveTopology
 {
   PRIMITIVE_TOPOLOGY_POINTLIST                     = 0,
@@ -26,6 +28,26 @@ enum class PrimitiveTopology
   PRIMITIVE_TOPOLOGY_TRIANGLESTRIP_ADJ             = 8
 };
 
+/**Okreœla jak bêdzie u¿ywany dany zasób w potoku karty graficznej.
+
+@attention DirectX pozwala na ³¹czenie tych sta³ych jak flag, ale w silniku mo¿na wybraæ tylko
+jedn¹ opcjê.*/
+enum ResourceBinding
+{
+	BIND_RESOURCE_VERTEX_BUFFER     = 0x1L,
+	BIND_RESOURCE_INDEX_BUFFER		= 0x2L,
+	BIND_RESOURCE_CONSTANT_BUFFER	= 0x3L,
+	BIND_RESOURCE_SHADER_RESOURCE	= 0x4L,
+	BIND_RESOURCE_STREAM_OUTPUT		= 0x5L,
+	BIND_RESOURCE_RENDER_TARGET		= 0x6L,
+	BIND_RESOURCE_DEPTH_STENCIL		= 0x7L,
+	BIND_RESOURCE_UNORDERED_ACCESS	= 0x8L,
+	BIND_RESOURCE_DECODER			= 0x9L,
+	BIND_RESOURCE_VIDEO_ENCODER		= 0x10L
+	
+};
+
+/**Specyfikuje format tekstury b¹dŸ innego zasobu.*/
 enum class ResourceFormat
 {
 	RESOURCE_FORMAT_UNKNOWN = 0,

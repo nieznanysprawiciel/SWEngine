@@ -193,9 +193,10 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderer.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderTarget.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IShader.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IShaderInputLayout.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ITexture.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\MeshResources.h" />
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\ReferencedObject.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourceObject.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcesFactory.h" />
   </ItemGroup>
   <ItemGroup>

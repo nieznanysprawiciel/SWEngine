@@ -4,6 +4,7 @@
 #include "Loaders/loader_interface.h"
 #include "Loaders/FBX_files_loader/FBX_loader.h"
 #include "Common/ObjectDeleter.h"
+#include "GraphicAPI/ResourcesFactory.h"
 
 
 #include "Common/memory_leaks.h"
@@ -177,6 +178,8 @@ Ka¿da pozycja w tablicy ma przypisane domyœlne znaczenie zgodnie z enumeracj¹
 @ref TEXTURES_TYPES. Najlepszy shader jest wybierany na podstawie obecnoœci
 lub nieobecnoœci tekstury w tablicy.
 
+@todo Oddelegowaæ jakiœ inny obiekt do obœ³ugi wartoœci domyœlnych albo przemyœleæ lepiej jak to powinno w³aœciwie wygl¹daæ.
+
 @param[in] textures Tablica tekstur z obiektu ModelPart.
 @return Zwraca obiekt vertex shadera.*/
 VertexShaderObject* ModelsManager::find_best_vertex_shader( TextureObject** textures )
@@ -192,6 +195,8 @@ tekstur. Tablica ma tyle elementów ile zmienna @ref ENGINE_MAX_TEXTURES.
 Ka¿da pozycja w tablicy ma przypisane domyœlne znaczenie zgodnie z enumeracj¹
 @ref TEXTURES_TYPES. Najlepszy shader jest wybierany na podstawie obecnoœci
 lub nieobecnoœci tekstury w tablicy.
+
+@todo Oddelegowaæ jakiœ inny obiekt do obœ³ugi wartoœci domyœlnych albo przemyœleæ lepiej jak to powinno w³aœciwie wygl¹daæ.
 
 @param[in] textures Tablica tekstur z obiektu ModelPart.
 @return Zwraca obiekt pixel shadera.*/
@@ -223,35 +228,6 @@ ILoader* ModelsManager::find_loader( const std::wstring& path )
 }
 
 
-/** @brief Tworzy i wstawia domyœlne wartoœci assetów do swoich tablic.
-
-Wstawiane s¹ g³ównie vertex i pixel shader oraz domyœlny materia³.
-W tej funkcji mo¿na dopisaæ tworzenie wszystkich pozosta³ych domyœlnych obiektów.
-@param[in] vert_shader Stworzony ju¿ obiekt vertex shadera.
-@param[in] pix_shader Stworzony ju¿ obiekt pixel shadera.
-*/
-void ModelsManager::set_default_assets( ID3D11VertexShader* vert_shader, ID3D11PixelShader* pix_shader )
-{
-	// Podane w parametrach shadery nie maj¹ jeszcze swojego obiektu-opakowania, wiêc trzeba go stworzyæ
-	VertexShaderObject* new_vertex_shader = new VertexShaderObject( vert_shader );
-	PixelShaderObject* new_pixel_shader = new PixelShaderObject( pix_shader );
-
-	// Dodajemy shadery. Takich nazwa na pewno nie ma w tablicach i nie bêdzie
-	vertex_shader.unsafe_add( DEFAULT_VERTEX_SHADER_STRING, new_vertex_shader );
-	pixel_shader.unsafe_add( DEFAULT_PIXEL_SHADER_STRING, new_pixel_shader );
-
-	// Tworzymy defaultowy materai³
-	MaterialObject* new_material = new MaterialObject();
-	new_material->set_null_material();
-	material.unsafe_add( DEFAULT_MATERIAL_STRING, new_material );
-
-	// Teraz tworzymy shadery, których jeszcze nie skompilowaliœmy wczeœniej
-	// Dla tekstury diffuse vertex shader jest taki sam, wiêc nie ma po co go kompilowaæ jeszcze raz
-	new_pixel_shader = PixelShaderObject::create_from_file( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH, DEFAULT_PIXEL_SHADER_ENTRY );
-	pixel_shader.unsafe_add( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH, new_pixel_shader );
-
-}
-
 //-------------------------------------------------------------------------------//
 //							funkcje do zarzadzania assetami
 //-------------------------------------------------------------------------------//
@@ -270,7 +246,7 @@ MODELS_MANAGER_RESULT ModelsManager::load_model_from_file( const std::wstring& f
 		return MODELS_MANAGER_RESULT::MODELS_MANAGER_OK;	// Udajemy, ¿e wszystko posz³o dobrze
 
 	// Sprawdzamy, który loader potrafi otworzyæ plik
-	Loader* loader = find_loader( file );
+	ILoader* loader = find_loader( file );
 	if ( loader == nullptr )
 		return MODELS_MANAGER_RESULT::MODELS_MANAGER_LOADER_NOT_FOUND;		// ¯aden nie potrafi
 
@@ -285,9 +261,7 @@ MODELS_MANAGER_RESULT ModelsManager::load_model_from_file( const std::wstring& f
 	if ( result != LOADER_RESULT::MESH_LOADING_OK )
 	{	// load_mesh powinno zwróciæ 0
 		// Destruktor jest prywatny, wiêc nie mo¿emy kasowaæ obiektu bezpoœrednio.
-		ObjectDeleterKey<Model3DFromFile> key;					// Tworzymy klucz.
-		ObjectDeleter<Model3DFromFile> model_deleter( key );	// Tworzymy obiekt kasuj¹cy i podajemy mu nasz klucz.
-		model_deleter.delete_object( new_model );				// Kasujemy obiekt za poœrednictwem klucza.
+		ObjectDeleter<Model3DFromFile>::delete_object( new_model, ObjectDeleterKey<Model3DFromFile>() );
 		return MODELS_MANAGER_RESULT::MODELS_MANAGER_CANNOT_LOAD;
 	}
 
@@ -338,7 +312,7 @@ VertexShaderObject* ModelsManager::add_vertex_shader( const std::wstring& file_n
 	if ( !shader )
 	{
 		// Nie by³o shadera, trzeba go stworzyæ i dodaæ
-		shader = VertexShaderObject::create_from_file( file_name, shader_entry );
+		shader = ResourcesFactory::CreateVertexShaderFromFile( file_name, shader_entry );
 		if ( !shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 			return nullptr;
 
@@ -371,15 +345,14 @@ do takich rzeczy dochodzi³o jak najrzadziej.
 @return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
 VertexShaderObject* ModelsManager::add_vertex_shader( const std::wstring& file_name,
 									   const std::string& shader_entry,
-									   ID3D11InputLayout** layout,
-									   D3D11_INPUT_ELEMENT_DESC* layout_desc,
-									   unsigned int array_size )
+									   ShaderInputLayoutObject** layout,
+									   InputLayoutDescriptor* layout_desc )
 {
 	*layout = nullptr;
 	VertexShaderObject* shader = vertex_shader.get( file_name );
 	
 	// Tworzymy shader bo i tak usimy, potem go najwy¿ej skasujemy
-	VertexShaderObject* new_shader = VertexShaderObject::create_from_file( file_name, shader_entry, layout, layout_desc, array_size );
+	VertexShaderObject* new_shader = ResourcesFactory::CreateVertexShaderFromFile( file_name, shader_entry, layout, layout_desc );
 	if ( !new_shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 	
@@ -392,9 +365,7 @@ VertexShaderObject* ModelsManager::add_vertex_shader( const std::wstring& file_n
 	else
 	{	// Shader ju¿ by³, wiêc kasujemy nowy
 		// Destruktor jest prywatny, wiêc nie mo¿emy kasowaæ obiektu bezpoœrednio.
-		ObjectDeleterKey<VertexShaderObject> key;					// Tworzymy klucz.
-		ObjectDeleter<VertexShaderObject> model_deleter( key );	// Tworzymy obiekt kasuj¹cy i podajemy mu nasz klucz.
-		model_deleter.delete_object( new_shader );				// Kasujemy obiekt za poœrednictwem klucza.
+		ObjectDeleter<VertexShaderObject>::delete_object( shader, ObjectDeleterKey<VertexShaderObject>() );
 	}
 
 	return shader;
@@ -415,7 +386,7 @@ PixelShaderObject* ModelsManager::add_pixel_shader( const std::wstring& file_nam
 	if ( !shader )
 	{
 		// Nie by³o shadera, trzeba go stworzyæ i dodaæ
-		shader = PixelShaderObject::create_from_file( file_name, shader_entry );
+		shader = ResourcesFactory::CreatePixelShaderFromFile( file_name, shader_entry );
 		if ( !shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 			return nullptr;
 
@@ -440,7 +411,7 @@ TextureObject* ModelsManager::add_texture( const std::wstring& file_name )
 	if ( !tex )
 	{
 		// Nie by³o tekstury, trzeba j¹ stworzyæ i dodaæ
-		tex = TextureObject::create_from_file( file_name );
+		tex = ResourcesFactory::CreateTextureFromFile( file_name );
 		if ( !tex )		// Tekstura mog³a mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 			return nullptr;
 
@@ -471,10 +442,10 @@ BufferObject* ModelsManager::add_vertex_buffer( const std::wstring& name,
 		return vertex_buff;
 
 	// Tworzymy obiekt bufora indeksów i go zapisujemy
-	vertex_buff = BufferObject::create_from_memory( buffer,
-													element_size,
-													vert_count,
-													D3D11_BIND_VERTEX_BUFFER );
+	vertex_buff = ResourcesFactory::CreateBufferFromMemory( buffer,
+															element_size,
+															vert_count,
+															ResourceBinding::BIND_RESOURCE_VERTEX_BUFFER );
 	if ( !vertex_buff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 
@@ -504,10 +475,10 @@ BufferObject* ModelsManager::add_index_buffer( const std::wstring& name,
 		return index_buff;
 
 	// Tworzymy obiekt bufora indeksów i go zapisujemy
-	index_buff = BufferObject::create_from_memory( buffer,
-												   element_size,
-												   vert_count,
-												   D3D11_BIND_INDEX_BUFFER );
+	index_buff = ResourcesFactory::CreateBufferFromMemory(	buffer,
+															element_size,
+															vert_count,
+															ResourceBinding::BIND_RESOURCE_INDEX_BUFFER );
 	if ( !index_buff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 

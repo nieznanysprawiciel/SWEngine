@@ -1,4 +1,7 @@
 /**@file Engine.cpp
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
 @brief Plik zawiera definicje metod klasy Engine dotycz¹cych inicjacji i zwalniania DirectXa
 oraz g³ówne funkcje do renderingu.
 */
@@ -9,6 +12,7 @@ oraz g³ówne funkcje do renderingu.
 #include "ControllersEngine/ControllersEngine.h"
 #include "GraphicAPI/ResourcesFactory.h"
 #include "EngineHelpers/PerformanceCheck.h"
+#include "ModelsManager/ModelsManager.h"
 
 #include "Common/memory_leaks.h"
 
@@ -91,13 +95,13 @@ Engine::~Engine()
 	delete ui_engine;			//sprz¹ta po directinpucie
 	delete models_manager;		//musi byæ kasowany na koñcu
 
-	clean_DirectX();
-
+	m_graphicInitializer->ReleaseAPI();
+	delete m_graphicInitializer;
 }
 
 
 //----------------------------------------------------------------------------------------------//
-//								inicjalizacja okna i DirectXa									//
+//								inicjalizacja okna i modu³ów zewnêtrznych						//
 //----------------------------------------------------------------------------------------------//
 
 ///@brief Inicjuje dzia³anie silnika.
@@ -106,37 +110,40 @@ Engine::~Engine()
 ///@param[in] height Wysokoœæ okna
 ///@param[in] fullscreen Pe³ny ekran lub renderowanie w oknie
 ///@param[in] nCmdShow Czwarty parametr funkcji WinMain
-int Engine::init_engine( int width, int height, bool full_screen, int nCmdShow )
+int Engine::InitEngine( int width, int height, bool fullScreen, int nCmdShow )
 {
 	int result;
 
 	//Tworzenie okna aplikacji
-	result = init_window( width, height, full_screen, nCmdShow );
+	result = InitWindow( width, height, fullScreen, nCmdShow );
 	if ( !result )
 		return FALSE;
 
 	//Inicjalizowanie API graficznego
-	GraphicAPIInitData initData;
-	initData.fullScreen			= full_screen;
-	initData.singleThreaded		= false;
-	initData.windowHandle		= (uint32)window_handler;
-	initData.windowHeight		= height;
-	initData.windowWidth		= width;
-	result = m_graphicInitializer->InitAPI( initData );
+	result = InitGraphicAPI( width, height, fullScreen );
 	assert( result != 0 );
 	if( result == 0 )
 		return FALSE;
 
-	//Inicjalizowanie directXinputa
-	result = ui_engine->init_direct_input( );
-		assert( result == DIRECT_INPUT_OK );	//Dzia³a tylko w trybie DEBUG
-	if ( result != DIRECT_INPUT_OK )
-	{
-		clean_DirectX( );
+	result = InitInputModule();
+	assert( result != 0 );
+	if( result == 0 )
 		return FALSE;
-	}
-	//todo:
-	//Inicjalizowanie DirectXSound
+
+	result = InitSoundModule();
+	assert( result != 0 );
+	if( result == 0 )
+		return FALSE;
+
+	result = InitDefaultAssets();
+	assert( result != 0 );
+	if( result == 0 )
+		return FALSE;
+
+	result = InitDisplayer();
+	assert( result != 0 );
+	if( result == 0 )
+		return FALSE;
 
 	m_engineReady = true;		//jesteœmy gotowi do renderowania
 
@@ -145,50 +152,71 @@ int Engine::init_engine( int width, int height, bool full_screen, int nCmdShow )
 
 
 
-int Engine::init_directX()
+bool Engine::InitGraphicAPI( int width, int height, bool full_screen )
 {
-	set_vertex_layout( DX11_DEFAULT_VERTEX_LAYOUT::VERTEX_NORMAL_TEXTURE );
-	set_depth_stencil_format( DXGI_FORMAT_D24_UNORM_S8_UINT );		// Je¿eli ma byæ inny to trzeba to jawnie zmieniæ.
+	bool result;
 
-	DX11_INIT_RESULT result = init_DX11( window_width, window_height, window_handler, full_screen,
-										 L"shaders/default_shaders.fx", "pixel_shader",
-										 L"shaders/default_shaders.fx", "vertex_shader", false );
+	//Inicjalizowanie API graficznego
+	GraphicAPIInitData initData;
+	initData.fullScreen			= full_screen;
+	initData.singleThreaded		= false;
+	initData.windowHandle		= (uint32)window_handler;
+	initData.windowHeight		= height;
+	initData.windowWidth		= width;
+	initData.depthStencilFormat = ResourceFormat::RESOURCE_FORMAT_D24_UNORM_S8_UINT;
+	result = m_graphicInitializer->InitAPI( initData );
+	assert( result != 0 );
+	if( result == 0 )
+		return false;
+	return true;
+}
 
-	if ( result != DX11_INIT_OK )
-		return result;
+bool Engine::InitInputModule		()
+{
+	bool result;
 
+	//Inicjalizowanie directXinputa
+	result = ui_engine->init_direct_input( );
+		assert( result == DIRECT_INPUT_OK );	//Dzia³a tylko w trybie DEBUG
+	if ( result != DIRECT_INPUT_OK )
+		return false;
+	return true;
+}
 
-	display_engine->InitRenderer();
+bool Engine::InitSoundModule		()
+{
+	return true;
+}
+
+//----------------------------------------------------------------------------------------------//
+//								Przygotowanie modu³ów do dzia³ania								//
+//----------------------------------------------------------------------------------------------//
+
+/**@brief Inicjuje domyœlne assety silnika.*/
+bool Engine::InitDefaultAssets()
+{
+	models_manager->add_vertex_shader( DEFAULT_VERTEX_SHADER_STRING, DEFAULT_VERTEX_SHADER_ENTRY );
+	models_manager->add_pixel_shader( DEFAULT_PIXEL_SHADER_STRING, DEFAULT_PIXEL_SHADER_ENTRY );
+	models_manager->add_pixel_shader( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH, DEFAULT_PIXEL_SHADER_ENTRY );
+
+	MaterialObject* nullMaterial = new MaterialObject();
+	nullMaterial->set_null_material();
+	models_manager->add_material( nullMaterial, DEFAULT_MATERIAL_STRING );
+
+	return true;
+}
+
+bool Engine::InitDisplayer()
+{
+	IRenderer* renderer = m_graphicInitializer->CreateRenderer( RendererUsage::USE_AS_IMMEDIATE );
+	display_engine->InitRenderer( renderer );
 
 	display_engine->SetProjectionMatrix( XMConvertToRadians( 45 ),
 										   (float)window_width / (float)window_height, 1, 100000 );
 
-	// W tej funkcji s¹ tworzone domyœlne shadery, materia³y itp.
-	// Przekazujemy shadery, które ju¿ stworzyliœmy
-	models_manager->set_default_assets( default_vertex_shader, default_pixel_shader );
-	default_vertex_shader = nullptr;
-	default_pixel_shader = nullptr;
-	// Poniewa¿ oddaliœmy te obiekty do zarz¹dzania ModelsManagerowi, to musimy skasowaæ odwo³ania, ¿eby
-	// nie zwalniaæ obiektów dwukrotnie. Nie jest to eleganckie, no ale lepiej mieæ wszystko w jednym miejscu.
-
-	return DX11_INIT_OK;
+	return true;
 }
 
-
-int Engine::init_directXinput()
-{
-	return ui_engine->init_direct_input();
-}
-
-
-//----------------------------------------------------------------------------------------------//
-//								czyszczenie po DirectX											//
-//----------------------------------------------------------------------------------------------//
-
-void Engine::clean_DirectX()
-{
-	release_DirectX();
-}
 
 
 //----------------------------------------------------------------------------------------------//

@@ -1,14 +1,17 @@
 #pragma once
 /**
-@file IREnderTarget.h
+@file IRenderTarget.h
 @author nieznanysprawiciel
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
-class IRenderTarget
+#include "ResourceObject.h"
+
+class IRenderTarget : public ResourceObject
 {
 private:
 protected:
-public:
+	IRenderTarget() : ResourceObject( 0 ) {}
 	virtual ~IRenderTarget() = default;
+public:
 };

@@ -10,11 +10,12 @@
 
 #include "Common/ObjectDeleter.h"
 #include "Common/macros_switches.h"
-#include "GraphicAPI/ReferencedObject.h"
+#include "GraphicAPI/ResourceObject.h"
 #include "GraphicAPI/ITexture.h"
 #include "GraphicAPI/IShader.h"
 #include "GraphicAPI/IBuffer.h"
 #include "GraphicAPI/IRenderTarget.h"
+#include "IShaderInputLayout.h"
 #include "GraphicAPI/GraphicAPIConstants.h"
 #include "DirectXMath.h"
 
@@ -72,13 +73,6 @@ typedef struct VertexNormalTexCord1
 } VertexNormalTexCord1;
 
 
-#ifndef __UNUSED
-// Opis s³u¿¹cy do stworzenia layoutu zrozumia³ego dla shaderów w pliku vertex_layouts.cpp
-extern D3D11_INPUT_ELEMENT_DESC VertexNormalTexCord1_desc[];
-extern unsigned int VertexNormalTexCord1_desc_num_of_elements;
-#endif
-
-
 /// \brief Struktura wierzcho³ka stworzona z myœl¹ o GUI
 typedef struct VertexTexCord1
 {
@@ -86,11 +80,6 @@ typedef struct VertexTexCord1
 	DirectX::XMFLOAT2	tex_cords;		///<Wspó³rzêdne tekstury
 } VertexTexCord1;
 
-#ifndef __UNUSED
-// Opis s³u¿¹cy do stworzenia layoutu zrozumia³ego dla shaderów w pliku vertex_layouts.cpp
-extern D3D11_INPUT_ELEMENT_DESC VertexTexCord1_desc[];
-extern unsigned int VertexTexCord1_desc_num_of_elements;
-#endif
 
 //-------------------------------------------------------------------------------//
 //	Enumeracje dla klasy Model3DFromFile i wszystkich obiektów zasobów
@@ -152,10 +141,10 @@ i zmienne buffer_offset, vertices_count i base_vertex.
 
 Klasa jest alokowana w Model3DFromFile i to w³aœnie ta klasa odpowiada za zwolnienie pamiêci.
 
-Pomimo dziedziczenia po klasie referenced_object, nie jest u¿ywane pole unique_id. Dlatego
+Pomimo dziedziczenia po klasie ResourceObject, nie jest u¿ywane pole unique_id. Dlatego
 jest ono w kontruktorze ustawiane na WRONG_ID. MeshPartObject nie mog¹ byæ wspó³dzielone
 miêdzy obiektami.*/
-struct MeshPartObject : public referenced_object
+struct MeshPartObject : public ResourceObject
 {
 	DirectX::XMFLOAT4X4		transform_matrix;	///<Macierz przekszta³cenia wzglêdem œrodka modelu
 	unsigned int			buffer_offset;		///<Offset wzglêdem pocz¹tku bufora indeksów albo wierzcho³ków (zobacz: opis klasy)
@@ -166,7 +155,7 @@ struct MeshPartObject : public referenced_object
 	/** @brief inicjuje objekt neutralnymi wartoœciami tzn. zerami, ustawia use_index_buf na false i
 	ustawia macierz przekszta³cenia na macierz identycznoœciow¹.*/
 	MeshPartObject( )
-		: referenced_object( 0 )		//W tym przypadku identyfikator nie ma znaczenia
+		: ResourceObject( 0 )		//W tym przypadku identyfikator nie ma znaczenia
 	{
 		buffer_offset = 0;
 		vertices_count = 0;
@@ -283,17 +272,17 @@ public:
 
 /**@brief Klasa przechowuje layout wierzcho³ka trafiaj¹cego do
 vertex shadera.*/
-class ShaderInputLayout
+class ShaderInputLayoutObject : public IShaderInputLayout
 {
 	friend ObjectDeleter<VertexShaderObject>;
 private:
 protected:
-	virtual ~ShaderInputLayout() = default;
+	virtual ~ShaderInputLayoutObject() = default;
 public:
-	ShaderInputLayout() = default;
+	ShaderInputLayoutObject() = default;
 };
 
-/**@brief Klasa przechowuje opis layutu wierzcho³ka, na podstawie którego
+/**@brief Klasa przechowuje opis layoutu wierzcho³ka, na podstawie którego
 tworzony jest obiekt layoutu.*/
 class InputLayoutDescriptor
 {
@@ -318,7 +307,7 @@ public:
 	VertexShaderObject() = default;
 
 	static VertexShaderObject* create_from_file( const std::wstring& fileName, const std::string& shader_name, const char* shader_model = "vs_4_0" );
-	static VertexShaderObject* create_from_file( const std::wstring& fileName, const std::string& shader_name, ShaderInputLayout** layout,
+	static VertexShaderObject* create_from_file( const std::wstring& fileName, const std::string& shader_name, ShaderInputLayoutObject** layout,
 												 InputLayoutDescriptor* layout_desc, const char* shader_model = "vs_4_0" );
 };
 
@@ -372,7 +361,7 @@ public:
 	static BufferObject* create_from_memory( const void* buffer,
 											 unsigned int element_size,
 											 unsigned int vert_count,
-											 unsigned int bind_flag,
+											 ResourceBinding bind_flag,
 											 ResourceUsage usage = ResourceUsage::RESOURCE_USAGE_STATIC );
 };
 
@@ -388,7 +377,7 @@ przekazywana z buforze sta³ych.
 
 Struktura zachowuje siê jak asset w zwi¹zku z czym mo¿e
 byæ wspó³dzielona przez wiele obiektów. Z tego wzglêdu nie mo¿na jej u¿yæ bezpoœrednio w ConstantPerMesh,
-poniewa¿ nie chcemy przekazywaæ do bufora sta³ych zmiennych odziedziczonych po referenced_object.
+poniewa¿ nie chcemy przekazywaæ do bufora sta³ych zmiennych odziedziczonych po ResourceObject.
 Zamiast tego trzeba tê strukture przepisaæ.
 
 Zwracam uwagê, ¿e tylko kana³ Diffuse jest wektorem 4 wymiarowym, w którym sk³adowa w jest odpowiedzialna
@@ -396,7 +385,7 @@ za przezroczystoœæ. Pozosta³e s¹ takie tylko dlatego, ¿e jest to domyœlny format
 w rejestrach karty graficznej i przypsiesza to operacjê kopiowania.
 @see ConstantPerFrame
 */
-typedef struct MaterialObject : public referenced_object
+typedef struct MaterialObject : public ResourceObject
 {
 	friend ObjectDeleter<MaterialObject>;
 
@@ -406,7 +395,7 @@ typedef struct MaterialObject : public referenced_object
 	DirectX::XMFLOAT4		Emissive;
 	float					Power;
 
-	MaterialObject( unsigned int id = WRONG_ID ) : referenced_object( id ){}
+	MaterialObject( unsigned int id = WRONG_ID ) : ResourceObject( id ){}
 	MaterialObject( const MaterialObject* material );
 
 	void set_null_material();

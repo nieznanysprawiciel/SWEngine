@@ -79,7 +79,7 @@ MaterialObject::set_null_material.
 
 @see BufferObject, ModelPart, TextureObject, VertexShaderObject, PixelShaderObject, MaterialObject, MeshPartObject*/
 
-class Model3DFromFile : public referenced_object
+class Model3DFromFile : public ResourceObject
 {
 	friend ObjectDeleter<Model3DFromFile>;
 	friend ModelsManager;

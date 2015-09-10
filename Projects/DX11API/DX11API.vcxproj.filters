@@ -43,9 +43,6 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\MeshResources.h">
       <Filter>GraphicAPI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\ReferencedObject.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcesFactory.h">
       <Filter>GraphicAPI</Filter>
     </ClInclude>
@@ -105,6 +102,12 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11Initializer.h">
       <Filter>Source Files\DX11API\DX11Initializer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourceObject.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IShaderInputLayout.h">
+      <Filter>GraphicAPI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,13 +6,13 @@
 */
 
 
-#include "GraphicAPI/ReferencedObject.h"
+#include "GraphicAPI/ResourceObject.h"
 
-class ITexture	:	public referenced_object
+class ITexture	:	public ResourceObject
 {
 private:
 protected:
-	ITexture() : referenced_object( 0 ) {}
+	ITexture() : ResourceObject( 0 ) {}
 public:
 };
 
