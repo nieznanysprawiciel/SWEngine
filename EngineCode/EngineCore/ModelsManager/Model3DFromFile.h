@@ -9,6 +9,15 @@
 
 #include <vector>
 
+
+/// @brief Definiuje offset bufora indeksów wzglêdem bufora wierzcho³ków. (Dla funkcji Model3DFromFile::add_index_buffer)
+typedef enum VERTEX_BUFFER_OFFSET
+{
+	LAST = -1,
+	BEGIN = 0,
+};
+
+
 /** @brief Struktura tymczasowe dla klasy Model3DFromFile, u¿ywane podczas wype³niania
 obiektu danymi. Struktura jest kasowana po zakonczeniu edycji.*/
 
@@ -75,7 +84,7 @@ dodawania w³asnych shaderów. Funkcja ModelsManager::find_best_vertex_shader i Mo
 najlepiej pasuj¹cy shader do podanej tablicy tekstur.
 
 Je¿eli nie zostanie podany ¿aden materia³, ModelPart dostanie domyœlny materia³, który jest ustawiany przez funkcjê
-MaterialObject::set_null_material.
+MaterialObject::SetNullMaterial.
 
 @see BufferObject, ModelPart, TextureObject, VertexShaderObject, PixelShaderObject, MaterialObject, MeshPartObject*/
 

@@ -9,22 +9,12 @@
 #include "GraphicAPI/MeshResources.h"
 #include "Model3DFromFile.h"
 #include "ResourceContainer.h"
+#include "DefaultAssets.h"
 
 class Engine;
 class ILoader;
 
 
-///@todo Przenieœæ w jakieœ lepsze miejsce + zastanowiæ siê jak obs³ugiwaæ osobne œcie¿ki do shaderów hlsl i glsl.
-// Nazwy dla domyœlnych shaderów i materia³u
-const wchar_t DEFAULT_MATERIAL_STRING[] = L"::default_material";			///<Neutralny materia³
-const wchar_t DEFAULT_VERTEX_SHADER_STRING[] = L"shaders/default_shaders.fx";		///<Shader bez obs³ugi tekstur
-const wchar_t DEFAULT_PIXEL_SHADER_STRING[] = L"shaders/default_shaders.fx";		///<Shader bez obs³ugi tekstur
-const wchar_t DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH[] = L"shaders\\tex_diffuse_shader.fx";	///<Shader z obs³ug¹ tesktury diffuse
-
-
-// Domyœlne nazwy funkcji w vertex i pixel shaderze
-const char DEFAULT_VERTEX_SHADER_ENTRY[] = "vertex_shader";		///<Domyœlna nazwa funkcji, od której zaczyna siê wykonanie vertex shadera
-const char DEFAULT_PIXEL_SHADER_ENTRY[] = "pixel_shader";		///<Domyœlna nazwa funkcji, od której zaczyna siê wykonanie pixel shadera
 
 
 //-------------------------------------------------------------------------------//
@@ -65,7 +55,7 @@ private:
 	ResourceContainer<BufferObject>				index_buffer;		///<Bufory indeksów.
 	ResourceContainer<BufferObject>				constant_buffer;	///<Bufory sta³ych dla shaderów.
 	ResourceContainer<MaterialObject>			material;			///<Materia³y.
-	ResourceContainer<ShaderInputLayoutObject>	layout;				///<Layouty dla róznych formatów wierzcho³ków.
+	ResourceContainer<ShaderInputLayoutObject>	vertexLayout;		///<Layouty dla róznych formatów wierzcho³ków.
 	// UWAGA! file_model musi byæ na koñcu. Jego destruktor kasuje odwo³ania do obiektów powy¿ej. Podobnie RenderTargetObject odwo³uje siê do tekstur.
 	// Musz¹ one w tym czasie istnieæ, a destruktory s¹ wywo³ywane w kolejnoœci odwrotnej do zadeklarowanej w klasie.
 	ResourceContainer<RenderTargetObject>		render_target;		///<Obiekty mog¹ce s³u¿yæ za render target.
@@ -94,6 +84,7 @@ public:
 	PixelShaderObject*				add_pixel_shader			( const std::wstring& file_name, const std::string& shader_entry );
 	BufferObject*					add_vertex_buffer			( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
 	BufferObject*					add_index_buffer			( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
+	BufferObject*					AddConstantsBuffer			( const std::wstring& name, const void* buffer, unsigned int size );
 private:
 	ILoader*						find_loader					( const std::wstring& path );
 	

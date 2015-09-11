@@ -48,6 +48,9 @@
     <Filter Include="Source Files\DisplayEngine">
       <UniqueIdentifier>{3f99a4a6-a6b3-4938-be1a-674961b15ae0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ModelsManagment\Loaders">
+      <UniqueIdentifier>{d203582c-aafd-4270-be22-a0752570022c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -60,12 +63,6 @@
       <Filter>Source Files\CollisionEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ResourceContainer.h">
-      <Filter>Source Files\ModelsManagment</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.h">
-      <Filter>Source Files\ModelsManagment</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\loader_interface.h">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ModelsManager.h">
@@ -161,15 +158,21 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Model3DFromFile.h">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.h">
+      <Filter>Source Files\ModelsManagment</Filter>
+    </ClInclude>
+    <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\loader_interface.h">
+      <Filter>Source Files\ModelsManagment\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.h">
+      <Filter>Source Files\ModelsManagment\Loaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\ModelsManager.cpp">
-      <Filter>Source Files\ModelsManagment</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
       <Filter>Source Files\ModelsManagment</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)UI_Engine\UI_Engine.cpp">
@@ -240,6 +243,12 @@
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.cpp">
       <Filter>Source Files\DisplayEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.cpp">
+      <Filter>Source Files\ModelsManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
+      <Filter>Source Files\ModelsManagment\Loaders</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

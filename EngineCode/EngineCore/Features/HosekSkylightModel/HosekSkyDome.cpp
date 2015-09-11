@@ -83,7 +83,7 @@ void HosekSkyDome::init_sky_dome( XMVECTOR sun_direction,
 
 	// Materia³ jest niepotrzebny, ale nie mo¿e go nie byæ
 	MaterialObject material;
-	material.set_null_material();
+	material.SetNullMaterial();
 	set_material( &material, DEFAULT_MATERIAL_STRING );
 
 	// Tutaj wype³niamy kopu³ê kolorem

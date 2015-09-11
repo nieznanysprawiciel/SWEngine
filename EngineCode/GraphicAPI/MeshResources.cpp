@@ -4,7 +4,7 @@
 //								PixelShaderObject												//
 //----------------------------------------------------------------------------------------------//
 
-
+#ifndef __UNUSED
 /**@bref Tworzy obiekt PixelShaderObject na podstawie pliku.
 
 W przypadku b³êdów kompilacji w trybie debug s¹ one przekierowane do okna Output.
@@ -18,12 +18,13 @@ PixelShaderObject* PixelShaderObject::create_from_file( const std::wstring& file
 {
 	return ResourcesFactory::CreatePixelShaderFromFile( fileName, shaderName, shaderModel );
 }
+#endif
 
 //----------------------------------------------------------------------------------------------//
 //								VertexShaderObject												//
 //----------------------------------------------------------------------------------------------//
 
-
+#ifndef __UNUSED
 /**@brief Tworzy obiekt VertexShaderObject na podstawie pliku.
 
 W przypadku b³êdów kompilacji w trybie debug s¹ one przekierowane do okna Output.
@@ -60,7 +61,7 @@ VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& fi
 	return ResourcesFactory::CreateVertexShaderFromFile( fileName, shaderName, layout, layoutDesc, shaderModel );
 }
 
-
+#endif
 
 //----------------------------------------------------------------------------------------------//
 //								TextureObject													//
@@ -89,6 +90,7 @@ bool TextureObject::operator==(const std::wstring& fileName)
 	return false;
 }
 
+#ifndef __UNUSED
 /** @brief Tworzy z podanego pliku obiekt tekstury.
 
 @param[in] fileName Nazwa pliku zawieraj¹cego teksturê
@@ -98,6 +100,7 @@ TextureObject* TextureObject::create_from_file( const std::wstring& fileName )
 {
 	return ResourcesFactory::CreateTextureFromFile( fileName );
 }
+#endif
 //----------------------------------------------------------------------------------------------//
 //								RenderTargetObject												//
 //----------------------------------------------------------------------------------------------//
@@ -143,7 +146,7 @@ BufferObject::BufferObject( unsigned int elementSize, unsigned int elementCount 
 }
 
 
-
+#ifndef __UNUSED
 /**@brief Tworzy bufor wierzcho³ków lub indeksów o podanych parametrach.
 
 @param[in] buffer WskaŸnik na bufor z danym, które maj¹ byæ przeniesione do bufora DirectXowego.
@@ -163,6 +166,7 @@ BufferObject* BufferObject::create_from_memory( const void* buffer,
 	return ResourcesFactory::CreateBufferFromMemory( buffer, element_size, vert_count, bind_flag, usage );
 }
 
+#endif
 
 //----------------------------------------------------------------------------------------------//
 //								MaterialObject													//
@@ -178,7 +182,7 @@ MaterialObject::MaterialObject( const MaterialObject* material )
 
 Te wartoœci s¹ najbardziej neutralne, w przypadku gdy nie ma materia³u, a jest ustawiona tekstura.
 Wtedy shadery wymana¿aj¹ jasnoœæ piksela przez 1.0 i nic sie nie zmienia.*/
-void MaterialObject::set_null_material( )
+void MaterialObject::SetNullMaterial( )
 {
 	Diffuse.x = 1.0f;
 	Diffuse.y = 1.0f;
@@ -202,46 +206,5 @@ void MaterialObject::set_null_material( )
 
 	Power = 1.0f;
 }
-
-#ifndef __UNUSED
-
-
-//Obiekty s¹ takie, kiedy struktury materia³ów maj¹ tak¹ sam¹ zawartoœæ
-bool MaterialObject::operator==(const MaterialObject& object)
-{
-	if (*this == object.material)
-		return true;
-	return false;
-}
-
-bool MaterialObject::operator==(const D3DMATERIAL9& object)
-{
-	if (material.Diffuse.a != object.Diffuse.a
-		|| material.Diffuse.b != object.Diffuse.b
-		|| material.Diffuse.g != object.Diffuse.g
-		|| material.Diffuse.r != object.Diffuse.r)
-		return false;
-	if (material.Ambient.a != object.Ambient.a
-		|| material.Ambient.b != object.Ambient.b
-		|| material.Ambient.g != object.Ambient.g
-		|| material.Ambient.r != object.Ambient.r)
-		return false;
-	if (material.Emissive.a != object.Emissive.a
-		|| material.Emissive.b != object.Emissive.b
-		|| material.Emissive.g != object.Emissive.g
-		|| material.Emissive.r != object.Emissive.r)
-		return false;
-	if (material.Specular.a != object.Specular.a
-		|| material.Specular.b != object.Specular.b
-		|| material.Specular.g != object.Specular.g
-		|| material.Specular.r != object.Specular.r)
-		return false;
-	if (material.Power != object.Power)
-		return false;
-
-	return true;
-}
-
-#endif
 
 

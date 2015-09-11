@@ -10,10 +10,14 @@
 #include "DisplayEngine.h"
 #include "Engine.h"
 #include "EngineHelpers/PerformanceCheck.h"
+#include "ModelsManager/ModelsManager.h"
 
 
 #include "Common/memory_leaks.h"
 
+
+const wchar_t CONSTANT_PER_FRAME_BUFFER_NAME[] = L"::DisplayEngine::ConstantPerFrameBuffer";
+const wchar_t CONSTANT_PER_MESH_BUFFER_NAME[] = L"::DisplayEngine::ConstantPerMeshBuffer";
 
 USE_PERFORMANCE_CHECK( SKYBOX_RENDERING )
 USE_PERFORMANCE_CHECK( INSTANCE_OBJECT_RENDERING )
@@ -51,7 +55,7 @@ DisplayEngine::~DisplayEngine()
 	for ( unsigned int i = 0; i < cameras.size(); ++i )
 		delete cameras[i];
 
-	for ( IRenderer* renderer : renderers )
+	for ( IRenderer* renderer : m_renderers )
 		if ( renderer )		delete renderer;
 
 	//kasujemy tablicê interpolowanych macierzy
@@ -69,10 +73,28 @@ w³¹czania i wy³¹czania algorytmu.
 Trzeba pomyœleæ gdzie.*/
 void DisplayEngine::InitRenderer( IRenderer* renderer )
 {
-	renderers.push_back( renderer );		// Na razie nie robimy deferred renderingu.
+	m_renderers.push_back( renderer );		// Na razie nie robimy deferred renderingu.
 
-	renderers[0]->InitBuffers( sizeof(ConstantPerFrame), sizeof( ConstantPerMesh ));
-	renderers[0]->InitDepthStates();
+	m_renderers[0]->InitDepthStates();
+}
+
+void DisplayEngine::InitDisplayer( ModelsManager* assetsManager )
+{
+	modelsManager = assetsManager;
+	m_constantsPerFrame	= modelsManager->AddConstantsBuffer( CONSTANT_PER_FRAME_BUFFER_NAME, nullptr, sizeof( ConstantPerFrame ) );
+	m_constantsPerMesh	= modelsManager->AddConstantsBuffer( CONSTANT_PER_MESH_BUFFER_NAME, nullptr, sizeof( ConstantPerMesh ) );
+	assert( m_constantsPerFrame );
+	assert( m_constantsPerMesh );
+}
+
+void DisplayEngine::BeginScene()
+{
+	m_renderers[ 0 ]->BeginScene();
+}
+
+void DisplayEngine::EndScene()
+{
+	m_renderers[ 0 ]->Present();
 }
 
 
@@ -80,65 +102,6 @@ void DisplayEngine::InitRenderer( IRenderer* renderer )
 //							Funkcje pomocnicze do renderingu
 //-------------------------------------------------------------------------------//
 
-#ifndef __UNUSED
-/**@brief Funkcja ustawia tesktury z danego ModelParta w DirectXie.
-
-@param[in] model ModelPart z którego pochodz¹ tekstury do ustawienia.
-@todo SetShaderResource mo¿na u¿yæ do ustawienia od razu ca³ej tablicy. Trzeba umo¿liwiæ ustawianie
-do VS i innych.
-
-@deprecated Funkcjonalnoœæ przeniesiona do klasy IRenderer.*/
-void DisplayEngine::set_textures( const ModelPart& model )
-{
-	for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
-		if ( model.texture[i] )		// Nie ka¿da tekstura w tablicy istnieje
-		{
-			ID3D11ShaderResourceView* tex = model.texture[i]->get( );
-			device_context->PSSetShaderResources( i, 1, &tex );
-		}
-}
-
-/**@brief Ustawia w kontekœcie urz¹dzenia bufor indeksów.
-
-@param[in] buffer Bufor do ustawienia.
-
-@deprecated Funkcjonalnoœæ przeniesiona do klasy IRenderer.*/
-void DisplayEngine::set_index_buffer( BufferObject* buffer )
-{
-	// Ustawiamy bufor indeksów, je¿eli istnieje
-	ID3D11Buffer* index_buffer = nullptr;
-	if ( buffer )
-	{
-		index_buffer = buffer->get( );
-		unsigned int offset = 0;
-		device_context->IASetIndexBuffer( index_buffer, INDEX_BUFFER_FORMAT, offset );
-	}
-}
-
-/**@brief Ustawia w kontekœcie urz¹dzenia bufor wierzcho³ków.
-
-@param[in] buffer Bufor do ustawienia.
-@return Je¿eli bufor nie istnieje to zwraca wartoœæ true. Inaczej false.
-Wywo³anie if( set_vertex_buffer() ) ma zwróciæ tak¹ wartoœæ, ¿eby w ifie mo¿na by³o
-wywo³aæ return lub continue, w przypadku braku bufora.
-
-@deprecated Funkcjonalnoœæ przeniesiona do klasy IRenderer.*/
-bool DisplayEngine::set_vertex_buffer( BufferObject* buffer )
-{
-	ID3D11Buffer* vertex_buffer = nullptr;
-	if ( buffer )
-	{
-		vertex_buffer = buffer->get( );
-		unsigned int stride = buffer->get_stride( );
-		unsigned int offset = 0;
-		device_context->IASetVertexBuffers( 0, 1, &vertex_buffer, &stride, &offset );
-
-		return false;
-	}
-	return true;
-}
-
-#endif
 
 /**@brief kopiuje materia³ do struktury, która pos³u¿y do zaktualizowania bufora sta³ych.
 
@@ -153,19 +116,6 @@ void DisplayEngine::copy_material( ConstantPerMesh* shader_data_per_mesh, const 
 	shader_data_per_mesh->Emissive = material->Emissive;
 	shader_data_per_mesh->Power = material->Power;
 }
-
-#ifndef __UNUSED
-/**@brief Funkcja w³¹cza lub wy³¹cza z-bufor.
-
-@param[in] state True je¿eli z-bufor ma byæ w³¹czony, false je¿eli wy³¹czony.*/
-void DisplayEngine::depth_buffer_enable( bool state )
-{
-	if ( state )
-		device_context->OMSetDepthStencilState( depth_enabled, 1 );
-	else
-		device_context->OMSetDepthStencilState( depth_disabled, 1 );
-}
-#endif
 
 //-------------------------------------------------------------------------------//
 //							W³aœciwe funkcje do renderingu
@@ -188,7 +138,7 @@ Zakres [0,1].
 */
 void DisplayEngine::display_scene(float time_interval, float time_lag)
 {
-	register IRenderer* renderer = renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
+	register IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
 
 	set_view_matrix( time_lag );
 
@@ -199,11 +149,11 @@ void DisplayEngine::display_scene(float time_interval, float time_lag)
 	// D3D11_PRIMITIVE_TOPOLOGY_POINTLIST
 	// D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST
 	// D3D11_PRIMITIVE_TOPOLOGY_LINELIST
-	renderer->IASetPrimitiveTopology( PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );		///<@todo Docelowo ma byæ w³asny zestaw sta³ych a nie DirectXowy. @see DX11Renderer
+	renderer->IASetPrimitiveTopology( PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 
-	renderer->UpdateSubresource( const_per_frame, &shader_data_per_frame );
-	renderer->VSSetConstantBuffers( 0, 1, &const_per_frame );
-	renderer->PSSetConstantBuffers( 0, 1, &const_per_frame );
+	renderer->UpdateSubresource( m_constantsPerFrame, &shader_data_per_frame );
+	renderer->VSSetConstantBuffers( 0, m_constantsPerFrame );
+	renderer->PSSetConstantBuffers( 0, m_constantsPerFrame );
 
 	// Ustawiamy sampler
 	renderer->SetDefaultSampler();
@@ -249,7 +199,7 @@ void DisplayEngine::display_dynamic_objects( float time_interval, float time_lag
 {
 	START_PERFORMANCE_CHECK( DYNAMIC_OBJECT_RENDERING )
 
-	register IRenderer* renderer = renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
+	register IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
 
 	//na razie pêtla bez optymalizacji
 	for ( unsigned int i = 0; i < meshes.size( ); ++i )
@@ -295,9 +245,9 @@ void DisplayEngine::display_dynamic_objects( float time_interval, float time_lag
 			renderer->SetShaders( model );
 
 			// Aktualizujemy bufor sta³ych
-			renderer->UpdateSubresource( const_per_mesh, &shader_data_per_mesh );
-			renderer->VSSetConstantBuffers( 1, 1, &const_per_mesh );
-			renderer->PSSetConstantBuffers( 1, 1, &const_per_mesh );
+			renderer->UpdateSubresource( m_constantsPerMesh, &shader_data_per_mesh );
+			renderer->VSSetConstantBuffers( 1, m_constantsPerMesh );
+			renderer->PSSetConstantBuffers( 1, m_constantsPerMesh );
 
 			// Ustawiamy tekstury
 			renderer->SetTextures( model );
@@ -366,7 +316,7 @@ void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 	if ( !sky_dome )
 		return;
 
-	register IRenderer* renderer = renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
+	register IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
 
 
 	// Ustawiamy format wierzcho³ków
@@ -402,9 +352,9 @@ void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 	renderer->SetShaders( *model );
 
 	// Aktualizujemy bufor sta³ych
-	renderer->UpdateSubresource( const_per_mesh, &shader_data_per_mesh );
-	renderer->VSSetConstantBuffers( 1, 1, &const_per_mesh );
-	renderer->PSSetConstantBuffers( 1, 1, &const_per_mesh );
+	renderer->UpdateSubresource( m_constantsPerMesh, &shader_data_per_mesh );
+	renderer->VSSetConstantBuffers( 1, m_constantsPerMesh );
+	renderer->PSSetConstantBuffers( 1, m_constantsPerMesh );
 
 	ID3D11Buffer* const_buffer = sky_dome->get_constant_buffer();	///< @todo Trzeba pobraæ tutaj BufferObject zamiast ID3D11Buffer.
 	renderer->VSSetConstantBuffers( 2, 1, &const_buffer );

@@ -31,10 +31,6 @@
 
 
 
-
-
-
-
 class ModelsManager;
 struct ModelPart;
 class BufferObject;
@@ -59,30 +55,7 @@ typedef UINT32 VERT_INDEX;
 */
 
 
-//-------------------------------------------------------------------------------//
-//	definicje wierzcho³ków
 
-
-
-/// @brief Strutkura dla standardowego wierzcho³ka
-typedef struct VertexNormalTexCord1
-{
-	DirectX::XMFLOAT3	position;		///<Pozycja wierzcho³ka
-	DirectX::XMFLOAT3	normal;			///<Wektor normalny wierzcho³ka
-	DirectX::XMFLOAT2	tex_cords;		///<Wspó³rzêdne tekstury
-} VertexNormalTexCord1;
-
-
-/// \brief Struktura wierzcho³ka stworzona z myœl¹ o GUI
-typedef struct VertexTexCord1
-{
-	DirectX::XMFLOAT3	position;		///<Pozycja wierzcho³ka
-	DirectX::XMFLOAT2	tex_cords;		///<Wspó³rzêdne tekstury
-} VertexTexCord1;
-
-
-//-------------------------------------------------------------------------------//
-//	Enumeracje dla klasy Model3DFromFile i wszystkich obiektów zasobów
 
 
 /** \brief Indeksy tekstur w tablicy ModelPart.
@@ -117,14 +90,6 @@ typedef enum TEXTURES_TYPES
 #endif
 
 } TEXTURES_TYPES;
-
-/// \brief Definiuje offset bufora indeksów wzglêdem bufora wierzcho³ków. (Dla funkcji Model3DFromFile::add_index_buffer)
-typedef enum VERTEX_BUFFER_OFFSET
-{
-	LAST = -1,
-	BEGIN = 0,
-};
-
 
 
 
@@ -248,7 +213,7 @@ public:
 	inline bool operator==( TextureObject& object );
 	inline bool operator==( const std::wstring& file_name );
 
-	static TextureObject* create_from_file( const std::wstring& file_name );
+	//static TextureObject* create_from_file( const std::wstring& file_name );
 };
 
 
@@ -287,12 +252,15 @@ tworzony jest obiekt layoutu.*/
 class InputLayoutDescriptor
 {
 private:
+	std::wstring				m_inputLayoutName;
 protected:
 public:
-	InputLayoutDescriptor() = default;
+	InputLayoutDescriptor( const std::wstring& layoutName ) : m_inputLayoutName( layoutName ){}
 	virtual ~InputLayoutDescriptor() = default;
 
-	virtual void AddRow( const char* semanticName, ResourceFormat format, unsigned int inputSlot, unsigned int byteOffset, bool perInstance, unsigned int instanceDataStep );
+	virtual void		AddRow		( const char* semanticName, ResourceFormat format, unsigned int inputSlot, unsigned int byteOffset, bool perInstance, unsigned int instanceDataStep );
+
+	std::wstring&		GetName		() { return m_inputLayoutName; }
 };
 
 
@@ -306,9 +274,9 @@ protected:
 public:
 	VertexShaderObject() = default;
 
-	static VertexShaderObject* create_from_file( const std::wstring& fileName, const std::string& shader_name, const char* shader_model = "vs_4_0" );
-	static VertexShaderObject* create_from_file( const std::wstring& fileName, const std::string& shader_name, ShaderInputLayoutObject** layout,
-												 InputLayoutDescriptor* layout_desc, const char* shader_model = "vs_4_0" );
+	//static VertexShaderObject* create_from_file( const std::wstring& fileName, const std::string& shader_name, const char* shader_model = "vs_4_0" );
+	//static VertexShaderObject* create_from_file( const std::wstring& fileName, const std::string& shader_name, ShaderInputLayoutObject** layout,
+	//											 InputLayoutDescriptor* layout_desc, const char* shader_model = "vs_4_0" );
 };
 
 /**@brief Klasa przechowuj¹ca pixel shader*/
@@ -321,7 +289,7 @@ protected:
 public:
 	PixelShaderObject() = default;
 
-	static PixelShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name, const char* shader_model = "ps_4_0" );
+	//static PixelShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name, const char* shader_model = "ps_4_0" );
 };
 
 /**@brief Klasa przechowuj¹ca compute shader*/
@@ -334,7 +302,7 @@ protected:
 public:
 	ComputeShaderObject();
 
-	static ComputeShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name, const char* shader_model = "ps_4_0" );
+	//static ComputeShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name, const char* shader_model = "ps_4_0" );
 };
 
 
@@ -358,11 +326,11 @@ public:
 	inline unsigned int	GetElementSize()		{ return m_elementSize; }		///<Zwraca rozmiar pojedynczego elementu w buforze.
 	inline unsigned int GetElementCount()		{ return m_elementCount; }		///<Zwraca liczbê elementów w buforze.
 
-	static BufferObject* create_from_memory( const void* buffer,
-											 unsigned int element_size,
-											 unsigned int vert_count,
-											 ResourceBinding bind_flag,
-											 ResourceUsage usage = ResourceUsage::RESOURCE_USAGE_STATIC );
+	//static BufferObject* create_from_memory( const void* buffer,
+	//										 unsigned int element_size,
+	//										 unsigned int vert_count,
+	//										 ResourceBinding bind_flag,
+	//										 ResourceUsage usage = ResourceUsage::RESOURCE_USAGE_STATIC );
 };
 
 
@@ -398,7 +366,7 @@ typedef struct MaterialObject : public ResourceObject
 	MaterialObject( unsigned int id = WRONG_ID ) : ResourceObject( id ){}
 	MaterialObject( const MaterialObject* material );
 
-	void set_null_material();
+	void SetNullMaterial();
 } MaterialObject;
 
 

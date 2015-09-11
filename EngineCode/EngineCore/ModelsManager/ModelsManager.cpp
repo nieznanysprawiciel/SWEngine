@@ -323,8 +323,7 @@ VertexShaderObject* ModelsManager::add_vertex_shader( const std::wstring& file_n
 }
 
 /**@brief Dodaje vertex shader do ModelsManagera. Je¿eli obiekt ju¿ istnia³, to nie jest tworzony nowy.
-Tworzy te¿ layout wierzcho³ka zwi¹zany z tym shaderem i zwraca go w zmiennej layout. Layout nie jest
-dodawany do ModelsManagera ( bo i nie ma gdzie go dodaæ ).
+Tworzy te¿ layout wierzcho³ka zwi¹zany z tym shaderem i zwraca go w zmiennej layout.
 
 Je¿eli vertex shader wczeœniej istnia³, to stworzenie layoutu wymaga ponownego skompilowania shadera. Shader taki jest potem
 kasowany i nie zostaje zdublowany w ModelsManagerze, ale niepotrzebna praca zostaje w³o¿ona. Jest wiêc zadaniem programisty, ¿eby
@@ -336,37 +335,63 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 
 @param[in] file_name Nazwa pliku, w którym znajduje siê vertex shader.
 @param[in] shader_entry Nazwa funkcji od której ma siê zacz¹æ wykonywanie shadera.
-@param[out] layout W zmiennej umieszczany jest wskaŸnik na layout wierzcho³ka. Nale¿y pamiêtaæ o zwolnieniu go kiedy bêdzie niepotrzebny.
+@param[out] layout W zmiennej umieszczany jest wskaŸnik na layout wierzcho³ka. Nawet je¿eli shader siê nie skompilowa³, to pole mo¿e mieæ wartoœæ inn¹ ni¿ nullptr.
+Dzieje siê tak wtedy, gdy layout istnia³ ju¿ wczeœniej.
 @attention Je¿eli vertex shader wczeœniej istnia³, to stworzenie layoutu wymaga ponownego skompilowania shadera. Shader taki jest potem 
 kasowany i nie zostaje zdublowany w ModelsManagerze, ale niepotrzebna praca zostaje w³o¿ona. Jest wiêc zadaniem programisty, ¿eby
 do takich rzeczy dochodzi³o jak najrzadziej.
 @param[in] layout_desc Deskryptor opisujacy tworzony layout.
-@param[in] array_size Liczba elementów tablicy layout_desc.
 @return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
 VertexShaderObject* ModelsManager::add_vertex_shader( const std::wstring& file_name,
 									   const std::string& shader_entry,
 									   ShaderInputLayoutObject** layout,
 									   InputLayoutDescriptor* layout_desc )
 {
+	/// @todo Ten kod to jakiœ totalny shit. Jak komuœ siê bêdzie nudzi³o kiedyœ (ha ha), to mo¿e niech poprawi.
 	*layout = nullptr;
 	VertexShaderObject* shader = vertex_shader.get( file_name );
-	
-	// Tworzymy shader bo i tak usimy, potem go najwy¿ej skasujemy
-	VertexShaderObject* new_shader = ResourcesFactory::CreateVertexShaderFromFile( file_name, shader_entry, layout, layout_desc );
-	if ( !new_shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
-		return nullptr;
-	
+	VertexShaderObject* newShader = nullptr;
+	ShaderInputLayoutObject* inputLayout = vertexLayout.get( layout_desc->GetName() );
+
+
+	// Tworzymy potrzebne obiekty
+	if( !inputLayout )
+	{
+		// Tworzymy shader niezale¿nie czy istnieje. Inaczej nie moglibyœmy stworzyæ layoutu.
+		// Shader zostanie potem usuniêty.
+		newShader = ResourcesFactory::CreateVertexShaderFromFile( file_name, shader_entry, layout, layout_desc );
+		if ( !newShader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
+			return nullptr;		// layout te¿ jest nullptrem, nie trzeba siê martwiæ.
+	}
+	else if( !shader )
+	{
+		// Layout istnieje, ale shader nie.
+		newShader = ResourcesFactory::CreateVertexShaderFromFile( file_name, shader_entry );
+		*layout = inputLayout;	// Je¿eli layout istnia³, to przepisujemy go na wyjœcie. Je¿eli nie to i tak bêdzie nullptr.
+		if ( !newShader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
+			return nullptr;
+	}
+	else
+	{// Wszystkie obiekty istania³y ju¿ wczeœniej.
+		*layout = inputLayout;
+		return shader;
+	}
+
+	// Nowo powsta³e obiekty musz¹ zostaæ dodane do kontenerów.
 	if ( !shader )
 	{
 		// Nie by³o shadera, trzeba go dodaæ
-		vertex_shader.unsafe_add( file_name, new_shader );	// Dodaliœmy teksturê
-		shader = new_shader;
+		vertex_shader.unsafe_add( file_name, newShader );	// Dodaliœmy shader
+		shader = newShader;
 	}
 	else
 	{	// Shader ju¿ by³, wiêc kasujemy nowy
 		// Destruktor jest prywatny, wiêc nie mo¿emy kasowaæ obiektu bezpoœrednio.
 		ObjectDeleter<VertexShaderObject>::delete_object( shader, ObjectDeleterKey<VertexShaderObject>() );
 	}
+
+	if( !inputLayout )	// Layoutu nie by³o wczeœniej wiêc dodajemy.
+		vertexLayout.unsafe_add( layout_desc->GetName(), *layout );
 
 	return shader;
 }
@@ -429,8 +454,8 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 
 @param[in] name Nazwa bufora, po której mo¿na siê bêdzie odwo³aæ.
 @param[in] buffer WskaŸnik na bufor z danym, które maj¹ byæ przeniesione do bufora DirectXowego.
-@param[in] element_size Rozmiar pojedynczego elementu w buforze.
-@param[in] vert_count Liczba wierzcho³ków/indeksów w buforze.
+@param[in] elementSize Rozmiar pojedynczego elementu w buforze.
+@param[in] vertCount Liczba wierzcho³ków/indeksów w buforze.
 @return Dodany bufor wierzcho³ków. Zwraca nullptr, je¿eli nie uda³o siê stworzyæ bufora.*/
 BufferObject* ModelsManager::add_vertex_buffer( const std::wstring& name,
 												const void* buffer,
@@ -462,28 +487,49 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 
 @param[in] name Nazwa bufora, po której mo¿na siê bêdzie odwo³aæ.
 @param[in] buffer WskaŸnik na bufor z danym, które maj¹ byæ przeniesione do bufora DirectXowego.
-@param[in] element_size Rozmiar pojedynczego elementu w buforze.
-@param[in] vert_count Liczba wierzcho³ków/indeksów w buforze.
+@param[in] elementSize Rozmiar pojedynczego elementu w buforze.
+@param[in] vertCount Liczba wierzcho³ków/indeksów w buforze.
 @return Dodany bufor indeksów. Zwraca nullptr, je¿eli nie uda³o siê stworzyæ bufora.*/
 BufferObject* ModelsManager::add_index_buffer( const std::wstring& name,
 											   const void* buffer,
-											   unsigned int element_size,
-											   unsigned int vert_count )
+											   unsigned int elementSize,
+											   unsigned int vertCount )
 {
 	BufferObject* index_buff = index_buffer.get( name );
 	if ( index_buff )	// Je¿eli znaleŸliœmy bufor, to go zwracamy
 		return index_buff;
 
 	// Tworzymy obiekt bufora indeksów i go zapisujemy
-	index_buff = ResourcesFactory::CreateBufferFromMemory(	buffer,
-															element_size,
-															vert_count,
-															ResourceBinding::BIND_RESOURCE_INDEX_BUFFER );
+	index_buff = ResourcesFactory::CreateBufferFromMemory( buffer, elementSize, vertCount, ResourceBinding::BIND_RESOURCE_INDEX_BUFFER );
 	if ( !index_buff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 
 	index_buffer.unsafe_add( name, index_buff );	// Dodaliœmy bufor
 
 	return index_buff;
+}
+
+/**@brief Dodaje do ModelsManagera bufor sta³ch dla shadera.
+Je¿eli pod tak¹ nazw¹ istnieje jakiœ bufor, to zostanie zwrócony wskaŸnik na niego.
+@note Funkcja nie dodaje odwo³ania do obiektu, bo nie zak³ada, ¿e ktoœ go od razu u¿yje.
+W ka¿dym miejscu, gdzie zostanie przypisany zwrócony obiekt, nale¿y pamiêtaæ o dodaniu odwo³ania oraz
+skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
+
+@param[in] name Nazwa bufora, po której mo¿na siê bêdzie odwo³aæ.
+@param[in] buffer WskaŸnik na bufor z danym, które maj¹ byæ przeniesione do bufora DirectXowego.
+@param[in] size Rozmiar bufora.
+@return Dodany bufor indeksów. Zwraca nullptr, je¿eli nie uda³o siê stworzyæ bufora.*/
+BufferObject* ModelsManager::AddConstantsBuffer( const std::wstring& name, const void* buffer, unsigned int size )
+{
+	BufferObject* constBuff = constant_buffer.get( name );
+	if ( constBuff )	// Je¿eli znaleŸliœmy bufor, to go zwracamy
+		return constBuff;
+
+	constBuff = ResourcesFactory::CreateBufferFromMemory( buffer, size, 1,	ResourceBinding::BIND_RESOURCE_CONSTANT_BUFFER );
+	if ( !constBuff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
+		return nullptr;
+
+	constant_buffer.unsafe_add( name, constBuff );	// Dodaliœmy bufor
+	return constBuff;
 }
 

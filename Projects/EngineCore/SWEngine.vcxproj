@@ -458,6 +458,7 @@
     <ClInclude Include="..\..\EngineCode\Common\memory_leaks.h" />
     <ClInclude Include="..\..\EngineCode\Common\ObjectDeleter.h" />
     <ClInclude Include="..\..\EngineCode\Common\types_definitions.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Model3DFromFile.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\MovementEngine.h" />
   </ItemGroup>
@@ -518,6 +519,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\MovementEngine.cpp" />
   </ItemGroup>
   <ItemGroup>

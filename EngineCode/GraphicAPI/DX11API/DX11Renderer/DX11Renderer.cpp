@@ -229,3 +229,19 @@ void DX11Renderer::DrawIndexed( unsigned int indexCount, unsigned int startIndex
 	m_localDeviceContext->DrawIndexed( indexCount, startIndexLocation, baseVertexLocation );
 }
 
+/**@brief Wykonywane przed rozpoczêciem renderowania.
+
+@todo Polepszyæ, poprawiæ zmieniæ.*/
+void DX11Renderer::Present()
+{
+	begin_scene();
+}
+
+/**@brief Wyœwietla renderowan¹ scenê.
+
+@todo Polepszyæ, poprawiæ zmieniæ. Powinno obs³ugiwaæ renderowanie natychmiastowe i synchronizacjê poziom¹ w parametrze.*/
+void DX11Renderer::BeginScene()
+{
+	end_scene_and_present();
+}
+

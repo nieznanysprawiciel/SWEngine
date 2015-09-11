@@ -23,6 +23,13 @@ bool DX11Initializer::InitAPI( GraphicAPIInitData& initData )
 	DX11_INIT_RESULT result = init_DX11( initData.windowWidth, initData.windowHeight, (HWND)initData.windowHandle, initData.fullScreen, initData.singleThreaded );
 	if( result != DX11_INIT_RESULT::DX11_INIT_OK )
 		return false;
+
+	result = init_sampler();
+	if ( result != DX11_INIT_OK )
+	{
+		release_DirectX();	// Jak tu coœ siê nie uda³o, to znaczy, ¿e deskryptor by³ niepoprawny.
+		return false;
+	}
 	return true;
 }
 

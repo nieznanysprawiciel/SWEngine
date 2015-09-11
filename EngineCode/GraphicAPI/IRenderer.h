@@ -56,6 +56,9 @@ public:
 	// Rendering
 	virtual void Draw								( unsigned int vertexCount, unsigned int startVertexLocation ) = 0;
 	virtual void DrawIndexed						( unsigned int indexCount, unsigned int startIndexLocation, int BaseVertexLocation ) = 0;
+
+	virtual void Present							() = 0;
+	virtual void BeginScene							() = 0;
 };
 
 

@@ -19,6 +19,8 @@ void inverse_camera_position		( DirectX::XMVECTOR& result_vector );
 void inverse_camera_orientation		( DirectX::XMVECTOR& result_vector );
 
 class Engine;
+class ModelsManager;
+class BufferObject;
 
 /**@brief Klasa odpowiedzialna za wyœwietlanie sceny, obs³ugê kamery oraz interpolacjê po³o¿eñ obiektów.
 
@@ -34,24 +36,31 @@ i inne mo¿liwoœci optymalizacji.
 class DisplayEngine
 {
 private:
-	Engine* engine;
+	Engine*					engine;
+	ModelsManager*			modelsManager;
 
-	std::vector<IRenderer*>					renderers;		///< Zawiera wszystkie renderery. Ka¿dy odpowiada za jeden w¹tek renderuj¹cy.
+	std::vector<IRenderer*>					m_renderers;					///< Zawiera wszystkie renderery. Ka¿dy odpowiada za jeden w¹tek renderuj¹cy.
 
-	ConstantPerFrame						shader_data_per_frame;		///<Bufor sta³ych zmiennych co ramkê animacji
+	ConstantPerFrame						shader_data_per_frame;		///<Bufor sta³ych zmiennych co ramkê animacji.
+	BufferObject*							m_constantsPerFrame;		///<Bufor sta³ych zmiennych co ramkê animacji.
+	BufferObject*							m_constantsPerMesh;			///<Bufor sta³ych zmiennych dla ka¿dego fragmentu mesha.
+
 	CameraObject*							current_camera;				///<Akutalnie aktywna kamera
 	SkyDome*								sky_dome;					///<Klasa odpowiedzialna za kopu³ê nieba
 
-	std::vector<DynamicMeshObject*>			meshes;					///<Modele nieanimowane
-	XMFLOAT4X4*								interpolated_matrixes;	///<Tablica macierzy interpolowanych po³o¿eñ obiektów
-	unsigned int							interpol_matrixes_count;///<Liczba macierzy interpolowanych
+	std::vector<DynamicMeshObject*>			meshes;						///<Modele nieanimowane
+	XMFLOAT4X4*								interpolated_matrixes;		///<Tablica macierzy interpolowanych po³o¿eñ obiektów
+	unsigned int							interpol_matrixes_count;	///<Liczba macierzy interpolowanych
 
-	std::vector<CameraObject*>				cameras;			///<Kontener zawieraj¹cy kamery
+	std::vector<CameraObject*>				cameras;					///<Kontener zawieraj¹cy kamery
 public:
 	DisplayEngine(Engine* engine);
 	~DisplayEngine();
 
 	void InitRenderer( IRenderer* renderer );
+	void InitDisplayer( ModelsManager* assetsManager );
+	void BeginScene();
+	void EndScene();
 
 	// G³ówna funkcja do wyœwietlania sceny
 	void display_scene						( float time_interval, float time_lag );

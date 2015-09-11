@@ -60,6 +60,9 @@ public:
 	// Rendering
 	void Draw										( unsigned int vertexCount, unsigned int startVertexLocation )							override;
 	void DrawIndexed								( unsigned int indexCount, unsigned int startIndexLocation, int baseVertexLocation )	override;
+	
+	void Present									()																						override;
+	void BeginScene									()																						override;
 };
 
 

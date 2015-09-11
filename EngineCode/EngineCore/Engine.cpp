@@ -195,12 +195,15 @@ bool Engine::InitSoundModule		()
 /**@brief Inicjuje domyœlne assety silnika.*/
 bool Engine::InitDefaultAssets()
 {
-	models_manager->add_vertex_shader( DEFAULT_VERTEX_SHADER_STRING, DEFAULT_VERTEX_SHADER_ENTRY );
+	DefaultAssets::Init();
+
+	ShaderInputLayoutObject* layout;
+	models_manager->add_vertex_shader( DEFAULT_VERTEX_SHADER_STRING, DEFAULT_VERTEX_SHADER_ENTRY, &layout, &DefaultAssets::LAYOUT_POSITION_NORMAL_COORD );
 	models_manager->add_pixel_shader( DEFAULT_PIXEL_SHADER_STRING, DEFAULT_PIXEL_SHADER_ENTRY );
 	models_manager->add_pixel_shader( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH, DEFAULT_PIXEL_SHADER_ENTRY );
 
 	MaterialObject* nullMaterial = new MaterialObject();
-	nullMaterial->set_null_material();
+	nullMaterial->SetNullMaterial();
 	models_manager->add_material( nullMaterial, DEFAULT_MATERIAL_STRING );
 
 	return true;
@@ -257,17 +260,17 @@ void Engine::render_frame()
 	END_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 #endif
 
-	START_PERFORMANCE_CHECK(RENDERING_TIME)
+	START_PERFORMANCE_CHECK( RENDERING_TIME )
 
 	//Renderujemy scenê oraz interfejs u¿ytkownika
-	begin_scene();
+	display_engine->BeginScene();
 
 	display_engine->display_scene( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
 	ui_engine->draw_GUI( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
 
 	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
 
-	end_scene_and_present();
+	display_engine->EndScene();
 }
 
 

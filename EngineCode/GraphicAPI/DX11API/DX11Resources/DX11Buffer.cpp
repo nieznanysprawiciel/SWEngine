@@ -32,20 +32,25 @@ DX11Buffer* DX11Buffer::CreateFromMemory(	const void* buffer,
 											ResourceUsage usage )
 {
 	// Wype³niamy deskryptor bufora
-	D3D11_BUFFER_DESC buffer_desc;
-	ZeroMemory( &buffer_desc, sizeof( buffer_desc ) );
-	buffer_desc.Usage = DX11ConstantsMapper::Get( usage );
-	buffer_desc.BindFlags = DX11ConstantsMapper::Get( bindFlag );
-	buffer_desc.ByteWidth = vertCount * elementSize;
+	D3D11_BUFFER_DESC bufferDesc;
+	ZeroMemory( &bufferDesc, sizeof( bufferDesc ) );
+	bufferDesc.Usage = DX11ConstantsMapper::Get( usage );
+	bufferDesc.BindFlags = DX11ConstantsMapper::Get( bindFlag );
+	bufferDesc.ByteWidth = vertCount * elementSize;
 
-	D3D11_SUBRESOURCE_DATA InitData;
-	ZeroMemory( &InitData, sizeof( InitData ) );
-	InitData.pSysMem = buffer;
-
+	D3D11_SUBRESOURCE_DATA* initDataPtr = nullptr;
+	D3D11_SUBRESOURCE_DATA initData;
+	if( buffer )
+	{
+		// Je¿eli bufor nie istnieje to do funkcji tworz¹cej bufor powinniœmy podaæ nullptr.
+		ZeroMemory( &initData, sizeof( initData ) );
+		initData.pSysMem = buffer;
+		initDataPtr = &initData;
+	}
 
 	HRESULT result;
 	ID3D11Buffer* new_buffer;
-	result = device->CreateBuffer( &buffer_desc, &InitData, &new_buffer );
+	result = device->CreateBuffer( &bufferDesc, initDataPtr, &new_buffer );
 	if( FAILED( result ) )
 		return nullptr;
 

@@ -8,6 +8,8 @@
 #include "GraphicAPI/MeshResources.h"
 #include "GraphicAPI/IGraphicAPIInitializer.h"
 
+class ModelsManager;
+
 /**@brief Klasa ze statycznymi funkcjami do tworzenia obiektów assetów.
 
 Jest potrzebna, ¿eby wybraæ implementacjê resourców zgodn¹ z typem renderera.
@@ -15,9 +17,8 @@ Ka¿de API graficzne powinno zaimplementowaæ tê klasê.
 */
 class ResourcesFactory
 {
-public:
-	static IGraphicAPIInitializer*	CreateAPIInitializer			();
-
+	friend class ModelsManager;
+private:
 	static TextureObject*			CreateTextureFromFile			( const std::wstring& fileName );
 	static VertexShaderObject*		CreateVertexShaderFromFile		( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel = "vs_4_0" );
 	static PixelShaderObject*		CreatePixelShaderFromFile		( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel = "ps_4_0" );
@@ -32,7 +33,8 @@ public:
 																	ShaderInputLayoutObject** layout,
 																	InputLayoutDescriptor* layout_desc,
 																	const char* shaderModel = "vs_4_0" );
-
+public:
+	static IGraphicAPIInitializer*	CreateAPIInitializer			();
 	static RenderTargetObject*		CreateScreenRenderTarget		();
 };
 
