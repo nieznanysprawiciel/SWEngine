@@ -85,8 +85,6 @@ void DisplayEngine::InitDisplayer( ModelsManager* assetsManager )
 	m_constantsPerMesh	= modelsManager->AddConstantsBuffer( CONSTANT_PER_MESH_BUFFER_NAME, nullptr, sizeof( ConstantPerMesh ) );
 	assert( m_constantsPerFrame );
 	assert( m_constantsPerMesh );
-
-	//ShaderInputLayoutObject* basicLayout = modelsManager->
 }
 
 void DisplayEngine::BeginScene()
@@ -359,8 +357,11 @@ void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 	renderer->PSSetConstantBuffers( 1, m_constantsPerMesh );
 
 	BufferObject* const_buffer = sky_dome->get_constant_buffer();	///< @todo Trzeba pobraæ tutaj BufferObject zamiast ID3D11Buffer.
-	renderer->VSSetConstantBuffers( 2, const_buffer );
-	renderer->PSSetConstantBuffers( 2, const_buffer );
+	if( const_buffer )
+	{
+		renderer->VSSetConstantBuffers( 2, const_buffer );
+		renderer->PSSetConstantBuffers( 2, const_buffer );
+	}
 
 	// Ustawiamy tekstury
 	renderer->SetTextures( *model );

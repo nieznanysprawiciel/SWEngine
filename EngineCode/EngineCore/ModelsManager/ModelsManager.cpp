@@ -467,10 +467,7 @@ BufferObject* ModelsManager::add_vertex_buffer( const std::wstring& name,
 		return vertex_buff;
 
 	// Tworzymy obiekt bufora indeksów i go zapisujemy
-	vertex_buff = ResourcesFactory::CreateBufferFromMemory( buffer,
-															element_size,
-															vert_count,
-															ResourceBinding::BIND_RESOURCE_VERTEX_BUFFER );
+	vertex_buff = ResourcesFactory::CreateBufferFromMemory( buffer, element_size, vert_count, ResourceBinding::BIND_RESOURCE_VERTEX_BUFFER, ResourceUsage::RESOURCE_USAGE_DEFAULT );
 	if ( !vertex_buff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 
@@ -500,7 +497,7 @@ BufferObject* ModelsManager::add_index_buffer( const std::wstring& name,
 		return index_buff;
 
 	// Tworzymy obiekt bufora indeksów i go zapisujemy
-	index_buff = ResourcesFactory::CreateBufferFromMemory( buffer, elementSize, vertCount, ResourceBinding::BIND_RESOURCE_INDEX_BUFFER );
+	index_buff = ResourcesFactory::CreateBufferFromMemory( buffer, elementSize, vertCount, ResourceBinding::BIND_RESOURCE_INDEX_BUFFER, ResourceUsage::RESOURCE_USAGE_DEFAULT );
 	if ( !index_buff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 
@@ -525,7 +522,7 @@ BufferObject* ModelsManager::AddConstantsBuffer( const std::wstring& name, const
 	if ( constBuff )	// Je¿eli znaleŸliœmy bufor, to go zwracamy
 		return constBuff;
 
-	constBuff = ResourcesFactory::CreateBufferFromMemory( buffer, size, 1,	ResourceBinding::BIND_RESOURCE_CONSTANT_BUFFER );
+	constBuff = ResourcesFactory::CreateBufferFromMemory( buffer, size, 1, ResourceBinding::BIND_RESOURCE_CONSTANT_BUFFER, ResourceUsage::RESOURCE_USAGE_DEFAULT );
 	if ( !constBuff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 

@@ -229,7 +229,7 @@ protected:
 	@param[in] name Nazwa bufora, po której mo¿na siê bêdzie odwo³aæ.
 	@param[in] buffer WskaŸnik na bufor z danym, które maj¹ byæ przeniesione do bufora DirectXowego.
 	@param[in] element_size Rozmiar pojedynczego elementu w buforze..*/
-	inline void set_index_buffer( const std::wstring& name, const void* buffer, unsigned int element_size )
+	inline void set_constants_buffer( const std::wstring& name, const void* buffer, unsigned int element_size )
 	{
 		auto buff = models_manager->AddConstantsBuffer( name, buffer, element_size );
 		if ( !buff )

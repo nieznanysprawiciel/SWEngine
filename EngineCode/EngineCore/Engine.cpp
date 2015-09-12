@@ -215,6 +215,7 @@ bool Engine::InitDisplayer()
 {
 	IRenderer* renderer = m_graphicInitializer->CreateRenderer( RendererUsage::USE_AS_IMMEDIATE );
 	display_engine->InitRenderer( renderer );
+	display_engine->InitDisplayer( models_manager );
 
 	display_engine->SetProjectionMatrix( XMConvertToRadians( 45 ),
 										   (float)window_width / (float)window_height, 1, 100000 );
