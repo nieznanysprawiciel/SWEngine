@@ -37,7 +37,7 @@ class IGraphicAPIInitializer
 private:
 protected:
 public:
-	virtual ~IGraphicAPIInitializer() = 0;
+	virtual ~IGraphicAPIInitializer() = default;
 
 	virtual IRenderer*		CreateRenderer			( RendererUsage usage ) = 0;
 	virtual bool			InitAPI					( GraphicAPIInitData& initData ) = 0;

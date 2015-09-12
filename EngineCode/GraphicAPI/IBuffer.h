@@ -13,7 +13,7 @@ private:
 
 protected:
 	IBuffer() : ResourceObject( 0 ) {}
-	virtual ~IBuffer() = 0;
+	virtual ~IBuffer() = default;
 public:
 
 };

@@ -198,7 +198,7 @@ bool Engine::InitDefaultAssets()
 	DefaultAssets::Init();
 
 	ShaderInputLayoutObject* layout;
-	models_manager->add_vertex_shader( DEFAULT_VERTEX_SHADER_STRING, DEFAULT_VERTEX_SHADER_ENTRY, &layout, &DefaultAssets::LAYOUT_POSITION_NORMAL_COORD );
+	models_manager->add_vertex_shader( DEFAULT_VERTEX_SHADER_STRING, DEFAULT_VERTEX_SHADER_ENTRY, &layout, DefaultAssets::LAYOUT_POSITION_NORMAL_COORD );
 	models_manager->add_pixel_shader( DEFAULT_PIXEL_SHADER_STRING, DEFAULT_PIXEL_SHADER_ENTRY );
 	models_manager->add_pixel_shader( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH, DEFAULT_PIXEL_SHADER_ENTRY );
 

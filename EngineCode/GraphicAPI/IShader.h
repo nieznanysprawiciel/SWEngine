@@ -17,7 +17,7 @@ protected:
 	std::wstring			m_shaderFile;			///< Œcie¿ka do pliku z shaderem.
 protected:
 	IShader() : ResourceObject( 0 ) {}
-	virtual ~IShader();
+	virtual ~IShader() = default;
 public:
 	std::wstring&			GetShaderFile()		{ return m_shaderFile; }
 	std::string&			GetShaderEntry()	{ return m_shaderEntry; }

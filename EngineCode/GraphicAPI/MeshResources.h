@@ -258,7 +258,7 @@ public:
 	InputLayoutDescriptor( const std::wstring& layoutName ) : m_inputLayoutName( layoutName ){}
 	virtual ~InputLayoutDescriptor() = default;
 
-	virtual void		AddRow		( const char* semanticName, ResourceFormat format, unsigned int inputSlot, unsigned int byteOffset, bool perInstance, unsigned int instanceDataStep );
+	virtual void		AddRow		( const char* semanticName, ResourceFormat format, unsigned int inputSlot, unsigned int byteOffset, bool perInstance, unsigned int instanceDataStep ) = 0;
 
 	std::wstring&		GetName		() { return m_inputLayoutName; }
 };
@@ -318,7 +318,7 @@ protected:
 	unsigned int		m_elementSize;			///<Rozmiar elementu.
 	unsigned int		m_elementCount;			///<Liczba elementów.
 
-	~BufferObject() override;
+	~BufferObject() = default;
 public:
 	BufferObject( unsigned int elementSize, unsigned int elementCount );
 

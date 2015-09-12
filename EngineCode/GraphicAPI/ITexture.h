@@ -13,6 +13,7 @@ class ITexture	:	public ResourceObject
 private:
 protected:
 	ITexture() : ResourceObject( 0 ) {}
+	virtual ~ITexture() = default;
 public:
 };
 

@@ -72,7 +72,7 @@ void HosekSkyDome::init_sky_dome( XMVECTOR sun_direction,
 	display_data.mesh->vertices_count = ind_buff_elements;
 
 	// Kompilujemy shadery, jednoczeœnie dodaje siê layout
-	set_vertex_shader( L"shaders\\HosekSkyDome.fx", DEFAULT_VERTEX_SHADER_ENTRY, &DefaultAssets::LAYOUT_POSITION_COLOR );
+	set_vertex_shader( L"shaders\\HosekSkyDome.fx", DEFAULT_VERTEX_SHADER_ENTRY, DefaultAssets::LAYOUT_POSITION_COLOR );
 	set_pixel_shader( L"shaders\\HosekSkyDome.fx", DEFAULT_PIXEL_SHADER_ENTRY );
 
 	// Materia³ jest niepotrzebny, ale nie mo¿e go nie byæ

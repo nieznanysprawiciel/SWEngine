@@ -36,5 +36,6 @@ private:
 public:
 	static IGraphicAPIInitializer*	CreateAPIInitializer			();
 	static RenderTargetObject*		CreateScreenRenderTarget		();
+	static InputLayoutDescriptor*	CreateInputLayoutDescritor		( const std::wstring& layoutName );
 };
 

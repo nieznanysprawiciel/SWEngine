@@ -11,7 +11,7 @@ class DX11InputLayoutDescriptor : public InputLayoutDescriptor
 private:
 	std::vector<D3D11_INPUT_ELEMENT_DESC>		m_inputElement;
 public:
-	DX11InputLayoutDescriptor() = default;
+	DX11InputLayoutDescriptor( const std::wstring& layoutName ) : InputLayoutDescriptor( layoutName ) {}
 	~DX11InputLayoutDescriptor() = default;
 
 	size_t							GetNumElements()		{ return m_inputElement.size(); }

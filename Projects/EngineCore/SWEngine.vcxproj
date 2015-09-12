@@ -100,7 +100,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\DebugConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\LinkDirectX11.props" />
     <Import Project="..\Props\IncludeDirectX11.props" />
     <Import Project="..\Props\LinkDirectInput.props" />
     <Import Project="..\Props\IncludeDirectInput.props" />
@@ -108,6 +107,7 @@
     <Import Project="..\Props\LinkFBX_SDK.props" />
     <Import Project="EngineCorePathMacros.props" />
     <Import Project="EngineCoreConfiguration.props" />
+    <Import Project="..\DX11API\DX11APIPathsMacros.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -125,7 +125,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\DebugConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\LinkDirectX11.props" />
     <Import Project="..\Props\IncludeDirectX11.props" />
     <Import Project="..\Props\LinkDirectInput.props" />
     <Import Project="..\Props\IncludeDirectInput.props" />
@@ -133,6 +132,7 @@
     <Import Project="..\Props\LinkFBX_SDK.props" />
     <Import Project="EngineCorePathMacros.props" />
     <Import Project="EngineCoreConfiguration.props" />
+    <Import Project="..\DX11API\DX11APIPathsMacros.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -150,7 +150,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\ReleaseConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\LinkDirectX11.props" />
     <Import Project="..\Props\IncludeDirectX11.props" />
     <Import Project="..\Props\LinkDirectInput.props" />
     <Import Project="..\Props\IncludeDirectInput.props" />
@@ -158,6 +157,7 @@
     <Import Project="..\Props\LinkFBX_SDK.props" />
     <Import Project="EngineCorePathMacros.props" />
     <Import Project="EngineCoreConfiguration.props" />
+    <Import Project="..\DX11API\DX11APIPathsMacros.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -175,7 +175,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\ReleaseConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\LinkDirectX11.props" />
     <Import Project="..\Props\IncludeDirectX11.props" />
     <Import Project="..\Props\LinkDirectInput.props" />
     <Import Project="..\Props\IncludeDirectInput.props" />
@@ -183,6 +182,7 @@
     <Import Project="..\Props\LinkFBX_SDK.props" />
     <Import Project="EngineCorePathMacros.props" />
     <Import Project="EngineCoreConfiguration.props" />
+    <Import Project="..\DX11API\DX11APIPathsMacros.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />

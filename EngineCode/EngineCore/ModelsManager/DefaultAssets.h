@@ -63,9 +63,9 @@ private:
 	~DefaultAssets();
 protected:
 public:
-	static InputLayoutDescriptor			LAYOUT_POSITION_NORMAL_COORD;
-	static InputLayoutDescriptor			LAYOUT_POSITION_COORD;
-	static InputLayoutDescriptor			LAYOUT_POSITION_COLOR;
+	static InputLayoutDescriptor*			LAYOUT_POSITION_NORMAL_COORD;
+	static InputLayoutDescriptor*			LAYOUT_POSITION_COORD;
+	static InputLayoutDescriptor*			LAYOUT_POSITION_COLOR;
 
 public:
 	static void Init();

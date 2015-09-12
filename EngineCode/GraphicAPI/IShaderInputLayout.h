@@ -13,7 +13,7 @@ class IShaderInputLayout : public ResourceObject
 private:
 protected:
 	IShaderInputLayout() : ResourceObject( 0 ) {}
-	virtual ~IShaderInputLayout();
+	virtual ~IShaderInputLayout() = default;
 public:
 
 };

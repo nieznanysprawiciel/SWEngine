@@ -21,8 +21,8 @@ class IRenderer
 {
 private:
 public:
-	IRenderer( RendererUsage usage = USE_AS_IMMEDIATE );
-	virtual ~IRenderer();
+	IRenderer() = default;
+	virtual ~IRenderer() = default;
 
 
 	virtual bool SupportsDefferedContextRendering() = 0;		///< Informuje czy Renderer nadaje siê do renderowania w wielu w¹tkach do opóŸnionego contextu.

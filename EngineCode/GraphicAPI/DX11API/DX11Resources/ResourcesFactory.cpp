@@ -6,6 +6,8 @@
 #include "DX11Buffer.h"
 #include "DX11Texture.h"
 #include "DX11RenderTarget.h"
+#include "DX11InputLayoutDescriptor.h"
+#include "DX11InputLayout.h"
 
 typedef DX11Texture				Texture;
 typedef DX11VertexShader		VertexShader;
@@ -13,10 +15,6 @@ typedef DX11PixelShader			PixelShader;
 typedef DX11Buffer				Buffer;
 
 
-IGraphicAPIInitializer* ResourcesFactory::CreateAPIInitializer()
-{
-	return new DX11Initializer();
-}
 
 /**@brief Tworzy teksturê z podanego pliku.
 @param[in] fileName Nazwa pliku.
@@ -54,13 +52,6 @@ VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile	( const std::w
 	return VertexShader::CreateFromFile( fileName, shaderName, layout, layoutDesc, shaderModel );
 }
 
-/**Tworzy object RenderTargetObject z bufora tylnego ekranu.
-
-@return Zwraca object RenderTargetObject.*/
-RenderTargetObject*		ResourcesFactory::CreateScreenRenderTarget()
-{
-	return DX11RenderTarget::CreateScreenRenderTarget();
-}
 
 /**@brief Tworzy obekt pixel shadera.
 @param[in] fileName Nazwa pliku z kodem shadera.
@@ -89,3 +80,21 @@ BufferObject*			ResourcesFactory::CreateBufferFromMemory( const void* buffer,
 	return Buffer::CreateFromMemory( buffer, elementSize, vertCount, binding, usage );
 }
 
+/**Tworzy object RenderTargetObject z bufora tylnego ekranu.
+
+@return Zwraca object RenderTargetObject.*/
+RenderTargetObject*		ResourcesFactory::CreateScreenRenderTarget()
+{
+	return DX11RenderTarget::CreateScreenRenderTarget();
+}
+
+IGraphicAPIInitializer* ResourcesFactory::CreateAPIInitializer()
+{
+	return new DX11Initializer();
+}
+
+/**Tworzy obiekt deskryptora layoutu.*/
+InputLayoutDescriptor* ResourcesFactory::CreateInputLayoutDescritor( const std::wstring& layoutName )
+{
+	return new DX11InputLayoutDescriptor( layoutName );
+}
