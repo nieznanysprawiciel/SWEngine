@@ -19,8 +19,8 @@ Standard_AI_controller
 Standard_input_controller
 CameraObject
 */
-#include "stdafx.h"
-#include "ModelsManager\meshes_textures_materials.h"
+#include "EngineCore/stdafx.h"
+#include "GraphicAPI/MeshResources.h"
 
 
 
@@ -33,6 +33,8 @@ class ControllersEngine;
 class Controller;
 class Event;
 class InputAbstractionLayer_base;
+class IRenderer;
+class Model3DFromFile;
 
 /**@brief Klasa bazowa dla wszystkich obiektów w grze (aktorów).
 */
@@ -250,7 +252,7 @@ private:
 	@param[in] time_interval Czas od ostatniej klatki.
 	@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ.
 	*/
-	virtual void draw( DeviceContext* deviceContext, float timeInterval, float timeLag ) {}
+	virtual void draw( IRenderer* renderer, float timeInterval, float timeLag ) {}
 };
 
 class AnimationObject : public PhysicalObject

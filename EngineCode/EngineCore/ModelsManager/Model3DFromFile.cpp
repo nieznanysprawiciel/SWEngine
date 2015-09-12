@@ -1,12 +1,10 @@
-#include "stdafx.h"
-
+#include "EngineCore/stdafx.h"
 #include "ModelsManager.h"
-
-ModelsManager* Model3DFromFile::models_manager = nullptr;
-
 
 #include "Common/memory_leaks.h"
 
+
+ModelsManager* Model3DFromFile::models_manager = nullptr;
 
 
 //----------------------------------------------------------------------------------------------//
@@ -184,16 +182,9 @@ unsigned int Model3DFromFile::add_texture( const std::wstring& file_name, TEXTUR
 	if ( type > ENGINE_MAX_TEXTURES )
 		return WRONG_ID;
 
-	TextureObject* texture = models_manager->texture.get( file_name );
-	if ( !texture )
-	{
-		// Nie by³o tekstury, trzeba j¹ stworzyæ i dodaæ
-		texture = TextureObject::create_from_file( file_name );
-		if ( !texture )		// Tekstura mog³a mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
-			return WRONG_ID;
-
-		models_manager->texture.unsafe_add( file_name, texture );	// Dodaliœmy teksturê
-	}
+	TextureObject* texture = models_manager->add_texture( file_name );
+	if( !texture )
+		return WRONG_ID;
 
 	// Teraz musimy dodaæ teksturê na odpowiednie miejsce w tablicy
 	tmp_data->table[tmp_data->current_pointer]->new_part.texture[type] = texture;
@@ -249,16 +240,9 @@ i okreœla j¹ makro DEFAULT_VERTEX_SHADER_ENTRY.
 @return Indentyfikator obiektu.*/
 unsigned int Model3DFromFile::add_vertex_shader( const std::wstring& file_name )
 {
-	VertexShaderObject* vertex_shader = models_manager->vertex_shader.get( file_name );
+	VertexShaderObject* vertex_shader = models_manager->add_vertex_shader( file_name, DEFAULT_VERTEX_SHADER_ENTRY );
 	if ( !vertex_shader )
-	{
-		// Nie by³o shadera, trzeba go stworzyæ i dodaæ
-		vertex_shader = VertexShaderObject::create_from_file( file_name, DEFAULT_VERTEX_SHADER_ENTRY );
-		if ( !vertex_shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
-			return WRONG_ID;
-
-		models_manager->vertex_shader.unsafe_add( file_name, vertex_shader );	// Dodaliœmy teksturê
-	}
+		return WRONG_ID;
 
 	// Teraz musimy dodaæ shader na odpowiednie miejsce w tablicy
 	tmp_data->table[tmp_data->current_pointer]->new_part.vertex_shader = vertex_shader;
@@ -279,16 +263,9 @@ i okreœla j¹ makro DEFAULT_PIXEL_SHADER_ENTRY.
 @return Indentyfikator obiektu.*/
 unsigned int Model3DFromFile::add_pixel_shader( const std::wstring& file_name )
 {
-	PixelShaderObject* pixel_shader = models_manager->pixel_shader.get( file_name );
+	PixelShaderObject* pixel_shader = models_manager->add_pixel_shader( file_name, DEFAULT_PIXEL_SHADER_ENTRY );
 	if ( !pixel_shader )
-	{
-		// Nie by³o shadera, trzeba go stworzyæ i dodaæ
-		pixel_shader = PixelShaderObject::create_from_file( file_name, DEFAULT_PIXEL_SHADER_ENTRY );
-		if ( !pixel_shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
-			return WRONG_ID;
-
-		models_manager->pixel_shader.unsafe_add( file_name, pixel_shader );	// Dodaliœmy teksturê
-	}
+		return WRONG_ID;
 
 	// Teraz musimy dodaæ shader na odpowiednie miejsce w tablicy
 	tmp_data->table[tmp_data->current_pointer]->new_part.pixel_shader = pixel_shader;
@@ -311,7 +288,7 @@ Bufory wierzcho³ków s¹ ³¹czone w jedna ca³oœæ w funkcji EndEdit.
 
 @param[in] buffer WskaŸnik na tablicê wierzcho³ków. Zwalnia wywo³uj¹cy.
 @param[in] vert_count Liczba wierzcho³ków w buforze.
-@return Funkcja zawsze zwraca WRONG_ID.*/
+@return Funkcja  zwraca WRONG_ID w przypadku niepowodzenia lub 1 w przypadku powodzenia.*/
 unsigned int Model3DFromFile::add_vertex_buffer( const VertexNormalTexCord1* buffer, unsigned int vert_count )
 {
 	if ( vert_count == 0 )
@@ -439,14 +416,11 @@ void Model3DFromFile::EndEdit_vertex_buffer_processing( )
 		delete[] tmp_data->table[i]->vertices_tab;		// Tablica alokowana w add_vertex_buffer()
 	}
 	// Tworzymy obiekt bufora wierzcho³ków i go zapisujemy
-	vertex_buffer = BufferObject::create_from_memory( verticies,
-													  sizeof(VertexNormalTexCord1),
-													  vertex_buffer_length,
-													  D3D11_BIND_VERTEX_BUFFER );
-	delete[] verticies;							// Bufor by³ tylko tymczasowy
-
+	vertex_buffer = models_manager->add_vertex_buffer( file_path, verticies, sizeof( VertexNormalTexCord1 ), vertex_buffer_length );
 	vertex_buffer->add_file_reference( );		// Zaznaczamy, ¿e siê do niego odwo³ujemy
-	models_manager->vertex_buffer.unsafe_add( file_path, vertex_buffer );		// Dodajemy bufor do ModelsManagera
+	
+	
+	delete[] verticies;							// Bufor by³ tylko tymczasowy
 	// Nie sprawdzi³em czy pod tak¹ œcie¿k¹ ju¿ czegoœ nie by³o. Nie mia³o prawa byæ, bo 
 	// bufory wierzcho³ków nie s¹ wspó³dzielone miedzy plikami. Jednak je¿eli pojawi³by siê
 	// jakiœ bli¿ej nieokreœlony b³¹d (którego trochê nie umiem sobie wyobraziæ), to takie coœ mo¿e
@@ -486,14 +460,10 @@ void Model3DFromFile::EndEdit_index_buffer_processing( )
 		// UWAGA!! Nie przypisujemy nullptra, bo chcemy wiedzieæ, ¿e jest bufor indeksów !!!!
 	}
 	// Tworzymy obiekt bufora indeksów i go zapisujemy
-	index_buffer = BufferObject::create_from_memory( indicies,
-													 sizeof(VERT_INDEX),
-													 index_buffer_length,
-													 D3D11_BIND_INDEX_BUFFER );
-	delete[] indicies;							// Bufor by³ tylko tymczasowy
-
+	index_buffer = models_manager->add_index_buffer( file_path, indicies, sizeof( VERT_INDEX ), index_buffer_length );
 	index_buffer->add_file_reference( );		// Zaznaczamy, ¿e siê do niego odwo³ujemy
-	models_manager->vertex_buffer.unsafe_add( file_path, index_buffer );		// Dodajemy bufor do ModelsManagera
+
+	delete[] indicies;							// Bufor by³ tylko tymczasowy
 	// Nie sprawdzi³em czy pod tak¹ œcie¿k¹ ju¿ czegoœ nie by³o. Komentarz ten sam co w funkcji EndEdit_vertex_buffer_processing
 }
 
@@ -561,208 +531,3 @@ unsigned int Model3DFromFile::get_parts_count()
 }
 
 
-
-#ifndef __UNUSED
-
-//-------------------------------------------------------------------------------//
-//							wersja DirectX 9
-//-------------------------------------------------------------------------------//
-
-
-//----------------------------------------------------------------------------------------------//
-//								contructor, destructor											//
-//----------------------------------------------------------------------------------------------//
-
-Model3DFromFile::Model3DFromFile( int id )
-: referenced_object( id )
-{
-}
-
-
-Model3DFromFile::~Model3DFromFile( )
-{
-	//najpierw kasujemy odwo³ania do obiektów
-	for ( unsigned int i = 0; i < mesh_parts.size( ); ++i )
-		mesh_parts[i]->mesh_object->delete_file_reference( );
-	for ( unsigned int i = 0; i < textures.size( ); ++i )
-		textures[i]->delete_file_reference( );;
-	for ( unsigned int i = 0; i < materials.size( ); ++i )
-		materials[i]->delete_file_reference( );
-
-	//kasujemy obiekty MeshParts (to s¹ jedyne, którymi zarz¹dza ta klasa)
-	for ( unsigned int i = 0; i < mesh_parts.size( ); ++i )
-		delete mesh_parts[i];
-}
-
-
-
-//----------------------------------------------------------------------------------------------//
-//									building models												//
-//----------------------------------------------------------------------------------------------//
-
-
-unsigned int Model3DFromFile::add_material( const D3DMATERIAL9 &material )
-{
-	MaterialObject* result;
-	unsigned int id;
-	result = models_manager->add_material( material, id );
-
-	if ( result == nullptr )
-		return WRONG_MATERIAL_ID;
-
-	materials.push_back( result );
-	result->add_file_reference( );		//pamietajmy o dodawaniu odwo³añ
-
-	return id;
-}
-
-/*Je¿eli jakis materia³ zosta³ dodany bezpoœrednio do ModelsManagera, to mo¿na siê do niego odwo³ywaæ po id.
-Zwraca nullptr je¿eli nie istnieje taki materia³ lub wskaŸnik na ten materia³.
-
-Materia³ nie zostaje dodany do listy, je¿eli nie istnia³!!!!!!!!!!*/
-MaterialObject* Model3DFromFile::add_material( unsigned int id )
-{
-	MaterialObject* result = models_manager->get_material( id );
-	if ( result != nullptr )
-	{
-		materials.push_back( result );
-		result->add_file_reference( );		//pamietajmy o dodawaniu odwo³añ
-	}
-
-	return result;
-}
-
-/*Niektóre kawa³ki mesha mog¹ nie mieæ materia³u.*/
-void Model3DFromFile::add_null_material( )
-{
-	materials.push_back( nullptr );
-}
-
-
-unsigned int Model3DFromFile::add_texture( const std::wstring& path )
-{
-	TextureObject* result;
-	unsigned int id;
-	result = models_manager->add_texture( path, id );
-
-	if ( result == nullptr )
-		return WRONG_TEXTURE_ID;
-
-	textures.push_back( result );
-	result->add_file_reference( );		//pamietajmy o dodawaniu odwo³añ
-
-	return id;
-}
-
-
-/*Je¿eli jakaœ tekstura zosta³a dodana bezpoœrednio do ModelsManagera, to mo¿na siê do niej odwo³ywaæ po id.
-Zwraca nullptr je¿eli nie istnieje taka tekstura lub wskaŸnik na teksture, je¿eli istnieje.
-
-Tekstura nie zostaje dodana do listy je¿eli nie istnia³a!!!!!!*/
-TextureObject* Model3DFromFile::add_texture( unsigned int id )
-{
-	TextureObject* result = models_manager->get_texture( id );
-	if ( result != nullptr )
-	{
-		textures.push_back( result );
-		result->add_file_reference( );		//pamietajmy o dodawaniu odwo³añ
-	}
-
-	return result;
-}
-
-/*Niektóre kawa³ki mesha mog¹ nie mieæ tekstury.*/
-void Model3DFromFile::add_null_texture( )
-{
-	textures.push_back( nullptr );
-}
-
-
-MeshPart* Model3DFromFile::add_mesh( unsigned int id, DirectX::XMFLOAT4X4& matrix )
-{
-	MeshObject* result = models_manager->get_mesh( id );
-	if ( result == nullptr )
-		return nullptr;
-
-	MeshPart* new_mesh_part = new MeshPart;
-	new_mesh_part->transform_matrix = matrix;
-	new_mesh_part->mesh_object = result;
-
-	mesh_parts.push_back( new_mesh_part );
-	result->add_file_reference( );		//pamietajmy o dodawaniu odwo³añ
-
-	return new_mesh_part;
-}
-
-
-/*Dodajemy wierzcho³ki do listy modelu z danego pliku, przypisuj¹c mu podan¹ w ostatnim parametrze macierz przekszta³cenia.
-Mesh jest na pocz¹tku dodawany do ModelsManagera, je¿eli ju¿ istnia³, nie zostaje zduplikowany.*/
-unsigned int Model3DFromFile::add_mesh( Vertex_Normal_TexCords1* vertices, unsigned int vert_num, const DirectX::XMFLOAT4X4& matrix )
-{
-	MeshObject* result;
-	unsigned int id;
-	result = models_manager->add_mesh( vertices, vert_num, id );
-	if ( result == nullptr )	return WRONG_MESH_ID;		//coœ posz³o nie tak
-
-	MeshPart* mesh_part = new MeshPart( );
-	mesh_part->mesh_object = result;
-	mesh_part->transform_matrix = matrix;
-
-	mesh_parts.push_back( mesh_part );
-
-	result->add_file_reference( );		//pamiêtajmy o dodawaniu odwo³añ
-
-	return id;
-}
-
-void Model3DFromFile::add_reference( )
-{
-	++references;
-}
-
-void Model3DFromFile::delete_reference( )
-{
-	--references;
-}
-
-/*Sprawdza czy s¹ jakieœ odwo³ania do podanego pliku. Je¿eli nie ma to znaczy, ¿e obiekt mo¿e
-zostac bezpiecznie usuniêty.*/
-bool Model3DFromFile::can_delete( unsigned int& ref )
-{
-	if ( references > 0 )
-		return FALSE;
-	return TRUE;
-}
-
-unsigned int Model3DFromFile::get_parts_count( )
-{
-	unsigned int size1 = materials.size( );
-	unsigned int size2 = textures.size( );
-	unsigned int size3 = mesh_parts.size( );
-
-	unsigned int min = size1 < size2 ? size1 : size2;
-	return min < size3 ? min : size3;
-}
-
-MaterialObject* Model3DFromFile::get_material( unsigned int index )
-{
-	if ( index < materials.size( ) )
-		return materials[index];
-	return nullptr;
-}
-
-TextureObject* Model3DFromFile::get_texture( unsigned int index )
-{
-	if ( index < textures.size( ) )
-		return textures[index];
-	return nullptr;
-}
-
-MeshPart* Model3DFromFile::get_mesh_part( unsigned int index )
-{
-	if ( index < mesh_parts.size( ) )
-		return mesh_parts[index];
-	return nullptr;
-}
-
-#endif

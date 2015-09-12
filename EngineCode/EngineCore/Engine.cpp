@@ -7,7 +7,7 @@ oraz g³ówne funkcje do renderingu.
 */
 
 
-#include "stdafx.h"
+#include "EngineCore/stdafx.h"
 #include "Engine.h"
 #include "ControllersEngine/ControllersEngine.h"
 #include "GraphicAPI/ResourcesFactory.h"
@@ -173,7 +173,7 @@ bool Engine::InitGraphicAPI( int width, int height, bool full_screen )
 
 bool Engine::InitInputModule		()
 {
-	bool result;
+	int result;
 
 	//Inicjalizowanie directXinputa
 	result = ui_engine->init_direct_input( );
@@ -201,6 +201,8 @@ bool Engine::InitDefaultAssets()
 	models_manager->add_vertex_shader( DEFAULT_VERTEX_SHADER_STRING, DEFAULT_VERTEX_SHADER_ENTRY, &layout, &DefaultAssets::LAYOUT_POSITION_NORMAL_COORD );
 	models_manager->add_pixel_shader( DEFAULT_PIXEL_SHADER_STRING, DEFAULT_PIXEL_SHADER_ENTRY );
 	models_manager->add_pixel_shader( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH, DEFAULT_PIXEL_SHADER_ENTRY );
+
+	display_engine->SetLayout( layout );		///@todo Hack. Zlikwidowaæ.
 
 	MaterialObject* nullMaterial = new MaterialObject();
 	nullMaterial->SetNullMaterial();

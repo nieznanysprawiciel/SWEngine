@@ -1,6 +1,6 @@
-#include "stdafx.h"
+#include "EngineCore/stdafx.h"
 #include "camera_controller_PROTOTYPE.h"
-#include "UI_Engine\InputAbstractionLayer.h"
+#include "EngineCore/UI_Engine/InputAbstractionLayer.h"
 
 
 #include "Common\memory_leaks.h"

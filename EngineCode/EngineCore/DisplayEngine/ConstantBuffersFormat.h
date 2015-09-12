@@ -6,7 +6,7 @@
 
 @brief Plik zawiera deklaracje buforów sta³ych dla vertex i piksel shadera.*/
 
-//#include "stdafx.h"
+//#include "EngineCore/stdafx.h"
 #include "DirectXMath.h"
 
 using namespace DirectX;

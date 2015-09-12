@@ -6,6 +6,7 @@
 @brief Plik zawiera deklaracjê klasy Model3DFromFile i klas pomocniczych do tworzenia obiektu.*/
 
 #include "GraphicAPI/MeshResources.h"
+#include "DefaultAssets.h"
 
 #include <vector>
 
@@ -86,7 +87,12 @@ najlepiej pasuj¹cy shader do podanej tablicy tekstur.
 Je¿eli nie zostanie podany ¿aden materia³, ModelPart dostanie domyœlny materia³, który jest ustawiany przez funkcjê
 MaterialObject::SetNullMaterial.
 
-@see BufferObject, ModelPart, TextureObject, VertexShaderObject, PixelShaderObject, MaterialObject, MeshPartObject*/
+@see BufferObject, ModelPart, TextureObject, VertexShaderObject, PixelShaderObject, MaterialObject, MeshPartObject
+
+@todo Przepisaæ tak, ¿eby by³o jakoœ bardziej estetycznie.
+- Dodaæ klasê MemoryChunk zamiast go³ych wskaŸników na tablicê wierzcho³ków.
+- Zastosowaæ semantykê move z C++11. Ograniczyæ kopiowanie pamiêci na ile siê da.
+- Uzupe³niæ o mo¿liwoœæ wczytywania layotów i innych rzeczy, których brakuje.*/
 
 class Model3DFromFile : public ResourceObject
 {

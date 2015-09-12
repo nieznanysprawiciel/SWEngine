@@ -8,7 +8,7 @@
 */
 
 #include "GraphicAPI/MeshResources.h"
-#include "ModelsManager/ModelsManager.h"
+#include "EngineCore/ModelsManager/ModelsManager.h"
 
 /**@brief Wartoœci, mo¿liwe do zwrócenia przez klasê Loader
 */

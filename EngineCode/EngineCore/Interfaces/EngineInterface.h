@@ -7,7 +7,7 @@
 @brief Plik zawiera deklaracjê klasy EngineInterface.*/
 
 #include <queue>
-#include "MainEngine/TimeManager.h"
+#include "EngineCore/MainEngine/TimeManager.h"
 
 
 

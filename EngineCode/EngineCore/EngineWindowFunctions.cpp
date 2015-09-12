@@ -3,7 +3,7 @@
 WinAPI oraz g³ówn¹ pêtlê programu @ref Engine::main_loop.
 */
 
-#include "stdafx.h"
+#include "EngineCore/stdafx.h"
 #include "Engine.h"
 #include <thread>
 

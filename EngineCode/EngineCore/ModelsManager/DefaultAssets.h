@@ -29,7 +29,12 @@ typedef struct VertexTexCord1
 	DirectX::XMFLOAT2	tex_cords;		///<Wspó³rzêdne tekstury.
 } VertexTexCord1;
 
-
+/// @brief Struktura wierzcho³ka dla bezteksturowych obiektów.
+typedef struct VertexColor
+{
+	DirectX::XMFLOAT3 position;		///<Pozycja wierzcho³ka
+	DirectX::XMFLOAT3 color;		///<Kolor wierzcho³ka
+} VertexColor;
 
 
 // Nazwy dla domyœlnych shaderów i materia³u
@@ -48,6 +53,7 @@ const char DEFAULT_PIXEL_SHADER_ENTRY[] = "pixel_shader";		///<Domyœlna nazwa fu
 const char SEMANTIC_POSITION[]		= "POSITION";
 const char SEMANTIC_NORMAL[]		= "NORMAL";
 const char SEMANTIC_TEXCOORD[]		= "TEXCOORD";
+const char SEMANTIC_COLOR[]			= "COLOR";
 
 
 class DefaultAssets
@@ -59,7 +65,7 @@ protected:
 public:
 	static InputLayoutDescriptor			LAYOUT_POSITION_NORMAL_COORD;
 	static InputLayoutDescriptor			LAYOUT_POSITION_COORD;
-
+	static InputLayoutDescriptor			LAYOUT_POSITION_COLOR;
 
 public:
 	static void Init();

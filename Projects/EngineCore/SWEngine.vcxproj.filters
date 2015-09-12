@@ -1,55 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\ModelsManagment">
-      <UniqueIdentifier>{1767f2b9-5500-4542-ba8b-7bae84c40423}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Input_GUI">
-      <UniqueIdentifier>{6bba179b-7a11-4701-89a2-22900b92a635}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\MainEngine">
-      <UniqueIdentifier>{f5108cd6-c6a5-4f66-b73f-3a93bc10eaa5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GamePlay">
-      <UniqueIdentifier>{8bba6272-7863-4e61-858e-e389e5eb0e6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Features">
-      <UniqueIdentifier>{e1327c40-d2f8-4eca-8c02-727f4e70d31e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Features\HosekSkylightModel">
-      <UniqueIdentifier>{04e0e7ce-71ce-4577-a1ec-ea7432743dd2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\EngineHelpers">
-      <UniqueIdentifier>{a92fa370-613c-48bf-9b89-7c4ae7f99d02}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Common">
       <UniqueIdentifier>{3428394e-015c-411c-8168-bf68a509f622}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\SoundEngine">
+    <Filter Include="EngineCore">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="EngineCore\ModelsManagment">
+      <UniqueIdentifier>{1767f2b9-5500-4542-ba8b-7bae84c40423}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\ModelsManagment\Loaders">
+      <UniqueIdentifier>{d203582c-aafd-4270-be22-a0752570022c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\Input_GUI">
+      <UniqueIdentifier>{6bba179b-7a11-4701-89a2-22900b92a635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\MainEngine">
+      <UniqueIdentifier>{f5108cd6-c6a5-4f66-b73f-3a93bc10eaa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\GamePlay">
+      <UniqueIdentifier>{8bba6272-7863-4e61-858e-e389e5eb0e6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\Features">
+      <UniqueIdentifier>{e1327c40-d2f8-4eca-8c02-727f4e70d31e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\Features\HosekSkylightModel">
+      <UniqueIdentifier>{04e0e7ce-71ce-4577-a1ec-ea7432743dd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\EngineHelpers">
+      <UniqueIdentifier>{a92fa370-613c-48bf-9b89-7c4ae7f99d02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\SoundEngine">
       <UniqueIdentifier>{db0074be-24b2-40f8-add4-01a95ec3a7e1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\PhysicEngine">
+    <Filter Include="EngineCore\PhysicEngine">
       <UniqueIdentifier>{a639ee46-d361-41bb-b5dc-9824e223e87d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ControllersEngine">
+    <Filter Include="EngineCore\ControllersEngine">
       <UniqueIdentifier>{e662f704-3493-494c-9f9a-78cc8e248b88}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\CollisionEngine">
+    <Filter Include="EngineCore\CollisionEngine">
       <UniqueIdentifier>{2a60f048-e5ee-422c-b713-88dcae0e30dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\DisplayEngine">
+    <Filter Include="EngineCore\DisplayEngine">
       <UniqueIdentifier>{3f99a4a6-a6b3-4938-be1a-674961b15ae0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ModelsManagment\Loaders">
-      <UniqueIdentifier>{d203582c-aafd-4270-be22-a0752570022c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -57,79 +57,76 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
-      <Filter>Source Files\SoundEngine</Filter>
+      <Filter>EngineCore\SoundEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)CollisionEngine\CollisionEngine.h">
-      <Filter>Source Files\CollisionEngine</Filter>
+      <Filter>EngineCore\CollisionEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ResourceContainer.h">
-      <Filter>Source Files\ModelsManagment</Filter>
+      <Filter>EngineCore\ModelsManagment</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ModelsManager.h">
-      <Filter>Source Files\ModelsManagment</Filter>
+      <Filter>EngineCore\ModelsManagment</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)UI_Engine\UI_Engine.h">
-      <Filter>Source Files\Input_GUI</Filter>
+      <Filter>EngineCore\Input_GUI</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)UI_Engine\InputAbstractionLayer.h">
-      <Filter>Source Files\Input_GUI</Filter>
+      <Filter>EngineCore\Input_GUI</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)Interfaces\GamePlay.h">
-      <Filter>Source Files\GamePlay</Filter>
+      <Filter>EngineCore\GamePlay</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)FableEngine\FableEngine.h">
-      <Filter>Source Files\GamePlay</Filter>
+      <Filter>EngineCore\GamePlay</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\SkyDome.h">
-      <Filter>Source Files\Features</Filter>
+      <Filter>EngineCore\Features</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkyModel.h">
-      <Filter>Source Files\Features\HosekSkylightModel</Filter>
+      <Filter>EngineCore\Features\HosekSkylightModel</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\ArHosekSkyModelData_RGB.h">
-      <Filter>Source Files\Features\HosekSkylightModel</Filter>
+      <Filter>EngineCore\Features\HosekSkylightModel</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkyDome.h">
-      <Filter>Source Files\Features\HosekSkylightModel</Filter>
+      <Filter>EngineCore\Features\HosekSkylightModel</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.h">
-      <Filter>Source Files\ControllersEngine</Filter>
+      <Filter>EngineCore\ControllersEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ControllersEngine\camera_controller_PROTOTYPE.h">
-      <Filter>Source Files\ControllersEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)stdafx.h">
-      <Filter>Source Files</Filter>
+      <Filter>EngineCore\ControllersEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)targetver.h">
-      <Filter>Source Files</Filter>
+      <Filter>EngineCore</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)Resource.h">
-      <Filter>Source Files</Filter>
+      <Filter>EngineCore</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)Interfaces\basic_interfaces.h">
-      <Filter>Source Files</Filter>
+      <Filter>EngineCore</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)FableEngine\ActorCreator.h">
-      <Filter>Source Files\GamePlay</Filter>
+      <Filter>EngineCore\GamePlay</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)MainEngine\TimeManager.h">
-      <Filter>Source Files\MainEngine</Filter>
+      <Filter>EngineCore\MainEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)Interfaces\EngineInterface.h">
-      <Filter>Source Files\MainEngine</Filter>
+      <Filter>EngineCore\MainEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.h">
-      <Filter>Source Files\EngineHelpers</Filter>
+      <Filter>EngineCore\EngineHelpers</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)Events\Event.h">
-      <Filter>Source Files</Filter>
+      <Filter>EngineCore</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)Engine.h">
-      <Filter>Source Files\MainEngine</Filter>
+      <Filter>EngineCore\MainEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)SW_engine.h">
-      <Filter>Source Files\MainEngine</Filter>
+      <Filter>EngineCore\MainEngine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\types_definitions.h">
       <Filter>Common</Filter>
@@ -144,111 +141,114 @@
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.h">
-      <Filter>Source Files\PhysicEngine</Filter>
+      <Filter>EngineCore\PhysicEngine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\MovementEngine.h">
-      <Filter>Source Files\PhysicEngine</Filter>
+      <Filter>EngineCore\PhysicEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.h">
-      <Filter>Source Files\DisplayEngine</Filter>
+      <Filter>EngineCore\DisplayEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\ConstantBuffersFormat.h">
-      <Filter>Source Files\DisplayEngine</Filter>
+      <Filter>EngineCore\DisplayEngine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Model3DFromFile.h">
-      <Filter>Source Files\ModelsManagment</Filter>
+      <Filter>EngineCore\ModelsManagment</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.h">
-      <Filter>Source Files\ModelsManagment</Filter>
+      <Filter>EngineCore\ModelsManagment</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\loader_interface.h">
-      <Filter>Source Files\ModelsManagment\Loaders</Filter>
+      <Filter>EngineCore\ModelsManagment\Loaders</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.h">
-      <Filter>Source Files\ModelsManagment\Loaders</Filter>
+      <Filter>EngineCore\ModelsManagment\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\stdafx.h">
+      <Filter>EngineCore</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
-      <Filter>Source Files\ModelsManagment</Filter>
+      <Filter>EngineCore\ModelsManagment</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\ModelsManager.cpp">
-      <Filter>Source Files\ModelsManagment</Filter>
+      <Filter>EngineCore\ModelsManagment</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)UI_Engine\UI_Engine.cpp">
-      <Filter>Source Files\Input_GUI</Filter>
+      <Filter>EngineCore\Input_GUI</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)CollisionEngine\CollisionEngine.cpp">
-      <Filter>Source Files\CollisionEngine</Filter>
+      <Filter>EngineCore\CollisionEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)EngineInterface.cpp">
-      <Filter>Source Files\MainEngine</Filter>
+      <Filter>EngineCore\MainEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.cpp">
-      <Filter>Source Files\SoundEngine</Filter>
+      <Filter>EngineCore\SoundEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)FableEngine\FableEngine.cpp">
-      <Filter>Source Files\GamePlay</Filter>
+      <Filter>EngineCore\GamePlay</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)UI_Engine\InputAbstractionLayer.cpp">
-      <Filter>Source Files\Input_GUI</Filter>
+      <Filter>EngineCore\Input_GUI</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)UI_Engine\UI_Engine_AbstractionLayers.cpp">
-      <Filter>Source Files\Input_GUI</Filter>
+      <Filter>EngineCore\Input_GUI</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.cpp">
-      <Filter>Source Files\ControllersEngine</Filter>
+      <Filter>EngineCore\ControllersEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)ControllersEngine\camera_controller_PROTOTYPE.cpp">
-      <Filter>Source Files\ControllersEngine</Filter>
+      <Filter>EngineCore\ControllersEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)Engine.cpp">
-      <Filter>Source Files\MainEngine</Filter>
+      <Filter>EngineCore\MainEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkylightModel.cpp">
-      <Filter>Source Files\Features\HosekSkylightModel</Filter>
+      <Filter>EngineCore\Features\HosekSkylightModel</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkyDome.cpp">
-      <Filter>Source Files\Features\HosekSkylightModel</Filter>
+      <Filter>EngineCore\Features\HosekSkylightModel</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)stdafx.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>EngineCore</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)Interfaces\basic_interfaces.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>EngineCore</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)SW_engine.cpp">
-      <Filter>Source Files\MainEngine</Filter>
+      <Filter>EngineCore\MainEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)Events\Event.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>EngineCore</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)FableEngine\ActorCreator.cpp">
-      <Filter>Source Files\GamePlay</Filter>
+      <Filter>EngineCore\GamePlay</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)EngineWindowFunctions.cpp">
-      <Filter>Source Files\MainEngine</Filter>
+      <Filter>EngineCore\MainEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)MainEngine\TimeManager.cpp">
-      <Filter>Source Files\MainEngine</Filter>
+      <Filter>EngineCore\MainEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.cpp">
-      <Filter>Source Files\EngineHelpers</Filter>
+      <Filter>EngineCore\EngineHelpers</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.cpp">
-      <Filter>Source Files\PhysicEngine</Filter>
+      <Filter>EngineCore\PhysicEngine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\MovementEngine.cpp">
-      <Filter>Source Files\PhysicEngine</Filter>
+      <Filter>EngineCore\PhysicEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.cpp">
-      <Filter>Source Files\DisplayEngine</Filter>
+      <Filter>EngineCore\DisplayEngine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.cpp">
-      <Filter>Source Files\ModelsManagment</Filter>
+      <Filter>EngineCore\ModelsManagment</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
-      <Filter>Source Files\ModelsManagment\Loaders</Filter>
+      <Filter>EngineCore\ModelsManagment\Loaders</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "EngineCore/stdafx.h"
 #include "ActorCreator.h"
 
 #include "Common\memory_leaks.h"

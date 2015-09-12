@@ -91,7 +91,7 @@ an updated version of this code has been published!
 
 ============================================================================ */
 
-#include "stdafx.h"
+#include "EngineCore/stdafx.h"
 #include "HosekSkyModel.h"
 #include "ArHosekSkyModelData_RGB.h"
 

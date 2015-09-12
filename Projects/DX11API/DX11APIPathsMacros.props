@@ -5,11 +5,16 @@
     <DX11APIName>DX11API</DX11APIName>
     <DX11APISourceDir>$(EngineSourceDir)GraphicAPI\$(DX11APIName)\</DX11APISourceDir>
     <DX11APILibDir>$(EngineLibDir)GraphicAPI\$(DX11APIName)\</DX11APILibDir>
-    <DX11APIFileName>$(EngineShortcut)$(DX11APIName)_$(Configuration)_$(PlatformShortName)</DX11APIFileName>
+    <DX11APIFileName>$(DX11APIName)_$(Configuration)_$(PlatformShortName)</DX11APIFileName>
     <DX11APIBuildDir>$(EngineBuildDir)$(EngineShortcut)$(DX11APIName)_$(Configuration)_$(PlatformShortName)\</DX11APIBuildDir>
   </PropertyGroup>
   <PropertyGroup />
-  <ItemDefinitionGroup />
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\$(PlatformTarget)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d11.lib;d3dx11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <BuildMacro Include="DX11APIName">
       <Value>$(DX11APIName)</Value>

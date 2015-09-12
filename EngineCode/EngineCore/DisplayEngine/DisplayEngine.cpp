@@ -6,11 +6,11 @@
 */
 
 
-#include "stdafx.h"
+#include "EngineCore/stdafx.h"
 #include "DisplayEngine.h"
-#include "Engine.h"
-#include "EngineHelpers/PerformanceCheck.h"
-#include "ModelsManager/ModelsManager.h"
+#include "EngineCore/Engine.h"
+#include "EngineCore/EngineHelpers/PerformanceCheck.h"
+#include "EngineCore/ModelsManager/ModelsManager.h"
 
 
 #include "Common/memory_leaks.h"
@@ -85,6 +85,8 @@ void DisplayEngine::InitDisplayer( ModelsManager* assetsManager )
 	m_constantsPerMesh	= modelsManager->AddConstantsBuffer( CONSTANT_PER_MESH_BUFFER_NAME, nullptr, sizeof( ConstantPerMesh ) );
 	assert( m_constantsPerFrame );
 	assert( m_constantsPerMesh );
+
+	//ShaderInputLayoutObject* basicLayout = modelsManager->
 }
 
 void DisplayEngine::BeginScene()
@@ -162,7 +164,7 @@ void DisplayEngine::display_scene(float time_interval, float time_lag)
 	display_sky_box( time_interval, time_lag );
 
 	// Ustawiamy format wierzcho³ków
-	renderer->SetDefaultVertexLayout();
+	renderer->IASetInputLayout( defaultLayout );
 
 	display_instanced_meshes( time_interval, time_lag );
 	display_dynamic_objects( time_interval, time_lag );
@@ -325,7 +327,7 @@ void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 	// Aktualizuje bufor wierzcho³ków. Wstawiane s¹ nowe kolory.
 	// Powinna byæ to raczej rzadka czynnoœæ, poniewa¿ aktualizacja jest kosztowna czasowo
 	if ( sky_dome->update_vertex_buffer )
-		sky_dome->update_buffers();
+		sky_dome->update_buffers( renderer );
 
 	// Ustawiamy bufor wierzcho³ków
 	if ( renderer->SetVertexBuffer( sky_dome->get_vertex_buffer() ) )
@@ -356,9 +358,9 @@ void DisplayEngine::display_sky_box( float time_interval, float time_lag )
 	renderer->VSSetConstantBuffers( 1, m_constantsPerMesh );
 	renderer->PSSetConstantBuffers( 1, m_constantsPerMesh );
 
-	ID3D11Buffer* const_buffer = sky_dome->get_constant_buffer();	///< @todo Trzeba pobraæ tutaj BufferObject zamiast ID3D11Buffer.
-	renderer->VSSetConstantBuffers( 2, 1, &const_buffer );
-	renderer->PSSetConstantBuffers( 2, 1, &const_buffer );
+	BufferObject* const_buffer = sky_dome->get_constant_buffer();	///< @todo Trzeba pobraæ tutaj BufferObject zamiast ID3D11Buffer.
+	renderer->VSSetConstantBuffers( 2, const_buffer );
+	renderer->PSSetConstantBuffers( 2, const_buffer );
 
 	// Ustawiamy tekstury
 	renderer->SetTextures( *model );

@@ -1,6 +1,6 @@
 #pragma once
-#include "stdafx.h"
-#include "Interfaces\basic_interfaces.h"
+#include "EngineCore/stdafx.h"
+#include "EngineCOre/Interfaces/basic_interfaces.h"
 
 class Engine;
 

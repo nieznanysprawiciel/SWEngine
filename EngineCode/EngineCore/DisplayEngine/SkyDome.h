@@ -9,7 +9,8 @@ obiekty typu skyboxy, skydome'y i wszystkie inne twory, wyœwietlaj¹ce t³o.*/
 
 
 #include "GraphicAPI/MeshResources.h"
-#include "ModelsManager/ModelsManager.h"
+#include "EngineCore/ModelsManager/ModelsManager.h"
+#include "GraphicAPI/IRenderer.h"
 
 
 /**@brief Klasa jest interfejsem dla wszystkich klas, które maj¹ wyœwietlaæ jakieœ t³o.
@@ -40,11 +41,11 @@ private:
 	ModelsManager* models_manager;		///<WskaŸnik na ModelsManager. Bufory s¹ zarz¹dzane przez niego.
 
 protected:
-	BufferObject* vertex_buffer;		///<Bufor wierzcho³ków
-	BufferObject* index_buffer;			///<Bufor indeksów
-	ID3D11Buffer* constant_buffer;		///<Bufor sta³ych dla shaderów
-	ID3D11InputLayout* layout;			///<Layout wierzcho³ków u¿ywanych przez klasê
-	ModelPart display_data;				///<Shadery, tekstury itp.
+	BufferObject*				vertex_buffer;			///<Bufor wierzcho³ków
+	BufferObject*				index_buffer;			///<Bufor indeksów
+	BufferObject*				constant_buffer;		///<Bufor sta³ych dla shaderów
+	ShaderInputLayoutObject*	layout;					///<Layout wierzcho³ków u¿ywanych przez klasê
+	ModelPart					display_data;			///<Shadery, tekstury itp.
 
 public:
 	SkyDome( ModelsManager* man )
@@ -65,9 +66,9 @@ public:
 		if ( index_buffer )
 			index_buffer->delete_object_reference(), index_buffer = nullptr;
 		if ( layout )
-			layout->Release(), layout = nullptr;
+			layout->delete_object_reference(), layout = nullptr;
 		if ( constant_buffer )
-			constant_buffer->Release(), constant_buffer = nullptr;
+			constant_buffer->delete_object_reference(), constant_buffer = nullptr;
 
 		if ( display_data.mesh )
 			delete display_data.mesh, display_data.mesh = nullptr;
@@ -82,11 +83,11 @@ public:
 				display_data.texture[i]->delete_object_reference(), display_data.texture[i] = nullptr;
 	}
 
-	inline BufferObject*		get_vertex_buffer()		{ return vertex_buffer; }				///<Zwraca bufor wierzcho³ków
-	inline BufferObject*		get_index_buffer()		{ return index_buffer; }				///<Zwraca bufor indeksów
-	inline ID3D11Buffer*		get_constant_buffer()	{ return constant_buffer; }				///<Zwraca bufor sta³ych dla shaderów
-	inline ID3D11InputLayout*	get_vertex_layout()		{ return layout; }						///<Zwraca layout wierzcho³ka
-	inline ModelPart*			get_model_part()		{ return &display_data; }				///<Zwraca dane potrzebne do wyœwietlania
+	inline BufferObject*			get_vertex_buffer()		{ return vertex_buffer; }				///<Zwraca bufor wierzcho³ków
+	inline BufferObject*			get_index_buffer()		{ return index_buffer; }				///<Zwraca bufor indeksów
+	inline BufferObject*			get_constant_buffer()	{ return constant_buffer; }				///<Zwraca bufor sta³ych dla shaderów
+	inline ShaderInputLayoutObject*	get_vertex_layout()		{ return layout; }						///<Zwraca layout wierzcho³ka
+	inline ModelPart*				get_model_part()		{ return &display_data; }				///<Zwraca dane potrzebne do wyœwietlania
 
 	/**@brief Funkcja jest wywo³ywana w momencie kiedy zmienna update_vertex_buffer zawiera wartoœæ true.
 	
@@ -99,7 +100,7 @@ public:
 	bêdzie wywo³ywana w pêtli g³ównej i mo¿e zaburzyæ renderowanie.
 	
 	Pole update_vertex_buffer powinno zostaæ ustawione na false po wykonaniu tej funkcji.*/
-	virtual void update_buffers() = 0;
+	virtual void update_buffers( IRenderer* renderer ) = 0;
 protected:
 	// Funkcje do ustawiania
 
@@ -132,13 +133,12 @@ protected:
 	@param[in] array_size Liczba elementów tablicy layout_desc.*/
 	inline void set_vertex_shader( const std::wstring& file_name,
 								   const std::string& shader_entry,
-								   D3D11_INPUT_ELEMENT_DESC* layout_desc,
-								   unsigned int array_size )
+								   InputLayoutDescriptor* layout_desc )
 	{
 		if ( layout )	// Zwalniamy layout, je¿eli jakiœ by³
-			layout->Release();
+			layout->delete_object_reference();
 
-		auto shader = models_manager->add_vertex_shader( file_name, shader_entry, &layout, layout_desc, array_size );
+		auto shader = models_manager->add_vertex_shader( file_name, shader_entry, &layout, layout_desc );
 		if ( !shader )
 			return;	// Zabezpieczenie przed nullptrem
 		if ( !layout )
@@ -213,6 +213,25 @@ protected:
 	inline void set_index_buffer( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count )
 	{
 		auto buff = models_manager->add_index_buffer( name, buffer, element_size, vert_count );
+		if ( !buff )
+			return;	// Zabezpieczenie przed nullptrem
+
+		if ( index_buffer )	// Je¿eli coœ wczeœniej by³o to kasujemy odwo³anie
+			index_buffer->delete_object_reference( );
+
+		buff->add_object_reference( );
+		index_buffer = buff;
+	}
+
+	/**@brief Funkcja tworzy, a potem ustawia w zmiennej constant_buffer bufor sta³ych.
+	Bufor jest pobierany z ModelsManagera, je¿eli nie istnieje jest dodawany.
+
+	@param[in] name Nazwa bufora, po której mo¿na siê bêdzie odwo³aæ.
+	@param[in] buffer WskaŸnik na bufor z danym, które maj¹ byæ przeniesione do bufora DirectXowego.
+	@param[in] element_size Rozmiar pojedynczego elementu w buforze..*/
+	inline void set_index_buffer( const std::wstring& name, const void* buffer, unsigned int element_size )
+	{
+		auto buff = models_manager->AddConstantsBuffer( name, buffer, element_size );
 		if ( !buff )
 			return;	// Zabezpieczenie przed nullptrem
 

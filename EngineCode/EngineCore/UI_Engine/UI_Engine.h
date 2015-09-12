@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "stdafx.h"
+#include "EngineCore/stdafx.h"
 #include "InputAbstractionLayer.h"
 
 #define DIRECT_INPUT_OK				DI_OK

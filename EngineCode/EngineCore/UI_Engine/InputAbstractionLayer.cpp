@@ -3,9 +3,9 @@
 oraz definicje standardowych warstw abstrakcji.
 */
 
-#include "stdafx.h"
+#include "EngineCore/stdafx.h"
 #include "InputAbstractionLayer.h"
-#include "Engine.h"
+#include "EngineCore/Engine.h"
 
 
 #include "Common\memory_leaks.h"

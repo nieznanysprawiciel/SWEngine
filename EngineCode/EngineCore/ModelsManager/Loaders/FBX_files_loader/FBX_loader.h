@@ -18,7 +18,7 @@ wczytana jest traktowana jakby by³a dla kana³u diffuse.
 To trzeba kiedyœ zmieniæ, aby po pierwsze optymalniej wykorzystywaæ silnik, a po
 drugie, ¿eby wykorzystywaæ wszystkie jego mo¿liwoœci.*/
 
-#include "ModelsManager\Loaders\loader_interface.h"
+#include "EngineCore/ModelsManager/Loaders/loader_interface.h"
 #include "fbxsdk.h"
 
 using namespace DirectX;

@@ -1,10 +1,10 @@
-#include "stdafx.h"
+#include "EngineCore/stdafx.h"
 #include "UI_Engine.h"
-#include "Engine.h"
-#include "Interfaces\basic_interfaces.h"
+#include "EngineCore/Engine.h"
+#include "EngineCore/Interfaces/basic_interfaces.h"
 
 
-#include "Common\memory_leaks.h"
+#include "Common/memory_leaks.h"
 
 
 /**@brief Funkcja ustawia domyœlne warstwy abstrakcji w klasie UI_engine.*/

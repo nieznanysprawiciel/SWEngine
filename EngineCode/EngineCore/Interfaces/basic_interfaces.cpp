@@ -2,9 +2,11 @@
 @brief Plik zawiera definicje metod klas z pliku basic_interfaces.h
 */
 
-#include "stdafx.h"
+#include "EngineCore/stdafx.h"
 #include "basic_interfaces.h"
-#include "Engine.h"
+#include "EngineCore/Engine.h"
+#include "GraphicAPI/IRenderer.h"
+#include "GraphicAPI/MeshResources.h"
 
 
 #include "Common\memory_leaks.h"

@@ -106,7 +106,7 @@
     <Import Project="..\Props\IncludeDirectInput.props" />
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="..\Props\LinkFBX_SDK.props" />
-    <Import Project="..\Props\EngineCorePathMacros.props" />
+    <Import Project="EngineCorePathMacros.props" />
     <Import Project="EngineCoreConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'" Label="PropertySheets">
@@ -118,7 +118,7 @@
     <Import Project="..\Props\IncludeDirectInput.props" />
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="..\Props\LinkFBX_SDK.props" />
-    <Import Project="..\Props\EngineCorePathMacros.props" />
+    <Import Project="EngineCorePathMacros.props" />
     <Import Project="EngineCoreConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
@@ -131,7 +131,7 @@
     <Import Project="..\Props\IncludeDirectInput.props" />
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="..\Props\LinkFBX_SDK.props" />
-    <Import Project="..\Props\EngineCorePathMacros.props" />
+    <Import Project="EngineCorePathMacros.props" />
     <Import Project="EngineCoreConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'" Label="PropertySheets">
@@ -143,7 +143,7 @@
     <Import Project="..\Props\IncludeDirectInput.props" />
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="..\Props\LinkFBX_SDK.props" />
-    <Import Project="..\Props\EngineCorePathMacros.props" />
+    <Import Project="EngineCorePathMacros.props" />
     <Import Project="EngineCoreConfiguration.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -156,7 +156,7 @@
     <Import Project="..\Props\IncludeDirectInput.props" />
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="..\Props\LinkFBX_SDK.props" />
-    <Import Project="..\Props\EngineCorePathMacros.props" />
+    <Import Project="EngineCorePathMacros.props" />
     <Import Project="EngineCoreConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'" Label="PropertySheets">
@@ -168,7 +168,7 @@
     <Import Project="..\Props\IncludeDirectInput.props" />
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="..\Props\LinkFBX_SDK.props" />
-    <Import Project="..\Props\EngineCorePathMacros.props" />
+    <Import Project="EngineCorePathMacros.props" />
     <Import Project="EngineCoreConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
@@ -181,7 +181,7 @@
     <Import Project="..\Props\IncludeDirectInput.props" />
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="..\Props\LinkFBX_SDK.props" />
-    <Import Project="..\Props\EngineCorePathMacros.props" />
+    <Import Project="EngineCorePathMacros.props" />
     <Import Project="EngineCoreConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'" Label="PropertySheets">
@@ -193,7 +193,7 @@
     <Import Project="..\Props\IncludeDirectInput.props" />
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="..\Props\LinkFBX_SDK.props" />
-    <Import Project="..\Props\EngineCorePathMacros.props" />
+    <Import Project="EngineCorePathMacros.props" />
     <Import Project="EngineCoreConfiguration.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -241,7 +241,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;INITGUID;FBXSDK_SHARED;__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalOptions>/arch:SSE2 %(AdditionalOptions)</AdditionalOptions>
-      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>EngineCore\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -258,7 +258,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;INITGUID;FBXSDK_SHARED;__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalOptions>/arch:SSE2 %(AdditionalOptions)</AdditionalOptions>
-      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>EngineCore\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -328,7 +328,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;INITGUID;FBXSDK_SHARED;__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalOptions>/arch:SSE2 %(AdditionalOptions)</AdditionalOptions>
-      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>EngineCore\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -351,7 +351,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;INITGUID;FBXSDK_SHARED;__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalOptions>/arch:SSE2 %(AdditionalOptions)</AdditionalOptions>
-      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>EngineCore\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -380,6 +380,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;INITGUID;FBXSDK_SHARED;__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalOptions>/arch:SSE2 %(AdditionalOptions)</AdditionalOptions>
+      <PrecompiledHeaderFile>../EngneCode/EngineCore/EngineCore\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -452,7 +453,7 @@
     <ClInclude Include="$(EngineCoreSourceDir)Interfaces\GamePlay.h" />
     <ClInclude Include="$(EngineCoreSourceDir)Resource.h" />
     <ClInclude Include="$(EngineCoreSourceDir)SW_engine.h" />
-    <ClInclude Include="$(EngineCoreSourceDir)stdafx.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\stdafx.h" />
     <ClInclude Include="$(EngineCoreSourceDir)targetver.h" />
     <ClInclude Include="..\..\EngineCode\Common\macros_switches.h" />
     <ClInclude Include="..\..\EngineCode\Common\memory_leaks.h" />
@@ -474,10 +475,10 @@
     <ClCompile Include="$(EngineCoreSourceDir)EngineInterface.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)EngineWindowFunctions.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)Events\Event.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'">stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EngineCore\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'">EngineCore\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">EngineCore\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">EngineCore\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)FableEngine\ActorCreator.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)FableEngine\FableEngine.cpp" />
@@ -485,22 +486,22 @@
     <ClCompile Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkylightModel.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)MainEngine\TimeManager.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'">stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'">stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\ModelsManager.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'">stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.cpp" />
@@ -518,6 +519,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EngineCore/stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EngineCore/stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'">EngineCore/stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">EngineCore/stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">EngineCore/stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EngineCore/stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|x64'">EngineCore/stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|x64'">EngineCore/stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\MovementEngine.cpp" />

@@ -239,7 +239,7 @@ public:
 vertex shadera.*/
 class ShaderInputLayoutObject : public IShaderInputLayout
 {
-	friend ObjectDeleter<VertexShaderObject>;
+	friend ObjectDeleter<ShaderInputLayoutObject>;
 private:
 protected:
 	virtual ~ShaderInputLayoutObject() = default;

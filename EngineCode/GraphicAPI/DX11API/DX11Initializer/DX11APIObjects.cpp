@@ -1,12 +1,5 @@
 #include "DX11APIObjects.h"
-
-#pragma warning( disable : 4005 )
-	#include <DirectXMath.h>
-	#include <dinput.h>
-	#include <d3d11.h>
-	#include <d3dx11.h>
-#pragma warning( default : 4005 )
-
+#include <DirectXMath.h>
 
 #include "Common/memory_leaks.h"
 

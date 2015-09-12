@@ -1,16 +1,10 @@
-#include "stdafx.h"
+#include "EngineCore/stdafx.h"
 #include "HosekSkyDome.h"
 
 using namespace DirectX;
 
-#include "Common\memory_leaks.h"
-
-/**@brief Opis wierzcho³ka SkyDomeVertex.*/
-D3D11_INPUT_ELEMENT_DESC SkyDomeVertex_desc[] =
-{
-	{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-	{ "COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-};
+#include "Common/memory_leaks.h"
+#include "EngineCore/ModelsManager/DefaultAssets.h"
 
 
 
@@ -78,7 +72,7 @@ void HosekSkyDome::init_sky_dome( XMVECTOR sun_direction,
 	display_data.mesh->vertices_count = ind_buff_elements;
 
 	// Kompilujemy shadery, jednoczeœnie dodaje siê layout
-	set_vertex_shader( L"shaders\\HosekSkyDome.fx", DEFAULT_VERTEX_SHADER_ENTRY, SkyDomeVertex_desc, ARRAYSIZE( SkyDomeVertex_desc ));
+	set_vertex_shader( L"shaders\\HosekSkyDome.fx", DEFAULT_VERTEX_SHADER_ENTRY, &DefaultAssets::LAYOUT_POSITION_COLOR );
 	set_pixel_shader( L"shaders\\HosekSkyDome.fx", DEFAULT_PIXEL_SHADER_ENTRY );
 
 	// Materia³ jest niepotrzebny, ale nie mo¿e go nie byæ
@@ -251,8 +245,8 @@ Funkcja ustawi zmienn¹ update_vertex_buffer po zakoñczeniu aktualizacji tylnego 
 Nastêpnie DisplayEngine odczyta zmienn¹ update_vertex_buffer i wywo³a funkcjê update_buffers.
 
 Funkcja wirtualna, przeczytaj opis funkcji SkyDome::update_buffers.*/
-void HosekSkyDome::update_buffers( )
+void HosekSkyDome::update_buffers( IRenderer* renderer )
 {
-	device_context->UpdateSubresource( vertex_buffer->get(), 0, nullptr, back_vert_buffer, 0, 0 );
+	renderer->UpdateSubresource( vertex_buffer, back_vert_buffer );
 	update_vertex_buffer = false;
 }

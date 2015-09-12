@@ -1,9 +1,9 @@
-#include "stdafx.h"
+#include "EngineCore/stdafx.h"
 #include "FableEngine.h"
-#include "Engine.h"
+#include "EngineCore/Engine.h"
 
 
-#include "Common\memory_leaks.h"
+#include "Common/memory_leaks.h"
 
 FableEngine::FableEngine(Engine* engine)
 	: engine(engine)

@@ -4,7 +4,7 @@
 @brief Plik zawiera deklaracjê klasy HosekSkyDome, do wyœwietlania nieba
 u¿ywaj¹c modelu Hodeka i Wilkiego.*/
 
-#include "DisplayEngine/SkyDome.h"
+#include "EngineCore/DisplayEngine/SkyDome.h"
 #include "HosekSkyModel.h"
 
 
@@ -53,6 +53,6 @@ public:
 						  const double* albedo,
 						  float sky_intensity = 1.0f,
 						  float sun_intensity = 1.0f );
-	void update_buffers( ) override;
+	void update_buffers( IRenderer* renderer ) override;
 };
 

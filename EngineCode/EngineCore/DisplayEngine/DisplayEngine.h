@@ -8,7 +8,7 @@
 */
 
 
-#include "Interfaces/basic_interfaces.h"
+#include "EngineCore/Interfaces/basic_interfaces.h"
 #include "ConstantBuffersFormat.h"
 #include "SkyDome.h"
 #include "GraphicAPI/IRenderer.h"
@@ -53,6 +53,8 @@ private:
 	unsigned int							interpol_matrixes_count;	///<Liczba macierzy interpolowanych
 
 	std::vector<CameraObject*>				cameras;					///<Kontener zawieraj¹cy kamery
+
+	ShaderInputLayoutObject*				defaultLayout;				///<@todo Hack. Zlikwidowaæ. Silnik powinien obs³ugiwaæ dowolne layouty, a przynajmniej jakiœ ustalony zbiór.
 public:
 	DisplayEngine(Engine* engine);
 	~DisplayEngine();
@@ -61,6 +63,8 @@ public:
 	void InitDisplayer( ModelsManager* assetsManager );
 	void BeginScene();
 	void EndScene();
+
+	void SetLayout( ShaderInputLayoutObject* layout ) { defaultLayout = layout; }	///<@todo Hack. Zlikwidowaæ.
 
 	// G³ówna funkcja do wyœwietlania sceny
 	void display_scene						( float time_interval, float time_lag );
