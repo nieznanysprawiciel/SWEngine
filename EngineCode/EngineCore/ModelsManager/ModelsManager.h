@@ -78,7 +78,7 @@ public:
 
 	inline Model3DFromFile*			get_model					( const std::wstring& name ) { return file_model.get( name ); }	///<Zwraca model z pliku o podanej nazwie
 	TextureObject*					add_texture					( const std::wstring& file_name );
-	MaterialObject*					add_material				( const MaterialObject* material, const std::wstring& material_name );
+	MaterialObject*					add_material				( MaterialObject* material, const std::wstring& material_name );
 	VertexShaderObject*				add_vertex_shader			( const std::wstring& file_name, const std::string& shader_entry );
 	VertexShaderObject*				add_vertex_shader			( const std::wstring& file_name, const std::string& shader_entry, ShaderInputLayoutObject** layout, InputLayoutDescriptor* layout_desc );
 	PixelShaderObject*				add_pixel_shader			( const std::wstring& file_name, const std::string& shader_entry );

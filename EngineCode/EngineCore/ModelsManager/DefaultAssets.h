@@ -69,5 +69,6 @@ public:
 
 public:
 	static void Init();
+	static void Release();
 };
 

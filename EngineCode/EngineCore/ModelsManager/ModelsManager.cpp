@@ -278,21 +278,23 @@ MODELS_MANAGER_RESULT ModelsManager::load_model_from_file( const std::wstring& f
 W ka¿dym miejscu, gdzie zostanie przypisany zwrócony obiekt, nale¿y pamiêtaæ o dodaniu odwo³ania oraz
 skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 
+@note Je¿eli materia³ ju¿ istnia³ (jego nazwa), to ten podany w parametrze nie zostanie dodany.
+Oznacza to, ¿e za jego zwolnienie odpowiada ten, kto go stworzy³. Trzeba zawsze sprawdziæ czy
+zwrócona wartoœæ jest tym samym co podaliœmy.
+
+@todo Nie mo¿e tak zostaæ, ¿e ktoœ dodaje materia³ i musi sprawdziæ czy nie dosta³ innego. Nie mo¿na
+te¿ zmuszaæ kogoœ do zwalniania pamiêci po materiale.
+
 @param[in] material Materia³, który ma zostaæ dodany
 @param[in] material_name Nazwa materia³u. Do materia³u bêdzie mo¿na siê odwo³aæ podaj¹c ci¹g znaków
 [nazwa_pliku]::[nazwa_materia³u]. Oznacza to, ¿e mog¹ istnieæ dwa takie same materia³y, poniewa¿ nie jest sprawdzana
 zawartoœæ, a jedynie nazwy.
 @return Zwraca wskaŸnik na dodany materia³.*/
-MaterialObject* ModelsManager::add_material( const MaterialObject* add_material, const std::wstring& material_name )
+MaterialObject* ModelsManager::add_material( MaterialObject* add_material, const std::wstring& material_name )
 {
 	MaterialObject* new_material = material.get( material_name );
 	if ( !new_material )
-	{
-		// Nie by³o materia³u, trzeba j¹ stworzyæ i dodaæ
-		new_material = new MaterialObject( add_material );
-
-		material.unsafe_add( material_name, new_material );	// Dodaliœmy teksturê
-	}
+		material.unsafe_add( material_name, add_material );	// Dodaliœmy materia³
 
 	return new_material;
 }

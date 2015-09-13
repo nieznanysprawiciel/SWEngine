@@ -7,6 +7,8 @@
 #include "../DX11Resources/DX11PixelShader.h"
 #include "../DX11Resources/DX11Texture.h"
 
+#include "Common/memory_leaks.h"
+
 /**@brief Klasa bêdzie renderowaæ w trybie immediate albo deferred.
 
 Je¿eli ustawiono flagê D3D11_CREATE_DEVICE_SINGLETHREADED, to nie wolno podaæ w parametrze
@@ -15,7 +17,7 @@ RendererUsage::USE_AS_DEFERRED.
 Mo¿na sprawdziæ czy klasa zosta³a zainicjowana poprawnie wywo³uj¹c funkcjê isValid.*/
 DX11Renderer::DX11Renderer( RendererUsage usage )
 {
-
+	m_usageType = usage;
 	if ( usage == RendererUsage::USE_AS_IMMEDIATE )
 	{
 		m_localDeviceContext = device_context;
@@ -234,7 +236,7 @@ void DX11Renderer::DrawIndexed( unsigned int indexCount, unsigned int startIndex
 @todo Polepszyæ, poprawiæ zmieniæ.*/
 void DX11Renderer::Present()
 {
-	begin_scene();
+	end_scene_and_present();
 }
 
 /**@brief Wyœwietla renderowan¹ scenê.
@@ -242,6 +244,6 @@ void DX11Renderer::Present()
 @todo Polepszyæ, poprawiæ zmieniæ. Powinno obs³ugiwaæ renderowanie natychmiastowe i synchronizacjê poziom¹ w parametrze.*/
 void DX11Renderer::BeginScene()
 {
-	end_scene_and_present();
+	begin_scene();
 }
 

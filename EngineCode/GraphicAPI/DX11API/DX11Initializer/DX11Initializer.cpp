@@ -2,6 +2,8 @@
 #include "../DX11Renderer/DX11Renderer.h"
 #include "DX11ConstantsMapper.h"
 
+#include "Common/memory_leaks.h"
+
 
 /**@brief Tworzy renderer zgodny z u¿ywanym API graficznym.
 

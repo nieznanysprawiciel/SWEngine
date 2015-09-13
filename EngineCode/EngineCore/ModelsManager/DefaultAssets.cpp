@@ -8,6 +8,8 @@
 #include "DefaultAssets.h"
 #include "GraphicAPI/ResourcesFactory.h"
 
+#include "Common/memory_leaks.h"
+
 
 InputLayoutDescriptor* DefaultAssets::LAYOUT_POSITION_NORMAL_COORD = nullptr;
 InputLayoutDescriptor* DefaultAssets::LAYOUT_POSITION_COORD = nullptr;
@@ -30,4 +32,11 @@ void DefaultAssets::Init()
 	LAYOUT_POSITION_COLOR = ResourcesFactory::CreateInputLayoutDescritor( L"::PositionColor" );
 	LAYOUT_POSITION_COLOR->AddRow( SEMANTIC_POSITION, ResourceFormat::RESOURCE_FORMAT_R32G32B32_FLOAT, 0, 0, false, 0 );
 	LAYOUT_POSITION_COLOR->AddRow( SEMANTIC_COLOR, ResourceFormat::RESOURCE_FORMAT_R32G32B32_FLOAT, 0, 12, false, 0 );
+}
+
+void DefaultAssets::Release()
+{
+	delete LAYOUT_POSITION_NORMAL_COORD;
+	delete LAYOUT_POSITION_COORD;
+	delete LAYOUT_POSITION_COLOR;
 }

@@ -95,6 +95,7 @@ Engine::~Engine()
 	delete ui_engine;			//sprz¹ta po directinpucie
 	delete models_manager;		//musi byæ kasowany na koñcu
 
+	DefaultAssets::Release();
 	m_graphicInitializer->ReleaseAPI();
 	delete m_graphicInitializer;
 }
