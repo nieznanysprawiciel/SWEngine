@@ -5,7 +5,7 @@
 
 @brief Plik zawiera deklaracjê klasy TimeManager do obs³ugi rzeczy zwi¹zanych z czasem.*/
 
-#include "Common/types_definitions.h"
+#include "Common/TypesDefinitions.h"
 
 /**@brief Klasa obs³uguje wszystko co zwi¹zane z czasem.
 

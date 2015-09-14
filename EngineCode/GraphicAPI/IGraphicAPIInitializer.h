@@ -8,7 +8,7 @@
 */
 
 #include "GraphicAPI/IRenderer.h"
-#include "Common/types_definitions.h"
+#include "Common/TypesDefinitions.h"
 
 #include <string>
 

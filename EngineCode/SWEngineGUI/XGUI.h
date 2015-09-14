@@ -2,13 +2,16 @@
 
 /**
 @file XGUI.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
 @brief Ten plik nale¿y za³¹czyæ w projekcie u¿ywaj¹cym biblioteki DirectXGUI.
 Zawiera podstawowe deklaracje.*/
 
 #include <DirectXMath.h>
-#include "FastDelegate.h"
+#include "FastDelegate/FastDelegate.h"
 #include "GUIEvent.h"
-#include "TypesDefinitions.h"
+#include "Common/TypesDefinitions.h"
 
 
 namespace XGUI
