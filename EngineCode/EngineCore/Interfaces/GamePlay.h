@@ -1,5 +1,9 @@
 #pragma once
-
+/**
+@file GamePlay.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+*/
 
 #include "EngineInterface.h"
 
