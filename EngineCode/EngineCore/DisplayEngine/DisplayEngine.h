@@ -8,9 +8,9 @@
 */
 
 
-#include "EngineCore/Interfaces/basic_interfaces.h"
+#include "EngineCore/Actors/ActorObjects.h"
 #include "ConstantBuffersFormat.h"
-#include "SkyDome.h"
+#include "EngineCore/Features/SkyDome.h"
 #include "GraphicAPI/IRenderer.h"
 
 void interpolate_position			( float time_lag, const DynamicObject* object, DirectX::XMVECTOR& result_vector );

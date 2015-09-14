@@ -1,10 +1,10 @@
 #include "EngineCore/stdafx.h"
 #include "ControllersEngine.h"
-#include "EngineCore/Engine.h"
-#include "EngineCore/Interfaces/basic_interfaces.h"
+#include "EngineCore/MainEngine/Engine.h"
+#include "EngineCore/Actors/ActorObjects.h"
 
 
-#include "Common\memory_leaks.h"
+#include "Common/memory_leaks.h"
 
 
 ControllersEngine::ControllersEngine(Engine* parent)

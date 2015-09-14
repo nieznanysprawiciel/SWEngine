@@ -9,8 +9,8 @@
 
 #ifdef __TEST
 
-#include "ControllersEngine/camera_controller_PROTOTYPE.h"
-#include "Features/HosekSkylightModel/HosekSkyDome.h"
+#include "EngineCore/ControllersEngine/camera_controller_PROTOTYPE.h"
+#include "EngineCore/Features/HosekSkylightModel/HosekSkyDome.h"
 
 void Engine::test()
 {

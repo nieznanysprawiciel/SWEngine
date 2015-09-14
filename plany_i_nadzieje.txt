@@ -17,7 +17,7 @@ ok	realizacja instancjonowania obiektów
 -	deffered shading
 -	renderowanie wieloprzebiegowe
 -	przewidwywanie czasu, w którym pojawi siê nastêpna klatka - synchronizacja z monitorem + dodanie pobierania czasu tu¿ przed interpolacj¹
--	robienie statystyk czasu poœwiêconego na liczenie poszczególnych czynnoœci silnika
+ok	robienie statystyk czasu poœwiêconego na liczenie poszczególnych czynnoœci silnika
 -	obiekty z³o¿one - dziecko dziedziczy ruch po rodzicu, mo¿liwoœæ ustawienia pivota (?)
 -	kompilowanie projektu pod WindowsPhone, WindowsStoreApp (je¿eli da siê to zrobiæ z minimalnymi przeróbkami)
 -	odtwarzanie dŸwiêków (Problemem jest sytuacja, w której odtwarzamy dŸwiêk w reakcji na uderzenie pocisku. Dostêp musi byæ
@@ -50,6 +50,7 @@ ok	DirectX 11
 ok	instancjonowanie obiektów w DirectX
 -	pomyœleæ czy nie da siê rozszerzyæ mo¿liwoœci kompilacji gier dla innych platform (xbox, playstation )
 -	pomyœleæ czy nie lepiej obs³ugiwaæ DirectInput w trybie buforowanym, zamiast dostêpu do ca³ej klawiatury
+-	pomyœleæ o Android NDK
 
 //====================================================================================//
 DirectXGUI

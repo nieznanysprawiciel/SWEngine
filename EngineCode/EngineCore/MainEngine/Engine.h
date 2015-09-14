@@ -6,19 +6,19 @@
 
 @brief Plik zawiera deklaracjê g³ównego obiektu silnika.*/
 
-#include "SW_engine.h"
-#include "Interfaces/basic_interfaces.h"
-#include "Interfaces/EngineInterface.h"
-#include "Events/Event.h"
-#include "CollisionEngine/CollisionEngine.h"
-#include "ControllersEngine/ControllersEngine.h"
-#include "FableEngine/FableEngine.h"
-#include "DisplayEngine/DisplayEngine.h"
-#include "ModelsManager/ModelsManager.h"
-#include "PhysicEngine/PhysicEngine.h"
-#include "PhysicEngine/MovementEngine.h"
-#include "SoundEngine/SoundEngine.h"
-#include "UI_Engine/UI_Engine.h"
+#include "EngineCore/SW_engine.h"
+#include "EngineCore/Actors/ActorObjects.h"
+#include "EngineCore/MainEngine/EngineInterface.h"
+#include "EngineCore/EventsManager/Event.h"
+#include "EngineCore/CollisionEngine/CollisionEngine.h"
+#include "EngineCore/ControllersEngine/ControllersEngine.h"
+#include "EngineCore/GamePlay/FableEngine.h"
+#include "EngineCore/DisplayEngine/DisplayEngine.h"
+#include "EngineCore/ModelsManager/ModelsManager.h"
+#include "EngineCore/PhysicEngine/PhysicEngine.h"
+#include "EngineCore/PhysicEngine/MovementEngine.h"
+#include "EngineCore/SoundEngine/SoundEngine.h"
+#include "EngineCore/UIEngine/UI_Engine.h"
 
 
 

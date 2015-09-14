@@ -1,6 +1,6 @@
 #include "EngineCore/stdafx.h"
 #include "ModelsManager.h"
-#include "EngineCore/Engine.h"
+#include "EngineCore/MainEngine/Engine.h"
 #include "Loaders/loader_interface.h"
 #include "Loaders/FBX_files_loader/FBX_loader.h"
 #include "Common/ObjectDeleter.h"

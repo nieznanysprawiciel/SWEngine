@@ -430,12 +430,13 @@
     <ClInclude Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.h" />
     <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\ConstantBuffersFormat.h" />
     <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.h" />
-    <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\SkyDome.h" />
-    <ClInclude Include="$(EngineCoreSourceDir)Engine.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorObjects.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\Features\SkyDome.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\Engine.h" />
     <ClInclude Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.h" />
-    <ClInclude Include="$(EngineCoreSourceDir)Events\Event.h" />
-    <ClInclude Include="$(EngineCoreSourceDir)FableEngine\ActorCreator.h" />
-    <ClInclude Include="$(EngineCoreSourceDir)FableEngine\FableEngine.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\Event.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\GamePlay\ActorCreator.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\GamePlay\FableEngine.h" />
     <ClInclude Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\ArHosekSkyModelData_RGB.h" />
     <ClInclude Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkyDome.h" />
     <ClInclude Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkyModel.h" />
@@ -446,11 +447,10 @@
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ResourceContainer.h" />
     <ClInclude Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.h" />
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h" />
-    <ClInclude Include="$(EngineCoreSourceDir)UI_Engine\InputAbstractionLayer.h" />
-    <ClInclude Include="$(EngineCoreSourceDir)UI_Engine\UI_Engine.h" />
-    <ClInclude Include="$(EngineCoreSourceDir)Interfaces\basic_interfaces.h" />
-    <ClInclude Include="$(EngineCoreSourceDir)Interfaces\EngineInterface.h" />
-    <ClInclude Include="$(EngineCoreSourceDir)Interfaces\GamePlay.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputAbstractionLayer.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\UI_Engine.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\Interfaces\EngineInterface.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\GamePlay\GamePlay.h" />
     <ClInclude Include="$(EngineCoreSourceDir)Resource.h" />
     <ClInclude Include="$(EngineCoreSourceDir)SW_engine.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\stdafx.h" />
@@ -470,18 +470,19 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.cpp" />
-    <ClCompile Include="$(EngineCoreSourceDir)Engine.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\ActorObjects.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Engine.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.cpp" />
-    <ClCompile Include="$(EngineCoreSourceDir)EngineInterface.cpp" />
-    <ClCompile Include="$(EngineCoreSourceDir)EngineWindowFunctions.cpp" />
-    <ClCompile Include="$(EngineCoreSourceDir)Events\Event.cpp">
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\EngineInterface.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\EngineWindowFunctions.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\EventsManager\Event.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EngineCore\stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_debug|Win32'">EngineCore\stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">EngineCore\stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='static_lib_release|Win32'">EngineCore\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)FableEngine\ActorCreator.cpp" />
-    <ClCompile Include="$(EngineCoreSourceDir)FableEngine\FableEngine.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\GamePlay\ActorCreator.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\GamePlay\FableEngine.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkyDome.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkylightModel.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)MainEngine\TimeManager.cpp" />
@@ -505,10 +506,9 @@
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.cpp" />
-    <ClCompile Include="$(EngineCoreSourceDir)UI_Engine\InputAbstractionLayer.cpp" />
-    <ClCompile Include="$(EngineCoreSourceDir)UI_Engine\UI_Engine.cpp" />
-    <ClCompile Include="$(EngineCoreSourceDir)UI_Engine\UI_Engine_AbstractionLayers.cpp" />
-    <ClCompile Include="$(EngineCoreSourceDir)Interfaces\basic_interfaces.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputAbstractionLayer.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\UI_Engine.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\UI_Engine_AbstractionLayers.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)SW_engine.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

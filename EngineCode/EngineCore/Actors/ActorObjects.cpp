@@ -3,13 +3,13 @@
 */
 
 #include "EngineCore/stdafx.h"
-#include "basic_interfaces.h"
-#include "EngineCore/Engine.h"
+#include "ActorObjects.h"
+#include "EngineCore/MainEngine/Engine.h"
 #include "GraphicAPI/IRenderer.h"
 #include "GraphicAPI/MeshResources.h"
 
 
-#include "Common\memory_leaks.h"
+#include "Common/memory_leaks.h"
 
 
 Engine* Object::engine = nullptr;		//po stworzeniu obiektu klasy Engine, zmienna ta jest uzupe³niana wskaxnikiem this

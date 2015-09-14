@@ -9,10 +9,10 @@ oraz g³ówne funkcje do renderingu.
 
 #include "EngineCore/stdafx.h"
 #include "Engine.h"
-#include "ControllersEngine/ControllersEngine.h"
+#include "EngineCore/ControllersEngine/ControllersEngine.h"
 #include "GraphicAPI/ResourcesFactory.h"
-#include "EngineHelpers/PerformanceCheck.h"
-#include "ModelsManager/ModelsManager.h"
+#include "EngineCore/EngineHelpers/PerformanceCheck.h"
+#include "EngineCore/ModelsManager/ModelsManager.h"
 
 #include "Common/memory_leaks.h"
 

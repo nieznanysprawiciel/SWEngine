@@ -1,5 +1,5 @@
 #include "EngineCore/stdafx.h"
-#include "Engine.h"
+#include "EngineCore/MainEngine/Engine.h"
 
 /**@file SW_engine.cpp
 @brief Plik zawiera funkcjê WinMain i instrukcje tworz¹ce obiekt silnika, inicjuj¹ce go

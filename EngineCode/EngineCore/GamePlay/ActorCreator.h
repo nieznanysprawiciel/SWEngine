@@ -1,7 +1,7 @@
 #pragma once
 
 #include "EngineCore/stdafx.h"
-#include "EngineCore/Interfaces/basic_interfaces.h"
+#include "EngineCore/Actors/ActorObjects.h"
 
 
 

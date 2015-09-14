@@ -8,7 +8,7 @@
 
 #include "EngineCore/stdafx.h"
 #include "DisplayEngine.h"
-#include "EngineCore/Engine.h"
+#include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/EngineHelpers/PerformanceCheck.h"
 #include "EngineCore/ModelsManager/ModelsManager.h"
 

@@ -4,7 +4,7 @@
 @brief Plik zawiera deklaracjê kontrolera przeznaczonego do kamery zgodnego z wartstw¹ anstrakcji
 PROTOTYPE.*/
 
-#include "EngineCore/Interfaces/basic_interfaces.h"
+#include "EngineCore/Actors/ActorObjects.h"
 
 
 /**@brief Kontroler kamery zgodny z wartw¹ abstrakcji PROTOTYPE.

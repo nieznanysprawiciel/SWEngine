@@ -4,7 +4,7 @@
 @brief Plik zawiera deklaracjê klasy HosekSkyDome, do wyœwietlania nieba
 u¿ywaj¹c modelu Hodeka i Wilkiego.*/
 
-#include "EngineCore/DisplayEngine/SkyDome.h"
+#include "EngineCore/Features/SkyDome.h"
 #include "HosekSkyModel.h"
 
 

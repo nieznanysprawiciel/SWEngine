@@ -5,7 +5,7 @@
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
-#include "EngineInterface.h"
+#include "EngineCore/MainEngine/EngineInterface.h"
 
 
 class GamePlay;
