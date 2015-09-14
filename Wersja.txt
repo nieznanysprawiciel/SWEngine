@@ -1,3 +1,17 @@
+Wersja 1.008
+14.09.2015	godz. 20.00
+-	Obs³uga myszki
+-	Ulepszona interpolacja i rendering opóŸniony wzglêdemwyliczonej klatki
+-	Niebezposrednie kasowanie zasobów silnika przez ModelsManagera
+-	Dodane interfejsy dla obiektów GUI
+-	Obs³uga czasu przeniesiona do TimeManager
+-	Nowa ulepszona wersja DX11_interfaces_container. Inicjowanie jedn¹ funkcj¹. Ustawianie deskryptorów.
+	W ostatecznej wersji z rozdzielonym rendererem nazwa zmieniona na DX11APIObjects
+-	Dodana mo¿liwoœæ badania wydajnoœci aplikacji
+-	Oddzielenie renderera, obiektów zasobów i inicjalizacji API graficznego od silnika. Stworzenie interfejsów wirtualnych
+	i przeniesienie do osobnych bibliotek linkowanych statycznie.
+-	Wstêpna zmiana ustawieñ projektu i struktury katalogów.
+
 Wersja 1.007
 13.03.2015	godz. 20:25
 -	Dodana interpolacja po³o¿enia kamery, co znacznie poprawia p³ynnoœæ animacji przy
