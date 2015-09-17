@@ -22,7 +22,7 @@
     <ProjectGuid>{C6DAB3EE-E9A7-47FC-9B33-A8F4250C219B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SWGUI</RootNamespace>
-    <ProjectName>SWEngineGUI</ProjectName>
+    <ProjectName>EngineGUI</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -59,32 +59,32 @@
     <Import Project="..\Props\DebugConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
     <Import Project="..\Props\IncludeExternal.props" />
-    <Import Project="SWEngineGUIPathMacros.props" />
-    <Import Project="SWEngineGUIConfiguration.props" />
+    <Import Project="EngineGUIPathMacros.props" />
+    <Import Project="EngineGUIConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\DebugConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
     <Import Project="..\Props\IncludeExternal.props" />
-    <Import Project="SWEngineGUIPathMacros.props" />
-    <Import Project="SWEngineGUIConfiguration.props" />
+    <Import Project="EngineGUIPathMacros.props" />
+    <Import Project="EngineGUIConfiguration.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\ReleaseConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
     <Import Project="..\Props\IncludeExternal.props" />
-    <Import Project="SWEngineGUIPathMacros.props" />
-    <Import Project="SWEngineGUIConfiguration.props" />
+    <Import Project="EngineGUIPathMacros.props" />
+    <Import Project="EngineGUIConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\ReleaseConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
     <Import Project="..\Props\IncludeExternal.props" />
-    <Import Project="SWEngineGUIPathMacros.props" />
-    <Import Project="SWEngineGUIConfiguration.props" />
+    <Import Project="EngineGUIPathMacros.props" />
+    <Import Project="EngineGUIConfiguration.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
@@ -158,27 +158,27 @@
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\Common\memory_leaks.h" />
     <ClInclude Include="..\..\EngineCode\Common\types_definitions.h" />
-    <ClInclude Include="..\..\EngineCode\SWEngineGUI\AbstractButton.h" />
-    <ClInclude Include="..\..\EngineCode\SWEngineGUI\AbstractItem.h" />
-    <ClInclude Include="..\..\EngineCode\SWEngineGUI\AbstractMenu.h" />
-    <ClInclude Include="..\..\EngineCode\SWEngineGUI\AbstractText.h" />
-    <ClInclude Include="..\..\EngineCode\SWEngineGUI\AbstractTextInput.h" />
-    <ClInclude Include="..\..\EngineCode\SWEngineGUI\AbstractTexturedRegion.h" />
-    <ClInclude Include="..\..\EngineCode\SWEngineGUI\AbstractWindow.h" />
-    <ClInclude Include="..\..\EngineCode\SWEngineGUI\GUIEvent.h" />
-    <ClInclude Include="..\..\EngineCode\SWEngineGUI\Renderer.h" />
-    <ClInclude Include="..\..\EngineCode\SWEngineGUI\targetver.h" />
-    <ClInclude Include="..\..\EngineCode\SWEngineGUI\XGUI.h" />
+    <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractButton.h" />
+    <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractItem.h" />
+    <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractMenu.h" />
+    <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractText.h" />
+    <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractTextInput.h" />
+    <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractTexturedRegion.h" />
+    <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractWindow.h" />
+    <ClInclude Include="..\..\EngineCode\EngineGUI\GUIEvent.h" />
+    <ClInclude Include="..\..\EngineCode\EngineGUI\Renderer.h" />
+    <ClInclude Include="..\..\EngineCode\EngineGUI\targetver.h" />
+    <ClInclude Include="..\..\EngineCode\EngineGUI\XGUI.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\EngineCode\SWEngineGUI\AbstractButton.cpp" />
-    <ClCompile Include="..\..\EngineCode\SWEngineGUI\AbstractItem.cpp" />
-    <ClCompile Include="..\..\EngineCode\SWEngineGUI\AbstractMenu.cpp" />
-    <ClCompile Include="..\..\EngineCode\SWEngineGUI\AbstractText.cpp" />
-    <ClCompile Include="..\..\EngineCode\SWEngineGUI\AbstractTextInput.cpp" />
-    <ClCompile Include="..\..\EngineCode\SWEngineGUI\AbstractTexturedRegion.cpp" />
-    <ClCompile Include="..\..\EngineCode\SWEngineGUI\AbstractWindow.cpp" />
-    <ClCompile Include="..\..\EngineCode\SWEngineGUI\Control.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineGUI\AbstractButton.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineGUI\AbstractItem.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineGUI\AbstractMenu.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineGUI\AbstractText.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineGUI\AbstractTextInput.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineGUI\AbstractTexturedRegion.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineGUI\AbstractWindow.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineGUI\Control.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

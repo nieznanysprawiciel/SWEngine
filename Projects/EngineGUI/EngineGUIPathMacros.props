@@ -2,10 +2,10 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
-    <SWEngineGUIName>SWEngineGUI</SWEngineGUIName>
+    <SWEngineGUIName>EngineGUI</SWEngineGUIName>
     <SWEngineGUILibDir>$(EngineLibDir)$(SWEngineGUIName)\</SWEngineGUILibDir>
     <SWEngineGUISourceDir>$(EngineSourceDir)$(SWEngineGUIName)\</SWEngineGUISourceDir>
-    <SWEngineGUIFileName>$(SWEngineGUIName)_$(Configuration)_$(PlatformShortName)</SWEngineGUIFileName>
+    <SWEngineGUIFileName>$(EngineShortcut)$(SWEngineGUIName)_$(Configuration)_$(PlatformShortName)</SWEngineGUIFileName>
     <SWEngineGUIBuildDir>$(EngineBuildDir)$(SWEngineGUIName)_$(Configuration)_$(PlatformShortName)\</SWEngineGUIBuildDir>
   </PropertyGroup>
   <PropertyGroup />

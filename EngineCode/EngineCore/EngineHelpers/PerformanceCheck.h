@@ -1,5 +1,9 @@
 #pragma once
-/**@file PerformanceCheck.h Zawiera deklaracjê klasy PerformanceCheck, która s³u¿y do pomiaru 
+/**@file PerformanceCheck.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
+Zawiera deklaracjê klasy PerformanceCheck, która s³u¿y do pomiaru 
 czasu zu¿ywanego na wykonanie wybranych zadañ.*/
 
 #include <string>
