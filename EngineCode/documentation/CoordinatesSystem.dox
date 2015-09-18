@@ -1,7 +1,0 @@
-/**
-@page CoordinatesSystem Uk³ad wspó³rzêdnych
-
-Podobnie jak directX, silnik u¿ywa lewoskrêtnego uk³adu wspó³rzêdnych. Oœ x skierowana jest w praw¹ stronê ekranu, oœ y w górê ekranu, a oœ z w kierunku ekranu.
-Domyœlne ustawienie kamery, która nie zosta³a przekszta³cona ¿adn¹ macierza widoku jest takie, ¿e z punktu ( 0, 0, 0 ) patrzy w g³¹b ekranu, czyli patrzy wzd³u¿ wektora ( 0, 0, 1 ). Kierunek do góry wyznaczony jest przez wektor ( 0, 1, 0 ).
-
-*/
