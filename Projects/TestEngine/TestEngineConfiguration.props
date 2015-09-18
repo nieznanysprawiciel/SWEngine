@@ -11,6 +11,9 @@
     <ClCompile>
       <AdditionalIncludeDirectories>$(EngineSourceDir)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <ProgramDatabaseFile>$(TestEngineBuildDir)$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup />
 </Project>
