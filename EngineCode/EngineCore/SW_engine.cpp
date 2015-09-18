@@ -1,4 +1,7 @@
 #include "EngineCore/stdafx.h"
+
+#ifndef _APPLICATION_
+
 #include "EngineCore/MainEngine/Engine.h"
 
 /**@file SW_engine.cpp
@@ -51,3 +54,4 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	return result;
 }
 
+#endif _APPLICATION_

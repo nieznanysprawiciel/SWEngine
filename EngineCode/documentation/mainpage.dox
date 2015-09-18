@@ -1,5 +1,5 @@
 /**
-@mainpage Dokumentacja silnika SW_engine
+@mainpage Dokumentacja silnika SWEngine
 
 # Spis Treœci
 
@@ -31,7 +31,7 @@
 		- Model3DFromFile
 		- ModelPart
 		- PixelShaderObject
-		- referenced_object
+		- ResourceObject
 		- ResourceContainer
 		- TextureObject
 		- VertexNormalTexCord1

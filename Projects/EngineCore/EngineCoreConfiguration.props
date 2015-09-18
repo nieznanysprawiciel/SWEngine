@@ -5,6 +5,7 @@
   <PropertyGroup>
     <IntDir>$(EngineCoreBuildDir)</IntDir>
     <TargetName>$(EngineCoreFileName)</TargetName>
+    <OutDir>$(EngineCoreLibDir)</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>

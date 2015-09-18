@@ -6,10 +6,15 @@
     <EngineCoreLibDir>$(EngineLibDir)$(EngineCoreName)\</EngineCoreLibDir>
     <EngineCoreSourceDir>$(EngineSourceDir)$(EngineCoreName)\</EngineCoreSourceDir>
     <EngineCoreFileName>$(EngineShortcut)$(EngineCoreName)_$(Configuration)_$(PlatformShortName)</EngineCoreFileName>
-    <EngineCoreBuildDir>$(EngineBuildDir)$(EngineShortcut)$(EngineCoreName)_$(Configuration)_$(PlatformShortName)\</EngineCoreBuildDir>
+    <EngineCoreBuildDir>$(EngineBuildDir)$(EngineCoreName)_$(Configuration)_$(PlatformShortName)\</EngineCoreBuildDir>
   </PropertyGroup>
   <PropertyGroup />
-  <ItemDefinitionGroup />
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalLibraryDirectories>$(EngineCoreLibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(EngineCoreFileName).lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <BuildMacro Include="EngineCoreName">
       <Value>$(EngineCoreName)</Value>

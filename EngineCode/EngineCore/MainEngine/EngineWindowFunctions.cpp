@@ -68,7 +68,18 @@ BOOL Engine::InitInstance(int nCmdShow)
 										NULL, NULL, instance_handler, NULL);
 
 	if (!window_handler)
+	{
+#ifdef _DEBUG
+		LPVOID messageBuffer;
+		DWORD error = GetLastError();
+		FormatMessage(	FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+						NULL, error, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+						(LPTSTR)&messageBuffer, 0, NULL );
+		OutputDebugString( (LPCTSTR)messageBuffer );
+		LocalFree( messageBuffer );
+#endif
 		return FALSE;
+	}
 
 	ShowWindow(window_handler, nCmdShow);
 	UpdateWindow(window_handler);
