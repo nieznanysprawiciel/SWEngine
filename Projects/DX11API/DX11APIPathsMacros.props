@@ -6,7 +6,7 @@
     <DX11APISourceDir>$(EngineSourceDir)GraphicAPI\$(DX11APIName)\</DX11APISourceDir>
     <DX11APILibDir>$(EngineLibDir)GraphicAPI\$(DX11APIName)\</DX11APILibDir>
     <DX11APIFileName>$(DX11APIName)_$(Configuration)_$(PlatformShortName)</DX11APIFileName>
-    <DX11APIBuildDir>$(EngineBuildDir)$(EngineShortcut)$(DX11APIName)_$(Configuration)_$(PlatformShortName)\</DX11APIBuildDir>
+    <DX11APIBuildDir>$(EngineBuildDir)$(DX11APIName)_$(Configuration)_$(PlatformShortName)\</DX11APIBuildDir>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup>
