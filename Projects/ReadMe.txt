@@ -128,6 +128,20 @@ Należy go zmodyfikować do swoich potrzeb.
 Dokumentacja jest dostępna online pod linkiem:
 http://nieznanysprawiciel.github.io/SWEngine/
 
+Istnieje specjalny branch gh-pages, który zawiera tylko i wyłącznie dokumentację
+w postaci html-ów.
+
+UWAGA!!!! Aby móc generować dokumentację do tego brancha, skolonowałem całe repo tak,
+żeby nowy folder .git znajdował się w katalogu Documentation/html/.
+Dzięki temu można będąc w branchu gh-pages generować dokumentację z plików projektowych.
+
+Ale przez taką strukturę należy też bardzo uważać co się gdzie commituje, pushuje i pulluje.
+Branch gh-pages nie ma prawa mieć nic oprócz dokumentacji, a pozstałe branche nie mają prawa
+mieć żadnego wygenerowanego przez doxygen pliku.
+
+Najlepiej jest WOGÓLE nic nie commitować, pushować ani pullować z tego brancha.
+
+
 7. Generowanie dokumentacji
 
 Dokumentacja jest generowana automatycznie na podstawie kodu źródłowego w komentarzach.
