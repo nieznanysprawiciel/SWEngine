@@ -30,7 +30,8 @@
 
 Zasoby s¹ silnie zale¿ne od u¿ywanej platformy sprzêtowej. W celu oddzielenia referencji do
 API graficznego od @ref EngineCore, wszystkie obiekty silnika u¿ywaj¹ jedynie klas bazowych, które
-s¹ implementowane przez poszczególne API graficzne.
+s¹ implementowane przez poszczególne API graficzne. Aby zobaczyæ konkretne implementacje tych klas
+zobacz @ref GraphicAPI.
 
 Zasoby nigdy nie s¹ tworzone bezpoœrednio. Zamiast tego u¿ywa siê klasy @ref ResourcesFactory, któr¹
 implementuje konkretne API graficzne.

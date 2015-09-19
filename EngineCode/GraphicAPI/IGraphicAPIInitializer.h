@@ -13,6 +13,7 @@
 #include <string>
 
 /**@defgroup GraphicAPI
+@ingroup ModulesStructure
 @brief Interfejsy dla obiektów zasobów, renderera i initializera.
 
 @EngineCore jest niezale¿ny od konkretnej implementacji API graficznego, która

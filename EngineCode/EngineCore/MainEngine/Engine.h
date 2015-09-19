@@ -30,6 +30,7 @@
 
 
 /**@defgroup EngineCore
+@ingroup ModulesStructure
 @brief Podstawowe funkcjonalnoœci silnika SWEnigne.*/
 
 /**@brief Enumeracja zawieraj¹ca identyfikatory dla poszczegolnych modu³ów silnika.*/

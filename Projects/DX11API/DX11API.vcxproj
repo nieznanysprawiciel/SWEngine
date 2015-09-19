@@ -164,9 +164,6 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\EngineCode\Common\macros_switches.h" />
     <ClInclude Include="..\..\EngineCode\Common\memory_leaks.h" />
     <ClInclude Include="..\..\EngineCode\Common\ObjectDeleter.h" />

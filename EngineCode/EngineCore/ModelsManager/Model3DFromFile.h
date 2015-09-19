@@ -19,9 +19,8 @@ typedef enum VERTEX_BUFFER_OFFSET
 };
 
 
-/** @brief Struktura tymczasowe dla klasy Model3DFromFile, u¿ywane podczas wype³niania
+/**@brief Struktura tymczasowe dla klasy Model3DFromFile, u¿ywane podczas wype³niania
 obiektu danymi. Struktura jest kasowana po zakonczeniu edycji.*/
-
 struct TMP_data
 {
 	VertexNormalTexCord1*		vertices_tab	= nullptr;
@@ -32,7 +31,7 @@ struct TMP_data
 	ModelPart					new_part;
 };
 
-/** @brief Struktura tymczasowe dla klasy Model3DFromFile, u¿ywane podczas wype³niania
+/**@brief Struktura tymczasowe dla klasy Model3DFromFile, u¿ywane podczas wype³niania
 obiektu danymi. Struktura jest kasowana po zakonczeniu edycji.*/
 struct EditTMP
 {
@@ -43,6 +42,7 @@ struct EditTMP
 
 /**
 @ingroup ResourcesManagment
+@ingroup Resources
 @brief Klasa s³u¿y do przechowywania danych modelu wczytanego z pliku.
 Dziêki temu po ponownym u¿yciu pliku dla innego obiektu, nie musimy wczytywaæ modelu ponownie.
 Plik(i model jednoczeœnie) mo¿e byæ identyfikowany po œcie¿ce do pliku lub unikalnym identyfikatorem.

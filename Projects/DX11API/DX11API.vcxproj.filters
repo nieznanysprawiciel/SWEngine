@@ -19,15 +19,6 @@
     <Filter Include="DX11API\DX11Initializer">
       <UniqueIdentifier>{b75d6c25-6aa4-49fc-a15b-0750b2dace7b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DX12API">
-      <UniqueIdentifier>{3e5a42f0-0f54-4471-b883-5141080c4397}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OpenGLAPI">
-      <UniqueIdentifier>{acdcde3a-dc79-41c0-98bc-76f98ddf1b4c}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IBuffer.h">

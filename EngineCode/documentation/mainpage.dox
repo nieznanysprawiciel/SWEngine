@@ -4,12 +4,8 @@
 # Spis Treœci
 
 <ul>
-	<li> Struktura projektu
-		<ol>
-		<li>@ref ProjectSettings
-		<li>@ref FoldersStructure
-		<li>@ref ModulesStructure
-		</ol>
+	<li> @ref ProjectStructure
+		@copydoc ProjectStructure
 	<li> @ref ThemeDescription
 		@copydoc ThemeDescription
 	<li> @ref BasicObjects
@@ -133,6 +129,15 @@
 	<li>PhysicEngine
 	<li>SoundEngine
 	<li>UI_Engine
+</ul>
+*/
+
+/**@page ProjectStructure Struktura projektu
+<ul>
+	<li>@ref LaunchInstruction
+	<li>@ref ProjectSettings
+	<li>@ref FolderStructure
+	<li>@ref ModulesStructure
 </ul>
 */
 
