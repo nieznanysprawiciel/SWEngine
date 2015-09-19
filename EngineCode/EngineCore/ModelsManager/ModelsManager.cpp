@@ -14,7 +14,7 @@
 //-------------------------------------------------------------------------------//
 
 ModelsManager::ModelsManager( Engine* engine )
-: engine( engine )
+: m_engine( engine )
 {
 	Model3DFromFile::models_manager = this;
 
@@ -286,17 +286,17 @@ zwrócona wartoœæ jest tym samym co podaliœmy.
 te¿ zmuszaæ kogoœ do zwalniania pamiêci po materiale.
 
 @param[in] material Materia³, który ma zostaæ dodany
-@param[in] material_name Nazwa materia³u. Do materia³u bêdzie mo¿na siê odwo³aæ podaj¹c ci¹g znaków
+@param[in] materialName Nazwa materia³u. Do materia³u bêdzie mo¿na siê odwo³aæ podaj¹c ci¹g znaków
 [nazwa_pliku]::[nazwa_materia³u]. Oznacza to, ¿e mog¹ istnieæ dwa takie same materia³y, poniewa¿ nie jest sprawdzana
 zawartoœæ, a jedynie nazwy.
 @return Zwraca wskaŸnik na dodany materia³.*/
-MaterialObject* ModelsManager::AddMaterial( MaterialObject* add_material, const std::wstring& material_name )
+MaterialObject* ModelsManager::AddMaterial( MaterialObject* addMaterial, const std::wstring& materialName )
 {
-	MaterialObject* new_material = m_material.get( material_name );
-	if ( !new_material )
-		m_material.unsafe_add( material_name, add_material );	// Dodaliœmy materia³
+	MaterialObject* newMaterial = m_material.get( materialName );
+	if ( !newMaterial )
+		m_material.unsafe_add( materialName, addMaterial );	// Dodaliœmy materia³
 
-	return new_material;
+	return newMaterial;
 }
 
 
@@ -305,20 +305,20 @@ MaterialObject* ModelsManager::AddMaterial( MaterialObject* add_material, const 
 W ka¿dym miejscu, gdzie zostanie przypisany zwrócony obiekt, nale¿y pamiêtaæ o dodaniu odwo³ania oraz
 skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 
-@param[in] file_name Nazwa pliku, w którym znajduje siê vertex shader.
-@param[in] shader_entry Nazwa funkcji od której ma siê zacz¹æ wykonywanie shadera.
+@param[in] fileName Nazwa pliku, w którym znajduje siê vertex shader.
+@param[in] shaderEntry Nazwa funkcji od której ma siê zacz¹æ wykonywanie shadera.
 @return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
-VertexShaderObject* ModelsManager::AddVertexShader( const std::wstring& file_name, const std::string& shader_entry )
+VertexShaderObject* ModelsManager::AddVertexShader( const std::wstring& fileName, const std::string& shaderEntry )
 {
-	VertexShaderObject* shader = m_vertexShader.get( file_name );
+	VertexShaderObject* shader = m_vertexShader.get( fileName );
 	if ( !shader )
 	{
 		// Nie by³o shadera, trzeba go stworzyæ i dodaæ
-		shader = ResourcesFactory::CreateVertexShaderFromFile( file_name, shader_entry );
+		shader = ResourcesFactory::CreateVertexShaderFromFile( fileName, shaderEntry );
 		if ( !shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 			return nullptr;
 
-		m_vertexShader.unsafe_add( file_name, shader );	// Dodaliœmy teksturê
+		m_vertexShader.unsafe_add( fileName, shader );	// Dodaliœmy teksturê
 	}
 
 	return shader;
@@ -335,25 +335,25 @@ do takich rzeczy dochodzi³o jak najrzadziej.
 W ka¿dym miejscu, gdzie zostanie przypisany zwrócony obiekt, nale¿y pamiêtaæ o dodaniu odwo³ania oraz
 skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 
-@param[in] file_name Nazwa pliku, w którym znajduje siê vertex shader.
-@param[in] shader_entry Nazwa funkcji od której ma siê zacz¹æ wykonywanie shadera.
+@param[in] fileName Nazwa pliku, w którym znajduje siê vertex shader.
+@param[in] shaderEntry Nazwa funkcji od której ma siê zacz¹æ wykonywanie shadera.
 @param[out] layout W zmiennej umieszczany jest wskaŸnik na layout wierzcho³ka. Nawet je¿eli shader siê nie skompilowa³, to pole mo¿e mieæ wartoœæ inn¹ ni¿ nullptr.
 Dzieje siê tak wtedy, gdy layout istnia³ ju¿ wczeœniej.
 @attention Je¿eli vertex shader wczeœniej istnia³, to stworzenie layoutu wymaga ponownego skompilowania shadera. Shader taki jest potem 
 kasowany i nie zostaje zdublowany w ModelsManagerze, ale niepotrzebna praca zostaje w³o¿ona. Jest wiêc zadaniem programisty, ¿eby
 do takich rzeczy dochodzi³o jak najrzadziej.
-@param[in] layout_desc Deskryptor opisujacy tworzony layout.
+@param[in] layoutDesc Deskryptor opisujacy tworzony layout.
 @return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
-VertexShaderObject* ModelsManager::AddVertexShader( const std::wstring& file_name,
-									   const std::string& shader_entry,
-									   ShaderInputLayoutObject** layout,
-									   InputLayoutDescriptor* layout_desc )
+VertexShaderObject* ModelsManager::AddVertexShader( const std::wstring& fileName,
+													const std::string& shaderEntry,
+													ShaderInputLayoutObject** layout,
+													InputLayoutDescriptor* layoutDesc )
 {
 	/// @todo Ten kod to jakiœ totalny shit. Jak komuœ siê bêdzie nudzi³o kiedyœ (ha ha), to mo¿e niech poprawi.
 	*layout = nullptr;
-	VertexShaderObject* shader = m_vertexShader.get( file_name );
+	VertexShaderObject* shader = m_vertexShader.get( fileName );
 	VertexShaderObject* newShader = nullptr;
-	ShaderInputLayoutObject* inputLayout = m_vertexLayout.get( layout_desc->GetName() );
+	ShaderInputLayoutObject* inputLayout = m_vertexLayout.get( layoutDesc->GetName() );
 
 
 	// Tworzymy potrzebne obiekty
@@ -361,14 +361,14 @@ VertexShaderObject* ModelsManager::AddVertexShader( const std::wstring& file_nam
 	{
 		// Tworzymy shader niezale¿nie czy istnieje. Inaczej nie moglibyœmy stworzyæ layoutu.
 		// Shader zostanie potem usuniêty.
-		newShader = ResourcesFactory::CreateVertexShaderFromFile( file_name, shader_entry, layout, layout_desc );
+		newShader = ResourcesFactory::CreateVertexShaderFromFile( fileName, shaderEntry, layout, layoutDesc );
 		if ( !newShader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 			return nullptr;		// layout te¿ jest nullptrem, nie trzeba siê martwiæ.
 	}
 	else if( !shader )
 	{
 		// Layout istnieje, ale shader nie.
-		newShader = ResourcesFactory::CreateVertexShaderFromFile( file_name, shader_entry );
+		newShader = ResourcesFactory::CreateVertexShaderFromFile( fileName, shaderEntry );
 		*layout = inputLayout;	// Je¿eli layout istnia³, to przepisujemy go na wyjœcie. Je¿eli nie to i tak bêdzie nullptr.
 		if ( !newShader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 			return nullptr;
@@ -383,7 +383,7 @@ VertexShaderObject* ModelsManager::AddVertexShader( const std::wstring& file_nam
 	if ( !shader )
 	{
 		// Nie by³o shadera, trzeba go dodaæ
-		m_vertexShader.unsafe_add( file_name, newShader );	// Dodaliœmy shader
+		m_vertexShader.unsafe_add( fileName, newShader );	// Dodaliœmy shader
 		shader = newShader;
 	}
 	else
@@ -393,7 +393,7 @@ VertexShaderObject* ModelsManager::AddVertexShader( const std::wstring& file_nam
 	}
 
 	if( !inputLayout )	// Layoutu nie by³o wczeœniej wiêc dodajemy.
-		m_vertexLayout.unsafe_add( layout_desc->GetName(), *layout );
+		m_vertexLayout.unsafe_add( layoutDesc->GetName(), *layout );
 
 	return shader;
 }
@@ -404,20 +404,20 @@ VertexShaderObject* ModelsManager::AddVertexShader( const std::wstring& file_nam
 W ka¿dym miejscu, gdzie zostanie przypisany zwrócony obiekt, nale¿y pamiêtaæ o dodaniu odwo³ania oraz
 skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 
-@param[in] file_name Nazwa pliku, w którym znajduje siê pixel shader.
-@param[in] shader_entry Nazwa funkcji od której ma siê zacz¹æ wykonywanie shadera.
+@param[in] fileName Nazwa pliku, w którym znajduje siê pixel shader.
+@param[in] shaderEntry Nazwa funkcji od której ma siê zacz¹æ wykonywanie shadera.
 @return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
-PixelShaderObject* ModelsManager::AddPixelShader( const std::wstring& file_name, const std::string& shader_entry )
+PixelShaderObject* ModelsManager::AddPixelShader( const std::wstring& fileName, const std::string& shaderEntry )
 {
-	PixelShaderObject* shader = m_pixelShader.get( file_name );
+	PixelShaderObject* shader = m_pixelShader.get( fileName );
 	if ( !shader )
 	{
 		// Nie by³o shadera, trzeba go stworzyæ i dodaæ
-		shader = ResourcesFactory::CreatePixelShaderFromFile( file_name, shader_entry );
+		shader = ResourcesFactory::CreatePixelShaderFromFile( fileName, shaderEntry );
 		if ( !shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 			return nullptr;
 
-		m_pixelShader.unsafe_add( file_name, shader );	// Dodaliœmy teksturê
+		m_pixelShader.unsafe_add( fileName, shader );	// Dodaliœmy teksturê
 	}
 
 	return shader;
@@ -428,21 +428,21 @@ PixelShaderObject* ModelsManager::AddPixelShader( const std::wstring& file_name,
 W ka¿dym miejscu, gdzie zostanie przypisany zwrócony obiekt, nale¿y pamiêtaæ o dodaniu odwo³ania oraz
 skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 
-@param[in] file_name Œcie¿ka do tekstury
+@param[in] fileName Œcie¿ka do tekstury
 
 @return Zwraca wskaŸnik na dodan¹ teksturê lub nullptr, je¿eli nie da³o siê wczytaæ.*/
-TextureObject* ModelsManager::AddTexture( const std::wstring& file_name )
+TextureObject* ModelsManager::AddTexture( const std::wstring& fileName )
 {
 
-	TextureObject* tex = m_texture.get( file_name );
+	TextureObject* tex = m_texture.get( fileName );
 	if ( !tex )
 	{
 		// Nie by³o tekstury, trzeba j¹ stworzyæ i dodaæ
-		tex = ResourcesFactory::CreateTextureFromFile( file_name );
+		tex = ResourcesFactory::CreateTextureFromFile( fileName );
 		if ( !tex )		// Tekstura mog³a mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 			return nullptr;
 
-		m_texture.unsafe_add( file_name, tex );	// Dodaliœmy teksturê
+		m_texture.unsafe_add( fileName, tex );	// Dodaliœmy teksturê
 	}
 
 	return tex;
@@ -461,21 +461,21 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 @return Dodany bufor wierzcho³ków. Zwraca nullptr, je¿eli nie uda³o siê stworzyæ bufora.*/
 BufferObject* ModelsManager::AddVertexBuffer( const std::wstring& name,
 												const void* buffer,
-												unsigned int element_size,
-												unsigned int vert_count )
+												unsigned int elementSize,
+												unsigned int vertCount )
 {
-	BufferObject* vertex_buff = m_vertexBuffer.get( name );
-	if ( vertex_buff )	// Je¿eli znaleŸliœmy bufor, to go zwracamy
-		return vertex_buff;
+	BufferObject* vertexBuff = m_vertexBuffer.get( name );
+	if ( vertexBuff )	// Je¿eli znaleŸliœmy bufor, to go zwracamy
+		return vertexBuff;
 
 	// Tworzymy obiekt bufora indeksów i go zapisujemy
-	vertex_buff = ResourcesFactory::CreateBufferFromMemory( buffer, element_size, vert_count, ResourceBinding::BIND_RESOURCE_VERTEX_BUFFER, ResourceUsage::RESOURCE_USAGE_DEFAULT );
-	if ( !vertex_buff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
+	vertexBuff = ResourcesFactory::CreateBufferFromMemory( buffer, elementSize, vertCount, ResourceBinding::BIND_RESOURCE_VERTEX_BUFFER, ResourceUsage::RESOURCE_USAGE_DEFAULT );
+	if ( !vertexBuff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 
-	m_vertexBuffer.unsafe_add( name, vertex_buff );	// Dodaliœmy bufor
+	m_vertexBuffer.unsafe_add( name, vertexBuff );	// Dodaliœmy bufor
 
-	return vertex_buff;
+	return vertexBuff;
 }
 
 /**@brief Dodaje do ModelsManagera bufor indeksów.
@@ -494,18 +494,18 @@ BufferObject* ModelsManager::AddIndexBuffer( const std::wstring& name,
 											   unsigned int elementSize,
 											   unsigned int vertCount )
 {
-	BufferObject* index_buff = m_indexBuffer.get( name );
-	if ( index_buff )	// Je¿eli znaleŸliœmy bufor, to go zwracamy
-		return index_buff;
+	BufferObject* indexBuff = m_indexBuffer.get( name );
+	if ( indexBuff )	// Je¿eli znaleŸliœmy bufor, to go zwracamy
+		return indexBuff;
 
 	// Tworzymy obiekt bufora indeksów i go zapisujemy
-	index_buff = ResourcesFactory::CreateBufferFromMemory( buffer, elementSize, vertCount, ResourceBinding::BIND_RESOURCE_INDEX_BUFFER, ResourceUsage::RESOURCE_USAGE_DEFAULT );
-	if ( !index_buff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
+	indexBuff = ResourcesFactory::CreateBufferFromMemory( buffer, elementSize, vertCount, ResourceBinding::BIND_RESOURCE_INDEX_BUFFER, ResourceUsage::RESOURCE_USAGE_DEFAULT );
+	if ( !indexBuff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 
-	m_indexBuffer.unsafe_add( name, index_buff );	// Dodaliœmy bufor
+	m_indexBuffer.unsafe_add( name, indexBuff );	// Dodaliœmy bufor
 
-	return index_buff;
+	return indexBuff;
 }
 
 /**@brief Dodaje do ModelsManagera bufor sta³ch dla shadera.

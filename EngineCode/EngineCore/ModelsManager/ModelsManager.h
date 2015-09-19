@@ -46,7 +46,7 @@ class ModelsManager
 {
 	friend Model3DFromFile;
 private:
-	Engine* engine;			///<WskaŸnik na obiekt g³ówny silnika
+	Engine* m_engine;			///<WskaŸnik na obiekt g³ówny silnika
 
 	ResourceContainer<VertexShaderObject>		m_vertexShader;		///<Vertex shadery.
 	ResourceContainer<PixelShaderObject>		m_pixelShader;		///<Pixel shadery.
@@ -78,7 +78,7 @@ public:
 
 	inline Model3DFromFile*			GetModel					( const std::wstring& name ) { return m_fileModel.get( name ); }	///<Zwraca model z pliku o podanej nazwie
 	TextureObject*					AddTexture					( const std::wstring& file_name );
-	MaterialObject*					AddMaterial					( MaterialObject* material, const std::wstring& material_name );
+	MaterialObject*					AddMaterial				( MaterialObject* material, const std::wstring& material_name );
 	VertexShaderObject*				AddVertexShader				( const std::wstring& file_name, const std::string& shader_entry );
 	VertexShaderObject*				AddVertexShader				( const std::wstring& file_name, const std::string& shader_entry, ShaderInputLayoutObject** layout, InputLayoutDescriptor* layout_desc );
 	PixelShaderObject*				AddPixelShader				( const std::wstring& file_name, const std::string& shader_entry );
