@@ -48,45 +48,45 @@ class ModelsManager
 private:
 	Engine* engine;			///<WskaŸnik na obiekt g³ówny silnika
 
-	ResourceContainer<VertexShaderObject>		vertex_shader;		///<Vertex shadery.
-	ResourceContainer<PixelShaderObject>		pixel_shader;		///<Pixel shadery.
-	ResourceContainer<TextureObject>			texture;			///<Tekstury.
-	ResourceContainer<BufferObject>				vertex_buffer;		///<Bufory wierzcho³ków.
-	ResourceContainer<BufferObject>				index_buffer;		///<Bufory indeksów.
-	ResourceContainer<BufferObject>				constant_buffer;	///<Bufory sta³ych dla shaderów.
-	ResourceContainer<MaterialObject>			material;			///<Materia³y.
-	ResourceContainer<ShaderInputLayoutObject>	vertexLayout;		///<Layouty dla róznych formatów wierzcho³ków.
-	// UWAGA! file_model musi byæ na koñcu. Jego destruktor kasuje odwo³ania do obiektów powy¿ej. Podobnie RenderTargetObject odwo³uje siê do tekstur.
+	ResourceContainer<VertexShaderObject>		m_vertexShader;		///<Vertex shadery.
+	ResourceContainer<PixelShaderObject>		m_pixelShader;		///<Pixel shadery.
+	ResourceContainer<TextureObject>			m_texture;			///<Tekstury.
+	ResourceContainer<BufferObject>				m_vertexBuffer;		///<Bufory wierzcho³ków.
+	ResourceContainer<BufferObject>				m_indexBuffer;		///<Bufory indeksów.
+	ResourceContainer<BufferObject>				m_constantBuffer;	///<Bufory sta³ych dla shaderów.
+	ResourceContainer<MaterialObject>			m_material;			///<Materia³y.
+	ResourceContainer<ShaderInputLayoutObject>	m_vertexLayout;		///<Layouty dla róznych formatów wierzcho³ków.
+	// UWAGA! m_fileModel musi byæ na koñcu. Jego destruktor kasuje odwo³ania do obiektów powy¿ej. Podobnie RenderTargetObject odwo³uje siê do tekstur.
 	// Musz¹ one w tym czasie istnieæ, a destruktory s¹ wywo³ywane w kolejnoœci odwrotnej do zadeklarowanej w klasie.
-	ResourceContainer<RenderTargetObject>		render_target;		///<Obiekty mog¹ce s³u¿yæ za render target.
-	ResourceContainer<Model3DFromFile>			file_model;			///<Obiekty modeli 3D z plików
+	ResourceContainer<RenderTargetObject>		m_renderTarget;		///<Obiekty mog¹ce s³u¿yæ za render target.
+	ResourceContainer<Model3DFromFile>			m_fileModel;		///<Obiekty modeli 3D z plików
 
 	/*loadery dla ró¿nych formatów plików z modelami*/
-	std::vector<ILoader*>						loader;				///<Loadery do plików z modelami 3D
+	std::vector<ILoader*>						m_loader;				///<Loadery do plików z modelami 3D
 
 public:
 	ModelsManager( Engine* engine );
 	~ModelsManager();
 
 	// Funkcje pomocnicze
-	VertexShaderObject*				find_best_vertex_shader		( TextureObject** textures );
-	PixelShaderObject*				find_best_pixel_shader		( TextureObject** textures );
+	VertexShaderObject*				FindBestVertexShader		( TextureObject** textures );
+	PixelShaderObject*				FindBestPixelShader			( TextureObject** textures );
 
 
 	// Funkcje do zarz¹dzania assetami
-	MODELS_MANAGER_RESULT			load_model_from_file		( const std::wstring& file );
+	MODELS_MANAGER_RESULT			LoadModelFromFile			( const std::wstring& file );
 
-	inline Model3DFromFile*			get_model					( const std::wstring& name ) { return file_model.get( name ); }	///<Zwraca model z pliku o podanej nazwie
-	TextureObject*					add_texture					( const std::wstring& file_name );
-	MaterialObject*					add_material				( MaterialObject* material, const std::wstring& material_name );
-	VertexShaderObject*				add_vertex_shader			( const std::wstring& file_name, const std::string& shader_entry );
-	VertexShaderObject*				add_vertex_shader			( const std::wstring& file_name, const std::string& shader_entry, ShaderInputLayoutObject** layout, InputLayoutDescriptor* layout_desc );
-	PixelShaderObject*				add_pixel_shader			( const std::wstring& file_name, const std::string& shader_entry );
-	BufferObject*					add_vertex_buffer			( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
-	BufferObject*					add_index_buffer			( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
+	inline Model3DFromFile*			GetModel					( const std::wstring& name ) { return m_fileModel.get( name ); }	///<Zwraca model z pliku o podanej nazwie
+	TextureObject*					AddTexture					( const std::wstring& file_name );
+	MaterialObject*					AddMaterial					( MaterialObject* material, const std::wstring& material_name );
+	VertexShaderObject*				AddVertexShader				( const std::wstring& file_name, const std::string& shader_entry );
+	VertexShaderObject*				AddVertexShader				( const std::wstring& file_name, const std::string& shader_entry, ShaderInputLayoutObject** layout, InputLayoutDescriptor* layout_desc );
+	PixelShaderObject*				AddPixelShader				( const std::wstring& file_name, const std::string& shader_entry );
+	BufferObject*					AddVertexBuffer				( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
+	BufferObject*					AddIndexBuffer				( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
 	BufferObject*					AddConstantsBuffer			( const std::wstring& name, const void* buffer, unsigned int size );
 private:
-	ILoader*						find_loader					( const std::wstring& path );
+	ILoader*						FindLoader					( const std::wstring& path );
 	
 
 #ifdef __TEST

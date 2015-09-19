@@ -20,7 +20,7 @@ ModelsManager::ModelsManager( Engine* engine )
 
 	//Loader plików FBX jest domyœlnym narzêdziem do wczytywania
 	FBX_loader* fbx_loader = new FBX_loader( this );
-	loader.push_back( fbx_loader );
+	m_loader.push_back( fbx_loader );
 }
 
 
@@ -28,8 +28,8 @@ ModelsManager::ModelsManager( Engine* engine )
 ModelsManager::~ModelsManager( )
 {
 	// Kasujemy obiekty do wczytywania danych
-	for ( unsigned int i = 0; i < loader.size(); ++i )
-		delete loader[i];
+	for ( unsigned int i = 0; i < m_loader.size(); ++i )
+		delete m_loader[i];
 }
 
 
@@ -148,21 +148,21 @@ void ModelsManager::test( )
 	part.mesh = new MeshPartObject;
 	part.mesh->vertices_count = 36;
 	part.material = material;
-	part.pixel_shader = pixel_shader.get( L"default_pixel_shader" );
-	part.vertex_shader = vertex_shader.get( L"default_vertex_shader" );
+	part.m_pixelShader = m_pixelShader.get( L"default_pixel_shader" );
+	part.m_vertexShader = m_vertexShader.get( L"default_vertex_shader" );
 
 	new_model->model_parts.push_back(part);*/
 
 
 
-	file_model.unsafe_add( L"skrzynia", new_model );
+	m_fileModel.unsafe_add( L"skrzynia", new_model );
 
 
-	load_model_from_file( L"tylko_do_testow/ARC.FBX" );
-	load_model_from_file( L"tylko_do_testow/moon/moon.FBX" );
-	load_model_from_file( L"tylko_do_testow/Nebulon/Nebulon.FBX" );
-	load_model_from_file( L"tylko_do_testow/VadersTIE.FBX" );
-	load_model_from_file( L"tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX" );
+	LoadModelFromFile( L"tylko_do_testow/ARC.FBX" );
+	LoadModelFromFile( L"tylko_do_testow/moon/moon.FBX" );
+	LoadModelFromFile( L"tylko_do_testow/Nebulon/Nebulon.FBX" );
+	LoadModelFromFile( L"tylko_do_testow/VadersTIE.FBX" );
+	LoadModelFromFile( L"tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX" );
 }
 #endif
 
@@ -182,10 +182,10 @@ lub nieobecnoœci tekstury w tablicy.
 
 @param[in] textures Tablica tekstur z obiektu ModelPart.
 @return Zwraca obiekt vertex shadera.*/
-VertexShaderObject* ModelsManager::find_best_vertex_shader( TextureObject** textures )
+VertexShaderObject* ModelsManager::FindBestVertexShader( TextureObject** textures )
 {
 	// Na razie nie mamy innych domyœlnych shaderów
-	return vertex_shader.get( DEFAULT_VERTEX_SHADER_STRING );
+	return m_vertexShader.get( DEFAULT_VERTEX_SHADER_STRING );
 }
 
 
@@ -200,17 +200,17 @@ lub nieobecnoœci tekstury w tablicy.
 
 @param[in] textures Tablica tekstur z obiektu ModelPart.
 @return Zwraca obiekt pixel shadera.*/
-PixelShaderObject* ModelsManager::find_best_pixel_shader( TextureObject** textures )
+PixelShaderObject* ModelsManager::FindBestPixelShader( TextureObject** textures )
 {
 	PixelShaderObject* return_shader = nullptr;
 
 	// Na razie nie ma innych tekstur ni¿ diffuse, wiêc algorytm nie jest skomplikowany
 	if ( textures[TEXTURES_TYPES::TEX_DIFFUSE] )
-		return_shader = pixel_shader.get( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH );
+		return_shader = m_pixelShader.get( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH );
 	
 	
 	if ( !return_shader )	// Je¿eli nadal jest nullptrem to dajemy mu domyœlny shader
-		return_shader = pixel_shader.get( DEFAULT_PIXEL_SHADER_STRING );
+		return_shader = m_pixelShader.get( DEFAULT_PIXEL_SHADER_STRING );
 
 	return return_shader;
 }
@@ -219,11 +219,11 @@ PixelShaderObject* ModelsManager::find_best_pixel_shader( TextureObject** textur
 /** @brief Znajduje Loader pasuj¹cy do pliku podanego w parametrze.
 @param[in] path Œcie¿ka do pliku, dla której szukamy loadera.
 @return WskaŸnik na odpowiedni loader lub nullptr, je¿eli nie znaleziono pasuj¹cego.*/
-ILoader* ModelsManager::find_loader( const std::wstring& path )
+ILoader* ModelsManager::FindLoader( const std::wstring& path )
 {
-	for ( unsigned int i = 0; i < loader.size( ); ++i )
-	if ( loader[i]->can_load( path ) )
-		return loader[i];
+	for ( unsigned int i = 0; i < m_loader.size( ); ++i )
+	if ( m_loader[i]->can_load( path ) )
+		return m_loader[i];
 	return nullptr;
 }
 
@@ -238,15 +238,15 @@ ILoader* ModelsManager::find_loader( const std::wstring& path )
 @param[in] file Plik do wczytania
 @return Jedna z wartoœci @ref MODELS_MANAGER_RESULT. Funkcja mo¿e zwróciæ @ref MODELS_MANAGER_RESULT::MODELS_MANAGER_OK,
 @ref MODELS_MANAGER_RESULT::MODELS_MANAGER_LOADER_NOT_FOUND lub @ref MODELS_MANAGER_RESULT::MODELS_MANAGER_CANNOT_LOAD.*/
-MODELS_MANAGER_RESULT ModelsManager::load_model_from_file( const std::wstring& file )
+MODELS_MANAGER_RESULT ModelsManager::LoadModelFromFile( const std::wstring& file )
 {
 	// Sprawdzamy czy plik nie zosta³ ju¿ wczytany
-	Model3DFromFile* new_model = file_model.get( file );
+	Model3DFromFile* new_model = m_fileModel.get( file );
 	if ( new_model != nullptr )
 		return MODELS_MANAGER_RESULT::MODELS_MANAGER_OK;	// Udajemy, ¿e wszystko posz³o dobrze
 
 	// Sprawdzamy, który loader potrafi otworzyæ plik
-	ILoader* loader = find_loader( file );
+	ILoader* loader = FindLoader( file );
 	if ( loader == nullptr )
 		return MODELS_MANAGER_RESULT::MODELS_MANAGER_LOADER_NOT_FOUND;		// ¯aden nie potrafi
 
@@ -266,7 +266,7 @@ MODELS_MANAGER_RESULT ModelsManager::load_model_from_file( const std::wstring& f
 	}
 
 	// Dodajemy model do tablic
-	file_model.unsafe_add( file, new_model );
+	m_fileModel.unsafe_add( file, new_model );
 
 	return MODELS_MANAGER_RESULT::MODELS_MANAGER_OK;
 }
@@ -290,11 +290,11 @@ te¿ zmuszaæ kogoœ do zwalniania pamiêci po materiale.
 [nazwa_pliku]::[nazwa_materia³u]. Oznacza to, ¿e mog¹ istnieæ dwa takie same materia³y, poniewa¿ nie jest sprawdzana
 zawartoœæ, a jedynie nazwy.
 @return Zwraca wskaŸnik na dodany materia³.*/
-MaterialObject* ModelsManager::add_material( MaterialObject* add_material, const std::wstring& material_name )
+MaterialObject* ModelsManager::AddMaterial( MaterialObject* add_material, const std::wstring& material_name )
 {
-	MaterialObject* new_material = material.get( material_name );
+	MaterialObject* new_material = m_material.get( material_name );
 	if ( !new_material )
-		material.unsafe_add( material_name, add_material );	// Dodaliœmy materia³
+		m_material.unsafe_add( material_name, add_material );	// Dodaliœmy materia³
 
 	return new_material;
 }
@@ -308,9 +308,9 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 @param[in] file_name Nazwa pliku, w którym znajduje siê vertex shader.
 @param[in] shader_entry Nazwa funkcji od której ma siê zacz¹æ wykonywanie shadera.
 @return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
-VertexShaderObject* ModelsManager::add_vertex_shader( const std::wstring& file_name, const std::string& shader_entry )
+VertexShaderObject* ModelsManager::AddVertexShader( const std::wstring& file_name, const std::string& shader_entry )
 {
-	VertexShaderObject* shader = vertex_shader.get( file_name );
+	VertexShaderObject* shader = m_vertexShader.get( file_name );
 	if ( !shader )
 	{
 		// Nie by³o shadera, trzeba go stworzyæ i dodaæ
@@ -318,7 +318,7 @@ VertexShaderObject* ModelsManager::add_vertex_shader( const std::wstring& file_n
 		if ( !shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 			return nullptr;
 
-		vertex_shader.unsafe_add( file_name, shader );	// Dodaliœmy teksturê
+		m_vertexShader.unsafe_add( file_name, shader );	// Dodaliœmy teksturê
 	}
 
 	return shader;
@@ -344,16 +344,16 @@ kasowany i nie zostaje zdublowany w ModelsManagerze, ale niepotrzebna praca zost
 do takich rzeczy dochodzi³o jak najrzadziej.
 @param[in] layout_desc Deskryptor opisujacy tworzony layout.
 @return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
-VertexShaderObject* ModelsManager::add_vertex_shader( const std::wstring& file_name,
+VertexShaderObject* ModelsManager::AddVertexShader( const std::wstring& file_name,
 									   const std::string& shader_entry,
 									   ShaderInputLayoutObject** layout,
 									   InputLayoutDescriptor* layout_desc )
 {
 	/// @todo Ten kod to jakiœ totalny shit. Jak komuœ siê bêdzie nudzi³o kiedyœ (ha ha), to mo¿e niech poprawi.
 	*layout = nullptr;
-	VertexShaderObject* shader = vertex_shader.get( file_name );
+	VertexShaderObject* shader = m_vertexShader.get( file_name );
 	VertexShaderObject* newShader = nullptr;
-	ShaderInputLayoutObject* inputLayout = vertexLayout.get( layout_desc->GetName() );
+	ShaderInputLayoutObject* inputLayout = m_vertexLayout.get( layout_desc->GetName() );
 
 
 	// Tworzymy potrzebne obiekty
@@ -383,7 +383,7 @@ VertexShaderObject* ModelsManager::add_vertex_shader( const std::wstring& file_n
 	if ( !shader )
 	{
 		// Nie by³o shadera, trzeba go dodaæ
-		vertex_shader.unsafe_add( file_name, newShader );	// Dodaliœmy shader
+		m_vertexShader.unsafe_add( file_name, newShader );	// Dodaliœmy shader
 		shader = newShader;
 	}
 	else
@@ -393,7 +393,7 @@ VertexShaderObject* ModelsManager::add_vertex_shader( const std::wstring& file_n
 	}
 
 	if( !inputLayout )	// Layoutu nie by³o wczeœniej wiêc dodajemy.
-		vertexLayout.unsafe_add( layout_desc->GetName(), *layout );
+		m_vertexLayout.unsafe_add( layout_desc->GetName(), *layout );
 
 	return shader;
 }
@@ -407,9 +407,9 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 @param[in] file_name Nazwa pliku, w którym znajduje siê pixel shader.
 @param[in] shader_entry Nazwa funkcji od której ma siê zacz¹æ wykonywanie shadera.
 @return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
-PixelShaderObject* ModelsManager::add_pixel_shader( const std::wstring& file_name, const std::string& shader_entry )
+PixelShaderObject* ModelsManager::AddPixelShader( const std::wstring& file_name, const std::string& shader_entry )
 {
-	PixelShaderObject* shader = pixel_shader.get( file_name );
+	PixelShaderObject* shader = m_pixelShader.get( file_name );
 	if ( !shader )
 	{
 		// Nie by³o shadera, trzeba go stworzyæ i dodaæ
@@ -417,7 +417,7 @@ PixelShaderObject* ModelsManager::add_pixel_shader( const std::wstring& file_nam
 		if ( !shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 			return nullptr;
 
-		pixel_shader.unsafe_add( file_name, shader );	// Dodaliœmy teksturê
+		m_pixelShader.unsafe_add( file_name, shader );	// Dodaliœmy teksturê
 	}
 
 	return shader;
@@ -431,10 +431,10 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 @param[in] file_name Œcie¿ka do tekstury
 
 @return Zwraca wskaŸnik na dodan¹ teksturê lub nullptr, je¿eli nie da³o siê wczytaæ.*/
-TextureObject* ModelsManager::add_texture( const std::wstring& file_name )
+TextureObject* ModelsManager::AddTexture( const std::wstring& file_name )
 {
 
-	TextureObject* tex = texture.get( file_name );
+	TextureObject* tex = m_texture.get( file_name );
 	if ( !tex )
 	{
 		// Nie by³o tekstury, trzeba j¹ stworzyæ i dodaæ
@@ -442,7 +442,7 @@ TextureObject* ModelsManager::add_texture( const std::wstring& file_name )
 		if ( !tex )		// Tekstura mog³a mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 			return nullptr;
 
-		texture.unsafe_add( file_name, tex );	// Dodaliœmy teksturê
+		m_texture.unsafe_add( file_name, tex );	// Dodaliœmy teksturê
 	}
 
 	return tex;
@@ -459,12 +459,12 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 @param[in] elementSize Rozmiar pojedynczego elementu w buforze.
 @param[in] vertCount Liczba wierzcho³ków/indeksów w buforze.
 @return Dodany bufor wierzcho³ków. Zwraca nullptr, je¿eli nie uda³o siê stworzyæ bufora.*/
-BufferObject* ModelsManager::add_vertex_buffer( const std::wstring& name,
+BufferObject* ModelsManager::AddVertexBuffer( const std::wstring& name,
 												const void* buffer,
 												unsigned int element_size,
 												unsigned int vert_count )
 {
-	BufferObject* vertex_buff = vertex_buffer.get( name );
+	BufferObject* vertex_buff = m_vertexBuffer.get( name );
 	if ( vertex_buff )	// Je¿eli znaleŸliœmy bufor, to go zwracamy
 		return vertex_buff;
 
@@ -473,7 +473,7 @@ BufferObject* ModelsManager::add_vertex_buffer( const std::wstring& name,
 	if ( !vertex_buff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 
-	vertex_buffer.unsafe_add( name, vertex_buff );	// Dodaliœmy bufor
+	m_vertexBuffer.unsafe_add( name, vertex_buff );	// Dodaliœmy bufor
 
 	return vertex_buff;
 }
@@ -489,12 +489,12 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 @param[in] elementSize Rozmiar pojedynczego elementu w buforze.
 @param[in] vertCount Liczba wierzcho³ków/indeksów w buforze.
 @return Dodany bufor indeksów. Zwraca nullptr, je¿eli nie uda³o siê stworzyæ bufora.*/
-BufferObject* ModelsManager::add_index_buffer( const std::wstring& name,
+BufferObject* ModelsManager::AddIndexBuffer( const std::wstring& name,
 											   const void* buffer,
 											   unsigned int elementSize,
 											   unsigned int vertCount )
 {
-	BufferObject* index_buff = index_buffer.get( name );
+	BufferObject* index_buff = m_indexBuffer.get( name );
 	if ( index_buff )	// Je¿eli znaleŸliœmy bufor, to go zwracamy
 		return index_buff;
 
@@ -503,7 +503,7 @@ BufferObject* ModelsManager::add_index_buffer( const std::wstring& name,
 	if ( !index_buff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 
-	index_buffer.unsafe_add( name, index_buff );	// Dodaliœmy bufor
+	m_indexBuffer.unsafe_add( name, index_buff );	// Dodaliœmy bufor
 
 	return index_buff;
 }
@@ -520,7 +520,7 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 @return Dodany bufor indeksów. Zwraca nullptr, je¿eli nie uda³o siê stworzyæ bufora.*/
 BufferObject* ModelsManager::AddConstantsBuffer( const std::wstring& name, const void* buffer, unsigned int size )
 {
-	BufferObject* constBuff = constant_buffer.get( name );
+	BufferObject* constBuff = m_constantBuffer.get( name );
 	if ( constBuff )	// Je¿eli znaleŸliœmy bufor, to go zwracamy
 		return constBuff;
 
@@ -528,7 +528,7 @@ BufferObject* ModelsManager::AddConstantsBuffer( const std::wstring& name, const
 	if ( !constBuff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 
-	constant_buffer.unsafe_add( name, constBuff );	// Dodaliœmy bufor
+	m_constantBuffer.unsafe_add( name, constBuff );	// Dodaliœmy bufor
 	return constBuff;
 }
 

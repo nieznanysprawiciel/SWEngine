@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="Common">
       <UniqueIdentifier>{f7a56bac-4e13-4ed8-b2c7-94e76cb1397b}</UniqueIdentifier>
     </Filter>
@@ -13,9 +10,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\Common\memory_leaks.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\types_definitions.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractButton.h">
@@ -50,6 +44,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineGUI\Renderer.h">
       <Filter>EngineGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

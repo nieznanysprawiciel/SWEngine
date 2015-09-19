@@ -153,11 +153,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\EngineCode\Common\memory_leaks.h" />
-    <ClInclude Include="..\..\EngineCode\Common\types_definitions.h" />
+    <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h" />
     <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractButton.h" />
     <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractItem.h" />
     <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractMenu.h" />

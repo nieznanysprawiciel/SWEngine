@@ -191,9 +191,6 @@
     <BuildLog />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)CollisionEngine\CollisionEngine.h" />
     <ClInclude Include="$(EngineCoreSourceDir)ControllersEngine\camera_controller_PROTOTYPE.h" />
     <ClInclude Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.h" />
@@ -227,7 +224,7 @@
     <ClInclude Include="..\..\EngineCode\Common\macros_switches.h" />
     <ClInclude Include="..\..\EngineCode\Common\memory_leaks.h" />
     <ClInclude Include="..\..\EngineCode\Common\ObjectDeleter.h" />
-    <ClInclude Include="..\..\EngineCode\Common\types_definitions.h" />
+    <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Model3DFromFile.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\MovementEngine.h" />

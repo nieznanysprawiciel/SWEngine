@@ -486,7 +486,7 @@ void FBX_loader::process_materials(FbxNode* node)
 			//Mo¿e byæ sytuacja, ¿e ktoœ zrobi³ dwa takie same materia³y, wtedy dostaniemy wskaŸnik na materia³,
 			//który ju¿ wczesniej istnia³. Generalnie ta sytuacja nam nie przeszkadza. Wa¿ne ¿e i tak musimy sobie
 			//zapisac parê materia³-MaterialObject, ¿eby móc siê potem odwo³ywaæ.
-			MaterialObject* material_object = models_manager->add_material(directXmaterial, id);
+			MaterialObject* material_object = models_manager->AddMaterial(directXmaterial, id);
 
 			//dodajemy powi¹zanie materia³u z odpowiadaj¹cym mu obiektem
 			add_pair(material_object, material);

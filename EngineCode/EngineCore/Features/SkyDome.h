@@ -114,7 +114,7 @@ protected:
 		if ( type > ENGINE_MAX_TEXTURES )
 			return;
 
-		auto tex = models_manager->add_texture( name );
+		auto tex = models_manager->AddTexture( name );
 		if ( !tex )
 			return;	// Zabezpieczenie przed nullptrem
 
@@ -138,7 +138,7 @@ protected:
 		if ( layout )	// Zwalniamy layout, je¿eli jakiœ by³
 			layout->delete_object_reference();
 
-		auto shader = models_manager->add_vertex_shader( file_name, shader_entry, &layout, layout_desc );
+		auto shader = models_manager->AddVertexShader( file_name, shader_entry, &layout, layout_desc );
 		if ( !shader )
 			return;	// Zabezpieczenie przed nullptrem
 		if ( !layout )
@@ -157,7 +157,7 @@ protected:
 	@param[in] shader_entry Nazwa funkcji shadera.*/
 	inline void set_pixel_shader( const std::wstring& file_name, const std::string& shader_entry )
 	{
-		auto shader = models_manager->add_pixel_shader( file_name, shader_entry );
+		auto shader = models_manager->AddPixelShader( file_name, shader_entry );
 		if ( !shader )
 			return;	// Zabezpieczenie przed nullptrem
 
@@ -174,7 +174,7 @@ protected:
 	@param[in] material_name Nazwa materia³u. Do materia³u bêdzie mo¿na siê odwo³aæ podaj¹c ci¹g znaków*/
 	inline void set_material( MaterialObject* mat, const std::wstring& name)
 	{
-		auto material = models_manager->add_material( mat, name );
+		auto material = models_manager->AddMaterial( mat, name );
 		if ( !material )
 			return;	// Zabezpieczenie przed nullptrem
 
@@ -193,7 +193,7 @@ protected:
 	@param[in] vert_count Liczba wierzcho³ków/indeksów w buforze.*/
 	inline void set_vertex_buffer( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count )
 	{
-		auto buff = models_manager->add_vertex_buffer( name, buffer, element_size, vert_count );
+		auto buff = models_manager->AddVertexBuffer( name, buffer, element_size, vert_count );
 		if ( !buff )
 			return;	// Zabezpieczenie przed nullptrem
 
@@ -212,7 +212,7 @@ protected:
 	@param[in] vert_count Liczba wierzcho³ków/indeksów w buforze.*/
 	inline void set_index_buffer( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count )
 	{
-		auto buff = models_manager->add_index_buffer( name, buffer, element_size, vert_count );
+		auto buff = models_manager->AddIndexBuffer( name, buffer, element_size, vert_count );
 		if ( !buff )
 			return;	// Zabezpieczenie przed nullptrem
 

@@ -21,12 +21,12 @@ void Engine::test()
 	const wchar_t TIE_FIGHTER[] = L"tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX";
 	const wchar_t IMPERIAL_STAR_DESTROYER[] = L"tylko_do_testow/ImperialStarDestroyer.FBX";
 
-	models_manager->load_model_from_file( CLONE_FIGHTER );
-	models_manager->load_model_from_file( MOON );
-	models_manager->load_model_from_file( NEBULON );
-	models_manager->load_model_from_file( VADER_TIE );
-	models_manager->load_model_from_file( TIE_FIGHTER );
-	//models_manager->load_model_from_file( IMPERIAL_STAR_DESTROYER );
+	models_manager->LoadModelFromFile( CLONE_FIGHTER );
+	models_manager->LoadModelFromFile( MOON );
+	models_manager->LoadModelFromFile( NEBULON );
+	models_manager->LoadModelFromFile( VADER_TIE );
+	models_manager->LoadModelFromFile( TIE_FIGHTER );
+	//models_manager->LoadModelFromFile( IMPERIAL_STAR_DESTROYER );
 	
 	//models_manager->test();			// Tu sie odbywa wczytywanie
 
@@ -35,7 +35,7 @@ void Engine::test()
 	XMVECTOR position = XMVectorSet( 4000.0, 0.0, 8000.0, 0.0 );
 	moon->teleport( position );
 
-	moon->set_model( models_manager->get_model( MOON ) );
+	moon->set_model( models_manager->GetModel( MOON ) );
 	moon->set_scale( 30.0 );
 
 	object_list.push_back( moon );
@@ -46,7 +46,7 @@ void Engine::test()
 	position = XMVectorSet( 400.0, 0.0, -6000.0, 0.0 );
 	nebulon->teleport( position );
 
-	nebulon->set_model( models_manager->get_model( NEBULON ) );
+	nebulon->set_model( models_manager->GetModel( NEBULON ) );
 	nebulon->set_scale( 1 );	//Nebulon ma Ÿle ustawiony pivot, wiêc jak siê przeskaluje to odleci gdzieœ w kosmos i go nie widaæ.
 
 	object_list.push_back( nebulon );
@@ -57,7 +57,7 @@ void Engine::test()
 	position = XMVectorSet( -400.0, 0.0, 800.0, 0.0 );
 	TIE->teleport( position );
 
-	TIE->set_model( models_manager->get_model( TIE_FIGHTER ) );
+	TIE->set_model( models_manager->GetModel( TIE_FIGHTER ) );
 	TIE->set_scale( 10 );
 
 	object_list.push_back( TIE );
@@ -69,7 +69,7 @@ void Engine::test()
 	position = XMVectorSet( -400.0, 0.0, -3000.0, 0.0 );
 	VaderTIE->teleport( position );
 
-	VaderTIE->set_model( models_manager->get_model( VADER_TIE ) );
+	VaderTIE->set_model( models_manager->GetModel( VADER_TIE ) );
 	//VaderTIE->set_scale( 1.0 );
 
 	object_list.push_back( VaderTIE );
@@ -92,7 +92,7 @@ void Engine::test()
 #endif
 	clone_fighter->set_rotation_speed( axis_angle );
 
-	clone_fighter->set_model( models_manager->get_model( CLONE_FIGHTER ) );
+	clone_fighter->set_model( models_manager->GetModel( CLONE_FIGHTER ) );
 
 	object_list.push_back( clone_fighter );
 	display_engine->add_dynamic_mesh_object( clone_fighter );
@@ -104,7 +104,7 @@ void Engine::test()
 	position = XMVectorSet( -4000.0, 0.0, -3000.0, 0.0 );
 	Imperial->set_position( position );
 
-	Imperial->set_model( models_manager->get_model( IMPERIAL_STAR_DESTROYER ) );
+	Imperial->set_model( models_manager->GetModel( IMPERIAL_STAR_DESTROYER ) );
 
 	object_list.push_back( Imperial );
 	display_engine->add_dynamic_mesh_object( Imperial );
@@ -128,7 +128,7 @@ void Engine::test()
 #endif
 	//skrzynia->set_rotation_speed( axis_angle2 );
 
-	Model3DFromFile* new_model = models_manager->get_model( L"skrzynia" );
+	Model3DFromFile* new_model = models_manager->GetModel( L"skrzynia" );
 	skrzynia->set_model( new_model );
 	//skrzynia->set_scale( 0.1 );
 

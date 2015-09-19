@@ -81,7 +81,7 @@ DisplayEngine bêdzie próbowa³ wyœwietliæ takiego mesha o liczbie wierzcho³ków ró
 program.
 
 Je¿eli dodane tekstury s¹ zgodne z domyœlnym przeznaczeniem (zdefiniowanym enumeracj¹ TEXTURES_TYPES), to nie ma potrzeby
-dodawania w³asnych shaderów. Funkcja ModelsManager::find_best_vertex_shader i ModelsManager::find_best_pixel_shader znajd¹
+dodawania w³asnych shaderów. Funkcja ModelsManager::FindBestVertexShader i ModelsManager::FindBestPixelShader znajd¹
 najlepiej pasuj¹cy shader do podanej tablicy tekstur.
 
 Je¿eli nie zostanie podany ¿aden materia³, ModelPart dostanie domyœlny materia³, który jest ustawiany przez funkcjê

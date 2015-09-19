@@ -182,6 +182,7 @@
     <ClCompile Include="..\..\EngineCode\TestEngine\stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\EngineCode\Common\SWEngineInclude.h" />
     <ClInclude Include="..\..\EngineCode\TestEngine\EntryPoint.h" />
     <ClInclude Include="..\..\EngineCode\TestEngine\GamePlayCode\EntryPointGamePlay.h" />
     <ClInclude Include="..\..\EngineCode\TestEngine\Resource.h" />

@@ -59,9 +59,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
       <Filter>EngineCore\SoundEngine</Filter>
     </ClInclude>
@@ -103,9 +100,6 @@
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)SW_engine.h">
       <Filter>EngineCore\MainEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\types_definitions.h">
-      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\macros_switches.h">
       <Filter>Common</Filter>
@@ -172,6 +166,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorObjects.h">
       <Filter>EngineCore\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

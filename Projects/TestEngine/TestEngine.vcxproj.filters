@@ -11,6 +11,9 @@
     <Filter Include="TestEngine\GamePlayCode">
       <UniqueIdentifier>{8dc035a7-f87d-439f-803d-ae9b2d4fe2de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{a62a7ed5-fc36-4281-9f8b-5583ba860141}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\TestEngine\EntryPoint.cpp">
@@ -38,6 +41,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\TestEngine\GamePlayCode\EntryPointGamePlay.h">
       <Filter>TestEngine\GamePlayCode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\SWEngineInclude.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

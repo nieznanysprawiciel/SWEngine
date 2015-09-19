@@ -182,7 +182,7 @@ unsigned int Model3DFromFile::add_texture( const std::wstring& file_name, TEXTUR
 	if ( type > ENGINE_MAX_TEXTURES )
 		return WRONG_ID;
 
-	TextureObject* texture = models_manager->add_texture( file_name );
+	TextureObject* texture = models_manager->AddTexture( file_name );
 	if( !texture )
 		return WRONG_ID;
 
@@ -211,13 +211,13 @@ unsigned int Model3DFromFile::add_material( const MaterialObject* material, cons
 	name += L"::";
 	name += material_name;
 
-	MaterialObject* new_material = models_manager->material.get( name );
+	MaterialObject* new_material = models_manager->m_material.get( name );
 	if ( !new_material )
 	{
 		// Nie by³o materia³u, trzeba j¹ stworzyæ i dodaæ
 		new_material = new MaterialObject( material );
 
-		models_manager->material.unsafe_add( name, new_material );	// Dodaliœmy teksturê
+		models_manager->m_material.unsafe_add( name, new_material );	// Dodaliœmy teksturê
 	}
 
 	// Teraz musimy dodaæ materia³ na odpowiednie miejsce w tablicy
@@ -240,7 +240,7 @@ i okreœla j¹ makro DEFAULT_VERTEX_SHADER_ENTRY.
 @return Indentyfikator obiektu.*/
 unsigned int Model3DFromFile::add_vertex_shader( const std::wstring& file_name )
 {
-	VertexShaderObject* vertex_shader = models_manager->add_vertex_shader( file_name, DEFAULT_VERTEX_SHADER_ENTRY );
+	VertexShaderObject* vertex_shader = models_manager->AddVertexShader( file_name, DEFAULT_VERTEX_SHADER_ENTRY );
 	if ( !vertex_shader )
 		return WRONG_ID;
 
@@ -263,7 +263,7 @@ i okreœla j¹ makro DEFAULT_PIXEL_SHADER_ENTRY.
 @return Indentyfikator obiektu.*/
 unsigned int Model3DFromFile::add_pixel_shader( const std::wstring& file_name )
 {
-	PixelShaderObject* pixel_shader = models_manager->add_pixel_shader( file_name, DEFAULT_PIXEL_SHADER_ENTRY );
+	PixelShaderObject* pixel_shader = models_manager->AddPixelShader( file_name, DEFAULT_PIXEL_SHADER_ENTRY );
 	if ( !pixel_shader )
 		return WRONG_ID;
 
@@ -416,7 +416,7 @@ void Model3DFromFile::EndEdit_vertex_buffer_processing( )
 		delete[] tmp_data->table[i]->vertices_tab;		// Tablica alokowana w add_vertex_buffer()
 	}
 	// Tworzymy obiekt bufora wierzcho³ków i go zapisujemy
-	vertex_buffer = models_manager->add_vertex_buffer( file_path, verticies, sizeof( VertexNormalTexCord1 ), vertex_buffer_length );
+	vertex_buffer = models_manager->AddVertexBuffer( file_path, verticies, sizeof( VertexNormalTexCord1 ), vertex_buffer_length );
 	vertex_buffer->add_file_reference( );		// Zaznaczamy, ¿e siê do niego odwo³ujemy
 	
 	
@@ -460,7 +460,7 @@ void Model3DFromFile::EndEdit_index_buffer_processing( )
 		// UWAGA!! Nie przypisujemy nullptra, bo chcemy wiedzieæ, ¿e jest bufor indeksów !!!!
 	}
 	// Tworzymy obiekt bufora indeksów i go zapisujemy
-	index_buffer = models_manager->add_index_buffer( file_path, indicies, sizeof( VERT_INDEX ), index_buffer_length );
+	index_buffer = models_manager->AddIndexBuffer( file_path, indicies, sizeof( VERT_INDEX ), index_buffer_length );
 	index_buffer->add_file_reference( );		// Zaznaczamy, ¿e siê do niego odwo³ujemy
 
 	delete[] indicies;							// Bufor by³ tylko tymczasowy
@@ -499,12 +499,12 @@ void Model3DFromFile::EndEdit_prepare_ModelPart( )
 
 		// Teraz trzeba dopisaæ shadery
 		if ( !part.pixel_shader )
-			part.pixel_shader = models_manager->find_best_pixel_shader( part.texture );
+			part.pixel_shader = models_manager->FindBestPixelShader( part.texture );
 		if ( !part.vertex_shader )
-			part.vertex_shader = models_manager->find_best_vertex_shader( part.texture );
+			part.vertex_shader = models_manager->FindBestVertexShader( part.texture );
 		// I materia³
 		if ( part.material == nullptr )
-			part.material = models_manager->material.get( DEFAULT_MATERIAL_STRING );
+			part.material = models_manager->m_material.get( DEFAULT_MATERIAL_STRING );
 	}
 
 }
