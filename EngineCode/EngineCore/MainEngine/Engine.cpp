@@ -331,11 +331,11 @@ void Engine::send_event(Event* new_event)
 /**@brief Funkcja wczytuj¹ca startowy level do silnika. Najczêœciej na tym etapie wczytuje siê tylko menu,
 oraz wszytkie elementy, które s¹ przydatne na ka¿dym etapie gry.
 
-Zawartoœæ klasy GamePlay powinna byæ jak najmniejsza, poniewa¿ wszystkie te rzeczy s¹ wczytywane
+Zawartoœæ klasy IGamePlay powinna byæ jak najmniejsza, poniewa¿ wszystkie te rzeczy s¹ wczytywane
 zanim cokolwiek pojawi siê na ekranie. Z tego wzglêdu lepiej najpierw wczytaæ ma³o, ¿eby u¿ytkownik
 ju¿ coœ zobaczy³, a potem dopiero wczytaæ resztê wyœwietlaj¹c jednoczeœnie pasek wczytywania.
 
-Funkcja nie jest dostêpna w EngineInterface. S³u¿y do wczytania tylko pierwszej klasy GamePlay
+Funkcja nie jest dostêpna w EngineInterface. S³u¿y do wczytania tylko pierwszej klasy IGamePlay
 jaka istnieje, na póŸniejszych etapach gry robi siê to innymi funkcjami.
 
 Level siê nie wczyta, je¿eli nie zainicjowano DirectXa. Funkcje tworz¹ce bufory, textury
@@ -343,8 +343,8 @@ i tym podobne rzeczy wymagaj¹ zainicjowanego kontekstu urz¹dzenia DirectX, dlate
 na wszelki wypadek zawsze inicjalizacja powinna byæ wczeœniej.
 
 @param[in] game_play Obiekt do wczytania, jako pocz¹tek gry.
-@see GamePlay*/
-void Engine::set_entry_point( GamePlay* game_play )
+@see IGamePlay*/
+void Engine::set_entry_point( IGamePlay* game_play )
 {
 	if ( m_engineReady )
 	{
@@ -369,7 +369,7 @@ void Engine::set_entry_point( const std::wstring dll_name )
 
 	if ( dll_entry_point != NULL )
 	{
-		GamePlay* game_play;
+		IGamePlay* game_play;
 
 
 		if ( directX_ready )

@@ -11,6 +11,7 @@
 class ModelsManager;
 
 /**@brief Klasa ze statycznymi funkcjami do tworzenia obiektów assetów.
+@ingroup GraphicAPI
 
 Jest potrzebna, ¿eby wybraæ implementacjê resourców zgodn¹ z typem renderera.
 Ka¿de API graficzne powinno zaimplementowaæ tê klasê.

@@ -1,6 +1,5 @@
 #pragma once
-
-/**@file loader_interface.h
+/**@file ILoader.h
 @author nieznanysprawiciel
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 
@@ -9,6 +8,13 @@
 
 #include "GraphicAPI/MeshResources.h"
 #include "EngineCore/ModelsManager/ModelsManager.h"
+
+
+/**@defgroup MakingLoaders Pisanie loaderów
+@brief Instrukcje jak napisaæ loader do wczytywania w³asnego formatu plików z modelami 3D.
+@ingroup ResourcesManagment
+
+@todo Napisaæ dokumentacjê.*/
 
 /**@brief Wartoœci, mo¿liwe do zwrócenia przez klasê Loader
 */
@@ -20,7 +26,9 @@ enum LOADER_RESULT
 	MESH_LOADING_WRONG_FILE_FORMAT	///<Niepoprawny format pliku
 };
 
-/**@brief Interfejs klasy do wczytywania plików z modelami.
+/**
+@ingroup MakingLoaders
+@brief Interfejs klasy do wczytywania plików z modelami.
 Aby stworzyæ klasê do wczytywania w³asnego formatu plików nale¿y odziedziczyæ po tym interfejsie
 i zaimplementowaæ metody wirtualne.
 

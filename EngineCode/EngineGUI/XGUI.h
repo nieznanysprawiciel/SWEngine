@@ -20,6 +20,11 @@ namespace XGUI
 	class Root;
 	class Renderer;
 
+
+	/**@defgroup EngineGUI
+	@brief Modu³ s³u¿¹cy do renderowania interfejsu graficznego u¿ytkownika.*/
+
+
 	/**@typedef fastdelegate::FastDelegate1<GUIEvent*> XGUIEventDelegate
 	@brief Definicja delegata u¿ywanego przez XGUI.
 

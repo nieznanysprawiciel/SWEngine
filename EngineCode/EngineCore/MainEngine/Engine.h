@@ -29,7 +29,8 @@
 #define		NUM_OF_MODULES			9
 
 
-
+/**@defgroup EngineCore
+@brief Podstawowe funkcjonalnoœci silnika SWEnigne.*/
 
 /**@brief Enumeracja zawieraj¹ca identyfikatory dla poszczegolnych modu³ów silnika.*/
 typedef enum
@@ -117,7 +118,7 @@ public:
 	//event functions
 	void							send_event				(Event* new_event);
 
-	void							set_entry_point			( GamePlay* game_play );
+	void							set_entry_point			( IGamePlay* game_play );
 	void							set_entry_point			( const std::wstring dll_name );
 
 #ifdef __TEST

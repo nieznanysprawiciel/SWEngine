@@ -1,6 +1,4 @@
 #pragma once
-
-
 /**@file FBX_loader.h
 @author nieznanysprawiciel
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
@@ -18,12 +16,13 @@ wczytana jest traktowana jakby by³a dla kana³u diffuse.
 To trzeba kiedyœ zmieniæ, aby po pierwsze optymalniej wykorzystywaæ silnik, a po
 drugie, ¿eby wykorzystywaæ wszystkie jego mo¿liwoœci.*/
 
-#include "EngineCore/ModelsManager/Loaders/loader_interface.h"
+#include "EngineCore/ModelsManager/Loaders/ILoader.h"
 #include "fbxsdk.h"
 
 using namespace DirectX;
 
-/**@brief Klasa s³u¿y do wczytywania plików w formacie Autodesk FBX.*/
+/**@brief Klasa s³u¿y do wczytywania plików w formacie Autodesk FBX.
+@ingroup MakingLoaders*/
 class FBX_loader	:	public ILoader
 {
 private:

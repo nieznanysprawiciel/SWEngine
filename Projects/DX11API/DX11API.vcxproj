@@ -170,7 +170,7 @@
     <ClInclude Include="..\..\EngineCode\Common\macros_switches.h" />
     <ClInclude Include="..\..\EngineCode\Common\memory_leaks.h" />
     <ClInclude Include="..\..\EngineCode\Common\ObjectDeleter.h" />
-    <ClInclude Include="..\..\EngineCode\Common\types_definitions.h" />
+    <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11APIObjects.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11ConstantsMapper.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11Initializer.h" />

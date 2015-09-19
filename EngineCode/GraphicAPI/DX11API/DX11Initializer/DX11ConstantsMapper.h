@@ -9,6 +9,9 @@ extern DXGI_FORMAT							DX11ResourceFormat[ 133 ];
 extern D3D_PRIMITIVE_TOPOLOGY				DX11PrimitiveTopology[ 9 ];
 extern D3D11_BIND_FLAG						DX11REsourceBinding[ 10 ];
 
+
+/**@brief Klasa s³u¿y do mapowania sta³ych z wartoœci silnikowych do DirectX 11.
+@ingroup DX11API*/
 class DX11ConstantsMapper
 {
 private:

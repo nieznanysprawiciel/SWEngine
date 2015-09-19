@@ -6,6 +6,8 @@
 #include <vector>
 
 
+/**@brief Deskryptor layoutu dla DirectX 11.
+@ingroup DX11API*/
 class DX11InputLayoutDescriptor : public InputLayoutDescriptor
 {
 private:

@@ -1,7 +1,7 @@
 #pragma once
 #include "EngineCore/stdafx.h"
 #include "EngineCore/EventsManager/Event.h"
-#include "EngineCore/GamePlay/GamePlay.h"
+#include "EngineCore/GamePlay/IGamePlay.h"
 
 
 class Engine;
@@ -13,12 +13,12 @@ class FableEngine
 	friend Engine;
 private:
 	Engine*						engine;
-	GamePlay*					game_play;
+	IGamePlay*					game_play;
 
 	//kolejka eventów
 	std::queue<Event*>			events_queue;
 
-	//GamePlay - tablica obs³ugi Eventów
+	//IGamePlay - tablica obs³ugi Eventów
 	std::vector<EventDelegate>	event_delegates;
 	unsigned int				delegates_count;
 
@@ -35,6 +35,6 @@ protected:		//u¿ytkownik nie mo¿e dotykaæ
 	void proceed_fable(float time_interval);
 	void proceed_events( float time_interval );
 
-	inline void set_game_play( GamePlay* gameplay ) { game_play = gameplay; }	//tylko dla Engine
+	inline void set_game_play( IGamePlay* gameplay ) { game_play = gameplay; }	//tylko dla Engine
 };
 

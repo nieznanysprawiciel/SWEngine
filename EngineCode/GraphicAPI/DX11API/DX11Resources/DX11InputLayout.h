@@ -8,7 +8,8 @@
 #include "GraphicAPI/MeshResources.h"
 #include "../DX11Initializer/DX11APIObjects.h"
 
-
+/**@brief Implementacja layout w DirectX 11.
+@ingroup DX11API*/
 class DX11InputLayout : public ShaderInputLayoutObject, public DX11APIObjects
 {
 private:

@@ -3,94 +3,136 @@
 
 # Spis Treœci
 
-- Przewodnik dla u¿ytkowników
-- Dokumentacja dla twórców
-	- Opis tematyczny
-		- @ref Events
-		- @ref EngineInit
-		- @ref GUI
-		- @ref CameraView
-		- @ref Controllers
-		- @ref Input
-		- @ref ObjectInterpolation
-		- @ref MainLoop
-		- @ref MakingLoaders
-		- @ref ObjectPipeline
-		- @ref GUIRender
-		- @ref selfDrawingObjects
-		- @ref SceneRender
-		- @ref CoordinatesSystem
-	- Podstawowe obiekty i struktury danych
-		- BufferObject
-		- event_mapping
-		- InputAbstractionLayer
-		- InputAbstractionLayer_base
-		- input_mapping
-		- MaterialObject
-		- MeshPartObject
-		- Model3DFromFile
-		- ModelPart
-		- PixelShaderObject
-		- ResourceObject
-		- ResourceContainer
-		- TextureObject
-		- VertexNormalTexCord1
-		- VertexShaderObject
-		- VertexTexCord1
-	- Klasy predefiniowane
-		- camera_controller_PROTOTYPE
-	- Klasy bazowe dla obiektów predefiniowanych
-		- AnimationObject
-		- BaseAIController
-		- BaseInputController
-		- CameraObject
-		- CollisionObject
-		- Complex_object
-		- Controller
-		- DynamicMeshObject
-		- DynamicObject
-		- Event
-		- Instanced_mesh
-		- Object
-		- PhysicalObject
-		- StaticObject
-		- Trigger_object
-	- Interfejsy
-		- engine_interface
-		- GamePlay
-		- Loader
-		- SkyDome
-	- Modu³y silnika
-		- CollisionEngine
-		- ControllersEngine
-		- DisplayEngine
-		- Engine
-		- FableEngine
-		- ModelsManager
-		- MovementEngine
-		- PhysicEngine
-		- SoundEngine
-		- UI_Engine
-	- Sta³e i makrodefinicje
-		- @ref __UNUSED
-		- @ref EVENT_TYPE
-		- @ref FIXED_MOVE_UPDATE_INTERVAL
-		- @ref FRAMES_PER_SEC_UPDATE
-		- @ref LOADER_RESULT
-		- @ref MODELS_MANAGER_RESULT
-		- @ref Modules
-		- @ref SHOW_MEMORY_LEAKS
-		- @ref STANDARD_ABSTRACTION_LAYER
-		- @ref STANDARD_ABSTRACTION_LAYER_COUNT
-		- @ref TEXTURES_TYPES
-		- @ref WRONG_ID
-		- @ref WRONG_MATERIAL_ID
-		- @ref WRONG_MESH_ID
-		- @ref WRONG_MODEL_FILE_ID
-		- @ref WRONG_TEXTURE_ID
-
-
-
-
-
+<ul>
+	<li> Struktura projektu
+		<ol>
+		<li>@ref ProjectSettings
+		<li>@ref FoldersStructure
+		<li>@ref ModulesStructure
+		</ol>
+	<li> @ref ThemeDescription
+		@copydoc ThemeDescription
+	<li> @ref BasicObjects
+		@copydoc BasicObjects
+	<li> @ref PredefinedClasses
+		@copydoc PredefinedClasses
+	<li> @ref BaseEngineObjects
+		@copydoc BaseEngineObjects
+	<li> @ref MainInterfaces
+		@copydoc MainInterfaces
+	<li> @ref EngineCoreModules
+		@copydoc EngineCoreModules
+	<li> @ref ConstantsMacros
+		@copydoc ConstantsMacros
+</ul>
 */
+
+
+/**@page ThemeDescription Opis tematyczny
+<ul>
+	<li>@ref Events
+	<li>@ref EngineInit
+	<li>@ref GUI
+	<li>@ref CameraView
+	<li>@ref Controllers
+	<li>@ref Input
+	<li>@ref ObjectInterpolation
+	<li>@ref MainLoop
+	<li>@ref MakingLoaders
+	<li>@ref ObjectPipeline
+	<li>@ref GUIRender
+	<li>@ref selfDrawingObjects
+	<li>@ref SceneRender
+	<li>@ref CoordinatesSystem
+	<li>@ref ResourcesManagment
+</ul>
+*/
+
+/**@page ConstantsMacros Sta³e i makrodefinicje
+<ul>
+	<li>@ref __UNUSED
+	<li>@ref EVENT_TYPE
+	<li>@ref FIXED_MOVE_UPDATE_INTERVAL
+	<li>@ref FRAMES_PER_SEC_UPDATE
+	<li>@ref LOADER_RESULT
+	<li>@ref MODELS_MANAGER_RESULT
+	<li>@ref Modules
+	<li>@ref SHOW_MEMORY_LEAKS
+	<li>@ref STANDARD_ABSTRACTION_LAYER
+	<li>@ref STANDARD_ABSTRACTION_LAYER_COUNT
+	<li>@ref TEXTURES_TYPES
+	<li>@ref WRONG_ID
+</ul>
+*/
+
+/**@page MainInterfaces Interfejsy
+<ul>
+	<li>EngineInterface
+	<li>GamePlay
+	<li>ILoader
+	<li>SkyDome
+</ul>
+*/
+
+/**@page BaseEngineObjects Klasy bazowe dla obiektów predefiniowanych
+<ul>
+	<li>AnimationObject
+	<li>BaseAIController
+	<li>BaseInputController
+	<li>CameraObject
+	<li>CollisionObject
+	<li>ComplexObject
+	<li>Controller
+	<li>DynamicMeshObject
+	<li>DynamicObject
+	<li>Event
+	<li>InstancedMesh
+	<li>Object
+	<li>PhysicalObject
+	<li>StaticObject
+	<li>TriggerObject
+</ul>
+*/
+
+/**@page PredefinedClasses Klasy predefiniowane
+<ul>
+	<li>camera_controller_PROTOTYPE
+</ul>
+*/
+
+/**@page BasicObjects Podstawowe obiekty i struktury danych
+<ul>
+	<li>BufferObject
+	<li>event_mapping
+	<li>InputAbstractionLayer
+	<li>InputAbstractionLayer_base
+	<li>input_mapping
+	<li>MaterialObject
+	<li>MeshPartObject
+	<li>Model3DFromFile
+	<li>ModelPart
+	<li>PixelShaderObject
+	<li>ResourceObject
+	<li>ResourceContainer
+	<li>TextureObject
+	<li>VertexNormalTexCord1
+	<li>VertexShaderObject
+	<li>VertexTexCord1
+</ul>
+*/
+
+/**@page EngineCoreModules Modu³y EngineCore
+<ul>
+	<li>CollisionEngine
+	<li>ControllersEngine
+	<li>DisplayEngine
+	<li>Engine
+	<li>FableEngine
+	<li>ModelsManager
+	<li>MovementEngine
+	<li>PhysicEngine
+	<li>SoundEngine
+	<li>UI_Engine
+</ul>
+*/
+

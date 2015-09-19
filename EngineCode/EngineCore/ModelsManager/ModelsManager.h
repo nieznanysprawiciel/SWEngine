@@ -15,6 +15,17 @@ class Engine;
 class ILoader;
 
 
+/**@defgroup ResourcesManagment Zarz¹dzenie zasobami
+@ingroup EngineCore
+@brief Zarz¹dzanie zasobami jak vertex i pixel shadery, bufory, tekstury, materia³y, render targety i modele z plików.
+
+Do zarz¹dzania zasobami s³u¿y klasa @ref ModelsManager. Przechowuje ona wszystkie zasoby i jako jedyna ma prawo
+do kasowania posiadanych przez siebie obiektów. Wszystkie operacje typu wczytywanie zasobów odbywaj¹ siê
+poprzez wywo³anie odpowiednich funkcji tej klasy.
+
+@ref ModelsManager posiada tablicê loaderów (@ref ILoader), które s³u¿¹ do wczytywania plików z modelami.
+Modele wczytane z plików umieszczane i przechowywane s¹ w klasie @ref Model3DFromFile.
+*/
 
 
 //-------------------------------------------------------------------------------//
@@ -30,7 +41,9 @@ typedef enum MODELS_MANAGER_RESULT
 };
 
 
-/**@brief Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dŸwiêków, które raczej
+/**
+@ingroup ResourcesManagment
+@brief Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dŸwiêków, które raczej
 zostan¹ oddelegowane w inne miejsce).
 
 Zasoby s¹ identyfikowane jednoznacznym identyfikatorem, który jest unikalny

@@ -80,7 +80,7 @@ protected:
 protected:
 	~EngineInterface(){};
 
-	//FableEngine - ta klasa jest dostêpna bezpoœrednio z GamePlay
+	//FableEngine - ta klasa jest dostêpna bezpoœrednio z IGamePlay
 
 public:
 

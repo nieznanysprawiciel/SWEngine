@@ -16,7 +16,11 @@
   <PropertyGroup>
     <_PropertySheetDisplayName>PathsMacros</_PropertySheetDisplayName>
   </PropertyGroup>
-  <ItemDefinitionGroup />
+  <ItemDefinitionGroup>
+    <Link>
+      <Version>1.008</Version>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <BuildMacro Include="EngineShortcut">
       <Value>$(EngineShortcut)</Value>

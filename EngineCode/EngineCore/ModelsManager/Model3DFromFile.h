@@ -41,7 +41,9 @@ struct EditTMP
 	int			table_length	= 20;
 };
 
-/** @brief Klasa s³u¿y do przechowywania danych modelu wczytanego z pliku.
+/**
+@ingroup ResourcesManagment
+@brief Klasa s³u¿y do przechowywania danych modelu wczytanego z pliku.
 Dziêki temu po ponownym u¿yciu pliku dla innego obiektu, nie musimy wczytywaæ modelu ponownie.
 Plik(i model jednoczeœnie) mo¿e byæ identyfikowany po œcie¿ce do pliku lub unikalnym identyfikatorem.
 

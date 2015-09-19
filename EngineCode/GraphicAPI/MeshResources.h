@@ -1,6 +1,6 @@
 #pragma once
 /**
-@file ResourcesFactory.h
+@file MeshResources.h
 @author nieznanysprawiciel
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 
@@ -22,14 +22,21 @@
 
 //definicje
 #define WRONG_ID						0
-#define WRONG_MODEL_FILE_ID				WRONG_ID
-#define WRONG_MESH_ID					WRONG_ID
-#define WRONG_TEXTURE_ID				WRONG_ID
-#define WRONG_MATERIAL_ID				WRONG_ID
-
 /// \def WRONG_ID B³êdny identyfikator assetu w klasie referenced_obbject
 
+/**@defgroup Resources Zasoby
+@ingroup ResourcesManagment
+@brief Klasy zasobów przechowywanych przez silnik.
 
+Zasoby s¹ silnie zale¿ne od u¿ywanej platformy sprzêtowej. W celu oddzielenia referencji do
+API graficznego od @ref EngineCore, wszystkie obiekty silnika u¿ywaj¹ jedynie klas bazowych, które
+s¹ implementowane przez poszczególne API graficzne.
+
+Zasoby nigdy nie s¹ tworzone bezpoœrednio. Zamiast tego u¿ywa siê klasy @ref ResourcesFactory, któr¹
+implementuje konkretne API graficzne.
+
+Poniewa¿ zasoby mog¹ byæ wspó³dzielone przez wiele obiektów w silniku, istnieje mechanizm zliczania
+odwo³añ do obiektów implementowany przez klasê @ref ResourceObject.*/
 
 class ModelsManager;
 struct ModelPart;
@@ -58,11 +65,11 @@ typedef UINT32 VERT_INDEX;
 
 
 
-/** \brief Indeksy tekstur w tablicy ModelPart.
+/**@brief Indeksy tekstur w tablicy ModelPart.
 
 S¹ to wartoœci domyœlne u¿ywane przez wbudowane shadery.
 W przypadku w³asnorêcznie pisanych shaderów nie trzeba siê trzymaæ tych sta³ych.*/
-typedef enum TEXTURES_TYPES
+enum TEXTURES_TYPES
 {
 #if ENGINE_MAX_TEXTURES > 0
 	TEX_DIFFUSE			///<Tekstura dla kana³u diffuse
@@ -89,13 +96,15 @@ typedef enum TEXTURES_TYPES
 	, TEX_OTHER2		///<Tekstura o dowolnym znaczeniu
 #endif
 
-} TEXTURES_TYPES;
+};
 
 
 
 
 
 /** @brief Struktura opisuje pojedyncz¹ cz¹stkê mesha o jednym materiale, teksturze i shaderach.
+@ingroup Resources
+@ingroup GraphicAPI
 
 W zale¿noœci od zawartoœci pola index_buffer w strukturze ModelPart, mesh jest wyœwietlany w trybie
 indeksowanym lub nie.
@@ -133,6 +142,8 @@ struct MeshPartObject : public ResourceObject
 };
 
 /** @brief Struktura opisuj¹ca pojedyncz¹ czêœæ mesha gotow¹ do wyœwietlenia.
+@ingroup Resources
+@ingroup GraphicAPI
 
 Meshe s¹ przechowywane w czêœciach, poniewa¿ do ró¿nych wierzcho³ków mog¹ byæ przypisane ró¿ne
 materia³y, tekstury i inne elementy. Ta struktura zawiera wskaŸniki na te elementy.
@@ -193,6 +204,8 @@ struct ModelPart
 
 
 /** @brief Klasa przechowuj¹ca tekstury.
+@ingroup Resources
+@ingroup GraphicAPI
 
 Klasa bazowa, która bêdzie u¿ywana przez obiekty silnika.
 Powinny po niej odziedziczyæ obiekty konkretnego API graficznego,
@@ -218,6 +231,8 @@ public:
 
 
 /**Klasa dla render targetów.
+@ingroup Resources
+@ingroup GraphicAPI
 
 Klasa jest jednoczeœnie tekstur¹. Umo¿liwia pobranie tekstury i ustawienie
 jej do odczytu dla shadera.*/
@@ -236,7 +251,9 @@ public:
 };
 
 /**@brief Klasa przechowuje layout wierzcho³ka trafiaj¹cego do
-vertex shadera.*/
+vertex shadera.
+@ingroup Resources
+@ingroup GraphicAPI*/
 class ShaderInputLayoutObject : public IShaderInputLayout
 {
 	friend ObjectDeleter<ShaderInputLayoutObject>;
@@ -248,7 +265,9 @@ public:
 };
 
 /**@brief Klasa przechowuje opis layoutu wierzcho³ka, na podstawie którego
-tworzony jest obiekt layoutu.*/
+tworzony jest obiekt layoutu.
+@ingroup Resources
+@ingroup GraphicAPI*/
 class InputLayoutDescriptor
 {
 private:
@@ -264,7 +283,9 @@ public:
 };
 
 
-/** @brief Klasa przechowuj¹ca vertex shader*/
+/** @brief Klasa przechowuj¹ca vertex shader.
+@ingroup Resources
+@ingroup GraphicAPI*/
 class VertexShaderObject : public IShader
 {
 	friend ObjectDeleter<VertexShaderObject>;
@@ -279,7 +300,9 @@ public:
 	//											 InputLayoutDescriptor* layout_desc, const char* shader_model = "vs_4_0" );
 };
 
-/**@brief Klasa przechowuj¹ca pixel shader*/
+/**@brief Klasa przechowuj¹ca pixel shader.
+@ingroup Resources
+@ingroup GraphicAPI*/
 class PixelShaderObject : public IShader
 {
 	friend ObjectDeleter<PixelShaderObject>;
@@ -292,7 +315,9 @@ public:
 	//static PixelShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name, const char* shader_model = "ps_4_0" );
 };
 
-/**@brief Klasa przechowuj¹ca compute shader*/
+/**@brief Klasa przechowuj¹ca compute shader
+@ingroup Resources
+@ingroup GraphicAPI*/
 class ComputeShaderObject : public IShader
 {
 	friend ObjectDeleter<PixelShaderObject>;
@@ -307,7 +332,9 @@ public:
 
 
 
-/** \brief Obiekt opakowuj¹cy bufor.
+/**@brief Obiekt opakowuj¹cy bufor.
+@ingroup Resources
+@ingroup GraphicAPI
 
 Bufor mo¿e byæ zarówno buforem wierzcho³ków, indeksów jak i sta³ych.
 */
@@ -337,6 +364,8 @@ public:
 
 
 /**@brief Struktura przechowuj¹ca materia³.
+@ingroup Resources
+@ingroup GraphicAPI
 
 DirectX 11 nie ma w³asnych obiektów na materia³y, poniewa¿ nie ma ju¿ domyœlnego
 potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisaæ shader i dostarcza

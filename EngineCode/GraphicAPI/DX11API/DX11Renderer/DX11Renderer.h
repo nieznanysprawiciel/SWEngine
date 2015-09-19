@@ -18,7 +18,8 @@ typedef DX11Renderer Renderer;
 
 
 
-/**@brief Renderer obs³uguj¹cy DirectX 11.*/
+/**@brief Renderer obs³uguj¹cy DirectX 11.
+@ingroup DX11API*/
 class DX11Renderer	: public IRenderer,	public DX11AuxiliaryObjects
 {
 private:

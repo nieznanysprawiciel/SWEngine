@@ -9,11 +9,12 @@ do zliczania odwo³añ do obiektu.*/
 
 
 /**@brief Klasa u³atwiaj¹ca zarz¹dzanie odwo³aniami do assetów.
+@ingroup GraphicAPI
 *
 *Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagaj¹ jakiegoœ systemu zapewniaj¹cego wspó³dzielenie miêdzy innymi obiektami.
 *
 *Do ka¿dego pojedynczego obiektu mog¹ istnieæ wilokrotne odwo³ania w klasie Model3DFromFile,
-*a tak¿e w obiektach dziedzicz¹cych po Dynamic_mesh_object.
+*a tak¿e w obiektach dziedzicz¹cych po @ref DynamicMeshObject.
 *Z tego wzglêdu istniej¹ zmienne file_references i object_references.
 *Pierwsza okreœla, ile razy wystêpuj¹ odwo³ania do obiektu w klasie Model3DFromFile.
 *(uwaga: nie zliczamy, ile klas siê odwo³uje. Je¿eli w klasie pojawiaj¹ siê 3 odwo³ania, to licz¹ siê jako 3. Taka konwencja

@@ -1,13 +1,13 @@
 /*To jest szablon g³ównego pliku projektu SW_engine.
 Zawiera funkcjê winmain, w której nastêpuje stworzenie obiektu g³ównego silnika,
-inicjalizacja DirectX, DirectInput oraz podanie klasy GamePlay, któr¹ silnik
+inicjalizacja DirectX, DirectInput oraz podanie klasy IGamePlay, któr¹ silnik
 ma wczytaæ na pocz¹tku.
 
 Nastêpnie jest wywo³ywana g³ówna pêtla silnika.
 Pêtla komunikatów Windowsa jest obs³ugiwana wewn¹trz tej funkcji.
 
 Ten plik nie powinien byæ modyfikowany. Jedyna zmiana jakiej mo¿na dokonaæ,
-to podanie innego obiektu GamePlay.
+to podanie innego obiektu IGamePlay.
 
 Ca³y kod gry powinien znajdowaæ siê w innych plikach.*/
 

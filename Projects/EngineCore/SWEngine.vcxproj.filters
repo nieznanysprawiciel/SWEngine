@@ -128,9 +128,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.h">
       <Filter>EngineCore\ModelsManagment</Filter>
     </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\loader_interface.h">
-      <Filter>EngineCore\ModelsManagment\Loaders</Filter>
-    </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.h">
       <Filter>EngineCore\ModelsManagment\Loaders</Filter>
     </ClInclude>
@@ -158,9 +155,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\GamePlay\FableEngine.h">
       <Filter>EngineCore\GamePlay</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\GamePlay\GamePlay.h">
-      <Filter>EngineCore\GamePlay</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\Features\SkyDome.h">
       <Filter>EngineCore\Features</Filter>
     </ClInclude>
@@ -169,6 +163,12 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\ILoader.h">
+      <Filter>EngineCore\ModelsManagment\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\GamePlay\IGamePlay.h">
+      <Filter>EngineCore\GamePlay</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

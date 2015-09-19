@@ -11,7 +11,8 @@
 #include <map>
 
 
-/**@brief Szablon klasy do przechowywania assetów.
+/**
+@brief Szablon klasy do przechowywania assetów.
 
 Wszystkie assety s¹ identyfikowane po nazwie, która najczêœciej jest nazw¹ pliku, z którego asset
 pochodzi. Mapa zapewnia logarytmiczny czas dostêpu po nazwie. Istnieje te¿ mo¿liwoœæ odwo³ania siê

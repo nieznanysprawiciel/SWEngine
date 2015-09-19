@@ -8,15 +8,21 @@
 
 #include "GraphicAPI/MeshResources.h"
 
+/**@brief Sposób u¿ycia renderera.
+
+Renderer mo¿e wysy³aæ polecenia na kartê graficzn¹ od razu lub
+zamiast tego tworzyc kolejkê komunikatów i wysy³aæ dopiero kiedy wszystko bêdzie przygotowane.
+Ta druga opcja umo¿liwia renderowanie wielow¹tkowe.*/
 enum RendererUsage
 {
-	USE_AS_DEFERRED,
-	USE_AS_IMMEDIATE
+	USE_AS_DEFERRED,			///<Renderowanie do kolejki rozkazów.
+	USE_AS_IMMEDIATE			///<Renderowanie natychmiastowe
 };
 
 
 
-/**Klasa Renderera.*/
+/**@brief Klasa interfejsu renderera.
+@ingroup GraphicAPI*/
 class IRenderer
 {
 private:
