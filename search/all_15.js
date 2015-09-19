@@ -1,6 +1,7 @@
 var searchData=
 [
   ['układ_20współrzędnych',['Układ współrzędnych',['../_coordinates_system.html',1,'']]],
+  ['usuwanie_20zasobów_20silnika',['Usuwanie zasobów silnika',['../group___deleting_objects.html',1,'']]],
   ['ui_5fengine',['UI_Engine',['../class_u_i___engine.html',1,'UI_Engine'],['../class_engine_interface.html#adc3fc8d70a1d9b6770dfba033b5b4f37',1,'EngineInterface::ui_engine()']]],
   ['unique_5fid',['unique_id',['../class_resource_object.html#ade3721ff932982674e8ee157a30b6493',1,'ResourceObject']]],
   ['unsafe_5fadd',['unsafe_add',['../class_resource_container.html#a7a78b450f1e6458341f0b2a51698784a',1,'ResourceContainer']]],
@@ -14,5 +15,7 @@ var searchData=
   ['update_5fvertex_5fbuffer',['update_vertex_buffer',['../class_sky_dome.html#af011c5a6f464823210bec63b2fb6f276',1,'SkyDome']]],
   ['updatesubresource',['UpdateSubresource',['../class_d_x11_renderer.html#a3bc908f890415764195e67a4b4854e74',1,'DX11Renderer']]],
   ['updatetimelag',['updateTimeLag',['../class_time_manager.html#aeeac4ee3aa45503f0a1b5650337202b0',1,'TimeManager']]],
+  ['use_5fas_5fdeferred',['USE_AS_DEFERRED',['../_i_renderer_8h.html#a638079122796f5eb96dac10b81adf650ad6701dbd766f77bb610540d9b59b9c01',1,'IRenderer.h']]],
+  ['use_5fas_5fimmediate',['USE_AS_IMMEDIATE',['../_i_renderer_8h.html#a638079122796f5eb96dac10b81adf650aa7f4b1c5be397e3eb3262482ca1fae15',1,'IRenderer.h']]],
   ['use_5findex_5fbuf',['use_index_buf',['../struct_mesh_part_object.html#ad5b5b3a06d59f0cd57ec4ed68d013864',1,'MeshPartObject']]]
 ];

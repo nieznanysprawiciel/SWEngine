@@ -5,7 +5,7 @@ var searchData=
   ['object_5freferences',['object_references',['../class_resource_object.html#af740f86bcb54d10a00d937643576ce4a',1,'ResourceObject']]],
   ['objectdeleter',['ObjectDeleter',['../class_object_deleter.html',1,'ObjectDeleter&lt; class_type &gt;'],['../class_object_deleter.html#af9abdc5f54232b4e36e3c9e200ba7661',1,'ObjectDeleter::ObjectDeleter()=default'],['../class_object_deleter.html#aa6d9cd61a1fbda06a90bde38d909f813',1,'ObjectDeleter::ObjectDeleter(const ObjectDeleter &amp;)=default']]],
   ['objectdeleter_2eh',['ObjectDeleter.h',['../_object_deleter_8h.html',1,'']]],
-  ['objectdeleterkey',['ObjectDeleterKey',['../class_object_deleter_key.html',1,'ObjectDeleterKey&lt; class_type &gt;'],['../class_object_deleter_key.html#a9ba66de585fb7a7996389113127f598b',1,'ObjectDeleterKey::ObjectDeleterKey()=default'],['../class_object_deleter_key.html#af816a5bd52d703c4b96dd9bb075aaace',1,'ObjectDeleterKey::ObjectDeleterKey(const ObjectDeleterKey &amp;&amp;)']]],
+  ['objectdeleterkey',['ObjectDeleterKey',['../class_object_deleter_key.html',1,'ObjectDeleterKey&lt; class_type &gt;'],['../class_object_deleter_key.html#a9ba66de585fb7a7996389113127f598b',1,'ObjectDeleterKey::ObjectDeleterKey()=default'],['../class_object_deleter_key.html#a47be2e705202f80529987f08baa62433',1,'ObjectDeleterKey::ObjectDeleterKey(const ObjectDeleterKey &amp;)'],['../class_object_deleter_key.html#af816a5bd52d703c4b96dd9bb075aaace',1,'ObjectDeleterKey::ObjectDeleterKey(const ObjectDeleterKey &amp;&amp;)']]],
   ['on_5fmouse_5freaction',['on_mouse_reaction',['../class_x_g_u_i_1_1_control.html#ae34f4a2bc2a7d881b540f35a630c587d',1,'XGUI::Control']]],
   ['onalignmentchange',['onAlignmentChange',['../class_x_g_u_i_1_1_abstract_text.html#ae75157fcf6f03622e7555640ea9553ab',1,'XGUI::AbstractText']]],
   ['ondisable',['onDisable',['../class_x_g_u_i_1_1_control.html#addadd314f50c8a7998b36ce1711aece7',1,'XGUI::Control']]],
@@ -27,5 +27,6 @@ var searchData=
   ['ontextsizechange',['onTextSizeChange',['../class_x_g_u_i_1_1_abstract_text.html#af17b3d9ac968e1c77b80f70142c2ce1b',1,'XGUI::AbstractText']]],
   ['operator_3d_3d',['operator==',['../class_texture_object.html#ad5924a71062f45dff478bf1961862e25',1,'TextureObject::operator==(TextureObject &amp;object)'],['../class_texture_object.html#ab28daa296baf8421732d330aa9178248',1,'TextureObject::operator==(const std::wstring &amp;file_name)']]],
   ['orientation',['orientation',['../class_static_object.html#a8abadf1dcd6f41a061598130a624156a',1,'StaticObject']]],
-  ['orientation_5fback',['orientation_back',['../class_static_object.html#ab1e9c311aac6dc219c7795f9a97f8de5',1,'StaticObject']]]
+  ['orientation_5fback',['orientation_back',['../class_static_object.html#ab1e9c311aac6dc219c7795f9a97f8de5',1,'StaticObject']]],
+  ['opis_20tematyczny',['Opis tematyczny',['../_theme_description.html',1,'']]]
 ];

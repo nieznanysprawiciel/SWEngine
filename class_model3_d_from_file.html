@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -91,7 +92,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="class_model3_d_from_file-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Model3DFromFile Class Reference</div>  </div>
+<div class="title">Model3DFromFile Class Reference<div class="ingroups"><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___engine_core.html">EngineCore</a> &raquo; <a class="el" href="group___resources_managment.html">Zarządzenie zasobami</a><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___engine_core.html">EngineCore</a> &raquo; <a class="el" href="group___resources_managment.html">Zarządzenie zasobami</a> &raquo;  &#124; <a class="el" href="group___resources.html">Zasoby</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -105,7 +106,7 @@ Inheritance diagram for Model3DFromFile:</div>
  <div class="center">
   <img src="class_model3_d_from_file.png" usemap="#Model3DFromFile_map" alt=""/>
   <map id="Model3DFromFile_map" name="Model3DFromFile_map">
-<area href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów. " alt="ResourceObject" shape="rect" coords="0,0,113,24"/>
+<area href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. " alt="ResourceObject" shape="rect" coords="0,0,113,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -129,17 +130,17 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a330d5fca683a380c8d0c9d03776b30dc">EndPart</a> ()</td></tr>
 <tr class="memdesc:a330d5fca683a380c8d0c9d03776b30dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcje BeginPart i EndPart są wywoływane przez loader i mają otaczać wszystkie instrukcje dodające jedną część mesha do struktury. <br /></td></tr>
 <tr class="separator:a330d5fca683a380c8d0c9d03776b30dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe370d08fecca92ca567334237f789af"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#afe370d08fecca92ca567334237f789af">add_texture</a> (const std::wstring &amp;file_name, TEXTURES_TYPES type=TEX_DIFFUSE)</td></tr>
+<tr class="memitem:afe370d08fecca92ca567334237f789af"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#afe370d08fecca92ca567334237f789af">add_texture</a> (const std::wstring &amp;file_name, <a class="el" href="_mesh_resources_8h.html#a97f4ea7c9b73b7be637f6f28e7de66c5">TEXTURES_TYPES</a> type=TEX_DIFFUSE)</td></tr>
 <tr class="memdesc:afe370d08fecca92ca567334237f789af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje teksturę na aktualnej pozycji w tablicy.  <a href="#afe370d08fecca92ca567334237f789af">More...</a><br /></td></tr>
 <tr class="separator:afe370d08fecca92ca567334237f789af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb13f06a3414f7ed8f41b761d4a9ab0c"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#adb13f06a3414f7ed8f41b761d4a9ab0c">add_material</a> (const <a class="el" href="struct_material_object.html">MaterialObject</a> *material, const std::wstring &amp;material_name)</td></tr>
 <tr class="memdesc:adb13f06a3414f7ed8f41b761d4a9ab0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje materiał na aktualnej pozycji w tablicy.  <a href="#adb13f06a3414f7ed8f41b761d4a9ab0c">More...</a><br /></td></tr>
 <tr class="separator:adb13f06a3414f7ed8f41b761d4a9ab0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a727f3011a8ef7f26d3199f69171e9d52"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a727f3011a8ef7f26d3199f69171e9d52">add_vertex_shader</a> (const std::wstring &amp;file_name)</td></tr>
-<tr class="memdesc:a727f3011a8ef7f26d3199f69171e9d52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje vertex shader na aktualnej pozycji <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. ">ModelPart</a>.  <a href="#a727f3011a8ef7f26d3199f69171e9d52">More...</a><br /></td></tr>
+<tr class="memdesc:a727f3011a8ef7f26d3199f69171e9d52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje vertex shader na aktualnej pozycji <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a>.  <a href="#a727f3011a8ef7f26d3199f69171e9d52">More...</a><br /></td></tr>
 <tr class="separator:a727f3011a8ef7f26d3199f69171e9d52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d3edfe7563ba8c62b61cea78b0f15a7"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a6d3edfe7563ba8c62b61cea78b0f15a7">add_pixel_shader</a> (const std::wstring &amp;file_name)</td></tr>
-<tr class="memdesc:a6d3edfe7563ba8c62b61cea78b0f15a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje pixel shader na aktualnej pozycji <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. ">ModelPart</a>.  <a href="#a6d3edfe7563ba8c62b61cea78b0f15a7">More...</a><br /></td></tr>
+<tr class="memdesc:a6d3edfe7563ba8c62b61cea78b0f15a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje pixel shader na aktualnej pozycji <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a>.  <a href="#a6d3edfe7563ba8c62b61cea78b0f15a7">More...</a><br /></td></tr>
 <tr class="separator:a6d3edfe7563ba8c62b61cea78b0f15a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ff69b57551bcb329dcb1f6e8749e3f8"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a8ff69b57551bcb329dcb1f6e8749e3f8">add_vertex_buffer</a> (const <a class="el" href="struct_vertex_normal_tex_cord1.html">VertexNormalTexCord1</a> *buffer, unsigned int vert_count)</td></tr>
 <tr class="memdesc:a8ff69b57551bcb329dcb1f6e8749e3f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja dodaje do tymczasowej tablicy bufor wierzchołków.  <a href="#a8ff69b57551bcb329dcb1f6e8749e3f8">More...</a><br /></td></tr>
@@ -153,10 +154,10 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="separator:a9f7d535399c2abe6f860d66fd5774371"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bcadde88faedb6c5e6c737f4b0d7a18"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2bcadde88faedb6c5e6c737f4b0d7a18"></a>
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a2bcadde88faedb6c5e6c737f4b0d7a18">get_parts_count</a> ()</td></tr>
-<tr class="memdesc:a2bcadde88faedb6c5e6c737f4b0d7a18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca liczbę obiektów <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. ">ModelPart</a> w tablicy. <br /></td></tr>
+<tr class="memdesc:a2bcadde88faedb6c5e6c737f4b0d7a18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca liczbę obiektów <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> w tablicy. <br /></td></tr>
 <tr class="separator:a2bcadde88faedb6c5e6c737f4b0d7a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d600291e082d605c9374e52e15f184f"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_model_part.html">ModelPart</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a6d600291e082d605c9374e52e15f184f">get_part</a> (unsigned int index)</td></tr>
-<tr class="memdesc:a6d600291e082d605c9374e52e15f184f"><td class="mdescLeft">&#160;</td><td class="mdescRight">zwraca wskaźnik na <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. ">ModelPart</a> spod podanego indeksu.  <a href="#a6d600291e082d605c9374e52e15f184f">More...</a><br /></td></tr>
+<tr class="memdesc:a6d600291e082d605c9374e52e15f184f"><td class="mdescLeft">&#160;</td><td class="mdescRight">zwraca wskaźnik na <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> spod podanego indeksu.  <a href="#a6d600291e082d605c9374e52e15f184f">More...</a><br /></td></tr>
 <tr class="separator:a6d600291e082d605c9374e52e15f184f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cf86b7d4ac2c43ed8e690cd7f09634a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4cf86b7d4ac2c43ed8e690cd7f09634a"></a>
 <a class="el" href="class_buffer_object.html">BufferObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a4cf86b7d4ac2c43ed8e690cd7f09634a">get_vertex_buffer</a> ()</td></tr>
@@ -212,7 +213,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:ac223933520797c38cac578ea530f27b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalamy tymczasowe bufory indeksów w jeden duży.  <a href="#ac223933520797c38cac578ea530f27b2">More...</a><br /></td></tr>
 <tr class="separator:ac223933520797c38cac578ea530f27b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f9f279bbfa88c538801ceba7ad29f31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a8f9f279bbfa88c538801ceba7ad29f31">EndEdit_prepare_ModelPart</a> ()</td></tr>
-<tr class="memdesc:a8f9f279bbfa88c538801ceba7ad29f31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodajemy do strutkury <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. ">ModelPart</a> dane o buforach wierzchołków oraz przypisujemy wbudowane shadery, jeżeli nie podano żadnych. Dodajemy też domyślny materiał, jeżeli nie ma.  <a href="#a8f9f279bbfa88c538801ceba7ad29f31">More...</a><br /></td></tr>
+<tr class="memdesc:a8f9f279bbfa88c538801ceba7ad29f31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodajemy do strutkury <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> dane o buforach wierzchołków oraz przypisujemy wbudowane shadery, jeżeli nie podano żadnych. Dodajemy też domyślny materiał, jeżeli nie ma.  <a href="#a8f9f279bbfa88c538801ceba7ad29f31">More...</a><br /></td></tr>
 <tr class="separator:a8f9f279bbfa88c538801ceba7ad29f31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_resource_object"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_resource_object')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_resource_object.html">ResourceObject</a></td></tr>
 <tr class="memitem:a38cce868f5e80e797c3bfd65e0c55aeb inherit pro_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38cce868f5e80e797c3bfd65e0c55aeb"></a>
@@ -257,18 +258,18 @@ static <a class="el" href="class_models_manager.html">ModelsManager</a> *&#160;<
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku dla innego obiektu, nie musimy wczytywać modelu ponownie. Plik(i model jednocześnie) może być identyfikowany po ścieżce do pliku lub unikalnym identyfikatorem. </p>
-<p>Klasa zawiera tablicę elementów <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. ">ModelPart</a>, które przechowują informacje potrzebne do wyrenderowania poszczególnych części mesha. Meshe musza być trzymane w częściach, żeby można było każdej z tych części przypisać różne materiały i parametry. Gdyby nie taka struktura, to wczytanie pliku nie byłoby możliwe. Meshe rzadko składają się z jednego kawałka.</p>
+<p>Klasa zawiera tablicę elementów <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a>, które przechowują informacje potrzebne do wyrenderowania poszczególnych części mesha. Meshe musza być trzymane w częściach, żeby można było każdej z tych części przypisać różne materiały i parametry. Gdyby nie taka struktura, to wczytanie pliku nie byłoby możliwe. Meshe rzadko składają się z jednego kawałka.</p>
 <p>Wszystkie wierzchołki przechowywane są tylko w jednym buforze vertex_buffer. Na podstawie zaleceń w dokumentacji DrectXa, lepiej jest mieć jeden duży bufor niż wiele małych. Poszczególne części mesha zawierają albo bufor indeksów, który decyduje, które wierzchołki są wyświetlane, albo odpowiedni offset od początku bufora i ilość trójkątów. Możliwe jest również, że mesh będzie wyświetlany w trybie mieszanym, używając dla każdej części raz bufora indeksów, a raz offsetów.</p>
 <h2>Wypełnianie obiektów danymi</h2>
 <p>Obiekty są wypełniane najczęściej przez loadery dla odpowiednich formatów. Więcej o pisaniu loaderów znajduje się tutaj: $ref MakingLoaders.</p>
 <p>Aby wypełnić obiekt danymi należy wywołać funkcję BeginEdit, a po zakończeniu EndEdit. BeginEdit tworzy strukturę tymczasową, do której będą zapisywane informacje. EndEdit przetwarza tę strutkurę do postaci docelowej. Struktura pośrednia jest konieczna, ponieważ bufory wierzchołków i indeksów będziemy dostawali w częściach, a musimy je scalić do pojedynczych buforów i stworzyć obiekt DirectXa.</p>
-<p>Następnie między wywołaniami BeginEdit i EndEdit podaje się wszystkie informacje, jakie mają zostać zawarte w poszczególnych obiektach <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. ">ModelPart</a>. Wypełnianie każdego parta musi być otoczone wywołaniem funkcji BeginPart i EndPart. BeginPart alokuje pamięć dla kolejnego ModelParta, a EndEdit przesuwa aktualny indeks, pod którego dodajemy część mesha.</p>
+<p>Następnie między wywołaniami BeginEdit i EndEdit podaje się wszystkie informacje, jakie mają zostać zawarte w poszczególnych obiektach <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a>. Wypełnianie każdego parta musi być otoczone wywołaniem funkcji BeginPart i EndPart. BeginPart alokuje pamięć dla kolejnego ModelParta, a EndEdit przesuwa aktualny indeks, pod którego dodajemy część mesha.</p>
 <p>Niedodanie bufora indeksów powoduje, że aktualny Part jest wyświetlany w trybie bezpośrednim, w przeciwnym razie jest używany tryb indeksowany. W strukturze musi istnieć przynajmniej jeden bufor wierzchołków. Brak bufora wierzchołków jest błędem, ale zasadniczo nie skutkuje niczym poważnym, bo <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a> pomija takie obiekty.</p>
 <p>Nie ma konieczności podawania bufora wierzchołków dla każdego ModelParta. Bufory indeksów mogą być ustawiane względem poprzednio dodanych buforów wierzchołków. Błędem jest za to niepodanie ani bufora wierzchołków ani bufora indeksów. <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a> będzie próbował wyświetlić takiego mesha o liczbie wierzchołków równej 0, co niepotrzebnie spowalnia program.</p>
-<p>Jeżeli dodane tekstury są zgodne z domyślnym przeznaczeniem (zdefiniowanym enumeracją TEXTURES_TYPES), to nie ma potrzeby dodawania własnych shaderów. Funkcja <a class="el" href="class_models_manager.html#abae43ef5988c3af242acf805b6fe2d09" title="Dopasowuje najlepszy z domyślnych shaderów, który pasuje do podanej tablicy tekstur. Tablica ma tyle elementów ile zmienna ENGINE_MAX_TEXTURES. ">ModelsManager::find_best_vertex_shader</a> i <a class="el" href="class_models_manager.html#a666bf97079ee1b864f1fa92d64d0c789" title="Dopasowuje najlepszy z domyślnych shaderów, który pasuje do podanej tablicy tekstur. Tablica ma tyle elementów ile zmienna ENGINE_MAX_TEXTURES. ">ModelsManager::find_best_pixel_shader</a> znajdą najlepiej pasujący shader do podanej tablicy tekstur.</p>
-<p>Jeżeli nie zostanie podany żaden materiał, <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. ">ModelPart</a> dostanie domyślny materiał, który jest ustawiany przez funkcję <a class="el" href="struct_material_object.html#a78c54ca82d12fc9ab3ac30b13fec75d8" title="Ustawia materiał na wartości domyślne dla silnika. ">MaterialObject::SetNullMaterial</a>.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_buffer_object.html" title="Obiekt opakowujący bufor. ">BufferObject</a>, <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. ">ModelPart</a>, <a class="el" href="class_texture_object.html" title="Klasa przechowująca tekstury. ">TextureObject</a>, <a class="el" href="class_vertex_shader_object.html" title="Klasa przechowująca vertex shader. ">VertexShaderObject</a>, <a class="el" href="class_pixel_shader_object.html" title="Klasa przechowująca pixel shader. ">PixelShaderObject</a>, <a class="el" href="struct_material_object.html" title="Struktura przechowująca materiał. ">MaterialObject</a>, <a class="el" href="struct_mesh_part_object.html" title="Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach. ">MeshPartObject</a></dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>Przepisać tak, żeby było jakoś bardziej estetycznie.<ul>
+<p>Jeżeli dodane tekstury są zgodne z domyślnym przeznaczeniem (zdefiniowanym enumeracją TEXTURES_TYPES), to nie ma potrzeby dodawania własnych shaderów. Funkcja <a class="el" href="class_models_manager.html#abea55b3714861ef2682cb814c1d4a0a6" title="Dopasowuje najlepszy z domyślnych shaderów, który pasuje do podanej tablicy tekstur. Tablica ma tyle elementów ile zmienna ENGINE_MAX_TEXTURES. ">ModelsManager::FindBestVertexShader</a> i <a class="el" href="class_models_manager.html#a2c310edc07839b02eeb44dc49a218ae4" title="Dopasowuje najlepszy z domyślnych shaderów, który pasuje do podanej tablicy tekstur. Tablica ma tyle elementów ile zmienna ENGINE_MAX_TEXTURES. ">ModelsManager::FindBestPixelShader</a> znajdą najlepiej pasujący shader do podanej tablicy tekstur.</p>
+<p>Jeżeli nie zostanie podany żaden materiał, <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> dostanie domyślny materiał, który jest ustawiany przez funkcję <a class="el" href="struct_material_object.html#a78c54ca82d12fc9ab3ac30b13fec75d8" title="Ustawia materiał na wartości domyślne dla silnika. ">MaterialObject::SetNullMaterial</a>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_buffer_object.html" title="Obiekt opakowujący bufor.Bufor może być zarówno buforem wierzchołków, indeksów jak i stałych...">BufferObject</a>, <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a>, <a class="el" href="class_texture_object.html" title="Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności. ">TextureObject</a>, <a class="el" href="class_vertex_shader_object.html" title="Klasa przechowująca vertex shader. ">VertexShaderObject</a>, <a class="el" href="class_pixel_shader_object.html" title="Klasa przechowująca pixel shader. ">PixelShaderObject</a>, <a class="el" href="struct_material_object.html" title="Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. ">MaterialObject</a>, <a class="el" href="struct_mesh_part_object.html" title="Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach.W zależności od zawartości pola index_buffer w strukturze ModelPart, mesh jest wyświetlany w trybie indeksowanym lub nie. Jeżeli wartość tego pola wynosi nullptr, to wtedy używane są zmienne buffer offset i vertices count, które jednoznacznie wskazują, która część bufora wierzchołków ma zostać wyświetlona. ">MeshPartObject</a></dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>Przepisać tak, żeby było jakoś bardziej estetycznie.<ul>
 <li>Dodać klasę MemoryChunk zamiast gołych wskaźników na tablicę wierzchołków.</li>
 <li>Zastosować semantykę move z C++11. Ograniczyć kopiowanie pamięci na ile się da.</li>
 <li>Uzupełnić o możliwość wczytywania layotów i innych rzeczy, których brakuje. </li>
@@ -326,7 +327,7 @@ static <a class="el" href="class_models_manager.html">ModelsManager</a> *&#160;<
       </table>
 </div><div class="memdoc">
 
-<p>Dodaje pixel shader na aktualnej pozycji <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. ">ModelPart</a>. </p>
+<p>Dodaje pixel shader na aktualnej pozycji <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a>. </p>
 <p>Obiekt jest dodawany do ModelsManagera jeżeli jeszcze nie istniał. Jeżeli istniał nie jest duplikowany, ale zamiast niego wstawia się wskaźnik na istniejący obiekt.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -351,7 +352,7 @@ static <a class="el" href="class_models_manager.html">ModelsManager</a> *&#160;<
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TEXTURES_TYPES&#160;</td>
+          <td class="paramtype"><a class="el" href="_mesh_resources_8h.html#a97f4ea7c9b73b7be637f6f28e7de66c5">TEXTURES_TYPES</a>&#160;</td>
           <td class="paramname"><em>type</em> = <code>TEX_DIFFUSE</code>&#160;</td>
         </tr>
         <tr>
@@ -424,7 +425,7 @@ static <a class="el" href="class_models_manager.html">ModelsManager</a> *&#160;<
 </div><div class="memdoc">
 
 <p>Funkcja dodaje do tymczasowej tablicy bufor wierzchołków. </p>
-<p>Funkcja dodaje do tymczasowej tablicy bufor wierzchołków. Podane dane są przepisywane, a za zwolnienie pamięci odpowiada ten kto wywołał funkcję. Nie wolno dodać kolejnego bufora, jeżeli w danym <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. ">ModelPart</a> jakiś juz istaniał. W takiej sytuacji funkcja natychmiast powraca.</p>
+<p>Funkcja dodaje do tymczasowej tablicy bufor wierzchołków. Podane dane są przepisywane, a za zwolnienie pamięci odpowiada ten kto wywołał funkcję. Nie wolno dodać kolejnego bufora, jeżeli w danym <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> jakiś juz istaniał. W takiej sytuacji funkcja natychmiast powraca.</p>
 <p>Bufory wierzchołków są łączone w jedna całość w funkcji EndEdit.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -451,7 +452,7 @@ static <a class="el" href="class_models_manager.html">ModelsManager</a> *&#160;<
       </table>
 </div><div class="memdoc">
 
-<p>Dodaje vertex shader na aktualnej pozycji <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. ">ModelPart</a>. </p>
+<p>Dodaje vertex shader na aktualnej pozycji <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a>. </p>
 <p>Obiekt jest dodawany do ModelsManagera jeżeli jeszcze nie istniał. Jeżeli istniał nie jest duplikowany, ale zamiast niego wstawia się wskaźnik na istniejący obiekt.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -546,7 +547,7 @@ static <a class="el" href="class_models_manager.html">ModelsManager</a> *&#160;<
 </table>
 </div><div class="memdoc">
 
-<p>Dodajemy do strutkury <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. ">ModelPart</a> dane o buforach wierzchołków oraz przypisujemy wbudowane shadery, jeżeli nie podano żadnych. Dodajemy też domyślny materiał, jeżeli nie ma. </p>
+<p>Dodajemy do strutkury <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> dane o buforach wierzchołków oraz przypisujemy wbudowane shadery, jeżeli nie podano żadnych. Dodajemy też domyślny materiał, jeżeli nie ma. </p>
 <dl class="section note"><dt>Note</dt><dd>Funkcja do wywoływania wewętrznego przez <a class="el" href="class_model3_d_from_file.html" title="Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ...">Model3DFromFile</a>. </dd></dl>
 
 </div>
@@ -617,14 +618,14 @@ static <a class="el" href="class_models_manager.html">ModelsManager</a> *&#160;<
       </table>
 </div><div class="memdoc">
 
-<p>zwraca wskaźnik na <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. ">ModelPart</a> spod podanego indeksu. </p>
+<p>zwraca wskaźnik na <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> spod podanego indeksu. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">Indeks.</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Wskaźnik na <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. ">ModelPart</a> lub nullptr, jeżeli indeks był nieprawidłowy. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Wskaźnik na <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> lub nullptr, jeżeli indeks był nieprawidłowy. </dd></dl>
 
 </div>
 </div>
@@ -635,7 +636,7 @@ static <a class="el" href="class_models_manager.html">ModelsManager</a> *&#160;<
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 14:01:32 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

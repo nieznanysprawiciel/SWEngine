@@ -8,7 +8,7 @@ var searchData=
   ['color',['color',['../struct_sky_dome_vertex.html#a916233cbec84d036f39c5eee2f9f7259',1,'SkyDomeVertex::color()'],['../struct_vertex_color.html#a723bdf3b562fd0fe4f74c9fa7435bc6f',1,'VertexColor::color()']]],
   ['const_5fper_5fframe',['const_per_frame',['../class_d_x11_auxiliary_objects.html#a8658e0dd754267c74c00885f242baa5b',1,'DX11AuxiliaryObjects']]],
   ['const_5fper_5fmesh',['const_per_mesh',['../class_d_x11_auxiliary_objects.html#a9f8730812833a98a083ba50fa46864f8',1,'DX11AuxiliaryObjects']]],
-  ['constant_5fbuffer',['constant_buffer',['../class_sky_dome.html#acff13aa9954709986554da57a39b41ec',1,'SkyDome::constant_buffer()'],['../class_models_manager.html#a7aecbe7911e455ac36945dc7abfb59d1',1,'ModelsManager::constant_buffer()']]],
+  ['constant_5fbuffer',['constant_buffer',['../class_sky_dome.html#acff13aa9954709986554da57a39b41ec',1,'SkyDome']]],
   ['container',['container',['../class_resource_container.html#af48cbcabc0639a0116ac7ace47fdb738',1,'ResourceContainer']]],
   ['controller',['controller',['../class_dynamic_object.html#af10ca99e6a04e7bd9fc30271bc3859eb',1,'DynamicObject']]],
   ['controllers_5fengine',['controllers_engine',['../class_engine_interface.html#a7e28bc7ca2a5a349bb3e2247b384a231',1,'EngineInterface']]],

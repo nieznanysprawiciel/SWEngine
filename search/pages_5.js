@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['pętla_20główna_20silnika',['Pętla główna silnika',['../_main_loop.html',1,'']]],
-  ['pisanie_20loaderów_20plików_20z_20modelami',['Pisanie loaderów plików z modelami',['../_making_loaders.html',1,'']]],
-  ['potok_20przetwarzania_20obiektów',['Potok przetwarzania obiektów',['../_object_pipeline.html',1,'']]]
+  ['obsługa_20klawiatury_2c_20myszy_20itp_2e',['Obsługa klawiatury, myszy itp.',['../_input.html',1,'']]],
+  ['opis_20tematyczny',['Opis tematyczny',['../_theme_description.html',1,'']]]
 ];

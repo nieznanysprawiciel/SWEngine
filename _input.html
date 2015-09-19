@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -95,14 +96,14 @@ Warstwa abstrakcji</h2>
 <p>{do przemyślenia, stworzenia, napisania} Ten sam klawisz na klawiaturze może robić różne rzeczy w zależności od kontekstu w jakim został przyciśniety. Inaczej trzeba zareagować, kiedy myszka jest kliknięta w głównej fazie gry, inaczej gdy jesteśmy w menu. Silnik musi dawać możliwość łatwej obsługi oraz tworznia wielu różnych kontekstów, do czego potrzebne jest wprowadzenie dodatkowej warstwy abstrakcji pomiędzy bezpośrednim odczytem stanu urządzeń wejściowych, a wykonaniem jakiejś akcji.</p>
 <p>Zacznijmy od zdefiniowania kto i w jaki sposób może uzyskać dostęp do odczytu z urządzeń wejściowych. Są to:</p><ul>
 <li>kontrolery dziedziczące po Standard_input_controller – wymagają dostępu do jednej lub kilku warstw abstrakcji w zależności od tego, co obsługują</li>
-<li>obiekt <a class="el" href="class_game_play.html">GamePlay</a> – powinien dostać event informujący o wciśnięciu (puszczeniu) klawisza</li>
-<li>obiekt <a class="el" href="class_game_play.html">GamePlay</a> – może chcieć w dowolnym momencie sprawdzić czy jakiś przycisk jest wcisnięty {opcja do rozważenia}</li>
+<li>obiekt GamePlay – powinien dostać event informujący o wciśnięciu (puszczeniu) klawisza</li>
+<li>obiekt GamePlay – może chcieć w dowolnym momencie sprawdzić czy jakiś przycisk jest wcisnięty {opcja do rozważenia}</li>
 <li>obiekt UI_engine – musi odczytywać stany urządzeń, aby sprawdzać wciśnięcie przycisku (przycisku GUI, nie na klawiaturze) lub interakcję z innymi kontrolkami. Następnie ma wysłać event wysokopoziomowy o interakcji. </li>
 </ul>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 14:01:32 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

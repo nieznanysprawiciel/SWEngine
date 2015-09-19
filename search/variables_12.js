@@ -2,9 +2,7 @@ var searchData=
 [
   ['value',['value',['../structevent__mapping.html#a3d491d99b8cf798c43da43868cc40c95',1,'event_mapping']]],
   ['vert_5fcount',['vert_count',['../class_hosek_sky_dome.html#a8f693c36cf6f6ef3eff798f05f670441',1,'HosekSkyDome']]],
-  ['vertex_5fbuffer',['vertex_buffer',['../class_sky_dome.html#afabb2b9f767d70c06c946f2291a72f4e',1,'SkyDome::vertex_buffer()'],['../class_model3_d_from_file.html#adde3b4689f4c2f5ee0656ff4285cf920',1,'Model3DFromFile::vertex_buffer()'],['../class_models_manager.html#a122756a2e506601129acb358b629e357',1,'ModelsManager::vertex_buffer()']]],
-  ['vertex_5fshader',['vertex_shader',['../class_models_manager.html#ad0b768ec8cbc9e91367be6ad26d47a07',1,'ModelsManager']]],
-  ['vertexlayout',['vertexLayout',['../class_models_manager.html#a2c43511d630c0bc019201024e3ef78cf',1,'ModelsManager']]],
+  ['vertex_5fbuffer',['vertex_buffer',['../class_sky_dome.html#afabb2b9f767d70c06c946f2291a72f4e',1,'SkyDome::vertex_buffer()'],['../class_model3_d_from_file.html#adde3b4689f4c2f5ee0656ff4285cf920',1,'Model3DFromFile::vertex_buffer()']]],
   ['vertices_5fcount',['vertices_count',['../struct_mesh_part_object.html#a73a1da68cb598b9ab0f264796ec8de53',1,'MeshPartObject']]],
   ['virtual_5faxis',['virtual_axis',['../class_input_abstraction_layer__base.html#a606f0f64fbe18af58751d35e2b1f45a6',1,'InputAbstractionLayer_base']]],
   ['virtual_5fbutton',['virtual_button',['../class_input_abstraction_layer__base.html#a1d7171d23759f06f4726f0f645127186',1,'InputAbstractionLayer_base']]],

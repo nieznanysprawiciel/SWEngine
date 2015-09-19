@@ -14,10 +14,11 @@ var searchData=
   ['remove',['remove',['../class_resource_container.html#a1939dc49ac74d941b5e668799edb28a6',1,'ResourceContainer::remove(const std::wstring &amp;name)'],['../class_resource_container.html#aa5a0952b702d5a9f555c26c3794de8ec',1,'ResourceContainer::remove(unsigned int id)']]],
   ['remove_5funused',['remove_unused',['../class_resource_container.html#a6469a13ab7e50c0952fb5596732ed21a',1,'ResourceContainer']]],
   ['render_5fframe',['render_frame',['../class_engine.html#aa5dc46f13a43784e7fc111b92f40f1d6',1,'Engine']]],
-  ['render_5ftarget',['render_target',['../class_models_manager.html#adb61b2be985962c985f80fcf53af6a91',1,'ModelsManager::render_target()'],['../class_d_x11_a_p_i_objects.html#a94fc7ced778758e282f4109968c10ec9',1,'DX11APIObjects::render_target()']]],
+  ['render_5ftarget',['render_target',['../class_d_x11_a_p_i_objects.html#a94fc7ced778758e282f4109968c10ec9',1,'DX11APIObjects']]],
   ['renderer',['renderer',['../class_x_g_u_i_1_1_control.html#a87a6ea6f0c6e074e00cc15b92a2e7378',1,'XGUI::Control']]],
   ['renderer',['Renderer',['../class_x_g_u_i_1_1_renderer.html',1,'XGUI']]],
   ['renderer_2eh',['Renderer.h',['../_renderer_8h.html',1,'']]],
+  ['rendererusage',['RendererUsage',['../_i_renderer_8h.html#a638079122796f5eb96dac10b81adf650',1,'IRenderer.h']]],
   ['rendertargetobject',['RenderTargetObject',['../class_render_target_object.html',1,'']]],
   ['resizeable',['resizeable',['../class_x_g_u_i_1_1_abstract_window.html#a0c8dee199f69514c9b0598e831be929e',1,'XGUI::AbstractWindow']]],
   ['resource_5fusage_5fdefault',['RESOURCE_USAGE_DEFAULT',['../_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1a7fa97eb8e3f1da664c84a27baf3956e4',1,'GraphicAPIConstants.h']]],
@@ -41,8 +42,8 @@ var searchData=
   ['resourcesfactory',['ResourcesFactory',['../class_resources_factory.html',1,'']]],
   ['resourcesfactory_2eh',['ResourcesFactory.h',['../_resources_factory_8h.html',1,'']]],
   ['resourceusage',['ResourceUsage',['../_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1',1,'GraphicAPIConstants.h']]],
-  ['root',['root',['../class_x_g_u_i_1_1_control.html#a6b5d713a98357a22b34ebb254cce6d0f',1,'XGUI::Control']]],
   ['root',['Root',['../class_x_g_u_i_1_1_root.html',1,'XGUI']]],
+  ['root',['root',['../class_x_g_u_i_1_1_control.html#a6b5d713a98357a22b34ebb254cce6d0f',1,'XGUI::Control']]],
   ['rotation_5fspeed',['rotation_speed',['../class_dynamic_object.html#a4b54fc06a4784c38705392e651238a05',1,'DynamicObject']]],
   ['renderowanie_20sceny',['Renderowanie sceny',['../_scene_render.html',1,'']]]
 ];

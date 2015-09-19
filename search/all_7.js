@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['gameplay',['GamePlay',['../class_game_play.html',1,'']]],
-  ['gameplay_2eh',['GamePlay.h',['../_game_play_8h.html',1,'']]],
   ['generate_5fsphere',['generate_sphere',['../class_hosek_sky_dome.html#a07ef8c3026ddbab81ffb993f24dd4a02',1,'HosekSkyDome']]],
   ['get',['get',['../class_resource_container.html#ad6b7476bb6ae8a24b4f151a16ffe0e4a',1,'ResourceContainer::get(unsigned int id)'],['../class_resource_container.html#aace5b7d95ead3d06b38a54a5f80a81ce',1,'ResourceContainer::get(const std::wstring &amp;name)']]],
   ['get_5faxis_5ftable',['get_axis_table',['../class_input_abstraction_layer__base.html#a08fd83cd83643bef0e4c3dc48dbe4ae0',1,'InputAbstractionLayer_base']]],
@@ -13,7 +11,6 @@ var searchData=
   ['get_5findex_5fbuffer',['get_index_buffer',['../class_sky_dome.html#a59f11c65ffb3a82fd7cc65de33467364',1,'SkyDome::get_index_buffer()'],['../class_model3_d_from_file.html#a2854fc4f9fd5faa04bd4db3025d9b3fe',1,'Model3DFromFile::get_index_buffer()']]],
   ['get_5finterpolated_5forientation',['get_interpolated_orientation',['../class_static_object.html#ac94632e4675287c08e1bc3fa01b91b2e',1,'StaticObject']]],
   ['get_5finterpolated_5fposition',['get_interpolated_position',['../class_static_object.html#adcd7ba3b0d88a7221238677b54873088',1,'StaticObject']]],
-  ['get_5fmodel',['get_model',['../class_models_manager.html#a563575e83326da2ce15ffc25911816fe',1,'ModelsManager']]],
   ['get_5fmodel_5fpart',['get_model_part',['../class_sky_dome.html#a1b01507440662ca95278c872a1885bbe',1,'SkyDome']]],
   ['get_5fmousex',['get_mouseX',['../class_input_abstraction_layer__base.html#a4dd21f4836f1a45def4a17d8eb304d49',1,'InputAbstractionLayer_base']]],
   ['get_5fmousey',['get_mouseY',['../class_input_abstraction_layer__base.html#af213993dbcf88ab9d2292c92b260d663',1,'InputAbstractionLayer_base']]],
@@ -36,6 +33,7 @@ var searchData=
   ['getfilename',['GetFileName',['../class_texture_object.html#adf7db0780dfd24562a9ed6ea280382f8',1,'TextureObject']]],
   ['getfont',['getFont',['../class_x_g_u_i_1_1_abstract_text.html#a95ea361851d21ebdb21904e58e742649',1,'XGUI::AbstractText']]],
   ['getfontsize',['getFontSize',['../class_x_g_u_i_1_1_abstract_text.html#a4bed07587061dce57c414467549e8225',1,'XGUI::AbstractText']]],
+  ['getmodel',['GetModel',['../class_models_manager.html#a2fa91e0cbe73670386906fc3e6cb935c',1,'ModelsManager']]],
   ['getparent',['getParent',['../class_x_g_u_i_1_1_control.html#a2bdc5f426c5431010df527fca32146db',1,'XGUI::Control']]],
   ['getrelativeposition',['getRelativePosition',['../class_x_g_u_i_1_1_control.html#a7e7332876aaf3ec9ae42a58d96434e27',1,'XGUI::Control']]],
   ['getrenderer',['getRenderer',['../class_x_g_u_i_1_1_control.html#a92895673aacebda9b0dee2e359ef3daf',1,'XGUI::Control']]],
@@ -49,6 +47,7 @@ var searchData=
   ['gettimelag',['getTimeLag',['../class_time_manager.html#a16d658c26266b4bf3a9459fa4115d3e3',1,'TimeManager']]],
   ['gettimerfrequency',['getTimerFrequency',['../class_time_manager.html#ad236132621cd95bff4517f88c3fb8d26',1,'TimeManager']]],
   ['getvertexlayout',['getVertexLayout',['../class_x_g_u_i_1_1_renderer.html#ab2e0bd3bec64fc54101b8222a9279ef5',1,'XGUI::Renderer']]],
+  ['graphicapi',['GraphicAPI',['../group___graphic_a_p_i.html',1,'']]],
   ['graphicapiconstants_2eh',['GraphicAPIConstants.h',['../_graphic_a_p_i_constants_8h.html',1,'']]],
   ['graphicapiinitdata',['GraphicAPIInitData',['../struct_graphic_a_p_i_init_data.html',1,'']]],
   ['guievent',['GUIEvent',['../struct_x_g_u_i_1_1_g_u_i_event.html',1,'XGUI']]],

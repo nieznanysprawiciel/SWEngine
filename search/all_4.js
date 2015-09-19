@@ -57,6 +57,7 @@ var searchData=
   ['dx11_5fdevicecontext_5fnot_5finitialized',['DX11_DEVICECONTEXT_NOT_INITIALIZED',['../_d_x11_a_p_i_objects_8h.html#adf3c7a5252c238e7999bec1006d9953eab6c2f7793cf74bee4d098ee9c0fb0c2c',1,'DX11APIObjects.h']]],
   ['dx11_5finit_5fok',['DX11_INIT_OK',['../_d_x11_a_p_i_objects_8h.html#adf3c7a5252c238e7999bec1006d9953ea3436c606150153a1e49681b0661150d8',1,'DX11APIObjects.h']]],
   ['dx11_5finit_5fresult',['DX11_INIT_RESULT',['../_d_x11_a_p_i_objects_8h.html#adf3c7a5252c238e7999bec1006d9953e',1,'DX11APIObjects.h']]],
+  ['dx11api',['DX11API',['../group___d_x11_a_p_i.html',1,'']]],
   ['dx11apiobjects',['DX11APIObjects',['../class_d_x11_a_p_i_objects.html',1,'']]],
   ['dx11apiobjects_2eh',['DX11APIObjects.h',['../_d_x11_a_p_i_objects_8h.html',1,'']]],
   ['dx11auxiliaryobjects',['DX11AuxiliaryObjects',['../class_d_x11_auxiliary_objects.html',1,'']]],
@@ -77,5 +78,5 @@ var searchData=
   ['dx11vertexshader',['DX11VertexShader',['../class_d_x11_vertex_shader.html',1,'']]],
   ['dynamicmeshobject',['DynamicMeshObject',['../class_dynamic_mesh_object.html',1,'']]],
   ['dynamicobject',['DynamicObject',['../class_dynamic_object.html',1,'DynamicObject'],['../class_dynamic_object.html#a50a7adf3d7d1f411ed2aa9a663bfe275',1,'DynamicObject::DynamicObject()'],['../class_dynamic_object.html#a8a13916292c5d74ca435c295eb627622',1,'DynamicObject::DynamicObject(const XMFLOAT3 &amp;move_speed, const XMFLOAT4 &amp;rot_speed)']]],
-  ['dokumentacja_20silnika_20sw_5fengine',['Dokumentacja silnika SW_engine',['../index.html',1,'']]]
+  ['dokumentacja_20silnika_20swengine',['Dokumentacja silnika SWEngine',['../index.html',1,'']]]
 ];

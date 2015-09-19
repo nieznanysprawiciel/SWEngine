@@ -9,7 +9,7 @@ var searchData=
   ['set_5fcurrent_5fcamera',['set_current_camera',['../class_display_engine.html#ab01df50fbf868436e83076445729f6cf',1,'DisplayEngine']]],
   ['set_5fdirectional_5flight',['set_directional_light',['../class_display_engine.html#a575257b8da6fdcbd1164d9275848d4ae',1,'DisplayEngine']]],
   ['set_5fengine',['set_engine',['../class_object.html#afeb7cfe69a42aefcad6e88a4e37f9ab7',1,'Object']]],
-  ['set_5fentry_5fpoint',['set_entry_point',['../class_engine.html#aad7578076d2d93b11e1a74a4b658905c',1,'Engine::set_entry_point(GamePlay *game_play)'],['../class_engine.html#a800b741c6898a7aae8eefe564508ae57',1,'Engine::set_entry_point(const std::wstring dll_name)']]],
+  ['set_5fentry_5fpoint',['set_entry_point',['../class_engine.html#afbff60cf27a3606c89b16b020662293d',1,'Engine::set_entry_point(IGamePlay *game_play)'],['../class_engine.html#a800b741c6898a7aae8eefe564508ae57',1,'Engine::set_entry_point(const std::wstring dll_name)']]],
   ['set_5ffeature_5flevels',['set_feature_levels',['../class_d_x11_a_p_i_objects.html#a9663abd153b4d0281aedf0e6717cebe7',1,'DX11APIObjects']]],
   ['set_5ffocus',['set_focus',['../class_x_g_u_i_1_1_root.html#a26c91da4ff19300afbf3b153c6154fe4',1,'XGUI::Root']]],
   ['set_5fid',['set_id',['../class_resource_object.html#a73e6d5e7c62c3a7b097bafe6aa997d8b',1,'ResourceObject']]],

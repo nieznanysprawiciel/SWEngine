@@ -1,7 +1,7 @@
 var searchData=
 [
   ['objectdeleter',['ObjectDeleter',['../class_object_deleter.html#af9abdc5f54232b4e36e3c9e200ba7661',1,'ObjectDeleter::ObjectDeleter()=default'],['../class_object_deleter.html#aa6d9cd61a1fbda06a90bde38d909f813',1,'ObjectDeleter::ObjectDeleter(const ObjectDeleter &amp;)=default']]],
-  ['objectdeleterkey',['ObjectDeleterKey',['../class_object_deleter_key.html#a9ba66de585fb7a7996389113127f598b',1,'ObjectDeleterKey::ObjectDeleterKey()=default'],['../class_object_deleter_key.html#af816a5bd52d703c4b96dd9bb075aaace',1,'ObjectDeleterKey::ObjectDeleterKey(const ObjectDeleterKey &amp;&amp;)']]],
+  ['objectdeleterkey',['ObjectDeleterKey',['../class_object_deleter_key.html#a9ba66de585fb7a7996389113127f598b',1,'ObjectDeleterKey::ObjectDeleterKey()=default'],['../class_object_deleter_key.html#a47be2e705202f80529987f08baa62433',1,'ObjectDeleterKey::ObjectDeleterKey(const ObjectDeleterKey &amp;)'],['../class_object_deleter_key.html#af816a5bd52d703c4b96dd9bb075aaace',1,'ObjectDeleterKey::ObjectDeleterKey(const ObjectDeleterKey &amp;&amp;)']]],
   ['on_5fmouse_5freaction',['on_mouse_reaction',['../class_x_g_u_i_1_1_control.html#ae34f4a2bc2a7d881b540f35a630c587d',1,'XGUI::Control']]],
   ['onalignmentchange',['onAlignmentChange',['../class_x_g_u_i_1_1_abstract_text.html#ae75157fcf6f03622e7555640ea9553ab',1,'XGUI::AbstractText']]],
   ['ondisable',['onDisable',['../class_x_g_u_i_1_1_control.html#addadd314f50c8a7998b36ce1711aece7',1,'XGUI::Control']]],

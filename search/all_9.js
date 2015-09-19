@@ -6,10 +6,13 @@ var searchData=
   ['iasetprimitivetopology',['IASetPrimitiveTopology',['../class_d_x11_renderer.html#a82ba6385a278bb2b844477c7ed967aaf',1,'DX11Renderer']]],
   ['ibuffer',['IBuffer',['../class_i_buffer.html',1,'']]],
   ['ibuffer_2eh',['IBuffer.h',['../_i_buffer_8h.html',1,'']]],
+  ['igameplay',['IGamePlay',['../class_i_game_play.html',1,'']]],
+  ['igameplay_2eh',['IGamePlay.h',['../_i_game_play_8h.html',1,'']]],
   ['igraphicapiinitializer',['IGraphicAPIInitializer',['../class_i_graphic_a_p_i_initializer.html',1,'']]],
   ['igraphicapiinitializer_2eh',['IGraphicAPIInitializer.h',['../_i_graphic_a_p_i_initializer_8h.html',1,'']]],
   ['iloader',['ILoader',['../class_i_loader.html',1,'']]],
-  ['index_5fbuffer',['index_buffer',['../class_sky_dome.html#a11a5d80e1ff679da6eb1c89d5a94c010',1,'SkyDome::index_buffer()'],['../class_model3_d_from_file.html#a201050c4caed40db8bd2ff77b91a9d6d',1,'Model3DFromFile::index_buffer()'],['../class_models_manager.html#a2d84f8c50261b5363d3ee195ff9fceae',1,'ModelsManager::index_buffer()']]],
+  ['iloader_2eh',['ILoader.h',['../_i_loader_8h.html',1,'']]],
+  ['index_5fbuffer',['index_buffer',['../class_sky_dome.html#a11a5d80e1ff679da6eb1c89d5a94c010',1,'SkyDome::index_buffer()'],['../class_model3_d_from_file.html#a201050c4caed40db8bd2ff77b91a9d6d',1,'Model3DFromFile::index_buffer()']]],
   ['indexprediction',['IndexPrediction',['../struct_index_prediction.html',1,'']]],
   ['init',['init',['../class_hosek_skylight_model.html#a9949f1e2777379a093bc9d78d8d775b2',1,'HosekSkylightModel']]],
   ['init_5fabstraction_5flayers',['init_abstraction_layers',['../class_u_i___engine.html#aec46b77dd53790396092aea86ad8d838',1,'UI_Engine']]],
@@ -66,5 +69,7 @@ var searchData=
   ['isup',['isUp',['../class_x_g_u_i_1_1_abstract_button.html#a3ce77adc2670e5537132b56db241da20',1,'XGUI::AbstractButton']]],
   ['isvisible',['isVisible',['../class_x_g_u_i_1_1_control.html#afcceb1273ca6f2e7b77fa94629cdf5fb',1,'XGUI::Control']]],
   ['itexture',['ITexture',['../class_i_texture.html',1,'']]],
-  ['itexture_2eh',['ITexture.h',['../_i_texture_8h.html',1,'']]]
+  ['itexture_2eh',['ITexture.h',['../_i_texture_8h.html',1,'']]],
+  ['instrukcja_20uruchamiania',['Instrukcja uruchamiania',['../_launch_instruction.html',1,'']]],
+  ['interfejsy',['Interfejsy',['../_main_interfaces.html',1,'']]]
 ];

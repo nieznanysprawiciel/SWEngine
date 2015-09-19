@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -90,9 +91,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_d_x11_render_target-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">DX11RenderTarget Class Reference</div>  </div>
+<div class="title">DX11RenderTarget Class Reference<div class="ingroups"><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___graphic_a_p_i.html">GraphicAPI</a> &raquo; <a class="el" href="group___d_x11_a_p_i.html">DX11API</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementacja render targetu w DirectX11.  
+ <a href="class_d_x11_render_target.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_d_x11_render_target_8h_source.html">DX11RenderTarget.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for DX11RenderTarget:</div>
 <div class="dyncontent">
@@ -102,7 +108,7 @@ Inheritance diagram for DX11RenderTarget:</div>
 <area href="class_render_target_object.html" alt="RenderTargetObject" shape="rect" coords="0,112,126,136"/>
 <area href="class_d_x11_a_p_i_objects.html" title="Klasa przechowuje w zmiennych statycznych najważniejsze interfejsy DirectX11. " alt="DX11APIObjects" shape="rect" coords="136,112,262,136"/>
 <area href="class_i_render_target.html" alt="IRenderTarget" shape="rect" coords="0,56,126,80"/>
-<area href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów. " alt="ResourceObject" shape="rect" coords="0,0,126,24"/>
+<area href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. " alt="ResourceObject" shape="rect" coords="0,0,126,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -319,7 +325,9 @@ static ID3D11PixelShader *&#160;</td><td class="memItemRight" valign="bottom"><a
 <tr class="memdesc:a8a7921bef03f64b14ede79b35e59a82f inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obiekt domyślnego piksel shadera. <br /></td></tr>
 <tr class="separator:a8a7921bef03f64b14ede79b35e59a82f inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implementacja render targetu w DirectX11. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a3d7f1140a862df6a9444f7bbbab929e3"></a>
 <div class="memitem">
 <div class="memproto">
@@ -340,10 +348,10 @@ static ID3D11PixelShader *&#160;</td><td class="memItemRight" valign="bottom"><a
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Tworzy object <a class="el" href="class_d_x11_render_target.html">DX11RenderTarget</a> z bufora tylnego ekranu.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000039">Todo:</a></b></dt><dd>Wersja troszkę niewłaściwa. RenderTarget jest juz stworzony wcześniej przy zwykłej inicjalizacji <a class="el" href="class_d_x11_a_p_i_objects.html" title="Klasa przechowuje w zmiennych statycznych najważniejsze interfejsy DirectX11. ">DX11APIObjects</a>. Tutaj jest jedynie tworzony obiekt silnikowy, który potrafi to obsłużyć. Trzeba to zmienić, żeby całe tworzenie render targetu odbywało się tutaj.</dd></dl>
+<p>Tworzy object <a class="el" href="class_d_x11_render_target.html" title="Implementacja render targetu w DirectX11. ">DX11RenderTarget</a> z bufora tylnego ekranu.</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000040">Todo:</a></b></dt><dd>Wersja troszkę niewłaściwa. RenderTarget jest juz stworzony wcześniej przy zwykłej inicjalizacji <a class="el" href="class_d_x11_a_p_i_objects.html" title="Klasa przechowuje w zmiennych statycznych najważniejsze interfejsy DirectX11. ">DX11APIObjects</a>. Tutaj jest jedynie tworzony obiekt silnikowy, który potrafi to obsłużyć. Trzeba to zmienić, żeby całe tworzenie render targetu odbywało się tutaj.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Wewnętrzne tekstury render targetu są ustawione na nullptr. Oznacza to, że nie można ich użyć w innych obiektach. Zastanowić się czy to właściwe rozwiązanie i ewentualnie zmienić implementację.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>Zwraca wskaźnik object <a class="el" href="class_d_x11_render_target.html">DX11RenderTarget</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Zwraca wskaźnik object <a class="el" href="class_d_x11_render_target.html" title="Implementacja render targetu w DirectX11. ">DX11RenderTarget</a>. </dd></dl>
 
 </div>
 </div>
@@ -354,7 +362,7 @@ static ID3D11PixelShader *&#160;</td><td class="memItemRight" valign="bottom"><a
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 14:01:32 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

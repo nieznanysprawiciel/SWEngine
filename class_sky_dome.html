@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -148,7 +149,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a3b17bb74a7dd5f52952619fb93b2c22a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sky_dome.html#a3b17bb74a7dd5f52952619fb93b2c22a">set_texture</a> (const std::wstring &amp;name, TEXTURES_TYPES type)</td></tr>
+<tr class="memitem:a3b17bb74a7dd5f52952619fb93b2c22a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sky_dome.html#a3b17bb74a7dd5f52952619fb93b2c22a">set_texture</a> (const std::wstring &amp;name, <a class="el" href="_mesh_resources_8h.html#a97f4ea7c9b73b7be637f6f28e7de66c5">TEXTURES_TYPES</a> type)</td></tr>
 <tr class="memdesc:a3b17bb74a7dd5f52952619fb93b2c22a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ustawia w zmiennej display_data teksturę. Tekstura jest pobierana z ModelsManagera, jeżeli nie istnieje jest dodawana.  <a href="#a3b17bb74a7dd5f52952619fb93b2c22a">More...</a><br /></td></tr>
 <tr class="separator:a3b17bb74a7dd5f52952619fb93b2c22a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64a1bbe428e52cdce5a0a143a293b319"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sky_dome.html#a64a1bbe428e52cdce5a0a143a293b319">set_vertex_shader</a> (const std::wstring &amp;file_name, const std::string &amp;shader_entry, <a class="el" href="class_input_layout_descriptor.html">InputLayoutDescriptor</a> *layout_desc)</td></tr>
@@ -204,7 +205,7 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><p>Klasa jest interfejsem dla wszystkich klas, które mają wyświetlać jakieś tło. </p>
 <p>Interfejs zawiera jedynie metody do komunikacji z klasa <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a>. Poza tym nie ma konieczności tworzenia jednolitego interfejsu. Nawet nie jest to do końca możliwe, bo użytkownik musi podać do inicjacji dane specyficzne dla konkretnego modelu nieba.</p>
 <p>Implementując własną klasę, trzeba pamiętać, że po dodaniu do <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a>, obiekt musi być w każdej chwili gotowy do wyświetlania. Trzeba także uważać na wielowatkowość, aby nie występowały niespójności w danych. Klasa <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a> nie będzie używała żadnych narzędzi do synchronizacji, więc jedyne istniejące, to te wbudowane w bufory.</p>
-<p>W strukturze <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. ">ModelPart</a> pole mesh jest zainicjowane zaalokowaną strukturą <a class="el" href="struct_mesh_part_object.html" title="Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach. ">MeshPartObject</a> i jest również zwalaniane w destruktorze klasy <a class="el" href="class_sky_dome.html" title="Klasa jest interfejsem dla wszystkich klas, które mają wyświetlać jakieś tło. ">SkyDome</a>.</p>
+<p>W strukturze <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> pole mesh jest zainicjowane zaalokowaną strukturą <a class="el" href="struct_mesh_part_object.html" title="Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach.W zależności od zawartości pola index_buffer w strukturze ModelPart, mesh jest wyświetlany w trybie indeksowanym lub nie. Jeżeli wartość tego pola wynosi nullptr, to wtedy używane są zmienne buffer offset i vertices count, które jednoznacznie wskazują, która część bufora wierzchołków ma zostać wyświetlona. ">MeshPartObject</a> i jest również zwalaniane w destruktorze klasy <a class="el" href="class_sky_dome.html" title="Klasa jest interfejsem dla wszystkich klas, które mają wyświetlać jakieś tło. ">SkyDome</a>.</p>
 <p>Polecam zapoznać się z opisem funkcji <a class="el" href="class_display_engine.html#ab7f1377c4b0e937b007beabfc50ea9fb" title="Funkcja służy do wyświetlania skyboxa lub też każdej innej formy, która służy za tło. ">DisplayEngine::display_sky_box</a> w celu lepszego zorientowania się co się dzieje podczas wyświetlania kopuły.</p>
 <dl class="section note"><dt>Note</dt><dd>Używając funkcji przeznaczonych do wypełniania poszczególnych pól klasy, zwalniamy z siebie obowiązek dodawania odwołań. Funkcje pilnują także, żeby kasować odwołania w przypadku, gdy jakieś pole zostało nadpisane. Wszystkie odwołania do obiektów są kasowane w destruktorze, więc nie trzeba się wogóle przejmować żadnymi odwołaniami. </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
@@ -417,7 +418,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">TEXTURES_TYPES&#160;</td>
+          <td class="paramtype"><a class="el" href="_mesh_resources_8h.html#a97f4ea7c9b73b7be637f6f28e7de66c5">TEXTURES_TYPES</a>&#160;</td>
           <td class="paramname"><em>type</em>&#160;</td>
         </tr>
         <tr>
@@ -589,7 +590,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 14:01:33 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:00:15 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

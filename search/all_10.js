@@ -1,7 +1,8 @@
 var searchData=
 [
+  ['podstawowe_20obiekty_20i_20struktury_20danych',['Podstawowe obiekty i struktury danych',['../_basic_objects.html',1,'']]],
   ['pętla_20główna_20silnika',['Pętla główna silnika',['../_main_loop.html',1,'']]],
-  ['pisanie_20loaderów_20plików_20z_20modelami',['Pisanie loaderów plików z modelami',['../_making_loaders.html',1,'']]],
+  ['pisanie_20loaderów',['Pisanie loaderów',['../group___making_loaders.html',1,'']]],
   ['potok_20przetwarzania_20obiektów',['Potok przetwarzania obiektów',['../_object_pipeline.html',1,'']]],
   ['parent',['parent',['../class_x_g_u_i_1_1_control.html#a4df4241a6ab1c1b86ca167b5b0d69f7c',1,'XGUI::Control']]],
   ['pause',['pause',['../class_engine_interface.html#ab4e51e1ca05121a4a67b4310f5546869',1,'EngineInterface']]],
@@ -12,7 +13,6 @@ var searchData=
   ['physic_5fengine',['physic_engine',['../class_engine_interface.html#a08574dc42032dfcbfb0e81b8fc32494d',1,'EngineInterface']]],
   ['physicalobject',['PhysicalObject',['../class_physical_object.html',1,'']]],
   ['physicengine',['PhysicEngine',['../class_physic_engine.html',1,'']]],
-  ['pixel_5fshader',['pixel_shader',['../class_models_manager.html#a6bc32fdf77dcb889cd75a5a1953e3e7e',1,'ModelsManager']]],
   ['pixelshader',['PixelShader',['../class_x_g_u_i_1_1_pixel_shader.html',1,'XGUI']]],
   ['pixelshaderobject',['PixelShaderObject',['../class_pixel_shader_object.html',1,'']]],
   ['position',['position',['../class_static_object.html#af7deb962f5ec39c93d0868bf543bfef5',1,'StaticObject::position()'],['../struct_sky_dome_vertex.html#aa38f473b94a426135d806f4e2a7a6a86',1,'SkyDomeVertex::position()'],['../struct_vertex_normal_tex_cord1.html#af039dd58e972e5ed38bacb70321d32e8',1,'VertexNormalTexCord1::position()'],['../struct_vertex_tex_cord1.html#ab9a9730bed0f576ca29733396e80f34f',1,'VertexTexCord1::position()'],['../struct_vertex_color.html#aeb6c782c89937e12a480678aa2611598',1,'VertexColor::position()']]],

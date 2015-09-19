@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -89,11 +90,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="struct_material_object-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">MaterialObject Struct Reference</div>  </div>
+<div class="title">MaterialObject Struct Reference<div class="ingroups"><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___engine_core.html">EngineCore</a> &raquo; <a class="el" href="group___resources_managment.html">Zarządzenie zasobami</a> &raquo; <a class="el" href="group___resources.html">Zasoby</a><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo;  &#124; <a class="el" href="group___graphic_a_p_i.html">GraphicAPI</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Struktura przechowująca materiał.  
+<p>Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych.  
  <a href="struct_material_object.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_mesh_resources_8h_source.html">MeshResources.h</a>&gt;</code></p>
@@ -103,7 +104,7 @@ Inheritance diagram for MaterialObject:</div>
  <div class="center">
   <img src="struct_material_object.png" usemap="#MaterialObject_map" alt=""/>
   <map id="MaterialObject_map" name="MaterialObject_map">
-<area href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów. " alt="ResourceObject" shape="rect" coords="0,0,103,24"/>
+<area href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. " alt="ResourceObject" shape="rect" coords="0,0,103,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -182,9 +183,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="separator:a38cce868f5e80e797c3bfd65e0c55aeb inherit pro_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Struktura przechowująca materiał. </p>
-<p>DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych.</p>
-<p>Struktura zachowuje się jak asset w związku z czym może być współdzielona przez wiele obiektów. Z tego względu nie można jej użyć bezpośrednio w <a class="el" href="struct_constant_per_mesh.html" title="Bufor stałych dla shadera zmieniający się dla każdej części mesha. ">ConstantPerMesh</a>, ponieważ nie chcemy przekazywać do bufora stałych zmiennych odziedziczonych po <a class="el" href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów. ">ResourceObject</a>. Zamiast tego trzeba tę strukture przepisać.</p>
+<div class="textblock"><p>Struktura przechowująca materiał.</p>
+<p>DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. </p>
+<p>Struktura zachowuje się jak asset w związku z czym może być współdzielona przez wiele obiektów. Z tego względu nie można jej użyć bezpośrednio w <a class="el" href="struct_constant_per_mesh.html" title="Bufor stałych dla shadera zmieniający się dla każdej części mesha. ">ConstantPerMesh</a>, ponieważ nie chcemy przekazywać do bufora stałych zmiennych odziedziczonych po <a class="el" href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. ">ResourceObject</a>. Zamiast tego trzeba tę strukture przepisać.</p>
 <p>Zwracam uwagę, że tylko kanał Diffuse jest wektorem 4 wymiarowym, w którym składowa w jest odpowiedzialna za przezroczystość. Pozostałe są takie tylko dlatego, że jest to domyślny format przechowywania danych w rejestrach karty graficznej i przypsiesza to operację kopiowania. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_constant_per_frame.html" title="Bufor stałych dla shadera zmieniający się raz na klatkę. ">ConstantPerFrame</a> </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a78c54ca82d12fc9ab3ac30b13fec75d8"></a>
@@ -212,7 +213,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 14:01:32 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

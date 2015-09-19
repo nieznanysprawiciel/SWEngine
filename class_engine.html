@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -139,9 +140,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>wait_for_threads</b> 
 <tr class="memitem:af7e9c4bedab4efae6084e32abf813fc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#af7e9c4bedab4efae6084e32abf813fc7">send_event</a> (<a class="el" href="class_event.html">Event</a> *new_event)</td></tr>
 <tr class="memdesc:af7e9c4bedab4efae6084e32abf813fc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja pozwala wysłać event, który będzie potem przetworzony przez klase <a class="el" href="class_fable_engine.html">FableEngine</a>.  <a href="#af7e9c4bedab4efae6084e32abf813fc7">More...</a><br /></td></tr>
 <tr class="separator:af7e9c4bedab4efae6084e32abf813fc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad7578076d2d93b11e1a74a4b658905c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#aad7578076d2d93b11e1a74a4b658905c">set_entry_point</a> (<a class="el" href="class_game_play.html">GamePlay</a> *game_play)</td></tr>
-<tr class="memdesc:aad7578076d2d93b11e1a74a4b658905c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wczytująca startowy level do silnika. Najczęściej na tym etapie wczytuje się tylko menu, oraz wszytkie elementy, które są przydatne na każdym etapie gry.  <a href="#aad7578076d2d93b11e1a74a4b658905c">More...</a><br /></td></tr>
-<tr class="separator:aad7578076d2d93b11e1a74a4b658905c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbff60cf27a3606c89b16b020662293d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#afbff60cf27a3606c89b16b020662293d">set_entry_point</a> (<a class="el" href="class_i_game_play.html">IGamePlay</a> *game_play)</td></tr>
+<tr class="memdesc:afbff60cf27a3606c89b16b020662293d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wczytująca startowy level do silnika. Najczęściej na tym etapie wczytuje się tylko menu, oraz wszytkie elementy, które są przydatne na każdym etapie gry.  <a href="#afbff60cf27a3606c89b16b020662293d">More...</a><br /></td></tr>
+<tr class="separator:afbff60cf27a3606c89b16b020662293d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a800b741c6898a7aae8eefe564508ae57"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a800b741c6898a7aae8eefe564508ae57"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#a800b741c6898a7aae8eefe564508ae57">set_entry_point</a> (const std::wstring dll_name)</td></tr>
 <tr class="memdesc:a800b741c6898a7aae8eefe564508ae57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nie będzie wczytywania z bibliotek DLL. Mają one ddzielną stertę i powoduje to problemy ze zwalnianiem pamięci. Poza tym taka architektura nie nadaje się do przeciążania operatorów new i delete. <br /></td></tr>
@@ -468,14 +469,14 @@ std::queue&lt; <a class="el" href="class_event.html">Event</a> * &gt; *&#160;</t
 
 </div>
 </div>
-<a class="anchor" id="aad7578076d2d93b11e1a74a4b658905c"></a>
+<a class="anchor" id="afbff60cf27a3606c89b16b020662293d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Engine::set_entry_point </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_game_play.html">GamePlay</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="class_i_game_play.html">IGamePlay</a> *&#160;</td>
           <td class="paramname"><em>game_play</em></td><td>)</td>
           <td></td>
         </tr>
@@ -483,8 +484,8 @@ std::queue&lt; <a class="el" href="class_event.html">Event</a> * &gt; *&#160;</t
 </div><div class="memdoc">
 
 <p>Funkcja wczytująca startowy level do silnika. Najczęściej na tym etapie wczytuje się tylko menu, oraz wszytkie elementy, które są przydatne na każdym etapie gry. </p>
-<p>Zawartość klasy <a class="el" href="class_game_play.html">GamePlay</a> powinna być jak najmniejsza, ponieważ wszystkie te rzeczy są wczytywane zanim cokolwiek pojawi się na ekranie. Z tego względu lepiej najpierw wczytać mało, żeby użytkownik już coś zobaczył, a potem dopiero wczytać resztę wyświetlając jednocześnie pasek wczytywania.</p>
-<p>Funkcja nie jest dostępna w <a class="el" href="class_engine_interface.html" title="Klasa jest interfejsem dla użytkownika użytkującego silnik. ">EngineInterface</a>. Służy do wczytania tylko pierwszej klasy <a class="el" href="class_game_play.html">GamePlay</a> jaka istnieje, na późniejszych etapach gry robi się to innymi funkcjami.</p>
+<p>Zawartość klasy <a class="el" href="class_i_game_play.html">IGamePlay</a> powinna być jak najmniejsza, ponieważ wszystkie te rzeczy są wczytywane zanim cokolwiek pojawi się na ekranie. Z tego względu lepiej najpierw wczytać mało, żeby użytkownik już coś zobaczył, a potem dopiero wczytać resztę wyświetlając jednocześnie pasek wczytywania.</p>
+<p>Funkcja nie jest dostępna w <a class="el" href="class_engine_interface.html" title="Klasa jest interfejsem dla użytkownika użytkującego silnik. ">EngineInterface</a>. Służy do wczytania tylko pierwszej klasy <a class="el" href="class_i_game_play.html">IGamePlay</a> jaka istnieje, na późniejszych etapach gry robi się to innymi funkcjami.</p>
 <p>Level się nie wczyta, jeżeli nie zainicjowano DirectXa. Funkcje tworzące bufory, textury i tym podobne rzeczy wymagają zainicjowanego kontekstu urządzenia DirectX, dlatego na wszelki wypadek zawsze inicjalizacja powinna być wcześniej.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -492,7 +493,7 @@ std::queue&lt; <a class="el" href="class_event.html">Event</a> * &gt; *&#160;</t
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_game_play.html">GamePlay</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_i_game_play.html">IGamePlay</a> </dd></dl>
 
 </div>
 </div>
@@ -528,7 +529,7 @@ std::queue&lt; <a class="el" href="class_event.html">Event</a> * &gt; *&#160;</t
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 14:01:32 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

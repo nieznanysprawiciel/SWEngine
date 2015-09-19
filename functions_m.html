@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -126,6 +127,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_colorBuffer
 : <a class="el" href="class_render_target_object.html#a757f09fbd591b675c0a6294f35ad4be7">RenderTargetObject</a>
 </li>
+<li>m_constantBuffer
+: <a class="el" href="class_models_manager.html#a3a8466cb9ba96c572c77599ead8afaad">ModelsManager</a>
+</li>
 <li>m_constantsPerFrame
 : <a class="el" href="class_display_engine.html#a7a892fc8239723ae60c4688879b853a2">DisplayEngine</a>
 </li>
@@ -141,8 +145,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_elementSize
 : <a class="el" href="class_buffer_object.html#a2bffb3aeb202f4fa51e3986453abe4e5">BufferObject</a>
 </li>
+<li>m_engine
+: <a class="el" href="class_models_manager.html#a51789cdac21912376b73a5ea06ef36b2">ModelsManager</a>
+</li>
 <li>m_engineReady
 : <a class="el" href="class_engine_interface.html#a115dd4202750297d873a15f7b2e952b4">EngineInterface</a>
+</li>
+<li>m_fileModel
+: <a class="el" href="class_models_manager.html#a8849f9426a8bf04422737993859c55cb">ModelsManager</a>
 </li>
 <li>m_fileName
 : <a class="el" href="class_texture_object.html#a10c5ecff22eeaa5269db97727edfca5c">TextureObject</a>
@@ -150,11 +160,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_graphicInitializer
 : <a class="el" href="class_engine_interface.html#a98a1683f3db6dc0045ebad5f64269d78">EngineInterface</a>
 </li>
+<li>m_indexBuffer
+: <a class="el" href="class_models_manager.html#ab7050df76e6d5ca9b8de16ff4c6cb1a5">ModelsManager</a>
+</li>
+<li>m_loader
+: <a class="el" href="class_models_manager.html#ad5da3957aa62100f9d852c812291008b">ModelsManager</a>
+</li>
 <li>m_localDeviceContext
 : <a class="el" href="class_d_x11_renderer.html#a2f976f5fd4b892b532898a8c649d94c2">DX11Renderer</a>
 </li>
+<li>m_material
+: <a class="el" href="class_models_manager.html#aa363b3c8ba0403c100f2d312de1f1d7a">ModelsManager</a>
+</li>
+<li>m_pixelShader
+: <a class="el" href="class_models_manager.html#a9c8a87c091a849141a6512a5cfb326b0">ModelsManager</a>
+</li>
 <li>m_renderers
 : <a class="el" href="class_display_engine.html#a9fec0f5b2448afb13e0a6300c374beca">DisplayEngine</a>
+</li>
+<li>m_renderTarget
+: <a class="el" href="class_models_manager.html#a18a8efb85e05826bdf512500356efb74">ModelsManager</a>
 </li>
 <li>m_shaderEntry
 : <a class="el" href="class_i_shader.html#a8ddf166da0258410e88a0f4c65aaced1">IShader</a>
@@ -162,17 +187,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_shaderFile
 : <a class="el" href="class_i_shader.html#a75d9c492a3bc08c9c6695a4bd7a394cb">IShader</a>
 </li>
+<li>m_texture
+: <a class="el" href="class_models_manager.html#a3fe52c21645da3cdad9e50eecfdf58a6">ModelsManager</a>
+</li>
 <li>m_usageType
 : <a class="el" href="class_d_x11_renderer.html#aea3e84a90d2c35f5fa678043e956084a">DX11Renderer</a>
 </li>
 <li>m_valid
 : <a class="el" href="class_d_x11_renderer.html#ad829990214c845a9af459b61c73a1a00">DX11Renderer</a>
 </li>
+<li>m_vertexBuffer
+: <a class="el" href="class_models_manager.html#a807fa2a6e40fcc6f1c5b44d228cd017e">ModelsManager</a>
+</li>
+<li>m_vertexLayout
+: <a class="el" href="class_models_manager.html#a50550ff1f5c3957254e2c9806591e72e">ModelsManager</a>
+</li>
+<li>m_vertexShader
+: <a class="el" href="class_models_manager.html#a26acd890f0b2be407184aa14d8385447">ModelsManager</a>
+</li>
 <li>main_loop()
 : <a class="el" href="class_engine.html#a28609462aae6189be2b5ed4d8ecfbae5">Engine</a>
-</li>
-<li>material
-: <a class="el" href="class_models_manager.html#af0f7f4d90d9e5a06cebd2be8d80c582a">ModelsManager</a>
 </li>
 <li>max_length
 : <a class="el" href="class_x_g_u_i_1_1_abstract_text_input.html#ad2b7a9e6a7669ff3b1a7fc94d0205c73">XGUI::AbstractTextInput</a>
@@ -239,7 +273,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 14:01:33 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:00:15 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

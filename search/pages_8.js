@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['todo_20list',['Todo List',['../todo.html',1,'']]]
+  ['stałe_20i_20makrodefinicje',['Stałe i makrodefinicje',['../_constants_macros.html',1,'']]],
+  ['struktura_20projektu',['Struktura projektu',['../_project_structure.html',1,'']]],
+  ['samo_2drednerujące_20się_20obiekty',['Samo-rednerujące się obiekty',['../self_drawing_objects.html',1,'']]]
 ];

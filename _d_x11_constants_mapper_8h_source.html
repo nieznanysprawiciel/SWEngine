@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -101,30 +102,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">extern</span> D3D_PRIMITIVE_TOPOLOGY               DX11PrimitiveTopology[ 9 ];</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">extern</span> D3D11_BIND_FLAG                      DX11REsourceBinding[ 10 ];</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_d_x11_constants_mapper.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_d_x11_constants_mapper.html">DX11ConstantsMapper</a></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_d_x11_constants_mapper.html">DX11ConstantsMapper</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    ~<a class="code" href="class_d_x11_constants_mapper.html">DX11ConstantsMapper</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> D3D11_USAGE               Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1">ResourceUsage</a> usage )          { <span class="keywordflow">return</span> DX11ResourceUsage[ (int)usage ]; }</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> DXGI_FORMAT               Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#af9e15cb1b0d041b19045d8db37e38f5b">ResourceFormat</a> format )        { <span class="keywordflow">return</span> DX11ResourceFormat[ (int)format ]; }</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> D3D_PRIMITIVE_TOPOLOGY    Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#a940e3da6a9b57aae3de0b050e2a7af5e">PrimitiveTopology</a> topology )   { <span class="keywordflow">return</span> DX11PrimitiveTopology[ (int)topology ]; }</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> D3D11_BIND_FLAG           Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#a4b24413c03a6404267f30673d8f5015b">ResourceBinding</a> binding )      { <span class="keywordflow">return</span> DX11REsourceBinding[ (int)binding ]; }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;};</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="class_d_x11_constants_mapper.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_d_x11_constants_mapper.html">DX11ConstantsMapper</a></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="class_d_x11_constants_mapper.html">DX11ConstantsMapper</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    ~<a class="code" href="class_d_x11_constants_mapper.html">DX11ConstantsMapper</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> D3D11_USAGE               Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1">ResourceUsage</a> usage )          { <span class="keywordflow">return</span> DX11ResourceUsage[ (int)usage ]; }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> DXGI_FORMAT               Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#af9e15cb1b0d041b19045d8db37e38f5b">ResourceFormat</a> format )        { <span class="keywordflow">return</span> DX11ResourceFormat[ (int)format ]; }</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> D3D_PRIMITIVE_TOPOLOGY    Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#a940e3da6a9b57aae3de0b050e2a7af5e">PrimitiveTopology</a> topology )   { <span class="keywordflow">return</span> DX11PrimitiveTopology[ (int)topology ]; }</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> D3D11_BIND_FLAG           Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#a4b24413c03a6404267f30673d8f5015b">ResourceBinding</a> binding )      { <span class="keywordflow">return</span> DX11REsourceBinding[ (int)binding ]; }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;};</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
 <div class="ttc" id="_graphic_a_p_i_constants_8h_html_a940e3da6a9b57aae3de0b050e2a7af5e"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#a940e3da6a9b57aae3de0b050e2a7af5e">PrimitiveTopology</a></div><div class="ttdeci">PrimitiveTopology</div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:18</div></div>
 <div class="ttc" id="_graphic_a_p_i_constants_8h_html_a4b24413c03a6404267f30673d8f5015b"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#a4b24413c03a6404267f30673d8f5015b">ResourceBinding</a></div><div class="ttdeci">ResourceBinding</div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:35</div></div>
 <div class="ttc" id="_graphic_a_p_i_constants_8h_html_af9e15cb1b0d041b19045d8db37e38f5b"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#af9e15cb1b0d041b19045d8db37e38f5b">ResourceFormat</a></div><div class="ttdeci">ResourceFormat</div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:51</div></div>
 <div class="ttc" id="_d_x11_a_p_i_objects_8h_html"><div class="ttname"><a href="_d_x11_a_p_i_objects_8h.html">DX11APIObjects.h</a></div><div class="ttdoc">Zawiera deklarację klasy DX11APIObjects i DX11AuxiliaryObjects służących do inicjowania i przechowywa...</div></div>
 <div class="ttc" id="_graphic_a_p_i_constants_8h_html_a397e45c96a8884109d4aad7d3255cab1"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1">ResourceUsage</a></div><div class="ttdeci">ResourceUsage</div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:9</div></div>
-<div class="ttc" id="class_d_x11_constants_mapper_html"><div class="ttname"><a href="class_d_x11_constants_mapper.html">DX11ConstantsMapper</a></div><div class="ttdef"><b>Definition:</b> DX11ConstantsMapper.h:12</div></div>
+<div class="ttc" id="class_d_x11_constants_mapper_html"><div class="ttname"><a href="class_d_x11_constants_mapper.html">DX11ConstantsMapper</a></div><div class="ttdoc">Klasa służy do mapowania stałych z wartości silnikowych do DirectX 11. </div><div class="ttdef"><b>Definition:</b> DX11ConstantsMapper.h:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 14:01:32 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

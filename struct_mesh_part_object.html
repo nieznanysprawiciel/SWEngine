@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -89,11 +90,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="struct_mesh_part_object-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">MeshPartObject Struct Reference</div>  </div>
+<div class="title">MeshPartObject Struct Reference<div class="ingroups"><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___engine_core.html">EngineCore</a> &raquo; <a class="el" href="group___resources_managment.html">Zarządzenie zasobami</a> &raquo; <a class="el" href="group___resources.html">Zasoby</a><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo;  &#124; <a class="el" href="group___graphic_a_p_i.html">GraphicAPI</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach.  
+<p>Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach.W zależności od zawartości pola index_buffer w strukturze <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a>, mesh jest wyświetlany w trybie indeksowanym lub nie. Jeżeli wartość tego pola wynosi nullptr, to wtedy używane są zmienne buffer offset i vertices count, które jednoznacznie wskazują, która część bufora wierzchołków ma zostać wyświetlona.  
  <a href="struct_mesh_part_object.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_mesh_resources_8h_source.html">MeshResources.h</a>&gt;</code></p>
@@ -103,7 +104,7 @@ Inheritance diagram for MeshPartObject:</div>
  <div class="center">
   <img src="struct_mesh_part_object.png" usemap="#MeshPartObject_map" alt=""/>
   <map id="MeshPartObject_map" name="MeshPartObject_map">
-<area href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów. " alt="ResourceObject" shape="rect" coords="0,0,103,24"/>
+<area href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. " alt="ResourceObject" shape="rect" coords="0,0,103,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -179,18 +180,18 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="separator:a38cce868f5e80e797c3bfd65e0c55aeb inherit pro_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach. </p>
-<p>W zależności od zawartości pola index_buffer w strukturze <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia. ">ModelPart</a>, mesh jest wyświetlany w trybie indeksowanym lub nie. Jeżeli wartość tego pola wynosi nullptr, to wtedy używane są zmienne buffer offset i vertices count, które jednoznacznie wskazują, która część bufora wierzchołków ma zostać wyświetlona.</p>
+<div class="textblock"><p>Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach.</p>
+<p>W zależności od zawartości pola index_buffer w strukturze <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a>, mesh jest wyświetlany w trybie indeksowanym lub nie. Jeżeli wartość tego pola wynosi nullptr, to wtedy używane są zmienne buffer offset i vertices count, które jednoznacznie wskazują, która część bufora wierzchołków ma zostać wyświetlona. </p>
 <p>Jeżeli wskaźnik index_buffer wskazuje na obiekt, to wtedy używany jest tryb indeksowany i zmienne buffer_offset, vertices_count i base_vertex.</p>
 <p>Klasa jest alokowana w <a class="el" href="class_model3_d_from_file.html" title="Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ...">Model3DFromFile</a> i to właśnie ta klasa odpowiada za zwolnienie pamięci.</p>
-<p>Pomimo dziedziczenia po klasie <a class="el" href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów. ">ResourceObject</a>, nie jest używane pole unique_id. Dlatego jest ono w kontruktorze ustawiane na WRONG_ID. <a class="el" href="struct_mesh_part_object.html" title="Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach. ">MeshPartObject</a> nie mogą być współdzielone między obiektami. </p>
+<p>Pomimo dziedziczenia po klasie <a class="el" href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. ">ResourceObject</a>, nie jest używane pole unique_id. Dlatego jest ono w kontruktorze ustawiane na WRONG_ID. <a class="el" href="struct_mesh_part_object.html" title="Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach.W zależności od zawartości pola index_buffer w strukturze ModelPart, mesh jest wyświetlany w trybie indeksowanym lub nie. Jeżeli wartość tego pola wynosi nullptr, to wtedy używane są zmienne buffer offset i vertices count, które jednoznacznie wskazują, która część bufora wierzchołków ma zostać wyświetlona. ">MeshPartObject</a> nie mogą być współdzielone między obiektami. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>D:/ProgramyVS/SWEngine/EngineCode/GraphicAPI/<a class="el" href="_mesh_resources_8h_source.html">MeshResources.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 14:01:32 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

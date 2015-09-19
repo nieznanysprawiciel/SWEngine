@@ -6,7 +6,7 @@ var searchData=
   ['text',['text',['../class_x_g_u_i_1_1_abstract_text.html#ad5c3b810dbac6010c9a7d2bede2fc47d',1,'XGUI::AbstractText::text()'],['../class_x_g_u_i_1_1_abstract_text_input.html#aca2b321c5b7d6a36e5e0839c6a648bac',1,'XGUI::AbstractTextInput::text()']]],
   ['text_5falignment',['text_alignment',['../class_x_g_u_i_1_1_abstract_text.html#aca3930402faf59ddd885bfa5999a9ea5',1,'XGUI::AbstractText']]],
   ['text_5fcolor',['text_color',['../class_x_g_u_i_1_1_abstract_text.html#a2281db6a640171d46c60eb6402e977ed',1,'XGUI::AbstractText']]],
-  ['texture',['texture',['../class_models_manager.html#a97aa4ab92d7b7285ef038b9432484da7',1,'ModelsManager::texture()'],['../class_x_g_u_i_1_1_abstract_textured_region.html#a770784a7049f4f69639a352ef77c70b3',1,'XGUI::AbstractTexturedRegion::texture()']]],
+  ['texture',['texture',['../class_x_g_u_i_1_1_abstract_textured_region.html#a770784a7049f4f69639a352ef77c70b3',1,'XGUI::AbstractTexturedRegion']]],
   ['this_5fptr',['this_ptr',['../class_d_x11_a_p_i_objects.html#a1db5e21336aab4057c36042838b8aeb9',1,'DX11APIObjects']]],
   ['time',['time',['../struct_constant_per_frame.html#a704803b996fe435093ed1c40c18eb335',1,'ConstantPerFrame']]],
   ['time_5flag',['time_lag',['../struct_constant_per_frame.html#a661ddf5092791ee824bd93627d69891d',1,'ConstantPerFrame']]],

@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -89,11 +90,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#friends">Friends</a> &#124;
 <a href="class_object_deleter_key-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">ObjectDeleterKey&lt; class_type &gt; Class Template Reference</div>  </div>
+<div class="title">ObjectDeleterKey&lt; class_type &gt; Class Template Reference<div class="ingroups"><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___common_files.html">Common</a> &raquo; <a class="el" href="group___deleting_objects.html">Usuwanie zasobów silnika</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Szablon klasy klucza dla obiektów <a class="el" href="class_object_deleter.html" title="Klasa służy do kasowania obiektów, których destruktor jest prywatny. ">ObjectDeleter</a>.  
+<p>Szablon klasy klucza dla obiektów <a class="el" href="class_object_deleter.html" title="Klasa służy do kasowania obiektów, których destruktor jest prywatny.Taka sytuacja zachodzi w momencie...">ObjectDeleter</a>.  
  <a href="class_object_deleter_key.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_object_deleter_8h_source.html">ObjectDeleter.h</a>&gt;</code></p>
@@ -105,7 +106,8 @@ Private Member Functions</h2></td></tr>
 <tr class="memdesc:a9ba66de585fb7a7996389113127f598b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tylko klasa zaprzyjaźniona może stworzyć obiekt. <br /></td></tr>
 <tr class="separator:a9ba66de585fb7a7996389113127f598b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47be2e705202f80529987f08baa62433"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47be2e705202f80529987f08baa62433"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectDeleterKey</b> (const <a class="el" href="class_object_deleter_key.html">ObjectDeleterKey</a> &amp;)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_deleter_key.html#a47be2e705202f80529987f08baa62433">ObjectDeleterKey</a> (const <a class="el" href="class_object_deleter_key.html">ObjectDeleterKey</a> &amp;)</td></tr>
+<tr class="memdesc:a47be2e705202f80529987f08baa62433"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tylko klasa zaprzyjaźniona może stworzyć obiekt. <br /></td></tr>
 <tr class="separator:a47be2e705202f80529987f08baa62433"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af816a5bd52d703c4b96dd9bb075aaace"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af816a5bd52d703c4b96dd9bb075aaace"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_deleter_key.html#af816a5bd52d703c4b96dd9bb075aaace">ObjectDeleterKey</a> (const <a class="el" href="class_object_deleter_key.html">ObjectDeleterKey</a> &amp;&amp;)</td></tr>
@@ -128,17 +130,17 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>RenderTargetObject</
 <div class="textblock"><h3>template&lt;typename class_type&gt;<br />
 class ObjectDeleterKey&lt; class_type &gt;</h3>
 
-<p>Szablon klasy klucza dla obiektów <a class="el" href="class_object_deleter.html" title="Klasa służy do kasowania obiektów, których destruktor jest prywatny. ">ObjectDeleter</a>. </p>
-<p>Niektóre obiekty są zadeklarowane z prywatnym (chronionym) destruktorem, w celu uniemożliwienia skasowania ich przez niepowołane klasy. Jednakże musi istnieć jakiś dostęp do destruktorów, aby nie powodować wycieków pamięci. Do kasowania obiektów służy klasa <a class="el" href="class_object_deleter.html" title="Klasa służy do kasowania obiektów, których destruktor jest prywatny. ">ObjectDeleter</a>. Aby stworzyć obiekt tej klasy potrzebny jest "klucz", którym jest własnie ta klasa.</p>
+<p>Szablon klasy klucza dla obiektów <a class="el" href="class_object_deleter.html" title="Klasa służy do kasowania obiektów, których destruktor jest prywatny.Taka sytuacja zachodzi w momencie...">ObjectDeleter</a>. </p>
+<p>Niektóre obiekty są zadeklarowane z prywatnym (chronionym) destruktorem, w celu uniemożliwienia skasowania ich przez niepowołane klasy. Jednakże musi istnieć jakiś dostęp do destruktorów, aby nie powodować wycieków pamięci. Do kasowania obiektów służy klasa <a class="el" href="class_object_deleter.html" title="Klasa służy do kasowania obiektów, których destruktor jest prywatny.Taka sytuacja zachodzi w momencie...">ObjectDeleter</a>. Aby stworzyć obiekt tej klasy potrzebny jest "klucz", którym jest własnie ta klasa.</p>
 <p>Klucz ma prywatne konstruktory, w związku z czym może zostać stworzony jedynie przez klasy, które są z nim zaprzyjaźnione. Domyślnie klasami zaprzyjaźnionymi są <a class="el" href="class_models_manager.html" title="Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dźwięków, które raczej zostaną oddelego...">ModelsManager</a> i <a class="el" href="class_resource_container.html" title="Szablon klasy do przechowywania assetów. ">ResourceContainer</a>, aby stworzyć klucz dla innych typów klas, należy napisać specjalizację tego szablonu.</p>
-<p>Odddelegowanie innej klasy do kasowania obiektów ma za zadanie zlikwidowanie niewygodnych zależności. Dzięki temu obiekty, które mają być kasowane, nie muszą się przyjaźnić bezpośrednio z klasami, które mogą je usuwać. Wystarczy, że zadeklarują przyjaźń z obiektem <a class="el" href="class_object_deleter.html" title="Klasa służy do kasowania obiektów, których destruktor jest prywatny. ">ObjectDeleter</a>. Taka przyjaźń jest niegroźna, ponieważ klasa ta nie służy do niczego innego niż kasowanie obiektów, więc jesteśmy pewni, że zmiany wprowadzone w klasie deklarującej przyjaźń nie będą psuły całego kodu aplikacji. </p>
+<p>Odddelegowanie innej klasy do kasowania obiektów ma za zadanie zlikwidowanie niewygodnych zależności. Dzięki temu obiekty, które mają być kasowane, nie muszą się przyjaźnić bezpośrednio z klasami, które mogą je usuwać. Wystarczy, że zadeklarują przyjaźń z obiektem <a class="el" href="class_object_deleter.html" title="Klasa służy do kasowania obiektów, których destruktor jest prywatny.Taka sytuacja zachodzi w momencie...">ObjectDeleter</a>. Taka przyjaźń jest niegroźna, ponieważ klasa ta nie służy do niczego innego niż kasowanie obiektów, więc jesteśmy pewni, że zmiany wprowadzone w klasie deklarującej przyjaźń nie będą psuły całego kodu aplikacji. </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>D:/ProgramyVS/SWEngine/EngineCode/Common/<a class="el" href="_object_deleter_8h_source.html">ObjectDeleter.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 14:01:33 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:00:15 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

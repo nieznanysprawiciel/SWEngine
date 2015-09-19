@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -90,9 +91,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_d_x11_vertex_shader-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">DX11VertexShader Class Reference</div>  </div>
+<div class="title">DX11VertexShader Class Reference<div class="ingroups"><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___graphic_a_p_i.html">GraphicAPI</a> &raquo; <a class="el" href="group___d_x11_a_p_i.html">DX11API</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementacja vertex shadera w DirectX 11.  
+ <a href="class_d_x11_vertex_shader.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_d_x11_vertex_shader_8h_source.html">DX11VertexShader.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for DX11VertexShader:</div>
 <div class="dyncontent">
@@ -102,7 +108,7 @@ Inheritance diagram for DX11VertexShader:</div>
 <area href="class_vertex_shader_object.html" title="Klasa przechowująca vertex shader. " alt="VertexShaderObject" shape="rect" coords="0,112,127,136"/>
 <area href="class_d_x11_a_p_i_objects.html" title="Klasa przechowuje w zmiennych statycznych najważniejsze interfejsy DirectX11. " alt="DX11APIObjects" shape="rect" coords="137,112,264,136"/>
 <area href="class_i_shader.html" alt="IShader" shape="rect" coords="0,56,127,80"/>
-<area href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów. " alt="ResourceObject" shape="rect" coords="0,0,127,24"/>
+<area href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. " alt="ResourceObject" shape="rect" coords="0,0,127,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -167,10 +173,10 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a0393ab0d1f20a5cab615a874c5711952"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_d_x11_vertex_shader.html">DX11VertexShader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_x11_vertex_shader.html#a0393ab0d1f20a5cab615a874c5711952">CreateFromFile</a> (const std::wstring &amp;fileName, const std::string &amp;shaderName, const char *shaderModel=&quot;vs_4_0&quot;)</td></tr>
-<tr class="memdesc:a0393ab0d1f20a5cab615a874c5711952"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tworzy obiekt <a class="el" href="class_d_x11_vertex_shader.html">DX11VertexShader</a> na podstawie pliku.  <a href="#a0393ab0d1f20a5cab615a874c5711952">More...</a><br /></td></tr>
+<tr class="memdesc:a0393ab0d1f20a5cab615a874c5711952"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tworzy obiekt <a class="el" href="class_d_x11_vertex_shader.html" title="Implementacja vertex shadera w DirectX 11. ">DX11VertexShader</a> na podstawie pliku.  <a href="#a0393ab0d1f20a5cab615a874c5711952">More...</a><br /></td></tr>
 <tr class="separator:a0393ab0d1f20a5cab615a874c5711952"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a250eb33c0d16e1758ce93c4428a78221"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_d_x11_vertex_shader.html">DX11VertexShader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_x11_vertex_shader.html#a250eb33c0d16e1758ce93c4428a78221">CreateFromFile</a> (const std::wstring &amp;fileName, const std::string &amp;shaderName, <a class="el" href="class_shader_input_layout_object.html">ShaderInputLayoutObject</a> **layout, <a class="el" href="class_input_layout_descriptor.html">InputLayoutDescriptor</a> *layout_desc, const char *shaderModel=&quot;vs_4_0&quot;)</td></tr>
-<tr class="memdesc:a250eb33c0d16e1758ce93c4428a78221"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tworzy obiekt <a class="el" href="class_d_x11_vertex_shader.html">DX11VertexShader</a> oraz <a class="el" href="class_d_x11_input_layout.html">DX11InputLayout</a> na podstawie pliku. Zwraca również layout dla podanej struktury wierzchołka. Nie należy używać tej funkcji, jeżeli layout nie jest rzeczywiście potrzebny. Trzeba pamietać o zwolnieniu go, kiedy przestanie być potrzebny.  <a href="#a250eb33c0d16e1758ce93c4428a78221">More...</a><br /></td></tr>
+<tr class="memdesc:a250eb33c0d16e1758ce93c4428a78221"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tworzy obiekt <a class="el" href="class_d_x11_vertex_shader.html" title="Implementacja vertex shadera w DirectX 11. ">DX11VertexShader</a> oraz <a class="el" href="class_d_x11_input_layout.html" title="Implementacja layout w DirectX 11. ">DX11InputLayout</a> na podstawie pliku. Zwraca również layout dla podanej struktury wierzchołka. Nie należy używać tej funkcji, jeżeli layout nie jest rzeczywiście potrzebny. Trzeba pamietać o zwolnieniu go, kiedy przestanie być potrzebny.  <a href="#a250eb33c0d16e1758ce93c4428a78221">More...</a><br /></td></tr>
 <tr class="separator:a250eb33c0d16e1758ce93c4428a78221"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14a8a02b7338650de0f377aa8154fbf4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a14a8a02b7338650de0f377aa8154fbf4"></a>
 static <a class="el" href="class_d_x11_vertex_shader.html">DX11VertexShader</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>CreateFromBinFile</b> (const std::wstring &amp;fileName, const std::string &amp;shaderName, const char *shaderModel=&quot;vs_4_0&quot;)</td></tr>
@@ -322,7 +328,9 @@ static ID3D11PixelShader *&#160;</td><td class="memItemRight" valign="bottom"><a
 <tr class="memdesc:a8a7921bef03f64b14ede79b35e59a82f inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obiekt domyślnego piksel shadera. <br /></td></tr>
 <tr class="separator:a8a7921bef03f64b14ede79b35e59a82f inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implementacja vertex shadera w DirectX 11. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a0393ab0d1f20a5cab615a874c5711952"></a>
 <div class="memitem">
 <div class="memproto">
@@ -361,7 +369,7 @@ static ID3D11PixelShader *&#160;</td><td class="memItemRight" valign="bottom"><a
 </table>
 </div><div class="memdoc">
 
-<p>Tworzy obiekt <a class="el" href="class_d_x11_vertex_shader.html">DX11VertexShader</a> na podstawie pliku. </p>
+<p>Tworzy obiekt <a class="el" href="class_d_x11_vertex_shader.html" title="Implementacja vertex shadera w DirectX 11. ">DX11VertexShader</a> na podstawie pliku. </p>
 <p>W przypadku błędów kompilacji w trybie debug są one przekierowane do okna Output.</p>
 <p>Na razie obsługuje tylko nieskompilowane pliki. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -371,7 +379,7 @@ static ID3D11PixelShader *&#160;</td><td class="memItemRight" valign="bottom"><a
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Zwraca wskaźnik na obiekt <a class="el" href="class_d_x11_vertex_shader.html">DX11VertexShader</a> lub nullptr w przypadku niepowodzenia. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Zwraca wskaźnik na obiekt <a class="el" href="class_d_x11_vertex_shader.html" title="Implementacja vertex shadera w DirectX 11. ">DX11VertexShader</a> lub nullptr w przypadku niepowodzenia. </dd></dl>
 
 </div>
 </div>
@@ -425,7 +433,7 @@ static ID3D11PixelShader *&#160;</td><td class="memItemRight" valign="bottom"><a
 </table>
 </div><div class="memdoc">
 
-<p>Tworzy obiekt <a class="el" href="class_d_x11_vertex_shader.html">DX11VertexShader</a> oraz <a class="el" href="class_d_x11_input_layout.html">DX11InputLayout</a> na podstawie pliku. Zwraca również layout dla podanej struktury wierzchołka. Nie należy używać tej funkcji, jeżeli layout nie jest rzeczywiście potrzebny. Trzeba pamietać o zwolnieniu go, kiedy przestanie być potrzebny. </p>
+<p>Tworzy obiekt <a class="el" href="class_d_x11_vertex_shader.html" title="Implementacja vertex shadera w DirectX 11. ">DX11VertexShader</a> oraz <a class="el" href="class_d_x11_input_layout.html" title="Implementacja layout w DirectX 11. ">DX11InputLayout</a> na podstawie pliku. Zwraca również layout dla podanej struktury wierzchołka. Nie należy używać tej funkcji, jeżeli layout nie jest rzeczywiście potrzebny. Trzeba pamietać o zwolnieniu go, kiedy przestanie być potrzebny. </p>
 <p>W przypadku błędów kompilacji w trybie debug są one przekierowane do okna Output.</p>
 <p>Na razie obsługuje tylko nieskompilowane pliki. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -438,7 +446,7 @@ static ID3D11PixelShader *&#160;</td><td class="memItemRight" valign="bottom"><a
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Zwraca wskaźnik na obiekt <a class="el" href="class_vertex_shader_object.html" title="Klasa przechowująca vertex shader. ">VertexShaderObject</a> lub nullptr w przypadku niepowodzenia. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000040">Todo:</a></b></dt><dd>Lepiej obsłużyć ten błąd. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000041">Todo:</a></b></dt><dd>Lepiej obsłużyć ten błąd. </dd></dl>
 
 </div>
 </div>
@@ -449,7 +457,7 @@ static ID3D11PixelShader *&#160;</td><td class="memItemRight" valign="bottom"><a
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 14:01:32 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

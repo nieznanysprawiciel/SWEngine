@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -156,7 +157,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    ~<a class="code" href="class_engine_interface.html">EngineInterface</a>(){};</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">//FableEngine - ta klasa jest dostępna bezpośrednio z GamePlay</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">//FableEngine - ta klasa jest dostępna bezpośrednio z IGamePlay</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
@@ -165,21 +166,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_engine_interface_html"><div class="ttname"><a href="class_engine_interface.html">EngineInterface</a></div><div class="ttdoc">Klasa jest interfejsem dla użytkownika użytkującego silnik. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:42</div></div>
 <div class="ttc" id="class_engine_interface_html_ae30a81be91a8dd4648203d2329b8381c"><div class="ttname"><a href="class_engine_interface.html#ae30a81be91a8dd4648203d2329b8381c">EngineInterface::time_manager</a></div><div class="ttdeci">TimeManager time_manager</div><div class="ttdoc">Obiekt do zarządzania czasem. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:73</div></div>
 <div class="ttc" id="class_engine_interface_html_ad41a553cec70cf6e29d9663365f1a059"><div class="ttname"><a href="class_engine_interface.html#ad41a553cec70cf6e29d9663365f1a059">EngineInterface::display_engine</a></div><div class="ttdeci">DisplayEngine * display_engine</div><div class="ttdoc">Wyświetla obiekty na scenie. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:62</div></div>
-<div class="ttc" id="class_i_graphic_a_p_i_initializer_html"><div class="ttname"><a href="class_i_graphic_a_p_i_initializer.html">IGraphicAPIInitializer</a></div><div class="ttdoc">Interfejs klasy do inicjowania API graficznego. </div><div class="ttdef"><b>Definition:</b> IGraphicAPIInitializer.h:35</div></div>
+<div class="ttc" id="class_i_graphic_a_p_i_initializer_html"><div class="ttname"><a href="class_i_graphic_a_p_i_initializer.html">IGraphicAPIInitializer</a></div><div class="ttdoc">Interfejs klasy do inicjowania API graficznego. </div><div class="ttdef"><b>Definition:</b> IGraphicAPIInitializer.h:57</div></div>
 <div class="ttc" id="class_engine_interface_html_af9b095af4eba60d7123e6c2a64c526eb"><div class="ttname"><a href="class_engine_interface.html#af9b095af4eba60d7123e6c2a64c526eb">EngineInterface::full_screen</a></div><div class="ttdeci">bool full_screen</div><div class="ttdoc">Pełny ekran lub renderowanie w oknie. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:51</div></div>
 <div class="ttc" id="_time_manager_8h_html"><div class="ttname"><a href="_time_manager_8h.html">TimeManager.h</a></div><div class="ttdoc">Plik zawiera deklarację klasy TimeManager do obsługi rzeczy związanych z czasem. </div></div>
 <div class="ttc" id="class_event_html"><div class="ttname"><a href="class_event.html">Event</a></div><div class="ttdef"><b>Definition:</b> Event.h:22</div></div>
 <div class="ttc" id="class_fable_engine_html"><div class="ttname"><a href="class_fable_engine.html">FableEngine</a></div><div class="ttdef"><b>Definition:</b> FableEngine.h:11</div></div>
 <div class="ttc" id="class_engine_interface_html_ab4e51e1ca05121a4a67b4310f5546869"><div class="ttname"><a href="class_engine_interface.html#ab4e51e1ca05121a4a67b4310f5546869">EngineInterface::pause</a></div><div class="ttdeci">bool pause</div><div class="ttdoc">Pauza. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:75</div></div>
 <div class="ttc" id="class_display_engine_html"><div class="ttname"><a href="class_display_engine.html">DisplayEngine</a></div><div class="ttdoc">Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...</div><div class="ttdef"><b>Definition:</b> DisplayEngine.h:36</div></div>
-<div class="ttc" id="class_models_manager_html"><div class="ttname"><a href="class_models_manager.html">ModelsManager</a></div><div class="ttdoc">Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dźwięków, które raczej zostaną oddelego...</div><div class="ttdef"><b>Definition:</b> ModelsManager.h:45</div></div>
+<div class="ttc" id="class_models_manager_html"><div class="ttname"><a href="class_models_manager.html">ModelsManager</a></div><div class="ttdoc">Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dźwięków, które raczej zostaną oddelego...</div><div class="ttdef"><b>Definition:</b> ModelsManager.h:58</div></div>
 <div class="ttc" id="class_controllers_engine_html"><div class="ttname"><a href="class_controllers_engine.html">ControllersEngine</a></div><div class="ttdef"><b>Definition:</b> ControllersEngine.h:7</div></div>
 <div class="ttc" id="class_physic_engine_html"><div class="ttname"><a href="class_physic_engine.html">PhysicEngine</a></div><div class="ttdef"><b>Definition:</b> PhysicEngine.h:5</div></div>
 <div class="ttc" id="class_movement_engine_html"><div class="ttname"><a href="class_movement_engine.html">MovementEngine</a></div><div class="ttdef"><b>Definition:</b> MovementEngine.h:8</div></div>
 <div class="ttc" id="class_engine_interface_html_a89fc8708fd82d25024f97ee7c1bbfa48"><div class="ttname"><a href="class_engine_interface.html#a89fc8708fd82d25024f97ee7c1bbfa48">EngineInterface::window_width</a></div><div class="ttdeci">int window_width</div><div class="ttdoc">Szerokość okna/ekranu. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:54</div></div>
 <div class="ttc" id="class_engine_interface_html_a4b22d5ef46882d3c448f3c3fdc6ec974"><div class="ttname"><a href="class_engine_interface.html#a4b22d5ef46882d3c448f3c3fdc6ec974">EngineInterface::instance_handler</a></div><div class="ttdeci">HINSTANCE instance_handler</div><div class="ttdoc">Uchwyt instancji procesu. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:53</div></div>
 <div class="ttc" id="class_engine_interface_html_a7ed65216cc2af4f445d10e2dbfecfce9"><div class="ttname"><a href="class_engine_interface.html#a7ed65216cc2af4f445d10e2dbfecfce9">EngineInterface::events_queue</a></div><div class="ttdeci">std::queue&lt; Event * &gt; * events_queue</div><div class="ttdoc">Wskaźnik na kolejke komunikatów w celu szybszego dostępu. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:78</div></div>
-<div class="ttc" id="struct_index_prediction_html"><div class="ttname"><a href="struct_index_prediction.html">IndexPrediction</a></div><div class="ttdef"><b>Definition:</b> Engine.h:155</div></div>
+<div class="ttc" id="struct_index_prediction_html"><div class="ttname"><a href="struct_index_prediction.html">IndexPrediction</a></div><div class="ttdef"><b>Definition:</b> Engine.h:157</div></div>
 <div class="ttc" id="class_engine_interface_html_adc3fc8d70a1d9b6770dfba033b5b4f37"><div class="ttname"><a href="class_engine_interface.html#adc3fc8d70a1d9b6770dfba033b5b4f37">EngineInterface::ui_engine</a></div><div class="ttdeci">UI_Engine * ui_engine</div><div class="ttdoc">Interfejs użytkownika (także graficzny) </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:68</div></div>
 <div class="ttc" id="class_engine_interface_html_a1c6dac750bd5027902ef6cfcbaf8a3b7"><div class="ttname"><a href="class_engine_interface.html#a1c6dac750bd5027902ef6cfcbaf8a3b7">EngineInterface::models_manager</a></div><div class="ttdeci">ModelsManager * models_manager</div><div class="ttdoc">Zarządza modelami, teksturami i materiałami. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:65</div></div>
 <div class="ttc" id="class_collision_engine_html"><div class="ttname"><a href="class_collision_engine.html">CollisionEngine</a></div><div class="ttdef"><b>Definition:</b> CollisionEngine.h:5</div></div>
@@ -200,7 +201,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 14:01:32 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vertex_5fbuffer_5foffset',['VERTEX_BUFFER_OFFSET',['../_model3_d_from_file_8h.html#afccb58d9ead5a896469f4004043c1444',1,'Model3DFromFile.h']]]
+  ['textures_5ftypes',['TEXTURES_TYPES',['../_mesh_resources_8h.html#a97f4ea7c9b73b7be637f6f28e7de66c5',1,'MeshResources.h']]]
 ];

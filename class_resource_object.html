@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -90,11 +91,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_resource_object-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">ResourceObject Class Reference</div>  </div>
+<div class="title">ResourceObject Class Reference<div class="ingroups"><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___graphic_a_p_i.html">GraphicAPI</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa ułatwiająca zarządzanie odwołaniami do assetów.  
+<p>Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. <a class="el" href="struct_material_object.html" title="Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. ">MaterialObject</a>, <a class="el" href="class_texture_object.html" title="Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności. ">TextureObject</a>, <a class="el" href="class_vertex_shader_object.html" title="Klasa przechowująca vertex shader. ">VertexShaderObject</a>, <a class="el" href="class_pixel_shader_object.html" title="Klasa przechowująca pixel shader. ">PixelShaderObject</a> itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami.  
  <a href="class_resource_object.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_resource_object_8h_source.html">ResourceObject.h</a>&gt;</code></p>
@@ -109,8 +110,8 @@ Inheritance diagram for ResourceObject:</div>
 <area href="class_i_shader.html" alt="IShader" shape="rect" coords="131,168,252,192"/>
 <area href="class_i_shader_input_layout.html" alt="IShaderInputLayout" shape="rect" coords="131,224,252,248"/>
 <area href="class_i_texture.html" alt="ITexture" shape="rect" coords="131,280,252,304"/>
-<area href="struct_material_object.html" title="Struktura przechowująca materiał. " alt="MaterialObject" shape="rect" coords="131,336,252,360"/>
-<area href="struct_mesh_part_object.html" title="Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach. " alt="MeshPartObject" shape="rect" coords="131,392,252,416"/>
+<area href="struct_material_object.html" title="Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. " alt="MaterialObject" shape="rect" coords="131,336,252,360"/>
+<area href="struct_mesh_part_object.html" title="Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach.W zależności od zawartości pola index_buffer w strukturze ModelPart, mesh jest wyświetlany w trybie indeksowanym lub nie. Jeżeli wartość tego pola wynosi nullptr, to wtedy używane są zmienne buffer offset i vertices count, które jednoznacznie wskazują, która część bufora wierzchołków ma zostać wyświetlona. " alt="MeshPartObject" shape="rect" coords="131,392,252,416"/>
 <area href="class_model3_d_from_file.html" title="Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ..." alt="Model3DFromFile" shape="rect" coords="131,448,252,472"/>
 </map>
  </div></div>
@@ -173,9 +174,9 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="separator:ade3721ff932982674e8ee157a30b6493"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa ułatwiająca zarządzanie odwołaniami do assetów. </p>
-<p>Obiekty assetów (np. <a class="el" href="struct_material_object.html" title="Struktura przechowująca materiał. ">MaterialObject</a>, <a class="el" href="class_texture_object.html" title="Klasa przechowująca tekstury. ">TextureObject</a>, <a class="el" href="class_vertex_shader_object.html" title="Klasa przechowująca vertex shader. ">VertexShaderObject</a>, <a class="el" href="class_pixel_shader_object.html" title="Klasa przechowująca pixel shader. ">PixelShaderObject</a> itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami.</p>
-<p>Do każdego pojedynczego obiektu mogą istnieć wilokrotne odwołania w klasie <a class="el" href="class_model3_d_from_file.html" title="Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ...">Model3DFromFile</a>, a także w obiektach dziedziczących po Dynamic_mesh_object. Z tego względu istnieją zmienne file_references i object_references. Pierwsza określa, ile razy występują odwołania do obiektu w klasie <a class="el" href="class_model3_d_from_file.html" title="Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ...">Model3DFromFile</a>. (uwaga: nie zliczamy, ile klas się odwołuje. Jeżeli w klasie pojawiają się 3 odwołania, to liczą się jako 3. Taka konwencja ułatwia zliczanie i zwalnianie pamięci) Druga zmienna określa, ile wystepuje odwołań bezpośrednich przez obiekty, które będą następnie wyświetlane. Oznacza to, że przypisując jakiemus obiektowi plik z modelem, musimy zinkrementować other_references o tyle, ile było odwołań w tym pliku. Żaden obiekt nie powinien być kasowany, dopóki istnieją do niego odwołania.</p>
+<div class="textblock"><p>Klasa ułatwiająca zarządzanie odwołaniami do assetów.</p>
+<p>Obiekty assetów (np. <a class="el" href="struct_material_object.html" title="Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. ">MaterialObject</a>, <a class="el" href="class_texture_object.html" title="Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności. ">TextureObject</a>, <a class="el" href="class_vertex_shader_object.html" title="Klasa przechowująca vertex shader. ">VertexShaderObject</a>, <a class="el" href="class_pixel_shader_object.html" title="Klasa przechowująca pixel shader. ">PixelShaderObject</a> itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. </p>
+<p>Do każdego pojedynczego obiektu mogą istnieć wilokrotne odwołania w klasie <a class="el" href="class_model3_d_from_file.html" title="Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ...">Model3DFromFile</a>, a także w obiektach dziedziczących po <a class="el" href="class_dynamic_mesh_object.html">DynamicMeshObject</a>. Z tego względu istnieją zmienne file_references i object_references. Pierwsza określa, ile razy występują odwołania do obiektu w klasie <a class="el" href="class_model3_d_from_file.html" title="Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ...">Model3DFromFile</a>. (uwaga: nie zliczamy, ile klas się odwołuje. Jeżeli w klasie pojawiają się 3 odwołania, to liczą się jako 3. Taka konwencja ułatwia zliczanie i zwalnianie pamięci) Druga zmienna określa, ile wystepuje odwołań bezpośrednich przez obiekty, które będą następnie wyświetlane. Oznacza to, że przypisując jakiemus obiektowi plik z modelem, musimy zinkrementować other_references o tyle, ile było odwołań w tym pliku. Żaden obiekt nie powinien być kasowany, dopóki istnieją do niego odwołania.</p>
 <p>Zmienna unique_id jest na początku ustawiana na 0. Jej faktyczne ustawienie odbywa robi klasa <a class="el" href="class_resource_container.html" title="Szablon klasy do przechowywania assetów. ">ResourceContainer</a>. Jest to wymagane do ułatwienia obsługi wielowątkowości. Inaczej mogłyby się pokrywać identyfikatory. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab532d0711da06a23e6fe10dad6153332"></a>
@@ -280,7 +281,7 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 14:01:33 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:00:15 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

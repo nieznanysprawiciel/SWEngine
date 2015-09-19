@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -90,11 +91,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="class_object_deleter-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">ObjectDeleter&lt; class_type &gt; Class Template Reference</div>  </div>
+<div class="title">ObjectDeleter&lt; class_type &gt; Class Template Reference<div class="ingroups"><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___common_files.html">Common</a> &raquo; <a class="el" href="group___deleting_objects.html">Usuwanie zasobów silnika</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa służy do kasowania obiektów, których destruktor jest prywatny.  
+<p>Klasa służy do kasowania obiektów, których destruktor jest prywatny.Taka sytuacja zachodzi w momencie, gdy nie chcemy, aby każda klasa mogła skasować jakiś obiekt, ale chcemy dać takie uprawnienia jedynie wybrańcom. Ta klasa implementuje funkcjonalność kasowania obieków. Obiekt tej klasy może zostać stworzony jedynie przez funkcję, która dostarczy odpowiedni obiekt klucz <a class="el" href="class_object_deleter_key.html">ObjectDeleterKey</a>. Dopiero wtedy można wywołać funkcję delete_object, która usunie żądany obiekt z pamięci.  
  <a href="class_object_deleter.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_object_deleter_8h_source.html">ObjectDeleter.h</a>&gt;</code></p>
@@ -129,8 +130,8 @@ Private Member Functions</h2></td></tr>
 <div class="textblock"><h3>template&lt;typename class_type&gt;<br />
 class ObjectDeleter&lt; class_type &gt;</h3>
 
-<p>Klasa służy do kasowania obiektów, których destruktor jest prywatny. </p>
-<p>Taka sytuacja zachodzi w momencie, gdy nie chcemy, aby każda klasa mogła skasować jakiś obiekt, ale chcemy dać takie uprawnienia jedynie wybrańcom. Ta klasa implementuje funkcjonalność kasowania obieków. Obiekt tej klasy może zostać stworzony jedynie przez funkcję, która dostarczy odpowiedni obiekt klucz <a class="el" href="class_object_deleter_key.html">ObjectDeleterKey</a>. Dopiero wtedy można wywołać funkcję delete_object, która usunie żądany obiekt z pamięci.</p>
+<p>Klasa służy do kasowania obiektów, których destruktor jest prywatny.</p>
+<p>Taka sytuacja zachodzi w momencie, gdy nie chcemy, aby każda klasa mogła skasować jakiś obiekt, ale chcemy dać takie uprawnienia jedynie wybrańcom. Ta klasa implementuje funkcjonalność kasowania obieków. Obiekt tej klasy może zostać stworzony jedynie przez funkcję, która dostarczy odpowiedni obiekt klucz <a class="el" href="class_object_deleter_key.html">ObjectDeleterKey</a>. Dopiero wtedy można wywołać funkcję delete_object, która usunie żądany obiekt z pamięci. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_object_deleter_key.html">ObjectDeleterKey</a> </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a2e45aa4214da60f3a96451674c0f8045"></a>
@@ -219,7 +220,7 @@ template&lt;typename class_type&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 14:01:33 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:00:15 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

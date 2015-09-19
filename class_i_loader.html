@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -89,14 +90,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_i_loader-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">ILoader Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">ILoader Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___engine_core.html">EngineCore</a> &raquo; <a class="el" href="group___resources_managment.html">Zarządzenie zasobami</a> &raquo; <a class="el" href="group___making_loaders.html">Pisanie loaderów</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p>Interfejs klasy do wczytywania plików z modelami. Aby stworzyć klasę do wczytywania własnego formatu plików należy odziedziczyć po tym interfejsie i zaimplementować metody wirtualne.  
  <a href="class_i_loader.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="loader__interface_8h_source.html">loader_interface.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_i_loader_8h_source.html">ILoader.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ILoader:</div>
 <div class="dyncontent">
@@ -115,7 +116,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a48662089154c9a52d373cf81479c6470"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_loader.html#a48662089154c9a52d373cf81479c6470">can_load</a> (const std::wstring &amp;name)=0</td></tr>
 <tr class="memdesc:a48662089154c9a52d373cf81479c6470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ma za zadanie poinformować czy jest w stanie wczytać podany plik.  <a href="#a48662089154c9a52d373cf81479c6470">More...</a><br /></td></tr>
 <tr class="separator:a48662089154c9a52d373cf81479c6470"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af861187a2fc5cb1f697535e754418c17"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="loader__interface_8h.html#aa53f4b0ff944a19f3c3cbb2c476a538d">LOADER_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_loader.html#af861187a2fc5cb1f697535e754418c17">load_mesh</a> (<a class="el" href="class_model3_d_from_file.html">Model3DFromFile</a> *new_file_mesh, const std::wstring &amp;name)=0</td></tr>
+<tr class="memitem:af861187a2fc5cb1f697535e754418c17"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_i_loader_8h.html#aa53f4b0ff944a19f3c3cbb2c476a538d">LOADER_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_loader.html#af861187a2fc5cb1f697535e754418c17">load_mesh</a> (<a class="el" href="class_model3_d_from_file.html">Model3DFromFile</a> *new_file_mesh, const std::wstring &amp;name)=0</td></tr>
 <tr class="memdesc:af861187a2fc5cb1f697535e754418c17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ma za zadanie wczytać podany plik.  <a href="#af861187a2fc5cb1f697535e754418c17">More...</a><br /></td></tr>
 <tr class="separator:af861187a2fc5cb1f697535e754418c17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -127,7 +128,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interfejs klasy do wczytywania plików z modelami. Aby stworzyć klasę do wczytywania własnego formatu plików należy odziedziczyć po tym interfejsie i zaimplementować metody wirtualne. </p>
-<p>Dokładniejsze informacje o tworzeniu własnych loaderów znajdują się w paragrafie <a class="el" href="_making_loaders.html">Pisanie loaderów plików z modelami</a>. </p><dl class="section note"><dt>Note</dt><dd>Po wywołaniu konstruktora klasa ma być w pełni gotowa do działania. Podobnie po każdym wywołaniu funkcji ładującej plik, klasa także ma być gotowa do wczytania kolejnego. </dd></dl>
+<p>Dokładniejsze informacje o tworzeniu własnych loaderów znajdują się w paragrafie <a class="el" href="group___making_loaders.html">Pisanie loaderów</a>. </p><dl class="section note"><dt>Note</dt><dd>Po wywołaniu konstruktora klasa ma być w pełni gotowa do działania. Podobnie po każdym wywołaniu funkcji ładującej plik, klasa także ma być gotowa do wczytania kolejnego. </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a48662089154c9a52d373cf81479c6470"></a>
 <div class="memitem">
@@ -173,7 +174,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="loader__interface_8h.html#aa53f4b0ff944a19f3c3cbb2c476a538d">LOADER_RESULT</a> ILoader::load_mesh </td>
+          <td class="memname">virtual <a class="el" href="_i_loader_8h.html#aa53f4b0ff944a19f3c3cbb2c476a538d">LOADER_RESULT</a> ILoader::load_mesh </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_model3_d_from_file.html">Model3DFromFile</a> *&#160;</td>
           <td class="paramname"><em>new_file_mesh</em>, </td>
@@ -212,12 +213,12 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/ModelsManager/Loaders/<a class="el" href="loader__interface_8h_source.html">loader_interface.h</a></li>
+<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/ModelsManager/Loaders/<a class="el" href="_i_loader_8h_source.html">ILoader.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 18 2015 14:01:32 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
