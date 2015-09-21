@@ -12,13 +12,14 @@
     <EngineLibName>SWEngine_$(Configuration)_$(PlatformShortName)</EngineLibName>
     <CommonDir>$(EngineSourceDir)Common\</CommonDir>
     <BuildFolder>$(EngineShortcut)_$(Configuration)_$(PlatformShortName)</BuildFolder>
+    <EngineVersion>1.008</EngineVersion>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>PathsMacros</_PropertySheetDisplayName>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
-      <Version>1.008</Version>
+      <Version>$(EngineVersion)</Version>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -56,6 +57,9 @@
     <BuildMacro Include="BuildFolder">
       <Value>$(BuildFolder)</Value>
       <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="EngineVersion">
+      <Value>$(EngineVersion)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

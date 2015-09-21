@@ -3,17 +3,16 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <IntDir>$(TestEngineBuildDir)\</IntDir>
-    <TargetName>$(TestEngineFileName)</TargetName>
-    <OutDir>$(TestEngineBuildDir)\</OutDir>
+    <IntDir>$(EditorPluginBuildDir)\</IntDir>
+    <TargetName>$(EditorPluginFileName)</TargetName>
+    <OutDir>$(GameReleaseDir)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>$(EngineSourceDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <ProgramDatabaseFile>$(TestEngineBuildDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <Version>$(Version)</Version>
+      <ProgramDatabaseFile>$(EditorPluginBuildDir)$(TargetName).pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />
