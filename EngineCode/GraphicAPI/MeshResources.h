@@ -21,8 +21,9 @@
 
 
 //definicje
+/** @def WRONG_ID
+B³êdny identyfikator assetu w klasie @ref ResourceObject.*/
 #define WRONG_ID						0
-/// \def WRONG_ID B³êdny identyfikator assetu w klasie referenced_obbject
 
 /**@defgroup Resources Zasoby
 @ingroup ResourcesManagment
@@ -70,7 +71,7 @@ typedef UINT32 VERT_INDEX;
 
 S¹ to wartoœci domyœlne u¿ywane przez wbudowane shadery.
 W przypadku w³asnorêcznie pisanych shaderów nie trzeba siê trzymaæ tych sta³ych.*/
-enum TEXTURES_TYPES
+enum TextureTypes
 {
 #if ENGINE_MAX_TEXTURES > 0
 	TEX_DIFFUSE			///<Tekstura dla kana³u diffuse
@@ -158,7 +159,7 @@ Tryb odnosi siê wiêc nie do ca³ego mesha, a pojednyczego obiektu ModelPart.
 
 Tablica texture zawiera wskaŸniki na obiekty tekstur, których maksymalna liczba wynosi ENGINE_MAX_TEXTURES.
 Aby obs³u¿yæ wszystkie tekstury jakie mog¹ byc przypisane do obiektu, nale¿y podaæ mu odpowiedni shader, który
-umie to zrobiæ. Znaczenie poszczególnych pól tablicy tekstur jest opisywane przez enumeracjê TEXTURES_TYPES
+umie to zrobiæ. Znaczenie poszczególnych pól tablicy tekstur jest opisywane przez enumeracjê TextureTypes
 i w taki sposób wykorzystuj¹ je domyœlne shadery.
 */
 struct ModelPart
@@ -231,24 +232,28 @@ public:
 };
 
 
-/**Klasa dla render targetów.
+/**@brief Klasa dla render targetów.
 @ingroup Resources
 @ingroup GraphicAPI
 
-Klasa jest jednoczeœnie tekstur¹. Umo¿liwia pobranie tekstury i ustawienie
-jej do odczytu dla shadera.*/
+Klasa umo¿liwia pobranie jednej z tekstur sk³adowych i udostêpnienie dla shaderów.
+Je¿eli API graficzne nie pozwala na oddzielne trzymanie bufora g³êbokoœci i stencilu,
+to mo¿e tu byæ przechowywany ten sam obiekt. Ewentualnie mog¹ byæ to dwa obiekty,
+które przechowuj¹ inny widok, ale fizycznie odwo³uj¹ siê do tej samej pamiêci.*/
 class RenderTargetObject : public IRenderTarget
 {
 private:
 protected:
 	TextureObject*			m_colorBuffer;			///<Pozwala na dostêp do bufora kolorów dla innych obiektów. Mo¿e byæ nullptrem.
-	TextureObject*			m_depthStencilBuffer;	///<Pozwala na dostêp do bufora g³êbokoœci. Mo¿e byæ nullptrem.
+	TextureObject*			m_depthBuffer;			///<Pozwala na dostêp do bufora g³êbokoœci. Mo¿e byæ nullptrem.
+	TextureObject*			m_stencilBuffer;		///<Pozwala na dostêp do bufora stencil. Mo¿e byæ nulltrem.
 public:
-	RenderTargetObject( TextureObject* colorBuffer, TextureObject* depthStencil );
+	RenderTargetObject( TextureObject* colorBuffer, TextureObject* depthBuffer, TextureObject* stencilBuffer );
 	virtual ~RenderTargetObject();
 
-	inline TextureObject*		GetColorBuffer()			{ return m_colorBuffer; }
-	inline TextureObject*		GetDepthStencilBuffer()		{ return m_depthStencilBuffer; }
+	inline TextureObject*		GetColorBuffer()			{ return m_colorBuffer; }		///<Zwraca obiekt bufora kolorów.
+	inline TextureObject*		GetDepthBuffer()			{ return m_depthBuffer; }		///<Zwraca obiekt bufora g³êbokoœci.
+	inline TextureObject*		GetStencilBuffer()			{ return m_stencilBuffer; }		///<Zwraca obiekt bufora stencilu.
 };
 
 /**@brief Klasa przechowuje layout wierzcho³ka trafiaj¹cego do
@@ -380,7 +385,7 @@ Zamiast tego trzeba tê strukture przepisaæ.
 
 Zwracam uwagê, ¿e tylko kana³ Diffuse jest wektorem 4 wymiarowym, w którym sk³adowa w jest odpowiedzialna
 za przezroczystoœæ. Pozosta³e s¹ takie tylko dlatego, ¿e jest to domyœlny format przechowywania danych 
-w rejestrach karty graficznej i przypsiesza to operacjê kopiowania.
+w rejestrach karty graficznej i przyspiesza to operacjê kopiowania.
 @see ConstantPerFrame
 */
 typedef struct MaterialObject : public ResourceObject

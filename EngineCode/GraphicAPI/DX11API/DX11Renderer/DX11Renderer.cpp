@@ -9,6 +9,17 @@
 
 #include "Common/memory_leaks.h"
 
+
+#ifdef INDEX_BUFFER_UINT16
+	#define INDEX_BUFFER_FORMAT DXGI_FORMAT_R16_UINT		///<Format bufora indeksów. @todo W ostatecznej wersji aplikacji format mo¿na bêdzie wybieraæ.
+#endif // INDEX_BUFFER_UINT16
+
+#ifdef INDEX_BUFFER_UINT32
+	#define INDEX_BUFFER_FORMAT DXGI_FORMAT_R32_UINT		///<Format bufora indeksów. @todo W ostatecznej wersji aplikacji format mo¿na bêdzie wybieraæ.
+#endif // INDEX_BUFFER_UINT32
+
+
+
 /**@brief Klasa bêdzie renderowaæ w trybie immediate albo deferred.
 
 Je¿eli ustawiono flagê D3D11_CREATE_DEVICE_SINGLETHREADED, to nie wolno podaæ w parametrze

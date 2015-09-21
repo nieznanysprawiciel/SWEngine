@@ -175,7 +175,7 @@ void ModelsManager::test( )
 tekstur. Tablica ma tyle elementów ile zmienna @ref ENGINE_MAX_TEXTURES.
 
 Ka¿da pozycja w tablicy ma przypisane domyœlne znaczenie zgodnie z enumeracj¹ 
-@ref TEXTURES_TYPES. Najlepszy shader jest wybierany na podstawie obecnoœci
+@ref TextureTypes. Najlepszy shader jest wybierany na podstawie obecnoœci
 lub nieobecnoœci tekstury w tablicy.
 
 @todo Oddelegowaæ jakiœ inny obiekt do obœ³ugi wartoœci domyœlnych albo przemyœleæ lepiej jak to powinno w³aœciwie wygl¹daæ.
@@ -193,7 +193,7 @@ VertexShaderObject* ModelsManager::FindBestVertexShader( TextureObject** texture
 tekstur. Tablica ma tyle elementów ile zmienna @ref ENGINE_MAX_TEXTURES.
 
 Ka¿da pozycja w tablicy ma przypisane domyœlne znaczenie zgodnie z enumeracj¹
-@ref TEXTURES_TYPES. Najlepszy shader jest wybierany na podstawie obecnoœci
+@ref TextureTypes. Najlepszy shader jest wybierany na podstawie obecnoœci
 lub nieobecnoœci tekstury w tablicy.
 
 @todo Oddelegowaæ jakiœ inny obiekt do obœ³ugi wartoœci domyœlnych albo przemyœleæ lepiej jak to powinno w³aœciwie wygl¹daæ.
@@ -205,7 +205,7 @@ PixelShaderObject* ModelsManager::FindBestPixelShader( TextureObject** textures 
 	PixelShaderObject* return_shader = nullptr;
 
 	// Na razie nie ma innych tekstur ni¿ diffuse, wiêc algorytm nie jest skomplikowany
-	if ( textures[TEXTURES_TYPES::TEX_DIFFUSE] )
+	if ( textures[TextureTypes::TEX_DIFFUSE] )
 		return_shader = m_pixelShader.get( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH );
 	
 	
@@ -236,39 +236,39 @@ ILoader* ModelsManager::FindLoader( const std::wstring& path )
 
 /**@brief Wczytuje model z podanego pliku.
 @param[in] file Plik do wczytania
-@return Jedna z wartoœci @ref MODELS_MANAGER_RESULT. Funkcja mo¿e zwróciæ @ref MODELS_MANAGER_RESULT::MODELS_MANAGER_OK,
-@ref MODELS_MANAGER_RESULT::MODELS_MANAGER_LOADER_NOT_FOUND lub @ref MODELS_MANAGER_RESULT::MODELS_MANAGER_CANNOT_LOAD.*/
-MODELS_MANAGER_RESULT ModelsManager::LoadModelFromFile( const std::wstring& file )
+@return Jedna z wartoœci @ref ModelsManagerResult. Funkcja mo¿e zwróciæ @ref ModelsManagerResult::MODELS_MANAGER_OK,
+@ref ModelsManagerResult::MODELS_MANAGER_LOADER_NOT_FOUND lub @ref ModelsManagerResult::MODELS_MANAGER_CANNOT_LOAD.*/
+ModelsManagerResult ModelsManager::LoadModelFromFile( const std::wstring& file )
 {
 	// Sprawdzamy czy plik nie zosta³ ju¿ wczytany
 	Model3DFromFile* new_model = m_fileModel.get( file );
 	if ( new_model != nullptr )
-		return MODELS_MANAGER_RESULT::MODELS_MANAGER_OK;	// Udajemy, ¿e wszystko posz³o dobrze
+		return ModelsManagerResult::MODELS_MANAGER_OK;	// Udajemy, ¿e wszystko posz³o dobrze
 
 	// Sprawdzamy, który loader potrafi otworzyæ plik
 	ILoader* loader = FindLoader( file );
 	if ( loader == nullptr )
-		return MODELS_MANAGER_RESULT::MODELS_MANAGER_LOADER_NOT_FOUND;		// ¯aden nie potrafi
+		return ModelsManagerResult::MODELS_MANAGER_LOADER_NOT_FOUND;		// ¯aden nie potrafi
 
 	// Tworzymy obiekt Model3DFromFile, do którego loader wpisze zawartoœæ pliku
 	new_model = new Model3DFromFile( file );
 
 	// Wszystkie operacje wpisywania musz¹ byæ zamkniête tymi wywo³aniami
 	new_model->BeginEdit();
-	LOADER_RESULT result = loader->load_mesh( new_model, file );
+	LoaderResult result = loader->load_mesh( new_model, file );
 	new_model->EndEdit();
 
-	if ( result != LOADER_RESULT::MESH_LOADING_OK )
+	if ( result != LoaderResult::MESH_LOADING_OK )
 	{	// load_mesh powinno zwróciæ 0
 		// Destruktor jest prywatny, wiêc nie mo¿emy kasowaæ obiektu bezpoœrednio.
 		ObjectDeleter<Model3DFromFile>::delete_object( new_model, ObjectDeleterKey<Model3DFromFile>() );
-		return MODELS_MANAGER_RESULT::MODELS_MANAGER_CANNOT_LOAD;
+		return ModelsManagerResult::MODELS_MANAGER_CANNOT_LOAD;
 	}
 
 	// Dodajemy model do tablic
 	m_fileModel.unsafe_add( file, new_model );
 
-	return MODELS_MANAGER_RESULT::MODELS_MANAGER_OK;
+	return ModelsManagerResult::MODELS_MANAGER_OK;
 }
 
 

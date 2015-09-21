@@ -18,7 +18,7 @@
 
 /**@brief Wartoœci, mo¿liwe do zwrócenia przez klasê Loader
 */
-enum LOADER_RESULT
+enum LoaderResult
 {
 	MESH_LOADING_OK,				///<Poprawne wczytywanie mesha
 	MESH_LOADING_WRONG,				///<Niepoprawne wczytywanie mesha
@@ -64,6 +64,6 @@ public:
 	@param[in] name Nazwa pliku, który ma zostaæ wczytany
 	@return Zwraca wynik wczytywania.
 	*/
-	virtual LOADER_RESULT load_mesh( Model3DFromFile* new_file_mesh, const std::wstring& name ) = 0;
+	virtual LoaderResult load_mesh( Model3DFromFile* new_file_mesh, const std::wstring& name ) = 0;
 	//virtual void load_animation(const std::string& name) = 0;
 };

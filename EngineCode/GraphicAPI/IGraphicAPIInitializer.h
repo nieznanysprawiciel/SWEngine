@@ -27,7 +27,7 @@ pliki .cpp, które powinny byæ skompilowane do biblioteki statycznej razem z posz
 
 
 /**@brief Przechowuje informacje potrzebne do inicjalizacji
-API graficznego. Parametr dla funkcji @ref IGraphicAPIInitializer::InitAPI.
+API graficznego. Parametr dla funkcji IGraphicAPIInitializer::InitAPI.
 @ingroup GraphicAPI*/
 struct GraphicAPIInitData
 {

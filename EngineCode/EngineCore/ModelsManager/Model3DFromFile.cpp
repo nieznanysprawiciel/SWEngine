@@ -174,9 +174,9 @@ Tekstura jest umieszczana w tablicy ModelPart.texture zgodnie z indeksem repreze
 Obiekt jest dodawany do ModelsManagera je¿eli jeszcze nie istnia³. Je¿eli istnia³
 nie jest duplikowany, ale zamiast niego wstawia siê wskaŸnik na istniej¹cy obiekt.
 @param[in] file_name Œcie¿ka do tekstury
-@param[in] type Type tekstury. Zobacz definicjê TEXTURES_TYPES.
+@param[in] type Type tekstury. Zobacz definicjê TextureTypes.
 @return Identyfiaktor tekstury lub WRONG_ID, je¿eli coœ posz³o nie tak.*/
-unsigned int Model3DFromFile::add_texture( const std::wstring& file_name, TEXTURES_TYPES type )
+unsigned int Model3DFromFile::add_texture( const std::wstring& file_name, TextureTypes type )
 {
 	// Ktoœ móg³ podaæ indeks w tablicy zamiast jednego z enumów, wiêc musimy pilnowaæ czy nie przekroczy³ zakresu
 	if ( type > ENGINE_MAX_TEXTURES )

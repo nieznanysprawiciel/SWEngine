@@ -45,7 +45,7 @@ public:
 	FBX_loader(ModelsManager* models_manager);
 	~FBX_loader();
 
-	LOADER_RESULT load_mesh( Model3DFromFile* new_file_mesh, const std::wstring& name ) override;
+	LoaderResult load_mesh( Model3DFromFile* new_file_mesh, const std::wstring& name ) override;
 	bool can_load(const std::wstring& name) override;
 
 

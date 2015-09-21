@@ -5,7 +5,8 @@
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
-/**Specyfikuje typ dostêpu do pamiêci danego zasobu.*/
+/**@brief Specyfikuje typ dostêpu do pamiêci danego zasobu.
+@see @ref GraphicAPI*/
 enum class ResourceUsage
 {
 	RESOURCE_USAGE_DEFAULT		= 0,		///<Pozawala GPU na zapis i odczyt.
@@ -14,7 +15,8 @@ enum class ResourceUsage
 	RESOURCE_USAGE_STAGING		= 3			///<GPU mo¿e jedynie kopiowaæ, poza tym wszystkie prawa dostêpu s¹ po stronie CPU. Zobacz D3D11_USAGE_STAGING.
 };
 
-/**Topologia wierzcho³ków.*/
+/**@brief Topologia wierzcho³ków.
+@see @ref GraphicAPI*/
 enum class PrimitiveTopology
 {
   PRIMITIVE_TOPOLOGY_POINTLIST                     = 0,
@@ -28,10 +30,11 @@ enum class PrimitiveTopology
   PRIMITIVE_TOPOLOGY_TRIANGLESTRIP_ADJ             = 8
 };
 
-/**Okreœla jak bêdzie u¿ywany dany zasób w potoku karty graficznej.
+/**@brief Okreœla jak bêdzie u¿ywany dany zasób w potoku karty graficznej.
 
 @attention DirectX pozwala na ³¹czenie tych sta³ych jak flag, ale w silniku mo¿na wybraæ tylko
-jedn¹ opcjê.*/
+jedn¹ opcjê.
+@see @ref GraphicAPI*/
 enum ResourceBinding
 {
 	BIND_RESOURCE_VERTEX_BUFFER     = 0x0L,
@@ -47,7 +50,8 @@ enum ResourceBinding
 	
 };
 
-/**Specyfikuje format tekstury b¹dŸ innego zasobu.*/
+/**@briefSpecyfikuje format tekstury b¹dŸ innego zasobu.
+@see @ref GraphicAPI*/
 enum class ResourceFormat
 {
 	RESOURCE_FORMAT_UNKNOWN = 0,

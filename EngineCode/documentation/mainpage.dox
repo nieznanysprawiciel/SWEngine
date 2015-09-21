@@ -46,17 +46,28 @@
 
 /**@page ConstantsMacros Sta³e i makrodefinicje
 <ul>
+	<li>@ref _INTERPOLATE_POSITIONS
+	<li>@ref __TEST
 	<li>@ref __UNUSED
-	<li>@ref EVENT_TYPE
+	<li>@ref _SCALEABLE_OBJECTS
+	<li>@ref ENGINE_MAX_TEXTURES
+	<li>@ref ENGINE_MAX_LIGHTS
 	<li>@ref FIXED_MOVE_UPDATE_INTERVAL
 	<li>@ref FRAMES_PER_SEC_UPDATE
-	<li>@ref LOADER_RESULT
-	<li>@ref MODELS_MANAGER_RESULT
+	<li>@ref LoaderResult
+	<li>@ref ModelsManagerResult
 	<li>@ref Modules
+	<li>@ref PERFORMANCE_CHECK
+	<li>@ref PERFORMANCE_STATISTICS_FILE_PATH
+	<li>@ref PrimitiveTopology
+	<li>@ref RendererUsage
+	<li>@ref ResourceBinding
+	<li>@ref ResourceFormat
+	<li>@ref ResourceUsage
 	<li>@ref SHOW_MEMORY_LEAKS
 	<li>@ref STANDARD_ABSTRACTION_LAYER
 	<li>@ref STANDARD_ABSTRACTION_LAYER_COUNT
-	<li>@ref TEXTURES_TYPES
+	<li>@ref TextureTypes
 	<li>@ref WRONG_ID
 </ul>
 */
@@ -64,7 +75,7 @@
 /**@page MainInterfaces Interfejsy
 <ul>
 	<li>EngineInterface
-	<li>GamePlay
+	<li>IGamePlay
 	<li>ILoader
 	<li>SkyDome
 </ul>
@@ -98,18 +109,22 @@
 
 /**@page BasicObjects Podstawowe obiekty i struktury danych
 <ul>
+	<li>ComputeShaderObject
 	<li>BufferObject
 	<li>event_mapping
 	<li>InputAbstractionLayer
 	<li>InputAbstractionLayer_base
+	<li>InputLayoutDescriptor
 	<li>input_mapping
 	<li>MaterialObject
 	<li>MeshPartObject
 	<li>Model3DFromFile
 	<li>ModelPart
 	<li>PixelShaderObject
+	<li>RenderTargetObject
 	<li>ResourceObject
 	<li>ResourceContainer
+	<li>ShaderInputLayoutObject
 	<li>TextureObject
 	<li>VertexNormalTexCord1
 	<li>VertexShaderObject

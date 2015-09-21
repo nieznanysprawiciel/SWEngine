@@ -60,7 +60,7 @@ Po zakoñczeniu dzia³ania obiekt powinien byæ w stanie umo¿liwiaj¹cym natychmiast
 do wczytania innego modelu. Ewentualne b³edy mo¿na sygnalizowaæ przez wartoœæ zwracan¹.
 
 Poprawne wykonanie funkcji powinno zwróciæ wartoœæ MESH_LOADING_OK.*/
-LOADER_RESULT FBX_loader::load_mesh( Model3DFromFile* new_file_mesh, const std::wstring& name )
+LoaderResult FBX_loader::load_mesh( Model3DFromFile* new_file_mesh, const std::wstring& name )
 {
 	if (new_file_mesh == nullptr)
 		return MESH_LOADING_WRONG;
@@ -255,7 +255,7 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 			{
 				FbxFileTexture* texture = static_cast<FbxFileTexture*>(material->Diffuse.GetSrcObject());
 				if ( texture != nullptr )
-					cur_model->add_texture( converter.from_bytes( texture->GetFileName() ), TEXTURES_TYPES::TEX_DIFFUSE );
+					cur_model->add_texture( converter.from_bytes( texture->GetFileName() ), TextureTypes::TEX_DIFFUSE );
 					// Je¿eli dodawanie siê nie uda, to tekstura pozostanie nullptrem
 				//else //tutaj tekstura ma byæ nullem, ale tak siê dzieje domyœlnie
 			}

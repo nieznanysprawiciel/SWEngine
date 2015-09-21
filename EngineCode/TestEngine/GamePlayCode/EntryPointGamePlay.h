@@ -6,7 +6,7 @@
 @ingroup ModulesStructure
 @brief Modu³ do testowania silnika.
 
-Modu³ linkuje EngineCore oraz wszystkie inne potrzebne biblioteki i wywo³uje funkcje testowe.
+Modu³ linkuje @ref EngineCore oraz wszystkie inne potrzebne biblioteki i wywo³uje funkcje testowe.
 */
 
 

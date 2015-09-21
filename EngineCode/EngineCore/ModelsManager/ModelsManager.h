@@ -33,7 +33,7 @@ Modele wczytane z plików umieszczane i przechowywane s¹ w klasie @ref Model3DFro
 //-------------------------------------------------------------------------------//
 
 /**@brief Zawiera wyniki mo¿liwe do zwrócenia przez ModelsManager.*/
-typedef enum MODELS_MANAGER_RESULT
+typedef enum ModelsManagerResult
 {
 	MODELS_MANAGER_OK,					///<Poprawne wykonanie funkcji
 	MODELS_MANAGER_LOADER_NOT_FOUND,	///<Nie znaleziono loadera do podanego typu pliku
@@ -87,7 +87,7 @@ public:
 
 
 	// Funkcje do zarz¹dzania assetami
-	MODELS_MANAGER_RESULT			LoadModelFromFile			( const std::wstring& file );
+	ModelsManagerResult			LoadModelFromFile			( const std::wstring& file );
 
 	inline Model3DFromFile*			GetModel					( const std::wstring& name ) { return m_fileModel.get( name ); }	///<Zwraca model z pliku o podanej nazwie
 	TextureObject*					AddTexture					( const std::wstring& file_name );

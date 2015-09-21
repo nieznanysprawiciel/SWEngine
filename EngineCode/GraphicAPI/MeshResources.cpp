@@ -108,14 +108,17 @@ TextureObject* TextureObject::create_from_file( const std::wstring& fileName )
 //----------------------------------------------------------------------------------------------//
 
 
-RenderTargetObject::RenderTargetObject( TextureObject* colorBuffer, TextureObject* depthStencil )
+RenderTargetObject::RenderTargetObject( TextureObject* colorBuffer, TextureObject* depthBuffer, TextureObject* stencilBuffer )
 	: m_colorBuffer( colorBuffer ),
-	m_depthStencilBuffer( depthStencil )
+	m_depthBuffer( depthBuffer ),
+	m_stencilBuffer( stencilBuffer )
 {
 	if( m_colorBuffer )
 		m_colorBuffer->add_file_reference();
-	if( m_depthStencilBuffer )
-		m_depthStencilBuffer->add_file_reference();
+	if( m_depthBuffer )
+		m_depthBuffer->add_file_reference();
+	if( m_stencilBuffer )
+		m_stencilBuffer->add_file_reference();
 }
 
 /**@brief Destruktor kasuje obiekty tekstury g³êbokoœci i bufora koloru, je¿eli nie s¹ u¿ywane.
@@ -129,11 +132,17 @@ RenderTargetObject::~RenderTargetObject()
 		if( m_colorBuffer->can_delete() )
 			ObjectDeleter<TextureObject>::delete_object( m_colorBuffer, ObjectDeleterKey<TextureObject>() );		
 	}
-	if( m_depthStencilBuffer )
+	if( m_depthBuffer )
 	{
-		m_depthStencilBuffer->delete_file_reference();
-		if( m_depthStencilBuffer->can_delete() )
-			ObjectDeleter<TextureObject>::delete_object( m_depthStencilBuffer, ObjectDeleterKey<TextureObject>() );
+		m_depthBuffer->delete_file_reference();
+		if( m_depthBuffer->can_delete() )
+			ObjectDeleter<TextureObject>::delete_object( m_depthBuffer, ObjectDeleterKey<TextureObject>() );
+	}
+	if( m_stencilBuffer )
+	{
+		m_stencilBuffer->delete_file_reference();
+		if( m_stencilBuffer->can_delete() )
+			ObjectDeleter<TextureObject>::delete_object( m_stencilBuffer, ObjectDeleterKey<TextureObject>() );
 	}
 }
 

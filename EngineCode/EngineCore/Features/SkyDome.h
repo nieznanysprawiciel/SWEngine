@@ -109,7 +109,7 @@ protected:
 	
 	@param[in] name Nazwa pliku z tekstur¹.
 	@param[in] type Pozycja w tablicy, do której zostaniej przypisana tekstura.*/
-	inline void set_texture( const std::wstring& name, TEXTURES_TYPES type )
+	inline void set_texture( const std::wstring& name, TextureTypes type )
 	{
 		if ( type > ENGINE_MAX_TEXTURES )
 			return;
