@@ -1,11 +1,25 @@
+/**@file EngineInterface.cpp
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
+@brief Plik zawiera implementacjê interfejsu EngineInterface dla klasy Engine
+*/
 #include "EngineCore/stdafx.h"
 #include "Engine.h"
-
+#include "EngineCore/EventsManager/Event.h"
+#include "EngineCore/CollisionEngine/CollisionEngine.h"
+#include "EngineCore/ControllersEngine/ControllersEngine.h"
+#include "EngineCore/GamePlay/FableEngine.h"
+#include "EngineCore/DisplayEngine/DisplayEngine.h"
+#include "EngineCore/ModelsManager/ModelsManager.h"
+#include "EngineCore/PhysicEngine/PhysicEngine.h"
+#include "EngineCore/PhysicEngine/MovementEngine.h"
+#include "EngineCore/SoundEngine/SoundEngine.h"
+#include "EngineCore/UIEngine/UI_Engine.h"
 
 #include "Common/memory_leaks.h"
 
 
-/*Plik zawiera implementacjê interfejsu engine_interface dla klasy Engine*/
 
 #ifdef __TEST
 

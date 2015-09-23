@@ -5,6 +5,7 @@
 #include "EngineCore/stdafx.h"
 #include "ActorObjects.h"
 #include "EngineCore/MainEngine/Engine.h"
+#include "EngineCore/ModelsManager/Model3DFromFile.h"
 #include "GraphicAPI/IRenderer.h"
 #include "GraphicAPI/MeshResources.h"
 

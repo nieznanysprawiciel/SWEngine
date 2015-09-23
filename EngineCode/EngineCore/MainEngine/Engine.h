@@ -7,19 +7,12 @@
 @brief Plik zawiera deklaracjê g³ównego obiektu silnika.*/
 
 #include "EngineCore/SW_engine.h"
-#include "EngineCore/Actors/ActorObjects.h"
 #include "EngineCore/MainEngine/EngineInterface.h"
-#include "EngineCore/EventsManager/Event.h"
-#include "EngineCore/CollisionEngine/CollisionEngine.h"
-#include "EngineCore/ControllersEngine/ControllersEngine.h"
-#include "EngineCore/GamePlay/FableEngine.h"
-#include "EngineCore/DisplayEngine/DisplayEngine.h"
-#include "EngineCore/ModelsManager/ModelsManager.h"
-#include "EngineCore/PhysicEngine/PhysicEngine.h"
-#include "EngineCore/PhysicEngine/MovementEngine.h"
-#include "EngineCore/SoundEngine/SoundEngine.h"
-#include "EngineCore/UIEngine/UI_Engine.h"
+#include "Common/macros_switches.h"
 
+
+class IGamePlay;
+class Object;
 
 
 //	window defines
@@ -82,8 +75,9 @@ private:
 	bool join_render_thread;
 #endif
 
+	Engine( const Engine& ) = delete;
 public:
-	Engine(HINSTANCE instance);
+	Engine( HINSTANCE instance );
 	~Engine();
 
 	// Init external modules

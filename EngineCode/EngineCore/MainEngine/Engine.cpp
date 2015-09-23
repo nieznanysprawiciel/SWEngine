@@ -9,10 +9,19 @@ oraz g³ówne funkcje do renderingu.
 
 #include "EngineCore/stdafx.h"
 #include "Engine.h"
-#include "EngineCore/ControllersEngine/ControllersEngine.h"
 #include "GraphicAPI/ResourcesFactory.h"
 #include "EngineCore/EngineHelpers/PerformanceCheck.h"
+#include "EngineCore/EventsManager/Event.h"
+#include "EngineCore/CollisionEngine/CollisionEngine.h"
+#include "EngineCore/ControllersEngine/ControllersEngine.h"
+#include "EngineCore/GamePlay/FableEngine.h"
+#include "EngineCore/DisplayEngine/DisplayEngine.h"
 #include "EngineCore/ModelsManager/ModelsManager.h"
+#include "EngineCore/PhysicEngine/PhysicEngine.h"
+#include "EngineCore/PhysicEngine/MovementEngine.h"
+#include "EngineCore/SoundEngine/SoundEngine.h"
+#include "EngineCore/UIEngine/UI_Engine.h"
+#include "EngineCore/GamePlay/IGamePlay.h"
 
 #include "Common/memory_leaks.h"
 

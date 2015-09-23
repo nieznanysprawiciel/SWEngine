@@ -6,7 +6,7 @@ oraz definicje standardowych warstw abstrakcji.
 #include "EngineCore/stdafx.h"
 #include "InputAbstractionLayer.h"
 #include "EngineCore/MainEngine/Engine.h"
-
+#include "EngineCore/EventsManager/Event.h"
 
 #include "Common\memory_leaks.h"
 

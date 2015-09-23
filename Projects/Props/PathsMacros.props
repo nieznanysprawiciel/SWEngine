@@ -13,6 +13,7 @@
     <CommonDir>$(EngineSourceDir)Common\</CommonDir>
     <BuildFolder>$(EngineShortcut)_$(Configuration)_$(PlatformShortName)</BuildFolder>
     <EngineVersion>1.008</EngineVersion>
+    <EditorReleaseDir>$(RootDir)EditorRelease\</EditorReleaseDir>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>PathsMacros</_PropertySheetDisplayName>
@@ -60,6 +61,9 @@
     </BuildMacro>
     <BuildMacro Include="EngineVersion">
       <Value>$(EngineVersion)</Value>
+    </BuildMacro>
+    <BuildMacro Include="EditorReleaseDir">
+      <Value>$(EditorReleaseDir)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>
