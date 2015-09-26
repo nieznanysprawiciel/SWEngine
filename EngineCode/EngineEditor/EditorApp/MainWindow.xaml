@@ -3,6 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="830" Width="1300">
     <Grid>
+        <DockPanel HorizontalAlignment="Left" Height="799" LastChildFill="False" Margin="287,0,0,0" VerticalAlignment="Top" Width="995">
+            <Image x:Name="EngineViewport" Height="799" VerticalAlignment="Top" Width="1000"/>
+        </DockPanel>
+        <DockPanel HorizontalAlignment="Left" Height="790" LastChildFill="False" Margin="-2,-1,0,0" VerticalAlignment="Top" Width="284"/>
 
     </Grid>
 </Window>

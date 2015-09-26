@@ -30,7 +30,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\..\EditorRelease\</OutputPath>
@@ -110,6 +110,10 @@
     <ProjectReference Include="..\..\..\Projects\EditorPlugin\EditorPlugin.vcxproj">
       <Project>{d6d5f6ef-4b74-4ebe-8d8d-e76c7c423d05}</Project>
       <Name>EditorPlugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Projects\Interop.D3DImageEx\Interop.D3DImageEx.vcxproj">
+      <Project>{2953f688-1281-443a-886f-95b25002c7b7}</Project>
+      <Name>Interop.D3DImageEx</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

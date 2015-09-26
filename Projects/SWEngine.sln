@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineCore", "EngineCore\SWEngine.vcxproj", "{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -22,6 +22,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EditorPlugin", "EditorPlugi
 	ProjectSection(ProjectDependencies) = postProject
 		{08F5AD41-2020-48AB-8AC3-7FE0039ED65F} = {08F5AD41-2020-48AB-8AC3-7FE0039ED65F}
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EngineEditor", "EngineEditor", "{0C59B1BA-0A0D-4B82-BD64-149C775C379B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Interop.D3DImageEx", "Interop.D3DImageEx\Interop.D3DImageEx.vcxproj", "{2953F688-1281-443A-886F-95B25002C7B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -126,11 +130,28 @@ Global
 		{D6D5F6EF-4B74-4EBE-8D8D-E76C7C423D05}.Release|Win32.ActiveCfg = Release|Win32
 		{D6D5F6EF-4B74-4EBE-8D8D-E76C7C423D05}.Release|Win32.Build.0 = Release|Win32
 		{D6D5F6EF-4B74-4EBE-8D8D-E76C7C423D05}.Release|x64.ActiveCfg = Release|Win32
+		{2953F688-1281-443A-886F-95B25002C7B7}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{2953F688-1281-443A-886F-95B25002C7B7}.Debug|ARM.ActiveCfg = Debug|Win32
+		{2953F688-1281-443A-886F-95B25002C7B7}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{2953F688-1281-443A-886F-95B25002C7B7}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{2953F688-1281-443A-886F-95B25002C7B7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2953F688-1281-443A-886F-95B25002C7B7}.Debug|Win32.Build.0 = Debug|Win32
+		{2953F688-1281-443A-886F-95B25002C7B7}.Debug|x64.ActiveCfg = Debug|Win32
+		{2953F688-1281-443A-886F-95B25002C7B7}.Release|Any CPU.ActiveCfg = Release|Win32
+		{2953F688-1281-443A-886F-95B25002C7B7}.Release|ARM.ActiveCfg = Release|Win32
+		{2953F688-1281-443A-886F-95B25002C7B7}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{2953F688-1281-443A-886F-95B25002C7B7}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{2953F688-1281-443A-886F-95B25002C7B7}.Release|Win32.ActiveCfg = Release|Win32
+		{2953F688-1281-443A-886F-95B25002C7B7}.Release|Win32.Build.0 = Release|Win32
+		{2953F688-1281-443A-886F-95B25002C7B7}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{44643D7F-1C71-41C1-B452-B2DC5E088A58} = {9634F687-32C9-4597-9A29-FD49A2B9BB5F}
+		{864E3AB0-8199-4D9E-9AD3-CC81476E8AED} = {0C59B1BA-0A0D-4B82-BD64-149C775C379B}
+		{D6D5F6EF-4B74-4EBE-8D8D-E76C7C423D05} = {0C59B1BA-0A0D-4B82-BD64-149C775C379B}
+		{2953F688-1281-443A-886F-95B25002C7B7} = {0C59B1BA-0A0D-4B82-BD64-149C775C379B}
 	EndGlobalSection
 EndGlobal

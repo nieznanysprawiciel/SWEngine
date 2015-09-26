@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <InteropD3DImageExName>Interop.D3DImageEx</InteropD3DImageExName>
+    <InteropD3DImageExLibDir>$(EngineLibDir)$(InteropD3DImageExName)\</InteropD3DImageExLibDir>
+    <InteropD3DImageExSourceDir>$(EngineSourceDir)$(InteropD3DImageExName)\</InteropD3DImageExSourceDir>
+    <InteropD3DImageExFileName>$(InteropD3DImageExName)_$(Configuration)_$(PlatformShortName)</InteropD3DImageExFileName>
+    <InteropD3DImageExBuildDir>$(EngineBuildDir)$(InteropD3DImageExName)_$(Configuration)_$(PlatformShortName)\</InteropD3DImageExBuildDir>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="InteropD3DImageExName">
+      <Value>$(InteropD3DImageExName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="InteropD3DImageExLibDir">
+      <Value>$(InteropD3DImageExLibDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="InteropD3DImageExSourceDir">
+      <Value>$(InteropD3DImageExSourceDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="InteropD3DImageExFileName">
+      <Value>$(InteropD3DImageExFileName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="InteropD3DImageExBuildDir">
+      <Value>$(InteropD3DImageExBuildDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

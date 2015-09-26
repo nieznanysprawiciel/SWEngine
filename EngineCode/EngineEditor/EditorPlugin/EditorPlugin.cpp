@@ -38,23 +38,32 @@ System::IntPtr EngineWrapper::GetRenderTarget()
 	return System::IntPtr( m_engine->GetRenderTargetHandle() );
 }
 
+/**@brief Wywo³uje funkcje odpowiedzialne za przeliczanie po³o¿enia obiektów.*/
 void EngineWrapper::UpdateScene()
 {
 	float lag = FIXED_MOVE_UPDATE_INTERVAL;
 	m_engine->UpdateScene( lag, 0 );
 }
 
+
+/**@brief Renderuje scenê.
+
+Przed wywo³aniem sceny nale¿y wywo³aæ funkcjê EngineWrapper::UpdateScene,
+¿eby zaktualizowaæ po³o¿enia obiektów.
+*/
 void EngineWrapper::RenderScene()
 {
 	float lag = FIXED_MOVE_UPDATE_INTERVAL;
 	m_engine->RenderScene( lag, 0 );
 }
 
+/**@brief Pokazuje okno aplikacji stworzone w EngineCore.*/
 void EngineWrapper::ShowWindow()
 {
 	m_engine->ShowAppWindow( SW_SHOW );
 }
 
+/**@brief Wywo³uje funkcje wczytuj¹ce obiekty testowe silnika.*/
 void EngineWrapper::TestScene()
 {
 	m_engine->test();

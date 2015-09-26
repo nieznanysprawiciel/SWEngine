@@ -1,0 +1,24 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly Interop.D3DImageEx_Release_x86, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35: 
+	hash=None, flags=None
+Assembly PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35: 
+	hash=None, flags=None
+Class System.Windows.Interop.D3DImageEx: AutoLayout, AnsiClass, Class, Public
+  :System.Windows.Interop.D3DImage
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    SetBackBufferEx(D3DResourceTypeEx, IntPtr): PrivateScope, Public, HideBySig
+Struct System.Windows.Interop.D3DResourceTypeEx: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.Enum
+  Fields:
+    Int32 value__ : Public, SpecialName, RTSpecialName
+    System.Windows.Interop.D3DResourceTypeEx ID3D10Texture2D = 0 : Public, Static, Literal, HasDefault
+    System.Windows.Interop.D3DResourceTypeEx ID3D11Texture2D = 1 : Public, Static, Literal, HasDefault
