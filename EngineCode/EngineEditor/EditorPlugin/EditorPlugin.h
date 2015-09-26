@@ -36,6 +36,8 @@ napisanego w C#.
 
 namespace EditorPlugin
 {
+	/**@brief Klasa wrapera do inicjowania silnika i renderowania po stronie kodu zarz¹dzanego.
+	@ingroup EditorPlugin*/
 	public ref class EngineWrapper
 	{
 	private:

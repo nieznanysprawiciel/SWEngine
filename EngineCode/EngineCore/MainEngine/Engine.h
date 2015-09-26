@@ -1,5 +1,4 @@
 #pragma once
-
 /**@file Engine.h
 @author nieznanysprawiciel
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
@@ -52,51 +51,57 @@ W aplikacji powinien istnieæ tylko jeden obiekt podanego typu. O tym, jak siê in
 mo¿na przeczytaæ w temacie Inicjowanie silnika.
 
 W tej klasie powinny byæ umieszczane wszystkie funkcje, które nie powinny byæ dostêpne
-dla u¿ytkownika silnika. Interfejsem dla u¿ytkownika jest klasa engine_interface i tam nale¿y umieszczaæ
-pozosta³e funkcje. Co do zmiennych klasy, wszystki powinny siê znaleŸæ w klasie EnigneInterface, aby wszystkie
+dla u¿ytkownika silnika. Interfejsem dla u¿ytkownika jest klasa @ref EngineInterface i tam nale¿y umieszczaæ
+pozosta³e funkcje. Co do zmiennych klasy, wszystkie powinny siê znaleŸæ w klasie EnigneInterface, aby wszystkie
 funkcje mog³y mieæ do nich dostêp.
 */
 class Engine : public EngineInterface
 {
-private:		//zmienne, które nie maj¹ prawa zostaæ u¿yte przez engine_interface
+private:		//zmienne, które nie maj¹ prawa zostaæ u¿yte przez EngineInterface
 
 
 private:
-	//window functions
-	ATOM MyRegisterClass();
-	BOOL InitInstance(int);
-
-	//rendering
-	void render_frame();
-
-
+	/**@name Funkcje do obs³ugi okna aplikacji*/
+	///@{
+	ATOM EngineRegisterClass();					///<Rejestruje klasê okna aplikacji.
+	BOOL InitInstance( int nCmdShow );			///<Inicjuje okno aplikacji.
+public:
+	void ShowAppWindow( int showFlags );		///<Pokazuje okno aplikacji na ekranie.
+	void HideAppWindow();						///<Chowa okno aplikacji.
+	void EndAplication();
+	int MainLoop();
+	///@}
+public:
+	///@name Funkcje zwi¹zane z renderowaniem
+	///@{
+	void		RenderFrame					();
+	void		UpdateScene					( float& lag, float timeInterval );
+	void		RenderScene					( float lag, float timeInterval );
+	void*		GetRenderTargetHandle		();
+	///@}
 #ifndef __UNUSED
 	//render thread joining
 	bool join_render_thread;
 #endif
 
-	Engine( const Engine& ) = delete;
+	Engine( const Engine& ) = delete;		///<Konstruktor kopiuj¹cy usuniêty.
 public:
 	Engine( HINSTANCE instance );
 	~Engine();
 
-	// Init external modules
 	int InitEngine				( int width, int height, bool full_screen, int nCmdShow );
 private:
+	///@name Funkcje inicjuj¹ce modu³y silnika
+	///@{
 	BOOL InitWindow				( int width, int height, BOOL full_screen, int nCmdShow );
 	bool InitGraphicAPI			( int width, int height, bool full_screen );
 	bool InitInputModule		();
 	bool InitSoundModule		();
 
-	// Init internal modules
 	bool InitDefaultAssets		();
 	bool InitDisplayer			();
-
+	///@}
 public:
-	//window fuctions
-	void end_aplication();
-	int main_loop();
-
 #ifndef __UNUSED
 	//threads
 	void render_thread();
@@ -110,25 +115,33 @@ public:
 	void time_controller(float& time_interval);
 #endif
 
-	//event functions
-	void							send_event				(Event* new_event);
+	///@name Obs³uga eventów
+	///@{
+	void							send_event				( Event* new_event );
 
+	inline std::queue<Event*>*		get_events_queue		()									{ return events_queue; }
+	inline void						set_events_queue		( std::queue<Event*>* queue )		{ events_queue = queue; }
+	///@}
+
+	///@name Interfejs do ustawiania GamePlaya
+	///@{
 	void							set_entry_point			( IGamePlay* game_play );
 	void							set_entry_point			( const std::wstring dll_name );
+	///@}
 
 #ifdef __TEST
 	void test();
 	std::vector<Object*>	object_list;
 #endif
 
-
-	inline std::queue<Event*>*		get_events_queue()									{ return events_queue; }
-	inline void						set_events_queue( std::queue<Event*>* queue )		{ events_queue = queue; }
+	///@name Parametry okna
+	///@{
 	inline HINSTANCE				get_instance_handler()								{ return instance_handler; }
 	inline HWND						get_window_handler()								{ return window_handler; }
 
 	inline int						get_window_widht()									{ return window_width; }
 	inline int						get_window_height()									{ return window_height; }
+	///@}
 };
 
 /**Celem wprowadzenia wektora index_predictor jest optymalizacja dostêpu do danych 

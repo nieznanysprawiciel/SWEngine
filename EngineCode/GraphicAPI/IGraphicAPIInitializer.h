@@ -64,6 +64,7 @@ public:
 	virtual IRenderer*		CreateRenderer			( RendererUsage usage ) = 0;
 	virtual bool			InitAPI					( GraphicAPIInitData& initData ) = 0;
 	virtual void			ReleaseAPI				() = 0;
+	virtual void*			GetRenderTargetHandle	( RenderTargetObject* renderTarget ) = 0;
 
 	// Future
 	// virtual std::wstring	GetErrorString() = 0;

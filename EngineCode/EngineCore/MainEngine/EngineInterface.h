@@ -1,5 +1,4 @@
 #pragma once
-
 /**@file EngineInterface.h
 @author nieznanysprawiciel
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
@@ -70,7 +69,7 @@ protected:
 	//Objects
 	//std::vector<IndexPrediction>		index_predictor;
 
-	TimeManager					time_manager;	///<Obiekt do zarz¹dzania czasem.
+	TimeManager					m_timeManager;	///<Obiekt do zarz¹dzania czasem.
 
 	bool						pause;			///<Pauza
 

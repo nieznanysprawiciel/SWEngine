@@ -85,6 +85,9 @@ void DisplayEngine::InitDisplayer( ModelsManager* assetsManager )
 	m_constantsPerMesh	= modelsManager->AddConstantsBuffer( CONSTANT_PER_MESH_BUFFER_NAME, nullptr, sizeof( ConstantPerMesh ) );
 	assert( m_constantsPerFrame );
 	assert( m_constantsPerMesh );
+
+	m_constantsPerFrame->add_file_reference();		/// Uniemo퓄iwiamy zwolnienie bufora przez u퓓tkownika.
+	m_constantsPerMesh->add_file_reference();		/// Uniemo퓄iwiamy zwolnienie bufora przez u퓓tkownika.
 }
 
 void DisplayEngine::BeginScene()

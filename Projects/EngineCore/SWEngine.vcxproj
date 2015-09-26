@@ -215,7 +215,7 @@
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputAbstractionLayer.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\UI_Engine.h" />
-    <ClInclude Include="..\..\EngineCode\EngineCore\Interfaces\EngineInterface.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\EngineInterface.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\GamePlay\IGamePlay.h" />
     <ClInclude Include="$(EngineCoreSourceDir)Resource.h" />
     <ClInclude Include="$(EngineCoreSourceDir)SW_engine.h" />

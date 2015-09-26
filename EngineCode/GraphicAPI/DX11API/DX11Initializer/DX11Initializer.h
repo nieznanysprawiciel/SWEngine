@@ -33,5 +33,6 @@ public:
 	virtual IRenderer*		CreateRenderer			( RendererUsage usage ) override;
 	virtual bool			InitAPI					( GraphicAPIInitData& initData ) override;
 	virtual void			ReleaseAPI				() override;
+	virtual void*			GetRenderTargetHandle	( RenderTargetObject* renderTarget ) override;
 };
 

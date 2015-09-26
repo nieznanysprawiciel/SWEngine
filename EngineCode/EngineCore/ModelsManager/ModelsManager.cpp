@@ -299,6 +299,30 @@ MaterialObject* ModelsManager::AddMaterial( MaterialObject* addMaterial, const s
 	return newMaterial;
 }
 
+/**@brief Dodaje renderTarget do ModelsManagera, je¿eli jeszcze nie istnia³.
+@note Funkcja nie dodaje odwo³ania do obiektu, bo nie zak³ada, ¿e ktoœ go od razu u¿yje.
+W ka¿dym miejscu, gdzie zostanie przypisany zwrócony obiekt, nale¿y pamiêtaæ o dodaniu odwo³ania oraz
+skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
+
+@note Je¿eli renderTarget ju¿ istnia³ (jego nazwa), to ten podany w parametrze nie zostanie dodany.
+Oznacza to, ¿e za jego zwolnienie odpowiada ten, kto go stworzy³. Trzeba zawsze sprawdziæ czy
+zwrócona wartoœæ jest tym samym co podaliœmy.
+
+@todo Nie mo¿e tak zostaæ, ¿e ktoœ dodaje renderTarget i musi sprawdziæ czy nie dosta³ innego. Nie mo¿na
+te¿ zmuszaæ kogoœ do zwalniania pamiêci po renderTargecie. Wogóle dodawanie renderTargetów musi siê odbywaæ jakoœ inaczej.
+Najlepiej, ¿eby by³y one tworzone przez ModelsManager, ale wtedy trzeba wymyœleæ sposób dodawania renderTargetu zwi¹zanego z buforem okna.
+
+@param[in] renderTarget renderTarget, który ma zostaæ dodany.
+@param[in] name Nazwa renderTargetu. Do materia³u bêdzie mo¿na siê odwo³aæ podaj¹c ci¹g znaków
+@return Zwraca wskaŸnik na dodany renderTarget.*/
+RenderTargetObject* ModelsManager::AddRenderTarget( RenderTargetObject* renderTarget, const std::wstring& name )
+{
+	RenderTargetObject* newRenderTarget = m_renderTarget.get( name );
+	if ( !newRenderTarget )
+		m_renderTarget.unsafe_add( name, renderTarget );	// Dodaliœmy materia³
+
+	return newRenderTarget;
+}
 
 /**@brief Dodaje vertex shader do ModelsManagera. Je¿eli obiekt ju¿ istnia³, to nie jest tworzony nowy.
 @note Funkcja nie dodaje odwo³ania do obiektu, bo nie zak³ada, ¿e ktoœ go od razu u¿yje.

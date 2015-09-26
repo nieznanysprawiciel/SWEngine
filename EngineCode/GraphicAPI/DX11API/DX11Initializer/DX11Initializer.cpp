@@ -1,5 +1,6 @@
 #include "DX11Initializer.h"
 #include "../DX11Renderer/DX11Renderer.h"
+#include "../DX11Resources/DX11RenderTarget.h"
 #include "DX11ConstantsMapper.h"
 
 #include "Common/memory_leaks.h"
@@ -39,4 +40,21 @@ bool DX11Initializer::InitAPI( GraphicAPIInitData& initData )
 void DX11Initializer::ReleaseAPI()
 {
 	release_DirectX();
+}
+
+/**@brief Zwraca wskaŸnik na bufor koloru render targetu.
+
+Ta funkcja jest u¿ywana do wspó³pracy z zewnêtrznymi aplikacjami, które potrzebuj¹ bezpoœredniego
+wskaŸnika na zasoby DirectXowe. Nie ma ¿adnego powodu, ¿eby jej u¿ywaæ w innych przypadkach.
+
+@param[in] renderTarget RenderTarget, z którego ma zostaæ wziêtu wskaŸnik.
+@return Zwraca wskaŸnik na widok na bufor koloru render targetu lub nullptr,
+jezeli podano niepoprawny render target.*/
+void* DX11Initializer::GetRenderTargetHandle( RenderTargetObject* renderTarget )
+{
+	DX11RenderTarget* renderTargetDX11 = static_cast<DX11RenderTarget*>( renderTarget );
+
+	if( renderTargetDX11 )
+		return renderTargetDX11->GetRenderTarget();
+	return nullptr;
 }

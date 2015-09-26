@@ -87,17 +87,21 @@ public:
 
 
 	// Funkcje do zarz¹dzania assetami
-	ModelsManagerResult			LoadModelFromFile			( const std::wstring& file );
+	ModelsManagerResult				LoadModelFromFile			( const std::wstring& file );
 
-	inline Model3DFromFile*			GetModel					( const std::wstring& name ) { return m_fileModel.get( name ); }	///<Zwraca model z pliku o podanej nazwie
+	inline Model3DFromFile*			GetModel					( const std::wstring& name ) { return m_fileModel.get( name ); }	///<Zwraca model z pliku o podanej nazwie.
+	inline RenderTargetObject*		GetRenderTarget				( const std::wstring& name ) { return m_renderTarget.get( name ); }	///<Zwraca RenderTarget o podanej nazwie.
+
 	TextureObject*					AddTexture					( const std::wstring& file_name );
-	MaterialObject*					AddMaterial				( MaterialObject* material, const std::wstring& material_name );
 	VertexShaderObject*				AddVertexShader				( const std::wstring& file_name, const std::string& shader_entry );
 	VertexShaderObject*				AddVertexShader				( const std::wstring& file_name, const std::string& shader_entry, ShaderInputLayoutObject** layout, InputLayoutDescriptor* layout_desc );
 	PixelShaderObject*				AddPixelShader				( const std::wstring& file_name, const std::string& shader_entry );
 	BufferObject*					AddVertexBuffer				( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
 	BufferObject*					AddIndexBuffer				( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
 	BufferObject*					AddConstantsBuffer			( const std::wstring& name, const void* buffer, unsigned int size );
+	
+	RenderTargetObject*				AddRenderTarget				( RenderTargetObject* renderTarget, const std::wstring& name );
+	MaterialObject*					AddMaterial					( MaterialObject* material, const std::wstring& material_name );
 private:
 	ILoader*						FindLoader					( const std::wstring& path );
 	

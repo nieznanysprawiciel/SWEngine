@@ -47,7 +47,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	engine->test();
 #endif
 
-	result = engine->main_loop();
+	result = engine->MainLoop();
 	delete engine;
 
 

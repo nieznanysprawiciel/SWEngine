@@ -2,6 +2,7 @@
 //
 
 #include "EditorPlugin.h"
+#include "Common/macros_switches.h"
 
 namespace EditorPlugin
 {
@@ -16,7 +17,7 @@ const int window_height = 1300;
 bool EngineWrapper::InitializeEngine()
 {
 	m_engine = new Engine( GetModuleHandle(NULL) );
-	int result = m_engine->InitEngine( window_width, window_height, false, 0 );
+	int result = m_engine->InitEngine( window_width, window_height, false, SW_HIDE );
 	if( !result )
 	{
 		delete m_engine;
@@ -34,22 +35,24 @@ void EngineWrapper::ReleaseEngine()
 
 System::IntPtr EngineWrapper::GetRenderTarget()
 {
-	return System::IntPtr();
+	return System::IntPtr( m_engine->GetRenderTargetHandle() );
 }
 
 void EngineWrapper::UpdateScene()
 {
-	throw gcnew System::NotImplementedException();
+	float lag = FIXED_MOVE_UPDATE_INTERVAL;
+	m_engine->UpdateScene( lag, 0 );
 }
 
 void EngineWrapper::RenderScene()
 {
-	throw gcnew System::NotImplementedException();
+	float lag = FIXED_MOVE_UPDATE_INTERVAL;
+	m_engine->RenderScene( lag, 0 );
 }
 
 void EngineWrapper::ShowWindow()
 {
-	throw gcnew System::NotImplementedException();
+	m_engine->ShowAppWindow( SW_SHOW );
 }
 
 void EngineWrapper::TestScene()

@@ -134,9 +134,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\stdafx.h">
       <Filter>EngineCore</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\Interfaces\EngineInterface.h">
-      <Filter>EngineCore\MainEngine</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\Engine.h">
       <Filter>EngineCore\MainEngine</Filter>
     </ClInclude>
@@ -169,6 +166,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\GamePlay\IGamePlay.h">
       <Filter>EngineCore\GamePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\EngineInterface.h">
+      <Filter>EngineCore\MainEngine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

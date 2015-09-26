@@ -1,6 +1,9 @@
-/**@file Engine_window_functions.cpp
+/**@file EngineWindowFunctions.cpp
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
 @brief Plik zawiera definicje metod klasy Engine dotycz¹ce tworzenia okna, obs³ugi pêtli komunikatów
-WinAPI oraz g³ówn¹ pêtlê programu @ref Engine::main_loop.
+WinAPI oraz g³ówn¹ pêtlê programu @ref Engine::MainLoop.
 */
 
 #include "EngineCore/stdafx.h"
@@ -24,12 +27,8 @@ void main_thread_function(Engine* engine);
 //								window functions												//
 //----------------------------------------------------------------------------------------------//
 
-//
-//  FUNCTION: MyRegisterClass()
-//
-//  PURPOSE: Registers the window class.
-//
-ATOM Engine::MyRegisterClass()
+/**@brief Rejestruje klasê okna aplikacji.*/
+ATOM Engine::EngineRegisterClass()
 {
 	WNDCLASSEX wcex;
 
@@ -50,13 +49,14 @@ ATOM Engine::MyRegisterClass()
 	return RegisterClassEx(&wcex);
 }
 
-//
-//   FUNCTION: InitInstance(int)
-//
-//   PURPOSE: Saves instance handle and creates main window
-//
 
-BOOL Engine::InitInstance(int nCmdShow)
+/**@brief Inicjuje okno aplikacji.
+
+Funkcja inicjuje i tworzy okno.
+Okno nie jest pokazywane na ekranie. Do tego trzeba u¿yæ funkcji Engine::ShowAppWindow.
+
+@return Zwraca TRUE, je¿eli inicjowanie okna powiod³o siê.*/
+BOOL Engine::InitInstance( int nCmdShow )
 {
 	if ( full_screen )
 		window_handler = CreateWindowEx(NULL, szWindowClass, szTitle, WS_EX_TOPMOST | WS_POPUP,
@@ -81,11 +81,26 @@ BOOL Engine::InitInstance(int nCmdShow)
 		return FALSE;
 	}
 
-	ShowWindow(window_handler, nCmdShow);
-	UpdateWindow(window_handler);
+	ShowAppWindow( nCmdShow );
 
 	return TRUE;
 }
+
+void Engine::ShowAppWindow( int showFlags )
+{
+	ShowWindow( window_handler, showFlags );
+	UpdateWindow( window_handler );
+}
+
+void Engine::HideAppWindow()
+{
+	ShowWindow( window_handler, SW_HIDE );
+}
+
+//void Engine::HideWindow()
+//{
+//
+//}
 
 ///@brief	W³aœciwa funkcja inicjujaca okno
 ///W trybie fullscreen szerokoœæ i wysokoœæ okna jest ignorowana, a dane s¹ pobierane z systemu.
@@ -106,14 +121,14 @@ BOOL Engine::InitWindow(int width, int height, BOOL fullscreen, int nCmdShow)
 		window_width = GetSystemMetrics(SM_CXSCREEN);
 	}
 	
-	MyRegisterClass();
+	EngineRegisterClass();
 
-	return InitInstance(nCmdShow);
+	return InitInstance( nCmdShow );
 }
 
 
-///@brief Funkcja wstawia do kolejki komunikatów aplikacji wiadomoœc QUIT_MESSAGE
-void Engine::end_aplication()
+///@brief Funkcja wstawia do kolejki komunikatów aplikacji wiadomoœc QUIT_MESSAGE.
+void Engine::EndAplication()
 {
 	PostQuitMessage( 0 );
 }
@@ -178,14 +193,19 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 //----------------------------------------------------------------------------------------------//
 //								main program loop												//
 //----------------------------------------------------------------------------------------------//
+/**
+@page MainLoop Pêtla g³ówna silnika
 
-/**@brief G³ówna pêtla programu.
-@ref MainLoop*/
-int Engine::main_loop()
+@section Contents Spis Treœci
+- @ref Code
+- @ref Description
+
+
+@subsection Code Kod
+@code
+int Engine::MainLoop()
 {
 	MSG msg;
-
-	time_manager.initTimer();		// Inicjujemy obiekt do mierzenia czasu.
 
 #ifndef __UNUSED
 	//w³¹czamy g³ówny w¹tek do renderingu
@@ -196,7 +216,60 @@ int Engine::main_loop()
 	while (TRUE)
 	{
 		if ( m_engineReady )
-			render_frame();
+			RenderFrame();
+
+		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		//while (GetMessage(&msg, NULL, 0, 0))
+		{
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+
+		if (msg.message == WM_QUIT)
+		{
+#ifndef __UNUSED
+			join_render_thread = true;	//to jest jedyne miejsce, w którym ta zmienna mo¿e zostac ustawiona
+										//dlatego mo¿emy to zrobiæ bez synchronizacji
+			main_thread.join();
+#endif
+			break;
+		}
+	}
+
+	return (int)msg.wParam;
+}
+@endcode
+@subsection Description Opis
+Pêtla g³ówna silnika zastêpuje Windowsowsk¹ pêtlê komunikatów, wywo³uj¹c jednoczeœnie pêtlê g³ówn¹ silnika (zobacz temat: Potok przetwarzania obiektów).
+Musimy obs³ugiwaæ komunikaty windowsa, poniewa¿ w przeciwnym razie móg³by on uznaæ, ¿e nasz program siê zawiesi³, i spróbowaæ zabiæ nasz proces.
+Dlatego pobieramy wiadomoœci z kolejki komunikatów i przekazujemy do dalszego przetwarzania.
+Do pobierania komunikatów u¿ywamy nieblokuj¹cej funkcji PeekMessage (nie GetMessage). 
+
+Jako pêtla g³ówna silnika s³u¿y funkcja render_frame. Jest ona wywo³ywana tylko pod warunkiem, ¿e wczeœniejsza inicjalizacja
+directXa w pe³ni powiod³a siê. Wa¿nym punktem jest inicjacja zmiennej time_previous. Niezainicjowanie tej zmiennej, mog³oby
+spowodowaæ, ¿e w pierwszej klatce nast¹pi³aby nieprzewidywalna zmiana po³o¿eñ i orientacji wszystkich obiektów na scenie.
+
+Wyjœcie z aplikacji nastêpuje kiedy w kolejce komunikatów windowsa znajdzie siê komunikat WM_QUIT. Z wnêtrza silnika mo¿na to osi¹gn¹æ przez wywo³anie funkcji Engine::EndAplication.
+
+Definicja: "EngineWindowFunctions.cpp"
+*/
+
+/**@brief G³ówna pêtla programu.
+@ref MainLoop*/
+int Engine::MainLoop()
+{
+	MSG msg;
+
+#ifndef __UNUSED
+	//w³¹czamy g³ówny w¹tek do renderingu
+	std::thread main_thread(main_thread_function, this);
+#endif
+
+	// Main message loop:
+	while (TRUE)
+	{
+		if ( m_engineReady )
+			RenderFrame();
 
 		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		//while (GetMessage(&msg, NULL, 0, 0))
@@ -236,7 +309,7 @@ void Engine::render_thread()
 
 	while (TRUE)
 	{
-		//Jedynie funkcja Engine::main_loop ma prawo modyfikowaæ tê zmienn¹.
+		//Jedynie funkcja Engine::MainLoop ma prawo modyfikowaæ tê zmienn¹.
 		//Nie jest potrzebna synchronizacja. Najwy¿ej zakoñczenie w¹tku opóŸni siê o jedna ramkê.
 		if (join_render_thread)
 		{
@@ -245,7 +318,7 @@ void Engine::render_thread()
 		}
 
 		if (directX_ready)
-			render_frame();
+			RenderFrame();
 	}
 }
 

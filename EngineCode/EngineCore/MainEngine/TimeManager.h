@@ -22,26 +22,27 @@ class TimeManager
 {
 private:
 	//time control
-	int64						begin_time;			///<Zawiera czas rozpoczêcia dzia³ania aplikacji. (Tak dok³adniej czas wejœcia w pêtlê renderingu. Wczeœnie odbywa siê wczytywanie Levelu, co mo¿e trwaæ.)
+	int64						m_beginTime;		///<Zawiera czas rozpoczêcia dzia³ania aplikacji. (Tak dok³adniej czas wejœcia w pêtlê renderingu. Wczeœnie odbywa siê wczytywanie Levelu, co mo¿e trwaæ.)
 
-	int64						timer_frequency;	///<Czêstotliwoœæ timera
-	int64						time_previous;		///<Bêdziemy mierzyæ ró¿nicê miedzy czasami w kolejnych klatkach.
-	int64						elapsed_time;		///<Do licznika FPSów, czas od ostatniej aktualizacji frames_per_sec
-	float						lag;				///<OpóŸnienie wzglêdem normalego tempa updatowania sceny
-	unsigned int				frames;				///<Zlicza ramki od ostatniego wyzerowania
-	float						frames_per_sec;		///<Najwa¿niejszy licznik w grze
+	int64						m_timerFrequency;	///<Czêstotliwoœæ timera
+	int64						m_timePrevious;		///<Bêdziemy mierzyæ ró¿nicê miedzy czasami w kolejnych klatkach.
+	int64						m_elapsedTime;		///<Do licznika FPSów, czas od ostatniej aktualizacji m_framesPerSec
+	float						m_lag;				///<OpóŸnienie wzglêdem normalego tempa updatowania sceny
+	unsigned int				m_frames;			///<Zlicza ramki od ostatniego wyzerowania
+	float						m_framesPerSec;		///<Najwa¿niejszy licznik w grze
 public:
 	TimeManager();
 	~TimeManager() = default;
 
-	void			initTimer();
+	void			InitTimer();
 	float			onStartRenderFrame();
-	int64			queryCurrentTime();
-	double			queryTimeFromBegin();
-	inline int64	getBeginTime()					{ return begin_time; }				///<Zwraca czas jaki zosta³ zarejestrowany przy inicjacji silnika.
-	inline int64	getTimerFrequency()				{ return timer_frequency; }			///<Zwraca czêstotliwoœæ taktowania uzywanego timera.
-	inline float	getTimeLag()					{ return lag; }						///<Zwraca zmienn¹ lag.
-	inline int64	getTime()						{ return time_previous; }			///<Zwraca czas, jaki zosta³ ostatnio zarejestrowany przy wywo³aniu onStartRenderFrame.
-	inline void		updateTimeLag( float timeLag )	{ lag = timeLag; }					///<Aktualizuje zmienn¹ lag.
+	int64			QueryCurrentTime();
+	double			QueryTimeFromBegin();
+	float			GetCurrentLag();
+	inline int64	GetBeginTime()					{ return m_beginTime; }				///<Zwraca czas jaki zosta³ zarejestrowany przy inicjacji silnika.
+	inline int64	GetTimerFrequency()				{ return m_timerFrequency; }		///<Zwraca czêstotliwoœæ taktowania uzywanego timera.
+	inline float	GetFrameLag()					{ return m_lag; }					///<Zwraca zmienn¹ m_lag.
+	inline int64	GetTime()						{ return m_timePrevious; }			///<Zwraca czas, jaki zosta³ ostatnio zarejestrowany przy wywo³aniu onStartRenderFrame.
+	inline void		UpdateTimeLag( float timeLag )	{ m_lag = timeLag; }				///<Aktualizuje zmienn¹ m_lag.
 };
 

@@ -101,7 +101,7 @@ void UI_Engine::proceed_input(float time_interval)
 
 	///<@fixme Wy³¹czenia aplikacji musi siê odbywaæ w jakiœ inny sposób. Powinien byæ jakiœ domyœlny mechanizm, ¿eby u¿ytkownik nie zapomnia³ zrobiæ wy³¹czania.
 	if ( keyboard_state[DIK_ESCAPE] & 0x80 )
-		engine->end_aplication();
+		engine->EndAplication();
 
 	///<@fixme To jest hack i nie mam pojêcia jak to robiæ w wersji docelowej.
 	if ( (keyboard_state[DIK_F1] & 0x80) && !pushedF1 )

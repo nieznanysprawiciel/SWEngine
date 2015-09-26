@@ -28,8 +28,6 @@ oraz g³ówne funkcje do renderingu.
 
 
 
-const float FIXED_MOVE_UPDATE_INTERVAL = ((float)1 / (float)56);	///<Interwa³, po którym nastêpuje kolejne przeliczenie po³o¿eñ obiektów (w sekundach).
-
 USE_PERFORMANCE_CHECK( RENDERING_TIME )
 USE_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
 #ifdef _INTERPOLATE_POSITIONS
@@ -119,7 +117,7 @@ Engine::~Engine()
 ///@param[in] width Szerokoœæ okna
 ///@param[in] height Wysokoœæ okna
 ///@param[in] fullscreen Pe³ny ekran lub renderowanie w oknie
-///@param[in] nCmdShow Czwarty parametr funkcji WinMain
+///@param[in] nCmdShow Czwarty parametr funkcji WinMain. Decyduje w jaki sposób powinno zostaæ pokazane okno aplikacji.
 int Engine::InitEngine( int width, int height, bool fullScreen, int nCmdShow )
 {
 	int result;
@@ -154,6 +152,9 @@ int Engine::InitEngine( int width, int height, bool fullScreen, int nCmdShow )
 	assert( result != 0 );
 	if( result == 0 )
 		return FALSE;
+
+	// Czym póŸniej zainicjujemy tym lepiej.
+	m_timeManager.InitTimer();
 
 	m_engineReady = true;		//jesteœmy gotowi do renderowania
 
@@ -212,15 +213,23 @@ bool Engine::InitDefaultAssets()
 	models_manager->AddPixelShader( DEFAULT_PIXEL_SHADER_STRING, DEFAULT_PIXEL_SHADER_ENTRY );
 	models_manager->AddPixelShader( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH, DEFAULT_PIXEL_SHADER_ENTRY );
 
-	display_engine->SetLayout( layout );		///@todo Hack. Zlikwidowaæ.
+	display_engine->SetLayout( layout );		///@todo Hack. Layout powinien byæ ustawialny dla ka¿dego mesha z osobna. Zlikwidowaæ.
 
 	MaterialObject* nullMaterial = new MaterialObject();
 	nullMaterial->SetNullMaterial();
 	models_manager->AddMaterial( nullMaterial, DEFAULT_MATERIAL_STRING );
 
+	RenderTargetObject* mainRenderTarget = ResourcesFactory::CreateScreenRenderTarget();
+	models_manager->AddRenderTarget( mainRenderTarget, SCREEN_RENDERTARGET_STRING );
+	mainRenderTarget->add_file_reference();		/// Uniemo¿liwiamy zwolnienie render targetu przez u¿ytkownika.
+
 	return true;
 }
 
+/**@brief Inicjalizuje DisplayEngine.
+
+Funkcja tworzy renderery, domyœlne bufory sta³ych oraz ustawia macierz projekcji.
+@return Zwraca zawsze true.*/
 bool Engine::InitDisplayer()
 {
 	IRenderer* renderer = m_graphicInitializer->CreateRenderer( RendererUsage::USE_AS_IMMEDIATE );
@@ -240,10 +249,10 @@ bool Engine::InitDisplayer()
 //----------------------------------------------------------------------------------------------//
 
 /**@brief To tutaj dziej¹ siê wszystkie rzeczy, które s¹ wywo³ywane co ka¿d¹ klatkê.*/
-void Engine::render_frame()
+void Engine::RenderFrame()
 {
-	float time_interval = time_manager.onStartRenderFrame();
-	float lag = time_manager.getTimeLag();
+	float time_interval = m_timeManager.onStartRenderFrame();
+	float lag = m_timeManager.GetFrameLag();
 
 
 	while ( lag >= FIXED_MOVE_UPDATE_INTERVAL )
@@ -259,7 +268,7 @@ void Engine::render_frame()
 		fable_engine->proceed_fable( FIXED_MOVE_UPDATE_INTERVAL );
 
 		lag -= FIXED_MOVE_UPDATE_INTERVAL;
-		time_manager.updateTimeLag( lag );
+		m_timeManager.UpdateTimeLag( lag );
 
 		END_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
 	}
@@ -284,6 +293,86 @@ void Engine::render_frame()
 	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
 
 	display_engine->EndScene();
+}
+
+
+
+/**
+@brief Aktualizuje po³o¿enia obiektów.
+
+Wywo³ywane s¹ funkcje odpowiadaj¹ce za fizykê, ruch, kontrolery, wejœcie od u¿ytkownika i fabu³ê.
+
+@param[inout] lag Przeliczanie po³o¿eñ obiektów odbywa siê ze sta³ym interwa³em czasowym.
+Zmienna okreœla, ile up³yne³o czasu od ostatniego przeliczenia po³o¿eñ.
+@param[in] timeInterval Czas jaki up³yn¹³ od ostatniej klatki.
+*/
+void Engine::UpdateScene( float& lag, float timeInterval )
+{
+	while ( lag >= FIXED_MOVE_UPDATE_INTERVAL )
+	{
+		START_PERFORMANCE_CHECK(FRAME_COMPUTING_TIME)
+
+		ui_engine->proceed_input( FIXED_MOVE_UPDATE_INTERVAL );
+		physic_engine->proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );
+		controllers_engine->proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );
+		movement_engine->proceed_movement( FIXED_MOVE_UPDATE_INTERVAL );
+		controllers_engine->proceed_controllers_post( FIXED_MOVE_UPDATE_INTERVAL );
+		collision_engine->proceed_collisions( FIXED_MOVE_UPDATE_INTERVAL );
+		fable_engine->proceed_fable( FIXED_MOVE_UPDATE_INTERVAL );
+
+		lag -= FIXED_MOVE_UPDATE_INTERVAL;
+		//m_timeManager.UpdateTimeLag( lag );
+
+		END_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
+	}
+}
+
+
+/**
+@brief Renderowanie sceny i interpolacja po³o¿eñ obiektów. Odpowiada równie¿ za prezentowanie powsta³ej sceny.
+
+@param[in] lag Przeliczanie po³o¿eñ obiektów odbywa siê ze sta³ym interwa³em czasowym.
+Zmienna okreœla, ile up³yne³o czasu od ostatniego przeliczenia po³o¿eñ.
+@param[in] timeInterval Czas jaki up³yn¹³ od ostatniej klatki.
+*/
+
+void Engine::RenderScene( float lag, float timeInterval )
+{
+	float framePercent = lag / FIXED_MOVE_UPDATE_INTERVAL;
+
+#ifdef _INTERPOLATE_POSITIONS
+	START_PERFORMANCE_CHECK( INTERPOLATION_TIME )
+
+	display_engine->interpolate_positions( framePercent );
+
+	END_PERFORMANCE_CHECK( INTERPOLATION_TIME )
+#endif
+
+	START_PERFORMANCE_CHECK( RENDERING_TIME )
+
+	//Renderujemy scenê oraz interfejs u¿ytkownika
+	display_engine->BeginScene();
+
+	display_engine->display_scene( timeInterval, framePercent );
+	ui_engine->draw_GUI( timeInterval, framePercent );
+
+	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
+
+	display_engine->EndScene();
+}
+
+
+/**
+@brief Zwraca wskaŸnik na g³ówny render target.
+
+Funkcja stworzona dla edytora, który zamierza wyœwietlaæ zawartoœæ render targetu w swoim oknie.
+U¿ywaæ rozs¹dnie.
+
+@return WskaŸnik na render target.
+*/
+void* Engine::GetRenderTargetHandle()
+{
+	return m_graphicInitializer->GetRenderTargetHandle( models_manager->GetRenderTarget( SCREEN_RENDERTARGET_STRING ) );
 }
 
 
