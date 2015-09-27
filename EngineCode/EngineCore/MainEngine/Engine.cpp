@@ -221,7 +221,6 @@ bool Engine::InitDefaultAssets()
 
 	RenderTargetObject* mainRenderTarget = ResourcesFactory::CreateScreenRenderTarget();
 	models_manager->AddRenderTarget( mainRenderTarget, SCREEN_RENDERTARGET_STRING );
-	mainRenderTarget->add_file_reference();		/// Uniemo¿liwiamy zwolnienie render targetu przez u¿ytkownika.
 
 	return true;
 }

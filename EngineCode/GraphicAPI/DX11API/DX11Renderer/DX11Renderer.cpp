@@ -6,6 +6,7 @@
 #include "../DX11Resources/DX11VertexShader.h"
 #include "../DX11Resources/DX11PixelShader.h"
 #include "../DX11Resources/DX11Texture.h"
+#include "../DX11Resources/DX11RenderTarget.h"
 
 #include "Common/memory_leaks.h"
 
@@ -253,8 +254,14 @@ void DX11Renderer::Present()
 /**@brief Wyœwietla renderowan¹ scenê.
 
 @todo Polepszyæ, poprawiæ zmieniæ. Powinno obs³ugiwaæ renderowanie natychmiastowe i synchronizacjê poziom¹ w parametrze.*/
-void DX11Renderer::BeginScene()
+void DX11Renderer::BeginScene( RenderTargetObject* mainRenderTarget )
 {
-	begin_scene();
+	DX11RenderTarget* renderTarget = static_cast<DX11RenderTarget*>( mainRenderTarget );
+	//Bufor tylny
+	float ClearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };	// red, green, blue, alpha
+	device_context->ClearRenderTargetView( renderTarget->GetRenderTarget(), ClearColor );
+
+	//Z-bufor
+	device_context->ClearDepthStencilView( renderTarget->GetDepthStencil(), D3D11_CLEAR_DEPTH, 1.0f, 0 );
 }
 

@@ -87,6 +87,8 @@ protected:
 	static IDXGISwapChain*			swap_chain;				///<S³u¿y do prezentowania ramki na ekranie
 	static ID3D11RenderTargetView*	render_target;			///<Widok bufora docelowego renderowania, czyli bufora tylnego
 	static ID3D11DepthStencilView*	z_buffer_view;			///<Widok z-buffora
+	static ID3D11Texture2D*			back_buffer;			///<Tekstura bufora tylnego.
+	static ID3D11Texture2D*			z_buffer;				///<Tekstura z-bufora.
 
 	static ID3D11SamplerState*		default_sampler;		///<Obiekt domyœlnego samplera
 	static ID3D11InputLayout*		default_vertex_layout;	///<Layout formatu wierzcho³ka u¿ywanego dla meshy

@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Interop.D3DImageEx.h"
 
 namespace System { namespace Windows { namespace Interop

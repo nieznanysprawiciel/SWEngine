@@ -64,7 +64,7 @@ public:
 	virtual void DrawIndexed						( unsigned int indexCount, unsigned int startIndexLocation, int BaseVertexLocation ) = 0;
 
 	virtual void Present							() = 0;
-	virtual void BeginScene							() = 0;
+	virtual void BeginScene							( RenderTargetObject* mainRenderTarget ) = 0;
 };
 
 

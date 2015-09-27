@@ -63,7 +63,7 @@ public:
 	void DrawIndexed								( unsigned int indexCount, unsigned int startIndexLocation, int baseVertexLocation )	override;
 	
 	void Present									()																						override;
-	void BeginScene									()																						override;
+	void BeginScene									( RenderTargetObject* mainRenderTarget )												override;
 };
 
 

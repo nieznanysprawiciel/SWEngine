@@ -10,3 +10,8 @@ Class EditorPlugin.EngineWrapper: AutoLayout, AnsiClass, Class, Public, BeforeFi
   Methods:
     InitializeEngine(): PrivateScope, Public, HideBySig
     ReleaseEngine(): PrivateScope, Public, HideBySig
+    GetRenderTarget(): PrivateScope, Public, HideBySig
+    UpdateScene(): PrivateScope, Public, HideBySig
+    RenderScene(): PrivateScope, Public, HideBySig
+    ShowWindow(): PrivateScope, Public, HideBySig
+    TestScene(): PrivateScope, Public, HideBySig

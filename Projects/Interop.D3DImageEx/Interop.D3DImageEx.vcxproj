@@ -173,12 +173,10 @@
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineEditor\Interop.D3DImageEx\AssemblyInfo.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\Interop.D3DImageEx\Interop.D3DImageEx.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineEditor\Interop.D3DImageEx\Stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\EngineEditor\Interop.D3DImageEx\Interop.D3DImageEx.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\Interop.D3DImageEx\resource.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\Interop.D3DImageEx\Stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />

@@ -33,6 +33,7 @@ DisplayEngine::DisplayEngine(Engine* engine)
 {
 	current_camera = nullptr;
 	sky_dome = nullptr;
+	m_mainRenderTarget = nullptr;
 
 	interpol_matrixes_count = 16;
 	interpolated_matrixes = new XMFLOAT4X4[interpol_matrixes_count];
@@ -88,11 +89,14 @@ void DisplayEngine::InitDisplayer( ModelsManager* assetsManager )
 
 	m_constantsPerFrame->add_file_reference();		/// Uniemo퓄iwiamy zwolnienie bufora przez u퓓tkownika.
 	m_constantsPerMesh->add_file_reference();		/// Uniemo퓄iwiamy zwolnienie bufora przez u퓓tkownika.
+
+	m_mainRenderTarget = modelsManager->GetRenderTarget( SCREEN_RENDERTARGET_STRING );
+	m_mainRenderTarget->add_file_reference();		/// Uniemo퓄iwiamy zwolnienie render targetu przez u퓓tkownika.
 }
 
 void DisplayEngine::BeginScene()
 {
-	m_renderers[ 0 ]->BeginScene();
+	m_renderers[ 0 ]->BeginScene( m_mainRenderTarget );
 }
 
 void DisplayEngine::EndScene()

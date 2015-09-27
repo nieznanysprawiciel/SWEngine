@@ -35,7 +35,8 @@ ID3D11DeviceContext*				DX11APIObjects::device_context = nullptr;
 IDXGISwapChain*						DX11APIObjects::swap_chain = nullptr;
 ID3D11RenderTargetView*				DX11APIObjects::render_target = nullptr;
 ID3D11DepthStencilView*				DX11APIObjects::z_buffer_view = nullptr;
-
+ID3D11Texture2D*					DX11APIObjects::back_buffer = nullptr;
+ID3D11Texture2D*					DX11APIObjects::z_buffer = nullptr;
 
 ID3D11InputLayout*					DX11APIObjects::default_vertex_layout = nullptr;
 ID3D11VertexShader*					DX11APIObjects::default_vertex_shader = nullptr;
@@ -191,6 +192,10 @@ void DX11APIObjects::release_DirectX()
 		swap_chain->Release(), swap_chain = nullptr;
 	if ( render_target )
 		render_target->Release(), render_target = nullptr;
+	if( back_buffer )
+		back_buffer->Release(), back_buffer = nullptr;
+	if( z_buffer )
+		z_buffer->Release(), z_buffer = nullptr;
 	if ( device_context )
 		device_context->Release(), device_context = nullptr;
 	if ( device )
@@ -482,7 +487,6 @@ DX11_INIT_RESULT DX11APIObjects::init_z_buffer_and_render_target()
 	// RenderTargetView
 	// Tworzymy RenderTargetView. W tym celu pobieramy wskaŸnik na obiekt tylniego bufora
 	// i tworzymy z niego widok.
-	ID3D11Texture2D* back_buffer = nullptr;
 	result = swap_chain->GetBuffer( 0, __uuidof(ID3D11Texture2D), (LPVOID*)&back_buffer );
 	if ( FAILED( result ) )
 	{
@@ -496,15 +500,12 @@ DX11_INIT_RESULT DX11APIObjects::init_z_buffer_and_render_target()
 		release_DirectX();
 		return COULD_NOT_CREATE_RENDERTARGET;
 	}
-	//Zwracam uwagê, ¿e tutaj nie zwalniamy bufora. Zwalniamy tylko odwo³anie do niego, a bufor
-	//zostanie zwolniony dopiero jak wszystkie istniej¹ce obiekty przestan¹ go u¿ywaæ.
 	back_buffer->Release();
+	back_buffer = nullptr;
 
 	// z-buffer
 
-	ID3D11Texture2D* zBuffer;
-
-	result = device->CreateTexture2D( &_z_buffer_desc, nullptr, &zBuffer );
+	result = device->CreateTexture2D( &_z_buffer_desc, nullptr, &z_buffer );
 
 	if ( FAILED( result ) )
 	{
@@ -513,9 +514,9 @@ DX11_INIT_RESULT DX11APIObjects::init_z_buffer_and_render_target()
 	}
 
 	// Create the depth stencil view
-	result = device->CreateDepthStencilView( zBuffer, &_z_buffer_view_desc, &z_buffer_view );
-
-	zBuffer->Release();
+	result = device->CreateDepthStencilView( z_buffer, &_z_buffer_view_desc, &z_buffer_view );
+	z_buffer->Release();
+	z_buffer = nullptr;
 
 	if ( FAILED( result ) )
 	{

@@ -55,6 +55,11 @@ void* DX11Initializer::GetRenderTargetHandle( RenderTargetObject* renderTarget )
 	DX11RenderTarget* renderTargetDX11 = static_cast<DX11RenderTarget*>( renderTarget );
 
 	if( renderTargetDX11 )
-		return renderTargetDX11->GetRenderTarget();
+	{
+		ID3D11Resource* renderTargetTexture;
+		auto renderTargetView = renderTargetDX11->GetRenderTarget();
+		renderTargetView->GetResource( &renderTargetTexture );				//Zwraca ID3D11Texture2D*
+		return renderTargetTexture;
+	}
 	return nullptr;
 }

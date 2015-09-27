@@ -55,6 +55,7 @@ private:
 	std::vector<CameraObject*>				cameras;					///<Kontener zawieraj¹cy kamery
 
 	ShaderInputLayoutObject*				defaultLayout;				///<@todo Hack. Zlikwidowaæ. Silnik powinien obs³ugiwaæ dowolne layouty, a przynajmniej jakiœ ustalony zbiór.
+	RenderTargetObject*						m_mainRenderTarget;			///<Render target okna aplikacji. @todo W ostatecznej wersji powinien byæ render target ustawiany dla ka¿dego przebiegu.
 public:
 	DisplayEngine(Engine* engine);
 	~DisplayEngine();
