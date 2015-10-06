@@ -28,9 +28,6 @@
 
 void Engine::test()
 {
-	auto renderTarget = GetRenderTargetHandle( 100, 100 );
-
-
 	const wchar_t CLONE_FIGHTER[] = L"tylko_do_testow/ARC.FBX";
 	const wchar_t MOON[] = L"tylko_do_testow/moon/moon.FBX";
 	const wchar_t NEBULON[] = L"tylko_do_testow/Nebulon/Nebulon.FBX";
