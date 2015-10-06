@@ -36,8 +36,9 @@ typedef struct VertexColor
 	DirectX::XMFLOAT3 color;		///<Kolor wierzcho³ka
 } VertexColor;
 
-// RenderTargey
+// RenderTargety
 const wchar_t SCREEN_RENDERTARGET_STRING[] = L"::Screen render target";
+const wchar_t EDITOR_RENDERTARGET_STRING[] = L"::Editor render target";
 
 // Nazwy dla domyœlnych shaderów i materia³u
 const wchar_t DEFAULT_MATERIAL_STRING[] = L"::default_material";								///<Neutralny materia³.

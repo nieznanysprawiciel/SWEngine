@@ -82,7 +82,8 @@ private:
 	static unsigned int				_layout_elements_count;			///<Liczba elementów w talicy deskryptora layoutu.
 	static D3D11_SAMPLER_DESC		_sampler_desc;			///<Deskryptor samplera.
 protected:
-	static ID3D11Device*			device;					///<Zmienna s³u¿y do tworzenia obiektó, buforów tekstur i zasobów
+	static ID3D11Debug*				debug_interface;		///<Pozwala na pobranie bardziej szczegó³owych informacji debugowych.
+	static ID3D11Device*			device;					///<Zmienna s³u¿y do tworzenia obiektów, buforów tekstur i zasobów
 	static ID3D11DeviceContext*		device_context;			///<Zmienna u¿ywana do renderowania sceny, ustawiania buforów, shaderów itp.
 	static IDXGISwapChain*			swap_chain;				///<S³u¿y do prezentowania ramki na ekranie
 	static ID3D11RenderTargetView*	render_target;			///<Widok bufora docelowego renderowania, czyli bufora tylnego

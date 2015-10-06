@@ -104,6 +104,13 @@ void DisplayEngine::EndScene()
 	m_renderers[ 0 ]->Present();
 }
 
+void DisplayEngine::SetMainRenderTarget( RenderTargetObject* renderTarget )
+{
+	m_mainRenderTarget->delete_file_reference();
+	m_mainRenderTarget = renderTarget;
+	m_mainRenderTarget->add_file_reference();
+}
+
 
 //-------------------------------------------------------------------------------//
 //							Funkcje pomocnicze do renderingu

@@ -77,7 +77,7 @@ public:
 	void		RenderFrame					();
 	void		UpdateScene					( float& lag, float timeInterval );
 	void		RenderScene					( float lag, float timeInterval );
-	void*		GetRenderTargetHandle		();
+	void*		GetRenderTargetHandle		( uint16 width, uint16 height );
 	///@}
 #ifndef __UNUSED
 	//render thread joining

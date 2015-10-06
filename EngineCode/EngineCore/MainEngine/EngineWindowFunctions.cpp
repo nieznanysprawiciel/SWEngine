@@ -39,12 +39,12 @@ ATOM Engine::EngineRegisterClass()
 	wcex.cbClsExtra = 0;
 	wcex.cbWndExtra = 0;
 	wcex.hInstance = instance_handler;
-	wcex.hIcon = LoadIcon(instance_handler, MAKEINTRESOURCE(IDI_SW_ENGINE));
+	wcex.hIcon = LoadIcon( instance_handler, MAKEINTRESOURCE( IDI_SW_ENGINE ) );
 	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 	wcex.lpszMenuName = nullptr;
 	wcex.lpszClassName = szWindowClass;
-	wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
+	wcex.hIconSm = LoadIcon( wcex.hInstance, MAKEINTRESOURCE( IDI_SMALL ) );
 
 	return RegisterClassEx(&wcex);
 }

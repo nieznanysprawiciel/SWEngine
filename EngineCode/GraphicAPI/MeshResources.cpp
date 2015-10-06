@@ -2,68 +2,17 @@
 
 #include "Common/memory_leaks.h"
 
+
+
+
 //----------------------------------------------------------------------------------------------//
 //								PixelShaderObject												//
 //----------------------------------------------------------------------------------------------//
-
-#ifndef __UNUSED
-/**@bref Tworzy obiekt PixelShaderObject na podstawie pliku.
-
-W przypadku b³êdów kompilacji w trybie debug s¹ one przekierowane do okna Output.
-
-Na razie obs³uguje tylko nieskompilowane pliki.
-@param[in] fileName Nazwa pliku, z którego zostanie wczytany shader.
-@param[in] shaderName Nazwa funkcji, która jest punktem poczatkowym wykonania shadera.
-@param[in] shaderModel £añcuch znaków opisuj¹cy shader model.
-*/
-PixelShaderObject* PixelShaderObject::create_from_file( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
-{
-	return ResourcesFactory::CreatePixelShaderFromFile( fileName, shaderName, shaderModel );
-}
-#endif
 
 //----------------------------------------------------------------------------------------------//
 //								VertexShaderObject												//
 //----------------------------------------------------------------------------------------------//
 
-#ifndef __UNUSED
-/**@brief Tworzy obiekt VertexShaderObject na podstawie pliku.
-
-W przypadku b³êdów kompilacji w trybie debug s¹ one przekierowane do okna Output.
-
-Na razie obs³uguje tylko nieskompilowane pliki.
-@param[in] fileName Nazwa pliku, z którego zostanie wczytany shader
-@param[in] shaderName Nazwa funkcji, która jest punktem poczatkowym wykonania shadera
-@param[in] shaderModel £añcuch znaków opisuj¹cy shader model.
-@return Zwraca wskaŸnik na obiekt VertexShaderObject lub nullptr w przypadku niepowodzenia.*/
-VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
-{
-	return ResourcesFactory::CreateVertexShaderFromFile( fileName, shaderName, shaderModel );
-}
-
-/**@brief Tworzy obiekt VertexShaderObject na podstawie pliku. Zwraca równie¿ layout dla podanej struktury wierzcho³ka.
-Nie nale¿y u¿ywaæ tej funkcji, je¿eli layout nie jest rzeczywiœcie potrzebny. Trzeba pamietaæ o zwolnieniu
-go, kiedy przestanie byæ potrzebny.
-
-W przypadku b³êdów kompilacji w trybie debug s¹ one przekierowane do okna Output.
-
-Na razie obs³uguje tylko nieskompilowane pliki.
-@param[in] fileName Nazwa pliku, z którego zostanie wczytany shader
-@param[in] shaderName Nazwa funkcji, która jest punktem poczatkowym wykonania shadera
-@param[out] layout W zmiennej umieszczany jest wskaŸnik na layout wierzcho³ka. Nale¿y pamiêtaæ o zwolnieniu go kiedy bêdzie niepotrzebny.
-@param[in] layoutDesc Deskryptor opisujacy tworzony layout.
-@param[in] shaderModel £añcuch znaków opisuj¹cy shader model.
-@return Zwraca wskaŸnik na obiekt VertexShaderObject lub nullptr w przypadku niepowodzenia.*/
-VertexShaderObject* VertexShaderObject::create_from_file( const std::wstring& fileName,
-														  const std::string& shaderName,
-														  ShaderInputLayoutObject** layout,
-														  InputLayoutDescriptor* layoutDesc,
-														  const char* shaderModel )
-{
-	return ResourcesFactory::CreateVertexShaderFromFile( fileName, shaderName, layout, layoutDesc, shaderModel );
-}
-
-#endif
 
 //----------------------------------------------------------------------------------------------//
 //								TextureObject													//
@@ -92,17 +41,6 @@ bool TextureObject::operator==(const std::wstring& fileName)
 	return false;
 }
 
-#ifndef __UNUSED
-/** @brief Tworzy z podanego pliku obiekt tekstury.
-
-@param[in] fileName Nazwa pliku zawieraj¹cego teksturê
-@return Zawraca stworzony wewn¹trz obiekt TextureObject z wczytan¹ tekstur¹ lub nullptr w przypadku niepowodzenia.
-*/
-TextureObject* TextureObject::create_from_file( const std::wstring& fileName )
-{
-	return ResourcesFactory::CreateTextureFromFile( fileName );
-}
-#endif
 //----------------------------------------------------------------------------------------------//
 //								RenderTargetObject												//
 //----------------------------------------------------------------------------------------------//
@@ -129,20 +67,20 @@ RenderTargetObject::~RenderTargetObject()
 	if( m_colorBuffer )
 	{
 		m_colorBuffer->delete_file_reference();
-		if( m_colorBuffer->can_delete() )
-			ObjectDeleter<TextureObject>::delete_object( m_colorBuffer, ObjectDeleterKey<TextureObject>() );		
+		//if( m_colorBuffer->can_delete() )
+		//	ObjectDeleter<TextureObject>::delete_object( m_colorBuffer, ObjectDeleterKey<TextureObject>() );
 	}
 	if( m_depthBuffer )
 	{
 		m_depthBuffer->delete_file_reference();
-		if( m_depthBuffer->can_delete() )
-			ObjectDeleter<TextureObject>::delete_object( m_depthBuffer, ObjectDeleterKey<TextureObject>() );
+		//if( m_depthBuffer->can_delete() )
+		//	ObjectDeleter<TextureObject>::delete_object( m_depthBuffer, ObjectDeleterKey<TextureObject>() );
 	}
 	if( m_stencilBuffer )
 	{
 		m_stencilBuffer->delete_file_reference();
-		if( m_stencilBuffer->can_delete() )
-			ObjectDeleter<TextureObject>::delete_object( m_stencilBuffer, ObjectDeleterKey<TextureObject>() );
+		//if( m_stencilBuffer->can_delete() )
+		//	ObjectDeleter<TextureObject>::delete_object( m_stencilBuffer, ObjectDeleterKey<TextureObject>() );
 	}
 }
 
@@ -156,28 +94,6 @@ BufferObject::BufferObject( unsigned int elementSize, unsigned int elementCount 
 {
 }
 
-
-#ifndef __UNUSED
-/**@brief Tworzy bufor wierzcho³ków lub indeksów o podanych parametrach.
-
-@param[in] buffer WskaŸnik na bufor z danym, które maj¹ byæ przeniesione do bufora DirectXowego.
-@param[in] element_size Rozmiar pojedynczego elementu w buforze
-@param[in] vert_count Liczba wierzcho³ków/indeksów w buforze
-@param[in] bind_flag Okreœla z czym zwi¹zaæ podany bufor w potoku graficznym.
-Dla bufora wierzcho³ków nale¿y podaæ D3D11_BIND_VERTEX_BUFFER, a dla bufora indeksów
-D3D11_BIND_INDEX_BUFFER.
-@param[in] usage Jedna z wartoœci D3D11_USAGE, któr¹ nale¿y podaæ DirectXowi.
-@return WskaŸnik na BufferObject w przypadku powodzenia lub nullptr, je¿eli coœ pójdzie nie tak.*/
-BufferObject* BufferObject::create_from_memory( const void* buffer,
-												unsigned int element_size,
-												unsigned int vert_count,
-												ResourceBinding bind_flag,
-												ResourceUsage usage )
-{
-	return ResourcesFactory::CreateBufferFromMemory( buffer, element_size, vert_count, bind_flag, usage );
-}
-
-#endif
 
 //----------------------------------------------------------------------------------------------//
 //								MaterialObject													//

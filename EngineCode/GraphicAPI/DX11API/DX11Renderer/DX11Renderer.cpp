@@ -257,11 +257,16 @@ void DX11Renderer::Present()
 void DX11Renderer::BeginScene( RenderTargetObject* mainRenderTarget )
 {
 	DX11RenderTarget* renderTarget = static_cast<DX11RenderTarget*>( mainRenderTarget );
-	//Bufor tylny
-	float ClearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };	// red, green, blue, alpha
-	device_context->ClearRenderTargetView( renderTarget->GetRenderTarget(), ClearColor );
+	auto renderTargetView = renderTarget->GetRenderTarget();
+	auto depthStencilView = renderTarget->GetDepthStencil();
 
-	//Z-bufor
-	device_context->ClearDepthStencilView( renderTarget->GetDepthStencil(), D3D11_CLEAR_DEPTH, 1.0f, 0 );
+	// Czyszczenie render targetów
+	float ClearColor[4] = { 0.0f, 0.0f, 0.0f, 1.0f };	// red, green, blue, alpha
+	device_context->ClearRenderTargetView( renderTargetView, ClearColor );
+	device_context->ClearDepthStencilView( depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0 );
+
+	// Ustawienie aktualnego render targetu
+	///@todo Render target powinien byæ ustawiany gdzie indziej. To jest tymczasowe rozwi¹zanie.
+	device_context->OMSetRenderTargets( 1, &renderTargetView, depthStencilView );
 }
 

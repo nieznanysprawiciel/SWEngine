@@ -1,6 +1,7 @@
 #include "DX11Initializer.h"
 #include "../DX11Renderer/DX11Renderer.h"
 #include "../DX11Resources/DX11RenderTarget.h"
+#include "../DX11Resources/DX11Texture.h"
 #include "DX11ConstantsMapper.h"
 
 #include "Common/memory_leaks.h"
@@ -56,10 +57,17 @@ void* DX11Initializer::GetRenderTargetHandle( RenderTargetObject* renderTarget )
 
 	if( renderTargetDX11 )
 	{
-		ID3D11Resource* renderTargetTexture;
-		auto renderTargetView = renderTargetDX11->GetRenderTarget();
-		renderTargetView->GetResource( &renderTargetTexture );				//Zwraca ID3D11Texture2D*
-		return renderTargetTexture;
+		auto colorBufferTex = static_cast<DX11Texture*>( renderTargetDX11->GetColorBuffer() );
+		if( colorBufferTex )
+		{
+			ID3D11Resource* renderTargetTexture;
+			auto colorBufferView = colorBufferTex->Get();
+			colorBufferView->GetResource( &renderTargetTexture );
+			// Uwaga! GetResource zwiêksza liczbê referencji do tekstury. Dlatego tutaj j¹ zmniejszamy.
+			// Tekstura i tak nie zostanie zwolniona, bo ResourceView trzymaj¹ na ni¹ referencjê.
+			renderTargetTexture->Release();
+			return renderTargetTexture;
+		}
 	}
 	return nullptr;
 }

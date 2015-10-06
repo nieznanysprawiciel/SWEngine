@@ -64,7 +64,9 @@ typedef UINT32 VERT_INDEX;
 */
 
 
-
+static const std::wstring RENDER_TARGET_COLOR_BUFFER_NAME = L"::color";
+static const std::wstring RENDER_TARGET_DEPTH_BUFFER_NAME = L"::depth";
+static const std::wstring RENDER_TARGET_STENCIL_BUFFER_NAME = L"::stencil";
 
 
 /**@brief Indeksy tekstur w tablicy ModelPart.
@@ -102,7 +104,9 @@ enum TextureTypes
 
 
 
-
+//----------------------------------------------------------------------------------------------//
+//								Mesh i Model													//
+//----------------------------------------------------------------------------------------------//
 
 /** @brief Struktura opisuje pojedyncz¹ cz¹stkê mesha o jednym materiale, teksturze i shaderach.
 @ingroup Resources
@@ -204,6 +208,10 @@ struct ModelPart
 	}
 };
 
+//----------------------------------------------------------------------------------------------//
+//								TextureObject													//
+//----------------------------------------------------------------------------------------------//
+
 
 /** @brief Klasa przechowuj¹ca tekstury.
 @ingroup Resources
@@ -227,10 +235,47 @@ public:
 
 	inline bool operator==( TextureObject& object );
 	inline bool operator==( const std::wstring& file_name );
-
-	//static TextureObject* create_from_file( const std::wstring& file_name );
 };
 
+//----------------------------------------------------------------------------------------------//
+//								RenderTargetObject												//
+//----------------------------------------------------------------------------------------------//
+
+/**@brief Struktura u¿ywana do tworzenia render targetu.
+@ingroup GraphicAPI*/
+struct RenderTargetDescriptor
+{
+	uint16				textureWidth;				///<Sszerokoœæ tekstury w pikselach.
+	uint16				textureHeight;				///<Wysokoœæ tekstury w pikselach.
+	uint16				arraySize;					///<Liczba elementów tablicy.
+	int8				CPURead : 1;				///<Pozwala na odczyt tekstury przez CPU.
+	int8				CPUWrite : 1;				///<Pozwala na zapis tekstury przez CPU.
+	int8				allowShareResource : 1;		///<Pozwala na dostêp do zasoby z wielu API graficznych i pomiêdzy kontekstami.
+	int8				isCubeMap : 1;				///<Nale¿y ustawiæ je¿eli tekstura jest cubemap¹.
+	uint8				numSamples;					///<Liczba próbek w przypadku stosowania multisamplingu.
+	uint16				samplesQuality;				///<Jakoœæ próbek przy multisamplingu.
+	TextureType			textureType;				///<Typ tekstury (liczba wymiarów, multsampling). Tekstura nie mo¿e byæ inna ni¿ dwuwymiarowa (mo¿e byæ tablic¹).
+	ResourceFormat		colorBuffFormat;			///<Format bufora kolorów.
+	DepthStencilFormat	depthStencilFormat;			///<Format bufora g³êbokoœci i stencilu.
+	ResourceUsage		usage;						///<Sposób u¿ycia render targetu. Wp³ywa na optymalizacje u³o¿enia w pamiêci.
+
+	/**@brief Ustawia domyœlne wartoœci deskryptora.
+	
+	Ustawiane s¹ pola CPURead, CPUWrite, allowShareResource, isCubeMap, usage.
+	Te zmienne s¹ u¿ywane rzadko i dlatego powinny mieæ takie wartoœci, ¿eby nie trzeba by³o ich jawnie ustawiaæ.
+	Pozosta³e wartoœci u¿ytkownik i tak musi zdefiniowaæ samemu, wiêc nie ma co nadk³adaæ pracy.
+	
+	Pola numSamples i samplesQuality s¹ ignorowane, je¿eli textureType nie zosta³ ustawiony na teksturê z multisamplingiem.
+	Pole arraySize jest ignorowane, je¿eli tekstura nie jest tablic¹.*/
+	RenderTargetDescriptor()
+	{
+		CPURead = 0;
+		CPUWrite = 0;
+		allowShareResource = 0;
+		isCubeMap = 0;
+		usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
+	}
+};
 
 /**@brief Klasa dla render targetów.
 @ingroup Resources
@@ -256,6 +301,10 @@ public:
 	inline TextureObject*		GetStencilBuffer()			{ return m_stencilBuffer; }		///<Zwraca obiekt bufora stencilu.
 };
 
+//----------------------------------------------------------------------------------------------//
+//								ShaderInputLayoutObject											//
+//----------------------------------------------------------------------------------------------//
+
 /**@brief Klasa przechowuje layout wierzcho³ka trafiaj¹cego do
 vertex shadera.
 @ingroup Resources
@@ -272,7 +321,6 @@ public:
 
 /**@brief Klasa przechowuje opis layoutu wierzcho³ka, na podstawie którego
 tworzony jest obiekt layoutu.
-@ingroup Resources
 @ingroup GraphicAPI*/
 class InputLayoutDescriptor
 {
@@ -289,6 +337,10 @@ public:
 };
 
 
+//----------------------------------------------------------------------------------------------//
+//								VertexShaderObject												//
+//----------------------------------------------------------------------------------------------//
+
 /** @brief Klasa przechowuj¹ca vertex shader.
 @ingroup Resources
 @ingroup GraphicAPI*/
@@ -300,11 +352,11 @@ protected:
 	~VertexShaderObject() = default;
 public:
 	VertexShaderObject() = default;
-
-	//static VertexShaderObject* create_from_file( const std::wstring& fileName, const std::string& shader_name, const char* shader_model = "vs_4_0" );
-	//static VertexShaderObject* create_from_file( const std::wstring& fileName, const std::string& shader_name, ShaderInputLayoutObject** layout,
-	//											 InputLayoutDescriptor* layout_desc, const char* shader_model = "vs_4_0" );
 };
+
+//----------------------------------------------------------------------------------------------//
+//								PixelShaderObject												//
+//----------------------------------------------------------------------------------------------//
 
 /**@brief Klasa przechowuj¹ca pixel shader.
 @ingroup Resources
@@ -317,9 +369,11 @@ protected:
 	~PixelShaderObject() = default;
 public:
 	PixelShaderObject() = default;
-
-	//static PixelShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name, const char* shader_model = "ps_4_0" );
 };
+
+//----------------------------------------------------------------------------------------------//
+//								ComputeShaderObject												//
+//----------------------------------------------------------------------------------------------//
 
 /**@brief Klasa przechowuj¹ca compute shader
 @ingroup Resources
@@ -332,11 +386,11 @@ protected:
 	~ComputeShaderObject() = default;
 public:
 	ComputeShaderObject();
-
-	//static ComputeShaderObject* create_from_file( const std::wstring& file_name, const std::string& shader_name, const char* shader_model = "ps_4_0" );
 };
 
-
+//----------------------------------------------------------------------------------------------//
+//								BufferObject													//
+//----------------------------------------------------------------------------------------------//
 
 /**@brief Obiekt opakowuj¹cy bufor.
 @ingroup Resources
@@ -358,15 +412,11 @@ public:
 	inline unsigned int GetStride()				{ return m_elementSize; }		///<Zwraca rozmiar pojedynczego elementu w buforze.
 	inline unsigned int	GetElementSize()		{ return m_elementSize; }		///<Zwraca rozmiar pojedynczego elementu w buforze.
 	inline unsigned int GetElementCount()		{ return m_elementCount; }		///<Zwraca liczbê elementów w buforze.
-
-	//static BufferObject* create_from_memory( const void* buffer,
-	//										 unsigned int element_size,
-	//										 unsigned int vert_count,
-	//										 ResourceBinding bind_flag,
-	//										 ResourceUsage usage = ResourceUsage::RESOURCE_USAGE_STATIC );
 };
 
-
+//----------------------------------------------------------------------------------------------//
+//								MaterialObject													//
+//----------------------------------------------------------------------------------------------//
 
 
 /**@brief Struktura przechowuj¹ca materia³.

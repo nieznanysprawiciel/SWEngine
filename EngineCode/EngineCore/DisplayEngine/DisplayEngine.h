@@ -65,7 +65,8 @@ public:
 	void BeginScene();
 	void EndScene();
 
-	void SetLayout( ShaderInputLayoutObject* layout ) { defaultLayout = layout; }	///<@todo Hack. Zlikwidowaæ.
+	void SetLayout							( ShaderInputLayoutObject* layout ) { defaultLayout = layout; }	///<@todo Hack. Zlikwidowaæ i zrobiæ docelowy sposób obs³ugi layotów.
+	void SetMainRenderTarget				( RenderTargetObject* renderTarget );					///<@todo Hack. Zrobiæ docelowy sposób ustawiania render targetów.
 
 	// G³ówna funkcja do wyœwietlania sceny
 	void display_scene						( float time_interval, float time_lag );

@@ -44,16 +44,16 @@ namespace EditorPlugin
 		Engine*				m_engine;
 	protected:
 	public:
-		bool				InitializeEngine();
-		void				ReleaseEngine();
-		System::IntPtr		GetRenderTarget();
+		bool				InitializeEngine			( System::IntPtr moduleHandle );
+		void				ReleaseEngine				();
+		System::IntPtr		GetRenderTarget				( System::UInt16 width, System::UInt16 height );
 
-		void				UpdateScene();
-		void				RenderScene();
+		void				UpdateScene					();
+		void				RenderScene					();
 
-		void				ShowWindow();
+		void				ShowWindow					();
 
-		void				TestScene();
+		void				TestScene					();
 	};
 
 }

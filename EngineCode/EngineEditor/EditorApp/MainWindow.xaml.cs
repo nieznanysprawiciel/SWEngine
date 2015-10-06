@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Interop;
+using System.Runtime.InteropServices;
 using EditorPlugin;
 
 namespace EditorApp
@@ -20,30 +10,66 @@ namespace EditorApp
     /**@brief Główne okno edytora.*/
     public partial class MainWindow : Window
     {
-        private D3DImageEx                      m_ViewportSurface;
-        private EditorPlugin.EngineWrapper      m_engine;
+		private D3DImageEx						m_ViewportSurface;
+		private EngineWrapper					m_engine;
+		private bool							m_editorReady = false;
 
-        public MainWindow()
+		public MainWindow()
         {
+            System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo("en-US");
             InitializeComponent();
             Loaded += MainWindowLoaded;
+            Closed += MainWindowClosed;
         }
 
         void MainWindowLoaded( object sender, RoutedEventArgs e )
         {
-            /* Create a new D3DImageEx class */
             m_ViewportSurface = new D3DImageEx();
-
-            /* Set our image's source to our D3DImage9Ex */
             EngineViewport.Source = m_ViewportSurface;
 
-            /* Create a new D3DTest scene */
-            m_engine = new EditorPlugin.EngineWrapper();
+            m_engine = new EngineWrapper();
+			IntPtr handle = Marshal.GetHINSTANCE( m_engine.GetType().Module );
 
-            /* Set the backbuffer, which is a ID3D10Texture2D pointer */
-            m_ViewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, m_engine.GetRenderTarget() );
+			if ( m_engine.InitializeEngine( handle ) )
+                m_editorReady = true;
+            else
+                return;
 
-            //CompositionTarget.Rendering += CompositionTarget_Rendering;
+			m_engine.TestScene();
+
+			m_ViewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, m_engine.GetRenderTarget( (ushort)EngineViewport.Width, (ushort)EngineViewport.Height ) );
+
+            CompositionTarget.Rendering += CompositionTargetRendering;
+        }
+
+        void MainWindowClosed( object sender, EventArgs e )
+        {
+			m_editorReady = false;
+			m_engine.ReleaseEngine();
+        }
+
+        private void InvalidateD3DImage()
+        {
+            m_ViewportSurface.Lock();
+            m_ViewportSurface.AddDirtyRect(new Int32Rect()
+            {
+                X = 0,
+                Y = 0,
+                Height = m_ViewportSurface.PixelHeight,
+                Width = m_ViewportSurface.PixelWidth
+            });
+            m_ViewportSurface.Unlock();
+        }
+
+        private void CompositionTargetRendering(object sender, EventArgs e)
+        {
+            if ( m_editorReady )
+            {
+                m_engine.UpdateScene();
+                m_engine.RenderScene();
+
+                InvalidateD3DImage();
+            }
         }
     }
 }

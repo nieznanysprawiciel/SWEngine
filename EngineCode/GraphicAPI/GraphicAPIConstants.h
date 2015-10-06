@@ -50,7 +50,36 @@ enum ResourceBinding
 	
 };
 
-/**@briefSpecyfikuje format tekstury bπdü innego zasobu.
+
+/**@brief Definiuje typ tekstury.
+
+@see @ref GraphicAPI*/
+enum class TextureType
+{
+	TEXTURE_TYPE_UNKNOW							= 0,
+	TEXTURE_TYPE_BUFFER							= 1,
+	TEXTURE_TYPE_TEXTURE1D						= 2,
+	TEXTURE_TYPE_TEXTURE1D_ARRAY				= 3,
+	TEXTURE_TYPE_TEXTURE2D						= 4,
+	TEXTURE_TYPE_TEXTURE2D_ARRAY				= 5,
+	TEXTURE_TYPE_TEXTURE2D_MULTISAMPLE			= 6,
+	TEXTURE_TYPE_TEXTURE2D_MULTISAMPLE_ARRAY	= 7,
+	TEXTURE_TYPE_TEXTURE3D						= 8
+};
+
+
+/**@brief Typy dostÍpne dla bufora g≥Íbokoúci.
+
+@see @ref GraphicAPI*/
+enum class DepthStencilFormat
+{
+	DEPTH_STENCIL_FORMAT_D32_FLOAT_S8X24_UINT	= 1,
+	DEPTH_STENCIL_FORMAT_D32_FLOAT				= 2,
+	DEPTH_STENCIL_FORMAT_D24_UNORM_S8_UINT		= 3,
+	DEPTH_STENCIL_FORMAT_D16_UNORM				= 4
+};
+
+/**@brief Specyfikuje format tekstury bπdü innego zasobu.
 @see @ref GraphicAPI*/
 enum class ResourceFormat
 {

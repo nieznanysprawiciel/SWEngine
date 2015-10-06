@@ -272,6 +272,48 @@ ModelsManagerResult ModelsManager::LoadModelFromFile( const std::wstring& file )
 }
 
 
+/**@brief Tworzy nowy render target.
+
+Funkcja dodaje stworzony obiekt do tablicy m_renderTarget. Je¿eli tekstury
+bufora colorów, g³êbokoœci i stencilu nie s¹ nullptrami, to i one s¹ dodawane do tablicy m_texture.
+
+Tekstury te maj¹ nazwy jak render target + dodany jest cz³on
+- ::color
+- ::depth
+- ::stencil
+
+@todo Przy dodawaniu tekstur nie jest sprawdzane czy one ju¿ istniej¹. Trzeba albo to sprawdzaæ, albo zapewniæ
+np. jak¹œ polityk¹ nazewnictwa, ¿e w ten sposób nie nadpisujemy istniej¹cej tekstury.
+
+@param[in] name Nazwa identyfikuj¹ca render target.
+@param[in] renderTargetDescriptor Deskryptor opisuj¹cy parametry render targetu.
+@return Zwraca stworzony obiekt lub nullptr w przypadku niepowodzenia. Je¿eli render target ju¿ istnia³, to zwracany jest istniej¹cy obiekt.
+*/
+RenderTargetObject* ModelsManager::CreateRenderTarget( const std::wstring& name, const RenderTargetDescriptor& renderTargetDescriptor )
+{
+	RenderTargetObject* newRenderTarget = m_renderTarget.get( name );
+	if( !newRenderTarget )
+	{
+		newRenderTarget = ResourcesFactory::CreateRenderTarget( name, renderTargetDescriptor );
+		m_renderTarget.unsafe_add( name, newRenderTarget );
+		
+		auto colorBuff = newRenderTarget->GetColorBuffer();
+		if( colorBuff )
+			m_texture.unsafe_add( colorBuff->GetFileName(), colorBuff );
+
+		auto depthBuffer = newRenderTarget->GetDepthBuffer();
+		if( depthBuffer )
+			m_texture.unsafe_add( depthBuffer->GetFileName(), depthBuffer );
+
+		auto stencilBuffer = newRenderTarget->GetStencilBuffer();
+		if( stencilBuffer )
+			m_texture.unsafe_add( stencilBuffer->GetFileName(), stencilBuffer );
+	}
+
+	return newRenderTarget;
+}
+
+
 
 /**@brief Dodaje materia³ do ModelsManagera, je¿eli jeszcze nie istnia³.
 @note Funkcja nie dodaje odwo³ania do obiektu, bo nie zak³ada, ¿e ktoœ go od razu u¿yje.

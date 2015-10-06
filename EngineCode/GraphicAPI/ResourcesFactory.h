@@ -10,6 +10,7 @@
 
 class ModelsManager;
 
+
 /**@brief Klasa ze statycznymi funkcjami do tworzenia obiektów assetów.
 @ingroup GraphicAPI
 
@@ -38,5 +39,6 @@ public:
 	static IGraphicAPIInitializer*	CreateAPIInitializer			();
 	static RenderTargetObject*		CreateScreenRenderTarget		();
 	static InputLayoutDescriptor*	CreateInputLayoutDescritor		( const std::wstring& layoutName );
+	static RenderTargetObject*		CreateRenderTarget				( const std::wstring& name, const RenderTargetDescriptor& renderTargetDescriptor );
 };
 

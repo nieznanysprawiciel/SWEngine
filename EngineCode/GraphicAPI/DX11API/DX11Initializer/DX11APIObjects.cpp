@@ -30,6 +30,7 @@ unsigned int						DX11APIObjects::_layout_elements_count = 0;
 D3D11_SAMPLER_DESC					DX11APIObjects::_sampler_desc;
 
 /*Inicjalizacja zmiennych statycznych.*/
+ID3D11Debug*						DX11APIObjects::debug_interface = nullptr;
 ID3D11Device*						DX11APIObjects::device = nullptr;
 ID3D11DeviceContext*				DX11APIObjects::device_context = nullptr;
 IDXGISwapChain*						DX11APIObjects::swap_chain = nullptr;
@@ -198,6 +199,13 @@ void DX11APIObjects::release_DirectX()
 		z_buffer->Release(), z_buffer = nullptr;
 	if ( device_context )
 		device_context->Release(), device_context = nullptr;
+
+//#ifdef _DEBUG
+//	debug_interface->ReportLiveDeviceObjects( D3D11_RLDO_SUMMARY | D3D11_RLDO_DETAIL );
+//#endif
+
+	if( debug_interface )
+		debug_interface->Release(), debug_interface = nullptr;
 	if ( device )
 		device->Release(), device = nullptr;
 }
@@ -460,6 +468,11 @@ DX11_INIT_RESULT DX11APIObjects::init_devices( HWND window, bool fullscreen, boo
 	if ( fullscreen )
 		swap_chain->SetFullscreenState( TRUE, nullptr );
 
+#ifdef _DEBUG
+	//debug_interface
+	device->QueryInterface( __uuidof( ID3D11Debug ), (void**)&debug_interface );
+
+#endif
 
 	return DX11_INIT_OK;
 }

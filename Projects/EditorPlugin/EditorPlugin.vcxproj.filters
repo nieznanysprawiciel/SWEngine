@@ -4,6 +4,9 @@
     <Filter Include="EditorPlugin">
       <UniqueIdentifier>{38eb21fc-9451-4c8b-8875-689600f8eed4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{8c85da9f-c09a-46fa-a488-91a0612f8822}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\dllmain.cpp">
@@ -20,5 +23,18 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorPlugin.h">
       <Filter>EditorPlugin</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\EngineCode\EngineEditor\EditorPlugin\SW_engine.aps">
+      <Filter>Resources</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\SW_engine.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

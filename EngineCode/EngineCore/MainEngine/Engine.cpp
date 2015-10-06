@@ -362,16 +362,27 @@ void Engine::RenderScene( float lag, float timeInterval )
 
 
 /**
-@brief Zwraca wskaŸnik na g³ówny render target.
+@brief Zwraca wskaŸnik na g³ówny render target. Render target jest tworzony w tej funkcji.
 
 Funkcja stworzona dla edytora, który zamierza wyœwietlaæ zawartoœæ render targetu w swoim oknie.
 U¿ywaæ rozs¹dnie.
 
 @return WskaŸnik na render target.
 */
-void* Engine::GetRenderTargetHandle()
+void* Engine::GetRenderTargetHandle( uint16 width, uint16 height )
 {
-	return m_graphicInitializer->GetRenderTargetHandle( models_manager->GetRenderTarget( SCREEN_RENDERTARGET_STRING ) );
+	RenderTargetDescriptor descriptor;
+	descriptor.allowShareResource = 1;
+	descriptor.textureWidth = width;
+	descriptor.textureHeight = height;
+	descriptor.colorBuffFormat = ResourceFormat::RESOURCE_FORMAT_B8G8R8A8_UNORM;
+	descriptor.textureType = TextureType::TEXTURE_TYPE_TEXTURE2D;
+	descriptor.depthStencilFormat = DepthStencilFormat::DEPTH_STENCIL_FORMAT_D24_UNORM_S8_UINT;
+	descriptor.usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
+
+	RenderTargetObject* renderTarget = models_manager->CreateRenderTarget( EDITOR_RENDERTARGET_STRING, descriptor );
+	display_engine->SetMainRenderTarget( renderTarget );
+	return m_graphicInitializer->GetRenderTargetHandle( renderTarget );
 }
 
 

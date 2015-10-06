@@ -67,6 +67,7 @@
 	<li>@ref SHOW_MEMORY_LEAKS
 	<li>@ref STANDARD_ABSTRACTION_LAYER
 	<li>@ref STANDARD_ABSTRACTION_LAYER_COUNT
+	<li>@ref TextureType
 	<li>@ref TextureTypes
 	<li>@ref WRONG_ID
 </ul>

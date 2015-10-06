@@ -28,6 +28,9 @@
 
 void Engine::test()
 {
+	auto renderTarget = GetRenderTargetHandle( 100, 100 );
+
+
 	const wchar_t CLONE_FIGHTER[] = L"tylko_do_testow/ARC.FBX";
 	const wchar_t MOON[] = L"tylko_do_testow/moon/moon.FBX";
 	const wchar_t NEBULON[] = L"tylko_do_testow/Nebulon/Nebulon.FBX";
@@ -183,6 +186,9 @@ void Engine::test()
 	// Ustawiamy œwiat³o pod indeksem 0
 	display_engine->set_directional_light( direction, color, 0 );
 	display_engine->set_ambient_light( DirectX::XMFLOAT4( 0.2f, 0.2f, 0.2f, 1.0f ) );
+
+
+
 }
 
 #endif

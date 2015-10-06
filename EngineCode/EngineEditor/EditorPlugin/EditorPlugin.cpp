@@ -4,6 +4,10 @@
 #include "EditorPlugin.h"
 #include "Common/macros_switches.h"
 
+
+//extern 	HINSTANCE moduleHandle;
+
+
 namespace EditorPlugin
 {
 
@@ -12,11 +16,16 @@ namespace EditorPlugin
 const int window_width = 700;
 const int window_height = 1300;
 
+
 /**@brief Tworzy obiekt silnika i inicjuje go.
 @return Zwraca true, je¿eli inicjowanie powid³o siê.*/
-bool EngineWrapper::InitializeEngine()
+bool EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
 {
-	m_engine = new Engine( GetModuleHandle(NULL) );
+
+	//if( 0 == GetModuleHandleEx( GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, NULL, &moduleHandle ) )
+	//	return false;
+	HINSTANCE handle = (HINSTANCE)moduleHandle.ToPointer();
+	m_engine = new Engine( handle );
 	int result = m_engine->InitEngine( window_width, window_height, false, SW_HIDE );
 	if( !result )
 	{
@@ -33,9 +42,9 @@ void EngineWrapper::ReleaseEngine()
 	delete m_engine;
 }
 
-System::IntPtr EngineWrapper::GetRenderTarget()
+System::IntPtr EngineWrapper::GetRenderTarget( System::UInt16 width, System::UInt16 height )
 {
-	return System::IntPtr( m_engine->GetRenderTargetHandle() );
+	return System::IntPtr( m_engine->GetRenderTargetHandle( width, height ) );
 }
 
 /**@brief Wywo³uje funkcje odpowiedzialne za przeliczanie po³o¿enia obiektów.*/

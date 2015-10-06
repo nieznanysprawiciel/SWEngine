@@ -4,6 +4,7 @@
   <PropertyGroup Label="UserMacros">
     <ConfigTypeString>Release</ConfigTypeString>
     <ConfigTypeSmallString>release</ConfigTypeSmallString>
+    <DebugSuffix />
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup />
@@ -15,6 +16,9 @@
     <BuildMacro Include="ConfigTypeSmallString">
       <Value>$(ConfigTypeSmallString)</Value>
       <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="DebugSuffix">
+      <Value>$(DebugSuffix)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>
