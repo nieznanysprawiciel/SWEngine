@@ -67,18 +67,20 @@ PS_INPUT vertex_shader( VS_INPUT input )
 //--------------------------------------------------------------------------------------
 // Pixel Shader
 //--------------------------------------------------------------------------------------
-float3 pixel_shader( PS_INPUT input) : SV_Target
+float4 pixel_shader( PS_INPUT input) : SV_Target
 {
-    float3 finalColor = Ambient*AmbientLight;
+    float4 finalColor;
+	finalColor.xyz = Ambient*AmbientLight;
     float dot_product = 0;
 	
     //do NdotL lighting for 2 lights
     for(int i=0; i<1; i++)
     {
 		dot_product = dot( (float3)LightDir[i], input.Norm);
-        finalColor += dot_product * LightColor[i];
+        finalColor.xyz += dot_product * LightColor[i];
     }
-	finalColor *= (float3)Diffuse;
+	finalColor.xyz *= (float3)Diffuse;
+	finalColor.w = 1.0;
 
     return finalColor;
 }

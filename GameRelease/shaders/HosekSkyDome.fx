@@ -58,7 +58,10 @@ PS_INPUT vertex_shader( VS_INPUT input )
 //--------------------------------------------------------------------------------------
 // Pixel Shader
 //--------------------------------------------------------------------------------------
-float3 pixel_shader( PS_INPUT input) : SV_Target
+float4 pixel_shader( PS_INPUT input) : SV_Target
 {
-    return input.Color;
+	float4 finalColor;
+	finalColor.xyz = input.Color;
+	finalColor.w = 1.0;
+    return finalColor;
 }
