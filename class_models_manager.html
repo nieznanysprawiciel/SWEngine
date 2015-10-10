@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -111,19 +112,23 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2c310edc07839b02eeb44dc49a218ae4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_pixel_shader_object.html">PixelShaderObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_models_manager.html#a2c310edc07839b02eeb44dc49a218ae4">FindBestPixelShader</a> (<a class="el" href="class_texture_object.html">TextureObject</a> **textures)</td></tr>
 <tr class="memdesc:a2c310edc07839b02eeb44dc49a218ae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dopasowuje najlepszy z domyślnych shaderów, który pasuje do podanej tablicy tekstur. Tablica ma tyle elementów ile zmienna <a class="el" href="macros__switches_8h.html#a36f190ee08b08696d7e8d0277e366ebb">ENGINE_MAX_TEXTURES</a>.  <a href="#a2c310edc07839b02eeb44dc49a218ae4">More...</a><br /></td></tr>
 <tr class="separator:a2c310edc07839b02eeb44dc49a218ae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aedc82f61d2b486cc40e0cc91b380ef1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_models_manager_8h.html#a7f169be5aca139efed80dfc8fc9b531c">MODELS_MANAGER_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_models_manager.html#aedc82f61d2b486cc40e0cc91b380ef1c">LoadModelFromFile</a> (const std::wstring &amp;file)</td></tr>
-<tr class="memdesc:aedc82f61d2b486cc40e0cc91b380ef1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wczytuje model z podanego pliku.  <a href="#aedc82f61d2b486cc40e0cc91b380ef1c">More...</a><br /></td></tr>
-<tr class="separator:aedc82f61d2b486cc40e0cc91b380ef1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6ab5c9f5293eded1f22f03af136fa2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_models_manager_8h.html#af77f55adc0bc9bab8d0423de0012fc0b">ModelsManagerResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_models_manager.html#af6ab5c9f5293eded1f22f03af136fa2f">LoadModelFromFile</a> (const std::wstring &amp;file)</td></tr>
+<tr class="memdesc:af6ab5c9f5293eded1f22f03af136fa2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wczytuje model z podanego pliku.  <a href="#af6ab5c9f5293eded1f22f03af136fa2f">More...</a><br /></td></tr>
+<tr class="separator:af6ab5c9f5293eded1f22f03af136fa2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ad9dbb3696089dcc116229407a45516"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_render_target_object.html">RenderTargetObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_models_manager.html#a6ad9dbb3696089dcc116229407a45516">CreateRenderTarget</a> (const std::wstring &amp;name, const <a class="el" href="struct_render_target_descriptor.html">RenderTargetDescriptor</a> &amp;renderTargetDescriptor)</td></tr>
+<tr class="memdesc:a6ad9dbb3696089dcc116229407a45516"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tworzy nowy render target.  <a href="#a6ad9dbb3696089dcc116229407a45516">More...</a><br /></td></tr>
+<tr class="separator:a6ad9dbb3696089dcc116229407a45516"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fa91e0cbe73670386906fc3e6cb935c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2fa91e0cbe73670386906fc3e6cb935c"></a>
 <a class="el" href="class_model3_d_from_file.html">Model3DFromFile</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_models_manager.html#a2fa91e0cbe73670386906fc3e6cb935c">GetModel</a> (const std::wstring &amp;name)</td></tr>
 <tr class="memdesc:a2fa91e0cbe73670386906fc3e6cb935c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca model z pliku o podanej nazwie. <br /></td></tr>
 <tr class="separator:a2fa91e0cbe73670386906fc3e6cb935c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa965941b5362df1952838d3f6e89db27"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa965941b5362df1952838d3f6e89db27"></a>
+<a class="el" href="class_render_target_object.html">RenderTargetObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_models_manager.html#aa965941b5362df1952838d3f6e89db27">GetRenderTarget</a> (const std::wstring &amp;name)</td></tr>
+<tr class="memdesc:aa965941b5362df1952838d3f6e89db27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca RenderTarget o podanej nazwie. <br /></td></tr>
+<tr class="separator:aa965941b5362df1952838d3f6e89db27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e426667e9c611d8dea5a6331ee97a7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_texture_object.html">TextureObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_models_manager.html#a7e426667e9c611d8dea5a6331ee97a7b">AddTexture</a> (const std::wstring &amp;file_name)</td></tr>
 <tr class="memdesc:a7e426667e9c611d8dea5a6331ee97a7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje teksturę do ModelManagera, jeżeli jeszcze nie istniała.  <a href="#a7e426667e9c611d8dea5a6331ee97a7b">More...</a><br /></td></tr>
 <tr class="separator:a7e426667e9c611d8dea5a6331ee97a7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f8c9efdc041fd21a5700b33c7d8e608"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_material_object.html">MaterialObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_models_manager.html#a3f8c9efdc041fd21a5700b33c7d8e608">AddMaterial</a> (<a class="el" href="struct_material_object.html">MaterialObject</a> *material, const std::wstring &amp;material_name)</td></tr>
-<tr class="memdesc:a3f8c9efdc041fd21a5700b33c7d8e608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje materiał do ModelsManagera, jeżeli jeszcze nie istniał.  <a href="#a3f8c9efdc041fd21a5700b33c7d8e608">More...</a><br /></td></tr>
-<tr class="separator:a3f8c9efdc041fd21a5700b33c7d8e608"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e9b5dfc98242afd526166ad532a70e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vertex_shader_object.html">VertexShaderObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_models_manager.html#a6e9b5dfc98242afd526166ad532a70e9">AddVertexShader</a> (const std::wstring &amp;file_name, const std::string &amp;shader_entry)</td></tr>
 <tr class="memdesc:a6e9b5dfc98242afd526166ad532a70e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje vertex shader do ModelsManagera. Jeżeli obiekt już istniał, to nie jest tworzony nowy.  <a href="#a6e9b5dfc98242afd526166ad532a70e9">More...</a><br /></td></tr>
 <tr class="separator:a6e9b5dfc98242afd526166ad532a70e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,6 +147,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a895b95e8f12698b2f84717f18b8f5648"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_buffer_object.html">BufferObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_models_manager.html#a895b95e8f12698b2f84717f18b8f5648">AddConstantsBuffer</a> (const std::wstring &amp;name, const void *buffer, unsigned int size)</td></tr>
 <tr class="memdesc:a895b95e8f12698b2f84717f18b8f5648"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje do ModelsManagera bufor stałch dla shadera. Jeżeli pod taką nazwą istnieje jakiś bufor, to zostanie zwrócony wskaźnik na niego.  <a href="#a895b95e8f12698b2f84717f18b8f5648">More...</a><br /></td></tr>
 <tr class="separator:a895b95e8f12698b2f84717f18b8f5648"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d4b6ce9ab3ac9e1ab23a9ba80fe1816"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_render_target_object.html">RenderTargetObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_models_manager.html#a8d4b6ce9ab3ac9e1ab23a9ba80fe1816">AddRenderTarget</a> (<a class="el" href="class_render_target_object.html">RenderTargetObject</a> *renderTarget, const std::wstring &amp;name)</td></tr>
+<tr class="memdesc:a8d4b6ce9ab3ac9e1ab23a9ba80fe1816"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje renderTarget do ModelsManagera, jeżeli jeszcze nie istniał.  <a href="#a8d4b6ce9ab3ac9e1ab23a9ba80fe1816">More...</a><br /></td></tr>
+<tr class="separator:a8d4b6ce9ab3ac9e1ab23a9ba80fe1816"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f8c9efdc041fd21a5700b33c7d8e608"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_material_object.html">MaterialObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_models_manager.html#a3f8c9efdc041fd21a5700b33c7d8e608">AddMaterial</a> (<a class="el" href="struct_material_object.html">MaterialObject</a> *material, const std::wstring &amp;material_name)</td></tr>
+<tr class="memdesc:a3f8c9efdc041fd21a5700b33c7d8e608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje materiał do ModelsManagera, jeżeli jeszcze nie istniał.  <a href="#a3f8c9efdc041fd21a5700b33c7d8e608">More...</a><br /></td></tr>
+<tr class="separator:a3f8c9efdc041fd21a5700b33c7d8e608"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -331,7 +342,7 @@ std::vector&lt; <a class="el" href="class_i_loader.html">ILoader</a> * &gt;&#160
 <dl class="section note"><dt>Note</dt><dd>Funkcja nie dodaje odwołania do obiektu, bo nie zakłada, że ktoś go od razu użyje. W każdym miejscu, gdzie zostanie przypisany zwrócony obiekt, należy pamiętać o dodaniu odwołania oraz skasowaniu go, gdy obiekt przestanie być używany.</dd>
 <dd>
 Jeżeli materiał już istniał (jego nazwa), to ten podany w parametrze nie zostanie dodany. Oznacza to, że za jego zwolnienie odpowiada ten, kto go stworzył. Trzeba zawsze sprawdzić czy zwrócona wartość jest tym samym co podaliśmy.</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>Nie może tak zostać, że ktoś dodaje materiał i musi sprawdzić czy nie dostał innego. Nie można też zmuszać kogoś do zwalniania pamięci po materiale.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000021">Todo:</a></b></dt><dd>Nie może tak zostać, że ktoś dodaje materiał i musi sprawdzić czy nie dostał innego. Nie można też zmuszać kogoś do zwalniania pamięci po materiale.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">material</td><td>Materiał, który ma zostać dodany </td></tr>
@@ -377,6 +388,46 @@ Jeżeli materiał już istniał (jego nazwa), to ten podany w parametrze nie zos
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Zwraca obiekt dodanego shadera. Zwraca nullptr, jeżeli shadera nie udało się skompilować. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8d4b6ce9ab3ac9e1ab23a9ba80fe1816"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_render_target_object.html">RenderTargetObject</a> * ModelsManager::AddRenderTarget </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_render_target_object.html">RenderTargetObject</a> *&#160;</td>
+          <td class="paramname"><em>renderTarget</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::wstring &amp;&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dodaje renderTarget do ModelsManagera, jeżeli jeszcze nie istniał. </p>
+<dl class="section note"><dt>Note</dt><dd>Funkcja nie dodaje odwołania do obiektu, bo nie zakłada, że ktoś go od razu użyje. W każdym miejscu, gdzie zostanie przypisany zwrócony obiekt, należy pamiętać o dodaniu odwołania oraz skasowaniu go, gdy obiekt przestanie być używany.</dd>
+<dd>
+Jeżeli renderTarget już istniał (jego nazwa), to ten podany w parametrze nie zostanie dodany. Oznacza to, że za jego zwolnienie odpowiada ten, kto go stworzył. Trzeba zawsze sprawdzić czy zwrócona wartość jest tym samym co podaliśmy.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000022">Todo:</a></b></dt><dd>Nie może tak zostać, że ktoś dodaje renderTarget i musi sprawdzić czy nie dostał innego. Nie można też zmuszać kogoś do zwalniania pamięci po renderTargecie. Wogóle dodawanie renderTargetów musi się odbywać jakoś inaczej. Najlepiej, żeby były one tworzone przez <a class="el" href="class_models_manager.html" title="Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dźwięków, które raczej zostaną oddelego...">ModelsManager</a>, ale wtedy trzeba wymyśleć sposób dodawania renderTargetu związanego z buforem okna.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">renderTarget</td><td>renderTarget, który ma zostać dodany. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>Nazwa renderTargetu. Do materiału będzie można się odwołać podając ciąg znaków </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Zwraca wskaźnik na dodany renderTarget. </dd></dl>
 
 </div>
 </div>
@@ -549,7 +600,50 @@ Jeżeli materiał już istniał (jego nazwa), to ten podany w parametrze nie zos
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Zwraca obiekt dodanego shadera. Zwraca nullptr, jeżeli shadera nie udało się skompilować. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>Ten kod to jakiś totalny shit. Jak komuś się będzie nudziło kiedyś (ha ha), to może niech poprawi. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000023">Todo:</a></b></dt><dd>Ten kod to jakiś totalny shit. Jak komuś się będzie nudziło kiedyś (ha ha), to może niech poprawi. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a6ad9dbb3696089dcc116229407a45516"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_render_target_object.html">RenderTargetObject</a> * ModelsManager::CreateRenderTarget </td>
+          <td>(</td>
+          <td class="paramtype">const std::wstring &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_render_target_descriptor.html">RenderTargetDescriptor</a> &amp;&#160;</td>
+          <td class="paramname"><em>renderTargetDescriptor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tworzy nowy render target. </p>
+<p>Funkcja dodaje stworzony obiekt do tablicy m_renderTarget. Jeżeli tekstury bufora colorów, głębokości i stencilu nie są nullptrami, to i one są dodawane do tablicy m_texture.</p>
+<p>Tekstury te mają nazwy jak render target + dodany jest człon</p><ul>
+<li>::color</li>
+<li>::depth</li>
+<li>::stencil</li>
+</ul>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>Przy dodawaniu tekstur nie jest sprawdzane czy one już istnieją. Trzeba albo to sprawdzać, albo zapewnić np. jakąś polityką nazewnictwa, że w ten sposób nie nadpisujemy istniejącej tekstury.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>Nazwa identyfikująca render target. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">renderTargetDescriptor</td><td>Deskryptor opisujący parametry render targetu. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Zwraca stworzony obiekt lub nullptr w przypadku niepowodzenia. Jeżeli render target już istniał, to zwracany jest istniejący obiekt. </dd></dl>
 
 </div>
 </div>
@@ -568,8 +662,8 @@ Jeżeli materiał już istniał (jego nazwa), to ten podany w parametrze nie zos
 </div><div class="memdoc">
 
 <p>Dopasowuje najlepszy z domyślnych shaderów, który pasuje do podanej tablicy tekstur. Tablica ma tyle elementów ile zmienna <a class="el" href="macros__switches_8h.html#a36f190ee08b08696d7e8d0277e366ebb">ENGINE_MAX_TEXTURES</a>. </p>
-<p>Każda pozycja w tablicy ma przypisane domyślne znaczenie zgodnie z enumeracją <a class="el" href="_mesh_resources_8h.html#a97f4ea7c9b73b7be637f6f28e7de66c5">TEXTURES_TYPES</a>. Najlepszy shader jest wybierany na podstawie obecności lub nieobecności tekstury w tablicy.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>Oddelegować jakiś inny obiekt do obśługi wartości domyślnych albo przemyśleć lepiej jak to powinno właściwie wyglądać.</dd></dl>
+<p>Każda pozycja w tablicy ma przypisane domyślne znaczenie zgodnie z enumeracją <a class="el" href="_mesh_resources_8h.html#ac3601c766e904acff2b729f45ccba47c">TextureTypes</a>. Najlepszy shader jest wybierany na podstawie obecności lub nieobecności tekstury w tablicy.</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>Oddelegować jakiś inny obiekt do obśługi wartości domyślnych albo przemyśleć lepiej jak to powinno właściwie wyglądać.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">textures</td><td>Tablica tekstur z obiektu <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a>. </td></tr>
@@ -595,8 +689,8 @@ Jeżeli materiał już istniał (jego nazwa), to ten podany w parametrze nie zos
 </div><div class="memdoc">
 
 <p>Dopasowuje najlepszy z domyślnych shaderów, który pasuje do podanej tablicy tekstur. Tablica ma tyle elementów ile zmienna <a class="el" href="macros__switches_8h.html#a36f190ee08b08696d7e8d0277e366ebb">ENGINE_MAX_TEXTURES</a>. </p>
-<p>Każda pozycja w tablicy ma przypisane domyślne znaczenie zgodnie z enumeracją <a class="el" href="_mesh_resources_8h.html#a97f4ea7c9b73b7be637f6f28e7de66c5">TEXTURES_TYPES</a>. Najlepszy shader jest wybierany na podstawie obecności lub nieobecności tekstury w tablicy.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>Oddelegować jakiś inny obiekt do obśługi wartości domyślnych albo przemyśleć lepiej jak to powinno właściwie wyglądać.</dd></dl>
+<p>Każda pozycja w tablicy ma przypisane domyślne znaczenie zgodnie z enumeracją <a class="el" href="_mesh_resources_8h.html#ac3601c766e904acff2b729f45ccba47c">TextureTypes</a>. Najlepszy shader jest wybierany na podstawie obecności lub nieobecności tekstury w tablicy.</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>Oddelegować jakiś inny obiekt do obśługi wartości domyślnych albo przemyśleć lepiej jak to powinno właściwie wyglądać.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">textures</td><td>Tablica tekstur z obiektu <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a>. </td></tr>
@@ -640,12 +734,12 @@ Jeżeli materiał już istniał (jego nazwa), to ten podany w parametrze nie zos
 
 </div>
 </div>
-<a class="anchor" id="aedc82f61d2b486cc40e0cc91b380ef1c"></a>
+<a class="anchor" id="af6ab5c9f5293eded1f22f03af136fa2f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_models_manager_8h.html#a7f169be5aca139efed80dfc8fc9b531c">MODELS_MANAGER_RESULT</a> ModelsManager::LoadModelFromFile </td>
+          <td class="memname"><a class="el" href="_models_manager_8h.html#af77f55adc0bc9bab8d0423de0012fc0b">ModelsManagerResult</a> ModelsManager::LoadModelFromFile </td>
           <td>(</td>
           <td class="paramtype">const std::wstring &amp;&#160;</td>
           <td class="paramname"><em>file</em></td><td>)</td>
@@ -661,7 +755,7 @@ Jeżeli materiał już istniał (jego nazwa), to ten podany w parametrze nie zos
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Jedna z wartości <a class="el" href="_models_manager_8h.html#a7f169be5aca139efed80dfc8fc9b531c">MODELS_MANAGER_RESULT</a>. Funkcja może zwrócić <a class="el" href="_models_manager_8h.html#a7f169be5aca139efed80dfc8fc9b531ca98ff88abdfb6738e744b5e8796675e61">MODELS_MANAGER_RESULT::MODELS_MANAGER_OK</a>, <a class="el" href="_models_manager_8h.html#a7f169be5aca139efed80dfc8fc9b531ca34763963e1358302c726d70c05f2dbeb">MODELS_MANAGER_RESULT::MODELS_MANAGER_LOADER_NOT_FOUND</a> lub <a class="el" href="_models_manager_8h.html#a7f169be5aca139efed80dfc8fc9b531ca10983ea32e3c67ac2da4e26e431b8075">MODELS_MANAGER_RESULT::MODELS_MANAGER_CANNOT_LOAD</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Jedna z wartości <a class="el" href="_models_manager_8h.html#af77f55adc0bc9bab8d0423de0012fc0b">ModelsManagerResult</a>. Funkcja może zwrócić <a class="el" href="_models_manager_8h.html#af77f55adc0bc9bab8d0423de0012fc0ba98ff88abdfb6738e744b5e8796675e61">ModelsManagerResult::MODELS_MANAGER_OK</a>, <a class="el" href="_models_manager_8h.html#af77f55adc0bc9bab8d0423de0012fc0ba34763963e1358302c726d70c05f2dbeb">ModelsManagerResult::MODELS_MANAGER_LOADER_NOT_FOUND</a> lub <a class="el" href="_models_manager_8h.html#af77f55adc0bc9bab8d0423de0012fc0ba10983ea32e3c67ac2da4e26e431b8075">ModelsManagerResult::MODELS_MANAGER_CANNOT_LOAD</a>. </dd></dl>
 
 </div>
 </div>
@@ -672,7 +766,7 @@ Jeżeli materiał już istniał (jego nazwa), to ten podany w parametrze nie zos
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

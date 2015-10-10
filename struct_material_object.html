@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -111,7 +112,7 @@ Inheritance diagram for MaterialObject:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:afecd9ab2dd1dd5ff78a0c6b04f5d8403"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afecd9ab2dd1dd5ff78a0c6b04f5d8403"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MaterialObject</b> (unsigned int id=WRONG_ID)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>MaterialObject</b> (unsigned int id=<a class="el" href="_mesh_resources_8h.html#a0429535275068adae77d61a7913e11dc">WRONG_ID</a>)</td></tr>
 <tr class="separator:afecd9ab2dd1dd5ff78a0c6b04f5d8403"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3caff4e34394e1ea3759f63cbcb63bc1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3caff4e34394e1ea3759f63cbcb63bc1"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>MaterialObject</b> (const <a class="el" href="struct_material_object.html">MaterialObject</a> *material)</td></tr>
@@ -186,7 +187,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="textblock"><p>Struktura przechowująca materiał.</p>
 <p>DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. </p>
 <p>Struktura zachowuje się jak asset w związku z czym może być współdzielona przez wiele obiektów. Z tego względu nie można jej użyć bezpośrednio w <a class="el" href="struct_constant_per_mesh.html" title="Bufor stałych dla shadera zmieniający się dla każdej części mesha. ">ConstantPerMesh</a>, ponieważ nie chcemy przekazywać do bufora stałych zmiennych odziedziczonych po <a class="el" href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. ">ResourceObject</a>. Zamiast tego trzeba tę strukture przepisać.</p>
-<p>Zwracam uwagę, że tylko kanał Diffuse jest wektorem 4 wymiarowym, w którym składowa w jest odpowiedzialna za przezroczystość. Pozostałe są takie tylko dlatego, że jest to domyślny format przechowywania danych w rejestrach karty graficznej i przypsiesza to operację kopiowania. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_constant_per_frame.html" title="Bufor stałych dla shadera zmieniający się raz na klatkę. ">ConstantPerFrame</a> </dd></dl>
+<p>Zwracam uwagę, że tylko kanał Diffuse jest wektorem 4 wymiarowym, w którym składowa w jest odpowiedzialna za przezroczystość. Pozostałe są takie tylko dlatego, że jest to domyślny format przechowywania danych w rejestrach karty graficznej i przyspiesza to operację kopiowania. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_constant_per_frame.html" title="Bufor stałych dla shadera zmieniający się raz na klatkę. ">ConstantPerFrame</a> </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a78c54ca82d12fc9ab3ac30b13fec75d8"></a>
 <div class="memitem">
@@ -213,7 +214,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

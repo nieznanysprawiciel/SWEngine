@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -96,15 +97,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <tr><td class="entry"><a class="el" href="class_resources_factory.html#ad59a6e4fcf28de4ed02fba65ceb12d69">CreateBufferFromMemory</a>(const void *buffer, unsigned int elementSize, unsigned int vertCount, ResourceBinding bindFlag, ResourceUsage usage=ResourceUsage::RESOURCE_USAGE_STATIC)</td><td class="entry"><a class="el" href="class_resources_factory.html">ResourcesFactory</a></td><td class="entry"><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_resources_factory.html#acad05fecec92f76d5bd566d5e229d417">CreateInputLayoutDescritor</a>(const std::wstring &amp;layoutName)</td><td class="entry"><a class="el" href="class_resources_factory.html">ResourcesFactory</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_resources_factory.html#aaded56f3625e71ad4fbdc8c481e62708">CreatePixelShaderFromFile</a>(const std::wstring &amp;fileName, const std::string &amp;shaderName, const char *shaderModel=&quot;ps_4_0&quot;)</td><td class="entry"><a class="el" href="class_resources_factory.html">ResourcesFactory</a></td><td class="entry"><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_resources_factory.html#aa97a28fbe48b5e9a215dce85148317fb">CreateScreenRenderTarget</a>()</td><td class="entry"><a class="el" href="class_resources_factory.html">ResourcesFactory</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_resources_factory.html#a93c6488d46d5f4a3682fb4c5b6124d83">CreateTextureFromFile</a>(const std::wstring &amp;fileName)</td><td class="entry"><a class="el" href="class_resources_factory.html">ResourcesFactory</a></td><td class="entry"><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_resources_factory.html#ab4363b1ae502507b371539ac54fb2855">CreateVertexShaderFromFile</a>(const std::wstring &amp;fileName, const std::string &amp;shaderName, const char *shaderModel=&quot;vs_4_0&quot;)</td><td class="entry"><a class="el" href="class_resources_factory.html">ResourcesFactory</a></td><td class="entry"><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_resources_factory.html#aa407ac770a68378d054870b34634defc">CreateVertexShaderFromFile</a>(const std::wstring &amp;fileName, const std::string &amp;shaderName, ShaderInputLayoutObject **layout, InputLayoutDescriptor *layout_desc, const char *shaderModel=&quot;vs_4_0&quot;)</td><td class="entry"><a class="el" href="class_resources_factory.html">ResourcesFactory</a></td><td class="entry"><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>ModelsManager</b> (defined in <a class="el" href="class_resources_factory.html">ResourcesFactory</a>)</td><td class="entry"><a class="el" href="class_resources_factory.html">ResourcesFactory</a></td><td class="entry"><span class="mlabel">friend</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>CreateRenderTarget</b>(const std::wstring &amp;name, const RenderTargetDescriptor &amp;renderTargetDescriptor) (defined in <a class="el" href="class_resources_factory.html">ResourcesFactory</a>)</td><td class="entry"><a class="el" href="class_resources_factory.html">ResourcesFactory</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_resources_factory.html#aa97a28fbe48b5e9a215dce85148317fb">CreateScreenRenderTarget</a>()</td><td class="entry"><a class="el" href="class_resources_factory.html">ResourcesFactory</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_resources_factory.html#a93c6488d46d5f4a3682fb4c5b6124d83">CreateTextureFromFile</a>(const std::wstring &amp;fileName)</td><td class="entry"><a class="el" href="class_resources_factory.html">ResourcesFactory</a></td><td class="entry"><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_resources_factory.html#ab4363b1ae502507b371539ac54fb2855">CreateVertexShaderFromFile</a>(const std::wstring &amp;fileName, const std::string &amp;shaderName, const char *shaderModel=&quot;vs_4_0&quot;)</td><td class="entry"><a class="el" href="class_resources_factory.html">ResourcesFactory</a></td><td class="entry"><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_resources_factory.html#aa407ac770a68378d054870b34634defc">CreateVertexShaderFromFile</a>(const std::wstring &amp;fileName, const std::string &amp;shaderName, ShaderInputLayoutObject **layout, InputLayoutDescriptor *layout_desc, const char *shaderModel=&quot;vs_4_0&quot;)</td><td class="entry"><a class="el" href="class_resources_factory.html">ResourcesFactory</a></td><td class="entry"><span class="mlabel">private</span><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>ModelsManager</b> (defined in <a class="el" href="class_resources_factory.html">ResourcesFactory</a>)</td><td class="entry"><a class="el" href="class_resources_factory.html">ResourcesFactory</a></td><td class="entry"><span class="mlabel">friend</span></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:15 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

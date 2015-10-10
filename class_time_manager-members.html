@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -92,28 +93,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="class_time_manager.html">TimeManager</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_time_manager.html#a84f431920ec4c31f8f1c43aa035b0643">begin_time</a></td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_time_manager.html#acd51b50e7795812a157d53ae19a9143a">elapsed_time</a></td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_time_manager.html#adae1030a409ed4d13b0368ec992d8676">frames</a></td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_time_manager.html#aec7ad9146163cebb12bbc10eb924055f">frames_per_sec</a></td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_time_manager.html#a2d10e8a99a77fec181f58171adde7e8b">getBeginTime</a>()</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_time_manager.html#a3eb5cf5180b6b10bd723d1279c9f9a25">getTime</a>()</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_time_manager.html#a16d658c26266b4bf3a9459fa4115d3e3">getTimeLag</a>()</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_time_manager.html#ad236132621cd95bff4517f88c3fb8d26">getTimerFrequency</a>()</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_time_manager.html#a5f10bd96df24eae2cd3ab2bfad1f7a54">initTimer</a>()</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_time_manager.html#aa7bca135198f5565f94fd5abdf7b986b">lag</a></td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_time_manager.html#a18fd77e0b160cb67a0628e8a14a28028">onStartRenderFrame</a>()</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_time_manager.html#a63a32cf90cc6e0a8735ff43e348e9495">queryCurrentTime</a>()</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_time_manager.html#aac8e10974e32ad47c74aedc5eb058c78">queryTimeFromBegin</a>()</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_time_manager.html#a7dbdbb531408fe2ca8d6ddacebee6cfa">time_previous</a></td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_time_manager.html#a9879a399127ae4207c6d918555fd96ab">GetBeginTime</a>()</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>GetCurrentLag</b>() (defined in <a class="el" href="class_time_manager.html">TimeManager</a>)</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_time_manager.html#aeab1668593e0a20d8c710d20e4df23ed">GetFrameLag</a>()</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_time_manager.html#a658420ec249c56987d3379c482e9dae4">GetTime</a>()</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_time_manager.html#af901f6a1cce01ec203a63ca765fa97df">GetTimerFrequency</a>()</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_time_manager.html#afc0fbb94f663d98d3be72cd8523c4b32">InitTimer</a>()</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_time_manager.html#a55c99afb81e567529ee5afdbcd0156ad">m_beginTime</a></td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_time_manager.html#abef0c2f51c0f49cd59ba446cc331e9bf">m_elapsedTime</a></td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_time_manager.html#a4cd2bf432ee82c7cf573dad2ef2bca23">m_frames</a></td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_time_manager.html#a2f2f906c0eb4f2d0192264b602417c56">m_framesPerSec</a></td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_time_manager.html#a4e8d21c315986a51ae12a48ab2f859c3">m_lag</a></td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_time_manager.html#ac562f1ba9435afbfba537622c8ff1f7b">m_timePrevious</a></td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_time_manager.html#a00372df9424361024dfd07fbcb2e80bc">m_timerFrequency</a></td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_time_manager.html#a18fd77e0b160cb67a0628e8a14a28028">onStartRenderFrame</a>()</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_time_manager.html#a6901c718c264707cba5aba85c306142d">QueryCurrentTime</a>()</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_time_manager.html#aeb12b0f96dd94bd61ed3719fdfb77f68">QueryTimeFromBegin</a>()</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_time_manager.html#ab1c3cbb48ad68d928bb8b9a4ef210ed6">TimeManager</a>()</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_time_manager.html#a5dcb3fa6aa82709b52c5956f135cc6e4">timer_frequency</a></td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_time_manager.html#aeeac4ee3aa45503f0a1b5650337202b0">updateTimeLag</a>(float timeLag)</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>~TimeManager</b>()=default (defined in <a class="el" href="class_time_manager.html">TimeManager</a>)</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_time_manager.html#a4a2c535a3c6e5c60214740b2202eae0e">UpdateTimeLag</a>(float timeLag)</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~TimeManager</b>()=default (defined in <a class="el" href="class_time_manager.html">TimeManager</a>)</td><td class="entry"><a class="el" href="class_time_manager.html">TimeManager</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:15 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

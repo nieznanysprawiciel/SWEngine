@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -84,28 +85,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><h1><a class="anchor" id="Contents"></a>
 Spis Treści</h1>
 <ul>
-<li><a class="el" href="_object_pipeline.html#Code">Kod</a></li>
+<li><a class="el" href="_main_loop.html#Code">Code</a></li>
 <li><a class="el" href="_main_loop.html#Description">Opis</a></li>
 </ul>
 <h2><a class="anchor" id="Code"></a>
-Kod</h2>
-<div class="fragment"><div class="line"><span class="keywordtype">int</span> <a class="code" href="class_engine.html#a28609462aae6189be2b5ed4d8ecfbae5">Engine::main_loop</a>()</div>
+Code</h2>
+<div class="fragment"><div class="line"><span class="keywordtype">int</span> <a class="code" href="class_engine.html#a275271b143acda9b2162b190e1890356">Engine::MainLoop</a>()</div>
 <div class="line">{</div>
 <div class="line">    MSG msg;</div>
-<div class="line">    LARGE_INTEGER time_temp;</div>
 <div class="line"></div>
-<div class="line">    <span class="comment">//Sprawdzamy częstotliwość timera systemowego, a potem inicjujemy licznik czasu</span></div>
-<div class="line">    QueryPerformanceFrequency( &amp;time_temp );</div>
-<div class="line">    timer_frequency = time_temp.QuadPart;</div>
-<div class="line">    QueryPerformanceCounter( &amp;time_temp );      <span class="comment">//inicjujemy licznik czasu</span></div>
-<div class="line">    time_previous = time_temp.QuadPart;</div>
-<div class="line">    elapsed_time = time_previous;</div>
+<div class="line"><span class="preprocessor">#ifndef __UNUSED</span></div>
+<div class="line">    <span class="comment">//włączamy główny wątek do renderingu</span></div>
+<div class="line">    std::thread main_thread(main_thread_function, <span class="keyword">this</span>);</div>
+<div class="line"><span class="preprocessor">#endif</span></div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// Main message loop:</span></div>
 <div class="line">    <span class="keywordflow">while</span> (TRUE)</div>
 <div class="line">    {</div>
-<div class="line">        <span class="keywordflow">if</span> ( directX_ready )</div>
-<div class="line">            <a class="code" href="class_engine.html#aa5dc46f13a43784e7fc111b92f40f1d6">render_frame</a>();</div>
+<div class="line">        <span class="keywordflow">if</span> ( <a class="code" href="class_engine_interface.html#a115dd4202750297d873a15f7b2e952b4">m_engineReady</a> )</div>
+<div class="line">            <a class="code" href="class_engine.html#a37fbb20f7210a7dc3b26a0394fc6166e">RenderFrame</a>();</div>
 <div class="line"></div>
 <div class="line">        <span class="keywordflow">while</span> (PeekMessage(&amp;msg, NULL, 0, 0, PM_REMOVE))</div>
 <div class="line">        <span class="comment">//while (GetMessage(&amp;msg, NULL, 0, 0))</span></div>
@@ -116,6 +114,11 @@ Kod</h2>
 <div class="line"></div>
 <div class="line">        <span class="keywordflow">if</span> (msg.message == WM_QUIT)</div>
 <div class="line">        {</div>
+<div class="line"><span class="preprocessor">#ifndef __UNUSED</span></div>
+<div class="line">            join_render_thread = <span class="keyword">true</span>;  <span class="comment">//to jest jedyne miejsce, w którym ta zmienna może zostac ustawiona</span></div>
+<div class="line">                                        <span class="comment">//dlatego możemy to zrobić bez synchronizacji</span></div>
+<div class="line">            main_thread.join();</div>
+<div class="line"><span class="preprocessor">#endif</span></div>
 <div class="line">            <span class="keywordflow">break</span>;</div>
 <div class="line">        }</div>
 <div class="line">    }</div>
@@ -126,12 +129,12 @@ Kod</h2>
 Opis</h2>
 <p>Pętla główna silnika zastępuje Windowsowską pętlę komunikatów, wywołując jednocześnie pętlę główną silnika (zobacz temat: Potok przetwarzania obiektów). Musimy obsługiwać komunikaty windowsa, ponieważ w przeciwnym razie mógłby on uznać, że nasz program się zawiesił, i spróbować zabić nasz proces. Dlatego pobieramy wiadomości z kolejki komunikatów i przekazujemy do dalszego przetwarzania. Do pobierania komunikatów używamy nieblokującej funkcji PeekMessage (nie GetMessage).</p>
 <p>Jako pętla główna silnika służy funkcja render_frame. Jest ona wywoływana tylko pod warunkiem, że wcześniejsza inicjalizacja directXa w pełni powiodła się. Ważnym punktem jest inicjacja zmiennej time_previous. Niezainicjowanie tej zmiennej, mogłoby spowodować, że w pierwszej klatce nastąpiłaby nieprzewidywalna zmiana położeń i orientacji wszystkich obiektów na scenie.</p>
-<p>Wyjście z aplikacji następuje kiedy w kolejce komunikatów windowsa znajdzie się komunikat WM_QUIT. Z wnętrza silnika można to osiągnąć przez wywołanie funkcji end_aplication.</p>
-<p>Definicja: "Engine_window_functions.cpp" </p>
+<p>Wyjście z aplikacji następuje kiedy w kolejce komunikatów windowsa znajdzie się komunikat WM_QUIT. Z wnętrza silnika można to osiągnąć przez wywołanie funkcji <a class="el" href="class_engine.html#a4675773a4e7869bf077c97f2e857bfc2" title="Funkcja wstawia do kolejki komunikatów aplikacji wiadomośc QUIT_MESSAGE. ">Engine::EndAplication</a>.</p>
+<p>Definicja: "EngineWindowFunctions.cpp" </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

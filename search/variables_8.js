@@ -5,5 +5,6 @@ var searchData=
   ['interpol_5fmatrixes_5fcount',['interpol_matrixes_count',['../class_display_engine.html#aa6388a3c706c8faae614135526908d55',1,'DisplayEngine']]],
   ['interpolated_5fmatrixes',['interpolated_matrixes',['../class_display_engine.html#aa87c52c49cda959244374b2160051d18',1,'DisplayEngine']]],
   ['is_5fmoving',['is_moving',['../class_x_g_u_i_1_1_abstract_window.html#ac3254bca409e7b0e8909b08debe4e363',1,'XGUI::AbstractWindow']]],
-  ['is_5fresizing',['is_resizing',['../class_x_g_u_i_1_1_abstract_window.html#abc89ed1cc19c57b4955ca8eea6e46205',1,'XGUI::AbstractWindow']]]
+  ['is_5fresizing',['is_resizing',['../class_x_g_u_i_1_1_abstract_window.html#abc89ed1cc19c57b4955ca8eea6e46205',1,'XGUI::AbstractWindow']]],
+  ['iscubemap',['isCubeMap',['../struct_render_target_descriptor.html#a071efaf2a7f087536aec7e543f9dae60',1,'RenderTargetDescriptor']]]
 ];

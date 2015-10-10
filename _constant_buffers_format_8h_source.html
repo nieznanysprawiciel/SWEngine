@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -102,8 +103,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    DirectX::XMFLOAT4X4     view_matrix;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    DirectX::XMFLOAT4X4     projection_matrix;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    DirectX::XMFLOAT4       light_direction[ENGINE_MAX_LIGHTS];     <span class="comment">// Współrzędne są zanegowane, żeby shader miał mniej roboty</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    DirectX::XMFLOAT4       light_color[ENGINE_MAX_LIGHTS];</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    DirectX::XMFLOAT4       light_direction[<a class="code" href="macros__switches_8h.html#a48a5c65b842a78ae371647be94f0cce1">ENGINE_MAX_LIGHTS</a>];     <span class="comment">// Współrzędne są zanegowane, żeby shader miał mniej roboty</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    DirectX::XMFLOAT4       light_color[<a class="code" href="macros__switches_8h.html#a48a5c65b842a78ae371647be94f0cce1">ENGINE_MAX_LIGHTS</a>];</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    DirectX::XMFLOAT4       ambient_light;</div>
 <div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="struct_constant_per_frame.html#a704803b996fe435093ed1c40c18eb335">   31</a></span>&#160;    DirectX::XMFLOAT4       <a class="code" href="struct_constant_per_frame.html#a704803b996fe435093ed1c40c18eb335">time</a>;               </div>
 <div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="struct_constant_per_frame.html#a661ddf5092791ee824bd93627d69891d">   32</a></span>&#160;    DirectX::XMFLOAT4       <a class="code" href="struct_constant_per_frame.html#a661ddf5092791ee824bd93627d69891d">time_lag</a>;           </div>
@@ -139,10 +140,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="_constant_buffers_format_8h_html_a6a8ace367d7f28df111f7fcb4a3b924c"><div class="ttname"><a href="_constant_buffers_format_8h.html#a6a8ace367d7f28df111f7fcb4a3b924c">ConstantPerFrame</a></div><div class="ttdeci">struct ConstantPerFrame ConstantPerFrame</div><div class="ttdoc">Bufor stałych dla shadera zmieniający się raz na klatkę. </div></div>
 <div class="ttc" id="struct_constant_per_frame_html"><div class="ttname"><a href="struct_constant_per_frame.html">ConstantPerFrame</a></div><div class="ttdoc">Bufor stałych dla shadera zmieniający się raz na klatkę. </div><div class="ttdef"><b>Definition:</b> ConstantBuffersFormat.h:24</div></div>
 <div class="ttc" id="struct_constant_per_frame_html_a704803b996fe435093ed1c40c18eb335"><div class="ttname"><a href="struct_constant_per_frame.html#a704803b996fe435093ed1c40c18eb335">ConstantPerFrame::time</a></div><div class="ttdeci">DirectX::XMFLOAT4 time</div><div class="ttdoc">Czas. Wartość jest powielona do wszystkich komponentów. </div><div class="ttdef"><b>Definition:</b> ConstantBuffersFormat.h:31</div></div>
+<div class="ttc" id="macros__switches_8h_html_a48a5c65b842a78ae371647be94f0cce1"><div class="ttname"><a href="macros__switches_8h.html#a48a5c65b842a78ae371647be94f0cce1">ENGINE_MAX_LIGHTS</a></div><div class="ttdeci">#define ENGINE_MAX_LIGHTS</div><div class="ttdoc">Maksymalna liczba świateł w silniku. </div><div class="ttdef"><b>Definition:</b> macros_switches.h:41</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

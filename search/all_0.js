@@ -8,6 +8,7 @@ var searchData=
   ['_5fnum_5ffeature_5flevels',['_num_feature_levels',['../class_d_x11_a_p_i_objects.html#a2ad7e583bf1cbe0455895fb8c552564c',1,'DX11APIObjects']]],
   ['_5fperformance_5fdata',['_performance_data',['../struct__performance__data.html',1,'']]],
   ['_5fsampler_5fdesc',['_sampler_desc',['../class_d_x11_a_p_i_objects.html#a496c9d64d501c6f267423197b38713e3',1,'DX11APIObjects']]],
+  ['_5fscaleable_5fobjects',['_SCALEABLE_OBJECTS',['../macros__switches_8h.html#aacb06f18bf1d2140627cd4ab6edc26ef',1,'macros_switches.h']]],
   ['_5fswap_5fchain_5fdesc',['_swap_chain_desc',['../class_d_x11_a_p_i_objects.html#aa4520866737642cf111b2dce865f9794',1,'DX11APIObjects']]],
   ['_5fvertex_5flayout_5fdesc',['_vertex_layout_desc',['../class_d_x11_a_p_i_objects.html#ae42ce54fbdb7d39a5384e71c76bddec1',1,'DX11APIObjects']]],
   ['_5fview_5fport_5fdesc',['_view_port_desc',['../class_d_x11_a_p_i_objects.html#ae7f1756180ddc42d6176c9572f4bf91a',1,'DX11APIObjects']]],

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['elapsed_5ftime',['elapsed_time',['../class_time_manager.html#acd51b50e7795812a157d53ae19a9143a',1,'TimeManager']]],
   ['enable_5fonalignmentchange',['enable_onAlignmentChange',['../class_x_g_u_i_1_1_abstract_text.html#a370447fb11f96a4f85e21aba5e03d512',1,'XGUI::AbstractText']]],
   ['enable_5fonchange',['enable_onChange',['../class_x_g_u_i_1_1_abstract_button.html#a52b7b4336db537a2f2db25ecc1aa61fe',1,'XGUI::AbstractButton']]],
   ['enable_5fonchangetexture',['enable_onChangeTexture',['../class_x_g_u_i_1_1_abstract_textured_region.html#aa445ba8c8f4aa24e08a79a8adad6aecb',1,'XGUI::AbstractTexturedRegion']]],

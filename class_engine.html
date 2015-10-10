@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -87,8 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_engine-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Engine Class Reference</div>  </div>
@@ -111,20 +111,16 @@ Inheritance diagram for Engine:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ab9ee0ddff1237cf61eb482bfce9ab480"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab9ee0ddff1237cf61eb482bfce9ab480"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#ab9ee0ddff1237cf61eb482bfce9ab480">Engine</a> (const <a class="el" href="class_engine.html">Engine</a> &amp;)=delete</td></tr>
+<tr class="memdesc:ab9ee0ddff1237cf61eb482bfce9ab480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstruktor kopiujący usunięty. <br /></td></tr>
+<tr class="separator:ab9ee0ddff1237cf61eb482bfce9ab480"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33527d9d81d2b36bd3025613e4842a52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33527d9d81d2b36bd3025613e4842a52"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Engine</b> (HINSTANCE instance)</td></tr>
 <tr class="separator:a33527d9d81d2b36bd3025613e4842a52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb4516e4608456a4cca215226c5687fb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#acb4516e4608456a4cca215226c5687fb">InitEngine</a> (int width, int height, bool <a class="el" href="class_engine_interface.html#af9b095af4eba60d7123e6c2a64c526eb">full_screen</a>, int nCmdShow)</td></tr>
 <tr class="memdesc:acb4516e4608456a4cca215226c5687fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjuje działanie silnika. W trybie fullscreen szerokość i wysokość okna jest ignorowana, a dane są pobierane z systemu.  <a href="#acb4516e4608456a4cca215226c5687fb">More...</a><br /></td></tr>
 <tr class="separator:acb4516e4608456a4cca215226c5687fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af32c7123f551a8eaa07f170518ed1821"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af32c7123f551a8eaa07f170518ed1821"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#af32c7123f551a8eaa07f170518ed1821">end_aplication</a> ()</td></tr>
-<tr class="memdesc:af32c7123f551a8eaa07f170518ed1821"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wstawia do kolejki komunikatów aplikacji wiadomośc QUIT_MESSAGE. <br /></td></tr>
-<tr class="separator:af32c7123f551a8eaa07f170518ed1821"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28609462aae6189be2b5ed4d8ecfbae5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a28609462aae6189be2b5ed4d8ecfbae5"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#a28609462aae6189be2b5ed4d8ecfbae5">main_loop</a> ()</td></tr>
-<tr class="memdesc:a28609462aae6189be2b5ed4d8ecfbae5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna pętla programu. <a class="el" href="_main_loop.html">Pętla główna silnika</a>. <br /></td></tr>
-<tr class="separator:a28609462aae6189be2b5ed4d8ecfbae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a059a44c2840ccb12a021bc778e6c2690"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a059a44c2840ccb12a021bc778e6c2690"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>render_thread</b> ()</td></tr>
 <tr class="separator:a059a44c2840ccb12a021bc778e6c2690"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,9 +133,30 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>wait_for_threads</b> 
 <tr class="memitem:abb1d45fdc30d56a4cbd9b58c2c1476ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#abb1d45fdc30d56a4cbd9b58c2c1476ed">time_controller</a> (float &amp;time_interval)</td></tr>
 <tr class="memdesc:abb1d45fdc30d56a4cbd9b58c2c1476ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja oblicza interwał czasowy jaki upłynął od ostatniej ramki. Poza tym są tu generowane eventy dotyczące czasu, opóźnień itp.  <a href="#abb1d45fdc30d56a4cbd9b58c2c1476ed">More...</a><br /></td></tr>
 <tr class="separator:abb1d45fdc30d56a4cbd9b58c2c1476ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Funkcje związane z renderowaniem</div></td></tr>
+<tr class="memitem:a37fbb20f7210a7dc3b26a0394fc6166e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#a37fbb20f7210a7dc3b26a0394fc6166e">RenderFrame</a> ()</td></tr>
+<tr class="memdesc:a37fbb20f7210a7dc3b26a0394fc6166e"><td class="mdescLeft">&#160;</td><td class="mdescRight">To tutaj dzieją się wszystkie rzeczy, które są wywoływane co każdą klatkę.  <a href="#a37fbb20f7210a7dc3b26a0394fc6166e">More...</a><br /></td></tr>
+<tr class="separator:a37fbb20f7210a7dc3b26a0394fc6166e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae99207c5884875b9f76a9831033195a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#ae99207c5884875b9f76a9831033195a7">UpdateScene</a> (float &amp;lag, float timeInterval)</td></tr>
+<tr class="memdesc:ae99207c5884875b9f76a9831033195a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualizuje położenia obiektów.  <a href="#ae99207c5884875b9f76a9831033195a7">More...</a><br /></td></tr>
+<tr class="separator:ae99207c5884875b9f76a9831033195a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcf91d997d6aa26a58f10d65c5c24a84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#afcf91d997d6aa26a58f10d65c5c24a84">RenderScene</a> (float lag, float timeInterval)</td></tr>
+<tr class="memdesc:afcf91d997d6aa26a58f10d65c5c24a84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renderowanie sceny i interpolacja położeń obiektów. Odpowiada również za prezentowanie powstałej sceny.  <a href="#afcf91d997d6aa26a58f10d65c5c24a84">More...</a><br /></td></tr>
+<tr class="separator:afcf91d997d6aa26a58f10d65c5c24a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0eb59aeaff38831fad8cb5b8746dce0d"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#a0eb59aeaff38831fad8cb5b8746dce0d">GetRenderTargetHandle</a> (uint16 width, uint16 height)</td></tr>
+<tr class="memdesc:a0eb59aeaff38831fad8cb5b8746dce0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca wskaźnik na główny render target. Render target jest tworzony w tej funkcji.  <a href="#a0eb59aeaff38831fad8cb5b8746dce0d">More...</a><br /></td></tr>
+<tr class="separator:a0eb59aeaff38831fad8cb5b8746dce0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Obsługa eventów</div></td></tr>
 <tr class="memitem:af7e9c4bedab4efae6084e32abf813fc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#af7e9c4bedab4efae6084e32abf813fc7">send_event</a> (<a class="el" href="class_event.html">Event</a> *new_event)</td></tr>
 <tr class="memdesc:af7e9c4bedab4efae6084e32abf813fc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja pozwala wysłać event, który będzie potem przetworzony przez klase <a class="el" href="class_fable_engine.html">FableEngine</a>.  <a href="#af7e9c4bedab4efae6084e32abf813fc7">More...</a><br /></td></tr>
 <tr class="separator:af7e9c4bedab4efae6084e32abf813fc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1cf5b41029a2c9935b37daaea34424c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1cf5b41029a2c9935b37daaea34424c"></a>
+std::queue&lt; <a class="el" href="class_event.html">Event</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>get_events_queue</b> ()</td></tr>
+<tr class="separator:ae1cf5b41029a2c9935b37daaea34424c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8b6f338ba6c4e5b820528d3e9d18a83"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae8b6f338ba6c4e5b820528d3e9d18a83"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>set_events_queue</b> (std::queue&lt; <a class="el" href="class_event.html">Event</a> * &gt; *queue)</td></tr>
+<tr class="separator:ae8b6f338ba6c4e5b820528d3e9d18a83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Interfejs do ustawiania GamePlaya</div></td></tr>
 <tr class="memitem:afbff60cf27a3606c89b16b020662293d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#afbff60cf27a3606c89b16b020662293d">set_entry_point</a> (<a class="el" href="class_i_game_play.html">IGamePlay</a> *game_play)</td></tr>
 <tr class="memdesc:afbff60cf27a3606c89b16b020662293d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wczytująca startowy level do silnika. Najczęściej na tym etapie wczytuje się tylko menu, oraz wszytkie elementy, które są przydatne na każdym etapie gry.  <a href="#afbff60cf27a3606c89b16b020662293d">More...</a><br /></td></tr>
 <tr class="separator:afbff60cf27a3606c89b16b020662293d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,12 +164,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>wait_for_threads</b> 
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#a800b741c6898a7aae8eefe564508ae57">set_entry_point</a> (const std::wstring dll_name)</td></tr>
 <tr class="memdesc:a800b741c6898a7aae8eefe564508ae57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nie będzie wczytywania z bibliotek DLL. Mają one ddzielną stertę i powoduje to problemy ze zwalnianiem pamięci. Poza tym taka architektura nie nadaje się do przeciążania operatorów new i delete. <br /></td></tr>
 <tr class="separator:a800b741c6898a7aae8eefe564508ae57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1cf5b41029a2c9935b37daaea34424c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1cf5b41029a2c9935b37daaea34424c"></a>
-std::queue&lt; <a class="el" href="class_event.html">Event</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><b>get_events_queue</b> ()</td></tr>
-<tr class="separator:ae1cf5b41029a2c9935b37daaea34424c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8b6f338ba6c4e5b820528d3e9d18a83"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae8b6f338ba6c4e5b820528d3e9d18a83"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set_events_queue</b> (std::queue&lt; <a class="el" href="class_event.html">Event</a> * &gt; *queue)</td></tr>
-<tr class="separator:ae8b6f338ba6c4e5b820528d3e9d18a83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Parametry okna</div></td></tr>
 <tr class="memitem:a60b6cd5366084b80d1c35781ad6a4be2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60b6cd5366084b80d1c35781ad6a4be2"></a>
 HINSTANCE&#160;</td><td class="memItemRight" valign="bottom"><b>get_instance_handler</b> ()</td></tr>
 <tr class="separator:a60b6cd5366084b80d1c35781ad6a4be2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,17 +178,15 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>get_window_widht</b> (
 int&#160;</td><td class="memItemRight" valign="bottom"><b>get_window_height</b> ()</td></tr>
 <tr class="separator:af9de03537c4e7f33ce4b9af9a538779c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a2b6af308b628dcdb146c55d6023610da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2b6af308b628dcdb146c55d6023610da"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>join_render_thread</b></td></tr>
+<tr class="separator:a2b6af308b628dcdb146c55d6023610da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:ab9dc90e5b1e95660e0db1bd9d2028c45"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab9dc90e5b1e95660e0db1bd9d2028c45"></a>
-ATOM&#160;</td><td class="memItemRight" valign="bottom"><b>MyRegisterClass</b> ()</td></tr>
-<tr class="separator:ab9dc90e5b1e95660e0db1bd9d2028c45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67815cb20644a1145372ee79bf6cb550"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a67815cb20644a1145372ee79bf6cb550"></a>
-BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>InitInstance</b> (int)</td></tr>
-<tr class="separator:a67815cb20644a1145372ee79bf6cb550"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5dc46f13a43784e7fc111b92f40f1d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#aa5dc46f13a43784e7fc111b92f40f1d6">render_frame</a> ()</td></tr>
-<tr class="memdesc:aa5dc46f13a43784e7fc111b92f40f1d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">To tutaj dzieją się wszystkie rzeczy, które są wywoływane co każdą klatkę.  <a href="#aa5dc46f13a43784e7fc111b92f40f1d6">More...</a><br /></td></tr>
-<tr class="separator:aa5dc46f13a43784e7fc111b92f40f1d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Funkcje inicjujące moduły silnika</div></td></tr>
 <tr class="memitem:a1314718c707e532cf1274bc264a816ee"><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#a1314718c707e532cf1274bc264a816ee">InitWindow</a> (int width, int height, BOOL <a class="el" href="class_engine_interface.html#af9b095af4eba60d7123e6c2a64c526eb">full_screen</a>, int nCmdShow)</td></tr>
 <tr class="memdesc:a1314718c707e532cf1274bc264a816ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Właściwa funkcja inicjujaca okno W trybie fullscreen szerokość i wysokość okna jest ignorowana, a dane są pobierane z systemu.  <a href="#a1314718c707e532cf1274bc264a816ee">More...</a><br /></td></tr>
 <tr class="separator:a1314718c707e532cf1274bc264a816ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -192,15 +202,35 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>InitSoundModule</b> (
 <tr class="memitem:afd8af982b205851ee6961589404b6a82"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#afd8af982b205851ee6961589404b6a82">InitDefaultAssets</a> ()</td></tr>
 <tr class="memdesc:afd8af982b205851ee6961589404b6a82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjuje domyślne assety silnika.  <a href="#afd8af982b205851ee6961589404b6a82">More...</a><br /></td></tr>
 <tr class="separator:afd8af982b205851ee6961589404b6a82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ee15771c23c9fcfcace500422fd84c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ee15771c23c9fcfcace500422fd84c8"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>InitDisplayer</b> ()</td></tr>
+<tr class="memitem:a3ee15771c23c9fcfcace500422fd84c8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#a3ee15771c23c9fcfcace500422fd84c8">InitDisplayer</a> ()</td></tr>
+<tr class="memdesc:a3ee15771c23c9fcfcace500422fd84c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a>.  <a href="#a3ee15771c23c9fcfcace500422fd84c8">More...</a><br /></td></tr>
 <tr class="separator:a3ee15771c23c9fcfcace500422fd84c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a2b6af308b628dcdb146c55d6023610da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2b6af308b628dcdb146c55d6023610da"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>join_render_thread</b></td></tr>
-<tr class="separator:a2b6af308b628dcdb146c55d6023610da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
+Funkcje do obsługi okna aplikacji</h2></td></tr>
+<tr class="memitem:a4e7d2a3bdde216e3cb2546fa4b49641d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e7d2a3bdde216e3cb2546fa4b49641d"></a>
+ATOM&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#a4e7d2a3bdde216e3cb2546fa4b49641d">EngineRegisterClass</a> ()</td></tr>
+<tr class="memdesc:a4e7d2a3bdde216e3cb2546fa4b49641d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rejestruje klasę okna aplikacji. <br /></td></tr>
+<tr class="separator:a4e7d2a3bdde216e3cb2546fa4b49641d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09cdbc38e14934b870d77cc94eca17fa"><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#a09cdbc38e14934b870d77cc94eca17fa">InitInstance</a> (int nCmdShow)</td></tr>
+<tr class="memdesc:a09cdbc38e14934b870d77cc94eca17fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjuje okno aplikacji.  <a href="#a09cdbc38e14934b870d77cc94eca17fa">More...</a><br /></td></tr>
+<tr class="separator:a09cdbc38e14934b870d77cc94eca17fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6261f218855fe0d9715e58fc71bcdae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa6261f218855fe0d9715e58fc71bcdae"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#aa6261f218855fe0d9715e58fc71bcdae">ShowAppWindow</a> (int showFlags)</td></tr>
+<tr class="memdesc:aa6261f218855fe0d9715e58fc71bcdae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pokazuje okno aplikacji na ekranie. <br /></td></tr>
+<tr class="separator:aa6261f218855fe0d9715e58fc71bcdae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7fdee351a84317b94087870567f31a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac7fdee351a84317b94087870567f31a6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#ac7fdee351a84317b94087870567f31a6">HideAppWindow</a> ()</td></tr>
+<tr class="memdesc:ac7fdee351a84317b94087870567f31a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chowa okno aplikacji. <br /></td></tr>
+<tr class="separator:ac7fdee351a84317b94087870567f31a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4675773a4e7869bf077c97f2e857bfc2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4675773a4e7869bf077c97f2e857bfc2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#a4675773a4e7869bf077c97f2e857bfc2">EndAplication</a> ()</td></tr>
+<tr class="memdesc:a4675773a4e7869bf077c97f2e857bfc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wstawia do kolejki komunikatów aplikacji wiadomośc QUIT_MESSAGE. <br /></td></tr>
+<tr class="separator:a4675773a4e7869bf077c97f2e857bfc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a275271b143acda9b2162b190e1890356"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a275271b143acda9b2162b190e1890356"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine.html#a275271b143acda9b2162b190e1890356">MainLoop</a> ()</td></tr>
+<tr class="memdesc:a275271b143acda9b2162b190e1890356"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna pętla programu. <a class="el" href="_main_loop.html">Pętla główna silnika</a>. <br /></td></tr>
+<tr class="separator:a275271b143acda9b2162b190e1890356"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -269,10 +299,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class
 <a class="el" href="class_u_i___engine.html">UI_Engine</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_interface.html#adc3fc8d70a1d9b6770dfba033b5b4f37">ui_engine</a></td></tr>
 <tr class="memdesc:adc3fc8d70a1d9b6770dfba033b5b4f37 inherit pro_attribs_class_engine_interface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interfejs użytkownika (także graficzny) <br /></td></tr>
 <tr class="separator:adc3fc8d70a1d9b6770dfba033b5b4f37 inherit pro_attribs_class_engine_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae30a81be91a8dd4648203d2329b8381c inherit pro_attribs_class_engine_interface"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae30a81be91a8dd4648203d2329b8381c"></a>
-<a class="el" href="class_time_manager.html">TimeManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_interface.html#ae30a81be91a8dd4648203d2329b8381c">time_manager</a></td></tr>
-<tr class="memdesc:ae30a81be91a8dd4648203d2329b8381c inherit pro_attribs_class_engine_interface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obiekt do zarządzania czasem. <br /></td></tr>
-<tr class="separator:ae30a81be91a8dd4648203d2329b8381c inherit pro_attribs_class_engine_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75660a0e2c0d8df324416271c8275f58 inherit pro_attribs_class_engine_interface"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a75660a0e2c0d8df324416271c8275f58"></a>
+<a class="el" href="class_time_manager.html">TimeManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_interface.html#a75660a0e2c0d8df324416271c8275f58">m_timeManager</a></td></tr>
+<tr class="memdesc:a75660a0e2c0d8df324416271c8275f58 inherit pro_attribs_class_engine_interface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obiekt do zarządzania czasem. <br /></td></tr>
+<tr class="separator:a75660a0e2c0d8df324416271c8275f58 inherit pro_attribs_class_engine_interface"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4e51e1ca05121a4a67b4310f5546869 inherit pro_attribs_class_engine_interface"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4e51e1ca05121a4a67b4310f5546869"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_interface.html#ab4e51e1ca05121a4a67b4310f5546869">pause</a></td></tr>
 <tr class="memdesc:ab4e51e1ca05121a4a67b4310f5546869 inherit pro_attribs_class_engine_interface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauza. <br /></td></tr>
@@ -284,8 +314,38 @@ std::queue&lt; <a class="el" href="class_event.html">Event</a> * &gt; *&#160;</t
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Klasa <a class="el" href="class_engine.html" title="Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika. W aplikacji powinien...">Engine</a> jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika. W aplikacji powinien istnieć tylko jeden obiekt podanego typu. O tym, jak się inicjuje działanie silnika, można przeczytać w temacie Inicjowanie silnika. </p>
-<p>W tej klasie powinny być umieszczane wszystkie funkcje, które nie powinny być dostępne dla użytkownika silnika. Interfejsem dla użytkownika jest klasa engine_interface i tam należy umieszczać pozostałe funkcje. Co do zmiennych klasy, wszystki powinny się znaleźć w klasie EnigneInterface, aby wszystkie funkcje mogły mieć do nich dostęp. </p>
+<p>W tej klasie powinny być umieszczane wszystkie funkcje, które nie powinny być dostępne dla użytkownika silnika. Interfejsem dla użytkownika jest klasa <a class="el" href="class_engine_interface.html">EngineInterface</a> i tam należy umieszczać pozostałe funkcje. Co do zmiennych klasy, wszystkie powinny się znaleźć w klasie EnigneInterface, aby wszystkie funkcje mogły mieć do nich dostęp. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a0eb59aeaff38831fad8cb5b8746dce0d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * Engine::GetRenderTargetHandle </td>
+          <td>(</td>
+          <td class="paramtype">uint16&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zwraca wskaźnik na główny render target. Render target jest tworzony w tej funkcji. </p>
+<p>Funkcja stworzona dla edytora, który zamierza wyświetlać zawartość render targetu w swoim oknie. Używać rozsądnie.</p>
+<dl class="section return"><dt>Returns</dt><dd>Wskaźnik na render target. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="afd8af982b205851ee6961589404b6a82"></a>
 <div class="memitem">
 <div class="memproto">
@@ -308,7 +368,33 @@ std::queue&lt; <a class="el" href="class_event.html">Event</a> * &gt; *&#160;</t
 </div><div class="memdoc">
 
 <p>Inicjuje domyślne assety silnika. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>Hack. Zlikwidować. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>Hack. Layout powinien być ustawialny dla każdego mesha z osobna. Zlikwidować. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3ee15771c23c9fcfcace500422fd84c8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Engine::InitDisplayer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Inicjalizuje <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a>. </p>
+<p>Funkcja tworzy renderery, domyślne bufory stałych oraz ustawia macierz projekcji. </p><dl class="section return"><dt>Returns</dt><dd>Zwraca zawsze true. </dd></dl>
 
 </div>
 </div>
@@ -354,10 +440,38 @@ std::queue&lt; <a class="el" href="class_event.html">Event</a> * &gt; *&#160;</t
     <tr><td class="paramdir">[in]</td><td class="paramname">width</td><td>Szerokość okna </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">height</td><td>Wysokość okna </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">fullscreen</td><td>Pełny ekran lub renderowanie w oknie </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nCmdShow</td><td>Czwarty parametr funkcji WinMain </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nCmdShow</td><td>Czwarty parametr funkcji WinMain. Decyduje w jaki sposób powinno zostać pokazane okno aplikacji. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a09cdbc38e14934b870d77cc94eca17fa"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL Engine::InitInstance </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nCmdShow</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Inicjuje okno aplikacji. </p>
+<p>Funkcja inicjuje i tworzy okno. Okno nie jest pokazywane na ekranie. Do tego trzeba użyć funkcji <a class="el" href="class_engine.html#aa6261f218855fe0d9715e58fc71bcdae" title="Pokazuje okno aplikacji na ekranie. ">Engine::ShowAppWindow</a>.</p>
+<dl class="section return"><dt>Returns</dt><dd>Zwraca TRUE, jeżeli inicjowanie okna powiodło się. </dd></dl>
 
 </div>
 </div>
@@ -418,28 +532,56 @@ std::queue&lt; <a class="el" href="class_event.html">Event</a> * &gt; *&#160;</t
 
 </div>
 </div>
-<a class="anchor" id="aa5dc46f13a43784e7fc111b92f40f1d6"></a>
+<a class="anchor" id="a37fbb20f7210a7dc3b26a0394fc6166e"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Engine::render_frame </td>
+          <td class="memname">void Engine::RenderFrame </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>To tutaj dzieją się wszystkie rzeczy, które są wywoływane co każdą klatkę. </p>
+<p>&lt; Ze względu na V-sync test wykonujemy przed wywyołaniem funkcji present. </p>
+
+</div>
+</div>
+<a class="anchor" id="afcf91d997d6aa26a58f10d65c5c24a84"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::RenderScene </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>lag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>timeInterval</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Renderowanie sceny i interpolacja położeń obiektów. Odpowiada również za prezentowanie powstałej sceny. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">lag</td><td>Przeliczanie położeń obiektów odbywa się ze stałym interwałem czasowym. Zmienna określa, ile upłyneło czasu od ostatniego przeliczenia położeń. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timeInterval</td><td>Czas jaki upłynął od ostatniej klatki. </td></tr>
+  </table>
+  </dd>
+</dl>
 <p>&lt; Ze względu na V-sync test wykonujemy przed wywyołaniem funkcji present. </p>
 
 </div>
@@ -521,15 +663,51 @@ std::queue&lt; <a class="el" href="class_event.html">Event</a> * &gt; *&#160;</t
 
 </div>
 </div>
+<a class="anchor" id="ae99207c5884875b9f76a9831033195a7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::UpdateScene </td>
+          <td>(</td>
+          <td class="paramtype">float &amp;&#160;</td>
+          <td class="paramname"><em>lag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>timeInterval</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Aktualizuje położenia obiektów. </p>
+<p>Wywoływane są funkcje odpowiadające za fizykę, ruch, kontrolery, wejście od użytkownika i fabułę.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lag</td><td>Przeliczanie położeń obiektów odbywa się ze stałym interwałem czasowym. Zmienna określa, ile upłyneło czasu od ostatniego przeliczenia położeń. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timeInterval</td><td>Czas jaki upłynął od ostatniej klatki. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/MainEngine/<a class="el" href="_engine_8h_source.html">Engine.h</a></li>
 <li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/MainEngine/<a class="el" href="_engine_8cpp.html">Engine.cpp</a></li>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/MainEngine/EngineWindowFunctions.cpp</li>
+<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/MainEngine/<a class="el" href="_engine_window_functions_8cpp.html">EngineWindowFunctions.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

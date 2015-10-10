@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -102,30 +103,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    ID3D11RenderTargetView*         m_renderTarget;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    ID3D11DepthStencilView*         m_depthStencilView;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    ~<a class="code" href="class_d_x11_render_target.html">DX11RenderTarget</a>();</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_d_x11_render_target.html">DX11RenderTarget</a>( ID3D11RenderTargetView* renderTarget,</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                      ID3D11DepthStencilView* depthStencil,</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                      <a class="code" href="class_texture_object.html">TextureObject</a>* colorBuffer,</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                      <a class="code" href="class_texture_object.html">TextureObject</a>* depthStencilBuffer);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">inline</span> ID3D11RenderTargetView*          GetRenderTarget()           { <span class="keywordflow">return</span> m_renderTarget; }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">inline</span> ID3D11DepthStencilView*          GetDepthStencil()           { <span class="keywordflow">return</span> m_depthStencilView; }</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    uint16                          m_height;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    uint16                          m_width;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="class_d_x11_render_target.html#af74019dba9b971ff5a34f4609263e753">~DX11RenderTarget</a>();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="class_d_x11_render_target.html">DX11RenderTarget</a>( ID3D11RenderTargetView* renderTarget,</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                      ID3D11DepthStencilView* depthStencil,</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                      <a class="code" href="class_texture_object.html">TextureObject</a>* colorBuffer,</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                      <a class="code" href="class_texture_object.html">TextureObject</a>* depthBuffer,</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                      <a class="code" href="class_texture_object.html">TextureObject</a>* stencilBuffer);</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_d_x11_render_target.html">DX11RenderTarget</a>*                <a class="code" href="class_d_x11_render_target.html#a3d7f1140a862df6a9444f7bbbab929e3">CreateScreenRenderTarget</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;};</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">inline</span> uint16                           GetWidth()                  { <span class="keywordflow">return</span> m_width; }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">inline</span> uint16                           GetHeight()                 { <span class="keywordflow">return</span> m_height; }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span>                             SetHeight       ( uint16 value )    { m_height = value; }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span>                             SetWidth        ( uint16 value )    { m_width = value; }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">inline</span> ID3D11RenderTargetView*          GetRenderTarget()           { <span class="keywordflow">return</span> m_renderTarget; }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">inline</span> ID3D11DepthStencilView*          GetDepthStencil()           { <span class="keywordflow">return</span> m_depthStencilView; }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_d_x11_render_target.html">DX11RenderTarget</a>*                <a class="code" href="class_d_x11_render_target.html#a3d7f1140a862df6a9444f7bbbab929e3">CreateScreenRenderTarget</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_d_x11_render_target.html">DX11RenderTarget</a>*                <a class="code" href="class_d_x11_render_target.html#a964b118e0963323b0d4215ea4f0dca91">CreateRenderTarget</a>( <span class="keyword">const</span> std::wstring&amp; name, <span class="keyword">const</span> <a class="code" href="struct_render_target_descriptor.html">RenderTargetDescriptor</a>&amp; renderTargetDescriptor );</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span>                             ValidateDescriptor( <span class="keyword">const</span> <a class="code" href="struct_render_target_descriptor.html">RenderTargetDescriptor</a>&amp; renderTargetDescriptor );</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;};</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
 <div class="ttc" id="class_d_x11_render_target_html"><div class="ttname"><a href="class_d_x11_render_target.html">DX11RenderTarget</a></div><div class="ttdoc">Implementacja render targetu w DirectX11. </div><div class="ttdef"><b>Definition:</b> DX11RenderTarget.h:9</div></div>
+<div class="ttc" id="class_d_x11_render_target_html_af74019dba9b971ff5a34f4609263e753"><div class="ttname"><a href="class_d_x11_render_target.html#af74019dba9b971ff5a34f4609263e753">DX11RenderTarget::~DX11RenderTarget</a></div><div class="ttdeci">~DX11RenderTarget()</div><div class="ttdoc">Zwalnia zasoby DirectXa. </div><div class="ttdef"><b>Definition:</b> DX11RenderTarget.cpp:9</div></div>
 <div class="ttc" id="class_d_x11_a_p_i_objects_html"><div class="ttname"><a href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></div><div class="ttdoc">Klasa przechowuje w zmiennych statycznych najważniejsze interfejsy DirectX11. </div><div class="ttdef"><b>Definition:</b> DX11APIObjects.h:64</div></div>
-<div class="ttc" id="class_texture_object_html"><div class="ttname"><a href="class_texture_object.html">TextureObject</a></div><div class="ttdoc">Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:214</div></div>
-<div class="ttc" id="class_d_x11_render_target_html_a3d7f1140a862df6a9444f7bbbab929e3"><div class="ttname"><a href="class_d_x11_render_target.html#a3d7f1140a862df6a9444f7bbbab929e3">DX11RenderTarget::CreateScreenRenderTarget</a></div><div class="ttdeci">static DX11RenderTarget * CreateScreenRenderTarget()</div><div class="ttdef"><b>Definition:</b> DX11RenderTarget.cpp:35</div></div>
-<div class="ttc" id="class_render_target_object_html"><div class="ttname"><a href="class_render_target_object.html">RenderTargetObject</a></div><div class="ttdef"><b>Definition:</b> MeshResources.h:240</div></div>
+<div class="ttc" id="class_d_x11_render_target_html_a964b118e0963323b0d4215ea4f0dca91"><div class="ttname"><a href="class_d_x11_render_target.html#a964b118e0963323b0d4215ea4f0dca91">DX11RenderTarget::CreateRenderTarget</a></div><div class="ttdeci">static DX11RenderTarget * CreateRenderTarget(const std::wstring &amp;name, const RenderTargetDescriptor &amp;renderTargetDescriptor)</div><div class="ttdoc">Tworzy render target o podanych w parametrach. </div><div class="ttdef"><b>Definition:</b> DX11RenderTarget.cpp:59</div></div>
+<div class="ttc" id="struct_render_target_descriptor_html"><div class="ttname"><a href="struct_render_target_descriptor.html">RenderTargetDescriptor</a></div><div class="ttdoc">Struktura używana do tworzenia render targetu. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:246</div></div>
+<div class="ttc" id="class_texture_object_html"><div class="ttname"><a href="class_texture_object.html">TextureObject</a></div><div class="ttdoc">Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:223</div></div>
+<div class="ttc" id="class_d_x11_render_target_html_a3d7f1140a862df6a9444f7bbbab929e3"><div class="ttname"><a href="class_d_x11_render_target.html#a3d7f1140a862df6a9444f7bbbab929e3">DX11RenderTarget::CreateScreenRenderTarget</a></div><div class="ttdeci">static DX11RenderTarget * CreateScreenRenderTarget()</div><div class="ttdef"><b>Definition:</b> DX11RenderTarget.cpp:42</div></div>
+<div class="ttc" id="class_render_target_object_html"><div class="ttname"><a href="class_render_target_object.html">RenderTargetObject</a></div><div class="ttdoc">Klasa dla render targetów.Klasa umożliwia pobranie jednej z tekstur składowych i udostępnienie dla sh...</div><div class="ttdef"><b>Definition:</b> MeshResources.h:288</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -112,7 +113,11 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_object.html">TextureObject</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności.  <a href="class_texture_object.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_render_target_descriptor.html">RenderTargetDescriptor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struktura używana do tworzenia render targetu.  <a href="struct_render_target_descriptor.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target_object.html">RenderTargetObject</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa dla render targetów.Klasa umożliwia pobranie jednej z tekstur składowych i udostępnienie dla shaderów. Jeżeli API graficzne nie pozwala na oddzielne trzymanie bufora głębokości i stencilu, to może tu być przechowywany ten sam obiekt. Ewentualnie mogą być to dwa obiekty, które przechowują inny widok, ale fizycznie odwołują się do tej samej pamięci.  <a href="class_render_target_object.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader_input_layout_object.html">ShaderInputLayoutObject</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa przechowuje layout wierzchołka trafiającego do vertex shadera.  <a href="class_shader_input_layout_object.html#details">More...</a><br /></td></tr>
@@ -165,14 +170,14 @@ Typedefs</h2></td></tr>
 
 <p>Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. </p>
 <p>Struktura zachowuje się jak asset w związku z czym może być współdzielona przez wiele obiektów. Z tego względu nie można jej użyć bezpośrednio w <a class="el" href="struct_constant_per_mesh.html" title="Bufor stałych dla shadera zmieniający się dla każdej części mesha. ">ConstantPerMesh</a>, ponieważ nie chcemy przekazywać do bufora stałych zmiennych odziedziczonych po <a class="el" href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. ">ResourceObject</a>. Zamiast tego trzeba tę strukture przepisać.</p>
-<p>Zwracam uwagę, że tylko kanał Diffuse jest wektorem 4 wymiarowym, w którym składowa w jest odpowiedzialna za przezroczystość. Pozostałe są takie tylko dlatego, że jest to domyślny format przechowywania danych w rejestrach karty graficznej i przypsiesza to operację kopiowania. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_constant_per_frame.html" title="Bufor stałych dla shadera zmieniający się raz na klatkę. ">ConstantPerFrame</a> </dd></dl>
+<p>Zwracam uwagę, że tylko kanał Diffuse jest wektorem 4 wymiarowym, w którym składowa w jest odpowiedzialna za przezroczystość. Pozostałe są takie tylko dlatego, że jest to domyślny format przechowywania danych w rejestrach karty graficznej i przyspiesza to operację kopiowania. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_constant_per_frame.html" title="Bufor stałych dla shadera zmieniający się raz na klatkę. ">ConstantPerFrame</a> </dd></dl>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

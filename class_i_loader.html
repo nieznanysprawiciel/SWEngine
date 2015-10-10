@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -116,9 +117,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a48662089154c9a52d373cf81479c6470"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_loader.html#a48662089154c9a52d373cf81479c6470">can_load</a> (const std::wstring &amp;name)=0</td></tr>
 <tr class="memdesc:a48662089154c9a52d373cf81479c6470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ma za zadanie poinformować czy jest w stanie wczytać podany plik.  <a href="#a48662089154c9a52d373cf81479c6470">More...</a><br /></td></tr>
 <tr class="separator:a48662089154c9a52d373cf81479c6470"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af861187a2fc5cb1f697535e754418c17"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_i_loader_8h.html#aa53f4b0ff944a19f3c3cbb2c476a538d">LOADER_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_loader.html#af861187a2fc5cb1f697535e754418c17">load_mesh</a> (<a class="el" href="class_model3_d_from_file.html">Model3DFromFile</a> *new_file_mesh, const std::wstring &amp;name)=0</td></tr>
-<tr class="memdesc:af861187a2fc5cb1f697535e754418c17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ma za zadanie wczytać podany plik.  <a href="#af861187a2fc5cb1f697535e754418c17">More...</a><br /></td></tr>
-<tr class="separator:af861187a2fc5cb1f697535e754418c17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54c7dd9d86512210a457720a41b895e2"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_i_loader_8h.html#af8f65444450e50ed3f0f0e73c1e2a296">LoaderResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_loader.html#a54c7dd9d86512210a457720a41b895e2">load_mesh</a> (<a class="el" href="class_model3_d_from_file.html">Model3DFromFile</a> *new_file_mesh, const std::wstring &amp;name)=0</td></tr>
+<tr class="memdesc:a54c7dd9d86512210a457720a41b895e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ma za zadanie wczytać podany plik.  <a href="#a54c7dd9d86512210a457720a41b895e2">More...</a><br /></td></tr>
+<tr class="separator:a54c7dd9d86512210a457720a41b895e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -166,7 +167,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af861187a2fc5cb1f697535e754418c17"></a>
+<a class="anchor" id="a54c7dd9d86512210a457720a41b895e2"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -174,7 +175,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="_i_loader_8h.html#aa53f4b0ff944a19f3c3cbb2c476a538d">LOADER_RESULT</a> ILoader::load_mesh </td>
+          <td class="memname">virtual <a class="el" href="_i_loader_8h.html#af8f65444450e50ed3f0f0e73c1e2a296">LoaderResult</a> ILoader::load_mesh </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_model3_d_from_file.html">Model3DFromFile</a> *&#160;</td>
           <td class="paramname"><em>new_file_mesh</em>, </td>
@@ -208,7 +209,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Zwraca wynik wczytywania. </dd></dl>
 
-<p>Implemented in <a class="el" href="class_f_b_x__loader.html#ab71c69016935fa5f2e859afa596041a2">FBX_loader</a>.</p>
+<p>Implemented in <a class="el" href="class_f_b_x__loader.html#a13d5e95b1048dfd28d16cad8c520e836">FBX_loader</a>.</p>
 
 </div>
 </div>
@@ -218,7 +219,7 @@ Protected Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

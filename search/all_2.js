@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['back_5fbuffer',['back_buffer',['../class_d_x11_a_p_i_objects.html#af6104dbee4ae752a6d81bea7bb2c9ad1',1,'DX11APIObjects']]],
   ['back_5find_5fbuffer',['back_ind_buffer',['../class_hosek_sky_dome.html#a6a7a87589e9fcf584337bdd87cbcc985',1,'HosekSkyDome']]],
   ['back_5fvert_5fbuffer',['back_vert_buffer',['../class_hosek_sky_dome.html#a061e4bfc2f028ce9e219fa00941697cf',1,'HosekSkyDome']]],
   ['base_5fvertex',['base_vertex',['../struct_mesh_part_object.html#a538996a78b2ca53a9041597d632ea72e',1,'MeshPartObject']]],
@@ -7,11 +8,10 @@ var searchData=
   ['baseinputcontroller',['BaseInputController',['../class_base_input_controller.html',1,'']]],
   ['begin_5fevent_5fcollection',['begin_event_collection',['../class_input_abstraction_layer.html#a19a3bf1829949dc7c3e3799e2d60eb34',1,'InputAbstractionLayer']]],
   ['begin_5fscene',['begin_scene',['../class_d_x11_a_p_i_objects.html#acb9d00829fd558bf0200103ca63b8391',1,'DX11APIObjects']]],
-  ['begin_5ftime',['begin_time',['../class_time_manager.html#a84f431920ec4c31f8f1c43aa035b0643',1,'TimeManager']]],
   ['beginedit',['BeginEdit',['../class_model3_d_from_file.html#af788288074b822e847ce5f8e094a1211',1,'Model3DFromFile']]],
   ['begingui',['beginGUI',['../class_x_g_u_i_1_1_renderer.html#aa3648242a4242ca6b32098f62f45c9e1',1,'XGUI::Renderer']]],
   ['beginpart',['BeginPart',['../class_model3_d_from_file.html#aee334e7f2428f71fb872471283f5ad25',1,'Model3DFromFile']]],
-  ['beginscene',['BeginScene',['../class_d_x11_renderer.html#a029ff686962ce51678748692f113e88d',1,'DX11Renderer']]],
+  ['beginscene',['BeginScene',['../class_d_x11_renderer.html#a11ea0d416e193ad41b6b4b21db82fdd7',1,'DX11Renderer']]],
   ['bindconstantbuffer',['bindConstantBuffer',['../class_x_g_u_i_1_1_renderer.html#a69684201eb677fd4d21bddc6a419a2e5',1,'XGUI::Renderer']]],
   ['bottom_5fright',['bottom_right',['../struct_x_g_u_i_1_1_rect.html#a3907daaf2930bbe933e2cfbf8dc8e8fb',1,'XGUI::Rect']]],
   ['buffer_5foffset',['buffer_offset',['../struct_mesh_part_object.html#ab526545bddb2fb51083a613d098d00c0',1,'MeshPartObject']]],

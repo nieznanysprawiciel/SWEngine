@@ -2,6 +2,8 @@ var searchData=
 [
   ['rect',['Rect',['../struct_x_g_u_i_1_1_rect.html',1,'XGUI']]],
   ['renderer',['Renderer',['../class_x_g_u_i_1_1_renderer.html',1,'XGUI']]],
+  ['renderpass',['RenderPass',['../class_render_pass.html',1,'']]],
+  ['rendertargetdescriptor',['RenderTargetDescriptor',['../struct_render_target_descriptor.html',1,'']]],
   ['rendertargetobject',['RenderTargetObject',['../class_render_target_object.html',1,'']]],
   ['resourcecontainer',['ResourceContainer',['../class_resource_container.html',1,'']]],
   ['resourcecontainer_3c_20bufferobject_20_3e',['ResourceContainer&lt; BufferObject &gt;',['../class_resource_container.html',1,'']]],

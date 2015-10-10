@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -100,33 +101,51 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">extern</span> D3D11_USAGE                          DX11ResourceUsage[ 4 ];</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">extern</span> DXGI_FORMAT                          DX11ResourceFormat[ 133 ];</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">extern</span> D3D_PRIMITIVE_TOPOLOGY               DX11PrimitiveTopology[ 9 ];</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">extern</span> D3D11_BIND_FLAG                      DX11REsourceBinding[ 10 ];</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="class_d_x11_constants_mapper.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_d_x11_constants_mapper.html">DX11ConstantsMapper</a></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="class_d_x11_constants_mapper.html">DX11ConstantsMapper</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    ~<a class="code" href="class_d_x11_constants_mapper.html">DX11ConstantsMapper</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> D3D11_USAGE               Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1">ResourceUsage</a> usage )          { <span class="keywordflow">return</span> DX11ResourceUsage[ (int)usage ]; }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> DXGI_FORMAT               Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#af9e15cb1b0d041b19045d8db37e38f5b">ResourceFormat</a> format )        { <span class="keywordflow">return</span> DX11ResourceFormat[ (int)format ]; }</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> D3D_PRIMITIVE_TOPOLOGY    Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#a940e3da6a9b57aae3de0b050e2a7af5e">PrimitiveTopology</a> topology )   { <span class="keywordflow">return</span> DX11PrimitiveTopology[ (int)topology ]; }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> D3D11_BIND_FLAG           Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#a4b24413c03a6404267f30673d8f5015b">ResourceBinding</a> binding )      { <span class="keywordflow">return</span> DX11REsourceBinding[ (int)binding ]; }</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;};</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="ttc" id="_graphic_a_p_i_constants_8h_html_a940e3da6a9b57aae3de0b050e2a7af5e"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#a940e3da6a9b57aae3de0b050e2a7af5e">PrimitiveTopology</a></div><div class="ttdeci">PrimitiveTopology</div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:18</div></div>
-<div class="ttc" id="_graphic_a_p_i_constants_8h_html_a4b24413c03a6404267f30673d8f5015b"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#a4b24413c03a6404267f30673d8f5015b">ResourceBinding</a></div><div class="ttdeci">ResourceBinding</div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:35</div></div>
-<div class="ttc" id="_graphic_a_p_i_constants_8h_html_af9e15cb1b0d041b19045d8db37e38f5b"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#af9e15cb1b0d041b19045d8db37e38f5b">ResourceFormat</a></div><div class="ttdeci">ResourceFormat</div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:51</div></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">extern</span> D3D11_BIND_FLAG                      DX11ResourceBinding[ 10 ];</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">extern</span> D3D11_RTV_DIMENSION                  DX11TextureType[ 9 ];</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">extern</span> DXGI_FORMAT                          DX11DepthStencilFormat[ 4 ];</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">extern</span> D3D11_DSV_DIMENSION                  DX11TextureTypeToDSV[ 9 ];</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">extern</span> D3D11_SRV_DIMENSION                  DX11TextureTypeToSRV[ 9 ];</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">extern</span> DXGI_FORMAT                          DX11DepthStencilTypeless[ 4 ];</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">extern</span> DXGI_FORMAT                          DX11DepthOnly[ 4 ];</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">extern</span> DXGI_FORMAT                          DX11StencilOnly[ 4 ];</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="class_d_x11_constants_mapper.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_d_x11_constants_mapper.html">DX11ConstantsMapper</a></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_d_x11_constants_mapper.html">DX11ConstantsMapper</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    ~<a class="code" href="class_d_x11_constants_mapper.html">DX11ConstantsMapper</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> D3D11_USAGE               Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1">ResourceUsage</a> usage )          { <span class="keywordflow">return</span> DX11ResourceUsage[ (int)usage ]; }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> DXGI_FORMAT               Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#af9e15cb1b0d041b19045d8db37e38f5b">ResourceFormat</a> format )        { <span class="keywordflow">return</span> DX11ResourceFormat[ (int)format ]; }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> D3D_PRIMITIVE_TOPOLOGY    Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#a940e3da6a9b57aae3de0b050e2a7af5e">PrimitiveTopology</a> topology )   { <span class="keywordflow">return</span> DX11PrimitiveTopology[ (int)topology ]; }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> D3D11_BIND_FLAG           Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#a4b24413c03a6404267f30673d8f5015b">ResourceBinding</a> binding )      { <span class="keywordflow">return</span> DX11ResourceBinding[ (int)binding ]; }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> D3D11_RTV_DIMENSION       Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#a65468556d79304b3a4bfc464cc12e549">TextureType</a> texType )          { <span class="keywordflow">return</span> DX11TextureType[ (int)texType ]; }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> DXGI_FORMAT               Get( <a class="code" href="_graphic_a_p_i_constants_8h.html#a951fa372102256be9a300400cc4d417d">DepthStencilFormat</a> format )    { <span class="keywordflow">return</span> DX11DepthStencilFormat[ (int)format ]; }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> D3D11_SRV_DIMENSION       ConvertSRV          ( <a class="code" href="_graphic_a_p_i_constants_8h.html#a65468556d79304b3a4bfc464cc12e549">TextureType</a> texType )             { <span class="keywordflow">return</span> DX11TextureTypeToSRV[ (int)texType ]; }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> D3D11_DSV_DIMENSION       ConvertDSV          ( <a class="code" href="_graphic_a_p_i_constants_8h.html#a65468556d79304b3a4bfc464cc12e549">TextureType</a> texType )             { <span class="keywordflow">return</span> DX11TextureTypeToDSV[ (int)texType ]; }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> DXGI_FORMAT               ConvertTypeless     ( <a class="code" href="_graphic_a_p_i_constants_8h.html#a951fa372102256be9a300400cc4d417d">DepthStencilFormat</a> format )       { <span class="keywordflow">return</span> DX11DepthStencilTypeless[ (int)format ]; }</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> DXGI_FORMAT               ConvertDepthOnly    ( <a class="code" href="_graphic_a_p_i_constants_8h.html#a951fa372102256be9a300400cc4d417d">DepthStencilFormat</a> format )       { <span class="keywordflow">return</span> DX11DepthOnly[ (int)format ]; }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> DXGI_FORMAT               ConvertStencilOnly  ( <a class="code" href="_graphic_a_p_i_constants_8h.html#a951fa372102256be9a300400cc4d417d">DepthStencilFormat</a> format )       { <span class="keywordflow">return</span> DX11StencilOnly[ (int)format ]; }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;};</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="ttc" id="_graphic_a_p_i_constants_8h_html_a940e3da6a9b57aae3de0b050e2a7af5e"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#a940e3da6a9b57aae3de0b050e2a7af5e">PrimitiveTopology</a></div><div class="ttdeci">PrimitiveTopology</div><div class="ttdoc">Topologia wierzchołków. </div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:20</div></div>
+<div class="ttc" id="_graphic_a_p_i_constants_8h_html_a4b24413c03a6404267f30673d8f5015b"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#a4b24413c03a6404267f30673d8f5015b">ResourceBinding</a></div><div class="ttdeci">ResourceBinding</div><div class="ttdoc">Określa jak będzie używany dany zasób w potoku karty graficznej. </div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:38</div></div>
+<div class="ttc" id="_graphic_a_p_i_constants_8h_html_a951fa372102256be9a300400cc4d417d"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#a951fa372102256be9a300400cc4d417d">DepthStencilFormat</a></div><div class="ttdeci">DepthStencilFormat</div><div class="ttdoc">Typy dostępne dla bufora głębokości. </div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:74</div></div>
+<div class="ttc" id="_graphic_a_p_i_constants_8h_html_af9e15cb1b0d041b19045d8db37e38f5b"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#af9e15cb1b0d041b19045d8db37e38f5b">ResourceFormat</a></div><div class="ttdeci">ResourceFormat</div><div class="ttdoc">Specyfikuje format tekstury bądź innego zasobu. </div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:84</div></div>
 <div class="ttc" id="_d_x11_a_p_i_objects_8h_html"><div class="ttname"><a href="_d_x11_a_p_i_objects_8h.html">DX11APIObjects.h</a></div><div class="ttdoc">Zawiera deklarację klasy DX11APIObjects i DX11AuxiliaryObjects służących do inicjowania i przechowywa...</div></div>
-<div class="ttc" id="_graphic_a_p_i_constants_8h_html_a397e45c96a8884109d4aad7d3255cab1"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1">ResourceUsage</a></div><div class="ttdeci">ResourceUsage</div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:9</div></div>
-<div class="ttc" id="class_d_x11_constants_mapper_html"><div class="ttname"><a href="class_d_x11_constants_mapper.html">DX11ConstantsMapper</a></div><div class="ttdoc">Klasa służy do mapowania stałych z wartości silnikowych do DirectX 11. </div><div class="ttdef"><b>Definition:</b> DX11ConstantsMapper.h:15</div></div>
+<div class="ttc" id="_graphic_a_p_i_constants_8h_html_a397e45c96a8884109d4aad7d3255cab1"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1">ResourceUsage</a></div><div class="ttdeci">ResourceUsage</div><div class="ttdoc">Specyfikuje typ dostępu do pamięci danego zasobu. </div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:10</div></div>
+<div class="ttc" id="_graphic_a_p_i_constants_8h_html_a65468556d79304b3a4bfc464cc12e549"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#a65468556d79304b3a4bfc464cc12e549">TextureType</a></div><div class="ttdeci">TextureType</div><div class="ttdoc">Definiuje typ tekstury. </div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:57</div></div>
+<div class="ttc" id="class_d_x11_constants_mapper_html"><div class="ttname"><a href="class_d_x11_constants_mapper.html">DX11ConstantsMapper</a></div><div class="ttdoc">Klasa służy do mapowania stałych z wartości silnikowych do DirectX 11. </div><div class="ttdef"><b>Definition:</b> DX11ConstantsMapper.h:23</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

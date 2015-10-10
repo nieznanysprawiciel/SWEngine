@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['d3dimageex',['D3DImageEx',['../class_system_1_1_windows_1_1_interop_1_1_d3_d_image_ex.html',1,'System::Windows::Interop']]],
   ['defaultassets',['DefaultAssets',['../class_default_assets.html',1,'']]],
   ['displayengine',['DisplayEngine',['../class_display_engine.html',1,'']]],
   ['dx11apiobjects',['DX11APIObjects',['../class_d_x11_a_p_i_objects.html',1,'']]],

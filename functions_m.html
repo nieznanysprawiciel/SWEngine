@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -124,6 +125,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
 
 <h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
+<li>m_beginTime
+: <a class="el" href="class_time_manager.html#a55c99afb81e567529ee5afdbcd0156ad">TimeManager</a>
+</li>
 <li>m_colorBuffer
 : <a class="el" href="class_render_target_object.html#a757f09fbd591b675c0a6294f35ad4be7">RenderTargetObject</a>
 </li>
@@ -136,8 +140,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_constantsPerMesh
 : <a class="el" href="class_display_engine.html#a38a51a9dd77656759f39f8126b3a4684">DisplayEngine</a>
 </li>
-<li>m_depthStencilBuffer
-: <a class="el" href="class_render_target_object.html#a3221f47913414ec5a1791c9cea599fa2">RenderTargetObject</a>
+<li>m_depthBuffer
+: <a class="el" href="class_render_target_object.html#a5b4745b4fefe0c3981b260e2093393a6">RenderTargetObject</a>
+</li>
+<li>m_elapsedTime
+: <a class="el" href="class_time_manager.html#abef0c2f51c0f49cd59ba446cc331e9bf">TimeManager</a>
 </li>
 <li>m_elementCount
 : <a class="el" href="class_buffer_object.html#a69abc95a748a6263f020adb4028f172a">BufferObject</a>
@@ -157,17 +164,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_fileName
 : <a class="el" href="class_texture_object.html#a10c5ecff22eeaa5269db97727edfca5c">TextureObject</a>
 </li>
+<li>m_frames
+: <a class="el" href="class_time_manager.html#a4cd2bf432ee82c7cf573dad2ef2bca23">TimeManager</a>
+</li>
+<li>m_framesPerSec
+: <a class="el" href="class_time_manager.html#a2f2f906c0eb4f2d0192264b602417c56">TimeManager</a>
+</li>
 <li>m_graphicInitializer
 : <a class="el" href="class_engine_interface.html#a98a1683f3db6dc0045ebad5f64269d78">EngineInterface</a>
 </li>
 <li>m_indexBuffer
 : <a class="el" href="class_models_manager.html#ab7050df76e6d5ca9b8de16ff4c6cb1a5">ModelsManager</a>
 </li>
+<li>m_lag
+: <a class="el" href="class_time_manager.html#a4e8d21c315986a51ae12a48ab2f859c3">TimeManager</a>
+</li>
 <li>m_loader
 : <a class="el" href="class_models_manager.html#ad5da3957aa62100f9d852c812291008b">ModelsManager</a>
 </li>
 <li>m_localDeviceContext
 : <a class="el" href="class_d_x11_renderer.html#a2f976f5fd4b892b532898a8c649d94c2">DX11Renderer</a>
+</li>
+<li>m_mainRenderTarget
+: <a class="el" href="class_display_engine.html#a8b8c0e494fb6b63b14c67edf3ece2d38">DisplayEngine</a>
 </li>
 <li>m_material
 : <a class="el" href="class_models_manager.html#aa363b3c8ba0403c100f2d312de1f1d7a">ModelsManager</a>
@@ -187,8 +206,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_shaderFile
 : <a class="el" href="class_i_shader.html#a75d9c492a3bc08c9c6695a4bd7a394cb">IShader</a>
 </li>
+<li>m_stencilBuffer
+: <a class="el" href="class_render_target_object.html#a7485b980e99a47b7d7eaa339c5da1edc">RenderTargetObject</a>
+</li>
 <li>m_texture
 : <a class="el" href="class_models_manager.html#a3fe52c21645da3cdad9e50eecfdf58a6">ModelsManager</a>
+</li>
+<li>m_timeManager
+: <a class="el" href="class_engine_interface.html#a75660a0e2c0d8df324416271c8275f58">EngineInterface</a>
+</li>
+<li>m_timePrevious
+: <a class="el" href="class_time_manager.html#ac562f1ba9435afbfba537622c8ff1f7b">TimeManager</a>
+</li>
+<li>m_timerFrequency
+: <a class="el" href="class_time_manager.html#a00372df9424361024dfd07fbcb2e80bc">TimeManager</a>
 </li>
 <li>m_usageType
 : <a class="el" href="class_d_x11_renderer.html#aea3e84a90d2c35f5fa678043e956084a">DX11Renderer</a>
@@ -205,8 +236,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_vertexShader
 : <a class="el" href="class_models_manager.html#a26acd890f0b2be407184aa14d8385447">ModelsManager</a>
 </li>
-<li>main_loop()
-: <a class="el" href="class_engine.html#a28609462aae6189be2b5ed4d8ecfbae5">Engine</a>
+<li>MainLoop()
+: <a class="el" href="class_engine.html#a275271b143acda9b2162b190e1890356">Engine</a>
 </li>
 <li>max_length
 : <a class="el" href="class_x_g_u_i_1_1_abstract_text_input.html#ad2b7a9e6a7669ff3b1a7fc94d0205c73">XGUI::AbstractTextInput</a>
@@ -273,7 +304,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:15 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:04 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

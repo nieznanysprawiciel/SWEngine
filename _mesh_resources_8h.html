@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -123,7 +124,11 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture_object.html">TextureObject</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności.  <a href="class_texture_object.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_render_target_descriptor.html">RenderTargetDescriptor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struktura używana do tworzenia render targetu.  <a href="struct_render_target_descriptor.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target_object.html">RenderTargetObject</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa dla render targetów.Klasa umożliwia pobranie jednej z tekstur składowych i udostępnienie dla shaderów. Jeżeli API graficzne nie pozwala na oddzielne trzymanie bufora głębokości i stencilu, to może tu być przechowywany ten sam obiekt. Ewentualnie mogą być to dwa obiekty, które przechowują inny widok, ale fizycznie odwołują się do tej samej pamięci.  <a href="class_render_target_object.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader_input_layout_object.html">ShaderInputLayoutObject</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa przechowuje layout wierzchołka trafiającego do vertex shadera.  <a href="class_shader_input_layout_object.html#details">More...</a><br /></td></tr>
@@ -149,8 +154,7 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a0429535275068adae77d61a7913e11dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0429535275068adae77d61a7913e11dc"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>WRONG_ID</b>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:a0429535275068adae77d61a7913e11dc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mesh_resources_8h.html#a0429535275068adae77d61a7913e11dc">WRONG_ID</a>&#160;&#160;&#160;0</td></tr>
 <tr class="separator:a0429535275068adae77d61a7913e11dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -161,24 +165,35 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a97f4ea7c9b73b7be637f6f28e7de66c5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mesh_resources_8h.html#a97f4ea7c9b73b7be637f6f28e7de66c5">TEXTURES_TYPES</a> </td></tr>
-<tr class="memdesc:a97f4ea7c9b73b7be637f6f28e7de66c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indeksy tekstur w tablicy <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a>.  <a href="_mesh_resources_8h.html#a97f4ea7c9b73b7be637f6f28e7de66c5">More...</a><br /></td></tr>
-<tr class="separator:a97f4ea7c9b73b7be637f6f28e7de66c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3601c766e904acff2b729f45ccba47c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_mesh_resources_8h.html#ac3601c766e904acff2b729f45ccba47c">TextureTypes</a> </td></tr>
+<tr class="memdesc:ac3601c766e904acff2b729f45ccba47c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indeksy tekstur w tablicy <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a>.  <a href="_mesh_resources_8h.html#ac3601c766e904acff2b729f45ccba47c">More...</a><br /></td></tr>
+<tr class="separator:ac3601c766e904acff2b729f45ccba47c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Plik zawiera deklaracje formatów wierzchołków oraz klas zawierających assety shadery itp. </p>
 <dl class="section author"><dt>Author</dt><dd>nieznanysprawiciel </dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd>Plik jest częścią silnika graficznego SWEngine.</dd></dl>
-<p>Ten plik służy do includowania najważniejszych funkcjonalności silnika w aplikacji końcowej Ponadto zawiera dokumentację uruchamiania, struktury projektu i innych elementów niezależnych od kodu.</p>
-<dl class="section author"><dt>Author</dt><dd>nieznanysprawiciel </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Plik jest częścią silnika graficznego SWEngine. </dd></dl>
-</div><h2 class="groupheader">Enumeration Type Documentation</h2>
-<a class="anchor" id="a97f4ea7c9b73b7be637f6f28e7de66c5"></a>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a0429535275068adae77d61a7913e11dc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="_mesh_resources_8h.html#a97f4ea7c9b73b7be637f6f28e7de66c5">TEXTURES_TYPES</a></td>
+          <td class="memname">#define WRONG_ID&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Błędny identyfikator assetu w klasie <a class="el" href="class_resource_object.html">ResourceObject</a>. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="ac3601c766e904acff2b729f45ccba47c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="_mesh_resources_8h.html#ac3601c766e904acff2b729f45ccba47c">TextureTypes</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -191,7 +206,7 @@ Enumerations</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

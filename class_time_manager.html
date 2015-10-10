@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -103,73 +104,75 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab1c3cbb48ad68d928bb8b9a4ef210ed6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1c3cbb48ad68d928bb8b9a4ef210ed6"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#ab1c3cbb48ad68d928bb8b9a4ef210ed6">TimeManager</a> ()</td></tr>
-<tr class="memdesc:ab1c3cbb48ad68d928bb8b9a4ef210ed6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kontruktor inicjuje wartości frames i frames_per_sec na 0. <br /></td></tr>
+<tr class="memdesc:ab1c3cbb48ad68d928bb8b9a4ef210ed6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kontruktor inicjuje wartości m_frames i m_framesPerSec na 0. <br /></td></tr>
 <tr class="separator:ab1c3cbb48ad68d928bb8b9a4ef210ed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f10bd96df24eae2cd3ab2bfad1f7a54"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f10bd96df24eae2cd3ab2bfad1f7a54"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a5f10bd96df24eae2cd3ab2bfad1f7a54">initTimer</a> ()</td></tr>
-<tr class="memdesc:a5f10bd96df24eae2cd3ab2bfad1f7a54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wywoływana po zainicjowaniu silnika i przed wejściem w pętlę renderingu. Ustawia odpowiednie dane dla zegara, w tym częstotliwość oraz czas początkowy. <br /></td></tr>
-<tr class="separator:a5f10bd96df24eae2cd3ab2bfad1f7a54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc0fbb94f663d98d3be72cd8523c4b32"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc0fbb94f663d98d3be72cd8523c4b32"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#afc0fbb94f663d98d3be72cd8523c4b32">InitTimer</a> ()</td></tr>
+<tr class="memdesc:afc0fbb94f663d98d3be72cd8523c4b32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wywoływana po zainicjowaniu silnika i przed wejściem w pętlę renderingu. Ustawia odpowiednie dane dla zegara, w tym częstotliwość oraz czas początkowy. <br /></td></tr>
+<tr class="separator:afc0fbb94f663d98d3be72cd8523c4b32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18fd77e0b160cb67a0628e8a14a28028"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a18fd77e0b160cb67a0628e8a14a28028">onStartRenderFrame</a> ()</td></tr>
 <tr class="memdesc:a18fd77e0b160cb67a0628e8a14a28028"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja oblicza interwał czasowy jaki upłynął od ostatniej ramki.  <a href="#a18fd77e0b160cb67a0628e8a14a28028">More...</a><br /></td></tr>
 <tr class="separator:a18fd77e0b160cb67a0628e8a14a28028"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63a32cf90cc6e0a8735ff43e348e9495"><td class="memItemLeft" align="right" valign="top">int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a63a32cf90cc6e0a8735ff43e348e9495">queryCurrentTime</a> ()</td></tr>
-<tr class="memdesc:a63a32cf90cc6e0a8735ff43e348e9495"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wywołuje QueryPerformanceCounter, żeby pobrać aktualny czas.  <a href="#a63a32cf90cc6e0a8735ff43e348e9495">More...</a><br /></td></tr>
-<tr class="separator:a63a32cf90cc6e0a8735ff43e348e9495"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac8e10974e32ad47c74aedc5eb058c78"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac8e10974e32ad47c74aedc5eb058c78"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#aac8e10974e32ad47c74aedc5eb058c78">queryTimeFromBegin</a> ()</td></tr>
-<tr class="memdesc:aac8e10974e32ad47c74aedc5eb058c78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca czas w sekundach od włączenia silnika. <br /></td></tr>
-<tr class="separator:aac8e10974e32ad47c74aedc5eb058c78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d10e8a99a77fec181f58171adde7e8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d10e8a99a77fec181f58171adde7e8b"></a>
-int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a2d10e8a99a77fec181f58171adde7e8b">getBeginTime</a> ()</td></tr>
-<tr class="memdesc:a2d10e8a99a77fec181f58171adde7e8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca czas jaki został zarejestrowany przy inicjacji silnika. <br /></td></tr>
-<tr class="separator:a2d10e8a99a77fec181f58171adde7e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad236132621cd95bff4517f88c3fb8d26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad236132621cd95bff4517f88c3fb8d26"></a>
-int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#ad236132621cd95bff4517f88c3fb8d26">getTimerFrequency</a> ()</td></tr>
-<tr class="memdesc:ad236132621cd95bff4517f88c3fb8d26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca częstotliwość taktowania uzywanego timera. <br /></td></tr>
-<tr class="separator:ad236132621cd95bff4517f88c3fb8d26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16d658c26266b4bf3a9459fa4115d3e3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16d658c26266b4bf3a9459fa4115d3e3"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a16d658c26266b4bf3a9459fa4115d3e3">getTimeLag</a> ()</td></tr>
-<tr class="memdesc:a16d658c26266b4bf3a9459fa4115d3e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca zmienną lag. <br /></td></tr>
-<tr class="separator:a16d658c26266b4bf3a9459fa4115d3e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3eb5cf5180b6b10bd723d1279c9f9a25"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3eb5cf5180b6b10bd723d1279c9f9a25"></a>
-int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a3eb5cf5180b6b10bd723d1279c9f9a25">getTime</a> ()</td></tr>
-<tr class="memdesc:a3eb5cf5180b6b10bd723d1279c9f9a25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca czas, jaki został ostatnio zarejestrowany przy wywołaniu onStartRenderFrame. <br /></td></tr>
-<tr class="separator:a3eb5cf5180b6b10bd723d1279c9f9a25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeeac4ee3aa45503f0a1b5650337202b0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeeac4ee3aa45503f0a1b5650337202b0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#aeeac4ee3aa45503f0a1b5650337202b0">updateTimeLag</a> (float timeLag)</td></tr>
-<tr class="memdesc:aeeac4ee3aa45503f0a1b5650337202b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualizuje zmienną lag. <br /></td></tr>
-<tr class="separator:aeeac4ee3aa45503f0a1b5650337202b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6901c718c264707cba5aba85c306142d"><td class="memItemLeft" align="right" valign="top">int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a6901c718c264707cba5aba85c306142d">QueryCurrentTime</a> ()</td></tr>
+<tr class="memdesc:a6901c718c264707cba5aba85c306142d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wywołuje QueryPerformanceCounter, żeby pobrać aktualny czas.  <a href="#a6901c718c264707cba5aba85c306142d">More...</a><br /></td></tr>
+<tr class="separator:a6901c718c264707cba5aba85c306142d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb12b0f96dd94bd61ed3719fdfb77f68"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#aeb12b0f96dd94bd61ed3719fdfb77f68">QueryTimeFromBegin</a> ()</td></tr>
+<tr class="memdesc:aeb12b0f96dd94bd61ed3719fdfb77f68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca czas w sekundach od włączenia silnika.  <a href="#aeb12b0f96dd94bd61ed3719fdfb77f68">More...</a><br /></td></tr>
+<tr class="separator:aeb12b0f96dd94bd61ed3719fdfb77f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abac174b984019999dd045c6e3b99ba16"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abac174b984019999dd045c6e3b99ba16"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>GetCurrentLag</b> ()</td></tr>
+<tr class="separator:abac174b984019999dd045c6e3b99ba16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9879a399127ae4207c6d918555fd96ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9879a399127ae4207c6d918555fd96ab"></a>
+int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a9879a399127ae4207c6d918555fd96ab">GetBeginTime</a> ()</td></tr>
+<tr class="memdesc:a9879a399127ae4207c6d918555fd96ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca czas jaki został zarejestrowany przy inicjacji silnika. <br /></td></tr>
+<tr class="separator:a9879a399127ae4207c6d918555fd96ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af901f6a1cce01ec203a63ca765fa97df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af901f6a1cce01ec203a63ca765fa97df"></a>
+int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#af901f6a1cce01ec203a63ca765fa97df">GetTimerFrequency</a> ()</td></tr>
+<tr class="memdesc:af901f6a1cce01ec203a63ca765fa97df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca częstotliwość taktowania uzywanego timera. <br /></td></tr>
+<tr class="separator:af901f6a1cce01ec203a63ca765fa97df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeab1668593e0a20d8c710d20e4df23ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeab1668593e0a20d8c710d20e4df23ed"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#aeab1668593e0a20d8c710d20e4df23ed">GetFrameLag</a> ()</td></tr>
+<tr class="memdesc:aeab1668593e0a20d8c710d20e4df23ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca zmienną m_lag. <br /></td></tr>
+<tr class="separator:aeab1668593e0a20d8c710d20e4df23ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a658420ec249c56987d3379c482e9dae4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a658420ec249c56987d3379c482e9dae4"></a>
+int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a658420ec249c56987d3379c482e9dae4">GetTime</a> ()</td></tr>
+<tr class="memdesc:a658420ec249c56987d3379c482e9dae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca czas, jaki został ostatnio zarejestrowany przy wywołaniu onStartRenderFrame. <br /></td></tr>
+<tr class="separator:a658420ec249c56987d3379c482e9dae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a2c535a3c6e5c60214740b2202eae0e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a2c535a3c6e5c60214740b2202eae0e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a4a2c535a3c6e5c60214740b2202eae0e">UpdateTimeLag</a> (float timeLag)</td></tr>
+<tr class="memdesc:a4a2c535a3c6e5c60214740b2202eae0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualizuje zmienną m_lag. <br /></td></tr>
+<tr class="separator:a4a2c535a3c6e5c60214740b2202eae0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a84f431920ec4c31f8f1c43aa035b0643"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84f431920ec4c31f8f1c43aa035b0643"></a>
-int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a84f431920ec4c31f8f1c43aa035b0643">begin_time</a></td></tr>
-<tr class="memdesc:a84f431920ec4c31f8f1c43aa035b0643"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zawiera czas rozpoczęcia działania aplikacji. (Tak dokładniej czas wejścia w pętlę renderingu. Wcześnie odbywa się wczytywanie Levelu, co może trwać.) <br /></td></tr>
-<tr class="separator:a84f431920ec4c31f8f1c43aa035b0643"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5dcb3fa6aa82709b52c5956f135cc6e4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5dcb3fa6aa82709b52c5956f135cc6e4"></a>
-int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a5dcb3fa6aa82709b52c5956f135cc6e4">timer_frequency</a></td></tr>
-<tr class="memdesc:a5dcb3fa6aa82709b52c5956f135cc6e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Częstotliwość timera. <br /></td></tr>
-<tr class="separator:a5dcb3fa6aa82709b52c5956f135cc6e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7dbdbb531408fe2ca8d6ddacebee6cfa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7dbdbb531408fe2ca8d6ddacebee6cfa"></a>
-int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a7dbdbb531408fe2ca8d6ddacebee6cfa">time_previous</a></td></tr>
-<tr class="memdesc:a7dbdbb531408fe2ca8d6ddacebee6cfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Będziemy mierzyć różnicę miedzy czasami w kolejnych klatkach. <br /></td></tr>
-<tr class="separator:a7dbdbb531408fe2ca8d6ddacebee6cfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd51b50e7795812a157d53ae19a9143a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd51b50e7795812a157d53ae19a9143a"></a>
-int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#acd51b50e7795812a157d53ae19a9143a">elapsed_time</a></td></tr>
-<tr class="memdesc:acd51b50e7795812a157d53ae19a9143a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Do licznika FPSów, czas od ostatniej aktualizacji frames_per_sec. <br /></td></tr>
-<tr class="separator:acd51b50e7795812a157d53ae19a9143a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7bca135198f5565f94fd5abdf7b986b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa7bca135198f5565f94fd5abdf7b986b"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#aa7bca135198f5565f94fd5abdf7b986b">lag</a></td></tr>
-<tr class="memdesc:aa7bca135198f5565f94fd5abdf7b986b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opóźnienie względem normalego tempa updatowania sceny. <br /></td></tr>
-<tr class="separator:aa7bca135198f5565f94fd5abdf7b986b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adae1030a409ed4d13b0368ec992d8676"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adae1030a409ed4d13b0368ec992d8676"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#adae1030a409ed4d13b0368ec992d8676">frames</a></td></tr>
-<tr class="memdesc:adae1030a409ed4d13b0368ec992d8676"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zlicza ramki od ostatniego wyzerowania. <br /></td></tr>
-<tr class="separator:adae1030a409ed4d13b0368ec992d8676"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec7ad9146163cebb12bbc10eb924055f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aec7ad9146163cebb12bbc10eb924055f"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#aec7ad9146163cebb12bbc10eb924055f">frames_per_sec</a></td></tr>
-<tr class="memdesc:aec7ad9146163cebb12bbc10eb924055f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Najważniejszy licznik w grze. <br /></td></tr>
-<tr class="separator:aec7ad9146163cebb12bbc10eb924055f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55c99afb81e567529ee5afdbcd0156ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55c99afb81e567529ee5afdbcd0156ad"></a>
+int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a55c99afb81e567529ee5afdbcd0156ad">m_beginTime</a></td></tr>
+<tr class="memdesc:a55c99afb81e567529ee5afdbcd0156ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zawiera czas rozpoczęcia działania aplikacji. (Tak dokładniej czas wejścia w pętlę renderingu. Wcześnie odbywa się wczytywanie Levelu, co może trwać.) <br /></td></tr>
+<tr class="separator:a55c99afb81e567529ee5afdbcd0156ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00372df9424361024dfd07fbcb2e80bc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00372df9424361024dfd07fbcb2e80bc"></a>
+int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a00372df9424361024dfd07fbcb2e80bc">m_timerFrequency</a></td></tr>
+<tr class="memdesc:a00372df9424361024dfd07fbcb2e80bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Częstotliwość timera. <br /></td></tr>
+<tr class="separator:a00372df9424361024dfd07fbcb2e80bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac562f1ba9435afbfba537622c8ff1f7b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac562f1ba9435afbfba537622c8ff1f7b"></a>
+int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#ac562f1ba9435afbfba537622c8ff1f7b">m_timePrevious</a></td></tr>
+<tr class="memdesc:ac562f1ba9435afbfba537622c8ff1f7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Będziemy mierzyć różnicę miedzy czasami w kolejnych klatkach. <br /></td></tr>
+<tr class="separator:ac562f1ba9435afbfba537622c8ff1f7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abef0c2f51c0f49cd59ba446cc331e9bf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abef0c2f51c0f49cd59ba446cc331e9bf"></a>
+int64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#abef0c2f51c0f49cd59ba446cc331e9bf">m_elapsedTime</a></td></tr>
+<tr class="memdesc:abef0c2f51c0f49cd59ba446cc331e9bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Do licznika FPSów, czas od ostatniej aktualizacji m_framesPerSec. <br /></td></tr>
+<tr class="separator:abef0c2f51c0f49cd59ba446cc331e9bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e8d21c315986a51ae12a48ab2f859c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e8d21c315986a51ae12a48ab2f859c3"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a4e8d21c315986a51ae12a48ab2f859c3">m_lag</a></td></tr>
+<tr class="memdesc:a4e8d21c315986a51ae12a48ab2f859c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opóźnienie względem normalego tempa updatowania sceny. <br /></td></tr>
+<tr class="separator:a4e8d21c315986a51ae12a48ab2f859c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cd2bf432ee82c7cf573dad2ef2bca23"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4cd2bf432ee82c7cf573dad2ef2bca23"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a4cd2bf432ee82c7cf573dad2ef2bca23">m_frames</a></td></tr>
+<tr class="memdesc:a4cd2bf432ee82c7cf573dad2ef2bca23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zlicza ramki od ostatniego wyzerowania. <br /></td></tr>
+<tr class="separator:a4cd2bf432ee82c7cf573dad2ef2bca23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f2f906c0eb4f2d0192264b602417c56"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f2f906c0eb4f2d0192264b602417c56"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_time_manager.html#a2f2f906c0eb4f2d0192264b602417c56">m_framesPerSec</a></td></tr>
+<tr class="memdesc:a2f2f906c0eb4f2d0192264b602417c56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Najważniejszy licznik w grze. <br /></td></tr>
+<tr class="separator:a2f2f906c0eb4f2d0192264b602417c56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Klasa obsługuje wszystko co związane z czasem. </p>
@@ -198,12 +201,12 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 
 </div>
 </div>
-<a class="anchor" id="a63a32cf90cc6e0a8735ff43e348e9495"></a>
+<a class="anchor" id="a6901c718c264707cba5aba85c306142d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int64 TimeManager::queryCurrentTime </td>
+          <td class="memname">int64 TimeManager::QueryCurrentTime </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -212,7 +215,26 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </div><div class="memdoc">
 
 <p>Wywołuje QueryPerformanceCounter, żeby pobrać aktualny czas. </p>
-<p>Należy pamiętać, że najczęściej interesuje nas czas aktualnej klatki albo lag. Można je pobrać funkcjami <a class="el" href="class_time_manager.html#a3eb5cf5180b6b10bd723d1279c9f9a25" title="Zwraca czas, jaki został ostatnio zarejestrowany przy wywołaniu onStartRenderFrame. ">TimeManager::getTime</a> i <a class="el" href="class_time_manager.html#a16d658c26266b4bf3a9459fa4115d3e3" title="Zwraca zmienną lag. ">TimeManager::getTimeLag</a>. </p>
+<p>Należy pamiętać, że najczęściej interesuje nas czas aktualnej klatki albo lag. Można je pobrać funkcjami <a class="el" href="class_time_manager.html#a658420ec249c56987d3379c482e9dae4" title="Zwraca czas, jaki został ostatnio zarejestrowany przy wywołaniu onStartRenderFrame. ">TimeManager::GetTime</a> i <a class="el" href="class_time_manager.html#aeab1668593e0a20d8c710d20e4df23ed" title="Zwraca zmienną m_lag. ">TimeManager::GetFrameLag</a>.</p>
+<p>Ta funkcja pobiera aktualny czas nieżny od wyświetlania klatek. </p>
+
+</div>
+</div>
+<a class="anchor" id="aeb12b0f96dd94bd61ed3719fdfb77f68"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double TimeManager::QueryTimeFromBegin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zwraca czas w sekundach od włączenia silnika. </p>
+<p>Podawany jest aktualny czas, a nie czas zapisany na początku klatki. </p>
 
 </div>
 </div>
@@ -223,7 +245,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:15 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loader_5fresult',['LOADER_RESULT',['../_i_loader_8h.html#aa53f4b0ff944a19f3c3cbb2c476a538d',1,'ILoader.h']]]
+  ['loaderresult',['LoaderResult',['../_i_loader_8h.html#af8f65444450e50ed3f0f0e73c1e2a296',1,'ILoader.h']]]
 ];

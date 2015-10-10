@@ -1,7 +1,9 @@
 var searchData=
 [
   ['stałe_20i_20makrodefinicje',['Stałe i makrodefinicje',['../_constants_macros.html',1,'']]],
+  ['struktura_20katalogowa_20projektu',['Struktura katalogowa projektu',['../_folder_structure.html',1,'']]],
   ['struktura_20projektu',['Struktura projektu',['../_project_structure.html',1,'']]],
+  ['samplesquality',['samplesQuality',['../struct_render_target_descriptor.html#a5fd4a800f261d7eb9962c5d036a88330',1,'RenderTargetDescriptor']]],
   ['selected',['selected',['../class_x_g_u_i_1_1_abstract_item.html#a7aa0052dce2cd72ba98832dd07bfa41c',1,'XGUI::AbstractItem::selected()'],['../class_x_g_u_i_1_1_abstract_menu.html#ad276e26a9307c5e6c2b63d936db5e9f5',1,'XGUI::AbstractMenu::selected()']]],
   ['selection',['selection',['../class_x_g_u_i_1_1_abstract_text_input.html#a3203d6fee3be76137f4eae8e673ea062',1,'XGUI::AbstractTextInput']]],
   ['samo_2drednerujące_20się_20obiekty',['Samo-rednerujące się obiekty',['../self_drawing_objects.html',1,'']]],
@@ -30,7 +32,7 @@ var searchData=
   ['set_5fspeed',['set_speed',['../class_dynamic_object.html#ac1efd5b3c31685b6c47a7fc5550c7e19',1,'DynamicObject']]],
   ['set_5fstandard_5fabstraction_5flayer',['set_standard_abstraction_layer',['../class_u_i___engine.html#ae14ae04fc613f3019a699e7041a5e800',1,'UI_Engine']]],
   ['set_5fswapchain_5fdesc',['set_swapchain_desc',['../class_d_x11_a_p_i_objects.html#a5fb8ca2f5ae7529df1de6c20760e431f',1,'DX11APIObjects']]],
-  ['set_5ftexture',['set_texture',['../class_sky_dome.html#a3b17bb74a7dd5f52952619fb93b2c22a',1,'SkyDome']]],
+  ['set_5ftexture',['set_texture',['../class_sky_dome.html#ad87eea2c0dd21e89ac251f0cd6abbb99',1,'SkyDome']]],
   ['set_5fvertex_5fbuffer',['set_vertex_buffer',['../class_sky_dome.html#ac2dab6341dcc0f715718da4c1107a64c',1,'SkyDome']]],
   ['set_5fvertex_5flayout',['set_vertex_layout',['../class_d_x11_a_p_i_objects.html#a402e18fb4588609b55039f2d112b3101',1,'DX11APIObjects::set_vertex_layout(DX11_DEFAULT_VERTEX_LAYOUT layout)'],['../class_d_x11_a_p_i_objects.html#a99276ba731d84e44ea70c02349ba847d',1,'DX11APIObjects::set_vertex_layout(D3D11_INPUT_ELEMENT_DESC *layout, unsigned int array_size)']]],
   ['set_5fvertex_5fshader',['set_vertex_shader',['../class_sky_dome.html#a64a1bbe428e52cdce5a0a143a293b319',1,'SkyDome']]],
@@ -45,6 +47,7 @@ var searchData=
   ['setfontsize',['setFontSize',['../class_x_g_u_i_1_1_abstract_text.html#a5eb88050f98b16da08a0781c5b0f72e5',1,'XGUI::AbstractText']]],
   ['setindexbuffer',['SetIndexBuffer',['../class_d_x11_renderer.html#abf5ae23eaa77109440d9cd4eb5cddee3',1,'DX11Renderer']]],
   ['setlayout',['SetLayout',['../class_display_engine.html#abad7947d091d6aa4aa21fe854db1342b',1,'DisplayEngine']]],
+  ['setmainrendertarget',['SetMainRenderTarget',['../class_display_engine.html#aa097821a36dd4487abb7e111d61ff98a',1,'DisplayEngine']]],
   ['setnullmaterial',['SetNullMaterial',['../struct_material_object.html#a78c54ca82d12fc9ab3ac30b13fec75d8',1,'MaterialObject']]],
   ['setprojectionmatrix',['SetProjectionMatrix',['../class_camera_object.html#a0415566c4720d1e771785d5343c0d7e2',1,'CameraObject::SetProjectionMatrix()'],['../class_display_engine.html#abae2e191c0fb8099b7ec28fdd0c2381a',1,'DisplayEngine::SetProjectionMatrix()']]],
   ['setrelativeposition',['setRelativePosition',['../class_x_g_u_i_1_1_control.html#ad63de1f67d309f86e56624918c89bf39',1,'XGUI::Control']]],
@@ -58,6 +61,8 @@ var searchData=
   ['setvisible',['setVisible',['../class_x_g_u_i_1_1_control.html#a08df4ca12b468cc1932ab562fe35c5db',1,'XGUI::Control']]],
   ['shader_5fdata_5fper_5fframe',['shader_data_per_frame',['../class_display_engine.html#a79af380c860de99523e0b63d4b0f3d33',1,'DisplayEngine']]],
   ['shaderinputlayoutobject',['ShaderInputLayoutObject',['../class_shader_input_layout_object.html',1,'']]],
+  ['showappwindow',['ShowAppWindow',['../class_engine.html#aa6261f218855fe0d9715e58fc71bcdae',1,'Engine']]],
+  ['showwindow',['ShowWindow',['../class_editor_plugin_1_1_engine_wrapper.html#a600ac03238741f66af7279077d8f2678',1,'EditorPlugin::EngineWrapper']]],
   ['sky_5fdome',['sky_dome',['../class_display_engine.html#a4cecc5b07bf947a096dca3b0321e083e',1,'DisplayEngine']]],
   ['sky_5fradiance',['sky_radiance',['../class_hosek_skylight_model.html#a5021d619c8b74a01eb590e778a586420',1,'HosekSkylightModel']]],
   ['sky_5fsolar_5fradiance',['sky_solar_radiance',['../class_hosek_skylight_model.html#ae5733d81d0d8f4998c56286ae428011f',1,'HosekSkylightModel']]],
@@ -76,5 +81,6 @@ var searchData=
   ['sw_5fengine_2ecpp',['SW_engine.cpp',['../_s_w__engine_8cpp.html',1,'']]],
   ['swap',['swap',['../class_static_object.html#a2334262a982d34a46dcb511adc99491a',1,'StaticObject']]],
   ['swap_5fchain',['swap_chain',['../class_d_x11_a_p_i_objects.html#ade44f2410db7ffaf4d10778aaf13b008',1,'DX11APIObjects']]],
-  ['swap_5fdata',['swap_data',['../class_static_object.html#aacb103f677a75ac02c228cdd55fabecb',1,'StaticObject']]]
+  ['swap_5fdata',['swap_data',['../class_static_object.html#aacb103f677a75ac02c228cdd55fabecb',1,'StaticObject']]],
+  ['swengineinclude_2eh',['SWEngineInclude.h',['../_s_w_engine_include_8h.html',1,'']]]
 ];

@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -88,6 +89,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_d_x11_render_target-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -105,7 +108,7 @@ Inheritance diagram for DX11RenderTarget:</div>
  <div class="center">
   <img src="class_d_x11_render_target.png" usemap="#DX11RenderTarget_map" alt=""/>
   <map id="DX11RenderTarget_map" name="DX11RenderTarget_map">
-<area href="class_render_target_object.html" alt="RenderTargetObject" shape="rect" coords="0,112,126,136"/>
+<area href="class_render_target_object.html" title="Klasa dla render targetów.Klasa umożliwia pobranie jednej z tekstur składowych i udostępnienie dla sh..." alt="RenderTargetObject" shape="rect" coords="0,112,126,136"/>
 <area href="class_d_x11_a_p_i_objects.html" title="Klasa przechowuje w zmiennych statycznych najważniejsze interfejsy DirectX11. " alt="DX11APIObjects" shape="rect" coords="136,112,262,136"/>
 <area href="class_i_render_target.html" alt="IRenderTarget" shape="rect" coords="0,56,126,80"/>
 <area href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. " alt="ResourceObject" shape="rect" coords="0,0,126,24"/>
@@ -114,9 +117,21 @@ Inheritance diagram for DX11RenderTarget:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1d65466112890622c18d75c37fb38f7b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d65466112890622c18d75c37fb38f7b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DX11RenderTarget</b> (ID3D11RenderTargetView *renderTarget, ID3D11DepthStencilView *depthStencil, <a class="el" href="class_texture_object.html">TextureObject</a> *colorBuffer, <a class="el" href="class_texture_object.html">TextureObject</a> *depthStencilBuffer)</td></tr>
-<tr class="separator:a1d65466112890622c18d75c37fb38f7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48c3021fe867828d4c55c7ec8f5cfc41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48c3021fe867828d4c55c7ec8f5cfc41"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>DX11RenderTarget</b> (ID3D11RenderTargetView *renderTarget, ID3D11DepthStencilView *depthStencil, <a class="el" href="class_texture_object.html">TextureObject</a> *colorBuffer, <a class="el" href="class_texture_object.html">TextureObject</a> *depthBuffer, <a class="el" href="class_texture_object.html">TextureObject</a> *stencilBuffer)</td></tr>
+<tr class="separator:a48c3021fe867828d4c55c7ec8f5cfc41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf00c642ca54d34d3fca5ea00b83b498"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf00c642ca54d34d3fca5ea00b83b498"></a>
+uint16&#160;</td><td class="memItemRight" valign="bottom"><b>GetWidth</b> ()</td></tr>
+<tr class="separator:aaf00c642ca54d34d3fca5ea00b83b498"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dbdf2c7639f09dd7e732d37617fb53f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2dbdf2c7639f09dd7e732d37617fb53f"></a>
+uint16&#160;</td><td class="memItemRight" valign="bottom"><b>GetHeight</b> ()</td></tr>
+<tr class="separator:a2dbdf2c7639f09dd7e732d37617fb53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00bf94abd1d80edf8d72df19ba83de96"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00bf94abd1d80edf8d72df19ba83de96"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetHeight</b> (uint16 value)</td></tr>
+<tr class="separator:a00bf94abd1d80edf8d72df19ba83de96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64dd46935cbb8c58ef90681f4d508340"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64dd46935cbb8c58ef90681f4d508340"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetWidth</b> (uint16 value)</td></tr>
+<tr class="separator:a64dd46935cbb8c58ef90681f4d508340"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a9fbae06f676f3e6498d3327b7c306e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a9fbae06f676f3e6498d3327b7c306e"></a>
 ID3D11RenderTargetView *&#160;</td><td class="memItemRight" valign="bottom"><b>GetRenderTarget</b> ()</td></tr>
 <tr class="separator:a0a9fbae06f676f3e6498d3327b7c306e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,19 +139,25 @@ ID3D11RenderTargetView *&#160;</td><td class="memItemRight" valign="bottom"><b>G
 ID3D11DepthStencilView *&#160;</td><td class="memItemRight" valign="bottom"><b>GetDepthStencil</b> ()</td></tr>
 <tr class="separator:ab6e4fe5575f6c490674f53124be961af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_render_target_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_render_target_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_render_target_object.html">RenderTargetObject</a></td></tr>
-<tr class="memitem:ac2839654dc6c0c864a8f3e09559ef902 inherit pub_methods_class_render_target_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac2839654dc6c0c864a8f3e09559ef902"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>RenderTargetObject</b> (<a class="el" href="class_texture_object.html">TextureObject</a> *colorBuffer, <a class="el" href="class_texture_object.html">TextureObject</a> *depthStencil)</td></tr>
-<tr class="separator:ac2839654dc6c0c864a8f3e09559ef902 inherit pub_methods_class_render_target_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb566aa8da5ae35db4af116d9086ef0a inherit pub_methods_class_render_target_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abb566aa8da5ae35db4af116d9086ef0a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>RenderTargetObject</b> (<a class="el" href="class_texture_object.html">TextureObject</a> *colorBuffer, <a class="el" href="class_texture_object.html">TextureObject</a> *depthBuffer, <a class="el" href="class_texture_object.html">TextureObject</a> *stencilBuffer)</td></tr>
+<tr class="separator:abb566aa8da5ae35db4af116d9086ef0a inherit pub_methods_class_render_target_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14d1c16d377c1a36b521dee3c68e2b05 inherit pub_methods_class_render_target_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a14d1c16d377c1a36b521dee3c68e2b05"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target_object.html#a14d1c16d377c1a36b521dee3c68e2b05">~RenderTargetObject</a> ()</td></tr>
-<tr class="memdesc:a14d1c16d377c1a36b521dee3c68e2b05 inherit pub_methods_class_render_target_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruktor kasuje obiekty tekstury głębokości i bufora koloru, jeżeli nie są używane. Jeżeli istnieją odwołania do tych obiektów, to nie są one kasowane, a jedynie usuwa się odwołania pochodzące od <a class="el" href="class_render_target_object.html">RenderTargetObject</a>. <br /></td></tr>
+<tr class="memdesc:a14d1c16d377c1a36b521dee3c68e2b05 inherit pub_methods_class_render_target_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruktor kasuje obiekty tekstury głębokości i bufora koloru, jeżeli nie są używane. Jeżeli istnieją odwołania do tych obiektów, to nie są one kasowane, a jedynie usuwa się odwołania pochodzące od <a class="el" href="class_render_target_object.html" title="Klasa dla render targetów.Klasa umożliwia pobranie jednej z tekstur składowych i udostępnienie dla sh...">RenderTargetObject</a>. <br /></td></tr>
 <tr class="separator:a14d1c16d377c1a36b521dee3c68e2b05 inherit pub_methods_class_render_target_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf00ad4916d373ef9ededac951f2e5a3 inherit pub_methods_class_render_target_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf00ad4916d373ef9ededac951f2e5a3"></a>
-<a class="el" href="class_texture_object.html">TextureObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetColorBuffer</b> ()</td></tr>
+<a class="el" href="class_texture_object.html">TextureObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target_object.html#aaf00ad4916d373ef9ededac951f2e5a3">GetColorBuffer</a> ()</td></tr>
+<tr class="memdesc:aaf00ad4916d373ef9ededac951f2e5a3 inherit pub_methods_class_render_target_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca obiekt bufora kolorów. <br /></td></tr>
 <tr class="separator:aaf00ad4916d373ef9ededac951f2e5a3 inherit pub_methods_class_render_target_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec93296eec532266fb15527487a2dc1a inherit pub_methods_class_render_target_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aec93296eec532266fb15527487a2dc1a"></a>
-<a class="el" href="class_texture_object.html">TextureObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetDepthStencilBuffer</b> ()</td></tr>
-<tr class="separator:aec93296eec532266fb15527487a2dc1a inherit pub_methods_class_render_target_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b7cc6d3647861765b27e799abc5eeb7 inherit pub_methods_class_render_target_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b7cc6d3647861765b27e799abc5eeb7"></a>
+<a class="el" href="class_texture_object.html">TextureObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target_object.html#a4b7cc6d3647861765b27e799abc5eeb7">GetDepthBuffer</a> ()</td></tr>
+<tr class="memdesc:a4b7cc6d3647861765b27e799abc5eeb7 inherit pub_methods_class_render_target_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca obiekt bufora głębokości. <br /></td></tr>
+<tr class="separator:a4b7cc6d3647861765b27e799abc5eeb7 inherit pub_methods_class_render_target_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdd7150f90527344016b2c5c980cc3d6 inherit pub_methods_class_render_target_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afdd7150f90527344016b2c5c980cc3d6"></a>
+<a class="el" href="class_texture_object.html">TextureObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target_object.html#afdd7150f90527344016b2c5c980cc3d6">GetStencilBuffer</a> ()</td></tr>
+<tr class="memdesc:afdd7150f90527344016b2c5c980cc3d6 inherit pub_methods_class_render_target_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca obiekt bufora stencilu. <br /></td></tr>
+<tr class="separator:afdd7150f90527344016b2c5c980cc3d6 inherit pub_methods_class_render_target_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_resource_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_resource_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_resource_object.html">ResourceObject</a></td></tr>
 <tr class="memitem:ab532d0711da06a23e6fe10dad6153332 inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#ab532d0711da06a23e6fe10dad6153332">ResourceObject</a> (int id)</td></tr>
 <tr class="separator:ab532d0711da06a23e6fe10dad6153332 inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,18 +196,16 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a3d7f1140a862df6a9444f7bbbab929e3"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_d_x11_render_target.html">DX11RenderTarget</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_x11_render_target.html#a3d7f1140a862df6a9444f7bbbab929e3">CreateScreenRenderTarget</a> ()</td></tr>
 <tr class="separator:a3d7f1140a862df6a9444f7bbbab929e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a964b118e0963323b0d4215ea4f0dca91"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_d_x11_render_target.html">DX11RenderTarget</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_x11_render_target.html#a964b118e0963323b0d4215ea4f0dca91">CreateRenderTarget</a> (const std::wstring &amp;name, const <a class="el" href="struct_render_target_descriptor.html">RenderTargetDescriptor</a> &amp;renderTargetDescriptor)</td></tr>
+<tr class="memdesc:a964b118e0963323b0d4215ea4f0dca91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tworzy render target o podanych w parametrach.  <a href="#a964b118e0963323b0d4215ea4f0dca91">More...</a><br /></td></tr>
+<tr class="separator:a964b118e0963323b0d4215ea4f0dca91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:aab58be8b2d1a0d74b30d88ff9da9549c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab58be8b2d1a0d74b30d88ff9da9549c"></a>
-ID3D11RenderTargetView *&#160;</td><td class="memItemRight" valign="bottom"><b>m_renderTarget</b></td></tr>
-<tr class="separator:aab58be8b2d1a0d74b30d88ff9da9549c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0a9371765d0393b681eaf24f3a29795"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0a9371765d0393b681eaf24f3a29795"></a>
-ID3D11DepthStencilView *&#160;</td><td class="memItemRight" valign="bottom"><b>m_depthStencilView</b></td></tr>
-<tr class="separator:ac0a9371765d0393b681eaf24f3a29795"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:af74019dba9b971ff5a34f4609263e753"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af74019dba9b971ff5a34f4609263e753"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_x11_render_target.html#af74019dba9b971ff5a34f4609263e753">~DX11RenderTarget</a> ()</td></tr>
+<tr class="memdesc:af74019dba9b971ff5a34f4609263e753"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwalnia zasoby DirectXa. <br /></td></tr>
+<tr class="separator:af74019dba9b971ff5a34f4609263e753"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_resource_object"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_resource_object')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_resource_object.html">ResourceObject</a></td></tr>
 <tr class="memitem:a38cce868f5e80e797c3bfd65e0c55aeb inherit pro_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38cce868f5e80e797c3bfd65e0c55aeb"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a38cce868f5e80e797c3bfd65e0c55aeb">~ResourceObject</a> ()=default</td></tr>
@@ -278,19 +297,51 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_x11_a_p_i_objects.html#a973ff7b0322aefd98c6247aede273411">end_scene_and_present</a> ()</td></tr>
 <tr class="memdesc:a973ff7b0322aefd98c6247aede273411 inherit pro_methods_class_d_x11_a_p_i_objects"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wywołuje funkcję swap_chain-&gt;Present w celu wyświetlenia narysowanej sceny na monitorze. <br /></td></tr>
 <tr class="separator:a973ff7b0322aefd98c6247aede273411 inherit pro_methods_class_d_x11_a_p_i_objects"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:a46f645c06b3e89583f6d906043fee963"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46f645c06b3e89583f6d906043fee963"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>ValidateDescriptor</b> (const <a class="el" href="struct_render_target_descriptor.html">RenderTargetDescriptor</a> &amp;renderTargetDescriptor)</td></tr>
+<tr class="separator:a46f645c06b3e89583f6d906043fee963"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aab58be8b2d1a0d74b30d88ff9da9549c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab58be8b2d1a0d74b30d88ff9da9549c"></a>
+ID3D11RenderTargetView *&#160;</td><td class="memItemRight" valign="bottom"><b>m_renderTarget</b></td></tr>
+<tr class="separator:aab58be8b2d1a0d74b30d88ff9da9549c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0a9371765d0393b681eaf24f3a29795"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0a9371765d0393b681eaf24f3a29795"></a>
+ID3D11DepthStencilView *&#160;</td><td class="memItemRight" valign="bottom"><b>m_depthStencilView</b></td></tr>
+<tr class="separator:ac0a9371765d0393b681eaf24f3a29795"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a343f2232e8c596b55cf094725479a763"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a343f2232e8c596b55cf094725479a763"></a>
+uint16&#160;</td><td class="memItemRight" valign="bottom"><b>m_height</b></td></tr>
+<tr class="separator:a343f2232e8c596b55cf094725479a763"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07a3e3195b889b775040659d7b8e88b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07a3e3195b889b775040659d7b8e88b7"></a>
+uint16&#160;</td><td class="memItemRight" valign="bottom"><b>m_width</b></td></tr>
+<tr class="separator:a07a3e3195b889b775040659d7b8e88b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_class_render_target_object"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_render_target_object')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_render_target_object.html">RenderTargetObject</a></td></tr>
 <tr class="memitem:a757f09fbd591b675c0a6294f35ad4be7 inherit pro_attribs_class_render_target_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a757f09fbd591b675c0a6294f35ad4be7"></a>
 <a class="el" href="class_texture_object.html">TextureObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target_object.html#a757f09fbd591b675c0a6294f35ad4be7">m_colorBuffer</a></td></tr>
 <tr class="memdesc:a757f09fbd591b675c0a6294f35ad4be7 inherit pro_attribs_class_render_target_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pozwala na dostęp do bufora kolorów dla innych obiektów. Może być nullptrem. <br /></td></tr>
 <tr class="separator:a757f09fbd591b675c0a6294f35ad4be7 inherit pro_attribs_class_render_target_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3221f47913414ec5a1791c9cea599fa2 inherit pro_attribs_class_render_target_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3221f47913414ec5a1791c9cea599fa2"></a>
-<a class="el" href="class_texture_object.html">TextureObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target_object.html#a3221f47913414ec5a1791c9cea599fa2">m_depthStencilBuffer</a></td></tr>
-<tr class="memdesc:a3221f47913414ec5a1791c9cea599fa2 inherit pro_attribs_class_render_target_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pozwala na dostęp do bufora głębokości. Może być nullptrem. <br /></td></tr>
-<tr class="separator:a3221f47913414ec5a1791c9cea599fa2 inherit pro_attribs_class_render_target_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b4745b4fefe0c3981b260e2093393a6 inherit pro_attribs_class_render_target_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b4745b4fefe0c3981b260e2093393a6"></a>
+<a class="el" href="class_texture_object.html">TextureObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target_object.html#a5b4745b4fefe0c3981b260e2093393a6">m_depthBuffer</a></td></tr>
+<tr class="memdesc:a5b4745b4fefe0c3981b260e2093393a6 inherit pro_attribs_class_render_target_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pozwala na dostęp do bufora głębokości. Może być nullptrem. <br /></td></tr>
+<tr class="separator:a5b4745b4fefe0c3981b260e2093393a6 inherit pro_attribs_class_render_target_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7485b980e99a47b7d7eaa339c5da1edc inherit pro_attribs_class_render_target_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7485b980e99a47b7d7eaa339c5da1edc"></a>
+<a class="el" href="class_texture_object.html">TextureObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_target_object.html#a7485b980e99a47b7d7eaa339c5da1edc">m_stencilBuffer</a></td></tr>
+<tr class="memdesc:a7485b980e99a47b7d7eaa339c5da1edc inherit pro_attribs_class_render_target_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pozwala na dostęp do bufora stencil. Może być nulltrem. <br /></td></tr>
+<tr class="separator:a7485b980e99a47b7d7eaa339c5da1edc inherit pro_attribs_class_render_target_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_static_attribs_class_d_x11_a_p_i_objects"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_class_d_x11_a_p_i_objects')"><img src="closed.png" alt="-"/>&#160;Static Protected Attributes inherited from <a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></td></tr>
+<tr class="memitem:a3645b83f2b6f7bbbad8351ff736f9c82 inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3645b83f2b6f7bbbad8351ff736f9c82"></a>
+static ID3D11Debug *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_x11_a_p_i_objects.html#a3645b83f2b6f7bbbad8351ff736f9c82">debug_interface</a> = nullptr</td></tr>
+<tr class="memdesc:a3645b83f2b6f7bbbad8351ff736f9c82 inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pozwala na pobranie bardziej szczegółowych informacji debugowych. <br /></td></tr>
+<tr class="separator:a3645b83f2b6f7bbbad8351ff736f9c82 inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab484f6bea91f06b996a32d73fbb80cdc inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab484f6bea91f06b996a32d73fbb80cdc"></a>
 static ID3D11Device *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_x11_a_p_i_objects.html#ab484f6bea91f06b996a32d73fbb80cdc">device</a> = nullptr</td></tr>
-<tr class="memdesc:ab484f6bea91f06b996a32d73fbb80cdc inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zmienna służy do tworzenia obiektó, buforów tekstur i zasobów. <br /></td></tr>
+<tr class="memdesc:ab484f6bea91f06b996a32d73fbb80cdc inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zmienna służy do tworzenia obiektów, buforów tekstur i zasobów. <br /></td></tr>
 <tr class="separator:ab484f6bea91f06b996a32d73fbb80cdc inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28bcb8170c5ed0495cc42bb22b3d300f inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a28bcb8170c5ed0495cc42bb22b3d300f"></a>
 static ID3D11DeviceContext *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_x11_a_p_i_objects.html#a28bcb8170c5ed0495cc42bb22b3d300f">device_context</a> = nullptr</td></tr>
@@ -308,6 +359,14 @@ static ID3D11RenderTargetView *&#160;</td><td class="memItemRight" valign="botto
 static ID3D11DepthStencilView *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_x11_a_p_i_objects.html#ab845c937be718500a3803f501764251e">z_buffer_view</a> = nullptr</td></tr>
 <tr class="memdesc:ab845c937be718500a3803f501764251e inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="mdescLeft">&#160;</td><td class="mdescRight">Widok z-buffora. <br /></td></tr>
 <tr class="separator:ab845c937be718500a3803f501764251e inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6104dbee4ae752a6d81bea7bb2c9ad1 inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af6104dbee4ae752a6d81bea7bb2c9ad1"></a>
+static ID3D11Texture2D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_x11_a_p_i_objects.html#af6104dbee4ae752a6d81bea7bb2c9ad1">back_buffer</a> = nullptr</td></tr>
+<tr class="memdesc:af6104dbee4ae752a6d81bea7bb2c9ad1 inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tekstura bufora tylnego. <br /></td></tr>
+<tr class="separator:af6104dbee4ae752a6d81bea7bb2c9ad1 inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08e6440d615b9025e7f6a7a7f37a0a9e inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a08e6440d615b9025e7f6a7a7f37a0a9e"></a>
+static ID3D11Texture2D *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_x11_a_p_i_objects.html#a08e6440d615b9025e7f6a7a7f37a0a9e">z_buffer</a> = nullptr</td></tr>
+<tr class="memdesc:a08e6440d615b9025e7f6a7a7f37a0a9e inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tekstura z-bufora. <br /></td></tr>
+<tr class="separator:a08e6440d615b9025e7f6a7a7f37a0a9e inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7862fce35328422c8d8fd2d4f3624fd8 inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7862fce35328422c8d8fd2d4f3624fd8"></a>
 static ID3D11SamplerState *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_x11_a_p_i_objects.html#a7862fce35328422c8d8fd2d4f3624fd8">default_sampler</a> = nullptr</td></tr>
 <tr class="memdesc:a7862fce35328422c8d8fd2d4f3624fd8 inherit pro_static_attribs_class_d_x11_a_p_i_objects"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obiekt domyślnego samplera. <br /></td></tr>
@@ -328,6 +387,44 @@ static ID3D11PixelShader *&#160;</td><td class="memItemRight" valign="bottom"><a
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementacja render targetu w DirectX11. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a964b118e0963323b0d4215ea4f0dca91"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_d_x11_render_target.html">DX11RenderTarget</a> * DX11RenderTarget::CreateRenderTarget </td>
+          <td>(</td>
+          <td class="paramtype">const std::wstring &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_render_target_descriptor.html">RenderTargetDescriptor</a> &amp;&#160;</td>
+          <td class="paramname"><em>renderTargetDescriptor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tworzy render target o podanych w parametrach. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000047">Todo:</a></b></dt><dd>W przyszłości powinna być możliwość tworzenia tekstur innych niż 2D. Poza tym renderować powinno się móc do dowolnego poziomu mipmap. Decyzja powinna być podejmowana w runtimie, więc trzeba chyba stworzyć wiele widoków (???). Przydatne to jest w przypadku Environmental mappingu. Jeżeli obiekt jest mocno oddalony, to nie ma co renderować mu mapy z dużą rozdzielczością.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Zwraca render target lub nullptr, jeżeli tworzenie nie powiodło się lub podano niepoprawne parametry. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a3d7f1140a862df6a9444f7bbbab929e3"></a>
 <div class="memitem">
 <div class="memproto">
@@ -349,7 +446,7 @@ static ID3D11PixelShader *&#160;</td><td class="memItemRight" valign="bottom"><a
 </table>
 </div><div class="memdoc">
 <p>Tworzy object <a class="el" href="class_d_x11_render_target.html" title="Implementacja render targetu w DirectX11. ">DX11RenderTarget</a> z bufora tylnego ekranu.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000040">Todo:</a></b></dt><dd>Wersja troszkę niewłaściwa. RenderTarget jest juz stworzony wcześniej przy zwykłej inicjalizacji <a class="el" href="class_d_x11_a_p_i_objects.html" title="Klasa przechowuje w zmiennych statycznych najważniejsze interfejsy DirectX11. ">DX11APIObjects</a>. Tutaj jest jedynie tworzony obiekt silnikowy, który potrafi to obsłużyć. Trzeba to zmienić, żeby całe tworzenie render targetu odbywało się tutaj.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000046">Todo:</a></b></dt><dd>Wersja troszkę niewłaściwa. RenderTarget jest już stworzony wcześniej przy zwykłej inicjalizacji <a class="el" href="class_d_x11_a_p_i_objects.html" title="Klasa przechowuje w zmiennych statycznych najważniejsze interfejsy DirectX11. ">DX11APIObjects</a>. Tutaj jest jedynie tworzony obiekt silnikowy, który potrafi to obsłużyć. Trzeba to zmienić, żeby całe tworzenie render targetu odbywało się tutaj.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Wewnętrzne tekstury render targetu są ustawione na nullptr. Oznacza to, że nie można ich użyć w innych obiektach. Zastanowić się czy to właściwe rozwiązanie i ewentualnie zmienić implementację.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Zwraca wskaźnik object <a class="el" href="class_d_x11_render_target.html" title="Implementacja render targetu w DirectX11. ">DX11RenderTarget</a>. </dd></dl>
 
@@ -362,7 +459,7 @@ static ID3D11PixelShader *&#160;</td><td class="memItemRight" valign="bottom"><a
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

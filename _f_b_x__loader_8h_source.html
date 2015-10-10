@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -120,7 +121,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="class_f_b_x__loader.html">FBX_loader</a>(<a class="code" href="class_models_manager.html">ModelsManager</a>* models_manager);</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    ~<a class="code" href="class_f_b_x__loader.html">FBX_loader</a>();</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="_i_loader_8h.html#aa53f4b0ff944a19f3c3cbb2c476a538d">LOADER_RESULT</a> load_mesh( <a class="code" href="class_model3_d_from_file.html">Model3DFromFile</a>* new_file_mesh, <span class="keyword">const</span> std::wstring&amp; name ) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="_i_loader_8h.html#af8f65444450e50ed3f0f0e73c1e2a296">LoaderResult</a> load_mesh( <a class="code" href="class_model3_d_from_file.html">Model3DFromFile</a>* new_file_mesh, <span class="keyword">const</span> std::wstring&amp; name ) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">bool</span> can_load(<span class="keyword">const</span> std::wstring&amp; name) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
@@ -138,18 +139,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;};</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
 <div class="ttc" id="namespace_direct_x_html"><div class="ttname"><a href="namespace_direct_x.html">DirectX</a></div></div>
-<div class="ttc" id="_i_loader_8h_html_aa53f4b0ff944a19f3c3cbb2c476a538d"><div class="ttname"><a href="_i_loader_8h.html#aa53f4b0ff944a19f3c3cbb2c476a538d">LOADER_RESULT</a></div><div class="ttdeci">LOADER_RESULT</div><div class="ttdoc">Wartości, możliwe do zwrócenia przez klasę Loader. </div><div class="ttdef"><b>Definition:</b> ILoader.h:21</div></div>
 <div class="ttc" id="class_models_manager_html"><div class="ttname"><a href="class_models_manager.html">ModelsManager</a></div><div class="ttdoc">Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dźwięków, które raczej zostaną oddelego...</div><div class="ttdef"><b>Definition:</b> ModelsManager.h:58</div></div>
 <div class="ttc" id="class_i_loader_html"><div class="ttname"><a href="class_i_loader.html">ILoader</a></div><div class="ttdoc">Interfejs klasy do wczytywania plików z modelami. Aby stworzyć klasę do wczytywania własnego formatu ...</div><div class="ttdef"><b>Definition:</b> ILoader.h:39</div></div>
+<div class="ttc" id="_i_loader_8h_html_af8f65444450e50ed3f0f0e73c1e2a296"><div class="ttname"><a href="_i_loader_8h.html#af8f65444450e50ed3f0f0e73c1e2a296">LoaderResult</a></div><div class="ttdeci">LoaderResult</div><div class="ttdoc">Wartości, możliwe do zwrócenia przez klasę Loader. </div><div class="ttdef"><b>Definition:</b> ILoader.h:21</div></div>
 <div class="ttc" id="class_model3_d_from_file_html"><div class="ttname"><a href="class_model3_d_from_file.html">Model3DFromFile</a></div><div class="ttdoc">Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ...</div><div class="ttdef"><b>Definition:</b> Model3DFromFile.h:99</div></div>
 <div class="ttc" id="class_f_b_x__loader_html"><div class="ttname"><a href="class_f_b_x__loader.html">FBX_loader</a></div><div class="ttdoc">Klasa służy do wczytywania plików w formacie Autodesk FBX. </div><div class="ttdef"><b>Definition:</b> FBX_loader.h:26</div></div>
 <div class="ttc" id="class_f_b_x__loader_html_a88ed2c4f32e84865ed13c66651df60a8"><div class="ttname"><a href="class_f_b_x__loader.html#a88ed2c4f32e84865ed13c66651df60a8">FBX_loader::cur_model</a></div><div class="ttdeci">Model3DFromFile * cur_model</div><div class="ttdoc">Na czas wczytywania zapisujemy sobie obiekt, do którego wczytujemy dane. </div><div class="ttdef"><b>Definition:</b> FBX_loader.h:31</div></div>
-<div class="ttc" id="struct_material_object_html"><div class="ttname"><a href="struct_material_object.html">MaterialObject</a></div><div class="ttdoc">Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:386</div></div>
+<div class="ttc" id="struct_material_object_html"><div class="ttname"><a href="struct_material_object.html">MaterialObject</a></div><div class="ttdoc">Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:441</div></div>
 <div class="ttc" id="_i_loader_8h_html"><div class="ttname"><a href="_i_loader_8h.html">ILoader.h</a></div><div class="ttdoc">Zawiera deklarację interfejsu dla loaderów plików z modelami. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

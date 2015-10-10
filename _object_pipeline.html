@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -84,23 +85,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><h1><a class="anchor" id="Contents"></a>
 Spis Treści</h1>
 <ul>
-<li><a class="el" href="_object_pipeline.html#Code">Kod</a></li>
+<li><a class="el" href="_main_loop.html#Code">Code</a></li>
 <li><a class="el" href="_object_pipeline.html#generalInfo">Ogólne informacje</a></li>
 <li><a class="el" href="_object_pipeline.html#pipelineScheme">Schemat potoku przetwarzania obiektów</a></li>
 </ul>
 <h2><a class="anchor" id="Code"></a>
-Kod</h2>
-<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="class_engine.html#aa5dc46f13a43784e7fc111b92f40f1d6">Engine::render_frame</a>()</div>
+Code</h2>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> Engine::render_frame()</div>
 <div class="line">{</div>
-<div class="line">    <span class="keywordtype">float</span> time_interval = <a class="code" href="class_engine_interface.html#ae30a81be91a8dd4648203d2329b8381c">time_manager</a>.<a class="code" href="class_time_manager.html#a18fd77e0b160cb67a0628e8a14a28028">onStartRenderFrame</a>();</div>
-<div class="line">    <span class="keywordtype">float</span> lag = <a class="code" href="class_engine_interface.html#ae30a81be91a8dd4648203d2329b8381c">time_manager</a>.<a class="code" href="class_time_manager.html#a16d658c26266b4bf3a9459fa4115d3e3">getTimeLag</a>();</div>
+<div class="line">    <span class="keywordtype">float</span> time_interval = time_manager.onStartRenderFrame();</div>
+<div class="line">    <span class="keywordtype">float</span> lag = time_manager.getTimeLag();</div>
 <div class="line"></div>
 <div class="line"></div>
-<div class="line">    <span class="keywordflow">while</span> ( lag &gt;= <a class="code" href="_engine_8cpp.html#af21c7ca8d255e6d2cb812ef0eb378f7f">FIXED_MOVE_UPDATE_INTERVAL</a> )</div>
+<div class="line">    <span class="keywordflow">while</span> ( lag &gt;= FIXED_MOVE_UPDATE_INTERVAL )</div>
 <div class="line">    {</div>
 <div class="line">        START_PERFORMANCE_CHECK(FRAME_COMPUTING_TIME)</div>
 <div class="line"></div>
-<div class="line">        <a class="code" href="class_engine_interface.html#adc3fc8d70a1d9b6770dfba033b5b4f37">ui_engine</a>-&gt;proceed_input( <a class="code" href="_engine_8cpp.html#af21c7ca8d255e6d2cb812ef0eb378f7f">FIXED_MOVE_UPDATE_INTERVAL</a> );</div>
+<div class="line">        <a class="code" href="class_engine_interface.html#adc3fc8d70a1d9b6770dfba033b5b4f37">ui_engine</a>-&gt;proceed_input( FIXED_MOVE_UPDATE_INTERVAL );</div>
 <div class="line">        <a class="code" href="class_engine_interface.html#a08574dc42032dfcbfb0e81b8fc32494d">physic_engine</a>-&gt;proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );</div>
 <div class="line">        <a class="code" href="class_engine_interface.html#a7e28bc7ca2a5a349bb3e2247b384a231">controllers_engine</a>-&gt;proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );</div>
 <div class="line">        <a class="code" href="class_engine_interface.html#ac3b3f666f060612a681cad2398760fb8">movement_engine</a>-&gt;proceed_movement( FIXED_MOVE_UPDATE_INTERVAL );</div>
@@ -109,7 +110,7 @@ Kod</h2>
 <div class="line">        <a class="code" href="class_engine_interface.html#ab0d767baa0f337a5053323af4b43a5f8">fable_engine</a>-&gt;proceed_fable( FIXED_MOVE_UPDATE_INTERVAL );</div>
 <div class="line"></div>
 <div class="line">        lag -= FIXED_MOVE_UPDATE_INTERVAL;</div>
-<div class="line">        <a class="code" href="class_engine_interface.html#ae30a81be91a8dd4648203d2329b8381c">time_manager</a>.updateTimeLag( lag );</div>
+<div class="line">        time_manager.updateTimeLag( lag );</div>
 <div class="line"></div>
 <div class="line">        END_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )</div>
 <div class="line">    }</div>
@@ -137,7 +138,7 @@ Kod</h2>
 <div class="line">}</div>
 </div><!-- fragment --><h2><a class="anchor" id="generalInfo"></a>
 Ogólne informacje</h2>
-<p>Za potok przetwarzania obiektów odpowiada funkcja <a class="el" href="class_engine.html#aa5dc46f13a43784e7fc111b92f40f1d6" title="To tutaj dzieją się wszystkie rzeczy, które są wywoływane co każdą klatkę. ">Engine::render_frame</a>. Funkcja ta jest wywoływana w pętli głównej silnika, konkretniej w funkcji <a class="el" href="class_engine.html#a28609462aae6189be2b5ed4d8ecfbae5" title="Główna pętla programu. Pętla główna silnika. ">Engine::main_loop</a>, w każdym możliwym momencie, kiedy nie są przetwarzane komunikaty z kolejki komunikatów WinApi.</p>
+<p>Za potok przetwarzania obiektów odpowiada funkcja Engine::render_frame. Funkcja ta jest wywoływana w pętli głównej silnika, konkretniej w funkcji Engine::main_loop, w każdym możliwym momencie, kiedy nie są przetwarzane komunikaty z kolejki komunikatów WinApi.</p>
 <p>Funkcja wywołuje w odpowiedniej kolejności poszczególne moduły silnika. Moduły odpowiedzialne za ruch obiektów na scenie i ich interakcje wywoływane są ze stałą częstotliwością określoną przez stałą FIXED_MOVE_UPDATE_INTERVAL. Oznacza to, że w niektórych obiegach pętli mogą nie zostać wywołane, jeżeli odległość w czasie od odstatniego wywołania jest za mała. Taka architektura ma na celu spowodowanie, żeby gra działała tak samo zarówno na szybkim sprzęcie jak i na wolnym. Zauważmy, że jedno przesunięcie obiektów po czasie t, nie jest równoważne dwóm przesunięciom po czasie t/2. Dzieje się tak ze względu na niedokładność obliczeń wykonywanych na floatach. O ile w tym przypadku różnice nie muszą być duże, to różnica zachowania sztucznej inteligencji w tych dwóch sytuacjach jest nie do przewidzenia. Za pomocą tego samego mechanizmu realizowane jest pauzowanie gry. Wtedy czas nie przyrasta, więc odpowiednie bloki nie zostają wywołane.</p>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated:</a></b></dt><dd>Moduły silnika odpowiedzialne za renderowanie obiektów, GUI oraz przechwytywanie urządzeń wejściowych są wywoływane w każdym obiegu pętli. Obsługa eventów wywoływana jest według schematu dwukrotnie. Jest to konieczne, gdyż chcemy obsługiwać eventy także wtedy, kiedy jesteśmy w trybie pauzy. Nie możemy zabrać obsługi eventów z bloku wykonywanego warunkowo, ponieważ po każdym przeliczeniu położeń i parametrów obiektów, mogą zostać wygenerowane nowe zdarzenia, które trzeba obsłużyć. Blok może zostać wtedy ponownie wykonany, z powodu opóźnienia. W takiej sytuacji obsługa eventów poza pętlą odbyłaby się za późno. Z tych względów musimy wywołać obsługę zarówno po każdym obiegu bloku warunkowego jak i po wyjściu z niego. Nie powoduje to żadnego spowolnienia. Nadmiarowa procedura natrafia w takim wypadku na pustą kolejkę eventów i natychmiast powraca.</dd></dl>
 <p>Jak widać ze schematu obsługa kontrolerów podzielona jest na dwie części: kontrolery pre i kontrolery post. Dla niektórych grup kotrolerów wymagane jest, aby pozycje pozostałych obiektów dynamicznych był już znane, inne mają wpływ na późniejsze przeliczenie pozycji, dlatego muszą być wywołane wcześniej. Aby przeczytać więcej o tym temacie odsyłam do <a class="el" href="_controllers.html#PrePostControllers">Kotrolery pre i post</a>.</p>
@@ -151,7 +152,7 @@ Schemat potoku przetwarzania obiektów</h2>
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

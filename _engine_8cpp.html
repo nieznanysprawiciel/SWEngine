@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -87,8 +88,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">Engine.cpp File Reference</div>  </div>
 </div><!--header-->
@@ -98,27 +97,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;EngineCore/stdafx.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="_engine_8h_source.html">Engine.h</a>&quot;</code><br />
-<code>#include &quot;EngineCore/ControllersEngine/ControllersEngine.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="_resources_factory_8h_source.html">GraphicAPI/ResourcesFactory.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_performance_check_8h_source.html">EngineCore/EngineHelpers/PerformanceCheck.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_event_8h_source.html">EngineCore/EventsManager/Event.h</a>&quot;</code><br />
+<code>#include &quot;EngineCore/CollisionEngine/CollisionEngine.h&quot;</code><br />
+<code>#include &quot;EngineCore/ControllersEngine/ControllersEngine.h&quot;</code><br />
+<code>#include &quot;EngineCore/GamePlay/FableEngine.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="_display_engine_8h_source.html">EngineCore/DisplayEngine/DisplayEngine.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_models_manager_8h_source.html">EngineCore/ModelsManager/ModelsManager.h</a>&quot;</code><br />
+<code>#include &quot;EngineCore/PhysicEngine/PhysicEngine.h&quot;</code><br />
+<code>#include &quot;EngineCore/PhysicEngine/MovementEngine.h&quot;</code><br />
+<code>#include &quot;EngineCore/SoundEngine/SoundEngine.h&quot;</code><br />
+<code>#include &quot;EngineCore/UIEngine/UI_Engine.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="_i_game_play_8h_source.html">EngineCore/GamePlay/IGamePlay.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="memory__leaks_8h_source.html">Common/memory_leaks.h</a>&quot;</code><br />
-</div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:af21c7ca8d255e6d2cb812ef0eb378f7f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af21c7ca8d255e6d2cb812ef0eb378f7f"></a>
-const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_engine_8cpp.html#af21c7ca8d255e6d2cb812ef0eb378f7f">FIXED_MOVE_UPDATE_INTERVAL</a> = ((float)1 / (float)56)</td></tr>
-<tr class="memdesc:af21c7ca8d255e6d2cb812ef0eb378f7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interwał, po którym następuje kolejne przeliczenie położeń obiektów (w sekundach). <br /></td></tr>
-<tr class="separator:af21c7ca8d255e6d2cb812ef0eb378f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+</div><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Plik zawiera definicje metod klasy <a class="el" href="class_engine.html" title="Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika. W aplikacji powinien...">Engine</a> dotyczących inicjacji i zwalniania DirectXa oraz główne funkcje do renderingu. </p>
 <dl class="section author"><dt>Author</dt><dd>nieznanysprawiciel </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Plik jest częścią silnika graficznego SWEngine. </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

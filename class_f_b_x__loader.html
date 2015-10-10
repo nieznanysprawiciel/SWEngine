@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -115,9 +116,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_b_x__loader.html#a75098593ef7bc7ef5ebf25bfa6964700">FBX_loader</a> (<a class="el" href="class_models_manager.html">ModelsManager</a> *models_manager)</td></tr>
 <tr class="memdesc:a75098593ef7bc7ef5ebf25bfa6964700"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kontruktr inicjuje obiekty FBX SDK, konieczne do wczytania modelu. <br /></td></tr>
 <tr class="separator:a75098593ef7bc7ef5ebf25bfa6964700"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab71c69016935fa5f2e859afa596041a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_i_loader_8h.html#aa53f4b0ff944a19f3c3cbb2c476a538d">LOADER_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_b_x__loader.html#ab71c69016935fa5f2e859afa596041a2">load_mesh</a> (<a class="el" href="class_model3_d_from_file.html">Model3DFromFile</a> *new_file_mesh, const std::wstring &amp;name) override</td></tr>
-<tr class="memdesc:ab71c69016935fa5f2e859afa596041a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ma za zadanie wczytać podany plik.  <a href="#ab71c69016935fa5f2e859afa596041a2">More...</a><br /></td></tr>
-<tr class="separator:ab71c69016935fa5f2e859afa596041a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13d5e95b1048dfd28d16cad8c520e836"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_i_loader_8h.html#af8f65444450e50ed3f0f0e73c1e2a296">LoaderResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_b_x__loader.html#a13d5e95b1048dfd28d16cad8c520e836">load_mesh</a> (<a class="el" href="class_model3_d_from_file.html">Model3DFromFile</a> *new_file_mesh, const std::wstring &amp;name) override</td></tr>
+<tr class="memdesc:a13d5e95b1048dfd28d16cad8c520e836"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ma za zadanie wczytać podany plik.  <a href="#a13d5e95b1048dfd28d16cad8c520e836">More...</a><br /></td></tr>
+<tr class="separator:a13d5e95b1048dfd28d16cad8c520e836"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0096de300d4510b5c008ea7bbb4b967a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_b_x__loader.html#a0096de300d4510b5c008ea7bbb4b967a">can_load</a> (const std::wstring &amp;name) override</td></tr>
 <tr class="memdesc:a0096de300d4510b5c008ea7bbb4b967a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sprawdza czy umie wczytać podany plik. Funkcja robi to na podstawie rozszerzenia pliku.  <a href="#a0096de300d4510b5c008ea7bbb4b967a">More...</a><br /></td></tr>
 <tr class="separator:a0096de300d4510b5c008ea7bbb4b967a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -256,7 +257,7 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab71c69016935fa5f2e859afa596041a2"></a>
+<a class="anchor" id="a13d5e95b1048dfd28d16cad8c520e836"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -264,7 +265,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="_i_loader_8h.html#aa53f4b0ff944a19f3c3cbb2c476a538d">LOADER_RESULT</a> FBX_loader::load_mesh </td>
+          <td class="memname"><a class="el" href="_i_loader_8h.html#af8f65444450e50ed3f0f0e73c1e2a296">LoaderResult</a> FBX_loader::load_mesh </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_model3_d_from_file.html">Model3DFromFile</a> *&#160;</td>
           <td class="paramname"><em>new_file_mesh</em>, </td>
@@ -298,7 +299,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Zwraca wynik wczytywania. </dd></dl>
 
-<p>Implements <a class="el" href="class_i_loader.html#af861187a2fc5cb1f697535e754418c17">ILoader</a>.</p>
+<p>Implements <a class="el" href="class_i_loader.html#a54c7dd9d86512210a457720a41b895e2">ILoader</a>.</p>
 
 </div>
 </div>
@@ -423,7 +424,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

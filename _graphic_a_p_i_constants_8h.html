@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -103,6 +104,7 @@ Enumerations</h2></td></tr>
 <a class="el" href="_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1add9612467790276a699be1a4f087394d">ResourceUsage::RESOURCE_USAGE_STATIC</a> = 2, 
 <a class="el" href="_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1ad948407f76639941d6bec76e4df72fbf">ResourceUsage::RESOURCE_USAGE_STAGING</a> = 3
  }</td></tr>
+<tr class="memdesc:a397e45c96a8884109d4aad7d3255cab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specyfikuje typ dostępu do pamięci danego zasobu.  <a href="_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1">More...</a><br /></td></tr>
 <tr class="separator:a397e45c96a8884109d4aad7d3255cab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a940e3da6a9b57aae3de0b050e2a7af5e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_graphic_a_p_i_constants_8h.html#a940e3da6a9b57aae3de0b050e2a7af5e">PrimitiveTopology</a> { <br />
 &#160;&#160;<b>PRIMITIVE_TOPOLOGY_POINTLIST</b> = 0, 
@@ -118,6 +120,7 @@ Enumerations</h2></td></tr>
 &#160;&#160;<b>PRIMITIVE_TOPOLOGY_TRIANGLESTRIP_ADJ</b> = 8
 <br />
  }</td></tr>
+<tr class="memdesc:a940e3da6a9b57aae3de0b050e2a7af5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Topologia wierzchołków.  <a href="_graphic_a_p_i_constants_8h.html#a940e3da6a9b57aae3de0b050e2a7af5e">More...</a><br /></td></tr>
 <tr class="separator:a940e3da6a9b57aae3de0b050e2a7af5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b24413c03a6404267f30673d8f5015b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_graphic_a_p_i_constants_8h.html#a4b24413c03a6404267f30673d8f5015b">ResourceBinding</a> { <br />
 &#160;&#160;<b>BIND_RESOURCE_VERTEX_BUFFER</b> = 0x0L, 
@@ -134,7 +137,31 @@ Enumerations</h2></td></tr>
 <b>BIND_RESOURCE_VIDEO_ENCODER</b> = 0x9L
 <br />
  }</td></tr>
+<tr class="memdesc:a4b24413c03a6404267f30673d8f5015b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Określa jak będzie używany dany zasób w potoku karty graficznej.  <a href="_graphic_a_p_i_constants_8h.html#a4b24413c03a6404267f30673d8f5015b">More...</a><br /></td></tr>
 <tr class="separator:a4b24413c03a6404267f30673d8f5015b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65468556d79304b3a4bfc464cc12e549"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_graphic_a_p_i_constants_8h.html#a65468556d79304b3a4bfc464cc12e549">TextureType</a> { <br />
+&#160;&#160;<b>TEXTURE_TYPE_UNKNOW</b> = 0, 
+<b>TEXTURE_TYPE_BUFFER</b> = 1, 
+<b>TEXTURE_TYPE_TEXTURE1D</b> = 2, 
+<b>TEXTURE_TYPE_TEXTURE1D_ARRAY</b> = 3, 
+<br />
+&#160;&#160;<b>TEXTURE_TYPE_TEXTURE2D</b> = 4, 
+<b>TEXTURE_TYPE_TEXTURE2D_ARRAY</b> = 5, 
+<b>TEXTURE_TYPE_TEXTURE2D_MULTISAMPLE</b> = 6, 
+<b>TEXTURE_TYPE_TEXTURE2D_MULTISAMPLE_ARRAY</b> = 7, 
+<br />
+&#160;&#160;<b>TEXTURE_TYPE_TEXTURE3D</b> = 8
+<br />
+ }</td></tr>
+<tr class="memdesc:a65468556d79304b3a4bfc464cc12e549"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definiuje typ tekstury.  <a href="_graphic_a_p_i_constants_8h.html#a65468556d79304b3a4bfc464cc12e549">More...</a><br /></td></tr>
+<tr class="separator:a65468556d79304b3a4bfc464cc12e549"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a951fa372102256be9a300400cc4d417d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_graphic_a_p_i_constants_8h.html#a951fa372102256be9a300400cc4d417d">DepthStencilFormat</a> { <b>DEPTH_STENCIL_FORMAT_D32_FLOAT_S8X24_UINT</b> = 1, 
+<b>DEPTH_STENCIL_FORMAT_D32_FLOAT</b> = 2, 
+<b>DEPTH_STENCIL_FORMAT_D24_UNORM_S8_UINT</b> = 3, 
+<b>DEPTH_STENCIL_FORMAT_D16_UNORM</b> = 4
+ }</td></tr>
+<tr class="memdesc:a951fa372102256be9a300400cc4d417d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typy dostępne dla bufora głębokości.  <a href="_graphic_a_p_i_constants_8h.html#a951fa372102256be9a300400cc4d417d">More...</a><br /></td></tr>
+<tr class="separator:a951fa372102256be9a300400cc4d417d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9e15cb1b0d041b19045d8db37e38f5b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_graphic_a_p_i_constants_8h.html#af9e15cb1b0d041b19045d8db37e38f5b">ResourceFormat</a> { <br />
 &#160;&#160;<b>RESOURCE_FORMAT_UNKNOWN</b> = 0, 
 <b>RESOURCE_FORMAT_R32G32B32A32_TYPELESS</b> = 1, 
@@ -286,12 +313,36 @@ Enumerations</h2></td></tr>
 <b>RESOURCE_FORMAT_V408</b> = 132
 <br />
  }</td></tr>
+<tr class="memdesc:af9e15cb1b0d041b19045d8db37e38f5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specyfikuje format tekstury bądź innego zasobu.  <a href="_graphic_a_p_i_constants_8h.html#af9e15cb1b0d041b19045d8db37e38f5b">More...</a><br /></td></tr>
 <tr class="separator:af9e15cb1b0d041b19045d8db37e38f5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>nieznanysprawiciel </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Plik jest częścią silnika graficznego SWEngine. </dd></dl>
 </div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="a951fa372102256be9a300400cc4d417d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="_graphic_a_p_i_constants_8h.html#a951fa372102256be9a300400cc4d417d">DepthStencilFormat</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Typy dostępne dla bufora głębokości. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___graphic_a_p_i.html">GraphicAPI</a> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a940e3da6a9b57aae3de0b050e2a7af5e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -309,7 +360,9 @@ Enumerations</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
 <p>Topologia wierzchołków. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___graphic_a_p_i.html">GraphicAPI</a> </dd></dl>
 
 </div>
 </div>
@@ -322,8 +375,10 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Określa jak będzie używany dany zasób w potoku karty graficznej.</p>
+
+<p>Określa jak będzie używany dany zasób w potoku karty graficznej. </p>
 <dl class="section attention"><dt>Attention</dt><dd>DirectX pozwala na łączenie tych stałych jak flag, ale w silniku można wybrać tylko jedną opcję. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___graphic_a_p_i.html">GraphicAPI</a> </dd></dl>
 
 </div>
 </div>
@@ -344,7 +399,9 @@ Enumerations</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
 <p>Specyfikuje format tekstury bądź innego zasobu. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___graphic_a_p_i.html">GraphicAPI</a> </dd></dl>
 
 </div>
 </div>
@@ -365,7 +422,9 @@ Enumerations</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
 <p>Specyfikuje typ dostępu do pamięci danego zasobu. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___graphic_a_p_i.html">GraphicAPI</a> </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a397e45c96a8884109d4aad7d3255cab1a7fa97eb8e3f1da664c84a27baf3956e4"></a>RESOURCE_USAGE_DEFAULT&#160;</td><td class="fielddoc">
 <p>Pozawala GPU na zapis i odczyt. </p>
@@ -383,10 +442,33 @@ Enumerations</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a65468556d79304b3a4bfc464cc12e549"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="_graphic_a_p_i_constants_8h.html#a65468556d79304b3a4bfc464cc12e549">TextureType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definiuje typ tekstury. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group___graphic_a_p_i.html">GraphicAPI</a> </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

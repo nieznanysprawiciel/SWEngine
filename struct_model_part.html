@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -121,14 +122,14 @@ Public Attributes</h2></td></tr>
 <p>Meshe są przechowywane w częściach, ponieważ do różnych wierzchołków mogą być przypisane różne materiały, tekstury i inne elementy. Ta struktura zawiera wskaźniki na te elementy. </p>
 <p>Struktura nie zawiera bufora wierzchołków ani bufora indeksów. Są one przechowywane zewnętrznie w klasie <a class="el" href="class_model3_d_from_file.html" title="Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ...">Model3DFromFile</a> lub Dynamic_mesh_object i na jeden mesh przypada tylko jeden bufor wierzchołków i maksymalnie jeden bufor indeksów (może go nie być).</p>
 <p>Obecnośc bufora indeksów nie oznacza, że cały mesh jest wyświetlany w trybie indeksowanym. Mozliwe jest mieszanie trybów. Tryb odnosi się więc nie do całego mesha, a pojednyczego obiektu <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a>.</p>
-<p>Tablica texture zawiera wskaźniki na obiekty tekstur, których maksymalna liczba wynosi ENGINE_MAX_TEXTURES. Aby obsłużyć wszystkie tekstury jakie mogą byc przypisane do obiektu, należy podać mu odpowiedni shader, który umie to zrobić. Znaczenie poszczególnych pól tablicy tekstur jest opisywane przez enumerację TEXTURES_TYPES i w taki sposób wykorzystują je domyślne shadery. </p>
+<p>Tablica texture zawiera wskaźniki na obiekty tekstur, których maksymalna liczba wynosi ENGINE_MAX_TEXTURES. Aby obsłużyć wszystkie tekstury jakie mogą byc przypisane do obiektu, należy podać mu odpowiedni shader, który umie to zrobić. Znaczenie poszczególnych pól tablicy tekstur jest opisywane przez enumerację TextureTypes i w taki sposób wykorzystują je domyślne shadery. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>D:/ProgramyVS/SWEngine/EngineCode/GraphicAPI/<a class="el" href="_mesh_resources_8h_source.html">MeshResources.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

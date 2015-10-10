@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.008</span>
+   &#160;<span id="projectnumber">Wersja 1.009</span>
    </div>
   </td>
  </tr>
@@ -41,6 +41,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -92,9 +93,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="class_d_x11_auxiliary_objects.html">DX11AuxiliaryObjects</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html#acb9d00829fd558bf0200103ca63b8391">begin_scene</a>()</td><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_d_x11_auxiliary_objects.html#a8658e0dd754267c74c00885f242baa5b">const_per_frame</a></td><td class="entry"><a class="el" href="class_d_x11_auxiliary_objects.html">DX11AuxiliaryObjects</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_d_x11_auxiliary_objects.html#a9f8730812833a98a083ba50fa46864f8">const_per_mesh</a></td><td class="entry"><a class="el" href="class_d_x11_auxiliary_objects.html">DX11AuxiliaryObjects</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html#af6104dbee4ae752a6d81bea7bb2c9ad1">back_buffer</a></td><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html#acb9d00829fd558bf0200103ca63b8391">begin_scene</a>()</td><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_d_x11_auxiliary_objects.html#a8658e0dd754267c74c00885f242baa5b">const_per_frame</a></td><td class="entry"><a class="el" href="class_d_x11_auxiliary_objects.html">DX11AuxiliaryObjects</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_d_x11_auxiliary_objects.html#a9f8730812833a98a083ba50fa46864f8">const_per_mesh</a></td><td class="entry"><a class="el" href="class_d_x11_auxiliary_objects.html">DX11AuxiliaryObjects</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html#a3645b83f2b6f7bbbad8351ff736f9c82">debug_interface</a></td><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html#a8a7921bef03f64b14ede79b35e59a82f">default_pixel_shader</a></td><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html#a7862fce35328422c8d8fd2d4f3624fd8">default_sampler</a></td><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html#a496e279f00f087a0cc8c01d29faa3d01">default_vertex_layout</a></td><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
@@ -135,12 +138,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <tr class="even"><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html#a74c2526f56b0cc0e4786b209ced5b5a0">set_viewport_desc</a>(const D3D11_VIEWPORT &amp;view_port_desc)</td><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>set_window_resolution</b>(unsigned int window_width, unsigned int window_height) (defined in <a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a>)</td><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html#ade44f2410db7ffaf4d10778aaf13b008">swap_chain</a></td><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html#ab845c937be718500a3803f501764251e">z_buffer_view</a></td><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~DX11APIObjects</b>()=default (defined in <a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a>)</td><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html#a08e6440d615b9025e7f6a7a7f37a0a9e">z_buffer</a></td><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html#ab845c937be718500a3803f501764251e">z_buffer_view</a></td><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>~DX11APIObjects</b>()=default (defined in <a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a>)</td><td class="entry"><a class="el" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 00:00:14 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

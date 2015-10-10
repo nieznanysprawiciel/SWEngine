@@ -13,8 +13,10 @@ var searchData=
   ['update_5fmouse_5fdevice',['update_mouse_device',['../class_input_abstraction_layer.html#a1a66bf71869a1c512213c985651eb973',1,'InputAbstractionLayer']]],
   ['update_5fsky_5fdome',['update_sky_dome',['../class_hosek_sky_dome.html#a25c09a76d30d1f44eac12e6dcd1ae48b',1,'HosekSkyDome']]],
   ['update_5fvertex_5fbuffer',['update_vertex_buffer',['../class_sky_dome.html#af011c5a6f464823210bec63b2fb6f276',1,'SkyDome']]],
+  ['updatescene',['UpdateScene',['../class_engine.html#ae99207c5884875b9f76a9831033195a7',1,'Engine::UpdateScene()'],['../class_editor_plugin_1_1_engine_wrapper.html#abcc994ad754e7061c4b155305229182b',1,'EditorPlugin::EngineWrapper::UpdateScene()']]],
   ['updatesubresource',['UpdateSubresource',['../class_d_x11_renderer.html#a3bc908f890415764195e67a4b4854e74',1,'DX11Renderer']]],
-  ['updatetimelag',['updateTimeLag',['../class_time_manager.html#aeeac4ee3aa45503f0a1b5650337202b0',1,'TimeManager']]],
+  ['updatetimelag',['UpdateTimeLag',['../class_time_manager.html#a4a2c535a3c6e5c60214740b2202eae0e',1,'TimeManager']]],
+  ['usage',['usage',['../struct_render_target_descriptor.html#a1818064ef44dedb2afe7f0b10386302b',1,'RenderTargetDescriptor']]],
   ['use_5fas_5fdeferred',['USE_AS_DEFERRED',['../_i_renderer_8h.html#a638079122796f5eb96dac10b81adf650ad6701dbd766f77bb610540d9b59b9c01',1,'IRenderer.h']]],
   ['use_5fas_5fimmediate',['USE_AS_IMMEDIATE',['../_i_renderer_8h.html#a638079122796f5eb96dac10b81adf650aa7f4b1c5be397e3eb3262482ca1fae15',1,'IRenderer.h']]],
   ['use_5findex_5fbuf',['use_index_buf',['../struct_mesh_part_object.html#ad5b5b3a06d59f0cd57ec4ed68d013864',1,'MeshPartObject']]]

@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['d3dimageex',['D3DImageEx',['../class_system_1_1_windows_1_1_interop_1_1_d3_d_image_ex.html',1,'System::Windows::Interop']]],
+  ['debug_5finterface',['debug_interface',['../class_d_x11_a_p_i_objects.html#a3645b83f2b6f7bbbad8351ff736f9c82',1,'DX11APIObjects']]],
   ['default_5fmaterial_5fstring',['DEFAULT_MATERIAL_STRING',['../_default_assets_8h.html#a70a368b49a598403afb1093f87c7eeb8',1,'DefaultAssets.h']]],
   ['default_5fpixel_5fshader',['default_pixel_shader',['../class_d_x11_a_p_i_objects.html#a8a7921bef03f64b14ede79b35e59a82f',1,'DX11APIObjects']]],
   ['default_5fpixel_5fshader_5fentry',['DEFAULT_PIXEL_SHADER_ENTRY',['../_default_assets_8h.html#a567c5d0723d29d986134332ca6eaf037',1,'DefaultAssets.h']]],
@@ -27,6 +29,7 @@ var searchData=
   ['depth_5fdisabled',['depth_disabled',['../class_d_x11_auxiliary_objects.html#a836a56c277d60b0b8ccc5fa3249ae8c8',1,'DX11AuxiliaryObjects']]],
   ['depth_5fenabled',['depth_enabled',['../class_d_x11_auxiliary_objects.html#a9515d8b74f6336e8c3ce36222d675036',1,'DX11AuxiliaryObjects']]],
   ['depthbufferenable',['DepthBufferEnable',['../class_d_x11_renderer.html#aea99e069a22e4f9ef82574d33acb11dc',1,'DX11Renderer']]],
+  ['depthstencilformat',['depthStencilFormat',['../struct_render_target_descriptor.html#a8be5595492130ca7271751f9b03dbcca',1,'RenderTargetDescriptor::depthStencilFormat()'],['../_graphic_a_p_i_constants_8h.html#a951fa372102256be9a300400cc4d417d',1,'DepthStencilFormat():&#160;GraphicAPIConstants.h']]],
   ['device',['device',['../class_d_x11_a_p_i_objects.html#ab484f6bea91f06b996a32d73fbb80cdc',1,'DX11APIObjects']]],
   ['device_5fcontext',['device_context',['../class_d_x11_a_p_i_objects.html#a28bcb8170c5ed0495cc42bb22b3d300f',1,'DX11APIObjects']]],
   ['device_5fids',['DEVICE_IDs',['../_input_abstraction_layer_8h.html#a8c5c07e0f92a0223fd6beb6870dff2d5',1,'InputAbstractionLayer.h']]],
@@ -51,7 +54,6 @@ var searchData=
   ['draw_5fclipped',['draw_clipped',['../class_x_g_u_i_1_1_control.html#a24897cdc5acae18d6a4c386a1e847d93',1,'XGUI::Control']]],
   ['draw_5fgui',['draw_GUI',['../class_u_i___engine.html#a3af17bfbc4207669a0e6c1eb86475cc1',1,'UI_Engine']]],
   ['drawindexed',['DrawIndexed',['../class_d_x11_renderer.html#a699564e0e78c74dfb9feea9ea9db447a',1,'DX11Renderer']]],
-  ['dx11',['DX11',['../macros__switches_8h.html#a8c6b4b5871cd349dbbca041535f8ee45',1,'macros_switches.h']]],
   ['dx11_5fdefault_5fvertex_5flayout',['DX11_DEFAULT_VERTEX_LAYOUT',['../_d_x11_a_p_i_objects_8h.html#a63a1087679bdf9e7400ab87314e5f289',1,'DX11APIObjects.h']]],
   ['dx11_5fdevice_5fnot_5finitialized',['DX11_DEVICE_NOT_INITIALIZED',['../_d_x11_a_p_i_objects_8h.html#adf3c7a5252c238e7999bec1006d9953eaec867613e3754136310d744c23a23816',1,'DX11APIObjects.h']]],
   ['dx11_5fdevicecontext_5fnot_5finitialized',['DX11_DEVICECONTEXT_NOT_INITIALIZED',['../_d_x11_a_p_i_objects_8h.html#adf3c7a5252c238e7999bec1006d9953eab6c2f7793cf74bee4d098ee9c0fb0c2c',1,'DX11APIObjects.h']]],
