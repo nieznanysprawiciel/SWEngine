@@ -12,7 +12,7 @@
     <EngineLibName>SWEngine_$(Configuration)_$(PlatformShortName)</EngineLibName>
     <CommonDir>$(EngineSourceDir)Common\</CommonDir>
     <BuildFolder>$(EngineShortcut)_$(Configuration)_$(PlatformShortName)</BuildFolder>
-    <EngineVersion>1.008</EngineVersion>
+    <EngineVersion>1.009</EngineVersion>
     <EditorReleaseDir>$(RootDir)EditorRelease\</EditorReleaseDir>
   </PropertyGroup>
   <PropertyGroup>
