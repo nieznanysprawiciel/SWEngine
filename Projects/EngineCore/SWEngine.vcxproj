@@ -197,6 +197,7 @@
     <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\ConstantBuffersFormat.h" />
     <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorObjects.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Features\SkyDome.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\Engine.h" />
     <ClInclude Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.h" />
@@ -237,6 +238,7 @@
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\ActorObjects.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Engine.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\EngineInterface.cpp" />

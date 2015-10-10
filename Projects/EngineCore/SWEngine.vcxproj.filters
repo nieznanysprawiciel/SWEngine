@@ -170,6 +170,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\EngineInterface.h">
       <Filter>EngineCore\MainEngine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.h">
+      <Filter>EngineCore\DisplayEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -252,6 +255,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\ActorObjects.cpp">
       <Filter>EngineCore\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.cpp">
+      <Filter>EngineCore\DisplayEngine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

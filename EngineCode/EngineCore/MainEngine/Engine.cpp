@@ -382,6 +382,8 @@ void* Engine::GetRenderTargetHandle( uint16 width, uint16 height )
 
 	RenderTargetObject* renderTarget = models_manager->CreateRenderTarget( EDITOR_RENDERTARGET_STRING, descriptor );
 	display_engine->SetMainRenderTarget( renderTarget );
+	display_engine->SetProjectionMatrix( XMConvertToRadians( 45 ), (float)width / (float)height, 1, 100000 );
+
 	return m_graphicInitializer->GetRenderTargetHandle( renderTarget );
 }
 

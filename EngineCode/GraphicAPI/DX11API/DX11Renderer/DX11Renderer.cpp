@@ -268,5 +268,10 @@ void DX11Renderer::BeginScene( RenderTargetObject* mainRenderTarget )
 	// Ustawienie aktualnego render targetu
 	///@todo Render target powinien byæ ustawiany gdzie indziej. To jest tymczasowe rozwi¹zanie.
 	device_context->OMSetRenderTargets( 1, &renderTargetView, depthStencilView );
+	
+	auto viewport = get_viewport_desc();
+	viewport.Width = renderTarget->GetWidth();
+	viewport.Height = renderTarget->GetHeight();
+	device_context->RSSetViewports( 1, &viewport );
 }
 
