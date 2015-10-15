@@ -5,15 +5,17 @@
 
 @brief Plik zawiera deklaracjê klasy EngineInterface.*/
 
-#include <queue>
 #include "EngineCore/MainEngine/TimeManager.h"
+#include "Common/Multithreading/SpinLock.h"
 
-
+#include <queue>
+#include <string>
 
 
 class ControllersEngine;
 struct IndexPrediction;
 class Event;
+class Engine;
 
 class ControllersEngine;
 class ModelsManager;
@@ -27,6 +29,13 @@ class UI_Engine;
 class Object;
 class IGraphicAPIInitializer;
 
+class Model3DFromFile;
+struct MaterialObject;
+class PixelShaderObject;
+class VertexShaderObject;
+class TextureObject;
+class RenderTargetObject;
+
 
 /**@brief Klasa jest interfejsem dla u¿ytkownika u¿ytkuj¹cego silnik.
 
@@ -37,12 +46,11 @@ Wszystkie funkcje jakie powinien mieæ dostêpne nale¿y deklarowaæ w tej klasie w 
 Wszystkie pozosta³e funkcje powinny siê znaleŸæ w deklaracji klasy Engine.
 Wszystkie zmienne silnika powinny byæ deklarowane na tym poziomie, aby równie¿ metody tej klasy dostêpne
 dla u¿ytkownika mia³y do nich dostêp.
+
+Funkcje s¹ pogrupowane tematycznie przy pomocy klas zagnie¿d¿onych.
 */
 class EngineInterface
 {
-	// Dziedziczymy z DX11_constant_buffers_container a nie z DX11_interfaces_container, poniewa¿
-	// musimy wywo³aæ funkcjê release_DirectX z klasy pochodnej. Inaczej nie zwolnimy tamtych obiektów wogóle.
-
 protected:
 	//directX and windows variables
 	bool						m_engineReady;			///<Je¿eli zmienna jest niepoprawna, nie renderujemy
@@ -66,6 +74,16 @@ protected:
 	SoundEngine*				sound_engine;			///<Zarz¹dza muzyk¹ i dŸwiêkami
 	UI_Engine*					ui_engine;				///<Interfejs u¿ytkownika (tak¿e graficzny)
 
+	/**@brief SpinLock do synchronizacji komunikacji miêdzy GamePlayem a silnikiem.
+	
+	SpinLock wykorzystuje aktywne oczekiwanie w dostêpie do zasobów. Z za³o¿enia operacje modyfikacji stanu silnika
+	zachodz¹ rzadko i nie powinny byæ d³ugie. Lepiej jest poczekaæ w pêtli ni¿ zawieszaæ w¹tek za poœrednictwem
+	systemu operacyjnego.
+
+	Istnieje tylko jeden SpinLock, ale je¿eli pojawi sie mo¿liwoœæ logicznego wydzielenia niezale¿nych od siebie
+	zadañ, to trzeba rozwa¿yæ dodanie kolejnych SpinLocków.*/
+	SpinLock					m_engineAccess;
+
 	//Objects
 	//std::vector<IndexPrediction>		index_predictor;
 
@@ -81,7 +99,42 @@ protected:
 
 	//FableEngine - ta klasa jest dostêpna bezpoœrednio z IGamePlay
 
-public:
-
+private:
+	class Assets;
+	class Actors;
 
 };
+
+
+class EngineInterface::Actors
+{
+private:
+	Engine*			m_engine;
+protected:
+public:
+	Actors( Engine* engine )
+		: m_engine( engine )
+	{}
+	~Actors() = default;
+public:
+
+};
+
+
+
+class EngineInterface::Assets
+{
+private:
+	Engine*			m_engine;
+protected:
+public:
+	Assets( Engine* engine )
+		: m_engine( engine )
+	{}
+	~Assets() = default;
+public:
+	Model3DFromFile*		GetModel				( const std::wstring& name );
+	VertexShaderObject*		GetVertexShader			( const std::wstring& name );
+
+};
+

@@ -57,6 +57,9 @@
     <Filter Include="EngineCore\Actors">
       <UniqueIdentifier>{6569d299-6302-4020-9454-f49322687b3b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\Multithreading">
+      <UniqueIdentifier>{b3a89609-9daa-444d-b12a-8a12ea97008a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -173,6 +176,12 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.h">
       <Filter>EngineCore\DisplayEngine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\EventManager.h">
+      <Filter>EngineCore\EventsManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\Multithreading\SpinLock.h">
+      <Filter>Common\Multithreading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -258,6 +267,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.cpp">
       <Filter>EngineCore\DisplayEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\EventsManager\EventManager.cpp">
+      <Filter>EngineCore\EventsManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

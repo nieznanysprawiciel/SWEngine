@@ -17,7 +17,10 @@
 #include "EngineCore/SoundEngine/SoundEngine.h"
 #include "EngineCore/UIEngine/UI_Engine.h"
 
+#include <mutex>
+
 #include "Common/memory_leaks.h"
+
 
 
 
@@ -189,3 +192,35 @@ void Engine::test()
 }
 
 #endif
+
+//=====================================================================================================================//
+//								EngineInterface::Assets
+//=====================================================================================================================//
+
+
+/**@brief Pobiera z ModelsManager model o podanej nazwie.
+
+@param[in] name Nazwa pliku z modelem.
+@return Obiekt zawieraj¹cy model lub nullptr w przypadku niepowodzenia.*/
+Model3DFromFile* EngineInterface::Assets::GetModel( const std::wstring& name )
+{
+	std::lock_guard<SpinLock> guard( m_engine->m_engineAccess );
+
+	return m_engine->models_manager->GetModel( name );
+}
+
+
+/**@brief Pobiera z ModelsManager model o podanej nazwie.
+
+Tworzony jest VertexShader o domyœlnej nazwie funkcji g³ównej shadera zdefiniowanej
+przez sta³¹ @ref DEFAULT_VERTEX_SHADER_ENTRY.
+
+@param[in] name Nazwa pliku z shaderem.
+@return Zwraca obiekt vertex shadera lub nullptr w przypadku niepowodzenia.
+*/
+VertexShaderObject* EngineInterface::Assets::GetVertexShader( const std::wstring& name )
+{
+	std::lock_guard<SpinLock> guard( m_engine->m_engineAccess );
+	
+	return m_engine->models_manager->AddVertexShader( name, DEFAULT_VERTEX_SHADER_ENTRY );
+}
