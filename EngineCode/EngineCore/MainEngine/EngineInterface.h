@@ -95,46 +95,142 @@ protected:
 	std::queue<Event*>*			events_queue;	///<WskaŸnik na kolejke komunikatów w celu szybszego dostêpu
 
 protected:
+	EngineInterface();
 	~EngineInterface(){};
 
 	//FableEngine - ta klasa jest dostêpna bezpoœrednio z IGamePlay
 
 private:
-	class Assets;
-	class Actors;
+#pragma region EngineInterface.UserInterface
 
+/**@brief Klasa bazowa dla klas zagnie¿d¿onych w EngineInterface s³u¿¹cych do grupowania
+funkcji interfejsu dla u¿ytkownika (klasy GamePlay i obiekty aktorów).
+
+Klasa posiada statyczny wskaŸnik na Engine. Dziêki temu nie trzeba go przekazywaæ
+do ka¿dej klasy z osobna. Dodatkowo mo¿na w tej klasie umieszczaæ wskaŸniki na inne
+obiekty, które wymagaj¹ bezpoœredniego dostêpu.*/
+class InterfaceGroup
+{
+	friend class EngineInterface;
+private:
+protected:
+	static Engine*			m_engine;
+public:
+	InterfaceGroup() = default;
+	~InterfaceGroup() = default;
 };
 
-
-class EngineInterface::Actors
+/**@brief Zawiera funkcje do zarz¹dzania assetami.*/
+class Assets : public InterfaceGroup
 {
 private:
-	Engine*			m_engine;
+#pragma region EngineInterface.Assets.NestedClasses
+/**@brief Zapewnia dostêp do modeli w klasie ModelsManager.*/
+class Models : public InterfaceGroup
+{
+private:
 protected:
 public:
-	Actors( Engine* engine )
-		: m_engine( engine )
-	{}
-	~Actors() = default;
-public:
+	Models() = default;
+	~Models() = default;
 
 };
-
-
-
-class EngineInterface::Assets
+/**@brief Zapewnia dostêp do animacji w klasie ModelsManager.*/
+class Animations : public InterfaceGroup
 {
 private:
-	Engine*			m_engine;
 protected:
 public:
-	Assets( Engine* engine )
-		: m_engine( engine )
-	{}
+	Animations() = default;
+	~Animations() = default;
+
+};
+/**@brief Zapewnia dostêp do spritów w klasie ModelsManager.*/
+class Sprites : public InterfaceGroup
+{
+private:
+protected:
+public:
+	Sprites() = default;
+	~Sprites() = default;
+
+};
+/**@brief Zapewnia dostêp do shaderów w klasie ModelsManager.*/
+class Shaders : public InterfaceGroup
+{
+private:
+protected:
+public:
+	Shaders() = default;
+	~Shaders() = default;
+
+};
+/**@brief Zapewnia dostêp do tekstur w klasie ModelsManager.*/
+class Textures : public InterfaceGroup
+{
+private:
+protected:
+public:
+	Textures() = default;
+	~Textures() = default;
+
+};
+/**@brief Zapewnia dostêp do buforów w klasie ModelsManager.*/
+class Buffers : public InterfaceGroup
+{
+private:
+protected:
+public:
+	Buffers() = default;
+	~Buffers() = default;
+
+};
+/**@brief Zapewnia dostêp do render targetów w klasie ModelsManager.*/
+class RenderTargets : public InterfaceGroup
+{
+private:
+protected:
+public:
+	RenderTargets() = default;
+	~RenderTargets() = default;
+
+};
+#pragma endregion
+protected:
+public:
+	Assets() = default;
 	~Assets() = default;
 public:
 	Model3DFromFile*		GetModel				( const std::wstring& name );
 	VertexShaderObject*		GetVertexShader			( const std::wstring& name );
 
+	Models			models;
+	Animations		animations;
+	Sprites			sprites;
+	Shaders			shaders;
+	Textures		textures;
+	Buffers			buffers;
+	RenderTargets	renderTargets;
 };
+
+/**@brief Zawiera funkcje do zarz¹dzania aktorami.*/
+class Actors : public InterfaceGroup
+{
+private:
+protected:
+public:
+	Actors() = default;
+	~Actors() = default;
+public:
+
+};
+
+#pragma endregion
+
+public:
+	Assets			assets;
+	Actors			actors;
+
+};
+
 

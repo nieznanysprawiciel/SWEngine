@@ -23,6 +23,13 @@
 
 
 
+Engine* EngineInterface::InterfaceGroup::m_engine = nullptr;
+
+
+EngineInterface::EngineInterface()
+{
+	EngineInterface::InterfaceGroup::m_engine = static_cast<Engine*>( this );		// EngineInterface jest tak na prawdê klas¹ Engine, wiêc takie rzutowanie jest legalne.
+}
 
 #ifdef __TEST
 
