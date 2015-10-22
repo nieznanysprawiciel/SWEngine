@@ -201,6 +201,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\EventManager.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Features\SkyDome.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\Commands\Command.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\Engine.h" />
     <ClInclude Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\Event.h" />

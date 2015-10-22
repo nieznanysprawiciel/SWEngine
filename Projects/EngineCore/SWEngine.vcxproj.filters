@@ -60,6 +60,9 @@
     <Filter Include="Common\Multithreading">
       <UniqueIdentifier>{b3a89609-9daa-444d-b12a-8a12ea97008a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\MainEngine\Commands">
+      <UniqueIdentifier>{0556bdca-3997-4844-9be5-b623dec5e803}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -181,6 +184,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\Multithreading\SpinLock.h">
       <Filter>Common\Multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\Commands\Command.h">
+      <Filter>EngineCore\MainEngine\Commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

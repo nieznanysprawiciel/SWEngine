@@ -166,3 +166,5 @@ struct IndexPrediction
 	Object*				object_ptr;
 	unsigned int		index[NUM_OF_MODULES];
 };
+
+

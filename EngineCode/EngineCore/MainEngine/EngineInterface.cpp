@@ -205,29 +205,28 @@ void Engine::test()
 //=====================================================================================================================//
 
 
-/**@brief Pobiera z ModelsManager model o podanej nazwie.
+/**@brief Pobiera model o podanej nazwie.
 
+Model jest pobierany tylko, je¿eli zosta³ wczeœniej wczytany.
 @param[in] name Nazwa pliku z modelem.
-@return Obiekt zawieraj¹cy model lub nullptr w przypadku niepowodzenia.*/
-Model3DFromFile* EngineInterface::Assets::GetModel( const std::wstring& name )
+@return Zwraca obiekt zawieraj¹cy model lub nullptr, je¿eli model nie zosta³ wczeœniej wczytany.*/
+Model3DFromFile* EngineInterface::Assets::Models::GetSync( const std::wstring& name )
 {
-	std::lock_guard<SpinLock> guard( m_engine->m_engineAccess );
-
 	return m_engine->models_manager->GetModel( name );
 }
 
 
-/**@brief Pobiera z ModelsManager model o podanej nazwie.
+/**@brief Wczytuje model z podanego pliku.
 
-Tworzony jest VertexShader o domyœlnej nazwie funkcji g³ównej shadera zdefiniowanej
-przez sta³¹ @ref DEFAULT_VERTEX_SHADER_ENTRY.
-
-@param[in] name Nazwa pliku z shaderem.
-@return Zwraca obiekt vertex shadera lub nullptr w przypadku niepowodzenia.
-*/
-VertexShaderObject* EngineInterface::Assets::GetVertexShader( const std::wstring& name )
+Model jest ³adowany synchronicznie, dzia³anie silnika zawiesza siê, dopóki wczytywanie nie zakoñczy siê.
+@param[in] Nazwa pliku.
+@return Zwraca model lub nullptr, je¿eli wczytywanie nie powiod³o siê.*/
+Model3DFromFile* EngineInterface::Assets::Models::LoadSync( const std::wstring& name )
 {
-	std::lock_guard<SpinLock> guard( m_engine->m_engineAccess );
-	
-	return m_engine->models_manager->AddVertexShader( name, DEFAULT_VERTEX_SHADER_ENTRY );
+	auto result = m_engine->models_manager->LoadModelFromFile( name );
+	if( result != MODELS_MANAGER_OK )
+		return nullptr;
+
+	return m_engine->models_manager->GetModel( name );
 }
+

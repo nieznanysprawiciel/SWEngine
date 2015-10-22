@@ -37,6 +37,7 @@ class TextureObject;
 class RenderTargetObject;
 
 
+
 /**@brief Klasa jest interfejsem dla u¿ytkownika u¿ytkuj¹cego silnik.
 
 Taki interfejs bêdzie widzia³ u¿ytkownik silnika z wnêtrza swoich klas odpowiedzialnych za fabu³ê.
@@ -134,6 +135,8 @@ public:
 	Models() = default;
 	~Models() = default;
 
+	Model3DFromFile*		GetSync		( const std::wstring& name );
+	Model3DFromFile*		LoadSync	( const std::wstring& name );
 };
 /**@brief Zapewnia dostêp do animacji w klasie ModelsManager.*/
 class Animations : public InterfaceGroup
@@ -201,9 +204,6 @@ public:
 	Assets() = default;
 	~Assets() = default;
 public:
-	Model3DFromFile*		GetModel				( const std::wstring& name );
-	VertexShaderObject*		GetVertexShader			( const std::wstring& name );
-
 	Models			models;
 	Animations		animations;
 	Sprites			sprites;
