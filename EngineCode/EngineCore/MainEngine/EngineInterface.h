@@ -15,6 +15,7 @@
 class ControllersEngine;
 struct IndexPrediction;
 class Event;
+class Command;
 class Engine;
 
 class ControllersEngine;
@@ -38,41 +39,33 @@ class RenderTargetObject;
 
 
 
-/**@brief Klasa jest interfejsem dla u¿ytkownika u¿ytkuj¹cego silnik.
+/**@brief Przechowuje wszystkie zmienne, które powinny znaleŸæ siê w klasie EngineInterface.
 
-Taki interfejs bêdzie widzia³ u¿ytkownik silnika z wnêtrza swoich klas odpowiedzialnych za fabu³ê.
-U¿ytkownik musi mieæ ograniczone mo¿liwoœci, ¿eby przypadkiem nie namiesza³.
-Szczególnie nie powinien mieæ mo¿liwoœci wysy³ania eventów, bo mog³oby to doprowadziæ do zapêtlenia.
-Wszystkie funkcje jakie powinien mieæ dostêpne nale¿y deklarowaæ w tej klasie w sekcji publicznej.
-Wszystkie pozosta³e funkcje powinny siê znaleŸæ w deklaracji klasy Engine.
-Wszystkie zmienne silnika powinny byæ deklarowane na tym poziomie, aby równie¿ metody tej klasy dostêpne
-dla u¿ytkownika mia³y do nich dostêp.
-
-Funkcje s¹ pogrupowane tematycznie przy pomocy klas zagnie¿d¿onych.
+Struktura jest potrzebna, ¿eby komendy mog³y mieæ dostêp do stanu silnika.
+@see EngineInterfaceCommands
 */
-class EngineInterface
+struct EngineContext
 {
-protected:
 	//directX and windows variables
-	bool						m_engineReady;			///<Je¿eli zmienna jest niepoprawna, nie renderujemy
+	bool						engineReady;			///<Je¿eli zmienna jest niepoprawna, nie renderujemy
 
-	bool						full_screen;			///<Pe³ny ekran lub renderowanie w oknie
-	HWND						window_handler;			///<Uchwyt okna aplikacji
-	HINSTANCE					instance_handler;		///<Uchwyt instancji procesu
-	int							window_width;			///<Szerokoœæ okna/ekranu
-	int							window_height;			///<Wysokoœæ okna/ekranu
+	bool						fullScreen;				///<Pe³ny ekran lub renderowanie w oknie
+	HWND						windowHandler;			///<Uchwyt okna aplikacji
+	HINSTANCE					instanceHandler;		///<Uchwyt instancji procesu
+	int							windowWidth;			///<Szerokoœæ okna/ekranu
+	int							windowHeight;			///<Wysokoœæ okna/ekranu
 
-	IGraphicAPIInitializer*		m_graphicInitializer;	///<Obs³uguje u¿ywane API graficzne.
+	IGraphicAPIInitializer*		graphicInitializer;		///<Obs³uguje u¿ywane API graficzne.
 
 	//Modules
-	ControllersEngine*			controllers_engine;		///<Kontroluje AI (klawiaturê trzeba przenieœæ)
-	MovementEngine*				movement_engine;		///<Przelicza pozycjê obiektów w nastêpnej klatce
-	DisplayEngine*				display_engine;			///<Wyœwietla obiekty na scenie
-	CollisionEngine*			collision_engine;		///<Liczy kolizje
-	PhysicEngine*				physic_engine;			///<Liczy oddzia³ywania fizyczne
-	ModelsManager*				models_manager;			///<Zarz¹dza modelami, teksturami i materia³ami
-	FableEngine*				fable_engine;			///<Zarz¹dza fabu³¹ gry, interakcjami obiektów itd. Odpowiada za treœæ
-	SoundEngine*				sound_engine;			///<Zarz¹dza muzyk¹ i dŸwiêkami
+	ControllersEngine*			controllersEngine;		///<Kontroluje AI (klawiaturê trzeba przenieœæ)
+	MovementEngine*				movementEngine;			///<Przelicza pozycjê obiektów w nastêpnej klatce
+	DisplayEngine*				displayEngine;			///<Wyœwietla obiekty na scenie
+	CollisionEngine*			collisionEngine;		///<Liczy kolizje
+	PhysicEngine*				physicEngine;			///<Liczy oddzia³ywania fizyczne
+	ModelsManager*				modelsManager;			///<Zarz¹dza modelami, teksturami i materia³ami
+	FableEngine*				fableEngine;			///<Zarz¹dza fabu³¹ gry, interakcjami obiektów itd. Odpowiada za treœæ
+	SoundEngine*				soundEngine;			///<Zarz¹dza muzyk¹ i dŸwiêkami
 	UI_Engine*					ui_engine;				///<Interfejs u¿ytkownika (tak¿e graficzny)
 
 	/**@brief SpinLock do synchronizacji komunikacji miêdzy GamePlayem a silnikiem.
@@ -83,17 +76,39 @@ protected:
 
 	Istnieje tylko jeden SpinLock, ale je¿eli pojawi sie mo¿liwoœæ logicznego wydzielenia niezale¿nych od siebie
 	zadañ, to trzeba rozwa¿yæ dodanie kolejnych SpinLocków.*/
-	SpinLock					m_engineAccess;
+	SpinLock					engineLock;
 
-	//Objects
-	//std::vector<IndexPrediction>		index_predictor;
-
-	TimeManager					m_timeManager;	///<Obiekt do zarz¹dzania czasem.
+	TimeManager					timeManager;	///<Obiekt do zarz¹dzania czasem.
 
 	bool						pause;			///<Pauza
 
 	//queue
-	std::queue<Event*>*			events_queue;	///<WskaŸnik na kolejke komunikatów w celu szybszego dostêpu
+	std::queue<Event*>*			eventsQueue;	///<WskaŸnik na kolejke komunikatów w celu szybszego dostêpu
+	std::queue<Command*>		commandQueue;	///<Kolejka komend wykonywanych po zakoñczeniu wszystkich obliczeñ w danej klatce. Aktualizuje stan silnika.
+};
+
+
+/**@brief Klasa jest interfejsem dla u¿ytkownika u¿ytkuj¹cego silnik.
+
+Taki interfejs bêdzie widzia³ u¿ytkownik silnika z wnêtrza swoich klas odpowiedzialnych za fabu³ê.
+U¿ytkownik musi mieæ ograniczone mo¿liwoœci, ¿eby przypadkiem nie namiesza³.
+
+Funkcje s¹ pogrupowane tematycznie przy pomocy klas zagnie¿d¿onych.
+Wszystkie funkcje jakie powinien mieæ dostêpne nale¿y deklarowaæ w³asnie w klasach zagnie¿d¿onych.
+Zasadniczo klasa EngineInterface nie powinna mieæ oprócz tego ¿adnych funkcji API.
+
+Zmienne i sk³adniki silnika nale¿y deklarowaæ w strukturze EngineContext.
+Dziêki temu bêdzie do nich dostêp z poziomu komend, poniewa¿
+ka¿da komenda dostaje referencjê na tê strukturê.
+@see EngineInterfaceCommands, Command
+
+Funkcje umieszczone w sekcji prywatnej klasy EngineInterface bêd¹ mog³y byæ wywo³ane z klas
+zagnie¿d¿onych, ale nie bêdzie do nich dostêpu w komendach.
+*/
+class EngineInterface
+{
+protected:
+	EngineContext		Context;		///<Zawiera wskaŸniki na wszystkie modu³y i zmienne silnika.
 
 protected:
 	EngineInterface();
@@ -227,9 +242,10 @@ public:
 
 #pragma endregion
 
+
 public:
-	Assets			assets;
-	Actors			actors;
+	Assets			assets;		///<Funkcje do zarz¹dzania assetami.
+	Actors			actors;		///<Funkcje do zarz¹dzania aktorami.
 
 };
 

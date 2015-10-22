@@ -45,47 +45,47 @@ void Engine::test()
 	const wchar_t TIE_FIGHTER[] = L"tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX";
 	const wchar_t IMPERIAL_STAR_DESTROYER[] = L"tylko_do_testow/ImperialStarDestroyer.FBX";
 
-	models_manager->LoadModelFromFile( CLONE_FIGHTER );
-	models_manager->LoadModelFromFile( MOON );
-	models_manager->LoadModelFromFile( NEBULON );
-	models_manager->LoadModelFromFile( VADER_TIE );
-	models_manager->LoadModelFromFile( TIE_FIGHTER );
-	//models_manager->LoadModelFromFile( IMPERIAL_STAR_DESTROYER );
+	Context.modelsManager->LoadModelFromFile( CLONE_FIGHTER );
+	Context.modelsManager->LoadModelFromFile( MOON );
+	Context.modelsManager->LoadModelFromFile( NEBULON );
+	Context.modelsManager->LoadModelFromFile( VADER_TIE );
+	Context.modelsManager->LoadModelFromFile( TIE_FIGHTER );
+	//modelsManager->LoadModelFromFile( IMPERIAL_STAR_DESTROYER );
 	
-	//models_manager->test();			// Tu sie odbywa wczytywanie
+	//modelsManager->test();			// Tu sie odbywa wczytywanie
 
 	//dodawanie ksiê¿yca
 	DynamicMeshObject* moon = new DynamicMeshObject;
 	XMVECTOR position = XMVectorSet( 4000.0, 0.0, 8000.0, 0.0 );
 	moon->teleport( position );
 
-	moon->set_model( models_manager->GetModel( MOON ) );
+	moon->set_model( Context.modelsManager->GetModel( MOON ) );
 	moon->set_scale( 30.0 );
 
 	object_list.push_back( moon );
-	display_engine->add_dynamic_mesh_object( moon );
+	Context.displayEngine->add_dynamic_mesh_object( moon );
 
 	//dodawanie Nebulona
 	DynamicMeshObject* nebulon = new DynamicMeshObject;
 	position = XMVectorSet( 400.0, 0.0, -6000.0, 0.0 );
 	nebulon->teleport( position );
 
-	nebulon->set_model( models_manager->GetModel( NEBULON ) );
+	nebulon->set_model( Context.modelsManager->GetModel( NEBULON ) );
 	nebulon->set_scale( 1 );	//Nebulon ma Ÿle ustawiony pivot, wiêc jak siê przeskaluje to odleci gdzieœ w kosmos i go nie widaæ.
 
 	object_list.push_back( nebulon );
-	display_engine->add_dynamic_mesh_object( nebulon );
+	Context.displayEngine->add_dynamic_mesh_object( nebulon );
 
 	//dodawanie TIE Fightera
 	DynamicMeshObject* TIE = new DynamicMeshObject;
 	position = XMVectorSet( -400.0, 0.0, 800.0, 0.0 );
 	TIE->teleport( position );
 
-	TIE->set_model( models_manager->GetModel( TIE_FIGHTER ) );
+	TIE->set_model( Context.modelsManager->GetModel( TIE_FIGHTER ) );
 	TIE->set_scale( 10 );
 
 	object_list.push_back( TIE );
-	display_engine->add_dynamic_mesh_object( TIE );
+	Context.displayEngine->add_dynamic_mesh_object( TIE );
 
 
 	//dodawanie TIE Fightera Vadera
@@ -93,11 +93,11 @@ void Engine::test()
 	position = XMVectorSet( -400.0, 0.0, -3000.0, 0.0 );
 	VaderTIE->teleport( position );
 
-	VaderTIE->set_model( models_manager->GetModel( VADER_TIE ) );
+	VaderTIE->set_model( Context.modelsManager->GetModel( VADER_TIE ) );
 	//VaderTIE->set_scale( 1.0 );
 
 	object_list.push_back( VaderTIE );
-	display_engine->add_dynamic_mesh_object( VaderTIE );
+	Context.displayEngine->add_dynamic_mesh_object( VaderTIE );
 
 	//dodawanie myœliwca
 	DynamicMeshObject* clone_fighter = new DynamicMeshObject;
@@ -116,11 +116,11 @@ void Engine::test()
 #endif
 	clone_fighter->set_rotation_speed( axis_angle );
 
-	clone_fighter->set_model( models_manager->GetModel( CLONE_FIGHTER ) );
+	clone_fighter->set_model( Context.modelsManager->GetModel( CLONE_FIGHTER ) );
 
 	object_list.push_back( clone_fighter );
-	display_engine->add_dynamic_mesh_object( clone_fighter );
-	movement_engine->add_moveable_object( clone_fighter );
+	Context.displayEngine->add_dynamic_mesh_object( clone_fighter );
+	Context.movementEngine->add_moveable_object( clone_fighter );
 
 
 	// Dodawanie gwiezdnego niszczyciela Imperial
@@ -128,10 +128,10 @@ void Engine::test()
 	position = XMVectorSet( -4000.0, 0.0, -3000.0, 0.0 );
 	Imperial->set_position( position );
 
-	Imperial->set_model( models_manager->GetModel( IMPERIAL_STAR_DESTROYER ) );
+	Imperial->set_model( modelsManager->GetModel( IMPERIAL_STAR_DESTROYER ) );
 
 	object_list.push_back( Imperial );
-	display_engine->add_dynamic_mesh_object( Imperial );
+	displayEngine->add_dynamic_mesh_object( Imperial );
 	*/
 
 	/*
@@ -152,13 +152,13 @@ void Engine::test()
 #endif
 	//skrzynia->set_rotation_speed( axis_angle2 );
 
-	Model3DFromFile* new_model = models_manager->GetModel( L"skrzynia" );
+	Model3DFromFile* new_model = modelsManager->GetModel( L"skrzynia" );
 	skrzynia->set_model( new_model );
 	//skrzynia->set_scale( 0.1 );
 
 	object_list.push_back( skrzynia );
-	display_engine->add_dynamic_mesh_object( skrzynia );
-	movement_engine->add_moveable_object( skrzynia );
+	displayEngine->add_dynamic_mesh_object( skrzynia );
+	movementEngine->add_moveable_object( skrzynia );
 
 	*/
 
@@ -168,21 +168,21 @@ void Engine::test()
 	camera->teleport( camera_pos );
 	//przypisujemy kontroler ( dla kontrolerów trzeba zrobiæ jakiœ mechanizm przechowywania i zwalniania)
 	camera_controller_PROTOTYPE* controller = new camera_controller_PROTOTYPE(
-		ui_engine->get_standard_abstraction_layer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ) );
+	Context.ui_engine->get_standard_abstraction_layer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ) );
 	camera->set_controller(controller);
 
 	//wstawiamy kamerê do odpowiednich modu³ów
-	display_engine->add_camera( camera );
-	display_engine->set_current_camera( camera );
-	movement_engine->add_moveable_object( camera );
-	controllers_engine->add_pre_controlled( camera );
+	Context.displayEngine->add_camera( camera );
+	Context.displayEngine->set_current_camera( camera );
+	Context.movementEngine->add_moveable_object( camera );
+	Context.controllersEngine->add_pre_controlled( camera );
 
 	double albedo[3] = { 0.8, 0.8, 0.8 };
 	double turbidity = 4;
 	XMVECTOR sun_dir = XMVectorSet( -0.2f, 0.6f, 0.6f, 1.0f );
-	HosekSkyDome* sky_dome = new HosekSkyDome(models_manager);
-	sky_dome->init_sky_dome( sun_dir, turbidity, albedo, 101, 101, 100, 5.0 );
-	display_engine->set_skydome( sky_dome );
+	HosekSkyDome* skyDome = new HosekSkyDome( Context.modelsManager );
+	skyDome->init_sky_dome( sun_dir, turbidity, albedo, 101, 101, 100, 5.0 );
+	Context.displayEngine->set_skydome( skyDome );
 
 	sun_dir = XMVectorNegate( sun_dir );
 
@@ -191,8 +191,8 @@ void Engine::test()
 	XMStoreFloat4( &direction, sun_dir );
 
 	// Ustawiamy œwiat³o pod indeksem 0
-	display_engine->set_directional_light( direction, color, 0 );
-	display_engine->set_ambient_light( DirectX::XMFLOAT4( 0.2f, 0.2f, 0.2f, 1.0f ) );
+	Context.displayEngine->set_directional_light( direction, color, 0 );
+	Context.displayEngine->set_ambient_light( DirectX::XMFLOAT4( 0.2f, 0.2f, 0.2f, 1.0f ) );
 
 
 
@@ -212,7 +212,7 @@ Model jest pobierany tylko, je¿eli zosta³ wczeœniej wczytany.
 @return Zwraca obiekt zawieraj¹cy model lub nullptr, je¿eli model nie zosta³ wczeœniej wczytany.*/
 Model3DFromFile* EngineInterface::Assets::Models::GetSync( const std::wstring& name )
 {
-	return m_engine->models_manager->GetModel( name );
+	return m_engine->Context.modelsManager->GetModel( name );
 }
 
 
@@ -223,10 +223,10 @@ Model jest ³adowany synchronicznie, dzia³anie silnika zawiesza siê, dopóki wczyt
 @return Zwraca model lub nullptr, je¿eli wczytywanie nie powiod³o siê.*/
 Model3DFromFile* EngineInterface::Assets::Models::LoadSync( const std::wstring& name )
 {
-	auto result = m_engine->models_manager->LoadModelFromFile( name );
+	auto result = m_engine->Context.modelsManager->LoadModelFromFile( name );
 	if( result != MODELS_MANAGER_OK )
 		return nullptr;
 
-	return m_engine->models_manager->GetModel( name );
+	return m_engine->Context.modelsManager->GetModel( name );
 }
 

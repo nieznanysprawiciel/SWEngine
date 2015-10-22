@@ -138,10 +138,10 @@ void DisplayEngine::copy_material( ConstantPerMesh* shader_data_per_mesh, const 
 /**@brief Funkcja do renderowania sceny
 
 Poniewa¿ klasa UI_Engine tak¿e wykonuje renderowanie( wyœwietla elementy interfejsu graficznego ),
-funkcja display_engine nie mo¿e sama wywo³ywaæ  BeginScene( ) i EndScene( ) z bilbioteki directX, aby nie
+funkcja displayEngine nie mo¿e sama wywo³ywaæ  BeginScene( ) i EndScene( ) z bilbioteki directX, aby nie
 by³o podwojnego wywo³ania. Z tego wzglêdu powy¿sze funkcje s¹ wywo³ywane zewnetrznie w pêtli g³ównej przez klasê Engine.
 
-Funkcja display_engine ma obowi¹zek za ka¿dym razem od nowa ustawiæ macierz widoku i projekcji, poniewa¿
+Funkcja displayEngine ma obowi¹zek za ka¿dym razem od nowa ustawiæ macierz widoku i projekcji, poniewa¿
 mog¹ byæ zmodyfikowane przez UI_Engine.Innymi s³owy nie mo¿na za³o¿yæ, ¿e jak siê raz ustawi³o macierze,
 to przy nastêpnym wywo³aniu bêd¹ takie same.
 

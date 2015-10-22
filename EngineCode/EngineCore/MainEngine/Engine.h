@@ -47,13 +47,20 @@ extern TCHAR szWindowClass[MAX_LOADSTRING];				// the main window class name
 
 
 /**@brief Klasa Engine jest nadrzêdnym obiektem zarz¹dzaj¹cym wszystkimi modu³ami silnika.
-W aplikacji powinien istnieæ tylko jeden obiekt podanego typu. O tym, jak siê inicjuje dzia³anie silnika,
-mo¿na przeczytaæ w temacie Inicjowanie silnika.
+
+@copybrief
 
 W tej klasie powinny byæ umieszczane wszystkie funkcje, które nie powinny byæ dostêpne
-dla u¿ytkownika silnika. Interfejsem dla u¿ytkownika jest klasa @ref EngineInterface i tam nale¿y umieszczaæ
-pozosta³e funkcje. Co do zmiennych klasy, wszystkie powinny siê znaleŸæ w klasie EnigneInterface, aby wszystkie
-funkcje mog³y mieæ do nich dostêp.
+dla modu³ów logiki gry oraz aktorów. Stanowi¹ one interfejs dla funkcji main oraz
+ewentualnie dla edytora.
+@todo Zastanowiæ siê czy edytor nie powinien siê komunikowaæ z silnikiem za pomoc¹ zwyk³ego API.
+
+W aplikacji powinien istnieæ tylko jeden obiekt podanego typu. O tym, jak siê inicjuje dzia³anie silnika,
+mo¿na przeczytaæ w temacie @ref EngineInit.
+
+Interfejsem dla u¿ytkownika jest klasa @ref EngineInterface i tam nale¿y umieszczaæ
+wszystkie funkcje, które maj¹ byæ dostêpne dla logiki gry. Nie nale¿y w tej klasie umieszczaæ zmiennych,
+które mog¹ byæ przydatne klasie EngineInterface.
 */
 class Engine : public EngineInterface
 {
@@ -119,8 +126,8 @@ public:
 	///@{
 	void							send_event				( Event* new_event );
 
-	inline std::queue<Event*>*		get_events_queue		()									{ return events_queue; }
-	inline void						set_events_queue		( std::queue<Event*>* queue )		{ events_queue = queue; }
+	inline std::queue<Event*>*		get_events_queue		()									{ return Context.eventsQueue; }
+	inline void						set_events_queue		( std::queue<Event*>* queue )		{ Context.eventsQueue = queue; }
 	///@}
 
 	///@name Interfejs do ustawiania GamePlaya
@@ -136,11 +143,11 @@ public:
 
 	///@name Parametry okna
 	///@{
-	inline HINSTANCE				get_instance_handler()								{ return instance_handler; }
-	inline HWND						get_window_handler()								{ return window_handler; }
+	inline HINSTANCE				get_instance_handler()								{ return Context.instanceHandler; }
+	inline HWND						get_window_handler()								{ return Context.windowHandler; }
 
-	inline int						get_window_widht()									{ return window_width; }
-	inline int						get_window_height()									{ return window_height; }
+	inline int						get_window_widht()									{ return Context.windowWidth; }
+	inline int						get_window_height()									{ return Context.windowHeight; }
 	///@}
 };
 

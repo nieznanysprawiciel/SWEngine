@@ -38,8 +38,8 @@ ATOM Engine::EngineRegisterClass()
 	wcex.lpfnWndProc = WndProc;
 	wcex.cbClsExtra = 0;
 	wcex.cbWndExtra = 0;
-	wcex.hInstance = instance_handler;
-	wcex.hIcon = LoadIcon( instance_handler, MAKEINTRESOURCE( IDI_SW_ENGINE ) );
+	wcex.hInstance = Context.instanceHandler;
+	wcex.hIcon = LoadIcon( Context.instanceHandler, MAKEINTRESOURCE( IDI_SW_ENGINE ) );
 	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 	wcex.lpszMenuName = nullptr;
@@ -58,16 +58,16 @@ Okno nie jest pokazywane na ekranie. Do tego trzeba u¿yæ funkcji Engine::ShowApp
 @return Zwraca TRUE, je¿eli inicjowanie okna powiod³o siê.*/
 BOOL Engine::InitInstance( int nCmdShow )
 {
-	if ( full_screen )
-		window_handler = CreateWindowEx(NULL, szWindowClass, szTitle, WS_EX_TOPMOST | WS_POPUP,
-										0, 0, window_width, window_height,
-										NULL, NULL, instance_handler, NULL);
+	if ( Context.fullScreen )
+		Context.windowHandler = CreateWindowEx(NULL, szWindowClass, szTitle, WS_EX_TOPMOST | WS_POPUP,
+										0, 0, Context.windowWidth, Context.windowHeight,
+										NULL, NULL, Context.instanceHandler, NULL);
 	else
-		window_handler = CreateWindowEx( NULL, szWindowClass, szTitle, WS_OVERLAPPEDWINDOW^WS_THICKFRAME,
-										CW_USEDEFAULT, 0, window_width, window_height,
-										NULL, NULL, instance_handler, NULL);
+		Context.windowHandler = CreateWindowEx( NULL, szWindowClass, szTitle, WS_OVERLAPPEDWINDOW^WS_THICKFRAME,
+										CW_USEDEFAULT, 0, Context.windowWidth, Context.windowHeight,
+										NULL, NULL, Context.instanceHandler, NULL);
 
-	if (!window_handler)
+	if (!Context.windowHandler)
 	{
 #ifdef _DEBUG
 		LPVOID messageBuffer;
@@ -88,13 +88,13 @@ BOOL Engine::InitInstance( int nCmdShow )
 
 void Engine::ShowAppWindow( int showFlags )
 {
-	ShowWindow( window_handler, showFlags );
-	UpdateWindow( window_handler );
+	ShowWindow( Context.windowHandler, showFlags );
+	UpdateWindow( Context.windowHandler );
 }
 
 void Engine::HideAppWindow()
 {
-	ShowWindow( window_handler, SW_HIDE );
+	ShowWindow( Context.windowHandler, SW_HIDE );
 }
 
 //void Engine::HideWindow()
@@ -110,15 +110,15 @@ void Engine::HideAppWindow()
 ///@param[in] nCmdShow Czwarty parametr funkcji WinMain
 BOOL Engine::InitWindow(int width, int height, BOOL fullscreen, int nCmdShow)
 {
-	window_height = height;
-	window_width = width;
+	Context.windowHeight = height;
+	Context.windowWidth = width;
 	if (fullscreen)
-		full_screen = true;		//zostal zainicjonwany w konstruktorze jako false
+		Context.fullScreen = true;		//zostal zainicjonwany w konstruktorze jako false
 
-	if (full_screen)
+	if (Context.fullScreen)
 	{
-		window_height = GetSystemMetrics(SM_CYSCREEN);
-		window_width = GetSystemMetrics(SM_CXSCREEN);
+		Context.windowHeight = GetSystemMetrics(SM_CYSCREEN);
+		Context.windowWidth = GetSystemMetrics(SM_CXSCREEN);
 	}
 	
 	EngineRegisterClass();
@@ -215,7 +215,7 @@ int Engine::MainLoop()
 	// Main message loop:
 	while (TRUE)
 	{
-		if ( m_engineReady )
+		if ( engineReady )
 			RenderFrame();
 
 		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
@@ -268,7 +268,7 @@ int Engine::MainLoop()
 	// Main message loop:
 	while (TRUE)
 	{
-		if ( m_engineReady )
+		if ( Context.engineReady )
 			RenderFrame();
 
 		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))

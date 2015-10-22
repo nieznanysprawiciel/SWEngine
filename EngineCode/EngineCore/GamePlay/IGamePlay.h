@@ -36,12 +36,12 @@ private:
 
 protected:
 	EngineInterface*				engine;
-	FableEngine*					fable_engine;
+	FableEngine*					fableEngine;
 public:
 	IGamePlay() = default;
 	virtual ~IGamePlay() = default;
 
-	virtual void set_engine_and_fable( EngineInterface* game_engine, FableEngine* fable ) { engine = game_engine; fable_engine = fable; }
+	virtual void set_engine_and_fable( EngineInterface* game_engine, FableEngine* fable ) { engine = game_engine; fableEngine = fable; }
 
 	virtual void proceed_game_play(float time_interval) = 0;
 	virtual int load_level() = 0;
