@@ -36,6 +36,8 @@ EngineInterface::EngineInterface()
 #include "EngineCore/ControllersEngine/camera_controller_PROTOTYPE.h"
 #include "EngineCore/Features/HosekSkylightModel/HosekSkyDome.h"
 
+#include <math.h>
+
 void Engine::test()
 {
 	const wchar_t CLONE_FIGHTER[] = L"tylko_do_testow/ARC.FBX";
@@ -123,6 +125,16 @@ void Engine::test()
 	Context.movementEngine->add_moveable_object( clone_fighter );
 
 
+	//for( unsigned int i = 0; i < 100; ++i )
+	//{
+	//	DynamicMeshObject* cloneFighter = new DynamicMeshObject;
+	//	position = XMVectorSet( 15000.0 * cos( ( 2*i*XM_PI ) / 100 ), 0.0, 15000.0 * sin( ( 2*i*XM_PI ) / 100 ), 0.0 );
+	//	
+	//	cloneFighter->set_model( Context.modelsManager->GetModel( CLONE_FIGHTER ) );
+	//	cloneFighter->teleport( position );
+	//	object_list.push_back( cloneFighter );
+	//	Context.displayEngine->add_dynamic_mesh_object( cloneFighter );
+	//}
 	// Dodawanie gwiezdnego niszczyciela Imperial
 	/*DynamicMeshObject* Imperial = new DynamicMeshObject;
 	position = XMVectorSet( -4000.0, 0.0, -3000.0, 0.0 );

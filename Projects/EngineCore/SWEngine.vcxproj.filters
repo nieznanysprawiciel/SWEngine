@@ -188,6 +188,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\Commands\Command.h">
       <Filter>EngineCore\MainEngine\Commands</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\Delegate.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">

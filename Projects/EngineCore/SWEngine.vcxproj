@@ -196,6 +196,7 @@
     <ClInclude Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.h" />
     <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\ConstantBuffersFormat.h" />
     <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.h" />
+    <ClInclude Include="..\..\EngineCode\Common\Delegate.h" />
     <ClInclude Include="..\..\EngineCode\Common\Multithreading\SpinLock.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorObjects.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.h" />
