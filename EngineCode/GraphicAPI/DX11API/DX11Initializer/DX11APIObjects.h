@@ -107,12 +107,12 @@ protected:	//public:	Inicjalizacje powinien zrobiæ obiekt, który dzidziczy po te
 	void set_sampler_desc				( D3D11_SAMPLER_DESC sampler_desc );
 
 	// Pobieranie deskryptorów
-	DXGI_SWAP_CHAIN_DESC				get_swap_chain_desc()		{ return _swap_chain_desc; }
-	D3D11_VIEWPORT						get_viewport_desc()			{ return _view_port_desc; }
-	D3D_FEATURE_LEVEL					get_current_feature_level() { return _current_feature_level; }
-	D3D11_TEXTURE2D_DESC				get_z_buffer_desc()			{ return _z_buffer_desc; }
-	D3D11_DEPTH_STENCIL_VIEW_DESC		get_z_buffer_view_desc()	{ return _z_buffer_view_desc; }
-	D3D11_SAMPLER_DESC					get_sampler_desc()			{ return _sampler_desc; }
+	static DXGI_SWAP_CHAIN_DESC					get_swap_chain_desc()		{ return _swap_chain_desc; }
+	static D3D11_VIEWPORT						get_viewport_desc()			{ return _view_port_desc; }
+	static D3D_FEATURE_LEVEL					get_current_feature_level() { return _current_feature_level; }
+	static D3D11_TEXTURE2D_DESC					get_z_buffer_desc()			{ return _z_buffer_desc; }
+	static D3D11_DEPTH_STENCIL_VIEW_DESC		get_z_buffer_view_desc()	{ return _z_buffer_view_desc; }
+	static D3D11_SAMPLER_DESC					get_sampler_desc()			{ return _sampler_desc; }
 
 	ID3D11VertexShader*		load_vertex_shader( const std::wstring& file_name, const std::string& shader_name, const char* shader_model );
 	ID3D11VertexShader*		load_vertex_shader( const std::wstring& file_name, const std::string& shader_name,
