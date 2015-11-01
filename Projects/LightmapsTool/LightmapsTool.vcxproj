@@ -19,55 +19,52 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\dllmain.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorPlugin.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\LightmapsTool\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EngineEditor\LightmapsTool\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">EngineEditor\LightmapsTool\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EngineEditor\LightmapsTool\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EngineEditor\LightmapsTool\stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorPlugin.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Resource.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\targetver.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\EngineCode\EngineEditor\EditorPlugin\SW_engine.aps" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\SW_engine.rc" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\stdafx.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\targetver.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D6D5F6EF-4B74-4EBE-8D8D-E76C7C423D05}</ProjectGuid>
+    <ProjectGuid>{B5C0A850-91A7-4DB1-913D-9850AD23A735}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>EditorPlugin</RootNamespace>
+    <RootNamespace>LightmapsTool</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
-    <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
-    <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -76,64 +73,37 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\DebugConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\LinkDirectInput.props" />
-    <Import Project="..\Props\LinkFBX_SDK.props" />
-    <Import Project="..\EngineCore\EngineCorePathMacros.props" />
-    <Import Project="EditorPluginPathMacros.props" />
-    <Import Project="EditorPluginConfiguration.props" />
-    <Import Project="..\DX11API\DX11APIPathsMacros.props" />
+    <Import Project="LightmapsToolPathMacros.props" />
+    <Import Project="LightmapsToolConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\DebugConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\LinkDirectInput.props" />
-    <Import Project="..\Props\LinkFBX_SDK.props" />
-    <Import Project="..\EngineCore\EngineCorePathMacros.props" />
-    <Import Project="EditorPluginPathMacros.props" />
-    <Import Project="EditorPluginConfiguration.props" />
-    <Import Project="..\DX11API\DX11APIPathsMacros.props" />
+    <Import Project="LightmapsToolPathMacros.props" />
+    <Import Project="LightmapsToolConfiguration.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\ReleaseConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\LinkDirectInput.props" />
-    <Import Project="..\Props\LinkFBX_SDK.props" />
-    <Import Project="..\EngineCore\EngineCorePathMacros.props" />
-    <Import Project="EditorPluginPathMacros.props" />
-    <Import Project="EditorPluginConfiguration.props" />
-    <Import Project="..\DX11API\DX11APIPathsMacros.props" />
+    <Import Project="LightmapsToolPathMacros.props" />
+    <Import Project="LightmapsToolConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\ReleaseConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\LinkDirectInput.props" />
-    <Import Project="..\Props\LinkFBX_SDK.props" />
-    <Import Project="..\EngineCore\EngineCorePathMacros.props" />
-    <Import Project="EditorPluginPathMacros.props" />
-    <Import Project="EditorPluginConfiguration.props" />
-    <Import Project="..\DX11API\DX11APIPathsMacros.props" />
+    <Import Project="LightmapsToolPathMacros.props" />
+    <Import Project="LightmapsToolConfiguration.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;EDITORPLUGIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -145,7 +115,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;EDITORPLUGIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -159,7 +129,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;EDITORPLUGIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -175,7 +145,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;EDITORPLUGIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>

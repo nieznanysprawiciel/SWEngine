@@ -3,15 +3,15 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <IntDir>$(EngineCoreBuildDir)</IntDir>
-    <TargetName>$(EngineCoreFileName)</TargetName>
-    <OutDir>$(EngineCoreLibDir)</OutDir>
+    <IntDir>$(LightmapsToolBuildDir)</IntDir>
+    <TargetName>$(LightmapsToolFileName)</TargetName>
+    <OutDir>$(LightmapsToolLibDir)</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>$(EngineSourceDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeaderFile>EngineCore\stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>EngineEditor/LighmapsTool/stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
   </ItemDefinitionGroup>
