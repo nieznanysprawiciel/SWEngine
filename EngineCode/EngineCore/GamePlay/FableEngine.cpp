@@ -41,7 +41,7 @@ void FableEngine::proceed_fable(float time_interval)
 	//na koñcu po wykonaniu obs³ugi wszystkich eventów
 	//wywo³ujemy funkcjê g³ówn¹ GamePlaya
 	if ( game_play != nullptr )
-		game_play->proceed_game_play(time_interval);
+		game_play->ProceedGameLogic(time_interval);
 }
 
 void FableEngine::proceed_events( float time_interval )

@@ -11,7 +11,7 @@
     <ClCompile>
       <AdditionalIncludeDirectories>$(EngineSourceDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeaderFile>EngineEditor/LighmapsTool/stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>EngineEditor/LightmapsTool/stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
   </ItemDefinitionGroup>

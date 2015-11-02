@@ -458,10 +458,10 @@ void Engine::set_entry_point( IGamePlay* game_play )
 {
 	if ( Context.engineReady )
 	{
-		game_play->set_engine_and_fable( this, Context.fableEngine );
+		game_play->SetEngineReference( this, Context.fableEngine );
 		Context.fableEngine->set_game_play( game_play );
 		
-		int result = game_play->load_level();
+		int result = game_play->LoadLevel();
 		if ( result )
 		{//Tutaj mo¿e siê znaleŸæ obs³uga b³êdów
 
@@ -485,7 +485,7 @@ void Engine::set_entry_point( const std::wstring dll_name )
 		if ( directX_ready )
 		{
 			fableEngine->set_game_play( game_play );
-			game_play->load_level( );
+			game_play->LoadLevel( );
 		}
 	}
 }

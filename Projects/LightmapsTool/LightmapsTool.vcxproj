@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapLogic.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\LightmapsTool\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -31,6 +32,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\EngineCode\Common\MemoryChunk.h" />
+    <ClInclude Include="..\..\EngineCode\Common\SWEngineInclude.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapLogic.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\stdafx.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\targetver.h" />
   </ItemGroup>
@@ -110,6 +114,9 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -138,6 +145,10 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <Lib />
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

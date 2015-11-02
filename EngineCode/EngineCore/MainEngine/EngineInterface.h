@@ -8,6 +8,8 @@
 #include "EngineCore/MainEngine/TimeManager.h"
 #include "Common/Multithreading/SpinLock.h"
 
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
 #include <queue>
 #include <string>
 
