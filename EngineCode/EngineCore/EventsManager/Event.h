@@ -10,11 +10,11 @@ class InputAbstractionLayer;
 
 #define	BUILD_IN_EVENTS				2
 
-typedef enum
+typedef enum class EventType
 {
-	KEYDOWNEVENT,
-	KEYUPEVENT
-}EVENT_TYPE;
+	KeyDownEvent,
+	KeyUpEvent
+} EventType;
 
 
 
@@ -24,7 +24,7 @@ class Event
 public:
 	unsigned int				type;
 
-	Event(int type);
+	Event( unsigned int type );
 	virtual ~Event();
 };
 

@@ -258,13 +258,13 @@ void Engine::RenderFrame()
 	{
 		START_PERFORMANCE_CHECK(FRAME_COMPUTING_TIME)
 
-		Context.ui_engine->proceed_input( FIXED_MOVE_UPDATE_INTERVAL );
+		Context.ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.physicEngine->proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.controllersEngine->proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.movementEngine->proceed_movement( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.controllersEngine->proceed_controllers_post( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.collisionEngine->proceed_collisions( FIXED_MOVE_UPDATE_INTERVAL );
-		Context.fableEngine->proceed_fable( FIXED_MOVE_UPDATE_INTERVAL );
+		Context.fableEngine->ProceedFable( FIXED_MOVE_UPDATE_INTERVAL );
 
 		lag -= FIXED_MOVE_UPDATE_INTERVAL;
 		Context.timeManager.UpdateTimeLag( lag );
@@ -287,7 +287,7 @@ void Engine::RenderFrame()
 	Context.displayEngine->BeginScene();
 
 	Context.displayEngine->display_scene( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
-	Context.ui_engine->draw_GUI( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
+	Context.ui_engine->DrawGUI( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
 
 	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
 
@@ -311,13 +311,13 @@ void Engine::UpdateScene( float& lag, float timeInterval )
 	{
 		START_PERFORMANCE_CHECK(FRAME_COMPUTING_TIME)
 
-		Context.ui_engine->proceed_input( FIXED_MOVE_UPDATE_INTERVAL );
+		Context.ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.physicEngine->proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.controllersEngine->proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.movementEngine->proceed_movement( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.controllersEngine->proceed_controllers_post( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.collisionEngine->proceed_collisions( FIXED_MOVE_UPDATE_INTERVAL );
-		Context.fableEngine->proceed_fable( FIXED_MOVE_UPDATE_INTERVAL );
+		Context.fableEngine->ProceedFable( FIXED_MOVE_UPDATE_INTERVAL );
 
 		lag -= FIXED_MOVE_UPDATE_INTERVAL;
 		//timeManager.UpdateTimeLag( lag );
@@ -353,7 +353,7 @@ void Engine::RenderScene( float lag, float timeInterval )
 	Context.displayEngine->BeginScene();
 
 	Context.displayEngine->display_scene( timeInterval, framePercent );
-	Context.ui_engine->draw_GUI( timeInterval, framePercent );
+	Context.ui_engine->DrawGUI( timeInterval, framePercent );
 
 	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
 
@@ -459,7 +459,7 @@ void Engine::set_entry_point( IGamePlay* game_play )
 	if ( Context.engineReady )
 	{
 		game_play->SetEngineReference( this, Context.fableEngine );
-		Context.fableEngine->set_game_play( game_play );
+		Context.fableEngine->SetGamePlay( game_play );
 		
 		int result = game_play->LoadLevel();
 		if ( result )

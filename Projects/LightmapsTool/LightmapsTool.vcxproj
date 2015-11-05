@@ -79,6 +79,7 @@
     <Import Project="..\Props\PathsMacros.props" />
     <Import Project="LightmapsToolPathMacros.props" />
     <Import Project="LightmapsToolConfiguration.props" />
+    <Import Project="..\EngineCore\EngineCorePathMacros.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -86,6 +87,7 @@
     <Import Project="..\Props\PathsMacros.props" />
     <Import Project="LightmapsToolPathMacros.props" />
     <Import Project="LightmapsToolConfiguration.props" />
+    <Import Project="..\EngineCore\EngineCorePathMacros.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -93,6 +95,7 @@
     <Import Project="..\Props\PathsMacros.props" />
     <Import Project="LightmapsToolPathMacros.props" />
     <Import Project="LightmapsToolConfiguration.props" />
+    <Import Project="..\EngineCore\EngineCorePathMacros.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -100,6 +103,7 @@
     <Import Project="..\Props\PathsMacros.props" />
     <Import Project="LightmapsToolPathMacros.props" />
     <Import Project="LightmapsToolConfiguration.props" />
+    <Import Project="..\EngineCore\EngineCorePathMacros.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />

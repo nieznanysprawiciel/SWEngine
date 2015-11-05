@@ -28,8 +28,8 @@ private:
 	void clean_direct_input();
 
 //abstraction layers
-	InputAbstractionLayer*					current_abstraction_layer;
-	std::vector<InputAbstractionLayer*>		abstraction_layers;
+	InputAbstractionLayer*					m_currentAbstractionLayer;
+	std::vector<InputAbstractionLayer*>		m_abstractionLayers;
 
 public:
 	UI_Engine(Engine* engine);
@@ -39,25 +39,26 @@ public:
 	int init_direct_input();
 
 	//called by Engine in main loop
-	void proceed_input(float time_interval);
-	void draw_GUI( float time_interval, float time_lag );
+	void		ProceedInput(float time_interval);
+	void		DrawGUI( float time_interval, float time_lag );
 
 	//abstraction layers
-	int change_abstraction_layer( InputAbstractionLayer* next_layer );
-	void add_abstraction_layer( InputAbstractionLayer* new_layer );
-	int delete_abstraction_layer( InputAbstractionLayer* layer );
-	int set_standard_abstraction_layer(STANDARD_ABSTRACTION_LAYER layer);
-	void clear_abstraction_layers();	
-	inline InputAbstractionLayer* get_standard_abstraction_layer( STANDARD_ABSTRACTION_LAYER layer )
+	int			ChangeAbstractionLayer			( InputAbstractionLayer* next_layer );
+	void		AddAbstractionLayer				( InputAbstractionLayer* new_layer );
+	int			DeleteAbstractionLayer			( InputAbstractionLayer* layer );
+	int			SetStandardAbstractionLayer		( STANDARD_ABSTRACTION_LAYER layer );
+	void		ClearAbstractionLayers			();
+
+	inline InputAbstractionLayer*	GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER layer )
 	{
 		if ( layer >= STANDARD_ABSTRACTION_LAYER_COUNT )
 			return nullptr;
-		return abstraction_layers[layer];
+		return m_abstractionLayers[layer];
 	};
 
 private:
 	//abstraction layers
-	void update_abstraction_layer();
-	void init_abstraction_layers();
+	void		UpdateAbstractionLayer();
+	void		InitAbstractionLayers();
 };
 

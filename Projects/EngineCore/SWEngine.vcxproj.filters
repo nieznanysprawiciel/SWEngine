@@ -191,6 +191,9 @@
     <ClInclude Include="..\..\EngineCode\Common\Delegate.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\StandardAbstractionLayers.h">
+      <Filter>EngineCore\UIEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">

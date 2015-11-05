@@ -12,29 +12,29 @@ class FableEngine
 {
 	friend Engine;
 private:
-	Engine*						engine;
-	IGamePlay*					game_play;
+	Engine*						m_engine;
+	IGamePlay*					m_gamePlay;
 
 	//kolejka eventów
-	std::queue<Event*>			events_queue;
+	std::queue<Event*>			m_eventsQueue;
 
 	//IGamePlay - tablica obs³ugi Eventów
-	std::vector<EventDelegate>	event_delegates;
-	unsigned int				delegates_count;
+	std::vector<EventDelegate>	m_eventDelegates;
+	unsigned int				m_delegatesCount;
 
 public:
 	FableEngine(Engine* engine);
 	~FableEngine();
 
-	unsigned int register_event(EventDelegate event_delegate);
-	void change_delegate(unsigned int id, EventDelegate event_delegate);
-	void delete_delegate(unsigned int id);
+	unsigned int		RegisterEvent		( EventDelegate eventDelegate );
+	void				ChangeDelegate		( unsigned int id, EventDelegate eventDelegate );
+	void				DeleteDelegate		( unsigned int id );
 
 
 protected:		//u¿ytkownik nie mo¿e dotykaæ
-	void proceed_fable(float time_interval);
-	void proceed_events( float time_interval );
+	void				ProceedFable		( float time_interval );
+	void				ProceedEvents		( float time_interval );
 
-	inline void set_game_play( IGamePlay* gameplay ) { game_play = gameplay; }	//tylko dla Engine
+	inline void SetGamePlay( IGamePlay* gameplay ) { m_gamePlay = gameplay; }	//tylko dla Engine
 };
 

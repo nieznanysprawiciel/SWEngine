@@ -1,6 +1,6 @@
 #pragma once
 
-#include "EngineCore/GamePlay/IGamePlay.h"
+#include "Common/SWEngineInclude.h"
 
 
 class LightmapLogic : public IGamePlay
@@ -12,9 +12,12 @@ public:
 	~LightmapLogic() = default;
 
 
-	virtual void		ProceedGameLogic			( float time ) override;
-	virtual int			LoadLevel					() override;
-	virtual int			UnloadLevel					() override;
+	virtual void	ProceedGameLogic		( float time ) override;
+	virtual int	LoadLevel					() override;
+	virtual int	UnloadLevel					() override;
+
+private:
+	void		GenerateLightmaps			( Event* );
 };
 
 

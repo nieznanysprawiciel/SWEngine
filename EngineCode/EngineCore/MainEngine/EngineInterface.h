@@ -7,6 +7,7 @@
 
 #include "EngineCore/MainEngine/TimeManager.h"
 #include "Common/Multithreading/SpinLock.h"
+#include "EngineCore/UIEngine/StandardAbstractionLayers.h"
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
@@ -38,6 +39,7 @@ class PixelShaderObject;
 class VertexShaderObject;
 class TextureObject;
 class RenderTargetObject;
+class InputAbstractionLayer;
 
 
 
@@ -242,13 +244,27 @@ public:
 
 };
 
+/**@brief Zawiera funkcje do obs퀅gi wej쐁ia u퓓tkownika.*/
+class Input : public InterfaceGroup
+{
+private:
+protected:
+public:
+	Input() = default;
+	~Input() = default;
+public:
+	InputAbstractionLayer*		GetStandardAbstractionLayer		( STANDARD_ABSTRACTION_LAYER layer );
+	void						SetAbstractionLayer				( InputAbstractionLayer* layer );
+	void						SetStandardAbstractionLayer		( STANDARD_ABSTRACTION_LAYER layer );
+};
+
 #pragma endregion
 
 
 public:
 	Assets			assets;		///<Funkcje do zarz퉐zania assetami.
 	Actors			actors;		///<Funkcje do zarz퉐zania aktorami.
-
+	Input			input;		///<Funkcje do zarz퉐zania wej쐁iem od u퓓tkownika.
 };
 
 

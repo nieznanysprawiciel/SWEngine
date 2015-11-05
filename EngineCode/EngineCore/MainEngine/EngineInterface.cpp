@@ -182,7 +182,7 @@ void Engine::test()
 	camera->teleport( camera_pos );
 	//przypisujemy kontroler ( dla kontrolerów trzeba zrobiæ jakiœ mechanizm przechowywania i zwalniania)
 	camera_controller_PROTOTYPE* controller = new camera_controller_PROTOTYPE(
-	Context.ui_engine->get_standard_abstraction_layer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ) );
+	Context.ui_engine->GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ) );
 	camera->set_controller(controller);
 
 	//wstawiamy kamerê do odpowiednich modu³ów
@@ -243,4 +243,39 @@ Model3DFromFile* EngineInterface::Assets::Models::LoadSync( const std::wstring& 
 
 	return m_engine->Context.modelsManager->GetModel( name );
 }
+
+
+//=====================================================================================================================//
+//								EngineInterface::Actors
+//=====================================================================================================================//
+
+
+
+
+//=====================================================================================================================//
+//								EngineInterface::Input
+//=====================================================================================================================//
+
+
+/**@brief Pobiera jedn¹ ze standardowych (wbudowanych) warstw abstrakcji.
+
+@param[in] layer Enum oznaczaj¹cy pobieran¹ warstwê.
+@return Zwraca wskaŸnik na pobieran¹ warstwê.
+*/
+InputAbstractionLayer*		EngineInterface::Input::GetStandardAbstractionLayer		( STANDARD_ABSTRACTION_LAYER layer )
+{	return m_engine->Context.ui_engine->GetStandardAbstractionLayer( layer );	}
+
+/**@brief Ustawia podan¹ warstwê abstrakcji jako aktualn¹.
+
+@param[in] layer WskaŸnik na warstwê abstrakcji.
+*/
+void						EngineInterface::Input::SetAbstractionLayer				( InputAbstractionLayer* layer )
+{	m_engine->Context.ui_engine->ChangeAbstractionLayer( layer );	}
+
+/**@brief Ustawia jedn¹ ze standardowych (wbudowanych) warstw abstrakcji.
+
+@param[in] layer Enum oznaczaj¹cy wybran¹ warstwê.
+*/
+void						EngineInterface::Input::SetStandardAbstractionLayer		( STANDARD_ABSTRACTION_LAYER layer )
+{	m_engine->Context.ui_engine->SetStandardAbstractionLayer( layer );	}
 
