@@ -233,8 +233,13 @@ public:
 	DynamicMeshObject();
 	virtual ~DynamicMeshObject();
 
-	int set_model( Model3DFromFile* model );
+	int							set_model		( Model3DFromFile* model );
 
+	/// @todo Przemyœleæ czy te funkcje s¹ konieczne.
+	BufferObject*				GetVertexBuffer	()	{ return vertex_buffer; }
+	BufferObject*				GetIndexBuffer	()	{ return index_buffer; }
+	std::vector<ModelPart>&		GetModelParts	()	{ return model_parts; }
+	///
 private:
 	void add_references(const ModelPart* part);
 	void delete_all_references();

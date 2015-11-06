@@ -41,6 +41,7 @@ class TextureObject;
 class RenderTargetObject;
 class InputAbstractionLayer;
 
+class DynamicMeshObject;
 
 
 /**@brief Przechowuje wszystkie zmienne, które powinny znaleŸæ siê w klasie EngineInterface.
@@ -241,7 +242,7 @@ public:
 	Actors() = default;
 	~Actors() = default;
 public:
-
+	std::vector<DynamicMeshObject*>		GetSceneObjects();	///<@todo Zlikwidowaæ GetSceneObjects. Stworzone tylko dla LightmapsTool.
 };
 
 /**@brief Zawiera funkcje do obs³ugi wejœcia u¿ytkownika.*/

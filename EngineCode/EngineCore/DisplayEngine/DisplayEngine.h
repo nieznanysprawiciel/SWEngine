@@ -69,21 +69,24 @@ public:
 	void SetMainRenderTarget				( RenderTargetObject* renderTarget );					///<@todo Hack. Zrobiæ docelowy sposób ustawiania render targetów.
 
 	// G³ówna funkcja do wyœwietlania sceny
-	void display_scene						( float time_interval, float time_lag );
+	void			display_scene					( float time_interval, float time_lag );
 	// Funkcja do interpolacji pozycji obiektów
-	void interpolate_positions				(float time_lag);
-	void SetProjectionMatrix				(float angle, float X_to_Y, float near_plane, float far_plane);
+	void			interpolate_positions			( float time_lag);
+	void			SetProjectionMatrix				( float angle, float X_to_Y, float near_plane, float far_plane);
 
 	// Zarz¹dzanie meshami
-	void add_dynamic_mesh_object			( DynamicMeshObject* object );
+	void			add_dynamic_mesh_object			( DynamicMeshObject* object );
+	
+	/// @todo Pobieranie meshy z DisplayEngine jest tymczasowe. Trzeba wymyœleæ docelowy mechanizm.
+	std::vector<DynamicMeshObject*>		GetSceneObjects() { return meshes; }
 
 	// Œwiat³a
-	int set_directional_light				( const DirectX::XMFLOAT4& direction, const DirectX::XMFLOAT4& color, unsigned int index );
-	void set_ambient_light					( const DirectX::XMFLOAT4& color );
+	int				set_directional_light			( const DirectX::XMFLOAT4& direction, const DirectX::XMFLOAT4& color, unsigned int index );
+	void			set_ambient_light				( const DirectX::XMFLOAT4& color );
 
 	// camera functions
-	int add_camera							( CameraObject* camera );
-	int set_current_camera					( CameraObject* camera );
+	int				add_camera						( CameraObject* camera );
+	int				set_current_camera				( CameraObject* camera );
 
 	// SkyDome
 	SkyDome* set_skydome					( SkyDome* dome );

@@ -251,6 +251,10 @@ Model3DFromFile* EngineInterface::Assets::Models::LoadSync( const std::wstring& 
 
 
 
+std::vector<DynamicMeshObject*> EngineInterface::Actors::GetSceneObjects()
+{ return m_engine->Context.displayEngine->GetSceneObjects(); }
+
+
 
 //=====================================================================================================================//
 //								EngineInterface::Input
