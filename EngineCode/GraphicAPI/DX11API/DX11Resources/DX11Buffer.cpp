@@ -77,7 +77,7 @@ MemoryChunk DX11Buffer::CopyData()
 	D3D11_BUFFER_DESC bufferDesc;
 	ZeroMemory( &bufferDesc, sizeof( bufferDesc ) );
 	bufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_STAGING;
-	bufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_SHADER_RESOURCE;
+	//bufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_SHADER_RESOURCE;		// Przy fladze usage::staging nie mo¿na bindowaæ zasobu do potoku graficznego.
 	bufferDesc.ByteWidth = m_elementSize * m_elementCount;
 	bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
 
@@ -99,6 +99,7 @@ MemoryChunk DX11Buffer::CopyData()
 	memoryChunk.MemoryCopy( (int8*)data.pData, m_elementSize * m_elementCount );
 
 	device_context->Unmap( newBuffer, 0 );
+	newBuffer->Release();
 
 	return std::move( memoryChunk );
 }

@@ -31,7 +31,8 @@
 #include <DirectXMath.h>
 
 #pragma warning( disable : 4005 )
-#include <dinput.h>
+	#define DIRECTINPUT_VERSION 0x0800
+	#include <dinput.h>
 #pragma warning( default : 4005 )
 
 #include "Common/macros_switches.h"

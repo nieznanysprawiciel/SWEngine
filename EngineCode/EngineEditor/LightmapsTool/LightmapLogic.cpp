@@ -85,6 +85,8 @@ void LightmapLogic::GenerateLightmaps			( Event* keyEvent )
 
 				for( auto& meshPart : meshData )
 				{
+					// Transformacje !!!!!!
+
 					SceneObjectData partData;
 					partData.object = mesh;
 					partData.bufferOffset = meshPart.mesh->buffer_offset;
