@@ -7,6 +7,9 @@
     <Filter Include="Common">
       <UniqueIdentifier>{0d7671c5-6635-4d92-b864-d44ef72d3a4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LightmapsTool\LigthmapWorkers">
+      <UniqueIdentifier>{7a26cb1b-124d-4889-ad5f-4d118d59cbad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineEditor\LightmapsTool\stdafx.cpp">
@@ -15,6 +18,7 @@
     <ClCompile Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapLogic.cpp">
       <Filter>LightmapsTool</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorkers\LightmapWorkerCPU.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\stdafx.h">
@@ -32,5 +36,12 @@
     <ClInclude Include="..\..\EngineCode\Common\MemoryChunk.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\ExchangeDataStructs.h">
+      <Filter>LightmapsTool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorker.h">
+      <Filter>LightmapsTool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorkers\LightmapWorkerCPU.h" />
   </ItemGroup>
 </Project>

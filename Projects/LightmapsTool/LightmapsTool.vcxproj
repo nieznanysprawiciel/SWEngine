@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapLogic.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorkers\LightmapWorkerCPU.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\LightmapsTool\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -34,7 +35,10 @@
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\Common\MemoryChunk.h" />
     <ClInclude Include="..\..\EngineCode\Common\SWEngineInclude.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\ExchangeDataStructs.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapLogic.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorker.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorkers\LightmapWorkerCPU.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\stdafx.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\targetver.h" />
   </ItemGroup>

@@ -14,3 +14,8 @@
 // TODO: reference additional headers your program requires here
 
 #include "Common/SWEngineInclude.h"
+#include "EngineEditor/LightmapsTool/LightmapWorker.h"
+#include "EngineEditor/LightmapsTool/ExchangeDataStructs.h"
+
+#include <thread>
+

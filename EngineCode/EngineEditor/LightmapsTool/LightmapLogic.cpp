@@ -4,24 +4,6 @@
 
 
 
-struct SceneObjectData
-{
-	DynamicMeshObject*		object;				///< Obiekt, do którego nale¿y dana czêœæ mesha. Potrzebujemy, ¿eby potem stworzyæ tekstury i ustawiæ dla odpowiednich obiektów.
-	unsigned int			chunkIdx;			///< Wskazuje na obiekt z danymi wierzcho³ków w strukturze SceneData.
-	DirectX::XMFLOAT4X4		transform;			///< Macierz przekszta³cenia dla danej czêœci mesha.
-	unsigned int			bufferOffset;		///< Offset wzglêdem pocz¹tku bufora albo wierzcho³ków.
-	unsigned int			verticesCount;		///< Liczba wierzcho³ków w danym kawa³ku mesha.
-	DirectX::XMFLOAT4		diffuse;			///< Materia³ - kana³ diffuse, czyli jedyny, który bierzemy pod uwagê.
-	DirectX::XMFLOAT4		emissive;			///< Je¿eli wierzcho³ki opisuj¹ Ÿród³o œwiat³a, to ten kana³ powinien byæ niezerowy.
-};
-
-
-struct SceneData
-{
-	std::vector<MemoryChunk>		verticies;	///< Bufory wierzcho³ków. MemoryChunki s¹ unikatowe. Wiele obiektów mo¿e siê odwo³ywaæ do jednego chunka.
-	std::vector<BufferObject*>		buffers;	///< Silnikowe obiekty buforów. Odpowiadaj¹ MemoryChunkom.
-	std::vector<SceneObjectData>	objectParts;///< Obiekty s¹ przechowywane w czêœciach, podzielonych po materia³ach.
-};
 
 template<typename Type>
 bool FindInVector( std::vector<Type>& vector, Type value, size_t& index )
@@ -35,13 +17,27 @@ bool FindInVector( std::vector<Type>& vector, Type value, size_t& index )
 	return false;
 }
 
-/**@brief 
+/**@brief Wykonuje operacje przygotowuj¹ce lightmapy do u¿ycia.
+
+Je¿eli trwa generowanie lightmap, to funkcja sprawdza cyklicznie czy siê nie skoñczy³o.
+Nastêpnie dane s¹ odbierane od LightmapWorkera i przetwarzane do struktur silnikowych.
 
 @param[in] time Czas od w³¹czenia silnika.
 */
 void LightmapLogic::ProceedGameLogic			( float time )
 {
+	if( m_lightmapState == LightmapState::Generating )
+	{
+		// Sprawdzamy stan LightmapWorkera
+		if( m_lightmapWorker->GetState() == LightmapState::GenerationEnded )
+		{
+			m_lightmapThread.join();		// Czekamy a¿ bêdzie pewne, ¿e w¹tek siê zakoñczy³
 
+
+
+			m_lightmapState = LightmapState::ReadyToGenerate;
+		}
+	}
 }
 
 /**@brief Przygotowuje scenê.*/
@@ -70,8 +66,13 @@ Funkcja pobiera obiekty statyczne ze sceny.
 */
 void LightmapLogic::GenerateLightmaps			( Event* keyEvent )
 {
+	if( m_lightmapState != LightmapState::ReadyToGenerate )
+		return;
+
 	if( keyEvent->type == (unsigned int)EventType::KeyDownEvent )
 	{
+		m_lightmapState = LightmapState::Generating;
+
 		KeyDownEvent* genLightmapEvent = static_cast<KeyDownEvent*>( keyEvent );
 		if( genLightmapEvent->virtual_index == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS )
 		{
@@ -83,6 +84,12 @@ void LightmapLogic::GenerateLightmaps			( Event* keyEvent )
 				auto meshData = mesh->GetModelParts();
 				auto vertexBuff = mesh->GetVertexBuffer();
 
+				DirectX::XMVECTOR objectPos = mesh->get_position();
+				DirectX::XMVECTOR objectRot = mesh->get_orientation();		// Quaternion orientation
+				// Zak³adam, ¿e nie obs³ugujemy skalowania, bo na razie nie wiem czy silnik bêdzie je obs³ugiwa³ czy to bêdzie gdzieœ prekalkulowane.
+				DirectX::XMMATRIX objectTransform = DirectX::XMMatrixTranslationFromVector( objectPos );
+				objectTransform = DirectX::XMMatrixMultiply( DirectX::XMMatrixRotationQuaternion( objectRot ), objectTransform );
+
 				for( auto& meshPart : meshData )
 				{
 					// Transformacje !!!!!!
@@ -93,6 +100,10 @@ void LightmapLogic::GenerateLightmaps			( Event* keyEvent )
 					partData.verticesCount = meshPart.mesh->vertices_count;
 					partData.diffuse = meshPart.material->Diffuse;
 					partData.emissive = meshPart.material->Emissive;
+
+					DirectX::XMMATRIX partTransform = DirectX::XMLoadFloat4x4( &meshPart.mesh->transform_matrix );
+					objectTransform = DirectX::XMMatrixMultiply( partTransform, objectTransform );
+					DirectX::XMStoreFloat4x4( &partData.transform, objectTransform );
 
 					size_t index;
 					if( FindInVector( sceneData->buffers, vertexBuff, index ) )
