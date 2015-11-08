@@ -265,6 +265,7 @@
     <ClCompile Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputAbstractionLayer.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\StandardAbstractionLayer.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\UI_Engine.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\UI_Engine_AbstractionLayers.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)SW_engine.cpp" />

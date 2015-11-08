@@ -283,6 +283,9 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\EventsManager\EventManager.cpp">
       <Filter>EngineCore\EventsManager</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\StandardAbstractionLayer.cpp">
+      <Filter>EngineCore\UIEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(EngineCoreSourceDir)SW_engine.rc">

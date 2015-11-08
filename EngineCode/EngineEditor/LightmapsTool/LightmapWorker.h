@@ -20,6 +20,6 @@ public:
 	LightmapState	GetState		()	{ return m_lightmapState; }
 
 	/**@brief G³ówna funkcja generuj¹ca lightmapy. Zaimplementuj w klasie pochodnej.*/
-	virtual void	operator()		() = 0;
+	virtual void	Generate		() = 0;
 };
 

@@ -13,6 +13,6 @@ public:
 	~LightmapWorkerCPU() = default;
 
 	/**@brief G³ówna funkcja generuj¹ca lightmapy. Zaimplementuj w klasie pochodnej.*/
-	virtual void	operator()		() override;
+	virtual void	Generate() override;
 };
 

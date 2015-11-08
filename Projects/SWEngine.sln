@@ -15,6 +15,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineGUI", "EngineGUI\EngineGUI.vcxproj", "{C6DAB3EE-E9A7-47FC-9B33-A8F4250C219B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestEngine", "TestEngine\TestEngine.vcxproj", "{AFADFC8A-7077-47D9-8B08-A489719C7801}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B5C0A850-91A7-4DB1-913D-9850AD23A735} = {B5C0A850-91A7-4DB1-913D-9850AD23A735}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditorApp", "..\EngineCode\EngineEditor\EditorApp\EditorApp.csproj", "{864E3AB0-8199-4D9E-9AD3-CC81476E8AED}"
 EndProject
