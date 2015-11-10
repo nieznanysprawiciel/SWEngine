@@ -18,7 +18,9 @@
     <ClCompile Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapLogic.cpp">
       <Filter>LightmapsTool</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorkers\LightmapWorkerCPU.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorkers\LightmapWorkerCPU.cpp">
+      <Filter>LightmapsTool\LigthmapWorkers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\stdafx.h">
@@ -42,6 +44,8 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorker.h">
       <Filter>LightmapsTool</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorkers\LightmapWorkerCPU.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorkers\LightmapWorkerCPU.h">
+      <Filter>LightmapsTool\LigthmapWorkers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

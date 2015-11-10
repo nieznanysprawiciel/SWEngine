@@ -66,7 +66,7 @@ Najpierw na GPU do tymczasowego bufora, a potem po zmapowaniu na pamiêæ RAM,
 odbywa siê kopiowanie do MemoryChunka.
 
 @todo Nie trzeba by wykonywaæ kopiowania na GPU, gdyby bufor by³ stworzony z flag¹
-D3D11_USAGE_STAGING. Trzeba sprawdziæ flagi i robic kopiowanie tylko, gdy to konieczne.
+D3D11_USAGE_STAGING lub D3D11_USAGE_DEFAULT. Trzeba sprawdziæ flagi i robiæ kopiowanie tylko, gdy to konieczne.
 
 @attention Funkcja nie nadaje siê do wykonania wielow¹tkowego. U¿ywa DeviceContextu do kopiowania danych
 w zwi¹zku z czym wymaga synchronizacji z innymi funkcjami renderuj¹cymi.

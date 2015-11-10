@@ -64,7 +64,10 @@ int LightmapLogic::LoadLevel					()
 
 /**@brief Funkcja wywo³ywana w momencie zmiany levelu na inny.*/
 int LightmapLogic::UnloadLevel					()
-{	return 0;	}
+{	
+	m_fableEngine->DeleteDelegate( (unsigned int)EventType::KeyDownEvent );		// Po zmianie klasy IGameLogic na inn¹, ktoœ móg³by nadal próbowaæ wywo³aæ nieistniej¹cy kawa³ek kodu.
+	return 0;
+}
 
 
 /**@brief Wywo³uje generowanie lightmap w silniku.
