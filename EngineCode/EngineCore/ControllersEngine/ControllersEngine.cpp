@@ -27,8 +27,8 @@ void ControllersEngine::proceed_controllers_pre(float time_interval)
 {
 	//todo:	przerobiæ na wersjê wielow¹tkow¹
 	for ( unsigned int i = 0; i < pre_controlled_objects.size(); ++i )
-		if ( pre_controlled_objects[i]->get_controller() != nullptr )
-			pre_controlled_objects[i]->get_controller()->control_object( pre_controlled_objects[i] );
+		if ( pre_controlled_objects[i]->GetController() != nullptr )
+			pre_controlled_objects[i]->GetController()->ControlObject( pre_controlled_objects[i] );
 }
 
 
@@ -36,8 +36,8 @@ void ControllersEngine::proceed_controllers_post( float time_interval )
 {
 	//todo:	przerobiæ na wersjê wielow¹tkow¹
 	for ( unsigned int i = 0; i < post_controlled_objects.size( ); ++i )
-		if ( post_controlled_objects[i]->get_controller( ) != nullptr )
-			post_controlled_objects[i]->get_controller( )->control_object( post_controlled_objects[i] );
+		if ( post_controlled_objects[i]->GetController( ) != nullptr )
+			post_controlled_objects[i]->GetController( )->ControlObject( post_controlled_objects[i] );
 }
 
 

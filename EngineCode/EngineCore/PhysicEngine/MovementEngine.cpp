@@ -21,7 +21,7 @@ void MovementEngine::proceed_movement(float time_interval)
 	for ( unsigned int i = 0; i < dynamic_objects.size(); ++i )
 	{
 		DynamicObject* object = dynamic_objects[i];
-		object->move( time_interval );
+		object->Move( time_interval );
 		object->swap();		// Zamieniamy bufory wewn¹trz obiektu
 	}
 }

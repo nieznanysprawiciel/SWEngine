@@ -49,7 +49,7 @@ Engine::Engine(HINSTANCE instance)
 #endif
 
 	// Dziêki tej zmiennej bêdzie mo¿na wysy³aæ eventy
-	Object::set_engine( this );
+	Object::SetEngine( this );
 
 #ifndef __UNUSED
 	//Zmienna decyduje o konczeniu w¹tków
@@ -276,7 +276,7 @@ void Engine::RenderFrame()
 #ifdef _INTERPOLATE_POSITIONS
 	START_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 
-	Context.displayEngine->interpolate_positions( lag / FIXED_MOVE_UPDATE_INTERVAL );
+	Context.displayEngine->InterpolatePositions( lag / FIXED_MOVE_UPDATE_INTERVAL );
 
 	END_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 #endif
@@ -286,7 +286,7 @@ void Engine::RenderFrame()
 	//Renderujemy scenê oraz interfejs u¿ytkownika
 	Context.displayEngine->BeginScene();
 
-	Context.displayEngine->display_scene( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
+	Context.displayEngine->DisplayScene( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
 	Context.ui_engine->DrawGUI( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
 
 	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
@@ -342,7 +342,7 @@ void Engine::RenderScene( float lag, float timeInterval )
 #ifdef _INTERPOLATE_POSITIONS
 	START_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 
-	Context.displayEngine->interpolate_positions( framePercent );
+	Context.displayEngine->InterpolatePositions( framePercent );
 
 	END_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 #endif
@@ -352,7 +352,7 @@ void Engine::RenderScene( float lag, float timeInterval )
 	//Renderujemy scenê oraz interfejs u¿ytkownika
 	Context.displayEngine->BeginScene();
 
-	Context.displayEngine->display_scene( timeInterval, framePercent );
+	Context.displayEngine->DisplayScene( timeInterval, framePercent );
 	Context.ui_engine->DrawGUI( timeInterval, framePercent );
 
 	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.

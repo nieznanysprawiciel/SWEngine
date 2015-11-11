@@ -5,7 +5,7 @@
 */
 
 class InputAbstractionLayer;
-
+class RenderPass;
 
 
 #define	BUILD_IN_EVENTS				2
@@ -13,7 +13,8 @@ class InputAbstractionLayer;
 typedef enum class EventType
 {
 	KeyDownEvent,
-	KeyUpEvent
+	KeyUpEvent,
+	RenderOnceEndedEvent
 } EventType;
 
 
@@ -25,7 +26,7 @@ public:
 	unsigned int				type;
 
 	Event( unsigned int type );
-	virtual ~Event();
+	virtual ~Event() = default;
 };
 
 
@@ -37,8 +38,8 @@ public:
 	short mouseX;
 	short mouseY;
 
-	KeyDownEvent(short v_index);
-	~KeyDownEvent();
+	KeyDownEvent( short v_index );
+	~KeyDownEvent() = default;
 };
 
 class KeyUpEvent	:	public Event
@@ -49,7 +50,18 @@ public:
 	short mouseX;
 	short mouseY;
 
-	KeyUpEvent(short v_index);
-	~KeyUpEvent();
+	KeyUpEvent( short v_index );
+	~KeyUpEvent() = default;
 };
 
+
+class RenderOnceEndedEvent	:	public Event
+{
+private:
+protected:
+public:
+	RenderOnceEndedEvent();
+	~RenderOnceEndedEvent() = default;
+public:
+	RenderPass*		renderPass;
+};

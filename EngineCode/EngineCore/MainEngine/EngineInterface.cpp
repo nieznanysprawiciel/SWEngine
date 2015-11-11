@@ -59,52 +59,52 @@ void Engine::test()
 	//dodawanie ksiê¿yca
 	DynamicMeshObject* moon = new DynamicMeshObject;
 	XMVECTOR position = XMVectorSet( 4000.0, 0.0, 8000.0, 0.0 );
-	moon->teleport( position );
+	moon->Teleport( position );
 
-	moon->set_model( Context.modelsManager->GetModel( MOON ) );
+	moon->SetModel( Context.modelsManager->GetModel( MOON ) );
 	moon->set_scale( 30.0 );
 
 	object_list.push_back( moon );
-	Context.displayEngine->add_dynamic_mesh_object( moon );
+	Context.displayEngine->AddDynamicMeshObject( moon );
 
 	//dodawanie Nebulona
 	DynamicMeshObject* nebulon = new DynamicMeshObject;
 	position = XMVectorSet( 400.0, 0.0, -6000.0, 0.0 );
-	nebulon->teleport( position );
+	nebulon->Teleport( position );
 
-	nebulon->set_model( Context.modelsManager->GetModel( NEBULON ) );
+	nebulon->SetModel( Context.modelsManager->GetModel( NEBULON ) );
 	nebulon->set_scale( 1 );	//Nebulon ma Ÿle ustawiony pivot, wiêc jak siê przeskaluje to odleci gdzieœ w kosmos i go nie widaæ.
 
 	object_list.push_back( nebulon );
-	Context.displayEngine->add_dynamic_mesh_object( nebulon );
+	Context.displayEngine->AddDynamicMeshObject( nebulon );
 
 	//dodawanie TIE Fightera
 	DynamicMeshObject* TIE = new DynamicMeshObject;
 	position = XMVectorSet( -400.0, 0.0, 800.0, 0.0 );
-	TIE->teleport( position );
+	TIE->Teleport( position );
 
-	TIE->set_model( Context.modelsManager->GetModel( TIE_FIGHTER ) );
+	TIE->SetModel( Context.modelsManager->GetModel( TIE_FIGHTER ) );
 	TIE->set_scale( 10 );
 
 	object_list.push_back( TIE );
-	Context.displayEngine->add_dynamic_mesh_object( TIE );
+	Context.displayEngine->AddDynamicMeshObject( TIE );
 
 
 	//dodawanie TIE Fightera Vadera
 	DynamicMeshObject* VaderTIE = new DynamicMeshObject;
 	position = XMVectorSet( -400.0, 0.0, -3000.0, 0.0 );
-	VaderTIE->teleport( position );
+	VaderTIE->Teleport( position );
 
-	VaderTIE->set_model( Context.modelsManager->GetModel( VADER_TIE ) );
+	VaderTIE->SetModel( Context.modelsManager->GetModel( VADER_TIE ) );
 	//VaderTIE->set_scale( 1.0 );
 
 	object_list.push_back( VaderTIE );
-	Context.displayEngine->add_dynamic_mesh_object( VaderTIE );
+	Context.displayEngine->AddDynamicMeshObject( VaderTIE );
 
 	//dodawanie myœliwca
 	DynamicMeshObject* clone_fighter = new DynamicMeshObject;
 	position = XMVectorSet(0.0, 0.0, 6000.0, 0.0);
-	clone_fighter->teleport( position );
+	clone_fighter->Teleport( position );
 
 #ifdef _QUATERNION_SPEED
 	XMVECTOR rot_vector = { 1.0f, 0.0f, 0.0f, 0.0f };
@@ -116,12 +116,12 @@ void Engine::test()
 	axis_angle.z = 0.0;
 	axis_angle.w = XMConvertToRadians(30);
 #endif
-	clone_fighter->set_rotation_speed( axis_angle );
+	clone_fighter->SetRotationSpeed( axis_angle );
 
-	clone_fighter->set_model( Context.modelsManager->GetModel( CLONE_FIGHTER ) );
+	clone_fighter->SetModel( Context.modelsManager->GetModel( CLONE_FIGHTER ) );
 
 	object_list.push_back( clone_fighter );
-	Context.displayEngine->add_dynamic_mesh_object( clone_fighter );
+	Context.displayEngine->AddDynamicMeshObject( clone_fighter );
 	Context.movementEngine->add_moveable_object( clone_fighter );
 
 
@@ -179,15 +179,15 @@ void Engine::test()
 	//ustawienie aktywnej kamery
 	CameraObject* camera = new CameraObject();
 	XMVECTOR camera_pos = XMVectorSet( 0.0, 0.0, 0.0, 0.0 );
-	camera->teleport( camera_pos );
+	camera->Teleport( camera_pos );
 	//przypisujemy kontroler ( dla kontrolerów trzeba zrobiæ jakiœ mechanizm przechowywania i zwalniania)
 	camera_controller_PROTOTYPE* controller = new camera_controller_PROTOTYPE(
 	Context.ui_engine->GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ) );
-	camera->set_controller(controller);
+	camera->SetController(controller);
 
 	//wstawiamy kamerê do odpowiednich modu³ów
-	Context.displayEngine->add_camera( camera );
-	Context.displayEngine->set_current_camera( camera );
+	Context.displayEngine->AddCamera( camera );
+	Context.displayEngine->SetCurrentCamera( camera );
 	Context.movementEngine->add_moveable_object( camera );
 	Context.controllersEngine->add_pre_controlled( camera );
 
@@ -196,7 +196,7 @@ void Engine::test()
 	XMVECTOR sun_dir = XMVectorSet( -0.2f, 0.6f, 0.6f, 1.0f );
 	HosekSkyDome* skyDome = new HosekSkyDome( Context.modelsManager );
 	skyDome->init_sky_dome( sun_dir, turbidity, albedo, 101, 101, 100, 5.0 );
-	Context.displayEngine->set_skydome( skyDome );
+	Context.displayEngine->SetSkydome( skyDome );
 
 	sun_dir = XMVectorNegate( sun_dir );
 
@@ -205,8 +205,8 @@ void Engine::test()
 	XMStoreFloat4( &direction, sun_dir );
 
 	// Ustawiamy œwiat³o pod indeksem 0
-	Context.displayEngine->set_directional_light( direction, color, 0 );
-	Context.displayEngine->set_ambient_light( DirectX::XMFLOAT4( 0.2f, 0.2f, 0.2f, 1.0f ) );
+	Context.displayEngine->SetDirectionalLight( direction, color, 0 );
+	Context.displayEngine->SetAmbientLight( DirectX::XMFLOAT4( 0.2f, 0.2f, 0.2f, 1.0f ) );
 
 
 
@@ -283,3 +283,22 @@ void						EngineInterface::Input::SetAbstractionLayer				( InputAbstractionLayer
 void						EngineInterface::Input::SetStandardAbstractionLayer		( STANDARD_ABSTRACTION_LAYER layer )
 {	m_engine->Context.ui_engine->SetStandardAbstractionLayer( layer );	}
 
+
+//=====================================================================================================================//
+//								EngineInterface::Rendering
+//=====================================================================================================================//
+
+/**@brief Dorzuca do kolejki renderingu nowy przebieg, który zostanie wyrenderowany tylko raz.
+
+Funkcja jest przydatna, je¿eli chcemy wyrenderowaæ teksturê, która bêdzie niezmienna przez ca³¹ grê.
+
+Po wyrenderowaniu wysy³any jest event RenderOnceEndedEvent. Nie ma gwarancji, ¿e renderowanie odbêdzie
+siê w tej samej klatce, w której zosta³o wys³ane ¿¹danie. Je¿eli pêtla renderuj¹ca bêdzie za bardzo obci¹¿ona,
+to z kolejki bêdzie wybieranych tylko kilka ¿¹dañ, a pozosta³e zostan¹ od³o¿one do kolejnych klatek.
+
+@attention W obecnej wersji event musi zostac odebrany, ¿eby zwolniæ obiekt RenderPass i wszystkie zasoby,
+które zostan¹ w nim umieszczone. W przysz³oœci trzeba zrobiæ jakiœ m¹drzejszy mechanizm.
+
+@param[in] pass Dane przebiegu uzywane przy renderowaniu.*/
+void EngineInterface::Rendering::RenderOnce( RenderPass* pass )
+{}

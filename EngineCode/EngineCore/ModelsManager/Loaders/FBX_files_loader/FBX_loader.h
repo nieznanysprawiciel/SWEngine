@@ -39,7 +39,7 @@ private:
 	int read_material_index(FbxMesh* mesh, unsigned int polygon_counter);
 
 	//void copy_material( D3DMATERIAL9& directXmaterial, const FbxSurfacePhong& FBXmaterial );
-	void copy_material( MaterialObject& engine_material, const FbxSurfacePhong& FBXmaterial );
+	void CopyMaterial( MaterialObject& engine_material, const FbxSurfacePhong& FBXmaterial );
 
 public:
 	FBX_loader(ModelsManager* models_manager);

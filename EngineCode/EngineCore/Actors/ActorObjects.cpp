@@ -12,56 +12,57 @@
 
 #include "Common/memory_leaks.h"
 
+using namespace DirectX;
 
 Engine* Object::engine = nullptr;		//po stworzeniu obiektu klasy Engine, zmienna ta jest uzupe³niana wskaxnikiem this
 
 
 
-/*Funkcja pozwala wys³aæ event, który bêdzie potem przetworzony przez klase FableEngine.
-*Eventy s¹ metod¹ komunikacji pomiedzy silnikiem graficznym, silnikiem fizycznym, AI i silnikiem kolizji,
-*a modu³em silnika odpowiedzialnym za fabu³ê. Istnieje szereg eventów wbudowanych, wysy³anych przez silnik,
-*mo¿na równie¿ definiowaæ w³asne nowe eventy poprzez dziedziczenie z klasy Event. Event mo¿e byæ wys³any przez dowolny
-*objekt poprzez wywo³anie funkcji Object::event. Aby wys³aæ w³asny event trzeba przeci¹¿yæ jedn¹ z funkcji klas wbudowanych,
-*która jest potem wywo³ywana przez silnik i wywo³aæ tê funkjê.
-*
-*Za zwolnienie pamiêci po klasie Event odpowiada klasa FabelEngine (jest to robione automatycznie po wywo³aniu funkcji obs³ugi,
-*u¿ytkownik nie musi siê tym przejmowac).*/
+/**Funkcja pozwala wys³aæ event, który bêdzie potem przetworzony przez klase FableEngine.
+Eventy s¹ metod¹ komunikacji pomiedzy silnikiem graficznym, silnikiem fizycznym, AI i silnikiem kolizji,
+a modu³em silnika odpowiedzialnym za fabu³ê. Istnieje szereg eventów wbudowanych, wysy³anych przez silnik,
+mo¿na równie¿ definiowaæ w³asne nowe eventy poprzez dziedziczenie z klasy Event. Event mo¿e byæ wys³any przez dowolny
+objekt poprzez wywo³anie funkcji Object::event. Aby wys³aæ w³asny event trzeba przeci¹¿yæ jedn¹ z funkcji klas wbudowanych,
+która jest potem wywo³ywana przez silnik i wywo³aæ tê funkjê.
+
+Za zwolnienie pamiêci po klasie Event odpowiada klasa FabelEngine (jest to robione automatycznie po wywo³aniu funkcji obs³ugi,
+u¿ytkownik nie musi siê tym przejmowac).*/
 void inline Object::event(Event* new_event)
 {
 	engine->send_event(new_event);
 }
 
 
-/*Funkcja wykonywana w ka¿dym obiegu pêtli renderingu przez obiekt MovementEngine.
- *Dodajemy aktualny wektor prêdkoœci i prêdkoœci obrotowej do wektorów po³o¿enia i orientacji.
- *Poniewa¿ te wektory wyra¿aj¹ przesuniêcie/rotacje na sekundê, to musimy to przemno¿yæ jeszcze przez time_interval.
- *
- *W momencie wykonania zosta³y juz uwzglêdnione oddzia³ywania fizyczne oraz wp³yw kontrolerów.
- *Nale¿y zauwa¿yæ, ¿e o ile najlepiej by by³o, ¿eby kontrolery tak¿e u¿ywa³y tych zmiennych do poruszania
- *obiektami na scenie, to nie jest to obowi¹zek, bo maj¹ te¿ bezpoœredni dostêp do po³o¿enia i orientacji.
- *
- *Sprawdzanie kolizji i ewentualne przesuniêcia z tym zwi¹zane nastêpuj¹ dopiero po zakoñczeniu wywo³ywania tych funkcji.
- *
- *Do przeliczania u¿ywamy biblioteki DirectXmath, która u¿ywa zmiennych wektorowych i wykonuje obliczenia
- *na jednostkach SSE2. Do tego potrzebne jest wyrównanie zmiennych do 16 bitów, czego nie oferuj¹ zmienne 
- *XMFloat, dlatego trzeba wykonywaæ operacjê XMLoadFloat4 i XMStoreFloat4. 
- *Uwaga zmienne XMVECTOR i XMMATRIX nie mog¹ byc alokowane na stercie, poniewa¿ nie jest tam gwarantowane 
- *16bitowe wyrównanie. Po dok³adny opis odsy³am do MSDNu.*/
-void DynamicObject::move(float time_interval)
+/**Funkcja wykonywana w ka¿dym obiegu pêtli renderingu przez obiekt MovementEngine.
+ Dodajemy aktualny wektor prêdkoœci i prêdkoœci obrotowej do wektorów po³o¿enia i orientacji.
+ Poniewa¿ te wektory wyra¿aj¹ przesuniêcie/rotacje na sekundê, to musimy to przemno¿yæ jeszcze przez time_interval.
+ 
+ W momencie wykonania zosta³y juz uwzglêdnione oddzia³ywania fizyczne oraz wp³yw kontrolerów.
+ Nale¿y zauwa¿yæ, ¿e o ile najlepiej by by³o, ¿eby kontrolery tak¿e u¿ywa³y tych zmiennych do poruszania
+ obiektami na scenie, to nie jest to obowi¹zek, bo maj¹ te¿ bezpoœredni dostêp do po³o¿enia i orientacji.
+ 
+ Sprawdzanie kolizji i ewentualne przesuniêcia z tym zwi¹zane nastêpuj¹ dopiero po zakoñczeniu wywo³ywania tych funkcji.
+ 
+ Do przeliczania u¿ywamy biblioteki DirectXmath, która u¿ywa zmiennych wektorowych i wykonuje obliczenia
+ na jednostkach SSE2. Do tego potrzebne jest wyrównanie zmiennych do 16 bitów, czego nie oferuj¹ zmienne 
+ XMFloat, dlatego trzeba wykonywaæ operacjê XMLoadFloat4 i XMStoreFloat4. 
+ Uwaga zmienne XMVECTOR i XMMATRIX nie mog¹ byc alokowane na stercie, poniewa¿ nie jest tam gwarantowane 
+ 16bitowe wyrównanie. Po dok³adny opis odsy³am do MSDNu.*/
+void DynamicObject::Move(float time_interval)
 {
 //translacja
-	XMVECTOR pos = get_position();
+	XMVECTOR pos = GetPosition();
 	XMVECTOR time = XMVectorReplicate(time_interval);
-	XMVECTOR translate = get_speed();
+	XMVECTOR translate = GetSpeed();
 	translate *= time;
 	pos = pos + translate;
-	set_position( pos );
+	SetPosition( pos );
 
 //w docelowej wersji trzeba siê zdecydowaæ, co lepsze i resztê wywaliæ
 #ifdef _QUATERNION_SPEED
 //orientacja
-	XMVECTOR orient = get_orientation();
-	XMVECTOR rot = get_rotation_speed();
+	XMVECTOR orient = GetOrientation();
+	XMVECTOR rot = GetRotationSpeed();
 
 	//najpierw liczymy nowy kwaternion dla obrotu w czasie sekundy
 	rot = XMQuaternionMultiply(orient, rot);
@@ -71,10 +72,10 @@ void DynamicObject::move(float time_interval)
 
 	/*Du¿o obliczeñ, mo¿e da siê to jakoœ za³atwiæ bez interpolacji...*/
 
-	set_orientation( orient );
+	SetOrientation( orient );
 #else
-	XMVECTOR orient = get_orientation();				//pobieramy orientacjê
-	XMVECTOR rot = get_rotation_speed();				//pobieramy oœ obrotu (k¹t te¿, ale on nie ma znaczenia)
+	XMVECTOR orient = GetOrientation();				//pobieramy orientacjê
+	XMVECTOR rot = GetRotationSpeed();				//pobieramy oœ obrotu (k¹t te¿, ale on nie ma znaczenia)
 
 	if ( !XMVector3Equal( rot, XMVectorZero() ) )
 	{
@@ -84,11 +85,11 @@ void DynamicObject::move(float time_interval)
 		orient = XMQuaternionMultiply( orient, rot );			//liczymy nowy kwaternion orientacji
 	}
 		
-	set_orientation( orient );
+	SetOrientation( orient );
 #endif
 }
 
-/*Funkcja o zastosowaniu tym samym co move, z t¹ ró¿nic¹, ¿e wykonywana dla obiektów z³o¿onych. Przesuniêcie
+/**Funkcja o zastosowaniu tym samym co Move, z t¹ ró¿nic¹, ¿e wykonywana dla obiektów z³o¿onych. Przesuniêcie
 jest z³o¿eniem ruchu rodzica i danegi obiektu.
 
 Funkcja jest wirtualna i w klasie ComplexObject (implementacja poni¿ej) wywo³uje rekurencyjnie tê funkcjê
@@ -96,13 +97,13 @@ dla wszystkich swoich dzieci.
 
 UWAGA!! nale¿y pamiêtaæ, ¿e w klasie MovementEngine nie powinno wyst¹piæ ¿adne dziecko klasy ComplexObject.
 W przeciwnym razie niektóre przesuniecia i obroty zostan¹ zastosowane wielokrotnie do jednego obiektu.*/
-void DynamicObject::move_complex(float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation)
+void DynamicObject::MoveComplex(float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation)
 {
 	return;
 	//DOKOÑCZYC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 	//translacja
-	XMVECTOR pos = get_position();
+	XMVECTOR pos = GetPosition();
 	XMVECTOR time = XMVectorReplicate(time_interval);
 	XMVECTOR translate = XMLoadFloat3(&speed);
 	XMVECTOR parent_translate = XMLoadFloat3(&parent_speed);
@@ -110,10 +111,10 @@ void DynamicObject::move_complex(float time_interval, const XMFLOAT3& parent_spe
 	translate += parent_translate;		//g³ówna ró¿nica: dodajemy przesuniêcie rodzica
 	translate *= time;
 	pos = pos + translate;
-	set_position( pos );
+	SetPosition( pos );
 
 	//orientacja
-	XMVECTOR orient = get_orientation();
+	XMVECTOR orient = GetOrientation();
 	XMVECTOR rot = XMLoadFloat4(&rotation_speed);
 	XMVECTOR parent_rotn = XMLoadFloat4(&parent_rotation);
 
@@ -125,10 +126,10 @@ void DynamicObject::move_complex(float time_interval, const XMFLOAT3& parent_spe
 
 	/*Du¿o obliczeñ, mo¿e da siê to jakoœ za³atwiæ bez interpolacji...*/
 
-	set_orientation( orient );
+	SetOrientation( orient );
 }
 
-void ComplexObject::move_complex(float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation)
+void ComplexObject::MoveComplex(float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation)
 {
 
 }
@@ -167,7 +168,7 @@ StaticObject::StaticObject(const XMFLOAT3& pos, const XMFLOAT4& orient)
 
 @param[in] time_lag Procent czasu jaki up³yn¹³ od ostaniej klatki do nastêpnej
 Zakres [0,1].*/
-XMVECTOR StaticObject::get_interpolated_position( float time_lag ) const
+XMVECTOR StaticObject::GetInterpolatedPosition( float time_lag ) const
 {
 	XMVECTOR pos2 = XMLoadFloat3( &position );
 	XMVECTOR pos1 = XMLoadFloat3( &position_back );
@@ -187,7 +188,7 @@ XMVECTOR StaticObject::get_interpolated_position( float time_lag ) const
 
 @param[in] time_lag Procent czasu jaki up³yn¹³ od ostaniej klatki do nastêpnej
 Zakres [0,1].*/
-XMVECTOR StaticObject::get_interpolated_orientation( float time_lag ) const
+XMVECTOR StaticObject::GetInterpolatedOrientation( float time_lag ) const
 {
 	XMVECTOR orient2 = XMLoadFloat4( &orientation );
 	XMVECTOR orient1 = XMLoadFloat4( &orientation_back );
@@ -257,17 +258,17 @@ DynamicMeshObject::~DynamicMeshObject()
 	//jedynie kasujemy referencje
 
 	//kasujemy referencje bezpoœrednie
-	delete_all_references();
+	DeleteAllReferences();
 }
 
-int DynamicMeshObject::set_model(Model3DFromFile* model)
+int DynamicMeshObject::SetModel(Model3DFromFile* model)
 {
 	if( model == nullptr )
 		return 1;
 
 	//najpierw czyœcimy poprzedni¹ zawartoœæ
 	//kasujemy referencje bezpoœrednie
-	delete_all_references();
+	DeleteAllReferences();
 
 	//dodajemy now¹ zawartoœæ
 	model_reference = model;
@@ -291,7 +292,7 @@ int DynamicMeshObject::set_model(Model3DFromFile* model)
 		register const ModelPart* part = model->get_part( i );
 
 		model_parts.push_back( *part );
-		add_references(part);			//Dodajemy odwo³ania
+		AddReferences(part);			//Dodajemy odwo³ania
 	}
 
 	//Pytanie czy to ma sens. Funkcja reserve ustawi³a wielkoœæ wektora na przynajmniej count.
@@ -308,7 +309,7 @@ int DynamicMeshObject::set_model(Model3DFromFile* model)
 Dodajemy odwo³ania do wszystkich istniej¹cych elementów w przekazanym wskaŸniku.
 
 @param[in] part Struktura ModelPart opisuj¹ce czêœæ mesha, w której dodajemy referencje.*/
-void DynamicMeshObject::add_references( const ModelPart* part )
+void DynamicMeshObject::AddReferences( const ModelPart* part )
 {
 	if ( part == nullptr )
 		return;
@@ -333,7 +334,7 @@ w tablicy model_parts oraz wskaŸniku model_reference i vertex_buffer.
 
 ¯adne obiekty nie s¹ kasowane, poniewa¿ nie nale¿¹ one do nas.
 Wszystkie zmienne s¹ za to czyszczone.*/
-void DynamicMeshObject::delete_all_references( )
+void DynamicMeshObject::DeleteAllReferences( )
 {
 	if ( model_reference != nullptr )
 		model_reference->delete_object_reference( );

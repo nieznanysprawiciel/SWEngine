@@ -13,10 +13,6 @@ Event::Event( unsigned int type )
 }
 
 
-Event::~Event()
-{
-}
-
 //=================================================================//
 //						KeyDownEvent
 //=================================================================//
@@ -27,9 +23,6 @@ KeyDownEvent::KeyDownEvent(short v_index)
 	virtual_index = v_index;
 }
 
-KeyDownEvent::~KeyDownEvent()
-{
-}
 
 
 //=================================================================//
@@ -41,6 +34,11 @@ KeyUpEvent::KeyUpEvent(short v_index)
 	virtual_index = v_index;
 }
 
-KeyUpEvent::~KeyUpEvent()
+
+//=================================================================//
+//						RenderOnceEndedEvent
+//=================================================================//
+RenderOnceEndedEvent::RenderOnceEndedEvent()
+: Event( (unsigned int)EventType::RenderOnceEndedEvent )
 {
 }

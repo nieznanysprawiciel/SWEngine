@@ -91,7 +91,7 @@ void DX11Renderer::SetIndexBuffer( BufferObject* buffer )
 
 @param[in] buffer Bufor do ustawienia.
 @return Je¿eli bufor nie istnieje to zwraca wartoœæ true. Inaczej false.
-Wywo³anie if( set_vertex_buffer() ) ma zwróciæ tak¹ wartoœæ, ¿eby w ifie mo¿na by³o
+Wywo³anie if( SetVertexBuffer() ) ma zwróciæ tak¹ wartoœæ, ¿eby w ifie mo¿na by³o
 wywo³aæ return lub continue, w przypadku braku bufora.*/
 bool DX11Renderer::SetVertexBuffer( BufferObject* buffer, unsigned int offset )
 {

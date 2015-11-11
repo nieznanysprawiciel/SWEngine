@@ -42,7 +42,7 @@ class RenderTargetObject;
 class InputAbstractionLayer;
 
 class DynamicMeshObject;
-
+class RenderPass;
 
 /**@brief Przechowuje wszystkie zmienne, które powinny znaleŸæ siê w klasie EngineInterface.
 
@@ -259,6 +259,18 @@ public:
 	void						SetStandardAbstractionLayer		( STANDARD_ABSTRACTION_LAYER layer );
 };
 
+/**@brief Funkcje do obs³ugi renderowania.*/
+class Rendering : public InterfaceGroup
+{
+private:
+protected:
+public:
+	Rendering() = default;
+	~Rendering() = default;
+public:
+	void		RenderOnce( RenderPass* );
+};
+
 #pragma endregion
 
 
@@ -266,6 +278,7 @@ public:
 	Assets			assets;		///<Funkcje do zarz¹dzania assetami.
 	Actors			actors;		///<Funkcje do zarz¹dzania aktorami.
 	Input			input;		///<Funkcje do zarz¹dzania wejœciem od u¿ytkownika.
+	Rendering		rendering;	///<Funkcje do zarzadzania renderowaniem.
 };
 
 

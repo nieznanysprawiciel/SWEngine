@@ -121,8 +121,8 @@ SceneData* LightmapLogic::PrepareSceneData			()
 		auto meshData = mesh->GetModelParts();
 		auto vertexBuff = mesh->GetVertexBuffer();
 
-		DirectX::XMVECTOR objectPos = mesh->get_position();
-		DirectX::XMVECTOR objectRot = mesh->get_orientation();		// Quaternion orientation
+		DirectX::XMVECTOR objectPos = mesh->GetPosition();
+		DirectX::XMVECTOR objectRot = mesh->GetOrientation();		// Quaternion orientation
 		// Zak³adam, ¿e nie obs³ugujemy skalowania, bo na razie nie wiem czy silnik bêdzie je obs³ugiwa³ czy to bêdzie gdzieœ prekalkulowane.
 		DirectX::XMMATRIX objectTransform = DirectX::XMMatrixTranslationFromVector( objectPos );
 		objectTransform = DirectX::XMMatrixMultiply( DirectX::XMMatrixRotationQuaternion( objectRot ), objectTransform );

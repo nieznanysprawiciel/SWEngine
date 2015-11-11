@@ -1,5 +1,8 @@
 #pragma once
 
+#include <DirectXMath.h>
+#include <vector>
+#include "Common/SWEngineInclude.h"
 
 /**Stan generowania lightmap.*/
 enum class LightmapState

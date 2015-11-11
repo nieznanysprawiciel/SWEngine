@@ -247,7 +247,7 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 			// Pobieramy materia³
 			FbxSurfacePhong* material = static_cast<FbxSurfacePhong*>(node->GetMaterial( i ));
 			MaterialObject engine_material;							// Ten materia³ jest tylko tymczasowy
-			copy_material( engine_material, *material );			// Konwertujemy z formatu FBX na MaterialObject
+			CopyMaterial( engine_material, *material );			// Konwertujemy z formatu FBX na MaterialObject
 			// Dodajemy do silnika, podajemy w drugim parametrze nazwê materia³u, która zostanie doklejona do œcie¿ki pliku
 			cur_model->add_material( &engine_material, converter.from_bytes( material->GetName( )) );
 
@@ -384,7 +384,7 @@ void FBX_loader::copy_material(D3DMATERIAL9& directXmaterial, const FbxSurfacePh
 #endif
 
 /**@brief Kopiujemy materia³ konwertuj¹c go z formatu u¿ywanego przez FBX SDK do formatu u¿ywanego w silniku.*/
-void FBX_loader::copy_material( MaterialObject& engine_material, const FbxSurfacePhong& FBXmaterial )
+void FBX_loader::CopyMaterial( MaterialObject& engine_material, const FbxSurfacePhong& FBXmaterial )
 {
 	FbxDouble3 diffuse = static_cast<FbxDouble3>(FBXmaterial.Diffuse.Get( ));
 	FbxDouble3 ambient = static_cast<FbxDouble3>(FBXmaterial.Ambient.Get( ));
