@@ -4,7 +4,7 @@
 #include "EngineEditor/LightmapsTool/ExchangeDataStructs.h"
 #include "EngineEditor/LightmapsTool/LightmapWorker.h"
 
-
+#include <set>
 #include <thread>
 
 /**Klasa obs³uguj¹ca generowanie lightmap.
@@ -18,6 +18,10 @@ protected:
 	LightmapState			m_lightmapState;
 	std::thread*			m_lightmapThread;
 	LightmapWorker*			m_lightmapWorker;
+
+	std::vector<DynamicMeshObject*>		m_meshes;
+	std::vector<DynamicMeshObject*>		m_lightmapBuffers;
+	ShaderInputLayoutObject*			m_layout;
 public:
 	LightmapLogic()
 		:	m_lightmapState( LightmapState::ReadyToGenerate ),
@@ -35,6 +39,7 @@ private:
 	///@name Funkcje obs³ugi eventów.
 	///@{
 	void			GenerateLightmaps			( Event* );
+	void			RenderEnded					( Event* );
 	void			LoadScene					( Event* );
 	///@}
 private:

@@ -252,6 +252,17 @@ DynamicMeshObject::DynamicMeshObject()
 #endif
 }
 
+DynamicMeshObject::DynamicMeshObject( BufferObject* vertexBuffer, BufferObject* indexBuffer )
+	: vertex_buffer( vertexBuffer ),
+	index_buffer( indexBuffer )
+{
+	model_reference = nullptr;
+	model_changed = false;
+#ifdef _SCALEABLE_OBJECTS
+	scale = 1.0;
+#endif
+}
+
 DynamicMeshObject::~DynamicMeshObject()
 {
 	//Kasujac obiekt nie wolno nam niczego usuwaæ, bo nic nie nale¿y do nas
@@ -272,17 +283,17 @@ int DynamicMeshObject::SetModel(Model3DFromFile* model)
 
 	//dodajemy now¹ zawartoœæ
 	model_reference = model;
-	model->add_object_reference();
+	model->AddObjectReference();
 
 	vertex_buffer = model->get_vertex_buffer();
 	if ( !vertex_buffer )
 		return 1;	// Nie ma bufora wierzcho³ków, to nie ma dalej czego szukaæ
-	vertex_buffer->add_object_reference();
+	vertex_buffer->AddObjectReference();
 
 
 	index_buffer = model->get_index_buffer();
 	if ( index_buffer )		// Jak nie ma bufora indeksów to w zasadzie krzywda siê nikomu nie dzieje
-		index_buffer->add_object_reference();		// Ale trzeba pilnowaæ, ¿eby nie dodawaæ odwo³añ do obiektu, którego nie ma
+		index_buffer->AddObjectReference();		// Ale trzeba pilnowaæ, ¿eby nie dodawaæ odwo³añ do obiektu, którego nie ma
 
 	unsigned int count = model->get_parts_count();
 	model_parts.reserve( count );
@@ -305,6 +316,11 @@ int DynamicMeshObject::SetModel(Model3DFromFile* model)
 	return 0;
 }
 
+void DynamicMeshObject::AddModelPart( ModelPart& modelPart )
+{
+	model_parts.push_back( modelPart );
+}
+
 /**
 Dodajemy odwo³ania do wszystkich istniej¹cych elementów w przekazanym wskaŸniku.
 
@@ -315,16 +331,16 @@ void DynamicMeshObject::AddReferences( const ModelPart* part )
 		return;
 
 	if ( part->material )
-		part->material->add_object_reference();
+		part->material->AddObjectReference();
 	if ( part->mesh )
-		part->mesh->add_object_reference();
+		part->mesh->AddObjectReference();
 	if ( part->pixel_shader )
-		part->pixel_shader->add_object_reference();
+		part->pixel_shader->AddObjectReference();
 	for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
 		if ( part->texture[i] )
-			part->texture[i]->add_object_reference( );
+			part->texture[i]->AddObjectReference( );
 	if ( part->vertex_shader )
-		part->vertex_shader->add_object_reference();
+		part->vertex_shader->AddObjectReference();
 
 }
 
@@ -337,15 +353,15 @@ Wszystkie zmienne s¹ za to czyszczone.*/
 void DynamicMeshObject::DeleteAllReferences( )
 {
 	if ( model_reference != nullptr )
-		model_reference->delete_object_reference( );
+		model_reference->DeleteObjectReference( );
 	model_reference = nullptr;
 
 	if ( vertex_buffer )
-		vertex_buffer->delete_object_reference();
+		vertex_buffer->DeleteObjectReference();
 	vertex_buffer = nullptr;
 
 	if ( index_buffer )
-		index_buffer->delete_object_reference( );
+		index_buffer->DeleteObjectReference( );
 	index_buffer = nullptr;
 
 	for ( unsigned int k = 0; k < model_parts.size( ); ++k )
@@ -354,16 +370,16 @@ void DynamicMeshObject::DeleteAllReferences( )
 
 		//ka¿dy element mo¿e byæ nullptrem
 		if ( part->material )
-			part->material->delete_object_reference();
+			part->material->DeleteObjectReference();
 		if ( part->mesh )
-			part->mesh->delete_object_reference( );
+			part->mesh->DeleteObjectReference( );
 		if ( part->pixel_shader )
-			part->pixel_shader->delete_object_reference( );
+			part->pixel_shader->DeleteObjectReference( );
 		for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
 			if ( part->texture[i] )
-				part->texture[i]->delete_object_reference( );
+				part->texture[i]->DeleteObjectReference( );
 		if ( part->vertex_shader )
-			part->vertex_shader->delete_object_reference( );
+			part->vertex_shader->DeleteObjectReference( );
 	}
 	model_parts.clear();
 }

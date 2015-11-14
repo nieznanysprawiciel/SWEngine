@@ -15,6 +15,7 @@
 
 #include "Common/memory_leaks.h"
 
+using namespace DirectX;
 
 const wchar_t CONSTANT_PER_FRAME_BUFFER_NAME[] = L"::DisplayEngine::ConstantPerFrameBuffer";
 const wchar_t CONSTANT_PER_MESH_BUFFER_NAME[] = L"::DisplayEngine::ConstantPerMeshBuffer";
@@ -89,11 +90,11 @@ void DisplayEngine::InitDisplayer( ModelsManager* assetsManager )
 	assert( m_constantsPerFrame );
 	assert( m_constantsPerMesh );
 
-	m_constantsPerFrame->add_file_reference();		/// Uniemo퓄iwiamy zwolnienie bufora przez u퓓tkownika.
-	m_constantsPerMesh->add_file_reference();		/// Uniemo퓄iwiamy zwolnienie bufora przez u퓓tkownika.
+	m_constantsPerFrame->AddAssetReference();		/// Uniemo퓄iwiamy zwolnienie bufora przez u퓓tkownika.
+	m_constantsPerMesh->AddAssetReference();		/// Uniemo퓄iwiamy zwolnienie bufora przez u퓓tkownika.
 
 	m_mainRenderTarget = modelsManager->GetRenderTarget( SCREEN_RENDERTARGET_STRING );
-	m_mainRenderTarget->add_file_reference();		/// Uniemo퓄iwiamy zwolnienie render targetu przez u퓓tkownika.
+	m_mainRenderTarget->AddAssetReference();		/// Uniemo퓄iwiamy zwolnienie render targetu przez u퓓tkownika.
 }
 
 void DisplayEngine::BeginScene()
@@ -108,9 +109,9 @@ void DisplayEngine::EndScene()
 
 void DisplayEngine::SetMainRenderTarget( RenderTargetObject* renderTarget )
 {
-	m_mainRenderTarget->delete_file_reference();
+	m_mainRenderTarget->DeleteAssetReference();
 	m_mainRenderTarget = renderTarget;
-	m_mainRenderTarget->add_file_reference();
+	m_mainRenderTarget->AddAssetReference();
 }
 
 
@@ -644,7 +645,7 @@ void DisplayEngine::realocate_interpolation_memory( unsigned int min )
 			interpol_matrixes_count <<= 1;	//wielko쒏 tablicy ro쐍ie wyk쿪dniczo
 
 		delete[] interpolated_matrixes;
-		interpolated_matrixes = new XMFLOAT4X4[interpol_matrixes_count];
+		interpolated_matrixes = new DirectX::XMFLOAT4X4[interpol_matrixes_count];
 	}
 }
 

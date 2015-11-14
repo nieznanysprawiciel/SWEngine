@@ -12,6 +12,7 @@
 #include "ConstantBuffersFormat.h"
 #include "EngineCore/Features/SkyDome.h"
 #include "EngineCore/DisplayEngine/RenderPass.h"
+#include <DirectXMath.h>
 
 #include <queue>
 
@@ -51,7 +52,7 @@ private:
 	SkyDome*								sky_dome;					///<Klasa odpowiedzialna za kopu³ê nieba
 
 	std::vector<DynamicMeshObject*>			meshes;						///<Modele nieanimowane
-	XMFLOAT4X4*								interpolated_matrixes;		///<Tablica macierzy interpolowanych po³o¿eñ obiektów
+	DirectX::XMFLOAT4X4*					interpolated_matrixes;		///<Tablica macierzy interpolowanych po³o¿eñ obiektów
 	unsigned int							interpol_matrixes_count;	///<Liczba macierzy interpolowanych
 
 	std::vector<CameraObject*>				cameras;					///<Kontener zawieraj¹cy kamery
@@ -118,7 +119,7 @@ private:
 	void SetIndexBuffer						( BufferObject* buffer );
 	bool SetVertexBuffer					( BufferObject* buffer );
 	void CopyMaterial						( ConstantPerMesh* shader_data_per_mesh, const ModelPart* model );
-	void DepthBufferEnable				( bool state );
+	void DepthBufferEnable					( bool state );
 };
 
 
@@ -131,10 +132,11 @@ private:
 */
 inline void interpolate_position( float time_lag, const DynamicObject* object, DirectX::XMVECTOR& result_vector )
 {
-	XMVECTOR position = object->GetPosition( );
-	XMVECTOR velocity = object->GetSpeed( );
+	DirectX::XMVECTOR position = object->GetPosition( );
+	DirectX::XMVECTOR velocity = object->GetSpeed( );
 
-	result_vector = velocity * time_lag + position;
+	result_vector = DirectX::XMVectorScale( velocity, time_lag );
+	result_vector = DirectX::XMVectorAdd( result_vector, position );
 }
 
 /**@deprecated
@@ -146,8 +148,8 @@ inline void interpolate_position( float time_lag, const DynamicObject* object, D
 */
 inline void interpolate_orientation( float time_lag, const DynamicObject* object, DirectX::XMVECTOR& result_vector )
 {
-	XMVECTOR orientation = object->GetOrientation( );
-	XMVECTOR rotation_velocity = object->GetRotationSpeed( );
+	DirectX::XMVECTOR orientation = object->GetOrientation( );
+	DirectX::XMVECTOR rotation_velocity = object->GetRotationSpeed( );
 
 #ifdef _QUATERNION_SPEED
 	//najpierw liczymy nowy kwaternion dla obrotu w czasie sekundy
@@ -160,11 +162,11 @@ inline void interpolate_orientation( float time_lag, const DynamicObject* object
 #else
 
 
-	if ( !XMVector3Equal( rotation_velocity, XMVectorZero() ) )
+	if ( !DirectX::XMVector3Equal( rotation_velocity, DirectX::XMVectorZero() ) )
 	{
-		float rot_angle = XMVectorGetW( rotation_velocity ) * time_lag;					// liczymy k¹t obrotu
-		rotation_velocity = XMQuaternionRotationAxis( rotation_velocity, rot_angle );	// przerabiamy na kwaternion
-		result_vector = XMQuaternionMultiply( orientation, rotation_velocity );			// liczymy nowy kwaternion orientacji
+		float rot_angle = DirectX::XMVectorGetW( rotation_velocity ) * time_lag;					// liczymy k¹t obrotu
+		rotation_velocity = DirectX::XMQuaternionRotationAxis( rotation_velocity, rot_angle );	// przerabiamy na kwaternion
+		result_vector = DirectX::XMQuaternionMultiply( orientation, rotation_velocity );			// liczymy nowy kwaternion orientacji
 	}
 	else
 		result_vector = orientation;
@@ -178,7 +180,7 @@ Potrzebne w momencie tworzenia macierzy widoku na podstawie po³o¿enia kamery.
 */
 inline void inverse_camera_position( DirectX::XMVECTOR& result_vector )
 {
-	result_vector = XMVectorNegate( result_vector );
+	result_vector = DirectX::XMVectorNegate( result_vector );
 	//result_vector = XMVectorSetW( result_vector, 0.0 );		// sk³adowa W powinna byæ 0, ale funkcja XMMatrixTranslationFromVector na ni¹ wogóle nie patrzy
 }
 
@@ -189,7 +191,7 @@ Potrzebne w momencie tworzenia macierzy widoku na podstawie po³o¿enia kamery.
 */
 inline void inverse_camera_orientation( DirectX::XMVECTOR& result_vector )
 {
-	result_vector = XMVectorNegate( result_vector );
-	result_vector = XMVectorSetW( result_vector, -XMVectorGetW( result_vector ) );
+	result_vector = DirectX::XMVectorNegate( result_vector );
+	result_vector = DirectX::XMVectorSetW( result_vector, -DirectX::XMVectorGetW( result_vector ) );
 }
 

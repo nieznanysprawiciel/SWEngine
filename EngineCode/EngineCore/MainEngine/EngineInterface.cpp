@@ -17,11 +17,13 @@
 #include "EngineCore/SoundEngine/SoundEngine.h"
 #include "EngineCore/UIEngine/UI_Engine.h"
 
+#include "EngineCore/ModelsManager/ResourceHelpers.h"
+
 #include <mutex>
 
 #include "Common/memory_leaks.h"
 
-
+using namespace DirectX;
 
 Engine* EngineInterface::InterfaceGroup::m_engine = nullptr;
 
@@ -37,6 +39,7 @@ EngineInterface::EngineInterface()
 #include "EngineCore/Features/HosekSkylightModel/HosekSkyDome.h"
 
 #include <math.h>
+#include "EngineInterface.h"
 
 void Engine::test()
 {
@@ -215,7 +218,7 @@ void Engine::test()
 #endif
 
 //=====================================================================================================================//
-//								EngineInterface::Assets
+//								EngineInterface::Assets::Models
 //=====================================================================================================================//
 
 
@@ -233,7 +236,7 @@ Model3DFromFile* EngineInterface::Assets::Models::GetSync( const std::wstring& n
 /**@brief Wczytuje model z podanego pliku.
 
 Model jest ³adowany synchronicznie, dzia³anie silnika zawiesza siê, dopóki wczytywanie nie zakoñczy siê.
-@param[in] Nazwa pliku.
+@param[in] name Nazwa pliku.
 @return Zwraca model lub nullptr, je¿eli wczytywanie nie powiod³o siê.*/
 Model3DFromFile* EngineInterface::Assets::Models::LoadSync( const std::wstring& name )
 {
@@ -246,6 +249,112 @@ Model3DFromFile* EngineInterface::Assets::Models::LoadSync( const std::wstring& 
 
 
 //=====================================================================================================================//
+//								EngineInterface::Assets::Shaders
+//=====================================================================================================================//
+
+/**@brief Pobiera model o podanej nazwie.
+
+Model jest pobierany tylko, je¿eli zosta³ wczeœniej wczytany.
+@param[in] name Nazwa pliku z modelem.
+@return Zwraca obiekt zawieraj¹cy model lub nullptr, je¿eli model nie zosta³ wczeœniej wczytany.*/
+VertexShaderObject* EngineInterface::Assets::Shaders::GetVertexShaderSync( const std::wstring& name )
+{
+	return m_engine->Context.modelsManager->GetVertexShader( name );
+}
+
+/**@brief Wczytuje shader z podanego pliku.
+
+Model jest ³adowany synchronicznie, dzia³anie silnika zawiesza siê, dopóki wczytywanie nie zakoñczy siê.
+@param[in] name Nazwa pliku.
+@return Zwraca model lub nullptr, je¿eli wczytywanie nie powiod³o siê.*/
+VertexShaderObject* EngineInterface::Assets::Shaders::LoadVertexShaderSync( const std::wstring& name )
+{
+	return m_engine->Context.modelsManager->AddVertexShader( name, DEFAULT_VERTEX_SHADER_ENTRY );
+}
+
+/**@brief Wczytuje shader z podanego pliku i tworzy layout wierzcho³ka.
+
+Model jest ³adowany synchronicznie, dzia³anie silnika zawiesza siê, dopóki wczytywanie nie zakoñczy siê.
+@param[in] name Nazwa pliku.
+@param[in] layout WskaŸnik do którego zostanie zwrócony layout.
+@param[in] layoutDesc Deskryptor layoutu do stworzenia.
+@return Zwraca model lub nullptr, je¿eli wczytywanie nie powiod³o siê.*/
+VertexShaderObject* EngineInterface::Assets::Shaders::LoadVertexShaderSync( const std::wstring& name, ShaderInputLayoutObject** layout, InputLayoutDescriptor* layoutDesc )
+{
+	return m_engine->Context.modelsManager->AddVertexShader( name, DEFAULT_VERTEX_SHADER_ENTRY, layout, layoutDesc );
+}
+
+/**@brief Pobiera model o podanej nazwie.
+
+Model jest pobierany tylko, je¿eli zosta³ wczeœniej wczytany.
+@param[in] name Nazwa pliku z modelem.
+@return Zwraca obiekt zawieraj¹cy model lub nullptr, je¿eli model nie zosta³ wczeœniej wczytany.*/
+PixelShaderObject* EngineInterface::Assets::Shaders::GetPixelShaderSync( const std::wstring& name )
+{
+	return m_engine->Context.modelsManager->GetPixelShader( name );
+}
+
+/**@brief Wczytuje shader z podanego pliku.
+
+Model jest ³adowany synchronicznie, dzia³anie silnika zawiesza siê, dopóki wczytywanie nie zakoñczy siê.
+@param[in] name Nazwa pliku.
+@return Zwraca model lub nullptr, je¿eli wczytywanie nie powiod³o siê.*/
+PixelShaderObject* EngineInterface::Assets::Shaders::LoadPixelShaderSync( const std::wstring& name )
+{
+	return m_engine->Context.modelsManager->AddPixelShader( name, DEFAULT_PIXEL_SHADER_ENTRY );
+}
+
+
+//=====================================================================================================================//
+//								EngineInterface::Assets::Shaders
+//=====================================================================================================================//
+
+/**@brief Pobiera teksturê o podanej nazwie.
+
+Tekxtura jest pobierana tylko, je¿eli zosta³a wczeœniej wczytana.
+@param[in] name Nazwa pliku z tekstur¹ lub po prostu nazwa tekstury, je¿eli zosta³a wygenerowana.
+@return Zwraca obiekt zawieraj¹cy teksturê lub nullptr, je¿eli tekstura nie zosta³a wczeœniej wczytana.*/
+TextureObject* EngineInterface::Assets::Textures::GetTexture( const std::wstring& name )
+{
+	return m_engine->Context.modelsManager->GetTexture( name );
+}
+
+//=====================================================================================================================//
+//								EngineInterface::Assets::Buffers
+//=====================================================================================================================//
+
+/**@brief Tworzy bufor wierzcho³ków.
+
+@param[in] name Nazwa bufora.
+@param[in] data MemoryChunk zawieraj¹cy obszar pamiêci do przekopiowania do bufora.
+@param[in] vertCount Liczba wierzcho³ków w buforze. Rozmiar pojedynczego wierzcho³ka zostanie wydedukowany z pozosta³ych danyhch.
+@return Zwraca bufor wierzcho³ków lub nullptr.*/
+BufferObject* EngineInterface::Assets::Buffers::CreateVertexBufferSync( const std::wstring& name, MemoryChunk& data, unsigned int vertCount )
+{
+	return m_engine->Context.modelsManager->AddVertexBuffer( name, data.GetMemory<void>(), data.GetMemorySize() / vertCount, vertCount );
+}
+
+//=====================================================================================================================//
+//								EngineInterface::Assets::RenderTargets
+//=====================================================================================================================//
+
+RenderTargetObject* EngineInterface::Assets::RenderTargets::CreateSync( const std::wstring& name, const RenderTargetDescriptor& renderTargetDescriptor )
+{
+	return m_engine->Context.modelsManager->CreateRenderTarget( name, renderTargetDescriptor );
+}
+
+
+//=====================================================================================================================//
+//								EngineInterface::Assets::Materials
+//=====================================================================================================================//
+
+
+MaterialObject* EngineInterface::Assets::Materials::GetSync( const std::wstring& name )
+{
+	return m_engine->Context.modelsManager->GetMaterial( name );
+}
+
+//=====================================================================================================================//
 //								EngineInterface::Actors
 //=====================================================================================================================//
 
@@ -254,6 +363,65 @@ Model3DFromFile* EngineInterface::Assets::Models::LoadSync( const std::wstring& 
 std::vector<DynamicMeshObject*> EngineInterface::Actors::GetSceneObjects()
 { return m_engine->Context.displayEngine->GetSceneObjects(); }
 
+//=====================================================================================================================//
+//								EngineInterface::Actors::Assets
+//=====================================================================================================================//
+
+template<typename Resource>
+void ChangeResource( DynamicMeshObject* mesh, Resource* newResource, uint16 beginPart, uint16 endPart, uint8 index )
+{
+	auto& parts = mesh->GetModelParts();
+	int size = parts.size();
+	int max = endPart > size ? size : endPart;
+	for( int i = beginPart; i < max; ++i )
+	{
+		auto& shader = Get<Resource>( parts[ i ], index );
+		shader->DeleteObjectReference();
+		shader = newResource;
+		newResource->AddObjectReference();
+	}
+}
+
+/**@brief Zmienia teksturê w podanym obiekcie.
+
+Zmieniany jest zestaw tekstur miêdzy beginPart a endPart (wy³¹cznie). Pod uwagê s¹ brane tekstury o indeksie texIndex.
+Mo¿na wstawiæ sta³¹ @ref TextureType.
+
+@param[in] mesh Obiekt, do którego zostanie wstawiona nowa tekstura.
+@param[in] newTex Tekstura do ustawienia.
+@param[in] beginPart Indeks pierwszego podmesha, w którym zmieniamy zasób.
+@param[in] endPart Indeks za ostatnim elementem, który zostanie zmieniony.
+@param[in] texIndex Indeks w tablicy tekstur [0,ENGINE_MAX_TEXTURES]. Mo¿e to byæ jedna ze sta³ych TextureType.*/
+void EngineInterface::Actors::Assets::ChangeTextures( DynamicMeshObject* mesh, TextureObject* newTex, uint16 beginPart, uint16 endPart, uint8 texIndex )
+{
+	ChangeResource<TextureObject>( mesh, newTex, beginPart, endPart, texIndex );
+}
+
+/**@brief Zmienia pixel shader w podanym obiekcie.
+
+Zmieniany jest zestaw shaderów miêdzy beginPart a endPart (wy³¹cznie).
+
+@param[in] mesh Obiekt, do którego zostanie wstawiona nowy shader.
+@param[in] newShader Shader do ustawienia.
+@param[in] beginPart Indeks pierwszego podmesha, w którym zmieniamy zasób.
+@param[in] endPart Indeks za ostatnim elementem, który zostanie zmieniony.*/
+void EngineInterface::Actors::Assets::ChangePixelShaders( DynamicMeshObject* mesh, PixelShaderObject* newShader, uint16 beginPart, uint16 endPart )
+{
+	ChangeResource<PixelShaderObject>( mesh, newShader, beginPart, endPart, 0 );
+}
+
+/**@brief Zmienia vertex shader w podanym obiekcie.
+
+Zmieniany jest zestaw shaderów miêdzy beginPart a endPart (wy³¹cznie).
+
+@param[in] mesh Obiekt, do którego zostanie wstawiona nowy shader.
+@param[in] newShader Shader do ustawienia.
+@param[in] beginPart Indeks pierwszego podmesha, w którym zmieniamy zasób.
+@param[in] endPart Indeks za ostatnim elementem, który zostanie zmieniony.*/
+void EngineInterface::Actors::Assets::ChangeVertexShaders( DynamicMeshObject* mesh, VertexShaderObject* newShader, uint16 beginPart, uint16 endPart )
+{
+	ChangeResource<VertexShaderObject>( mesh, newShader, beginPart, endPart, 0 );
+}
 
 
 //=====================================================================================================================//
@@ -302,3 +470,4 @@ które zostan¹ w nim umieszczone. W przysz³oœci trzeba zrobiæ jakiœ m¹drzejszy me
 @param[in] pass Dane przebiegu uzywane przy renderowaniu.*/
 void EngineInterface::Rendering::RenderOnce( RenderPass* pass )
 {}
+

@@ -4,6 +4,7 @@
 
 #include "Common\memory_leaks.h"
 
+using namespace DirectX;
 
 ///@brief Kontruktr inicjuje obiekty FBX SDK, konieczne do wczytania modelu.
 FBX_loader::FBX_loader(ModelsManager* models_manager)
@@ -255,7 +256,7 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 			{
 				FbxFileTexture* texture = static_cast<FbxFileTexture*>(material->Diffuse.GetSrcObject());
 				if ( texture != nullptr )
-					cur_model->add_texture( converter.from_bytes( texture->GetFileName() ), TextureTypes::TEX_DIFFUSE );
+					cur_model->add_texture( converter.from_bytes( texture->GetFileName() ), TextureUse::TEX_DIFFUSE );
 					// Je¿eli dodawanie siê nie uda, to tekstura pozostanie nullptrem
 				//else //tutaj tekstura ma byæ nullem, ale tak siê dzieje domyœlnie
 			}
@@ -300,7 +301,7 @@ int FBX_loader::read_material_index(FbxMesh* mesh, unsigned int polygon_counter)
 }
 
 /**@brief Wczytuje UVs dla podanego wierzcho³ka.*/
-void FBX_loader::read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_counter, XMFLOAT2& UV_cords)
+void FBX_loader::read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_counter, DirectX::XMFLOAT2& UV_cords)
 {
 	if (mesh->GetUVLayerCount() < 1)
 		return;

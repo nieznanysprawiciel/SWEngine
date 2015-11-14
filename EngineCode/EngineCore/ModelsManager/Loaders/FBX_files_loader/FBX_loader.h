@@ -19,7 +19,6 @@ drugie, ¿eby wykorzystywaæ wszystkie jego mo¿liwoœci.*/
 #include "EngineCore/ModelsManager/Loaders/ILoader.h"
 #include "fbxsdk.h"
 
-using namespace DirectX;
 
 /**@brief Klasa s³u¿y do wczytywania plików w formacie Autodesk FBX.
 @ingroup MakingLoaders*/
@@ -31,22 +30,22 @@ private:
 	Model3DFromFile*	cur_model;		///<Na czas wczytywania zapisujemy sobie obiekt, do którego wczytujemy dane
 
 
-	void process_node(FbxNode* node);
-	void process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLOAT4X4& transformation);
-	int process_tree(FbxNode* root_node);
+	void process_node( FbxNode* node );
+	void process_mesh( FbxNode* node, FbxMesh* mesh, const DirectX::XMFLOAT4X4& transformation );
+	int process_tree( FbxNode* root_node );
 
-	void read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_counter, XMFLOAT2& UV_cords);
-	int read_material_index(FbxMesh* mesh, unsigned int polygon_counter);
+	void read_UVs( FbxMesh* mesh, int control_point, unsigned int vertex_counter, DirectX::XMFLOAT2& UV_cords );
+	int read_material_index( FbxMesh* mesh, unsigned int polygon_counter );
 
 	//void copy_material( D3DMATERIAL9& directXmaterial, const FbxSurfacePhong& FBXmaterial );
 	void CopyMaterial( MaterialObject& engine_material, const FbxSurfacePhong& FBXmaterial );
 
 public:
-	FBX_loader(ModelsManager* models_manager);
+	FBX_loader( ModelsManager* models_manager );
 	~FBX_loader();
 
 	LoaderResult load_mesh( Model3DFromFile* new_file_mesh, const std::wstring& name ) override;
-	bool can_load(const std::wstring& name) override;
+	bool can_load( const std::wstring& name ) override;
 
 
 private:

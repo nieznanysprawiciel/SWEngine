@@ -19,7 +19,7 @@ public:
 
 	SceneData*					GetSceneData	()	{ return m_data; }
 	LightmapState				GetState		()	{ return m_lightmapState; }
-	std::vector<MemoryChunk>&	GetResult		()	{ return m_resultData; }
+	std::vector<MemoryChunk>	MoveResult		()	{ return std::move( m_resultData ); }
 
 	/**@brief G³ówna funkcja generuj¹ca lightmapy. Zaimplementuj w klasie pochodnej.*/
 	virtual void				Generate		() = 0;

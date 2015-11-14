@@ -29,4 +29,8 @@ public:
 	inline ShaderInputLayoutObject*	GetLayout()				{ return m_bufferLayout; }
 
 	inline std::vector<DynamicMeshObject*>&		GetMeshes()	{ return m_meshes; }
+
+	void		AddMesh				( DynamicMeshObject* );
+	void		SetRenderTarget		( RenderTargetObject* );
+	void		SetLayout			( ShaderInputLayoutObject* );
 };

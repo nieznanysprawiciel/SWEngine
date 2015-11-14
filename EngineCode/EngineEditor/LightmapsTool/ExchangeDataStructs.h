@@ -9,6 +9,7 @@ enum class LightmapState
 {
 	Generating,
 	GenerationEnded,
+	RenderingLightmaps,
 	ReadyToGenerate
 };
 

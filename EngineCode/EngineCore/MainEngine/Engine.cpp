@@ -235,7 +235,7 @@ bool Engine::InitDisplayer()
 	Context.displayEngine->InitRenderer( renderer );
 	Context.displayEngine->InitDisplayer( Context.modelsManager );
 
-	Context.displayEngine->SetProjectionMatrix( XMConvertToRadians( 45 ),
+	Context.displayEngine->SetProjectionMatrix( DirectX::XMConvertToRadians( 45 ),
 										   (float)Context.windowWidth / (float)Context.windowHeight, 1, 100000 );
 
 	return true;
@@ -382,7 +382,7 @@ void* Engine::GetRenderTargetHandle( uint16 width, uint16 height )
 
 	RenderTargetObject* renderTarget = Context.modelsManager->CreateRenderTarget( EDITOR_RENDERTARGET_STRING, descriptor );
 	Context.displayEngine->SetMainRenderTarget( renderTarget );
-	Context.displayEngine->SetProjectionMatrix( XMConvertToRadians( 45 ), (float)width / (float)height, 1, 100000 );
+	Context.displayEngine->SetProjectionMatrix( DirectX::XMConvertToRadians( 45 ), (float)width / (float)height, 1, 100000 );
 
 	return Context.graphicInitializer->GetRenderTargetHandle( renderTarget );
 }

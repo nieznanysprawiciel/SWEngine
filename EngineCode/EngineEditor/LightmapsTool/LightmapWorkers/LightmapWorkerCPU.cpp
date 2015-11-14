@@ -1,6 +1,8 @@
 #include "EngineEditor/LightmapsTool/stdafx.h"
 #include "LightmapWorkerCPU.h"
 
+#include "Common/memory_leaks.h"
+
 
 LightmapWorkerCPU::LightmapWorkerCPU( SceneData* sceneData )
 	: LightmapWorker( sceneData )

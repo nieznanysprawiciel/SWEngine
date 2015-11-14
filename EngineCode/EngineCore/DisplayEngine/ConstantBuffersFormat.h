@@ -9,7 +9,6 @@
 //#include "EngineCore/stdafx.h"
 #include "DirectXMath.h"
 
-using namespace DirectX;
 
 /** \brief Bufor sta³ych dla shadera zmieniaj¹cy siê raz na klatkê. 
 
@@ -35,11 +34,11 @@ typedef struct ConstantPerFrame
 	{
 		DirectX::XMStoreFloat4x4( &view_matrix, DirectX::XMMatrixIdentity() );
 		DirectX::XMStoreFloat4x4( &projection_matrix, DirectX::XMMatrixIdentity() );
-		light_direction[0] = XMFLOAT4( 0, 0, 0, 0 );
-		light_direction[1] = XMFLOAT4( 0, 0, 0, 0 );
-		light_color[0] = XMFLOAT4( 0, 0, 0, 0 );
-		light_color[1] = XMFLOAT4( 0, 0, 0, 0 );
-		ambient_light = XMFLOAT4( 0, 0, 0, 0 );
+		light_direction[0] = DirectX::XMFLOAT4( 0, 0, 0, 0 );
+		light_direction[1] = DirectX::XMFLOAT4( 0, 0, 0, 0 );
+		light_color[0] = DirectX::XMFLOAT4( 0, 0, 0, 0 );
+		light_color[1] = DirectX::XMFLOAT4( 0, 0, 0, 0 );
+		ambient_light = DirectX::XMFLOAT4( 0, 0, 0, 0 );
 	}
 
 } ConstantPerFrame;

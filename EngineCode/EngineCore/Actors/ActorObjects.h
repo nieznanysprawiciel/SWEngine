@@ -228,6 +228,7 @@ protected:
 	bool							model_changed;
 public:
 	DynamicMeshObject();
+	DynamicMeshObject( BufferObject* vertexBuffer, BufferObject* indexBuffer );
 	virtual ~DynamicMeshObject();
 
 	int							SetModel		( Model3DFromFile* model );
@@ -236,6 +237,8 @@ public:
 	BufferObject*				GetVertexBuffer	()	{ return vertex_buffer; }
 	BufferObject*				GetIndexBuffer	()	{ return index_buffer; }
 	std::vector<ModelPart>&		GetModelParts	()	{ return model_parts; }
+
+	void						AddModelPart	( ModelPart& modelPart );
 	///
 private:
 	void AddReferences( const ModelPart* part );

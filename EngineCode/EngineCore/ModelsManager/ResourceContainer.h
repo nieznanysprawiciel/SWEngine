@@ -89,7 +89,7 @@ TYPE* ResourceContainer<TYPE>::get( unsigned int id )
 {
 	for ( auto iter = container.begin(); iter != container.end(); iter++ )
 	{
-		if ( iter->second->get_id() == id )
+		if ( iter->second->GetID() == id )
 			return iter->second;
 	}
 	return nullptr;
@@ -121,7 +121,7 @@ void ResourceContainer<TYPE>::unsafe_add( const std::wstring& name, TYPE* resour
 
 	container[name] = resource;
 
-	resource->set_id( count );
+	resource->SetID( count );
 	++count;			// Inkrementujemy licznik
 }
 
@@ -159,7 +159,7 @@ int ResourceContainer<TYPE>::remove( const std::wstring& name )
 	if ( iter != container.end() )
 		return -1;		// Nie znaleŸliœmy elementu
 
-	if ( !iter->second->can_delete() )
+	if ( !iter->second->CanDelete() )
 		return 1;		// Nie mo¿emy skasowaæ, bo s¹ odwo³ania
 
 	release_memory( iter->second );		// Zwalniamy pamiêæ spod wskaŸnika
@@ -181,10 +181,10 @@ int ResourceContainer<TYPE>::remove( unsigned int id )
 {
 	for ( auto iter = container.begin( ); iter != container.end( ); iter++ )
 	{
-		if ( iter->second->get_id() == id )
+		if ( iter->second->GetID() == id )
 		{
 			// Sprawdzamy czy nie ma jakichœ odwo³añ do obiektu
-			if ( !iter->second->can_delete() )
+			if ( !iter->second->CanDelete() )
 				return 1;				// S¹ odwo³ania, wiêc nie kasujemy
 
 			release_memory( iter->second );		// Zwalniamy pamiêæ spod wskaŸnika
@@ -206,7 +206,7 @@ int ResourceContainer<TYPE>::remove_unused()
 	int count = 0;
 	for ( auto iter = container.begin(); iter != container.end(); iter++ )
 	{// Iterujemy po ca³ej mapie
-		if ( iter->second->can_delete() )
+		if ( iter->second->CanDelete() )
 		{
 			// Mo¿emy skasowaæ obiekt, bo nikt go nie u¿ywa
 			release_memory( iter->second );		// Zwalniamy pamiêæ spod wskaŸnika
@@ -248,7 +248,7 @@ int ResourceContainer<TYPE>::force_remove( unsigned int id )
 {
 	for ( auto iter = container.begin( ); iter != container.end( ); iter++ )
 	{
-		if ( iter->second->get_id( ) == id )
+		if ( iter->second->GetID( ) == id )
 		{
 			delete iter->second;		// Zwalniamy pamiêæ spod wskaŸnika
 			return 0;
