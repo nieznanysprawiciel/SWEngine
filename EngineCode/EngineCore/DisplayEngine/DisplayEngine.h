@@ -82,6 +82,7 @@ public:
 
 	// Zarz¹dzanie meshami
 	void			AddDynamicMeshObject			( DynamicMeshObject* object );
+	void			DeleteAllMeshes					();
 	
 	/// @todo Pobieranie meshy z DisplayEngine jest tymczasowe. Trzeba wymyœleæ docelowy mechanizm.
 	std::vector<DynamicMeshObject*>		GetSceneObjects() { return meshes; }
@@ -97,7 +98,7 @@ public:
 	// SkyDome
 	SkyDome*		SetSkydome						( SkyDome* dome );
 private:
-	void SetViewMatrix					( float time_lag );
+	void SetViewMatrix						( float time_lag );
 
 	void realocate_interpolation_memory		(unsigned int min = 1);
 	void interpolate_object					( float timeLag, const DynamicObject* object, DirectX::XMFLOAT4X4* result_matrix );

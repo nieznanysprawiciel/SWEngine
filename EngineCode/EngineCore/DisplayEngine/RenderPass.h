@@ -20,8 +20,8 @@ private:
 	ShaderInputLayoutObject*			m_bufferLayout;		///< @todo Jeszcze jedna tymczasowoœæ. Layout jest zwi¹zany z buforem a nie passem.
 protected:
 public:
-	RenderPass() = default;
-	~RenderPass() = default;
+	RenderPass();
+	~RenderPass();
 
 	inline RenderTargetObject*		GetRenderTarget()		{ return m_renderTarget; }
 	inline CameraObject*			GetCamera()				{ return m_camera; }

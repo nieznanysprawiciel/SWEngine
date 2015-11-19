@@ -590,6 +590,11 @@ void DisplayEngine::AddDynamicMeshObject( DynamicMeshObject* object )
 	meshes.push_back( object );
 }
 
+void DisplayEngine::DeleteAllMeshes()
+{
+	meshes.clear();
+}
+
 
 /**@brief Dodaje kamerê do spisu kamer w silniku.
 

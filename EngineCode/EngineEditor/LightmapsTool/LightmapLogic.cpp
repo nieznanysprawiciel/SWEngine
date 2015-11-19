@@ -40,6 +40,7 @@ int LightmapLogic::LoadLevel					()
 	m_engine->assets.shaders.LoadVertexShaderSync( DEFAULT_COORD_COLOR_VERTEX_SHADER_PATH, &m_layout, DefaultAssets::LAYOUT_COORD_COLOR );
 	m_engine->assets.shaders.LoadPixelShaderSync( DEFAULT_COORD_COLOR_PIXEL_SHADER_PATH );
 	m_engine->assets.shaders.LoadPixelShaderSync( DEFAULT_LIGHTMAP_PIXEL_SHADER_PATH );
+	m_layout->AddObjectReference();
 
 
 	EventDelegate genLightmap, renderEnded;
@@ -47,6 +48,18 @@ int LightmapLogic::LoadLevel					()
 	renderEnded.bind( this, &LightmapLogic::RenderEnded );
 	m_fableEngine->ChangeDelegate( (unsigned int)EventType::KeyDownEvent, genLightmap );
 	m_fableEngine->ChangeDelegate( (unsigned int)EventType::RenderOnceEndedEvent, renderEnded );
+
+	// Przygotowanie sceny
+	const wchar_t room1ModelString[] = L"levels/Room1/Room1.FBX";
+	Model3DFromFile* room1Model = m_engine->assets.models.LoadSync( room1ModelString );
+
+	DynamicMeshObject* room1Object = new DynamicMeshObject;
+	DirectX::XMVECTOR position = DirectX::XMVectorSet( 0.0, -300.0, -2000.0, 0.0 );
+	room1Object->Teleport( position );
+
+	room1Object->SetModel( room1Model );
+	m_engine->actors.AddDynamicMesh( room1Object );
+
 
 	return 0;
 }
@@ -177,12 +190,17 @@ void LightmapLogic::RenderEnded( Event* renderEndedEvent )
 			delete mesh;
 		}
 		delete renderPass;
+
+		if( m_meshes.size() == 0 )
+			// Wszystkie lightmapy skoñczone
+			m_lightmapState = LightmapState::ReadyToGenerate;
 	}
 }
 
 /**@brief Funkcja wywo³ywana w momencie zmiany levelu na inny.*/
 int LightmapLogic::UnloadLevel					()
 {	
+	m_layout->DeleteObjectReference();
 	m_fableEngine->DeleteDelegate( (unsigned int)EventType::KeyDownEvent );		// Po zmianie klasy IGameLogic na inn¹, ktoœ móg³by nadal próbowaæ wywo³aæ nieistniej¹cy kawa³ek kodu.
 	m_fableEngine->DeleteDelegate( (unsigned int)EventType::RenderOnceEndedEvent );
 	return 0;

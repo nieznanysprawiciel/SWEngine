@@ -88,8 +88,8 @@ Engine::~Engine()
 
 #ifdef __TEST
 	//obiekty trzeba pokasowaæ, zanim siê skasuje to, do czego siê odwo³uj¹
-	for ( unsigned int i = 0; i < object_list.size(); ++i )
-		delete object_list[i];
+	for ( unsigned int i = 0; i < Context.object_list.size(); ++i )
+		delete Context.object_list[i];
 #endif
 
 	delete Context.controllersEngine;

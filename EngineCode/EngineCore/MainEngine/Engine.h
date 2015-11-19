@@ -138,7 +138,6 @@ public:
 
 #ifdef __TEST
 	void test();
-	std::vector<Object*>	object_list;
 #endif
 
 	///@name Parametry okna
