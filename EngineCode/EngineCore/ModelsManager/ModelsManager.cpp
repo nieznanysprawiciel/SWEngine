@@ -297,6 +297,8 @@ RenderTargetObject* ModelsManager::CreateRenderTarget( const std::wstring& name,
 	if( !newRenderTarget )
 	{
 		newRenderTarget = ResourcesFactory::CreateRenderTarget( name, renderTargetDescriptor );
+		if( !newRenderTarget )	return nullptr;
+
 		m_renderTarget.unsafe_add( name, newRenderTarget );
 		
 		auto colorBuff = newRenderTarget->GetColorBuffer();

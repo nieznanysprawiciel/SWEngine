@@ -127,7 +127,7 @@ void LightmapWorkerCPU::Radiosity( std::vector<MemoryChunk>& emissionLight, std:
 	std::tuple<unsigned int, unsigned int, float> emissionMax = FindMaxEmission( emissionLight );
 
 	// Koñczymy generowanie, gdy najwiêksza zgromadzona w wielok¹cie energia spadnie poni¿ej pewnego poziomu.
-	while( std::get<2>( emissionMax ) > m_threshold )
+	while( std::get<2>( emissionMax ) < 4000 )
 	{
 		std::get<2>( emissionMax ) = 0.0f;
 		unsigned int idx1 = std::get<0>( emissionMax );
@@ -187,40 +187,48 @@ void LightmapWorkerCPU::BuildResult	( std::vector<MemoryChunk>& reachedLight )
 
 	for( unsigned int i = 0; i < parts.size(); ++i )
 	{
+		verticiesCount += parts[i].verticesCount;
+
 		// Sumujemy liczbê wierzcho³ków w obiekcie. Dopiero jak zacznie siê nowy obiekt to tworzymy bufor.
-		if( parts[i].object != object )
-		{			
-			MemoryChunk colorMap( verticiesCount * sizeof( CoordColor ) );
-
-			unsigned int verticiesOffset = 0;
-			for( unsigned int j = firstPartIndex; j < i; ++j, verticiesOffset += parts[j].verticesCount )
+		unsigned int nextIdx = i+1;
+		if( nextIdx == parts.size() || parts[nextIdx].object != object )	// Pierwszy warunek wymusza, ¿e weŸmiemy tak¿e ostatni obiekt
+		{
+			if( verticiesCount != 0 )
 			{
-				for( unsigned int k = 0; k < reachedLight[ j ].Count<XMFLOAT3>(); ++k )
+				MemoryChunk colorMap( verticiesCount * sizeof( CoordColor ) );
+
+				unsigned int verticiesOffset = 0;
+				for( unsigned int j = firstPartIndex; j < nextIdx; ++j )
 				{
-					CoordColor& colorVertex = colorMap.Get<CoordColor>( verticiesOffset + mul3( k ) );		// Jest 3 razy wiêcej wierzcho³ków ni¿ kolorów.
-					XMFLOAT3& lightColor = reachedLight[ j ].Get<XMFLOAT3>( k );
-					colorVertex.color = lightColor;
-					colorVertex.texCoords = m_data->verticies[ parts[j].chunkIdx ].Get<VertexNormalTexCord1>( parts[j].bufferOffset + mul3( k ) ).tex_cords;
+					for( unsigned int k = 0; k < reachedLight[ j ].Count<XMFLOAT3>(); ++k )
+					{
+						CoordColor& colorVertex = colorMap.Get<CoordColor>( verticiesOffset + mul3( k ) );		// Jest 3 razy wiêcej wierzcho³ków ni¿ kolorów.
+						XMFLOAT3& lightColor = reachedLight[ j ].Get<XMFLOAT3>( k );
+						colorVertex.color = lightColor;
+						colorVertex.texCoords = m_data->verticies[ parts[j].chunkIdx ].Get<VertexNormalTexCord1>( parts[j].bufferOffset + mul3( k ) ).tex_cords;
 
-					colorVertex = colorMap.Get<CoordColor>( verticiesOffset + mul3( k ) + 1 );
-					colorVertex.color = lightColor;
-					colorVertex.texCoords = m_data->verticies[ parts[j].chunkIdx ].Get<VertexNormalTexCord1>( parts[j].bufferOffset + mul3( k ) + 1 ).tex_cords;
+						colorVertex = colorMap.Get<CoordColor>( verticiesOffset + mul3( k ) + 1 );
+						colorVertex.color = lightColor;
+						colorVertex.texCoords = m_data->verticies[ parts[j].chunkIdx ].Get<VertexNormalTexCord1>( parts[j].bufferOffset + mul3( k ) + 1 ).tex_cords;
 
-					colorVertex = colorMap.Get<CoordColor>( verticiesOffset + mul3( k ) + 2 );
-					colorVertex.color = lightColor;
-					colorVertex.texCoords = m_data->verticies[ parts[j].chunkIdx ].Get<VertexNormalTexCord1>( parts[j].bufferOffset + mul3( k ) + 2 ).tex_cords;
+						colorVertex = colorMap.Get<CoordColor>( verticiesOffset + mul3( k ) + 2 );
+						colorVertex.color = lightColor;
+						colorVertex.texCoords = m_data->verticies[ parts[j].chunkIdx ].Get<VertexNormalTexCord1>( parts[j].bufferOffset + mul3( k ) + 2 ).tex_cords;
+					}
+
+					verticiesOffset += parts[j].verticesCount;
 				}
+
+				m_resultData.push_back( std::move( colorMap ) );
 			}
 
-			m_resultData.push_back( std::move( colorMap ) );
-
+			if( nextIdx == parts.size() )		break;		// Nie ma wiêcej obiektów.
 			// Zakoñczyliœmy przetwarzanie obiektu przechodzimy do nastêpnego.
-			object = parts[i].object;
-			firstPartIndex = i;
+			object = parts[nextIdx].object;
+			firstPartIndex = nextIdx;
 			verticiesCount = 0;
 		}
-		else
-			verticiesCount += parts[i].verticesCount;
+			
 	}
 }
 
