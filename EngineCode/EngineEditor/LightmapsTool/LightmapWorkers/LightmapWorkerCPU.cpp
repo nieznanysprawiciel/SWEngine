@@ -89,15 +89,21 @@ void LightmapWorkerCPU::Prepare( std::vector<MemoryChunk>& emissionLight, std::v
 
 		MemoryChunk emissionChunk( chunkSize );
 		MemoryChunk reachedChunk( chunkSize );
-		MemoryChunk verticiesChunk( part.verticesCount * sizeof( XMFLOAT3 ) );
+		MemoryChunk verticiesChunk( part.verticesCount * sizeof( VertexFormat ) );
 
 		memset( reachedChunk.GetMemory<void>(), 0, chunkSize );
 		memset( emissionChunk.GetMemory<void>(), 0, chunkSize );		// Potem wype³nimy wartoœciami emisji w pêtli.
 
 		XMMATRIX transformMatrix = XMLoadFloat4x4( &part.transform );
-		XMVector3TransformCoordStream( &verticiesChunk.Get<XMFLOAT3>( 0 ),
-										sizeof( XMFLOAT3 ),
+
+		// Transform positions
+		XMVector3TransformCoordStream( &verticiesChunk.Get<VertexFormat>( 0 ).position, sizeof( VertexFormat ),
 										&m_data->verticies[ part.chunkIdx ].Get<VertexNormalTexCord1>( part.bufferOffset ).position,
+										sizeof( VertexNormalTexCord1 ), part.verticesCount, transformMatrix );
+
+		// Transform normals
+		XMVector3TransformNormalStream( &verticiesChunk.Get<VertexFormat>( 0 ).normal, sizeof( VertexFormat ),
+										&m_data->verticies[ part.chunkIdx ].Get<VertexNormalTexCord1>( part.bufferOffset ).normal,
 										sizeof( VertexNormalTexCord1 ), part.verticesCount, transformMatrix );
 
 		if( part.emissive.x != 0.0f || part.emissive.y != 0.0f || part.emissive.z != 0.0f )
@@ -123,24 +129,46 @@ void LightmapWorkerCPU::Radiosity( std::vector<MemoryChunk>& emissionLight, std:
 	// Koñczymy generowanie, gdy najwiêksza zgromadzona w wielok¹cie energia spadnie poni¿ej pewnego poziomu.
 	while( std::get<2>( emissionMax ) > m_threshold )
 	{
-		std::get<2>( emissionMax ) = -1.0f;
-		Triangle4 emiter( &verticies[ std::get<0>( emissionMax )].Get<XMFLOAT3>( mul3( std::get<1>( emissionMax ) ) ) );
+		std::get<2>( emissionMax ) = 0.0f;
+		unsigned int idx1 = std::get<0>( emissionMax );
+		unsigned int idx2 = std::get<1>( emissionMax );
+
+		Triangle4 emiterPosition( &verticies[ idx1 ].Get<VertexFormat>( mul3( idx2 ) ) );
+		XMVECTOR emiterNormal = AverageNormal( &verticies[ idx1 ].Get<VertexFormat>( mul3( idx2 ) ) );
+
+		XMVECTOR emitedLight = XMLoadFloat3( &emissionLight[ idx1 ].Get<XMFLOAT3>( idx2 ) );
+		XMStoreFloat3( &emissionLight[ idx1 ].Get<XMFLOAT3>( idx2 ), XMVectorZero() );
 
 		// Trójk¹t opisany przez emissionMax emituje œwiat³o we wszystkich kierunkach.
 		// Pierwsza implementacja nie sprawdza przys³aniania. Œwiat³o jest propagowane do wszystkich trójk¹tów.
-		for( unsigned int i = 0 ; i < verticies.size(); ++i )
+		for( unsigned int i = 0 ; i < emissionLight.size(); ++i )
 		{
 			XMVECTOR materialDiffuse = XMLoadFloat4( &m_data->objectParts[i].diffuse );
 
-			for( unsigned int j = 0; j < verticies[ i ].Count<Triangle3>(); ++j )
+			for( unsigned int j = 0; j < emissionLight[ i ].Count<XMFLOAT3>(); ++j )
 			{
-				Triangle4 receiver( &verticies[ i ].Get<XMFLOAT3>( mul3( j ) ) );
+				if( idx2 == j && idx1 == i )
+					continue;
+
+				XMVECTOR receiverNormal = AverageNormal( &verticies[ i ].Get<VertexFormat>( mul3( j ) ) );
+				XMVECTOR normalsDot = XMVector3Dot( emiterNormal, receiverNormal );
+				if( XMVector3Greater( normalsDot, XMVectorZero() ) )
+					continue;		// Trójk¹ty musz¹ byæ zwrócone w przeciwn¹ stronê.
+
+				Triangle4 receiverPosition( &verticies[ i ].Get<VertexFormat>( mul3( j ) ) );
+				
 				// Ta na prawdê to na razie pomijamy widocznoœæ licz¹c ten wspó³czynnik.
-				XMVECTOR receivedLight = HemisphereRatio( emiter, receiver );
+				XMVECTOR receivedLight = HemisphereRatio( emiterPosition, receiverPosition );
+				if( XMVector3Greater( receivedLight, XMVectorReplicate( 1.0f ) ) )
+				{
+					XMVector3Greater( receivedLight, XMVectorReplicate( 1.0f ) );
+				}
+
+				receivedLight = XMVectorMultiply( emitedLight, receivedLight );
 				receivedLight = XMVectorMultiply( materialDiffuse, receivedLight );
 
-				LoadAddStore( reachedLight, i, j, receivedLight );
 				const XMFLOAT3& emmisionPower = LoadAddStore( emissionLight, i, j, receivedLight );
+				LoadAddStore( reachedLight, i, j, receivedLight );
 				CompareEmission( emissionMax, i, j, emmisionPower );
 			}
 		}
@@ -207,74 +235,45 @@ XMVECTOR LightmapWorkerCPU::HemisphereRatio( Triangle4& emiter, Triangle4& recei
 	// Rzutujemy wierzcho³ki receivera na pó³sferê jednostkow¹. Oznacza to podzielenie ka¿dego z wektorów
 	// Receivera przez d³ugoœæ wektora emiterCenter - receiver.vertexN. (Chcemy dostaæ wektor o d³ugoœci 1)
 	Triangle4 projectedTriangle;
-	projectedTriangle.vertex1 = XMVectorDivide( receiver.vertex1, XMVector3Length( XMVectorSubtract( receiver.vertex1, emiterCenter ) ) );
-	projectedTriangle.vertex2 = XMVectorDivide( receiver.vertex2, XMVector3Length( XMVectorSubtract( receiver.vertex2, emiterCenter ) ) );
-	projectedTriangle.vertex3 = XMVectorDivide( receiver.vertex3, XMVector3Length( XMVectorSubtract( receiver.vertex3, emiterCenter ) ) );
+	XMVECTOR centerToVertex1 = XMVectorSubtract( receiver.vertex1, emiterCenter );
+	XMVECTOR centerToVertex2 = XMVectorSubtract( receiver.vertex2, emiterCenter );
+	XMVECTOR centerToVertex3 = XMVectorSubtract( receiver.vertex3, emiterCenter );
+
+	projectedTriangle.vertex1 = XMVectorAdd( emiterCenter, XMVector3Normalize( centerToVertex1 ) );
+	projectedTriangle.vertex2 = XMVectorAdd( emiterCenter, XMVector3Normalize( centerToVertex2 ) );
+	projectedTriangle.vertex3 = XMVectorAdd( emiterCenter, XMVector3Normalize( centerToVertex3 ) );
 
 	// Rzutujemy trójk¹t na p³aszczyznê okrêgu
 	XMVECTOR emiterPlane = XMPlaneFromPoints( emiter.vertex1, emiter.vertex2, emiter.vertex3 );
-		// W tym kroku robimy macierz rzutowania. Jest to równowa¿ne rzucaniu cienia przez punkty trójk¹ta i œwiat³o kierunkowe.
-	XMMATRIX emiterPlaneProjection = XMMatrixShadow( emiterPlane, XMVectorSetW( XMVectorAdd( emiterCenter, emiterPlane ), 0.0 ) );
-	
-	projectedTriangle.vertex1 = XMVector3Transform( projectedTriangle.vertex1, emiterPlaneProjection );
-	projectedTriangle.vertex2 = XMVector3Transform( projectedTriangle.vertex2, emiterPlaneProjection );
-	projectedTriangle.vertex3 = XMVector3Transform( projectedTriangle.vertex3, emiterPlaneProjection );
+
+	projectedTriangle.vertex1 = ProjectPointToPlane( emiterPlane, emiterCenter, projectedTriangle.vertex1 );
+	projectedTriangle.vertex2 = ProjectPointToPlane( emiterPlane, emiterCenter, projectedTriangle.vertex2 );
+	projectedTriangle.vertex3 = ProjectPointToPlane( emiterPlane, emiterCenter, projectedTriangle.vertex3 );
 
 	// Wyliczamy pole tego trójk¹ta, a potem porównujemy z polem ko³a o promieniu 1.
-	XMVECTOR crossProduct = XMVector3Cross( XMVectorSubtract( projectedTriangle.vertex2, projectedTriangle.vertex1 ), XMVectorSubtract( projectedTriangle.vertex3, projectedTriangle.vertex1 ) );
+	XMVECTOR sideA = XMVectorSubtract( projectedTriangle.vertex2, projectedTriangle.vertex1 );
+	XMVECTOR sideB = XMVectorSubtract( projectedTriangle.vertex3, projectedTriangle.vertex1 );
+
+	XMVECTOR crossProduct = XMVector3Cross( sideA, sideB );
 	crossProduct = XMVector3Length( crossProduct );
 
 	return XMVectorDivide( crossProduct, XMVectorReplicate( XM_2PI ) );
 }
 
 
-//void LightmapWorkerCPU::Prepare( std::vector<MemoryChunk>& emissionLight, std::vector<MemoryChunk>& reachedLight, std::vector<MemoryChunk>& verticies )
-//{
-//	auto& parts = m_data->objectParts;
-//	auto object = parts[0].object;
-//	unsigned int verticiesCount = 0;
-//	unsigned int firstPartIndex = 0;
-//
-//	for( unsigned int i = 0; i < parts.size(); ++i )
-//	{
-//		if( parts[i].object != object )
-//		{
-//			verticiesCount = 0;
-//
-//			unsigned int chunkSize = verticiesCount * sizeof( XMFLOAT4 ) / 3;
-//
-//			MemoryChunk emissionChunk( chunkSize );
-//			MemoryChunk reachedChunk( chunkSize );
-//			MemoryChunk verticiesChunk( verticiesCount * sizeof( XMFLOAT3 ) );
-//
-//			memset( reachedChunk.GetMemory<void>(), 0, chunkSize );
-//			memset( emissionChunk.GetMemory<void>(), 0, chunkSize );		// Potem wype³nimy wartoœciami emisji w pêtli.
-//
-//			for( unsigned int j = firstPartIndex; j < i; ++j, verticiesCount += parts[j].verticesCount )
-//			{
-//				XMMATRIX transformMatrix = XMLoadFloat4x4( &parts[j].transform );
-//				XMVector3TransformCoordStream( &verticiesChunk.Get<XMFLOAT3>( verticiesCount ),
-//											   sizeof( XMFLOAT3 ),
-//											   &m_data->verticies[ parts[j].chunkIdx ].Get<VertexNormalTexCord1>( parts[j].bufferOffset ).position,
-//											   sizeof( VertexNormalTexCord1 ), parts[j].verticesCount, transformMatrix );
-//
-//				if( parts[j].emissive.x != 0.0f || parts[j].emissive.y != 0.0f || parts[j].emissive.z != 0.0f )
-//				{
-//					for( unsigned int k = 0; k < parts[j].verticesCount / 3; ++k )
-//						emissionChunk.Get<XMFLOAT4>( verticiesCount + k ) = parts[j].emissive;
-//				}
-//			}
-//
-//			emissionLight.push_back( std::move( emissionChunk ) );
-//			reachedLight.push_back( std::move( reachedChunk ) );
-//			verticies.push_back( std::move( verticiesChunk ) );
-//
-//			// Zakoñczyliœmy przetwarzanie obiektu przechodzimy do nastêpnego.
-//			object = parts[i].object;
-//			firstPartIndex = i;
-//			verticiesCount = 0;
-//		}
-//		else
-//			verticiesCount += parts[i].verticesCount;
-//	}
-//}
+XMVECTOR LightmapWorkerCPU::ProjectPointToPlane( XMVECTOR plane, XMVECTOR planePoint, XMVECTOR point )
+{
+	XMVECTOR pointToPlanePoint = XMVectorSubtract( planePoint, point );
+	XMVECTOR dotProduct = XMVector3Dot( XMVector3Normalize( plane ), pointToPlanePoint );
+	return XMVectorSubtract( point, XMVectorMultiply( plane, dotProduct ) );
+}
+
+XMVECTOR LightmapWorkerCPU::AverageNormal( const VertexFormat* triangle )
+{
+	XMVECTOR normal1 = XMLoadFloat3( &(*triangle).normal );		++triangle;
+	XMVECTOR normal2 = XMLoadFloat3( &(*triangle).normal );		++triangle;
+	XMVECTOR normal3 = XMLoadFloat3( &(*triangle).normal );
+
+	return XMVectorDivide( XMVectorAdd( XMVectorAdd( normal1, normal2 ), normal3 ), XMVectorReplicate( 3.0f ) );
+}
+

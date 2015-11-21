@@ -3,6 +3,12 @@
 #include "EngineEditor/LightmapsTool/LightmapWorker.h"
 #include <DirectXMath.h>
 
+struct VertexFormat
+{
+	DirectX::XMFLOAT3	position;
+	DirectX::XMFLOAT3	normal;
+};
+
 struct Triangle4
 {
 	DirectX::XMVECTOR	vertex1;
@@ -10,11 +16,11 @@ struct Triangle4
 	DirectX::XMVECTOR	vertex3;
 
 	Triangle4() = default;
-	inline Triangle4( DirectX::XMFLOAT3* trianglePtr )
+	inline Triangle4( VertexFormat* vertexPtr )
 	{
-		vertex1 = XMLoadFloat3( trianglePtr++ );
-		vertex2 = XMLoadFloat3( trianglePtr++ );
-		vertex3 = XMLoadFloat3( trianglePtr++ );
+		vertex1 = XMLoadFloat3( &(vertexPtr++)->position );
+		vertex2 = XMLoadFloat3( &(vertexPtr++)->position );
+		vertex3 = XMLoadFloat3( &vertexPtr->position );
 	}
 };
 
@@ -24,6 +30,8 @@ struct Triangle3
 	DirectX::XMFLOAT3	vertex2;
 	DirectX::XMFLOAT3	vertex3;
 };
+
+
 
 class LightmapWorkerCPU	:	public LightmapWorker
 {
@@ -41,7 +49,9 @@ private:
 	void			Radiosity	( std::vector<MemoryChunk>& emissionLight, std::vector<MemoryChunk>& reachedLight, std::vector<MemoryChunk>& verticies );
 	void			BuildResult	( std::vector<MemoryChunk>& reachedLight  );
 
-	DirectX::XMVECTOR									HemisphereRatio		( Triangle4& emiter, Triangle4& receiver );
+	DirectX::XMVECTOR		HemisphereRatio		( Triangle4& emiter, Triangle4& receiver );
+	DirectX::XMVECTOR		ProjectPointToPlane	( DirectX::XMVECTOR plane, DirectX::XMVECTOR planePoint, DirectX::XMVECTOR point );
+	DirectX::XMVECTOR		AverageNormal		( const VertexFormat* triangle );
 
 	std::tuple<unsigned int, unsigned int, float>		FindMaxEmision		( std::vector<MemoryChunk>& emisionLight );
 };
