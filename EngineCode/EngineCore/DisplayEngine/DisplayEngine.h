@@ -95,6 +95,9 @@ public:
 	int				AddCamera						( CameraObject* camera );
 	int				SetCurrentCamera				( CameraObject* camera );
 
+	// Renderowanie
+	void			RenderOnce						( RenderPass* pass )	{	m_renderOnceQueue.push( pass );	}
+
 	// SkyDome
 	SkyDome*		SetSkydome						( SkyDome* dome );
 private:

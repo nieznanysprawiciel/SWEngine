@@ -481,5 +481,7 @@ które zostan¹ w nim umieszczone. W przysz³oœci trzeba zrobiæ jakiœ m¹drzejszy me
 
 @param[in] pass Dane przebiegu uzywane przy renderowaniu.*/
 void EngineInterface::Rendering::RenderOnce( RenderPass* pass )
-{}
+{
+	m_engine->Context.displayEngine->RenderOnce( pass );
+}
 
