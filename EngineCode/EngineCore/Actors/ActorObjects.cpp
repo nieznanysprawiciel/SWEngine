@@ -1,8 +1,8 @@
+#include "EngineCore/stdafx.h"
 /**@file basic_interfaces.cpp
 @brief Plik zawiera definicje metod klas z pliku basic_interfaces.h
 */
 
-#include "EngineCore/stdafx.h"
 #include "ActorObjects.h"
 #include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/ModelsManager/Model3DFromFile.h"
@@ -319,7 +319,9 @@ int DynamicMeshObject::SetModel(Model3DFromFile* model)
 void DynamicMeshObject::AddModelPart( ModelPart& modelPart )
 {
 	model_parts.push_back( modelPart );
+	model_changed = true;
 }
+
 
 /**
 Dodajemy odwo³ania do wszystkich istniej¹cych elementów w przekazanym wskaŸniku.

@@ -37,9 +37,9 @@ public:
 	/**@brief G³ówna funkcja generuj¹ca lightmapy. Zaimplementuj w klasie pochodnej.*/
 	virtual void	Generate() override;
 private:
-	void			Prepare		( std::vector<MemoryChunk>& emisionLight, std::vector<MemoryChunk>& reachedLight, std::vector<MemoryChunk>& verticies );
-	void			Radiosity	( std::vector<MemoryChunk>& emisionLight, std::vector<MemoryChunk>& reachedLight, std::vector<MemoryChunk>& verticies );
-	void			BuildResult	( std::vector<MemoryChunk>& emisionLight, std::vector<MemoryChunk>& reachedLight, std::vector<MemoryChunk>& verticies );
+	void			Prepare		( std::vector<MemoryChunk>& emissionLight, std::vector<MemoryChunk>& reachedLight, std::vector<MemoryChunk>& verticies );
+	void			Radiosity	( std::vector<MemoryChunk>& emissionLight, std::vector<MemoryChunk>& reachedLight, std::vector<MemoryChunk>& verticies );
+	void			BuildResult	( std::vector<MemoryChunk>& reachedLight  );
 
 	DirectX::XMVECTOR									HemisphereRatio		( Triangle4& emiter, Triangle4& receiver );
 

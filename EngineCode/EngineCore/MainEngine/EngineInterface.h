@@ -280,10 +280,10 @@ private:
 			Assets() = default;
 			~Assets() = default;
 
-			void		ChangeTextures( DynamicMeshObject* mesh, TextureObject* newTex, uint16 beginPart, uint16 endPart, uint8 texIndex );
+			void		ChangeTextures		( DynamicMeshObject* mesh, TextureObject* newTex, uint16 beginPart, uint16 endPart, uint8 texIndex );
 
-			void		ChangePixelShaders( DynamicMeshObject* mesh, PixelShaderObject* newShader, uint16 beginPart, uint16 endPart );
-			void		ChangeVertexShaders( DynamicMeshObject* mesh, VertexShaderObject* newShader, uint16 beginPart, uint16 endPart );
+			void		ChangePixelShaders	( DynamicMeshObject* mesh, PixelShaderObject* newShader, uint16 beginPart, uint16 endPart );
+			void		ChangeVertexShaders	( DynamicMeshObject* mesh, VertexShaderObject* newShader, uint16 beginPart, uint16 endPart );
 		};
 #pragma endregion
 	protected:

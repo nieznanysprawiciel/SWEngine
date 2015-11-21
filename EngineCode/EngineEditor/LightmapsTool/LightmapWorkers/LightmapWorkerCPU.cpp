@@ -11,7 +11,7 @@ using namespace DirectX;
 LightmapWorkerCPU::LightmapWorkerCPU( SceneData* sceneData )
 	: LightmapWorker( sceneData )
 {
-	m_threshold = 0.001f;
+	m_threshold = 0.01f;
 }
 
 // ============================================================================= //
@@ -23,18 +23,18 @@ inline unsigned int mul3( unsigned int number )
 {	return ( number << 1 ) + number;	}
 
 /**@brief Dodaje pod podanymi indeksami w chunku element addValue.*/
-inline XMFLOAT4& LoadAddStore( std::vector<MemoryChunk>& chunk, unsigned int i, unsigned int j, XMVECTOR addValue )
+inline XMFLOAT3& LoadAddStore( std::vector<MemoryChunk>& chunk, unsigned int i, unsigned int j, XMVECTOR addValue )
 {
-	auto lightValuePtr = &chunk[ i ].Get<XMFLOAT4>( j );
-	XMVECTOR lightValue = XMLoadFloat4( lightValuePtr );
+	auto lightValuePtr = &chunk[ i ].Get<XMFLOAT3>( j );
+	XMVECTOR lightValue = XMLoadFloat3( lightValuePtr );
 	lightValue = XMVectorAdd( addValue, lightValue );
-	XMStoreFloat4( lightValuePtr, lightValue );
+	XMStoreFloat3( lightValuePtr, lightValue );
 	
 	return *lightValuePtr;
 }
 
 
-inline void CompareEmission( std::tuple<unsigned int, unsigned int, float>& prevEmission, unsigned int i, unsigned int j, const XMFLOAT4& newEmission )
+inline void CompareEmission( std::tuple<unsigned int, unsigned int, float>& prevEmission, unsigned int i, unsigned int j, const XMFLOAT3& newEmission )
 {
 	if( newEmission.x > std::get<2>( prevEmission ) )
 		prevEmission = std::make_tuple( i, j, newEmission.x );
@@ -44,13 +44,13 @@ inline void CompareEmission( std::tuple<unsigned int, unsigned int, float>& prev
 		prevEmission = std::make_tuple( i, j, newEmission.z );
 }
 
-std::tuple<unsigned int, unsigned int, float> FindMaxEmision( std::vector<MemoryChunk>& emissionLight )
+std::tuple<unsigned int, unsigned int, float> FindMaxEmission( std::vector<MemoryChunk>& emissionLight )
 {
 	std::tuple<unsigned int, unsigned int, float> emissionMax = std::make_tuple( 0, 0, -1.0f );
 	for( unsigned int i = 0 ; i < emissionLight.size(); ++i )
-		for( unsigned int j = 0; j < emissionLight[ i ].Count<XMFLOAT4>(); ++j )
+		for( unsigned int j = 0; j < emissionLight[ i ].Count<XMFLOAT3>(); ++j )
 		{
-			auto& emissionVector = emissionLight[ i ].Get<XMFLOAT4>( j );
+			auto& emissionVector = emissionLight[ i ].Get<XMFLOAT3>( j );
 			CompareEmission( emissionMax, i, j, emissionVector );
 		}
 	return emissionMax;
@@ -74,7 +74,7 @@ void LightmapWorkerCPU::Generate		()
 
 	Prepare( emissionLight, reachedLight, verticies );
 	Radiosity( emissionLight, reachedLight, verticies );
-	BuildResult( emissionLight, reachedLight, verticies );
+	BuildResult( reachedLight );
 
 	m_lightmapState = LightmapState::GenerationEnded;		// Ustaw na koñcu funkcji, ¿eby w¹tek g³ówny móg³ zebraæ wyniki.
 }
@@ -85,7 +85,7 @@ void LightmapWorkerCPU::Prepare( std::vector<MemoryChunk>& emissionLight, std::v
 	auto& parts = m_data->objectParts;
 	for( auto& part : parts )
 	{
-		unsigned int chunkSize = part.verticesCount * sizeof( XMFLOAT4 ) / 3;
+		unsigned int chunkSize = part.verticesCount * sizeof( XMFLOAT3 ) / 3;
 
 		MemoryChunk emissionChunk( chunkSize );
 		MemoryChunk reachedChunk( chunkSize );
@@ -95,15 +95,16 @@ void LightmapWorkerCPU::Prepare( std::vector<MemoryChunk>& emissionLight, std::v
 		memset( emissionChunk.GetMemory<void>(), 0, chunkSize );		// Potem wype³nimy wartoœciami emisji w pêtli.
 
 		XMMATRIX transformMatrix = XMLoadFloat4x4( &part.transform );
-		XMVector3TransformCoordStream( &verticiesChunk.Get<XMFLOAT3>( part.verticesCount ),
+		XMVector3TransformCoordStream( &verticiesChunk.Get<XMFLOAT3>( 0 ),
 										sizeof( XMFLOAT3 ),
 										&m_data->verticies[ part.chunkIdx ].Get<VertexNormalTexCord1>( part.bufferOffset ).position,
 										sizeof( VertexNormalTexCord1 ), part.verticesCount, transformMatrix );
 
 		if( part.emissive.x != 0.0f || part.emissive.y != 0.0f || part.emissive.z != 0.0f )
 		{
+			XMFLOAT3 materialEmissive( part.emissive.x, part.emissive.y, part.emissive.z );
 			for( unsigned int k = 0; k < part.verticesCount / 3; ++k )
-				emissionChunk.Get<XMFLOAT4>( part.verticesCount + k ) = part.emissive;
+				emissionChunk.Get<XMFLOAT3>( k ) = materialEmissive;
 		}
 
 		emissionLight.push_back( std::move( emissionChunk ) );
@@ -117,7 +118,7 @@ void LightmapWorkerCPU::Prepare( std::vector<MemoryChunk>& emissionLight, std::v
 void LightmapWorkerCPU::Radiosity( std::vector<MemoryChunk>& emissionLight, std::vector<MemoryChunk>& reachedLight, std::vector<MemoryChunk>& verticies )
 {
 	// Identyfikuje wielok¹t z najwiêksz¹ energi¹ do wyemitowania.
-	std::tuple<unsigned int, unsigned int, float> emissionMax = FindMaxEmision( emissionLight );
+	std::tuple<unsigned int, unsigned int, float> emissionMax = FindMaxEmission( emissionLight );
 
 	// Koñczymy generowanie, gdy najwiêksza zgromadzona w wielok¹cie energia spadnie poni¿ej pewnego poziomu.
 	while( std::get<2>( emissionMax ) > m_threshold )
@@ -139,17 +140,60 @@ void LightmapWorkerCPU::Radiosity( std::vector<MemoryChunk>& emissionLight, std:
 				receivedLight = XMVectorMultiply( materialDiffuse, receivedLight );
 
 				LoadAddStore( reachedLight, i, j, receivedLight );
-				const XMFLOAT4& emmisionPower = LoadAddStore( emissionLight, i, j, receivedLight );
+				const XMFLOAT3& emmisionPower = LoadAddStore( emissionLight, i, j, receivedLight );
 				CompareEmission( emissionMax, i, j, emmisionPower );
 			}
 		}
 	}
 }
 
-/**@brief Tworzy tablicê color - uv, która zostanie potem u¿yta do wyrenderowania lightmapy.*/
-void LightmapWorkerCPU::BuildResult	( std::vector<MemoryChunk>& emisionLight, std::vector<MemoryChunk>& reachedLight, std::vector<MemoryChunk>& verticies )
-{
+/**@brief Tworzy tablicê color - uv, która zostanie potem u¿yta do wyrenderowania lightmapy.
 
+Wszystkie chunki podzielone wczeœniej na podczêœci s¹ teraz ³¹czone. Ka¿dy obiekt bêdzie mia³ swój bufor.*/
+void LightmapWorkerCPU::BuildResult	( std::vector<MemoryChunk>& reachedLight )
+{
+	auto& parts = m_data->objectParts;
+	auto object = parts[0].object;
+	unsigned int verticiesCount = 0;
+	unsigned int firstPartIndex = 0;
+
+	for( unsigned int i = 0; i < parts.size(); ++i )
+	{
+		// Sumujemy liczbê wierzcho³ków w obiekcie. Dopiero jak zacznie siê nowy obiekt to tworzymy bufor.
+		if( parts[i].object != object )
+		{			
+			MemoryChunk colorMap( verticiesCount * sizeof( CoordColor ) );
+
+			unsigned int verticiesOffset = 0;
+			for( unsigned int j = firstPartIndex; j < i; ++j, verticiesOffset += parts[j].verticesCount )
+			{
+				for( unsigned int k = 0; k < reachedLight[ j ].Count<XMFLOAT3>(); ++k )
+				{
+					CoordColor& colorVertex = colorMap.Get<CoordColor>( verticiesOffset + mul3( k ) );		// Jest 3 razy wiêcej wierzcho³ków ni¿ kolorów.
+					XMFLOAT3& lightColor = reachedLight[ j ].Get<XMFLOAT3>( k );
+					colorVertex.color = lightColor;
+					colorVertex.texCoords = m_data->verticies[ parts[j].chunkIdx ].Get<VertexNormalTexCord1>( parts[j].bufferOffset + mul3( k ) ).tex_cords;
+
+					colorVertex = colorMap.Get<CoordColor>( verticiesOffset + mul3( k ) + 1 );
+					colorVertex.color = lightColor;
+					colorVertex.texCoords = m_data->verticies[ parts[j].chunkIdx ].Get<VertexNormalTexCord1>( parts[j].bufferOffset + mul3( k ) + 1 ).tex_cords;
+
+					colorVertex = colorMap.Get<CoordColor>( verticiesOffset + mul3( k ) + 2 );
+					colorVertex.color = lightColor;
+					colorVertex.texCoords = m_data->verticies[ parts[j].chunkIdx ].Get<VertexNormalTexCord1>( parts[j].bufferOffset + mul3( k ) + 2 ).tex_cords;
+				}
+			}
+
+			m_resultData.push_back( std::move( colorMap ) );
+
+			// Zakoñczyliœmy przetwarzanie obiektu przechodzimy do nastêpnego.
+			object = parts[i].object;
+			firstPartIndex = i;
+			verticiesCount = 0;
+		}
+		else
+			verticiesCount += parts[i].verticesCount;
+	}
 }
 
 /**@brief Wylicza dla emitera i odbiornika wspó³czynnik widocznoœci w oparciu o hemisferê.*/

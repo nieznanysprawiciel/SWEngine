@@ -134,6 +134,8 @@ void LightmapLogic::ProceedGameLogic			( float time )
 				part.mesh = new MeshPartObject;
 				part.mesh->vertices_count = chunk.GetMemorySize() / sizeof( CoordColor );
 
+				dynamicMesh->AddModelPart( part );
+
 				// Build Pass information
 				renderPass->AddMesh( dynamicMesh );
 				renderPass->SetRenderTarget( renderTarget );
