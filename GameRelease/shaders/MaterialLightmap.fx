@@ -45,7 +45,7 @@ float4 pixel_shader( PS_INPUT input) : SV_Target
 	
 	float3 lightmapSample = texLightmap.Sample( defaultSampler, input.Tex );
 	
-	finalColor.xyz += lightmapSample * (float3)Diffuse;
+	finalColor.xyz += lightmapSample;// * (float3)Diffuse;
 	finalColor.w = 1.0;
 
     return finalColor;

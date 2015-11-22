@@ -99,7 +99,7 @@ void DisplayEngine::InitDisplayer( ModelsManager* assetsManager )
 
 void DisplayEngine::BeginScene()
 {
-	m_renderers[ 0 ]->BeginScene( m_mainRenderTarget );
+	//m_renderers[ 0 ]->BeginScene( m_mainRenderTarget );
 }
 
 void DisplayEngine::EndScene()
@@ -509,7 +509,7 @@ void DisplayEngine::RenderFromQueue( float time_interval, float time_lag )
 				}
 
 			}
-			
+
 			RenderOnceEndedEvent*  renderedEvent = new RenderOnceEndedEvent;
 			renderedEvent->renderPass = renderPass;
 			engine->send_event( renderedEvent );

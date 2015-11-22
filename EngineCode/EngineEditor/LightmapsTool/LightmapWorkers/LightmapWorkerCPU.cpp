@@ -127,7 +127,8 @@ void LightmapWorkerCPU::Radiosity( std::vector<MemoryChunk>& emissionLight, std:
 	std::tuple<unsigned int, unsigned int, float> emissionMax = FindMaxEmission( emissionLight );
 
 	// Koñczymy generowanie, gdy najwiêksza zgromadzona w wielok¹cie energia spadnie poni¿ej pewnego poziomu.
-	while( std::get<2>( emissionMax ) < 4000 )
+	/*while( std::get<2>( emissionMax ) > m_threshold )*/
+	while( std::get<2>( emissionMax ) < 1 )
 	{
 		std::get<2>( emissionMax ) = 0.0f;
 		unsigned int idx1 = std::get<0>( emissionMax );
@@ -202,18 +203,19 @@ void LightmapWorkerCPU::BuildResult	( std::vector<MemoryChunk>& reachedLight )
 				{
 					for( unsigned int k = 0; k < reachedLight[ j ].Count<XMFLOAT3>(); ++k )
 					{
-						CoordColor& colorVertex = colorMap.Get<CoordColor>( verticiesOffset + mul3( k ) );		// Jest 3 razy wiêcej wierzcho³ków ni¿ kolorów.
-						XMFLOAT3& lightColor = reachedLight[ j ].Get<XMFLOAT3>( k );
-						colorVertex.color = lightColor;
-						colorVertex.texCoords = m_data->verticies[ parts[j].chunkIdx ].Get<VertexNormalTexCord1>( parts[j].bufferOffset + mul3( k ) ).tex_cords;
+						// Uwaga! Kolejnoœæ wierzcho³ków celowo zamieniona. W przeciwnym razie odpada³y na backface cullingu.
+						CoordColor& colorVertex1 = colorMap.Get<CoordColor>( verticiesOffset + mul3( k ) );		// Jest 3 razy wiêcej wierzcho³ków ni¿ kolorów.
+						XMFLOAT3& lightColor = /*reachedLight[ j ].Get<XMFLOAT3>( k );*/ XMFLOAT3( 0.5, 0.3, 0.7);
+						colorVertex1.color = lightColor;
+						colorVertex1.texCoords = m_data->verticies[ parts[j].chunkIdx ].Get<VertexNormalTexCord1>( parts[j].bufferOffset + mul3( k ) + 1 ).tex_cords;
 
-						colorVertex = colorMap.Get<CoordColor>( verticiesOffset + mul3( k ) + 1 );
-						colorVertex.color = lightColor;
-						colorVertex.texCoords = m_data->verticies[ parts[j].chunkIdx ].Get<VertexNormalTexCord1>( parts[j].bufferOffset + mul3( k ) + 1 ).tex_cords;
+						CoordColor& colorVertex2 = colorMap.Get<CoordColor>( verticiesOffset + mul3( k ) + 1 );
+						colorVertex2.color = lightColor;
+						colorVertex2.texCoords = m_data->verticies[ parts[j].chunkIdx ].Get<VertexNormalTexCord1>( parts[j].bufferOffset + mul3( k ) ).tex_cords;
 
-						colorVertex = colorMap.Get<CoordColor>( verticiesOffset + mul3( k ) + 2 );
-						colorVertex.color = lightColor;
-						colorVertex.texCoords = m_data->verticies[ parts[j].chunkIdx ].Get<VertexNormalTexCord1>( parts[j].bufferOffset + mul3( k ) + 2 ).tex_cords;
+						CoordColor& colorVertex3 = colorMap.Get<CoordColor>( verticiesOffset + mul3( k ) + 2 );
+						colorVertex3.color = lightColor;
+						colorVertex3.texCoords = m_data->verticies[ parts[j].chunkIdx ].Get<VertexNormalTexCord1>( parts[j].bufferOffset + mul3( k ) + 2 ).tex_cords;
 					}
 
 					verticiesOffset += parts[j].verticesCount;

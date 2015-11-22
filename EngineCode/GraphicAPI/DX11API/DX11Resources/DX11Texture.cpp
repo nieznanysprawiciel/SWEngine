@@ -15,6 +15,17 @@ DX11Texture::~DX11Texture()
 	m_texture = nullptr;
 }
 
+/**@brief Zapisuje podan¹ teksturê do pliku.
+
+@brief filePath Œcie¿ka do pliku, do którego ma zostaæ zapisana tekstura.
+@return Zwraca true, je¿eli zapis siê uda.*/
+bool DX11Texture::SaveToFile( const std::string& filePath )
+{
+	//HRESULT result = D3DX11SaveTextureToFile( device_context, m_texture, )
+
+	return false;
+}
+
 /**@brief Tworzy teksturê na podstawie podanego pliku.
 
 @param[in] fileName Nazwa pliku zawieraj¹cego teksturê

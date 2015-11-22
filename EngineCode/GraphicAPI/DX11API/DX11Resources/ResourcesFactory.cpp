@@ -35,9 +35,11 @@ TextureObject*			ResourcesFactory::CreateTextureFromFile( const std::wstring& fi
 VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
 {
 	auto shader = VertexShader::CreateFromFile( fileName, shaderName, shaderModel );
-	shader->SetFileName( fileName );
-	shader->SetShaderName( shaderName );
-	
+	if( shader )
+	{
+		shader->SetFileName( fileName );
+		shader->SetShaderName( shaderName );
+	}
 	return shader;
 }
 
@@ -56,9 +58,11 @@ VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile	( const std::w
 																		const char* shaderModel/* = "vs_4_0"*/ )
 {
 	auto shader = VertexShader::CreateFromFile( fileName, shaderName, layout, layoutDesc, shaderModel );
-	shader->SetFileName( fileName );
-	shader->SetShaderName( shaderName );
-	
+	if( shader )
+	{
+		shader->SetFileName( fileName );
+		shader->SetShaderName( shaderName );
+	}
 	return shader;
 }
 
@@ -71,9 +75,11 @@ VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile	( const std::w
 PixelShaderObject*		ResourcesFactory::CreatePixelShaderFromFile( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
 {
 	auto shader = PixelShader::CreateFromFile( fileName, shaderName, shaderModel );
-	shader->SetFileName( fileName );
-	shader->SetShaderName( shaderName );
-	
+	if( shader )
+	{
+		shader->SetFileName( fileName );
+		shader->SetShaderName( shaderName );
+	}
 	return shader;
 }
 

@@ -180,7 +180,7 @@ void LightmapLogic::RenderEnded( Event* renderEndedEvent )
 		{
 			PixelShaderObject* pixelShader = m_engine->assets.shaders.GetPixelShaderSync( DEFAULT_LIGHTMAP_PIXEL_SHADER_PATH );
 			TextureObject* lightmap = renderPass->GetRenderTarget()->GetColorBuffer();
-			m_engine->actors.assets.ChangeTextures( realMesh, lightmap, 0, std::numeric_limits<uint16>::max(), TextureUse::TEX_LIGHTMAP );
+			m_engine->actors.assets.ChangeTextures( realMesh, lightmap, 0, std::numeric_limits<uint16>::max(), TextureUse::TEX_DIFFUSE );	// W przysz³oœci TEX_LIGHTMAP
 			m_engine->actors.assets.ChangePixelShaders( realMesh, pixelShader, 0, std::numeric_limits<uint16>::max() );
 		}
 		
