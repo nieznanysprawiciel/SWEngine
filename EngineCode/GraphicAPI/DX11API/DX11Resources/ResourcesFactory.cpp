@@ -34,7 +34,11 @@ TextureObject*			ResourcesFactory::CreateTextureFromFile( const std::wstring& fi
 @return Zwraca obiekt vertex shadera lub nullptr w przypadku niepowodzenia.*/
 VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
 {
-	return VertexShader::CreateFromFile( fileName, shaderName, shaderModel );
+	auto shader = VertexShader::CreateFromFile( fileName, shaderName, shaderModel );
+	shader->SetFileName( fileName );
+	shader->SetShaderName( shaderName );
+	
+	return shader;
 }
 
 /**@brief Tworzy obiekt vertex shadera oraz layout wierzcho³ka.
@@ -51,7 +55,11 @@ VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile	( const std::w
 																		InputLayoutDescriptor* layoutDesc,
 																		const char* shaderModel/* = "vs_4_0"*/ )
 {
-	return VertexShader::CreateFromFile( fileName, shaderName, layout, layoutDesc, shaderModel );
+	auto shader = VertexShader::CreateFromFile( fileName, shaderName, layout, layoutDesc, shaderModel );
+	shader->SetFileName( fileName );
+	shader->SetShaderName( shaderName );
+	
+	return shader;
 }
 
 
@@ -62,7 +70,11 @@ VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile	( const std::w
 @return Zwraca obiekt vertex shadera lub nullptr w przypadku niepowodzenia.*/
 PixelShaderObject*		ResourcesFactory::CreatePixelShaderFromFile( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
 {
-	return PixelShader::CreateFromFile( fileName, shaderName, shaderModel );
+	auto shader = PixelShader::CreateFromFile( fileName, shaderName, shaderModel );
+	shader->SetFileName( fileName );
+	shader->SetShaderName( shaderName );
+	
+	return shader;
 }
 
 /**@brief Tworzy bufor na podstawie sanych w pamiêci.

@@ -455,10 +455,12 @@ void DisplayEngine::RenderFromQueue( float time_interval, float time_lag )
 			renderer->BeginScene( renderPass->GetRenderTarget() );
 			renderer->IASetInputLayout( renderPass->GetLayout() );
 
+			auto meshCollection = renderPass->GetMeshes();
+
 			//na razie pêtla bez optymalizacji
-			for ( unsigned int i = 0; i < meshes.size( ); ++i )
+			for ( unsigned int i = 0; i < meshCollection.size( ); ++i )
 			{
-				register DynamicMeshObject* object = meshes[i];
+				register DynamicMeshObject* object = meshCollection[i];
 
 				// Ustawiamy bufor wierzcho³ków
 				if ( renderer->SetVertexBuffer( object->vertex_buffer ) )

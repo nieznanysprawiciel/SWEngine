@@ -382,14 +382,18 @@ void EngineInterface::Actors::CleanScene()
 template<typename Resource>
 void ChangeResource( DynamicMeshObject* mesh, Resource* newResource, uint16 beginPart, uint16 endPart, uint8 index )
 {
+	if( !newResource )
+		return;
+
 	auto& parts = mesh->GetModelParts();
 	int size = parts.size();
 	int max = endPart > size ? size : endPart;
 	for( int i = beginPart; i < max; ++i )
 	{
-		auto& shader = Get<Resource>( parts[ i ], index );
-		shader->DeleteObjectReference();
-		shader = newResource;
+		auto& resource = Get<Resource>( parts[ i ], index );
+		if( resource )
+			resource->DeleteObjectReference();
+		resource = newResource;
 		newResource->AddObjectReference();
 	}
 }

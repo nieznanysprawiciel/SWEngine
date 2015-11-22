@@ -8,7 +8,7 @@ class InputAbstractionLayer;
 class RenderPass;
 
 
-#define	BUILD_IN_EVENTS				2
+#define	BUILD_IN_EVENTS				3
 
 typedef enum class EventType
 {
