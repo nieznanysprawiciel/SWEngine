@@ -7,6 +7,9 @@
 #include "Common/memory_leaks.h"
 
 
+DX11Initializer::DX11Initializer()
+{	m_rasterizer = nullptr;	}
+
 /**@brief Tworzy renderer zgodny z u¿ywanym API graficznym.
 
 @param[in] usage Specyfikuje czy u¿yæ opóŸnionego kontekstu renderowania czy natychmiastowego.
@@ -34,12 +37,21 @@ bool DX11Initializer::InitAPI( GraphicAPIInitData& initData )
 		release_DirectX();	// Jak tu coœ siê nie uda³o, to znaczy, ¿e deskryptor by³ niepoprawny.
 		return false;
 	}
+
+	if( FAILED( device->CreateRasterizerState( &get_rasterizer_desc(), &m_rasterizer ) ) )
+		return false;
+
+	device_context->RSSetState( m_rasterizer );
+
 	return true;
 }
 
 /**@brief Zwalnia stworzone obiekty DirectX 11.*/
 void DX11Initializer::ReleaseAPI()
 {
+	if( m_rasterizer )
+		m_rasterizer->Release();
+	m_rasterizer = nullptr;
 	release_DirectX();
 }
 

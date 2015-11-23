@@ -316,13 +316,13 @@ void FBX_loader::read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_
 		{
 		case FbxGeometryElement::eDirect:
 			UV_cords.x = static_cast<float>(UVs->GetDirectArray().GetAt(control_point).mData[0]);
-			UV_cords.y = static_cast<float>(UVs->GetDirectArray().GetAt(control_point).mData[1]);
+			UV_cords.y = 1 - static_cast<float>(UVs->GetDirectArray().GetAt(control_point).mData[1]);
 			break;
 
 		case FbxGeometryElement::eIndexToDirect:
 			index = UVs->GetIndexArray().GetAt(control_point);
 			UV_cords.x = static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[0]);
-			UV_cords.y = static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[1]);
+			UV_cords.y = 1 - static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[1]);
 			break;
 		}
 		break;
@@ -332,13 +332,13 @@ void FBX_loader::read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_
 		{
 		case FbxGeometryElement::eDirect:
 			UV_cords.x = static_cast<float>(UVs->GetDirectArray().GetAt(vertex_counter).mData[0]);
-			UV_cords.y = static_cast<float>(UVs->GetDirectArray().GetAt(vertex_counter).mData[1]);
+			UV_cords.y = 1 - static_cast<float>(UVs->GetDirectArray().GetAt(vertex_counter).mData[1]);
 			break;
 
 		case FbxGeometryElement::eIndexToDirect:
 			index = UVs->GetIndexArray().GetAt(vertex_counter);
 			UV_cords.x = static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[0]);
-			UV_cords.y = static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[1]);
+			UV_cords.y = 1 - static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[1]);
 			break;
 		}
 		break;

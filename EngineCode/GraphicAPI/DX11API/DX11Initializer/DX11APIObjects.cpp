@@ -28,6 +28,7 @@ unsigned int						DX11APIObjects::_window_height = 768;
 D3D11_INPUT_ELEMENT_DESC*			DX11APIObjects::_vertex_layout_desc = nullptr;
 unsigned int						DX11APIObjects::_layout_elements_count = 0;
 D3D11_SAMPLER_DESC					DX11APIObjects::_sampler_desc;
+D3D11_RASTERIZER_DESC				DX11APIObjects::_rasterizer_desc;
 
 /*Inicjalizacja zmiennych statycznych.*/
 ID3D11Debug*						DX11APIObjects::debug_interface = nullptr;
@@ -159,6 +160,19 @@ DX11APIObjects::DX11APIObjects()
 		_sampler_desc.ComparisonFunc = D3D11_COMPARISON_NEVER;
 		_sampler_desc.MinLOD = 0;
 		_sampler_desc.MaxLOD = D3D11_FLOAT32_MAX;
+
+		// D3D11_RASTERIZER_DESC
+		ZeroMemory( &_rasterizer_desc, sizeof( _rasterizer_desc ) );
+		_rasterizer_desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
+		_rasterizer_desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_BACK;
+		_rasterizer_desc.AntialiasedLineEnable = false;
+		_rasterizer_desc.DepthBias = 0;
+		_rasterizer_desc.DepthBiasClamp = 0.0f;
+		_rasterizer_desc.DepthClipEnable = true;
+		_rasterizer_desc.FrontCounterClockwise = true;
+		_rasterizer_desc.MultisampleEnable = false;
+		_rasterizer_desc.ScissorEnable = false;
+		_rasterizer_desc.SlopeScaledDepthBias = 0.0f;
 	}
 }
 
@@ -316,6 +330,12 @@ void DX11APIObjects::set_vertex_layout( D3D11_INPUT_ELEMENT_DESC* layout, unsign
 void DX11APIObjects::set_sampler_desc( D3D11_SAMPLER_DESC sampler_desc )
 {
 	_sampler_desc = sampler_desc;
+}
+
+/**@brief Ustawia podany w parametrze deskrytptor rasteryzatora.*/
+void DX11APIObjects::set_rasterizer_desc( const D3D11_RASTERIZER_DESC& rasterizer_desc )
+{
+	_rasterizer_desc = rasterizer_desc;
 }
 
 //----------------------------------------------------------------------------------------------//

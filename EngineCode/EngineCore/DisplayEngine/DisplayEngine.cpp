@@ -523,9 +523,9 @@ DisplayScene ustawiana jest macierz zapisana w tym polu.
 @param[in] X_to_Y Stosunek Szerokoœci do wysokoœci ekranu
 @param[in] near_plane Bli¿sza p³aszczyzna obcinania
 @param[in] far_plane Dalsza p³aszczyzna obcinania*/
-void DisplayEngine::SetProjectionMatrix(float angle, float X_to_Y, float near_plane, float far_plane)
+void DisplayEngine::SetProjectionMatrix( float angle, float X_to_Y, float near_plane, float far_plane )
 {
-	XMMATRIX proj_matrix = XMMatrixPerspectiveFovLH(angle, X_to_Y, near_plane, far_plane);
+	XMMATRIX proj_matrix = XMMatrixPerspectiveFovRH( angle, X_to_Y, near_plane, far_plane );
 	proj_matrix = XMMatrixTranspose( proj_matrix );
 	XMStoreFloat4x4( &shader_data_per_frame.projection_matrix, proj_matrix );
 }
