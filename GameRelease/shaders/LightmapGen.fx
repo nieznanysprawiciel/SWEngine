@@ -18,7 +18,7 @@ PS_INPUT vertex_shader( VS_INPUT input )
 {
     PS_INPUT output = (PS_INPUT)1;
 	output.Pos.z = 0.6;
-	output.Pos.xy = (input.Tex - float2( 0.5, 0.5 ) ) * float2( 2.0, 2.0 );
+	output.Pos.xy = (input.Tex - float2( 0.5, 0.5 ) ) * float2( 2.0, -2.0 );
 	output.Color = input.Color;
     
     return output;
