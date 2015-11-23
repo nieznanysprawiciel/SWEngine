@@ -15,6 +15,7 @@ build/
 [Bb]in/
 [Oo]bj/
 EngineBuildDir/
+GameRelease/
 
 # Generated documentation
 Documentation/
@@ -51,6 +52,7 @@ EditorRelease/
 *.pidb
 *.log
 *.scc
+*.html
 
 # Visual C++ cache files
 ipch/

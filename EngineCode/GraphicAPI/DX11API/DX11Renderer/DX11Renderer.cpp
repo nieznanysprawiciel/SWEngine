@@ -248,7 +248,7 @@ void DX11Renderer::DrawIndexed( unsigned int indexCount, unsigned int startIndex
 @todo Polepszyæ, poprawiæ zmieniæ.*/
 void DX11Renderer::Present()
 {
-	end_scene_and_present();
+	swap_chain->Present( 0, 0 );
 }
 
 /**@brief Wyœwietla renderowan¹ scenê.
