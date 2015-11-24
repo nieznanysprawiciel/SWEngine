@@ -8,7 +8,10 @@
 
 
 DX11Initializer::DX11Initializer()
-{	m_rasterizer = nullptr;	}
+{
+	m_rasterizer = nullptr;
+	m_depthState = nullptr;
+}
 
 /**@brief Tworzy renderer zgodny z u¿ywanym API graficznym.
 
@@ -43,6 +46,27 @@ bool DX11Initializer::InitAPI( GraphicAPIInitData& initData )
 
 	device_context->RSSetState( m_rasterizer );
 
+	//D3D11_DEPTH_STENCIL_DESC depthStencilDesc;
+	//depthStencilDesc.DepthEnable = true;
+	//depthStencilDesc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
+	//depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+	//depthStencilDesc.StencilEnable = false;
+	//depthStencilDesc.StencilReadMask = D3D11_DEFAULT_STENCIL_READ_MASK;
+	//depthStencilDesc.StencilWriteMask = D3D11_DEFAULT_STENCIL_WRITE_MASK;
+	//depthStencilDesc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
+	//depthStencilDesc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	//depthStencilDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	//depthStencilDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+	//depthStencilDesc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
+	//depthStencilDesc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	//depthStencilDesc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	//depthStencilDesc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+
+	//if( FAILED( device->CreateDepthStencilState( &depthStencilDesc, &m_depthState ) ) )
+	//	return false;
+
+	//device_context->OMSetDepthStencilState( m_depthState, 0 );
+
 	return true;
 }
 
@@ -52,6 +76,11 @@ void DX11Initializer::ReleaseAPI()
 	if( m_rasterizer )
 		m_rasterizer->Release();
 	m_rasterizer = nullptr;
+
+	if( m_depthState )
+		m_depthState->Release();
+	m_depthState = nullptr;
+
 	release_DirectX();
 }
 

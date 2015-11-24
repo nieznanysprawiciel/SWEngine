@@ -26,6 +26,7 @@ class DX11Initializer : public IGraphicAPIInitializer, public DX11AuxiliaryObjec
 {
 private:
 	ID3D11RasterizerState*		m_rasterizer;
+	ID3D11DepthStencilState*	m_depthState;
 protected:
 public:
 	DX11Initializer();

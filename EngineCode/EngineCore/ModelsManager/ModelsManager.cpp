@@ -134,7 +134,7 @@ void ModelsManager::test( )
 	new_model->add_vertex_buffer( g_Vertices, 36 );
 	new_model->add_material( &mat, L"::skrzynia_material" );
 	//L"..\tylko_do_testow\tex.bmp"
-	new_model->add_texture( L"..\tylko_do_testow\tex.bmp" );
+	new_model->add_texture( L"tylko_do_testow/tex.bmp" );
 
 	new_model->EndPart();
 	new_model->EndEdit();
