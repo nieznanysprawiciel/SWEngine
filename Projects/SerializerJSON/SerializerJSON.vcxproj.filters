@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="SerializerJSON">
+      <UniqueIdentifier>{fc2cbdf3-03a0-45d3-9ee4-c6f9a0179d4f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\EngineCode\Tools\SerializerJson\Serializer.h">
+      <Filter>SerializerJSON</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\SerializerJson\Deserializer.h">
+      <Filter>SerializerJSON</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\EngineCode\Tools\SerializerJson\Serializer.cpp">
+      <Filter>SerializerJSON</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\Tools\SerializerJson\Deserializer.cpp">
+      <Filter>SerializerJSON</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

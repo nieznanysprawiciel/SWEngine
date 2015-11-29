@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <SerializationTestName>SerializationTest</SerializationTestName>
+    <SerializationTestLibDir>$(EngineLibDir)$(SerializationTestName)\</SerializationTestLibDir>
+    <SerializationTestSourceDir>$(EngineSourceDir)$(SerializationTestName)\</SerializationTestSourceDir>
+    <SerializationTestFileName>$(SerializationTestName)_$(Configuration)_$(PlatformShortName)</SerializationTestFileName>
+    <SerializationTestBuildDir>$(EngineBuildDir)$(SerializationTestName)_$(Configuration)_$(PlatformShortName)\</SerializationTestBuildDir>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="SerializationTestName">
+      <Value>$(SerializationTestName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="SerializationTestLibDir">
+      <Value>$(SerializationTestLibDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="SerializationTestSourceDir">
+      <Value>$(SerializationTestSourceDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="SerializationTestFileName">
+      <Value>$(SerializationTestFileName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="SerializationTestBuildDir">
+      <Value>$(SerializationTestBuildDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
