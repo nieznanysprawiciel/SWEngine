@@ -5,4 +5,9 @@
       <UniqueIdentifier>{10353860-3c81-4816-a913-32db989c8625}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\EngineCode\Tests\SerializationTest\SerializationMain.cpp">
+      <Filter>SerializationTest</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>

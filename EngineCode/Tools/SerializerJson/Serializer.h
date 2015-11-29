@@ -18,12 +18,12 @@ public:
 	virtual ~ISerializer();
 
 	void		EnterObject		( const std::string& name );
-	void		ExitObject		();
-
 	void		EnterArray		( const std::string& name );
-	void		ExitArray		();
+
+	void		Exit			();
 
 	void		SetValue		( const std::string& name, const std::string& value );
+	void		SetValue		( const std::string& name, const char* value );
 	void		SetValue		( const std::string& name, uint32 value );
 	void		SetValue		( const std::string& name, uint64 value );
 	void		SetValue		( const std::string& name, int32 value );
@@ -31,6 +31,9 @@ public:
 	void		SetValue		( const std::string& name, bool value );
 	void		SetValue		( const std::string& name, double value );
 
+
+	bool		SaveFile		( const std::string& fileName );
+	std::string	SaveString		();
 };
 
 

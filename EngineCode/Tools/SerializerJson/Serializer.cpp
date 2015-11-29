@@ -4,7 +4,10 @@
 #define RAPIDJSON_HAS_STDSTRING 1
 #include "rapidjson/rapidjson.h"
 #include "rapidjson/document.h"
+#include "rapidjson/writer.h"
+#include "rapidjson/stringbuffer.h"
 
+#include <fstream>
 #include <stack>
 
 struct SerializerImpl
@@ -26,6 +29,50 @@ ISerializer::ISerializer()
 ISerializer::~ISerializer()
 { delete impl; }
 
+std::string	ISerializer::SaveString()
+{
+	while( impl->valuesStack.size() > 1 )
+		this->Exit();
+
+	rapidjson::Value& topValue = impl->valuesStack.top();
+	rapidjson::Value& documentObject = impl->root.SetObject();
+	documentObject = std::move( topValue );
+
+	rapidjson::StringBuffer stringBuffer;
+	rapidjson::Writer<rapidjson::StringBuffer> writer( stringBuffer );
+
+	return stringBuffer.GetString();
+}
+
+
+/**@brief Zapisuje zserializowane dane do pliku.
+@param[in] fileName Nazwa pliku docelowego.
+@return Zwraca true, je¿eli zapisywanie powiedzie siê.*/
+bool ISerializer::SaveFile( const std::string& fileName )
+{
+	std::fstream file;
+	file.open( fileName );
+	if( !file.fail() )
+	{
+		while( impl->valuesStack.size() > 1 )
+			this->Exit();
+
+		rapidjson::Value& topValue = impl->valuesStack.top();
+		rapidjson::Value& documentObject = impl->root.SetObject();
+		documentObject = std::move( topValue );
+
+		rapidjson::StringBuffer stringBuffer;
+		rapidjson::Writer<rapidjson::StringBuffer> writer( stringBuffer );
+		impl->root.Accept( writer );
+
+		file << stringBuffer.GetString();
+
+		file.close();
+		return true;
+	}
+	return false;
+}
+
 /**@brief Tworzy obiekt o podanej nazwie.
 
 @param[in] name Nazwa obiektu.*/
@@ -42,7 +89,7 @@ void ISerializer::EnterObject( const std::string& name )
 
 /**@brief Koniec tworzenia obiektu.
 EnterObject i ExitObject powinny byæ stosowane parami.*/
-void ISerializer::ExitObject()
+void ISerializer::Exit()
 {
 	rapidjson::Value& objectValue = impl->valuesStack.top();		// Obiekt, które go konstruowanie skonczyliœmy.
 	impl->valuesStack.pop();
@@ -59,11 +106,6 @@ void ISerializer::ExitObject()
 void ISerializer::EnterArray( const std::string& name )
 { }
 
-/**@brief Koniec tworzenia tablicy.
-Funkcja parzysta do EnterArray.*/
-void ISerializer::ExitArray()
-{ }
-
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
 
 @param[in] name Nazwa ustawianej zmiennej.
@@ -75,6 +117,20 @@ void ISerializer::SetValue( const std::string& name, const std::string& value )
 	rapidjson::Value valueName;
 	valueName.SetString( name.c_str(), (rapidjson::SizeType)name.length(), impl->root.GetAllocator() );
 	newObject.SetString( value.c_str(), (rapidjson::SizeType)value.length(), impl->root.GetAllocator() );
+	currentObject.AddMember( std::move( valueName ), std::move( newObject ), impl->root.GetAllocator() );
+}
+
+/**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
+
+@param[in] name Nazwa ustawianej zmiennej.
+@param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
+void ISerializer::SetValue( const std::string& name, const char* value )
+{
+	rapidjson::Value& currentObject = impl->valuesStack.top();	// Obiekt, do którego przyczepiamy atrybut.
+	rapidjson::Value newObject;
+	rapidjson::Value valueName;
+	valueName.SetString( name.c_str(), (rapidjson::SizeType)name.length(), impl->root.GetAllocator() );
+	newObject.SetString( value, (rapidjson::SizeType)strlen( value ), impl->root.GetAllocator() );
 	currentObject.AddMember( std::move( valueName ), std::move( newObject ), impl->root.GetAllocator() );
 }
 
