@@ -11,8 +11,8 @@ int main()
 
 	serializer->EnterObject( "FirstObject" );
 		serializer->SetValue( "Map", "LightmapGen1" );
-		serializer->SetValue( "Path", std::string( "/LightmapGen1.map" ) );
-		serializer->SetValue( "Load", std::string( "true" ) );
+		serializer->SetValue( "Path", "/LightmapGen1.map" );
+		serializer->SetValue( "Load", "true" );
 	serializer->Exit();
 
 	std::string fileName = "tylko_do_testow/serialization/serialWrite.json";

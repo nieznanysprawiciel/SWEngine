@@ -17,6 +17,19 @@ struct SerializerImpl
 };
 
 
+/// Helper
+inline void SetValueHelper( SerializerImpl* impl, const std::string& name, rapidjson::Value& value )
+{
+	rapidjson::Value& currentObject = impl->valuesStack.top();	// Obiekt, do którego przyczepiamy atrybut.
+	rapidjson::Value valueName;
+	valueName.SetString( name.c_str(), (rapidjson::SizeType)name.length(), impl->root.GetAllocator() );
+
+	currentObject.AddMember( std::move( valueName ), std::move( value ), impl->root.GetAllocator() );
+}
+
+
+
+
 /**@brief Konstruktor*/
 ISerializer::ISerializer()
 {
@@ -134,46 +147,71 @@ void ISerializer::SetValue( const std::string& name, const char* value )
 	currentObject.AddMember( std::move( valueName ), std::move( newObject ), impl->root.GetAllocator() );
 }
 
+
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 void ISerializer::SetValue( const std::string& name, uint32 value )
-{ }
+{
+	rapidjson::Value newObject;
+	newObject.SetUint( value );
+	SetValueHelper( impl, name, newObject );
+}
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 void ISerializer::SetValue( const std::string& name, uint64 value )
-{ }
+{
+	rapidjson::Value newObject;
+	newObject.SetUint64( value );
+	SetValueHelper( impl, name, newObject );
+}
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 void ISerializer::SetValue( const std::string& name, int32 value )
-{ }
+{
+	rapidjson::Value newObject;
+	newObject.SetInt( value );
+	SetValueHelper( impl, name, newObject );
+}
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 void ISerializer::SetValue( const std::string& name, int64 value )
-{ }
+{
+	rapidjson::Value newObject;
+	newObject.SetInt64( value );
+	SetValueHelper( impl, name, newObject );
+}
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 void ISerializer::SetValue( const std::string& name, bool value )
-{ }
+{
+	rapidjson::Value newObject;
+	newObject.SetBool( value );
+	SetValueHelper( impl, name, newObject );
+}
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 void ISerializer::SetValue( const std::string& name, double value )
-{ }
+{
+	rapidjson::Value newObject;
+	newObject.SetDouble( value );
+	SetValueHelper( impl, name, newObject );
+}
 
 
