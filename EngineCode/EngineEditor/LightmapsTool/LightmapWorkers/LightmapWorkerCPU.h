@@ -79,6 +79,7 @@ private:
 	DirectX::XMVECTOR		AverageNormal			( const VertexFormat* triangle );
 	DirectX::XMFLOAT3		ComputeDepths			( const Triangle4& receiver, const Triangle4& emiter );
 	float					BarycentricCoords		( DirectX::XMFLOAT2& vertex1, DirectX::XMFLOAT2& vertex2, DirectX::XMINT2& point );
+	void					HemisphereViewport		( Triangle4& receiver );
 
 	std::tuple<unsigned int, unsigned int, float>		FindMaxEmision		( std::vector<MemoryChunk>& emisionLight );
 };

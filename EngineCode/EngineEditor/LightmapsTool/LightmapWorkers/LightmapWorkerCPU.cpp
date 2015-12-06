@@ -272,6 +272,7 @@ void LightmapWorkerCPU::DepthPass( std::tuple<unsigned int, unsigned int, float>
 			XMFLOAT3 receiverDepths = ComputeDepths( receiverPosition, emiterPosition );
 			receiverPosition = HemisphereCast( emiterPosition, receiverPosition, emiterCoordSystem );
 
+			HemisphereViewport( receiverPosition );
 			RasterizeTriangle( receiverPosition, &receiverDepths, idx1, idx2, depthBuffer, indexBuffer );
 		}
 
@@ -413,11 +414,13 @@ void LightmapWorkerCPU::RasterizeTriangle( const Triangle4& triangle,
 			{
 				float pointDepth = ((float*)depths)[ 0 ] * w0 + ((float*)depths)[ 1 ] * w1 + ((float*)depths)[ 2 ] * w2;
 				int index = point.y * m_depthResolution + point.x;
-				if( depthBuffer.Get<float>( index ) < pointDepth )
+				float& bufferDepth = depthBuffer.Get<float>( index );
+				if( bufferDepth > pointDepth )
 				{
 					BufferIndexing& indicies = indexBuffer.Get<BufferIndexing>( index );
 					indicies.first = chunkIdx;
 					indicies.second = triangleIdx;
+					bufferDepth = pointDepth;
 				}
 			}
 		}
@@ -470,5 +473,14 @@ Wspó³rzêdne nie s¹ wyskalowane do jedynki. Nale¿y je wyskalowaæ kiedy siê wylicz
 float LightmapWorkerCPU::BarycentricCoords( DirectX::XMFLOAT2& vertex1, DirectX::XMFLOAT2& vertex2, DirectX::XMINT2& point )
 {
 	return (vertex2.x - vertex1.x) * ( point.x - vertex1.x ) - (vertex2.y - vertex1.y) * ( point.y - vertex1.y );
+}
+
+/**@brief Transformuje wierzcho³ki w przedziale [-1,1] do wspó³rzednych bufora g³êbokoœci.*/
+void LightmapWorkerCPU::HemisphereViewport( Triangle4& receiver )
+{
+	XMVECTOR depthResolution = XMVectorReplicate( (float)m_depthResolution / 2.0f );
+	receiver.vertex1 = XMVectorMultiplyAdd( receiver.vertex1, depthResolution, depthResolution );
+	receiver.vertex2 = XMVectorMultiplyAdd( receiver.vertex2, depthResolution, depthResolution );
+	receiver.vertex3 = XMVectorMultiplyAdd( receiver.vertex3, depthResolution, depthResolution );
 }
 
