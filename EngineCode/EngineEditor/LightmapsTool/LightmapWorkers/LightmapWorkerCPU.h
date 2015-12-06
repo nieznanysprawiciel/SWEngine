@@ -31,6 +31,13 @@ struct Triangle3
 	DirectX::XMFLOAT3	vertex3;
 };
 
+struct BufferIndexing
+{
+	uint16	first;
+	uint16	second;
+};
+
+static const uint16 INVALID_INDEX = 0xFFFF;
 
 
 class LightmapWorkerCPU	:	public LightmapWorker
@@ -49,9 +56,29 @@ private:
 	void			Radiosity	( std::vector<MemoryChunk>& emissionLight, std::vector<MemoryChunk>& reachedLight, std::vector<MemoryChunk>& verticies );
 	void			BuildResult	( std::vector<MemoryChunk>& reachedLight  );
 
-	DirectX::XMVECTOR		HemisphereRatio		( Triangle4& emiter, Triangle4& receiver );
-	DirectX::XMVECTOR		ProjectPointToPlane	( DirectX::XMVECTOR plane, DirectX::XMVECTOR planePoint, DirectX::XMVECTOR point );
-	DirectX::XMVECTOR		AverageNormal		( const VertexFormat* triangle );
+	void			DepthPass	( std::tuple<unsigned int, unsigned int, float>& emissionMax,
+								  std::vector<MemoryChunk>& verticies,
+								  MemoryChunk& depthBuffer,
+								  MemoryChunk& indexBuffer );
+	void			TransferPass( std::tuple<unsigned int, unsigned int, float>& emissionMax,
+								  std::vector<MemoryChunk>& verticies,
+								  std::vector<MemoryChunk>& emissionLight,
+								  std::vector<MemoryChunk>& reachedLight,
+								  MemoryChunk& indexBuffer );
+
+	Triangle4				HemisphereCast			( Triangle4& emiter, Triangle4& receiver, Triangle4& emiterCoordSystem );
+	Triangle4				EmiterCoordinatesSystem	( Triangle4& emiter );
+	void					RasterizeTriangle		( const Triangle4& triangle,
+													  DirectX::XMFLOAT3* depths,
+													  unsigned int chunkIdx,
+													  unsigned int triangleIdx,
+													  MemoryChunk& depthBuffer,
+													  MemoryChunk& indexBuffer );
+
+	DirectX::XMVECTOR		ProjectPointToPlane		( DirectX::XMVECTOR point, const Triangle4& coordsSystem );
+	DirectX::XMVECTOR		AverageNormal			( const VertexFormat* triangle );
+	DirectX::XMFLOAT3		ComputeDepths			( const Triangle4& receiver, const Triangle4& emiter );
+	float					BarycentricCoords		( DirectX::XMFLOAT2& vertex1, DirectX::XMFLOAT2& vertex2, DirectX::XMINT2& point );
 
 	std::tuple<unsigned int, unsigned int, float>		FindMaxEmision		( std::vector<MemoryChunk>& emisionLight );
 };
