@@ -359,10 +359,11 @@ DirectX::XMFLOAT3 LightmapWorkerCPU::HemisphereCast( Triangle4& emiter, Triangle
 	receiver.vertex2 = ProjectPointToPlane( XMVector3Normalize( centerToVertex2 ), emiterCoordSystem );
 	receiver.vertex3 = ProjectPointToPlane( XMVector3Normalize( centerToVertex3 ), emiterCoordSystem );
 
-	// Wyznaczamy po której stronie p³aszczyzny znajduj¹ siê wierzcho³ki.
+	// Wyznaczamy po której stronie p³aszczyzny znajduj¹ siê wierzcho³ki. Pierwszym elementem emiterCoordSystem jest normalna
+	// jednostkowego ko³a. Je¿eli Iloczyn skalarny normalnej i wektora jest mniejszy od zera, to wierzcho³ek jest za p³aszczyzn¹.
 	XMVECTOR depthDirection1 = XMVector3Dot( centerToVertex1, emiterCoordSystem.vertex1 );
-	XMVECTOR depthDirection2 = XMVector3Dot( centerToVertex2, emiterCoordSystem.vertex2 );
-	XMVECTOR depthDirection3 = XMVector3Dot( centerToVertex3, emiterCoordSystem.vertex3 );
+	XMVECTOR depthDirection2 = XMVector3Dot( centerToVertex2, emiterCoordSystem.vertex1 );
+	XMVECTOR depthDirection3 = XMVector3Dot( centerToVertex3, emiterCoordSystem.vertex1 );
 
 	XMFLOAT3 result;
 	XMStoreFloat( &result.x, depth1 );
@@ -445,13 +446,14 @@ void LightmapWorkerCPU::RasterizeTriangle( const Triangle4& triangle,
             float w0 = BarycentricCoords( triangles[1], triangles[2], point );
             float w1 = BarycentricCoords( triangles[2], triangles[0], point );
             float w2 = BarycentricCoords( triangles[0], triangles[1], point );
-			float sum = w0 + w1 + w2;
-			w0 = w0 / sum;
-			w1 = w1 / sum;
-			w2 = w2 / sum;
 
-			if( w0 >= 0 && w1 >= 0 && w2 >= 0 )
+			if( w0 >= 0 && w1 >= 0 && w2 >= 0 )	// Warunek na to, ¿e punkt jest wewn¹trz trójk¹ta.
 			{
+				float sum = w0 + w1 + w2;
+				w0 = w0 / sum;
+				w1 = w1 / sum;
+				w2 = w2 / sum;
+
 				float pointDepth = ((float*)depths)[ 0 ] * w0 + ((float*)depths)[ 1 ] * w1 + ((float*)depths)[ 2 ] * w2;
 				int index = point.y * m_depthResolution + point.x;
 				float& bufferDepth = depthBuffer.Get<float>( index );
