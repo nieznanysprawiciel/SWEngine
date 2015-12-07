@@ -110,7 +110,7 @@ void LightmapLogic::ProceedGameLogic			( float time )
 			renderTargetDesc.textureHeight = 512;
 			renderTargetDesc.textureWidth = 512;
 			renderTargetDesc.textureType = TextureType::TEXTURE_TYPE_TEXTURE2D;
-			renderTargetDesc.colorBuffFormat = ResourceFormat::RESOURCE_FORMAT_R8G8B8A8_UNORM_SRGB;
+			renderTargetDesc.colorBuffFormat = ResourceFormat::RESOURCE_FORMAT_R8G8B8A8_UNORM;
 			renderTargetDesc.depthStencilFormat = DepthStencilFormat::DEPTH_STENCIL_FORMAT_D16_UNORM;
 			
 			std::wstring renderTargetName = L"::LightmapGen";

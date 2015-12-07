@@ -41,7 +41,7 @@ SamplerState defaultSampler : register( s0 );
 float4 pixel_shader( PS_INPUT input) : SV_Target
 {
     float4 finalColor;
-	finalColor.xyz = Ambient*AmbientLight;
+	finalColor.xyz = float3( 0.0, 0.0, 0.0 );//Ambient*AmbientLight;
 	
 	float3 lightmapSample = texLightmap.Sample( defaultSampler, input.Tex );
 	

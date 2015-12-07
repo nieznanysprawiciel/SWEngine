@@ -66,7 +66,7 @@ private:
 								  std::vector<MemoryChunk>& reachedLight,
 								  MemoryChunk& indexBuffer );
 
-	Triangle4				HemisphereCast			( Triangle4& emiter, Triangle4& receiver, Triangle4& emiterCoordSystem );
+	DirectX::XMFLOAT3		HemisphereCast			( Triangle4& emiter, Triangle4& receiver, Triangle4& emiterCoordSystem );
 	Triangle4				EmiterCoordinatesSystem	( Triangle4& emiter );
 	void					RasterizeTriangle		( const Triangle4& triangle,
 													  DirectX::XMFLOAT3* depths,
@@ -77,7 +77,7 @@ private:
 
 	DirectX::XMVECTOR		ProjectPointToPlane		( DirectX::XMVECTOR point, const Triangle4& coordsSystem );
 	DirectX::XMVECTOR		AverageNormal			( const VertexFormat* triangle );
-	DirectX::XMFLOAT3		ComputeDepths			( const Triangle4& receiver, const Triangle4& emiter );
+	//DirectX::XMFLOAT3		ComputeDepths			( const Triangle4& receiver, const Triangle4& emiter );
 	float					BarycentricCoords		( DirectX::XMFLOAT2& vertex1, DirectX::XMFLOAT2& vertex2, DirectX::XMINT2& point );
 	void					HemisphereViewport		( Triangle4& receiver );
 
