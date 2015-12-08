@@ -14,7 +14,7 @@ using namespace DirectX;
 LightmapWorkerCPU::LightmapWorkerCPU( SceneData* sceneData )
 	: LightmapWorker( sceneData )
 {
-	m_threshold = 0.01f;
+	m_threshold = 0.04f;
 }
 
 // ============================================================================= //
@@ -277,7 +277,7 @@ void LightmapWorkerCPU::DepthPass( std::tuple<unsigned int, unsigned int, float>
 
 			XMVECTOR receiverNormal = AverageNormal( &verticies[ i ].Get<VertexFormat>( mul3( j ) ) );
 			XMVECTOR normalsDot = XMVector3Dot( emiterNormal, receiverNormal );
-			if( XMVector3Greater( normalsDot, XMVectorZero() ) )
+			if( XMVector3GreaterOrEqual( normalsDot, XMVectorZero() ) )
 				continue;		// Trójk¹ty musz¹ byæ zwrócone w przeciwn¹ stronê.
 
 			// Wyliczamy pozycjê odbiorcy w uk³adzie wspó³rzêdnych bufora g³êbokoœci.
@@ -439,13 +439,13 @@ void LightmapWorkerCPU::RasterizeTriangle( const Triangle4& triangle,
 	// Sprawdzamy czy dany punkt nale¿y do trójk¹ta. Je¿eli nale¿y
 	// zagl¹damy do z bufora.
 	XMINT2 point;
-	for( point.x = minX; point.x <= maxX; point.x++ )
+	for( point.y = minY; point.y <= maxY; point.y++ )
 	{
-		for( point.y = minY; point.y <= minY; point.y++ )
+		for( point.x = minX; point.x <= maxX; point.x++ )
 		{
-            float w0 = BarycentricCoords( triangles[1], triangles[2], point );
-            float w1 = BarycentricCoords( triangles[2], triangles[0], point );
-            float w2 = BarycentricCoords( triangles[0], triangles[1], point );
+            float w0 = BarycentricCoords( triangles[2], triangles[1], point );
+            float w1 = BarycentricCoords( triangles[0], triangles[2], point );
+            float w2 = BarycentricCoords( triangles[1], triangles[0], point );
 
 			if( w0 >= 0 && w1 >= 0 && w2 >= 0 )	// Warunek na to, ¿e punkt jest wewn¹trz trójk¹ta.
 			{
@@ -514,7 +514,7 @@ XMVECTOR LightmapWorkerCPU::AverageNormal( const VertexFormat* triangle )
 Wspó³rzêdne nie s¹ wyskalowane do jedynki. Nale¿y je wyskalowaæ kiedy siê wyliczy wszystkie.*/
 float LightmapWorkerCPU::BarycentricCoords( DirectX::XMFLOAT2& vertex1, DirectX::XMFLOAT2& vertex2, DirectX::XMINT2& point )
 {
-	return (vertex2.x - vertex1.x) * ( point.x - vertex1.x ) - (vertex2.y - vertex1.y) * ( point.y - vertex1.y );
+	return (vertex2.x - vertex1.x) * ( point.y - vertex1.y ) - (vertex2.y - vertex1.y) * ( point.x - vertex1.x );
 }
 
 /**@brief Transformuje wierzcho³ki w przedziale [-1,1] do wspó³rzednych bufora g³êbokoœci.*/
