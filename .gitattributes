@@ -61,3 +61,6 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+GameRelease/tylko_do_testow/*.FBX filter=lfs -crlf
+GameRelease/tylko_do_testow/*.bmp filter=lfs -crlf
+GameRelease/tylko_do_testow/*.png filter=lfs -crlf
