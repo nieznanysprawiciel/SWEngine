@@ -66,8 +66,9 @@ private:
 								  std::vector<MemoryChunk>& reachedLight,
 								  MemoryChunk& indexBuffer );
 
-	DirectX::XMFLOAT3		HemisphereCast			( Triangle4& emiter, Triangle4& receiver, Triangle4& emiterCoordSystem );
+	DirectX::XMFLOAT3		HemisphereCast			( Triangle4& emiter, Triangle4& receiver, DirectX::XMMATRIX& emiterViewMatrix );
 	Triangle4				EmiterCoordinatesSystem	( Triangle4& emiter );
+	DirectX::XMMATRIX		EmiterViewMatrix		( Triangle4& emiter );
 	void					RasterizeTriangle		( const Triangle4& triangle,
 													  DirectX::XMFLOAT3* depths,
 													  unsigned int chunkIdx,

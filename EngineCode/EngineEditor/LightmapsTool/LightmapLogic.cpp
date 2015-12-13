@@ -51,15 +51,22 @@ int LightmapLogic::LoadLevel					()
 
 	// Przygotowanie sceny
 	const wchar_t room1ModelString[] = L"levels/Room1/Room1.FBX";
+	const wchar_t markerModelString[] = L"levels/Room1/Marker.FBX";
 	Model3DFromFile* room1Model = m_engine->assets.models.LoadSync( room1ModelString );
+	Model3DFromFile* markerModel = m_engine->assets.models.LoadSync( markerModelString );
 
 	DynamicMeshObject* room1Object = new DynamicMeshObject;
-	DirectX::XMVECTOR position = DirectX::XMVectorSet( 0.0, -300.0, -2000.0, 0.0 );
-	room1Object->Teleport( position );
+	room1Object->Teleport( DirectX::XMVectorSet( 0.0, -300.0, -2000.0, 0.0 ) );
 
 	room1Object->SetModel( room1Model );
 	m_engine->actors.AddDynamicMesh( room1Object );
 
+	//// Marker
+	//DynamicMeshObject* markerObject = new DynamicMeshObject;
+	//room1Object->Teleport( DirectX::XMVectorSet( 1300.0, -100.0, -1600.0, 0.0 ) );
+
+	//markerObject->SetModel( markerModel );
+	//m_engine->actors.AddDynamicMesh( markerObject );
 
 	return 0;
 }

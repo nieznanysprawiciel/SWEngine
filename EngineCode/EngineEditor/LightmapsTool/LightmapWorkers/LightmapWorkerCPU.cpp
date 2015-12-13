@@ -172,6 +172,8 @@ void LightmapWorkerCPU::Radiosity( std::vector<MemoryChunk>& emissionLight,
 	// Identyfikuje wielok¹t z najwiêksz¹ energi¹ do wyemitowania.
 	std::tuple<unsigned int, unsigned int, float> emissionMax = FindMaxEmission( emissionLight );
 
+	std::get<1>( emissionMax ) = 13;		// Testttttt
+
 	// Bufor g³êbokoœci i bufor s³u¿¹cy do indeksowania trójk¹tów, które znajduj¹ siê w buforze.
 	unsigned int		depthSize	= m_depthResolution * m_depthResolution;
 	MemoryChunk			depthBuffer( depthSize * sizeof( float) );
@@ -181,7 +183,7 @@ void LightmapWorkerCPU::Radiosity( std::vector<MemoryChunk>& emissionLight,
 	int iterations = 0;	
 	/*while( std::get<2>( emissionMax ) > m_threshold )*/
 	/*while( std::get<2>( emissionMax ) < 1 )*/
-	while( iterations < 1000 )
+	while( iterations < 1 )
 	{
 		iterations++;
 
@@ -222,7 +224,6 @@ void LightmapWorkerCPU::BuildResult	( std::vector<MemoryChunk>& reachedLight )
 				{
 					for( unsigned int k = 0; k < reachedLight[ j ].Count<XMFLOAT3>(); ++k )
 					{
-						// Uwaga! Kolejnoœæ wierzcho³ków celowo zamieniona. W przeciwnym razie odpada³y na backface cullingu.
 						CoordColor& colorVertex1 = colorMap.Get<CoordColor>( verticiesOffset + mul3( k ) );		// Jest 3 razy wiêcej wierzcho³ków ni¿ kolorów.
 						XMFLOAT3& lightColor = reachedLight[ j ].Get<XMFLOAT3>( k ); /*XMFLOAT3( 0.5, 0.3, 0.7);*/
 						colorVertex1.color = lightColor;
@@ -268,8 +269,9 @@ void LightmapWorkerCPU::DepthPass( std::tuple<unsigned int, unsigned int, float>
 
 	// Liczmymy pozycjê emitera, uœrednion¹ normaln¹ i uk³ad wspó³rzêdnych zwi¹zany z emiterem dla z-bufora.
 	Triangle4 emiterPosition( &verticies[ idx1 ].Get<VertexFormat>( mul3( idx2 ) ) );
-	Triangle4 emiterCoordSystem = EmiterCoordinatesSystem( emiterPosition );
+	//Triangle4 emiterCoordSystem = EmiterCoordinatesSystem( emiterPosition );
 	//XMVECTOR emiterNormal = AverageNormal( &verticies[ idx1 ].Get<VertexFormat>( mul3( idx2 ) ) );	// Mo¿liwe, ¿e niepotrzebne. emiterCoordSystem ma normaln¹, ale wyliczon¹ inaczej.
+	XMMATRIX emiterViewMatrix = EmiterViewMatrix( emiterPosition );
 
 	for( unsigned int i = 0 ; i < verticies.size(); ++i )
 	{
@@ -278,17 +280,12 @@ void LightmapWorkerCPU::DepthPass( std::tuple<unsigned int, unsigned int, float>
 			if( idx2 == j && idx1 == i )
 				continue;	// Nie próbujmy rzutowaæ emitera na samego siebie.
 
-
 			triangleCounter++;
-			//XMVECTOR receiverNormal = AverageNormal( &verticies[ i ].Get<VertexFormat>( mul3( j ) ) );
-			//XMVECTOR normalsDot = XMVector3Dot( emiterNormal, receiverNormal );
-			//if( XMVector3GreaterOrEqual( normalsDot, XMVectorZero() ) )
-			//	continue;		// Trójk¹ty musz¹ byæ zwrócone w przeciwn¹ stronê.
 
 			// Wyliczamy pozycjê odbiorcy w uk³adzie wspó³rzêdnych bufora g³êbokoœci.
 			Triangle4 receiverPosition( &verticies[ i ].Get<VertexFormat>( mul3( j ) ) );
-			XMFLOAT3 receiverDepths = HemisphereCast( emiterPosition, receiverPosition, emiterCoordSystem );
-			if( receiverDepths.x < 0 )
+			XMFLOAT3 receiverDepths = HemisphereCast( emiterPosition, receiverPosition, emiterViewMatrix );
+			if( receiverDepths.x < 0.0f || receiverDepths.y < 0.0f || receiverDepths.z < 0.0f )
 			{
 				depthFailCounter++;
 				continue;		// Trójk¹t jest czêœciowo za p³aszczyzn¹. Musimy go odrzuciæ.
@@ -333,7 +330,7 @@ void LightmapWorkerCPU::TransferPass( std::tuple<unsigned int, unsigned int, flo
 			XMVECTOR materialDiffuse = XMLoadFloat4( &m_data->objectParts[ indicies.first ].diffuse );
 			XMVECTOR receivedLight = XMVectorMultiply( materialDiffuse, emitedLight );
 			
-			//receivedLight = XMVectorSet( 1.0f, 0.0f, 0.0f, 0.0f );		// shitty test
+			receivedLight = XMVectorSet( 1.0f, 0.0f, 0.0f, 0.0f );		// shitty test
 
 			const XMFLOAT3& emissionPower = LoadAddStore( emissionLight, indicies.first, indicies.second, receivedLight );
 			LoadAddStore( reachedLight, indicies.first, indicies.second, receivedLight );
@@ -341,8 +338,8 @@ void LightmapWorkerCPU::TransferPass( std::tuple<unsigned int, unsigned int, flo
 		}
 	}
 	// another shitty test
-	//XMVECTOR receivedLight = XMVectorSet( 1.0f, 1.0f, 1.0f, 1.0f );
-	//LoadAddStore( reachedLight, idx1, idx2, receivedLight );
+	XMVECTOR receivedLight = XMVectorSet( 1.0f, 1.0f, 1.0f, 1.0f );
+	LoadAddStore( reachedLight, idx1, idx2, receivedLight );
 }
 
 
@@ -354,51 +351,51 @@ g³êbokoœci.
 @return Zwraca wektor z g³êbokoœciami dla ka¿dego trójk¹ta. Je¿eli jakiœ wierzcho³ek
 znajduje siê za p³aszczyzn¹ rzutowania, funkcja zwraca (-1.0, -1.0, -1.0). W normalnej sytuacji
 wszystkie wspó³rzêdne s¹ dodatnie.*/
-DirectX::XMFLOAT3 LightmapWorkerCPU::HemisphereCast( Triangle4& emiter, Triangle4& receiver, Triangle4& emiterCoordSystem )
+DirectX::XMFLOAT3 LightmapWorkerCPU::HemisphereCast( Triangle4& emiter, Triangle4& receiver, XMMATRIX& emiterViewMatrix )
 {
-	// Œrodek ciê¿koœci trójk¹ta przyjujemy za œrodek emitera.
-	XMVECTOR emiterCenter = XMVectorAdd( emiter.vertex1, emiter.vertex2 );
-	emiterCenter = XMVectorAdd( emiterCenter, emiter.vertex3 );
-	emiterCenter = XMVectorDivide( emiterCenter, XMVectorReplicate( 3.0f ) );
+	// Poniewa¿ to s¹ wierzcho³ki, to ustawiamy komponent w na 1.
+	receiver.vertex1 = XMVectorSetW( receiver.vertex1, 1.0f );
+	receiver.vertex2 = XMVectorSetW( receiver.vertex2, 1.0f );
+	receiver.vertex3 = XMVectorSetW( receiver.vertex3, 1.0f );
 
-	// Wyliczamy wektory od œrodka emitera do wierzcho³ków.
-	XMVECTOR centerToVertex1 = XMVectorSubtract( receiver.vertex1, emiterCenter );
-	XMVECTOR centerToVertex2 = XMVectorSubtract( receiver.vertex2, emiterCenter );
-	XMVECTOR centerToVertex3 = XMVectorSubtract( receiver.vertex3, emiterCenter );
+	// Transformujemy wierzcho³ki do uk³adu emitera. Dziêki temu xy jest pozycj¹ na p³aszczyŸnie (na razie jeszcze nie jednostkowej)
+	// a z jest odleg³oœci¹ od emitera.
+	XMVECTOR centerToVertex1 = XMVector4Transform( receiver.vertex1, emiterViewMatrix );
+	XMVECTOR centerToVertex2 = XMVector4Transform( receiver.vertex2, emiterViewMatrix );
+	XMVECTOR centerToVertex3 = XMVector4Transform( receiver.vertex3, emiterViewMatrix );
 
-	// Wyznaczamy po której stronie p³aszczyzny znajduj¹ siê wierzcho³ki. Pierwszym elementem emiterCoordSystem jest normalna
-	// jednostkowego ko³a. Je¿eli Iloczyn skalarny normalnej i wektora jest mniejszy od zera, to wierzcho³ek jest za p³aszczyzn¹.
-	XMVECTOR depthDirection1 = XMVector3Dot( centerToVertex1, emiterCoordSystem.vertex1 );
-	XMVECTOR depthDirection2 = XMVector3Dot( centerToVertex2, emiterCoordSystem.vertex1 );
-	XMVECTOR depthDirection3 = XMVector3Dot( centerToVertex3, emiterCoordSystem.vertex1 );
-
-	float direction1;
-	float direction2;
-	float direction3;
-	XMStoreFloat( &direction1, depthDirection1 );
-	XMStoreFloat( &direction2, depthDirection2 );
-	XMStoreFloat( &direction3, depthDirection3 );
-
-	// Je¿eli chocia¿ jeden wierzcho³ek jest z ty³u p³aszczyzny rzutowania, to jego rzut nie jest poprawny.
-	// W takiej sytuacji zwracamy same ujemne g³êbokoœci, funkcja wywo³uj¹ca powinna przejœæ do kolejnego trójk¹ta.
-	if( direction1 < 0.0f || direction2 < 0.0f || direction3 < 0.0f )
-		return XMFLOAT3( -1.0, -1.0, -1.0 );
-
+	// Wyliczenie d³ugoœci od œrodka do wierzcho³ków.
 	XMVECTOR depth1 = XMVector3Length( centerToVertex1 );
 	XMVECTOR depth2 = XMVector3Length( centerToVertex2 );
 	XMVECTOR depth3 = XMVector3Length( centerToVertex3 );
 
-	receiver.vertex1 = ProjectPointToPlane( XMVector3Normalize( centerToVertex1 ), emiterCoordSystem );
-	receiver.vertex2 = ProjectPointToPlane( XMVector3Normalize( centerToVertex2 ), emiterCoordSystem );
-	receiver.vertex3 = ProjectPointToPlane( XMVector3Normalize( centerToVertex3 ), emiterCoordSystem );
+	// Normalizacja wektorów
+	receiver.vertex1 = XMVectorDivide( centerToVertex1, depth1 );
+	receiver.vertex2 = XMVectorDivide( centerToVertex2, depth2 );
+	receiver.vertex3 = XMVectorDivide( centerToVertex3, depth3 );
 
+	XMFLOAT3 depthVector;
+	
+	depthVector.x = -XMVectorGetZ( centerToVertex1 );
+	depthVector.y = -XMVectorGetZ( centerToVertex2 );
+	depthVector.z = -XMVectorGetZ( centerToVertex3 );
 
-	XMFLOAT3 result;
-	XMStoreFloat( &result.x, depth1 );
-	XMStoreFloat( &result.y, depth2 );
-	XMStoreFloat( &result.z, depth3 );
+	//if( XMVectorGetZ( centerToVertex1 ) > 0 )
+	//	depthVector.x = -XMVectorGetX( depth1 );
+	//else
+	//	depthVector.x = XMVectorGetX( depth1 );
 
-	return result;
+	//if( XMVectorGetZ( centerToVertex2 ) > 0 )
+	//	depthVector.y = -XMVectorGetX( depth2 );
+	//else
+	//	depthVector.y = XMVectorGetX( depth2 );
+	//
+	//if( XMVectorGetZ( centerToVertex3 ) > 0 )
+	//	depthVector.z = -XMVectorGetX( depth3 );
+	//else
+	//	depthVector.z = XMVectorGetX( depth3 );
+
+	return depthVector;
 }
 
 /**@brief Wyliczamy wektory równoleg³e do p³aszczyzny i wzajemnie ortogonalne.
@@ -418,6 +415,34 @@ Triangle4 LightmapWorkerCPU::EmiterCoordinatesSystem( Triangle4& emiter )
 	CoordSystem.vertex3 = XMVector3Normalize( XMVector3Cross( CoordSystem.vertex2, CoordSystem.vertex1 ) );		// Obliczamy wektor prostopad³y do normalnej i pierwszej osi.
 
 	return CoordSystem;
+}
+
+/**@brief Tworzy macierz przekszta³caj¹c¹ wierzcho³ki do uk³adu odniesienia emitera.*/
+DirectX::XMMATRIX LightmapWorkerCPU::EmiterViewMatrix( Triangle4& emiter )
+{
+	// Œrodek ciê¿koœci trójk¹ta przyjujemy za œrodek emitera.
+	XMVECTOR emiterCenter = XMVectorAdd( emiter.vertex1, emiter.vertex2 );
+	emiterCenter = XMVectorAdd( emiterCenter, emiter.vertex3 );
+	emiterCenter = XMVectorDivide( emiterCenter, XMVectorReplicate( 3.0f ) );
+
+	// Wektor prostopad³y do p³aszczyzny, na której le¿¹ trójk¹ty.
+	XMVECTOR edge12 = XMVectorSubtract( emiter.vertex2, emiter.vertex1 );
+	XMVECTOR edge13 = XMVectorSubtract( emiter.vertex3, emiter.vertex1 );
+	XMVECTOR normal = XMVector3Normalize( XMVector3Cross( edge13, edge12 ) );
+
+	// Ustalamy dowolnie (byle ortogonalnie) kierunek "w górê".
+	//XMVECTOR upDirection = XMVector3Normalize( XMVector3Cross( edge12, normal ) );
+	XMVECTOR upDirection = XMVector3Orthogonal( normal );
+
+	//XMVECTOR test = XMVector3Dot( normal, upDirection );
+
+	// Tworzymy macierz widoku.
+	normal = XMVectorSetW( normal, 0.0f );
+	emiterCenter = XMVectorSetW( emiterCenter, 1.0f );
+	upDirection = XMVectorSetW( upDirection, 0.0f );
+
+	XMMATRIX viewMatrix = XMMatrixLookToRH( emiterCenter, normal, upDirection );
+	return viewMatrix;
 }
 
 /**@brief Rasteryzuje podany trójk¹t. Sprawdza czy jest bli¿ej emitera od ostatnio
@@ -474,9 +499,11 @@ void LightmapWorkerCPU::RasterizeTriangle( const Triangle4& triangle,
 				w2 = w2 / sum;
 
 				int index = point.y * m_depthResolution + point.x;
+				//float pointInverseDepth = w0 / ((float*)depths)[ 0 ] + w1 / ((float*)depths)[ 1 ] + w2 / ((float*)depths)[ 2 ];
+				//float pointDepth = 1.0f / pointInverseDepth;
 				float pointDepth = ((float*)depths)[ 0 ] * w0 + ((float*)depths)[ 1 ] * w1 + ((float*)depths)[ 2 ] * w2;
 				float& bufferDepth = depthBuffer.Get<float>( index );
-				if( bufferDepth > pointDepth/* && pointDepth > 0*/ )
+				if( bufferDepth > pointDepth && pointDepth > 0.0f )
 				{
 					BufferIndexing& indicies = indexBuffer.Get<BufferIndexing>( index );
 					indicies.first = chunkIdx;
