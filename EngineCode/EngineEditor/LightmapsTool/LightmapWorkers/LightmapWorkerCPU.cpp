@@ -130,14 +130,20 @@ void LightmapWorkerCPU::Prepare( std::vector<MemoryChunk>& emissionLight, std::v
 		XMMATRIX transformMatrix = XMLoadFloat4x4( &part.transform );
 
 		// Transform positions
-		XMVector3TransformCoordStream( &verticiesChunk.Get<VertexFormat>( 0 ).position, sizeof( VertexFormat ),
+		XMVector3TransformCoordStream(	&verticiesChunk.Get<VertexFormat>( 0 ).position,
+										sizeof( VertexFormat ),
 										&m_data->verticies[ part.chunkIdx ].Get<VertexNormalTexCord1>( part.bufferOffset ).position,
-										sizeof( VertexNormalTexCord1 ), part.verticesCount, transformMatrix );
+										sizeof( VertexNormalTexCord1 ),
+										part.verticesCount,
+										transformMatrix );
 
 		// Transform normals
-		XMVector3TransformNormalStream( &verticiesChunk.Get<VertexFormat>( 0 ).normal, sizeof( VertexFormat ),
+		XMVector3TransformNormalStream( &verticiesChunk.Get<VertexFormat>( 0 ).normal,
+										sizeof( VertexFormat ),
 										&m_data->verticies[ part.chunkIdx ].Get<VertexNormalTexCord1>( part.bufferOffset ).normal,
-										sizeof( VertexNormalTexCord1 ), part.verticesCount, transformMatrix );
+										sizeof( VertexNormalTexCord1 ),
+										part.verticesCount,
+										transformMatrix );
 
 		if( part.emissive.x != 0.0f || part.emissive.y != 0.0f || part.emissive.z != 0.0f )
 		{

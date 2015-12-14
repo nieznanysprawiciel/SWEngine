@@ -57,16 +57,17 @@ int LightmapLogic::LoadLevel					()
 
 	DynamicMeshObject* room1Object = new DynamicMeshObject;
 	room1Object->Teleport( DirectX::XMVectorSet( 0.0, -300.0, -2000.0, 0.0 ) );
+	//room1Object->TeleportOrientation( DirectX::XMQuaternionRotationNormal( DirectX::XMVectorSet( 0.0, 1.0, 0.0, 0.0 ), DirectX::XM_PIDIV2 ) );
 
 	room1Object->SetModel( room1Model );
 	m_engine->actors.AddDynamicMesh( room1Object );
 
-	//// Marker
-	//DynamicMeshObject* markerObject = new DynamicMeshObject;
-	//room1Object->Teleport( DirectX::XMVectorSet( 1300.0, -100.0, -1600.0, 0.0 ) );
+	// Marker
+	DynamicMeshObject* markerObject = new DynamicMeshObject;
+	markerObject->Teleport( DirectX::XMVectorSet( 1300.0, -100.0, -1600.0, 0.0 ) );
 
-	//markerObject->SetModel( markerModel );
-	//m_engine->actors.AddDynamicMesh( markerObject );
+	markerObject->SetModel( markerModel );
+	m_engine->actors.AddDynamicMesh( markerObject );
 
 	return 0;
 }
@@ -272,6 +273,7 @@ SceneData* LightmapLogic::PrepareSceneData			()
 		// Zak³adam, ¿e nie obs³ugujemy skalowania, bo na razie nie wiem czy silnik bêdzie je obs³ugiwa³ czy to bêdzie gdzieœ prekalkulowane.
 		DirectX::XMMATRIX objectTransform = DirectX::XMMatrixTranslationFromVector( objectPos );
 		objectTransform = DirectX::XMMatrixMultiply( DirectX::XMMatrixRotationQuaternion( objectRot ), objectTransform );
+		//objectTransform = DirectX::XMMatrixRotationQuaternion( objectRot ) * objectTransform;
 
 		for( auto& meshPart : meshData )
 		{
@@ -283,8 +285,9 @@ SceneData* LightmapLogic::PrepareSceneData			()
 			partData.emissive = meshPart.material->Emissive;
 
 			DirectX::XMMATRIX partTransform = DirectX::XMLoadFloat4x4( &meshPart.mesh->transform_matrix );
-			objectTransform = DirectX::XMMatrixMultiply( partTransform, objectTransform );
-			DirectX::XMStoreFloat4x4( &partData.transform, objectTransform );
+			//objectTransform = partTransform * objectTransform;
+			partTransform = DirectX::XMMatrixMultiply( partTransform, objectTransform );
+			DirectX::XMStoreFloat4x4( &partData.transform, partTransform );
 
 			size_t index;
 			if( FindInVector( sceneData->buffers, vertexBuff, index ) )
