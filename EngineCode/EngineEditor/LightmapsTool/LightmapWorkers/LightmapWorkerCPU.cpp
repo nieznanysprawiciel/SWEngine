@@ -178,7 +178,7 @@ void LightmapWorkerCPU::Radiosity( std::vector<MemoryChunk>& emissionLight,
 	// Identyfikuje wielok¹t z najwiêksz¹ energi¹ do wyemitowania.
 	std::tuple<unsigned int, unsigned int, float> emissionMax = FindMaxEmission( emissionLight );
 
-	std::get<1>( emissionMax ) = 13;		// Testttttt
+	//std::get<1>( emissionMax ) = 13;		// Testttttt
 
 	// Bufor g³êbokoœci i bufor s³u¿¹cy do indeksowania trójk¹tów, które znajduj¹ siê w buforze.
 	unsigned int		depthSize	= m_depthResolution * m_depthResolution;
@@ -189,7 +189,7 @@ void LightmapWorkerCPU::Radiosity( std::vector<MemoryChunk>& emissionLight,
 	int iterations = 0;	
 	/*while( std::get<2>( emissionMax ) > m_threshold )*/
 	/*while( std::get<2>( emissionMax ) < 1 )*/
-	while( iterations < 1 )
+	while( iterations < 30 )
 	{
 		iterations++;
 
@@ -336,16 +336,16 @@ void LightmapWorkerCPU::TransferPass( std::tuple<unsigned int, unsigned int, flo
 			XMVECTOR materialDiffuse = XMLoadFloat4( &m_data->objectParts[ indicies.first ].diffuse );
 			XMVECTOR receivedLight = XMVectorMultiply( materialDiffuse, emitedLight );
 			
-			receivedLight = XMVectorSet( 1.0f, 0.0f, 0.0f, 0.0f );		// shitty test
+			//receivedLight = XMVectorSet( 1.0f, 0.0f, 0.0f, 0.0f );		// shitty test
 
 			const XMFLOAT3& emissionPower = LoadAddStore( emissionLight, indicies.first, indicies.second, receivedLight );
 			LoadAddStore( reachedLight, indicies.first, indicies.second, receivedLight );
 			//CompareEmission( emissionMax, indicies.first, indicies.second, emissionPower );
 		}
 	}
-	// another shitty test
-	XMVECTOR receivedLight = XMVectorSet( 1.0f, 1.0f, 1.0f, 1.0f );
-	LoadAddStore( reachedLight, idx1, idx2, receivedLight );
+	//// another shitty test
+	//XMVECTOR receivedLight = XMVectorSet( 1.0f, 1.0f, 1.0f, 1.0f );
+	//LoadAddStore( reachedLight, idx1, idx2, receivedLight );
 }
 
 
@@ -434,7 +434,7 @@ DirectX::XMMATRIX LightmapWorkerCPU::EmiterViewMatrix( Triangle4& emiter )
 	// Wektor prostopad³y do p³aszczyzny, na której le¿¹ trójk¹ty.
 	XMVECTOR edge12 = XMVectorSubtract( emiter.vertex2, emiter.vertex1 );
 	XMVECTOR edge13 = XMVectorSubtract( emiter.vertex3, emiter.vertex1 );
-	XMVECTOR normal = XMVector3Normalize( XMVector3Cross( edge13, edge12 ) );
+	XMVECTOR normal = XMVector3Normalize( XMVector3Cross( edge12, edge13 ) );
 
 	// Ustalamy dowolnie (byle ortogonalnie) kierunek "w górê".
 	//XMVECTOR upDirection = XMVector3Normalize( XMVector3Cross( edge12, normal ) );

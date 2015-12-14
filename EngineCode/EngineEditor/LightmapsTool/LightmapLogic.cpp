@@ -64,7 +64,7 @@ int LightmapLogic::LoadLevel					()
 
 	// Marker
 	DynamicMeshObject* markerObject = new DynamicMeshObject;
-	markerObject->Teleport( DirectX::XMVectorSet( 1300.0, -100.0, -1600.0, 0.0 ) );
+	markerObject->Teleport( DirectX::XMVectorSet( 1559.0, 700.0, -1688.0, 0.0 ) );
 
 	markerObject->SetModel( markerModel );
 	m_engine->actors.AddDynamicMesh( markerObject );

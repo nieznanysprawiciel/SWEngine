@@ -16,7 +16,7 @@ public:
 	LightmapWorker( SceneData* sceneData )
 			:	m_data( sceneData ),
 				m_lightmapState( LightmapState::Generating ),
-				m_depthResolution( 512 )
+				m_depthResolution( 1024 )
 	{}
 	~LightmapWorker() = default;
 
