@@ -5,6 +5,7 @@
 #include "rapidjson/rapidjson.h"
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
+#include "rapidjson/prettywriter.h"
 #include "rapidjson/stringbuffer.h"
 
 #include <fstream>
@@ -16,6 +17,8 @@ struct SerializerImpl
 	std::stack<rapidjson::Value>	valuesStack;
 };
 
+namespace
+{
 
 /// Helper
 inline void SetValueHelper( SerializerImpl* impl, const std::string& name, rapidjson::Value& value )
@@ -27,7 +30,21 @@ inline void SetValueHelper( SerializerImpl* impl, const std::string& name, rapid
 	currentObject.AddMember( std::move( valueName ), std::move( value ), impl->root.GetAllocator() );
 }
 
+inline void WriteToStreamBuffer( rapidjson::StringBuffer& buffer, rapidjson::Document& document, WritingMode mode )
+{
+	if( mode == WritingMode::Sparing )
+	{
+		rapidjson::Writer<rapidjson::StringBuffer> writer( buffer );
+		document.Accept( writer );
+	}
+	else
+	{
+		rapidjson::PrettyWriter<rapidjson::StringBuffer> writer( buffer );
+		document.Accept( writer );
+	}
+}
 
+} // annonymous
 
 
 /**@brief Konstruktor*/
@@ -42,7 +59,7 @@ ISerializer::ISerializer()
 ISerializer::~ISerializer()
 { delete impl; }
 
-std::string	ISerializer::SaveString()
+std::string	ISerializer::SaveString( WritingMode mode )
 {
 	while( impl->valuesStack.size() > 1 )
 		this->Exit();
@@ -52,7 +69,7 @@ std::string	ISerializer::SaveString()
 	documentObject = std::move( topValue );
 
 	rapidjson::StringBuffer stringBuffer;
-	rapidjson::Writer<rapidjson::StringBuffer> writer( stringBuffer );
+	WriteToStreamBuffer( stringBuffer, impl->root, mode );
 
 	return stringBuffer.GetString();
 }
@@ -61,9 +78,9 @@ std::string	ISerializer::SaveString()
 /**@brief Zapisuje zserializowane dane do pliku.
 @param[in] fileName Nazwa pliku docelowego.
 @return Zwraca true, je¿eli zapisywanie powiedzie siê.*/
-bool ISerializer::SaveFile( const std::string& fileName )
+bool ISerializer::SaveFile( const std::string& fileName, WritingMode mode )
 {
-	std::fstream file;
+	std::ofstream file;
 	file.open( fileName );
 	if( !file.fail() )
 	{
@@ -72,11 +89,10 @@ bool ISerializer::SaveFile( const std::string& fileName )
 
 		rapidjson::Value& topValue = impl->valuesStack.top();
 		rapidjson::Value& documentObject = impl->root.SetObject();
-		documentObject = std::move( topValue );
+		documentObject = topValue.Move();
 
 		rapidjson::StringBuffer stringBuffer;
-		rapidjson::Writer<rapidjson::StringBuffer> writer( stringBuffer );
-		impl->root.Accept( writer );
+		WriteToStreamBuffer( stringBuffer, impl->root, mode );
 
 		file << stringBuffer.GetString();
 
@@ -104,20 +120,28 @@ void ISerializer::EnterObject( const std::string& name )
 EnterObject i ExitObject powinny byæ stosowane parami.*/
 void ISerializer::Exit()
 {
-	rapidjson::Value& objectValue = impl->valuesStack.top();		// Obiekt, które go konstruowanie skonczyliœmy.
+	rapidjson::Value& objectValue = impl->valuesStack.top();		// Obiekt, którego konstruowanie skonczyliœmy.
 	impl->valuesStack.pop();
 	rapidjson::Value& objectName = impl->valuesStack.top();			// Nazwa obiektu.
 	impl->valuesStack.pop();
 
 	rapidjson::Value& newCurrentObject = impl->valuesStack.top();
-	newCurrentObject.AddMember( std::move( objectName ), std::move( objectValue ), impl->root.GetAllocator() );
+	if( newCurrentObject.IsObject() )
+		newCurrentObject.AddMember( std::move( objectName ), std::move( objectValue ), impl->root.GetAllocator() );
+	else if( newCurrentObject.IsArray() )
+		newCurrentObject.PushBack( std::move( objectValue ), impl->root.GetAllocator() );
 }
 
 /**@brief Tworzy tablicê o podanej nazwie.
 
 @param[in] name Nazwa tablicy.*/
 void ISerializer::EnterArray( const std::string& name )
-{ }
+{
+	rapidjson::Value newArray( rapidjson::kArrayType );
+	rapidjson::Value newName( rapidjson::kStringType );
+
+	//newArray.P
+}
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
 

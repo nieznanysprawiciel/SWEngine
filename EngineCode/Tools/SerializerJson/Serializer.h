@@ -6,6 +6,12 @@
 
 struct SerializerImpl;
 
+/**@brief Tryb Zapisywania JSONa.*/
+enum class WritingMode
+{
+	Sparing,				///< Tryb oszczêdny bez spacji i tabulacji.
+	Readable				///< Tryb przeznaczony do czytania przez ludzi.
+};
 
 /**@brief Interfejs dla serializatorów.*/
 class ISerializer
@@ -32,8 +38,8 @@ public:
 	void		SetValue		( const std::string& name, double value );
 
 
-	bool		SaveFile		( const std::string& fileName );
-	std::string	SaveString		();
+	bool		SaveFile		( const std::string& fileName, WritingMode mode = WritingMode::Sparing );
+	std::string	SaveString		( WritingMode mode = WritingMode::Sparing );
 };
 
 
