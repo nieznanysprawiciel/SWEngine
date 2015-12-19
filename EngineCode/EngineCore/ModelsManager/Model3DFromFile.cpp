@@ -525,7 +525,7 @@ const ModelPart* Model3DFromFile::get_part( unsigned int index )
 }
 
 /**@brief Zwraca liczbê obiektów ModelPart w tablicy.*/
-unsigned int Model3DFromFile::get_parts_count()
+Size Model3DFromFile::get_parts_count()
 {
 	return model_parts.size();
 }

@@ -17,7 +17,7 @@ public:
 	~MovementEngine();
 
 	void proceed_movement(float time_interval);
-	unsigned int add_moveable_object(DynamicObject* dyn_object);
+	Size add_moveable_object(DynamicObject* dyn_object);
 };
 
 

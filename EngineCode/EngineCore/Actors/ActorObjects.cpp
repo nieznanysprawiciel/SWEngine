@@ -295,12 +295,12 @@ int DynamicMeshObject::SetModel(Model3DFromFile* model)
 	if ( index_buffer )		// Jak nie ma bufora indeksów to w zasadzie krzywda siê nikomu nie dzieje
 		index_buffer->AddObjectReference();		// Ale trzeba pilnowaæ, ¿eby nie dodawaæ odwo³añ do obiektu, którego nie ma
 
-	unsigned int count = model->get_parts_count();
+	Size count = model->get_parts_count();
 	model_parts.reserve( count );
 
-	for (unsigned int i = 0; i < count; ++i)
+	for( Size i = 0; i < count; ++i )
 	{//przepisujemy sobie wskaŸniki
-		register const ModelPart* part = model->get_part( i );
+		register const ModelPart* part = model->get_part( (unsigned int)i );
 
 		model_parts.push_back( *part );
 		AddReferences(part);			//Dodajemy odwo³ania

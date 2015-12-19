@@ -66,7 +66,7 @@ unsigned int PerformanceCheck::registerTaskName( const char* taskName )
 	newTask.hole_time_spent = 0;
 
 	performance_datas.push_back( newTask );
-	return performance_datas.size() - 1;
+	return (unsigned int)( performance_datas.size() - 1 );
 }
 
 /**@brief Asynchronicznie drukuje statystyki do podanego pliku.

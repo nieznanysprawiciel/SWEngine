@@ -141,7 +141,7 @@ public:
 	unsigned int		add_index_buffer	( const VERT_INDEX* buffer, unsigned int ind_count, int vertex_buffer_offset );
 
 
-	unsigned int		get_parts_count( );
+	Size				get_parts_count( );
 	const ModelPart*	get_part( unsigned int index );
 
 	inline BufferObject* get_vertex_buffer() { return vertex_buffer; }		///<Zwraca wskaŸnik na bufor wierzcho³ków

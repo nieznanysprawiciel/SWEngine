@@ -386,8 +386,8 @@ void ChangeResource( DynamicMeshObject* mesh, Resource* newResource, uint16 begi
 		return;
 
 	auto& parts = mesh->GetModelParts();
-	int size = parts.size();
-	int max = endPart > size ? size : endPart;
+	Size size = parts.size();
+	int max = endPart > size ? (int)size : endPart;
 	for( int i = beginPart; i < max; ++i )
 	{
 		auto& resource = Get<Resource>( parts[ i ], index );

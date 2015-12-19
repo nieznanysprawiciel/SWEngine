@@ -26,7 +26,7 @@ void MovementEngine::proceed_movement(float time_interval)
 	}
 }
 
-unsigned int MovementEngine::add_moveable_object(DynamicObject* dyn_object)
+Size MovementEngine::add_moveable_object(DynamicObject* dyn_object)
 {
 	dynamic_objects.push_back(dyn_object);
 	return dynamic_objects.size() - 1;		//zwracamy indeks elementu dodanego
