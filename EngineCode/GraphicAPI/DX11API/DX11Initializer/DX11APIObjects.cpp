@@ -139,7 +139,7 @@ DX11APIObjects::DX11APIObjects()
 		_z_buffer_desc.MipLevels = 1;
 		_z_buffer_desc.ArraySize = 1;
 		_z_buffer_desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-		_z_buffer_desc.SampleDesc.Count = 8;
+		_z_buffer_desc.SampleDesc.Count = 0;
 		_z_buffer_desc.SampleDesc.Quality = 0;//D3D10_STANDARD_MULTISAMPLE_QUALITY_LEVELS::D3D10_STANDARD_MULTISAMPLE_PATTERN;
 		_z_buffer_desc.Usage = D3D11_USAGE_DEFAULT;
 		_z_buffer_desc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
