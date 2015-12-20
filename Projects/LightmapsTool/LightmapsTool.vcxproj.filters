@@ -48,4 +48,9 @@
       <Filter>LightmapsTool\LigthmapWorkers</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="LightmapWorkerCUDA.cu">
+      <Filter>LightmapsTool\LigthmapWorkers</Filter>
+    </CudaCompile>
+  </ItemGroup>
 </Project>
