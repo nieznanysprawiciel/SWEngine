@@ -400,7 +400,7 @@ void Model3DFromFile::EndEdit_vertex_buffer_processing( )
 
 	// Przepisujemy bufor wierzcho³ków
 	VertexNormalTexCord1* verticies = new VertexNormalTexCord1[vertex_buffer_length];
-	unsigned int offset = 0;
+	PtrOffset offset = 0;
 	for ( int i = 0; i < tmp_data->current_pointer; ++i )
 	{
 		// verticies + offset - tu jest stosowana arytmetyka dla wskaŸników, a nie zwyk³e dodawanie
@@ -444,7 +444,7 @@ void Model3DFromFile::EndEdit_index_buffer_processing( )
 
 	// Przepisujemy bufor indeksów
 	VERT_INDEX* indicies = new VERT_INDEX[index_buffer_length];
-	unsigned int offset = 0;
+	PtrOffset offset = 0;
 	for ( int i = 0; i < tmp_data->current_pointer; ++i )
 	{
 		// verticies + offset - tu jest stosowana arytmetyka dla wskaŸników, a nie zwyk³e dodawanie
