@@ -85,12 +85,9 @@ Engine::Engine(HINSTANCE instance)
 
 Engine::~Engine()
 {
-
-#ifdef __TEST
 	//obiekty trzeba pokasowaæ, zanim siê skasuje to, do czego siê odwo³uj¹
-	for ( unsigned int i = 0; i < Context.object_list.size(); ++i )
-		delete Context.object_list[i];
-#endif
+	for ( unsigned int i = 0; i < Context.objectList.size(); ++i )
+		delete Context.objectList[i];
 
 	delete Context.controllersEngine;
 	delete Context.movementEngine;

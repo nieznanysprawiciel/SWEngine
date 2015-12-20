@@ -97,11 +97,7 @@ struct EngineContext
 	//queue
 	std::queue<Event*>*			eventsQueue;	///<WskaŸnik na kolejkê komunikatów w celu szybszego dostêpu
 	std::queue<Command*>		commandQueue;	///<Kolejka komend wykonywanych po zakoñczeniu wszystkich obliczeñ w danej klatce. Aktualizuje stan silnika.
-
-
-#ifdef __TEST
-	std::vector<Object*>	object_list;
-#endif
+	std::vector<Object*>		objectList;
 };
 
 
