@@ -118,7 +118,7 @@ DX11APIObjects::DX11APIObjects()
 		_swap_chain_desc.BufferDesc.RefreshRate.Denominator = 1;
 		_swap_chain_desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 		_swap_chain_desc.OutputWindow = 0;		//HWND niestety nie wiem co wpisaæ w tym momencie
-		_swap_chain_desc.SampleDesc.Count = 8;
+		_swap_chain_desc.SampleDesc.Count = 1;
 		_swap_chain_desc.SampleDesc.Quality = 0;//D3D10_STANDARD_MULTISAMPLE_QUALITY_LEVELS::D3D10_STANDARD_MULTISAMPLE_PATTERN;
 		_swap_chain_desc.Windowed = TRUE;
 		_swap_chain_desc.SwapEffect = DXGI_SWAP_EFFECT::DXGI_SWAP_EFFECT_DISCARD;
@@ -139,7 +139,7 @@ DX11APIObjects::DX11APIObjects()
 		_z_buffer_desc.MipLevels = 1;
 		_z_buffer_desc.ArraySize = 1;
 		_z_buffer_desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-		_z_buffer_desc.SampleDesc.Count = 8;
+		_z_buffer_desc.SampleDesc.Count = 1;
 		_z_buffer_desc.SampleDesc.Quality = 0;//D3D10_STANDARD_MULTISAMPLE_QUALITY_LEVELS::D3D10_STANDARD_MULTISAMPLE_PATTERN;
 		_z_buffer_desc.Usage = D3D11_USAGE_DEFAULT;
 		_z_buffer_desc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
@@ -148,7 +148,7 @@ DX11APIObjects::DX11APIObjects()
 
 		ZeroMemory( &_z_buffer_view_desc, sizeof( _z_buffer_view_desc ) );
 		_z_buffer_view_desc.Format = _z_buffer_desc.Format;
-		_z_buffer_view_desc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2DMS; //D3D11_DSV_DIMENSION_TEXTURE2D;
+		_z_buffer_view_desc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;// D3D11_DSV_DIMENSION_TEXTURE2DMS; //D3D11_DSV_DIMENSION_TEXTURE2D;
 		_z_buffer_view_desc.Texture2D.MipSlice = 0;
 
 		// D3D11_SAMPLER_DESC

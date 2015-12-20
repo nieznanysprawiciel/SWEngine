@@ -67,7 +67,7 @@ void Engine::test()
 //	moon->SetModel( Context.modelsManager->GetModel( MOON ) );
 //	moon->set_scale( 30.0 );
 //
-//	Context.object_list.push_back( moon );
+//	Context.objectList.push_back( moon );
 //	Context.displayEngine->AddDynamicMeshObject( moon );
 //
 //	//dodawanie Nebulona
@@ -78,7 +78,7 @@ void Engine::test()
 //	nebulon->SetModel( Context.modelsManager->GetModel( NEBULON ) );
 //	nebulon->set_scale( 1 );	//Nebulon ma Ÿle ustawiony pivot, wiêc jak siê przeskaluje to odleci gdzieœ w kosmos i go nie widaæ.
 //
-//	Context.object_list.push_back( nebulon );
+//	Context.objectList.push_back( nebulon );
 //	Context.displayEngine->AddDynamicMeshObject( nebulon );
 //
 //	//dodawanie TIE Fightera
@@ -89,7 +89,7 @@ void Engine::test()
 //	TIE->SetModel( Context.modelsManager->GetModel( TIE_FIGHTER ) );
 //	TIE->set_scale( 10 );
 //
-//	Context.object_list.push_back( TIE );
+//	Context.objectList.push_back( TIE );
 //	Context.displayEngine->AddDynamicMeshObject( TIE );
 //
 //
@@ -101,7 +101,7 @@ void Engine::test()
 //	VaderTIE->SetModel( Context.modelsManager->GetModel( VADER_TIE ) );
 //	//VaderTIE->set_scale( 1.0 );
 //
-//	Context.object_list.push_back( VaderTIE );
+//	Context.objectList.push_back( VaderTIE );
 //	Context.displayEngine->AddDynamicMeshObject( VaderTIE );
 //
 //	//dodawanie myœliwca
@@ -123,7 +123,7 @@ void Engine::test()
 //
 //	clone_fighter->SetModel( Context.modelsManager->GetModel( CLONE_FIGHTER ) );
 //
-//	Context.object_list.push_back( clone_fighter );
+//	Context.objectList.push_back( clone_fighter );
 //	Context.displayEngine->AddDynamicMeshObject( clone_fighter );
 //	Context.movementEngine->add_moveable_object( clone_fighter );
 //
@@ -138,7 +138,7 @@ void Engine::test()
 	//	
 	//	cloneFighter->set_model( Context.modelsManager->GetModel( CLONE_FIGHTER ) );
 	//	cloneFighter->teleport( position );
-	//	object_list.push_back( cloneFighter );
+	//	objectList.push_back( cloneFighter );
 	//	Context.displayEngine->add_dynamic_mesh_object( cloneFighter );
 	//}
 
@@ -150,7 +150,7 @@ void Engine::test()
 
 	Imperial->set_model( modelsManager->GetModel( IMPERIAL_STAR_DESTROYER ) );
 
-	object_list.push_back( Imperial );
+	objectList.push_back( Imperial );
 	displayEngine->add_dynamic_mesh_object( Imperial );
 	*/
 
@@ -176,7 +176,7 @@ void Engine::test()
 //	skrzynia->SetModel( new_model );
 //	//skrzynia->set_scale( 0.1 );
 //
-//	Context.object_list.push_back( skrzynia );
+//	Context.objectList.push_back( skrzynia );
 //	Context.displayEngine->AddDynamicMeshObject( skrzynia );
 //	Context.movementEngine->add_moveable_object( skrzynia );
 
@@ -369,7 +369,7 @@ std::vector<DynamicMeshObject*> EngineInterface::Actors::GetSceneObjects()
 void EngineInterface::Actors::AddDynamicMesh( DynamicMeshObject* object )
 {
 	m_engine->Context.displayEngine->AddDynamicMeshObject( object );
-	m_engine->Context.object_list.push_back( object );
+	m_engine->Context.objectList.push_back( object );
 }
 
 void EngineInterface::Actors::CleanScene()
@@ -386,8 +386,8 @@ void ChangeResource( DynamicMeshObject* mesh, Resource* newResource, uint16 begi
 		return;
 
 	auto& parts = mesh->GetModelParts();
-	int size = parts.size();
-	int max = endPart > size ? size : endPart;
+	Size size = parts.size();
+	int max = endPart > size ? (int)size : endPart;
 	for( int i = beginPart; i < max; ++i )
 	{
 		auto& resource = Get<Resource>( parts[ i ], index );

@@ -16,7 +16,7 @@ public:
 	DX11InputLayoutDescriptor( const std::wstring& layoutName ) : InputLayoutDescriptor( layoutName ) {}
 	~DX11InputLayoutDescriptor() = default;
 
-	size_t							GetNumElements()		{ return m_inputElement.size(); }
+	Size							GetNumElements()		{ return m_inputElement.size(); }
 	D3D11_INPUT_ELEMENT_DESC*		GetDescriptorPtr()		{ return m_inputElement.data(); }
 
 	virtual void					AddRow( const char* semanticName,

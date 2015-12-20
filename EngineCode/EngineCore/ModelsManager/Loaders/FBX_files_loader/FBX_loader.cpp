@@ -229,7 +229,7 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 		//Nie trzeba dodawaæ nulli tak jak wczeœniej, bo one siê domyœlnie tam znajduj¹
 		//cur_model->add_null_material();
 		//cur_model->add_null_texture();
-		cur_model->add_vertex_buffer( triangles[0]->data(), triangles[0]->size());
+		cur_model->add_vertex_buffer( triangles[0]->data(), (unsigned int)triangles[0]->size());
 		cur_model->add_transformation( transformation );
 
 		cur_model->EndPart( );		// Te funkcje maj¹ otaczaæ dodawanie ka¿dego kolejnego parta
@@ -262,7 +262,7 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 			}
 			//else //tutaj tekstura ma byæ nullem, ale tak siê dzieje domyœlnie
 
-			cur_model->add_vertex_buffer( triangles[i]->data( ), triangles[i]->size( ));
+			cur_model->add_vertex_buffer( triangles[i]->data( ), (unsigned int)triangles[i]->size( ));
 			cur_model->add_transformation( transformation );
 
 			cur_model->EndPart( );		// Te funkcje maj¹ otaczaæ dodawanie ka¿dego kolejnego parta

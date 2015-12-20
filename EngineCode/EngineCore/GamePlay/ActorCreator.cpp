@@ -28,7 +28,7 @@ void ActorCreator::registerClass( const std::string name, CreateActorFunction fu
 	}
 
 	create_functions.push_back( function );
-	class_names[name] = create_functions.size() - 1;
+	class_names[name] = static_cast<short>( create_functions.size() - 1 );
 }
 
 int16 ActorCreator::getClassId( const std::string name )
