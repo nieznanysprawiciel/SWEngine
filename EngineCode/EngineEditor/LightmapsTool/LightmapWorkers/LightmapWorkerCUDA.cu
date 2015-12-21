@@ -1,4 +1,9 @@
 #include "EngineEditor/LightmapsTool/stdafx.h"
+
+// To makro musi byæ zdefiniowane przed zaincludowaniem DirectXMath (w LightmapWorkerCUDA.h).
+// Biblioteka u¿ywa domyœlnie zestawu instrukcji SSE2 i trzeba to wy³¹czyæ.
+#define _XM_NO_INTRINSICS_
+
 #include "EngineEditor/LightmapsTool/LightmapWorkers/LightmapWorkerCUDA.h"
 #include "EngineCore/ModelsManager/DefaultAssets.h"
 
@@ -541,45 +546,6 @@ void LightmapWorkerCUDA::TransferPass(std::tuple<unsigned int, unsigned int, flo
 		reachedLight, emissionLight, emitedLight);
 
 	checkCudaErrors(cudaGetLastError());
-}
-
-
-/**@brief Wylicza wspó³rzêdne trójk¹ta zrzutowanego na p³aszczyznê ko³a.
-Wspó³rzêdne s¹ dwuwymiarowe, co pozwala ³atwo przejœæ z nich na indeksy do bufora
-g³êbokoœci.
-
-/**@brief Wyliczamy wektory równoleg³e do p³aszczyzny i wzajemnie ortogonalne.
-
-Pos³u¿¹ one za uk³ad wspó³rzêdnych, w którym bêdzie wyra¿ony rzut trójk¹ta.
-W zasadzie ich orientacja jest dowolna, wa¿ne ¿eby by³y stosowane te same
-wektory do wszystkich rzutów.*/
-Triangle4 LightmapWorkerCUDA::EmiterCoordinatesSystem(Triangle4& emiter)
-{
-	XMVECTOR edge12 = XMVectorSubtract(emiter.vertex2, emiter.vertex1);
-	XMVECTOR edge13 = XMVectorSubtract(emiter.vertex3, emiter.vertex1);
-
-	// Wyliczamy najpierw wektor normalny do p³aszczyzny, z potem tworzymy 2 kolejne wektory ortogonalne.
-	Triangle4 CoordSystem;
-	CoordSystem.vertex1 = XMVector3Normalize(XMVector3Cross(edge13, edge12));
-	CoordSystem.vertex2 = XMVector3Normalize(edge12);															// Jedn¹ z osi wybieramy totalnie dowolnie, wa¿ne by by³a na p³aszczyŸnie.
-	CoordSystem.vertex3 = XMVector3Normalize(XMVector3Cross(CoordSystem.vertex2, CoordSystem.vertex1));		// Obliczamy wektor prostopad³y do normalnej i pierwszej osi.
-
-	return CoordSystem;
-}
-
-/**@brief Wylicza rzut punktu na p³aszczyznê.
-
-@param[in] point Punkt wyra¿ony jako wektor znormalizowany od œrodka hemisfery do rzutowanego punktu.
-@param[in] coordsSystem Opisuje uk³ad wspó³rzêdnych w jakim ma byæ wyra¿ony zwracany punkt.
-@return Funkcja zwaraca dwuwymiarowy wektor oznaczaj¹cy punkt we wspó³rzednych w podanym
-uk³adzie wspó³rzêdnych.*/
-XMVECTOR LightmapWorkerCUDA::ProjectPointToPlane(XMVECTOR point, const Triangle4& coordsSystem)
-{
-	XMVECTOR axisU = XMVector3Dot(coordsSystem.vertex2, point);
-	XMVECTOR axisV = XMVector3Dot(coordsSystem.vertex3, point);
-	XMVECTOR result = XMVectorMergeXY(axisU, axisV);
-
-	return result;
 }
 
 

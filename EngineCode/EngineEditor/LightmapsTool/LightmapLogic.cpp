@@ -240,7 +240,7 @@ void LightmapLogic::GenerateLightmaps			( Event* keyEvent )
 			genLightmapEvent->virtual_index == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS4 ||
 			genLightmapEvent->virtual_index == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS5 )
 		{
-			SceneData* sceneData = PrepareSceneData();
+			SceneData* sceneData = PrepareSceneData( false );
 
 			// Tutaj wysy³amy dane do innych w¹tków, ¿eby liczy³y wszystko w tle.
 			if( genLightmapEvent->virtual_index == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 )
@@ -259,7 +259,7 @@ void LightmapLogic::GenerateLightmaps			( Event* keyEvent )
 
 /**Zbiera dane o obiektach na scenie i przygotowuje do wys³ania do LightmapWorkera.
 @return Zwraca dane sceny w strukturze SceneData.*/
-SceneData* LightmapLogic::PrepareSceneData			()
+SceneData* LightmapLogic::PrepareSceneData			( bool loadVerticiesFromGPU )
 {
 	std::vector<DynamicMeshObject*> meshes = m_engine->actors.GetSceneObjects();
 	SceneData* sceneData = new SceneData;
@@ -274,7 +274,6 @@ SceneData* LightmapLogic::PrepareSceneData			()
 		// Zak³adam, ¿e nie obs³ugujemy skalowania, bo na razie nie wiem czy silnik bêdzie je obs³ugiwa³ czy to bêdzie gdzieœ prekalkulowane.
 		DirectX::XMMATRIX objectTransform = DirectX::XMMatrixTranslationFromVector( objectPos );
 		objectTransform = DirectX::XMMatrixMultiply( DirectX::XMMatrixRotationQuaternion( objectRot ), objectTransform );
-		//objectTransform = DirectX::XMMatrixRotationQuaternion( objectRot ) * objectTransform;
 
 		for( auto& meshPart : meshData )
 		{
@@ -286,7 +285,6 @@ SceneData* LightmapLogic::PrepareSceneData			()
 			partData.emissive = meshPart.material->Emissive;
 
 			DirectX::XMMATRIX partTransform = DirectX::XMLoadFloat4x4( &meshPart.mesh->transform_matrix );
-			//objectTransform = partTransform * objectTransform;
 			partTransform = DirectX::XMMatrixMultiply( partTransform, objectTransform );
 			DirectX::XMStoreFloat4x4( &partData.transform, partTransform );
 
@@ -296,7 +294,10 @@ SceneData* LightmapLogic::PrepareSceneData			()
 			else
 			{
 				sceneData->buffers.push_back( vertexBuff );
-				MemoryChunk vertexChunk = vertexBuff->CopyData();
+				
+				// Potrzebne tylko do przetwarzania na CPU.
+				if( loadVerticiesFromGPU )
+					MemoryChunk vertexChunk = vertexBuff->CopyData();
 						
 				sceneData->verticies.push_back( std::move( vertexChunk ) );
 				partData.chunkIdx = sceneData->verticies.size() - 1;
