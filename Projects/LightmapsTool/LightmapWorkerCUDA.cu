@@ -92,6 +92,8 @@ int min3(float x1, float x2, float x3)
 }
 
 
+
+
 // ============================================================================= //
 // Generation
 // ============================================================================= //
@@ -261,6 +263,8 @@ void LightmapWorkerCPU::BuildResult(std::vector<MemoryChunk>& reachedLight)
 
 	}
 }
+
+
 
 /**@brief Wykonuje przebieg z z-buforem.*/
 void LightmapWorkerCPU::DepthPass(std::tuple<unsigned int, unsigned int, float>& emissionMax,

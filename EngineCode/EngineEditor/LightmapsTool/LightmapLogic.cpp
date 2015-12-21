@@ -5,7 +5,8 @@
 #include "EngineCore/DisplayEngine/RenderPass.h"
 #include "EngineCore/ModelsManager/DefaultAssets.h"
 
-#include "LightmapWorkers/LightmapWorkerCPU.h"
+#include "LightmapWorkers/LightmapWorkerCUDA.h"
+
 
 #include <limits>
 #undef max
@@ -244,9 +245,9 @@ void LightmapLogic::GenerateLightmaps			( Event* keyEvent )
 			// Tutaj wysy³amy dane do innych w¹tków, ¿eby liczy³y wszystko w tle.
 			if( genLightmapEvent->virtual_index == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 )
 			{
-				LightmapWorkerCPU* worker = new LightmapWorkerCPU( sceneData );
+				LightmapWorkerCUDA* worker = new LightmapWorkerCUDA( sceneData );
 				m_lightmapWorker = worker;
-				m_lightmapThread = new std::thread( &LightmapWorkerCPU::Generate, std::ref( worker ) );
+				m_lightmapThread = new std::thread( &LightmapWorkerCUDA::Generate, std::ref( worker ) );
 			}
 
 			m_lightmapState = LightmapState::Generating;

@@ -47,9 +47,12 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorkers\LightmapWorkerCPU.h">
       <Filter>LightmapsTool\LigthmapWorkers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorkers\LightmapWorkerCUDA.h">
+      <Filter>LightmapsTool\LigthmapWorkers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CudaCompile Include="LightmapWorkerCUDA.cu">
+    <CudaCompile Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorkers\LightmapWorkerCUDA.cu">
       <Filter>LightmapsTool\LigthmapWorkers</Filter>
     </CudaCompile>
   </ItemGroup>
