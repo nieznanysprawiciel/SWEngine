@@ -13,7 +13,7 @@
 struct VertexFormat
 {
 	DirectX::XMFLOAT3	position;
-	DirectX::XMFLOAT3	normal;
+	//DirectX::XMFLOAT3	normal;
 };
 
 struct Triangle4
@@ -61,18 +61,22 @@ public:
 	/**@brief G³ówna funkcja generuj¹ca lightmapy. Zaimplementuj w klasie pochodnej.*/
 	virtual void	Generate() override;
 private:
-	void			Prepare		( std::vector<MemoryChunk>& emissionLight, std::vector<MemoryChunk>& reachedLight, std::vector<MemoryChunk>& verticies );
-	void			Radiosity	( std::vector<MemoryChunk>& emissionLight, std::vector<MemoryChunk>& reachedLight, std::vector<MemoryChunk>& verticies );
-	void			BuildResult	( std::vector<MemoryChunk>& reachedLight  );
+	void			Prepare		( thrust::device_vector<DirectX::XMFLOAT3>& emissionLight, thrust::device_vector<DirectX::XMFLOAT3>& reachedLight, thrust::device_vector<VertexFormat>& verticies, std::vector<Size>& chunkOffsets );
+	void			Radiosity	( thrust::device_vector<DirectX::XMFLOAT3>& emissionLight, thrust::device_vector<DirectX::XMFLOAT3>& reachedLight, thrust::device_vector<VertexFormat>& verticies, std::vector<Size>& chunkOffsets );
+	void			BuildResult	( thrust::device_vector<DirectX::XMFLOAT3>& reachedLight  );
 
 	void			DepthPass(	std::tuple<unsigned int, unsigned int, float>& emissionMax,
-								BufferObject *dev_verticies, unsigned verticiesSize, BufferObject *dev_depthBuffer, BufferObject *dev_indexBuffer);
+								thrust::device_vector<VertexFormat>& verticies,
+								float* deviceDepthBuffer,
+								BufferIndexing* deviceIndexBuffer,
+								std::vector<Size>& chunkOffsets);
 
-	void			TransferPass( std::tuple<unsigned int, unsigned int, float>& emissionMax,
-								  BufferObject *verticies, unsigned verticiesSize,
-								  BufferObject *emissionLight,
-								  BufferObject *reachedLight,
-								  BufferIndexing *indexBuffer);
+	void			TransferPass(	std::tuple<unsigned int, unsigned int, float>& emissionMax,
+									thrust::device_vector<VertexFormat>& verticies,
+									thrust::device_vector<DirectX::XMFLOAT3>& emissionLight,
+									thrust::device_vector<DirectX::XMFLOAT3>& reachedLight,
+									BufferIndexing* indexBuffer,
+									std::vector<Size>& chunkOffsets );
 
 	DirectX::XMFLOAT3		HemisphereCast			( Triangle4& emiter, Triangle4& receiver, DirectX::XMMATRIX& emiterViewMatrix );
 	Triangle4				EmiterCoordinatesSystem	( Triangle4& emiter );
