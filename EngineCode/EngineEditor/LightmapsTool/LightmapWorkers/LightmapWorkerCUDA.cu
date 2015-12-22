@@ -21,6 +21,9 @@
 #include <thrust/iterator/counting_iterator.h>
 #include <thrust/iterator/zip_iterator.h>
 
+#include <cuda.h>
+#include "helper_cuda.h"
+
 //#include "Common/memory_leaks.h"
 
 using namespace DirectX;
@@ -299,7 +302,7 @@ unsigned int depthBufferSize = 0;
 /**@brief Czyœci bufory g³êbokoœci i indeksów.*/
 __global__ static void kernel_ClearDepthIndex( float *depthBuffer, BufferIndexing *indexBuffer )
 {
-	int i = blockIdx * blockDim.x + threadIdx.x;
+	int i = blockIdx.x * blockDim.x + threadIdx.x;
 
 	depthBuffer[ i ] = std::numeric_limits<float>::max();
 	indexBuffer[ i ].first = INVALID_INDEX;
@@ -369,8 +372,10 @@ void LightmapWorkerCUDA::Generate()
 	thrust::device_vector<XMFLOAT3>		deviceReachedLight;				// Kolor danego trójk¹ta, wynikaj¹cy z poch³aniania œwiat³a dochodzacego.
 	thrust::device_vector<VertexFormat>	deviceVerticies;				// Wierzcho³ki meshy przekszta³cone do uk³adu wspó³rzêdnych œwiata.
 
-	Prepare( deviceEmissionLight, deviceReachedLight, deviceVerticies );
-	Radiosity( deviceEmissionLight, deviceReachedLight, deviceVerticies );
+	std::vector<Size> chunkOffsets;
+
+	Prepare( deviceEmissionLight, deviceReachedLight, deviceVerticies, chunkOffsets );
+	Radiosity( deviceEmissionLight, deviceReachedLight, deviceVerticies, chunkOffsets );
 	BuildResult( deviceReachedLight );
 
 	m_lightmapState = LightmapState::GenerationEnded;		// Ustaw na koñcu funkcji, ¿eby w¹tek g³ówny móg³ zebraæ wyniki.
@@ -427,11 +432,11 @@ void LightmapWorkerCUDA::Prepare( thrust::device_vector<DirectX::XMFLOAT3>& emis
 	for( unsigned int i = 0; i < parts.size(); ++i )
 	{
 		XMMATRIX transformMatrix = XMLoadFloat4x4( &parts[i].transform );
-		thrust::device_vector<VertexNormalTexCord1> sourceVerticies = GetVerticiesFromGraphicAPI( m_data->buffers[ m_data->objectParts[ i ].chunkIdx ] )
+		thrust::device_vector<VertexNormalTexCord1> sourceVerticies = GetVerticiesFromGraphicAPI( m_data->buffers[ m_data->objectParts[ i ].chunkIdx ] );
 		
 		// Przekszta³ca wierzcho³ki do uk³adu wspó³rzêdnych œwiata.
 		thrust::transform(	sourceVerticies.begin() + m_data->objectParts[ i ].bufferOffset,
-							sourceVerticies.begin() + m_data->objectParts[ i ].bufferOffset + m_data->objectParts[ i ].verticiesCount,
+							sourceVerticies.begin() + m_data->objectParts[ i ].bufferOffset + m_data->objectParts[ i ].verticesCount,
 							verticies.begin() + chunkOffsets[ i ] * 3,
 							TransformVerticies( transformMatrix ) );
 
@@ -481,7 +486,7 @@ void LightmapWorkerCUDA::Radiosity( thrust::device_vector<DirectX::XMFLOAT3>& em
 		iterations++;
 
 		// Czyœci bufory 
-		kernel_ClearDepthIndex << < ( depthSize + 255 ) / 256, 256 >> > ( deviceDepthBuffer, deviceIndexBuffer );
+		kernel_ClearDepthIndex << < ( depthBufferSize + 255 ) / 256, 256 >> > ( deviceDepthBuffer, deviceIndexBuffer );
 		checkCudaErrors( cudaGetLastError() );
 
 		// Wykonuje przebieg budowania bufora Z
@@ -579,7 +584,7 @@ void LightmapWorkerCUDA::DepthPass( std::tuple<unsigned int, unsigned int, float
 	// Pêtla po wszystkich podobiektach. Rozwi¹zanie tymczasowe do póŸniejszego poprawienia przy optymalizacjach.
 	for( unsigned int i = 0; chunkOffsets.size() - 1; ++i )
 	{
-		kernel_DepthPass << < ( chunkOffsets[ i + 1 ] - chunkOffsets[ i ] + 255 ) / 256, 256 >> > ( verticies.data() + chunkOffsets[ i ], chunkOffsets[ i + 1 ] - chunkOffsets[ i ], i, deviceDepthBuffer, deviceIndexBuffer, emiterPosition, emiterViewMatrix );
+		kernel_DepthPass << < ( chunkOffsets[ i + 1 ] - chunkOffsets[ i ] + 255 ) / 256, 256 >> > ( verticies.data().get() + chunkOffsets[ i ], chunkOffsets[ i + 1 ] - chunkOffsets[ i ], i, deviceDepthBuffer, deviceIndexBuffer, emiterPosition, emiterViewMatrix );
 		checkCudaErrors( cudaGetLastError() );
 	}
 }
@@ -606,7 +611,7 @@ void LightmapWorkerCUDA::TransferPass( std::tuple<unsigned int, unsigned int, fl
 	// Zerujemy œwiat³o, które emiter bêdzie móg³ wyemitowaæ w kolejnych iteracjach.
 	XMStoreFloat3( &( emissionLight.data().get() + chunkOffsets[ idx1 ] )[ idx2 ] , XMVectorZero() );
 
-	kernel_TransferPass << < ( depthSize + 255 ) / 256, 256 >> > ( indexBuffer, reachedLight, emissionLight, emitedLight );
+	kernel_TransferPass << < ( depthBufferSize + 255 ) / 256, 256 >> > ( indexBuffer, reachedLight.data().get(), emissionLight.data().get(), emitedLight );
 
 	checkCudaErrors( cudaGetLastError() );
 }
