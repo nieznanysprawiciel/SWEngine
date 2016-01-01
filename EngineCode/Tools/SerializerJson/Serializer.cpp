@@ -27,7 +27,10 @@ inline void SetValueHelper( SerializerImpl* impl, const std::string& name, rapid
 	rapidjson::Value valueName;
 	valueName.SetString( name.c_str(), (rapidjson::SizeType)name.length(), impl->root.GetAllocator() );
 
-	currentObject.AddMember( std::move( valueName ), std::move( value ), impl->root.GetAllocator() );
+	if( currentObject.IsObject() )
+		currentObject.AddMember( std::move( valueName ), std::move( value ), impl->root.GetAllocator() );
+	else
+		currentObject.PushBack( std::move( value ), impl->root.GetAllocator() );
 }
 
 inline void WriteToStreamBuffer( rapidjson::StringBuffer& buffer, rapidjson::Document& document, WritingMode mode )
@@ -108,8 +111,12 @@ bool ISerializer::SaveFile( const std::string& fileName, WritingMode mode )
 void ISerializer::EnterObject( const std::string& name )
 {
 	rapidjson::Value newObject( rapidjson::kObjectType );
+
+	// Nazwa jest potrzebna tylko, je¿eli przyczepiamy siê do obiektu.
+	// W przypadku tablic wszystkie obiekty s¹ bez nazwy, wiêc unikamy alokacji pamiêci i wrzucamy pustego stringa.
 	rapidjson::Value newName( rapidjson::kStringType );
-	newName.SetString( name.c_str(), (rapidjson::SizeType)name.length(), impl->root.GetAllocator() );
+	if( impl->valuesStack.top().IsObject() )
+		newName.SetString( name.c_str(), (rapidjson::SizeType)name.length(), impl->root.GetAllocator() );
 
 	// Wrzucamy nazwê jako pierwsz¹, a potem sam obiekt.
 	impl->valuesStack.push( std::move( newName ) );
@@ -138,9 +145,16 @@ void ISerializer::Exit()
 void ISerializer::EnterArray( const std::string& name )
 {
 	rapidjson::Value newArray( rapidjson::kArrayType );
-	rapidjson::Value newName( rapidjson::kStringType );
 
-	//newArray.P
+	// Nazwa jest potrzebna tylko, je¿eli przyczepiamy siê do obiektu.
+	// W przypadku tablic wszystkie obiekty s¹ bez nazwy, wiêc unikamy alokacji pamiêci i wrzucamy pustego stringa.
+	rapidjson::Value newName( rapidjson::kStringType );
+	if( impl->valuesStack.top().IsObject() )
+		newName.SetString( name.c_str(), (rapidjson::SizeType)name.length(), impl->root.GetAllocator() );
+
+	// Wrzucamy nazwê jako pierwsz¹, a potem sam obiekt.
+	impl->valuesStack.push( std::move( newName ) );
+	impl->valuesStack.push( std::move( newArray ) );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -154,7 +168,11 @@ void ISerializer::SetValue( const std::string& name, const std::string& value )
 	rapidjson::Value valueName;
 	valueName.SetString( name.c_str(), (rapidjson::SizeType)name.length(), impl->root.GetAllocator() );
 	newObject.SetString( value.c_str(), (rapidjson::SizeType)value.length(), impl->root.GetAllocator() );
-	currentObject.AddMember( std::move( valueName ), std::move( newObject ), impl->root.GetAllocator() );
+
+	if( currentObject.IsObject() )
+		currentObject.AddMember( std::move( valueName ), std::move( newObject ), impl->root.GetAllocator() );
+	else
+		currentObject.PushBack( std::move( newObject ), impl->root.GetAllocator() );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -168,7 +186,11 @@ void ISerializer::SetValue( const std::string& name, const char* value )
 	rapidjson::Value valueName;
 	valueName.SetString( name.c_str(), (rapidjson::SizeType)name.length(), impl->root.GetAllocator() );
 	newObject.SetString( value, (rapidjson::SizeType)strlen( value ), impl->root.GetAllocator() );
-	currentObject.AddMember( std::move( valueName ), std::move( newObject ), impl->root.GetAllocator() );
+
+	if( currentObject.IsObject() )
+		currentObject.AddMember( std::move( valueName ), std::move( newObject ), impl->root.GetAllocator() );
+	else
+		currentObject.PushBack( std::move( newObject ), impl->root.GetAllocator() );
 }
 
 

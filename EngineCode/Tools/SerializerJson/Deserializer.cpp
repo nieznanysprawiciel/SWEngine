@@ -38,6 +38,7 @@ std::string& IDeserializer::GetValue( const std::string& name, std::string& defa
 	//valueName.SetString( name.c_str(), (rapidjson::SizeType)name.length(), impl->root.GetAllocator() );
 	//newObject.SetString( defaultValue.c_str(), (rapidjson::SizeType)defaultValue.length(), impl->root.GetAllocator() );
 	//currentObject.AddMember( std::move( valueName ), std::move( newObject ), impl->root.GetAllocator() );
+	return defaultValue;
 }
 
 
@@ -50,6 +51,7 @@ uint32 IDeserializer::GetValue( const std::string& name, uint32 defaultValue )
 	//rapidjson::Value newObject;
 	//newObject.SetUint( defaultValue );
 	//SetValueHelper( impl, name, newObject );
+	return defaultValue;
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -61,6 +63,7 @@ uint64 IDeserializer::GetValue( const std::string& name, uint64 defaultValue )
 	//rapidjson::Value newObject;
 	//newObject.SetUint64( defaultValue );
 	//SetValueHelper( impl, name, newObject );
+	return defaultValue;
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -72,6 +75,7 @@ int32 IDeserializer::GetValue( const std::string& name, int32 defaultValue )
 	//rapidjson::Value newObject;
 	//newObject.SetInt( defaultValue );
 	//SetValueHelper( impl, name, newObject );
+	return defaultValue;
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -83,6 +87,7 @@ int64 IDeserializer::GetValue( const std::string& name, int64 defaultValue )
 	//rapidjson::Value newObject;
 	//newObject.SetInt64( defaultValue );
 	//SetValueHelper( impl, name, newObject );
+	return defaultValue;
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -94,6 +99,7 @@ bool IDeserializer::GetValue( const std::string& name, bool defaultValue )
 	//rapidjson::Value newObject;
 	//newObject.SetBool( defaultValue );
 	//SetValueHelper( impl, name, newObject );
+	return defaultValue;
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -105,5 +111,6 @@ double IDeserializer::GetValue( const std::string& name, double defaultValue )
 	//rapidjson::Value newObject;
 	//newObject.SetDouble( defaultValue );
 	//SetValueHelper( impl, name, newObject );
+	return defaultValue;
 }
 
