@@ -6,6 +6,9 @@
 
 #include <windows.h>
 #include <fstream>
+#include <numeric>
+#undef max
+#undef min
 
 #include "Common/Serialization/Serializer.h"
 
@@ -62,13 +65,22 @@ int main()
 		serializer.EnterObject( "Data" );
 			serializer.SetValue( "Map", "LightmapGen1" );
 			serializer.SetValue( "Path", "/LightmapGen1.map" );
+			serializer.SetValue( "Load", true );
 		serializer.Exit();
 		serializer.EnterObject( "Data2" );
-			serializer.SetValue( "Asset", "TIE Fighter model" );
-			serializer.SetValue( "Asset", "Nebulon B" );
-			serializer.SetValue( "Asset", "Death Star" );
-			serializer.SetValue( "Asset", "Calamarian Cruiser" );
-			serializer.SetValue( "Asset", "Star Destroyer" );
+			serializer.SetValue( "Asset1", "TIE Fighter model" );
+			serializer.SetValue( "Asset2", "Nebulon B" );
+			serializer.SetValue( "Asset3", "Death Star" );
+			serializer.SetValue( "Asset4", "Calamarian Cruiser" );
+			serializer.SetValue( "Asset5", "Star Destroyer" );
+		serializer.Exit();
+		serializer.EnterObject( "Data3" );
+			serializer.SetValue( "NumberUnits", std::numeric_limits<uint32>::max() );
+			serializer.SetValue( "UnitsModifier", std::numeric_limits<int32>::min() );
+			serializer.SetValue( "PositionOffset", 0.412466762375758958574674674764488949497747648 );
+			serializer.SetValue( "Visible", true );
+			serializer.SetValue( "Key", std::numeric_limits<int64>::min() );
+			serializer.SetValue( "KeyHash", std::numeric_limits<uint64>::max() );
 		serializer.Exit();
 	serializer.Exit();
 

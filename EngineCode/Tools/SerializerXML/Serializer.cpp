@@ -5,6 +5,8 @@
 
 #include <fstream>
 #include <stack>
+#include <stdio.h>
+#include <float.h>
 
 struct SerializerImpl
 {
@@ -12,6 +14,21 @@ struct SerializerImpl
 	std::stack< rapidxml::xml_node<>* >	valuesStack;
 };
 
+namespace
+{
+
+/// Helper
+inline void SetValueHelper( SerializerImpl* impl, const char* name, Size nameSize, const char* value, Size valueSize )
+{
+	char* attribName = impl->root.allocate_string( name, nameSize );
+	char* attribValue = impl->root.allocate_string( value, valueSize );
+
+	rapidxml::xml_attribute<>* attribute = impl->root.allocate_attribute( attribName, attribValue, nameSize, valueSize );
+	auto currentNode = impl->valuesStack.top();
+	currentNode->append_attribute( attribute );
+}
+
+} //anonymous
 
 /**@brief Konstruktor*/
 ISerializer::ISerializer()
@@ -113,15 +130,7 @@ void ISerializer::EnterArray( const std::string& name )
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 void ISerializer::SetValue( const std::string& name, const std::string& value )
 {
-	Size attribNameSize = name.length();
-	Size attribValueSize = value.length();
-
-	char* attribName = impl->root.allocate_string( name.c_str(), attribNameSize );
-	char* attribValue = impl->root.allocate_string( value.c_str(), attribValueSize );
-
-	rapidxml::xml_attribute<>* attribute = impl->root.allocate_attribute( attribName, attribValue, attribNameSize, attribValueSize );
-	auto currentNode = impl->valuesStack.top();
-	currentNode->append_attribute( attribute );
+	SetValueHelper( impl, name.c_str(), name.length(), value.c_str(), value.length() );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -130,15 +139,7 @@ void ISerializer::SetValue( const std::string& name, const std::string& value )
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 void ISerializer::SetValue( const std::string& name, const char* value )
 {
-	Size attribNameSize = name.length();
-	Size attribValueSize = strlen( value );
-
-	char* attribName = impl->root.allocate_string( name.c_str(), attribNameSize );
-	char* attribValue = impl->root.allocate_string( value, attribValueSize );
-
-	rapidxml::xml_attribute<>* attribute = impl->root.allocate_attribute( attribName, attribValue, attribNameSize, attribValueSize );
-	auto currentNode = impl->valuesStack.top();
-	currentNode->append_attribute( attribute );
+	SetValueHelper( impl, name.c_str(), name.length(), value, strlen( value ) );
 }
 
 
@@ -148,9 +149,11 @@ void ISerializer::SetValue( const std::string& name, const char* value )
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 void ISerializer::SetValue( const std::string& name, uint32 value )
 {
-	//rapidjson::Value newObject;
-	//newObject.SetUint( value );
-	//SetValueHelper( impl, name, newObject );
+#define MAX_UINT32_SIGNS 11
+	char numericString[ MAX_UINT32_SIGNS ];
+	Size valueLength = sprintf_s( numericString, "%u", value );
+
+	SetValueHelper( impl, name.c_str(), name.length(), numericString, valueLength );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -159,9 +162,11 @@ void ISerializer::SetValue( const std::string& name, uint32 value )
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 void ISerializer::SetValue( const std::string& name, uint64 value )
 {
-	//rapidjson::Value newObject;
-	//newObject.SetUint64( value );
-	//SetValueHelper( impl, name, newObject );
+#define MAX_UINT64_SIGNS 21
+	char numericString[ MAX_UINT64_SIGNS ];
+	Size valueLength = sprintf_s( numericString, "%llu", value );
+
+	SetValueHelper( impl, name.c_str(), name.length(), numericString, valueLength );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -170,9 +175,11 @@ void ISerializer::SetValue( const std::string& name, uint64 value )
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 void ISerializer::SetValue( const std::string& name, int32 value )
 {
-	//rapidjson::Value newObject;
-	//newObject.SetInt( value );
-	//SetValueHelper( impl, name, newObject );
+#define MAX_INT32_SIGNS 12
+	char numericString[ MAX_INT32_SIGNS ];
+	Size valueLength = sprintf_s( numericString, "%i", value );
+
+	SetValueHelper( impl, name.c_str(), name.length(), numericString, valueLength );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -181,9 +188,11 @@ void ISerializer::SetValue( const std::string& name, int32 value )
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 void ISerializer::SetValue( const std::string& name, int64 value )
 {
-	//rapidjson::Value newObject;
-	//newObject.SetInt64( value );
-	//SetValueHelper( impl, name, newObject );
+#define MAX_INT64_SIGNS 22
+	char numericString[ MAX_INT64_SIGNS ];
+	Size valueLength = sprintf_s( numericString, "%lli", value );
+
+	SetValueHelper( impl, name.c_str(), name.length(), numericString, valueLength );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -192,9 +201,10 @@ void ISerializer::SetValue( const std::string& name, int64 value )
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 void ISerializer::SetValue( const std::string& name, bool value )
 {
-	//rapidjson::Value newObject;
-	//newObject.SetBool( value );
-	//SetValueHelper( impl, name, newObject );
+	if( value )
+		SetValueHelper( impl, name.c_str(), name.length(), "true", 4 );
+	else
+		SetValueHelper( impl, name.c_str(), name.length(), "false", 5 );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -203,8 +213,10 @@ void ISerializer::SetValue( const std::string& name, bool value )
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 void ISerializer::SetValue( const std::string& name, double value )
 {
-	//rapidjson::Value newObject;
-	//newObject.SetDouble( value );
-	//SetValueHelper( impl, name, newObject );
+#define MAX_DOUBLE_SIGNS ( 3 + DBL_MANT_DIG - DBL_MIN_EXP )
+	char numericString[ MAX_DOUBLE_SIGNS ];
+	Size valueLength = sprintf_s( numericString, "%lf", value );
+
+	SetValueHelper( impl, name.c_str(), name.length(), numericString, valueLength );
 }
 
