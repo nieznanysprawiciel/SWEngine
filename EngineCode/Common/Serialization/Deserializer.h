@@ -1,4 +1,9 @@
 #pragma once
+/**@file Deserializer.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
+@brief Deklaracja klasy deserializatora.*/
 
 #include "Common/TypesDefinitions.h"
 

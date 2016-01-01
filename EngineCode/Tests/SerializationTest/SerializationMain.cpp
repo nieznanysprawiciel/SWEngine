@@ -1,3 +1,9 @@
+/**@file SerializationMain.cpp
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
+@brief Testy serializatora.*/
+
 #include <windows.h>
 #include <fstream>
 

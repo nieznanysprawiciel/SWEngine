@@ -1,4 +1,9 @@
 #pragma once
+/**@file Serializer.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
+@brief Deklaracja klasy serializatora.*/
 
 #include "Common/TypesDefinitions.h"
 

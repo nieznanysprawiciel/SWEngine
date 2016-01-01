@@ -19,17 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\EngineCode\Tools\SerializerJson\Deserializer.cpp" />
-    <ClCompile Include="..\..\EngineCode\Tools\SerializerJson\Serializer.cpp" />
+    <ClCompile Include="..\..\EngineCode\Tools\SerializerXML\Deserializer.cpp" />
+    <ClCompile Include="..\..\EngineCode\Tools\SerializerXML\Serializer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\Common\Serialization\Deserializer.h" />
     <ClInclude Include="..\..\EngineCode\Common\Serialization\Serializer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D8738375-5855-4241-8CB9-63FFE08E1B96}</ProjectGuid>
+    <ProjectGuid>{49CF5D13-CF9B-4653-9586-05CB12B9A4CA}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>SerializerJSON</RootNamespace>
+    <RootNamespace>SerializerXML</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -65,29 +65,29 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\DebugConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="SerializerJsonPathMacros.props" />
-    <Import Project="SerializerJsonConfiguration.props" />
+    <Import Project="SerializerXMLPathMacros.props" />
+    <Import Project="SerializerXMLConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\DebugConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="SerializerJsonPathMacros.props" />
-    <Import Project="SerializerJsonConfiguration.props" />
+    <Import Project="SerializerXMLPathMacros.props" />
+    <Import Project="SerializerXMLConfiguration.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\ReleaseConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="SerializerJsonPathMacros.props" />
-    <Import Project="SerializerJsonConfiguration.props" />
+    <Import Project="SerializerXMLPathMacros.props" />
+    <Import Project="SerializerXMLConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\ReleaseConfig.props" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="SerializerJsonPathMacros.props" />
-    <Import Project="SerializerJsonConfiguration.props" />
+    <Import Project="SerializerXMLPathMacros.props" />
+    <Import Project="SerializerXMLConfiguration.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />

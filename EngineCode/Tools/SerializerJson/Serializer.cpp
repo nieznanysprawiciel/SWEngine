@@ -1,4 +1,4 @@
-#include "Serializer.h"
+#include "Common/Serialization/Serializer.h"
 
 
 #define RAPIDJSON_HAS_STDSTRING 1
@@ -62,6 +62,9 @@ ISerializer::ISerializer()
 ISerializer::~ISerializer()
 { delete impl; }
 
+/**@brief Zwraca stringa zawieraj¹cego zserializowanego Jsona.
+
+@param[in] mode Formatowanie stringa.*/
 std::string	ISerializer::SaveString( WritingMode mode )
 {
 	while( impl->valuesStack.size() > 1 )
