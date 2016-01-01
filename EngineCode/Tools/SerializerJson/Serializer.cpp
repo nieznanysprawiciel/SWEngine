@@ -64,6 +64,9 @@ ISerializer::~ISerializer()
 
 /**@brief Zwraca stringa zawieraj¹cego zserializowanego Jsona.
 
+@attention Po wykonaniu funkcji serializator wraca na zerowy poziom
+zagnie¿d¿enia node'ów.
+
 @param[in] mode Formatowanie stringa.*/
 std::string	ISerializer::SaveString( WritingMode mode )
 {
@@ -82,6 +85,11 @@ std::string	ISerializer::SaveString( WritingMode mode )
 
 
 /**@brief Zapisuje zserializowane dane do pliku.
+
+@attention Po wykonaniu funkcji serializator wraca na zerowy poziom
+zagnie¿d¿enia node'ów, je¿eli zapis do pliku zosta³ wykonany poprawnie.
+Je¿eli funkcja zwróci³a false, to serializator nadal jest na tym samym poziomie.
+
 @param[in] fileName Nazwa pliku docelowego.
 @return Zwraca true, je¿eli zapisywanie powiedzie siê.*/
 bool ISerializer::SaveFile( const std::string& fileName, WritingMode mode )
