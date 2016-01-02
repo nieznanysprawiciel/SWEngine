@@ -111,17 +111,9 @@ void ISerializer::Exit()
 @param[in] name Nazwa tablicy.*/
 void ISerializer::EnterArray( const std::string& name )
 {
-	//rapidjson::Value newArray( rapidjson::kArrayType );
-
-	//// Nazwa jest potrzebna tylko, je¿eli przyczepiamy siê do obiektu.
-	//// W przypadku tablic wszystkie obiekty s¹ bez nazwy, wiêc unikamy alokacji pamiêci i wrzucamy pustego stringa.
-	//rapidjson::Value newName( rapidjson::kStringType );
-	//if( impl->valuesStack.top().IsObject() )
-	//	newName.SetString( name.c_str(), (rapidjson::SizeType)name.length(), impl->root.GetAllocator() );
-
-	//// Wrzucamy nazwê jako pierwsz¹, a potem sam obiekt.
-	//impl->valuesStack.push( std::move( newName ) );
-	//impl->valuesStack.push( std::move( newArray ) );
+	char* nodeName = impl->root.allocate_string( name.c_str() );
+	rapidxml::xml_node<>* node = impl->root.allocate_node( rapidxml::node_type::node_element, nodeName );
+	impl->valuesStack.push( node );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
