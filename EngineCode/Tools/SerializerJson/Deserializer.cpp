@@ -3,27 +3,81 @@
 #define RAPIDJSON_HAS_STDSTRING 1
 #include "rapidjson/rapidjson.h"
 #include "rapidjson/document.h"
-#include "rapidjson/writer.h"
-#include "rapidjson/prettywriter.h"
-#include "rapidjson/stringbuffer.h"
+#include "rapidjson/filereadstream.h"
 
-#include <fstream>
+#ifdef _WIN32
+	#define _CRT_SECURE_NO_DEPRECATE
+	#define _CRT_SECURE_NO_WARNINGS
+#endif
+
+#include <stdio.h>
 #include <stack>
 
+#include "Common/memory_leaks.h"
 
 struct DeserializerImpl
 {
+	rapidjson::Document				root;
+	std::stack<rapidjson::Value>	valuesStack;
+	char*							fileContent;
 
+	DeserializerImpl()
+	{	fileContent = nullptr;	}
 };
 
 
 IDeserializer::IDeserializer()
-{ }
+{
+	impl = new DeserializerImpl;
+}
 
 IDeserializer::~IDeserializer()
-{ }
+{	
+	delete[] impl->fileContent;
+	delete impl;
+}
 
 
+bool			IDeserializer::LoadFromFile		( const std::string& fileName, ParsingMode mode )
+{
+	FILE* file = fopen( fileName.c_str(), "r" );
+
+	if( file == nullptr )
+		return false;
+
+	// Wyznaczamy d³ugoœæ pliku.
+	fseek( file, 0, SEEK_END );		// Przechodzi na koniec pliku.
+	Size fileSize = ftell( file );
+	rewind( file );					// Wraca na pocz¹tek pliku.
+
+	// Alokujemy bufor odpowiedniej d³ugoœci
+	impl->fileContent = new char[ fileSize ];
+
+	// Wczytujemy plik do bufora
+	fread( impl->fileContent, sizeof( char ), fileSize, file );
+	fclose( file );
+
+	// Parsujemy w zale¿noœci od wybranego trybu
+	if( mode == ParsingMode::ParseInsitu )
+		impl->root.ParseInsitu( impl->fileContent );
+	else // ParsingMode::AllocStrings
+	{
+		// W tym trybie wszystkie stringi s¹ alokowane.
+		// Dlatego po wykonaniu tej operacji kasujemy bufor.
+		impl->root.Parse( impl->fileContent );
+		delete[] impl->fileContent;
+		impl->fileContent = nullptr;
+	}
+	
+	if( impl->root.HasParseError() )
+		return false;
+	return true;
+}
+
+bool			IDeserializer::LoadFromString	( const std::string& contentString )
+{
+	return false;
+}
 
 
 /**@brief Pobiera parê ( nazwa, wartoœæ ) w aktualnym obiekcie.

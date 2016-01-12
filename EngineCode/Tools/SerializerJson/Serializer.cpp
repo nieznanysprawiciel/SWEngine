@@ -11,6 +11,8 @@
 #include <fstream>
 #include <stack>
 
+#include "Common/memory_leaks.h"
+
 struct SerializerImpl
 {
 	rapidjson::Document				root;
