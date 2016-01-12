@@ -18,7 +18,7 @@
 struct DeserializerImpl
 {
 	rapidjson::Document				root;
-	std::stack<rapidjson::Value>	valuesStack;
+	std::stack<rapidjson::Value*>	valuesStack;
 	char*							fileContent;
 
 	DeserializerImpl()
@@ -71,12 +71,66 @@ bool			IDeserializer::LoadFromFile		( const std::string& fileName, ParsingMode m
 	
 	if( impl->root.HasParseError() )
 		return false;
+
+
+	impl->valuesStack.push( &impl->root );
 	return true;
 }
 
 bool			IDeserializer::LoadFromString	( const std::string& contentString )
 {
 	return false;
+}
+
+/**@brief Wyszukuje obiekt o podanej nazwie i wchodzi w g³¹b drzewa.
+
+@param[in] name Nazwa obiektu.
+@return Zwraca false, je¿eli obiekt o danej nazwie nie istnieje.*/
+bool			IDeserializer::EnterObject		( const std::string& name )
+{
+	auto value = impl->valuesStack.top();
+
+	auto iterator = value->FindMember( name.c_str() );
+	if( iterator == value->MemberEnd() )
+		return false;
+
+	assert( iterator->value.IsObject() );
+
+	impl->valuesStack.push( &iterator->value );
+	return true;
+}
+
+/**@brief Wyszukuje tablicê o podanej nazwie i wchodzi w g³¹b drzewa.
+
+@param[in] name Nazwa tablicy.
+@return Zwraca false, je¿eli tablica o danej nazwie nie istnieje.*/
+bool			IDeserializer::EnterArray		( const std::string& name )
+{
+	auto value = impl->valuesStack.top();
+
+	auto iterator = value->FindMember( name.c_str() );
+	if( iterator == value->MemberEnd() )
+		return false;
+
+	assert( iterator->value.IsArray() );
+
+	impl->valuesStack.push( &iterator->value );
+	return true;
+}
+
+/**@brief */
+void			IDeserializer::Exit			()
+{
+	auto value = impl->valuesStack.top();
+	if( value->IsObject() )
+		impl->valuesStack.pop();
+	else if( value->IsArray() )
+	{
+		impl->valuesStack.pop();
+		// Coœ jeszcze
+	}
+	else
+		assert( false );
 }
 
 
