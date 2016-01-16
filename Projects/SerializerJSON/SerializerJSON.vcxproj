@@ -20,11 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\Tools\SerializerJson\Deserializer.cpp" />
+    <ClCompile Include="..\..\EngineCode\Tools\SerializerJson\ErrorCodes.cpp" />
     <ClCompile Include="..\..\EngineCode\Tools\SerializerJson\Serializer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\Common\Serialization\Deserializer.h" />
     <ClInclude Include="..\..\EngineCode\Common\Serialization\Serializer.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\SerializerJson\ErrorCodes.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D8738375-5855-4241-8CB9-63FFE08E1B96}</ProjectGuid>

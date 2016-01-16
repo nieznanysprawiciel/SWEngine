@@ -18,6 +18,9 @@
     <ClCompile Include="..\..\EngineCode\Tools\SerializerJson\Deserializer.cpp">
       <Filter>SerializerJSON</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\Tools\SerializerJson\ErrorCodes.cpp">
+      <Filter>SerializerJSON</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\Common\Serialization\Deserializer.h">
@@ -25,6 +28,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\Serialization\Serializer.h">
       <Filter>Common\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\SerializerJson\ErrorCodes.h">
+      <Filter>SerializerJSON</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

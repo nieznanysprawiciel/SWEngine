@@ -2,7 +2,15 @@
 //
 
 #include "EditorPlugin.h"
+
+
+
+//#pragma managed(push, off)
+//========================================//
+// Engine include
+#include "EngineCore/MainEngine/Engine.h"
 #include "Common/macros_switches.h"
+
 
 
 //extern 	HINSTANCE moduleHandle;
@@ -79,3 +87,7 @@ void EngineWrapper::TestScene()
 }
 
 } //EditorPlugin
+
+
+//#pragma managed(pop)
+

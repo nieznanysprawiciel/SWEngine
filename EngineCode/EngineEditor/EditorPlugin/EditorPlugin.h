@@ -30,9 +30,7 @@ napisanego w C#.
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
-//========================================//
-// Engine include
-#include "EngineCore/MainEngine/Engine.h"
+class Engine;
 
 namespace EditorPlugin
 {

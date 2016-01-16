@@ -11,7 +11,7 @@
 #undef min
 
 #include "Common/Serialization/Serializer.h"
-
+#include "Common/Serialization/Deserializer.h"
 
 int main()
 {
@@ -84,9 +84,44 @@ int main()
 	//	serializer.Exit();
 	//serializer.Exit();
 
-	std::string fileName = "tylko_do_testow/serialization/serialWrite.xml";
+	std::string fileName = "tylko_do_testow/serialization/serialWrite.json";
 	if( !serializer.SaveFile( fileName, WritingMode::Readable ) )
-		OutputDebugString( L"Error: Saving \"tylko_do_testow/serialization/serialWrite.xml\" failed!\n" );
+		OutputDebugString( L"Error: Saving \"tylko_do_testow/serialization/serialWrite.json\" failed!\n" );
+
+
+	std::string readFileName = "tylko_do_testow/serialization/serialRead.json";
+	std::ofstream outputFile( "tylko_do_testow/serialization/testResult.txt" );
+
+	IDeserializer deser;
+
+
+	if( deser.LoadFromFile( readFileName, ParsingMode::ParseInsitu ) )
+	{
+		auto freeValue = deser.GetAttribute( "FreeValue", "GetAttribute error" );
+		deser.EnterObject( "FirstObject" );
+			auto map = deser.GetAttribute( "Map", "GetAttribute error" );
+			auto path = deser.GetAttribute( "Path", "GetAttribute error" );
+			//deser.GetAttribute( "Load", true );
+			deser.EnterObject( "Data" );
+				//deser.GetAttribute( "NumberUnits", 1266643 );
+				//deser.GetAttribute( "PositionOffset", 0.4124667623 );
+				//deser.GetAttribute( "Visible", true );
+				//deser.GetAttribute( "Key", 218588284382834538 );
+			deser.Exit();
+		deser.Exit();
+
+
+		outputFile << freeValue << std::endl;
+		outputFile << map << std::endl;
+		outputFile << path << std::endl;
+
+	}
+	else
+	{
+		std::string errorMessage = deser.GetError();
+		OutputDebugString( std::wstring( errorMessage.begin(), errorMessage.end() ).c_str() );
+		OutputDebugString( L"\n" );
+	}
 
 	return 0;
 }

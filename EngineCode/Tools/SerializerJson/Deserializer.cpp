@@ -10,10 +10,11 @@
 	#define _CRT_SECURE_NO_WARNINGS
 #endif
 
-#include <stdio.h>
+#include <fstream>
 #include <stack>
 
 #include "Common/memory_leaks.h"
+#include "ErrorCodes.h"
 
 struct DeserializerImpl
 {
@@ -40,22 +41,26 @@ IDeserializer::~IDeserializer()
 
 bool			IDeserializer::LoadFromFile		( const std::string& fileName, ParsingMode mode )
 {
-	FILE* file = fopen( fileName.c_str(), "r" );
+	std::ifstream file( fileName, std::ios::binary | std::ios::ate );
 
-	if( file == nullptr )
+	if( file.fail() )
 		return false;
+	
+	// Szukamy koñca pliku, a potem wracamy na pocz¹tek.
+	std::streambuf* rawBuffer = file.rdbuf();
+	unsigned int fileSize = rawBuffer->pubseekoff( 0, file.end );
+	file.seekg ( 0, file.beg );
 
-	// Wyznaczamy d³ugoœæ pliku.
-	fseek( file, 0, SEEK_END );		// Przechodzi na koniec pliku.
-	Size fileSize = ftell( file );
-	rewind( file );					// Wraca na pocz¹tek pliku.
 
 	// Alokujemy bufor odpowiedniej d³ugoœci
-	impl->fileContent = new char[ fileSize ];
+	impl->fileContent = new char[ fileSize + 1 ];
 
 	// Wczytujemy plik do bufora
-	fread( impl->fileContent, sizeof( char ), fileSize, file );
-	fclose( file );
+	auto result = rawBuffer->sgetn( impl->fileContent, fileSize );
+	file.close();
+
+	// Dodajemy znak koñca stringa na koñcu pliku
+	impl->fileContent[ result ] = '\0';
 
 	// Parsujemy w zale¿noœci od wybranego trybu
 	if( mode == ParsingMode::ParseInsitu )
@@ -133,20 +138,48 @@ void			IDeserializer::Exit			()
 		assert( false );
 }
 
+/**@brief */
+bool IDeserializer::NextElement()
+{
+	return false;
+}
+
+/**@brief */
+bool IDeserializer::PrevElement()
+{
+	return false;
+}
 
 /**@brief Pobiera parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
-std::string& IDeserializer::GetValue( const std::string& name, std::string& defaultValue )
+std::string IDeserializer::GetAttribute( const std::string& name, std::string& defaultValue )
 {
-	//rapidjson::Value& currentObject = impl->valuesStack.top();	// Obiekt, do którego przyczepiamy atrybut.
-	//rapidjson::Value newObject;
-	//rapidjson::Value valueName;
-	//valueName.SetString( name.c_str(), (rapidjson::SizeType)name.length(), impl->root.GetAllocator() );
-	//newObject.SetString( defaultValue.c_str(), (rapidjson::SizeType)defaultValue.length(), impl->root.GetAllocator() );
-	//currentObject.AddMember( std::move( valueName ), std::move( newObject ), impl->root.GetAllocator() );
-	return defaultValue;
+	rapidjson::Value* currentObject = impl->valuesStack.top();	// Obiekt, w którym szukamy atrybutów
+
+	auto iterator = currentObject->FindMember( name );
+	if( iterator == currentObject->MemberEnd() || !iterator->value.IsString() )
+		return defaultValue;
+
+	return iterator->value.GetString();
+}
+
+/**@brief Zwraca atrybut o podanej nazwie.
+
+@attention Zwracany string przestanie istnieæ w momencie usuniêcia serializatora lub zmiany zawartoœci.
+
+@param[in] name Nazwa atrybutu
+@param[in] defaultValue Je¿eli element o podanej nazwie nie istnieje, zostanie zwrócona wartoœæ domyœlna.*/
+const char* IDeserializer::GetAttribute( const std::string& name, const char* defaultValue )
+{
+	rapidjson::Value* currentObject = impl->valuesStack.top();	// Obiekt, w którym szukamy atrybutów
+
+	auto iterator = currentObject->FindMember( name );
+	if( iterator == currentObject->MemberEnd() || !iterator->value.IsString() )
+		return defaultValue;
+
+	return iterator->value.GetString();
 }
 
 
@@ -154,7 +187,7 @@ std::string& IDeserializer::GetValue( const std::string& name, std::string& defa
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
-uint32 IDeserializer::GetValue( const std::string& name, uint32 defaultValue )
+uint32 IDeserializer::GetAttribute( const std::string& name, uint32 defaultValue )
 {
 	//rapidjson::Value newObject;
 	//newObject.SetUint( defaultValue );
@@ -166,7 +199,7 @@ uint32 IDeserializer::GetValue( const std::string& name, uint32 defaultValue )
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
-uint64 IDeserializer::GetValue( const std::string& name, uint64 defaultValue )
+uint64 IDeserializer::GetAttribute( const std::string& name, uint64 defaultValue )
 {
 	//rapidjson::Value newObject;
 	//newObject.SetUint64( defaultValue );
@@ -178,7 +211,7 @@ uint64 IDeserializer::GetValue( const std::string& name, uint64 defaultValue )
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
-int32 IDeserializer::GetValue( const std::string& name, int32 defaultValue )
+int32 IDeserializer::GetAttribute( const std::string& name, int32 defaultValue )
 {
 	//rapidjson::Value newObject;
 	//newObject.SetInt( defaultValue );
@@ -190,7 +223,7 @@ int32 IDeserializer::GetValue( const std::string& name, int32 defaultValue )
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
-int64 IDeserializer::GetValue( const std::string& name, int64 defaultValue )
+int64 IDeserializer::GetAttribute( const std::string& name, int64 defaultValue )
 {
 	//rapidjson::Value newObject;
 	//newObject.SetInt64( defaultValue );
@@ -202,7 +235,7 @@ int64 IDeserializer::GetValue( const std::string& name, int64 defaultValue )
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
-bool IDeserializer::GetValue( const std::string& name, bool defaultValue )
+bool IDeserializer::GetAttribute( const std::string& name, bool defaultValue )
 {
 	//rapidjson::Value newObject;
 	//newObject.SetBool( defaultValue );
@@ -214,11 +247,20 @@ bool IDeserializer::GetValue( const std::string& name, bool defaultValue )
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
-double IDeserializer::GetValue( const std::string& name, double defaultValue )
+double IDeserializer::GetAttribute( const std::string& name, double defaultValue )
 {
 	//rapidjson::Value newObject;
 	//newObject.SetDouble( defaultValue );
 	//SetValueHelper( impl, name, newObject );
 	return defaultValue;
+}
+
+std::string IDeserializer::GetError()
+{
+	rapidjson::ParseErrorCode code = impl->root.GetParseError();
+	auto lineNum = impl->root.GetErrorOffset();
+	
+	std::string errorMessage = "Error: " + std::string( GetStringFromCode( code ) ) + " Offset: " + std::to_string( lineNum );
+	return std::move( errorMessage );
 }
 

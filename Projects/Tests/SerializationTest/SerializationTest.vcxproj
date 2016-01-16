@@ -67,7 +67,7 @@
     <Import Project="..\..\Props\PathsMacros.props" />
     <Import Project="SerializationTestPathMacros.props" />
     <Import Project="SerializationTestConfiguration.props" />
-    <Import Project="..\..\SerializerXML\SerializerXMLPathMacros.props" />
+    <Import Project="..\..\SerializerJSON\SerializerJsonPathMacros.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
