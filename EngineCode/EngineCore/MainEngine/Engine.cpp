@@ -163,13 +163,13 @@ int Engine::InitEngine( int width, int height, bool fullScreen, int nCmdShow )
 
 
 
-bool Engine::InitGraphicAPI( int width, int height, bool full_screen )
+bool Engine::InitGraphicAPI( int width, int height, bool fullScreen )
 {
 	bool result;
 
 	//Inicjalizowanie API graficznego
 	GraphicAPIInitData initData;
-	initData.fullScreen			= full_screen;
+	initData.fullScreen			= fullScreen;
 	initData.singleThreaded		= false;
 	initData.windowHandle		= (uint32)Context.windowHandler;
 	initData.windowHeight		= height;

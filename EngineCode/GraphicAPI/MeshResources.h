@@ -380,12 +380,12 @@ public:
 @ingroup GraphicAPI*/
 class ComputeShaderObject : public IShader
 {
-	friend ObjectDeleter<PixelShaderObject>;
+	friend ObjectDeleter<ComputeShaderObject>;
 private:
 protected:
 	~ComputeShaderObject() = default;
 public:
-	ComputeShaderObject();
+	ComputeShaderObject() = default;
 };
 
 //----------------------------------------------------------------------------------------------//
