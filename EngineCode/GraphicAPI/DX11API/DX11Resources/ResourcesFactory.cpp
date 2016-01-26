@@ -3,6 +3,7 @@
 
 #include "DX11VertexShader.h"
 #include "DX11PixelShader.h"
+#include "DX11ComputeShader.h"
 #include "DX11Buffer.h"
 #include "DX11Texture.h"
 #include "DX11RenderTarget.h"
@@ -15,7 +16,7 @@ typedef DX11Texture				Texture;
 typedef DX11VertexShader		VertexShader;
 typedef DX11PixelShader			PixelShader;
 typedef DX11Buffer				Buffer;
-
+typedef DX11ComputeShader		ComputeShader;
 
 
 /**@brief Tworzy teksturê z podanego pliku.
@@ -63,6 +64,16 @@ VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile	( const std::w
 PixelShaderObject*		ResourcesFactory::CreatePixelShaderFromFile( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
 {
 	return PixelShader::CreateFromFile( fileName, shaderName, shaderModel );
+}
+
+/**@brief Tworzy obekt compute shadera.
+@param[in] fileName Nazwa pliku z kodem shadera.
+@param[in] shaderName Nazwa funkcji, od której ma siê rozpocz¹æ wykonanie programu shadera.
+@param[in] shaderModel Shader model.
+@return Zwraca obiekt vertex shadera lub nullptr w przypadku niepowodzenia.*/
+ComputeShaderObject*		ResourcesFactory::CreateComputeShaderFromFile		( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
+{
+	return ComputeShader::CreateFromFile( fileName, shaderName, shaderModel );
 }
 
 /**@brief Tworzy bufor na podstawie sanych w pamiêci.

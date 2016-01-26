@@ -24,6 +24,7 @@ private:
 	static TextureObject*			CreateTextureFromFile			( const std::wstring& fileName );
 	static VertexShaderObject*		CreateVertexShaderFromFile		( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel = "vs_4_0" );
 	static PixelShaderObject*		CreatePixelShaderFromFile		( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel = "ps_4_0" );
+	static ComputeShaderObject*		CreateComputeShaderFromFile		( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel = "cs_4_0" );
 	static BufferObject*			CreateBufferFromMemory			( const void* buffer,
 																	unsigned int elementSize,
 																	unsigned int vertCount,
