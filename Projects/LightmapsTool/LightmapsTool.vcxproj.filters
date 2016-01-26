@@ -21,6 +21,9 @@
     <ClCompile Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorkers\LightmapWorkerCPU.cpp">
       <Filter>LightmapsTool\LigthmapWorkers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorkers\LightmapWorkerCUDA.cpp">
+      <Filter>LightmapsTool\LigthmapWorkers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\stdafx.h">

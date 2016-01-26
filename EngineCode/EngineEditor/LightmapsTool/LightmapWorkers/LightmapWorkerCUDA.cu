@@ -1,4 +1,4 @@
-#include "EngineEditor/LightmapsTool/stdafx.h"
+//#include "EngineEditor/LightmapsTool/stdafx.h"
 
 // To makro musi byæ zdefiniowane przed zaincludowaniem DirectXMath (w LightmapWorkerCUDA.h).
 // Biblioteka u¿ywa domyœlnie zestawu instrukcji SSE2 i trzeba to wy³¹czyæ.
@@ -26,16 +26,6 @@
 
 #include <cuda.h>
 #include "helper_cuda.h"
-
-//#include "Common/memory_leaks.h"
-
-using namespace DirectX;
-
-LightmapWorkerCUDA::LightmapWorkerCUDA( SceneData* sceneData )
-	: LightmapWorker( sceneData )
-{
-	m_threshold = 0.04f;
-}
 
 // ============================================================================= //
 // Funkcje pomocnicze - ogólne
@@ -177,14 +167,15 @@ __device__ static glm::vec3 HemisphereCast( Triangle4& emiter, Triangle4& receiv
 /**@brief Dodaje pod podanymi indeksami w chunku element addValue.
 
 Do zaimplementowania*/
-__device__ inline glm::vec3& LoadAddStore( glm::vec3* chunk, unsigned int i, unsigned int j, glm::vec4 addValue )
+__device__ inline glm::vec3& LoadAddStore( glm::vec3* chunk, unsigned int i, unsigned int j, glm::vec3 addValue )
 {
 	//auto& lightValueRef = chunk[ i ].Get<glm::vec3>( j );
-	//glm::vec4 lightValue = XMLoadFloat3( &lightValueRef );
-	//lightValue = XMVectorAdd( addValue, lightValue );
-	//XMStoreFloat3( &lightValueRef, lightValue );
+	auto& lightValueRef = chunk[ i ];
+	glm::vec3 lightValue = lightValueRef;
+	lightValue = addValue + lightValue;
+	lightValueRef = lightValue;
 
-	//return lightValueRef;
+	return lightValueRef;
 }
 
 /**@brief Rasteryzuje podany trójk¹t. Sprawdza czy jest bli¿ej emitera od ostatnio
