@@ -102,17 +102,17 @@ int min3( float x1, float x2, float x3 )
 /**@brief Funkcja znajduje trojk¹t o najwiêkszej zgromadznej energii do wyemitowania.
 
 Prawdopodobnie bêdzie to robione jak¹œ form¹ redukcji.*/
-__host__ std::tuple<unsigned int, unsigned int, float> FindMaxEmission( thrust::device_vector<DirectX::XMFLOAT3>& emissionLight, unsigned emissionLightSize )
+__host__ std::tuple<unsigned int, unsigned int, float> FindMaxEmission( thrust::device_vector<glm::vec3>& emissionLight, unsigned emissionLightSize )
 {
-	//typedef std::tuple<unsigned int, unsigned int, XMFLOAT3> Emission;
+	//typedef std::tuple<unsigned int, unsigned int, glm::vec3> Emission;
 
 	//class CompareEmissionFunction : thrust::binary_function < Emission, Emission, Emission >
 	//{
 	//public:
 	//	Emission operator()( Emission &left, Emission &right )
 	//	{
-	//		XMFLOAT3 leftEmission = std::get<2>( left );
-	//		XMFLOAT3 rightEmission = std::get<2>( right );
+	//		glm::vec3 leftEmission = std::get<2>( left );
+	//		glm::vec3 rightEmission = std::get<2>( right );
 
 	//		float maxL = fmax( leftEmission.x, leftEmission.y, leftEmission.z );
 	//		float maxR = fmax( rightEmission.x, rightEmission.y, rightEmission.z );
@@ -121,16 +121,16 @@ __host__ std::tuple<unsigned int, unsigned int, float> FindMaxEmission( thrust::
 	//	}
 	//};
 
-	//Emission initialValue = std::make_tuple( 0, 0, XMFLOAT3( -1.0f, -1.0f, -1.0f ) );
+	//Emission initialValue = std::make_tuple( 0, 0, glm::vec3( -1.0f, -1.0f, -1.0f ) );
 	//Emission foundValue = thrust::reduce( emissionLight, emissionLight + emissionLightSize, initialValue, CompareEmissionFunction() );
 
-	//XMFLOAT3 emissionValue = std::get<2>( foundValue );
+	//glm::vec3 emissionValue = std::get<2>( foundValue );
 	//return std::make_tuple( std::get<0>( foundValue ), std::get<1>( foundValue ), fmax( emissionValue.x, emissionValue.y, emissionValue.z ) );
 }
 
 /**@brief Wylicza wspó³rzêdn¹ barycentryczn¹ punktu wzglêdem krawêdzie.
 Wspó³rzêdne nie s¹ wyskalowane do jedynki. Nale¿y je wyskalowaæ kiedy siê wyliczy wszystkie.*/
-__device__ static float BarycentricCoords( DirectX::XMFLOAT2& vertex1, DirectX::XMFLOAT2& vertex2, DirectX::XMINT2& point )
+__device__ static float BarycentricCoords( glm::vec2& vertex1, glm::vec2& vertex2, glm::ivec2& point )
 {
 	return ( vertex2.x - vertex1.x ) * ( point.y - vertex1.y ) - ( vertex2.y - vertex1.y ) * ( point.x - vertex1.x );
 }
@@ -140,7 +140,7 @@ __device__ static float BarycentricCoords( DirectX::XMFLOAT2& vertex1, DirectX::
 @return Zwraca wektor z g³êbokoœciami dla ka¿dego trójk¹ta.Je¿eli jakiœ wierzcho³ek
 znajduje siê za p³aszczyzn¹ rzutowania, funkcja zwraca(-1.0, -1.0, -1.0).W normalnej sytuacji
 wszystkie wspó³rzêdne s¹ dodatnie. */
-__device__ static DirectX::XMFLOAT3 HemisphereCast( Triangle4& emiter, Triangle4& receiver, XMMATRIX& emiterViewMatrix )
+__device__ static glm::vec3 HemisphereCast( Triangle4& emiter, Triangle4& receiver, glm::mat4& emiterViewMatrix )
 {
 	// Poniewa¿ to s¹ wierzcho³ki, to ustawiamy komponent w na 1.
 	receiver.vertex1 = XMVectorSetW( receiver.vertex1, 1.0f );
@@ -149,21 +149,21 @@ __device__ static DirectX::XMFLOAT3 HemisphereCast( Triangle4& emiter, Triangle4
 
 	// Transformujemy wierzcho³ki do uk³adu emitera. Dziêki temu xy jest pozycj¹ na p³aszczyŸnie (na razie jeszcze nie jednostkowej)
 	// a z jest odleg³oœci¹ od emitera.
-	XMVECTOR centerToVertex1 = XMVector4Transform( receiver.vertex1, emiterViewMatrix );
-	XMVECTOR centerToVertex2 = XMVector4Transform( receiver.vertex2, emiterViewMatrix );
-	XMVECTOR centerToVertex3 = XMVector4Transform( receiver.vertex3, emiterViewMatrix );
+	glm::vec4 centerToVertex1 = XMVector4Transform( receiver.vertex1, emiterViewMatrix );
+	glm::vec4 centerToVertex2 = XMVector4Transform( receiver.vertex2, emiterViewMatrix );
+	glm::vec4 centerToVertex3 = XMVector4Transform( receiver.vertex3, emiterViewMatrix );
 
 	// Wyliczenie d³ugoœci od œrodka do wierzcho³ków.
-	XMVECTOR depth1 = XMVector3Length( centerToVertex1 );
-	XMVECTOR depth2 = XMVector3Length( centerToVertex2 );
-	XMVECTOR depth3 = XMVector3Length( centerToVertex3 );
+	glm::vec4 depth1 = XMVector3Length( centerToVertex1 );
+	glm::vec4 depth2 = XMVector3Length( centerToVertex2 );
+	glm::vec4 depth3 = XMVector3Length( centerToVertex3 );
 
 	// Normalizacja wektorów
 	receiver.vertex1 = XMVectorDivide( centerToVertex1, depth1 );
 	receiver.vertex2 = XMVectorDivide( centerToVertex2, depth2 );
 	receiver.vertex3 = XMVectorDivide( centerToVertex3, depth3 );
 
-	XMFLOAT3 depthVector;
+	glm::vec3 depthVector;
 
 	depthVector.x = -XMVectorGetZ( centerToVertex1 );
 	depthVector.y = -XMVectorGetZ( centerToVertex2 );
@@ -175,10 +175,10 @@ __device__ static DirectX::XMFLOAT3 HemisphereCast( Triangle4& emiter, Triangle4
 /**@brief Dodaje pod podanymi indeksami w chunku element addValue.
 
 Do zaimplementowania*/
-__device__ inline XMFLOAT3& LoadAddStore( XMFLOAT3* chunk, unsigned int i, unsigned int j, XMVECTOR addValue )
+__device__ inline glm::vec3& LoadAddStore( glm::vec3* chunk, unsigned int i, unsigned int j, glm::vec4 addValue )
 {
-	//auto& lightValueRef = chunk[ i ].Get<XMFLOAT3>( j );
-	//XMVECTOR lightValue = XMLoadFloat3( &lightValueRef );
+	//auto& lightValueRef = chunk[ i ].Get<glm::vec3>( j );
+	//glm::vec4 lightValue = XMLoadFloat3( &lightValueRef );
 	//lightValue = XMVectorAdd( addValue, lightValue );
 	//XMStoreFloat3( &lightValueRef, lightValue );
 
@@ -202,14 +202,14 @@ zobaczymy jak bêdzie siê sprawdzaæ, odleg³oœci s¹ liczone do œrodka emitera).
 @param[in] depthBuffer Bufor g³êbokoœci.
 @param[in] indexBuffer Bufor indeksów.*/
 __device__ static void RasterizeTriangle( const Triangle4& triangle,
-										  DirectX::XMFLOAT3* depths,
+										  glm::vec3* depths,
 										  unsigned int chunkIdx,
 										  unsigned int triangleIdx,
 										  float* depthBuffer,
 										  BufferIndexing* indexBuffer,
 										  unsigned int m_depthResolution )
 {
-	XMFLOAT2A triangles[ 3 ];
+	glm::vec2 triangles[ 3 ];
 	XMStoreFloat2A( &triangles[ 0 ], triangle.vertex1 );
 	XMStoreFloat2A( &triangles[ 1 ], triangle.vertex2 );
 	XMStoreFloat2A( &triangles[ 2 ], triangle.vertex3 );
@@ -260,35 +260,35 @@ __device__ static void RasterizeTriangle( const Triangle4& triangle,
 /**@brief Transformuje wierzcho³ki w przedziale [-1,1] do wspó³rzednych bufora g³êbokoœci.*/
 __device__ static void HemisphereViewport( Triangle4& receiver, unsigned int m_depthResolution )
 {
-	XMVECTOR depthResolution = XMVectorReplicate( (float)m_depthResolution / 2.0f );
+	glm::vec4 depthResolution = XMVectorReplicate( (float)m_depthResolution / 2.0f );
 	receiver.vertex1 = XMVectorMultiplyAdd( receiver.vertex1, depthResolution, depthResolution );
 	receiver.vertex2 = XMVectorMultiplyAdd( receiver.vertex2, depthResolution, depthResolution );
 	receiver.vertex3 = XMVectorMultiplyAdd( receiver.vertex3, depthResolution, depthResolution );
 }
 
 /**@brief Tworzy macierz przekszta³caj¹c¹ wierzcho³ki do uk³adu odniesienia emitera.*/
-__host__ DirectX::XMMATRIX LightmapWorkerCUDA::EmiterViewMatrix( Triangle4& emiter )
+__host__ glm::mat4 LightmapWorkerCUDA::EmiterViewMatrix( Triangle4& emiter )
 {
 	// Œrodek ciê¿koœci trójk¹ta przyjujemy za œrodek emitera.
-	XMVECTOR emiterCenter = XMVectorAdd( emiter.vertex1, emiter.vertex2 );
+	glm::vec4 emiterCenter = XMVectorAdd( emiter.vertex1, emiter.vertex2 );
 	emiterCenter = XMVectorAdd( emiterCenter, emiter.vertex3 );
 	emiterCenter = XMVectorDivide( emiterCenter, XMVectorReplicate( 3.0f ) );
 
 	// Wektor prostopad³y do p³aszczyzny, na której le¿¹ trójk¹ty.
-	XMVECTOR edge12 = XMVectorSubtract( emiter.vertex2, emiter.vertex1 );
-	XMVECTOR edge13 = XMVectorSubtract( emiter.vertex3, emiter.vertex1 );
-	XMVECTOR normal = XMVector3Normalize( XMVector3Cross( edge12, edge13 ) );
+	glm::vec4 edge12 = XMVectorSubtract( emiter.vertex2, emiter.vertex1 );
+	glm::vec4 edge13 = XMVectorSubtract( emiter.vertex3, emiter.vertex1 );
+	glm::vec4 normal = XMVector3Normalize( XMVector3Cross( edge12, edge13 ) );
 
 	// Ustalamy dowolnie (byle ortogonalnie) kierunek "w górê".
-	//XMVECTOR upDirection = XMVector3Normalize( XMVector3Cross( edge12, normal ) );
-	XMVECTOR upDirection = XMVector3Orthogonal( normal );
+	//glm::vec4 upDirection = XMVector3Normalize( XMVector3Cross( edge12, normal ) );
+	glm::vec4 upDirection = XMVector3Orthogonal( normal );
 
 	// Tworzymy macierz widoku.
 	normal = XMVectorSetW( normal, 0.0f );
 	emiterCenter = XMVectorSetW( emiterCenter, 1.0f );
 	upDirection = XMVectorSetW( upDirection, 0.0f );
 
-	XMMATRIX viewMatrix = XMMatrixLookToRH( emiterCenter, normal, upDirection );
+	glm::mat4 viewMatrix = glm::mat4LookToRH( emiterCenter, normal, upDirection );
 	return viewMatrix;
 }
 
@@ -310,7 +310,7 @@ __global__ static void kernel_ClearDepthIndex( float *depthBuffer, BufferIndexin
 }
 
 __global__ static void kernel_DepthPass( VertexFormat* verticies, Size vertexMax, uint16 i,
-										 float* depthBuffer, BufferIndexing* indexBuffer, Triangle4 emiterPosition, XMMATRIX emiterViewMatrix )
+										 float* depthBuffer, BufferIndexing* indexBuffer, Triangle4 emiterPosition, glm::mat4 emiterViewMatrix )
 {
 	// Pierwsza wspó³rzêdna wierzcho³ka
 	int j = blockIdx.x * blockDim.x + threadIdx.x;
@@ -319,7 +319,7 @@ __global__ static void kernel_DepthPass( VertexFormat* verticies, Size vertexMax
 
 	// Wyliczamy pozycjê odbiorcy w uk³adzie wspó³rzêdnych bufora g³êbokoœci.
 	Triangle4 receiverPosition( verticies + j );
-	XMFLOAT3 receiverDepths = HemisphereCast( emiterPosition, receiverPosition, emiterViewMatrix );
+	glm::vec3 receiverDepths = HemisphereCast( emiterPosition, receiverPosition, emiterViewMatrix );
 
 	if( receiverDepths.x < 0.0f || receiverDepths.y < 0.0f || receiverDepths.z < 0.0f )
 		return;  // Trójk¹t jest czêœciowo za p³aszczyzn¹. Musimy go odrzuciæ.
@@ -330,10 +330,10 @@ __global__ static void kernel_DepthPass( VertexFormat* verticies, Size vertexMax
 
 
 #define MAX_MATERIALS 300
-__constant__ XMFLOAT3 materials[ MAX_MATERIALS ];
+__constant__ glm::vec3 materials[ MAX_MATERIALS ];
 
 __global__ static void kernel_TransferPass( BufferIndexing *indexBuffer,
-											XMFLOAT3* reachedLight, XMFLOAT3* emissionLight, XMVECTOR emitedLight )
+											glm::vec3* reachedLight, glm::vec3* emissionLight, glm::vec4 emitedLight )
 {
 	int i = blockIdx.x * blockDim.x + threadIdx.x;
 
@@ -342,10 +342,10 @@ __global__ static void kernel_TransferPass( BufferIndexing *indexBuffer,
 	// Dlatego elementy, na które nie zosta³ zrzutowany ¿aden trójk¹t zosta³y zainicjowane wartoœci¹ INVALID_INDEX.
 	if( indicies.first != INVALID_INDEX )
 	{
-		XMVECTOR materialDiffuse = XMLoadFloat3( &materials[ indicies.first ] );
-		XMVECTOR receivedLight = XMVectorMultiply( materialDiffuse, emitedLight );
+		glm::vec4 materialDiffuse = XMLoadFloat3( &materials[ indicies.first ] );
+		glm::vec4 receivedLight = XMVectorMultiply( materialDiffuse, emitedLight );
 
-		const XMFLOAT3& emissionPower = LoadAddStore( emissionLight, indicies.first, indicies.second, receivedLight );
+		const glm::vec3& emissionPower = LoadAddStore( emissionLight, indicies.first, indicies.second, receivedLight );
 		LoadAddStore( reachedLight, indicies.first, indicies.second, receivedLight );
 	}
 }
@@ -368,9 +368,9 @@ void LightmapWorkerCUDA::Generate()
 	//std::vector<MemoryChunk> reachedLight;
 	//std::vector<MemoryChunk> verticies;			// Przekszta³cone wierzcho³ki i normalne.
 
-	thrust::device_vector<XMFLOAT3>		deviceEmissionLight;			// Œwiat³o, które dany trójk¹t mo¿e wyemitowaæ.
-	thrust::device_vector<XMFLOAT3>		deviceReachedLight;				// Kolor danego trójk¹ta, wynikaj¹cy z poch³aniania œwiat³a dochodzacego.
-	thrust::device_vector<VertexFormat>	deviceVerticies;				// Wierzcho³ki meshy przekszta³cone do uk³adu wspó³rzêdnych œwiata.
+	thrust::device_vector<glm::vec3>		deviceEmissionLight;			// Œwiat³o, które dany trójk¹t mo¿e wyemitowaæ.
+	thrust::device_vector<glm::vec3>		deviceReachedLight;				// Kolor danego trójk¹ta, wynikaj¹cy z poch³aniania œwiat³a dochodzacego.
+	thrust::device_vector<VertexFormat>		deviceVerticies;				// Wierzcho³ki meshy przekszta³cone do uk³adu wspó³rzêdnych œwiata.
 
 	std::vector<Size> chunkOffsets;
 
@@ -385,14 +385,14 @@ void LightmapWorkerCUDA::Generate()
 class TransformVerticies : thrust::unary_function < VertexFormat, VertexNormalTexCord1 >
 {
 private:
-	XMMATRIX modelWorldTransform;
+	glm::mat4 modelWorldTransform;
 public:
-	TransformVerticies( XMMATRIX matrix )
+	TransformVerticies( glm::mat4 matrix )
 		: modelWorldTransform( matrix ) {}
 
 	VertexFormat operator()( VertexNormalTexCord1& vertex )
 	{
-		XMVECTOR position = XMLoadFloat3( &vertex.position );
+		glm::vec4 position = XMLoadFloat3( &vertex.position );
 		position = XMVector3TransformCoord( position, modelWorldTransform );
 		VertexFormat result;
 		XMStoreFloat3( &result.position, position );
@@ -402,11 +402,11 @@ public:
 
 
 /**@brief Przygotowuje odpowiednie struktury do generacji.*/
-void LightmapWorkerCUDA::Prepare( thrust::device_vector<DirectX::XMFLOAT3>& emissionLight, thrust::device_vector<DirectX::XMFLOAT3>& reachedLight, thrust::device_vector<VertexFormat>& verticies, std::vector<Size>& chunkOffsets )
+void LightmapWorkerCUDA::Prepare( thrust::device_vector<glm::vec3>& emissionLight, thrust::device_vector<glm::vec3>& reachedLight, thrust::device_vector<VertexFormat>& verticies, std::vector<Size>& chunkOffsets )
 {
 	auto& parts = m_data->objectParts;
 	Size bufferLength = 0;
-	std::vector<XMFLOAT3> materialDiffuse;
+	std::vector<glm::vec3> materialDiffuse;
 
 	// Budujemy tablicê offsetów w buforze dla ka¿dej poczêœci mesha.
 	// Dla ka¿dej czêœci przepisujemy te¿ materia³.
@@ -416,22 +416,22 @@ void LightmapWorkerCUDA::Prepare( thrust::device_vector<DirectX::XMFLOAT3>& emis
 		Size chunkSize = part.verticesCount / 3;
 		
 		chunkOffsets.push_back( bufferLength );
-		materialDiffuse.push_back( XMFLOAT3( part.diffuse.x, part.diffuse.y, part.diffuse.z ) );
+		materialDiffuse.push_back( glm::vec3( part.diffuse.x, part.diffuse.y, part.diffuse.z ) );
 		bufferLength += chunkSize;
 
 		assert( materialDiffuse.size() <= MAX_MATERIALS );
 	}
 
 	// Wype³niamy bufory zerami. Dla œwiate³ wektor emissionLight zostanie wype³niony póŸniej odpowiednimi wartoœciami.
-	emissionLight.resize( bufferLength, XMFLOAT3( 0.0, 0.0, 0.0 ) );
-	reachedLight.resize( bufferLength, XMFLOAT3( 0.0, 0.0, 0.0 ) );
+	emissionLight.resize( bufferLength, glm::vec3( 0.0, 0.0, 0.0 ) );
+	reachedLight.resize( bufferLength, glm::vec3( 0.0, 0.0, 0.0 ) );
 	verticies.resize( bufferLength * 3 );
 	
 	// Pêtla po wszystkich podmeshach.
 	// @todo zoptymalizowaæ to w przysz³ej wersji. Mo¿e da siê to zrobiæ jakoœ m¹drzej za jednym razem.
 	for( unsigned int i = 0; i < parts.size(); ++i )
 	{
-		XMMATRIX transformMatrix = XMLoadFloat4x4( &parts[i].transform );
+		glm::mat4 transformMatrix = XMLoadFloat4x4( &parts[i].transform );
 		thrust::device_vector<VertexNormalTexCord1> sourceVerticies = GetVerticiesFromGraphicAPI( m_data->buffers[ m_data->objectParts[ i ].chunkIdx ] );
 		
 		// Przekszta³ca wierzcho³ki do uk³adu wspó³rzêdnych œwiata.
@@ -444,7 +444,7 @@ void LightmapWorkerCUDA::Prepare( thrust::device_vector<DirectX::XMFLOAT3>& emis
 		// Sprawdzamy czy dany podobiekt mesha jest œwiat³em - tzn. zawiera niezerowe wartoœci emisji materia³u.
 		if( parts[ i ].emissive.x != 0.0f || parts[ i ].emissive.y != 0.0f || parts[ i ].emissive.z != 0.0f )
 		{
-			XMFLOAT3 materialEmissive( parts[i].emissive.x, parts[i].emissive.y, parts[i].emissive.z );
+			glm::vec3 materialEmissive( parts[i].emissive.x, parts[i].emissive.y, parts[i].emissive.z );
 			// Wype³niamy wektor emisji dla danego kawa³ka mesha.
 			thrust::fill( emissionLight.begin() + chunkOffsets[ i ], emissionLight.begin() + chunkOffsets[ i + 1 ], materialEmissive );
 		}
@@ -458,8 +458,8 @@ void LightmapWorkerCUDA::Prepare( thrust::device_vector<DirectX::XMFLOAT3>& emis
 }
 
 /**@brief Wykonuje algorytm radiosity.*/
-void LightmapWorkerCUDA::Radiosity( thrust::device_vector<DirectX::XMFLOAT3>& emissionLight,
-									thrust::device_vector<DirectX::XMFLOAT3>& reachedLight,
+void LightmapWorkerCUDA::Radiosity( thrust::device_vector<glm::vec3>& emissionLight,
+									thrust::device_vector<glm::vec3>& reachedLight,
 									thrust::device_vector<VertexFormat>& verticies,
 									std::vector<Size>& chunkOffsets )
 {
@@ -506,7 +506,7 @@ void LightmapWorkerCUDA::Radiosity( thrust::device_vector<DirectX::XMFLOAT3>& em
 do buforów razem ze wspó³rzêdnymi uv.
 Dodatkowo tu bêdzie siê odbywa³o interpolowanie wartoœci w celu wyg³adzenia obrazu.
 */
-void LightmapWorkerCUDA::BuildResult( thrust::device_vector<DirectX::XMFLOAT3>& reachedLight )
+void LightmapWorkerCUDA::BuildResult( thrust::device_vector<glm::vec3>& reachedLight )
 {
 	CoordColor*		outputBuffer;	// Pary (wspó³rzêdna uv, kolor).
 
@@ -532,10 +532,10 @@ void LightmapWorkerCUDA::BuildResult( thrust::device_vector<DirectX::XMFLOAT3>& 
 	//			unsigned int verticiesOffset = 0;
 	//			for( unsigned int j = firstPartIndex; j < nextIdx; ++j )
 	//			{
-	//				for( unsigned int k = 0; k < reachedLight[ j ].Count<XMFLOAT3>(); ++k )
+	//				for( unsigned int k = 0; k < reachedLight[ j ].Count<glm::vec3>(); ++k )
 	//				{
 	//					CoordColor& colorVertex1 = colorMap.Get<CoordColor>( verticiesOffset + mul3( k ) );		// Jest 3 razy wiêcej wierzcho³ków ni¿ kolorów.
-	//					XMFLOAT3& lightColor = reachedLight[ j ].Get<XMFLOAT3>( k ); /*XMFLOAT3( 0.5, 0.3, 0.7);*/
+	//					glm::vec3& lightColor = reachedLight[ j ].Get<glm::vec3>( k ); /*glm::vec3( 0.5, 0.3, 0.7);*/
 	//					colorVertex1.color = lightColor;
 	//					colorVertex1.texCoords = m_data->verticies[ parts[ j ].chunkIdx ].Get<VertexNormalTexCord1>( parts[ j ].bufferOffset + mul3( k ) ).tex_cords;
 
@@ -579,7 +579,7 @@ void LightmapWorkerCUDA::DepthPass( std::tuple<unsigned int, unsigned int, float
 	// Wyliczamy macierz widoku, która przekszta³ca wierzcho³ki do uk³adu wspó³rzêdnych zwi¹zanego z emiterem.
 	// Wersja na procesorze jest tylko tymczasowa.
 	Triangle4 emiterPosition( &( verticies.data() + chunkOffsets[ idx1 ] * 3 ).get()[ idx2 ] );
-	XMMATRIX emiterViewMatrix = EmiterViewMatrix( emiterPosition );
+	glm::mat4 emiterViewMatrix = EmiterViewMatrix( emiterPosition );
 
 	// Pêtla po wszystkich podobiektach. Rozwi¹zanie tymczasowe do póŸniejszego poprawienia przy optymalizacjach.
 	for( unsigned int i = 0; chunkOffsets.size() - 1; ++i )
@@ -591,8 +591,8 @@ void LightmapWorkerCUDA::DepthPass( std::tuple<unsigned int, unsigned int, float
 
 void LightmapWorkerCUDA::TransferPass( std::tuple<unsigned int, unsigned int, float>& emissionMax,
 									   thrust::device_vector<VertexFormat>& verticies,
-									   thrust::device_vector<DirectX::XMFLOAT3>& emissionLight,
-									   thrust::device_vector<DirectX::XMFLOAT3>& reachedLight,
+									   thrust::device_vector<glm::vec3>& emissionLight,
+									   thrust::device_vector<glm::vec3>& reachedLight,
 									   BufferIndexing* indexBuffer,
 									   std::vector<Size>& chunkOffsets )
 {
@@ -604,8 +604,8 @@ void LightmapWorkerCUDA::TransferPass( std::tuple<unsigned int, unsigned int, fl
 
 	// Wyliczamy ile energii powinien dostaæ ka¿dy element, który znajdziemy w buforze indeksów.
 	// Zoptymalizowaæ: wszystko powinno siê odbywaæ na karcie bez powrotów.
-	XMVECTOR depthElementWeight = XMVectorReplicate( static_cast<float>( 50.0 * 4.0 * XM_1DIV2PI / depthBufferSize ) );
-	XMVECTOR emitedLight = XMLoadFloat3( &( emissionLight.data().get() + chunkOffsets[ idx1 ] )[ idx2 ] );
+	glm::vec4 depthElementWeight = XMVectorReplicate( static_cast<float>( 50.0 * 4.0 * XM_1DIV2PI / depthBufferSize ) );
+	glm::vec4 emitedLight = XMLoadFloat3( &( emissionLight.data().get() + chunkOffsets[ idx1 ] )[ idx2 ] );
 	emitedLight = XMVectorMultiply( emitedLight, depthElementWeight );
 
 	// Zerujemy œwiat³o, które emiter bêdzie móg³ wyemitowaæ w kolejnych iteracjach.

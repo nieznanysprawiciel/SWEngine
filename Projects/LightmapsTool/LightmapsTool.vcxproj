@@ -40,6 +40,7 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\ExchangeDataStructs.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapLogic.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorker.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorkers\cudaDirectXMath.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorkers\LightmapWorkerCPU.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </ExcludedFromBuild>

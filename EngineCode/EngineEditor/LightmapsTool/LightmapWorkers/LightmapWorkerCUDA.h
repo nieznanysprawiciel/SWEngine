@@ -1,7 +1,8 @@
 #pragma once
 
 #include "EngineEditor/LightmapsTool/LightmapWorker.h"
-#include <DirectXMath.h>
+//#include "cudaDirectXMath.h"
+#include "glm/glm.hpp"
 
 #include <thrust/functional.h>
 #include <thrust/random.h>
@@ -12,30 +13,31 @@
 
 struct VertexFormat
 {
-	DirectX::XMFLOAT3	position;
-	//DirectX::XMFLOAT3	normal;
+	glm::vec3	position;
+	//float3	normal;
+
 };
 
 struct Triangle4
 {
-	DirectX::XMVECTOR	vertex1;
-	DirectX::XMVECTOR	vertex2;
-	DirectX::XMVECTOR	vertex3;
+	glm::vec3	vertex1;
+	glm::vec3	vertex2;
+	glm::vec3	vertex3;
 
 	Triangle4() = default;
 	inline Triangle4( VertexFormat* vertexPtr )
 	{
-		vertex1 = XMLoadFloat3( &(vertexPtr++)->position );
-		vertex2 = XMLoadFloat3( &(vertexPtr++)->position );
-		vertex3 = XMLoadFloat3( &vertexPtr->position );
+		vertex1 = (vertexPtr++)->position;
+		vertex2 = (vertexPtr++)->position;
+		vertex3 = vertexPtr->position;
 	}
 };
 
 struct Triangle3
 {
-	DirectX::XMFLOAT3	vertex1;
-	DirectX::XMFLOAT3	vertex2;
-	DirectX::XMFLOAT3	vertex3;
+	glm::vec3	vertex1;
+	glm::vec3	vertex2;
+	glm::vec3	vertex3;
 };
 
 struct BufferIndexing
@@ -61,9 +63,9 @@ public:
 	/**@brief G³ówna funkcja generuj¹ca lightmapy. Zaimplementuj w klasie pochodnej.*/
 	virtual void	Generate() override;
 private:
-	void			Prepare		( thrust::device_vector<DirectX::XMFLOAT3>& emissionLight, thrust::device_vector<DirectX::XMFLOAT3>& reachedLight, thrust::device_vector<VertexFormat>& verticies, std::vector<Size>& chunkOffsets );
-	void			Radiosity	( thrust::device_vector<DirectX::XMFLOAT3>& emissionLight, thrust::device_vector<DirectX::XMFLOAT3>& reachedLight, thrust::device_vector<VertexFormat>& verticies, std::vector<Size>& chunkOffsets );
-	void			BuildResult	( thrust::device_vector<DirectX::XMFLOAT3>& reachedLight  );
+	void			Prepare		( thrust::device_vector<glm::vec3>& emissionLight, thrust::device_vector<glm::vec3>& reachedLight, thrust::device_vector<VertexFormat>& verticies, std::vector<Size>& chunkOffsets );
+	void			Radiosity	( thrust::device_vector<glm::vec3>& emissionLight, thrust::device_vector<glm::vec3>& reachedLight, thrust::device_vector<VertexFormat>& verticies, std::vector<Size>& chunkOffsets );
+	void			BuildResult	( thrust::device_vector<glm::vec3>& reachedLight  );
 
 	void			DepthPass(	std::tuple<unsigned int, unsigned int, float>& emissionMax,
 								thrust::device_vector<VertexFormat>& verticies,
@@ -73,22 +75,22 @@ private:
 
 	void			TransferPass(	std::tuple<unsigned int, unsigned int, float>& emissionMax,
 									thrust::device_vector<VertexFormat>& verticies,
-									thrust::device_vector<DirectX::XMFLOAT3>& emissionLight,
-									thrust::device_vector<DirectX::XMFLOAT3>& reachedLight,
+									thrust::device_vector<glm::vec3>& emissionLight,
+									thrust::device_vector<glm::vec3>& reachedLight,
 									BufferIndexing* indexBuffer,
 									std::vector<Size>& chunkOffsets );
 
-	DirectX::XMFLOAT3		HemisphereCast			( Triangle4& emiter, Triangle4& receiver, DirectX::XMMATRIX& emiterViewMatrix );
+	glm::vec3				HemisphereCast			( Triangle4& emiter, Triangle4& receiver, DirectX::XMMATRIX& emiterViewMatrix );
 	Triangle4				EmiterCoordinatesSystem	( Triangle4& emiter );
-	DirectX::XMMATRIX		EmiterViewMatrix		( Triangle4& emiter );
+	glm::mat4				EmiterViewMatrix		( Triangle4& emiter );
 	void					RasterizeTriangle		( const Triangle4& triangle,
-													  DirectX::XMFLOAT3* depths,
+													  glm::vec3* depths,
 													  unsigned int chunkIdx,
 													  unsigned int triangleIdx,
 													  MemoryChunk& depthBuffer,
 													  MemoryChunk& indexBuffer );
 
-	DirectX::XMVECTOR		ProjectPointToPlane		( DirectX::XMVECTOR point, const Triangle4& coordsSystem );
+	glm::vec4				ProjectPointToPlane		( glm::vec4 point, const Triangle4& coordsSystem );
 
 	std::tuple<unsigned int, unsigned int, float>		FindMaxEmision		( std::vector<MemoryChunk>& emisionLight );
 };
