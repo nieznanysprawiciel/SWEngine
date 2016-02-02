@@ -81,6 +81,7 @@ private:
 	static D3D11_INPUT_ELEMENT_DESC*		_vertex_layout_desc;	///<Aktualny deskryptor layoutu wierzcho³ka.
 	static unsigned int				_layout_elements_count;			///<Liczba elementów w talicy deskryptora layoutu.
 	static D3D11_SAMPLER_DESC		_sampler_desc;			///<Deskryptor samplera.
+	static D3D11_RASTERIZER_DESC	_rasterizer_desc;		///<Deskryptor rasteryzatora.
 protected:
 	static ID3D11Debug*				debug_interface;		///<Pozwala na pobranie bardziej szczegó³owych informacji debugowych.
 	static ID3D11Device*			device;					///<Zmienna s³u¿y do tworzenia obiektów, buforów tekstur i zasobów
@@ -105,6 +106,7 @@ protected:	//public:	Inicjalizacje powinien zrobiæ obiekt, który dzidziczy po te
 	void set_vertex_layout				( DX11_DEFAULT_VERTEX_LAYOUT layout );
 	void set_vertex_layout				( D3D11_INPUT_ELEMENT_DESC* layout, unsigned int array_size );
 	void set_sampler_desc				( D3D11_SAMPLER_DESC sampler_desc );
+	void set_rasterizer_desc			( const D3D11_RASTERIZER_DESC& rasterizer_desc );
 
 	// Pobieranie deskryptorów
 	static DXGI_SWAP_CHAIN_DESC					get_swap_chain_desc()		{ return _swap_chain_desc; }
@@ -113,6 +115,7 @@ protected:	//public:	Inicjalizacje powinien zrobiæ obiekt, który dzidziczy po te
 	static D3D11_TEXTURE2D_DESC					get_z_buffer_desc()			{ return _z_buffer_desc; }
 	static D3D11_DEPTH_STENCIL_VIEW_DESC		get_z_buffer_view_desc()	{ return _z_buffer_view_desc; }
 	static D3D11_SAMPLER_DESC					get_sampler_desc()			{ return _sampler_desc; }
+	static D3D11_RASTERIZER_DESC				get_rasterizer_desc()		{ return _rasterizer_desc; }
 
 	ID3D11VertexShader*		load_vertex_shader( const std::wstring& file_name, const std::string& shader_name, const char* shader_model );
 	ID3D11VertexShader*		load_vertex_shader( const std::wstring& file_name, const std::string& shader_name,

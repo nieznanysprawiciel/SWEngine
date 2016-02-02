@@ -7,40 +7,38 @@
 //=================================================================//
 //								Event
 //=================================================================//
-Event::Event(int type)
-	: type(type)
+Event::Event( unsigned int type )
+	: type( type )
 {
 }
 
-
-Event::~Event()
-{
-}
 
 //=================================================================//
 //						KeyDownEvent
 //=================================================================//
 
 KeyDownEvent::KeyDownEvent(short v_index)
-: Event(EVENT_TYPE::KEYDOWNEVENT)
+: Event( (unsigned int)EventType::KeyDownEvent )
 {
 	virtual_index = v_index;
 }
 
-KeyDownEvent::~KeyDownEvent()
-{
-}
 
 
 //=================================================================//
 //						KeyUpEvent
 //=================================================================//
 KeyUpEvent::KeyUpEvent(short v_index)
-: Event(EVENT_TYPE::KEYUPEVENT)
+: Event( (unsigned int)EventType::KeyUpEvent )
 {
 	virtual_index = v_index;
 }
 
-KeyUpEvent::~KeyUpEvent()
+
+//=================================================================//
+//						RenderOnceEndedEvent
+//=================================================================//
+RenderOnceEndedEvent::RenderOnceEndedEvent()
+: Event( (unsigned int)EventType::RenderOnceEndedEvent )
 {
 }

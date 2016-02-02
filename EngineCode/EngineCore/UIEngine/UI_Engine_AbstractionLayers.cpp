@@ -8,17 +8,18 @@
 
 
 /**@brief Funkcja ustawia domyœlne warstwy abstrakcji w klasie UI_engine.*/
-void UI_Engine::init_abstraction_layers( )
+void UI_Engine::InitAbstractionLayers( )
 {
 	//kolejnoœæ dodawania powinna byæ zgodna z enumem STANDARD_ABSTRACTION_LAYER,
 	//poniewa¿ s³u¿y on potem jako indeks do odwo³ywania siê do tablicy
-	InputAbstractionLayer* new_layer = new InputAbstractionLayer;
-	new_layer->setup_buttons_layer( STANDARD_LAYERS::PROTOTYPE_BUTTONS_mapping, PROTOTYPE_BUTTONS_MAPPING_COUNT );
-	new_layer->setup_axis_layer(STANDARD_LAYERS::PROTOTYPE_AXES_mapping, PROTOTYPE_AXES_MAPPING_COUNT);
-	abstraction_layers.push_back( new_layer );
+	InputAbstractionLayer* newLayer = new InputAbstractionLayer;
+	newLayer->setup_buttons_layer( STANDARD_LAYERS::PROTOTYPE_BUTTONS_mapping, STANDARD_LAYERS::PROTOTYPE_BUTTONS_MAPPING_COUNT );
+	newLayer->setup_axis_layer( STANDARD_LAYERS::PROTOTYPE_AXES_mapping, STANDARD_LAYERS::PROTOTYPE_AXES_MAPPING_COUNT );
+	//newLayer->demand_down_event( )
+	m_abstractionLayers.push_back( newLayer );
 
-	current_abstraction_layer = new_layer;
-	current_abstraction_layer->set_active( true );
+	m_currentAbstractionLayer = newLayer;
+	m_currentAbstractionLayer->set_active( true );
 }
 
 /**@brief Zmienia aktualnie ustawion¹ warstwê abstrakcji na podan¹ w argumencie.
@@ -34,16 +35,16 @@ by³ nieprawid³owy:
 
 Zasadniczo nie ma potrzeby sprawdzania wartoœci zwracanej, w przypadkach innych
 ni¿ debugowanie programu.*/
-int UI_Engine::change_abstraction_layer( InputAbstractionLayer* next_layer )
+int UI_Engine::ChangeAbstractionLayer( InputAbstractionLayer* next_layer )
 {
 	if ( next_layer == nullptr )
 		return 2;
-	if ( next_layer == current_abstraction_layer )
+	if ( next_layer == m_currentAbstractionLayer )
 		return 1;
 
-	current_abstraction_layer->set_active( false );
-	current_abstraction_layer = next_layer;
-	current_abstraction_layer->set_active( true );
+	m_currentAbstractionLayer->set_active( false );
+	m_currentAbstractionLayer = next_layer;
+	m_currentAbstractionLayer->set_active( true );
 
 	return 0;
 }
@@ -51,11 +52,11 @@ int UI_Engine::change_abstraction_layer( InputAbstractionLayer* next_layer )
 /**@brief Dodaje do wewnêtrznych tablic UI_Engine now¹ warstwê abstrakcji.
 Nie jest to do niczego konieczne, ale warto to robiæ, aby silnik zarz¹dza³
 pamiêci¹ zajmowan¹ przez warstwê.
-@param[in] new_layer Warstwa do dodania.*/
-void UI_Engine::add_abstraction_layer( InputAbstractionLayer* new_layer )
+@param[in] newLayer Warstwa do dodania.*/
+void UI_Engine::AddAbstractionLayer( InputAbstractionLayer* new_layer )
 {
 	if ( new_layer != nullptr )
-		abstraction_layers.push_back( new_layer );
+		m_abstractionLayers.push_back( new_layer );
 }
 
 /**@brief Kasuje z tablic UI_Engine wartwê abstrakcji podan¹ w argumencie.
@@ -68,16 +69,16 @@ w argumencie nie wolno siê wiêcej odwo³ywaæ.
 Funkcja zwraca 0 je¿eli wszystko jest w porz¹dku. W innym wypadku:
 - 1	-	nie by³o takiej wartwy w tablicach,
 - 2	-	wartwa jest obecnie aktywna*/
-int UI_Engine::delete_abstraction_layer( InputAbstractionLayer* layer )
+int UI_Engine::DeleteAbstractionLayer( InputAbstractionLayer* layer )
 {
-	if ( layer == current_abstraction_layer )
+	if ( layer == m_currentAbstractionLayer )
 		return 2;
 	
-	for ( unsigned int i = STANDARD_ABSTRACTION_LAYER_COUNT; i < abstraction_layers.size(); ++i )
-		if ( abstraction_layers[i] == layer )
+	for ( unsigned int i = STANDARD_ABSTRACTION_LAYER_COUNT; i < m_abstractionLayers.size(); ++i )
+		if ( m_abstractionLayers[i] == layer )
 		{
-			delete abstraction_layers[i];
-			abstraction_layers.erase( abstraction_layers.begin() + i );
+			delete m_abstractionLayers[i];
+			m_abstractionLayers.erase( m_abstractionLayers.begin() + i );
 			return 0;
 		}
 	return 1;
@@ -89,12 +90,12 @@ int UI_Engine::delete_abstraction_layer( InputAbstractionLayer* layer )
 @return
 Zwraca 0 w przypadku powodzenia.
 Je¿eli podano liczbê wykraczaj¹c¹ poza zakres funkcja zwraca 1.*/
-int UI_Engine::set_standard_abstraction_layer( STANDARD_ABSTRACTION_LAYER layer )
+int UI_Engine::SetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER layer )
 {
 	if ( layer >= STANDARD_ABSTRACTION_LAYER_COUNT )
 		return 1;
 
-	change_abstraction_layer( abstraction_layers[layer] );
+	ChangeAbstractionLayer( m_abstractionLayers[layer] );
 
 	return 0;
 }
@@ -102,29 +103,29 @@ int UI_Engine::set_standard_abstraction_layer( STANDARD_ABSTRACTION_LAYER layer 
 /**@brief Kasuje i zwalnia pamiêæ po wszystkich dodanych do silnika przez u¿ytkownika
 warstwach abstrakcji. Je¿eli jedna z tych warstw abstrakcji bêdzie aktywna
 zostanie równie¿ usuniêta, a na jej miejsce zostanie ustawiona jedna z wartstw wbudowanych.*/
-void UI_Engine::clear_abstraction_layers( )
+void UI_Engine::ClearAbstractionLayers( )
 {
 
-	for ( unsigned int i = STANDARD_ABSTRACTION_LAYER_COUNT; i < abstraction_layers.size(); ++i )
+	for ( unsigned int i = STANDARD_ABSTRACTION_LAYER_COUNT; i < m_abstractionLayers.size(); ++i )
 	{
-		if ( current_abstraction_layer == abstraction_layers[i] )
-			set_standard_abstraction_layer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS );
-		delete abstraction_layers[i];
+		if ( m_currentAbstractionLayer == m_abstractionLayers[i] )
+			SetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS );
+		delete m_abstractionLayers[i];
 	}
-	abstraction_layers.erase( abstraction_layers.begin() + STANDARD_ABSTRACTION_LAYER_COUNT,
-		abstraction_layers.end() );
+	m_abstractionLayers.erase( m_abstractionLayers.begin() + STANDARD_ABSTRACTION_LAYER_COUNT,
+		m_abstractionLayers.end() );
 }
 
 /**@brief Funkcja aktualizuje tablice w aktualnie aktywnej warstwie abstrakcji.
 
 Funkcja jest wywo³ywana przez UI_engine, dlatego jest prywatna. W ka¿dej klatce nastêpuje
 aktualizacja danych w aktualnie aktywnej warstwie abstrakcji.*/
-void UI_Engine::update_abstraction_layer( )
+void UI_Engine::UpdateAbstractionLayer( )
 {
-	current_abstraction_layer->begin_event_collection();
+	m_currentAbstractionLayer->begin_event_collection();
 
-	current_abstraction_layer->update_keyboard_device( DEVICE_IDs::KEYBOARD, keyboard_state );
-	current_abstraction_layer->update_mouse_device( DEVICE_IDs::MOUSE, &mouse_state, engine->get_window_widht(), engine->get_window_height());
+	m_currentAbstractionLayer->update_keyboard_device( DEVICE_IDs::KEYBOARD, keyboard_state );
+	m_currentAbstractionLayer->update_mouse_device( DEVICE_IDs::MOUSE, &mouse_state, engine->get_window_widht(), engine->get_window_height());
 
-	current_abstraction_layer->send_events( engine );
+	m_currentAbstractionLayer->send_events( engine );
 }

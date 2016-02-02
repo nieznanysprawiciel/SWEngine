@@ -28,6 +28,7 @@ unsigned int						DX11APIObjects::_window_height = 768;
 D3D11_INPUT_ELEMENT_DESC*			DX11APIObjects::_vertex_layout_desc = nullptr;
 unsigned int						DX11APIObjects::_layout_elements_count = 0;
 D3D11_SAMPLER_DESC					DX11APIObjects::_sampler_desc;
+D3D11_RASTERIZER_DESC				DX11APIObjects::_rasterizer_desc;
 
 /*Inicjalizacja zmiennych statycznych.*/
 ID3D11Debug*						DX11APIObjects::debug_interface = nullptr;
@@ -118,7 +119,7 @@ DX11APIObjects::DX11APIObjects()
 		_swap_chain_desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 		_swap_chain_desc.OutputWindow = 0;		//HWND niestety nie wiem co wpisaæ w tym momencie
 		_swap_chain_desc.SampleDesc.Count = 1;
-		_swap_chain_desc.SampleDesc.Quality = 0;
+		_swap_chain_desc.SampleDesc.Quality = 0;//D3D10_STANDARD_MULTISAMPLE_QUALITY_LEVELS::D3D10_STANDARD_MULTISAMPLE_PATTERN;
 		_swap_chain_desc.Windowed = TRUE;
 		_swap_chain_desc.SwapEffect = DXGI_SWAP_EFFECT::DXGI_SWAP_EFFECT_DISCARD;
 		_swap_chain_desc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
@@ -139,7 +140,7 @@ DX11APIObjects::DX11APIObjects()
 		_z_buffer_desc.ArraySize = 1;
 		_z_buffer_desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
 		_z_buffer_desc.SampleDesc.Count = 1;
-		_z_buffer_desc.SampleDesc.Quality = 0;
+		_z_buffer_desc.SampleDesc.Quality = 0;//D3D10_STANDARD_MULTISAMPLE_QUALITY_LEVELS::D3D10_STANDARD_MULTISAMPLE_PATTERN;
 		_z_buffer_desc.Usage = D3D11_USAGE_DEFAULT;
 		_z_buffer_desc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 		_z_buffer_desc.CPUAccessFlags = 0;
@@ -147,7 +148,7 @@ DX11APIObjects::DX11APIObjects()
 
 		ZeroMemory( &_z_buffer_view_desc, sizeof( _z_buffer_view_desc ) );
 		_z_buffer_view_desc.Format = _z_buffer_desc.Format;
-		_z_buffer_view_desc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+		_z_buffer_view_desc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;// D3D11_DSV_DIMENSION_TEXTURE2DMS; //D3D11_DSV_DIMENSION_TEXTURE2D;
 		_z_buffer_view_desc.Texture2D.MipSlice = 0;
 
 		// D3D11_SAMPLER_DESC
@@ -159,6 +160,20 @@ DX11APIObjects::DX11APIObjects()
 		_sampler_desc.ComparisonFunc = D3D11_COMPARISON_NEVER;
 		_sampler_desc.MinLOD = 0;
 		_sampler_desc.MaxLOD = D3D11_FLOAT32_MAX;
+		_sampler_desc.MaxAnisotropy = 1;
+
+		// D3D11_RASTERIZER_DESC
+		ZeroMemory( &_rasterizer_desc, sizeof( _rasterizer_desc ) );
+		_rasterizer_desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
+		_rasterizer_desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_BACK;
+		_rasterizer_desc.AntialiasedLineEnable = false;
+		_rasterizer_desc.DepthBias = 0;
+		_rasterizer_desc.DepthBiasClamp = 0.0f;
+		_rasterizer_desc.DepthClipEnable = true;
+		_rasterizer_desc.FrontCounterClockwise = true;
+		_rasterizer_desc.MultisampleEnable = false;
+		_rasterizer_desc.ScissorEnable = false;
+		_rasterizer_desc.SlopeScaledDepthBias = 0.0f;
 	}
 }
 
@@ -316,6 +331,12 @@ void DX11APIObjects::set_vertex_layout( D3D11_INPUT_ELEMENT_DESC* layout, unsign
 void DX11APIObjects::set_sampler_desc( D3D11_SAMPLER_DESC sampler_desc )
 {
 	_sampler_desc = sampler_desc;
+}
+
+/**@brief Ustawia podany w parametrze deskrytptor rasteryzatora.*/
+void DX11APIObjects::set_rasterizer_desc( const D3D11_RASTERIZER_DESC& rasterizer_desc )
+{
+	_rasterizer_desc = rasterizer_desc;
 }
 
 //----------------------------------------------------------------------------------------------//

@@ -33,6 +33,6 @@ public:
 	camera_controller_PROTOTYPE( InputAbstractionLayer_base* layer );
 	virtual ~camera_controller_PROTOTYPE();
 
-	virtual void control_object( DynamicObject* );
+	virtual void ControlObject( DynamicObject* );
 };
 

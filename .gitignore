@@ -52,6 +52,7 @@ EditorRelease/
 *.pidb
 *.log
 *.scc
+*.html
 
 # Visual C++ cache files
 ipch/
@@ -162,3 +163,4 @@ $RECYCLE.BIN/
 # Mac desktop service store files
 .DS_Store
 OldFiles/
+GameRelease/levels/

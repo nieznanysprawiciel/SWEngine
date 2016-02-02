@@ -18,14 +18,14 @@ UI_Engine::UI_Engine(Engine* engine)
 	keyboard_input = nullptr;
 	mouse_input = nullptr;
 
-	init_abstraction_layers( );
+	InitAbstractionLayers( );
 }
 
 
 UI_Engine::~UI_Engine()
 {
-	for ( unsigned int i = 0; i < abstraction_layers.size(); ++i )
-		delete abstraction_layers[i];
+	for ( unsigned int i = 0; i < m_abstractionLayers.size(); ++i )
+		delete m_abstractionLayers[i];
 	clean_direct_input();
 }
 
@@ -94,7 +94,7 @@ void UI_Engine::clean_direct_input()
 ///@brief Funkcja wywo³ywana przez klasê Engine w ka¿dym obiegu g³ównej petli programu.
 ///Przechwytujemy klawiaturê, wykonujemy wszytkie funkcje obs³ugi obiektów sterowanych.
 ///@param[in] time_interval Parametrem jest czas który up³yn¹³ od ostatniego wywo³ania
-void UI_Engine::proceed_input(float time_interval)
+void UI_Engine::ProceedInput(float time_interval)
 {
 	keyboard_input->GetDeviceState(256, keyboard_state);
 	mouse_input->GetDeviceState(sizeof(mouse_state), &mouse_state);
@@ -112,7 +112,7 @@ void UI_Engine::proceed_input(float time_interval)
 	if ( !(keyboard_state[DIK_F1] & 0x80) )
 		pushedF1 = false;
 
-	update_abstraction_layer();
+	UpdateAbstractionLayer();
 }
 
 /** @brief Funkcja rysuj¹ca graficzny interfejs u¿ytkownika.
@@ -120,7 +120,7 @@ Jest wywo³ywana zaraz po wszystkich procedurach rysuj¹cych obiekty na scenie.
 
 @param[in] time_interval Parametrem jest czas który up³yn¹³ od ostatniego wywo³ania.
  */
-void UI_Engine::draw_GUI( float time_interval, float time_lag )
+void UI_Engine::DrawGUI( float time_interval, float time_lag )
 {
 
 }

@@ -24,9 +24,6 @@ CameraObject
 
 
 
-
-using namespace DirectX;
-
 class EngineInterface;
 class Engine;
 class ControllersEngine;
@@ -46,21 +43,21 @@ protected:
 	short			class_type;
 	short			object_type;
 
-	void event(Event*);
+	void event( Event* );
 	/**@brief Zwraca wskaŸnik na interfejs silnika, który nadaje siê do u¿ywania przez
 	programistê gry.
 	@attention Nie wolno rzutowaæ obiektu na Engine.
 	*/
-	EngineInterface* get_engine_interface(){ return reinterpret_cast<EngineInterface*>(engine); }
+	EngineInterface*	GetEngineInterface(){ return reinterpret_cast<EngineInterface*>(engine); }
 public:
 	virtual ~Object() = default;
-	virtual void		init(){};
+	virtual void		Init(){};
 
 	/**@brief Funkcja ustawia wskaŸnik na g³ówny obiekt silnika.
 	@attention Wolno u¿ywaæ tylko klasie Engine w konstruktorze.
 	@param[in] engine_ptr WskaŸnik na g³ówny obiekt silnika.
 	*/
-	static void			set_engine( Engine* engine_ptr ) { if( !engine ) engine = engine_ptr; }
+	static void			SetEngine( Engine* engine_ptr ) { if( !engine ) engine = engine_ptr; }
 };
 
 
@@ -70,7 +67,7 @@ Obiekty posiadaj¹ po dwie zmienne na orientacjê i pozycjê. Przechowywana jest za
 z poprzedniej klatki, dziêki czemu mo¿na interpolowaæ po³o¿enie. (Wyœwietlanie jest opóŸnione
 w czasie o jedn¹ klatkê, ¿eby interpolacja nie musia³a wyprzedzaæ faktycznych po³o¿eñ).
 
-Swapowanie nastêpujê w funkcji @ref DynamicObject::move. @todo Trzeba zbadaæ czy nie ma przypadków,
+Swapowanie nastêpujê w funkcji @ref DynamicObject::Move. @todo Trzeba zbadaæ czy nie ma przypadków,
 w których nie bêdzie zachodziæ swapowanie, a powinno (wydaje mi siê ¿e przy niektórych kontrolerach)
 i jakoœ rozwi¹zaæ tê sytuacjê.
 */
@@ -91,7 +88,7 @@ protected:
 
 	@param[in] pos Po³o¿enie docelowe obiektu.
 	*/
-	void set_position( const XMVECTOR& pos )
+	void SetPosition( const DirectX::XMVECTOR& pos )
 	{
 		if ( swap_data )
 			XMStoreFloat3( &position, pos );
@@ -105,7 +102,7 @@ protected:
 
 	@param[in] quaternion Orientacja docelowa obiektu.
 	*/
-	void set_orientation( const XMVECTOR& quaternion )
+	void SetOrientation( const DirectX::XMVECTOR& quaternion )
 	{
 		if ( swap_data )
 			XMStoreFloat4( &orientation, quaternion );
@@ -114,7 +111,7 @@ protected:
 	}
 public:
 	StaticObject();			///< Kontruktor domyœlny inicjuje obiekt w œrodku uk³adu wspó³rzêdnych.
-	StaticObject(const XMFLOAT3& pos, const XMFLOAT4& orient);	///< Inicjuje obiekt w podanym po³o¿eniu
+	StaticObject( const DirectX::XMFLOAT3& pos, const DirectX::XMFLOAT4& orient );	///< Inicjuje obiekt w podanym po³o¿eniu
 
 	/**@brief Przemieszcza obiekt w podane miejsce.
 	
@@ -122,7 +119,7 @@ public:
 	Wartoœci poœrednie nie bêd¹ interpolowane. Funkcjê nale¿y tak¿e wywo³aæ przy inicjacji obiektu.
 	
 	@param[in] pos Nowe po³o¿enie obiektu.*/
-	void teleport						( const XMVECTOR& pos )
+	void Teleport						( const DirectX::XMVECTOR& pos )
 	{ XMStoreFloat3( &position, pos ); XMStoreFloat3( &position_back, pos ); }
 
 	/**@brief Zmienia orientacjê obiektu na podan¹.
@@ -131,14 +128,14 @@ public:
 	Wartoœci poœrednie nie bêd¹ interpolowane. Funkcjê nale¿y tak¿e wywo³aæ przy inicjacji obiektu.
 
 	@param[in] quaternion Kwaternion nowego obrotu.*/
-	void teleport_orientation			( const XMVECTOR& quaternion )
+	void TeleportOrientation			( const DirectX::XMVECTOR& quaternion )
 	{ XMStoreFloat4( &orientation, quaternion ); XMStoreFloat4( &orientation_back, quaternion ); }
 
 
 	/**@brief Pobiera aktualn¹ pozycjê obiektu.
 	
 	@return Wektor zawieraj¹cy pozycjê obiektu.*/
-	XMVECTOR get_position() const
+	DirectX::XMVECTOR GetPosition() const
 	{
 		if ( swap_data )
 			return XMLoadFloat3( &position_back );
@@ -149,7 +146,7 @@ public:
 	/**@brief Pobiera aktualn¹ orientacjê obiektu.
 
 	@return Wektor zawieraj¹cy orientacjê obiektu.*/
-	XMVECTOR get_orientation() const
+	DirectX::XMVECTOR GetOrientation() const
 	{
 		if ( swap_data )
 			return XMLoadFloat4( &orientation_back );
@@ -160,8 +157,8 @@ public:
 	/**@brief Funkcja zamienia aktualne bufory na pozycjê i orientacjê.*/
 	void swap() { if ( swap_data ) swap_data = false; else swap_data = true; }
 
-	XMVECTOR get_interpolated_position( float frame_percent ) const;
-	XMVECTOR get_interpolated_orientation( float frame_percent ) const;
+	DirectX::XMVECTOR GetInterpolatedPosition		( float frame_percent ) const;
+	DirectX::XMVECTOR GetInterpolatedOrientation	( float frame_percent ) const;
 };
 
 /**@brief Klasa bazowa dla obiektów zdolnych do kolizji.*/
@@ -180,24 +177,24 @@ W docelowej wersji bêdzie najprawdopodobniej wybrana opcja z wetorem a nie kwate
 class DynamicObject : public CollisionObject
 {
 protected:
-	XMFLOAT3		speed;				///< Prêdkoœæ postepowa obiektu.
-	XMFLOAT4		rotation_speed;		///< Prêdkoœæ k¹towa obiektu (wyra¿ona wektorem i k¹tem obrotu w sk³adowej w).
-	Controller*		controller;			///< WskaŸnik na kontroler, poruszaj¹cy obiektem.
+	DirectX::XMFLOAT3		speed;				///< Prêdkoœæ postepowa obiektu.
+	DirectX::XMFLOAT4		rotation_speed;		///< Prêdkoœæ k¹towa obiektu (wyra¿ona wektorem i k¹tem obrotu w sk³adowej w).
+	Controller*				controller;			///< WskaŸnik na kontroler, poruszaj¹cy obiektem.
 public:
 	DynamicObject();	///< Kontruktor ustawi¹j¹cy zerow¹ prêdkoœæ k¹tow¹ i postêpow¹.
-	DynamicObject( const XMFLOAT3& move_speed, const XMFLOAT4& rot_speed );	///< Kontruktor ustawia podan¹ w parametrach prêdkoœæ.
+	DynamicObject( const DirectX::XMFLOAT3& move_speed, const DirectX::XMFLOAT4& rot_speed );	///< Kontruktor ustawia podan¹ w parametrach prêdkoœæ.
 
-	void			set_speed				( const XMVECTOR& vector )		{ XMStoreFloat3( &speed, vector ); }	///<Ustawia prêdkoœæ obiektu @param[in] vector Wektor prêdkoœci.
-	void			set_rotation_speed		( const XMVECTOR& quaternion )	{ XMStoreFloat4( &rotation_speed, quaternion ); }	///<Ustawia prêdkoœæ obrotow¹ @param[in] quaternion Wektor prêdkoœci.
-	void			set_rotation_speed		( const XMFLOAT4 axis_angle )	{ rotation_speed = axis_angle; }		///<Ustawia prêdkoœæ obrotow¹ @param[in] quaternion Wektor prêdkoœci.
-	XMVECTOR		get_speed				() const						{ return XMLoadFloat3( &speed ); }	///< Zwraca prêdkoœæ postêpow¹ obiektu.
-	XMVECTOR		get_rotation_speed		() const						{ return XMLoadFloat4( &rotation_speed ); }	///< Zwraca prêdkoœæ obrotow¹ obiektu.
+	void				SetSpeed				( const DirectX::XMVECTOR& vector )		{ XMStoreFloat3( &speed, vector ); }	///<Ustawia prêdkoœæ obiektu @param[in] vector Wektor prêdkoœci.
+	void				SetRotationSpeed		( const DirectX::XMVECTOR& quaternion )	{ XMStoreFloat4( &rotation_speed, quaternion ); }	///<Ustawia prêdkoœæ obrotow¹ @param[in] quaternion Wektor prêdkoœci.
+	void				SetRotationSpeed		( const DirectX::XMFLOAT4 axis_angle )	{ rotation_speed = axis_angle; }		///<Ustawia prêdkoœæ obrotow¹ @param[in] quaternion Wektor prêdkoœci.
+	DirectX::XMVECTOR	GetSpeed				() const						{ return XMLoadFloat3( &speed ); }	///< Zwraca prêdkoœæ postêpow¹ obiektu.
+	DirectX::XMVECTOR	GetRotationSpeed		() const						{ return XMLoadFloat4( &rotation_speed ); }	///< Zwraca prêdkoœæ obrotow¹ obiektu.
 
-	void			set_controller			( Controller* ctrl )			{ controller = ctrl; }	///< Ustawia podany w parametrze kontroler
-	Controller*		get_controller			()								{ return controller; }
+	void				SetController			( Controller* ctrl )			{ controller = ctrl; }	///< Ustawia podany w parametrze kontroler
+	Controller*			GetController			()								{ return controller; }
 
-	void			move					(float time_interval);
-	virtual void	move_complex			(float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation);
+	void				Move					( float time_interval );
+	virtual void		MoveComplex				( float time_interval, const DirectX::XMFLOAT3& parent_speed, const DirectX::XMFLOAT4& parent_rotation );
 };
 
 
@@ -208,7 +205,7 @@ protected:
 public:
 	PhysicalObject();
 
-	void pulse();
+	void Pulse();
 };
 
 /**@brief Klasa bazowa dla obiektów, które bêd¹ renderowane.
@@ -231,13 +228,21 @@ protected:
 	bool							model_changed;
 public:
 	DynamicMeshObject();
+	DynamicMeshObject( BufferObject* vertexBuffer, BufferObject* indexBuffer );
 	virtual ~DynamicMeshObject();
 
-	int set_model( Model3DFromFile* model );
+	int							SetModel		( Model3DFromFile* model );
 
+	/// @todo Przemyœleæ czy te funkcje s¹ konieczne.
+	BufferObject*				GetVertexBuffer	()	{ return vertex_buffer; }
+	BufferObject*				GetIndexBuffer	()	{ return index_buffer; }
+	std::vector<ModelPart>&		GetModelParts	()	{ return model_parts; }
+
+	void						AddModelPart	( ModelPart& modelPart );
+	///
 private:
-	void add_references(const ModelPart* part);
-	void delete_all_references();
+	void AddReferences( const ModelPart* part );
+	void DeleteAllReferences();
 
 	/**@brief Funkcja wywo³ywana dla obiektów samo-renderuj¹cych. Ma za zadanie narysowaæ
 	obiekt, dla którego zosta³a wywo³ana.
@@ -252,7 +257,7 @@ private:
 	@param[in] time_interval Czas od ostatniej klatki.
 	@param[in] time_lag Czas wzglêdem ostatniego przeliczenia po³o¿eñ.
 	*/
-	virtual void draw( IRenderer* renderer, float timeInterval, float timeLag ) {}
+	virtual void Draw( IRenderer* renderer, float timeInterval, float timeLag ) {}
 };
 
 class AnimationObject : public PhysicalObject
@@ -279,14 +284,14 @@ class Controller
 {
 public:
 	virtual ~Controller() = default;
-	virtual void control_object( DynamicObject* ) = 0;
+	virtual void ControlObject( DynamicObject* ) = 0;
 };
 
 /**@brief Klasa bazowa dla wszystkich kontrolerów sztucznej inteligencji.*/
 class BaseAIController : public Controller
 {
 
-	virtual void control_object( DynamicObject* ) = 0;
+	virtual void ControlObject( DynamicObject* ) = 0;
 };
 
 /**@brief Klasa bazowa dla wszystkich kontrolerów do sterowania przez u¿ytkownika.*/
@@ -299,15 +304,15 @@ public:
 	BaseInputController( InputAbstractionLayer_base* layer );
 	virtual ~BaseInputController();
 
-	void set_abstraction_layer( InputAbstractionLayer_base* layer ) { abstraction_layer = layer; };
+	void SetAbstractionLayer( InputAbstractionLayer_base* layer ) { abstraction_layer = layer; };
 
-	virtual void control_object( DynamicObject* ) = 0;
+	virtual void ControlObject( DynamicObject* ) = 0;
 };
 
 
 
 /*Klasa obiektu z³o¿onego. Mo¿e zawieraæ w sobie wiele obiektów, których po³o¿enia
-s¹ liczone wzglêdem danego obiektu. do tego celu zamiast funkcji move u¿ywa siê complex_move,
+s¹ liczone wzglêdem danego obiektu. do tego celu zamiast funkcji Move u¿ywa siê complex_move,
 której dodatkowymi paramterami s¹ przesuniêcie i obrót rodzica. Objekty z³o¿one mog¹ siê zagnie¿d¿aæ.
 Trzeba jednak uwa¿aæ, aby do klasy MovementEngine podaæ tylko obiekt nadrzêdny, w innym wypadku przesuniêcia
 bêd¹ siê wlicza³y wielokrotnie. Obiekty bêd¹ce sk³adowymi Complex_obiekt tak¿e mog¹ wykonywaæ w³asne ruchy.*/
@@ -316,6 +321,6 @@ class ComplexObject : public DynamicObject
 protected:
 	std::vector<DynamicObject*>	part;
 public:
-	void move_complex(float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation);
+	void MoveComplex( float time_interval, const DirectX::XMFLOAT3& parent_speed, const DirectX::XMFLOAT4& parent_rotation );
 };
 

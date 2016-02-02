@@ -62,25 +62,25 @@ public:
 	virtual ~SkyDome()
 	{
 		if ( vertex_buffer )
-			vertex_buffer->delete_object_reference(), vertex_buffer = nullptr;
+			vertex_buffer->DeleteObjectReference(), vertex_buffer = nullptr;
 		if ( index_buffer )
-			index_buffer->delete_object_reference(), index_buffer = nullptr;
+			index_buffer->DeleteObjectReference(), index_buffer = nullptr;
 		if ( layout )
-			layout->delete_object_reference(), layout = nullptr;
+			layout->DeleteObjectReference(), layout = nullptr;
 		if ( constant_buffer )
-			constant_buffer->delete_object_reference(), constant_buffer = nullptr;
+			constant_buffer->DeleteObjectReference(), constant_buffer = nullptr;
 
 		if ( display_data.mesh )
 			delete display_data.mesh, display_data.mesh = nullptr;
 		if ( display_data.pixel_shader )
-			display_data.pixel_shader->delete_object_reference(), display_data.pixel_shader = nullptr;
+			display_data.pixel_shader->DeleteObjectReference(), display_data.pixel_shader = nullptr;
 		if ( display_data.vertex_shader )
-			display_data.vertex_shader->delete_object_reference(), display_data.vertex_shader = nullptr;
+			display_data.vertex_shader->DeleteObjectReference(), display_data.vertex_shader = nullptr;
 		if ( display_data.material )
-			display_data.material->delete_object_reference(), display_data.material = nullptr;
+			display_data.material->DeleteObjectReference(), display_data.material = nullptr;
 		for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
 			if ( display_data.texture[i] )
-				display_data.texture[i]->delete_object_reference(), display_data.texture[i] = nullptr;
+				display_data.texture[i]->DeleteObjectReference(), display_data.texture[i] = nullptr;
 	}
 
 	inline BufferObject*			get_vertex_buffer()		{ return vertex_buffer; }				///<Zwraca bufor wierzcho³ków
@@ -109,7 +109,7 @@ protected:
 	
 	@param[in] name Nazwa pliku z tekstur¹.
 	@param[in] type Pozycja w tablicy, do której zostaniej przypisana tekstura.*/
-	inline void set_texture( const std::wstring& name, TextureTypes type )
+	inline void set_texture( const std::wstring& name, TextureUse type )
 	{
 		if ( type > ENGINE_MAX_TEXTURES )
 			return;
@@ -119,9 +119,9 @@ protected:
 			return;	// Zabezpieczenie przed nullptrem
 
 		if ( display_data.texture[type] )	// Je¿eli coœ wczeœniej by³o to kasujemy odwo³anie
-			display_data.texture[type]->delete_object_reference();
+			display_data.texture[type]->DeleteObjectReference();
 
-		tex->add_object_reference();
+		tex->AddObjectReference();
 		display_data.texture[type] = tex;
 	}
 	/**@brief Funkcja ustawia w zmiennej display_data vertex shader.
@@ -136,7 +136,7 @@ protected:
 								   InputLayoutDescriptor* layout_desc )
 	{
 		if ( layout )	// Zwalniamy layout, je¿eli jakiœ by³
-			layout->delete_object_reference();
+			layout->DeleteObjectReference();
 
 		auto shader = models_manager->AddVertexShader( file_name, shader_entry, &layout, layout_desc );
 		if ( !shader )
@@ -145,9 +145,9 @@ protected:
 			return;	// Je¿eli layout siê nie chcia³ stworzyæ to lepiej nie dodawaæ te¿ vertex shadera
 
 		if ( display_data.vertex_shader )	// Je¿eli coœ wczeœniej by³o to kasujemy odwo³anie
-			display_data.vertex_shader->delete_object_reference( );
+			display_data.vertex_shader->DeleteObjectReference( );
 
-		shader->add_object_reference( );
+		shader->AddObjectReference( );
 		display_data.vertex_shader = shader;
 	}
 	/**@brief Funkcja ustawia w zmiennej display_data pixel shader.
@@ -162,9 +162,9 @@ protected:
 			return;	// Zabezpieczenie przed nullptrem
 
 		if ( display_data.pixel_shader )	// Je¿eli coœ wczeœniej by³o to kasujemy odwo³anie
-			display_data.pixel_shader->delete_object_reference( );
+			display_data.pixel_shader->DeleteObjectReference( );
 
-		shader->add_object_reference( );
+		shader->AddObjectReference( );
 		display_data.pixel_shader = shader;
 	}
 	/**@brief Funkcja ustawia w zmiennej display_data materia³.
@@ -179,9 +179,9 @@ protected:
 			return;	// Zabezpieczenie przed nullptrem
 
 		if ( display_data.material )	// Je¿eli coœ wczeœniej by³o to kasujemy odwo³anie
-			display_data.material->delete_object_reference( );
+			display_data.material->DeleteObjectReference( );
 
-		material->add_object_reference( );
+		material->AddObjectReference( );
 		display_data.material = material;
 	}
 	/**@brief Funkcja tworzy, a potem ustawia w zmiennej vertex_buffer bufor wierzcho³ków.
@@ -198,9 +198,9 @@ protected:
 			return;	// Zabezpieczenie przed nullptrem
 
 		if ( vertex_buffer )	// Je¿eli coœ wczeœniej by³o to kasujemy odwo³anie
-			vertex_buffer->delete_object_reference( );
+			vertex_buffer->DeleteObjectReference( );
 
-		buff->add_object_reference( );
+		buff->AddObjectReference( );
 		vertex_buffer = buff;
 	}
 	/**@brief Funkcja tworzy, a potem ustawia w zmiennej index_buffer bufor indeksów.
@@ -217,9 +217,9 @@ protected:
 			return;	// Zabezpieczenie przed nullptrem
 
 		if ( index_buffer )	// Je¿eli coœ wczeœniej by³o to kasujemy odwo³anie
-			index_buffer->delete_object_reference( );
+			index_buffer->DeleteObjectReference( );
 
-		buff->add_object_reference( );
+		buff->AddObjectReference( );
 		index_buffer = buff;
 	}
 
@@ -236,9 +236,9 @@ protected:
 			return;	// Zabezpieczenie przed nullptrem
 
 		if ( index_buffer )	// Je¿eli coœ wczeœniej by³o to kasujemy odwo³anie
-			index_buffer->delete_object_reference( );
+			index_buffer->DeleteObjectReference( );
 
-		buff->add_object_reference( );
+		buff->AddObjectReference( );
 		index_buffer = buff;
 	}
 };

@@ -82,7 +82,7 @@ poprzednio dodanych buforów wierzcho³ków. B³êdem jest za to niepodanie ani bufor
 DisplayEngine bêdzie próbowa³ wyœwietliæ takiego mesha o liczbie wierzcho³ków równej 0, co niepotrzebnie spowalnia
 program.
 
-Je¿eli dodane tekstury s¹ zgodne z domyœlnym przeznaczeniem (zdefiniowanym enumeracj¹ TextureTypes), to nie ma potrzeby
+Je¿eli dodane tekstury s¹ zgodne z domyœlnym przeznaczeniem (zdefiniowanym enumeracj¹ TextureUse), to nie ma potrzeby
 dodawania w³asnych shaderów. Funkcja ModelsManager::FindBestVertexShader i ModelsManager::FindBestPixelShader znajd¹
 najlepiej pasuj¹cy shader do podanej tablicy tekstur.
 
@@ -132,7 +132,7 @@ public:
 	void EndPart();
 
 	// Wype³nianie danymi
-	unsigned int		add_texture			( const std::wstring& file_name, TextureTypes type = TEX_DIFFUSE );
+	unsigned int		add_texture			( const std::wstring& file_name, TextureUse type = TEX_DIFFUSE );
 	unsigned int		add_material		( const MaterialObject* material, const std::wstring& material_name );
 	unsigned int		add_vertex_shader	( const std::wstring& file_name );
 	unsigned int		add_pixel_shader	( const std::wstring& file_name );
@@ -141,7 +141,7 @@ public:
 	unsigned int		add_index_buffer	( const VERT_INDEX* buffer, unsigned int ind_count, int vertex_buffer_offset );
 
 
-	unsigned int		get_parts_count( );
+	Size				get_parts_count( );
 	const ModelPart*	get_part( unsigned int index );
 
 	inline BufferObject* get_vertex_buffer() { return vertex_buffer; }		///<Zwraca wskaŸnik na bufor wierzcho³ków

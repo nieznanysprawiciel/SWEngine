@@ -7,11 +7,14 @@
 @brief Plik zawiera deklaracjê klasy DisplayEngine i funkcje pomocnicze.
 */
 
-
+#include "GraphicAPI/IRenderer.h"
 #include "EngineCore/Actors/ActorObjects.h"
 #include "ConstantBuffersFormat.h"
 #include "EngineCore/Features/SkyDome.h"
-#include "GraphicAPI/IRenderer.h"
+#include "EngineCore/DisplayEngine/RenderPass.h"
+#include <DirectXMath.h>
+
+#include <queue>
 
 void interpolate_position			( float time_lag, const DynamicObject* object, DirectX::XMVECTOR& result_vector );
 void interpolate_orientation		( float time_lag, const DynamicObject* object, DirectX::XMVECTOR& result_vector );
@@ -49,15 +52,18 @@ private:
 	SkyDome*								sky_dome;					///<Klasa odpowiedzialna za kopu³ê nieba
 
 	std::vector<DynamicMeshObject*>			meshes;						///<Modele nieanimowane
-	XMFLOAT4X4*								interpolated_matrixes;		///<Tablica macierzy interpolowanych po³o¿eñ obiektów
+	DirectX::XMFLOAT4X4*					interpolated_matrixes;		///<Tablica macierzy interpolowanych po³o¿eñ obiektów
 	unsigned int							interpol_matrixes_count;	///<Liczba macierzy interpolowanych
 
 	std::vector<CameraObject*>				cameras;					///<Kontener zawieraj¹cy kamery
 
 	ShaderInputLayoutObject*				defaultLayout;				///<@todo Hack. Zlikwidowaæ. Silnik powinien obs³ugiwaæ dowolne layouty, a przynajmniej jakiœ ustalony zbiór.
 	RenderTargetObject*						m_mainRenderTarget;			///<Render target okna aplikacji. @todo W ostatecznej wersji powinien byæ render target ustawiany dla ka¿dego przebiegu.
+
+	std::queue<RenderPass*>					m_renderOnceQueue;			///<Kolejka przebiegów, które maj¹ zostaæ wyrenderowane tylko raz.
+	unsigned int							m_maxQueuedPassesPerFrame;	///<Maksymalna liczba przebiegów jaka zostanie wziêta z kolejki w ka¿dej ramce.
 public:
-	DisplayEngine(Engine* engine);
+	DisplayEngine( Engine* engine );
 	~DisplayEngine();
 
 	void InitRenderer( IRenderer* renderer );
@@ -69,46 +75,55 @@ public:
 	void SetMainRenderTarget				( RenderTargetObject* renderTarget );					///<@todo Hack. Zrobiæ docelowy sposób ustawiania render targetów.
 
 	// G³ówna funkcja do wyœwietlania sceny
-	void display_scene						( float time_interval, float time_lag );
+	void			DisplayScene					( float time_interval, float time_lag );
 	// Funkcja do interpolacji pozycji obiektów
-	void interpolate_positions				(float time_lag);
-	void SetProjectionMatrix				(float angle, float X_to_Y, float near_plane, float far_plane);
+	void			InterpolatePositions			( float time_lag);
+	void			SetProjectionMatrix				( float angle, float X_to_Y, float near_plane, float far_plane);
 
 	// Zarz¹dzanie meshami
-	void add_dynamic_mesh_object			( DynamicMeshObject* object );
+	void			AddDynamicMeshObject			( DynamicMeshObject* object );
+	void			DeleteAllMeshes					();
+	
+	/// @todo Pobieranie meshy z DisplayEngine jest tymczasowe. Trzeba wymyœleæ docelowy mechanizm.
+	std::vector<DynamicMeshObject*>		GetSceneObjects() { return meshes; }
 
 	// Œwiat³a
-	int set_directional_light				( const DirectX::XMFLOAT4& direction, const DirectX::XMFLOAT4& color, unsigned int index );
-	void set_ambient_light					( const DirectX::XMFLOAT4& color );
+	int				SetDirectionalLight				( const DirectX::XMFLOAT4& direction, const DirectX::XMFLOAT4& color, unsigned int index );
+	void			SetAmbientLight					( const DirectX::XMFLOAT4& color );
 
 	// camera functions
-	int add_camera							( CameraObject* camera );
-	int set_current_camera					( CameraObject* camera );
+	int				AddCamera						( CameraObject* camera );
+	int				SetCurrentCamera				( CameraObject* camera );
+
+	// Renderowanie
+	void			RenderOnce						( RenderPass* pass )	{	m_renderOnceQueue.push( pass );	}
 
 	// SkyDome
-	SkyDome* set_skydome					( SkyDome* dome );
+	SkyDome*		SetSkydome						( SkyDome* dome );
 private:
-	void set_view_matrix					( float time_lag );
+	void SetViewMatrix						( float time_lag );
 
 	void realocate_interpolation_memory		(unsigned int min = 1);
-	void interpolate_object					( float time_lag, const DynamicObject* object, DirectX::XMFLOAT4X4* result_matrix );
-	void interpolate_object2				( float time_lag, const DynamicObject* object, DirectX::XMFLOAT4X4* result_matrix );
+	void interpolate_object					( float timeLag, const DynamicObject* object, DirectX::XMFLOAT4X4* result_matrix );
+	void interpolate_object2				( float timeLag, const DynamicObject* object, DirectX::XMFLOAT4X4* result_matrix );
 
 	// Wyœwietlanie (funkcje wewnêtrzne)
-	void display_instanced_meshes			( float time_interval, float time_lag );
-	void display_dynamic_objects			( float time_interval, float time_lag );
-	void display_particles					( float time_interval, float time_lag );
-	void display_short_live_objects			( float time_interval, float time_lag );
-	void display_sky_box					( float time_interval, float time_lag );
-	void display_skeletons					( float time_interval, float time_lag );
-	void display_self_drawing_objects		( float time_interval, float time_lag );
+	void DisplayInstancedMeshes				( float timeInterval, float timeLag );
+	void DisplayDynamicObjects				( float timeInterval, float timeLag );
+	void DisplayParticles					( float timeInterval, float timeLag );
+	void DisplayShortLiveObjects			( float timeInterval, float timeLag );
+	void DisplaySkyBox						( float timeInterval, float timeLag );
+	void DisplaySkeletons					( float timeInterval, float timeLag );
+	void DisplaySelfDrawingObjects			( float timeInterval, float timeLag );
+
+	void RenderFromQueue					( float timeInterval, float timeLag );
 
 	// Funkcje pomocnicze do renderingu
-	void set_textures						( const ModelPart& model );
-	void set_index_buffer					( BufferObject* buffer );
-	bool set_vertex_buffer					( BufferObject* buffer );
-	void copy_material						( ConstantPerMesh* shader_data_per_mesh, const ModelPart* model );
-	void depth_buffer_enable				( bool state );
+	void SetTextures						( const ModelPart& model );
+	void SetIndexBuffer						( BufferObject* buffer );
+	bool SetVertexBuffer					( BufferObject* buffer );
+	void CopyMaterial						( ConstantPerMesh* shader_data_per_mesh, const ModelPart* model );
+	void DepthBufferEnable					( bool state );
 };
 
 
@@ -121,10 +136,11 @@ private:
 */
 inline void interpolate_position( float time_lag, const DynamicObject* object, DirectX::XMVECTOR& result_vector )
 {
-	XMVECTOR position = object->get_position( );
-	XMVECTOR velocity = object->get_speed( );
+	DirectX::XMVECTOR position = object->GetPosition( );
+	DirectX::XMVECTOR velocity = object->GetSpeed( );
 
-	result_vector = velocity * time_lag + position;
+	result_vector = DirectX::XMVectorScale( velocity, time_lag );
+	result_vector = DirectX::XMVectorAdd( result_vector, position );
 }
 
 /**@deprecated
@@ -136,8 +152,8 @@ inline void interpolate_position( float time_lag, const DynamicObject* object, D
 */
 inline void interpolate_orientation( float time_lag, const DynamicObject* object, DirectX::XMVECTOR& result_vector )
 {
-	XMVECTOR orientation = object->get_orientation( );
-	XMVECTOR rotation_velocity = object->get_rotation_speed( );
+	DirectX::XMVECTOR orientation = object->GetOrientation( );
+	DirectX::XMVECTOR rotation_velocity = object->GetRotationSpeed( );
 
 #ifdef _QUATERNION_SPEED
 	//najpierw liczymy nowy kwaternion dla obrotu w czasie sekundy
@@ -150,11 +166,11 @@ inline void interpolate_orientation( float time_lag, const DynamicObject* object
 #else
 
 
-	if ( !XMVector3Equal( rotation_velocity, XMVectorZero() ) )
+	if ( !DirectX::XMVector3Equal( rotation_velocity, DirectX::XMVectorZero() ) )
 	{
-		float rot_angle = XMVectorGetW( rotation_velocity ) * time_lag;					// liczymy k¹t obrotu
-		rotation_velocity = XMQuaternionRotationAxis( rotation_velocity, rot_angle );	// przerabiamy na kwaternion
-		result_vector = XMQuaternionMultiply( orientation, rotation_velocity );			// liczymy nowy kwaternion orientacji
+		float rot_angle = DirectX::XMVectorGetW( rotation_velocity ) * time_lag;					// liczymy k¹t obrotu
+		rotation_velocity = DirectX::XMQuaternionRotationAxis( rotation_velocity, rot_angle );	// przerabiamy na kwaternion
+		result_vector = DirectX::XMQuaternionMultiply( orientation, rotation_velocity );			// liczymy nowy kwaternion orientacji
 	}
 	else
 		result_vector = orientation;
@@ -168,7 +184,7 @@ Potrzebne w momencie tworzenia macierzy widoku na podstawie po³o¿enia kamery.
 */
 inline void inverse_camera_position( DirectX::XMVECTOR& result_vector )
 {
-	result_vector = XMVectorNegate( result_vector );
+	result_vector = DirectX::XMVectorNegate( result_vector );
 	//result_vector = XMVectorSetW( result_vector, 0.0 );		// sk³adowa W powinna byæ 0, ale funkcja XMMatrixTranslationFromVector na ni¹ wogóle nie patrzy
 }
 
@@ -179,7 +195,7 @@ Potrzebne w momencie tworzenia macierzy widoku na podstawie po³o¿enia kamery.
 */
 inline void inverse_camera_orientation( DirectX::XMVECTOR& result_vector )
 {
-	result_vector = XMVectorNegate( result_vector );
-	result_vector = XMVectorSetW( result_vector, -XMVectorGetW( result_vector ) );
+	result_vector = DirectX::XMVectorNegate( result_vector );
+	result_vector = DirectX::XMVectorSetW( result_vector, -DirectX::XMVectorGetW( result_vector ) );
 }
 

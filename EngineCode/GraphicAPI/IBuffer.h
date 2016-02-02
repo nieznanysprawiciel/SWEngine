@@ -6,6 +6,7 @@
 */
 
 #include "GraphicAPI/ResourceObject.h"
+#include "Common/MemoryChunk.h"
 
 class IBuffer	:	public ResourceObject
 {
@@ -15,6 +16,6 @@ protected:
 	IBuffer() : ResourceObject( 0 ) {}
 	virtual ~IBuffer() = default;
 public:
-
+	virtual MemoryChunk			CopyData		() = 0;		///<Kopiuje dane z bufora i umieszcza je w zwracanym MemoryChunku.
 };
 

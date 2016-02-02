@@ -5,6 +5,7 @@
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
+#include <string>
 
 #include "GraphicAPI/ResourceObject.h"
 
@@ -15,5 +16,7 @@ protected:
 	ITexture() : ResourceObject( 0 ) {}
 	virtual ~ITexture() = default;
 public:
+
+	virtual bool		SaveToFile		( const std::string& filePath ) = 0;
 };
 

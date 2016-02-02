@@ -49,7 +49,7 @@ Engine::Engine(HINSTANCE instance)
 #endif
 
 	// Dziêki tej zmiennej bêdzie mo¿na wysy³aæ eventy
-	Object::set_engine( this );
+	Object::SetEngine( this );
 
 #ifndef __UNUSED
 	//Zmienna decyduje o konczeniu w¹tków
@@ -85,12 +85,9 @@ Engine::Engine(HINSTANCE instance)
 
 Engine::~Engine()
 {
-
-#ifdef __TEST
 	//obiekty trzeba pokasowaæ, zanim siê skasuje to, do czego siê odwo³uj¹
-	for ( unsigned int i = 0; i < object_list.size(); ++i )
-		delete object_list[i];
-#endif
+	for ( unsigned int i = 0; i < Context.objectList.size(); ++i )
+		delete Context.objectList[i];
 
 	delete Context.controllersEngine;
 	delete Context.movementEngine;
@@ -235,7 +232,7 @@ bool Engine::InitDisplayer()
 	Context.displayEngine->InitRenderer( renderer );
 	Context.displayEngine->InitDisplayer( Context.modelsManager );
 
-	Context.displayEngine->SetProjectionMatrix( XMConvertToRadians( 45 ),
+	Context.displayEngine->SetProjectionMatrix( DirectX::XMConvertToRadians( 45 ),
 										   (float)Context.windowWidth / (float)Context.windowHeight, 1, 100000 );
 
 	return true;
@@ -258,13 +255,13 @@ void Engine::RenderFrame()
 	{
 		START_PERFORMANCE_CHECK(FRAME_COMPUTING_TIME)
 
-		Context.ui_engine->proceed_input( FIXED_MOVE_UPDATE_INTERVAL );
+		Context.ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.physicEngine->proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.controllersEngine->proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.movementEngine->proceed_movement( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.controllersEngine->proceed_controllers_post( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.collisionEngine->proceed_collisions( FIXED_MOVE_UPDATE_INTERVAL );
-		Context.fableEngine->proceed_fable( FIXED_MOVE_UPDATE_INTERVAL );
+		Context.fableEngine->ProceedFable( FIXED_MOVE_UPDATE_INTERVAL );
 
 		lag -= FIXED_MOVE_UPDATE_INTERVAL;
 		Context.timeManager.UpdateTimeLag( lag );
@@ -276,7 +273,7 @@ void Engine::RenderFrame()
 #ifdef _INTERPOLATE_POSITIONS
 	START_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 
-	Context.displayEngine->interpolate_positions( lag / FIXED_MOVE_UPDATE_INTERVAL );
+	Context.displayEngine->InterpolatePositions( lag / FIXED_MOVE_UPDATE_INTERVAL );
 
 	END_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 #endif
@@ -286,8 +283,8 @@ void Engine::RenderFrame()
 	//Renderujemy scenê oraz interfejs u¿ytkownika
 	Context.displayEngine->BeginScene();
 
-	Context.displayEngine->display_scene( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
-	Context.ui_engine->draw_GUI( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
+	Context.displayEngine->DisplayScene( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
+	Context.ui_engine->DrawGUI( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
 
 	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
 
@@ -311,13 +308,13 @@ void Engine::UpdateScene( float& lag, float timeInterval )
 	{
 		START_PERFORMANCE_CHECK(FRAME_COMPUTING_TIME)
 
-		Context.ui_engine->proceed_input( FIXED_MOVE_UPDATE_INTERVAL );
+		Context.ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.physicEngine->proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.controllersEngine->proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.movementEngine->proceed_movement( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.controllersEngine->proceed_controllers_post( FIXED_MOVE_UPDATE_INTERVAL );
 		Context.collisionEngine->proceed_collisions( FIXED_MOVE_UPDATE_INTERVAL );
-		Context.fableEngine->proceed_fable( FIXED_MOVE_UPDATE_INTERVAL );
+		Context.fableEngine->ProceedFable( FIXED_MOVE_UPDATE_INTERVAL );
 
 		lag -= FIXED_MOVE_UPDATE_INTERVAL;
 		//timeManager.UpdateTimeLag( lag );
@@ -342,7 +339,7 @@ void Engine::RenderScene( float lag, float timeInterval )
 #ifdef _INTERPOLATE_POSITIONS
 	START_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 
-	Context.displayEngine->interpolate_positions( framePercent );
+	Context.displayEngine->InterpolatePositions( framePercent );
 
 	END_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 #endif
@@ -352,8 +349,8 @@ void Engine::RenderScene( float lag, float timeInterval )
 	//Renderujemy scenê oraz interfejs u¿ytkownika
 	Context.displayEngine->BeginScene();
 
-	Context.displayEngine->display_scene( timeInterval, framePercent );
-	Context.ui_engine->draw_GUI( timeInterval, framePercent );
+	Context.displayEngine->DisplayScene( timeInterval, framePercent );
+	Context.ui_engine->DrawGUI( timeInterval, framePercent );
 
 	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
 
@@ -382,7 +379,7 @@ void* Engine::GetRenderTargetHandle( uint16 width, uint16 height )
 
 	RenderTargetObject* renderTarget = Context.modelsManager->CreateRenderTarget( EDITOR_RENDERTARGET_STRING, descriptor );
 	Context.displayEngine->SetMainRenderTarget( renderTarget );
-	Context.displayEngine->SetProjectionMatrix( XMConvertToRadians( 45 ), (float)width / (float)height, 1, 100000 );
+	Context.displayEngine->SetProjectionMatrix( DirectX::XMConvertToRadians( 45 ), (float)width / (float)height, 1, 100000 );
 
 	return Context.graphicInitializer->GetRenderTargetHandle( renderTarget );
 }
@@ -458,10 +455,10 @@ void Engine::set_entry_point( IGamePlay* game_play )
 {
 	if ( Context.engineReady )
 	{
-		game_play->set_engine_and_fable( this, Context.fableEngine );
-		Context.fableEngine->set_game_play( game_play );
+		game_play->SetEngineReference( this, Context.fableEngine );
+		Context.fableEngine->SetGamePlay( game_play );
 		
-		int result = game_play->load_level();
+		int result = game_play->LoadLevel();
 		if ( result )
 		{//Tutaj mo¿e siê znaleŸæ obs³uga b³êdów
 
@@ -485,7 +482,7 @@ void Engine::set_entry_point( const std::wstring dll_name )
 		if ( directX_ready )
 		{
 			fableEngine->set_game_play( game_play );
-			game_play->load_level( );
+			game_play->LoadLevel( );
 		}
 	}
 }

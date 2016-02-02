@@ -4,6 +4,7 @@
 
 #include "Common\memory_leaks.h"
 
+using namespace DirectX;
 
 ///@brief Kontruktr inicjuje obiekty FBX SDK, konieczne do wczytania modelu.
 FBX_loader::FBX_loader(ModelsManager* models_manager)
@@ -228,7 +229,7 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 		//Nie trzeba dodawaæ nulli tak jak wczeœniej, bo one siê domyœlnie tam znajduj¹
 		//cur_model->add_null_material();
 		//cur_model->add_null_texture();
-		cur_model->add_vertex_buffer( triangles[0]->data(), triangles[0]->size());
+		cur_model->add_vertex_buffer( triangles[0]->data(), (unsigned int)triangles[0]->size());
 		cur_model->add_transformation( transformation );
 
 		cur_model->EndPart( );		// Te funkcje maj¹ otaczaæ dodawanie ka¿dego kolejnego parta
@@ -247,7 +248,7 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 			// Pobieramy materia³
 			FbxSurfacePhong* material = static_cast<FbxSurfacePhong*>(node->GetMaterial( i ));
 			MaterialObject engine_material;							// Ten materia³ jest tylko tymczasowy
-			copy_material( engine_material, *material );			// Konwertujemy z formatu FBX na MaterialObject
+			CopyMaterial( engine_material, *material );			// Konwertujemy z formatu FBX na MaterialObject
 			// Dodajemy do silnika, podajemy w drugim parametrze nazwê materia³u, która zostanie doklejona do œcie¿ki pliku
 			cur_model->add_material( &engine_material, converter.from_bytes( material->GetName( )) );
 
@@ -255,13 +256,13 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 			{
 				FbxFileTexture* texture = static_cast<FbxFileTexture*>(material->Diffuse.GetSrcObject());
 				if ( texture != nullptr )
-					cur_model->add_texture( converter.from_bytes( texture->GetFileName() ), TextureTypes::TEX_DIFFUSE );
+					cur_model->add_texture( converter.from_bytes( texture->GetFileName() ), TextureUse::TEX_DIFFUSE );
 					// Je¿eli dodawanie siê nie uda, to tekstura pozostanie nullptrem
 				//else //tutaj tekstura ma byæ nullem, ale tak siê dzieje domyœlnie
 			}
 			//else //tutaj tekstura ma byæ nullem, ale tak siê dzieje domyœlnie
 
-			cur_model->add_vertex_buffer( triangles[i]->data( ), triangles[i]->size( ));
+			cur_model->add_vertex_buffer( triangles[i]->data( ), (unsigned int)triangles[i]->size( ));
 			cur_model->add_transformation( transformation );
 
 			cur_model->EndPart( );		// Te funkcje maj¹ otaczaæ dodawanie ka¿dego kolejnego parta
@@ -300,7 +301,7 @@ int FBX_loader::read_material_index(FbxMesh* mesh, unsigned int polygon_counter)
 }
 
 /**@brief Wczytuje UVs dla podanego wierzcho³ka.*/
-void FBX_loader::read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_counter, XMFLOAT2& UV_cords)
+void FBX_loader::read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_counter, DirectX::XMFLOAT2& UV_cords)
 {
 	if (mesh->GetUVLayerCount() < 1)
 		return;
@@ -315,13 +316,13 @@ void FBX_loader::read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_
 		{
 		case FbxGeometryElement::eDirect:
 			UV_cords.x = static_cast<float>(UVs->GetDirectArray().GetAt(control_point).mData[0]);
-			UV_cords.y = static_cast<float>(UVs->GetDirectArray().GetAt(control_point).mData[1]);
+			UV_cords.y = 1 - static_cast<float>(UVs->GetDirectArray().GetAt(control_point).mData[1]);
 			break;
 
 		case FbxGeometryElement::eIndexToDirect:
 			index = UVs->GetIndexArray().GetAt(control_point);
 			UV_cords.x = static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[0]);
-			UV_cords.y = static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[1]);
+			UV_cords.y = 1 - static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[1]);
 			break;
 		}
 		break;
@@ -331,13 +332,13 @@ void FBX_loader::read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_
 		{
 		case FbxGeometryElement::eDirect:
 			UV_cords.x = static_cast<float>(UVs->GetDirectArray().GetAt(vertex_counter).mData[0]);
-			UV_cords.y = static_cast<float>(UVs->GetDirectArray().GetAt(vertex_counter).mData[1]);
+			UV_cords.y = 1 - static_cast<float>(UVs->GetDirectArray().GetAt(vertex_counter).mData[1]);
 			break;
 
 		case FbxGeometryElement::eIndexToDirect:
 			index = UVs->GetIndexArray().GetAt(vertex_counter);
 			UV_cords.x = static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[0]);
-			UV_cords.y = static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[1]);
+			UV_cords.y = 1 - static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[1]);
 			break;
 		}
 		break;
@@ -384,7 +385,7 @@ void FBX_loader::copy_material(D3DMATERIAL9& directXmaterial, const FbxSurfacePh
 #endif
 
 /**@brief Kopiujemy materia³ konwertuj¹c go z formatu u¿ywanego przez FBX SDK do formatu u¿ywanego w silniku.*/
-void FBX_loader::copy_material( MaterialObject& engine_material, const FbxSurfacePhong& FBXmaterial )
+void FBX_loader::CopyMaterial( MaterialObject& engine_material, const FbxSurfacePhong& FBXmaterial )
 {
 	FbxDouble3 diffuse = static_cast<FbxDouble3>(FBXmaterial.Diffuse.Get( ));
 	FbxDouble3 ambient = static_cast<FbxDouble3>(FBXmaterial.Ambient.Get( ));

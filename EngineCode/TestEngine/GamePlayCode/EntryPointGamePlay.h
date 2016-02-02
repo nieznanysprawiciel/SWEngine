@@ -21,9 +21,9 @@ public:
 	~EntryPointGamePlay();
 
 	// Funkcje czysto wirtualne odziedziczone po IGamePlay
-	virtual void		proceed_game_play( float time_interval ) override;
-	virtual int			load_level() override;
-	virtual int			unload_level() override;
+	virtual void		ProceedGameLogic( float time_interval ) override;
+	virtual int			LoadLevel() override;
+	virtual int			UnloadLevel() override;
 };
 
 

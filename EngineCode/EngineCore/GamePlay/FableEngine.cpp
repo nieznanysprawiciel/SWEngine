@@ -5,82 +5,85 @@
 
 #include "Common/memory_leaks.h"
 
-FableEngine::FableEngine(Engine* engine)
-	: engine(engine)
+FableEngine::FableEngine( Engine* engine )
+	: m_engine( engine )
 {
-	//klasa engine musi mieæ ³atwy dostêp do naszej kolejki, wiêc mu j¹ przypisujemy
-	engine->set_events_queue( &events_queue );
+	//klasa m_engine musi mieæ ³atwy dostêp do naszej kolejki, wiêc mu j¹ przypisujemy
+	engine->set_events_queue( &m_eventsQueue );
 
-	game_play = nullptr;
+	m_gamePlay = nullptr;
 
 	//wype³niamy tablicê delegatów nullptrami
-	for (unsigned int i = 0; i < BUILD_IN_EVENTS; ++i)
-		event_delegates.push_back(nullptr);
+	for( unsigned int i = 0; i < BUILD_IN_EVENTS; ++i )
+		m_eventDelegates.push_back( nullptr );
 
-	delegates_count = BUILD_IN_EVENTS;
+	m_delegatesCount = BUILD_IN_EVENTS;
 }
 
 
 FableEngine::~FableEngine()
 {
 	//nasza klasa jest odpowiedzialna za zwalnianie eventów
-	while (!events_queue.empty())
+	while( !m_eventsQueue.empty() )
 	{
-		Event* cur_event = events_queue.front();
+		Event* cur_event = m_eventsQueue.front();
 		delete cur_event;
 	}
 
-	if ( game_play )
-		delete game_play;
+	if( m_gamePlay )
+		delete m_gamePlay;
 }
 
 
-void FableEngine::proceed_fable(float time_interval)
+void FableEngine::ProceedFable( float timeInterval )
 {
-	proceed_events( time_interval );
+	ProceedEvents( timeInterval );
 	//na koñcu po wykonaniu obs³ugi wszystkich eventów
 	//wywo³ujemy funkcjê g³ówn¹ GamePlaya
-	if ( game_play != nullptr )
-		game_play->proceed_game_play(time_interval);
+	if( m_gamePlay != nullptr )
+		m_gamePlay->ProceedGameLogic( timeInterval );
 }
 
-void FableEngine::proceed_events( float time_interval )
+void FableEngine::ProceedEvents( float timeInterval )
 {
-	while ( !events_queue.empty() )
+	while( !m_eventsQueue.empty() )
 	{
 		//pobieramy z kolejki kolejny event i wywo³ujemy dla niego funkcjê obs³ugi
-		Event* current_event = events_queue.front();
-		if ( current_event->type < delegates_count )		//ktoœ móg³ wpisaæ niezarejestrowany Event
-			if ( event_delegates[current_event->type] != nullptr )	//mo¿e nie byæ delegata
-				event_delegates[current_event->type]( game_play, current_event );
+		Event* current_event = m_eventsQueue.front();
+		m_eventsQueue.pop();
+		if( current_event->type < m_delegatesCount )		//ktoœ móg³ wpisaæ niezarejestrowany Event
+			if( m_eventDelegates[ current_event->type ] != nullptr )	//mo¿e nie byæ delegata
+				m_eventDelegates[ current_event->type ]( current_event );
 		//FableEngine jest odpowiedzialna za kasowanie
 		delete current_event;
 	}
 }
 
-/*Funkcja s³u¿y do dodania funkcji obs³ugi dla nowego eventu stworzonego przez u¿ytkownika.
- *Wartoœci¹ zwracan¹ jest identyfikator, który nale¿y wpisywaæ w polu type klasy Event.
- *Identyfikator jest nastêpn¹ w kolejce liczb¹ po ostatnim zarejestrowanym Evencie.*/
-unsigned int FableEngine::register_event(EventDelegate event_delegate)
+/**Funkcja s³u¿y do dodania funkcji obs³ugi dla nowego eventu stworzonego przez u¿ytkownika.
+Wartoœci¹ zwracan¹ jest identyfikator, który nale¿y wpisywaæ w polu type klasy Event.
+Identyfikator jest nastêpn¹ w kolejce liczb¹ po ostatnim zarejestrowanym Evencie.
+
+@param[in] eventDelegate Delegat, który zostanie wywo³any w przypadku pojawienia siê eventu.*/
+unsigned int FableEngine::RegisterEvent( EventDelegate eventDelegate )
 {
-	event_delegates.push_back(event_delegate);
-	++delegates_count;
-	return (delegates_count - 1);
+	m_eventDelegates.push_back( eventDelegate );
+	++m_delegatesCount;
+	return ( m_delegatesCount - 1 );
 }
 
-/*Zmieniamy delegate pod indeksem id. Je¿eli delegat o takim indeksie nie istnieje nic z³ego siê
- *nie stanie, ale funkcja nie poinformuje w ¿aden sposób o b³êdzie.*/
-void FableEngine::change_delegate(unsigned int id, EventDelegate event_delegate)
+/**Zmieniamy delegate pod indeksem id. Je¿eli delegat o takim indeksie nie istnieje nic z³ego siê
+nie stanie, ale funkcja nie poinformuje w ¿aden sposób o b³êdzie.*/
+void FableEngine::ChangeDelegate( unsigned int id, EventDelegate eventDelegate )
 {
-	if (id < delegates_count)
+	if( id >= m_delegatesCount )
 		return;		//nie istnieje event
-	event_delegates[id] = event_delegate;
+	m_eventDelegates[ id ] = eventDelegate;
 }
 
-/*Zamieniamy wskaŸnik funkcji pod adresem id na nullptr.*/
-void FableEngine::delete_delegate(unsigned int id)
+/**Zamieniamy wskaŸnik funkcji pod adresem id na nullptr.*/
+void FableEngine::DeleteDelegate( unsigned int id )
 {
-	if (id < delegates_count)
+	if( id < m_delegatesCount )
 		return;		//nie istnieje event
-	event_delegates[id] = nullptr;
+	m_eventDelegates[ id ] = nullptr;
 }

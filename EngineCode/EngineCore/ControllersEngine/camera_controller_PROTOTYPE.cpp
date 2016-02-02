@@ -5,6 +5,7 @@
 
 #include "Common/memory_leaks.h"
 
+using namespace DirectX;
 
 camera_controller_PROTOTYPE::camera_controller_PROTOTYPE( InputAbstractionLayer_base* layer )
 	:	BaseInputController(layer)
@@ -22,7 +23,7 @@ camera_controller_PROTOTYPE::~camera_controller_PROTOTYPE()
 /*Funkcja g³ówna odpowiedzialna za sterowanie ruchem obiektu.*/
 using namespace STANDARD_LAYERS;
 
-void camera_controller_PROTOTYPE::control_object( DynamicObject* object )
+void camera_controller_PROTOTYPE::ControlObject( DynamicObject* object )
 {
 	if ( !abstraction_layer->is_active() )
 		return;
@@ -38,16 +39,16 @@ void camera_controller_PROTOTYPE::control_object( DynamicObject* object )
 	//ruch do przodu wzd³u¿ kierunku patrzenia, albo do ty³u
 	if ( button_state[PROTOTYPE_BUTTONS::FORWARD] && !button_state[PROTOTYPE_BUTTONS::BACKWARD] )
 	{
-		XMVECTOR versor = XMVectorSet( 0.0, 0.0, 1.0, 0.0 );
-		XMVECTOR orientation = object->get_orientation( );
+		XMVECTOR versor = XMVectorSet( 0.0, 0.0, -1.0, 0.0 );
+		XMVECTOR orientation = object->GetOrientation( );
 		XMMATRIX orient = XMMatrixRotationQuaternion( orientation );
 		forward = XMVector4Transform( versor, orient );
 		forward *= move_speed;
 	}
 	else if ( button_state[PROTOTYPE_BUTTONS::BACKWARD] && !button_state[PROTOTYPE_BUTTONS::FORWARD] )
 	{
-		XMVECTOR versor = XMVectorSet( 0.0, 0.0, -1.0, 0.0 );
-		XMVECTOR orientation = object->get_orientation( );
+		XMVECTOR versor = XMVectorSet( 0.0, 0.0, 1.0, 0.0 );
+		XMVECTOR orientation = object->GetOrientation( );
 		XMMATRIX orient = XMMatrixRotationQuaternion( orientation );
 		forward = XMVector4Transform( versor, orient );
 		forward *= move_speed;
@@ -57,7 +58,7 @@ void camera_controller_PROTOTYPE::control_object( DynamicObject* object )
 	if ( button_state[PROTOTYPE_BUTTONS::LEFT] && !button_state[PROTOTYPE_BUTTONS::RIGHT] )
 	{
 		XMVECTOR versor = XMVectorSet( -1.0, 0.0, 0.0, 0.0 );
-		XMVECTOR orientation = object->get_orientation( );
+		XMVECTOR orientation = object->GetOrientation( );
 		XMMATRIX orient = XMMatrixRotationQuaternion( orientation );
 		left = XMVector4Transform( versor, orient );
 		left *= move_speed;
@@ -65,29 +66,29 @@ void camera_controller_PROTOTYPE::control_object( DynamicObject* object )
 	else if ( button_state[PROTOTYPE_BUTTONS::RIGHT] && !button_state[PROTOTYPE_BUTTONS::LEFT] )
 	{
 		XMVECTOR versor = XMVectorSet( 1.0, 0.0, 0.0, 0.0 );
-		XMVECTOR orientation = object->get_orientation( );
+		XMVECTOR orientation = object->GetOrientation( );
 		XMMATRIX orient = XMMatrixRotationQuaternion( orientation );
 		left = XMVector4Transform( versor, orient );
 		left *= move_speed;
 	}
 
 	forward = forward + left;		//dodajemy ruch posuwisty
-	object->set_speed( forward );	//nadajemy obiektowi prêdkoœæ, poprzedni¹ siê nie przejmujemy
+	object->SetSpeed( forward );	//nadajemy obiektowi prêdkoœæ, poprzedni¹ siê nie przejmujemy
 
 	//ruch obrotowy
 	//mamy lewoskrêtny uk³ad wspó³rzednych, wiêc wektory s¹ odwrotnie zwrócone wzglêdem normalnych wektorów
 	if ( button_state[PROTOTYPE_BUTTONS::DOWN] && !button_state[PROTOTYPE_BUTTONS::UP] )
 	{
-		XMVECTOR versor = XMVectorSet( 1.0, 0.0, 0.0, 0.0 );
-		XMVECTOR orientation = object->get_orientation( );
+		XMVECTOR versor = XMVectorSet( -1.0, 0.0, 0.0, 0.0 );
+		XMVECTOR orientation = object->GetOrientation( );
 		XMMATRIX orient = XMMatrixRotationQuaternion( orientation );
 		down_rotate = XMVector4Transform( versor, orient );
 		down_rotate *= button_rot_speed;
 	}
 	else if ( button_state[PROTOTYPE_BUTTONS::UP] && !button_state[PROTOTYPE_BUTTONS::DOWN] )
 	{
-		XMVECTOR versor = XMVectorSet( -1.0, 0.0, 0.0, 0.0 );
-		XMVECTOR orientation = object->get_orientation( );
+		XMVECTOR versor = XMVectorSet( 1.0, 0.0, 0.0, 0.0 );
+		XMVECTOR orientation = object->GetOrientation( );
 		XMMATRIX orient = XMMatrixRotationQuaternion( orientation );
 		down_rotate = XMVector4Transform( versor, orient );
 		down_rotate *= button_rot_speed;
@@ -95,13 +96,13 @@ void camera_controller_PROTOTYPE::control_object( DynamicObject* object )
 
 	if ( button_state[PROTOTYPE_BUTTONS::TURN_LEFT] && !button_state[PROTOTYPE_BUTTONS::TURN_RIGHT] )
 	{
-		left_rotate = XMVectorSet( 0.0, -1.0, 0.0, 0.0 );
+		left_rotate = XMVectorSet( 0.0, 1.0, 0.0, 0.0 );
 		//zawsze obracamy wzglêdem osi pionowej, dlatego nie mno¿ymy przez kwaternion orientacji
 		left_rotate *= button_rot_speed;
 	}
 	else if ( button_state[PROTOTYPE_BUTTONS::TURN_RIGHT] && !button_state[PROTOTYPE_BUTTONS::TURN_LEFT] )
 	{
-		left_rotate = XMVectorSet( 0.0, 1.0, 0.0, 0.0 );
+		left_rotate = XMVectorSet( 0.0, -1.0, 0.0, 0.0 );
 		//zawsze obracamy wzglêdem osi pionowej, dlatego nie mno¿ymy przez kwaternion orientacji
 		left_rotate *= button_rot_speed;
 	}
@@ -109,22 +110,22 @@ void camera_controller_PROTOTYPE::control_object( DynamicObject* object )
 	//pobieramy tablicê osi
 	const float* axis_state = abstraction_layer->get_axis_table();
 
-	float y_axis = axis_state[PROTOTYPE_AXES::Y_AXIS];
-	if (y_axis != 0.0f)
+	float y_axis = axis_state[ PROTOTYPE_AXES::Y_AXIS ];
+	if( y_axis != 0.0f )
 	{
-		XMVECTOR versor = XMVectorSet(1.0, 0.0, 0.0, 0.0);
-		XMVECTOR orientation = object->get_orientation();
-		XMMATRIX orient = XMMatrixRotationQuaternion(orientation);
-		XMVECTOR axis_down_rotate = XMVector4Transform(versor, orient);
+		XMVECTOR versor = XMVectorSet( -1.0, 0.0, 0.0, 0.0 );
+		XMVECTOR orientation = object->GetOrientation();
+		XMMATRIX orient = XMMatrixRotationQuaternion( orientation );
+		XMVECTOR axis_down_rotate = XMVector4Transform( versor, orient );
 		axis_down_rotate *= y_axis * axis_rot_speed;
 
 		down_rotate += axis_down_rotate;
 	}
 
-	float x_axis = axis_state[PROTOTYPE_AXES::X_AXIS];
-	if (x_axis != 0.0f)
+	float x_axis = axis_state[ PROTOTYPE_AXES::X_AXIS ];
+	if( x_axis != 0.0f )
 	{
-		XMVECTOR axis_left_rotate = XMVectorSet(0.0, 1.0, 0.0, 0.0);
+		XMVECTOR axis_left_rotate = XMVectorSet( 0.0, -1.0, 0.0, 0.0 );
 		axis_left_rotate *= x_axis * axis_rot_speed;
 
 		left_rotate += axis_left_rotate;
@@ -135,7 +136,7 @@ void camera_controller_PROTOTYPE::control_object( DynamicObject* object )
 	float f_length = XMVectorGetX( length );
 	down_rotate = XMVectorSetW( down_rotate, f_length );	//zapisujemy szybkoœæ obrotu w sk³adowej w
 
-	object->set_rotation_speed( down_rotate );
+	object->SetRotationSpeed( down_rotate );
 
 	
 }

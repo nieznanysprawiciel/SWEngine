@@ -7,7 +7,10 @@
 
 #include "EngineCore/MainEngine/TimeManager.h"
 #include "Common/Multithreading/SpinLock.h"
+#include "EngineCore/UIEngine/StandardAbstractionLayers.h"
 
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
 #include <queue>
 #include <string>
 
@@ -27,7 +30,6 @@ class DisplayEngine;
 class CollisionEngine;
 class SoundEngine;
 class UI_Engine;
-class Object;
 class IGraphicAPIInitializer;
 
 class Model3DFromFile;
@@ -35,9 +37,19 @@ struct MaterialObject;
 class PixelShaderObject;
 class VertexShaderObject;
 class TextureObject;
+class BufferObject;
 class RenderTargetObject;
+class InputAbstractionLayer;
+class ShaderInputLayoutObject;
+class InputLayoutDescriptor;
+struct RenderTargetDescriptor;
+struct MaterialObject;
 
+class MemoryChunk;
 
+class Object;
+class DynamicMeshObject;
+class RenderPass;
 
 /**@brief Przechowuje wszystkie zmienne, które powinny znaleŸæ siê w klasie EngineInterface.
 
@@ -69,7 +81,7 @@ struct EngineContext
 	UI_Engine*					ui_engine;				///<Interfejs u¿ytkownika (tak¿e graficzny)
 
 	/**@brief SpinLock do synchronizacji komunikacji miêdzy GamePlayem a silnikiem.
-	
+
 	SpinLock wykorzystuje aktywne oczekiwanie w dostêpie do zasobów. Z za³o¿enia operacje modyfikacji stanu silnika
 	zachodz¹ rzadko i nie powinny byæ d³ugie. Lepiej jest poczekaæ w pêtli ni¿ zawieszaæ w¹tek za poœrednictwem
 	systemu operacyjnego.
@@ -85,6 +97,7 @@ struct EngineContext
 	//queue
 	std::queue<Event*>*			eventsQueue;	///<WskaŸnik na kolejkê komunikatów w celu szybszego dostêpu
 	std::queue<Command*>		commandQueue;	///<Kolejka komend wykonywanych po zakoñczeniu wszystkich obliczeñ w danej klatce. Aktualizuje stan silnika.
+	std::vector<Object*>		objectList;
 };
 
 
@@ -112,133 +125,201 @@ protected:
 
 protected:
 	EngineInterface();
-	~EngineInterface(){};
+	~EngineInterface() { };
 
 	//FableEngine - ta klasa jest dostêpna bezpoœrednio z IGamePlay
 
 private:
 #pragma region EngineInterface.UserInterface
 
-/**@brief Klasa bazowa dla klas zagnie¿d¿onych w EngineInterface s³u¿¹cych do grupowania
-funkcji interfejsu dla u¿ytkownika (klasy GamePlay i obiekty aktorów).
+	/**@brief Klasa bazowa dla klas zagnie¿d¿onych w EngineInterface s³u¿¹cych do grupowania
+	funkcji interfejsu dla u¿ytkownika (klasy GamePlay i obiekty aktorów).
 
-Klasa posiada statyczny wskaŸnik na Engine. Dziêki temu nie trzeba go przekazywaæ
-do ka¿dej klasy z osobna. Dodatkowo mo¿na w tej klasie umieszczaæ wskaŸniki na inne
-obiekty, które wymagaj¹ bezpoœredniego dostêpu.*/
-class InterfaceGroup
-{
-	friend class EngineInterface;
-private:
-protected:
-	static Engine*			m_engine;
-public:
-	InterfaceGroup() = default;
-	~InterfaceGroup() = default;
-};
+	Klasa posiada statyczny wskaŸnik na Engine. Dziêki temu nie trzeba go przekazywaæ
+	do ka¿dej klasy z osobna. Dodatkowo mo¿na w tej klasie umieszczaæ wskaŸniki na inne
+	obiekty, które wymagaj¹ bezpoœredniego dostêpu.*/
+	class InterfaceGroup
+	{
+		friend class EngineInterface;
+	private:
+	protected:
+		static Engine*			m_engine;
+	public:
+		InterfaceGroup() = default;
+		~InterfaceGroup() = default;
+	};
 
-/**@brief Zawiera funkcje do zarz¹dzania assetami.*/
-class Assets : public InterfaceGroup
-{
-private:
+	/**@brief Zawiera funkcje do zarz¹dzania assetami.*/
+	class Assets : public InterfaceGroup
+	{
+	private:
 #pragma region EngineInterface.Assets.NestedClasses
-/**@brief Zapewnia dostêp do modeli w klasie ModelsManager.*/
-class Models : public InterfaceGroup
-{
-private:
-protected:
-public:
-	Models() = default;
-	~Models() = default;
+		/**@brief Zapewnia dostêp do modeli w klasie ModelsManager.*/
+		class Models : public InterfaceGroup
+		{
+		private:
+		protected:
+		public:
+			Models() = default;
+			~Models() = default;
 
-	Model3DFromFile*		GetSync		( const std::wstring& name );
-	Model3DFromFile*		LoadSync	( const std::wstring& name );
-};
-/**@brief Zapewnia dostêp do animacji w klasie ModelsManager.*/
-class Animations : public InterfaceGroup
-{
-private:
-protected:
-public:
-	Animations() = default;
-	~Animations() = default;
+			Model3DFromFile*		GetSync( const std::wstring& name );
+			Model3DFromFile*		LoadSync( const std::wstring& name );
+		};
+		/**@brief Zapewnia dostêp do animacji w klasie ModelsManager.*/
+		class Animations : public InterfaceGroup
+		{
+		private:
+		protected:
+		public:
+			Animations() = default;
+			~Animations() = default;
 
-};
-/**@brief Zapewnia dostêp do spritów w klasie ModelsManager.*/
-class Sprites : public InterfaceGroup
-{
-private:
-protected:
-public:
-	Sprites() = default;
-	~Sprites() = default;
+		};
+		/**@brief Zapewnia dostêp do spritów w klasie ModelsManager.*/
+		class Sprites : public InterfaceGroup
+		{
+		private:
+		protected:
+		public:
+			Sprites() = default;
+			~Sprites() = default;
 
-};
-/**@brief Zapewnia dostêp do shaderów w klasie ModelsManager.*/
-class Shaders : public InterfaceGroup
-{
-private:
-protected:
-public:
-	Shaders() = default;
-	~Shaders() = default;
+		};
+		/**@brief Zapewnia dostêp do shaderów w klasie ModelsManager.*/
+		class Shaders : public InterfaceGroup
+		{
+		private:
+		protected:
+		public:
+			Shaders() = default;
+			~Shaders() = default;
 
-};
-/**@brief Zapewnia dostêp do tekstur w klasie ModelsManager.*/
-class Textures : public InterfaceGroup
-{
-private:
-protected:
-public:
-	Textures() = default;
-	~Textures() = default;
+			VertexShaderObject*		GetVertexShaderSync( const std::wstring& name );
+			VertexShaderObject*		LoadVertexShaderSync( const std::wstring& name );
+			VertexShaderObject*		LoadVertexShaderSync( const std::wstring& name, ShaderInputLayoutObject** layout, InputLayoutDescriptor* layoutDesc );
+			PixelShaderObject*		GetPixelShaderSync( const std::wstring& name );
+			PixelShaderObject*		LoadPixelShaderSync( const std::wstring& name );
+		};
+		/**@brief Zapewnia dostêp do tekstur w klasie ModelsManager.*/
+		class Textures : public InterfaceGroup
+		{
+		private:
+		protected:
+		public:
+			Textures() = default;
+			~Textures() = default;
 
-};
-/**@brief Zapewnia dostêp do buforów w klasie ModelsManager.*/
-class Buffers : public InterfaceGroup
-{
-private:
-protected:
-public:
-	Buffers() = default;
-	~Buffers() = default;
+			TextureObject*			GetTexture( const std::wstring& name );
+		};
+		/**@brief Zapewnia dostêp do buforów w klasie ModelsManager.*/
+		class Buffers : public InterfaceGroup
+		{
+		private:
+		protected:
+		public:
+			Buffers() = default;
+			~Buffers() = default;
 
-};
-/**@brief Zapewnia dostêp do render targetów w klasie ModelsManager.*/
-class RenderTargets : public InterfaceGroup
-{
-private:
-protected:
-public:
-	RenderTargets() = default;
-	~RenderTargets() = default;
+			BufferObject*			CreateVertexBufferSync( const std::wstring& name, MemoryChunk& data, unsigned int vertCount );
+		};
+		/**@brief Zapewnia dostêp do render targetów w klasie ModelsManager.*/
+		class RenderTargets : public InterfaceGroup
+		{
+		private:
+		protected:
+		public:
+			RenderTargets() = default;
+			~RenderTargets() = default;
 
-};
+			RenderTargetObject*		CreateSync( const std::wstring& name, const RenderTargetDescriptor& renderTargetDescriptor );
+		};
+		/**@brief */
+		class Materials
+		{
+		private:
+		protected:
+		public:
+			Materials() = default;
+			~Materials() = default;
+
+			MaterialObject*			GetSync( const std::wstring& name );
+		};
+
 #pragma endregion
-protected:
-public:
-	Assets() = default;
-	~Assets() = default;
-public:
-	Models			models;
-	Animations		animations;
-	Sprites			sprites;
-	Shaders			shaders;
-	Textures		textures;
-	Buffers			buffers;
-	RenderTargets	renderTargets;
-};
+	protected:
+	public:
+		Assets() = default;
+		~Assets() = default;
+	public:
+		Models			models;
+		Animations		animations;
+		Sprites			sprites;
+		Shaders			shaders;
+		Textures		textures;
+		Buffers			buffers;
+		RenderTargets	renderTargets;
+		Materials		materials;
+	};
 
-/**@brief Zawiera funkcje do zarz¹dzania aktorami.*/
-class Actors : public InterfaceGroup
-{
-private:
-protected:
-public:
-	Actors() = default;
-	~Actors() = default;
-public:
+	/**@brief Zawiera funkcje do zarz¹dzania aktorami.*/
+	class Actors : public InterfaceGroup
+	{
+	private:
+#pragma region EngineInterface.Actors
+		/**@brief Pozwala ustawiaæ assety u¿ywane przez aktorów.*/
+		class Assets : public InterfaceGroup
+		{
+		private:
+		protected:
+		public:
+			Assets() = default;
+			~Assets() = default;
 
-};
+			void		ChangeTextures		( DynamicMeshObject* mesh, TextureObject* newTex, uint16 beginPart, uint16 endPart, uint8 texIndex );
+
+			void		ChangePixelShaders	( DynamicMeshObject* mesh, PixelShaderObject* newShader, uint16 beginPart, uint16 endPart );
+			void		ChangeVertexShaders	( DynamicMeshObject* mesh, VertexShaderObject* newShader, uint16 beginPart, uint16 endPart );
+		};
+#pragma endregion
+	protected:
+	public:
+		Actors() = default;
+		~Actors() = default;
+	public:
+		std::vector<DynamicMeshObject*>		GetSceneObjects();	///<@todo Zlikwidowaæ GetSceneObjects. Stworzone tylko dla LightmapsTool.
+
+		void								AddDynamicMesh	( DynamicMeshObject* object );
+		void								CleanScene		();
+	public:
+		Assets		assets;			///< Pozwala na ustawianie assetów aktorom.
+	};
+
+	/**@brief Zawiera funkcje do obs³ugi wejœcia u¿ytkownika.*/
+	class Input : public InterfaceGroup
+	{
+	private:
+	protected:
+	public:
+		Input() = default;
+		~Input() = default;
+	public:
+		InputAbstractionLayer*		GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER layer );
+		void						SetAbstractionLayer( InputAbstractionLayer* layer );
+		void						SetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER layer );
+	};
+
+	/**@brief Funkcje do obs³ugi renderowania.*/
+	class Rendering : public InterfaceGroup
+	{
+	private:
+	protected:
+	public:
+		Rendering() = default;
+		~Rendering() = default;
+	public:
+		void		RenderOnce( RenderPass* );
+	};
 
 #pragma endregion
 
@@ -246,7 +327,8 @@ public:
 public:
 	Assets			assets;		///<Funkcje do zarz¹dzania assetami.
 	Actors			actors;		///<Funkcje do zarz¹dzania aktorami.
-
+	Input			input;		///<Funkcje do zarz¹dzania wejœciem od u¿ytkownika.
+	Rendering		rendering;	///<Funkcje do zarzadzania renderowaniem.
 };
 
 

@@ -9,6 +9,8 @@
 
 #include "Common/memory_leaks.h"
 
+using namespace DirectX;
+
 //-------------------------------------------------------------------------------//
 //							wersja DirectX11
 //-------------------------------------------------------------------------------//
@@ -132,7 +134,7 @@ void ModelsManager::test( )
 	new_model->add_vertex_buffer( g_Vertices, 36 );
 	new_model->add_material( &mat, L"::skrzynia_material" );
 	//L"..\tylko_do_testow\tex.bmp"
-	new_model->add_texture( L"..\tylko_do_testow\tex.bmp" );
+	new_model->add_texture( L"tylko_do_testow/tex.bmp" );
 
 	new_model->EndPart();
 	new_model->EndEdit();
@@ -175,7 +177,7 @@ void ModelsManager::test( )
 tekstur. Tablica ma tyle elementów ile zmienna @ref ENGINE_MAX_TEXTURES.
 
 Ka¿da pozycja w tablicy ma przypisane domyœlne znaczenie zgodnie z enumeracj¹ 
-@ref TextureTypes. Najlepszy shader jest wybierany na podstawie obecnoœci
+@ref TextureUse. Najlepszy shader jest wybierany na podstawie obecnoœci
 lub nieobecnoœci tekstury w tablicy.
 
 @todo Oddelegowaæ jakiœ inny obiekt do obœ³ugi wartoœci domyœlnych albo przemyœleæ lepiej jak to powinno w³aœciwie wygl¹daæ.
@@ -193,7 +195,7 @@ VertexShaderObject* ModelsManager::FindBestVertexShader( TextureObject** texture
 tekstur. Tablica ma tyle elementów ile zmienna @ref ENGINE_MAX_TEXTURES.
 
 Ka¿da pozycja w tablicy ma przypisane domyœlne znaczenie zgodnie z enumeracj¹
-@ref TextureTypes. Najlepszy shader jest wybierany na podstawie obecnoœci
+@ref TextureUse. Najlepszy shader jest wybierany na podstawie obecnoœci
 lub nieobecnoœci tekstury w tablicy.
 
 @todo Oddelegowaæ jakiœ inny obiekt do obœ³ugi wartoœci domyœlnych albo przemyœleæ lepiej jak to powinno w³aœciwie wygl¹daæ.
@@ -205,7 +207,7 @@ PixelShaderObject* ModelsManager::FindBestPixelShader( TextureObject** textures 
 	PixelShaderObject* return_shader = nullptr;
 
 	// Na razie nie ma innych tekstur ni¿ diffuse, wiêc algorytm nie jest skomplikowany
-	if ( textures[TextureTypes::TEX_DIFFUSE] )
+	if ( textures[TextureUse::TEX_DIFFUSE] )
 		return_shader = m_pixelShader.get( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH );
 	
 	
@@ -295,6 +297,8 @@ RenderTargetObject* ModelsManager::CreateRenderTarget( const std::wstring& name,
 	if( !newRenderTarget )
 	{
 		newRenderTarget = ResourcesFactory::CreateRenderTarget( name, renderTargetDescriptor );
+		if( !newRenderTarget )	return nullptr;
+
 		m_renderTarget.unsafe_add( name, newRenderTarget );
 		
 		auto colorBuff = newRenderTarget->GetColorBuffer();

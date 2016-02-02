@@ -1,7 +1,7 @@
 #include "DX11Buffer.h"
 #include "../DX11Initializer/DX11ConstantsMapper.h"
 
-#include "Common\memory_leaks.h"
+#include "Common/memory_leaks.h"
 
 DX11Buffer::DX11Buffer( unsigned int elementSize, unsigned int elementCount, ID3D11Buffer* buff )
 	: BufferObject(elementSize, elementCount), m_buffer( buff )
@@ -56,4 +56,50 @@ DX11Buffer* DX11Buffer::CreateFromMemory(	const void* buffer,
 
 	DX11Buffer* new_buffer_object = new DX11Buffer( elementSize, vertCount, new_buffer );
 	return new_buffer_object;
+}
+
+
+/**@brief Kopiuje pamiêæ bufora i zwraca w MemoryChunku.
+
+Funkcja zwraca zawartoœæ bufora. Pamiêæ jest kopiowana dwukrotnie.
+Najpierw na GPU do tymczasowego bufora, a potem po zmapowaniu na pamiêæ RAM,
+odbywa siê kopiowanie do MemoryChunka.
+
+@todo Nie trzeba by wykonywaæ kopiowania na GPU, gdyby bufor by³ stworzony z flag¹
+D3D11_USAGE_STAGING lub D3D11_USAGE_DEFAULT. Trzeba sprawdziæ flagi i robiæ kopiowanie tylko, gdy to konieczne.
+
+@attention Funkcja nie nadaje siê do wykonania wielow¹tkowego. U¿ywa DeviceContextu do kopiowania danych
+w zwi¹zku z czym wymaga synchronizacji z innymi funkcjami renderuj¹cymi.
+*/
+MemoryChunk DX11Buffer::CopyData()
+{
+	// Trzeba stworzyæ nowy bufor
+	D3D11_BUFFER_DESC bufferDesc;
+	ZeroMemory( &bufferDesc, sizeof( bufferDesc ) );
+	bufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_STAGING;
+	//bufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_SHADER_RESOURCE;		// Przy fladze usage::staging nie mo¿na bindowaæ zasobu do potoku graficznego.
+	bufferDesc.ByteWidth = m_elementSize * m_elementCount;
+	bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
+
+	HRESULT result;
+	ID3D11Buffer* newBuffer;
+	result = device->CreateBuffer( &bufferDesc, nullptr, &newBuffer );
+	if( FAILED( result ) )
+		return MemoryChunk();
+
+	// Kopiowanie zawartoœci miêdzy buforami
+	device_context->CopyResource( newBuffer, m_buffer );
+
+	D3D11_MAPPED_SUBRESOURCE data;
+	result = device_context->Map( newBuffer, 0, D3D11_MAP::D3D11_MAP_READ, 0, &data );
+	if( FAILED( result ) )
+		return MemoryChunk();
+
+	MemoryChunk memoryChunk;
+	memoryChunk.MemoryCopy( (int8*)data.pData, m_elementSize * m_elementCount );
+
+	device_context->Unmap( newBuffer, 0 );
+	newBuffer->Release();
+
+	return std::move( memoryChunk );
 }

@@ -7,6 +7,12 @@
 #include "Common/memory_leaks.h"
 
 
+DX11Initializer::DX11Initializer()
+{
+	m_rasterizer = nullptr;
+	m_depthState = nullptr;
+}
+
 /**@brief Tworzy renderer zgodny z u¿ywanym API graficznym.
 
 @param[in] usage Specyfikuje czy u¿yæ opóŸnionego kontekstu renderowania czy natychmiastowego.
@@ -34,12 +40,47 @@ bool DX11Initializer::InitAPI( GraphicAPIInitData& initData )
 		release_DirectX();	// Jak tu coœ siê nie uda³o, to znaczy, ¿e deskryptor by³ niepoprawny.
 		return false;
 	}
+
+	if( FAILED( device->CreateRasterizerState( &get_rasterizer_desc(), &m_rasterizer ) ) )
+		return false;
+
+	device_context->RSSetState( m_rasterizer );
+
+	//D3D11_DEPTH_STENCIL_DESC depthStencilDesc;
+	//depthStencilDesc.DepthEnable = true;
+	//depthStencilDesc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
+	//depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+	//depthStencilDesc.StencilEnable = false;
+	//depthStencilDesc.StencilReadMask = D3D11_DEFAULT_STENCIL_READ_MASK;
+	//depthStencilDesc.StencilWriteMask = D3D11_DEFAULT_STENCIL_WRITE_MASK;
+	//depthStencilDesc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
+	//depthStencilDesc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	//depthStencilDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	//depthStencilDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+	//depthStencilDesc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
+	//depthStencilDesc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	//depthStencilDesc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	//depthStencilDesc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+
+	//if( FAILED( device->CreateDepthStencilState( &depthStencilDesc, &m_depthState ) ) )
+	//	return false;
+
+	//device_context->OMSetDepthStencilState( m_depthState, 0 );
+
 	return true;
 }
 
 /**@brief Zwalnia stworzone obiekty DirectX 11.*/
 void DX11Initializer::ReleaseAPI()
 {
+	if( m_rasterizer )
+		m_rasterizer->Release();
+	m_rasterizer = nullptr;
+
+	if( m_depthState )
+		m_depthState->Release();
+	m_depthState = nullptr;
+
 	release_DirectX();
 }
 

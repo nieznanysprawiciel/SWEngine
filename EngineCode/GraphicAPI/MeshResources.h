@@ -73,7 +73,7 @@ static const std::wstring RENDER_TARGET_STENCIL_BUFFER_NAME = L"::stencil";
 
 S¹ to wartoœci domyœlne u¿ywane przez wbudowane shadery.
 W przypadku w³asnorêcznie pisanych shaderów nie trzeba siê trzymaæ tych sta³ych.*/
-enum TextureTypes
+enum TextureUse
 {
 #if ENGINE_MAX_TEXTURES > 0
 	TEX_DIFFUSE			///<Tekstura dla kana³u diffuse
@@ -121,7 +121,7 @@ i zmienne buffer_offset, vertices_count i base_vertex.
 
 Klasa jest alokowana w Model3DFromFile i to w³aœnie ta klasa odpowiada za zwolnienie pamiêci.
 
-Pomimo dziedziczenia po klasie ResourceObject, nie jest u¿ywane pole unique_id. Dlatego
+Pomimo dziedziczenia po klasie ResourceObject, nie jest u¿ywane pole m_uniqueId. Dlatego
 jest ono w kontruktorze ustawiane na WRONG_ID. MeshPartObject nie mog¹ byæ wspó³dzielone
 miêdzy obiektami.*/
 struct MeshPartObject : public ResourceObject
@@ -163,7 +163,7 @@ Tryb odnosi siê wiêc nie do ca³ego mesha, a pojednyczego obiektu ModelPart.
 
 Tablica texture zawiera wskaŸniki na obiekty tekstur, których maksymalna liczba wynosi ENGINE_MAX_TEXTURES.
 Aby obs³u¿yæ wszystkie tekstury jakie mog¹ byc przypisane do obiektu, nale¿y podaæ mu odpowiedni shader, który
-umie to zrobiæ. Znaczenie poszczególnych pól tablicy tekstur jest opisywane przez enumeracjê TextureTypes
+umie to zrobiæ. Znaczenie poszczególnych pól tablicy tekstur jest opisywane przez enumeracjê TextureUse
 i w taki sposób wykorzystuj¹ je domyœlne shadery.
 */
 struct ModelPart

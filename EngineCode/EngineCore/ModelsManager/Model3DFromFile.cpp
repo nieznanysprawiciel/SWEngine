@@ -49,9 +49,9 @@ Model3DFromFile::~Model3DFromFile( )
 
 	// Kasujemy odwo³ania plikowe do buforów
 	if ( vertex_buffer )
-		vertex_buffer->delete_file_reference();
+		vertex_buffer->DeleteAssetReference();
 	if ( index_buffer )
-		index_buffer->delete_file_reference();
+		index_buffer->DeleteAssetReference();
 
 	// Kasujemy odwo³ania plikowe do obiektów w talicach
 	for ( unsigned int k = 0; k < model_parts.size( ); ++k )
@@ -60,21 +60,21 @@ Model3DFromFile::~Model3DFromFile( )
 
 		//ka¿dy element mo¿e byæ nullptrem
 		if ( part->material )
-			part->material->delete_file_reference( );
+			part->material->DeleteAssetReference( );
 
 		if ( part->mesh )
 		{
 			//kasujemy obiekty MeshParts (to s¹ jedyne, którymi zarz¹dza ta klasa)
-			part->mesh->delete_file_reference();
+			part->mesh->DeleteAssetReference();
 			delete part->mesh;
 		}
 		if ( part->pixel_shader )
-			part->pixel_shader->delete_file_reference( );
+			part->pixel_shader->DeleteAssetReference( );
 		for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
 			if ( part->texture[i] )
-				part->texture[i]->delete_file_reference( );
+				part->texture[i]->DeleteAssetReference( );
 		if ( part->vertex_shader )
-			part->vertex_shader->delete_file_reference( );
+			part->vertex_shader->DeleteAssetReference( );
 	}
 
 
@@ -155,7 +155,7 @@ void Model3DFromFile::BeginPart()
 	tmp_data->table[tmp_data->current_pointer]->new_part.mesh = new MeshPartObject;
 
 	//nie jest to konieczne, ale dla konwencji dodajemy
-	tmp_data->table[tmp_data->current_pointer]->new_part.mesh->add_file_reference();
+	tmp_data->table[tmp_data->current_pointer]->new_part.mesh->AddAssetReference();
 }
 
 /**@brief Funkcje BeginPart i EndPart s¹ wywo³ywane przez loader i maj¹ otaczaæ wszystkie instrukcje dodaj¹ce
@@ -174,9 +174,9 @@ Tekstura jest umieszczana w tablicy ModelPart.texture zgodnie z indeksem repreze
 Obiekt jest dodawany do ModelsManagera je¿eli jeszcze nie istnia³. Je¿eli istnia³
 nie jest duplikowany, ale zamiast niego wstawia siê wskaŸnik na istniej¹cy obiekt.
 @param[in] file_name Œcie¿ka do tekstury
-@param[in] type Type tekstury. Zobacz definicjê TextureTypes.
+@param[in] type Type tekstury. Zobacz definicjê TextureUse.
 @return Identyfiaktor tekstury lub WRONG_ID, je¿eli coœ posz³o nie tak.*/
-unsigned int Model3DFromFile::add_texture( const std::wstring& file_name, TextureTypes type )
+unsigned int Model3DFromFile::add_texture( const std::wstring& file_name, TextureUse type )
 {
 	// Ktoœ móg³ podaæ indeks w tablicy zamiast jednego z enumów, wiêc musimy pilnowaæ czy nie przekroczy³ zakresu
 	if ( type > ENGINE_MAX_TEXTURES )
@@ -189,10 +189,10 @@ unsigned int Model3DFromFile::add_texture( const std::wstring& file_name, Textur
 	// Teraz musimy dodaæ teksturê na odpowiednie miejsce w tablicy
 	tmp_data->table[tmp_data->current_pointer]->new_part.texture[type] = texture;
 	// Dodajemy odwo³anie plikowe
-	texture->add_file_reference();
+	texture->AddAssetReference();
 
 	// Zwracamy id tekstury, ale w zasadzie tylko po to, ¿eby ktoœ móg³ sprawdziæ czy wszystko posz³o dobrze
-	return texture->get_id();
+	return texture->GetID();
 }
 
 /**@brief Dodaje materia³ na aktualnej pozycji w tablicy.
@@ -223,11 +223,11 @@ unsigned int Model3DFromFile::add_material( const MaterialObject* material, cons
 	// Teraz musimy dodaæ materia³ na odpowiednie miejsce w tablicy
 	tmp_data->table[tmp_data->current_pointer]->new_part.material = new_material;
 	// Dodajemy odwo³anie plikowe
-	new_material->add_file_reference( );
+	new_material->AddAssetReference( );
 
 	// Zwracamy id materia³y, ale w zasadzie tylko po to, ¿eby ktoœ móg³ sprawdziæ czy wszystko posz³o dobrze
 	// Akurat w przypadku materia³ów nic nie mo¿e pójœæ Ÿle
-	return new_material->get_id( );
+	return new_material->GetID( );
 }
 
 /**@brief Dodaje vertex shader na aktualnej pozycji ModelPart.
@@ -247,10 +247,10 @@ unsigned int Model3DFromFile::add_vertex_shader( const std::wstring& file_name )
 	// Teraz musimy dodaæ shader na odpowiednie miejsce w tablicy
 	tmp_data->table[tmp_data->current_pointer]->new_part.vertex_shader = vertex_shader;
 	// Dodajemy odwo³anie plikowe
-	vertex_shader->add_file_reference( );
+	vertex_shader->AddAssetReference( );
 
 	// Zwracamy id shadera, ale w zasadzie tylko po to, ¿eby ktoœ móg³ sprawdziæ czy wszystko posz³o dobrze
-	return vertex_shader->get_id( );
+	return vertex_shader->GetID( );
 }
 
 /**@brief Dodaje pixel shader na aktualnej pozycji ModelPart.
@@ -270,10 +270,10 @@ unsigned int Model3DFromFile::add_pixel_shader( const std::wstring& file_name )
 	// Teraz musimy dodaæ shader na odpowiednie miejsce w tablicy
 	tmp_data->table[tmp_data->current_pointer]->new_part.pixel_shader = pixel_shader;
 	// Dodajemy odwo³anie plikowe
-	pixel_shader->add_file_reference( );
+	pixel_shader->AddAssetReference( );
 
 	// Zwracamy id shadera, ale w zasadzie tylko po to, ¿eby ktoœ móg³ sprawdziæ czy wszystko posz³o dobrze
-	return pixel_shader->get_id( );
+	return pixel_shader->GetID( );
 }
 
 
@@ -400,7 +400,7 @@ void Model3DFromFile::EndEdit_vertex_buffer_processing( )
 
 	// Przepisujemy bufor wierzcho³ków
 	VertexNormalTexCord1* verticies = new VertexNormalTexCord1[vertex_buffer_length];
-	unsigned int offset = 0;
+	PtrOffset offset = 0;
 	for ( int i = 0; i < tmp_data->current_pointer; ++i )
 	{
 		// verticies + offset - tu jest stosowana arytmetyka dla wskaŸników, a nie zwyk³e dodawanie
@@ -417,7 +417,7 @@ void Model3DFromFile::EndEdit_vertex_buffer_processing( )
 	}
 	// Tworzymy obiekt bufora wierzcho³ków i go zapisujemy
 	vertex_buffer = models_manager->AddVertexBuffer( file_path, verticies, sizeof( VertexNormalTexCord1 ), vertex_buffer_length );
-	vertex_buffer->add_file_reference( );		// Zaznaczamy, ¿e siê do niego odwo³ujemy
+	vertex_buffer->AddAssetReference( );		// Zaznaczamy, ¿e siê do niego odwo³ujemy
 	
 	
 	delete[] verticies;							// Bufor by³ tylko tymczasowy
@@ -444,7 +444,7 @@ void Model3DFromFile::EndEdit_index_buffer_processing( )
 
 	// Przepisujemy bufor indeksów
 	VERT_INDEX* indicies = new VERT_INDEX[index_buffer_length];
-	unsigned int offset = 0;
+	PtrOffset offset = 0;
 	for ( int i = 0; i < tmp_data->current_pointer; ++i )
 	{
 		// verticies + offset - tu jest stosowana arytmetyka dla wskaŸników, a nie zwyk³e dodawanie
@@ -461,7 +461,7 @@ void Model3DFromFile::EndEdit_index_buffer_processing( )
 	}
 	// Tworzymy obiekt bufora indeksów i go zapisujemy
 	index_buffer = models_manager->AddIndexBuffer( file_path, indicies, sizeof( VERT_INDEX ), index_buffer_length );
-	index_buffer->add_file_reference( );		// Zaznaczamy, ¿e siê do niego odwo³ujemy
+	index_buffer->AddAssetReference( );		// Zaznaczamy, ¿e siê do niego odwo³ujemy
 
 	delete[] indicies;							// Bufor by³ tylko tymczasowy
 	// Nie sprawdzi³em czy pod tak¹ œcie¿k¹ ju¿ czegoœ nie by³o. Komentarz ten sam co w funkcji EndEdit_vertex_buffer_processing
@@ -525,7 +525,7 @@ const ModelPart* Model3DFromFile::get_part( unsigned int index )
 }
 
 /**@brief Zwraca liczbê obiektów ModelPart w tablicy.*/
-unsigned int Model3DFromFile::get_parts_count()
+Size Model3DFromFile::get_parts_count()
 {
 	return model_parts.size();
 }

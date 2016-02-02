@@ -109,13 +109,11 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;INITGUID;FBXSDK_SHARED;__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalOptions>/arch:SSE2 %(AdditionalOptions)</AdditionalOptions>
-      <PrecompiledHeaderFile>EngineCore\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -129,13 +127,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;INITGUID;FBXSDK_SHARED;__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalOptions>/arch:SSE2 %(AdditionalOptions)</AdditionalOptions>
-      <PrecompiledHeaderFile>EngineCore\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -148,14 +144,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;INITGUID;FBXSDK_SHARED;__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalOptions>/arch:SSE2 %(AdditionalOptions)</AdditionalOptions>
-      <PrecompiledHeaderFile>EngineCore\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -172,14 +166,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;INITGUID;FBXSDK_SHARED;__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalOptions>/arch:SSE2 %(AdditionalOptions)</AdditionalOptions>
-      <PrecompiledHeaderFile>EngineCore\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -218,7 +210,9 @@
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ResourceContainer.h" />
     <ClInclude Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.h" />
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\ResourceHelpers.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputAbstractionLayer.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\StandardAbstractionLayers.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\UI_Engine.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\EngineInterface.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\GamePlay\IGamePlay.h" />
@@ -272,6 +266,7 @@
     <ClCompile Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputAbstractionLayer.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\StandardAbstractionLayer.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\UI_Engine.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\UI_Engine_AbstractionLayers.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)SW_engine.cpp" />

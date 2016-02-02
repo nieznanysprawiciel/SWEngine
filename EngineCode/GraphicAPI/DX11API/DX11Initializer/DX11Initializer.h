@@ -25,9 +25,11 @@ Jako klasa pomocnicza do inicjalizacji jest u¿ywana klasa @ref DX11AuxiliaryObje
 class DX11Initializer : public IGraphicAPIInitializer, public DX11AuxiliaryObjects
 {
 private:
+	ID3D11RasterizerState*		m_rasterizer;
+	ID3D11DepthStencilState*	m_depthState;
 protected:
 public:
-	DX11Initializer() = default;
+	DX11Initializer();
 	~DX11Initializer() = default;
 
 	virtual IRenderer*		CreateRenderer			( RendererUsage usage ) override;

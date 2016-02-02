@@ -58,13 +58,16 @@ Okno nie jest pokazywane na ekranie. Do tego trzeba u¿yæ funkcji Engine::ShowApp
 @return Zwraca TRUE, je¿eli inicjowanie okna powiod³o siê.*/
 BOOL Engine::InitInstance( int nCmdShow )
 {
+    RECT windowRect = { 0, 0, Context.windowWidth, Context.windowHeight };
+    AdjustWindowRect( &windowRect, WS_OVERLAPPEDWINDOW^WS_THICKFRAME, FALSE );
+
 	if ( Context.fullScreen )
 		Context.windowHandler = CreateWindowEx(NULL, szWindowClass, szTitle, WS_EX_TOPMOST | WS_POPUP,
 										0, 0, Context.windowWidth, Context.windowHeight,
 										NULL, NULL, Context.instanceHandler, NULL);
 	else
 		Context.windowHandler = CreateWindowEx( NULL, szWindowClass, szTitle, WS_OVERLAPPEDWINDOW^WS_THICKFRAME,
-										CW_USEDEFAULT, 0, Context.windowWidth, Context.windowHeight,
+										CW_USEDEFAULT, CW_USEDEFAULT, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top,
 										NULL, NULL, Context.instanceHandler, NULL);
 
 	if (!Context.windowHandler)
