@@ -189,10 +189,13 @@ const char* IDeserializer::GetAttribute( const std::string& name, const char* de
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 uint32 IDeserializer::GetAttribute( const std::string& name, uint32 defaultValue )
 {
-	//rapidjson::Value newObject;
-	//newObject.SetUint( defaultValue );
-	//SetValueHelper( impl, name, newObject );
-	return defaultValue;
+	rapidjson::Value* currentObject = impl->valuesStack.top();	// Obiekt, w którym szukamy atrybutów
+
+	auto iterator = currentObject->FindMember( name );
+	if( iterator == currentObject->MemberEnd() || !iterator->value.IsUint() )
+		return defaultValue;
+
+	return iterator->value.GetUint();
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -201,10 +204,13 @@ uint32 IDeserializer::GetAttribute( const std::string& name, uint32 defaultValue
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 uint64 IDeserializer::GetAttribute( const std::string& name, uint64 defaultValue )
 {
-	//rapidjson::Value newObject;
-	//newObject.SetUint64( defaultValue );
-	//SetValueHelper( impl, name, newObject );
-	return defaultValue;
+	rapidjson::Value* currentObject = impl->valuesStack.top();	// Obiekt, w którym szukamy atrybutów
+
+	auto iterator = currentObject->FindMember( name );
+	if( iterator == currentObject->MemberEnd() || !iterator->value.IsUint64() )
+		return defaultValue;
+
+	return iterator->value.GetUint64();
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -213,10 +219,13 @@ uint64 IDeserializer::GetAttribute( const std::string& name, uint64 defaultValue
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 int32 IDeserializer::GetAttribute( const std::string& name, int32 defaultValue )
 {
-	//rapidjson::Value newObject;
-	//newObject.SetInt( defaultValue );
-	//SetValueHelper( impl, name, newObject );
-	return defaultValue;
+	rapidjson::Value* currentObject = impl->valuesStack.top();	// Obiekt, w którym szukamy atrybutów
+
+	auto iterator = currentObject->FindMember( name );
+	if( iterator == currentObject->MemberEnd() || !iterator->value.IsInt() )
+		return defaultValue;
+
+	return iterator->value.GetInt();
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -225,10 +234,13 @@ int32 IDeserializer::GetAttribute( const std::string& name, int32 defaultValue )
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 int64 IDeserializer::GetAttribute( const std::string& name, int64 defaultValue )
 {
-	//rapidjson::Value newObject;
-	//newObject.SetInt64( defaultValue );
-	//SetValueHelper( impl, name, newObject );
-	return defaultValue;
+	rapidjson::Value* currentObject = impl->valuesStack.top();	// Obiekt, w którym szukamy atrybutów
+
+	auto iterator = currentObject->FindMember( name );
+	if( iterator == currentObject->MemberEnd() || !iterator->value.IsInt64() )
+		return defaultValue;
+
+	return iterator->value.GetInt64();
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -237,10 +249,13 @@ int64 IDeserializer::GetAttribute( const std::string& name, int64 defaultValue )
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 bool IDeserializer::GetAttribute( const std::string& name, bool defaultValue )
 {
-	//rapidjson::Value newObject;
-	//newObject.SetBool( defaultValue );
-	//SetValueHelper( impl, name, newObject );
-	return defaultValue;
+	rapidjson::Value* currentObject = impl->valuesStack.top();	// Obiekt, w którym szukamy atrybutów
+
+	auto iterator = currentObject->FindMember( name );
+	if( iterator == currentObject->MemberEnd() || !iterator->value.IsBool() )
+		return defaultValue;
+
+	return iterator->value.GetBool();
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -249,12 +264,19 @@ bool IDeserializer::GetAttribute( const std::string& name, bool defaultValue )
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 double IDeserializer::GetAttribute( const std::string& name, double defaultValue )
 {
-	//rapidjson::Value newObject;
-	//newObject.SetDouble( defaultValue );
-	//SetValueHelper( impl, name, newObject );
-	return defaultValue;
+	rapidjson::Value* currentObject = impl->valuesStack.top();	// Obiekt, w którym szukamy atrybutów
+
+	auto iterator = currentObject->FindMember( name );
+	if( iterator == currentObject->MemberEnd() || !iterator->value.IsDouble() )
+		return defaultValue;
+
+	return iterator->value.GetDouble();
 }
 
+/**@brief Zwraca string zawieraj¹cy b³¹d parsowania, je¿eli by³.
+
+Aby siê dowiedzieæ czy parsowanie powiod³o siê, sprawdŸ wartoœæ zwracan¹ przez
+funkcje @ref LoadFromString lub @ref LoadFromFile.*/
 std::string IDeserializer::GetError()
 {
 	rapidjson::ParseErrorCode code = impl->root.GetParseError();

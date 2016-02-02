@@ -101,12 +101,12 @@ int main()
 		deser.EnterObject( "FirstObject" );
 			auto map = deser.GetAttribute( "Map", "GetAttribute error" );
 			auto path = deser.GetAttribute( "Path", "GetAttribute error" );
-			//deser.GetAttribute( "Load", true );
+			auto load = deser.GetAttribute( "Load", true );
 			deser.EnterObject( "Data" );
-				//deser.GetAttribute( "NumberUnits", 1266643 );
-				//deser.GetAttribute( "PositionOffset", 0.4124667623 );
-				//deser.GetAttribute( "Visible", true );
-				//deser.GetAttribute( "Key", 218588284382834538 );
+				auto numberUnits = deser.GetAttribute( "NumberUnits", 1266643 );
+				auto positionOffset = deser.GetAttribute( "PositionOffset", 0.4124667623 );
+				auto visible = deser.GetAttribute( "Visible", true );
+				auto key = deser.GetAttribute( "Key", 218588284382834538 );
 			deser.Exit();
 		deser.Exit();
 
@@ -114,7 +114,11 @@ int main()
 		outputFile << freeValue << std::endl;
 		outputFile << map << std::endl;
 		outputFile << path << std::endl;
-
+		outputFile << load << std::endl;
+		outputFile << numberUnits << std::endl;
+		outputFile << positionOffset << std::endl;
+		outputFile << visible << std::endl;
+		outputFile << key << std::endl;
 	}
 	else
 	{
