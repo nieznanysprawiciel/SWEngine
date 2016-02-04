@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineCore", "EngineCore\SWEngine.vcxproj", "{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -45,6 +45,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SerializerXML", "SerializerXML\SerializerXML.vcxproj", "{49CF5D13-CF9B-4653-9586-05CB12B9A4CA}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LightmapsTool", "LightmapsTool\LightmapsTool.vcxproj", "{B5C0A850-91A7-4DB1-913D-9850AD23A735}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SerializationXMLTest", "Tests\SerializationTest\SerializationXMLTest.vcxproj", "{E2866C51-5348-4F94-AC58-C6372C1E53D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -235,6 +237,22 @@ Global
 		{B5C0A850-91A7-4DB1-913D-9850AD23A735}.Release|Win32.Build.0 = Release|Win32
 		{B5C0A850-91A7-4DB1-913D-9850AD23A735}.Release|x64.ActiveCfg = Release|x64
 		{B5C0A850-91A7-4DB1-913D-9850AD23A735}.Release|x64.Build.0 = Release|x64
+		{E2866C51-5348-4F94-AC58-C6372C1E53D7}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{E2866C51-5348-4F94-AC58-C6372C1E53D7}.Debug|ARM.ActiveCfg = Debug|Win32
+		{E2866C51-5348-4F94-AC58-C6372C1E53D7}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{E2866C51-5348-4F94-AC58-C6372C1E53D7}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{E2866C51-5348-4F94-AC58-C6372C1E53D7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E2866C51-5348-4F94-AC58-C6372C1E53D7}.Debug|Win32.Build.0 = Debug|Win32
+		{E2866C51-5348-4F94-AC58-C6372C1E53D7}.Debug|x64.ActiveCfg = Debug|x64
+		{E2866C51-5348-4F94-AC58-C6372C1E53D7}.Debug|x64.Build.0 = Debug|x64
+		{E2866C51-5348-4F94-AC58-C6372C1E53D7}.Release|Any CPU.ActiveCfg = Release|Win32
+		{E2866C51-5348-4F94-AC58-C6372C1E53D7}.Release|ARM.ActiveCfg = Release|Win32
+		{E2866C51-5348-4F94-AC58-C6372C1E53D7}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{E2866C51-5348-4F94-AC58-C6372C1E53D7}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{E2866C51-5348-4F94-AC58-C6372C1E53D7}.Release|Win32.ActiveCfg = Release|Win32
+		{E2866C51-5348-4F94-AC58-C6372C1E53D7}.Release|Win32.Build.0 = Release|Win32
+		{E2866C51-5348-4F94-AC58-C6372C1E53D7}.Release|x64.ActiveCfg = Release|x64
+		{E2866C51-5348-4F94-AC58-C6372C1E53D7}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -248,5 +266,6 @@ Global
 		{63AACF6A-FB22-422D-A673-76AF22724D22} = {415F8C84-7E86-4306-9173-7A5AEE6A5A67}
 		{49CF5D13-CF9B-4653-9586-05CB12B9A4CA} = {DD0F00A4-19CD-45DA-99CF-541925389744}
 		{B5C0A850-91A7-4DB1-913D-9850AD23A735} = {0C59B1BA-0A0D-4B82-BD64-149C775C379B}
+		{E2866C51-5348-4F94-AC58-C6372C1E53D7} = {415F8C84-7E86-4306-9173-7A5AEE6A5A67}
 	EndGlobalSection
 EndGlobal

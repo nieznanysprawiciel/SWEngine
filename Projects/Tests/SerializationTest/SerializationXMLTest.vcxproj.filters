@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="SerializationTest">
+      <UniqueIdentifier>{63fd8903-00ab-4308-bee9-bc3e59b55914}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\EngineCode\Tests\SerializationTest\SerializationMain.cpp">
+      <Filter>SerializationTest</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

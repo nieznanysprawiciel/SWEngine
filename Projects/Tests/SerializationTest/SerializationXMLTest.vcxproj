@@ -18,11 +18,13 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\EngineCode\Tests\SerializationTest\SerializationMain.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{63AACF6A-FB22-422D-A673-76AF22724D22}</ProjectGuid>
+    <ProjectGuid>{E2866C51-5348-4F94-AC58-C6372C1E53D7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>SerializationTest</RootNamespace>
-    <ProjectName>SerializationJSONTest</ProjectName>
+    <RootNamespace>SerializationXMLTest</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -58,33 +60,33 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\Props\DebugConfig.props" />
     <Import Project="..\..\Props\PathsMacros.props" />
-    <Import Project="SerializationTestPathMacros.props" />
+    <Import Project="SerializationXMLTestPathMacros.props" />
     <Import Project="SerializationTestConfiguration.props" />
-    <Import Project="..\..\SerializerJSON\SerializerJsonPathMacros.props" />
+    <Import Project="..\..\SerializerXML\SerializerXMLPathMacros.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\Props\DebugConfig.props" />
     <Import Project="..\..\Props\PathsMacros.props" />
-    <Import Project="SerializationTestPathMacros.props" />
+    <Import Project="SerializationXMLTestPathMacros.props" />
     <Import Project="SerializationTestConfiguration.props" />
-    <Import Project="..\..\SerializerJSON\SerializerJsonPathMacros.props" />
+    <Import Project="..\..\SerializerXML\SerializerXMLPathMacros.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\Props\ReleaseConfig.props" />
     <Import Project="..\..\Props\PathsMacros.props" />
-    <Import Project="SerializationTestPathMacros.props" />
+    <Import Project="SerializationXMLTestPathMacros.props" />
     <Import Project="SerializationTestConfiguration.props" />
-    <Import Project="..\..\SerializerJSON\SerializerJsonPathMacros.props" />
+    <Import Project="..\..\SerializerXML\SerializerXMLPathMacros.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\Props\ReleaseConfig.props" />
     <Import Project="..\..\Props\PathsMacros.props" />
-    <Import Project="SerializationTestPathMacros.props" />
+    <Import Project="SerializationXMLTestPathMacros.props" />
     <Import Project="SerializationTestConfiguration.props" />
-    <Import Project="..\..\SerializerJSON\SerializerJsonPathMacros.props" />
+    <Import Project="..\..\SerializerXML\SerializerXMLPathMacros.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -106,7 +108,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -120,7 +121,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -136,7 +136,6 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -154,7 +153,6 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -163,9 +161,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\EngineCode\Tests\SerializationTest\SerializationMain.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

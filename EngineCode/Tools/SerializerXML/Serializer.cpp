@@ -18,7 +18,7 @@ namespace
 {
 
 /// Helper
-inline void SetValueHelper( SerializerImpl* impl, const char* name, Size nameSize, const char* value, Size valueSize )
+inline void SetAttributeHelper( SerializerImpl* impl, const char* name, Size nameSize, const char* value, Size valueSize )
 {
 	char* attribName = impl->root.allocate_string( name, nameSize );
 	char* attribValue = impl->root.allocate_string( value, valueSize );
@@ -120,18 +120,18 @@ void ISerializer::EnterArray( const std::string& name )
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
-void ISerializer::SetValue( const std::string& name, const std::string& value )
+void ISerializer::SetAttribute( const std::string& name, const std::string& value )
 {
-	SetValueHelper( impl, name.c_str(), name.length(), value.c_str(), value.length() );
+	SetAttributeHelper( impl, name.c_str(), name.length(), value.c_str(), value.length() );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
-void ISerializer::SetValue( const std::string& name, const char* value )
+void ISerializer::SetAttribute( const std::string& name, const char* value )
 {
-	SetValueHelper( impl, name.c_str(), name.length(), value, strlen( value ) );
+	SetAttributeHelper( impl, name.c_str(), name.length(), value, strlen( value ) );
 }
 
 
@@ -139,76 +139,76 @@ void ISerializer::SetValue( const std::string& name, const char* value )
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
-void ISerializer::SetValue( const std::string& name, uint32 value )
+void ISerializer::SetAttribute( const std::string& name, uint32 value )
 {
 #define MAX_UINT32_SIGNS 11
 	char numericString[ MAX_UINT32_SIGNS ];
 	Size valueLength = sprintf_s( numericString, "%u", value );
 
-	SetValueHelper( impl, name.c_str(), name.length(), numericString, valueLength );
+	SetAttributeHelper( impl, name.c_str(), name.length(), numericString, valueLength );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
-void ISerializer::SetValue( const std::string& name, uint64 value )
+void ISerializer::SetAttribute( const std::string& name, uint64 value )
 {
 #define MAX_UINT64_SIGNS 21
 	char numericString[ MAX_UINT64_SIGNS ];
 	Size valueLength = sprintf_s( numericString, "%llu", value );
 
-	SetValueHelper( impl, name.c_str(), name.length(), numericString, valueLength );
+	SetAttributeHelper( impl, name.c_str(), name.length(), numericString, valueLength );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
-void ISerializer::SetValue( const std::string& name, int32 value )
+void ISerializer::SetAttribute( const std::string& name, int32 value )
 {
 #define MAX_INT32_SIGNS 12
 	char numericString[ MAX_INT32_SIGNS ];
 	Size valueLength = sprintf_s( numericString, "%i", value );
 
-	SetValueHelper( impl, name.c_str(), name.length(), numericString, valueLength );
+	SetAttributeHelper( impl, name.c_str(), name.length(), numericString, valueLength );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
-void ISerializer::SetValue( const std::string& name, int64 value )
+void ISerializer::SetAttribute( const std::string& name, int64 value )
 {
 #define MAX_INT64_SIGNS 22
 	char numericString[ MAX_INT64_SIGNS ];
 	Size valueLength = sprintf_s( numericString, "%lli", value );
 
-	SetValueHelper( impl, name.c_str(), name.length(), numericString, valueLength );
+	SetAttributeHelper( impl, name.c_str(), name.length(), numericString, valueLength );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
-void ISerializer::SetValue( const std::string& name, bool value )
+void ISerializer::SetAttribute( const std::string& name, bool value )
 {
 	if( value )
-		SetValueHelper( impl, name.c_str(), name.length(), "true", 4 );
+		SetAttributeHelper( impl, name.c_str(), name.length(), "true", 4 );
 	else
-		SetValueHelper( impl, name.c_str(), name.length(), "false", 5 );
+		SetAttributeHelper( impl, name.c_str(), name.length(), "false", 5 );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
 
 @param[in] name Nazwa ustawianej zmiennej.
 @param[in] value Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
-void ISerializer::SetValue( const std::string& name, double value )
+void ISerializer::SetAttribute( const std::string& name, double value )
 {
 #define MAX_DOUBLE_SIGNS ( 3 + DBL_MANT_DIG - DBL_MIN_EXP )
 	char numericString[ MAX_DOUBLE_SIGNS ];
 	Size valueLength = sprintf_s( numericString, "%lf", value );
 
-	SetValueHelper( impl, name.c_str(), name.length(), numericString, valueLength );
+	SetAttributeHelper( impl, name.c_str(), name.length(), numericString, valueLength );
 }
 
