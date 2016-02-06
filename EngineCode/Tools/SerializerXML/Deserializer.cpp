@@ -15,6 +15,7 @@ struct DeserializerImpl
 	rapidxml::xml_document<>				root;
 	std::stack< rapidxml::xml_node<>* >		valuesStack;
 	char*									fileContent;
+	std::string								errorString;
 
 	DeserializerImpl()
 	{	fileContent = nullptr;	}
@@ -31,6 +32,10 @@ IDeserializer::~IDeserializer()
 	delete[] impl->fileContent;
 	delete impl;
 }
+
+//====================================================================================//
+//			Wczytywanie i parsowanie	
+//====================================================================================//
 
 /**@brief Wczytuje i parsuje podany plik.
 
@@ -51,6 +56,7 @@ bool			IDeserializer::LoadFromFile		( const std::string& fileName, ParsingMode m
 
 
 	// Alokujemy bufor odpowiedniej d³ugoœci
+	delete[] impl->fileContent;
 	impl->fileContent = new char[ fileSize + 1 ];
 
 	// Wczytujemy plik do bufora
@@ -60,19 +66,43 @@ bool			IDeserializer::LoadFromFile		( const std::string& fileName, ParsingMode m
 	// Dodajemy znak koñca stringa na koñcu pliku
 	impl->fileContent[ result ] = '\0';
 
-	// Parsujemy w zale¿noœci od wybranego trybu
-	if( mode == ParsingMode::ParseInsitu )
-		impl->root.parse< rapidxml::parse_default >( impl->fileContent );
-	else // ParsingMode::AllocStrings
-	{
-		// W tym trybie wszystkie stringi s¹ alokowane.
-		// Dlatego po wykonaniu tej operacji kasujemy bufor.
-		assert( false );		// rapidXML nie obs³uguje niestety tego trybu
-
-		impl->root.parse< rapidxml::parse_default >( impl->fileContent );
-	}
-	
 	impl->valuesStack.push( &impl->root );
+
+	try
+	{
+		// Parsujemy w zale¿noœci od wybranego trybu
+		if( mode == ParsingMode::ParseInsitu )
+			impl->root.parse< rapidxml::parse_default >( impl->fileContent );
+		else // ParsingMode::AllocStrings
+		{
+			// W tym trybie wszystkie stringi s¹ alokowane.
+			// Dlatego po wykonaniu tej operacji kasujemy bufor.
+			assert( false );		// rapidXML nie obs³uguje niestety tego trybu
+
+			impl->root.parse< rapidxml::parse_default >( impl->fileContent );
+		}
+	}
+	catch( const rapidxml::parse_error& e )
+	{
+		impl->errorString = "Error: ";
+		impl->errorString += e.what();
+		impl->errorString += " Offset: ";
+		impl->errorString += std::to_string( static_cast<PtrOffset>( e.where<char>() - impl->fileContent ) );
+
+		return false;
+	}
+	catch( const std::exception& e )
+	{
+		impl->errorString = "Error: ";
+		impl->errorString += e.what();
+		return false;
+	}
+	catch( ... )
+	{
+		impl->errorString = "Unknown error";
+		return false;
+	}
+
 	return true;
 }
 
@@ -83,15 +113,35 @@ bool			IDeserializer::LoadFromString	( const std::string& contentString )
 	return false;
 }
 
+//====================================================================================//
+//			Iterowanie po drzewie	
+//====================================================================================//
+
+/**@brief Zwraca nazwê wêz³a, w którym znajduje siê serializator.*/
+const char*		IDeserializer::GetName			()
+{
+	return impl->valuesStack.top()->name();
+}
+
+
 /**@brief Wyszukuje obiekt o podanej nazwie i wchodzi w g³¹b drzewa.
 
 @param[in] name Nazwa obiektu.
 @return Zwraca false, je¿eli obiekt o danej nazwie nie istnieje.*/
 bool			IDeserializer::EnterObject		( const std::string& name )
 {
+	return EnterObject( name.c_str() );
+}
+
+/**@brief Wyszukuje obiekt o podanej nazwie i wchodzi w g³¹b drzewa.
+
+@param[in] name Nazwa obiektu.
+@return Zwraca false, je¿eli obiekt o danej nazwie nie istnieje.*/
+bool			IDeserializer::EnterObject		( const char* name )
+{
 	auto value = impl->valuesStack.top();
 
-	auto enterNode = value->first_node( name.c_str() );
+	auto enterNode = value->first_node( name );
 	if( enterNode == nullptr )
 		return false;
 
@@ -107,18 +157,25 @@ bool			IDeserializer::EnterObject		( const std::string& name )
 @return Zwraca false, je¿eli tablica o danej nazwie nie istnieje.*/
 bool			IDeserializer::EnterArray		( const std::string& name )
 {
-	//auto value = impl->valuesStack.top();
+	return EnterArray( name.c_str() );
+}
 
-	//auto iterator = value->FindMember( name.c_str() );
-	//if( iterator == value->MemberEnd() )
-	//	return false;
+/**@brief Wyszukuje tablicê o podanej nazwie i wchodzi w g³¹b drzewa.
 
-	//assert( iterator->value.IsArray() );
+@param[in] name Nazwa tablicy.
+@return Zwraca false, je¿eli tablica o danej nazwie nie istnieje.*/
+bool			IDeserializer::EnterArray		( const char* name )
+{
+	auto value = impl->valuesStack.top();
 
-	//impl->valuesStack.push( &iterator->value );
-	//return true;
+	auto enterNode = value->first_node( name );
+	if( enterNode == nullptr )
+		return false;
 
-	return false;
+	//assert( enterNode->type() == rapidxml::node_type:: );
+
+	impl->valuesStack.push( enterNode );
+	return true;
 }
 
 /**@brief */
@@ -133,85 +190,69 @@ void			IDeserializer::Exit			()
 //=========================================================//
 
 /**@brief Wchodzi do pierwszego elementu tablicy lub obiektu.
+
+Je¿eli wêze³, w którym jesteœmy, nie ma ¿adnych dzieci, pozostajemy w nim
+i stan serializatora nie zmienia siê.
+
 @return Zwaca false, je¿eli nie ma ¿adnego obiektu w tablicy (lub obiekcie).*/
 bool IDeserializer::FirstElement()
 {
-	//auto value = impl->valuesStack.top();
-	//if( value->IsArray() )
-	//{
-	//	rapidjson::Value::ValueIterator firstElement = value->Begin();
-	//	assert( firstElement->IsObject() );			// Tablica zaraz za tablic¹ nie jest dopuszczalna.
+	auto value = impl->valuesStack.top();
+	
+	auto firstChild = value->first_node( nullptr );		// Wstawienie nullptra oznacza wybranie pierwszego dziecka w kolejnoœci.
+	if( firstChild == nullptr )
+		return false;
 
-	//	impl->valuesStack.push( firstElement );
-	//}
-	//else if( value->IsObject() )
-	//{
-	//	auto firstElement = value->MemberBegin();
-	//	impl->valuesStack.push( &firstElement->value );
-	//}
-	//else
-	//{
-	//	assert( false );
-	//	return false;
-	//}
-
-	//return true;
-
-	return false;
+	impl->valuesStack.push( firstChild );
+	return true;
 }
 
-/**@brief Przechodzi do nastêpnego elementu w tablicy lub w obiekcie.*/
+/**@brief Przechodzi do nastêpnego elementu w tablicy lub w obiekcie.
+
+@return Zwraca false, je¿eli nie istnieje ju¿ kolejny element, do którego mo¿na przejœæ.*/
 bool IDeserializer::NextElement()
 {
-	//rapidjson::Value::ValueIterator value = impl->valuesStack.top();
-	//impl->valuesStack.pop();
+	auto value = impl->valuesStack.top();
+	impl->valuesStack.pop();
+	
+	auto nextValue = value->next_sibling( nullptr );		// Wstawienie nullptra oznacza wybranie kolejnego node'a w kolejnoœci.
+	if( nextValue == nullptr )
+		return false;
 
-	//auto newValue = ++value;
-	//if( newValue->IsNull() )
-	//	return false;
-
-	//impl->valuesStack.push( newValue );
-	//return true;
-
-	return false;
+	impl->valuesStack.push( nextValue );
+	return true;
 }
 
-/**@brief */
+/**@brief Przechodzi do poprzedniego elementu w tablicy lub w obiekcie.*/
 bool IDeserializer::PrevElement()
 {
-	return false;
+	auto value = impl->valuesStack.top();
+	impl->valuesStack.pop();
+	
+	auto prevValue = value->previous_sibling( nullptr );		// Wstawienie nullptra oznacza wybranie kolejnego node'a w kolejnoœci.
+	if( prevValue == nullptr )
+		return false;
+
+	impl->valuesStack.push( prevValue );
+	return true;
 }
 
 /**@brief Wchodzi do ostatniego elementu tablicy lub obiektu.
+
+Je¿eli wêze³, w którym jesteœmy, nie ma ¿adnych dzieci, pozostajemy w nim
+i stan serializatora nie zmienia siê.
+
 @return Zwaca false, je¿eli nie ma ¿adnego obiektu w tablicy (lub obiekcie).*/
 bool IDeserializer::LastElement()
 {
-	//auto value = impl->valuesStack.top();
-	//if( value->IsArray() )
-	//{
-	//	rapidjson::Value::ValueIterator firstElement = value->End();
-	//	firstElement--;
+	auto value = impl->valuesStack.top();
+	
+	auto lastChild = value->last_node( nullptr );		// Wstawienie nullptra oznacza wybranie pierwszego dziecka w kolejnoœci.
+	if( lastChild == nullptr )
+		return false;
 
-	//	assert( firstElement->IsObject() );			// Tablica zaraz za tablic¹ nie jest dopuszczalna.
-
-	//	impl->valuesStack.push( firstElement );
-	//}
-	//else if( value->IsObject() )
-	//{
-	//	auto firstElement = value->MemberEnd();
-	//	firstElement--;
-
-	//	impl->valuesStack.push( &firstElement->value );
-	//}
-	//else
-	//{
-	//	assert( false );
-	//	return false;
-	//}
-
-	//return true;
-
-	return false;
+	impl->valuesStack.push( lastChild );
+	return true;
 }
 
 //=========================================================//
@@ -310,8 +351,10 @@ inline Type		GetAttribTemplate( DeserializerImpl* impl, const char* name, Type& 
 	const char* attribValue = attribute->value();
 	char* checkEndPtr = nullptr;	// Po konwersji dostaniemy tutaj wskaŸnik na bajt tu¿ za koñcem parsowanego elementu
 
+	errno = 0;	// Funkcje strto** mog¹ zwróciæ ERANGE w przypadku przekroczenia wartoœci.
+
 	auto value = Convert<Type>( attribValue, &checkEndPtr );
-	if( *checkEndPtr != '\0' )	// Je¿eli przy parsowaniu stringa nie doszliœmy do koñca, to znaczy, ¿e pojawi³ siê b³¹d.
+	if( *checkEndPtr != '\0' || errno == ERANGE )	// Je¿eli przy parsowaniu stringa nie doszliœmy do koñca, to znaczy, ¿e pojawi³ siê b³¹d.
 		return defaultValue;
 
 	return value;
@@ -487,13 +530,7 @@ Aby siê dowiedzieæ czy parsowanie powiod³o siê, sprawdŸ wartoœæ zwracan¹ przez
 funkcje @ref LoadFromString lub @ref LoadFromFile.*/
 std::string IDeserializer::GetError()
 {
-	//rapidjson::ParseErrorCode code = impl->root.GetParseError();
-	//auto lineNum = impl->root.GetErrorOffset();
-	//
-	//std::string errorMessage = "Error: " + std::string( GetStringFromCode( code ) ) + " Offset: " + std::to_string( lineNum );
-	//return std::move( errorMessage );
-
-	return std::string();
+	return impl->errorString;
 }
 
 

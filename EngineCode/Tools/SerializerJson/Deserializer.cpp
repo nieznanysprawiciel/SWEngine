@@ -16,6 +16,8 @@
 #include "Common/memory_leaks.h"
 #include "ErrorCodes.h"
 
+
+
 struct DeserializerImpl
 {
 	rapidjson::Document				root;
@@ -38,7 +40,15 @@ IDeserializer::~IDeserializer()
 	delete impl;
 }
 
+//====================================================================================//
+//			Wczytywanie i parsowanie	
+//====================================================================================//
 
+/**@brief Wczytuje i parsuje podany plik.
+
+@param[in] fileName Nazwa pliku.
+@param[in] mode Tryb parsowania. Parser XMLowy wspiera tylko parsowanie insitu.
+@return Zwraca informacjê czy parsowanie powiod³o siê.*/
 bool			IDeserializer::LoadFromFile		( const std::string& fileName, ParsingMode mode )
 {
 	std::ifstream file( fileName, std::ios::binary | std::ios::ate );
@@ -53,6 +63,7 @@ bool			IDeserializer::LoadFromFile		( const std::string& fileName, ParsingMode m
 
 
 	// Alokujemy bufor odpowiedniej d³ugoœci
+	delete[] impl->fileContent;
 	impl->fileContent = new char[ fileSize + 1 ];
 
 	// Wczytujemy plik do bufora
@@ -87,15 +98,34 @@ bool			IDeserializer::LoadFromString	( const std::string& contentString )
 	return false;
 }
 
+//====================================================================================//
+//			Iterowanie po drzewie	
+//====================================================================================//
+
+
+const char*		IDeserializer::GetName			()
+{
+	return "";
+}
+
 /**@brief Wyszukuje obiekt o podanej nazwie i wchodzi w g³¹b drzewa.
 
 @param[in] name Nazwa obiektu.
 @return Zwraca false, je¿eli obiekt o danej nazwie nie istnieje.*/
 bool			IDeserializer::EnterObject		( const std::string& name )
 {
+	return EnterObject( name.c_str() );
+}
+
+/**@brief Wyszukuje obiekt o podanej nazwie i wchodzi w g³¹b drzewa.
+
+@param[in] name Nazwa obiektu.
+@return Zwraca false, je¿eli obiekt o danej nazwie nie istnieje.*/
+bool			IDeserializer::EnterObject		( const char* name )
+{
 	auto value = impl->valuesStack.top();
 
-	auto iterator = value->FindMember( name.c_str() );
+	auto iterator = value->FindMember( name );
 	if( iterator == value->MemberEnd() )
 		return false;
 
@@ -111,9 +141,18 @@ bool			IDeserializer::EnterObject		( const std::string& name )
 @return Zwraca false, je¿eli tablica o danej nazwie nie istnieje.*/
 bool			IDeserializer::EnterArray		( const std::string& name )
 {
+	return EnterArray( name.c_str() );
+}
+
+/**@brief Wyszukuje tablicê o podanej nazwie i wchodzi w g³¹b drzewa.
+
+@param[in] name Nazwa tablicy.
+@return Zwraca false, je¿eli tablica o danej nazwie nie istnieje.*/
+bool			IDeserializer::EnterArray		( const char* name )
+{
 	auto value = impl->valuesStack.top();
 
-	auto iterator = value->FindMember( name.c_str() );
+	auto iterator = value->FindMember( name );
 	if( iterator == value->MemberEnd() )
 		return false;
 
@@ -143,6 +182,10 @@ void			IDeserializer::Exit			()
 //=========================================================//
 
 /**@brief Wchodzi do pierwszego elementu tablicy lub obiektu.
+
+Je¿eli wêze³, w którym jesteœmy, nie ma ¿adnych dzieci, pozostajemy w nim
+i stan serializatora nie zmienia siê.
+
 @return Zwaca false, je¿eli nie ma ¿adnego obiektu w tablicy (lub obiekcie).*/
 bool IDeserializer::FirstElement()
 {
@@ -197,6 +240,10 @@ bool IDeserializer::PrevElement()
 }
 
 /**@brief Wchodzi do ostatniego elementu tablicy lub obiektu.
+
+Je¿eli wêze³, w którym jesteœmy, nie ma ¿adnych dzieci, pozostajemy w nim
+i stan serializatora nie zmienia siê.
+
 @return Zwaca false, je¿eli nie ma ¿adnego obiektu w tablicy (lub obiekcie).*/
 bool IDeserializer::LastElement()
 {
