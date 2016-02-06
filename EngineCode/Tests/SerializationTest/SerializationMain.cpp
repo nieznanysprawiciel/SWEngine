@@ -115,6 +115,12 @@ int main()
 				do
 				{
 					outputFile << deser.GetAttribute( "Name", "Wrong string" ) << std::endl;
+					
+					deser.EnterObject( "Position" );
+						outputFile << "\t" << deser.GetAttribute( "X", 0 ) << std::endl;
+						outputFile << "\t" << deser.GetAttribute( "Y", 0 ) << std::endl;
+						outputFile << "\t" << deser.GetAttribute( "Z", 0 ) << std::endl;
+					deser.Exit();
 
 				} while( deser.NextElement() );
 				deser.Exit();		// Mo¿e to jest do wyrzucenia. Serializator móg³by sam wycyhodziæ.

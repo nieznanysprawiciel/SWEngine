@@ -182,10 +182,18 @@ bool IDeserializer::NextElement()
 	return true;
 }
 
-/**@brief */
+/**@brief Przechodzi do poprzedniego elementu w tablicy lub w obiekcie.*/
 bool IDeserializer::PrevElement()
 {
-	return false;
+	rapidjson::Value::ValueIterator value = impl->valuesStack.top();
+	impl->valuesStack.pop();
+
+	--value;
+	if( value == impl->valuesStack.top()->End() )
+		return false;
+
+	impl->valuesStack.push( value );
+	return true;
 }
 
 /**@brief Wchodzi do ostatniego elementu tablicy lub obiektu.
