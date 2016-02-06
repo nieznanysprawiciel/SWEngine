@@ -13,11 +13,24 @@
 #include "Common/Serialization/Serializer.h"
 #include "Common/Serialization/Deserializer.h"
 
+
+#ifdef TEST_JSON
+	std::string writeFileName = "tylko_do_testow/serialization/serialWrite.json";
+	std::string readFileName = "tylko_do_testow/serialization/serialRead.json";
+	std::ofstream outputFile( "tylko_do_testow/serialization/testResultJSON.txt" );
+#elif TEST_XML
+	std::string writeFileName = "tylko_do_testow/serialization/serialWrite.xml";
+	std::string readFileName = "tylko_do_testow/serialization/serialRead.xml";
+	std::ofstream outputFile( "tylko_do_testow/serialization/testResultXML.txt" );
+#endif
+
+
+
 int main()
 {
 	ISerializer serializer;
 
-	serializer.SetAttribute( "FreeValue", "value" );
+	serializer.SetAttribute( "FreeValue", "value" );	// Nie pojawi siê w XMLu.
 	serializer.EnterObject( "FirstObject" );
 		serializer.SetAttribute( "Map", "LightmapGen1" );
 		serializer.SetAttribute( "Path", "/LightmapGen1.map" );
@@ -40,22 +53,22 @@ int main()
 					serializer.Exit();
 				serializer.Exit();
 			}
-		serializer.Exit();
+		serializer.Exit();	// Actors
 		serializer.EnterArray( "Assets" );
 			serializer.SetAttribute( "Asset", "TIE Fighter model" );
 			serializer.SetAttribute( "Asset", "Nebulon B" );
 			serializer.SetAttribute( "Asset", "Death Star" );
 			serializer.SetAttribute( "Asset", "Calamarian Cruiser" );
 			serializer.SetAttribute( "Asset", "Star Destroyer" );
-		serializer.Exit();
+		serializer.Exit();	// Assets
 
 		// Nie wiem czy takie coœ ma sens
 		serializer.EnterArray( "Passes" );
 			serializer.EnterArray( "Lights" );
 				serializer.SetAttribute( "light", "directional" );
 				serializer.SetAttribute( "light", "point" );
-			serializer.Exit();
-		serializer.Exit();
+			serializer.Exit();	//	Lights
+		serializer.Exit();	// Passes
 		//serializer.EnterObject( "Data" );
 		//	serializer.SetAttribute( "NumberUnits", 23 );
 		//serializer.Exit();
@@ -84,14 +97,14 @@ int main()
 	//	serializer.Exit();
 	//serializer.Exit();
 
-	std::string fileName = "tylko_do_testow/serialization/serialWrite.json";
-	if( !serializer.SaveFile( fileName, WritingMode::Readable ) )
+
+	if( !serializer.SaveFile( writeFileName, WritingMode::Readable ) )
+#ifdef TEST_JSON
 		OutputDebugString( L"Error: Saving \"tylko_do_testow/serialization/serialWrite.json\" failed!\n" );
-
-
-	std::string readFileName = "tylko_do_testow/serialization/serialRead.json";
-	std::ofstream outputFile( "tylko_do_testow/serialization/testResult.txt" );
-
+#elif TEST_XML
+		OutputDebugString( L"Error: Saving \"tylko_do_testow/serialization/serialWrite.xml\" failed!\n" );
+#endif
+	
 	IDeserializer deser;
 
 

@@ -74,7 +74,7 @@ zagnie¿d¿enia node'ów.
 bool ISerializer::SaveFile( const std::string& fileName, WritingMode mode )
 {
 	std::ofstream file;
-	file.open( fileName );
+	file.open( fileName, std::ios::out | std::ios::trunc );
 	if( !file.fail() )
 	{
 		file << SaveString( mode );

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineCore", "EngineCore\SWEngine.vcxproj", "{08F5AD41-2020-48AB-8AC3-7FE0039ED65F}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -36,9 +36,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SerializerJSON", "Serialize
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{415F8C84-7E86-4306-9173-7A5AEE6A5A67}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SerializationTest", "Tests\SerializationTest\SerializationTest.vcxproj", "{63AACF6A-FB22-422D-A673-76AF22724D22}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SerializationJSONTest", "Tests\SerializationTest\SerializationTest.vcxproj", "{63AACF6A-FB22-422D-A673-76AF22724D22}"
 	ProjectSection(ProjectDependencies) = postProject
-		{49CF5D13-CF9B-4653-9586-05CB12B9A4CA} = {49CF5D13-CF9B-4653-9586-05CB12B9A4CA}
 		{D8738375-5855-4241-8CB9-63FFE08E1B96} = {D8738375-5855-4241-8CB9-63FFE08E1B96}
 	EndProjectSection
 EndProject
@@ -47,6 +46,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LightmapsTool", "LightmapsTool\LightmapsTool.vcxproj", "{B5C0A850-91A7-4DB1-913D-9850AD23A735}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SerializationXMLTest", "Tests\SerializationTest\SerializationXMLTest.vcxproj", "{E2866C51-5348-4F94-AC58-C6372C1E53D7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{49CF5D13-CF9B-4653-9586-05CB12B9A4CA} = {49CF5D13-CF9B-4653-9586-05CB12B9A4CA}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

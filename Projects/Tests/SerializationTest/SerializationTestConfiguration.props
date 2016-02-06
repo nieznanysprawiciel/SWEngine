@@ -10,6 +10,7 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>$(EngineSourceDir)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>TEST_JSON;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <ProgramDatabaseFile>$(SerializationTestBuildDir)$(TargetName).pdb</ProgramDatabaseFile>

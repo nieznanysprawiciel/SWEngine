@@ -3,65 +3,81 @@
 #include "RapidXML/rapidxml.hpp"
 
 
+#include <fstream>
+#include <stack>
+#include <stdlib.h>
+
+#include "Common/memory_leaks.h"
+
+
+struct DeserializerImpl
+{
+	rapidxml::xml_document<>				root;
+	std::stack< rapidxml::xml_node<>* >		valuesStack;
+	char*									fileContent;
+
+	DeserializerImpl()
+	{	fileContent = nullptr;	}
+};
+
 
 IDeserializer::IDeserializer()
 {
-	//impl = new DeserializerImpl;
+	impl = new DeserializerImpl;
 }
 
 IDeserializer::~IDeserializer()
 {	
-	//delete[] impl->fileContent;
-	//delete impl;
+	delete[] impl->fileContent;
+	delete impl;
 }
 
+/**@brief Wczytuje i parsuje podany plik.
 
+@param[in] fileName Nazwa pliku.
+@param[in] mode Tryb parsowania. Parser XMLowy wspiera tylko parsowanie insitu.
+@return Zwraca informacjê czy parsowanie powiod³o siê.*/
 bool			IDeserializer::LoadFromFile		( const std::string& fileName, ParsingMode mode )
 {
-	//std::ifstream file( fileName, std::ios::binary | std::ios::ate );
+	std::ifstream file( fileName, std::ios::binary | std::ios::ate );
 
-	//if( file.fail() )
-	//	return false;
-	//
-	//// Szukamy koñca pliku, a potem wracamy na pocz¹tek.
-	//std::streambuf* rawBuffer = file.rdbuf();
-	//unsigned int fileSize = rawBuffer->pubseekoff( 0, file.end );
-	//file.seekg ( 0, file.beg );
-
-
-	//// Alokujemy bufor odpowiedniej d³ugoœci
-	//impl->fileContent = new char[ fileSize + 1 ];
-
-	//// Wczytujemy plik do bufora
-	//auto result = rawBuffer->sgetn( impl->fileContent, fileSize );
-	//file.close();
-
-	//// Dodajemy znak koñca stringa na koñcu pliku
-	//impl->fileContent[ result ] = '\0';
-
-	//// Parsujemy w zale¿noœci od wybranego trybu
-	//if( mode == ParsingMode::ParseInsitu )
-	//	impl->root.ParseInsitu( impl->fileContent );
-	//else // ParsingMode::AllocStrings
-	//{
-	//	// W tym trybie wszystkie stringi s¹ alokowane.
-	//	// Dlatego po wykonaniu tej operacji kasujemy bufor.
-	//	impl->root.Parse( impl->fileContent );
-	//	delete[] impl->fileContent;
-	//	impl->fileContent = nullptr;
-	//}
-	//
-	//if( impl->root.HasParseError() )
-	//	return false;
+	if( file.fail() )
+		return false;
+	
+	// Szukamy koñca pliku, a potem wracamy na pocz¹tek.
+	std::streambuf* rawBuffer = file.rdbuf();
+	unsigned int fileSize = static_cast< unsigned int >( rawBuffer->pubseekoff( 0, file.end ) );
+	file.seekg ( 0, file.beg );
 
 
-	//impl->valuesStack.push( &impl->root );
-	//return true;
+	// Alokujemy bufor odpowiedniej d³ugoœci
+	impl->fileContent = new char[ fileSize + 1 ];
 
+	// Wczytujemy plik do bufora
+	auto result = rawBuffer->sgetn( impl->fileContent, fileSize );
+	file.close();
 
-	return false;
+	// Dodajemy znak koñca stringa na koñcu pliku
+	impl->fileContent[ result ] = '\0';
+
+	// Parsujemy w zale¿noœci od wybranego trybu
+	if( mode == ParsingMode::ParseInsitu )
+		impl->root.parse< rapidxml::parse_default >( impl->fileContent );
+	else // ParsingMode::AllocStrings
+	{
+		// W tym trybie wszystkie stringi s¹ alokowane.
+		// Dlatego po wykonaniu tej operacji kasujemy bufor.
+		assert( false );		// rapidXML nie obs³uguje niestety tego trybu
+
+		impl->root.parse< rapidxml::parse_default >( impl->fileContent );
+	}
+	
+	impl->valuesStack.push( &impl->root );
+	return true;
 }
 
+/**@brief Parsuje XMLa z podanego stringa.
+@param[in] contentString String do sparsowania.*/
 bool			IDeserializer::LoadFromString	( const std::string& contentString )
 {
 	return false;
@@ -73,18 +89,16 @@ bool			IDeserializer::LoadFromString	( const std::string& contentString )
 @return Zwraca false, je¿eli obiekt o danej nazwie nie istnieje.*/
 bool			IDeserializer::EnterObject		( const std::string& name )
 {
-	//auto value = impl->valuesStack.top();
+	auto value = impl->valuesStack.top();
 
-	//auto iterator = value->FindMember( name.c_str() );
-	//if( iterator == value->MemberEnd() )
-	//	return false;
+	auto enterNode = value->first_node( name.c_str() );
+	if( enterNode == nullptr )
+		return false;
 
-	//assert( iterator->value.IsObject() );
+	//assert( enterNode->type() == rapidxml::node_type:: );
 
-	//impl->valuesStack.push( &iterator->value );
-	//return true;
-
-	return false;
+	impl->valuesStack.push( enterNode );
+	return true;
 }
 
 /**@brief Wyszukuje tablicê o podanej nazwie i wchodzi w g³¹b drzewa.
@@ -110,16 +124,8 @@ bool			IDeserializer::EnterArray		( const std::string& name )
 /**@brief */
 void			IDeserializer::Exit			()
 {
-	//auto value = impl->valuesStack.top();
-	//if( value->IsObject() )
-	//	impl->valuesStack.pop();
-	//else if( value->IsArray() )
-	//{
-	//	impl->valuesStack.pop();
-	//	// Coœ jeszcze
-	//}
-	//else
-	//	assert( false );
+	auto value = impl->valuesStack.top();
+	impl->valuesStack.pop();
 }
 
 //=========================================================//
@@ -215,91 +221,101 @@ bool IDeserializer::LastElement()
 namespace
 {
 
-//template< typename ElementType >
-//inline bool Is					( rapidjson::GenericMemberIterator<false, rapidjson::UTF8<>, rapidjson::MemoryPoolAllocator<> >& iterator )
-//{
-//	assert( false );
-//	return false;
-//}
-//
-//template<>
-//inline bool Is< const char* >	(  rapidjson::GenericMemberIterator<false, rapidjson::UTF8<>, rapidjson::MemoryPoolAllocator<> >& iterator )
-//{	return iterator->value.IsString();	}
-//
-//template<>
-//inline bool Is< uint32 >	(  rapidjson::GenericMemberIterator<false, rapidjson::UTF8<>, rapidjson::MemoryPoolAllocator<> >& iterator )
-//{	return iterator->value.IsUint();	}
-//
-//template<>
-//inline bool Is< int32 >		(  rapidjson::GenericMemberIterator<false, rapidjson::UTF8<>, rapidjson::MemoryPoolAllocator<> >& iterator )
-//{	return iterator->value.IsInt();	}
-//
-//template<>
-//inline bool Is< uint64 >	(  rapidjson::GenericMemberIterator<false, rapidjson::UTF8<>, rapidjson::MemoryPoolAllocator<> >& iterator )
-//{	return iterator->value.IsUint64();	}
-//
-//template<>
-//inline bool Is< int64 >		(  rapidjson::GenericMemberIterator<false, rapidjson::UTF8<>, rapidjson::MemoryPoolAllocator<> >& iterator )
-//{	return iterator->value.IsInt64();	}
-//
-//template<>
-//inline bool Is< bool >		(  rapidjson::GenericMemberIterator<false, rapidjson::UTF8<>, rapidjson::MemoryPoolAllocator<> >& iterator )
-//{	return iterator->value.IsBool();	}
-//
-//template<>
-//inline bool Is< double >	(  rapidjson::GenericMemberIterator<false, rapidjson::UTF8<>, rapidjson::MemoryPoolAllocator<> >& iterator )
-//{	return iterator->value.IsDouble();	}
-//
-////====
-////====
-//template< typename ElementType >
-//inline ElementType Get					( rapidjson::GenericMemberIterator<false, rapidjson::UTF8<>, rapidjson::MemoryPoolAllocator<> >& iterator )
-//{
-//	assert( false );
-//	return false;
-//}
-//
-//template<>
-//inline const char* Get< const char* >	(  rapidjson::GenericMemberIterator<false, rapidjson::UTF8<>, rapidjson::MemoryPoolAllocator<> >& iterator )
-//{	return iterator->value.GetString();	}
-//
-//template<>
-//inline uint32 Get< uint32 >	(  rapidjson::GenericMemberIterator<false, rapidjson::UTF8<>, rapidjson::MemoryPoolAllocator<> >& iterator )
-//{	return iterator->value.GetUint();	}
-//
-//template<>
-//inline int32 Get< int32 >		(  rapidjson::GenericMemberIterator<false, rapidjson::UTF8<>, rapidjson::MemoryPoolAllocator<> >& iterator )
-//{	return iterator->value.GetInt();	}
-//
-//template<>
-//inline uint64 Get< uint64 >	(  rapidjson::GenericMemberIterator<false, rapidjson::UTF8<>, rapidjson::MemoryPoolAllocator<> >& iterator )
-//{	return iterator->value.GetUint64();	}
-//
-//template<>
-//inline int64 Get< int64 >		(  rapidjson::GenericMemberIterator<false, rapidjson::UTF8<>, rapidjson::MemoryPoolAllocator<> >& iterator )
-//{	return iterator->value.GetInt64();	}
-//
-//template<>
-//inline bool Get< bool >		(  rapidjson::GenericMemberIterator<false, rapidjson::UTF8<>, rapidjson::MemoryPoolAllocator<> >& iterator )
-//{	return iterator->value.GetBool();	}
-//
-//template<>
-//inline double Get< double >	(  rapidjson::GenericMemberIterator<false, rapidjson::UTF8<>, rapidjson::MemoryPoolAllocator<> >& iterator )
-//{	return iterator->value.GetDouble();	}
-//
-//
-//
-//template<typename Type>
-//inline Type		GetAttribTemplate( DeserializerImpl* impl, const char* name, Type& defaultValue )
-//{
-//	rapidjson::Value* currentObject = impl->valuesStack.top();	// Obiekt, w którym szukamy atrybutów
-//
-//	auto iterator = currentObject->FindMember( name );
-//	if( iterator == currentObject->MemberEnd() || !Is< Type >( iterator ) )
-//		return defaultValue;
-//
-//	return Get< Type >( iterator );
-//}
+/**@brief Konwertuje stringa do wartoœci liczbowych. Wykorzystuje funkcjê strol
+i zwraca dok³adnie takie same wartoœci. Zobacz dokumentacjê do biblioteki standardowej c++.*/
+template< typename ElementType >
+inline ElementType Convert							( const char* valueBegin, char** checkEndPtr )
+{
+	assert( false );
+	return false;
+}
+
+const char* convertCharNullTerminator = "\0";
+
+template<>
+inline const char*	Convert< const char* >			( const char* valueBegin, char** checkEndPtr )
+{
+	// @fixme To jest straszny hack. Gdyby ktoœ z zewn¹trz tej funkcji chcia³ porównaæ
+	// zwracany wskaŸnik checkEndPtr ze wskaŸnikiem, który poda³, to by siê strasznie zdziwi³.
+	// Ale jakoœ mimo wszystko nie chcê sprawdzaæ d³ugoœci tego stringa, kiedy to nie jest potrzebne.
+	*checkEndPtr = const_cast<char*>( convertCharNullTerminator );
+	return valueBegin;
+}
+
+template<>
+inline uint32		Convert< uint32 >				( const char* valueBegin, char** checkEndPtr )
+{	return strtoul( valueBegin, checkEndPtr, 10 );	}
+
+template<>
+inline int32		Convert< int32 >				( const char* valueBegin, char** checkEndPtr )
+{	return strtol( valueBegin, checkEndPtr, 10 );	}
+
+template<>
+inline uint64		Convert< uint64 >				( const char* valueBegin, char** checkEndPtr )
+{	return strtoull( valueBegin, checkEndPtr, 10 );	}
+
+template<>
+inline int64		Convert< int64 >				( const char* valueBegin, char** checkEndPtr )
+{	return strtoll( valueBegin, checkEndPtr, 10 );	}
+
+
+const char* trueString = "true";
+const char* falseString = "false";
+
+template<>
+inline bool			Convert< bool >					( const char* valueBegin, char** checkEndPtr )
+{
+	*checkEndPtr = const_cast<char*>( valueBegin );
+	const char* referenceString;
+	bool returnValue;
+
+	if( **checkEndPtr == 't' )
+	{
+		returnValue = true;
+		referenceString = trueString;
+	}
+	else if( **checkEndPtr == 'f' )
+	{
+		returnValue = false;
+		referenceString = falseString;
+	}
+	else
+		return false;
+
+	int i = 0;
+	do
+	{
+		++i;
+		*checkEndPtr += 1;
+	} while( **checkEndPtr == *( referenceString + i ) && **checkEndPtr != '\0' );
+
+	return returnValue;
+}
+
+template<>
+inline double		Convert< double >				( const char* valueBegin, char** checkEndPtr )
+{	return strtod( valueBegin, checkEndPtr );	}
+
+
+
+template<typename Type>
+inline Type		GetAttribTemplate( DeserializerImpl* impl, const char* name, Type& defaultValue )
+{
+	rapidxml::xml_node<>* currentNode = impl->valuesStack.top();
+
+	rapidxml::xml_attribute<>* attribute = currentNode->first_attribute( name );
+	if( attribute == nullptr )
+		return defaultValue;
+
+	const char* attribValue = attribute->value();
+	char* checkEndPtr = nullptr;	// Po konwersji dostaniemy tutaj wskaŸnik na bajt tu¿ za koñcem parsowanego elementu
+
+	auto value = Convert<Type>( attribValue, &checkEndPtr );
+	if( *checkEndPtr != '\0' )	// Je¿eli przy parsowaniu stringa nie doszliœmy do koñca, to znaczy, ¿e pojawi³ siê b³¹d.
+		return defaultValue;
+
+	return value;
+}
 
 }	// anonymous
 
@@ -315,14 +331,7 @@ namespace
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 std::string IDeserializer::GetAttribute( const std::string& name, std::string& defaultValue )
 {
-	//rapidjson::Value* currentObject = impl->valuesStack.top();	// Obiekt, w którym szukamy atrybutów
-
-	//auto iterator = currentObject->FindMember( name );
-	//if( iterator == currentObject->MemberEnd() || !iterator->value.IsString() )
-	//	return defaultValue;
-
-	//return iterator->value.GetString();
-	return std::string();
+	return GetAttribTemplate( impl, name.c_str(), defaultValue );
 }
 
 /**@brief Zwraca atrybut o podanej nazwie.
@@ -333,8 +342,7 @@ std::string IDeserializer::GetAttribute( const std::string& name, std::string& d
 @param[in] defaultValue Je¿eli element o podanej nazwie nie istnieje, zostanie zwrócona wartoœæ domyœlna.*/
 const char* IDeserializer::GetAttribute( const std::string& name, const char* defaultValue )
 {
-	//return GetAttribTemplate( impl, name.c_str(), defaultValue );
-	return "";
+	return GetAttribTemplate( impl, name.c_str(), defaultValue );
 }
 
 
@@ -344,8 +352,7 @@ const char* IDeserializer::GetAttribute( const std::string& name, const char* de
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 uint32 IDeserializer::GetAttribute( const std::string& name, uint32 defaultValue )
 {
-	//return GetAttribTemplate( impl, name.c_str(), defaultValue );
-	return 0;
+	return GetAttribTemplate( impl, name.c_str(), defaultValue );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -354,8 +361,7 @@ uint32 IDeserializer::GetAttribute( const std::string& name, uint32 defaultValue
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 uint64 IDeserializer::GetAttribute( const std::string& name, uint64 defaultValue )
 {
-	//return GetAttribTemplate( impl, name.c_str(), defaultValue );
-	return 0;
+	return GetAttribTemplate( impl, name.c_str(), defaultValue );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -364,8 +370,7 @@ uint64 IDeserializer::GetAttribute( const std::string& name, uint64 defaultValue
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 int32 IDeserializer::GetAttribute( const std::string& name, int32 defaultValue )
 {
-	//return GetAttribTemplate( impl, name.c_str(), defaultValue );
-	return 0;
+	return GetAttribTemplate( impl, name.c_str(), defaultValue );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -374,8 +379,7 @@ int32 IDeserializer::GetAttribute( const std::string& name, int32 defaultValue )
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 int64 IDeserializer::GetAttribute( const std::string& name, int64 defaultValue )
 {
-	//return GetAttribTemplate( impl, name.c_str(), defaultValue );
-	return 0;
+	return GetAttribTemplate( impl, name.c_str(), defaultValue );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -384,8 +388,7 @@ int64 IDeserializer::GetAttribute( const std::string& name, int64 defaultValue )
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 bool IDeserializer::GetAttribute( const std::string& name, bool defaultValue )
 {
-	//return GetAttribTemplate( impl, name.c_str(), defaultValue );
-	return false;
+	return GetAttribTemplate( impl, name.c_str(), defaultValue );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -394,8 +397,7 @@ bool IDeserializer::GetAttribute( const std::string& name, bool defaultValue )
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 double IDeserializer::GetAttribute( const std::string& name, double defaultValue )
 {
-	//return GetAttribTemplate( impl, name.c_str(), defaultValue );
-	return 0.0;
+	return GetAttribTemplate( impl, name.c_str(), defaultValue );
 }
 
 
@@ -409,14 +411,7 @@ double IDeserializer::GetAttribute( const std::string& name, double defaultValue
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 std::string		IDeserializer::GetAttribute		( const char* name, std::string& defaultValue )
 {
-	//rapidjson::Value* currentObject = impl->valuesStack.top();	// Obiekt, w którym szukamy atrybutów
-
-	//auto iterator = currentObject->FindMember( name );
-	//if( iterator == currentObject->MemberEnd() || !iterator->value.IsString() )
-	//	return defaultValue;
-
-	//return iterator->value.GetString();
-	return std::string();
+	return GetAttribTemplate( impl, name, defaultValue );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -425,8 +420,7 @@ std::string		IDeserializer::GetAttribute		( const char* name, std::string& defau
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 const char*		IDeserializer::GetAttribute		( const char* name, const char* defaultValue )
 {
-	//return GetAttribTemplate( impl, name, defaultValue );
-	return "";
+	return GetAttribTemplate( impl, name, defaultValue );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -435,8 +429,7 @@ const char*		IDeserializer::GetAttribute		( const char* name, const char* defaul
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 uint32			IDeserializer::GetAttribute		( const char* name, uint32 defaultValue )
 {
-	//return GetAttribTemplate( impl, name, defaultValue );
-	return 0;
+	return GetAttribTemplate( impl, name, defaultValue );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -445,8 +438,7 @@ uint32			IDeserializer::GetAttribute		( const char* name, uint32 defaultValue )
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 uint64			IDeserializer::GetAttribute		( const char* name, uint64 defaultValue )
 {
-	//return GetAttribTemplate( impl, name, defaultValue );
-	return 0;
+	return GetAttribTemplate( impl, name, defaultValue );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -455,8 +447,7 @@ uint64			IDeserializer::GetAttribute		( const char* name, uint64 defaultValue )
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 int32			IDeserializer::GetAttribute		( const char* name, int32 defaultValue )
 {
-	//return GetAttribTemplate( impl, name, defaultValue );
-	return 0;
+	return GetAttribTemplate( impl, name, defaultValue );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -465,8 +456,7 @@ int32			IDeserializer::GetAttribute		( const char* name, int32 defaultValue )
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 int64			IDeserializer::GetAttribute		( const char* name, int64 defaultValue )
 {
-	//return GetAttribTemplate( impl, name, defaultValue );
-	return 0;
+	return GetAttribTemplate( impl, name, defaultValue );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -475,8 +465,7 @@ int64			IDeserializer::GetAttribute		( const char* name, int64 defaultValue )
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 bool			IDeserializer::GetAttribute		( const char* name, bool defaultValue )
 {
-	//return GetAttribTemplate( impl, name, defaultValue );
-	return false;
+	return GetAttribTemplate( impl, name, defaultValue );
 }
 
 /**@brief Ustawia parê ( nazwa, wartoœæ ) w aktualnym obiekcie.
@@ -485,8 +474,7 @@ bool			IDeserializer::GetAttribute		( const char* name, bool defaultValue )
 @param[in] defaultValue Wartoœæ, jaka zostanie wpisana do podanej zmiennej.*/
 double			IDeserializer::GetAttribute		( const char* name, double defaultValue )
 {
-	//return GetAttribTemplate( impl, name, defaultValue );
-	return 0.0;
+	return GetAttribTemplate( impl, name, defaultValue );
 }
 
 //====================================================================================//
