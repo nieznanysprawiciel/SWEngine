@@ -152,9 +152,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\UI_Engine.h">
       <Filter>EngineCore\UIEngine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\GamePlay\ActorCreator.h">
-      <Filter>EngineCore\GamePlay</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\GamePlay\FableEngine.h">
       <Filter>EngineCore\GamePlay</Filter>
     </ClInclude>
@@ -196,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\ResourceHelpers.h">
       <Filter>EngineCore\ModelsManagment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorCreator.h">
+      <Filter>EngineCore\Actors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -271,9 +271,6 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\UI_Engine_AbstractionLayers.cpp">
       <Filter>EngineCore\UIEngine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\GamePlay\ActorCreator.cpp">
-      <Filter>EngineCore\GamePlay</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\GamePlay\FableEngine.cpp">
       <Filter>EngineCore\GamePlay</Filter>
     </ClCompile>
@@ -288,6 +285,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\StandardAbstractionLayer.cpp">
       <Filter>EngineCore\UIEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\ActorCreator.cpp">
+      <Filter>EngineCore\Actors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

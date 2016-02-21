@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <float.h>
 
+
+
 struct SerializerImpl
 {
 	rapidxml::xml_document<>			root;
