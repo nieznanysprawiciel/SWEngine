@@ -197,6 +197,13 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorCreator.h">
       <Filter>EngineCore\Actors</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorPreset.h">
+      <Filter>EngineCore\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorInfo.h">
+      <Filter>EngineCore\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorsManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -288,6 +295,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\ActorCreator.cpp">
       <Filter>EngineCore\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\ActorsManager.cpp">
+      <Filter>EngineCore</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

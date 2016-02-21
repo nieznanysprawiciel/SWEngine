@@ -11,14 +11,14 @@ bool pushedF1 = false;		///< Hack. Zapamiêtuje stan przycisku odpowiedzialnego z
 #include "Common/memory_leaks.h"
 
 
-UI_Engine::UI_Engine(Engine* engine)
-	: engine(engine)
+UI_Engine::UI_Engine( Engine* engine )
+	: engine( engine )
 {
 	direct_input = nullptr;
 	keyboard_input = nullptr;
 	mouse_input = nullptr;
 
-	InitAbstractionLayers( );
+	InitAbstractionLayers();
 }
 
 

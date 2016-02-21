@@ -20,10 +20,9 @@ public:
 
 	void		RegisterClass			( const std::string& name, CreateActorFunction function );
 	int16		GetClassId				( const std::string& name );
-	template< typename Type = Object >
-	Type*		CreateActor				( const std::string& name );
-	template< typename Type = Object >
-	Type*		CreateActor				( uint16 id );
+
+	template< typename Type = Object >	Type*		CreateActor				( const std::string& name );
+	template< typename Type = Object >	Type*		CreateActor				( uint16 id );
 	//template< typename Type = Object > Type* CreateActor( const std::string name, const ActorInitializer initializer );
 	//template< typename Type = Object > Type* CreateActor( uint16 id, const ActorInitializer initializer );
 };

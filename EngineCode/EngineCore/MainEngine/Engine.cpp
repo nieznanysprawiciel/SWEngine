@@ -21,6 +21,8 @@ oraz g³ówne funkcje do renderingu.
 #include "EngineCore/PhysicEngine/MovementEngine.h"
 #include "EngineCore/SoundEngine/SoundEngine.h"
 #include "EngineCore/UIEngine/UI_Engine.h"
+#include "EngineCore/Actors/ActorsManager.h"
+
 #include "EngineCore/GamePlay/IGamePlay.h"
 
 #include "Common/memory_leaks.h"
@@ -68,15 +70,16 @@ Engine::Engine(HINSTANCE instance)
 
 	Context.graphicInitializer = ResourcesFactory::CreateAPIInitializer();
 
-	Context.controllersEngine	=	new ControllersEngine(this);
-	Context.movementEngine		=	new MovementEngine(this);
-	Context.displayEngine		=	new DisplayEngine(this);
-	Context.collisionEngine	=	new CollisionEngine(this);
-	Context.physicEngine		=	new PhysicEngine(this);
-	Context.modelsManager		=	new ModelsManager(this);
-	Context.fableEngine		=	new FableEngine(this);
-	Context.soundEngine		=	new SoundEngine(this);
-	Context.ui_engine			=	new UI_Engine(this);
+	Context.controllersEngine		= new ControllersEngine( this );
+	Context.movementEngine			= new MovementEngine( this );
+	Context.displayEngine			= new DisplayEngine( this );
+	Context.collisionEngine			= new CollisionEngine( this );
+	Context.physicEngine			= new PhysicEngine( this );
+	Context.modelsManager			= new ModelsManager( this );
+	Context.fableEngine				= new FableEngine( this );
+	Context.soundEngine				= new SoundEngine( this );
+	Context.ui_engine				= new UI_Engine( this );
+	Context.actorsManager			= new ActorsManager( this );
 
 	//inicjujemy licznik klatek
 	Context.pause = false;

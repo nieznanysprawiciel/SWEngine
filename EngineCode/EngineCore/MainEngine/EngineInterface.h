@@ -21,6 +21,7 @@ class Event;
 class Command;
 class Engine;
 
+class ActorsManager;
 class ControllersEngine;
 class ModelsManager;
 class PhysicEngine;
@@ -79,6 +80,7 @@ struct EngineContext
 	FableEngine*				fableEngine;			///<Zarz¹dza fabu³¹ gry, interakcjami obiektów itd. Odpowiada za treœæ
 	SoundEngine*				soundEngine;			///<Zarz¹dza muzyk¹ i dŸwiêkami
 	UI_Engine*					ui_engine;				///<Interfejs u¿ytkownika (tak¿e graficzny)
+	ActorsManager*				actorsManager;			///<Zarz¹dzanie aktorami.
 
 	/**@brief SpinLock do synchronizacji komunikacji miêdzy GamePlayem a silnikiem.
 
