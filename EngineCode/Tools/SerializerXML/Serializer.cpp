@@ -35,6 +35,7 @@ ISerializer::ISerializer()
 {
 	impl = new SerializerImpl;
 	impl->valuesStack.push( &impl->root );
+	context = nullptr;
 }
 
 /**@brief Destruktor*/

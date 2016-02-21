@@ -25,6 +25,7 @@ struct DeserializerImpl
 IDeserializer::IDeserializer()
 {
 	impl = new DeserializerImpl;
+	context = nullptr;
 }
 
 IDeserializer::~IDeserializer()
@@ -139,6 +140,7 @@ bool			IDeserializer::EnterObject		( const std::string& name )
 @return Zwraca false, je¿eli obiekt o danej nazwie nie istnieje.*/
 bool			IDeserializer::EnterObject		( const char* name )
 {
+	assert( !impl->valuesStack.empty() );
 	auto value = impl->valuesStack.top();
 
 	auto enterNode = value->first_node( name );
@@ -166,6 +168,7 @@ bool			IDeserializer::EnterArray		( const std::string& name )
 @return Zwraca false, je¿eli tablica o danej nazwie nie istnieje.*/
 bool			IDeserializer::EnterArray		( const char* name )
 {
+	assert( !impl->valuesStack.empty() );
 	auto value = impl->valuesStack.top();
 
 	auto enterNode = value->first_node( name );

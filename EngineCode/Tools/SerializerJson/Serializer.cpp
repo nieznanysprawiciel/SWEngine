@@ -58,6 +58,8 @@ ISerializer::ISerializer()
 	impl = new SerializerImpl;
 	rapidjson::Value newObject( rapidjson::kObjectType );
 	impl->valuesStack.push( std::move( newObject ) );
+
+	context = nullptr;
 }
 
 /**@brief Destruktor*/

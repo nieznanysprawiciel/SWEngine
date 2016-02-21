@@ -25,6 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\Common\Serialization\Deserializer.h" />
+    <ClInclude Include="..\..\EngineCode\Common\Serialization\SerializationContext.h" />
     <ClInclude Include="..\..\EngineCode\Common\Serialization\Serializer.h" />
     <ClInclude Include="..\..\EngineCode\Tools\SerializerJson\ErrorCodes.h" />
   </ItemGroup>

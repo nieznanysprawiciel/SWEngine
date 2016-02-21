@@ -198,10 +198,6 @@
     <ClInclude Include="..\..\EngineCode\TestEngine\targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\EngineCode\TestEngine\EntryPoint.ico" />
-    <Image Include="..\..\EngineCode\TestEngine\small.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\DX11API\DX11API.vcxproj">
       <Project>{44643d7f-1c71-41c1-b452-b2dc5e088a58}</Project>
     </ProjectReference>
@@ -210,7 +206,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\EngineCode\TestEngine\SW_engine.rc" />
+    <Image Include="SchopenhauerWeltschmerz.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\EngineCode\TestEngine\SWEngine.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

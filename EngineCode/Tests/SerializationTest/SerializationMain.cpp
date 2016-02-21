@@ -188,28 +188,37 @@ int main()
 			deser.Exit();	// Actors
 		}
 
-		deser.EnterObject( "Data1" );
+		if( deser.EnterObject( "Data1" ) )
+		{
 			outputFile << deser.GetAttribute( "Map", "GetAttribute error" ) << std::endl;
 			outputFile << deser.GetAttribute( "Path", "GetAttribute error" ) << std::endl;
 			outputFile << deser.GetAttribute( "Load", false ) << std::endl;
-		deser.Exit();	// Data1
 
-		deser.EnterObject( "Data2" );
+			deser.Exit();	// Data1
+		}
+
+		if( deser.EnterObject( "Data2" ) )
+		{
 			outputFile << deser.GetAttribute( "Asset1", "GetAttribute error" ) << std::endl;
 			outputFile << deser.GetAttribute( "Asset2", "GetAttribute error" ) << std::endl;
 			outputFile << deser.GetAttribute( "Asset3", "GetAttribute error" ) << std::endl;
 			outputFile << deser.GetAttribute( "Asset4", "GetAttribute error" ) << std::endl;
 			outputFile << deser.GetAttribute( "Asset5", "GetAttribute error" ) << std::endl;
-		deser.Exit();	// Data2
 
-		deser.EnterObject( "Data3" );
+			deser.Exit();	// Data2
+		}
+
+		if( deser.EnterObject( "Data3" ) )
+		{
 			outputFile << deser.GetAttribute( "NumberUnits", (uint32)0 ) << std::endl;
 			outputFile << deser.GetAttribute( "UnitsModifier", (int32)0 ) << std::endl;
 			outputFile << deser.GetAttribute( "PositionOffset", 0.0 ) << std::endl;
 			outputFile << deser.GetAttribute( "Visible", false ) << std::endl;
 			outputFile << deser.GetAttribute( "Key", (int64)0 ) << std::endl;
 			outputFile << deser.GetAttribute( "KeyHash", (uint64)0 ) << std::endl;
-		deser.Exit();	// Data3
+			
+			deser.Exit();	// Data3
+		}
 
 		if( deser.EnterArray( "ActorEnemies" ) )
 		{

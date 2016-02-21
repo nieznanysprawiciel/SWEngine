@@ -32,6 +32,7 @@ struct DeserializerImpl
 IDeserializer::IDeserializer()
 {
 	impl = new DeserializerImpl;
+	context = nullptr;
 }
 
 IDeserializer::~IDeserializer()
@@ -105,7 +106,17 @@ bool			IDeserializer::LoadFromString	( const std::string& contentString )
 
 const char*		IDeserializer::GetName			()
 {
-	return "";
+	assert( impl->valuesStack.size() >= 2 );
+
+	auto value = impl->valuesStack.top();	// Value
+	impl->valuesStack.pop();
+
+	auto name = impl->valuesStack.top();
+	impl->valuesStack.push( value );		// Wrzucamy spowrotem 
+
+	assert( name->IsString() );
+
+	return name->GetString();
 }
 
 /**@brief Wyszukuje obiekt o podanej nazwie i wchodzi w g³¹b drzewa.
@@ -123,6 +134,7 @@ bool			IDeserializer::EnterObject		( const std::string& name )
 @return Zwraca false, je¿eli obiekt o danej nazwie nie istnieje.*/
 bool			IDeserializer::EnterObject		( const char* name )
 {
+	assert( !impl->valuesStack.empty() );
 	auto value = impl->valuesStack.top();
 
 	auto iterator = value->FindMember( name );
@@ -131,6 +143,7 @@ bool			IDeserializer::EnterObject		( const char* name )
 
 	assert( iterator->value.IsObject() );
 
+	impl->valuesStack.push( &iterator->name );
 	impl->valuesStack.push( &iterator->value );
 	return true;
 }
@@ -150,6 +163,7 @@ bool			IDeserializer::EnterArray		( const std::string& name )
 @return Zwraca false, je¿eli tablica o danej nazwie nie istnieje.*/
 bool			IDeserializer::EnterArray		( const char* name )
 {
+	assert( !impl->valuesStack.empty() );
 	auto value = impl->valuesStack.top();
 
 	auto iterator = value->FindMember( name );
@@ -158,28 +172,37 @@ bool			IDeserializer::EnterArray		( const char* name )
 
 	assert( iterator->value.IsArray() );
 
+	impl->valuesStack.push( &iterator->name );
 	impl->valuesStack.push( &iterator->value );
 	return true;
 }
 
-/**@brief */
+/**@brief Wychodzi z tablicy albo obiektu, w którym znaleziono
+siê przy pomocy funkcji EnterObject lub EnterArray.*/
 void			IDeserializer::Exit			()
 {
-	auto value = impl->valuesStack.top();
-	if( value->IsObject() )
-		impl->valuesStack.pop();
-	else if( value->IsArray() )
-	{
-		impl->valuesStack.pop();
-		// Coœ jeszcze
-	}
-	else
-		assert( false );
+	assert( !impl->valuesStack.empty() );
+
+	assert( impl->valuesStack.top()->IsArray() || impl->valuesStack.top()->IsObject() );
+	impl->valuesStack.pop();	// Zdejmujemy tablicê lub obiekt.
+
+	assert( impl->valuesStack.top()->IsString() );
+	impl->valuesStack.pop();	// Zdejmujemy nazwê tablicy.
 }
 
 //=========================================================//
 //				
 //=========================================================//
+
+void PushArrayObjectName( DeserializerImpl* impl, rapidjson::Value* object )
+{
+	auto name = object->FindMember( "Name" );
+	if( name != object->MemberEnd() )
+		impl->valuesStack.push( &name->value );
+	else
+		impl->valuesStack.push( &name->value );	//@todo Wpisaæ tu jak¹œ wartoœæ, gdy nie ma nazwy jako atrybutu.
+}
+
 
 /**@brief Wchodzi do pierwszego elementu tablicy lub obiektu.
 
@@ -190,16 +213,18 @@ i stan serializatora nie zmienia siê.
 bool IDeserializer::FirstElement()
 {
 	auto value = impl->valuesStack.top();
-	if( value->IsArray() )
+	if( value->IsArray() && !value->Empty() )
 	{
 		rapidjson::Value::ValueIterator firstElement = value->Begin();
-		assert( firstElement->IsObject() );			// Tablica zaraz za tablic¹ nie jest dopuszczalna.
 
+		PushArrayObjectName( impl, firstElement );
 		impl->valuesStack.push( firstElement );
 	}
 	else if( value->IsObject() )
 	{
 		auto firstElement = value->MemberBegin();
+
+		impl->valuesStack.push( &firstElement->name );
 		impl->valuesStack.push( &firstElement->value );
 	}
 	else
@@ -215,27 +240,110 @@ bool IDeserializer::FirstElement()
 bool IDeserializer::NextElement()
 {
 	rapidjson::Value::ValueIterator value = impl->valuesStack.top();
-	impl->valuesStack.pop();
+	impl->valuesStack.pop();	// Value
+	impl->valuesStack.pop();	// Name
+	auto valueParent = impl->valuesStack.top();		// Parent
 
-	++value;
-	if( value == impl->valuesStack.top()->End() )
+	if( valueParent->IsArray() )
+	{
+		++value;
+		// Sprawdzamy czy nie dotarliœmy do koñca - wersja dla tablic.
+		if( value == valueParent->End() )
+			return false;
+
+		PushArrayObjectName( impl, value );
+		impl->valuesStack.push( value );
+		return true;
+	}
+	else if( valueParent->IsObject() )
+	{
+		// Sprawdzamy czy nie dotarliœmy do koñca - wersja dla obiektów.
+		rapidjson::Value::MemberIterator iter = valueParent->MemberBegin();
+		while( iter != valueParent->MemberEnd() )
+		{
+			if( &iter->value == value )
+				break;
+			++iter;
+		}
+
+		if( iter == valueParent->MemberEnd() )
+			return false;
+
+		while( ++iter != valueParent->MemberEnd() )
+		{
+			// Trzeba odfiltrowaæ atrybuty.
+			if( iter->value.IsObject() || iter->value.IsArray() )
+			{
+				impl->valuesStack.push( &iter->name );
+				impl->valuesStack.push( &iter->value );
+				return true;
+			}
+		}
+	}
+	else
+	{
+		assert( !"Wrong rapidjson::Value type" );
 		return false;
+	}
 
-	impl->valuesStack.push( value );
-	return true;
+	return false;
 }
 
 /**@brief Przechodzi do poprzedniego elementu w tablicy lub w obiekcie.*/
 bool IDeserializer::PrevElement()
 {
+	assert( impl->valuesStack.size() >= 3 );
+
 	rapidjson::Value::ValueIterator value = impl->valuesStack.top();
-	impl->valuesStack.pop();
+	impl->valuesStack.pop();	// Value
+	impl->valuesStack.pop();	// Name
+	auto valueParent = impl->valuesStack.top();
 
-	--value;
-	if( value == impl->valuesStack.top()->End() )
+	if( valueParent->IsArray() )
+	{
+		// Sprawdzamy czy nie jesteœmy na pocz¹tku - wersja dla tablic.
+		if( value == valueParent->Begin() )
+			return false;
+
+		--value;
+
+		PushArrayObjectName( impl, value );
+		impl->valuesStack.push( value );
+		return true;
+	}
+	else if( valueParent->IsObject() )
+	{
+		// Sprawdzamy czy nie jesteœmy na pocz¹tku - wersja dla obiektów.
+		rapidjson::Value::MemberIterator iter = valueParent->MemberEnd();
+		--iter;
+		while( iter != valueParent->MemberBegin() )
+		{
+			if( &iter->value == value )
+				break;
+			--iter;
+		}
+
+		if( iter == valueParent->MemberBegin() )
+			return false;
+
+		--iter;
+		do
+		{
+			// Trzeba odfiltrowaæ atrybuty.
+			if( iter->value.IsObject() || iter->value.IsArray() )
+			{
+				impl->valuesStack.push( &iter->name );
+				impl->valuesStack.push( &iter->value );
+				return true;
+			}
+		} while( iter != valueParent->MemberBegin() );
+	}
+	else
+	{
+		assert( !"Wrong rapidjson::Value type" );
 		return false;
+	}
 
-	impl->valuesStack.push( value );
 	return true;
 }
 
@@ -248,21 +356,28 @@ i stan serializatora nie zmienia siê.
 bool IDeserializer::LastElement()
 {
 	auto value = impl->valuesStack.top();
-	if( value->IsArray() )
+	if( value->IsArray() && !value->Empty() )
 	{
-		rapidjson::Value::ValueIterator firstElement = value->End();
-		firstElement--;
+		rapidjson::Value::ValueIterator lastElement = value->End();
+		lastElement--;
 
-		assert( firstElement->IsObject() );			// Tablica zaraz za tablic¹ nie jest dopuszczalna.
+		if( lastElement == value->Begin() )
+			return false;
 
-		impl->valuesStack.push( firstElement );
+		PushArrayObjectName( impl, lastElement );
+		impl->valuesStack.push( lastElement );
+		return true;
 	}
 	else if( value->IsObject() )
 	{
-		auto firstElement = value->MemberEnd();
-		firstElement--;
+		auto lastElement = value->MemberEnd();
+		lastElement--;
 
-		impl->valuesStack.push( &firstElement->value );
+		if( lastElement == value->MemberBegin() )
+			return false;
+
+		impl->valuesStack.push( &lastElement->name );
+		impl->valuesStack.push( &lastElement->value );
 	}
 	else
 	{

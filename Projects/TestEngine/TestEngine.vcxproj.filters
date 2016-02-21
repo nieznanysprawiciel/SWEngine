@@ -47,15 +47,12 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\EngineCode\TestEngine\EntryPoint.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\EngineCode\TestEngine\small.ico">
+    <Image Include="SchopenhauerWeltschmerz.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\EngineCode\TestEngine\SW_engine.rc">
+    <ResourceCompile Include="..\..\EngineCode\TestEngine\SWEngine.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>

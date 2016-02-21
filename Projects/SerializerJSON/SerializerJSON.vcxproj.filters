@@ -32,5 +32,8 @@
     <ClInclude Include="..\..\EngineCode\Tools\SerializerJson\ErrorCodes.h">
       <Filter>SerializerJSON</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\Serialization\SerializationContext.h">
+      <Filter>Common\Serialization</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
