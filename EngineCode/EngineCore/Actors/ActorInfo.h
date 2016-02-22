@@ -13,5 +13,18 @@ struct ActorInfo
 	int			enablePreController	: 1;	///< Obiekt posiada controller typu pre. @ref PrePostControllers
 	int			enablePostController: 1;	///< Obiekt posiada controller typu post. @ref PrePostControllers
 	int			isLight				: 1;	///< Obiekt jest œwiat³em i zosta³ dodany do modu³u obs³uguj¹cego oœwietlenie.
+
+	inline void		InitZero();
 };
 
+inline void ActorInfo::InitZero()
+{
+	enableDisplay			= false;
+	enableMovement			= false;
+	enableCollisions		= false;
+	enablePhysic			= false;
+	enableShadow			= false;
+	enablePreController		= false;
+	enablePostController	= false;
+	isLight					= false;
+}

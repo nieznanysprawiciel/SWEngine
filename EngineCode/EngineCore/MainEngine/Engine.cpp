@@ -5,11 +5,10 @@
 @brief Plik zawiera definicje metod klasy Engine dotycz¹cych inicjacji i zwalniania DirectXa
 oraz g³ówne funkcje do renderingu.
 */
-
-
 #include "EngineCore/stdafx.h"
+
+
 #include "Engine.h"
-#include "GraphicAPI/ResourcesFactory.h"
 #include "EngineCore/EngineHelpers/PerformanceCheck.h"
 #include "EngineCore/EventsManager/Event.h"
 #include "EngineCore/CollisionEngine/CollisionEngine.h"
@@ -23,6 +22,7 @@ oraz g³ówne funkcje do renderingu.
 #include "EngineCore/UIEngine/UI_Engine.h"
 #include "EngineCore/Actors/ActorsManager.h"
 
+#include "GraphicAPI/ResourcesFactory.h"
 #include "EngineCore/GamePlay/IGamePlay.h"
 
 #include "Common/memory_leaks.h"
@@ -153,6 +153,11 @@ int Engine::InitEngine( int width, int height, bool fullScreen, int nCmdShow )
 	if( result == 0 )
 		return FALSE;
 
+	result = InitDefaultActorsClasses();
+	assert( result != 0 );
+	if( result == 0 )
+		return FALSE;
+
 	// Czym póŸniej zainicjujemy tym lepiej.
 	Context.timeManager.InitTimer();
 
@@ -162,7 +167,7 @@ int Engine::InitEngine( int width, int height, bool fullScreen, int nCmdShow )
 }
 
 
-
+/**@brief */
 bool Engine::InitGraphicAPI( int width, int height, bool fullScreen )
 {
 	bool result;
@@ -182,6 +187,7 @@ bool Engine::InitGraphicAPI( int width, int height, bool fullScreen )
 	return true;
 }
 
+/**@brief */
 bool Engine::InitInputModule		()
 {
 	int result;
@@ -194,6 +200,7 @@ bool Engine::InitInputModule		()
 	return true;
 }
 
+/**@brief */
 bool Engine::InitSoundModule		()
 {
 	return true;
@@ -203,43 +210,6 @@ bool Engine::InitSoundModule		()
 //								Przygotowanie modu³ów do dzia³ania								//
 //----------------------------------------------------------------------------------------------//
 
-/**@brief Inicjuje domyœlne assety silnika.*/
-bool Engine::InitDefaultAssets()
-{
-	DefaultAssets::Init();
-
-	ShaderInputLayoutObject* layout;
-	Context.modelsManager->AddVertexShader( DEFAULT_VERTEX_SHADER_STRING, DEFAULT_VERTEX_SHADER_ENTRY, &layout, DefaultAssets::LAYOUT_POSITION_NORMAL_COORD );
-	Context.modelsManager->AddPixelShader( DEFAULT_PIXEL_SHADER_STRING, DEFAULT_PIXEL_SHADER_ENTRY );
-	Context.modelsManager->AddPixelShader( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH, DEFAULT_PIXEL_SHADER_ENTRY );
-
-	Context.displayEngine->SetLayout( layout );		///@todo Hack. Layout powinien byæ ustawialny dla ka¿dego mesha z osobna. Zlikwidowaæ.
-
-	MaterialObject* nullMaterial = new MaterialObject();
-	nullMaterial->SetNullMaterial();
-	Context.modelsManager->AddMaterial( nullMaterial, DEFAULT_MATERIAL_STRING );
-
-	RenderTargetObject* mainRenderTarget = ResourcesFactory::CreateScreenRenderTarget();
-	Context.modelsManager->AddRenderTarget( mainRenderTarget, SCREEN_RENDERTARGET_STRING );
-
-	return true;
-}
-
-/**@brief Inicjalizuje DisplayEngine.
-
-Funkcja tworzy renderery, domyœlne bufory sta³ych oraz ustawia macierz projekcji.
-@return Zwraca zawsze true.*/
-bool Engine::InitDisplayer()
-{
-	IRenderer* renderer = Context.graphicInitializer->CreateRenderer( RendererUsage::USE_AS_IMMEDIATE );
-	Context.displayEngine->InitRenderer( renderer );
-	Context.displayEngine->InitDisplayer( Context.modelsManager );
-
-	Context.displayEngine->SetProjectionMatrix( DirectX::XMConvertToRadians( 45 ),
-										   (float)Context.windowWidth / (float)Context.windowHeight, 1, 100000 );
-
-	return true;
-}
 
 
 

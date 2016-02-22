@@ -7,6 +7,6 @@
 ActorsManager::ActorsManager( Engine* engine )
 {}
 
-
+/**@brief */
 ActorsManager::~ActorsManager()
 {}

@@ -58,6 +58,8 @@ public:
 	@param[in] engine_ptr WskaŸnik na g³ówny obiekt silnika.
 	*/
 	static void			SetEngine( Engine* engine_ptr ) { if( !engine ) engine = engine_ptr; }
+
+	static Object*		Create()	{ return new Object; }
 };
 
 
@@ -157,14 +159,18 @@ public:
 	/**@brief Funkcja zamienia aktualne bufory na pozycjê i orientacjê.*/
 	void swap() { if ( swap_data ) swap_data = false; else swap_data = true; }
 
-	DirectX::XMVECTOR GetInterpolatedPosition		( float frame_percent ) const;
-	DirectX::XMVECTOR GetInterpolatedOrientation	( float frame_percent ) const;
+	DirectX::XMVECTOR		GetInterpolatedPosition		( float frame_percent ) const;
+	DirectX::XMVECTOR		GetInterpolatedOrientation	( float frame_percent ) const;
+
+	static Object*			Create()	{ return new StaticObject; }
 };
 
 /**@brief Klasa bazowa dla obiektów zdolnych do kolizji.*/
 class CollisionObject : public StaticObject
 {
 
+public:
+	static Object*			Create()	{ return new CollisionObject; }
 };
 
 /**@brief Klasa bazowa dla obiektów dynamicznych.
@@ -195,6 +201,8 @@ public:
 
 	void				Move					( float time_interval );
 	virtual void		MoveComplex				( float time_interval, const DirectX::XMFLOAT3& parent_speed, const DirectX::XMFLOAT4& parent_rotation );
+
+	static Object*		Create()	{ return new DynamicObject; }
 };
 
 
@@ -206,6 +214,8 @@ public:
 	PhysicalObject();
 
 	void Pulse();
+
+	static Object*		Create()	{ return new PhysicalObject; }
 };
 
 /**@brief Klasa bazowa dla obiektów, które bêd¹ renderowane.
@@ -240,6 +250,9 @@ public:
 
 	void						AddModelPart	( ModelPart& modelPart );
 	///
+
+	static Object*				Create()	{ return new DynamicMeshObject; }
+
 private:
 	void AddReferences( const ModelPart* part );
 	void DeleteAllReferences();
@@ -265,7 +278,9 @@ class AnimationObject : public PhysicalObject
 	friend class DisplayEngine;
 protected:
 
+public:
 
+	static Object*		Create()	{ return new AnimationObject; }
 };
 
 /**@brief Klasa bazowa dla wszystkich obiektów kamer w silniku.
@@ -277,6 +292,9 @@ protected:
 	DirectX::XMFLOAT4X4		projection_matrix;		///<Macierz projekcji. Dla ka¿dej kamery mo¿e byæ inna. @attention Na razie nieu¿ywane. Macierz projekcji jest ustawiana na sta³e w DisplayEngine.
 public:
 	void SetProjectionMatrix( float angle, float X_to_Y, float near_plane, float far_plane );
+
+
+	static Object*			Create()	{ return new CameraObject; }
 };
 
 /**@brief Klasa bazowa dla wszystkich kontrolerów dla obiektów.*/
@@ -322,5 +340,8 @@ protected:
 	std::vector<DynamicObject*>	part;
 public:
 	void MoveComplex( float time_interval, const DirectX::XMFLOAT3& parent_speed, const DirectX::XMFLOAT4& parent_rotation );
+
+
+	static Object*			Create()	{ return new ComplexObject; }
 };
 

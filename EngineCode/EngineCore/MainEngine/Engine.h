@@ -100,13 +100,14 @@ public:
 private:
 	///@name Funkcje inicjuj¹ce modu³y silnika
 	///@{
-	BOOL InitWindow				( int width, int height, BOOL full_screen, int nCmdShow );
-	bool InitGraphicAPI			( int width, int height, bool full_screen );
-	bool InitInputModule		();
-	bool InitSoundModule		();
+	BOOL	InitWindow				( int width, int height, BOOL full_screen, int nCmdShow );
+	bool	InitGraphicAPI			( int width, int height, bool full_screen );
+	bool	InitInputModule			();
+	bool	InitSoundModule			();
 
-	bool InitDefaultAssets		();
-	bool InitDisplayer			();
+	bool	InitDefaultAssets		();
+	bool	InitDisplayer			();
+	bool	InitDefaultActorsClasses();
 	///@}
 public:
 #ifndef __UNUSED

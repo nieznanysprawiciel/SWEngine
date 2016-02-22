@@ -5,6 +5,7 @@
 @brief Plik zawiera implementacjê interfejsu EngineInterface dla klasy Engine
 */
 #include "EngineCore/stdafx.h"
+
 #include "Engine.h"
 #include "EngineCore/EventsManager/Event.h"
 #include "EngineCore/CollisionEngine/CollisionEngine.h"
@@ -17,6 +18,7 @@
 #include "EngineCore/SoundEngine/SoundEngine.h"
 #include "EngineCore/UIEngine/UI_Engine.h"
 
+#include "GraphicAPI/ResourcesFactory.h"
 #include "EngineCore/ModelsManager/ResourceHelpers.h"
 
 #include <mutex>

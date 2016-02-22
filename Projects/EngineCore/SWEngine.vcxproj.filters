@@ -63,6 +63,9 @@
     <Filter Include="EngineCore\MainEngine\Commands">
       <UniqueIdentifier>{0556bdca-3997-4844-9be5-b623dec5e803}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\MainEngine\Initializers">
+      <UniqueIdentifier>{01ad07dc-efd9-4c32-b9e1-f44bbf60d6a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -194,16 +197,18 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\ResourceHelpers.h">
       <Filter>EngineCore\ModelsManagment</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorCreator.h">
-      <Filter>EngineCore\Actors</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorPreset.h">
       <Filter>EngineCore\Actors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorInfo.h">
       <Filter>EngineCore\Actors</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorsManager.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorFactory.h">
+      <Filter>EngineCore\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorsManager.h">
+      <Filter>EngineCore\Actors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -293,11 +298,20 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\StandardAbstractionLayer.cpp">
       <Filter>EngineCore\UIEngine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\ActorCreator.cpp">
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\ActorFactory.cpp">
       <Filter>EngineCore\Actors</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\ActorsManager.cpp">
-      <Filter>EngineCore</Filter>
+      <Filter>EngineCore\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\AssetsInitializer.cpp">
+      <Filter>EngineCore\MainEngine\Initializers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\DisplayerInitializer.cpp">
+      <Filter>EngineCore\MainEngine\Initializers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\ActorClassesInitializer.cpp">
+      <Filter>EngineCore\MainEngine\Initializers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

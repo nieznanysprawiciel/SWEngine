@@ -14,6 +14,7 @@ struct ActorPreset
 	// Controller
 	// Physic component
 	// Collision component
+	// SubObjects
 	ActorInfo		addToModules;
 };
 

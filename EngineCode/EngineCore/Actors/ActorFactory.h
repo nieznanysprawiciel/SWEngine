@@ -1,28 +1,55 @@
 #pragma once
+/**@file ActorFactory.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+
+@brief Fabryka aktorów.*/
 
 #include "EngineCore/stdafx.h"
+
 #include "EngineCore/Actors/ActorObjects.h"
+#include <typeinfo>
+
+#include "FastDelegate.h"
 
 
+#undef RegisterClass
 
 class ActorInitializer;
 
+typedef fastdelegate::FastDelegate0< Object* > CreateActorFunction;
+
+/**@brief Zwraca nazwê klasy zapisan¹ w RTTI z pominiêciem s³ówka class.*/
+template< typename ClassType >
+const char*			GetTypeidName()
+{
+	return typeid( ClassType ).name() + 6;
+}
+
+
+
+/**@brief Fabryka aktorów silnika.
+
+Przechowywana jest mapa stringów, które mapuj¹ siê na identyfikatory klas aktorów
+oraz wektor funkcji do tworzenia obiektów.
+
+Obiekty mo¿na tworzyæ podaj¹c stringi z nazw¹ lub identyfikatory.
+Dostêp przy pomocy identyfikatoów jest szybszy, bo nie wymaga przeszukiwania mapy.
+*/
 class ActorFactory
 {
-public:
-	typedef Object* (*CreateActorFunction)();
 private:
-	std::unordered_map<std::string, int16>		m_classNames;
-	std::vector<CreateActorFunction>			m_createFunctions;
+	std::unordered_map< std::string, ActorType >	m_classNames;
+	std::vector< CreateActorFunction >				m_createFunctions;
 public:
 	ActorFactory();
 	~ActorFactory();
 
-	void		RegisterClass			( const std::string& name, CreateActorFunction function );
-	int16		GetClassId				( const std::string& name );
+	ActorType	RegisterClass			( const std::string& name, CreateActorFunction function );
+	ActorType	GetClassId				( const std::string& name );
 
 	template< typename Type = Object >	Type*		CreateActor				( const std::string& name );
-	template< typename Type = Object >	Type*		CreateActor				( uint16 id );
+	template< typename Type = Object >	Type*		CreateActor				( ActorType id );
 	//template< typename Type = Object > Type* CreateActor( const std::string name, const ActorInitializer initializer );
 	//template< typename Type = Object > Type* CreateActor( uint16 id, const ActorInitializer initializer );
 };
@@ -55,7 +82,7 @@ Najlepiej, ¿eby nazwy klas odpowiada³y nazwom u¿ywanym w c++, ale nie jest to wy
 
 @param[in] name Nazwa aktora zarejestrowana funkcj¹ RegisterClass.
 @return Zwraca wskaŸnik na stworzony obiekt lub nullptr, je¿eli indentyfikator nie zosta³ zarejestrowany.*/
-template< typename Type = Object > Type* ActorFactory::CreateActor( uint16 id )
+template< typename Type = Object > Type* ActorFactory::CreateActor( ActorType id )
 {
 	if ( id < m_createFunctions.size() )
 		return m_createFunctions[ id ]();
