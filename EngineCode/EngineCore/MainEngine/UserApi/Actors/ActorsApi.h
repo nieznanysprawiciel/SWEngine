@@ -15,7 +15,14 @@ class DynamicMeshObject;
 namespace Api
 {
 
-	/**@brief Zawiera funkcje do obs³ugi wejœcia u¿ytkownika.*/
+/**@defgroup ActorsAPI Zarz¹dzanie aktorami.
+@ingroup UserAPI
+@brief Funkcje do zarz¹dzania aktorami.
+
+
+	/**@brief Zawiera funkcje do obs³ugi aktorów.
+	@ingroup UserAPI
+	@ingroup ActorsAPI*/
 	class ActorsApi : public ApiGroup
 	{
 	private:

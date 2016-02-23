@@ -13,8 +13,16 @@
 struct EngineContext;
 class Engine;
 
+
+/**
+@defgroup UserAPI API dla u¿ytkownika silnika.
+*/
+
+
+
 /**@brief Klasa jest interfejsem dla u¿ytkownika u¿ytkuj¹cego silnik.
 @ingroup EngineCore
+@ingroup UserAPI
 
 Taki interfejs bêdzie widzia³ u¿ytkownik silnika z wnêtrza swoich klas odpowiedzialnych za fabu³ê.
 U¿ytkownik musi mieæ ograniczone mo¿liwoœci, ¿eby przypadkiem nie namiesza³.

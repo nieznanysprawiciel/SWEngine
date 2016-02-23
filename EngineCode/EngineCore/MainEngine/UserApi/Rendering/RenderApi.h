@@ -13,7 +13,14 @@ class RenderPass;
 namespace Api
 {
 
-	/**@brief Zawiera funkcje do obs³ugi wejœcia u¿ytkownika.*/
+/**@defgroup RenderingAPI Obs³uga modu³ów do renderowania.
+@ingroup UserAPI
+@brief Funkcje do kontrolowania sposobu renderowania.
+
+
+	/**@brief Zawiera funkcje do obs³ugi wejœcia u¿ytkownika.
+	@ingroup UserAPI
+	@ingroup RenderingAPI*/
 	class RenderingApi : public ApiGroup
 	{
 	private:

@@ -16,7 +16,9 @@ struct RenderTargetDescriptor;
 
 namespace Api { namespace Assets {
 
-	/**@brief Zapewnia dostêp do render targetów w klasie ModelsManager.*/
+	/**@brief Zapewnia dostêp do render targetów w klasie ModelsManager.
+	@ingroup UserAPI
+	@ingroup AssetsAPI*/
 	class RenderTargets : public ApiGroup
 	{
 	private:

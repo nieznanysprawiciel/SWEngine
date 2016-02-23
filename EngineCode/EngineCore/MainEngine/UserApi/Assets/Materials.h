@@ -14,7 +14,9 @@ struct MaterialObject;
 
 namespace Api { namespace Assets {
 
-	/**@brief Zapewnia dostêp do materia³ów w klasie ModelsManager.*/
+	/**@brief Zapewnia dostêp do materia³ów w klasie ModelsManager.
+	@ingroup UserAPI
+	@ingroup AssetsAPI*/
 	class Materials : public ApiGroup
 	{
 	private:

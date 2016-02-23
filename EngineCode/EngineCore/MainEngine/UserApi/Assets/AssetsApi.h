@@ -20,7 +20,13 @@
 namespace Api
 {
 
-	/**@brief Zawiera funkcje do zarz¹dzania assetami.*/
+/**@defgroup AssetsAPI Zarz¹dzanie assetami.
+@ingroup UserAPI
+@brief Funkcje do obs³ugi assetów.
+
+	/**@brief Zawiera funkcje do zarz¹dzania assetami.
+	@ingroup UserAPI
+	@ingroup AssetsAPI*/
 	class AssetsApi : public ApiGroup
 	{
 	private:

@@ -27,6 +27,7 @@ B³êdny identyfikator assetu w klasie @ref ResourceObject.*/
 
 /**@defgroup Resources Zasoby
 @ingroup ResourcesManagment
+@ingroup GraphicAPI
 @brief Klasy zasobów przechowywanych przez silnik.
 
 Zasoby s¹ silnie zale¿ne od u¿ywanej platformy sprzêtowej. W celu oddzielenia referencji do

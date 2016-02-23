@@ -17,7 +17,9 @@ class InputLayoutDescriptor;
 
 namespace Api { namespace Assets {
 
-	/**@brief Zapewnia dostêp do modeli w klasie ModelsManager.*/
+	/**@brief Zapewnia dostêp do modeli w klasie ModelsManager.
+	@ingroup UserAPI
+	@ingroup AssetsAPI*/
 	class Shaders : public ApiGroup
 	{
 	private:

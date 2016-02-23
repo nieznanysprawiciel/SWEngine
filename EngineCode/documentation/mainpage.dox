@@ -136,6 +136,7 @@
 
 /**@page EngineCoreModules Modu³y EngineCore
 <ul>
+	<li>ActorsManager
 	<li>CollisionEngine
 	<li>ControllersEngine
 	<li>DisplayEngine

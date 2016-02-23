@@ -14,7 +14,9 @@ class VertexShaderObject;
 
 namespace Api { namespace Actors {
 
-	/**@brief Zawiera funkcje do obs³ugi wejœcia u¿ytkownika.*/
+	/**@brief Zawiera funkcje do ustawiania assetów dla aktorów.
+	@ingroup UserAPI
+	@ingroup ActorsAPI*/
 	class Assets : public ApiGroup
 	{
 	private:

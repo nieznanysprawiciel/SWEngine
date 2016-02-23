@@ -13,7 +13,13 @@ class InputAbstractionLayer;
 namespace Api
 {
 
-	/**@brief Zawiera funkcje do obs³ugi wejœcia u¿ytkownika.*/
+/**@defgroup InputAPI Zarz¹dzanie wejœciem/wyjœciem.
+@ingroup UserAPI
+@brief Funkcje do obs³ugi wejœcia u¿ytkownika.
+
+	/**@brief Zawiera funkcje do obs³ugi wejœcia u¿ytkownika.
+	@ingroup UserAPI
+	@ingroup InputAPI*/
 	class InputApi : public ApiGroup
 	{
 	private:
