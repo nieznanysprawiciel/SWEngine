@@ -29,7 +29,7 @@ Za zwolnienie pamiêci po klasie Event odpowiada klasa FabelEngine (jest to robio
 u¿ytkownik nie musi siê tym przejmowac).*/
 void inline Object::event(Event* new_event)
 {
-	engine->send_event(new_event);
+	engine->SendEvent(new_event);
 }
 
 

@@ -9,7 +9,7 @@ FableEngine::FableEngine( Engine* engine )
 	: m_engine( engine )
 {
 	//klasa m_engine musi mieæ ³atwy dostêp do naszej kolejki, wiêc mu j¹ przypisujemy
-	engine->set_events_queue( &m_eventsQueue );
+	engine->SetEventsQueue( &m_eventsQueue );
 
 	m_gamePlay = nullptr;
 

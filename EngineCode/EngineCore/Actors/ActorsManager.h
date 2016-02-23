@@ -7,7 +7,8 @@ class Engine;
 
 typedef std::pair< Object*, ActorInfo > ActorData;
 
-/**@brief Modu³ do zarz¹dzania aktorami.*/
+/**@brief Modu³ do zarz¹dzania aktorami.
+@ingroup EngineCore*/
 class ActorsManager
 {
 private:

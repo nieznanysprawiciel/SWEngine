@@ -5,7 +5,8 @@
 #include <unordered_map>
 
 
-
+/**@brief Modu³ do zarzadzania eventami.
+@ingroup EngineCore*/
 class EventManager
 {
 private:

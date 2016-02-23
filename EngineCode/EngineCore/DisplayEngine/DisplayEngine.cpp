@@ -512,7 +512,7 @@ void DisplayEngine::RenderFromQueue( float time_interval, float time_lag )
 
 			RenderOnceEndedEvent*  renderedEvent = new RenderOnceEndedEvent;
 			renderedEvent->renderPass = renderPass;
-			engine->send_event( renderedEvent );
+			engine->SendEvent( renderedEvent );
 		}
 	}
 }

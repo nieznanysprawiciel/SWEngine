@@ -1,5 +1,4 @@
 #pragma once
-
 /**@file DisplayEngine.h
 @author nieznanysprawiciel
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
@@ -26,6 +25,8 @@ class ModelsManager;
 class BufferObject;
 
 /**@brief Klasa odpowiedzialna za wyœwietlanie sceny, obs³ugê kamery oraz interpolacjê po³o¿eñ obiektów.
+@ingroup EngineCore
+
 
 Obiekty s¹ rozdzielone na kilka grup:
 - Meshe instancjonowane

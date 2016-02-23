@@ -1,0 +1,23 @@
+#include "EngineCore/stdafx.h"
+#include "Buffers.h"
+
+#include "EngineCore/MainEngine/EngineContext.h"
+
+namespace Api { namespace Assets
+{
+
+
+/**@brief Tworzy bufor wierzcho³ków.
+
+@param[in] name Nazwa bufora.
+@param[in] data MemoryChunk zawieraj¹cy obszar pamiêci do przekopiowania do bufora.
+@param[in] vertCount Liczba wierzcho³ków w buforze. Rozmiar pojedynczego wierzcho³ka zostanie wydedukowany z pozosta³ych danyhch.
+@return Zwraca bufor wierzcho³ków lub nullptr.*/
+BufferObject*		Buffers::CreateVertexBufferSync		( const std::wstring& name, MemoryChunk& data, unsigned int vertCount )
+{
+	return Context->modelsManager->AddVertexBuffer( name, data.GetMemory<void>(), data.GetMemorySize() / vertCount, vertCount );
+}
+
+
+}	// Assets
+}	// Api

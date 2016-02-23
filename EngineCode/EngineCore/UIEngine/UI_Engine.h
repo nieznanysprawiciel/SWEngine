@@ -10,6 +10,9 @@
 
 class Engine;
 
+
+/**@brief Modu³ do obs³ugi wejœcia wyjœcia.
+@ingroup EngineCore*/
 class UI_Engine
 {
 private:

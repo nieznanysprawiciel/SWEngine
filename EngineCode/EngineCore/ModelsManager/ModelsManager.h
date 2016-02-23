@@ -43,6 +43,8 @@ typedef enum ModelsManagerResult
 
 /**
 @ingroup ResourcesManagment
+@ingroup EngineCore
+
 @brief Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dŸwiêków, które raczej
 zostan¹ oddelegowane w inne miejsce).
 

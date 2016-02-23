@@ -7,7 +7,8 @@
 class Engine;
 
 
-
+/**@brief Modu³ do zarz¹dzania fabu³¹.
+@ingroup EngineCore*/
 class FableEngine
 {
 	friend Engine;

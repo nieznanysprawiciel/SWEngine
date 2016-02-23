@@ -5,13 +5,16 @@
 
 @brief Plik zawiera deklaracjê g³ównego obiektu silnika.*/
 
-#include "EngineCore/SW_engine.h"
-#include "EngineCore/MainEngine/EngineInterface.h"
 #include "Common/macros_switches.h"
 
+#include "EngineCore/SW_engine.h"
+#include "EngineCore/MainEngine/EngineInterface.h"
+
+#include <queue>
 
 class IGamePlay;
 class Object;
+class Event;
 
 
 //	window defines
@@ -23,7 +26,7 @@ class Object;
 
 /**@defgroup EngineCore
 @ingroup ModulesStructure
-@brief Podstawowe funkcjonalnoœci silnika SWEnigne.*/
+@brief Podstawowe funkcjonalnoœci silnika SWEngine.*/
 
 /**@brief Enumeracja zawieraj¹ca identyfikatory dla poszczegolnych modu³ów silnika.*/
 typedef enum
@@ -47,7 +50,7 @@ extern TCHAR szWindowClass[MAX_LOADSTRING];				// the main window class name
 
 
 /**@brief Klasa Engine jest nadrzêdnym obiektem zarz¹dzaj¹cym wszystkimi modu³ami silnika.
-
+@ingroup EngineCore
 @copybrief
 
 W tej klasie powinny byæ umieszczane wszystkie funkcje, które nie powinny byæ dostêpne
@@ -70,13 +73,13 @@ private:		//zmienne, które nie maj¹ prawa zostaæ u¿yte przez EngineInterface
 private:
 	/**@name Funkcje do obs³ugi okna aplikacji*/
 	///@{
-	ATOM EngineRegisterClass();					///<Rejestruje klasê okna aplikacji.
-	BOOL InitInstance( int nCmdShow );			///<Inicjuje okno aplikacji.
+	ATOM		EngineRegisterClass		();						///<Rejestruje klasê okna aplikacji.
+	BOOL		InitInstance			( int nCmdShow );		///<Inicjuje okno aplikacji.
 public:
-	void ShowAppWindow( int showFlags );		///<Pokazuje okno aplikacji na ekranie.
-	void HideAppWindow();						///<Chowa okno aplikacji.
-	void EndAplication();
-	int MainLoop();
+	void		ShowAppWindow			( int showFlags );		///<Pokazuje okno aplikacji na ekranie.
+	void		HideAppWindow			();						///<Chowa okno aplikacji.
+	void		EndAplication			();
+	int			MainLoop				();
 	///@}
 public:
 	///@name Funkcje zwi¹zane z renderowaniem
@@ -96,7 +99,7 @@ public:
 	Engine( HINSTANCE instance );
 	~Engine();
 
-	int InitEngine				( int width, int height, bool full_screen, int nCmdShow );
+	int		InitEngine				( int width, int height, bool full_screen, int nCmdShow );
 private:
 	///@name Funkcje inicjuj¹ce modu³y silnika
 	///@{
@@ -123,18 +126,19 @@ public:
 	void time_controller(float& time_interval);
 #endif
 
+
 	///@name Obs³uga eventów
 	///@{
-	void							send_event				( Event* new_event );
+	void							SendEvent				( Event* newEvent );
 
-	inline std::queue<Event*>*		get_events_queue		()									{ return Context.eventsQueue; }
-	inline void						set_events_queue		( std::queue<Event*>* queue )		{ Context.eventsQueue = queue; }
+	std::queue<Event*>*				GetEventsQueue			();
+	void							SetEventsQueue			( std::queue<Event*>* queue );
 	///@}
 
 	///@name Interfejs do ustawiania GamePlaya
 	///@{
-	void							set_entry_point			( IGamePlay* game_play );
-	void							set_entry_point			( const std::wstring dll_name );
+	void							SetEntryPoint			( IGamePlay* game_play );
+	void							SetEntryPoint			( const std::wstring dll_name );
 	///@}
 
 #ifdef __TEST
@@ -143,35 +147,12 @@ public:
 
 	///@name Parametry okna
 	///@{
-	inline HINSTANCE				get_instance_handler()								{ return Context.instanceHandler; }
-	inline HWND						get_window_handler()								{ return Context.windowHandler; }
+	HINSTANCE				GetInstanceHandler();
+	HWND					GetWindowHandler();
 
-	inline int						get_window_widht()									{ return Context.windowWidth; }
-	inline int						get_window_height()									{ return Context.windowHeight; }
+	int						GetWindowWidth();
+	int						GetWindowHeight();
 	///@}
-};
-
-/**Celem wprowadzenia wektora index_predictor jest optymalizacja dostêpu do danych 
- *obiektów w modu³ach silnika. Ka¿dy modu³ zawiera tablicê obiektów, które ma obs³ugiwaæ.
- *Obiekty mog¹ byæ do tych tablic dodawane i usuwane.
- *Z tego powodu nie jesteœmy w stanie ca³y czas przechowywaæ aktualnego indeksu obiektów w kazdym module,
- *ale charakterystyka operacji, które wykonujemy, pozwala na przewidzenie, na jakiej pozycji mniej wiêcej znajduje siê
- *dany obiekt.
- *Zauwa¿my, ¿e je¿eli umieœcimy jakiœ obiekt na pozycji n-tej, to ten indeks nigdy nie bêdzie wiêkszy, bo nigdy nie wstawiamy
- *elementów w œrodek tablicy, tylko zawsze na koniec. Kasuj¹c elementy wczesniejsze, przesuwamy obiekt w kierunku numerów mniejszych od n.
- *Z tego wynika, ¿e najbardziej efektywne bêdzie przeszukiwanie od pozycji n-tej w dó³.
- *
- *Regu³a ta nie dzia³a w przypadku klasy DisplayEngine. Tablica jest tam u³o¿ona w celu optymalizacji wyœwietlania, co oznacza,
- *¿e niektóre obiekty trzeba bêdzie wstawiaæ w œrodek tablicy.
- *W tej sytuacji wyjœciem jest przeszukiwanie dwukierunkowe od indeksu z numerem n.
- *
- *Ponadto, aby trzymaæ tablicê index_predictor jak najbardziej aktualn¹, ka¿da funkcja, która odwo³uje siê do danego elementu
- *powinna aktualizowac jego indeks.
-*/
-struct IndexPrediction
-{
-	Object*				object_ptr;
-	unsigned int		index[NUM_OF_MODULES];
 };
 
 

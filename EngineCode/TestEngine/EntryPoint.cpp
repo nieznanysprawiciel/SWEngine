@@ -57,7 +57,7 @@ int APIENTRY _tWinMain( _In_ HINSTANCE hInstance,
 		return FALSE;
 	}
 
-	engine->set_entry_point( entry_point );
+	engine->SetEntryPoint( entry_point );
 	engine->test();		//to potem zniknie
 
 	result = engine->MainLoop( );

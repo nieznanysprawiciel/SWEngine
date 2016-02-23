@@ -66,6 +66,21 @@
     <Filter Include="EngineCore\MainEngine\Initializers">
       <UniqueIdentifier>{01ad07dc-efd9-4c32-b9e1-f44bbf60d6a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\MainEngine\UserApi">
+      <UniqueIdentifier>{c0d0b2cf-cae1-4e71-ba4a-d7f677cc6d36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\MainEngine\UserApi\Input">
+      <UniqueIdentifier>{c4d6fb7e-cb10-412b-9925-5a591c0d328d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\MainEngine\UserApi\Rendering">
+      <UniqueIdentifier>{b0759e5c-4220-4f2a-9420-acbe85b9bdc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\MainEngine\UserApi\Actors">
+      <UniqueIdentifier>{4de6a447-a219-45ad-b390-2fe2f05f2eb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\MainEngine\UserApi\Assets">
+      <UniqueIdentifier>{2c1a2f9b-05ee-44e1-b030-ce3806629ee0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -209,6 +224,48 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorsManager.h">
       <Filter>EngineCore\Actors</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\EngineContext.h">
+      <Filter>EngineCore\MainEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\ApiGroup.h">
+      <Filter>EngineCore\MainEngine\UserApi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Input\InputApi.h">
+      <Filter>EngineCore\MainEngine\UserApi\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Rendering\RenderApi.h">
+      <Filter>EngineCore\MainEngine\UserApi\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Actors\ActorsApi.h">
+      <Filter>EngineCore\MainEngine\UserApi\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Actors\Assets.h">
+      <Filter>EngineCore\MainEngine\UserApi\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\AssetsApi.h">
+      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Animations.h">
+      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Buffers.h">
+      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Materials.h">
+      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Models.h">
+      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\RenderTargets.h">
+      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Shaders.h">
+      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Textures.h">
+      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -312,6 +369,45 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\ActorClassesInitializer.cpp">
       <Filter>EngineCore\MainEngine\Initializers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\ApiGroup.cpp">
+      <Filter>EngineCore\MainEngine\UserApi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Input\InputApi.cpp">
+      <Filter>EngineCore\MainEngine\UserApi\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Rendering\RenderApi.cpp">
+      <Filter>EngineCore\MainEngine\UserApi\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Actors\ActorsApi.cpp">
+      <Filter>EngineCore\MainEngine\UserApi\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Actors\Assets.cpp">
+      <Filter>EngineCore\MainEngine\UserApi\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\AssetsApi.cpp">
+      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Animations.cpp">
+      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Buffers.cpp">
+      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Materials.cpp">
+      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Models.cpp">
+      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\RenderTargets.cpp">
+      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Shaders.cpp">
+      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Textures.cpp">
+      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

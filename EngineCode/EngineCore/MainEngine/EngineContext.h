@@ -1,0 +1,101 @@
+#pragma once
+
+#include "EngineCore/MainEngine/TimeManager.h"
+#include "Common/Multithreading/SpinLock.h"
+#include "EngineCore/UIEngine/StandardAbstractionLayers.h"
+
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+#include <queue>
+#include <string>
+
+#include "EngineCore/EventsManager/Event.h"
+#include "EngineCore/CollisionEngine/CollisionEngine.h"
+#include "EngineCore/ControllersEngine/ControllersEngine.h"
+#include "EngineCore/GamePlay/FableEngine.h"
+#include "EngineCore/DisplayEngine/DisplayEngine.h"
+#include "EngineCore/ModelsManager/ModelsManager.h"
+#include "EngineCore/PhysicEngine/PhysicEngine.h"
+#include "EngineCore/PhysicEngine/MovementEngine.h"
+#include "EngineCore/SoundEngine/SoundEngine.h"
+#include "EngineCore/UIEngine/UI_Engine.h"
+#include "EngineCore/Actors/ActorsManager.h"
+
+
+
+class Event;
+class Command;
+
+class IGraphicAPIInitializer;
+
+class Model3DFromFile;
+struct MaterialObject;
+class PixelShaderObject;
+class VertexShaderObject;
+class TextureObject;
+class BufferObject;
+class RenderTargetObject;
+class InputAbstractionLayer;
+class ShaderInputLayoutObject;
+class InputLayoutDescriptor;
+struct RenderTargetDescriptor;
+struct MaterialObject;
+
+class MemoryChunk;
+
+class Object;
+class DynamicMeshObject;
+class RenderPass;
+
+/**@brief Przechowuje wszystkie zmienne, które powinny znaleŸæ siê w klasie EngineInterface.
+@ingroup EngineCore
+
+Struktura jest potrzebna, ¿eby komendy mog³y mieæ dostêp do stanu silnika.
+@see EngineInterfaceCommands
+*/
+struct EngineContext
+{
+	//directX and windows variables
+	bool						engineReady;			///<Je¿eli zmienna jest niepoprawna, nie renderujemy
+
+	bool						fullScreen;				///<Pe³ny ekran lub renderowanie w oknie
+	HWND						windowHandler;			///<Uchwyt okna aplikacji
+	HINSTANCE					instanceHandler;		///<Uchwyt instancji procesu
+	int							windowWidth;			///<Szerokoœæ okna/ekranu
+	int							windowHeight;			///<Wysokoœæ okna/ekranu
+
+	IGraphicAPIInitializer*		graphicInitializer;		///<Obs³uguje u¿ywane API graficzne.
+
+	//Modules
+	ControllersEngine*			controllersEngine;		///<Kontroluje AI (klawiaturê trzeba przenieœæ)
+	MovementEngine*				movementEngine;			///<Przelicza pozycjê obiektów w nastêpnej klatce
+	DisplayEngine*				displayEngine;			///<Wyœwietla obiekty na scenie
+	CollisionEngine*			collisionEngine;		///<Liczy kolizje
+	PhysicEngine*				physicEngine;			///<Liczy oddzia³ywania fizyczne
+	ModelsManager*				modelsManager;			///<Zarz¹dza modelami, teksturami i materia³ami
+	FableEngine*				fableEngine;			///<Zarz¹dza fabu³¹ gry, interakcjami obiektów itd. Odpowiada za treœæ
+	SoundEngine*				soundEngine;			///<Zarz¹dza muzyk¹ i dŸwiêkami
+	UI_Engine*					ui_engine;				///<Interfejs u¿ytkownika (tak¿e graficzny)
+	ActorsManager*				actorsManager;			///<Zarz¹dzanie aktorami.
+
+	/**@brief SpinLock do synchronizacji komunikacji miêdzy GamePlayem a silnikiem.
+
+	SpinLock wykorzystuje aktywne oczekiwanie w dostêpie do zasobów. Z za³o¿enia operacje modyfikacji stanu silnika
+	zachodz¹ rzadko i nie powinny byæ d³ugie. Lepiej jest poczekaæ w pêtli ni¿ zawieszaæ w¹tek za poœrednictwem
+	systemu operacyjnego.
+
+	Istnieje tylko jeden SpinLock, ale je¿eli pojawi sie mo¿liwoœæ logicznego wydzielenia niezale¿nych od siebie
+	zadañ, to trzeba rozwa¿yæ dodanie kolejnych SpinLocków.*/
+	SpinLock					engineLock;
+
+	TimeManager					timeManager;	///<Obiekt do zarz¹dzania czasem.
+
+	bool						pause;			///<Pauza
+
+	//queue
+	std::queue<Event*>*			eventsQueue;	///<WskaŸnik na kolejkê komunikatów w celu szybszego dostêpu
+	std::queue<Command*>		commandQueue;	///<Kolejka komend wykonywanych po zakoñczeniu wszystkich obliczeñ w danej klatce. Aktualizuje stan silnika.
+	std::vector<Object*>		objectList;
+};
+
+

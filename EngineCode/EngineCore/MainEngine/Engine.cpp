@@ -6,24 +6,13 @@
 oraz g³ówne funkcje do renderingu.
 */
 #include "EngineCore/stdafx.h"
+#include "EngineCore/MainEngine/Engine.h"
 
-
-#include "Engine.h"
-#include "EngineCore/EngineHelpers/PerformanceCheck.h"
-#include "EngineCore/EventsManager/Event.h"
-#include "EngineCore/CollisionEngine/CollisionEngine.h"
-#include "EngineCore/ControllersEngine/ControllersEngine.h"
-#include "EngineCore/GamePlay/FableEngine.h"
-#include "EngineCore/DisplayEngine/DisplayEngine.h"
-#include "EngineCore/ModelsManager/ModelsManager.h"
-#include "EngineCore/PhysicEngine/PhysicEngine.h"
-#include "EngineCore/PhysicEngine/MovementEngine.h"
-#include "EngineCore/SoundEngine/SoundEngine.h"
-#include "EngineCore/UIEngine/UI_Engine.h"
-#include "EngineCore/Actors/ActorsManager.h"
+#include "EngineContext.h"
 
 #include "GraphicAPI/ResourcesFactory.h"
 #include "EngineCore/GamePlay/IGamePlay.h"
+#include "EngineCore/EngineHelpers/PerformanceCheck.h"
 
 #include "Common/memory_leaks.h"
 
@@ -58,53 +47,54 @@ Engine::Engine(HINSTANCE instance)
 	join_render_thread = false;
 #endif
 
-	Context.eventsQueue = nullptr;
+	Context->eventsQueue = nullptr;
 
-	Context.fullScreen = false;			//inicjalizacja jako false potrzebna w funkcji init_window
-	Context.engineReady = false;			//jeszcze nie zainicjowaliœmy
-	Context.instanceHandler = instance;
+	Context->fullScreen = false;			//inicjalizacja jako false potrzebna w funkcji init_window
+	Context->engineReady = false;			//jeszcze nie zainicjowaliœmy
+	Context->instanceHandler = instance;
 
 	// Initialize global strings
-	LoadString(Context.instanceHandler, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-	LoadString(Context.instanceHandler, IDC_SW_ENGINE, szWindowClass, MAX_LOADSTRING);
+	LoadString(Context->instanceHandler, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
+	LoadString(Context->instanceHandler, IDC_SW_ENGINE, szWindowClass, MAX_LOADSTRING);
 
-	Context.graphicInitializer = ResourcesFactory::CreateAPIInitializer();
+	Context->graphicInitializer = ResourcesFactory::CreateAPIInitializer();
 
-	Context.controllersEngine		= new ControllersEngine( this );
-	Context.movementEngine			= new MovementEngine( this );
-	Context.displayEngine			= new DisplayEngine( this );
-	Context.collisionEngine			= new CollisionEngine( this );
-	Context.physicEngine			= new PhysicEngine( this );
-	Context.modelsManager			= new ModelsManager( this );
-	Context.fableEngine				= new FableEngine( this );
-	Context.soundEngine				= new SoundEngine( this );
-	Context.ui_engine				= new UI_Engine( this );
-	Context.actorsManager			= new ActorsManager( this );
+	Context->controllersEngine		= new ControllersEngine( this );
+	Context->movementEngine			= new MovementEngine( this );
+	Context->displayEngine			= new DisplayEngine( this );
+	Context->collisionEngine		= new CollisionEngine( this );
+	Context->physicEngine			= new PhysicEngine( this );
+	Context->modelsManager			= new ModelsManager( this );
+	Context->fableEngine			= new FableEngine( this );
+	Context->soundEngine			= new SoundEngine( this );
+	Context->ui_engine				= new UI_Engine( this );
+	Context->actorsManager			= new ActorsManager( this );
 
 	//inicjujemy licznik klatek
-	Context.pause = false;
+	Context->pause = false;
 }
 
 
 Engine::~Engine()
 {
 	//obiekty trzeba pokasowaæ, zanim siê skasuje to, do czego siê odwo³uj¹
-	for ( unsigned int i = 0; i < Context.objectList.size(); ++i )
-		delete Context.objectList[i];
+	for ( unsigned int i = 0; i < Context->objectList.size(); ++i )
+		delete Context->objectList[i];
 
-	delete Context.controllersEngine;
-	delete Context.movementEngine;
-	delete Context.displayEngine;
-	delete Context.collisionEngine;
-	delete Context.physicEngine;
-	delete Context.fableEngine;
-	delete Context.soundEngine;
-	delete Context.ui_engine;			//sprz¹ta po directinpucie
-	delete Context.modelsManager;		//musi byæ kasowany na koñcu
+	delete Context->controllersEngine;
+	delete Context->movementEngine;
+	delete Context->displayEngine;
+	delete Context->collisionEngine;
+	delete Context->physicEngine;
+	delete Context->fableEngine;
+	delete Context->soundEngine;
+	delete Context->ui_engine;			//sprz¹ta po directinpucie
+	delete Context->actorsManager;
+	delete Context->modelsManager;		//musi byæ kasowany na koñcu
 
 	DefaultAssets::Release();
-	Context.graphicInitializer->ReleaseAPI();
-	delete Context.graphicInitializer;
+	Context->graphicInitializer->ReleaseAPI();
+	delete Context->graphicInitializer;
 }
 
 
@@ -159,9 +149,9 @@ int Engine::InitEngine( int width, int height, bool fullScreen, int nCmdShow )
 		return FALSE;
 
 	// Czym póŸniej zainicjujemy tym lepiej.
-	Context.timeManager.InitTimer();
+	Context->timeManager.InitTimer();
 
-	Context.engineReady = true;		//jesteœmy gotowi do renderowania
+	Context->engineReady = true;		//jesteœmy gotowi do renderowania
 
 	return TRUE;
 }
@@ -176,11 +166,11 @@ bool Engine::InitGraphicAPI( int width, int height, bool fullScreen )
 	GraphicAPIInitData initData;
 	initData.fullScreen			= fullScreen;
 	initData.singleThreaded		= false;
-	initData.windowHandle		= (uint32)Context.windowHandler;
+	initData.windowHandle		= (uint32)Context->windowHandler;
 	initData.windowHeight		= height;
 	initData.windowWidth		= width;
 	initData.depthStencilFormat = ResourceFormat::RESOURCE_FORMAT_D24_UNORM_S8_UINT;
-	result = Context.graphicInitializer->InitAPI( initData );
+	result = Context->graphicInitializer->InitAPI( initData );
 	assert( result != 0 );
 	if( result == 0 )
 		return false;
@@ -193,7 +183,7 @@ bool Engine::InitInputModule		()
 	int result;
 
 	//Inicjalizowanie directXinputa
-	result = Context.ui_engine->init_direct_input( );
+	result = Context->ui_engine->init_direct_input( );
 		assert( result == DIRECT_INPUT_OK );	//Dzia³a tylko w trybie DEBUG
 	if ( result != DIRECT_INPUT_OK )
 		return false;
@@ -220,24 +210,24 @@ bool Engine::InitSoundModule		()
 /**@brief To tutaj dziej¹ siê wszystkie rzeczy, które s¹ wywo³ywane co ka¿d¹ klatkê.*/
 void Engine::RenderFrame()
 {
-	float time_interval = Context.timeManager.onStartRenderFrame();
-	float lag = Context.timeManager.GetFrameLag();
+	float time_interval = Context->timeManager.onStartRenderFrame();
+	float lag = Context->timeManager.GetFrameLag();
 
 
 	while ( lag >= FIXED_MOVE_UPDATE_INTERVAL )
 	{
 		START_PERFORMANCE_CHECK(FRAME_COMPUTING_TIME)
 
-		Context.ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
-		Context.physicEngine->proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );
-		Context.controllersEngine->proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );
-		Context.movementEngine->proceed_movement( FIXED_MOVE_UPDATE_INTERVAL );
-		Context.controllersEngine->proceed_controllers_post( FIXED_MOVE_UPDATE_INTERVAL );
-		Context.collisionEngine->proceed_collisions( FIXED_MOVE_UPDATE_INTERVAL );
-		Context.fableEngine->ProceedFable( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->physicEngine->proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->controllersEngine->proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->movementEngine->proceed_movement( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->controllersEngine->proceed_controllers_post( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->collisionEngine->proceed_collisions( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->fableEngine->ProceedFable( FIXED_MOVE_UPDATE_INTERVAL );
 
 		lag -= FIXED_MOVE_UPDATE_INTERVAL;
-		Context.timeManager.UpdateTimeLag( lag );
+		Context->timeManager.UpdateTimeLag( lag );
 
 		END_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
 	}
@@ -246,7 +236,7 @@ void Engine::RenderFrame()
 #ifdef _INTERPOLATE_POSITIONS
 	START_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 
-	Context.displayEngine->InterpolatePositions( lag / FIXED_MOVE_UPDATE_INTERVAL );
+	Context->displayEngine->InterpolatePositions( lag / FIXED_MOVE_UPDATE_INTERVAL );
 
 	END_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 #endif
@@ -254,14 +244,14 @@ void Engine::RenderFrame()
 	START_PERFORMANCE_CHECK( RENDERING_TIME )
 
 	//Renderujemy scenê oraz interfejs u¿ytkownika
-	Context.displayEngine->BeginScene();
+	Context->displayEngine->BeginScene();
 
-	Context.displayEngine->DisplayScene( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
-	Context.ui_engine->DrawGUI( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
+	Context->displayEngine->DisplayScene( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
+	Context->ui_engine->DrawGUI( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
 
 	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
 
-	Context.displayEngine->EndScene();
+	Context->displayEngine->EndScene();
 }
 
 
@@ -281,13 +271,13 @@ void Engine::UpdateScene( float& lag, float timeInterval )
 	{
 		START_PERFORMANCE_CHECK(FRAME_COMPUTING_TIME)
 
-		Context.ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
-		Context.physicEngine->proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );
-		Context.controllersEngine->proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );
-		Context.movementEngine->proceed_movement( FIXED_MOVE_UPDATE_INTERVAL );
-		Context.controllersEngine->proceed_controllers_post( FIXED_MOVE_UPDATE_INTERVAL );
-		Context.collisionEngine->proceed_collisions( FIXED_MOVE_UPDATE_INTERVAL );
-		Context.fableEngine->ProceedFable( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->physicEngine->proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->controllersEngine->proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->movementEngine->proceed_movement( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->controllersEngine->proceed_controllers_post( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->collisionEngine->proceed_collisions( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->fableEngine->ProceedFable( FIXED_MOVE_UPDATE_INTERVAL );
 
 		lag -= FIXED_MOVE_UPDATE_INTERVAL;
 		//timeManager.UpdateTimeLag( lag );
@@ -312,7 +302,7 @@ void Engine::RenderScene( float lag, float timeInterval )
 #ifdef _INTERPOLATE_POSITIONS
 	START_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 
-	Context.displayEngine->InterpolatePositions( framePercent );
+	Context->displayEngine->InterpolatePositions( framePercent );
 
 	END_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 #endif
@@ -320,14 +310,14 @@ void Engine::RenderScene( float lag, float timeInterval )
 	START_PERFORMANCE_CHECK( RENDERING_TIME )
 
 	//Renderujemy scenê oraz interfejs u¿ytkownika
-	Context.displayEngine->BeginScene();
+	Context->displayEngine->BeginScene();
 
-	Context.displayEngine->DisplayScene( timeInterval, framePercent );
-	Context.ui_engine->DrawGUI( timeInterval, framePercent );
+	Context->displayEngine->DisplayScene( timeInterval, framePercent );
+	Context->ui_engine->DrawGUI( timeInterval, framePercent );
 
 	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
 
-	Context.displayEngine->EndScene();
+	Context->displayEngine->EndScene();
 }
 
 
@@ -350,11 +340,11 @@ void* Engine::GetRenderTargetHandle( uint16 width, uint16 height )
 	descriptor.depthStencilFormat = DepthStencilFormat::DEPTH_STENCIL_FORMAT_D24_UNORM_S8_UINT;
 	descriptor.usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
 
-	RenderTargetObject* renderTarget = Context.modelsManager->CreateRenderTarget( EDITOR_RENDERTARGET_STRING, descriptor );
-	Context.displayEngine->SetMainRenderTarget( renderTarget );
-	Context.displayEngine->SetProjectionMatrix( DirectX::XMConvertToRadians( 45 ), (float)width / (float)height, 1, 100000 );
+	RenderTargetObject* renderTarget = Context->modelsManager->CreateRenderTarget( EDITOR_RENDERTARGET_STRING, descriptor );
+	Context->displayEngine->SetMainRenderTarget( renderTarget );
+	Context->displayEngine->SetProjectionMatrix( DirectX::XMConvertToRadians( 45 ), (float)width / (float)height, 1, 100000 );
 
-	return Context.graphicInitializer->GetRenderTargetHandle( renderTarget );
+	return Context->graphicInitializer->GetRenderTargetHandle( renderTarget );
 }
 
 
@@ -403,10 +393,28 @@ void Engine::time_controller(float& time_interval)
 
 @see Events
 @param[in] new_event Event do wys³ania.*/
-void Engine::send_event(Event* new_event)
+void			Engine::SendEvent(Event* new_event)
 {
-	Context.eventsQueue->push(new_event);
+	Context->eventsQueue->push(new_event);
 }
+
+/**@brief */
+std::queue<Event*>* Engine::GetEventsQueue()
+{
+	return Context->eventsQueue;
+}
+
+/**@brief */
+void			Engine::SetEventsQueue( std::queue<Event*>* queue )
+{
+	Context->eventsQueue = queue;
+}
+
+HINSTANCE		Engine::GetInstanceHandler()								{ return Context->instanceHandler; }
+HWND			Engine::GetWindowHandler()									{ return Context->windowHandler; }
+
+int				Engine::GetWindowWidth()									{ return Context->windowWidth; }
+int				Engine::GetWindowHeight()									{ return Context->windowHeight; }
 
 /**@brief Funkcja wczytuj¹ca startowy level do silnika. Najczêœciej na tym etapie wczytuje siê tylko menu,
 oraz wszytkie elementy, które s¹ przydatne na ka¿dym etapie gry.
@@ -424,12 +432,12 @@ na wszelki wypadek zawsze inicjalizacja powinna byæ wczeœniej.
 
 @param[in] game_play Obiekt do wczytania, jako pocz¹tek gry.
 @see IGamePlay*/
-void Engine::set_entry_point( IGamePlay* game_play )
+void Engine::SetEntryPoint( IGamePlay* game_play )
 {
-	if ( Context.engineReady )
+	if ( Context->engineReady )
 	{
-		game_play->SetEngineReference( this, Context.fableEngine );
-		Context.fableEngine->SetGamePlay( game_play );
+		game_play->SetEngineReference( this, Context->fableEngine );
+		Context->fableEngine->SetGamePlay( game_play );
 		
 		int result = game_play->LoadLevel();
 		if ( result )
@@ -442,7 +450,7 @@ void Engine::set_entry_point( IGamePlay* game_play )
 #ifndef __UNUSED
 ///@brief Nie bêdzie wczytywania z bibliotek DLL. Maj¹ one ddzieln¹ stertê i powoduje to problemy ze zwalnianiem
 ///pamiêci. Poza tym taka architektura nie nadaje siê do przeci¹¿ania operatorów new i delete.
-void Engine::set_entry_point( const std::wstring dll_name )
+void Engine::SetEntryPoint( const std::wstring dll_name )
 {
 	HINSTANCE dll_entry_point;
 	dll_entry_point = LoadLibrary( dll_name.c_str() );

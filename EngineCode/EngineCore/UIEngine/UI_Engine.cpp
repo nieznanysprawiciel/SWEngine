@@ -36,7 +36,7 @@ UI_Engine::~UI_Engine()
 @return Zwraca tak¹ wartoœæ jak funkcje Directinput.*/
 int UI_Engine::init_direct_input()
 {
-	int result = DirectInput8Create(engine->get_instance_handler(),
+	int result = DirectInput8Create(engine->GetInstanceHandler(),
 		DIRECTINPUT_VERSION, IID_IDirectInput8, (LPVOID*)&direct_input, NULL);
 	if (result != DIRECT_INPUT_OK)
 		return result;
@@ -49,7 +49,7 @@ int UI_Engine::init_direct_input()
 		return result;
 	}
 	keyboard_input->SetDataFormat(&c_dfDIKeyboard);
-	keyboard_input->SetCooperativeLevel(engine->get_window_handler(), DISCL_BACKGROUND | DISCL_NONEXCLUSIVE);
+	keyboard_input->SetCooperativeLevel(engine->GetWindowHandler(), DISCL_BACKGROUND | DISCL_NONEXCLUSIVE);
 
 	//tworzymy obiekt myszy
 	result = direct_input->CreateDevice(GUID_SysMouse, &mouse_input, nullptr);
@@ -60,7 +60,7 @@ int UI_Engine::init_direct_input()
 		return result;
 	}
 	mouse_input->SetDataFormat(&c_dfDIMouse2);
-	mouse_input->SetCooperativeLevel(engine->get_window_handler(), DISCL_BACKGROUND | DISCL_NONEXCLUSIVE);
+	mouse_input->SetCooperativeLevel(engine->GetWindowHandler(), DISCL_BACKGROUND | DISCL_NONEXCLUSIVE);
 
 	//todo: sprawdziæ czy jest w systemie joystick i go wczytaæ
 

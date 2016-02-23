@@ -4,6 +4,8 @@
 
 class Engine;
 
+/**@brief Modu³ do zarz¹dzania kontrolerami obiektów.
+@ingroup EngineCore*/
 class ControllersEngine
 {
 private:

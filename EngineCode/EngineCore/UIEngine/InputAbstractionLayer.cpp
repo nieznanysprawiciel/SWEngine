@@ -98,7 +98,7 @@ void InputAbstractionLayer::send_events(Engine* engine)
 					event->mouseY = mouseY;
 					event->layer = this;
 
-					engine->send_event(event);
+					engine->SendEvent(event);
 				}
 			}
 			else //button_state == 1
@@ -110,7 +110,7 @@ void InputAbstractionLayer::send_events(Engine* engine)
 					event->mouseY = mouseY;
 					event->layer = this;
 
-					engine->send_event( event );
+					engine->SendEvent( event );
 				}
 			}
 		}

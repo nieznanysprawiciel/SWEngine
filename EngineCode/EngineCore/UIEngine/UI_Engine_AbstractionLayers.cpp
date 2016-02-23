@@ -125,7 +125,7 @@ void UI_Engine::UpdateAbstractionLayer( )
 	m_currentAbstractionLayer->begin_event_collection();
 
 	m_currentAbstractionLayer->update_keyboard_device( DEVICE_IDs::KEYBOARD, keyboard_state );
-	m_currentAbstractionLayer->update_mouse_device( DEVICE_IDs::MOUSE, &mouse_state, engine->get_window_widht(), engine->get_window_height());
+	m_currentAbstractionLayer->update_mouse_device( DEVICE_IDs::MOUSE, &mouse_state, engine->GetWindowWidth(), engine->GetWindowHeight());
 
 	m_currentAbstractionLayer->send_events( engine );
 }

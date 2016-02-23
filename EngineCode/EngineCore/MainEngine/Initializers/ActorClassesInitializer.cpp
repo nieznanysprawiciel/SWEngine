@@ -6,6 +6,7 @@
 #include "EngineCore/stdafx.h"
 
 #include "EngineCore/MainEngine/Engine.h"
+#include "EngineCore/MainEngine/EngineContext.h"
 #include "EngineCore/Actors/ActorsManager.h"
 
 
@@ -13,10 +14,8 @@
 /**@brief Rejestruje podstawowe klasy aktorów.*/
 bool Engine::InitDefaultActorsClasses()
 {
-	auto actorsFactory = Context.actorsManager->GetActorFactory();
+	auto actorsFactory = Context->actorsManager->GetActorFactory();
 	
-	std::string name = GetTypeidName< StaticObject >();	// delete
-
 	actorsFactory.RegisterClass( GetTypeidName< StaticObject >(), StaticObject::Create );
 	actorsFactory.RegisterClass( GetTypeidName< CollisionObject >(), CollisionObject::Create );
 	actorsFactory.RegisterClass( GetTypeidName< DynamicObject >(), DynamicObject::Create );

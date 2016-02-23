@@ -5,6 +5,8 @@
 class Engine;
 
 
+/**@brief Modu³ do obs³ugi obiektów dynamicznych.
+@ingroup EngineCore*/
 class MovementEngine
 {
 private:

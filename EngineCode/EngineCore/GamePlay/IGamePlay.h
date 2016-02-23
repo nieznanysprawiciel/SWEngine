@@ -7,6 +7,7 @@
 
 #include "EngineCore/MainEngine/EngineInterface.h"
 #include "FastDelegate.h"
+#include "EngineCore/EventsManager/Event.h"
 
 
 class IGamePlay;

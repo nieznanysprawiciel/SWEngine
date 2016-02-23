@@ -7,6 +7,7 @@
 #include "EngineCore/stdafx.h"
 
 #include "EngineCore/MainEngine/Engine.h"
+#include "EngineCore/MainEngine/EngineContext.h"
 #include "EngineCore/ModelsManager/ModelsManager.h"
 #include "EngineCore/DisplayEngine/DisplayEngine.h"
 #include "GraphicAPI/ResourcesFactory.h"
@@ -19,18 +20,18 @@ bool Engine::InitDefaultAssets()
 	DefaultAssets::Init();
 
 	ShaderInputLayoutObject* layout;
-	Context.modelsManager->AddVertexShader( DEFAULT_VERTEX_SHADER_STRING, DEFAULT_VERTEX_SHADER_ENTRY, &layout, DefaultAssets::LAYOUT_POSITION_NORMAL_COORD );
-	Context.modelsManager->AddPixelShader( DEFAULT_PIXEL_SHADER_STRING, DEFAULT_PIXEL_SHADER_ENTRY );
-	Context.modelsManager->AddPixelShader( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH, DEFAULT_PIXEL_SHADER_ENTRY );
+	Context->modelsManager->AddVertexShader( DEFAULT_VERTEX_SHADER_STRING, DEFAULT_VERTEX_SHADER_ENTRY, &layout, DefaultAssets::LAYOUT_POSITION_NORMAL_COORD );
+	Context->modelsManager->AddPixelShader( DEFAULT_PIXEL_SHADER_STRING, DEFAULT_PIXEL_SHADER_ENTRY );
+	Context->modelsManager->AddPixelShader( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH, DEFAULT_PIXEL_SHADER_ENTRY );
 
-	Context.displayEngine->SetLayout( layout );		///@todo Hack. Layout powinien byæ ustawialny dla ka¿dego mesha z osobna. Zlikwidowaæ.
+	Context->displayEngine->SetLayout( layout );		///@todo Hack. Layout powinien byæ ustawialny dla ka¿dego mesha z osobna. Zlikwidowaæ.
 
 	MaterialObject* nullMaterial = new MaterialObject();
 	nullMaterial->SetNullMaterial();
-	Context.modelsManager->AddMaterial( nullMaterial, DEFAULT_MATERIAL_STRING );
+	Context->modelsManager->AddMaterial( nullMaterial, DEFAULT_MATERIAL_STRING );
 
 	RenderTargetObject* mainRenderTarget = ResourcesFactory::CreateScreenRenderTarget();
-	Context.modelsManager->AddRenderTarget( mainRenderTarget, SCREEN_RENDERTARGET_STRING );
+	Context->modelsManager->AddRenderTarget( mainRenderTarget, SCREEN_RENDERTARGET_STRING );
 
 	return true;
 }

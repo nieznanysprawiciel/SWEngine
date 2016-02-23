@@ -3,6 +3,9 @@
 class Engine;
 
 
+
+/**@brief Modu³ do obs³ugi dŸwiêków.
+@ingroup EngineCore*/
 class SoundEngine
 {
 private:

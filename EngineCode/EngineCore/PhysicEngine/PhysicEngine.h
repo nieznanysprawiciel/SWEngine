@@ -2,6 +2,9 @@
 
 class Engine;
 
+
+/**@brief Modu³ fizyki.
+@ingroup EngineCore*/
 class PhysicEngine
 {
 private:
