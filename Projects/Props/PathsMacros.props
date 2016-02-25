@@ -3,7 +3,7 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <EngineShortcut>SW</EngineShortcut>
-    <EngineVersion>1.010</EngineVersion>
+    <EngineVersion>1.009</EngineVersion>
     <EngineVersionString>Version$(EngineVersion)</EngineVersionString>
     <RootDir>$(SolutionDir)..\</RootDir>
     <ExternalDir>$(RootDir)External\</ExternalDir>
