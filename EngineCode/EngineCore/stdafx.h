@@ -21,6 +21,8 @@
 #define D3D_DEBUG_INFO
 // TODO: reference additional headers your program requires here
 
+#include <cassert>
+
 #include <string>
 #include <codecvt>
 #include <vector>

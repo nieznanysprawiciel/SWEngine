@@ -23,37 +23,40 @@ ControllersEngine::~ControllersEngine()
 
 //funkcja wywo³ywana przez klasê Engine w ka¿dym obiegu g³ównej petli programu
 //parametrem jest czas który up³yn¹³ od ostatniego wywo³ania
-void ControllersEngine::proceed_controllers_pre(float time_interval)
+void ControllersEngine::ProceedControllersPre(float time_interval)
 {
 	//todo:	przerobiæ na wersjê wielow¹tkow¹
-	for ( unsigned int i = 0; i < pre_controlled_objects.size(); ++i )
-		if ( pre_controlled_objects[i]->GetController() != nullptr )
-			pre_controlled_objects[i]->GetController()->ControlObject( pre_controlled_objects[i] );
+	for ( unsigned int i = 0; i < m_preControlledObjects.size(); ++i )
+		if ( m_preControlledObjects[i]->GetController() != nullptr )
+			m_preControlledObjects[i]->GetController()->ControlObject( m_preControlledObjects[i] );
 }
 
 
-void ControllersEngine::proceed_controllers_post( float time_interval )
+void ControllersEngine::ProceedControllersPost( float time_interval )
 {
 	//todo:	przerobiæ na wersjê wielow¹tkow¹
-	for ( unsigned int i = 0; i < post_controlled_objects.size( ); ++i )
-		if ( post_controlled_objects[i]->GetController( ) != nullptr )
-			post_controlled_objects[i]->GetController( )->ControlObject( post_controlled_objects[i] );
+	for ( unsigned int i = 0; i < m_postControlledObjects.size( ); ++i )
+		if ( m_postControlledObjects[i]->GetController( ) != nullptr )
+			m_postControlledObjects[i]->GetController( )->ControlObject( m_postControlledObjects[i] );
 }
 
 
-
-int ControllersEngine::add_pre_controlled( DynamicObject* object )
+/**@brief Dodaje podany obiekt do kontrolerów wywo³ywanych przed przesuniêciem obiektów.*/
+bool ControllersEngine::AddPreControlled( DynamicObject* object )
 {
 	if ( object == nullptr )
-		return 1;
-	pre_controlled_objects.push_back( object );
-	return 0;
+		return false;
+
+	m_preControlledObjects.push_back( object );
+	return true;
 }
 
-int ControllersEngine::add_post_controlled( DynamicObject* object )
+/**@brief Dodaje podany obiekt do kontrolerów wywo³ywanych po przesuniêciu obiektów.*/
+bool ControllersEngine::AddPostControlled( DynamicObject* object )
 {
 	if ( object == nullptr )
-		return 1;
-	post_controlled_objects.push_back( object );
-	return 0;
+		return false;
+
+	m_postControlledObjects.push_back( object );
+	return true;
 }

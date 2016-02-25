@@ -3,16 +3,17 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <EngineShortcut>SW</EngineShortcut>
+    <EngineVersion>1.010</EngineVersion>
+    <EngineVersionString>Version$(EngineVersion)</EngineVersionString>
     <RootDir>$(SolutionDir)..\</RootDir>
     <ExternalDir>$(RootDir)External\</ExternalDir>
     <GameReleaseDir>$(RootDir)GameRelease\</GameReleaseDir>
-    <EngineLibDir>$(RootDir)EngineLib\</EngineLibDir>
-    <EngineBuildDir>$(RootDir)EngineBuildDir\</EngineBuildDir>
+    <EngineLibDir>$(RootDir)EngineLib\$(EngineVersionString)\</EngineLibDir>
+    <EngineBuildDir>$(RootDir)EngineBuildDir\$(EngineVersionString)\</EngineBuildDir>
     <EngineSourceDir>$(RootDir)EngineCode\</EngineSourceDir>
     <EngineLibName>SWEngine_$(Configuration)_$(PlatformShortName)</EngineLibName>
     <CommonDir>$(EngineSourceDir)Common\</CommonDir>
     <BuildFolder>$(EngineShortcut)_$(Configuration)_$(PlatformShortName)</BuildFolder>
-    <EngineVersion>1.009</EngineVersion>
     <EditorReleaseDir>$(RootDir)EditorRelease\</EditorReleaseDir>
   </PropertyGroup>
   <PropertyGroup>
@@ -26,6 +27,12 @@
   <ItemGroup>
     <BuildMacro Include="EngineShortcut">
       <Value>$(EngineShortcut)</Value>
+    </BuildMacro>
+    <BuildMacro Include="EngineVersion">
+      <Value>$(EngineVersion)</Value>
+    </BuildMacro>
+    <BuildMacro Include="EngineVersionString">
+      <Value>$(EngineVersionString)</Value>
     </BuildMacro>
     <BuildMacro Include="RootDir">
       <Value>$(RootDir)</Value>
@@ -58,9 +65,6 @@
     <BuildMacro Include="BuildFolder">
       <Value>$(BuildFolder)</Value>
       <EnvironmentVariable>true</EnvironmentVariable>
-    </BuildMacro>
-    <BuildMacro Include="EngineVersion">
-      <Value>$(EngineVersion)</Value>
     </BuildMacro>
     <BuildMacro Include="EditorReleaseDir">
       <Value>$(EditorReleaseDir)</Value>

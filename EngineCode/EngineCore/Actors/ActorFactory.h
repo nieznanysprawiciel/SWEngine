@@ -50,8 +50,6 @@ public:
 
 	template< typename Type = Object >	Type*		CreateActor				( const std::string& name );
 	template< typename Type = Object >	Type*		CreateActor				( ActorType id );
-	//template< typename Type = Object > Type* CreateActor( const std::string name, const ActorInitializer initializer );
-	//template< typename Type = Object > Type* CreateActor( uint16 id, const ActorInitializer initializer );
 };
 
 
@@ -61,7 +59,7 @@ Najlepiej, ¿eby nazwy klas odpowiada³y nazwom u¿ywanym w c++, ale nie jest to wy
 
 @param[in] name Nazwa aktora zarejestrowana funkcj¹ RegisterClass.
 @return Zwraca wskaŸnik na stworzony obiekt lub nullptr, je¿eli indentyfikator nie zosta³ zarejestrowany.*/
-template< typename Type = Object > Type* ActorFactory::CreateActor( const std::string& name )
+template< typename Type > Type* ActorFactory::CreateActor( const std::string& name )
 {
 	auto index = m_classNames.find( name );
 	if ( index == m_classNames.end() )
@@ -70,8 +68,10 @@ template< typename Type = Object > Type* ActorFactory::CreateActor( const std::s
 		return nullptr;
 	}
 
-	return CreateActor( index.second );
+	Object* newActor = CreateActor( index->second );
+	assert( typeid( *newActor ) == typeid( Type ) );
 
+	return static_cast< Type* >( newActor );
 }
 
 /**@brief Tworzy obiekt aktora o podanym identyfikatorze. Identyfikator mo¿na pobraæ
@@ -82,41 +82,13 @@ Najlepiej, ¿eby nazwy klas odpowiada³y nazwom u¿ywanym w c++, ale nie jest to wy
 
 @param[in] name Nazwa aktora zarejestrowana funkcj¹ RegisterClass.
 @return Zwraca wskaŸnik na stworzony obiekt lub nullptr, je¿eli indentyfikator nie zosta³ zarejestrowany.*/
-template< typename Type = Object > Type* ActorFactory::CreateActor( ActorType id )
+template< typename Type > Type* ActorFactory::CreateActor( ActorType id )
 {
 	if ( id < m_createFunctions.size() )
-		return m_createFunctions[ id ]();
+	{
+		Object* newActor = m_createFunctions[ id ]();
+		return static_cast< Type* >( newActor );
+	}
 	return nullptr;
 }
-
-///**@brief Tworzy obiekt aktora o podanej nazwie. Nazwa musi byæ wczeœniej zarejestrowana.
-//Podany initializer jest u¿ywany w funkcji Init, która jest wywo³ywana na stworzonym obiekcie.
-//
-//Najlepiej, ¿eby nazwy klas odpowiada³y nazwom u¿ywanym w c++, ale nie jest to wymagane.
-//
-//@param[in] name Nazwa aktora zarejestrowana funkcj¹ RegisterClass.
-//@param[in] initializer Obiekt zawieraj¹cy dane u¿ywane do inicjacji obiektu. (Wywo³ywana jest funkcja Init)
-//@return Zwraca wskaŸnik na stworzony obiekt lub nullptr, je¿eli indentyfikator nie zosta³ zarejestrowany.*/
-//template< typename Type = Object > Type* ActorFactory::CreateActor( const std::string name, const ActorInitializer initializer )
-//{
-//
-//
-//}
-//
-///**@brief Tworzy obiekt aktora o podanym identyfikatorze. Identyfikator mo¿na pobraæ
-//funkcj¹ GetClassId. Nazwa funkcji tworz¹cej obiekt musi zostaæ najpierw zarejestrowana,
-//¿eby mo¿na by³o jej u¿ywaæ.
-//
-//Podany initializer jest u¿ywany w funkcji Init, która jest wywo³ywana na stworzonym obiekcie.
-//
-//Najlepiej, ¿eby nazwy klas odpowiada³y nazwom u¿ywanym w c++, ale nie jest to wymagane.
-//
-//@param[in] id Identyfikator klasy, który mozna pobraæ funkcj¹ GetClassId.
-//@param[in] initializer Obiekt zawieraj¹cy dane u¿ywane do inicjacji obiektu. (Wywo³ywana jest funkcja Init)
-//@param[in] initializer Obiekt zawieraj¹cy dane do inicjacji klasy
-//@return Zwraca wskaŸnik na stworzony obiekt lub nullptr, je¿eli indentyfikator nie zosta³ zarejestrowany.*/
-//template< typename Type = Object > Type* ActorFactory::CreateActor( uint16 id, const ActorInitializer initializer )
-//{
-//
-//}
 

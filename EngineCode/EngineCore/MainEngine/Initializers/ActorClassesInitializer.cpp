@@ -14,7 +14,7 @@
 /**@brief Rejestruje podstawowe klasy aktorów.*/
 bool Engine::InitDefaultActorsClasses()
 {
-	auto actorsFactory = Context->actorsManager->GetActorFactory();
+	auto& actorsFactory = Context->actorsManager->GetActorFactory();
 	
 	actorsFactory.RegisterClass( GetTypeidName< StaticObject >(), StaticObject::Create );
 	actorsFactory.RegisterClass( GetTypeidName< CollisionObject >(), CollisionObject::Create );

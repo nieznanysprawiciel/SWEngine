@@ -53,12 +53,6 @@ DisplayEngine::DisplayEngine( Engine* engine )
 
 DisplayEngine::~DisplayEngine()
 {
-	//jeszcze nie jestem pewien, kto odpowiada za zwalnianie kamery, ale na razie ktoœ musi
-	//poniewa¿ kamera jest obiektem takim jak wszystkie inne, to pewnie bêdzie za to odpowiedzialna
-	//klasa Engine
-	for ( unsigned int i = 0; i < cameras.size(); ++i )
-		delete cameras[i];
-
 	for ( IRenderer* renderer : m_renderers )
 		if ( renderer )		delete renderer;
 

@@ -220,9 +220,9 @@ void Engine::RenderFrame()
 
 		Context->ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->physicEngine->proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->controllersEngine->proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->controllersEngine->ProceedControllersPre( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->movementEngine->proceed_movement( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->controllersEngine->proceed_controllers_post( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->controllersEngine->ProceedControllersPost( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->collisionEngine->proceed_collisions( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->fableEngine->ProceedFable( FIXED_MOVE_UPDATE_INTERVAL );
 
@@ -273,9 +273,9 @@ void Engine::UpdateScene( float& lag, float timeInterval )
 
 		Context->ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->physicEngine->proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->controllersEngine->proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->controllersEngine->ProceedControllersPre( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->movementEngine->proceed_movement( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->controllersEngine->proceed_controllers_post( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->controllersEngine->ProceedControllersPost( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->collisionEngine->proceed_collisions( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->fableEngine->ProceedFable( FIXED_MOVE_UPDATE_INTERVAL );
 
