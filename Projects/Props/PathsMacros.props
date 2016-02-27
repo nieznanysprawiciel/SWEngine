@@ -15,6 +15,14 @@
     <CommonDir>$(EngineSourceDir)Common\</CommonDir>
     <BuildFolder>$(EngineShortcut)_$(Configuration)_$(PlatformShortName)</BuildFolder>
     <EditorReleaseDir>$(RootDir)EditorRelease\</EditorReleaseDir>
+	
+    <ConfigTypeString Condition="'$(Configuration)'=='Debug'" >Debug</ConfigTypeString>
+    <ConfigTypeSmallString Condition="'$(Configuration)'=='Debug'" >debug</ConfigTypeSmallString>
+    <DebugSuffix Condition="'$(Configuration)'=='Debug'" >d</DebugSuffix>
+    <ConfigTypeString Condition="'$(Configuration)'!='Debug'" >Release</ConfigTypeString>
+    <ConfigTypeSmallString Condition="'$(Configuration)'!='Debug'" >release</ConfigTypeSmallString>
+    <DebugSuffix Condition="'$(Configuration)'!='Debug'" />
+	
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>PathsMacros</_PropertySheetDisplayName>
@@ -68,6 +76,17 @@
     </BuildMacro>
     <BuildMacro Include="EditorReleaseDir">
       <Value>$(EditorReleaseDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ConfigTypeString">
+      <Value>$(ConfigTypeString)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="ConfigTypeSmallString">
+      <Value>$(ConfigTypeSmallString)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="DebugSuffix">
+      <Value>$(DebugSuffix)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>
