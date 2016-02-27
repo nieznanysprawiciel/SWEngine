@@ -1,11 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
+  
   <PropertyGroup Label="UserMacros">
     <EngineShortcut>SW</EngineShortcut>
     <EngineVersion>1.010</EngineVersion>
     <EngineVersionString>Version$(EngineVersion)</EngineVersionString>
-    <RootDir>$(SolutionDir)..\</RootDir>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+	<EngineRootDirRegistry>$([MSBuild]::GetRegistryValueFromView('HKEY_CURRENT_USER\Software\SchopenhauersWeltschmerz\$(EngineVersion)', 'EngineRootPath', null, RegistryView.Registry64, RegistryView.Registry32))</EngineRootDirRegistry>
+  </PropertyGroup>
+
+  <Choose>
+    <When Condition="Exists($(EngineRootDirRegistry))">
+      <PropertyGroup Label="UserMacros">
+        <RootDir>$(EngineRootDirRegistry)\</RootDir>
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup Label="UserMacros">
+		<RootDir>$(SolutionDir)..\</RootDir>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
+  
+  <PropertyGroup Label="UserMacros">
     <ExternalDir>$(RootDir)External\</ExternalDir>
     <GameReleaseDir>$(RootDir)GameRelease\</GameReleaseDir>
     <EngineLibDir>$(RootDir)EngineLib\$(EngineVersionString)\</EngineLibDir>
@@ -32,7 +52,7 @@
       <Version>$(EngineVersion)</Version>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
+  <ItemGroup>  
     <BuildMacro Include="EngineShortcut">
       <Value>$(EngineShortcut)</Value>
     </BuildMacro>
@@ -41,6 +61,9 @@
     </BuildMacro>
     <BuildMacro Include="EngineVersionString">
       <Value>$(EngineVersionString)</Value>
+    </BuildMacro>
+    <BuildMacro Include="EngineRootDirRegistry">
+      <Value>$(EngineRootDirRegistry)</Value>
     </BuildMacro>
     <BuildMacro Include="RootDir">
       <Value>$(RootDir)</Value>
