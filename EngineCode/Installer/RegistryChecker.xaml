@@ -1,0 +1,22 @@
+﻿<Window x:Class="Installer.RegistryChecker"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Installer"
+        mc:Ignorable="d"
+        Title="RegistryChecker" Height="323" Width="430" Initialized="WindowInitialized">
+	<Grid>
+		<ListBox x:Name="listBox" HorizontalAlignment="Left" Height="150" Margin="10,129,0,0" VerticalAlignment="Top" Width="400" ItemsSource="{Binding}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding Version}" Width="100" />
+						<TextBlock Text="{Binding Path}" Width="280" />
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<Label x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="10,101,0,0" VerticalAlignment="Top" Width="133" Content="Zainstalowane wersje:"/>
+	</Grid>
+</Window>

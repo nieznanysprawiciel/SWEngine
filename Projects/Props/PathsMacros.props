@@ -9,7 +9,7 @@
   </PropertyGroup>
   
   <PropertyGroup>
-	<EngineRootDirRegistry>$([MSBuild]::GetRegistryValueFromView('HKEY_CURRENT_USER\Software\SchopenhauersWeltschmerz\$(EngineVersion)', 'EngineRootPath', null, RegistryView.Registry64, RegistryView.Registry32))</EngineRootDirRegistry>
+	<EngineRootDirRegistry>$([MSBuild]::GetRegistryValueFromView('HKEY_CURRENT_USER\Software\SchopenhauersWeltschmerz\$(EngineVersionString)', 'EngineRootPath', null, RegistryView.Registry64, RegistryView.Registry32))</EngineRootDirRegistry>
   </PropertyGroup>
 
   <Choose>
@@ -35,6 +35,7 @@
     <CommonDir>$(EngineSourceDir)Common\</CommonDir>
     <BuildFolder>$(EngineShortcut)_$(Configuration)_$(PlatformShortName)</BuildFolder>
     <EditorReleaseDir>$(RootDir)EditorRelease\</EditorReleaseDir>
+	<InstallerReleaseDir>$(RootDir)Install\</InstallerReleaseDir>
 	
     <ConfigTypeString Condition="'$(Configuration)'=='Debug'" >Debug</ConfigTypeString>
     <ConfigTypeSmallString Condition="'$(Configuration)'=='Debug'" >debug</ConfigTypeSmallString>
@@ -99,6 +100,9 @@
     </BuildMacro>
     <BuildMacro Include="EditorReleaseDir">
       <Value>$(EditorReleaseDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="EditorReleaseDir">
+      <Value>$(InstallerReleaseDir)</Value>
     </BuildMacro>
     <BuildMacro Include="ConfigTypeString">
       <Value>$(ConfigTypeString)</Value>

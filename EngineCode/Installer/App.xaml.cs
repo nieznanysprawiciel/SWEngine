@@ -13,5 +13,14 @@ namespace Installer
     /// </summary>
     public partial class App : Application
     {
-    }
+		//private void pplicationStart( object sender, StartupEventArgs e )
+		//{
+		//	Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
+		//	var registryCheckerDialog = new RegistryChecker();
+
+		//	registryCheckerDialog.Show();
+		//}
+
+	}
 }
