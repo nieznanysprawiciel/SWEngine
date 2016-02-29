@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Installer"
         mc:Ignorable="d"
-        Title="RegistryChecker" Height="323" Width="430" Initialized="WindowInitialized">
+        Title="Schopenhauers Weltschmerz Engine Installer" Height="323" Width="430" Initialized="WindowInitialized">
 	<Grid>
 		<ListBox x:Name="listBox" HorizontalAlignment="Left" Height="150" Margin="10,129,0,0" VerticalAlignment="Top" Width="400" ItemsSource="{Binding}">
 			<ListBox.ItemTemplate>
