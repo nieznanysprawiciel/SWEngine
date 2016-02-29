@@ -5,18 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Installer"
         mc:Ignorable="d"
-        Title="Schopenhauers Weltschmerz Engine Installer" Height="323" Width="430" Initialized="WindowInitialized">
+        Title="Schopenhauers Weltschmerz Engine Installer" Height="472.825" Width="636.253" Initialized="WindowInitialized" Icon="SchopenhauerWeltschmerz.ico">
+	<Window.Resources>
+		<BitmapImage x:Key="OkIcon" UriSource="pack://siteoforigin:,,,/Icons/IconOk.png" />
+		<BitmapImage x:Key="FalseIcon" UriSource="pack://siteoforigin:,,,/Icons/IconFalse.png" />
+	</Window.Resources>
 	<Grid>
-		<ListBox x:Name="listBox" HorizontalAlignment="Left" Height="150" Margin="10,129,0,0" VerticalAlignment="Top" Width="400" ItemsSource="{Binding}">
+		<Grid.Background>
+			<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+				<GradientStop Color="#FF05314F" Offset="0.874"/>
+				<GradientStop Color="#FF70B2E0"/>
+			</LinearGradientBrush>
+		</Grid.Background>
+		<ListBox x:Name="listBox" HorizontalAlignment="Left" Height="150" Margin="10,129,0,0" VerticalAlignment="Top" Width="524" ItemsSource="{Binding}" BorderBrush="#4C5F1195" BorderThickness="2" Foreground="#FFE0D6D3" Grid.ColumnSpan="2">
+			<ListBox.Background>
+				<SolidColorBrush Color="White" Opacity="0"/>
+			</ListBox.Background>
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<StackPanel Orientation="Horizontal">
-						<TextBlock Text="{Binding Version}" Width="100" />
-						<TextBlock Text="{Binding Path}" Width="280" />
+						<Image Width="40" Height="30" Source="{StaticResource OkIcon}" />
+						<TextBlock VerticalAlignment="Center" Text="{Binding Version}" Width="100" />
+						<TextBlock VerticalAlignment="Center" Text="{Binding Path}" Width="280" />
 					</StackPanel>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
-		<Label x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="10,101,0,0" VerticalAlignment="Top" Width="133" Content="Zainstalowane wersje:"/>
+		<Label x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="10,101,0,0" VerticalAlignment="Top" Width="133" Content="Zainstalowane wersje:" Foreground="#FFE0D6D3"/>
 	</Grid>
 </Window>
