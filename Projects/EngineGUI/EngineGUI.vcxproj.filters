@@ -9,9 +9,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\EngineCode\Common\memory_leaks.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractButton.h">
       <Filter>EngineGUI</Filter>
     </ClInclude>
@@ -46,6 +43,9 @@
       <Filter>EngineGUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\MemoryLeaks.h">
       <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>

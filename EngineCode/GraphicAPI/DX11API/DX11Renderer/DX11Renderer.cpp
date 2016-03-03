@@ -8,7 +8,7 @@
 #include "../DX11Resources/DX11Texture.h"
 #include "../DX11Resources/DX11RenderTarget.h"
 
-#include "Common/memory_leaks.h"
+#include "Common/MemoryLeaks.h"
 
 
 #ifdef INDEX_BUFFER_UINT16

@@ -3,7 +3,7 @@
 
 #include <cstring>
 
-#include "Common/memory_leaks.h"
+#include "Common/MemoryLeaks.h"
 
 void DX11InputLayoutDescriptor::AddRow( const char* semanticName, ResourceFormat format, unsigned int inputSlot, unsigned int byteOffset, bool perInstance, unsigned int instanceDataStep )
 {

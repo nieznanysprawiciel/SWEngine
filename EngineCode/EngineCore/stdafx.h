@@ -37,7 +37,7 @@
 	#include <dinput.h>
 #pragma warning( default : 4005 )
 
-#include "Common/macros_switches.h"
+#include "Common/MacrosSwitches.h"
 #include "EngineCore/EventsManager/Event.h"
 
 //#ifdef SHOW_MEMORY_LEAKS

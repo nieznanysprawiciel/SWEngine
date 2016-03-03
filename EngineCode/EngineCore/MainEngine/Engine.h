@@ -5,7 +5,7 @@
 
 @brief Plik zawiera deklaracjê g³ównego obiektu silnika.*/
 
-#include "Common/macros_switches.h"
+#include "Common/MacrosSwitches.h"
 
 #include "EngineCore/SW_engine.h"
 #include "EngineCore/MainEngine/EngineInterface.h"

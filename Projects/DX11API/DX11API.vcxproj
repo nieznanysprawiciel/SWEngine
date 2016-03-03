@@ -160,8 +160,8 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\EngineCode\Common\macros_switches.h" />
-    <ClInclude Include="..\..\EngineCode\Common\memory_leaks.h" />
+    <ClInclude Include="..\..\EngineCode\Common\MacrosSwitches.h" />
+    <ClInclude Include="..\..\EngineCode\Common\MemoryLeaks.h" />
     <ClInclude Include="..\..\EngineCode\Common\ObjectDeleter.h" />
     <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11APIObjects.h" />

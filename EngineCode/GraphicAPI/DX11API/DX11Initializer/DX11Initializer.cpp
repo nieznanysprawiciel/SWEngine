@@ -4,7 +4,7 @@
 #include "../DX11Resources/DX11Texture.h"
 #include "DX11ConstantsMapper.h"
 
-#include "Common/memory_leaks.h"
+#include "Common/MemoryLeaks.h"
 
 
 DX11Initializer::DX11Initializer()

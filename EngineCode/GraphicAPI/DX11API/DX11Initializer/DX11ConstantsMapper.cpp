@@ -1,6 +1,6 @@
 #include "DX11ConstantsMapper.h"
 
-#include "Common/memory_leaks.h"
+#include "Common/MemoryLeaks.h"
 
 /**@see ResourceUsage.*/
 D3D11_USAGE DX11ResourceUsage[] =

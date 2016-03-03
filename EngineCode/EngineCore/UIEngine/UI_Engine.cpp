@@ -8,7 +8,7 @@
 bool pushedF1 = false;		///< Hack. Zapamiêtuje stan przycisku odpowiedzialnego za wys³anie statystyk do pliku, ¿eby nie by³o zdublowanych wywo³añ.
 
 
-#include "Common/memory_leaks.h"
+#include "Common/MemoryLeaks.h"
 
 
 UI_Engine::UI_Engine( Engine* engine )

@@ -1,7 +1,7 @@
 #include "DX11Buffer.h"
 #include "../DX11Initializer/DX11ConstantsMapper.h"
 
-#include "Common/memory_leaks.h"
+#include "Common/MemoryLeaks.h"
 
 DX11Buffer::DX11Buffer( unsigned int elementSize, unsigned int elementCount, ID3D11Buffer* buff )
 	: BufferObject(elementSize, elementCount), m_buffer( buff )

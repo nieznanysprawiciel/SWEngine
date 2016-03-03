@@ -8,7 +8,7 @@
 #include "DefaultAssets.h"
 #include "GraphicAPI/ResourcesFactory.h"
 
-#include "Common/memory_leaks.h"
+#include "Common/MemoryLeaks.h"
 
 
 InputLayoutDescriptor* DefaultAssets::LAYOUT_POSITION_NORMAL_COORD = nullptr;

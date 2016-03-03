@@ -1,6 +1,6 @@
 #include "DX11InputLayout.h"
 
-#include "Common/memory_leaks.h"
+#include "Common/MemoryLeaks.h"
 
 
 DX11InputLayout::DX11InputLayout( ID3D11InputLayout* layout )

@@ -1,7 +1,7 @@
 #include "DX11APIObjects.h"
 #include <DirectXMath.h>
 
-#include "Common/memory_leaks.h"
+#include "Common/MemoryLeaks.h"
 
 //----------------------------------------------------------------------------------------------//
 //								Zmienne statyczne klasy											//

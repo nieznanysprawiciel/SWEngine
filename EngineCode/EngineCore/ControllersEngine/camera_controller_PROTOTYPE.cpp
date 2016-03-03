@@ -3,7 +3,7 @@
 #include "EngineCore/UIEngine/InputAbstractionLayer.h"
 
 
-#include "Common/memory_leaks.h"
+#include "Common/MemoryLeaks.h"
 
 using namespace DirectX;
 

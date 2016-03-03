@@ -3,7 +3,7 @@
 
 using namespace DirectX;
 
-#include "Common/memory_leaks.h"
+#include "Common/MemoryLeaks.h"
 #include "EngineCore/ModelsManager/DefaultAssets.h"
 
 

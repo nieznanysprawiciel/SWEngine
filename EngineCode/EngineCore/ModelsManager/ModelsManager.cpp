@@ -5,9 +5,9 @@
 #include "Loaders/FBX_files_loader/FBX_loader.h"
 #include "Common/ObjectDeleter.h"
 #include "GraphicAPI/ResourcesFactory.h"
-#include "Common/macros_switches.h"
+#include "Common/MacrosSwitches.h"
 
-#include "Common/memory_leaks.h"
+#include "Common/MemoryLeaks.h"
 
 using namespace DirectX;
 

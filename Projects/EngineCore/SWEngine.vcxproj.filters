@@ -125,12 +125,6 @@
     <ClInclude Include="$(EngineCoreSourceDir)SW_engine.h">
       <Filter>EngineCore\MainEngine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\macros_switches.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\memory_leaks.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\ObjectDeleter.h">
       <Filter>Common</Filter>
     </ClInclude>
@@ -265,6 +259,12 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Textures.h">
       <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\MemoryLeaks.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\MacrosSwitches.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

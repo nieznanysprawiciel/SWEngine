@@ -1,7 +1,7 @@
 #include "EngineCore/stdafx.h"
 #include "ModelsManager.h"
 
-#include "Common/memory_leaks.h"
+#include "Common/MemoryLeaks.h"
 
 
 ModelsManager* Model3DFromFile::models_manager = nullptr;

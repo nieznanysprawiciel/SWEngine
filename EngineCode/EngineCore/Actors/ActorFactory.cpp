@@ -6,7 +6,7 @@
 #include "EngineCore/stdafx.h"
 #include "ActorFactory.h"
 
-#include "Common/memory_leaks.h"
+#include "Common/MemoryLeaks.h"
 
 #undef RegisterClass
 

@@ -10,7 +10,7 @@
 #include "DX11InputLayoutDescriptor.h"
 #include "DX11InputLayout.h"
 
-#include "Common/memory_leaks.h"
+#include "Common/MemoryLeaks.h"
 
 typedef DX11Texture				Texture;
 typedef DX11VertexShader		VertexShader;

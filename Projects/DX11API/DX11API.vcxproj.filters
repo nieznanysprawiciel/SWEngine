@@ -57,12 +57,6 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11VertexShader.h">
       <Filter>DX11API\DX11Resources</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\macros_switches.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\memory_leaks.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\ObjectDeleter.h">
       <Filter>Common</Filter>
     </ClInclude>
@@ -100,6 +94,12 @@
       <Filter>GraphicAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\MemoryLeaks.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\MacrosSwitches.h">
       <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>

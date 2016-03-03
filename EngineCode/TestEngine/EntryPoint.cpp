@@ -17,7 +17,7 @@ Ca³y kod gry powinien znajdowaæ siê w innych plikach.*/
 //#include "GamePlayCode/EntryPointGamePlay.h"
 #include "EngineEditor/LightmapsTool/LightmapLogic.h"
 
-#include "Common/memory_leaks.h"
+#include "Common/MemoryLeaks.h"
 
 /*Ustaw rozdzielczoœæ okna w jakim ma byæ wyœwietlana gra. Je¿eli ma byæ w trybie 
 pe³noekranowym, wartoœæ tych parametrów mo¿e pozostaæ dowolna.*/
