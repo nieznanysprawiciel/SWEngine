@@ -17,6 +17,7 @@ build/
 EngineBuildDir/
 GameRelease/
 Install/
+External/Packages/
 
 # Generated documentation
 Documentation/

@@ -8,28 +8,12 @@
     <EngineVersionString>Version$(EngineVersion)</EngineVersionString>
   </PropertyGroup>
   
-  <PropertyGroup>
-	<EngineRootDirRegistry>$([MSBuild]::GetRegistryValueFromView('HKEY_CURRENT_USER\Software\SchopenhauersWeltschmerz\$(EngineVersionString)', 'EngineRootPath', null, RegistryView.Registry64, RegistryView.Registry32))</EngineRootDirRegistry>
-  </PropertyGroup>
-
-  <Choose>
-    <When Condition="Exists($(EngineRootDirRegistry))">
-      <PropertyGroup Label="UserMacros">
-        <RootDir>$(EngineRootDirRegistry)\</RootDir>
-      </PropertyGroup>
-    </When>
-    <Otherwise>
-      <PropertyGroup Label="UserMacros">
-		<RootDir>$(SolutionDir)..\</RootDir>
-      </PropertyGroup>
-    </Otherwise>
-  </Choose>
-  
   <PropertyGroup Label="UserMacros">
+	<RootDir>$(SolutionDir)..\</RootDir>
     <ExternalDir>$(RootDir)External\</ExternalDir>
     <GameReleaseDir>$(RootDir)GameRelease\</GameReleaseDir>
-    <EngineLibDir>$(RootDir)EngineLib\$(EngineVersionString)\</EngineLibDir>
-    <EngineBuildDir>$(RootDir)EngineBuildDir\$(EngineVersionString)\</EngineBuildDir>
+    <EngineLibDir>$(RootDir)EngineLib\</EngineLibDir>
+    <EngineBuildDir>$(RootDir)EngineBuildDir\</EngineBuildDir>
     <EngineSourceDir>$(RootDir)EngineCode\</EngineSourceDir>
     <EngineLibName>SWEngine_$(Configuration)_$(PlatformShortName)</EngineLibName>
     <CommonDir>$(EngineSourceDir)Common\</CommonDir>

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using Microsoft.Win32;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -12,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Installer.Data;
+using Installer.Version;
 
 namespace Installer
 {
@@ -21,43 +20,20 @@ namespace Installer
 	/// </summary>
 	public partial class RegistryChecker : Window
 	{
-		List<RegData>       m_engineData;
+		VersionManager      m_versionManager;
 
 		public RegistryChecker()
 		{
-			m_engineData = new List<RegData>();
+			m_versionManager = new VersionManager();
 
 			InitializeComponent();
 		}
 
 		private void WindowInitialized	( object sender, EventArgs e )
 		{
-			RegistryKey registryKey = Registry.CurrentUser;
-
-			RegistryKey SWEngineReg = registryKey.OpenSubKey( "Software\\SchopenhauersWeltschmerz" );
-			if ( SWEngineReg == null )
-				return;
-
-			string[] engineVersions = SWEngineReg.GetSubKeyNames();
-			ListEngineVersions( SWEngineReg, engineVersions );
-
-			listBox.DataContext = m_engineData;
+			listBox.DataContext = m_versionManager.CreateVersionsList();
 		}
 
-		private void ListEngineVersions( RegistryKey engineRegDir, string[] names )
-		{
-			foreach( var name in names )
-			{
-				RegData newRegData = new RegData();
 
-				RegistryKey enginePathReg = engineRegDir.OpenSubKey( name );
-				object enginePath = enginePathReg.GetValue( "EngineRootPath" );
-
-				newRegData.Path = enginePath.ToString();
-				newRegData.Version = name;
-				m_engineData.Add( newRegData );
-			}
-
-		}
 	}
 }

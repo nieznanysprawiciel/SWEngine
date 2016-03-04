@@ -4,11 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Installer"
+		xmlns:view="clr-namespace:Installer.ViewHelpers"
         mc:Ignorable="d"
         Title="Schopenhauers Weltschmerz Engine Installer" Height="472.825" Width="636.253" Initialized="WindowInitialized" Icon="SchopenhauerWeltschmerz.ico">
 	<Window.Resources>
-		<BitmapImage x:Key="OkIcon" UriSource="pack://siteoforigin:,,,/Icons/IconOk.png" />
-		<BitmapImage x:Key="FalseIcon" UriSource="pack://siteoforigin:,,,/Icons/IconFalse.png" />
+		<view:InstalledToImageConverter x:Key="ImageBitmapConverter" />
+		<view:InverseBoolConverter x:Key="InverseBool" />
 	</Window.Resources>
 	<Grid>
 		<Grid.Background>
@@ -17,16 +18,17 @@
 				<GradientStop Color="#FF70B2E0"/>
 			</LinearGradientBrush>
 		</Grid.Background>
-		<ListBox x:Name="listBox" HorizontalAlignment="Left" Height="150" Margin="10,129,0,0" VerticalAlignment="Top" Width="524" ItemsSource="{Binding}" BorderBrush="#4C5F1195" BorderThickness="2" Foreground="#FFE0D6D3" Grid.ColumnSpan="2">
+		<ListBox x:Name="listBox" HorizontalAlignment="Left" Height="150" Margin="10,129,0,0" VerticalAlignment="Top" Width="600" ItemsSource="{Binding}" BorderBrush="#4C5F1195" BorderThickness="2" Foreground="#FFE0D6D3">
 			<ListBox.Background>
 				<SolidColorBrush Color="White" Opacity="0"/>
 			</ListBox.Background>
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<StackPanel Orientation="Horizontal">
-						<Image Width="40" Height="30" Source="{StaticResource OkIcon}" />
+						<Image Width="40" Height="30" Source="{Binding Installed, Converter={StaticResource ImageBitmapConverter}}" />
 						<TextBlock VerticalAlignment="Center" Text="{Binding Version}" Width="100" />
-						<TextBlock VerticalAlignment="Center" Text="{Binding Path}" Width="280" />
+						<TextBlock VerticalAlignment="Center" Text="{Binding Path}" Width="420" />
+						<CheckBox VerticalAlignment="Center" HorizontalAlignment="Right" Width="20" IsChecked="False" IsEnabled="{Binding Installed, Converter={StaticResource InverseBool}}" />
 					</StackPanel>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
