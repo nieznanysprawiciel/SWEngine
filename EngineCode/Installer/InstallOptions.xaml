@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Installer"
 		xmlns:view="clr-namespace:Installer.ViewHelpers"
         mc:Ignorable="d"
-        Title="Schopenhauers Weltschmerz Engine Installer" Height="478.825" Width="750" Icon="SchopenhauerWeltschmerz.ico">
+        Title="Schopenhauers Weltschmerz Engine Installer" Height="480" Width="750" Icon="SchopenhauerWeltschmerz.ico">
 	<Window.Resources>
 		<view:InstalledToImageConverter x:Key="ImageBitmapConverter" />
 		<view:InverseBoolConverter x:Key="InverseBool" />
@@ -29,7 +29,7 @@
 						<Image Width="40" Height="30" Source="{Binding Installed, Converter={StaticResource ImageBitmapConverter}}" />
 						<TextBox VerticalAlignment="Center" Text="{Binding Version, Mode=TwoWay}" Width="100" IsEnabled="{Binding Remote, Converter={StaticResource InverseBool}}" Background="#00333337" BorderBrush="#00434346" Foreground="White" SelectionBrush="#003399FF" />
 						<TextBox VerticalAlignment="Center" Text="{Binding Path, Mode=TwoWay}" Width="470" IsEnabled="{Binding Remote}" Background="Transparent" BorderBrush="#00434346" Foreground="White" SelectionBrush="#003399FF" />
-						<Button Width="70" Content="Katalog" Foreground="#FF1D1616" Click="Button_Click">
+						<Button Width="70" Content="Katalog" IsEnabled="{Binding Remote}" Foreground="#FF1D1616" Click="ChooseDirectoryClick">
 							<Button.Background>
 								<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 									<GradientStop Color="#FFCBE4FD" Offset="0"/>
@@ -41,5 +41,8 @@
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
+		<Button x:Name="InstallButton" Content="Instaluj" Background="#FF4F06B9" Foreground="#FF979797" Margin="621,376,36,31" Click="InstallButton_Click" />
+		<Label x:Name="label" Foreground="White" Content="Wybierz nazwy i ścieżki instalowanych wersji silnika" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="282"/>
+		<Label x:Name="ErrorLabel" Foreground="#FF950E00" Content="" HorizontalAlignment="Left" Margin="376,0,0,403" VerticalAlignment="Bottom" RenderTransformOrigin="0.149,0.113" Width="366" FontWeight="Bold"/>
 	</Grid>
 </Window>

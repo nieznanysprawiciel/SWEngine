@@ -12,6 +12,13 @@ namespace Installer.Version
 	{
 		List< EngineVersionData >       m_versionData;
 
+
+		const string		m_engineKeyName			= "Software\\SchopenhauersWeltschmerz";
+		const string        m_engineRootPathName    = "EngineRootPath";
+		const string        m_solutionRelToRoot     = "Projects/SWEngine.sln";
+
+		const string        m_repositoryURL         = "https://api.github.com/repos/nieznanysprawiciel/SWEngine/releases";
+
 		public VersionManager()
 		{
 			m_versionData = null;
@@ -42,7 +49,7 @@ namespace Installer.Version
 
 			RegistryKey registryKey = Registry.CurrentUser;
 
-			RegistryKey SWEngineReg = registryKey.OpenSubKey( "Software\\SchopenhauersWeltschmerz" );
+			RegistryKey SWEngineReg = registryKey.OpenSubKey( m_engineKeyName );
 			if ( SWEngineReg == null )
 				return versions;
 
@@ -53,7 +60,7 @@ namespace Installer.Version
 				EngineVersionData newRegData = new EngineVersionData();
 
 				RegistryKey enginePathReg = SWEngineReg.OpenSubKey( name );
-				object enginePath = enginePathReg.GetValue( "EngineRootPath" );
+				object enginePath = enginePathReg.GetValue( m_engineRootPathName );
 
 				newRegData.Path = enginePath.ToString();   // Normalize path to avoid wrong comparisions
 				newRegData.Version = name;
@@ -69,7 +76,7 @@ namespace Installer.Version
 		{
 			List<EngineVersionData> versions = new List<EngineVersionData>();
 
-			string solutionPath = Path.Combine( rootPath, "Projects/SWEngine.sln" );
+			string solutionPath = Path.Combine( rootPath, m_solutionRelToRoot );
 
 			if( File.Exists( solutionPath ) )
 			{
@@ -178,6 +185,34 @@ namespace Installer.Version
 			if ( result == 0 )
 				return true;
 			return false;
+		}
+
+		public RegistryKey		OpenOrCreateEngineKey()
+		{
+			RegistryKey registryKey = Registry.CurrentUser;
+			RegistryKey SWEngineReg = registryKey.OpenSubKey( m_engineKeyName );
+
+			if( SWEngineReg == null )
+				SWEngineReg = registryKey.CreateSubKey( m_engineKeyName );
+
+			return SWEngineReg;
+		}
+
+		public bool				RegisterEngineVersion( EngineVersionData versionData )
+		{
+			RegistryKey engineKey = OpenOrCreateEngineKey();
+
+			RegistryKey versionKey = engineKey.OpenSubKey( versionData.Version );
+			if( versionKey != null )
+			{
+				// Obsługa błędów.
+				return false;
+			}
+
+			versionKey = engineKey.CreateSubKey( versionData.Version );
+			versionKey.SetValue( m_engineRootPathName, versionData.Path );
+
+			return true;
 		}
 
 	}

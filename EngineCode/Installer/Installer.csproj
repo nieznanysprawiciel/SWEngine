@@ -71,6 +71,8 @@
       <DependentUpon>VersionChecker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Version\VersionManager.cs" />
+    <Compile Include="Version\VisualStudioData.cs" />
+    <Compile Include="Version\VisualStudioVersion.cs" />
     <Compile Include="ViewHelpers\InstalledToImageConverter.cs" />
     <Compile Include="ViewHelpers\InverseBoolConverter.cs" />
     <Compile Include="App.xaml.cs">
