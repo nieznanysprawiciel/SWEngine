@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Installer.Version
 {
-	class VersionManager
+	public class VersionManager
 	{
 		List< EngineVersionData >       m_versionData;
 
@@ -76,7 +76,7 @@ namespace Installer.Version
 				EngineVersionData localRepoData = new EngineVersionData();
 				localRepoData.Path = rootPath;
 				localRepoData.Installed = false;
-				localRepoData.Version = "local";
+				localRepoData.Version = "Repository";
 				localRepoData.Remote = false;
 
 				versions.Add( localRepoData );
@@ -90,7 +90,7 @@ namespace Installer.Version
 			List<EngineVersionData> versions = new List<EngineVersionData>();
 
 			HttpWebRequest releasesRequest = (HttpWebRequest)HttpWebRequest.Create( "https://api.github.com/repos/nieznanysprawiciel/SWEngine/releases" );
-			releasesRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)";
+			releasesRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)";	// Udajemy przeglądarkę.
 
 			HttpWebResponse response = (HttpWebResponse)releasesRequest.GetResponse();
 
@@ -103,7 +103,8 @@ namespace Installer.Version
 			foreach( var release in releasesJson )
 			{
 				EngineVersionData remoteVersionData = new EngineVersionData();
-				remoteVersionData.Path = (string)release[ "zipball_url" ];
+				remoteVersionData.RemotePath = (string)release[ "zipball_url" ];
+				remoteVersionData.Path = remoteVersionData.RemotePath;
 				remoteVersionData.Installed = false;
 				remoteVersionData.Version = (string)release[ "tag_name" ];
 				remoteVersionData.Remote = true;
@@ -117,19 +118,42 @@ namespace Installer.Version
 			return versions;
 		}
 
+		private EngineVersionData FindVersionByVersionName( string versionName, List<EngineVersionData> resultList )
+		{
+			foreach( var resultData in resultList )
+			{
+				if( versionName == resultData.Version )
+					return resultData;
+			}
+			return null;
+		}
+
+		public EngineVersionData FindVersionByVersionName( string versionName )
+		{
+			return FindVersionByVersionName( versionName, m_versionData );
+		}
+
+		private EngineVersionData FindVersionByPath( string path, List<EngineVersionData> resultList )
+		{
+			foreach( var resultData in resultList )
+			{
+				if( ComparePaths( path, resultData.Path ) )
+					return resultData;
+			}
+			return null;
+		}
+
+		public EngineVersionData FindVersionByPath( string versionPath )
+		{
+			return FindVersionByVersionName( versionPath, m_versionData );
+		}
+
 		/**@brief Dołącza do listy resultList elementy, których tam jeszcze nie było.*/
 		private void CombineVersionsByVersion( ref List<EngineVersionData> resultList, List<EngineVersionData> srcList )
 		{
 			foreach( EngineVersionData srcData in srcList )
 			{
-				bool found = false;
-				foreach( var resultData in resultList )
-				{
-					if ( srcData.Version == resultData.Version )
-						found = true;
-				}
-
-				if ( !found )
+				if ( FindVersionByVersionName( srcData.Version, resultList ) == null )
 					resultList.Add( srcData );
 			}
 		}
@@ -139,14 +163,7 @@ namespace Installer.Version
 		{
 			foreach ( EngineVersionData srcData in srcList )
 			{
-				bool found = false;
-				foreach ( var resultData in resultList )
-				{
-					if ( ComparePaths( srcData.Path, resultData.Path ) )
-						found = true;
-				}
-
-				if ( !found )
+				if ( FindVersionByPath( srcData.Path, resultList ) == null )
 					resultList.Add( srcData );
 			}
 		}

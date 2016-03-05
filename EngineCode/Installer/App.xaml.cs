@@ -13,14 +13,22 @@ namespace Installer
     /// </summary>
     public partial class App : Application
     {
-		//private void pplicationStart( object sender, StartupEventArgs e )
-		//{
-		//	Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+		private void ApplicationStart( object sender, StartupEventArgs e )
+		{
+			Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
-		//	var registryCheckerDialog = new RegistryChecker();
+			var versionCheckerDialog = new VersionChecker();
 
-		//	registryCheckerDialog.Show();
-		//}
+			if( versionCheckerDialog.ShowDialog().Value )
+			{
+				var result = versionCheckerDialog.GetResult();
+				var installOptionsDialog = new InstallOptions( result, versionCheckerDialog.GetVersionManager() );
+
+				installOptionsDialog.ShowDialog();
+			}
+
+			Current.Shutdown( -1 );
+		}
 
 	}
 }

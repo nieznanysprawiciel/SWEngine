@@ -21,7 +21,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>$(IntermediateOutputPath)\</OutputPath>
+    <OutputPath>..\..\Install\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -62,26 +63,25 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Compile Include="InstallOptions.xaml.cs">
+      <DependentUpon>InstallOptions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Version\EngineVersionData.cs" />
-    <Compile Include="RegistryChecker.xaml.cs">
-      <DependentUpon>RegistryChecker.xaml</DependentUpon>
+    <Compile Include="VersionChecker.xaml.cs">
+      <DependentUpon>VersionChecker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Version\VersionManager.cs" />
     <Compile Include="ViewHelpers\InstalledToImageConverter.cs" />
     <Compile Include="ViewHelpers\InverseBoolConverter.cs" />
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="RegistryChecker.xaml">
+    <Page Include="InstallOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VersionChecker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
