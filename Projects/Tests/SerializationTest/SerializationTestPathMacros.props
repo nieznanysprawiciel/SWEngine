@@ -5,8 +5,8 @@
     <SerializationTestName>SerializationTest</SerializationTestName>
     <SerializationTestLibDir>$(EngineLibDir)$(SerializationTestName)\</SerializationTestLibDir>
     <SerializationTestSourceDir>$(EngineSourceDir)$(SerializationTestName)\</SerializationTestSourceDir>
-    <SerializationTestFileName>$(SerializationTestName)_$(Configuration)_$(PlatformShortName)</SerializationTestFileName>
-    <SerializationTestBuildDir>$(EngineBuildDir)$(SerializationTestName)_$(Configuration)_$(PlatformShortName)\</SerializationTestBuildDir>
+    <SerializationTestFileName>$(SerializationTestName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</SerializationTestFileName>
+    <SerializationTestBuildDir>$(EngineBuildDir)$(SerializationTestName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</SerializationTestBuildDir>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup />

@@ -5,8 +5,8 @@
     <InteropD3DImageExName>Interop.D3DImageEx</InteropD3DImageExName>
     <InteropD3DImageExLibDir>$(EngineLibDir)$(InteropD3DImageExName)\</InteropD3DImageExLibDir>
     <InteropD3DImageExSourceDir>$(EngineSourceDir)$(InteropD3DImageExName)\</InteropD3DImageExSourceDir>
-    <InteropD3DImageExFileName>$(InteropD3DImageExName)_$(Configuration)_$(PlatformShortName)</InteropD3DImageExFileName>
-    <InteropD3DImageExBuildDir>$(EngineBuildDir)$(InteropD3DImageExName)_$(Configuration)_$(PlatformShortName)\</InteropD3DImageExBuildDir>
+    <InteropD3DImageExFileName>$(InteropD3DImageExName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</InteropD3DImageExFileName>
+    <InteropD3DImageExBuildDir>$(EngineBuildDir)$(InteropD3DImageExName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</InteropD3DImageExBuildDir>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup>

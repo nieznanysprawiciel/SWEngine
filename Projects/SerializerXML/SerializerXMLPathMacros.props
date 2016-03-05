@@ -5,8 +5,8 @@
     <SerializerXMLName>SerializerXML</SerializerXMLName>
     <SerializerXMLLibDir>$(EngineLibDir)$(SerializerXMLName)\</SerializerXMLLibDir>
     <SerializerXMLSourceDir>$(EngineSourceDir)$(SerializerXMLName)\</SerializerXMLSourceDir>
-    <SerializerXMLFileName>$(EngineShortcut)$(SerializerXMLName)_$(Configuration)_$(PlatformShortName)</SerializerXMLFileName>
-    <SerializerXMLBuildDir>$(EngineBuildDir)$(SerializerXMLName)_$(Configuration)_$(PlatformShortName)\</SerializerXMLBuildDir>
+    <SerializerXMLFileName>$(EngineShortcut)$(SerializerXMLName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</SerializerXMLFileName>
+    <SerializerXMLBuildDir>$(EngineBuildDir)$(SerializerXMLName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</SerializerXMLBuildDir>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup>

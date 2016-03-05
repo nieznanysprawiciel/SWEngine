@@ -5,8 +5,8 @@
     <SerializationXMLTestName>SerializationXMLTest</SerializationXMLTestName>
     <SerializationXMLTestLibDir>$(EngineLibDir)$(SerializationXMLTestName)\</SerializationXMLTestLibDir>
     <SerializationXMLTestSourceDir>$(EngineSourceDir)$(SerializationXMLTestName)\</SerializationXMLTestSourceDir>
-    <SerializationXMLTestFileName>$(SerializationXMLTestName)_$(Configuration)_$(PlatformShortName)</SerializationXMLTestFileName>
-    <SerializationXMLTestBuildDir>$(EngineBuildDir)$(SerializationXMLTestName)_$(Configuration)_$(PlatformShortName)\</SerializationXMLTestBuildDir>
+    <SerializationXMLTestFileName>$(SerializationXMLTestName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</SerializationXMLTestFileName>
+    <SerializationXMLTestBuildDir>$(EngineBuildDir)$(SerializationXMLTestName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</SerializationXMLTestBuildDir>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup />

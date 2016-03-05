@@ -5,8 +5,8 @@
     <LightmapsToolName>LightmapsTool</LightmapsToolName>
     <LightmapsToolLibDir>$(EngineLibDir)$(LightmapsToolName)\</LightmapsToolLibDir>
     <LightmapsToolSourceDir>$(EngineSourceDir)$(LightmapsToolName)\</LightmapsToolSourceDir>
-    <LightmapsToolFileName>$(EngineShortcut)$(LightmapsToolName)_$(Configuration)_$(PlatformShortName)</LightmapsToolFileName>
-    <LightmapsToolBuildDir>$(EngineBuildDir)$(LightmapsToolName)_$(Configuration)_$(PlatformShortName)\</LightmapsToolBuildDir>
+    <LightmapsToolFileName>$(EngineShortcut)$(LightmapsToolName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</LightmapsToolFileName>
+    <LightmapsToolBuildDir>$(EngineBuildDir)$(LightmapsToolName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</LightmapsToolBuildDir>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup>

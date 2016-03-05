@@ -5,8 +5,8 @@
     <SWEngineGUIName>EngineGUI</SWEngineGUIName>
     <SWEngineGUILibDir>$(EngineLibDir)$(SWEngineGUIName)\</SWEngineGUILibDir>
     <SWEngineGUISourceDir>$(EngineSourceDir)$(SWEngineGUIName)\</SWEngineGUISourceDir>
-    <SWEngineGUIFileName>$(EngineShortcut)$(SWEngineGUIName)_$(Configuration)_$(PlatformShortName)</SWEngineGUIFileName>
-    <SWEngineGUIBuildDir>$(EngineBuildDir)$(SWEngineGUIName)_$(Configuration)_$(PlatformShortName)\</SWEngineGUIBuildDir>
+    <SWEngineGUIFileName>$(EngineShortcut)$(SWEngineGUIName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</SWEngineGUIFileName>
+    <SWEngineGUIBuildDir>$(EngineBuildDir)$(SWEngineGUIName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</SWEngineGUIBuildDir>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup>

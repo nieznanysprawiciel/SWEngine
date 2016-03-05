@@ -5,8 +5,8 @@
     <SerializerJsonName>SerializerJson</SerializerJsonName>
     <SerializerJsonLibDir>$(EngineLibDir)$(SerializerJsonName)\</SerializerJsonLibDir>
     <SerializerJsonSourceDir>$(EngineSourceDir)$(SerializerJsonName)\</SerializerJsonSourceDir>
-    <SerializerJsonFileName>$(EngineShortcut)$(SerializerJsonName)_$(Configuration)_$(PlatformShortName)</SerializerJsonFileName>
-    <SerializerJsonBuildDir>$(EngineBuildDir)$(SerializerJsonName)_$(Configuration)_$(PlatformShortName)\</SerializerJsonBuildDir>
+    <SerializerJsonFileName>$(EngineShortcut)$(SerializerJsonName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</SerializerJsonFileName>
+    <SerializerJsonBuildDir>$(EngineBuildDir)$(SerializerJsonName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</SerializerJsonBuildDir>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup>

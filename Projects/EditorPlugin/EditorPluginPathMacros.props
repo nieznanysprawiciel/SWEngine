@@ -5,8 +5,8 @@
     <EditorPluginName>EditorPlugin</EditorPluginName>
     <EditorPluginLibDir>$(EngineLibDir)$(EditorPluginName)\</EditorPluginLibDir>
     <EditorPluginSourceDir>$(EngineSourceDir)$(EditorPluginName)\</EditorPluginSourceDir>
-    <EditorPluginFileName>$(EditorPluginName)_$(Configuration)_$(PlatformShortName)</EditorPluginFileName>
-    <EditorPluginBuildDir>$(EngineBuildDir)$(EditorPluginName)_$(Configuration)_$(PlatformShortName)\</EditorPluginBuildDir>
+    <EditorPluginFileName>$(EditorPluginName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</EditorPluginFileName>
+    <EditorPluginBuildDir>$(EngineBuildDir)$(EditorPluginName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</EditorPluginBuildDir>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup />

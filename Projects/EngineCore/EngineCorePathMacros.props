@@ -5,8 +5,8 @@
     <EngineCoreName>EngineCore</EngineCoreName>
     <EngineCoreLibDir>$(EngineLibDir)$(EngineCoreName)\</EngineCoreLibDir>
     <EngineCoreSourceDir>$(EngineSourceDir)$(EngineCoreName)\</EngineCoreSourceDir>
-    <EngineCoreFileName>$(EngineShortcut)$(EngineCoreName)_$(Configuration)_$(PlatformShortName)</EngineCoreFileName>
-    <EngineCoreBuildDir>$(EngineBuildDir)$(EngineCoreName)_$(Configuration)_$(PlatformShortName)\</EngineCoreBuildDir>
+    <EngineCoreFileName>$(EngineShortcut)$(EngineCoreName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</EngineCoreFileName>
+    <EngineCoreBuildDir>$(EngineBuildDir)$(EngineCoreName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</EngineCoreBuildDir>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup>

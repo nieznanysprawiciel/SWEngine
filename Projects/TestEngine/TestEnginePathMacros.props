@@ -5,8 +5,8 @@
     <TestEngineName>TestEngine</TestEngineName>
     <TestEngineLibDir>$(EngineLibDir)$(TestEngineName)\</TestEngineLibDir>
     <TestEngineSourceDir>$(EngineSourceDir)$(TestEngineName)\</TestEngineSourceDir>
-    <TestEngineFileName>$(TestEngineName)_$(Configuration)_$(PlatformShortName)</TestEngineFileName>
-    <TestEngineBuildDir>$(EngineBuildDir)$(TestEngineName)_$(Configuration)_$(PlatformShortName)\</TestEngineBuildDir>
+    <TestEngineFileName>$(TestEngineName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</TestEngineFileName>
+    <TestEngineBuildDir>$(EngineBuildDir)$(TestEngineName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</TestEngineBuildDir>
   </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup />
