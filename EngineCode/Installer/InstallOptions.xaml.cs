@@ -10,9 +10,11 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Installer.Version;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Net;
+using System.IO;
 
 namespace Installer
 {
@@ -22,14 +24,18 @@ namespace Installer
 	public partial class InstallOptions : Window
 	{
 		List<EngineVersionData>     m_install;
+		List<VisualStudioData>      m_visualVersions;
 		VersionManager              m_versionManager;
 
 		string						defaultPath = "D:\\ProgramyVS\\SWEngine\\";
+
+		private BackgroundWorker    m_installWorker;
 
 		public InstallOptions( List<EngineVersionData> toInstall, VersionManager manager )
 		{
 			m_install = toInstall;
 			m_versionManager = manager;
+			m_visualVersions = Version.VisualStudioVersion.ListVisualVersions();
 
 			foreach( var version in toInstall )
 			{
@@ -41,6 +47,15 @@ namespace Installer
 			InitializeComponent();
 
 			listBox.DataContext = m_install;
+			VisualStudioVersion.DataContext = m_visualVersions;
+			EndButton.IsEnabled = true;
+
+			m_installWorker = new BackgroundWorker();
+			m_installWorker.DoWork += new DoWorkEventHandler( InstallDoWork );
+			m_installWorker.ProgressChanged += new ProgressChangedEventHandler( InstallProgress );
+			m_installWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler( InstallCompleted );
+			m_installWorker.WorkerReportsProgress = true;
+			m_installWorker.WorkerSupportsCancellation = false;
 		}
 
 		
@@ -66,7 +81,7 @@ namespace Installer
 				if( version.Remote )
 				{
 					var installed = m_versionManager.FindVersionByVersionName( version.Version );
-					if( installed != null )
+					if( installed != null && installed.Installed )
 					{
 						ErrorLabel.Content = "Wersja silnika o nazwie [" + version.Version + "] jest już zainstalowana.";
 						return;
@@ -85,6 +100,21 @@ namespace Installer
 
 			// Czyszczenie komunikatu o błędach.
 			ErrorLabel.Content = "";
+			InstallButton.IsEnabled = false;
+			EndButton.IsEnabled = false;
+
+			m_installWorker.RunWorkerAsync();
+
+			Refresh();
+		}
+
+
+
+		void InstallDoWork( object sender, DoWorkEventArgs e )
+		{
+			BackgroundWorker worker = sender as BackgroundWorker;
+
+			int numInstalled = 0;
 
 			// Installing
 			foreach( var version in m_install )
@@ -95,23 +125,123 @@ namespace Installer
 				else
 					result = InstallLocal( version );
 				version.Installed = result;
+
+				numInstalled++;
+				worker.ReportProgress( numInstalled * 100 / m_install.Count );
 			}
 
+		}
+
+		void InstallCompleted( object sender, RunWorkerCompletedEventArgs e )
+		{
+			EndButton.IsEnabled = true;
+		}
+
+		private void InstallProgress( object sender, ProgressChangedEventArgs e )
+		{
+			Refresh();
+		}
+
+		void Refresh()
+		{
 			listBox.DataContext = null;
 			listBox.DataContext = m_install;
-
-			InstallButton.IsEnabled = false;
 		}
+
+
+
 
 		private bool InstallRemote( EngineVersionData versionData )
 		{
+			bool result = LoadVersionFromWeb( versionData );
 
-			return false;
+			if( !result )
+				return false;
+
+			result = UnzipVersion( versionData );
+			if( !result )
+				return false;
+
+			versionData.Path = Path.Combine( versionData.Path + versionData.Version ) + "\\";
+
+			result = m_versionManager.RegisterEngineVersion( versionData );
+
+			if( result )
+				versionData.Installed = true;
+
+			return result;
 		}
 
 		private bool InstallLocal( EngineVersionData versionData )
 		{
 			return m_versionManager.RegisterEngineVersion( versionData );
 		}
+
+
+		private bool LoadVersionFromWeb( EngineVersionData versionData )
+		{
+			if( !versionData.Remote )
+				return false;
+
+
+			try
+			{
+				HttpWebRequest releasesRequest = (HttpWebRequest)HttpWebRequest.Create( versionData.RemotePath );
+				releasesRequest.UserAgent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)";  // Udajemy przeglądarkę.
+
+				HttpWebResponse response = (HttpWebResponse)releasesRequest.GetResponse();
+
+				using( Stream output = File.OpenWrite( Path.Combine( versionData.Path, versionData.Version + ".zip" ) ) )
+				using( Stream receiveStream = response.GetResponseStream() )
+				{
+					receiveStream.CopyTo( output );
+				}
+			}
+			catch( Exception e )
+			{
+				Console.Write( e.ToString() );
+				return false;
+			}
+
+			return true;
+		}
+
+		private bool UnzipVersion( EngineVersionData versionData )
+		{
+			string zipPath = Path.Combine( versionData.Path, versionData.Version + ".zip" );
+			try
+			{
+				string unzipDir = Path.Combine( versionData.Path, "~temp" + versionData.Version );
+				System.IO.Compression.ZipFile.ExtractToDirectory( zipPath, unzipDir );
+
+				var dirs = Directory.GetDirectories( unzipDir );
+				if( dirs.Length != 1 )
+					return false;
+
+				string unzipInnerDir = Path.Combine( unzipDir, dirs[ 0 ] );
+
+				Directory.Move( unzipInnerDir, Path.Combine( versionData.Path, versionData.Version ) );
+				Directory.Delete( unzipDir );
+
+				return true;
+			}
+			catch( Exception e )
+			{
+				Console.Write( e.ToString() );
+			}
+			finally
+			{
+				File.Delete( zipPath );
+			}
+
+			return false;
+		}
+
+		private void EndButton_Click( object sender, RoutedEventArgs e )
+		{
+			DialogResult = false;
+			Close();
+		}
 	}
+
 }

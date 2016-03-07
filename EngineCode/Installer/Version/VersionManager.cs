@@ -209,7 +209,8 @@ namespace Installer.Version
 				return false;
 			}
 
-			versionKey = engineKey.CreateSubKey( versionData.Version );
+			versionKey = Registry.CurrentUser.CreateSubKey( m_engineKeyName + "\\" + versionData.Version );
+			//versionKey = engineKey.CreateSubKey( versionData.Version );
 			versionKey.SetValue( m_engineRootPathName, versionData.Path );
 
 			return true;

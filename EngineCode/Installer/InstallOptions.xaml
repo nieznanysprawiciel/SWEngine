@@ -44,5 +44,26 @@
 		<Button x:Name="InstallButton" Content="Instaluj" Background="#FF4F06B9" Foreground="#FF979797" Margin="621,376,36,31" Click="InstallButton_Click" />
 		<Label x:Name="label" Foreground="White" Content="Wybierz nazwy i ścieżki instalowanych wersji silnika" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="282"/>
 		<Label x:Name="ErrorLabel" Foreground="#FF950E00" Content="" HorizontalAlignment="Left" Margin="376,0,0,403" VerticalAlignment="Bottom" RenderTransformOrigin="0.149,0.113" Width="366" FontWeight="Bold"/>
+		<ListView x:Name="VisualStudioVersion" HorizontalAlignment="Left" Height="140" Margin="68,278,0,0" VerticalAlignment="Top" Width="200" ItemsSource="{Binding}" SelectionMode="Multiple">
+			<ListBox.Background>
+				<SolidColorBrush Color="White" Opacity="0"/>
+			</ListBox.Background>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal">
+						<Image Width="40" Height="30" Source="{Binding Exists, Converter={StaticResource ImageBitmapConverter}}" />
+						<TextBox VerticalAlignment="Center" IsEnabled="False" Text="{Binding ToolsetName}" Width="100" Background="Transparent" BorderBrush="#00434346" Foreground="White" SelectionBrush="#003399FF"/>
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListView>
+		<Label x:Name="VisualVersionLabel" Foreground="White" Content="Wersje Visual Studio:" HorizontalAlignment="Left" Margin="68,252,0,0" VerticalAlignment="Top" Width="233"/>
+		<CheckBox x:Name="BuildEngine" Content="Zbuduj silnik dla wybranych wersji" Foreground="White" HorizontalAlignment="Left" Margin="288,278,0,0" VerticalAlignment="Top" Width="206" />
+		<TextBlock TextWrapping="WrapWithOverflow" HorizontalAlignment="Left" Margin="288,309,0,41" Width="206" Foreground="#FFE0D6D3">
+			Silnik wymaga zainstalowanego Visual Studio do kompilacji projektów.
+			Możesz zainstalować je później, ale będziesz musiał skompilować projekty sam. (Co nie jest trudne)
+		</TextBlock>
+
+		<Button x:Name="EndButton" Content="Zakończ" Background="#FF4F06B9" Foreground="#FF979797" Margin="514,376,143,31" Click="EndButton_Click" />
 	</Grid>
 </Window>

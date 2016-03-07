@@ -8,6 +8,15 @@ namespace Installer.Version
 {
 	public class VisualStudioData
 	{
-		//string		
+		public string		ToolsetPath { set; get; }
+		public string		ToolsetName { get; set; }
+		public bool			Exists		{ get; set; }
+
+		public VisualStudioData( string path, string name, bool exists)
+		{
+			ToolsetPath = path;
+			ToolsetName = name;
+			Exists = exists;
+		}
 	}
 }

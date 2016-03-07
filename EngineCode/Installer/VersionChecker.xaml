@@ -18,7 +18,7 @@
 				<GradientStop Color="#FF70B2E0"/>
 			</LinearGradientBrush>
 		</Grid.Background>
-		<ListBox x:Name="listBox" HorizontalAlignment="Left" Height="303" Margin="10,93,0,0" VerticalAlignment="Top" Width="672" ItemsSource="{Binding}" BorderBrush="#005F1195" BorderThickness="2" Foreground="#FFE0D6D3">
+		<ListBox x:Name="listBox" HorizontalAlignment="Left" Height="282" Margin="10,114,0,0" VerticalAlignment="Top" Width="672" ItemsSource="{Binding}" BorderBrush="#005F1195" BorderThickness="2" Foreground="#FFE0D6D3">
 			<ListBox.Background>
 				<SolidColorBrush Color="White" Opacity="0"/>
 			</ListBox.Background>
@@ -33,9 +33,15 @@
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
-		<Label x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="10,65,0,0" VerticalAlignment="Top" Width="149" Content="Dostępne wersje silnika:" Foreground="#FFE0D6D3"/>
-		<Label x:Name="label" Content="Instaluj" HorizontalAlignment="Left" Margin="636,62,0,0" VerticalAlignment="Top" Width="56" Foreground="#FFE0D6D3" />
+		<Label x:Name="textBox" HorizontalAlignment="Left" Height="28" Margin="12,86,0,0" VerticalAlignment="Top" Width="149" Content="Dostępne wersje silnika:" Foreground="#FFE0D6D3"/>
+		<Label x:Name="label" Content="Instaluj" HorizontalAlignment="Left" Margin="638,83,0,0" VerticalAlignment="Top" Width="56" Foreground="#FFE0D6D3" />
 		<Button x:Name="CancelButton" Content="Anuluj" HorizontalAlignment="Left" Margin="607,412,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.867,0.25" Background="#FF4F06B9" Foreground="#FF979797" Click="CancelButton_Click"/>
 		<Button x:Name="InstallButton" Content="Instaluj" HorizontalAlignment="Left" Margin="527,412,0,0" VerticalAlignment="Top" Width="75" Background="#FF4F06B9" Foreground="#FF979797" Click="InstallButton_Click"/>
+		<TextBlock TextWrapping="WrapWithOverflow" HorizontalAlignment="Left" Margin="10,10,0,370" Width="682" Foreground="#FFE0D6D3" FontSize="13.333">
+			Zaznacz wersje silnika do zainstalowania. Jeżeli nie stworzyłeś żadnych gier wymagających starszych wersji
+			silnika, nie ma potrzeby instalowania niczego innego niż repozytorium. Instalacja ustawia odpowiednie wartości
+			w rejestrze i jest konieczna do tworzenia własnych projektów.
+		</TextBlock>
+		<Label x:Name="InfoLabel"  VerticalAlignment="Top"  Content="" />
 	</Grid>
 </Window>
