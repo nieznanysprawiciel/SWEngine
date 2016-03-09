@@ -15,6 +15,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net;
 using System.IO;
+using System.Diagnostics;
+using Microsoft.Build.Execution;
+
+
 
 namespace Installer
 {
@@ -26,6 +30,7 @@ namespace Installer
 		List<EngineVersionData>     m_install;
 		List<VisualStudioData>      m_visualVersions;
 		VersionManager              m_versionManager;
+		bool                        m_compile;
 
 		string						defaultPath = "D:\\ProgramyVS\\SWEngine\\";
 
@@ -36,6 +41,7 @@ namespace Installer
 			m_install = toInstall;
 			m_versionManager = manager;
 			m_visualVersions = Version.VisualStudioVersion.ListVisualVersions();
+			m_compile = false;
 
 			foreach( var version in toInstall )
 			{
@@ -103,6 +109,14 @@ namespace Installer
 			InstallButton.IsEnabled = false;
 			EndButton.IsEnabled = false;
 
+			m_compile = BuildEngine.IsChecked.Value;
+
+			m_visualVersions.Clear();
+			foreach( var item in VisualStudioVersion.SelectedItems )
+			{
+				m_visualVersions.Add( item as VisualStudioData );
+			}
+
 			m_installWorker.RunWorkerAsync();
 
 			Refresh();
@@ -163,6 +177,13 @@ namespace Installer
 				return false;
 
 			versionData.Path = Path.Combine( versionData.Path + versionData.Version ) + "\\";
+
+			if( m_compile )
+			{
+				result = BuildVersion( versionData );
+				if( !result )
+					return false;
+			}
 
 			result = m_versionManager.RegisterEngineVersion( versionData );
 
@@ -235,6 +256,62 @@ namespace Installer
 			}
 
 			return false;
+		}
+
+		private bool BuildVersion( EngineVersionData versionData )
+		{
+			string[] configuration = new string[ 4 ];
+			configuration[ 0 ] = "Debug";
+			configuration[ 1 ] = "Release";
+			configuration[ 2 ] = "Debug";
+			configuration[ 3 ] = "Release";
+
+			string[] platform = new string[ 4 ];
+			platform[ 0 ] = "Win32";
+			platform[ 1 ] = "Win32";
+			platform[ 2 ] = "x64";
+			platform[ 3 ] = "x64";
+
+			foreach( var toolset in m_visualVersions )
+			{
+				for( int config = 0; config < 4; ++config )
+				{
+					string arguments = versionData.Path + "Projects\\SWEngine.sln /p:";
+					arguments += "Configuration=" + configuration[ config ];
+					arguments += ";Platform=" + platform[ config ];
+					//arguments += ";PlatformToolset=" + toolset.ToolsetShort;
+
+					Process MSBuildProcess = new Process();
+					MSBuildProcess.StartInfo.FileName = toolset.ToolsetPath + "MSBuild.exe";
+					MSBuildProcess.StartInfo.RedirectStandardOutput = true;
+					MSBuildProcess.StartInfo.UseShellExecute = false;
+					//MSBuildProcess.StartInfo.
+					MSBuildProcess.StartInfo.Arguments = arguments;
+					MSBuildProcess.StartInfo.WorkingDirectory = versionData.Path;
+					MSBuildProcess.Start();
+
+					Console.WriteLine( MSBuildProcess.StandardOutput.ReadToEnd() );
+
+					MSBuildProcess.WaitForExit();
+					MSBuildProcess.Close();
+
+					//Microsoft.Build.Evaluation.ProjectCollection pc = new Microsoft.Build.Evaluation.ProjectCollection();
+
+					//Dictionary<string, string> GlobalProperty = new Dictionary<string, string>();
+
+					//GlobalProperty.Add( "Configuration", configuration[ config ] );
+					//GlobalProperty.Add( "Platform", platform[ config ] );
+					//GlobalProperty.Add( "PlatformToolset", toolset.ToolsetShort );
+
+					//BuildRequestData BuildRequest = new BuildRequestData( versionData.Path + "Projects\\SWEngine.sln", GlobalProperty, null, new string[] { "Build" }, null );
+					//BuildResult buildResult = BuildManager.DefaultBuildManager.Build( new BuildParameters( pc ), BuildRequest );
+				}
+			}
+
+
+
+
+			return true;
 		}
 
 		private void EndButton_Click( object sender, RoutedEventArgs e )

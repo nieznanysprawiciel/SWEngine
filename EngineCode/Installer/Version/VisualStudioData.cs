@@ -10,12 +10,14 @@ namespace Installer.Version
 	{
 		public string		ToolsetPath { set; get; }
 		public string		ToolsetName { get; set; }
+		public string		ToolsetShort{ get; set; }
 		public bool			Exists		{ get; set; }
 
 		public VisualStudioData( string path, string name, bool exists)
 		{
 			ToolsetPath = path;
-			ToolsetName = name;
+			ToolsetName = "Toolset " + name;
+			ToolsetShort = name;
 			Exists = exists;
 		}
 	}
