@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Language>
+	<MainWindow>
+		<MainMenu>
+			<ItemFile Name="File">
+				<ItemNewProject Name="New Project" />
+				<ItemOpenProject Name="Open Project" />
+				<ItemSaveProject Name="Save Project" />
+				<ItemExit Name="Exit" />
+			</ItemFile>
+		</MainMenu>
+	</MainWindow>
+</Language>
