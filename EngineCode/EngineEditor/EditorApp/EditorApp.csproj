@@ -200,6 +200,15 @@
   <ItemGroup>
     <Resource Include="Language\English.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\BlueStyle\MainWindowStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Styles\GreyStyle\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

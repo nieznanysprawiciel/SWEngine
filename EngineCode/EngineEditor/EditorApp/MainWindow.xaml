@@ -3,45 +3,58 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Engine Editor" Height="1000" Width="1920" WindowStartupLocation="CenterScreen">
 	<Window.Resources>
-		<XmlDataProvider x:Key="ControlsLanguageVersion" Source="/Language/english.xml" XPath="Language/MainWindow"/>
+		<ResourceDictionary>
+			<XmlDataProvider x:Key="ControlsLanguageVersion" Source="/Language/Polish.xml" XPath="Language/MainWindow"/>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Styles/BlueStyle/MainWindowStyles.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+
 	</Window.Resources>
+	
+	<Window.Background>
+		<RadialGradientBrush>
+			<GradientStop Color="#FF8AB2F9" Offset="0.089"/>
+			<GradientStop Color="#FF2E4264" Offset="1"/>
+		</RadialGradientBrush>
+	</Window.Background>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
-		
+
 		<!--Main menu-->
-		<Menu Name="MainMenu" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="Auto" Width="Auto" >
+		<Menu Name="MainMenu" Style="{StaticResource MenuStyle}" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="Auto" Width="Auto" >
 			<MenuItem>
 				<MenuItem.Header>
 					<AccessText Text="{Binding Source={StaticResource ControlsLanguageVersion}, XPath=MainMenu/ItemFile/@Name}"/>
 				</MenuItem.Header>
-				
+
 				<!--Subitems-->
-				<MenuItem>
+				<MenuItem Style="{StaticResource MenuItemStyle}">
 					<MenuItem.Header>
 						<AccessText Text="{Binding Source={StaticResource ControlsLanguageVersion}, XPath=MainMenu/ItemFile/ItemNewProject/@Name}"/>
 					</MenuItem.Header>
 				</MenuItem>
-				<MenuItem>
+				<MenuItem Style="{StaticResource MenuItemStyle}">
 					<MenuItem.Header>
 						<AccessText Text="{Binding Source={StaticResource ControlsLanguageVersion}, XPath=MainMenu/ItemFile/ItemOpenProject/@Name}"/>
 					</MenuItem.Header>
 				</MenuItem>
-				<MenuItem>
+				<MenuItem Style="{StaticResource MenuItemStyle}">
 					<MenuItem.Header>
 						<AccessText Text="{Binding Source={StaticResource ControlsLanguageVersion}, XPath=MainMenu/ItemFile/ItemSaveProject/@Name}"/>
 					</MenuItem.Header>
 				</MenuItem>
-				<MenuItem>
+				<MenuItem Style="{StaticResource MenuItemStyle}">
 					<MenuItem.Header>
 						<AccessText Text="{Binding Source={StaticResource ControlsLanguageVersion}, XPath=MainMenu/ItemFile/ItemExit/@Name}"/>
 					</MenuItem.Header>
 				</MenuItem>
 			</MenuItem>
 		</Menu>
-		
+
 		<Grid Grid.Row="1" Height="Auto">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="447"/>
