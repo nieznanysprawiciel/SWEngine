@@ -39,8 +39,8 @@ namespace Installer.Version
 		private static void CheckAndAddVSVersion( string toolsetVersion, List<VisualStudioData> versionData )
 		{
 			toolsetVersion = BuildToolsetVersionName( toolsetVersion );
-			string toolsetVersionUpper = toolsetVersion.ToUpper();
-			string varName = toolsetVersionUpper + "COMNTOOLS";
+			string varName = "VS" + toolsetVersion + "COMNTOOLS";
+			toolsetVersion = "v" + toolsetVersion;
 
 			var toolsetPath = Environment.GetEnvironmentVariable( varName );
 			if( toolsetPath != null )
@@ -51,7 +51,8 @@ namespace Installer.Version
 
 		private static void CheckAndAddVSVersion( string toolsetVersion, List<VisualStudioData> versionData, RegistryKey toolsetReg )
 		{
-			string toolsetVersionName = BuildToolsetVersionName( toolsetVersion );
+			string toolsetVersionName = toolsetVersion;
+			//string toolsetVersionName = BuildToolsetVersionName( toolsetVersion );
 
 			if( toolsetReg != null )
 			{
@@ -85,7 +86,7 @@ namespace Installer.Version
 
 		private static string BuildToolsetVersionName( string toolsetVersion )
 		{
-			return "vs" + toolsetVersion.Replace( ".", "" );
+			return toolsetVersion.Replace( ".", "" );
 		}
 	}
 }

@@ -176,6 +176,8 @@ namespace Installer
 			if( !result )
 				return false;
 
+			//bool result;	// delete
+
 			versionData.Path = Path.Combine( versionData.Path + versionData.Version ) + "\\";
 
 			if( m_compile )
@@ -272,44 +274,57 @@ namespace Installer
 			platform[ 2 ] = "x64";
 			platform[ 3 ] = "x64";
 
+
+			Microsoft.Build.BuildEngine.ConsoleLogger logger = new Microsoft.Build.BuildEngine.ConsoleLogger();
+			Microsoft.Build.Evaluation.ProjectCollection pc = new Microsoft.Build.Evaluation.ProjectCollection();
+
+			BuildParameters buildParams = new BuildParameters( pc );
+			buildParams.Loggers = new List< Microsoft.Build.Framework.ILogger > { logger }.AsEnumerable();
+			buildParams.UICulture = System.Globalization.CultureInfo.CreateSpecificCulture( "en-US" );
+
+			BuildManager.DefaultBuildManager.BeginBuild( buildParams );
+
 			foreach( var toolset in m_visualVersions )
 			{
 				for( int config = 0; config < 4; ++config )
 				{
-					string arguments = versionData.Path + "Projects\\SWEngine.sln /p:";
-					arguments += "Configuration=" + configuration[ config ];
-					arguments += ";Platform=" + platform[ config ];
-					//arguments += ";PlatformToolset=" + toolset.ToolsetShort;
+					//string arguments = versionData.Path + "Projects\\SWEngine.sln /p:";
+					//arguments += "Configuration=" + configuration[ config ];
+					//arguments += ";Platform=" + platform[ config ];
+					////arguments += ";PlatformToolset=" + toolset.ToolsetShort;
 
-					Process MSBuildProcess = new Process();
-					MSBuildProcess.StartInfo.FileName = toolset.ToolsetPath + "MSBuild.exe";
-					MSBuildProcess.StartInfo.RedirectStandardOutput = true;
-					MSBuildProcess.StartInfo.UseShellExecute = false;
-					//MSBuildProcess.StartInfo.
-					MSBuildProcess.StartInfo.Arguments = arguments;
-					MSBuildProcess.StartInfo.WorkingDirectory = versionData.Path;
-					MSBuildProcess.Start();
+					//Process MSBuildProcess = new Process();
+					//MSBuildProcess.StartInfo.FileName = Environment.GetEnvironmentVariable( "ComSpec" );// + toolset.ToolsetPath + "VsDevCmd.bat";// + "MSBuild.exe";
+					//MSBuildProcess.StartInfo.RedirectStandardOutput = false;
+					////MSBuildProcess.StartInfo.RedirectStandardInput = true;
+					//MSBuildProcess.StartInfo.UseShellExecute = false;
+					//MSBuildProcess.StartInfo.Arguments = toolset.ToolsetPath + "VsDevCmd.bat";
+					//MSBuildProcess.StartInfo.WorkingDirectory = "D:\\Program Files\\Microsoft Visual Studio 14.0\\";
+					//MSBuildProcess.Start();
 
-					Console.WriteLine( MSBuildProcess.StandardOutput.ReadToEnd() );
+					//MSBuildProcess.StandardInput.WriteLine( "MSBuild.exe " + arguments );
 
-					MSBuildProcess.WaitForExit();
-					MSBuildProcess.Close();
+					////Console.WriteLine( MSBuildProcess.StandardOutput.ReadToEnd() );
 
-					//Microsoft.Build.Evaluation.ProjectCollection pc = new Microsoft.Build.Evaluation.ProjectCollection();
+					//MSBuildProcess.WaitForExit();
+					//MSBuildProcess.Close();
 
-					//Dictionary<string, string> GlobalProperty = new Dictionary<string, string>();
+					
+					Dictionary<string, string> GlobalProperty = new Dictionary<string, string>();
 
-					//GlobalProperty.Add( "Configuration", configuration[ config ] );
-					//GlobalProperty.Add( "Platform", platform[ config ] );
-					//GlobalProperty.Add( "PlatformToolset", toolset.ToolsetShort );
+					GlobalProperty.Add( "Configuration", configuration[ config ] );
+					GlobalProperty.Add( "Platform", platform[ config ] );
+					GlobalProperty.Add( "PlatformToolset", toolset.ToolsetShort );
 
-					//BuildRequestData BuildRequest = new BuildRequestData( versionData.Path + "Projects\\SWEngine.sln", GlobalProperty, null, new string[] { "Build" }, null );
-					//BuildResult buildResult = BuildManager.DefaultBuildManager.Build( new BuildParameters( pc ), BuildRequest );
+					BuildRequestData BuildRequest = new BuildRequestData( versionData.Path + "Projects\\SWEngine.sln", GlobalProperty, null, new string[] { "Build" }, null );
+					BuildResult buildResult = BuildManager.DefaultBuildManager.BuildRequest( BuildRequest );
+					
+
 				}
 			}
 
-
-
+			BuildManager.DefaultBuildManager.EndBuild();
+			BuildManager.DefaultBuildManager.Dispose();
 
 			return true;
 		}
