@@ -14,6 +14,8 @@ namespace EditorApp
 		private EngineWrapper					m_engine;
 		private bool							m_editorReady = false;
 
+		private FileSystem.PathsManager         m_pathManager;
+
 		public MainWindow()
         {
             System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo("en-US");
@@ -24,7 +26,10 @@ namespace EditorApp
 
         void MainWindowLoaded( object sender, RoutedEventArgs e )
         {
-            m_ViewportSurface = new D3DImageEx();
+			m_pathManager = new FileSystem.PathsManager();
+			m_pathManager.InitPaths( null );
+
+			m_ViewportSurface = new D3DImageEx();
             EngineViewport.Source = m_ViewportSurface;
 
             m_engine = new EngineWrapper();

@@ -5,7 +5,7 @@
   <PropertyGroup>
     <TargetName>$(InteropD3DImageExFileName)</TargetName>
     <IntDir>$(InteropD3DImageExBuildDir)</IntDir>
-    <OutDir>$(EditorReleaseDir)</OutDir>
+    <OutDir>$(InteropD3DImageExLibDir)</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>

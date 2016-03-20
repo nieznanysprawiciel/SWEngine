@@ -74,7 +74,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>$(IntermediateOutputPath)\</OutputPath>
+    <OutputPath>..\..\..\EditorRelease\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -96,7 +96,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>$(EditorReleaseDir)</OutputPath>
+    <OutputPath>$(IntermediateOutputPath)\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -137,6 +137,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FileSystem\PathsManager.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -173,10 +174,12 @@
     <ProjectReference Include="..\..\..\Projects\EditorPlugin\EditorPlugin.vcxproj">
       <Project>{d6d5f6ef-4b74-4ebe-8d8d-e76c7c423d05}</Project>
       <Name>EditorPlugin</Name>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Projects\Interop.D3DImageEx\Interop.D3DImageEx.vcxproj">
       <Project>{2953f688-1281-443a-886f-95b25002c7b7}</Project>
       <Name>Interop.D3DImageEx</Name>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

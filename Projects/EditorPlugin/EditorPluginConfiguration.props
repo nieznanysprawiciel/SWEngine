@@ -5,7 +5,7 @@
   <PropertyGroup>
     <IntDir>$(EditorPluginBuildDir)\</IntDir>
     <TargetName>$(EditorPluginFileName)</TargetName>
-    <OutDir>$(EditorReleaseDir)\</OutDir>
+	<OutDir>$(EditorPluginLibDir)</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
