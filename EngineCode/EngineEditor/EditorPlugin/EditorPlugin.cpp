@@ -86,6 +86,12 @@ void EngineWrapper::TestScene()
 	m_engine->test();
 }
 
+/**@brief Ustawia domyœln¹ kamerê oraz niebo.*/
+void EngineWrapper::BasicScene()
+{
+	m_engine->SetSkydomeAndCamera();
+}
+
 } //EditorPlugin
 
 

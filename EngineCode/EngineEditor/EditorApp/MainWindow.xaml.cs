@@ -14,7 +14,7 @@ namespace EditorApp
 		private EngineWrapper					m_engine;
 		private bool							m_editorReady = false;
 
-		private FileSystem.PathsManager         m_pathManager;
+		private Project.PathsManager			m_pathManager;
 
 		public MainWindow()
         {
@@ -26,8 +26,10 @@ namespace EditorApp
 
         void MainWindowLoaded( object sender, RoutedEventArgs e )
         {
-			m_pathManager = new FileSystem.PathsManager();
-			m_pathManager.InitPaths( null );
+			string[] cmdArgs = Environment.GetCommandLineArgs();
+
+			m_pathManager = new Project.PathsManager();
+			m_pathManager.InitPaths( cmdArgs );
 
 			m_ViewportSurface = new D3DImageEx();
             EngineViewport.Source = m_ViewportSurface;
@@ -40,7 +42,7 @@ namespace EditorApp
             else
                 return;
 
-			m_engine.TestScene();
+			m_engine.BasicScene();
 
 			m_ViewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, m_engine.GetRenderTarget( (ushort)EngineViewport.Width, (ushort)EngineViewport.Height ) );
 

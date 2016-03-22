@@ -52,6 +52,7 @@ namespace EditorPlugin
 		void				ShowWindow					();
 
 		void				TestScene					();
+		void				BasicScene					();
 	};
 
 }

@@ -156,8 +156,13 @@ void Engine::test()
 //	skrzynia->SetModel( new_model );
 //	//skrzynia->set_scale( 0.1 );
 
-	
+	SetSkydomeAndCamera();
 
+
+}
+
+void Engine::SetSkydomeAndCamera()
+{
 	//ustawienie aktywnej kamery
 	CameraObject* camera = actors.CreateActor< CameraObject >( "CameraObject", AsCamera | EnablePreController | EnableMovement );
 	XMVECTOR camera_pos = XMVectorSet( 0.0, 0.0, 0.0, 0.0 );
@@ -187,8 +192,6 @@ void Engine::test()
 	// Ustawiamy œwiat³o pod indeksem 0
 	Context->displayEngine->SetDirectionalLight( direction, color, 0 );
 	Context->displayEngine->SetAmbientLight( DirectX::XMFLOAT4( 0.2f, 0.2f, 0.2f, 1.0f ) );
-
-
 
 }
 
