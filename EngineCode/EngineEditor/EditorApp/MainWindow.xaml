@@ -42,7 +42,7 @@
 						<AccessText Text="{Binding Source={StaticResource ControlsLanguageVersion}, XPath=MainMenu/ItemFile/ItemOpenProject/@Name}"/>
 					</MenuItem.Header>
 				</MenuItem>
-				<MenuItem Style="{StaticResource MenuItemStyle}">
+				<MenuItem Style="{StaticResource MenuItemStyle}" Click="SaveClick" >
 					<MenuItem.Header>
 						<AccessText Text="{Binding Source={StaticResource ControlsLanguageVersion}, XPath=MainMenu/ItemFile/ItemSaveProject/@Name}"/>
 					</MenuItem.Header>

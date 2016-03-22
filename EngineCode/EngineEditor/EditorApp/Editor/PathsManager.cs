@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace EditorApp.Project
+namespace EditorApp.Editor
 {
 	public class PathsManager
 	{
@@ -9,6 +9,7 @@ namespace EditorApp.Project
 
 		string          m_projectDir;
 		string          m_projectFileName;
+
 
 		public void			InitPaths( string[] cmdArguments )
 		{

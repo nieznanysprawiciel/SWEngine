@@ -5,6 +5,7 @@ using System.Windows.Interop;
 using System.Runtime.InteropServices;
 using EditorPlugin;
 
+
 namespace EditorApp
 {
     /**@brief Główne okno edytora.*/
@@ -14,7 +15,8 @@ namespace EditorApp
 		private EngineWrapper					m_engine;
 		private bool							m_editorReady = false;
 
-		private Project.PathsManager			m_pathManager;
+		private Editor.PathsManager				m_pathManager;
+		private Project.Manager                 m_projectManager;
 
 		public MainWindow()
         {
@@ -28,7 +30,8 @@ namespace EditorApp
         {
 			string[] cmdArgs = Environment.GetCommandLineArgs();
 
-			m_pathManager = new Project.PathsManager();
+			m_projectManager = new Project.Manager();
+			m_pathManager = new Editor.PathsManager();
 			m_pathManager.InitPaths( cmdArgs );
 
 			m_ViewportSurface = new D3DImageEx();
@@ -78,5 +81,10 @@ namespace EditorApp
                 InvalidateD3DImage();
             }
         }
-    }
+
+		private void SaveClick( object sender, RoutedEventArgs e )
+		{
+			m_projectManager.SaveProject();
+		}
+	}
 }
