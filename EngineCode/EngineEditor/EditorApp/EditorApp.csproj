@@ -140,8 +140,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Editor\Engine\Displayer.cs" />
+    <Compile Include="Editor\Logic.cs" />
     <Compile Include="Editor\GlobalSettings.cs" />
-    <Compile Include="Project\Manager.cs" />
+    <Compile Include="Editor\Project\LevelInfo.cs" />
+    <Compile Include="Editor\Project\Manager.cs" />
     <Compile Include="Editor\PathsManager.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -149,8 +152,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Project\ProjectSettings.cs" />
-    <Compile Include="Project\UserSettings.cs" />
+    <Compile Include="Editor\Project\ProjectSettings.cs" />
+    <Compile Include="Editor\Project\UserSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

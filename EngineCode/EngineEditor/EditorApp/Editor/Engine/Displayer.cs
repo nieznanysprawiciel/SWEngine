@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EditorApp
+namespace EditorApp.Editor.Engine
 {
-	public class GlobalSettings
+	public class Displayer
 	{
+
+
 	}
 }

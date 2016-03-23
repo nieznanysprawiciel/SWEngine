@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System.IO;
 
 namespace EditorApp.Project
 {
@@ -11,14 +12,15 @@ namespace EditorApp.Project
 	{
 		private ProjectSettings				m_projectSettings;
 		private UserSettings                m_userSettings;
-
+		private Logic                       m_editorLogic;			///< Referencja na główny obiekt edytora.
 
 		#region Contructor
 
-		public Manager()
+		public Manager( Logic editorLogic )
 		{
 			m_projectSettings = new ProjectSettings();
 			m_userSettings = new UserSettings();
+			m_editorLogic = editorLogic;
 		}
 
 		#endregion
@@ -38,11 +40,13 @@ namespace EditorApp.Project
 			{
 				XmlSerializer ser = new XmlSerializer( typeof( ProjectSettings ) );
 
-				System.IO.StringWriter writer = new System.IO.StringWriter();
+				string projectFilePath = Path.Combine( m_editorLogic.PathsManager.ProjectDir, m_editorLogic.PathsManager.ProjectFileName );
 
-				ser.Serialize( writer, m_projectSettings );
-				Console.WriteLine( writer.ToString() );
-				//Console.ReadLine();
+				using( System.IO.FileStream writer = new System.IO.FileStream( projectFilePath, FileMode.Truncate ) )
+				{
+					ser.Serialize( writer, m_projectSettings );
+				}
+
 			}
 			catch( Exception e )
 			{

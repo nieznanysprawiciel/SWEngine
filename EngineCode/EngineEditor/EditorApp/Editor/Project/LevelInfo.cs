@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EditorApp
+namespace EditorApp.Project
 {
-	public class GlobalSettings
+	public class LevelInfo
 	{
+		public string			LevelName { get; set; }
 	}
 }

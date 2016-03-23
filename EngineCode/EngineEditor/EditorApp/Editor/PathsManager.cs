@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace EditorApp.Editor
+namespace EditorApp
 {
 	public class PathsManager
 	{

@@ -11,12 +11,11 @@ namespace EditorApp
     /**@brief Główne okno edytora.*/
     public partial class MainWindow : Window
     {
-		private D3DImageEx						m_ViewportSurface;
+		private D3DImageEx						m_viewportSurface;
 		private EngineWrapper					m_engine;
 		private bool							m_editorReady = false;
 
-		private Editor.PathsManager				m_pathManager;
-		private Project.Manager                 m_projectManager;
+		private Logic							m_editorLogic;
 
 		public MainWindow()
         {
@@ -30,12 +29,11 @@ namespace EditorApp
         {
 			string[] cmdArgs = Environment.GetCommandLineArgs();
 
-			m_projectManager = new Project.Manager();
-			m_pathManager = new Editor.PathsManager();
-			m_pathManager.InitPaths( cmdArgs );
+			m_editorLogic = new Logic();
+			m_editorLogic.Init( cmdArgs );
 
-			m_ViewportSurface = new D3DImageEx();
-            EngineViewport.Source = m_ViewportSurface;
+			m_viewportSurface = new D3DImageEx();
+            EngineViewport.Source = m_viewportSurface;
 
             m_engine = new EngineWrapper();
 			IntPtr handle = Marshal.GetHINSTANCE( m_engine.GetType().Module );
@@ -47,7 +45,7 @@ namespace EditorApp
 
 			m_engine.BasicScene();
 
-			m_ViewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, m_engine.GetRenderTarget( (ushort)EngineViewport.Width, (ushort)EngineViewport.Height ) );
+			m_viewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, m_engine.GetRenderTarget( (ushort)EngineViewport.Width, (ushort)EngineViewport.Height ) );
 
             CompositionTarget.Rendering += CompositionTargetRendering;
         }
@@ -60,15 +58,15 @@ namespace EditorApp
 
         private void InvalidateD3DImage()
         {
-            m_ViewportSurface.Lock();
-            m_ViewportSurface.AddDirtyRect(new Int32Rect()
+            m_viewportSurface.Lock();
+            m_viewportSurface.AddDirtyRect(new Int32Rect()
             {
                 X = 0,
                 Y = 0,
-                Height = m_ViewportSurface.PixelHeight,
-                Width = m_ViewportSurface.PixelWidth
+                Height = m_viewportSurface.PixelHeight,
+                Width = m_viewportSurface.PixelWidth
             });
-            m_ViewportSurface.Unlock();
+            m_viewportSurface.Unlock();
         }
 
         private void CompositionTargetRendering(object sender, EventArgs e)
@@ -84,7 +82,7 @@ namespace EditorApp
 
 		private void SaveClick( object sender, RoutedEventArgs e )
 		{
-			m_projectManager.SaveProject();
+			m_editorLogic.ProjectManager.SaveProject();
 		}
 	}
 }
