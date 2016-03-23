@@ -26,16 +26,29 @@ namespace EditorApp.Project
 		#endregion
 
 
-		public bool			LoadProject()
+		public bool			LoadProject( string projectFilePath )
 		{
+			try
+			{
+				XmlSerializer deser = new XmlSerializer( typeof( ProjectSettings ) );
 
-			return false;
+				using( System.IO.FileStream reader = new System.IO.FileStream( projectFilePath, FileMode.Open ) )
+				{
+					m_projectSettings = deser.Deserialize( reader ) as ProjectSettings;
+				}
+
+			}
+			catch( Exception e )
+			{
+				Console.WriteLine( e.ToString() );
+				return false;
+			}
+
+			return true;
 		}
 
 		public bool			SaveProject()
 		{
-			m_projectSettings.ProjectName = "MainTest";
-
 			try
 			{
 				XmlSerializer ser = new XmlSerializer( typeof( ProjectSettings ) );
@@ -46,15 +59,14 @@ namespace EditorApp.Project
 				{
 					ser.Serialize( writer, m_projectSettings );
 				}
-
 			}
 			catch( Exception e )
 			{
-
 				Console.WriteLine( e.ToString() );
+				return false;
 			}
 
-			return false;
+			return true;
 		}
 
 	}

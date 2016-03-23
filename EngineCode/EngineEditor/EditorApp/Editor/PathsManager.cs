@@ -43,6 +43,12 @@ namespace EditorApp
 			}
 		}
 
+		public void			UpdateProjectPaths( string projectPath )
+		{
+			ProjectDir = Path.GetDirectoryName( projectPath );
+			ProjectFileName = Path.GetFileName( projectPath );
+		}
+
 		#region GettersSetters
 
 		public string ProjectDir

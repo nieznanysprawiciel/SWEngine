@@ -19,17 +19,17 @@ namespace EditorApp.Project
 		{
 			m_levels = new List<LevelInfo>();
 
-			LevelInfo levelInfo1 = new LevelInfo();
-			LevelInfo levelInfo2 = new LevelInfo();
-			LevelInfo levelInfo3 = new LevelInfo();
+			//LevelInfo levelInfo1 = new LevelInfo();
+			//LevelInfo levelInfo2 = new LevelInfo();
+			//LevelInfo levelInfo3 = new LevelInfo();
 
-			levelInfo1.LevelName = "test1";
-			levelInfo2.LevelName = "test2";
-			levelInfo3.LevelName = "test3";
+			//levelInfo1.LevelName = "test1";
+			//levelInfo2.LevelName = "test2";
+			//levelInfo3.LevelName = "test3";
 
-			m_levels.Add( levelInfo1 );
-			m_levels.Add( levelInfo2 );
-			m_levels.Add( levelInfo3 );
+			//m_levels.Add( levelInfo1 );
+			//m_levels.Add( levelInfo2 );
+			//m_levels.Add( levelInfo3 );
 		}
 
 
