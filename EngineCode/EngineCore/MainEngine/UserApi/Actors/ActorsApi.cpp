@@ -11,7 +11,8 @@ std::vector<DynamicMeshObject*> ActorsApi::GetSceneObjects()
 { return Context->displayEngine->GetSceneObjects(); }
 
 
-/**@brief */
+/**@brief 
+@deprecated*/
 void ActorsApi::AddDynamicMesh( DynamicMeshObject* object )
 {
 	Context->displayEngine->AddDynamicMeshObject( object );
@@ -63,6 +64,9 @@ void ActorsApi::AddToModules( Object* newActor, ActorInfo actorModules )
 		assert( dynamic_cast< CameraObject* >( newActor ) != nullptr );
 		Context->displayEngine->AddCamera( static_cast< CameraObject* >( newActor ) );
 	}
+
+	// @todo Pomyœleæ co zrobiæ w trybie release, je¿eli actor nie przeszed³by przez asserty.
+	Context->actorsManager->UpdateActor( newActor, actorModules );
 
 	//@todo Dodaæ do pozosta³ych modu³ów, kiedy bêdzie to mo¿liwe.
 }

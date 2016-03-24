@@ -29,9 +29,17 @@ struct ActorInfo
 	unsigned short			isLight				: 1;	///< Obiekt jest œwiat³em i zosta³ dodany do modu³u obs³uguj¹cego oœwietlenie.
 	unsigned short			isCamera			: 1;	///< Obiekt jest kamer¹ i zostanie dodany do modu³u DisplayEngine.
 
+					ActorInfo	();
 					ActorInfo	( unsigned short actorInfoFlag );
 	inline void		InitZero	();
+	void			operator|=	( ActorInfo second );
 };
+
+/**@brief Ustawia zerowy stan struktury ActorInfo.*/
+inline ActorInfo::ActorInfo	()
+{
+	InitZero();
+}
 
 /**@brief Ustawia stan struktury ActorInfo na podstawie sumy bitowej
 flag ActorInfoFlag.*/
@@ -60,4 +68,18 @@ inline void ActorInfo::InitZero()
 	enablePostController	= false;
 	isLight					= false;
 	isCamera				= false;
+}
+
+/**@brief Wylicza sumê dla ka¿dej pary flag.*/
+inline void ActorInfo::operator|=( ActorInfo second )
+{
+	enableDisplay			= enableDisplay | second.enableDisplay;
+	enableMovement			= enableMovement | second.enableMovement;
+	enableCollisions		= enableCollisions | second.enableCollisions;
+	enablePhysic			= enablePhysic | second.enablePhysic;
+	enableShadow			= enableShadow | second.enableShadow;
+	enablePreController		= enablePreController | second.enablePreController;
+	enablePostController	= enablePostController | second.enablePostController;
+	isLight					= isLight | second.isLight;
+	isCamera				= isCamera | second.isCamera;
 }

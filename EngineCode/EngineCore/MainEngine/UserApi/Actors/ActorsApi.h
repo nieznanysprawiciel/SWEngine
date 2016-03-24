@@ -44,9 +44,14 @@ namespace Api
 
 		template< typename Type = Object >	Type*		CreateActor				( const std::string& name, ActorInfo actorModules );
 		template< typename Type = Object >	Type*		CreateActor				( ActorType id, ActorInfo actorModules );
+		template< typename Type = Object >	Type*		CreateActor				( const std::string& name );
+		template< typename Type = Object >	Type*		CreateActor				( ActorType id );
 
-	private:
-		void			AddToModules	( Object* newActor, ActorInfo actorModules );
+
+		//void			DeleteActor				( Object* actor );
+		//void			RemoveFromModules		( Object* newActor, ActorInfo actorModules );
+		void			AddToModules			( Object* newActor, ActorInfo actorModules );
+
 	};
 
 
@@ -83,6 +88,38 @@ namespace Api
 			return nullptr;
 
 		AddToModules( newActor, actorModules );
+		return newActor;
+	}
+
+	/**@brief Tworzy aktora na podstawie nazwy.
+	
+	@param[in] name Nazwa aktora.
+	@return Zwraca wskaünik na aktora lub nullptr, jeøeli podany typ aktora nie zosta≥ zarejestrowany
+	lub øπdany typ jest niezgodny z zarejestrowanym typem. W trybie debug takie sytuacje powodujπ zatrzymanie aplikacji na assercie.*/
+	template<typename Type>
+	inline Type* ActorsApi::CreateActor( const std::string& name )
+	{
+		Type* newActor = Context->actorsManager->CreateActor< Type >( name, actorModules );
+
+		if( newActor == nullptr )
+			return nullptr;
+
+		return newActor;
+	}
+
+	/**@brief Tworzy aktora na podstawie identyfikatora.
+	
+	@param[in] id Identyfikator aktora. Jest to liczba zwrÛcona w momencie rejestracji typu aktora.
+	@return Zwraca wskaünik na aktora lub nullptr, jeøeli podany typ aktora nie zosta≥ zarejestrowany
+	lub øπdany typ jest niezgodny z zarejestrowanym typem. W trybie debug takie sytuacje powodujπ zatrzymanie aplikacji na assercie.*/
+	template<typename Type>
+	inline Type* ActorsApi::CreateActor( ActorType id )
+	{
+		Type* newActor = Context->actorsManager->CreateActor< Type >( id, actorModules );
+
+		if( newActor == nullptr )
+			return nullptr;
+
 		return newActor;
 	}
 

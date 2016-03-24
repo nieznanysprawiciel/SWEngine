@@ -26,14 +26,19 @@ public:
 	template< typename Type = Object >	Type*		CreateActor				( const std::string& name, ActorInfo actorModules );
 	template< typename Type = Object >	Type*		CreateActor				( ActorType id, ActorInfo actorModules );
 
+	void						UpdateActor		( Object* actor, ActorInfo actorModules );
+
 private:
-	void						AddActor		( Object* newActor, ActorInfo actorModules );
+
+	void						AddActor		( Object* newActor );
+	
+	template< typename Type = Object >	ActorData*	FindActor( Object* actor );
 };
 
 
 /**@brief Tworzy aktora na podstawie nazwy.*/
 template<typename Type>
-inline Type * ActorsManager::CreateActor( const std::string& name, ActorInfo actorModules )
+inline Type* ActorsManager::CreateActor( const std::string& name, ActorInfo actorModules )
 {
 	Type* newActor = m_actorFactory.CreateActor< Type >( name );
 
@@ -41,14 +46,14 @@ inline Type * ActorsManager::CreateActor( const std::string& name, ActorInfo act
 	if( newActor == nullptr )
 		return nullptr;
 
-	AddActor( newActor, actorModules );
+	AddActor( newActor );
 
 	return newActor;
 }
 
 /**@brief Tworzy aktora na podstawie identyfikatora.*/
 template<typename Type>
-inline Type * ActorsManager::CreateActor( ActorType id, ActorInfo actorModules )
+inline Type* ActorsManager::CreateActor( ActorType id, ActorInfo actorModules )
 {
 	Type* newActor = m_actorFactory.CreateActor< Type >( id );
 
@@ -56,7 +61,18 @@ inline Type * ActorsManager::CreateActor( ActorType id, ActorInfo actorModules )
 	if( newActor == nullptr )
 		return nullptr;
 
-	AddActor( newActor, actorModules );
+	AddActor( newActor );
 
 	return newActor;
+}
+
+/**@brief Wyszukuje aktora.*/
+template< typename Type > ActorData*	ActorsManager::FindActor( Object* actor )
+{
+	for( auto& actorData : m_objectList )
+	{
+		if( actorData.first == actor )
+			return &actorData;
+	}
+	return nullptr;
 }
