@@ -9,7 +9,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(EngineSourceDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineSourceDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <ProgramDatabaseFile>$(TestEngineBuildDir)$(TargetName).pdb</ProgramDatabaseFile>

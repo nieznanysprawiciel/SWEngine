@@ -37,11 +37,10 @@ class Model3DFromFile;
 */
 class Object
 {
+	RTTR_ENABLE()
 private:
 	static Engine*	engine;		///< WskaŸnik na g³ówny obiekt silnika.
 protected:
-	short			class_type;
-	short			object_type;
 
 	void event( Event* );
 	/**@brief Zwraca wskaŸnik na interfejs silnika, który nadaje siê do u¿ywania przez
@@ -62,6 +61,7 @@ public:
 	static Object*		Create()	{ return new Object; }
 };
 
+RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( Object )
 
 /**@brief Klasa bazowa dla wszystkich obiektów statycznych w silniku.
 
@@ -75,6 +75,7 @@ i jakoœ rozwi¹zaæ tê sytuacjê.
 */
 class StaticObject : public Object
 {
+	RTTR_ENABLE()
 private:
 	DirectX::XMFLOAT3		position;				///< Pozycja obiektu (lub bufor tylny)
 	DirectX::XMFLOAT4		orientation;			///< Orientacja obiektu wyra¿ona kwaternionem (lub bufor tylny)
@@ -164,14 +165,18 @@ public:
 
 	static Object*			Create()	{ return new StaticObject; }
 };
+RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( StaticObject )
 
 /**@brief Klasa bazowa dla obiektów zdolnych do kolizji.*/
 class CollisionObject : public StaticObject
 {
+	RTTR_ENABLE()
 
 public:
 	static Object*			Create()	{ return new CollisionObject; }
 };
+
+RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( CollisionObject )
 
 /**@brief Klasa bazowa dla obiektów dynamicznych.
 
@@ -182,11 +187,15 @@ W docelowej wersji bêdzie najprawdopodobniej wybrana opcja z wetorem a nie kwate
 @note Niezaleznie od tego jak jest wyra¿ona prêdkoœæ, orientacja zawsze jest kwaternionem.*/
 class DynamicObject : public CollisionObject
 {
+	RTTR_ENABLE()
 protected:
+
 	DirectX::XMFLOAT3		speed;				///< Prêdkoœæ postepowa obiektu.
 	DirectX::XMFLOAT4		rotation_speed;		///< Prêdkoœæ k¹towa obiektu (wyra¿ona wektorem i k¹tem obrotu w sk³adowej w).
 	Controller*				controller;			///< WskaŸnik na kontroler, poruszaj¹cy obiektem.
+
 public:
+
 	DynamicObject();	///< Kontruktor ustawi¹j¹cy zerow¹ prêdkoœæ k¹tow¹ i postêpow¹.
 	DynamicObject( const DirectX::XMFLOAT3& move_speed, const DirectX::XMFLOAT4& rot_speed );	///< Kontruktor ustawia podan¹ w parametrach prêdkoœæ.
 
@@ -205,12 +214,19 @@ public:
 	static Object*		Create()	{ return new DynamicObject; }
 };
 
+RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( DynamicObject )
+
+
 
 class PhysicalObject : public DynamicObject
 {
+	RTTR_ENABLE()
 protected:
+
 	float			mass;
+
 public:
+
 	PhysicalObject();
 
 	void Pulse();
@@ -218,10 +234,15 @@ public:
 	static Object*		Create()	{ return new PhysicalObject; }
 };
 
+RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( PhysicalObject )
+
+
+
 /**@brief Klasa bazowa dla obiektów, które bêd¹ renderowane.
 */
 class DynamicMeshObject : public PhysicalObject
 {
+	RTTR_ENABLE()
 	friend class DisplayEngine;
 #ifdef _SCALEABLE_OBJECTS
 private:
@@ -273,8 +294,12 @@ private:
 	virtual void Draw( IRenderer* renderer, float timeInterval, float timeLag ) {}
 };
 
+RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( DynamicMeshObject )
+
+
 class AnimationObject : public PhysicalObject
 {
+	RTTR_ENABLE()
 	friend class DisplayEngine;
 protected:
 
@@ -283,10 +308,15 @@ public:
 	static Object*		Create()	{ return new AnimationObject; }
 };
 
+RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( AnimationObject )
+
+
+
 /**@brief Klasa bazowa dla wszystkich obiektów kamer w silniku.
 */
 class CameraObject : public DynamicObject
 {
+	RTTR_ENABLE()
 	friend class DisplayEngine;
 protected:
 	DirectX::XMFLOAT4X4		projection_matrix;		///<Macierz projekcji. Dla ka¿dej kamery mo¿e byæ inna. @attention Na razie nieu¿ywane. Macierz projekcji jest ustawiana na sta³e w DisplayEngine.
@@ -296,6 +326,10 @@ public:
 
 	static Object*			Create()	{ return new CameraObject; }
 };
+
+RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( CameraObject )
+
+
 
 /**@brief Klasa bazowa dla wszystkich kontrolerów dla obiektów.*/
 class Controller
@@ -344,4 +378,6 @@ public:
 
 	static Object*			Create()	{ return new ComplexObject; }
 };
+
+RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( ComplexObject )
 

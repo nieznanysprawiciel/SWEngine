@@ -5,11 +5,11 @@
   <PropertyGroup>
     <IntDir>$(EditorPluginBuildDir)\</IntDir>
     <TargetName>$(EditorPluginFileName)</TargetName>
-	<OutDir>$(EditorPluginLibDir)</OutDir>
+    <OutDir>$(EditorPluginLibDir)</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(EngineSourceDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineSourceDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <ProgramDatabaseFile>$(EditorPluginBuildDir)$(TargetName).pdb</ProgramDatabaseFile>
