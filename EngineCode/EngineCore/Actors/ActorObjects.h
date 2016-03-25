@@ -75,7 +75,7 @@ i jakoœ rozwi¹zaæ tê sytuacjê.
 */
 class StaticObject : public Object
 {
-	RTTR_ENABLE()
+	RTTR_ENABLE_DERIVED_FROM( Object )
 private:
 	DirectX::XMFLOAT3		position;				///< Pozycja obiektu (lub bufor tylny)
 	DirectX::XMFLOAT4		orientation;			///< Orientacja obiektu wyra¿ona kwaternionem (lub bufor tylny)
@@ -170,7 +170,7 @@ RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( StaticObject )
 /**@brief Klasa bazowa dla obiektów zdolnych do kolizji.*/
 class CollisionObject : public StaticObject
 {
-	RTTR_ENABLE()
+	RTTR_ENABLE_DERIVED_FROM( StaticObject )
 
 public:
 	static Object*			Create()	{ return new CollisionObject; }
@@ -187,7 +187,7 @@ W docelowej wersji bêdzie najprawdopodobniej wybrana opcja z wetorem a nie kwate
 @note Niezaleznie od tego jak jest wyra¿ona prêdkoœæ, orientacja zawsze jest kwaternionem.*/
 class DynamicObject : public CollisionObject
 {
-	RTTR_ENABLE()
+	RTTR_ENABLE_DERIVED_FROM( CollisionObject )
 protected:
 
 	DirectX::XMFLOAT3		speed;				///< Prêdkoœæ postepowa obiektu.
@@ -220,7 +220,7 @@ RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( DynamicObject )
 
 class PhysicalObject : public DynamicObject
 {
-	RTTR_ENABLE()
+	RTTR_ENABLE_DERIVED_FROM( DynamicObject )
 protected:
 
 	float			mass;
@@ -242,8 +242,10 @@ RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( PhysicalObject )
 */
 class DynamicMeshObject : public PhysicalObject
 {
-	RTTR_ENABLE()
 	friend class DisplayEngine;
+
+	RTTR_ENABLE_DERIVED_FROM( PhysicalObject )
+	
 #ifdef _SCALEABLE_OBJECTS
 private:
 	float							scale;		///<Skalowanie wzglêdem wszystkich osi.
@@ -299,8 +301,9 @@ RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( DynamicMeshObject )
 
 class AnimationObject : public PhysicalObject
 {
-	RTTR_ENABLE()
 	friend class DisplayEngine;
+
+	RTTR_ENABLE_DERIVED_FROM( PhysicalObject )
 protected:
 
 public:
@@ -316,10 +319,13 @@ RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( AnimationObject )
 */
 class CameraObject : public DynamicObject
 {
-	RTTR_ENABLE()
 	friend class DisplayEngine;
+
+	RTTR_ENABLE_DERIVED_FROM( DynamicObject )
 protected:
+
 	DirectX::XMFLOAT4X4		projection_matrix;		///<Macierz projekcji. Dla ka¿dej kamery mo¿e byæ inna. @attention Na razie nieu¿ywane. Macierz projekcji jest ustawiana na sta³e w DisplayEngine.
+
 public:
 	void SetProjectionMatrix( float angle, float X_to_Y, float near_plane, float far_plane );
 
@@ -370,6 +376,7 @@ Trzeba jednak uwa¿aæ, aby do klasy MovementEngine podaæ tylko obiekt nadrzêdny, 
 bêd¹ siê wlicza³y wielokrotnie. Obiekty bêd¹ce sk³adowymi Complex_obiekt tak¿e mog¹ wykonywaæ w³asne ruchy.*/
 class ComplexObject : public DynamicObject
 {
+	RTTR_ENABLE_DERIVED_FROM( DynamicObject )
 protected:
 	std::vector<DynamicObject*>	part;
 public:

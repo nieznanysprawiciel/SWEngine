@@ -21,9 +21,9 @@ typedef fastdelegate::FastDelegate0< Object* > CreateActorFunction;
 
 /**@brief Zwraca nazwê klasy zapisan¹ w RTTI z pominiêciem s³ówka class.*/
 template< typename ClassType >
-const char*			GetTypeidName()
+std::string			GetTypeidName()
 {
-	return typeid( ClassType ).name() + 6;
+	return RTTR::TypeInfo::get< ClassType >().getName();
 }
 
 
@@ -35,6 +35,10 @@ oraz wektor funkcji do tworzenia obiektów.
 
 Obiekty mo¿na tworzyæ podaj¹c stringi z nazw¹ lub identyfikatory.
 Dostêp przy pomocy identyfikatoów jest szybszy, bo nie wymaga przeszukiwania mapy.
+
+@todo Ze wzglêdu na pojawienie siê biblioteki RTTR, byæ mo¿e zamiast vectora funkcji
+m_createFunctions, warto by by³o, aby ActorType to by³ identyfikator generowany przez
+RTTR.
 */
 class ActorFactory
 {
@@ -68,9 +72,7 @@ template< typename Type > Type* ActorFactory::CreateActor( const std::string& na
 		return nullptr;
 	}
 
-	Object* newActor = CreateActor( index->second );
-	assert( typeid( *newActor ) == typeid( Type ) );
-
+	Object* newActor = CreateActor< Type >( index->second );
 	return static_cast< Type* >( newActor );
 }
 
@@ -87,6 +89,8 @@ template< typename Type > Type* ActorFactory::CreateActor( ActorType id )
 	if ( id < m_createFunctions.size() )
 	{
 		Object* newActor = m_createFunctions[ id ]();
+		
+		assert( rttr_cast< Type* >( newActor ) );
 		return static_cast< Type* >( newActor );
 	}
 	return nullptr;

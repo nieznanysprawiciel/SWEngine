@@ -159,15 +159,6 @@ void Engine::test()
 
 	SetSkydomeAndCamera();
 
-	Object* object = actors.CreateActor< StaticObject >( "StaticObject", ActorInfoFlag::DisableAll );
-	
-	auto typeinf = RTTR::TypeInfo::get( object );
-
-	auto typeInfo = object->getTypeInfo();
-
-	auto name = object->getTypeInfo().getName();
-	auto rawName = object->getTypeInfo().getRawType();
-	auto id = object->getTypeInfo().getId();
 }
 
 void Engine::SetSkydomeAndCamera()

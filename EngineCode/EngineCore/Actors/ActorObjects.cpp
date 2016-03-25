@@ -14,7 +14,7 @@
 
 using namespace DirectX;
 
-Engine* Object::engine = nullptr;		//po stworzeniu obiektu klasy Engine, zmienna ta jest uzupe³niana wskaxnikiem this
+Engine* Object::engine = nullptr;		//po stworzeniu obiektu klasy Engine, zmienna ta jest uzupe³niana wskaŸnikiem this
 
 
 RTTR_DEFINE_STANDARD_META_TYPE_VARIANTS( Object )
@@ -25,6 +25,7 @@ RTTR_DEFINE_STANDARD_META_TYPE_VARIANTS( PhysicalObject )
 RTTR_DEFINE_STANDARD_META_TYPE_VARIANTS( DynamicMeshObject )
 RTTR_DEFINE_STANDARD_META_TYPE_VARIANTS( AnimationObject )
 RTTR_DEFINE_STANDARD_META_TYPE_VARIANTS( CameraObject )
+RTTR_DEFINE_STANDARD_META_TYPE_VARIANTS( ComplexObject )
 
 /**Funkcja pozwala wys³aæ event, który bêdzie potem przetworzony przez klase FableEngine.
 Eventy s¹ metod¹ komunikacji pomiedzy silnikiem graficznym, silnikiem fizycznym, AI i silnikiem kolizji,
