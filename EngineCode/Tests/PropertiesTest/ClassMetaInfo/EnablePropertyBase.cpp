@@ -1,5 +1,7 @@
 #include "EnablePropertyBase.h"
 
+RTTR_DEFINE_STANDARD_META_TYPE_VARIANTS( EnablePropertyBase )
+
 
 /**@brief */
 EnablePropertyBase::EnablePropertyBase()

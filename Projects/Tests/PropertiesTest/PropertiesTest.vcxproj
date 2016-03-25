@@ -155,6 +155,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\EngineCode\Common\Properties\DefineMetatypes.cpp" />
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\BaseClass.cpp" />
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\ClassMetaInfo\EnablePropertyBase.cpp" />
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\DerivedClass.cpp" />

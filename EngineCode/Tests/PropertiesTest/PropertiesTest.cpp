@@ -26,7 +26,7 @@ int main()
 	std::cout << "NumObjects: " << typedPropertyNum() << std::endl;
 
 
-	Property< InnerStruct > PhysicalProperty = derived.GetTypedProperty< InnerStruct >( "PhysicalProperty" );
+	Property< IEnableProperty > PhysicalProperty = derived.GetTypedProperty< IEnableProperty >( "PhysicalProperty" );
 
 	Property< float > MassProperty = PhysicalProperty().GetTypedProperty< float >( "Mass" );
 	Property< float > MomentProperty = PhysicalProperty().GetTypedProperty< float >( "Moment" );

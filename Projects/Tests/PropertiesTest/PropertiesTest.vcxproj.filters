@@ -31,6 +31,9 @@
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\InnerStruct.cpp">
       <Filter>PropertiesTest</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Common\Properties\DefineMetatypes.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\EngineCode\Common\Properties\IEnableProperty.h">

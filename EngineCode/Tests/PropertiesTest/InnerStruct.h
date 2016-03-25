@@ -7,6 +7,9 @@
 
 struct InnerStruct	: public EnablePropertyBase
 {
+	RTTR_ENABLE_DERIVED_FROM( EnablePropertyBase )
+public:
+
 	float		Mass;
 	float		Radius;
 	float		Moment;
