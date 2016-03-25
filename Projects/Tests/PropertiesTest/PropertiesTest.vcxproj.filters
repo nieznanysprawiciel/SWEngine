@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="PropertiesTest">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{f629087f-d24d-4fe3-81a9-11b061fff9dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PropertiesTest\ClassMetaInfo">
+      <UniqueIdentifier>{d77479dc-277d-4ec4-a3ca-48db2a49d47d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\PropertiesTest.cpp">
+      <Filter>PropertiesTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\BaseClass.cpp">
+      <Filter>PropertiesTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\DerivedClass.cpp">
+      <Filter>PropertiesTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\ClassMetaInfo\EnablePropertyBase.cpp">
+      <Filter>PropertiesTest\ClassMetaInfo</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\EngineCode\Common\Properties\IEnableProperty.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\EngineCode\Common\Properties\IMetaProperty.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\EngineCode\Common\Properties\Property.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\BaseClass.h">
+      <Filter>PropertiesTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\DerivedClass.h">
+      <Filter>PropertiesTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\ClassMetaInfo\EnablePropertyBase.h">
+      <Filter>PropertiesTest\ClassMetaInfo</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

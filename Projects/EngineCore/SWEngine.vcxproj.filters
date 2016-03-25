@@ -269,13 +269,13 @@
     <ClInclude Include="..\..\EngineCode\Common\MacrosSwitches.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\Properties\IProperty.h">
-      <Filter>Common\Properties</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\Properties\Property.h">
       <Filter>Common\Properties</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\Properties\IEnableProperty.h">
+      <Filter>Common\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\Properties\IMetaProperty.h">
       <Filter>Common\Properties</Filter>
     </ClInclude>
   </ItemGroup>

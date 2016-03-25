@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <PropertiesTestName>PropertiesTest</PropertiesTestName>
+    <PropertiesTestLibDir>$(EngineLibDir)$(PropertiesTestName)\</PropertiesTestLibDir>
+    <PropertiesTestSourceDir>$(EngineSourceDir)$(PropertiesTestName)\</PropertiesTestSourceDir>
+    <PropertiesTestFileName>$(PropertiesTestName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</PropertiesTestFileName>
+    <PropertiesTestBuildDir>$(EngineBuildDir)$(PropertiesTestName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</PropertiesTestBuildDir>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="PropertiesTestName">
+      <Value>$(PropertiesTestName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PropertiesTestLibDir">
+      <Value>$(PropertiesTestLibDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PropertiesTestSourceDir">
+      <Value>$(PropertiesTestSourceDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PropertiesTestFileName">
+      <Value>$(PropertiesTestFileName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PropertiesTestBuildDir">
+      <Value>$(PropertiesTestBuildDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
