@@ -31,6 +31,6 @@ private:
 template<typename PropertyType>
 inline void		EnablePropertyBase::AddProperty		( const char* propertyName, PropertyType IEnableProperty::* memberPtr )
 {
-	MetaProperty< PropertyType >* newMetaProperty = new MetaProperty< PropertyType >( propertyName, RTTR::TypeInfo::get< PropertyType >().getId(), memberPtr );
+	MetaProperty< PropertyType >* newMetaProperty = new MetaProperty< PropertyType >( propertyName, RTTR::TypeInfo::get< PropertyType >(), memberPtr );
 	m_propertiesMetaData[ propertyName ] = newMetaProperty;
 }

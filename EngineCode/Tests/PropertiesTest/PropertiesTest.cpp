@@ -36,6 +36,19 @@ int main()
 	std::cout << "Moment: " << MomentProperty() << std::endl;
 	std::cout << "Radius: " << RadiusProperty() << std::endl;
 
+	Property< bool > MassPropertyWrongType = PhysicalProperty().GetTypedProperty< bool >( "Mass" );
+	Property< int > MomentPropertyWrongType = PhysicalProperty().GetTypedProperty< int >( "Moment" );
+	Property< double > RadiusPropertyWrongType = PhysicalProperty().GetTypedProperty< double >( "Radius" );
+
+	if( MassPropertyWrongType.IsValid() )
+		std::cout << "Mass casted to bool shouldn't be valid" << std::endl;
+
+	if( MomentPropertyWrongType.IsValid() )
+		std::cout << "Mass casted to int shouldn't be valid" << std::endl;
+
+	if( MomentPropertyWrongType.IsValid() )
+		std::cout << "Mass casted to double shouldn't be valid" << std::endl;
+
 	char end;
 	std::cout << "Press any key to end...";
 	std::cin >> end;
