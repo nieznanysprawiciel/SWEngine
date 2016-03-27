@@ -58,28 +58,28 @@
     <Import Project="..\..\Props\PathsMacros.props" />
     <Import Project="PropertiesTestPathsMacros.props" />
     <Import Project="PropertiesTestConfiguration.props" />
-    <Import Project="..\..\Props\LinkTypeInfo.props" />
+    <Import Project="..\..\Props\LinkReflection.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\Props\PathsMacros.props" />
     <Import Project="PropertiesTestPathsMacros.props" />
     <Import Project="PropertiesTestConfiguration.props" />
-    <Import Project="..\..\Props\LinkTypeInfo.props" />
+    <Import Project="..\..\Props\LinkReflection.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\Props\PathsMacros.props" />
     <Import Project="PropertiesTestPathsMacros.props" />
     <Import Project="PropertiesTestConfiguration.props" />
-    <Import Project="..\..\Props\LinkTypeInfo.props" />
+    <Import Project="..\..\Props\LinkReflection.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\Props\PathsMacros.props" />
     <Import Project="PropertiesTestPathsMacros.props" />
     <Import Project="PropertiesTestConfiguration.props" />
-    <Import Project="..\..\Props\LinkTypeInfo.props" />
+    <Import Project="..\..\Props\LinkReflection.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -155,7 +155,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\EngineCode\Common\Properties\DefineMetatypes.cpp" />
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\BaseClass.cpp" />
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\ClassMetaInfo\EnablePropertyBase.cpp" />
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\DerivedClass.cpp" />
@@ -163,10 +162,6 @@
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\PropertiesTest.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\EngineCode\Common\Properties\Containers\ICollection.h" />
-    <ClInclude Include="..\..\..\EngineCode\Common\Properties\IEnableProperty.h" />
-    <ClInclude Include="..\..\..\EngineCode\Common\Properties\IMetaProperty.h" />
-    <ClInclude Include="..\..\..\EngineCode\Common\Properties\Property.h" />
     <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\BaseClass.h" />
     <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\ClassMetaInfo\EnablePropertyBase.h" />
     <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\DerivedClass.h" />

@@ -41,7 +41,15 @@ public:
 		//assert( IsValid() );
 	}
 
-	PropertyType&		operator()( void )
+	inline PropertyType&		operator()( void )
+	{
+		assert( IsValid() );
+
+		auto typedProperty = static_cast< MetaProperty< PropertyType >* >( m_metaInfo );
+		return m_ownerObj->*typedProperty->GetPtr();
+	}
+
+	inline						operator PropertyType&()
 	{
 		assert( IsValid() );
 

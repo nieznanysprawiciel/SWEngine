@@ -18,37 +18,57 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\base\CorePrerequisites.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\base\RawType.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\base\StaticAssert.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\base\TypeTraits.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\impl\RTTRCast_impl.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\impl\TypeInfo_impl.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\PCH.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\Properties\Containers\ICollection.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\Properties\DefineProperty.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\Properties\IEnableProperty.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\Properties\IMetaProperty.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\Properties\Property.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\RTTR.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\RTTRCast.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\RTTREnable.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\StandardTypes.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\TypeInfo.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\EngineCode\Tools\Reflection\Properties\DefineMetatypes.cpp" />
+    <ClCompile Include="..\..\EngineCode\Tools\Reflection\StandardTypes.cpp" />
+    <ClCompile Include="..\..\EngineCode\Tools\Reflection\TypeInfo.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{AFADFC8A-7077-47D9-8B08-A489719C7801}</ProjectGuid>
+    <ProjectGuid>{59FA8028-2346-4246-854F-14DCFAB6AB56}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>TestEngine</RootNamespace>
+    <RootNamespace>Reflection</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -56,161 +76,94 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\LinkDirectInput.props" />
-    <Import Project="..\Props\LinkFBX_SDK.props" />
-    <Import Project="TestEnginePathMacros.props" />
-    <Import Project="TestEngineConfiguration.props" />
-    <Import Project="..\EngineCore\EngineCorePathMacros.props" />
-    <Import Project="..\DX11API\DX11APIPathsMacros.props" />
-    <Import Project="..\LightmapsTool\LightmapsToolPathMacros.props" />
-    <Import Project="..\Props\LinkReflection.props" />
+    <Import Project="ReflectionPathMacros.props" />
+    <Import Project="ReflectionConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\LinkDirectInput.props" />
-    <Import Project="..\Props\LinkFBX_SDK.props" />
-    <Import Project="TestEnginePathMacros.props" />
-    <Import Project="TestEngineConfiguration.props" />
-    <Import Project="..\EngineCore\EngineCorePathMacros.props" />
-    <Import Project="..\DX11API\DX11APIPathsMacros.props" />
-    <Import Project="..\LightmapsTool\LightmapsToolPathMacros.props" />
-    <Import Project="..\Props\LinkReflection.props" />
+    <Import Project="ReflectionPathMacros.props" />
+    <Import Project="ReflectionConfiguration.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\LinkDirectInput.props" />
-    <Import Project="..\Props\LinkFBX_SDK.props" />
-    <Import Project="TestEnginePathMacros.props" />
-    <Import Project="TestEngineConfiguration.props" />
-    <Import Project="..\EngineCore\EngineCorePathMacros.props" />
-    <Import Project="..\DX11API\DX11APIPathsMacros.props" />
-    <Import Project="..\LightmapsTool\LightmapsToolPathMacros.props" />
-    <Import Project="..\Props\LinkReflection.props" />
+    <Import Project="ReflectionPathMacros.props" />
+    <Import Project="ReflectionConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\LinkDirectInput.props" />
-    <Import Project="..\Props\LinkFBX_SDK.props" />
-    <Import Project="TestEnginePathMacros.props" />
-    <Import Project="TestEngineConfiguration.props" />
-    <Import Project="..\EngineCore\EngineCorePathMacros.props" />
-    <Import Project="..\DX11API\DX11APIPathsMacros.props" />
-    <Import Project="..\LightmapsTool\LightmapsToolPathMacros.props" />
-    <Import Project="..\Props\LinkReflection.props" />
+    <Import Project="ReflectionPathMacros.props" />
+    <Import Project="ReflectionConfiguration.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(GameReleaseDir)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(GameReleaseDir)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;REFLECTION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <Version>$(EngineVersion)</Version>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;REFLECTION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <Version>$(EngineVersion)</Version>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;REFLECTION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <Version>$(EngineVersion)</Version>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;REFLECTION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <Version>$(EngineVersion)</Version>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\EngineCode\TestEngine\EntryPoint.cpp" />
-    <ClCompile Include="..\..\EngineCode\TestEngine\GamePlayCode\EntryPointGamePlay.cpp" />
-    <ClCompile Include="..\..\EngineCode\TestEngine\stdafx.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\EngineCode\Common\SWEngineInclude.h" />
-    <ClInclude Include="..\..\EngineCode\TestEngine\EntryPoint.h" />
-    <ClInclude Include="..\..\EngineCode\TestEngine\GamePlayCode\EntryPointGamePlay.h" />
-    <ClInclude Include="..\..\EngineCode\TestEngine\Resource.h" />
-    <ClInclude Include="..\..\EngineCode\TestEngine\stdafx.h" />
-    <ClInclude Include="..\..\EngineCode\TestEngine\targetver.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DX11API\DX11API.vcxproj">
-      <Project>{44643d7f-1c71-41c1-b452-b2dc5e088a58}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EngineCore\SWEngine.vcxproj">
-      <Project>{08f5ad41-2020-48ab-8ac3-7fe0039ed65f}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="SchopenhauerWeltschmerz.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="..\..\EngineCode\TestEngine\SWEngine.rc" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

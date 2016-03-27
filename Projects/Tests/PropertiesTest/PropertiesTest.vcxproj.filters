@@ -5,14 +5,8 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Common">
-      <UniqueIdentifier>{f629087f-d24d-4fe3-81a9-11b061fff9dd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PropertiesTest\ClassMetaInfo">
       <UniqueIdentifier>{d77479dc-277d-4ec4-a3ca-48db2a49d47d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Common\Containers">
-      <UniqueIdentifier>{61e598d8-1b23-4d96-b060-be51b6c0d28c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -31,20 +25,8 @@
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\InnerStruct.cpp">
       <Filter>PropertiesTest</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\EngineCode\Common\Properties\DefineMetatypes.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\EngineCode\Common\Properties\IEnableProperty.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\EngineCode\Common\Properties\IMetaProperty.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\EngineCode\Common\Properties\Property.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\BaseClass.h">
       <Filter>PropertiesTest</Filter>
     </ClInclude>
@@ -53,9 +35,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\ClassMetaInfo\EnablePropertyBase.h">
       <Filter>PropertiesTest\ClassMetaInfo</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\EngineCode\Common\Properties\Containers\ICollection.h">
-      <Filter>Common\Containers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\InnerStruct.h">
       <Filter>PropertiesTest</Filter>

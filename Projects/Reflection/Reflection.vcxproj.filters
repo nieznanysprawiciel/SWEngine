@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ReflectionCode">
+      <UniqueIdentifier>{02d75b4b-fad0-4c83-9065-4001e0a8acb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ReflectionCode\Properties">
+      <UniqueIdentifier>{91f663d4-da33-4c66-a6ef-080ceda63f4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ReflectionCode\base">
+      <UniqueIdentifier>{57ded521-f8ff-4d4d-a9fe-d7f31612a7c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ReflectionCode\impl">
+      <UniqueIdentifier>{886e2c6c-f323-4e98-b536-39f1aa83b282}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ReflectionCode\Properties\Containers">
+      <UniqueIdentifier>{52bcc1f8-3ddd-4e35-9a0d-b0e890e1c6ff}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\PCH.h">
+      <Filter>ReflectionCode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\RTTR.h">
+      <Filter>ReflectionCode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\RTTRCast.h">
+      <Filter>ReflectionCode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\RTTREnable.h">
+      <Filter>ReflectionCode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\StandardTypes.h">
+      <Filter>ReflectionCode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\TypeInfo.h">
+      <Filter>ReflectionCode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\impl\RTTRCast_impl.h">
+      <Filter>ReflectionCode\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\impl\TypeInfo_impl.h">
+      <Filter>ReflectionCode\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\base\CorePrerequisites.h">
+      <Filter>ReflectionCode\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\base\RawType.h">
+      <Filter>ReflectionCode\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\base\StaticAssert.h">
+      <Filter>ReflectionCode\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\base\TypeTraits.h">
+      <Filter>ReflectionCode\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\Properties\DefineProperty.h">
+      <Filter>ReflectionCode\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\Properties\IEnableProperty.h">
+      <Filter>ReflectionCode\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\Properties\IMetaProperty.h">
+      <Filter>ReflectionCode\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\Properties\Property.h">
+      <Filter>ReflectionCode\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\Properties\Containers\ICollection.h">
+      <Filter>ReflectionCode\Properties\Containers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\EngineCode\Tools\Reflection\StandardTypes.cpp">
+      <Filter>ReflectionCode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\Tools\Reflection\TypeInfo.cpp">
+      <Filter>ReflectionCode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\Tools\Reflection\Properties\DefineMetatypes.cpp">
+      <Filter>ReflectionCode\Properties</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

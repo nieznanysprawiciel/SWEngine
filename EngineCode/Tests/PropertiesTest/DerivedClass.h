@@ -8,6 +8,7 @@ class DerivedClass	:	public BaseClass
 private:
 
 	InnerStruct			PhysicalProperty;
+	InnerStruct*		PhysicalPropertyPrev;
 
 public:
 	DerivedClass();

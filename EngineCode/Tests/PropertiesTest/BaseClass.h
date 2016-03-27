@@ -16,5 +16,28 @@ private:
 public:
 	BaseClass();
 	virtual ~BaseClass();
+
+//	static void AccessTest();
+//
+//
+//	BaseClass& operator()()
+//	{
+//		return *this;
+//	}
+//
+//	BaseClass& Property()
+//	{
+//		return *this;
+//	}
+//
+//private:
+//
+//	struct FirstLevelNested
+//	{
+//		struct SecondLevelNested
+//		{
+//			static void AccessTest();
+//		};
+//	};
 };
 

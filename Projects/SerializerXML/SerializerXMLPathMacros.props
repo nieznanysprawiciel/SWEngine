@@ -4,7 +4,7 @@
   <PropertyGroup Label="UserMacros">
     <SerializerXMLName>SerializerXML</SerializerXMLName>
     <SerializerXMLLibDir>$(EngineLibDir)$(SerializerXMLName)\</SerializerXMLLibDir>
-    <SerializerXMLSourceDir>$(EngineSourceDir)$(SerializerXMLName)\</SerializerXMLSourceDir>
+    <SerializerXMLSourceDir>$(EngineSourceDir)Tools\$(SerializerXMLName)\</SerializerXMLSourceDir>
     <SerializerXMLFileName>$(EngineShortcut)$(SerializerXMLName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</SerializerXMLFileName>
     <SerializerXMLBuildDir>$(EngineBuildDir)$(SerializerXMLName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</SerializerXMLBuildDir>
   </PropertyGroup>

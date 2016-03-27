@@ -3,7 +3,7 @@
 #include <map>
 #include <string>
 
-#include "Common/Properties/IEnableProperty.h"
+#include "Tools/Reflection/Properties/IEnableProperty.h"
 
 
 class EnablePropertyBase	: public IEnableProperty

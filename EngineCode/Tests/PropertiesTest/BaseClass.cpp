@@ -20,3 +20,17 @@ BaseClass::BaseClass()
 
 BaseClass::~BaseClass()
 {}
+
+
+//void BaseClass::AccessTest()
+//{
+//	int BaseClass::*NumObjPtr = &BaseClass::numObjects;
+//}
+//
+//
+//
+//void BaseClass::FirstLevelNested::SecondLevelNested::AccessTest()
+//{
+//	int BaseClass::*NumObjPtr = &BaseClass::numObjects;
+//}
+//

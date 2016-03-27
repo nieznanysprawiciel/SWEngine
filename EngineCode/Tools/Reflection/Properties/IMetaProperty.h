@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Common/RTTR.h"
+#include "RTTR.h"
 
 
 class IEnableProperty;

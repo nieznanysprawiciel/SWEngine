@@ -13,7 +13,7 @@
     </Link>
     <PostBuildEvent>
       <Command>copy $(TypeInfoLibsDirectory)TypeInfo$(DebugEnding).dll $(OutDir)TypeInfo$(DebugEnding).dll</Command>
-      <Message>Copy FBX dll to output directory.</Message>
+      <Message>Copy TypeInfo.dll to output directory.</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup />
