@@ -5,6 +5,7 @@
 
 class DerivedClass	:	public BaseClass
 {
+	RTTR_ENABLE_DERIVED_FROM( DerivedClass )
 private:
 
 	InnerStruct			PhysicalProperty;
@@ -14,4 +15,4 @@ public:
 	DerivedClass();
 	virtual ~DerivedClass();
 };
-
+RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( DerivedClass )

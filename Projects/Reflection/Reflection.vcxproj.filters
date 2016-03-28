@@ -69,6 +69,9 @@
     <ClInclude Include="..\..\EngineCode\Tools\Reflection\Properties\Containers\ICollection.h">
       <Filter>ReflectionCode\Properties\Containers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\RegisterClass.h">
+      <Filter>ReflectionCode</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\Tools\Reflection\StandardTypes.cpp">
@@ -79,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\Tools\Reflection\Properties\DefineMetatypes.cpp">
       <Filter>ReflectionCode\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\Tools\Reflection\RegisterClass.cpp">
+      <Filter>ReflectionCode</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

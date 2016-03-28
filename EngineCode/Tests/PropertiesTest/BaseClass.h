@@ -5,6 +5,8 @@
 
 class BaseClass	:	public EnablePropertyBase
 {
+	RTTR_ENABLE_DERIVED_FROM( EnablePropertyBase )
+	RTTR_ENABLE_PRIVATE_REGISTRATION( BaseClass )
 private:
 	
 	bool		serializeObject;
@@ -40,4 +42,4 @@ public:
 //		};
 //	};
 };
-
+RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( BaseClass )

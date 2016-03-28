@@ -31,10 +31,19 @@
 #include "base/TypeTraits.h"
 #include <vector>
 #include <string>
+#include <memory>
+
+class IMetaProperty;
+
+namespace RTTR
+{
+	struct ClassMetaInfoContainer;
+}
 
 namespace RTTR
 {
 class TypeInfo;
+
 
 namespace impl
 {
@@ -46,8 +55,11 @@ namespace impl
      *
      * \return A valid TypeInfo object.
      */
-    RTTR_API TypeInfo registerOrGetType(const char* name, const TypeInfo& rawTypeInfo,
-                                        const std::vector<TypeInfo>& info);
+	RTTR_API TypeInfo registerOrGetType( const char* name, const TypeInfo& rawTypeInfo,
+										 const std::vector<TypeInfo>& info );
+
+	RTTR_API void registerProperties( const TypeInfo& rawTypeInfo, ::RTTR::ClassMetaInfoContainer (*metaDataCreateFun)() );
+
     template<typename T, bool>
     struct RawTypeInfo;
 } // end namespace impl
@@ -273,9 +285,13 @@ class RTTR_API TypeInfo
          */
         bool isTypeDerivedFrom(const TypeInfo& other) const;
 
-        RTTR_API friend TypeInfo impl::registerOrGetType(const char* name, const TypeInfo& rawTypeInfo,
-                                                         const std::vector<TypeInfo>& info);
-        template<typename T, bool>
+		RTTR_API friend TypeInfo impl::registerOrGetType( const char* name, const TypeInfo& rawTypeInfo,
+														  const std::vector<TypeInfo>& info );
+
+		RTTR_API friend void impl::registerProperties( const TypeInfo& rawTypeInfo, ::RTTR::ClassMetaInfoContainer (*metaDataCreateFun)() );
+
+
+		template<typename T, bool>
         friend struct impl::RawTypeInfo;
     private:
         TypeId  m_id;

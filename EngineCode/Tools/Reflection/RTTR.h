@@ -5,5 +5,6 @@
 #include "RTTREnable.h"
 #include "RTTRCast.h"
 #include "StandardTypes.h"
+#include "RegisterClass.h"
 
 #endif //__RTTR_CORE_MODULE_H__

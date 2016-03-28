@@ -1,5 +1,17 @@
 #include "BaseClass.h"
 
+RTTR_REGISTRATION_VARIANTS( BaseClass )
+{
+	return RTTR::RegisterClass< BaseClass >()
+		.Property( "SerializeObject", &BaseClass::serializeObject )
+		.Property( "PositionX", &BaseClass::positionX )
+		.Property( "PositionY", &BaseClass::positionY )
+		.Property( "PositionZ", &BaseClass::positionZ )
+		.Property( "NumObjects", &BaseClass::numObjects )
+		.Return();
+}
+
+
 
 BaseClass::BaseClass()
 {

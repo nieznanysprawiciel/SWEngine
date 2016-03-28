@@ -8,8 +8,8 @@ DerivedClass::DerivedClass()
 	PhysicalProperty.Radius = 15.2f;
 
 	PhysicalPropertyPrev = new InnerStruct;
-	PhysicalPropertyPrev->Mass = 233.42;
-	PhysicalPropertyPrev->Moment = 16.3;
+	PhysicalPropertyPrev->Mass = 233.42f;
+	PhysicalPropertyPrev->Moment = 16.3f;
 	PhysicalPropertyPrev->Radius = 56;
 
 	AddProperty( "PhysicalProperty", static_cast< InnerStruct IEnableProperty::* >( &DerivedClass::PhysicalProperty ) );

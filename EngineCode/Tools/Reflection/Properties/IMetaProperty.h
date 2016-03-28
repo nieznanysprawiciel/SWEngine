@@ -24,6 +24,8 @@ public:
 		,	m_type( type )
 	{}
 
+	virtual ~IMetaProperty() {}
+
 
 	const char*		GetPropertyName()		{ return m_name; }
 	TypeInfo		GetPropertyType()		{ return m_type; }

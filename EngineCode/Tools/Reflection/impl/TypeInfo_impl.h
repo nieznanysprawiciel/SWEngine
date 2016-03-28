@@ -268,10 +268,10 @@ namespace RTTR                                                                  
         struct MetaTypeInfo< T >                                                                \
         {                                                                                       \
             enum { Defined = 1 };                                                               \
-            static RTTR_INLINE RTTR::TypeInfo getTypeInfo()                                     \
+            static RTTR_INLINE RTTR::TypeInfo getTypeInfo()										\
             {                                                                                   \
                 static const TypeInfo val = registerOrGetType(#T, RawTypeInfo<T>::get(),        \
-                                                              BaseClasses<T>::retrieve());      \
+                                                              BaseClasses<T>::retrieve() );		\
                 return val;                                                                     \
             }                                                                                   \
         };                                                                                      \
@@ -288,7 +288,7 @@ namespace RTTR                                                                  
         {                                                                                       \
             AutoRegisterType()                                                                  \
             {                                                                                   \
-                MetaTypeInfo<T>::getTypeInfo();                                                 \
+                MetaTypeInfo<T>::getTypeInfo();													\
             }                                                                                   \
         };                                                                                      \
     }                                                                                           \
@@ -302,3 +302,50 @@ static const RTTR::impl::AutoRegisterType<T> RTTR_CAT(autoRegisterType,__COUNTER
 #define RTTR_DEFINE_STANDARD_META_TYPE_VARIANTS(T) RTTR_DEFINE_META_TYPE(T)                     \
                                                    RTTR_DEFINE_META_TYPE(T*)                    \
                                                    RTTR_DEFINE_META_TYPE(const T*)
+
+
+
+#define RTTR_REGISTRATION(T)													                \
+static RTTR::ClassMetaInfoContainer			registerClassMetaInfoFunction();				\
+namespace RTTR                                                                                  \
+{                                                                                               \
+    namespace impl                                                                              \
+    {                                                                                           \
+        template<>                                                                              \
+        struct AutoRegisterType<T>                                                              \
+        {                                                                                       \
+            AutoRegisterType()                                                                  \
+            {                                                                                   \
+                TypeInfo val = MetaTypeInfo<T>::getTypeInfo();									\
+				registerProperties( val, registerClassMetaInfoFunction );						\
+            }                                                                                   \
+        };                                                                                      \
+    }                                                                                           \
+}                                                                                               \
+static const RTTR::impl::AutoRegisterType<T> RTTR_CAT(autoRegisterType,__COUNTER__);			\
+static RTTR::ClassMetaInfoContainer			registerClassMetaInfoFunction()
+
+#define RTTR_REGISTRATION_VARIANTS(T)															\
+RTTR_REGISTRATION( T );																			\
+RTTR_REGISTRATION( T* );																		\
+RTTR_REGISTRATION( const T* )
+
+
+#define RTTR_ENABLE_PRIVATE_REGISTRATION( T ) friend RTTR::ClassMetaInfoContainer registerClassMetaInfoFunction();
+
+//
+//#define RTTR_REGISTRATION                                               \
+//static void rttr_auto_register_reflection_function_();                  \
+//namespace                                                               \
+//{                                                                       \
+//    struct rttr__auto__register__                                       \
+//    {                                                                   \
+//        rttr__auto__register__()                                        \
+//        {                                                               \
+//            rttr_auto_register_reflection_function_();                  \
+//        }                                                               \
+//    };                                                                  \
+//}                                                                       \
+//static const rttr__auto__register__ RTTR_CAT(auto_register__,__LINE__); \
+//static void rttr_auto_register_reflection_function_()
+//

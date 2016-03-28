@@ -31,6 +31,7 @@
     <ClInclude Include="..\..\EngineCode\Tools\Reflection\Properties\IEnableProperty.h" />
     <ClInclude Include="..\..\EngineCode\Tools\Reflection\Properties\IMetaProperty.h" />
     <ClInclude Include="..\..\EngineCode\Tools\Reflection\Properties\Property.h" />
+    <ClInclude Include="..\..\EngineCode\Tools\Reflection\RegisterClass.h" />
     <ClInclude Include="..\..\EngineCode\Tools\Reflection\RTTR.h" />
     <ClInclude Include="..\..\EngineCode\Tools\Reflection\RTTRCast.h" />
     <ClInclude Include="..\..\EngineCode\Tools\Reflection\RTTREnable.h" />
@@ -39,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\Tools\Reflection\Properties\DefineMetatypes.cpp" />
+    <ClCompile Include="..\..\EngineCode\Tools\Reflection\RegisterClass.cpp" />
     <ClCompile Include="..\..\EngineCode\Tools\Reflection\StandardTypes.cpp" />
     <ClCompile Include="..\..\EngineCode\Tools\Reflection\TypeInfo.cpp" />
   </ItemGroup>

@@ -9,6 +9,8 @@
 
 #define SEPARATOR std::cout << std::endl;
 
+
+
 int main()
 {
 	BaseClass		base;

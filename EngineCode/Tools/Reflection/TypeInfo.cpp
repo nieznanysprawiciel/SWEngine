@@ -29,9 +29,14 @@
 #include <map>
 #include <typeinfo>
 
+
+#include "RegisterClass.h"
+
+
 using namespace std;
 
 typedef map<const string, const RTTR::TypeInfo::TypeId> NameToTag;
+typedef map< RTTR::TypeInfo::TypeId, std::vector< std::unique_ptr< IMetaProperty > > > ClassToProperties;
 
 #define RTTR_MAX_TYPE_COUNT 32767
 #define RTTR_MAX_INHERIT_TYPES_COUNT 50
@@ -56,7 +61,9 @@ struct TypeInfoData
         return obj;
     }
 
-    NameToTag nameToTagMap;
+    NameToTag				nameToTagMap;
+	ClassToProperties		classToPropertyMap;
+
     RTTR::TypeInfo::TypeId  globalIDCounter;
     std::string             nameList[RTTR_MAX_TYPE_COUNT];
     RTTR::TypeInfo::TypeId  inheritList[RTTR_MAX_TYPE_COUNT * RTTR_MAX_INHERIT_TYPES_COUNT];
@@ -114,17 +121,11 @@ bool TypeInfo::isTypeDerivedFrom(const TypeInfo& other) const
 namespace impl
 {
 
-/////////////////////////////////////////////////////////////////////////////////////////
 
-TypeInfo registerOrGetType(const char* name, const TypeInfo& rawTypeInfo, 
-                           const std::vector<TypeInfo>& baseClassList)
+RTTR::TypeInfo::TypeId registerTypeOnly( const char* name, const TypeInfo& rawTypeInfo, 
+                           const std::vector<TypeInfo>& baseClassList )
 {
-    TypeInfoData& data = TypeInfoData::instance();
-    {
-        NameToTag::const_iterator itr = data.nameToTagMap.find(name);
-        if (itr != data.nameToTagMap.end())
-            return TypeInfo(itr->second);
-    }
+	TypeInfoData& data = TypeInfoData::instance();
 
     const pair<NameToTag::iterator,bool> ret = data.nameToTagMap.insert(make_pair(name, ++data.globalIDCounter));
     if (ret.second)
@@ -144,7 +145,39 @@ TypeInfo registerOrGetType(const char* name, const TypeInfo& rawTypeInfo,
     } // else cannot happen!
 
 
-    return TypeInfo(ret.first->second);
+    return ret.first->second;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+TypeInfo registerOrGetType(const char* name, const TypeInfo& rawTypeInfo, 
+                           const std::vector<TypeInfo>& baseClassList)
+{
+    TypeInfoData& data = TypeInfoData::instance();
+    {
+        NameToTag::const_iterator itr = data.nameToTagMap.find(name);
+        if (itr != data.nameToTagMap.end())
+            return TypeInfo(itr->second);
+    }
+
+	return TypeInfo( registerTypeOnly( name, rawTypeInfo, baseClassList ) );
+}
+
+void impl::registerProperties( const TypeInfo& rawTypeInfo, ::RTTR::ClassMetaInfoContainer (*metaDataCreateFun)() )
+{
+	TypeInfoData& data = TypeInfoData::instance();
+
+	if( metaDataCreateFun != nullptr )
+	{
+		auto rawId = rawTypeInfo.getRawType().getId();
+
+		auto iter = data.classToPropertyMap.find( rawId );
+		if( iter == data.classToPropertyMap.end() )
+		{
+			ClassMetaInfoContainer container = metaDataCreateFun();
+			data.classToPropertyMap.insert( std::make_pair( rawId, std::move( container.properties ) ) );
+		}
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
