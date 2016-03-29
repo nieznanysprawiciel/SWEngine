@@ -10,10 +10,11 @@
 namespace RTTR
 {
 
+typedef std::vector< std::unique_ptr< IMetaProperty > > MetaPropertyVec;
 
 struct ClassMetaInfoContainer
 {
-	std::vector< std::unique_ptr< IMetaProperty > >		properties;
+	MetaPropertyVec		properties;
 
 	ClassMetaInfoContainer() {}
 	ClassMetaInfoContainer( ClassMetaInfoContainer& ) = delete;

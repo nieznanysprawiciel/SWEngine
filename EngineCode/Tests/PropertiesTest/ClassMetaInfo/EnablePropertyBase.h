@@ -25,7 +25,7 @@ protected:
 	
 private:
 
-	virtual IMetaProperty*		GetMetaProperty	( const char* propertyName ) override;
+	virtual const IMetaProperty*		GetMetaProperty	( const char* propertyName ) override;
 
 };
 

@@ -73,14 +73,16 @@ struct TypeInfoData
 namespace RTTR
 {
 
+const std::string EmptyString;
+
 /////////////////////////////////////////////////////////////////////////////////////////
 
-std::string TypeInfo::getName() const
+const std::string& TypeInfo::getName() const
 {
     if (isValid())
         return g_nameList[m_id];
     else
-        return std::string();
+        return EmptyString;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -163,6 +165,8 @@ TypeInfo registerOrGetType(const char* name, const TypeInfo& rawTypeInfo,
 	return TypeInfo( registerTypeOnly( name, rawTypeInfo, baseClassList ) );
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
 void impl::registerProperties( const TypeInfo& rawTypeInfo, ::RTTR::ClassMetaInfoContainer (*metaDataCreateFun)() )
 {
 	TypeInfoData& data = TypeInfoData::instance();
@@ -178,6 +182,59 @@ void impl::registerProperties( const TypeInfo& rawTypeInfo, ::RTTR::ClassMetaInf
 			data.classToPropertyMap.insert( std::make_pair( rawId, std::move( container.properties ) ) );
 		}
 	}
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+const IMetaProperty*		findProperty			( const char* name, TypeInfo::TypeId rawTypeId )
+{
+	TypeInfoData& data = TypeInfoData::instance();
+
+	auto iter = data.classToPropertyMap.find( rawTypeId );
+	if( iter == data.classToPropertyMap.end() )
+		return nullptr;
+
+	for( auto& propertyPtr : iter->second )
+	{
+		if( strcmp( propertyPtr->GetPropertyName(), name ) == 0 )
+			return propertyPtr.get();		// propertyVec is static, so theres no danger, that it will be released.
+	}
+	return nullptr;
+}
+
+const MetaPropertyVec&		getTypeProperties		( const TypeInfo& typeInfo )
+{
+	return MetaPropertyVec();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+const IMetaProperty*		getProperty				( const TypeInfo& typeInfo, const char* name )
+{
+	TypeInfoData& data = TypeInfoData::instance();
+	const TypeInfo::TypeId thisRawId = g_rawTypeList[ typeInfo.getId() ];
+
+	auto property = findProperty( name, thisRawId );
+	if( property )
+		return property;
+
+
+	// If we didn't find property in class info, we have to search inherited classes.
+    const int row = RTTR_MAX_INHERIT_TYPES_COUNT * thisRawId;
+    for (int i = 0; i < RTTR_MAX_INHERIT_TYPES_COUNT; ++i)
+    {
+        const TypeInfo::TypeId currId = g_inheritList[row + i];
+		auto property = findProperty( name, currId );
+		if( property )
+			return property;
+    }
+
+	return nullptr;
+}
+
+std::vector< const IMetaProperty* >	getAllClassProperties	( const TypeInfo& typeInfo )
+{
+	return std::vector< const IMetaProperty* >();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////

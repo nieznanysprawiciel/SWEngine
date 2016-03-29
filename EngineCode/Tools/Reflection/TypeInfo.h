@@ -34,6 +34,7 @@
 #include <memory>
 
 class IMetaProperty;
+typedef std::vector< std::unique_ptr< IMetaProperty > > MetaPropertyVec;
 
 namespace RTTR
 {
@@ -54,11 +55,15 @@ namespace impl
      *         then the TypeInfo for the already registered type will be returned.
      *
      * \return A valid TypeInfo object.
-     */
-	RTTR_API TypeInfo registerOrGetType( const char* name, const TypeInfo& rawTypeInfo,
-										 const std::vector<TypeInfo>& info );
+		 */
+	RTTR_API TypeInfo					registerOrGetType		( const char* name, const TypeInfo& rawTypeInfo,
+																  const std::vector<TypeInfo>& info );
+	RTTR_API void						registerProperties		( const TypeInfo& typeInfo, ::RTTR::ClassMetaInfoContainer ( *metaDataCreateFun )( ) );
+	RTTR_API const MetaPropertyVec&		getTypeProperties		( const TypeInfo& typeInfo );
+	RTTR_API const IMetaProperty*		getProperty				( const TypeInfo& typeInfo, const char* name );
 
-	RTTR_API void registerProperties( const TypeInfo& rawTypeInfo, ::RTTR::ClassMetaInfoContainer (*metaDataCreateFun)() );
+	RTTR_API std::vector< const IMetaProperty* >	getAllClassProperties	( const TypeInfo& rawTypeInfo );
+
 
     template<typename T, bool>
     struct RawTypeInfo;
@@ -197,7 +202,7 @@ class RTTR_API TypeInfo
          *
          * \return TypeInfo name.
          */
-        std::string getName() const;
+        const std::string& getName() const;
         
         /*!
          * \brief Returns true if this TypeInfo is valid, that means the TypeInfo holds valid data to a type.
@@ -263,6 +268,9 @@ class RTTR_API TypeInfo
          */
         template<typename T> 
         static TypeInfo get(T& object);
+
+
+		const IMetaProperty* GetProperty( const char* name );
 
     private:
 

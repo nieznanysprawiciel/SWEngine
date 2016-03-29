@@ -5,7 +5,8 @@
 
 class DerivedClass	:	public BaseClass
 {
-	RTTR_ENABLE_DERIVED_FROM( DerivedClass )
+	RTTR_ENABLE_DERIVED_FROM( BaseClass )
+	RTTR_ENABLE_PRIVATE_REGISTRATION( DerivedClass )
 private:
 
 	InnerStruct			PhysicalProperty;

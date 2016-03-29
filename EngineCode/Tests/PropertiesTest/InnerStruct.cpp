@@ -1,6 +1,13 @@
 #include "InnerStruct.h"
 
-RTTR_DEFINE_STANDARD_META_TYPE_VARIANTS( InnerStruct )
+RTTR_REGISTRATION_VARIANTS( InnerStruct )
+{
+	return RTTR::RegisterClass< InnerStruct >()
+		.Property( "Mass", &InnerStruct::Mass )
+		.Property( "Moment", &InnerStruct::Moment )
+		.Property( "Radius", &InnerStruct::Radius )
+		.Return();
+}
 
 
 InnerStruct::InnerStruct()

@@ -113,6 +113,13 @@ RTTR_INLINE bool TypeInfo::isValid() const
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
+
+RTTR_INLINE const IMetaProperty* TypeInfo::GetProperty( const char* name )
+{
+	return impl::getProperty( *this, name );
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -306,7 +313,7 @@ static const RTTR::impl::AutoRegisterType<T> RTTR_CAT(autoRegisterType,__COUNTER
 
 
 #define RTTR_REGISTRATION(T)													                \
-static RTTR::ClassMetaInfoContainer			registerClassMetaInfoFunction();				\
+static RTTR::ClassMetaInfoContainer			registerClassMetaInfoFunction();					\
 namespace RTTR                                                                                  \
 {                                                                                               \
     namespace impl                                                                              \
@@ -317,7 +324,7 @@ namespace RTTR                                                                  
             AutoRegisterType()                                                                  \
             {                                                                                   \
                 TypeInfo val = MetaTypeInfo<T>::getTypeInfo();									\
-				registerProperties( val, registerClassMetaInfoFunction );						\
+				registerProperties( val.getRawType(), registerClassMetaInfoFunction );			\
             }                                                                                   \
         };                                                                                      \
     }                                                                                           \

@@ -17,13 +17,9 @@ EnablePropertyBase::~EnablePropertyBase()
 }
 
 /**@brief */
-IMetaProperty*		EnablePropertyBase::GetMetaProperty	( const char* propertyName )
+const IMetaProperty*		EnablePropertyBase::GetMetaProperty	( const char* propertyName )
 {
-	std::string propName = propertyName;
+	auto typeInfo = getTypeInfo();
 
-	auto iter = m_propertiesMetaData.find( propName );
-	if( iter == m_propertiesMetaData.end() )
-		return nullptr;
-
-	return iter->second;
+	return typeInfo.GetProperty( propertyName );
 }

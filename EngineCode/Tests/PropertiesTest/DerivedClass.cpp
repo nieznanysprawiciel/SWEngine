@@ -1,6 +1,16 @@
 #include "DerivedClass.h"
 
 
+
+RTTR_REGISTRATION_VARIANTS( DerivedClass )
+{
+	return RTTR::RegisterClass< DerivedClass >()
+		.Property( "PhysicalProperty", &DerivedClass::PhysicalProperty )
+		.Property( "PhysicalPropertyPrev", &DerivedClass::PhysicalPropertyPrev )
+		.Return();
+}
+
+
 DerivedClass::DerivedClass()
 {
 	PhysicalProperty.Mass = 10021.0f;

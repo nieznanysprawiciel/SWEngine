@@ -8,22 +8,22 @@ class IEnableProperty
 	RTTR_ENABLE()
 private:
 
-	virtual IMetaProperty*		GetMetaProperty	( const char* propertyName ) = 0;
+	virtual const IMetaProperty*		GetMetaProperty	( const char* propertyName ) = 0;
 
 public:
 	
 	inline IProperty			GetProperty		( const char* propertyName )
 	{
-		IMetaProperty* metaProperty = GetMetaProperty( propertyName );
+		const IMetaProperty* metaProperty = GetMetaProperty( propertyName );
 		return IProperty( metaProperty, this );
 	}
 
 	template< typename PropertyType >
 	inline Property< PropertyType >		GetTypedProperty		( const char* propertyName )
 	{
-		IMetaProperty* metaProperty = GetMetaProperty( propertyName );
+		const IMetaProperty* metaProperty = GetMetaProperty( propertyName );
 
-		if( metaProperty->GetPropertyType().isTypeDerivedFrom< PropertyType >() )
+		if( metaProperty && metaProperty->GetPropertyType().isTypeDerivedFrom< PropertyType >() )
 			return Property< PropertyType >( metaProperty, this );
 
 		// Types are inconsistent. Return invalid property.

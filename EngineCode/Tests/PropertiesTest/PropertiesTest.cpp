@@ -20,6 +20,10 @@ int main()
 	//DerivedClass( derived ).GetTypedProperty< IEnableProperty >( "PhysicalProperty" );
 	//BaseClass().Property().Property();
 
+	//std::cout << RTTR::TypeInfo::get<BaseClass>().getName() << RTTR::TypeInfo::get<BaseClass>().getId() << std::endl;
+	//std::cout << RTTR::TypeInfo::get<BaseClass*>().getName() << RTTR::TypeInfo::get<BaseClass*>().getId() << std::endl;
+	//std::cout << RTTR::TypeInfo::get<const BaseClass*>().getName() << RTTR::TypeInfo::get< const BaseClass*>().getId() << std::endl;
+
 	Property< float > typedPropertyX = base.GetTypedProperty< float >( "PositionX" );
 	Property< float > typedPropertyY = base.GetTypedProperty< float >( "PositionY" );
 	Property< float > typedPropertyZ = base.GetTypedProperty< float >( "PositionZ" );

@@ -27,8 +27,8 @@ public:
 	virtual ~IMetaProperty() {}
 
 
-	const char*		GetPropertyName()		{ return m_name; }
-	TypeInfo		GetPropertyType()		{ return m_type; }
+	const char*		GetPropertyName() const		{ return m_name; }
+	TypeInfo		GetPropertyType() const		{ return m_type; }
 };
 
 
@@ -46,7 +46,7 @@ public:
 	{}
 
 
-	PropertyType IEnableProperty::*	GetPtr()	{ return m_memberPtr; }
+	PropertyType IEnableProperty::*	GetPtr() const	{ return m_memberPtr; }
 };
 
 
