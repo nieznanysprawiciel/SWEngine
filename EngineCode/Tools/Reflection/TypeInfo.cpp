@@ -204,14 +204,16 @@ const IMetaProperty*		findProperty			( const char* name, TypeInfo::TypeId rawTyp
 
 const MetaPropertyVec&		getTypeProperties		( const TypeInfo& typeInfo )
 {
-	return MetaPropertyVec();
+	TypeInfoData& data = TypeInfoData::instance();
+	const TypeInfo::TypeId thisRawId = g_rawTypeList[ typeInfo.getId() ];
+
+	return data.classToPropertyMap[ thisRawId ];
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
 const IMetaProperty*		getProperty				( const TypeInfo& typeInfo, const char* name )
 {
-	TypeInfoData& data = TypeInfoData::instance();
 	const TypeInfo::TypeId thisRawId = g_rawTypeList[ typeInfo.getId() ];
 
 	auto property = findProperty( name, thisRawId );
@@ -232,9 +234,42 @@ const IMetaProperty*		getProperty				( const TypeInfo& typeInfo, const char* nam
 	return nullptr;
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
+void	copyPropertiesVec		( const MetaPropertyVec& source, std::vector< const IMetaProperty* >& destination )
+{
+	destination.reserve( destination.size() + source.size() );
+
+	for( auto& metaProperty : source )
+	{
+		destination.push_back( metaProperty.get() );	// source is static, so theres no danger, that it will be released.
+	}
+}
+
 std::vector< const IMetaProperty* >	getAllClassProperties	( const TypeInfo& typeInfo )
 {
-	return std::vector< const IMetaProperty* >();
+	TypeInfoData& data = TypeInfoData::instance();
+	const TypeInfo::TypeId thisRawId = g_rawTypeList[ typeInfo.getId() ];
+
+	std::vector< const IMetaProperty* > resultVec;
+
+	auto& metaPropsVec = getTypeProperties( typeInfo );
+	copyPropertiesVec( metaPropsVec, resultVec );
+
+	// Search base classes
+    const int row = RTTR_MAX_INHERIT_TYPES_COUNT * thisRawId;
+    for (int i = 0; i < RTTR_MAX_INHERIT_TYPES_COUNT; ++i)
+    {
+        const TypeInfo::TypeId currId = g_inheritList[row + i];
+
+		if( currId == 0 )
+			break;
+
+		auto& metaPropsVec = getTypeProperties( typeInfo );
+		copyPropertiesVec( metaPropsVec, resultVec );
+    }
+
+	return resultVec;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////

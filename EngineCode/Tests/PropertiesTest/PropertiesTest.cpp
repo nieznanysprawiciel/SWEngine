@@ -24,6 +24,22 @@ int main()
 	//std::cout << RTTR::TypeInfo::get<BaseClass*>().getName() << RTTR::TypeInfo::get<BaseClass*>().getId() << std::endl;
 	//std::cout << RTTR::TypeInfo::get<const BaseClass*>().getName() << RTTR::TypeInfo::get< const BaseClass*>().getId() << std::endl;
 
+	std::cout << "List all BaseClass properties" << std::endl;
+	for( auto& prop : base.GetProperties() )
+	{
+		std::cout << prop.GetPropertyName() << std::endl;
+	}
+
+	SEPARATOR
+
+	std::cout << "List all DerivedClass properties" << std::endl;
+	for( auto& prop : derived.GetProperties() )
+	{
+		std::cout << prop.GetPropertyName() << std::endl;
+	}
+
+	SEPARATOR
+
 	Property< float > typedPropertyX = base.GetTypedProperty< float >( "PositionX" );
 	Property< float > typedPropertyY = base.GetTypedProperty< float >( "PositionY" );
 	Property< float > typedPropertyZ = base.GetTypedProperty< float >( "PositionZ" );

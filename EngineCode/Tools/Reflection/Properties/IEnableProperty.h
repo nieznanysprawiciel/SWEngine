@@ -29,5 +29,20 @@ public:
 		// Types are inconsistent. Return invalid property.
 		return Property< PropertyType >( nullptr, this );
 	}
+
+	inline std::vector< IProperty >		GetProperties			()
+	{
+		auto typeInfo = getTypeInfo();
+		auto propertyVec = typeInfo.GetProperties();
+
+		std::vector< IProperty >	properties;
+
+		for( auto metaProperty : propertyVec )
+		{
+			properties.push_back( IProperty( metaProperty, this ) );
+		}
+
+		return properties;
+	}
 };
 RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( IEnableProperty )

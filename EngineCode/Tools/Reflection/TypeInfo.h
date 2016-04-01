@@ -270,7 +270,8 @@ class RTTR_API TypeInfo
         static TypeInfo get(T& object);
 
 
-		const IMetaProperty* GetProperty( const char* name );
+		const IMetaProperty*					GetProperty		( const char* name );
+		std::vector< const IMetaProperty* >		GetProperties	();
 
     private:
 
