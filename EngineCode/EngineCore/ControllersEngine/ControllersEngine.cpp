@@ -42,7 +42,7 @@ void ControllersEngine::ProceedControllersPost( float time_interval )
 
 
 /**@brief Dodaje podany obiekt do kontrolerów wywo³ywanych przed przesuniêciem obiektów.*/
-bool ControllersEngine::AddPreControlled( DynamicObject* object )
+bool ControllersEngine::AddPreControlled( DynamicActor* object )
 {
 	if ( object == nullptr )
 		return false;
@@ -52,7 +52,7 @@ bool ControllersEngine::AddPreControlled( DynamicObject* object )
 }
 
 /**@brief Dodaje podany obiekt do kontrolerów wywo³ywanych po przesuniêciu obiektów.*/
-bool ControllersEngine::AddPostControlled( DynamicObject* object )
+bool ControllersEngine::AddPostControlled( DynamicActor* object )
 {
 	if ( object == nullptr )
 		return false;

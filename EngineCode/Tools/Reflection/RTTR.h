@@ -1,10 +1,11 @@
-#ifndef __RTTR_CORE_MODULE_H__
-#define __RTTR_CORE_MODULE_H__
 
-#include "TypeInfo.h"
-#include "RTTREnable.h"
-#include "RTTRCast.h"
-#include "StandardTypes.h"
-#include "RegisterClass.h"
+#include "rttr/type.h"
+#include "rttr/rttr_enable.h"
+#include "rttr/rttr_cast.h"
+#include "rttr/constructor.h"
+#include "rttr/destructor.h"
+#include "rttr/method.h"
+#include "rttr/property.h"
+#include "rttr/enumeration.h"
+#include "rttr/registration.h"
 
-#endif //__RTTR_CORE_MODULE_H__

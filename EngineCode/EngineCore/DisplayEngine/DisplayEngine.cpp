@@ -218,7 +218,7 @@ void DisplayEngine::DisplayDynamicObjects( float time_interval, float time_lag )
 	//na razie pêtla bez optymalizacji
 	for ( unsigned int i = 0; i < meshes.size( ); ++i )
 	{
-		register DynamicMeshObject* object = meshes[i];
+		register DynamicMeshActor* object = meshes[i];
 
 		// Ustawiamy bufor wierzcho³ków
 		if ( renderer->SetVertexBuffer( object->vertex_buffer ) )
@@ -454,7 +454,7 @@ void DisplayEngine::RenderFromQueue( float time_interval, float time_lag )
 			//na razie pêtla bez optymalizacji
 			for ( unsigned int i = 0; i < meshCollection.size( ); ++i )
 			{
-				register DynamicMeshObject* object = meshCollection[i];
+				register DynamicMeshActor* object = meshCollection[i];
 
 				// Ustawiamy bufor wierzcho³ków
 				if ( renderer->SetVertexBuffer( object->vertex_buffer ) )
@@ -579,7 +579,7 @@ void DisplayEngine::SetViewMatrix( float time_lag )
 /**@brief Dodaje obiekt, który ma zostaæ wyœwietlony.
 
 @param[in] object Object, który ma zostaæ dopisany do tablic wyœwietlania.*/
-void DisplayEngine::AddDynamicMeshObject( DynamicMeshObject* object )
+void DisplayEngine::AddDynamicMeshObject( DynamicMeshActor* object )
 {
 	realocate_interpolation_memory( );		//powiêkszamy tablicê macierzy interpolacji
 							//wykona siê tylko je¿eli jest konieczne
@@ -599,7 +599,7 @@ void DisplayEngine::DeleteAllMeshes()
 Funkcja zwraca 0 w przypadku powodzenia.
 Je¿eli kamera ju¿ istnia³a wczesniej, to zwracan¹ wartoœci¹ jest 1.
 Je¿eli podano wskaŸnik nullptr, zwrócona zostanie wartoœæ 2.*/
-int DisplayEngine::AddCamera( CameraObject* camera )
+int DisplayEngine::AddCamera( CameraActor* camera )
 {
 	if ( camera == nullptr )
 		return 2;
@@ -615,7 +615,7 @@ int DisplayEngine::AddCamera( CameraObject* camera )
 @param[in] camera Kamera do ustawienia
 @return 0 w przypadku powodzenia, 1 je¿eli kamera by³a nullptrem.
 Zasadniczo nie ma po co sprawdzaæ wartoœci zwracanej.*/
-int DisplayEngine::SetCurrentCamera( CameraObject* camera )
+int DisplayEngine::SetCurrentCamera( CameraActor* camera )
 {
 	if ( camera == nullptr )
 		return 1;
@@ -670,7 +670,7 @@ void DisplayEngine::InterpolatePositions( float time_lag )
 {
 	for ( unsigned int i = 0; i < meshes.size(); ++i )
 	{
-		DynamicMeshObject* object = meshes[i];
+		DynamicMeshActor* object = meshes[i];
 		interpolate_object2( time_lag, object, &(interpolated_matrixes[i]) );
 	}
 }
@@ -684,7 +684,7 @@ z prêdkoœci postêpowej i k¹towej.
 @param[in] object Objekt, dla którego liczymy macierz przekszta³cenia.
 @param[out] transform_matrix Zmienna, w której zostanie umieszczona interpolowana macierz przekszta³cenia.
 */
-void DisplayEngine::interpolate_object( float time_lag, const DynamicObject* object, DirectX::XMFLOAT4X4* result_matrix )
+void DisplayEngine::interpolate_object( float time_lag, const DynamicActor* object, DirectX::XMFLOAT4X4* result_matrix )
 {
 	XMVECTOR position = object->GetPosition( );
 	XMVECTOR orientation = object->GetOrientation( );
@@ -726,7 +726,7 @@ Zakres [0,1].
 @param[in] object Objekt, dla którego liczymy macierz przekszta³cenia.
 @param[out] transform_matrix Zmienna, w której zostanie umieszczona interpolowana macierz przekszta³cenia.
 */
-void DisplayEngine::interpolate_object2( float time_lag, const DynamicObject* object, DirectX::XMFLOAT4X4* result_matrix )
+void DisplayEngine::interpolate_object2( float time_lag, const DynamicActor* object, DirectX::XMFLOAT4X4* result_matrix )
 {
 	XMVECTOR position = object->GetInterpolatedPosition( time_lag );
 	XMVECTOR orientation = object->GetInterpolatedOrientation( time_lag );

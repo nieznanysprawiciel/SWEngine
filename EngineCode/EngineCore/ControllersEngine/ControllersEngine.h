@@ -11,8 +11,8 @@ class ControllersEngine
 private:
 	Engine* engine;
 
-	std::vector<DynamicObject*>		m_preControlledObjects;
-	std::vector<DynamicObject*>		m_postControlledObjects;
+	std::vector<DynamicActor*>		m_preControlledObjects;
+	std::vector<DynamicActor*>		m_postControlledObjects;
 
 public:
 	ControllersEngine( Engine* parent );
@@ -21,7 +21,7 @@ public:
 	void		ProceedControllersPre			( float time_interval );
 	void		ProceedControllersPost			( float time_interval );
 
-	bool		AddPreControlled				( DynamicObject* object );
-	bool		AddPostControlled				( DynamicObject* object );
+	bool		AddPreControlled				( DynamicActor* object );
+	bool		AddPostControlled				( DynamicActor* object );
 };
 

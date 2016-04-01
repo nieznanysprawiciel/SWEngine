@@ -23,7 +23,7 @@ camera_controller_PROTOTYPE::~camera_controller_PROTOTYPE()
 /*Funkcja g³ówna odpowiedzialna za sterowanie ruchem obiektu.*/
 using namespace STANDARD_LAYERS;
 
-void camera_controller_PROTOTYPE::ControlObject( DynamicObject* object )
+void camera_controller_PROTOTYPE::ControlObject( DynamicActor* object )
 {
 	if ( !abstraction_layer->is_active() )
 		return;

@@ -58,7 +58,7 @@ void Engine::test()
 	Context->modelsManager->test();			// Tu sie odbywa wczytywanie
 
 	//dodawanie ksiê¿yca
-	DynamicMeshObject* moon = actors.CreateActor< DynamicMeshObject >( "DynamicMeshObject", EnableDisplay );
+	DynamicMeshActor* moon = actors.CreateActor< DynamicMeshActor >( GetTypeidName< DynamicMeshActor >(), EnableDisplay );
 	XMVECTOR position = XMVectorSet( 4000.0, 0.0, 8000.0, 0.0 );
 	moon->Teleport( position );
 
@@ -67,7 +67,7 @@ void Engine::test()
 
 
 	//dodawanie Nebulona
-	DynamicMeshObject* nebulon = actors.CreateActor< DynamicMeshObject >( "DynamicMeshObject", EnableDisplay );
+	DynamicMeshActor* nebulon = actors.CreateActor< DynamicMeshActor >( GetTypeidName< DynamicMeshActor >(), EnableDisplay );
 	position = XMVectorSet( 400.0, 0.0, -6000.0, 0.0 );
 	nebulon->Teleport( position );
 
@@ -76,7 +76,7 @@ void Engine::test()
 
 
 	//dodawanie TIE Fightera
-	DynamicMeshObject* TIE = actors.CreateActor< DynamicMeshObject >( "DynamicMeshObject", EnableDisplay );
+	DynamicMeshActor* TIE = actors.CreateActor< DynamicMeshActor >( GetTypeidName< DynamicMeshActor >(), EnableDisplay );
 	position = XMVectorSet( -400.0, 0.0, 800.0, 0.0 );
 	TIE->Teleport( position );
 
@@ -85,7 +85,7 @@ void Engine::test()
 
 
 	//dodawanie TIE Fightera Vadera
-	DynamicMeshObject* VaderTIE = actors.CreateActor< DynamicMeshObject >( "DynamicMeshObject", EnableDisplay );
+	DynamicMeshActor* VaderTIE = actors.CreateActor< DynamicMeshActor >( GetTypeidName< DynamicMeshActor >(), EnableDisplay );
 	position = XMVectorSet( -400.0, 0.0, -3000.0, 0.0 );
 	VaderTIE->Teleport( position );
 
@@ -94,7 +94,7 @@ void Engine::test()
 
 
 	//dodawanie myœliwca
-	DynamicMeshObject* cloneFighter = actors.CreateActor< DynamicMeshObject >( "DynamicMeshObject", EnableDisplay | EnableMovement );
+	DynamicMeshActor* cloneFighter = actors.CreateActor< DynamicMeshActor >( GetTypeidName< DynamicMeshActor >(), EnableDisplay | EnableMovement );
 
 	position = XMVectorSet(0.0, 0.0, 6000.0, 0.0);
 	cloneFighter->Teleport( position );
@@ -119,7 +119,7 @@ void Engine::test()
 
 	//for( unsigned int i = 0; i < 100; ++i )
 	//{
-	//	DynamicMeshObject* cloneFighter = actors.CreateActor< DynamicMeshObject >( "DynamicMeshObject", EnableDisplay );
+	//	DynamicMeshActor* cloneFighter = actors.CreateActor< DynamicMeshActor >( "DynamicMeshActor", EnableDisplay );
 	//	position = XMVectorSet( 15000.0 * cos( ( 2*i*XM_PI ) / 100 ), 0.0, 15000.0 * sin( ( 2*i*XM_PI ) / 100 ), 0.0 );
 	//	
 	//	cloneFighter->set_model( Context->modelsManager->GetModel( CLONE_FIGHTER ) );
@@ -128,7 +128,7 @@ void Engine::test()
 
 
 	// Dodawanie gwiezdnego niszczyciela Imperial
-	/*DynamicMeshObject* Imperial = actors.CreateActor< DynamicMeshObject >( "DynamicMeshObject", EnableDisplay );
+	/*DynamicMeshActor* Imperial = actors.CreateActor< DynamicMeshActor >( "DynamicMeshActor", EnableDisplay );
 	position = XMVectorSet( -4000.0, 0.0, -3000.0, 0.0 );
 	Imperial->set_position( position );
 
@@ -137,7 +137,7 @@ void Engine::test()
 
 	
 	//dodawanie skrzyni
-//	DynamicMeshObject* skrzynia = actors.CreateActor< DynamicMeshObject >( "DynamicMeshObject", EnableDisplay | EnableMovement );
+//	DynamicMeshActor* skrzynia = actors.CreateActor< DynamicMeshActor >( "DynamicMeshActor", EnableDisplay | EnableMovement );
 //	position = XMVectorSet( 0.0, 0.0, 2.0, 0.0 );
 //	skrzynia->Teleport( position );
 //
@@ -164,7 +164,7 @@ void Engine::test()
 void Engine::SetSkydomeAndCamera()
 {
 	//ustawienie aktywnej kamery
-	CameraObject* camera = actors.CreateActor< CameraObject >( "CameraObject", AsCamera | EnablePreController | EnableMovement );
+	CameraActor* camera = actors.CreateActor< CameraActor >( GetTypeidName< CameraActor >(), AsCamera | EnablePreController | EnableMovement );
 	XMVECTOR camera_pos = XMVectorSet( 0.0, 0.0, 0.0, 0.0 );
 	camera->Teleport( camera_pos );
 	//przypisujemy kontroler ( dla kontrolerów trzeba zrobiæ jakiœ mechanizm przechowywania i zwalniania)

@@ -14,7 +14,7 @@ do zliczania odwo³añ do obiektu.*/
 Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagaj¹ jakiegoœ systemu zapewniaj¹cego wspó³dzielenie miêdzy innymi obiektami.
 
 Do ka¿dego pojedynczego obiektu mog¹ istnieæ wilokrotne odwo³ania w klasie Model3DFromFile,
-a tak¿e w obiektach dziedzicz¹cych po @ref DynamicMeshObject.
+a tak¿e w obiektach dziedzicz¹cych po @ref DynamicMeshActor.
 Z tego wzglêdu istniej¹ zmienne m_assetReferences i m_objectReferences.
 Pierwsza okreœla, ile razy wystêpuj¹ odwo³ania do obiektu w klasie Model3DFromFile.
 (uwaga: nie zliczamy, ile klas siê odwo³uje. Je¿eli w klasie pojawiaj¹ siê 3 odwo³ania, to licz¹ siê jako 3. Taka konwencja

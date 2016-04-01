@@ -8,6 +8,9 @@
     <Filter Include="PropertiesTest\ClassMetaInfo">
       <UniqueIdentifier>{d77479dc-277d-4ec4-a3ca-48db2a49d47d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{26ac2392-0c5a-41e0-a946-92226952d2be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\PropertiesTest.cpp">
@@ -38,6 +41,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\InnerStruct.h">
       <Filter>PropertiesTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\EngineCode\Common\Properties\IEnableProperty.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\EngineCode\Common\Properties\Property.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

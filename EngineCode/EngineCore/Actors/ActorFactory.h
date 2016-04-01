@@ -8,7 +8,7 @@
 #include "EngineCore/stdafx.h"
 
 #include "EngineCore/Actors/ActorObjects.h"
-#include <typeinfo>
+#include "Common/RTTR.h"
 
 #include "FastDelegate.h"
 
@@ -23,7 +23,7 @@ typedef fastdelegate::FastDelegate0< Object* > CreateActorFunction;
 template< typename ClassType >
 std::string			GetTypeidName()
 {
-	return RTTR::TypeInfo::get< ClassType >().getName();
+	return rttr::type::get< ClassType >().get_name();
 }
 
 
@@ -90,7 +90,7 @@ template< typename Type > Type* ActorFactory::CreateActor( ActorType id )
 	{
 		Object* newActor = m_createFunctions[ id ]();
 		
-		assert( rttr_cast< Type* >( newActor ) );
+		assert( rttr::rttr_cast< Type* >( newActor ) );
 		return static_cast< Type* >( newActor );
 	}
 	return nullptr;

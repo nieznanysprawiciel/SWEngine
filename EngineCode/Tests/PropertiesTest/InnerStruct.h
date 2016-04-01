@@ -7,7 +7,7 @@
 
 struct InnerStruct	: public EnablePropertyBase
 {
-	RTTR_ENABLE_DERIVED_FROM( EnablePropertyBase )
+	RTTR_ENABLE( EnablePropertyBase )
 public:
 
 	float		Mass;
@@ -17,4 +17,4 @@ public:
 	InnerStruct();
 };
 
-RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( InnerStruct )
+//RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( InnerStruct )

@@ -1,18 +1,15 @@
 #include "InnerStruct.h"
 
-RTTR_REGISTRATION_VARIANTS( InnerStruct )
+
+
+RTTR_REGISTRATION
 {
-	return RTTR::RegisterClass< InnerStruct >()
-		.Property( "Mass", &InnerStruct::Mass )
-		.Property( "Moment", &InnerStruct::Moment )
-		.Property( "Radius", &InnerStruct::Radius )
-		.Return();
+	rttr::registration::class_< InnerStruct >( "InnerStruct" )
+		.property( "Mass", &InnerStruct::Mass )
+		.property( "Moment", &InnerStruct::Moment )
+		.property( "Radius", &InnerStruct::Radius );
 }
 
 
 InnerStruct::InnerStruct()
-{
-	AddProperty( "Mass", static_cast< float IEnableProperty::* >( &InnerStruct::Mass ) );
-	AddProperty( "Moment", static_cast< float IEnableProperty::* >( &InnerStruct::Moment ) );
-	AddProperty( "Radius", static_cast< float IEnableProperty::* >( &InnerStruct::Radius ) );
-}
+{}

@@ -2,13 +2,13 @@
 
 
 
-RTTR_REGISTRATION_VARIANTS( DerivedClass )
+RTTR_REGISTRATION
 {
-	return RTTR::RegisterClass< DerivedClass >()
-		.Property( "PhysicalProperty", &DerivedClass::PhysicalProperty )
-		.Property( "PhysicalPropertyPrev", &DerivedClass::PhysicalPropertyPrev )
-		.Return();
+	rttr::registration::class_< DerivedClass >( "DerivedClass" )
+		.property( "PhysicalProperty", &DerivedClass::PhysicalProperty )
+		.property( "PhysicalPropertyPrev", &DerivedClass::PhysicalPropertyPrev );
 }
+
 
 
 DerivedClass::DerivedClass()
@@ -21,9 +21,6 @@ DerivedClass::DerivedClass()
 	PhysicalPropertyPrev->Mass = 233.42f;
 	PhysicalPropertyPrev->Moment = 16.3f;
 	PhysicalPropertyPrev->Radius = 56;
-
-	AddProperty( "PhysicalProperty", static_cast< InnerStruct IEnableProperty::* >( &DerivedClass::PhysicalProperty ) );
-	AddProperty( "PhysicalPropertyPrev", static_cast< InnerStruct* IEnableProperty::* >( &DerivedClass::PhysicalPropertyPrev ) );
 }
 
 

@@ -55,7 +55,7 @@ int LightmapLogic::LoadLevel					()
 	Model3DFromFile* room1Model = m_engine->assets.models.LoadSync( room1ModelString );
 	Model3DFromFile* markerModel = m_engine->assets.models.LoadSync( markerModelString );
 
-	DynamicMeshObject* room1Object = new DynamicMeshObject;
+	DynamicMeshActor* room1Object = new DynamicMeshActor;
 	room1Object->Teleport( DirectX::XMVectorSet( 0.0, -300.0, -2000.0, 0.0 ) );
 	//room1Object->TeleportOrientation( DirectX::XMQuaternionRotationNormal( DirectX::XMVectorSet( 0.0, 1.0, 0.0, 0.0 ), DirectX::XM_PIDIV2 ) );
 
@@ -63,7 +63,7 @@ int LightmapLogic::LoadLevel					()
 	m_engine->actors.AddDynamicMesh( room1Object );
 
 	// Marker
-	DynamicMeshObject* markerObject = new DynamicMeshObject;
+	DynamicMeshActor* markerObject = new DynamicMeshActor;
 	markerObject->Teleport( DirectX::XMVectorSet( 1559.0, 700.0, -1688.0, 0.0 ) );
 
 	markerObject->SetModel( markerModel );
@@ -101,7 +101,7 @@ void LightmapLogic::ProceedGameLogic			( float time )
 
 			// Zapamiêtujemy jakie meshe powinny póŸniej dostaæ swoje tekstury. Pomijamy wielokrotne wyst¹pienia.
 			// Poszczególne czêœci mesha s¹ u³o¿one ci¹giem w pamiêci.
-			DynamicMeshObject* currentObject = nullptr;;
+			DynamicMeshActor* currentObject = nullptr;;
 			for( auto meshPart : sceneData->objectParts )
 				if( currentObject != meshPart.object )
 				{
@@ -131,7 +131,7 @@ void LightmapLogic::ProceedGameLogic			( float time )
 				auto vertexBuff = m_engine->assets.buffers.CreateVertexBufferSync( fullName, chunk, chunk.GetMemorySize() / sizeof( CoordColor ) );
 
 				RenderPass* renderPass = new RenderPass;
-				DynamicMeshObject* dynamicMesh = new DynamicMeshObject( vertexBuff, nullptr );
+				DynamicMeshActor* dynamicMesh = new DynamicMeshActor( vertexBuff, nullptr );
 				RenderTargetObject* renderTarget = m_engine->assets.renderTargets.CreateSync( fullName, renderTargetDesc );
 				
 				// Build mesh
@@ -171,7 +171,7 @@ void LightmapLogic::RenderEnded( Event* renderEndedEvent )
 		RenderPass* renderPass = castedEvent->renderPass;
 
 		auto meshes = renderPass->GetMeshes();
-		DynamicMeshObject* realMesh = nullptr;
+		DynamicMeshActor* realMesh = nullptr;
 
 		for( unsigned int i = 0; i < m_lightmapBuffers.size(); ++i )
 		{
@@ -260,7 +260,7 @@ void LightmapLogic::GenerateLightmaps			( Event* keyEvent )
 @return Zwraca dane sceny w strukturze SceneData.*/
 SceneData* LightmapLogic::PrepareSceneData			()
 {
-	std::vector<DynamicMeshObject*> meshes = m_engine->actors.GetSceneObjects();
+	std::vector<DynamicMeshActor*> meshes = m_engine->actors.GetSceneObjects();
 	SceneData* sceneData = new SceneData;
 
 	for( auto mesh : meshes )

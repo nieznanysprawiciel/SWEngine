@@ -15,8 +15,8 @@
 
 #include <queue>
 
-void interpolate_position			( float time_lag, const DynamicObject* object, DirectX::XMVECTOR& result_vector );
-void interpolate_orientation		( float time_lag, const DynamicObject* object, DirectX::XMVECTOR& result_vector );
+void interpolate_position			( float time_lag, const DynamicActor* object, DirectX::XMVECTOR& result_vector );
+void interpolate_orientation		( float time_lag, const DynamicActor* object, DirectX::XMVECTOR& result_vector );
 void inverse_camera_position		( DirectX::XMVECTOR& result_vector );
 void inverse_camera_orientation		( DirectX::XMVECTOR& result_vector );
 
@@ -49,14 +49,14 @@ private:
 	BufferObject*							m_constantsPerFrame;		///<Bufor sta³ych zmiennych co ramkê animacji.
 	BufferObject*							m_constantsPerMesh;			///<Bufor sta³ych zmiennych dla ka¿dego fragmentu mesha.
 
-	CameraObject*							current_camera;				///<Akutalnie aktywna kamera
+	CameraActor*							current_camera;				///<Akutalnie aktywna kamera
 	SkyDome*								sky_dome;					///<Klasa odpowiedzialna za kopu³ê nieba
 
-	std::vector<DynamicMeshObject*>			meshes;						///<Modele nieanimowane
+	std::vector<DynamicMeshActor*>			meshes;						///<Modele nieanimowane
 	DirectX::XMFLOAT4X4*					interpolated_matrixes;		///<Tablica macierzy interpolowanych po³o¿eñ obiektów
 	unsigned int							interpol_matrixes_count;	///<Liczba macierzy interpolowanych
 
-	std::vector<CameraObject*>				cameras;					///<Kontener zawieraj¹cy kamery
+	std::vector<CameraActor*>				cameras;					///<Kontener zawieraj¹cy kamery
 
 	ShaderInputLayoutObject*				defaultLayout;				///<@todo Hack. Zlikwidowaæ. Silnik powinien obs³ugiwaæ dowolne layouty, a przynajmniej jakiœ ustalony zbiór.
 	RenderTargetObject*						m_mainRenderTarget;			///<Render target okna aplikacji. @todo W ostatecznej wersji powinien byæ render target ustawiany dla ka¿dego przebiegu.
@@ -82,19 +82,19 @@ public:
 	void			SetProjectionMatrix				( float angle, float X_to_Y, float near_plane, float far_plane);
 
 	// Zarz¹dzanie meshami
-	void			AddDynamicMeshObject			( DynamicMeshObject* object );
+	void			AddDynamicMeshObject			( DynamicMeshActor* object );
 	void			DeleteAllMeshes					();
 	
 	/// @todo Pobieranie meshy z DisplayEngine jest tymczasowe. Trzeba wymyœleæ docelowy mechanizm.
-	std::vector<DynamicMeshObject*>		GetSceneObjects() { return meshes; }
+	std::vector<DynamicMeshActor*>		GetSceneObjects() { return meshes; }
 
 	// Œwiat³a
 	int				SetDirectionalLight				( const DirectX::XMFLOAT4& direction, const DirectX::XMFLOAT4& color, unsigned int index );
 	void			SetAmbientLight					( const DirectX::XMFLOAT4& color );
 
 	// camera functions
-	int				AddCamera						( CameraObject* camera );
-	int				SetCurrentCamera				( CameraObject* camera );
+	int				AddCamera						( CameraActor* camera );
+	int				SetCurrentCamera				( CameraActor* camera );
 
 	// Renderowanie
 	void			RenderOnce						( RenderPass* pass )	{	m_renderOnceQueue.push( pass );	}
@@ -105,8 +105,8 @@ private:
 	void SetViewMatrix						( float time_lag );
 
 	void realocate_interpolation_memory		(unsigned int min = 1);
-	void interpolate_object					( float timeLag, const DynamicObject* object, DirectX::XMFLOAT4X4* result_matrix );
-	void interpolate_object2				( float timeLag, const DynamicObject* object, DirectX::XMFLOAT4X4* result_matrix );
+	void interpolate_object					( float timeLag, const DynamicActor* object, DirectX::XMFLOAT4X4* result_matrix );
+	void interpolate_object2				( float timeLag, const DynamicActor* object, DirectX::XMFLOAT4X4* result_matrix );
 
 	// Wyœwietlanie (funkcje wewnêtrzne)
 	void DisplayInstancedMeshes				( float timeInterval, float timeLag );
@@ -135,7 +135,7 @@ private:
 @param[in] object Objekt, dla którego liczymy macierz przekszta³cenia.
 @param[out] transform_matrix Zmienna, w której zostanie umieszczona interpolowana wartoœæ.
 */
-inline void interpolate_position( float time_lag, const DynamicObject* object, DirectX::XMVECTOR& result_vector )
+inline void interpolate_position( float time_lag, const DynamicActor* object, DirectX::XMVECTOR& result_vector )
 {
 	DirectX::XMVECTOR position = object->GetPosition( );
 	DirectX::XMVECTOR velocity = object->GetSpeed( );
@@ -151,7 +151,7 @@ inline void interpolate_position( float time_lag, const DynamicObject* object, D
 @param[in] object Objekt, dla którego liczymy macierz przekszta³cenia.
 @param[out] transform_matrix Zmienna, w której zostanie umieszczona interpolowana wartoœæ.
 */
-inline void interpolate_orientation( float time_lag, const DynamicObject* object, DirectX::XMVECTOR& result_vector )
+inline void interpolate_orientation( float time_lag, const DynamicActor* object, DirectX::XMVECTOR& result_vector )
 {
 	DirectX::XMVECTOR orientation = object->GetOrientation( );
 	DirectX::XMVECTOR rotation_velocity = object->GetRotationSpeed( );

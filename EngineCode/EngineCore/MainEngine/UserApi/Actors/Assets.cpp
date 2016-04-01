@@ -8,7 +8,7 @@ namespace Api { namespace Actors
 {
 
 template<typename Resource>
-void ChangeResource( DynamicMeshObject* mesh, Resource* newResource, uint16 beginPart, uint16 endPart, uint8 index )
+void ChangeResource( DynamicMeshActor* mesh, Resource* newResource, uint16 beginPart, uint16 endPart, uint8 index )
 {
 	if( !newResource )
 		return;
@@ -36,7 +36,7 @@ Mo¿na wstawiæ sta³¹ @ref TextureType.
 @param[in] beginPart Indeks pierwszego podmesha, w którym zmieniamy zasób.
 @param[in] endPart Indeks za ostatnim elementem, który zostanie zmieniony.
 @param[in] texIndex Indeks w tablicy tekstur [0,ENGINE_MAX_TEXTURES]. Mo¿e to byæ jedna ze sta³ych TextureType.*/
-void Assets::ChangeTextures( DynamicMeshObject* mesh, TextureObject* newTex, uint16 beginPart, uint16 endPart, uint8 texIndex )
+void Assets::ChangeTextures( DynamicMeshActor* mesh, TextureObject* newTex, uint16 beginPart, uint16 endPart, uint8 texIndex )
 {
 	ChangeResource<TextureObject>( mesh, newTex, beginPart, endPart, texIndex );
 }
@@ -49,7 +49,7 @@ Zmieniany jest zestaw shaderów miêdzy beginPart a endPart (wy³¹cznie).
 @param[in] newShader Shader do ustawienia.
 @param[in] beginPart Indeks pierwszego podmesha, w którym zmieniamy zasób.
 @param[in] endPart Indeks za ostatnim elementem, który zostanie zmieniony.*/
-void Assets::ChangePixelShaders( DynamicMeshObject* mesh, PixelShaderObject* newShader, uint16 beginPart, uint16 endPart )
+void Assets::ChangePixelShaders( DynamicMeshActor* mesh, PixelShaderObject* newShader, uint16 beginPart, uint16 endPart )
 {
 	ChangeResource<PixelShaderObject>( mesh, newShader, beginPart, endPart, 0 );
 }
@@ -62,7 +62,7 @@ Zmieniany jest zestaw shaderów miêdzy beginPart a endPart (wy³¹cznie).
 @param[in] newShader Shader do ustawienia.
 @param[in] beginPart Indeks pierwszego podmesha, w którym zmieniamy zasób.
 @param[in] endPart Indeks za ostatnim elementem, który zostanie zmieniony.*/
-void Assets::ChangeVertexShaders( DynamicMeshObject* mesh, VertexShaderObject* newShader, uint16 beginPart, uint16 endPart )
+void Assets::ChangeVertexShaders( DynamicMeshActor* mesh, VertexShaderObject* newShader, uint16 beginPart, uint16 endPart )
 {
 	ChangeResource<VertexShaderObject>( mesh, newShader, beginPart, endPart, 0 );
 }

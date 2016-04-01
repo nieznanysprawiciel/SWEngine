@@ -5,9 +5,9 @@
 
 @brief Deklaracja klasy RenderingApi.*/
 
-class DynamicMeshObject;
+class DynamicMeshActor;
 class Object;
-class StaticObject;
+class StaticActor;
 
 #include "EngineCore/MainEngine/UserApi/ApiGroup.h"
 #include "EngineCore/MainEngine/UserApi/Actors/Assets.h"
@@ -37,9 +37,9 @@ namespace Api
 		ActorsApi() = default;
 		~ActorsApi() = default;
 	public:
-		std::vector<DynamicMeshObject*>		GetSceneObjects();	///<@todo Zlikwidowaæ GetSceneObjects. Stworzone tylko dla LightmapsTool.
+		std::vector<DynamicMeshActor*>		GetSceneObjects();	///<@todo Zlikwidowaæ GetSceneObjects. Stworzone tylko dla LightmapsTool.
 
-		void			AddDynamicMesh	( DynamicMeshObject* object );
+		void			AddDynamicMesh	( DynamicMeshActor* object );
 		void			CleanScene		();
 
 		template< typename Type = Object >	Type*		CreateActor				( const std::string& name, ActorInfo actorModules );

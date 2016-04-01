@@ -19,8 +19,8 @@ protected:
 	std::thread*			m_lightmapThread;
 	LightmapWorker*			m_lightmapWorker;
 
-	std::vector<DynamicMeshObject*>		m_meshes;
-	std::vector<DynamicMeshObject*>		m_lightmapBuffers;
+	std::vector<DynamicMeshActor*>		m_meshes;
+	std::vector<DynamicMeshActor*>		m_lightmapBuffers;
 	ShaderInputLayoutObject*			m_layout;
 public:
 	LightmapLogic()
