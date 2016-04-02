@@ -16,15 +16,15 @@ bool Engine::InitDefaultActorsClasses()
 {
 	auto& actorsFactory = Context->actorsManager->GetActorFactory();
 	
-	actorsFactory.RegisterClass( GetTypeidName< Object >(), Object::Create );
-	actorsFactory.RegisterClass( GetTypeidName< StaticActor >(), StaticActor::Create );
-	actorsFactory.RegisterClass( GetTypeidName< CollisionActor >(), CollisionActor::Create );
-	actorsFactory.RegisterClass( GetTypeidName< DynamicActor >(), DynamicActor::Create );
-	actorsFactory.RegisterClass( GetTypeidName< PhysicalActor >(), PhysicalActor::Create );
-	actorsFactory.RegisterClass( GetTypeidName< DynamicMeshActor >(), DynamicMeshActor::Create );
-	actorsFactory.RegisterClass( GetTypeidName< AnimationActor >(), AnimationActor::Create );
-	actorsFactory.RegisterClass( GetTypeidName< CameraActor >(), CameraActor::Create );
-	actorsFactory.RegisterClass( GetTypeidName< ComplexActor >(), ComplexActor::Create );
+	actorsFactory.RegisterClass< Object >( GetTypeidName< Object >(), Object::Create );
+	actorsFactory.RegisterClass< StaticActor >( GetTypeidName< StaticActor >(), StaticActor::Create );
+	actorsFactory.RegisterClass< CollisionActor >( GetTypeidName< CollisionActor >(), CollisionActor::Create );
+	actorsFactory.RegisterClass< DynamicActor >( GetTypeidName< DynamicActor >(), DynamicActor::Create );
+	actorsFactory.RegisterClass< PhysicalActor >( GetTypeidName< PhysicalActor >(), PhysicalActor::Create );
+	actorsFactory.RegisterClass< DynamicMeshActor >( GetTypeidName< DynamicMeshActor >(), DynamicMeshActor::Create );
+	actorsFactory.RegisterClass< AnimationActor >( GetTypeidName< AnimationActor >(), AnimationActor::Create );
+	actorsFactory.RegisterClass< CameraActor >( GetTypeidName< CameraActor >(), CameraActor::Create );
+	actorsFactory.RegisterClass< ComplexActor >( GetTypeidName< ComplexActor >(), ComplexActor::Create );
 
 	
 	return true;

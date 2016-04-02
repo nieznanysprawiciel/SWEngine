@@ -5,12 +5,15 @@
 
 @brief Fabryka aktorów.*/
 
-#include "EngineCore/stdafx.h"
+//#include "EngineCore/stdafx.h"
 
 #include "EngineCore/Actors/ActorObjects.h"
 #include "Common/RTTR.h"
 
 #include "FastDelegate.h"
+
+#include <unordered_map>
+#include <map>
 
 
 #undef RegisterClass
@@ -44,17 +47,46 @@ class ActorFactory
 {
 private:
 	std::unordered_map< std::string, ActorType >	m_classNames;
-	std::vector< CreateActorFunction >				m_createFunctions;
+	std::map< ActorType, CreateActorFunction >		m_createFunctions;
 public:
 	ActorFactory();
 	~ActorFactory();
 
+	template< typename Type >
 	ActorType	RegisterClass			( const std::string& name, CreateActorFunction function );
 	ActorType	GetClassId				( const std::string& name );
 
 	template< typename Type = Object >	Type*		CreateActor				( const std::string& name );
 	template< typename Type = Object >	Type*		CreateActor				( ActorType id );
 };
+
+/**@brief Rejestrujê funkcjê tworz¹c¹ obiekt klasy aktora identyfikowanej za pomoc¹ nazwy.
+
+@note W trybie debug funkcja assertuje, je¿eli rejestrowana klasa nie dziedziczy po Object.
+
+@param[in] name Nazwa klasy. Nie musi pokrywaæ siê z nazw¹ w C++, ale by³oby to wskazane ze wzglêdów estetycznych.
+@param[in] function WskaŸnik na funkcjê tworz¹c¹ obiekt. Mo¿e to byæ funkcja globalna lub funkcja statyczna klasy.
+@return Zwraca identyfikator przy pomocy którego mo¿na tworzyæ instancje obiektu.
+*/
+template< typename Type >
+ActorType ActorFactory::RegisterClass( const std::string& name, CreateActorFunction function )
+{
+	auto element = m_classNames.find( name );
+	if ( element != m_classNames.end() )
+	{
+		assert( false );
+		return element->second;
+	}
+
+	assert( rttr::type::get< Type >().is_derived_from< Object >() );
+	
+	auto inserted = m_createFunctions.insert( std::make_pair( rttr::type::get< Type >(), function ) );
+
+	ActorType newActorId = inserted.first->first;
+	m_classNames.insert( std::make_pair( name, newActorId ) );
+
+	return newActorId;
+}
 
 
 /**@brief Tworzy obiekt aktora o podanej nazwie. Nazwa musi byæ wczeœniej zarejestrowana.
@@ -63,7 +95,8 @@ Najlepiej, ¿eby nazwy klas odpowiada³y nazwom u¿ywanym w c++, ale nie jest to wy
 
 @param[in] name Nazwa aktora zarejestrowana funkcj¹ RegisterClass.
 @return Zwraca wskaŸnik na stworzony obiekt lub nullptr, je¿eli indentyfikator nie zosta³ zarejestrowany.*/
-template< typename Type > Type* ActorFactory::CreateActor( const std::string& name )
+template< typename Type >
+Type* ActorFactory::CreateActor( const std::string& name )
 {
 	auto index = m_classNames.find( name );
 	if ( index == m_classNames.end() )
@@ -84,11 +117,14 @@ Najlepiej, ¿eby nazwy klas odpowiada³y nazwom u¿ywanym w c++, ale nie jest to wy
 
 @param[in] name Nazwa aktora zarejestrowana funkcj¹ RegisterClass.
 @return Zwraca wskaŸnik na stworzony obiekt lub nullptr, je¿eli indentyfikator nie zosta³ zarejestrowany.*/
-template< typename Type > Type* ActorFactory::CreateActor( ActorType id )
+template< typename Type >
+Type* ActorFactory::CreateActor( ActorType id )
 {
-	if ( id < m_createFunctions.size() )
+	auto function = m_createFunctions.find( id );
+
+	if ( function != m_createFunctions.end() )
 	{
-		Object* newActor = m_createFunctions[ id ]();
+		Object* newActor = function->second();
 		
 		assert( rttr::rttr_cast< Type* >( newActor ) );
 		return static_cast< Type* >( newActor );

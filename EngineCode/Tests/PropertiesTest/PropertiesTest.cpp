@@ -15,7 +15,7 @@ int main()
 {
 	BaseClass		base;
 	DerivedClass	derived;
-
+	//auto type = rttr::type( rttr::type::get<BaseClass>().get_id() );
 
 	std::cout << rttr::type::get<BaseClass>().get_name() << rttr::type::get<BaseClass>().get_id() << std::endl;
 	std::cout << rttr::type::get<BaseClass*>().get_name() << rttr::type::get<BaseClass*>().get_id() << std::endl;

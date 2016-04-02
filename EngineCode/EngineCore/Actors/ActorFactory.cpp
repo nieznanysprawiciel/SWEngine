@@ -18,28 +18,6 @@ ActorFactory::ActorFactory()
 ActorFactory::~ActorFactory()
 {}
 
-/**@brief Rejestrujê funkcjê tworz¹c¹ obiekt klasy identyfikowanej za pomoc¹ nazwy.
-
-@param[in] name Nazwa klasy. Nie musi pokrywaæ siê z nazw¹ w C++, ale by³oby to wskazane ze wzglêdów estetycznych.
-@param[in] function WskaŸnik na funkcjê tworz¹c¹ obiekt. Mo¿e to byæ funkcja globalna lub funkcja statyczna klasy.
-@return Zwraca identyfikator przy pomocy którego mo¿na tworzyæ instancje obiektu.
-*/
-ActorType ActorFactory::RegisterClass( const std::string& name, CreateActorFunction function )
-{
-	auto element = m_classNames.find( name );
-	if ( element != m_classNames.end() )
-	{
-		assert( false );
-		return element->second;
-	}
-
-	m_createFunctions.push_back( function );
-
-	ActorType newActorId = static_cast< ActorType >( m_createFunctions.size() - 1 );
-	m_classNames[ name ] = newActorId;
-
-	return newActorId;
-}
 
 /**@brief Pobiera identyfikator klasy aktora.
 
@@ -51,7 +29,7 @@ ActorType ActorFactory::GetClassId( const std::string& name )
 	if ( element == m_classNames.end() )
 	{
 		assert( false );
-		return -1;
+		return rttr::type::get( nullptr );
 	}
 
 	return element->second;
