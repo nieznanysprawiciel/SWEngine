@@ -7,6 +7,9 @@
     <Filter Include="Resources">
       <UniqueIdentifier>{8c85da9f-c09a-46fa-a488-91a0612f8822}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EditorPlugin\Properties">
+      <UniqueIdentifier>{2be8624a-4ed5-4770-ba18-77a3ce317d08}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\dllmain.cpp">
@@ -14,6 +17,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorPlugin.cpp">
       <Filter>EditorPlugin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.cpp">
+      <Filter>EditorPlugin\Properties</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -25,6 +31,12 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Resource.h">
       <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.h">
+      <Filter>EditorPlugin\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\IProperty.h">
+      <Filter>EditorPlugin\Properties</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

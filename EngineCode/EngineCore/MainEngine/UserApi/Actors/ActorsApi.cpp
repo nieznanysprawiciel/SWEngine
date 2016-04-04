@@ -23,6 +23,12 @@ void ActorsApi::AddDynamicMesh( DynamicMeshActor* object )
 void ActorsApi::CleanScene()
 {	Context->displayEngine->DeleteAllMeshes();	}
 
+/**@brief Zwraca mapê nazw i ich typów.*/
+const std::map<std::string, ActorType>& ActorsApi::GetRegisteredClasses()
+{
+	return Context->actorsManager->GetActorFactory().GetRegisteredClasses();
+}
+
 
 /**@brief Dodaje aktora do wszystkich modu³ów zgodnie z zawartoœci¹ struktury
 ActorInfo.*/

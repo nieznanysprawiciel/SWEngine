@@ -45,16 +45,22 @@ RTTR.
 */
 class ActorFactory
 {
+	typedef std::map< std::string, ActorType >				StringTypeMapping;
+	typedef std::map< ActorType, CreateActorFunction >		TypeCreateFunMapping;
 private:
-	std::unordered_map< std::string, ActorType >	m_classNames;
-	std::map< ActorType, CreateActorFunction >		m_createFunctions;
+
+	StringTypeMapping				m_classNames;
+	TypeCreateFunMapping			m_createFunctions;
+
 public:
 	ActorFactory();
 	~ActorFactory();
 
 	template< typename Type >
-	ActorType	RegisterClass			( const std::string& name, CreateActorFunction function );
-	ActorType	GetClassId				( const std::string& name );
+	ActorType					RegisterClass			( const std::string& name, CreateActorFunction function );
+	ActorType					GetClassId				( const std::string& name );
+	const StringTypeMapping&	GetRegisteredClasses	();
+
 
 	template< typename Type = Object >	Type*		CreateActor				( const std::string& name );
 	template< typename Type = Object >	Type*		CreateActor				( ActorType id );

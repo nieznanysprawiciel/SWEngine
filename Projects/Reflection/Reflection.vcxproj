@@ -121,6 +121,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\Tools\Reflection\rttr\constructor.cpp" />
     <ClCompile Include="..\..\EngineCode\Tools\Reflection\rttr\destructor.cpp" />
+    <ClCompile Include="..\..\EngineCode\Tools\Reflection\rttr\detail\array\array_wrapper_base.cpp" />
     <ClCompile Include="..\..\EngineCode\Tools\Reflection\rttr\detail\constructor\constructor_wrapper_base.cpp" />
     <ClCompile Include="..\..\EngineCode\Tools\Reflection\rttr\detail\conversion\std_conversion_functions.cpp" />
     <ClCompile Include="..\..\EngineCode\Tools\Reflection\rttr\detail\destructor\destructor_wrapper_base.cpp" />
@@ -136,6 +137,7 @@
     <ClCompile Include="..\..\EngineCode\Tools\Reflection\rttr\detail\type\type_database.cpp" />
     <ClCompile Include="..\..\EngineCode\Tools\Reflection\rttr\detail\type\type_register.cpp" />
     <ClCompile Include="..\..\EngineCode\Tools\Reflection\rttr\detail\variant\variant_compare_less.cpp" />
+    <ClCompile Include="..\..\EngineCode\Tools\Reflection\rttr\detail\variant\variant_data_policy.cpp" />
     <ClCompile Include="..\..\EngineCode\Tools\Reflection\rttr\dllmain.cpp" />
     <ClCompile Include="..\..\EngineCode\Tools\Reflection\rttr\enumeration.cpp" />
     <ClCompile Include="..\..\EngineCode\Tools\Reflection\rttr\method.cpp" />

@@ -37,6 +37,11 @@
 
 class IProperty;
 
+namespace EditorPlugin
+{
+	class RTTRPropertyRapist;	///< This class will help communicate properties with editor.
+}
+
 namespace rttr
 {
 class variant;
@@ -49,6 +54,7 @@ namespace detail
 {
     class property_wrapper_base;
 }
+
   
 /*!
  * The \ref property class provides several meta information about a property and gives read/write access to its value.
@@ -116,6 +122,7 @@ namespace detail
 class RTTR_API property
 {
 	friend class IProperty;
+	friend class EditorPlugin::RTTRPropertyRapist;
 
     public:
         /*!

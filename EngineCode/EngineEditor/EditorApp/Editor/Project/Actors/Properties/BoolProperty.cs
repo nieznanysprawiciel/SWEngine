@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace EditorApp.Editor.Project.Actors.Properties
 {
-	class BoolProperty	:	IProperty
+	class BoolProperty	: IProperty
 	{
+		EditorPlugin.BoolPropertyWrapper    m_propertyWrapper;
+
+
+
 	}
 }

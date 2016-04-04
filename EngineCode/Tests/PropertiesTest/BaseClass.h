@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ClassMetaInfo/EnablePropertyBase.h"
+#include <DirectXMath.h>
 
 
 class BaseClass	:	public EnablePropertyBase
@@ -15,6 +16,8 @@ private:
 	float		positionY;
 	float		positionZ;
 	int			numObjects;
+
+	DirectX::XMFLOAT4		rotation;
 
 public:
 	BaseClass();

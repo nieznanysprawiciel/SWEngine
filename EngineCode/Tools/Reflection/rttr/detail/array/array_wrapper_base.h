@@ -31,6 +31,7 @@
 #include "rttr/detail/base/core_prerequisites.h"
 
 #include <vector>
+#include <memory>
 #include <cstddef>
 
 namespace rttr
@@ -47,46 +48,46 @@ class RTTR_API array_wrapper_base
 {
     public:
         array_wrapper_base() {}
-        virtual ~array_wrapper_base() {};
-        virtual bool        is_valid() const    { return false; }
-        virtual bool        is_dynamic() const  { return false; }
-        virtual std::size_t get_rank() const    { return 0; }
-        virtual type        get_rank_type(std::size_t index) const { return get_invalid_type(); }
-        virtual type        get_type() const    { return get_invalid_type(); }
-        virtual bool        is_raw_array() const { return false; }
+		virtual ~array_wrapper_base();;
+		virtual bool        is_valid() const;
+		virtual bool        is_dynamic() const;
+		virtual std::size_t get_rank() const;
+		virtual type        get_rank_type( std::size_t index ) const;
+		virtual type        get_type() const;
+		virtual bool        is_raw_array() const;
       
-        virtual std::size_t get_size() const    { return 0; }
-        virtual std::size_t get_size(std::size_t index_1) const { return 0; }
-        virtual std::size_t get_size(std::size_t index_1, std::size_t index_2) const { return 0; }
-        virtual std::size_t get_size_variadic(const std::vector<std::size_t>& index_list) const { return 0; }
+		virtual std::size_t get_size() const;
+		virtual std::size_t get_size( std::size_t index_1 ) const;
+		virtual std::size_t get_size( std::size_t index_1, std::size_t index_2 ) const;
+		virtual std::size_t get_size_variadic( const std::vector<std::size_t>& index_list ) const;
 
-        virtual bool set_size(std::size_t new_size) { return false; }
-        virtual bool set_size(std::size_t new_size, std::size_t index_1) { return false; }
-        virtual bool set_size(std::size_t new_size, std::size_t index_1, std::size_t index_2) { return false; }
-        virtual bool set_size_variadic(std::size_t new_size, const std::vector<std::size_t>& index_list) { return false; }
+		virtual bool set_size( std::size_t new_size );
+		virtual bool set_size( std::size_t new_size, std::size_t index_1 );
+		virtual bool set_size( std::size_t new_size, std::size_t index_1, std::size_t index_2 );
+		virtual bool set_size_variadic( std::size_t new_size, const std::vector<std::size_t>& index_list );
         
-        virtual bool set_value(argument& arg) { return false; }
-        virtual bool set_value(std::size_t index_1, argument& arg) { return false; }
-        virtual bool set_value(std::size_t index_1, std::size_t index_2, argument& arg) { return false; }
-        virtual bool set_value(std::size_t index_1, std::size_t index_2, std::size_t index_3, argument& arg) { return false; }
-        virtual bool set_value_variadic(const std::vector<std::size_t>& index_list, argument& arg) { return false; }
+		virtual bool set_value( argument& arg );
+		virtual bool set_value( std::size_t index_1, argument& arg );
+		virtual bool set_value( std::size_t index_1, std::size_t index_2, argument& arg );
+		virtual bool set_value( std::size_t index_1, std::size_t index_2, std::size_t index_3, argument& arg );
+		virtual bool set_value_variadic( const std::vector<std::size_t>& index_list, argument& arg );
 
-        virtual variant get_value(std::size_t index_1) const { return variant(); }
-        virtual variant get_value(std::size_t index_1, std::size_t index_2) const { return variant(); }
-        virtual variant get_value(std::size_t index_1, std::size_t index_2, std::size_t index_3) const { return variant(); }
-        virtual variant get_value_variadic(const std::vector<std::size_t>& index_list) const { return variant(); }
+		virtual variant get_value( std::size_t index_1 ) const;
+		virtual variant get_value( std::size_t index_1, std::size_t index_2 ) const;
+		virtual variant get_value( std::size_t index_1, std::size_t index_2, std::size_t index_3 ) const;
+		virtual variant get_value_variadic( const std::vector<std::size_t>& index_list ) const;
 
-        virtual bool insert_value(std::size_t index_1, argument& arg) { return false; }
-        virtual bool insert_value(std::size_t index_1, std::size_t index_2, argument& arg) { return false; }
-        virtual bool insert_value(std::size_t index_1, std::size_t index_2, std::size_t index_3, argument& arg) { return false; }
-        virtual bool insert_value_variadic(const std::vector<std::size_t>& index_list, argument& arg) { return false; }
+		virtual bool insert_value( std::size_t index_1, argument& arg );
+		virtual bool insert_value( std::size_t index_1, std::size_t index_2, argument& arg );
+		virtual bool insert_value( std::size_t index_1, std::size_t index_2, std::size_t index_3, argument& arg );
+		virtual bool insert_value_variadic( const std::vector<std::size_t>& index_list, argument& arg );
 
-        virtual bool remove_value(std::size_t index_1) { return false; }
-        virtual bool remove_value(std::size_t index_1, std::size_t index_2) { return false; }
-        virtual bool remove_value(std::size_t index_1, std::size_t index_2, std::size_t index_3) { return false; }
-        virtual bool remove_value_variadic(const std::vector<std::size_t>& index_list) { return false; }
+		virtual bool remove_value( std::size_t index_1 );
+		virtual bool remove_value( std::size_t index_1, std::size_t index_2 );
+		virtual bool remove_value( std::size_t index_1, std::size_t index_2, std::size_t index_3 );
+		virtual bool remove_value_variadic( const std::vector<std::size_t>& index_list );
 
-        virtual std::unique_ptr<array_wrapper_base> clone() const { return detail::make_unique<array_wrapper_base>(); }
+		virtual std::unique_ptr<array_wrapper_base> clone() const;
 };
 
 } // end namespace detail

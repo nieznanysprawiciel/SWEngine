@@ -22,21 +22,7 @@ namespace EditorApp.Editor.Project.Actors.Properties
 	do informacji i klasie.*/
 	public class IProperty
 	{
-		string                  m_propertyName;
+		//virtual System::String GetName() = 0;
+	};
 
-
-
-		public string PropertyName
-		{
-			get
-			{
-				return m_propertyName;
-			}
-
-			set
-			{
-				m_propertyName = value;
-			}
-		}
-	}
 }

@@ -446,6 +446,10 @@
     <ClCompile Include="..\..\EngineCode\Tools\Reflection\rttr\detail\variant\variant_compare_less.cpp">
       <Filter>ReflectionCode\rttr\detail\variant</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\Tools\Reflection\rttr\detail\array\array_wrapper_base.cpp" />
+    <ClCompile Include="..\..\EngineCode\Tools\Reflection\rttr\detail\variant\variant_data_policy.cpp">
+      <Filter>ReflectionCode\rttr\detail\variant</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\EngineCode\Tools\Reflection\rttr\rttr.cmake">

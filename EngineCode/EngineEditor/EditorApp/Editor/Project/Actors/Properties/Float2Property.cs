@@ -8,5 +8,7 @@ namespace EditorApp.Editor.Project.Actors.Properties
 {
 	class Float2Property	:	IProperty
 	{
+		EditorPlugin.Float2PropertyWrapper        m_propertyWrapper;
+
 	}
 }

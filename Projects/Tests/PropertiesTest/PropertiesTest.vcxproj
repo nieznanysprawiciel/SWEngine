@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\BaseClass.cpp" />
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\ClassMetaInfo\EnablePropertyBase.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\ClassMetaInfo\RegisterTypes.cpp" />
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\DerivedClass.cpp" />
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\InnerStruct.cpp" />
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\PropertiesTest.cpp" />

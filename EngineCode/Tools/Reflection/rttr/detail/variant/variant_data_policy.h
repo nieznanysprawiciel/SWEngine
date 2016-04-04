@@ -554,7 +554,8 @@ struct RTTR_API variant_data_policy_string : variant_data_policy_big<std::string
  *
  * With this approach we avoid checking for an valid variant. E.g. during destruction.
  */
-struct RTTR_API variant_data_policy_empty
+/// RTTR_API removed to prevent links errors
+struct variant_data_policy_empty
 {
     static bool invoke(variant_policy_operation op, const variant_data& src_data, argument_wrapper arg)
     {
@@ -653,7 +654,7 @@ struct RTTR_API variant_data_policy_empty
  */
 struct RTTR_API variant_data_policy_void
 {
-    static bool invoke(variant_policy_operation op, const variant_data& src_data, argument_wrapper arg)
+    static RTTR_INLINE bool invoke(variant_policy_operation op, const variant_data& src_data, argument_wrapper arg)
     {
         switch (op)
         {
@@ -773,7 +774,7 @@ struct RTTR_API variant_data_policy_nullptr_t
         destroy(value);
     }
 
-    static bool invoke(variant_policy_operation op, const variant_data& src_data, argument_wrapper arg)
+    static RTTR_INLINE bool invoke(variant_policy_operation op, const variant_data& src_data, argument_wrapper arg)
     {
         switch (op)
         {

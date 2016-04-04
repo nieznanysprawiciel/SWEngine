@@ -14,6 +14,7 @@ class StaticActor;
 #include "EngineCore/Actors/ActorInfo.h"
 
 #include <vector>
+#include <map>
 
 namespace Api
 {
@@ -47,6 +48,7 @@ namespace Api
 		template< typename Type = Object >	Type*		CreateActor				( const std::string& name );
 		template< typename Type = Object >	Type*		CreateActor				( ActorType id );
 
+		const std::map< std::string, ActorType >&		GetRegisteredClasses	();
 
 		//void			DeleteActor				( Object* actor );
 		//void			RemoveFromModules		( Object* newActor, ActorInfo actorModules );

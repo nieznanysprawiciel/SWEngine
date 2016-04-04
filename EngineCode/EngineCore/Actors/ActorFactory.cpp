@@ -34,3 +34,12 @@ ActorType ActorFactory::GetClassId( const std::string& name )
 
 	return element->second;
 }
+
+/**@brief Pobiera mapê zarejestrowanych typów.
+
+@return Pierszy element tablicy, to zarejestrowana nazwa klasy, a drugi identyfikator
+typu aktora.*/
+const ActorFactory::StringTypeMapping&	ActorFactory::GetRegisteredClasses	()
+{
+	return m_classNames;
+}

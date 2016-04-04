@@ -7,7 +7,8 @@ RTTR_REGISTRATION
 		.property( "PositionX", &BaseClass::positionX )
 		.property( "PositionY", &BaseClass::positionY )
 		.property( "PositionZ", &BaseClass::positionZ )
-		.property( "NumObjects", &BaseClass::numObjects );
+		.property( "NumObjects", &BaseClass::numObjects )
+		.property( "Rotation", &BaseClass::rotation );
 }
 
 
@@ -20,6 +21,7 @@ BaseClass::BaseClass()
 	positionY = 2.0f;
 	positionZ = 3.0f;
 	numObjects = 13;
+	rotation = DirectX::XMFLOAT4( 13.0, 13.0, 13.0, 13.0 );
 
 	//AddProperty( "SerializeObject", static_cast< bool IEnableProperty::* >( &BaseClass::serializeObject ) );
 	//AddProperty( "PositionX", static_cast< float IEnableProperty::* >( &BaseClass::positionX ) );

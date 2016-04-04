@@ -8,5 +8,6 @@ namespace EditorApp.Editor.Project.Actors.Properties
 {
 	class IntProperty : IProperty
 	{
+		EditorPlugin.IntPropertyWrapper     m_propertyWrapper;
 	}
 }

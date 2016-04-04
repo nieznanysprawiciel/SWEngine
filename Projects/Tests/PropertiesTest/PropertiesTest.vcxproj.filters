@@ -28,6 +28,9 @@
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\InnerStruct.cpp">
       <Filter>PropertiesTest</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\ClassMetaInfo\RegisterTypes.cpp">
+      <Filter>PropertiesTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\BaseClass.h">
