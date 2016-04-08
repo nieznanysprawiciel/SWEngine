@@ -6,7 +6,9 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< DynamicActor >( "DynamicActor" );
+	rttr::registration::class_< DynamicActor >( "DynamicActor" )
+		.property( "Speed", &DynamicActor::speed )
+		.property( "Rotation speed", &DynamicActor::rotation_speed );
 }
 
 

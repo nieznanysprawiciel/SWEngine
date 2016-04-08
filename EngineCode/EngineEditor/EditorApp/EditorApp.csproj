@@ -225,7 +225,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(ExternalDir)FBX_SDK\lib\vs2013\$(PlatformTarget)\$(ConfigTypeSmallString)\libfbxsdk.dll $(OutputPath)libfbxsdk.dll</PostBuildEvent>
+    <PostBuildEvent>copy $(ExternalDir)FBX_SDK\lib\vs2013\$(PlatformTarget)\$(ConfigTypeSmallString)\libfbxsdk.dll $(OutputPath)libfbxsdk.dll
+copy $(EngineLibDir)Reflection\v120\$(PlatformTarget)\$(ConfigTypeSmallString)\Reflection.dll $(OutputPath)Reflection.dll
+	 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

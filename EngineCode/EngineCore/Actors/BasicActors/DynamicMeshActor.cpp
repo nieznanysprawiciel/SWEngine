@@ -11,7 +11,11 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< DynamicMeshActor >( "DynamicMeshActor" );
+	rttr::registration::class_< DynamicMeshActor >( "DynamicMeshActor" )
+#ifdef _SCALEABLE_OBJECTS
+		.property( "Scale", &DynamicMeshActor::scale )
+#endif
+	;
 }
 
 

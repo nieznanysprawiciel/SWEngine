@@ -12,6 +12,7 @@ W docelowej wersji bêdzie najprawdopodobniej wybrana opcja z wetorem a nie kwate
 @note Niezaleznie od tego jak jest wyra¿ona prêdkoœæ, orientacja zawsze jest kwaternionem.*/
 class DynamicActor : public CollisionActor
 {
+	RTTR_REGISTRATION_FRIEND
 	RTTR_ENABLE( CollisionActor )
 protected:
 

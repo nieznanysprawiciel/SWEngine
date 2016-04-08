@@ -7,6 +7,7 @@
 
 class PhysicalActor : public DynamicActor
 {
+	RTTR_REGISTRATION_FRIEND
 	RTTR_ENABLE( DynamicActor )
 protected:
 

@@ -10,7 +10,7 @@
 class DynamicMeshActor : public PhysicalActor
 {
 	friend class DisplayEngine;
-
+	RTTR_REGISTRATION_FRIEND
 	RTTR_ENABLE( PhysicalActor )
 	
 #ifdef _SCALEABLE_OBJECTS

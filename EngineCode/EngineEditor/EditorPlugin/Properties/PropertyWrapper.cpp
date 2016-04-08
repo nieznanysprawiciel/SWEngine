@@ -317,17 +317,13 @@ PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( rttr::property property
 	{
 		return gcnew DoublePropertyWrapper( property );
 	}
-	else if( propertyType == rttr::type::get< DirectX::XMFLOAT2 >() )
+	else if( propertyType == rttr::type::get< DirectX::XMFLOAT2 >() 
+			 || propertyType == rttr::type::get< DirectX::XMFLOAT3 >()
+			 || propertyType == rttr::type::get< DirectX::XMFLOAT4 >() )
 	{
-		throw gcnew System::NotImplementedException();
-	}
-	else if( propertyType == rttr::type::get< DirectX::XMFLOAT3 >() )
-	{
-		throw gcnew System::NotImplementedException();
-	}
-	else if( propertyType == rttr::type::get< DirectX::XMFLOAT4 >() )
-	{
-		throw gcnew System::NotImplementedException();
+		auto propertyWrapper = gcnew ObjectPropertyWrapper( property );
+		propertyWrapper->BuildHierarchy();
+		return propertyWrapper;
 	}
 	else if( propertyType.is_derived_from< EngineObject >() )
 	{

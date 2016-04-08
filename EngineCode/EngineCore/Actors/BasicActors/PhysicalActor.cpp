@@ -7,7 +7,8 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< PhysicalActor >( "PhysicalActor" );
+	rttr::registration::class_< PhysicalActor >( "PhysicalActor" )
+		.property( "Mass", &PhysicalActor::mass );
 }
 
 

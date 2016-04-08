@@ -18,6 +18,7 @@ i jakoœ rozwi¹zaæ tê sytuacjê.
 class StaticActor : public EngineObject
 {
 	RTTR_ENABLE( EngineObject )
+	RTTR_REGISTRATION_FRIEND
 private:
 	DirectX::XMFLOAT3		position;				///< Pozycja obiektu (lub bufor tylny)
 	DirectX::XMFLOAT4		orientation;			///< Orientacja obiektu wyra¿ona kwaternionem (lub bufor tylny)
