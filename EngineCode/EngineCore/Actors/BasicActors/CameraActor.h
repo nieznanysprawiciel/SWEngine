@@ -18,6 +18,6 @@ public:
 	void SetProjectionMatrix( float angle, float X_to_Y, float near_plane, float far_plane );
 
 
-	static Object*			Create()	{ return new CameraActor; }
+	static EngineObject*			Create()	{ return new CameraActor; }
 };
 

@@ -18,6 +18,6 @@ public:
 
 	void Pulse();
 
-	static Object*		Create()	{ return new PhysicalActor; }
+	static EngineObject*		Create()	{ return new PhysicalActor; }
 };
 

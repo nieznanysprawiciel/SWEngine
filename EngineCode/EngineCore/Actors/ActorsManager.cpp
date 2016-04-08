@@ -15,7 +15,7 @@ ActorsManager::~ActorsManager()
 }
 
 /**@brief Dodaje aktora do ActorsManagera.*/
-void ActorsManager::AddActor( Object* newActor )
+void ActorsManager::AddActor( EngineObject* newActor )
 {
 	assert( newActor != nullptr );
 	ActorInfo actorInfo;			// Wszystkie wartoœci false.
@@ -23,7 +23,7 @@ void ActorsManager::AddActor( Object* newActor )
 }
 
 /**@brief Aktualizuje */
-void ActorsManager::UpdateActor		( Object* actor, ActorInfo actorModules )
+void ActorsManager::UpdateActor		( EngineObject* actor, ActorInfo actorModules )
 {
 	auto actorData = FindActor( actor );
 

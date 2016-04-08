@@ -15,7 +15,7 @@ class Model3DFromFile;
 
 /**@brief Klasa bazowa dla wszystkich obiektów w grze (aktorów).
 */
-class Object
+class EngineObject
 {
 	RTTR_ENABLE()
 private:
@@ -29,7 +29,7 @@ protected:
 	*/
 	EngineInterface*	GetEngineInterface(){ return reinterpret_cast<EngineInterface*>(engine); }
 public:
-	virtual ~Object() = default;
+	virtual ~EngineObject() = default;
 	virtual void		Init(){};
 
 	/**@brief Funkcja ustawia wskaŸnik na g³ówny obiekt silnika.
@@ -38,5 +38,5 @@ public:
 	*/
 	static void			SetEngine( Engine* engine_ptr ) { if( !engine ) engine = engine_ptr; }
 
-	static Object*		Create()	{ return new Object; }
+	static EngineObject*		Create()	{ return new EngineObject; }
 };

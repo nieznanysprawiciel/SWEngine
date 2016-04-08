@@ -43,7 +43,7 @@ struct MaterialObject;
 
 class MemoryChunk;
 
-class Object;
+class EngineObject;
 class DynamicMeshActor;
 class RenderPass;
 
@@ -95,7 +95,7 @@ struct EngineContext
 	//queue
 	std::queue<Event*>*			eventsQueue;	///<WskaŸnik na kolejkê komunikatów w celu szybszego dostêpu
 	std::queue<Command*>		commandQueue;	///<Kolejka komend wykonywanych po zakoñczeniu wszystkich obliczeñ w danej klatce. Aktualizuje stan silnika.
-	std::vector<Object*>		objectList;
+	std::vector<EngineObject*>		objectList;
 };
 
 

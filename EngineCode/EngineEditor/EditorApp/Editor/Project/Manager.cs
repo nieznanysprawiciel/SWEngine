@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.IO;
+using EditorApp.Editor.Project.Actors;
 
 namespace EditorApp.Project
 {
@@ -12,6 +13,7 @@ namespace EditorApp.Project
 	{
 		private ProjectSettings				m_projectSettings;
 		private UserSettings                m_userSettings;
+		private ActorsLogic                 m_actorsLogic;
 		private Logic                       m_editorLogic;			///< Referencja na główny obiekt edytora.
 
 		#region Contructor
@@ -20,6 +22,7 @@ namespace EditorApp.Project
 		{
 			m_projectSettings = new ProjectSettings();
 			m_userSettings = new UserSettings();
+			m_actorsLogic = new ActorsLogic( editorLogic );
 			m_editorLogic = editorLogic;
 		}
 
@@ -43,6 +46,8 @@ namespace EditorApp.Project
 				Console.WriteLine( e.ToString() );
 				return false;
 			}
+
+			m_actorsLogic.InitLevel();
 
 			return true;
 		}

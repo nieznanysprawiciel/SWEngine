@@ -12,7 +12,7 @@ protected:
 
 public:
 
-	static Object*		Create()	{ return new AnimationActor; }
+	static EngineObject*		Create()	{ return new AnimationActor; }
 };
 
 

@@ -8,7 +8,7 @@ class BaseClass	:	public EnablePropertyBase
 {
 	RTTR_ENABLE( EnablePropertyBase )
 	RTTR_REGISTRATION_FRIEND
-	//RTTR_ENABLE_PRIVATE_REGISTRATION( BaseClass )
+
 private:
 	
 	bool		serializeObject;
@@ -23,27 +23,5 @@ public:
 	BaseClass();
 	virtual ~BaseClass();
 
-//	static void AccessTest();
-//
-//
-//	BaseClass& operator()()
-//	{
-//		return *this;
-//	}
-//
-//	BaseClass& Property()
-//	{
-//		return *this;
-//	}
-//
-//private:
-//
-//	struct FirstLevelNested
-//	{
-//		struct SecondLevelNested
-//		{
-//			static void AccessTest();
-//		};
-//	};
 };
-//RTTR_DECLARE_STANDARD_META_TYPE_VARIANTS( BaseClass )
+

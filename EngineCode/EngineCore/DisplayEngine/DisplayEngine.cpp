@@ -578,7 +578,7 @@ void DisplayEngine::SetViewMatrix( float time_lag )
 
 /**@brief Dodaje obiekt, który ma zostaæ wyœwietlony.
 
-@param[in] object Object, który ma zostaæ dopisany do tablic wyœwietlania.*/
+@param[in] object EngineObject, który ma zostaæ dopisany do tablic wyœwietlania.*/
 void DisplayEngine::AddDynamicMeshObject( DynamicMeshActor* object )
 {
 	realocate_interpolation_memory( );		//powiêkszamy tablicê macierzy interpolacji

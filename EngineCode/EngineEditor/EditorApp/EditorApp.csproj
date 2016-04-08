@@ -144,14 +144,6 @@
     <Compile Include="Editor\Logic.cs" />
     <Compile Include="Editor\GlobalSettings.cs" />
     <Compile Include="Editor\Project\Actors\ActorsLogic.cs" />
-    <Compile Include="Editor\Project\Actors\Properties\BoolProperty.cs" />
-    <Compile Include="Editor\Project\Actors\Properties\GroupProperty.cs" />
-    <Compile Include="Editor\Project\Actors\Properties\Float2Property.cs" />
-    <Compile Include="Editor\Project\Actors\Properties\Float3Property.cs" />
-    <Compile Include="Editor\Project\Actors\Properties\Float4Property.cs" />
-    <Compile Include="Editor\Project\Actors\Properties\FloatProperty.cs" />
-    <Compile Include="Editor\Project\Actors\Properties\IntProperty.cs" />
-    <Compile Include="Editor\Project\Actors\Properties\IProperty.cs" />
     <Compile Include="Editor\Project\LevelInfo.cs" />
     <Compile Include="Editor\Project\Manager.cs" />
     <Compile Include="Editor\PathsManager.cs" />
@@ -229,7 +221,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Editor\Project\Actors\Type\" />
     <Folder Include="Styles\GreyStyle\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

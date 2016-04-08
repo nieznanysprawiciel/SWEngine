@@ -6,7 +6,7 @@
 @brief Deklaracja klasy RenderingApi.*/
 
 class DynamicMeshActor;
-class Object;
+class EngineObject;
 class StaticActor;
 
 #include "EngineCore/MainEngine/UserApi/ApiGroup.h"
@@ -43,16 +43,16 @@ namespace Api
 		void			AddDynamicMesh	( DynamicMeshActor* object );
 		void			CleanScene		();
 
-		template< typename Type = Object >	Type*		CreateActor				( const std::string& name, ActorInfo actorModules );
-		template< typename Type = Object >	Type*		CreateActor				( ActorType id, ActorInfo actorModules );
-		template< typename Type = Object >	Type*		CreateActor				( const std::string& name );
-		template< typename Type = Object >	Type*		CreateActor				( ActorType id );
+		template< typename Type = EngineObject >	Type*		CreateActor				( const std::string& name, ActorInfo actorModules );
+		template< typename Type = EngineObject >	Type*		CreateActor				( ActorType id, ActorInfo actorModules );
+		template< typename Type = EngineObject >	Type*		CreateActor				( const std::string& name );
+		template< typename Type = EngineObject >	Type*		CreateActor				( ActorType id );
 
 		const std::map< std::string, ActorType >&		GetRegisteredClasses	();
 
-		//void			DeleteActor				( Object* actor );
-		//void			RemoveFromModules		( Object* newActor, ActorInfo actorModules );
-		void			AddToModules			( Object* newActor, ActorInfo actorModules );
+		//void			DeleteActor				( EngineObject* actor );
+		//void			RemoveFromModules		( EngineObject* newActor, ActorInfo actorModules );
+		void			AddToModules			( EngineObject* newActor, ActorInfo actorModules );
 
 	};
 

@@ -23,11 +23,13 @@
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorPlugin.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</CompileAsManaged>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ActorClassMetaInfo.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorPlugin.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\IProperty.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ActorClassMetaInfo.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyHelper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Resource.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\targetver.h" />

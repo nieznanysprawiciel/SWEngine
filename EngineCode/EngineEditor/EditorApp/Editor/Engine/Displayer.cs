@@ -32,6 +32,9 @@ namespace EditorApp.Engine
 				m_editorReady = true;
 			else
 				return false;
+			
+			//EditorPlugin.ObjectPropertyWrapper prop;// = new EditorPlugin.ObjectPropertyWrapper( sd );
+			//prop.
 
 			m_engineWrapper.BasicScene();
 

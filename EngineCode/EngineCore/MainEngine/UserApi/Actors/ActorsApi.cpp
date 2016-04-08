@@ -32,7 +32,7 @@ const std::map<std::string, ActorType>& ActorsApi::GetRegisteredClasses()
 
 /**@brief Dodaje aktora do wszystkich modu³ów zgodnie z zawartoœci¹ struktury
 ActorInfo.*/
-void ActorsApi::AddToModules( Object* newActor, ActorInfo actorModules )
+void ActorsApi::AddToModules( EngineObject* newActor, ActorInfo actorModules )
 {
 	assert( newActor != nullptr );		// W trybie release nie powinno siê zdarzyæ.
 

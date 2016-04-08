@@ -92,6 +92,21 @@ void EngineWrapper::BasicScene()
 	m_engine->SetSkydomeAndCamera();
 }
 
+/**@brief */
+List< ActorClassMetaInfo^ >^		EngineWrapper::CreateActorsMetadata		()
+{
+	auto& registeredClasses = m_engine->actors.GetRegisteredClasses();
+	List< ActorClassMetaInfo^ >^ actorsList = gcnew List< ActorClassMetaInfo^ >();
+
+	for( auto& regClass : registeredClasses )
+	{
+		ActorClassMetaInfo^ actorInfo = gcnew ActorClassMetaInfo( regClass.second );
+		actorsList->Add( actorInfo );
+	}
+
+	return actorsList;
+}
+
 } //EditorPlugin
 
 

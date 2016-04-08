@@ -50,10 +50,15 @@ int main()
 	//std::cout << "Rotation z: " << arrayView.get_value( 2 ).to_float() << std::endl;
 	//std::cout << "Rotation w: " << arrayView.get_value( 3 ).to_float() << std::endl;
 
-	std::cout << "Rotation x: " << arrayView.x << std::endl;
-	std::cout << "Rotation y: " << arrayView.y << std::endl;
-	std::cout << "Rotation z: " << arrayView.z << std::endl;
-	std::cout << "Rotation w: " << arrayView.w << std::endl;
+	auto propertyX = rttr::type::get< DirectX::XMFLOAT4 >().get_property( "X" );
+	auto propertyY = rttr::type::get< DirectX::XMFLOAT4 >().get_property( "Y" );
+	auto propertyZ = rttr::type::get< DirectX::XMFLOAT4 >().get_property( "Z" );
+	auto propertyW = rttr::type::get< DirectX::XMFLOAT4 >().get_property( "W" );
+
+	std::cout << "Rotation x: " << propertyX.get_value( arrayView ).to_float() << std::endl;
+	std::cout << "Rotation y: " << propertyY.get_value( arrayView ).to_float() << std::endl;
+	std::cout << "Rotation z: " << propertyZ.get_value( arrayView ).to_float() << std::endl;
+	std::cout << "Rotation w: " << propertyW.get_value( arrayView ).to_float() << std::endl;
 
 
 	std::cout << "		Set Rotation" << std::endl;

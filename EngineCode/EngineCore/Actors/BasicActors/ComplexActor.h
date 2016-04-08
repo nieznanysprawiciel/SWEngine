@@ -18,7 +18,7 @@ public:
 	void MoveComplex( float time_interval, const DirectX::XMFLOAT3& parent_speed, const DirectX::XMFLOAT4& parent_rotation );
 
 
-	static Object*			Create()	{ return new ComplexActor; }
+	static EngineObject*			Create()	{ return new ComplexActor; }
 };
 
 

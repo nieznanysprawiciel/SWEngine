@@ -7,7 +7,7 @@
 
 @brief Zawiera deklaracje klas bazowych dla obiektów(aktorów):
 
-Object
+EngineObject
 Static_object
 DynamicActor
 Collision_object
@@ -23,7 +23,7 @@ CameraActor
 class DynamicActor;
 class InputAbstractionLayer_base;
 
-#include "BasicActors/Object.h"
+#include "BasicActors/EngineObject.h"
 #include "BasicActors/StaticActor.h"
 #include "BasicActors/DynamicActor.h"
 #include "BasicActors/CollisionActor.h"

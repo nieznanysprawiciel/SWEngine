@@ -20,7 +20,7 @@
 
 class ActorInitializer;
 
-typedef fastdelegate::FastDelegate0< Object* > CreateActorFunction;
+typedef fastdelegate::FastDelegate0< EngineObject* > CreateActorFunction;
 
 /**@brief Zwraca nazwê klasy zapisan¹ w RTTI z pominiêciem s³ówka class.*/
 template< typename ClassType >
@@ -62,13 +62,13 @@ public:
 	const StringTypeMapping&	GetRegisteredClasses	();
 
 
-	template< typename Type = Object >	Type*		CreateActor				( const std::string& name );
-	template< typename Type = Object >	Type*		CreateActor				( ActorType id );
+	template< typename Type = EngineObject >	Type*		CreateActor				( const std::string& name );
+	template< typename Type = EngineObject >	Type*		CreateActor				( ActorType id );
 };
 
 /**@brief Rejestrujê funkcjê tworz¹c¹ obiekt klasy aktora identyfikowanej za pomoc¹ nazwy.
 
-@note W trybie debug funkcja assertuje, je¿eli rejestrowana klasa nie dziedziczy po Object.
+@note W trybie debug funkcja assertuje, je¿eli rejestrowana klasa nie dziedziczy po EngineObject.
 
 @param[in] name Nazwa klasy. Nie musi pokrywaæ siê z nazw¹ w C++, ale by³oby to wskazane ze wzglêdów estetycznych.
 @param[in] function WskaŸnik na funkcjê tworz¹c¹ obiekt. Mo¿e to byæ funkcja globalna lub funkcja statyczna klasy.
@@ -84,7 +84,7 @@ ActorType ActorFactory::RegisterClass( const std::string& name, CreateActorFunct
 		return element->second;
 	}
 
-	assert( rttr::type::get< Type >().is_derived_from< Object >() );
+	assert( rttr::type::get< Type >().is_derived_from< EngineObject >() );
 	
 	auto inserted = m_createFunctions.insert( std::make_pair( rttr::type::get< Type >(), function ) );
 
@@ -111,7 +111,7 @@ Type* ActorFactory::CreateActor( const std::string& name )
 		return nullptr;
 	}
 
-	Object* newActor = CreateActor< Type >( index->second );
+	EngineObject* newActor = CreateActor< Type >( index->second );
 	return static_cast< Type* >( newActor );
 }
 
@@ -130,7 +130,7 @@ Type* ActorFactory::CreateActor( ActorType id )
 
 	if ( function != m_createFunctions.end() )
 	{
-		Object* newActor = function->second();
+		EngineObject* newActor = function->second();
 		
 		assert( rttr::rttr_cast< Type* >( newActor ) );
 		return static_cast< Type* >( newActor );

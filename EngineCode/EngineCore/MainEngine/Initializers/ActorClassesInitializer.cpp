@@ -16,7 +16,7 @@ bool Engine::InitDefaultActorsClasses()
 {
 	auto& actorsFactory = Context->actorsManager->GetActorFactory();
 	
-	actorsFactory.RegisterClass< Object >( GetTypeidName< Object >(), Object::Create );
+	actorsFactory.RegisterClass< EngineObject >( GetTypeidName< EngineObject >(), EngineObject::Create );
 	actorsFactory.RegisterClass< StaticActor >( GetTypeidName< StaticActor >(), StaticActor::Create );
 	actorsFactory.RegisterClass< CollisionActor >( GetTypeidName< CollisionActor >(), CollisionActor::Create );
 	actorsFactory.RegisterClass< DynamicActor >( GetTypeidName< DynamicActor >(), DynamicActor::Create );

@@ -30,10 +30,15 @@ napisanego w C#.
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
+#include "EngineEditor/EditorPlugin/Properties/ActorClassMetaInfo.h"
+
 class Engine;
+ref class ActorClassMetaInfo;
 
 namespace EditorPlugin
 {
+using namespace System::Collections::Generic;
+
 	/**@brief Klasa wrapera do inicjowania silnika i renderowania po stronie kodu zarz¹dzanego.
 	@ingroup EditorPlugin*/
 	public ref class EngineWrapper
@@ -53,6 +58,8 @@ namespace EditorPlugin
 
 		void				TestScene					();
 		void				BasicScene					();
+
+		List< ActorClassMetaInfo^ >^		CreateActorsMetadata		();
 	};
 
 }

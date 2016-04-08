@@ -201,7 +201,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\ComplexActor.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DynamicActor.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DynamicMeshActor.h" />
-    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\Object.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\EngineObject.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\PhysicalActor.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\StaticActor.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.h" />
@@ -269,7 +269,7 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\ComplexActor.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DynamicActor.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DynamicMeshActor.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\Object.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\EngineObject.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\PhysicalActor.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\StaticActor.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.cpp" />

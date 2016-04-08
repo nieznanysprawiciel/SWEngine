@@ -40,7 +40,7 @@ Engine::Engine(HINSTANCE instance)
 #endif
 
 	// Dziêki tej zmiennej bêdzie mo¿na wysy³aæ eventy
-	Object::SetEngine( this );
+	EngineObject::SetEngine( this );
 
 #ifndef __UNUSED
 	//Zmienna decyduje o konczeniu w¹tków

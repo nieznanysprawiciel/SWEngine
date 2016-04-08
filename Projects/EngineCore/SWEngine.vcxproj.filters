@@ -299,13 +299,13 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DynamicMeshActor.h">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\Object.h">
-      <Filter>EngineCore\Actors\BasicActors</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\PhysicalActor.h">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\StaticActor.h">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\EngineObject.h">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClInclude>
   </ItemGroup>
@@ -469,9 +469,6 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DynamicMeshActor.cpp">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\Object.cpp">
-      <Filter>EngineCore\Actors\BasicActors</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\PhysicalActor.cpp">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClCompile>
@@ -480,6 +477,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\RegisterStandardTypes.cpp">
       <Filter>EngineCore\MainEngine\Initializers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\EngineObject.cpp">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

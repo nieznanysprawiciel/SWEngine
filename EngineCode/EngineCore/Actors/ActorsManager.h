@@ -5,7 +5,7 @@
 
 class Engine;
 
-typedef std::pair< Object*, ActorInfo > ActorData;
+typedef std::pair< EngineObject*, ActorInfo > ActorData;
 
 /**@brief Modu³ do zarz¹dzania aktorami.
 @ingroup EngineCore*/
@@ -23,16 +23,16 @@ public:
 
 	inline ActorFactory&		GetActorFactory	()	{ return m_actorFactory; }
 
-	template< typename Type = Object >	Type*		CreateActor				( const std::string& name, ActorInfo actorModules );
-	template< typename Type = Object >	Type*		CreateActor				( ActorType id, ActorInfo actorModules );
+	template< typename Type = EngineObject >	Type*		CreateActor				( const std::string& name, ActorInfo actorModules );
+	template< typename Type = EngineObject >	Type*		CreateActor				( ActorType id, ActorInfo actorModules );
 
-	void						UpdateActor		( Object* actor, ActorInfo actorModules );
+	void						UpdateActor		( EngineObject* actor, ActorInfo actorModules );
 
 private:
 
-	void						AddActor		( Object* newActor );
+	void						AddActor		( EngineObject* newActor );
 	
-	template< typename Type = Object >	ActorData*	FindActor( Object* actor );
+	template< typename Type = EngineObject >	ActorData*	FindActor( EngineObject* actor );
 };
 
 
@@ -67,7 +67,7 @@ inline Type* ActorsManager::CreateActor( ActorType id, ActorInfo actorModules )
 }
 
 /**@brief Wyszukuje aktora.*/
-template< typename Type > ActorData*	ActorsManager::FindActor( Object* actor )
+template< typename Type > ActorData*	ActorsManager::FindActor( EngineObject* actor )
 {
 	for( auto& actorData : m_objectList )
 	{

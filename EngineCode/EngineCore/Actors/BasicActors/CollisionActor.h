@@ -11,6 +11,6 @@ class CollisionActor : public StaticActor
 	RTTR_ENABLE( StaticActor )
 
 public:
-	static Object*			Create()	{ return new CollisionActor; }
+	static EngineObject*			Create()	{ return new CollisionActor; }
 };
 

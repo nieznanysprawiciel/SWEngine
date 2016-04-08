@@ -41,7 +41,7 @@ public:
 	void						AddModelPart	( ModelPart& modelPart );
 	///
 
-	static Object*				Create()	{ return new DynamicMeshActor; }
+	static EngineObject*				Create()	{ return new DynamicMeshActor; }
 
 private:
 	void AddReferences( const ModelPart* part );
