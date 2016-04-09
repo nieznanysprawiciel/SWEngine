@@ -11,7 +11,8 @@
       <AdditionalDependencies>libfbxsdk.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(FBXLibsDirectory)libfbxsdk.dll $(OutDir)libfbxsdk.dll</Command>
+      <Command>copy $(FBXLibsDirectory)libfbxsdk.dll $(OutDir)libfbxsdk.dll
+%(Command)</Command>
       <Message>Copy FBX dll to output directory.</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
