@@ -3,9 +3,10 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <InteropD3DImageExName>Interop.D3DImageEx</InteropD3DImageExName>
-    <InteropD3DImageExLibDir>$(EngineLibDir)$(InteropD3DImageExName)\</InteropD3DImageExLibDir>
+    <InteropD3DImageExLibDir>$(EngineLibDir)$(InteropD3DImageExName)\$(InteropD3DImageExName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</InteropD3DImageExLibDir>
     <InteropD3DImageExSourceDir>$(EngineSourceDir)$(InteropD3DImageExName)\</InteropD3DImageExSourceDir>
-    <InteropD3DImageExFileName>$(InteropD3DImageExName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</InteropD3DImageExFileName>
+	 <InteropD3DImageExPDBDir>$(EnginePDBDir)$(InteropD3DImageExName)\$(InteropD3DImageExName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</InteropD3DImageExPDBDir>
+    <InteropD3DImageExFileName>$(InteropD3DImageExName)</InteropD3DImageExFileName>
     <InteropD3DImageExBuildDir>$(EngineBuildDir)$(InteropD3DImageExName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</InteropD3DImageExBuildDir>
   </PropertyGroup>
   <PropertyGroup />
@@ -26,6 +27,9 @@
     </BuildMacro>
     <BuildMacro Include="InteropD3DImageExBuildDir">
       <Value>$(InteropD3DImageExBuildDir)</Value>
+    </BuildMacro>
+	 <BuildMacro Include="InteropD3DImageExPDBDir">
+      <Value>$(InteropD3DImageExPDBDir)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

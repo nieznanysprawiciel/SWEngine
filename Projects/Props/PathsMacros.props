@@ -15,6 +15,7 @@
     <EngineLibDir>$(RootDir)EngineLib\</EngineLibDir>
     <EngineBuildDir>$(RootDir)EngineBuildDir\</EngineBuildDir>
     <EngineSourceDir>$(RootDir)EngineCode\</EngineSourceDir>
+	 <EnginePDBDir>$(RootDir)EnginePDB\</EnginePDBDir>
     <EngineLibName>SWEngine_$(Configuration)_$(PlatformShortName)</EngineLibName>
     <CommonDir>$(EngineSourceDir)Common\</CommonDir>
     <BuildFolder>$(EngineShortcut)_$(Configuration)_$(PlatformShortName)</BuildFolder>

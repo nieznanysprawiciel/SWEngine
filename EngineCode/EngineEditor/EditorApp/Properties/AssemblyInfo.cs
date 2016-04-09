@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("EditorApp")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright( "Copyright © nieznanysprawiciel  2015" )]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

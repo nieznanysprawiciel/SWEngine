@@ -14,6 +14,9 @@ RTTR_REGISTRATION
 	rttr::registration::class_< DynamicMeshActor >( "DynamicMeshActor" )
 #ifdef _SCALEABLE_OBJECTS
 		.property( "Scale", &DynamicMeshActor::scale )
+		(
+			rttr::metadata( MetaDataType::Category, "Transformation" )
+		)
 #endif
 	;
 }

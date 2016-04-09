@@ -195,7 +195,7 @@ static RTTR_INLINE is_nullptr(T& to)
 template<typename T, typename Tp, typename Converter>
 struct variant_data_base_policy
 {
-    static bool invoke(variant_policy_operation op, const variant_data& src_data, argument_wrapper arg)
+    static RTTR_INLINE bool invoke(variant_policy_operation op, const variant_data& src_data, argument_wrapper arg)
     {
         switch (op)
         {
@@ -532,7 +532,8 @@ struct variant_data_policy_arithmetic : variant_data_base_policy<T, variant_data
  *
  * This type has build in converter for several other basic types, that why we have a specialization here for it.
  */
-struct RTTR_API variant_data_policy_string : variant_data_policy_big<std::string, default_type_converter<std::string>>
+/// RTTR_API removed to prevent links errors
+struct variant_data_policy_string : variant_data_policy_big<std::string, default_type_converter<std::string>>
 {
     template<typename U>
     static RTTR_INLINE void create(U&& value, variant_data& dest)
@@ -652,7 +653,8 @@ struct variant_data_policy_empty
  * A `void` variant is a special variant to indicate that a function call was successful.
  * So in fact it does not contain any data, but the returned type of \ref variant::get_type() is a `void`.
  */
-struct RTTR_API variant_data_policy_void
+/// RTTR_API removed to prevent links errors
+struct variant_data_policy_void
 {
     static RTTR_INLINE bool invoke(variant_policy_operation op, const variant_data& src_data, argument_wrapper arg)
     {
@@ -749,7 +751,8 @@ struct RTTR_API variant_data_policy_void
  * We need this special handling because MSVC 2013 cannot handle correct a const std::nullptr_t,
  * On the other hand we have some special handling for comparison.
  */
-struct RTTR_API variant_data_policy_nullptr_t
+/// RTTR_API removed to prevent links errors
+struct variant_data_policy_nullptr_t
 {
     static RTTR_INLINE std::nullptr_t& get_value(const variant_data& data)
     {

@@ -57,7 +57,14 @@ namespace EditorApp
 		public bool			LoadProject	( string projectPath )
 		{
 			PathsManager.UpdateProjectPaths( projectPath );
-			return ProjectManager.LoadProject( projectPath );
+			bool result = ProjectManager.LoadProject( projectPath );
+
+			if( result )
+			{
+				mainWindow.ActorPreview.DataContext = ProjectManager.ActorsLogic.ActorsTypesList;
+			}
+
+			return result;
 		}
 
 

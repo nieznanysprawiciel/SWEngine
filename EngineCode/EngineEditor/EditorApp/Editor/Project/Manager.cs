@@ -14,7 +14,9 @@ namespace EditorApp.Project
 		private ProjectSettings				m_projectSettings;
 		private UserSettings                m_userSettings;
 		private ActorsLogic                 m_actorsLogic;
-		private Logic                       m_editorLogic;			///< Referencja na główny obiekt edytora.
+		private Logic                       m_editorLogic;
+
+		///< Referencja na główny obiekt edytora.
 
 		#region Contructor
 
@@ -73,6 +75,18 @@ namespace EditorApp.Project
 
 			return true;
 		}
+
+		#region properties
+
+		public ActorsLogic ActorsLogic
+		{
+			get
+			{
+				return m_actorsLogic;
+			}
+		}
+
+		#endregion
 
 	}
 }

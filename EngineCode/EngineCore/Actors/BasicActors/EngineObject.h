@@ -13,6 +13,15 @@ class InputAbstractionLayer_base;
 class IRenderer;
 class Model3DFromFile;
 
+
+enum class MetaDataType
+{
+	Category,
+	Serialize,
+	ShowInEditor
+};
+
+
 /**@brief Klasa bazowa dla wszystkich obiektów w grze (aktorów).
 */
 class EngineObject

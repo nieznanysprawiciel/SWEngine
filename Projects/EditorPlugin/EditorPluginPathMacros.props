@@ -3,9 +3,10 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <EditorPluginName>EditorPlugin</EditorPluginName>
-    <EditorPluginLibDir>$(EngineLibDir)$(EditorPluginName)\</EditorPluginLibDir>
+    <EditorPluginLibDir>$(EngineLibDir)$(EditorPluginName)\$(EditorPluginName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</EditorPluginLibDir>
     <EditorPluginSourceDir>$(EngineSourceDir)$(EditorPluginName)\</EditorPluginSourceDir>
-    <EditorPluginFileName>$(EditorPluginName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</EditorPluginFileName>
+    <EditorPluginFileName>$(EditorPluginName)</EditorPluginFileName>
+	 <EditorPluginPDBDir>$(EnginePDBDir)$(EditorPluginName)\$(EditorPluginName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</EditorPluginPDBDir>
     <EditorPluginBuildDir>$(EngineBuildDir)$(EditorPluginName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</EditorPluginBuildDir>
   </PropertyGroup>
   <PropertyGroup />
@@ -25,6 +26,9 @@
     </BuildMacro>
     <BuildMacro Include="EditorPluginBuildDir">
       <Value>$(EditorPluginBuildDir)</Value>
+    </BuildMacro>
+	 <BuildMacro Include="EditorPluginPDBDir">
+      <Value>$(EditorPluginPDBDir)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

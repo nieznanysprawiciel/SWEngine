@@ -475,9 +475,6 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\StaticActor.cpp">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\RegisterStandardTypes.cpp">
-      <Filter>EngineCore\MainEngine\Initializers</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\EngineObject.cpp">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClCompile>

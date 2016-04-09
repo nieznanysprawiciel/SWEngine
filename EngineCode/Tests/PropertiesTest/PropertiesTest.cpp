@@ -42,6 +42,13 @@ int main()
 
 	auto rotProperty = rttr::type::get<BaseClass>().get_property( "Rotation" );
 		
+	std::cout << "List all Rotation nested properties" << std::endl;
+	auto properties = rotProperty.get_type().get_properties();
+	for( auto& prop : properties )
+	{
+		std::cout << prop.get_name() << "		type: " << prop.get_type().get_id() << std::endl;
+	}
+
 	auto value = rotProperty.get_value( base );
 	bool isArray = value.is_array();
 	auto arrayView = value.get_value< DirectX::XMFLOAT4 >();

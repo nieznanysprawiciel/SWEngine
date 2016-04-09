@@ -3,6 +3,7 @@
 //using Float3 = System::Numerics::;
 
 #include "PropertyHelper.h"
+#include "EngineCore/Actors/BasicActors/EngineObject.h"
 
 #include <memory>
 
@@ -36,6 +37,28 @@ using namespace System::Collections::Generic;
 
 
 		virtual void			ResetActor		( System::IntPtr objectPtr );
+		PropertyType			GetPropertyType	( rttr::property prop )
+		{
+			auto propertyType = prop.get_type();
+			if( propertyType == rttr::type::get< int >() )
+				return PropertyType::PropertyInt;
+			else if( propertyType == rttr::type::get< float >() )
+				return PropertyType::PropertyFloat;
+			else if( propertyType == rttr::type::get< bool >() )
+				return PropertyType::PropertyBool;
+			else if( propertyType == rttr::type::get< double >() )
+				return PropertyType::PropertyDouble;
+			else if( propertyType == rttr::type::get< DirectX::XMFLOAT2 >() )
+				return PropertyType::PropertyFloat2;
+			else if( propertyType == rttr::type::get< DirectX::XMFLOAT3 >() )
+				return PropertyType::PropertyFloat3;
+			else if( propertyType == rttr::type::get< DirectX::XMFLOAT4 >() )
+				return PropertyType::PropertyFloat4;
+			else if( propertyType.is_derived_from< EngineObject >() )
+				return PropertyType::PropertyActor;
+			else
+				return PropertyType::PropertyUnknown;
+		}
 
 	public:
 		property PropertyType		Type
@@ -54,7 +77,8 @@ using namespace System::Collections::Generic;
 //			Classes derived from PropertyWrapper	
 //====================================================================================//
 
-	/**@brief */
+	/**@brief Property typu DirectX::XMFLOAT2.
+	@attention KLasa nieu¿ywana.*/
 	public ref class Float2PropertyWrapper : PropertyWrapper
 	{
 	public:
@@ -70,7 +94,8 @@ using namespace System::Collections::Generic;
 
 	};
 
-	/**@brief */
+	/**@brief Property typu DirectX::XMFLOAT3.
+	@attention KLasa nieu¿ywana.*/
 	public ref class Float3PropertyWrapper : PropertyWrapper
 	{
 	public:
@@ -88,7 +113,8 @@ using namespace System::Collections::Generic;
 		void		SetValueZ		( System::IntPtr refObject, float newValue );
 	};
 
-	/**@brief */
+	/**@brief Property typu DirectX::XMFLOAT4.
+	@attention KLasa nieu¿ywana.*/
 	public ref class Float4PropertyWrapper : PropertyWrapper
 	{
 	public:
@@ -110,7 +136,7 @@ using namespace System::Collections::Generic;
 		void		SetValueW		( System::IntPtr refObject, float newValue );
 	};
 
-	/**@brief */
+	/**@brief Property typy in.*/
 	public ref class IntPropertyWrapper : PropertyWrapper
 	{
 	public:
@@ -122,7 +148,7 @@ using namespace System::Collections::Generic;
 		void					SetValue		( System::IntPtr refObject, int newValue );
 	};
 
-	/**@brief */
+	/**@brief Property typu bool.*/
 	public ref class BoolPropertyWrapper : PropertyWrapper
 	{
 	public:
@@ -134,7 +160,7 @@ using namespace System::Collections::Generic;
 		void		SetValue		( System::IntPtr refObject, bool newValue );
 	};
 
-	/**@brief */
+	/**@brief Property typu float.*/
 	public ref class FloatPropertyWrapper : PropertyWrapper
 	{
 	public:
@@ -146,7 +172,7 @@ using namespace System::Collections::Generic;
 		void		SetValue		( System::IntPtr refObject, float newValue );
 	};
 
-	/**@brief */
+	/**@brief Property typu double.*/
 	public ref class DoublePropertyWrapper : PropertyWrapper
 	{
 	public:
@@ -181,7 +207,7 @@ using namespace System::Collections::Generic;
 //			Generic object wrapper	
 //====================================================================================//
 
-	/**@brief */
+	/**@brief Klasa bêd¹ca zbiorem Property nale¿¹cych do jednej kategorii.*/
 	public ref class CategoryPropertyWrapper : PropertyWrapper
 	{
 	private:
@@ -204,9 +230,9 @@ using namespace System::Collections::Generic;
 		}
 
 		virtual void			ResetActor		( System::IntPtr objectPtr ) override;
-		void					BuildHierarchy	( rttr::type classType );
+		virtual void			BuildHierarchy	( rttr::type classType );
 
-	private:
+	protected:
 		PropertyWrapper^		BuildProperty	( rttr::property property );
 
 	public:
@@ -218,7 +244,7 @@ using namespace System::Collections::Generic;
 
 
 
-	/**@brief */
+	/**@brief Property dla obiektów z³o¿onych dziedzicz¹cych po EngineObject.*/
 	public ref class ObjectPropertyWrapper : CategoryPropertyWrapper
 	{
 	private:
@@ -227,13 +253,24 @@ using namespace System::Collections::Generic;
 
 	public:
 		ObjectPropertyWrapper( rttr::property prop )
-			: CategoryPropertyWrapper( PropertyType::PropertyList, prop, prop.get_name().c_str() )
-		{
-			m_properties = gcnew List< PropertyWrapper^ >();
-		}
+			: CategoryPropertyWrapper( PropertyType::PropertyActor, prop, prop.get_name().c_str() )
+		{}
 
 		void					BuildHierarchy	();
 
+	};
+
+	/**@brief Property typu DirectX::XMFLOAT2, XMFLOAT3, XMFLOAT4.*/
+	public ref class XMFloatPropertyWrapper : CategoryPropertyWrapper
+	{
+	private:
+	public:
+		XMFloatPropertyWrapper( rttr::property prop )
+			: CategoryPropertyWrapper( GetPropertyType( prop ), prop, prop.get_name().c_str() )
+		{}
+
+		void			BuildHierarchy	( rttr::type classType ) override;
+		void			BuildHierarchy	();
 	};
 
 

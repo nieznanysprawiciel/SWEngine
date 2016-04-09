@@ -9,7 +9,13 @@ RTTR_REGISTRATION
 {
 	rttr::registration::class_< StaticActor >( "StaticActor" )
 		.property( "Position", &StaticActor::position )
-		.property( "Orientation", &StaticActor::orientation );
+		(
+			rttr::metadata( MetaDataType::Category, "Transformation" )
+		)
+		.property( "Orientation", &StaticActor::orientation )
+		(
+			rttr::metadata( MetaDataType::Category, "Transformation" )
+		);
 }
 
 using namespace DirectX;

@@ -303,7 +303,6 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\ActorClassesInitializer.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\AssetsInitializer.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\DisplayerInitializer.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\RegisterStandardTypes.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Actors\ActorsApi.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Actors\Assets.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\ApiGroup.cpp" />

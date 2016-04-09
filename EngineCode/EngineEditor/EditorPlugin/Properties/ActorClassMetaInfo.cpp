@@ -12,8 +12,6 @@ ActorClassMetaInfo::ActorClassMetaInfo			( rttr::type classType )
 	m_type = classType.get_id();
 	m_actorClassName = gcnew System::String( classType.get_name().c_str() );
 
-	m_properties = gcnew List< PropertyWrapper^ >();
-
 	BuildHierarchy( classType );
 }
 

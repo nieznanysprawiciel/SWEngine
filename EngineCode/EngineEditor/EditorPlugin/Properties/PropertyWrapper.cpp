@@ -1,7 +1,5 @@
 #include "PropertyWrapper.h"
 
-#include "EngineCore/Actors/BasicActors/EngineObject.h"
-
 
 
 namespace EditorPlugin
@@ -270,17 +268,19 @@ void			CategoryPropertyWrapper::ResetActor		( System::IntPtr objectPtr )
 /**@brief */
 void CategoryPropertyWrapper::BuildHierarchy( rttr::type classType )
 {
+	classType = classType.get_raw_type();
 	auto properties = classType.get_properties();
 	Dictionary< System::String^, CategoryPropertyWrapper^ >  categories;
 
 	for( auto& prop : properties )
 	{
-		auto categoryNameMeta = prop.get_metadata( "category" );
-		if( categoryNameMeta.is_valid() && categoryNameMeta.is_type< const char* >() )
+		auto categoryNameMeta = prop.get_metadata( MetaDataType::Category );
+		if( categoryNameMeta.is_valid() && categoryNameMeta.is_type< std::string >() )
 		{
-			System::String^ categoryNameStr = gcnew System::String( categoryNameMeta.get_value< const char* >() );
+			const std::string& categoryNameStdStr = categoryNameMeta.get_value< std::string >();
+			System::String^ categoryNameStr = gcnew System::String( categoryNameStdStr.c_str() );
 			if( !categories.ContainsKey( categoryNameStr ) )
-				categories[ categoryNameStr ] = gcnew CategoryPropertyWrapper( "Other" );
+				categories[ categoryNameStr ] = gcnew CategoryPropertyWrapper( categoryNameStdStr.c_str() );
 
 			categories[ categoryNameStr ]->Properties->Add( BuildProperty( prop ) );
 		}
@@ -317,11 +317,11 @@ PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( rttr::property property
 	{
 		return gcnew DoublePropertyWrapper( property );
 	}
-	else if( propertyType == rttr::type::get< DirectX::XMFLOAT2 >() 
-			 || propertyType == rttr::type::get< DirectX::XMFLOAT3 >()
+	else if( propertyType == rttr::type::get< DirectX::XMFLOAT2 >()
+			 || propertyType == rttr::type::get< DirectX::XMFLOAT3 >() 
 			 || propertyType == rttr::type::get< DirectX::XMFLOAT4 >() )
 	{
-		auto propertyWrapper = gcnew ObjectPropertyWrapper( property );
+		auto propertyWrapper = gcnew XMFloatPropertyWrapper( property );
 		propertyWrapper->BuildHierarchy();
 		return propertyWrapper;
 	}
@@ -338,7 +338,29 @@ PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( rttr::property property
 /**@brief Zbuduj hierarchiê metadanych z podanego obiektu.*/
 void ObjectPropertyWrapper::BuildHierarchy()
 {
-	BuildHierarchy( m_metaProperty->get_type() );
+	BuildHierarchy( RTTRPropertyRapist::MakeProperty( m_metaProperty ).get_type() );
+}
+
+/**@brief Buduje hierarchiê dla typów DirectX::XMFLOAT...
+
+Funkcja nie grupuje Property w kategorie w przeciwieñstwie do
+@ref CategoryPropertyWrapper::BuildHierarchy.
+*/
+void XMFloatPropertyWrapper::BuildHierarchy( rttr::type classType )
+{
+	classType = classType.get_raw_type();
+	auto properties = classType.get_properties();
+
+	for( auto& prop : properties )
+	{
+		Properties->Add( BuildProperty( prop ) );
+	}
+}
+
+/**@brief Zbuduj hierarchiê metadanych z podanego obiektu.*/
+void XMFloatPropertyWrapper::BuildHierarchy()
+{
+	BuildHierarchy( RTTRPropertyRapist::MakeProperty( m_metaProperty ).get_type() );
 }
 
 }

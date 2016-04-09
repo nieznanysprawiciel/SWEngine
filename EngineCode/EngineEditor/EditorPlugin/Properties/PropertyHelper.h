@@ -17,8 +17,9 @@ namespace EditorPlugin
 		PropertyInt,
 		PropertyBool,
 		PropertyDouble,
-		PropertyList,
-		PropertyCategory
+		PropertyActor,
+		PropertyCategory,
+		PropertyUnknown
 	};
 
 	template< typename PropertyType >
@@ -39,6 +40,8 @@ namespace EditorPlugin
 		friend ref class BoolPropertyWrapper;
 		friend ref class ActorClassMetaInfo;
 		friend ref class CategoryPropertyWrapper;
+		friend ref class ObjectPropertyWrapper;
+		friend ref class XMFloatPropertyWrapper;
 
 		friend DirectX::XMFLOAT2	GetXMFloat< DirectX::XMFLOAT2 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
 		friend void					SetXMFloat< DirectX::XMFLOAT2 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, DirectX::XMFLOAT2 newValue );
