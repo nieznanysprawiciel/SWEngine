@@ -27,7 +27,9 @@
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorClassMetaInfo.cpp">
       <Filter>EditorPlugin\Actors</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorWrapper.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorWrapper.cpp">
+      <Filter>EditorPlugin\Actors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\targetver.h">
@@ -48,9 +50,11 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorClassMetaInfo.h">
       <Filter>EditorPlugin\Actors</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EnginePointerProvider.h">
       <Filter>EditorPlugin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorWrapper.h">
+      <Filter>EditorPlugin\Actors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

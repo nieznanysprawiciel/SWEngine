@@ -27,6 +27,14 @@ namespace EditorApp.Editor.Project.Actors
 		{
 			EngineWrapper engine = m_editorLogic.Displayer.EngineWrapper;
 			m_actorsTypesList = engine.CreateActorsMetadata();
+			m_actors = engine.CreateActorsList();
+
+			int actorCounter = 0;
+			foreach( var actor in m_actors )
+			{
+				actor.ActorName = actor.GetTypeName() + actorCounter.ToString();
+				++actorCounter;
+			}
 		}
 
 		#region Properties

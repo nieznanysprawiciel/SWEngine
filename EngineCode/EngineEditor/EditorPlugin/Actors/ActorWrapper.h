@@ -23,7 +23,7 @@ private:
 public:
 	ActorWrapper		( EngineObject* actor, const ActorInfo* actorInfo );
 
-
+	System::String^		GetTypeName();
 
 public:
 	property System::String^	ActorName

@@ -73,7 +73,14 @@
 			</Grid>
 
 			<Grid Grid.Column="3" Height="Auto" >
-				<TreeView x:Name="ActorPreview" HorizontalAlignment="Left" Height="536" Margin="28,30,-428,0" VerticalAlignment="Top" Width="406" ItemsSource="{Binding}">
+				<ListView x:Name="ActorList" HorizontalAlignment="Left" Height="343" Margin="40,10,-416,0" VerticalAlignment="Top" Width="400" ItemsSource="{Binding}" >
+					<ListView.View>
+						<GridView>
+							<GridViewColumn Header="Name" DisplayMemberBinding="{Binding ActorName}" Width="Auto"/>
+						</GridView>
+					</ListView.View>
+				</ListView>
+				<TreeView x:Name="ActorPreview" HorizontalAlignment="Left" Height="509" Margin="40,390,-417,-90" VerticalAlignment="Top" Width="400" ItemsSource="{Binding}">
 					<TreeView.Resources>
 						<HierarchicalDataTemplate DataType="{x:Type engine:ActorClassMetaInfo}" ItemsSource="{Binding Properties}" >
 							<TextBlock Text="{Binding TypeName}" />
@@ -90,6 +97,7 @@
 					</TreeView.Resources>
 				</TreeView>
 			</Grid>
+
 
 		</Grid>
 
