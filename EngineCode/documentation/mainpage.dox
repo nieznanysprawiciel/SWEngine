@@ -85,21 +85,21 @@
 
 /**@page BaseEngineObjects Klasy bazowe dla obiektów predefiniowanych
 <ul>
-	<li>AnimationObject
+	<li>AnimationActor
 	<li>BaseAIController
 	<li>BaseInputController
-	<li>CameraObject
-	<li>CollisionObject
-	<li>ComplexObject
+	<li>CameraActor
+	<li>CollisionActor
+	<li>ComplexActor
 	<li>Controller
-	<li>DynamicMeshObject
-	<li>DynamicObject
+	<li>DynamicMeshActor
+	<li>DynamicActor
 	<li>Event
 	<li>InstancedMesh
-	<li>Object
-	<li>PhysicalObject
-	<li>StaticObject
-	<li>TriggerObject
+	<li>EngineObject
+	<li>PhysicalActor
+	<li>StaticActor
+	<li>TriggerActor
 </ul>
 */
 

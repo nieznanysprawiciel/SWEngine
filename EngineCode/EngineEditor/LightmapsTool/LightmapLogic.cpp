@@ -28,7 +28,7 @@ bool FindInVector( std::vector<Type>& vector, Type value, size_t& index )
 /**@brief Przygotowuje scenê.*/
 int LightmapLogic::LoadLevel					()
 {
-	auto layer = m_engine->input.GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS );
+	auto layer = m_engine->Input.GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS );
 	layer->demand_down_event( STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 );
 	layer->demand_down_event( STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS2 );
 	layer->demand_down_event( STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS3 );
@@ -37,9 +37,9 @@ int LightmapLogic::LoadLevel					()
 	layer->demand_down_event( STANDARD_LAYERS::PROTOTYPE_BUTTONS::LOAD_LIGHTMAP_SCENE );
 
 	// Wczytujemy shadery na przysz³oœæ.
-	m_engine->assets.shaders.LoadVertexShaderSync( DEFAULT_COORD_COLOR_VERTEX_SHADER_PATH, &m_layout, DefaultAssets::LAYOUT_COORD_COLOR );
-	m_engine->assets.shaders.LoadPixelShaderSync( DEFAULT_COORD_COLOR_PIXEL_SHADER_PATH );
-	m_engine->assets.shaders.LoadPixelShaderSync( DEFAULT_LIGHTMAP_PIXEL_SHADER_PATH );
+	m_engine->Assets.Shaders.LoadVertexShaderSync( DEFAULT_COORD_COLOR_VERTEX_SHADER_PATH, &m_layout, DefaultAssets::LAYOUT_COORD_COLOR );
+	m_engine->Assets.Shaders.LoadPixelShaderSync( DEFAULT_COORD_COLOR_PIXEL_SHADER_PATH );
+	m_engine->Assets.Shaders.LoadPixelShaderSync( DEFAULT_LIGHTMAP_PIXEL_SHADER_PATH );
 	m_layout->AddObjectReference();
 
 
@@ -52,22 +52,22 @@ int LightmapLogic::LoadLevel					()
 	// Przygotowanie sceny
 	const wchar_t room1ModelString[] = L"levels/Room1/Room1.FBX";
 	const wchar_t markerModelString[] = L"levels/Room1/Marker.FBX";
-	Model3DFromFile* room1Model = m_engine->assets.models.LoadSync( room1ModelString );
-	Model3DFromFile* markerModel = m_engine->assets.models.LoadSync( markerModelString );
+	Model3DFromFile* room1Model = m_engine->Assets.Models.LoadSync( room1ModelString );
+	Model3DFromFile* markerModel = m_engine->Assets.Models.LoadSync( markerModelString );
 
 	DynamicMeshActor* room1Object = new DynamicMeshActor;
 	room1Object->Teleport( DirectX::XMVectorSet( 0.0, -300.0, -2000.0, 0.0 ) );
 	//room1Object->TeleportOrientation( DirectX::XMQuaternionRotationNormal( DirectX::XMVectorSet( 0.0, 1.0, 0.0, 0.0 ), DirectX::XM_PIDIV2 ) );
 
 	room1Object->SetModel( room1Model );
-	m_engine->actors.AddDynamicMesh( room1Object );
+	m_engine->Actors.AddDynamicMesh( room1Object );
 
 	// Marker
 	DynamicMeshActor* markerObject = new DynamicMeshActor;
 	markerObject->Teleport( DirectX::XMVectorSet( 1559.0, 700.0, -1688.0, 0.0 ) );
 
 	markerObject->SetModel( markerModel );
-	m_engine->actors.AddDynamicMesh( markerObject );
+	m_engine->Actors.AddDynamicMesh( markerObject );
 
 	return 0;
 }
@@ -112,8 +112,8 @@ void LightmapLogic::ProceedGameLogic			( float time )
 			delete sceneData;		// Nie bêdzie ju¿ wiêcej potrzebne.
 
 			// Przygotowujemy dane takie same dla wszyskich obiektów.
-			VertexShaderObject* vertexShader = m_engine->assets.shaders.GetVertexShaderSync( DEFAULT_COORD_COLOR_VERTEX_SHADER_PATH );
-			PixelShaderObject* pixelShader = m_engine->assets.shaders.GetPixelShaderSync( DEFAULT_COORD_COLOR_PIXEL_SHADER_PATH );
+			VertexShaderObject* vertexShader = m_engine->Assets.Shaders.GetVertexShaderSync( DEFAULT_COORD_COLOR_VERTEX_SHADER_PATH );
+			PixelShaderObject* pixelShader = m_engine->Assets.Shaders.GetPixelShaderSync( DEFAULT_COORD_COLOR_PIXEL_SHADER_PATH );
 			RenderTargetDescriptor renderTargetDesc;
 			renderTargetDesc.textureHeight = 1024;
 			renderTargetDesc.textureWidth = 1024;
@@ -128,15 +128,15 @@ void LightmapLogic::ProceedGameLogic			( float time )
 			for( auto& chunk : result )
 			{
 				std::wstring fullName = renderTargetName + std::to_wstring( counter );
-				auto vertexBuff = m_engine->assets.buffers.CreateVertexBufferSync( fullName, chunk, chunk.GetMemorySize() / sizeof( CoordColor ) );
+				auto vertexBuff = m_engine->Assets.Buffers.CreateVertexBufferSync( fullName, chunk, chunk.GetMemorySize() / sizeof( CoordColor ) );
 
 				RenderPass* renderPass = new RenderPass;
 				DynamicMeshActor* dynamicMesh = new DynamicMeshActor( vertexBuff, nullptr );
-				RenderTargetObject* renderTarget = m_engine->assets.renderTargets.CreateSync( fullName, renderTargetDesc );
+				RenderTargetObject* renderTarget = m_engine->Assets.RenderTargets.CreateSync( fullName, renderTargetDesc );
 				
 				// Build mesh
 				ModelPart part;
-				part.material = m_engine->assets.materials.GetSync( DEFAULT_MATERIAL_STRING );
+				part.material = m_engine->Assets.Materials.GetSync( DEFAULT_MATERIAL_STRING );
 				part.pixel_shader = pixelShader;
 				part.vertex_shader = vertexShader;
 				part.mesh = new MeshPartObject;
@@ -149,7 +149,7 @@ void LightmapLogic::ProceedGameLogic			( float time )
 				renderPass->SetRenderTarget( renderTarget );
 				renderPass->SetLayout( m_layout );
 
-				m_engine->rendering.RenderOnce( renderPass );
+				m_engine->Rendering.RenderOnce( renderPass );
 				m_lightmapBuffers.push_back( dynamicMesh );
 				counter++;
 			}
@@ -186,10 +186,10 @@ void LightmapLogic::RenderEnded( Event* renderEndedEvent )
 
 		if( realMesh )
 		{
-			PixelShaderObject* pixelShader = m_engine->assets.shaders.GetPixelShaderSync( DEFAULT_LIGHTMAP_PIXEL_SHADER_PATH );
+			PixelShaderObject* pixelShader = m_engine->Assets.Shaders.GetPixelShaderSync( DEFAULT_LIGHTMAP_PIXEL_SHADER_PATH );
 			TextureObject* lightmap = renderPass->GetRenderTarget()->GetColorBuffer();
-			m_engine->actors.assets.ChangeTextures( realMesh, lightmap, 0, std::numeric_limits<uint16>::max(), TextureUse::TEX_DIFFUSE );	// W przysz³oœci TEX_LIGHTMAP
-			m_engine->actors.assets.ChangePixelShaders( realMesh, pixelShader, 0, std::numeric_limits<uint16>::max() );
+			m_engine->Actors.Assets.ChangeTextures( realMesh, lightmap, 0, std::numeric_limits<uint16>::max(), TextureUse::TEX_DIFFUSE );	// W przysz³oœci TEX_LIGHTMAP
+			m_engine->Actors.Assets.ChangePixelShaders( realMesh, pixelShader, 0, std::numeric_limits<uint16>::max() );
 		}
 		
 		for( auto mesh : meshes )
@@ -260,7 +260,7 @@ void LightmapLogic::GenerateLightmaps			( Event* keyEvent )
 @return Zwraca dane sceny w strukturze SceneData.*/
 SceneData* LightmapLogic::PrepareSceneData			()
 {
-	std::vector<DynamicMeshActor*> meshes = m_engine->actors.GetSceneObjects();
+	std::vector<DynamicMeshActor*> meshes = m_engine->Actors.GetSceneObjects();
 	SceneData* sceneData = new SceneData;
 
 	for( auto mesh : meshes )

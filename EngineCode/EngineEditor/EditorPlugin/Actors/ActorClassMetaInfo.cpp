@@ -1,6 +1,6 @@
 #include "ActorClassMetaInfo.h"
 
-#include "PropertyWrapper.h"
+
 
 namespace EditorPlugin
 {

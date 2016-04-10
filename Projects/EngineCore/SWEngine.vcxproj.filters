@@ -66,26 +66,26 @@
     <Filter Include="EngineCore\MainEngine\Initializers">
       <UniqueIdentifier>{01ad07dc-efd9-4c32-b9e1-f44bbf60d6a6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EngineCore\MainEngine\UserApi">
-      <UniqueIdentifier>{c0d0b2cf-cae1-4e71-ba4a-d7f677cc6d36}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EngineCore\MainEngine\UserApi\Input">
-      <UniqueIdentifier>{c4d6fb7e-cb10-412b-9925-5a591c0d328d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EngineCore\MainEngine\UserApi\Rendering">
-      <UniqueIdentifier>{b0759e5c-4220-4f2a-9420-acbe85b9bdc1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EngineCore\MainEngine\UserApi\Actors">
-      <UniqueIdentifier>{4de6a447-a219-45ad-b390-2fe2f05f2eb6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EngineCore\MainEngine\UserApi\Assets">
-      <UniqueIdentifier>{2c1a2f9b-05ee-44e1-b030-ce3806629ee0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Common\Properties">
       <UniqueIdentifier>{f696d09a-ca1e-45e6-950c-2b058ec9e554}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineCore\Actors\BasicActors">
       <UniqueIdentifier>{b191242f-db02-46f7-9bea-32e16dfcc794}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\UserApi">
+      <UniqueIdentifier>{c0d0b2cf-cae1-4e71-ba4a-d7f677cc6d36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\UserApi\Input">
+      <UniqueIdentifier>{c4d6fb7e-cb10-412b-9925-5a591c0d328d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\UserApi\Rendering">
+      <UniqueIdentifier>{b0759e5c-4220-4f2a-9420-acbe85b9bdc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\UserApi\Actors">
+      <UniqueIdentifier>{4de6a447-a219-45ad-b390-2fe2f05f2eb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\UserApi\Assets">
+      <UniqueIdentifier>{2c1a2f9b-05ee-44e1-b030-ce3806629ee0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -227,44 +227,44 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\EngineContext.h">
       <Filter>EngineCore\MainEngine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\ApiGroup.h">
-      <Filter>EngineCore\MainEngine\UserApi</Filter>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\ApiGroup.h">
+      <Filter>EngineCore\UserApi</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Input\InputApi.h">
-      <Filter>EngineCore\MainEngine\UserApi\Input</Filter>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Input\InputApi.h">
+      <Filter>EngineCore\UserApi\Input</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Rendering\RenderApi.h">
-      <Filter>EngineCore\MainEngine\UserApi\Rendering</Filter>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Rendering\RenderApi.h">
+      <Filter>EngineCore\UserApi\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Actors\ActorsApi.h">
-      <Filter>EngineCore\MainEngine\UserApi\Actors</Filter>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\ActorsApi.h">
+      <Filter>EngineCore\UserApi\Actors</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Actors\Assets.h">
-      <Filter>EngineCore\MainEngine\UserApi\Actors</Filter>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\Assets.h">
+      <Filter>EngineCore\UserApi\Actors</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\AssetsApi.h">
-      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\AssetsApi.h">
+      <Filter>EngineCore\UserApi\Assets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Animations.h">
-      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Animations.h">
+      <Filter>EngineCore\UserApi\Assets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Buffers.h">
-      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Buffers.h">
+      <Filter>EngineCore\UserApi\Assets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Materials.h">
-      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Materials.h">
+      <Filter>EngineCore\UserApi\Assets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Models.h">
-      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Models.h">
+      <Filter>EngineCore\UserApi\Assets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\RenderTargets.h">
-      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\RenderTargets.h">
+      <Filter>EngineCore\UserApi\Assets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Shaders.h">
-      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Shaders.h">
+      <Filter>EngineCore\UserApi\Assets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Textures.h">
-      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Textures.h">
+      <Filter>EngineCore\UserApi\Assets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\MemoryLeaks.h">
       <Filter>Common</Filter>
@@ -307,6 +307,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\EngineObject.h">
       <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\RTTR.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -412,44 +415,44 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\ActorClassesInitializer.cpp">
       <Filter>EngineCore\MainEngine\Initializers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\ApiGroup.cpp">
-      <Filter>EngineCore\MainEngine\UserApi</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\ApiGroup.cpp">
+      <Filter>EngineCore\UserApi</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Input\InputApi.cpp">
-      <Filter>EngineCore\MainEngine\UserApi\Input</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Input\InputApi.cpp">
+      <Filter>EngineCore\UserApi\Input</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Rendering\RenderApi.cpp">
-      <Filter>EngineCore\MainEngine\UserApi\Rendering</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Rendering\RenderApi.cpp">
+      <Filter>EngineCore\UserApi\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Actors\ActorsApi.cpp">
-      <Filter>EngineCore\MainEngine\UserApi\Actors</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Actors\ActorsApi.cpp">
+      <Filter>EngineCore\UserApi\Actors</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Actors\Assets.cpp">
-      <Filter>EngineCore\MainEngine\UserApi\Actors</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Actors\Assets.cpp">
+      <Filter>EngineCore\UserApi\Actors</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\AssetsApi.cpp">
-      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\AssetsApi.cpp">
+      <Filter>EngineCore\UserApi\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Animations.cpp">
-      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Animations.cpp">
+      <Filter>EngineCore\UserApi\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Buffers.cpp">
-      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Buffers.cpp">
+      <Filter>EngineCore\UserApi\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Materials.cpp">
-      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Materials.cpp">
+      <Filter>EngineCore\UserApi\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Models.cpp">
-      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Models.cpp">
+      <Filter>EngineCore\UserApi\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\RenderTargets.cpp">
-      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\RenderTargets.cpp">
+      <Filter>EngineCore\UserApi\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Shaders.cpp">
-      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Shaders.cpp">
+      <Filter>EngineCore\UserApi\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\UserApi\Assets\Textures.cpp">
-      <Filter>EngineCore\MainEngine\UserApi\Assets</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Textures.cpp">
+      <Filter>EngineCore\UserApi\Assets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\AnimationActor.cpp">
       <Filter>EngineCore\Actors\BasicActors</Filter>

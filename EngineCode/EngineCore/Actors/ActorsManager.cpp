@@ -31,3 +31,11 @@ void ActorsManager::UpdateActor		( EngineObject* actor, ActorInfo actorModules )
 
 	actorData->second |= actorModules;
 }
+
+/**@brief Pobiera dane o wszystkich aktorach.
+
+@return Zwraca referencjê na wektor @ref ActorData.*/
+const std::vector<ActorData>&		ActorsManager::GetAllActors()
+{
+	return m_objectList;
+}

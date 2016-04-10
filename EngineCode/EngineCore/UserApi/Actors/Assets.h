@@ -10,7 +10,7 @@ class TextureObject;
 class PixelShaderObject;
 class VertexShaderObject;
 
-#include "EngineCore/MainEngine/UserApi/ApiGroup.h"
+#include "EngineCore/UserApi/ApiGroup.h"
 
 namespace Api { namespace Actors {
 

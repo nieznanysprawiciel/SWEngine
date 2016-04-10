@@ -2,17 +2,21 @@
 #include "ActorsApi.h"
 
 #include "EngineCore/MainEngine/EngineContext.h"
+#include "EngineCore/Actors/ActorInfo.h"
 
 namespace Api
 {
 
-/**@brief */
+/**@brief Pobiera aktorów z modu³y @ref DisplayEngine.
+@deprecated Pozostawione dla zgodnoœci z LightmapTools. Zamiast tego nale¿y u¿ywaæ funkcji
+@ref ActorsApi::GetAllActors, która zwaraca wszystkicj aktorów w silniku.*/
 std::vector<DynamicMeshActor*> ActorsApi::GetSceneObjects()
 { return Context->displayEngine->GetSceneObjects(); }
 
 
 /**@brief 
-@deprecated*/
+@deprecated Pozostawione dla zgodnoœci z LightmapTools. Zamiast tego nale¿y u¿ywaæ funkcji
+@ref ActorsApi::AddToModules*/
 void ActorsApi::AddDynamicMesh( DynamicMeshActor* object )
 {
 	Context->displayEngine->AddDynamicMeshObject( object );
@@ -22,6 +26,7 @@ void ActorsApi::AddDynamicMesh( DynamicMeshActor* object )
 /**@brief */
 void ActorsApi::CleanScene()
 {	Context->displayEngine->DeleteAllMeshes();	}
+
 
 /**@brief Zwraca mapê nazw i ich typów.*/
 const std::map<std::string, ActorType>& ActorsApi::GetRegisteredClasses()
@@ -75,6 +80,14 @@ void ActorsApi::AddToModules( EngineObject* newActor, ActorInfo actorModules )
 	Context->actorsManager->UpdateActor( newActor, actorModules );
 
 	//@todo Dodaæ do pozosta³ych modu³ów, kiedy bêdzie to mo¿liwe.
+}
+
+/**@brief Pobiera dane o wszystkich aktorach.
+
+@return Zwraca referencjê na wektor @ref ActorData.*/
+const std::vector<ActorData>&		ActorsApi::GetAllActors()
+{
+	return Context->actorsManager->GetAllActors();
 }
 
 

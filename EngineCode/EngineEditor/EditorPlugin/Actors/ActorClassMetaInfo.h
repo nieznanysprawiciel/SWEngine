@@ -2,7 +2,7 @@
 
 #include "Common/RTTR.h"
 
-#include "PropertyHelper.h"
+#include "EngineEditor/EditorPlugin/Properties/PropertyWrapper.h"
 
 
 class EngineObject;
@@ -15,7 +15,7 @@ using namespace System::Collections::Generic;
 
 Klasa mo¿e byc u¿yta nie tylko do wydobywania metainformacji o typie,
 ale równie¿ mo¿e pos³u¿yæ do pobrania wartoœci dla konkretnego obiektu.
-Przechowywany wewnêtrznie wskaŸnik m_actorPtr mo¿e zostaæ ustawiony przy
+Przechowywany wewnêtrznie wskaŸnik @ref m_actorPtr mo¿e zostaæ ustawiony przy
 pomocy funkcji reset. Skutkuje to zaktualizowaniem wskaŸnika w ca³ej hierarchii.
 
 WskaŸnik mo¿e byæ nullptrem, wtedy zwracane s¹ jakieœ domyœlne wartoœci dla parametrów.
@@ -47,16 +47,19 @@ public:
 
 public:
 
+	/**@brief Zwraca typ obiektu, którym jest @ref rttr::type zwracany przez bibliotekê rttr.*/
 	property int	Type
 	{
 		int get()	{ return (int)m_type; }
 	}
 
+	/**@brief Nazwa klasy.*/
 	property System::String^			TypeName
 	{
 		System::String^					get()	{ return m_actorClassName; }
 	}
 
+	/**@brief Lista wszystkich Property danej klasy.*/
 	property List< PropertyWrapper^ >^	Properties
 	{
 		List< PropertyWrapper^ >^		get()	{ return m_properties; }

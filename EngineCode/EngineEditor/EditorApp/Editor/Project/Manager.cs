@@ -49,7 +49,7 @@ namespace EditorApp.Project
 				return false;
 			}
 
-			m_actorsLogic.InitLevel();
+			m_actorsLogic.PostInitLevel();
 
 			return true;
 		}

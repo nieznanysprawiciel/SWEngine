@@ -7,7 +7,7 @@
 
 class BufferObject;
 
-#include "EngineCore/MainEngine/UserApi/ApiGroup.h"
+#include "EngineCore/UserApi/ApiGroup.h"
 #include "Common/MemoryChunk.h"
 
 #include <string>

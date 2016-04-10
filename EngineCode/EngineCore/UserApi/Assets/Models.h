@@ -7,7 +7,7 @@
 
 class Model3DFromFile;
 
-#include "EngineCore/MainEngine/UserApi/ApiGroup.h"
+#include "EngineCore/UserApi/ApiGroup.h"
 
 #include <string>
 

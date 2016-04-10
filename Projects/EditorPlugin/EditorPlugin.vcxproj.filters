@@ -10,6 +10,9 @@
     <Filter Include="EditorPlugin\Properties">
       <UniqueIdentifier>{2be8624a-4ed5-4770-ba18-77a3ce317d08}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EditorPlugin\Actors">
+      <UniqueIdentifier>{71478c14-da7c-41db-9654-9d676d5f623a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\dllmain.cpp">
@@ -21,9 +24,10 @@
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.cpp">
       <Filter>EditorPlugin\Properties</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ActorClassMetaInfo.cpp">
-      <Filter>EditorPlugin\Properties</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorClassMetaInfo.cpp">
+      <Filter>EditorPlugin\Actors</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\targetver.h">
@@ -38,11 +42,15 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.h">
       <Filter>EditorPlugin\Properties</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ActorClassMetaInfo.h">
-      <Filter>EditorPlugin\Properties</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyHelper.h">
       <Filter>EditorPlugin\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorClassMetaInfo.h">
+      <Filter>EditorPlugin\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorWrapper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EnginePointerProvider.h">
+      <Filter>EditorPlugin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -5,10 +5,10 @@
 
 @brief Plik zawiera deklaracjê klasy EngineInterface.*/
 
-#include "UserApi/Input/InputApi.h"
-#include "UserApi/Rendering/RenderApi.h"
-#include "UserApi/Actors/ActorsApi.h"
-#include "UserApi/Assets/AssetsApi.h"
+#include "EngineCore/UserApi/Input/InputApi.h"
+#include "EngineCore/UserApi/Rendering/RenderApi.h"
+#include "EngineCore/UserApi/Actors/ActorsApi.h"
+#include "EngineCore/UserApi/Assets/AssetsApi.h"
 
 struct EngineContext;
 class Engine;
@@ -50,10 +50,10 @@ protected:
 
 
 public:
-	Api::AssetsApi			assets;		///<Funkcje do zarz¹dzania assetami.
-	Api::ActorsApi			actors;		///<Funkcje do zarz¹dzania aktorami.
-	Api::RenderingApi		rendering;	///<Funkcje do zarzadzania renderowaniem.
-	Api::InputApi			input;		///<Funkcje do zarz¹dzania wejœciem od u¿ytkownika.
+	Api::AssetsApi			Assets;		///<Funkcje do zarz¹dzania assetami.
+	Api::ActorsApi			Actors;		///<Funkcje do zarz¹dzania aktorami.
+	Api::RenderingApi		Rendering;	///<Funkcje do zarzadzania renderowaniem.
+	Api::InputApi			Input;		///<Funkcje do zarz¹dzania wejœciem od u¿ytkownika.
 
 };
 

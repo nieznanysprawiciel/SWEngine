@@ -12,6 +12,7 @@
 #include "Common/MacrosSwitches.h"
 
 
+Engine*		EnginePointerProvider::engine = nullptr;
 
 //extern 	HINSTANCE moduleHandle;
 
@@ -37,9 +38,12 @@ bool EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
 	int result = m_engine->InitEngine( window_width, window_height, false, SW_HIDE );
 	if( !result )
 	{
+		EnginePointerProvider::engine = nullptr;
 		delete m_engine;
 		return false;
 	}
+
+	EnginePointerProvider::engine = m_engine;
 
 	return true;
 }
@@ -47,6 +51,7 @@ bool EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
 /**@brief Zwalnia zasoby silnika.*/
 void EngineWrapper::ReleaseEngine()
 {
+	EnginePointerProvider::engine = nullptr;
 	delete m_engine;
 }
 
@@ -92,16 +97,31 @@ void EngineWrapper::BasicScene()
 	m_engine->SetSkydomeAndCamera();
 }
 
-/**@brief */
+/**@brief Twqorzy listê typów zarejestrowanych aktorów.*/
 List< ActorClassMetaInfo^ >^		EngineWrapper::CreateActorsMetadata		()
 {
-	auto& registeredClasses = m_engine->actors.GetRegisteredClasses();
+	auto& registeredClasses = m_engine->Actors.GetRegisteredClasses();
 	List< ActorClassMetaInfo^ >^ actorsList = gcnew List< ActorClassMetaInfo^ >();
 
 	for( auto& regClass : registeredClasses )
 	{
 		ActorClassMetaInfo^ actorInfo = gcnew ActorClassMetaInfo( regClass.second );
 		actorsList->Add( actorInfo );
+	}
+
+	return actorsList;
+}
+
+
+List< ActorWrapper^ >^				EngineWrapper::CreateActorsList			()
+{
+	List< ActorWrapper^ >^ actorsList = gcnew List< ActorWrapper^ >();
+	auto& existingActors = m_engine->Actors.GetAllActors();
+
+	for each( auto& actor in existingActors )
+	{
+		ActorWrapper^ newActor = gcnew ActorWrapper( actor.first, &actor.second );
+		actorsList->Add( newActor );
 	}
 
 	return actorsList;

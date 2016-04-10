@@ -7,7 +7,7 @@
 
 class InputAbstractionLayer;
 
-#include "EngineCore/MainEngine/UserApi/ApiGroup.h"
+#include "EngineCore/UserApi/ApiGroup.h"
 #include "EngineCore/UIEngine/StandardAbstractionLayers.h"
 
 namespace Api
@@ -15,7 +15,7 @@ namespace Api
 
 /**@defgroup InputAPI Zarz¹dzanie wejœciem/wyjœciem.
 @ingroup UserAPI
-@brief Funkcje do obs³ugi wejœcia u¿ytkownika.
+@brief Funkcje do obs³ugi wejœcia u¿ytkownika.*/
 
 	/**@brief Zawiera funkcje do obs³ugi wejœcia u¿ytkownika.
 	@ingroup UserAPI

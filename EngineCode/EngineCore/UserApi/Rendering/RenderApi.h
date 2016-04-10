@@ -5,7 +5,7 @@
 
 @brief Deklaracja klasy RenderingApi.*/
 
-#include "EngineCore/MainEngine/UserApi/ApiGroup.h"
+#include "EngineCore/UserApi/ApiGroup.h"
 
 class RenderPass;
 
@@ -15,7 +15,7 @@ namespace Api
 
 /**@defgroup RenderingAPI Obs³uga modu³ów do renderowania.
 @ingroup UserAPI
-@brief Funkcje do kontrolowania sposobu renderowania.
+@brief Funkcje do kontrolowania sposobu renderowania.*/
 
 
 	/**@brief Zawiera funkcje do obs³ugi wejœcia u¿ytkownika.

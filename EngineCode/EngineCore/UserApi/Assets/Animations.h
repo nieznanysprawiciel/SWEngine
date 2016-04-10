@@ -6,7 +6,7 @@
 @brief Deklaracja klasy Animations.*/
 
 
-#include "EngineCore/MainEngine/UserApi/ApiGroup.h"
+#include "EngineCore/UserApi/ApiGroup.h"
 
 namespace Api { namespace Assets {
 

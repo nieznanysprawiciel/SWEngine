@@ -1,5 +1,11 @@
 #pragma once
 
+#include <utility>
+
+class EngineObject;
+
+
+
 /**@brief Flagi do ustawiania wartoœci struktury ActorInfo.*/
 enum ActorInfoFlag	: unsigned short
 {
@@ -19,21 +25,23 @@ enum ActorInfoFlag	: unsigned short
 aktor.*/
 struct ActorInfo
 {
-	unsigned short			enableDisplay		: 1;	///< Obiekt znajduje siê w module DisplayEngine.
-	unsigned short			enableMovement		: 1;	///< Obiekt znajduje siê w module MovementEngine.
-	unsigned short			enablePhysic		: 1;	///< Obiekt znajduje siê w module PhysicEngine.
-	unsigned short			enableCollisions	: 1;	///< Obiekt znajduje siê w module CollisionsEngine.
-	unsigned short			enableShadow		: 1;	///< Obiekt rzuca cieñ.
-	unsigned short			enablePreController	: 1;	///< Obiekt posiada controller typu pre. @ref PrePostControllers
-	unsigned short			enablePostController: 1;	///< Obiekt posiada controller typu post. @ref PrePostControllers
-	unsigned short			isLight				: 1;	///< Obiekt jest œwiat³em i zosta³ dodany do modu³u obs³uguj¹cego oœwietlenie.
-	unsigned short			isCamera			: 1;	///< Obiekt jest kamer¹ i zostanie dodany do modu³u DisplayEngine.
+	bool			enableDisplay		: 1;	///< Obiekt znajduje siê w module DisplayEngine.
+	bool			enableMovement		: 1;	///< Obiekt znajduje siê w module MovementEngine.
+	bool			enablePhysic		: 1;	///< Obiekt znajduje siê w module PhysicEngine.
+	bool			enableCollisions	: 1;	///< Obiekt znajduje siê w module CollisionsEngine.
+	bool			enableShadow		: 1;	///< Obiekt rzuca cieñ.
+	bool			enablePreController	: 1;	///< Obiekt posiada controller typu pre. @ref PrePostControllers
+	bool			enablePostController: 1;	///< Obiekt posiada controller typu post. @ref PrePostControllers
+	bool			isLight				: 1;	///< Obiekt jest œwiat³em i zosta³ dodany do modu³u obs³uguj¹cego oœwietlenie.
+	bool			isCamera			: 1;	///< Obiekt jest kamer¹ i zostanie dodany do modu³u DisplayEngine.
 
 					ActorInfo	();
 					ActorInfo	( unsigned short actorInfoFlag );
 	inline void		InitZero	();
 	void			operator|=	( ActorInfo second );
 };
+
+typedef std::pair< EngineObject*, ActorInfo > ActorData;
 
 /**@brief Ustawia zerowy stan struktury ActorInfo.*/
 inline ActorInfo::ActorInfo	()

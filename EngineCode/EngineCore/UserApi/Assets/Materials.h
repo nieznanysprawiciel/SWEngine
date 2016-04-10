@@ -7,7 +7,7 @@
 
 struct MaterialObject;
 
-#include "EngineCore/MainEngine/UserApi/ApiGroup.h"
+#include "EngineCore/UserApi/ApiGroup.h"
 
 #include <string>
 

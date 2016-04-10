@@ -9,19 +9,21 @@ namespace EditorApp.Editor.Project.Actors
 {
 	public class ActorsLogic
 	{
-		private List<ActorClassMetaInfo >       m_actorsTypesList;
+		private List<ActorClassMetaInfo >		m_actorsTypesList;
+		private List<ActorWrapper>				m_actors;
 
-		private Logic					m_editorLogic;      ///< Referencja na główny obiekt edytora.
+		private Logic							m_editorLogic;      ///< Referencja na główny obiekt edytora.
 
 
 		public ActorsLogic		( Logic editorLogic )
 		{
 			m_editorLogic = editorLogic;
 			m_actorsTypesList = null;
+			Actors = new List<ActorWrapper>();
 		}
 
 
-		public void InitLevel()
+		public void PostInitLevel()
 		{
 			EngineWrapper engine = m_editorLogic.Displayer.EngineWrapper;
 			m_actorsTypesList = engine.CreateActorsMetadata();
@@ -32,6 +34,19 @@ namespace EditorApp.Editor.Project.Actors
 		public List<ActorClassMetaInfo> ActorsTypesList
 		{
 			get	{	return m_actorsTypesList;	}
+		}
+
+		public List<ActorWrapper> Actors
+		{
+			get
+			{
+				return m_actors;
+			}
+
+			set
+			{
+				m_actors = value;
+			}
 		}
 
 

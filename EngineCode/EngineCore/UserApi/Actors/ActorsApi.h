@@ -9,8 +9,8 @@ class DynamicMeshActor;
 class EngineObject;
 class StaticActor;
 
-#include "EngineCore/MainEngine/UserApi/ApiGroup.h"
-#include "EngineCore/MainEngine/UserApi/Actors/Assets.h"
+#include "EngineCore/UserApi/ApiGroup.h"
+#include "EngineCore/UserApi/Actors/Assets.h"
 #include "EngineCore/Actors/ActorInfo.h"
 
 #include <vector>
@@ -21,7 +21,7 @@ namespace Api
 
 /**@defgroup ActorsAPI Zarz¹dzanie aktorami.
 @ingroup UserAPI
-@brief Funkcje do zarz¹dzania aktorami.
+@brief Funkcje do zarz¹dzania aktorami.*/
 
 
 	/**@brief Zawiera funkcje do obs³ugi aktorów.
@@ -30,7 +30,7 @@ namespace Api
 	class ActorsApi : public ApiGroup
 	{
 	public:
-		Actors::Assets		assets;			///< Pozwala na ustawianie assetów aktorom.
+		Actors::Assets		Assets;			///< Pozwala na ustawianie assetów aktorom.
 
 	private:
 	protected:
@@ -48,12 +48,12 @@ namespace Api
 		template< typename Type = EngineObject >	Type*		CreateActor				( const std::string& name );
 		template< typename Type = EngineObject >	Type*		CreateActor				( ActorType id );
 
-		const std::map< std::string, ActorType >&		GetRegisteredClasses	();
-
 		//void			DeleteActor				( EngineObject* actor );
 		//void			RemoveFromModules		( EngineObject* newActor, ActorInfo actorModules );
 		void			AddToModules			( EngineObject* newActor, ActorInfo actorModules );
 
+		const std::map< std::string, ActorType >&		GetRegisteredClasses	();
+		const std::vector< ActorData >&					GetAllActors			();
 	};
 
 

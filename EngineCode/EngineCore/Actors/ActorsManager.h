@@ -5,7 +5,7 @@
 
 class Engine;
 
-typedef std::pair< EngineObject*, ActorInfo > ActorData;
+
 
 /**@brief Modu³ do zarz¹dzania aktorami.
 @ingroup EngineCore*/
@@ -21,16 +21,17 @@ public:
 	ActorsManager( Engine* engine );
 	~ActorsManager();
 
-	inline ActorFactory&		GetActorFactory	()	{ return m_actorFactory; }
+	inline ActorFactory&									GetActorFactory	()	{ return m_actorFactory; }
 
-	template< typename Type = EngineObject >	Type*		CreateActor				( const std::string& name, ActorInfo actorModules );
-	template< typename Type = EngineObject >	Type*		CreateActor				( ActorType id, ActorInfo actorModules );
+	template< typename Type = EngineObject >	Type*		CreateActor		( const std::string& name, ActorInfo actorModules );
+	template< typename Type = EngineObject >	Type*		CreateActor		( ActorType id, ActorInfo actorModules );
 
-	void						UpdateActor		( EngineObject* actor, ActorInfo actorModules );
+	void													UpdateActor		( EngineObject* actor, ActorInfo actorModules );
+	const std::vector< ActorData >&							GetAllActors	();
 
 private:
 
-	void						AddActor		( EngineObject* newActor );
+	void													AddActor		( EngineObject* newActor );
 	
 	template< typename Type = EngineObject >	ActorData*	FindActor( EngineObject* actor );
 };

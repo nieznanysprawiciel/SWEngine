@@ -52,7 +52,7 @@ private:
 #ifndef __UNUSED
 	//juz nieu¿ywane, ale zachowane na ewentualn¹ przysz³oœæ
 
-	std::vector<std::pair<MaterialObject*, FbxSurfacePhong*>>		materials;
+	std::vector<std::pair<MaterialObject*, FbxSurfacePhong*>>		Materials;
 
 	bool process_existing_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLOAT4X4& transformation);
 	void process_materials(FbxNode* node);
