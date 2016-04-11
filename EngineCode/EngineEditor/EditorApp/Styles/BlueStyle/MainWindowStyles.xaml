@@ -15,5 +15,9 @@
 		<Setter Property="Background" Value="#FF5484C5"/>
 		<Setter Property="BorderBrush" Value="#FF8BBEEA"/>
 	</Style>
-	
+
+	<Style x:Key="TextBlockStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="#FFCFC8C8"/>
+	</Style>
+
 </ResourceDictionary >

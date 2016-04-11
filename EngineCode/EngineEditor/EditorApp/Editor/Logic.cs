@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using System.Windows;
 
 namespace EditorApp
 {
@@ -68,6 +69,16 @@ namespace EditorApp
 			return result;
 		}
 
+		public void SaveClick( object sender, RoutedEventArgs e )
+		{
+			ProjectManager.SaveProject();
+		}
+
+		public void LoadClick( object sender, RoutedEventArgs e )
+		{
+
+
+		}
 
 		public void			RenderFrame( object sender, EventArgs e )
 		{

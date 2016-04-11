@@ -39,7 +39,12 @@ namespace EditorApp
 
 		private void SaveClick( object sender, RoutedEventArgs e )
 		{
-			EditorLogic.ProjectManager.SaveProject();
+			EditorLogic.SaveClick( sender, e );
+		}
+
+		private void LoadClick( object sender, RoutedEventArgs e )
+		{
+			EditorLogic.LoadClick( sender, e );
 		}
 
 		#region Properties
