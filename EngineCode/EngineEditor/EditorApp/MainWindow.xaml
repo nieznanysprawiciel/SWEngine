@@ -66,49 +66,63 @@
 
 			<Grid Grid.Column="0" Height="Auto" Width="Auto" HorizontalAlignment="Left"/>
 
-			<GridSplitter Grid.Column="1" Grid.ColumnSpan="1" Width="5" ResizeDirection="Columns" HorizontalAlignment="Left" ></GridSplitter>
+			<GridSplitter Grid.Column="1" Grid.ColumnSpan="1" Width="2" ResizeDirection="Columns" HorizontalAlignment="Left" Style="{StaticResource GridSplitterStyle}" ></GridSplitter>
 
 			<Grid Grid.Column="2" Grid.ColumnSpan="1" Height="Auto" >
 				<Image x:Name="EngineViewport" Height="800" Width="1000" Margin="2" HorizontalAlignment="Left" VerticalAlignment="Top" />
 			</Grid>
 
 			<Grid Grid.Column="3" Height="Auto" >
-				<ListView x:Name="ActorList" HorizontalAlignment="Left" Height="343" Margin="40,10,-416,0" VerticalAlignment="Top" Width="400" ItemsSource="{Binding}" Background="Transparent" BorderThickness="2" >
-					<ListView.View>
-						<GridView>
-							<GridView.ColumnHeaderContainerStyle>
-								<Style>
-									<Setter Property="FrameworkElement.Visibility" Value="Collapsed"/>
-								</Style>
-							</GridView.ColumnHeaderContainerStyle>
-							<GridViewColumn Header="Name" Width="Auto" >
-								<GridViewColumn.CellTemplate>
-									<DataTemplate>
-										<TextBlock Text="{Binding ActorName}" Style="{StaticResource TextBlockStyle}" />
-									</DataTemplate>
-								</GridViewColumn.CellTemplate>
-							</GridViewColumn>
-						</GridView>
-					</ListView.View>
-				</ListView>
-				<TreeView x:Name="ActorPreview" HorizontalAlignment="Left" Height="509" Margin="40,390,-417,-90" VerticalAlignment="Top" Width="400" ItemsSource="{Binding}" Background="Transparent" BorderThickness="2">
-					<TreeView.Resources>
-						<HierarchicalDataTemplate DataType="{x:Type engine:ActorClassMetaInfo}" ItemsSource="{Binding Properties}" >
-							<TextBlock Text="{Binding TypeName}" Style="{StaticResource TextBlockStyle}"/>
-						</HierarchicalDataTemplate>
-						<HierarchicalDataTemplate DataType="{x:Type engine:ObjectPropertyWrapper}" ItemsSource="{Binding Properties}" >
-							<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}"/>
-						</HierarchicalDataTemplate>
-						<HierarchicalDataTemplate DataType="{x:Type engine:CategoryPropertyWrapper}" ItemsSource="{Binding Properties}" >
-							<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}"/>
-						</HierarchicalDataTemplate>
-						<DataTemplate DataType="{x:Type engine:FloatPropertyWrapper}">
-							<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}"/>
-						</DataTemplate>
-					</TreeView.Resources>
-				</TreeView>
-			</Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="390" ></RowDefinition>
+					<RowDefinition Height="5" ></RowDefinition>
+					<RowDefinition Height="Auto" ></RowDefinition>
+				</Grid.RowDefinitions>
 
+				<Grid Grid.Row="0" >
+					<ListView x:Name="ActorList" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto" ItemsSource="{Binding}" Background="Transparent" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Visible" >
+						<ScrollViewer >
+						</ScrollViewer>
+						<ListView.View>
+							<GridView>
+								<GridView.ColumnHeaderContainerStyle>
+									<Style>
+										<Setter Property="FrameworkElement.Visibility" Value="Collapsed"/>
+									</Style>
+								</GridView.ColumnHeaderContainerStyle>
+								<GridViewColumn Header="Name" Width="Auto" >
+									<GridViewColumn.CellTemplate>
+										<DataTemplate>
+											<TextBlock Text="{Binding ActorName}" Style="{StaticResource TextBlockStyle}" />
+										</DataTemplate>
+									</GridViewColumn.CellTemplate>
+								</GridViewColumn>
+							</GridView>
+						</ListView.View>
+					</ListView>
+				</Grid>
+				
+				<GridSplitter Grid.Row="1" Height="2" Width="400" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ResizeDirection="Rows" Style="{StaticResource GridSplitterStyle}"/>
+
+				<Grid Grid.Row="2" >
+					<TreeView x:Name="ActorPreview" HorizontalAlignment="Stretch" Height="509" Margin="10, 10, 10, 10" VerticalAlignment="Stretch" Width="400" ItemsSource="{Binding}" Background="Transparent" BorderThickness="2">
+						<TreeView.Resources>
+							<HierarchicalDataTemplate DataType="{x:Type engine:ActorClassMetaInfo}" ItemsSource="{Binding Properties}" >
+								<TextBlock Text="{Binding TypeName}" Style="{StaticResource TextBlockStyle}"/>
+							</HierarchicalDataTemplate>
+							<HierarchicalDataTemplate DataType="{x:Type engine:ObjectPropertyWrapper}" ItemsSource="{Binding Properties}" >
+								<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}"/>
+							</HierarchicalDataTemplate>
+							<HierarchicalDataTemplate DataType="{x:Type engine:CategoryPropertyWrapper}" ItemsSource="{Binding Properties}" >
+								<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}"/>
+							</HierarchicalDataTemplate>
+							<DataTemplate DataType="{x:Type engine:FloatPropertyWrapper}">
+								<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}"/>
+							</DataTemplate>
+						</TreeView.Resources>
+					</TreeView>
+				</Grid>
+			</Grid>
 
 		</Grid>
 

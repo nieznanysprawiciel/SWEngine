@@ -20,4 +20,8 @@
 		<Setter Property="Foreground" Value="#FFCFC8C8"/>
 	</Style>
 
+	<Style x:Key="GridSplitterStyle" TargetType="GridSplitter">
+		<Setter Property="Background" Value="#FFCFC8C8" />
+	</Style>
+
 </ResourceDictionary >
