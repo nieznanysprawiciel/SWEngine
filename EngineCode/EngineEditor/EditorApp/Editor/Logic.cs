@@ -24,12 +24,12 @@ namespace EditorApp
 		public Project.Manager		ProjectManager { get; }
 		public Engine.Displayer		Displayer { get; }
 
-		private MainWindow          mainWindow;
+		public MainWindow			MainWindowRef { get; }
 
 
 		public Logic( MainWindow windowRef )
 		{
-			mainWindow = windowRef;
+			MainWindowRef = windowRef;
 
 			PathsManager = new PathsManager();
 			GlobalSettings = new GlobalSettings();
@@ -44,8 +44,8 @@ namespace EditorApp
 			if( !Displayer.InitRenderer() )
 				return false;
 
-			mainWindow.EngineViewport.Source = Displayer.ViewportSurface;
-			Displayer.ViewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, Displayer.EngineWrapper.GetRenderTarget( (ushort)mainWindow.EngineViewport.Width, (ushort)mainWindow.EngineViewport.Height ) );
+			MainWindowRef.EngineViewport.Source = Displayer.ViewportSurface;
+			Displayer.ViewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, Displayer.EngineWrapper.GetRenderTarget( (ushort)MainWindowRef.EngineViewport.Width, (ushort)MainWindowRef.EngineViewport.Height ) );
 
 
 			string projectPath = ParseCmdLineProject( cmdArgs );
@@ -62,8 +62,8 @@ namespace EditorApp
 
 			if( result )
 			{
-				mainWindow.ActorPreview.DataContext = ProjectManager.ActorsLogic.ActorsTypesList;
-				mainWindow.ActorList.DataContext = ProjectManager.ActorsLogic.Actors;
+				MainWindowRef.ActorPreview.DataContext = ProjectManager.ActorsLogic.ActorsTypesList;
+				MainWindowRef.ActorList.DataContext = ProjectManager.ActorsLogic.Actors;
 			}
 
 			return result;

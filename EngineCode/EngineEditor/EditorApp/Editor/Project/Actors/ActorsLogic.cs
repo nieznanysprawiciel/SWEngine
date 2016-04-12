@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Controls;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,25 @@ namespace EditorApp.Editor.Project.Actors
 				++actorCounter;
 			}
 		}
+
+		public void ActorSelectionChanged( object sender, SelectionChangedEventArgs e )
+		{
+			ListView actorsListView = sender as ListView;
+			var selectedIndex = actorsListView.SelectedIndex;
+
+			var actor = m_actors.ElementAt( selectedIndex );
+
+			foreach( var actorClass in m_actorsTypesList )
+			{
+				if( actorClass.Type == actor.Type )
+				{
+					actorClass.ResetActor( actor.GetActorPtr() );
+					m_editorLogic.MainWindowRef.ActorPreview.DataContext = null;
+					m_editorLogic.MainWindowRef.ActorPreview.DataContext = actorClass;
+				}
+			}
+		}
+
 
 		#region Properties
 

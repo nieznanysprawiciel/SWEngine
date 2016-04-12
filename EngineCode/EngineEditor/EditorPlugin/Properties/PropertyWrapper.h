@@ -170,6 +170,16 @@ using namespace System::Collections::Generic;
 
 		float		GetValue		( System::IntPtr refObject );
 		void		SetValue		( System::IntPtr refObject, float newValue );
+
+		property float		Value
+		{
+			float		get ()
+			{
+				if( m_actorPtr )
+					return  GetValue( System::IntPtr( m_actorPtr ) );
+				return std::numeric_limits< float >::max();
+			}
+		}
 	};
 
 	/**@brief Property typu double.*/
@@ -271,6 +281,9 @@ using namespace System::Collections::Generic;
 
 		void			BuildHierarchy	( rttr::type classType ) override;
 		void			BuildHierarchy	();
+	
+	public:
+		virtual void	ResetActor		( System::IntPtr objectPtr ) override;
 	};
 
 

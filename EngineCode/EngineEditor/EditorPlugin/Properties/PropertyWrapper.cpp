@@ -12,8 +12,29 @@ template< typename PropertyType >
 PropertyType	GetXMFloat( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject )
 {
 	rttr::property prop = RTTRPropertyRapist::MakeProperty( metaProperty );
-	auto value = prop.get_value( refObject.ToPointer() );
-	return value.get_value< PropertyType >();
+
+	if( prop.get_declaring_type().is_derived_from< EngineObject >() )
+	{
+		auto value = prop.get_value( *static_cast< EngineObject* >( refObject.ToPointer() ) );
+		return value.get_value< PropertyType >();
+	}
+	else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT2 >() )
+	{
+		auto value = prop.get_value( *static_cast< DirectX::XMFLOAT2* >( refObject.ToPointer() ) );
+		return value.get_value< PropertyType >();
+	}
+	else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT3 >() )
+	{
+		auto value = prop.get_value( *static_cast< DirectX::XMFLOAT3* >( refObject.ToPointer() ) );
+		return value.get_value< PropertyType >();
+	}
+	else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT4 >() )
+	{
+		auto value = prop.get_value( *static_cast< DirectX::XMFLOAT4* >( refObject.ToPointer() ) );
+		return value.get_value< PropertyType >();
+	}
+	else
+		assert( false );	return PropertyType();
 }
 
 /**@brief */
@@ -21,7 +42,23 @@ template< typename PropertyType >
 void		SetXMFloat( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, PropertyType newValue )
 {
 	rttr::property prop = RTTRPropertyRapist::MakeProperty( metaProperty );
-	prop.set_value( refObject.ToPointer(), newValue );
+
+	if( prop.get_declaring_type().is_derived_from< EngineObject >() )
+	{
+		prop.set_value( *static_cast< EngineObject* >( refObject.ToPointer() ), newValue );
+	}
+	else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT2 >() )
+	{
+		prop.set_value( *static_cast< DirectX::XMFLOAT2* >( refObject.ToPointer() ), newValue );
+	}
+	else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT3 >() )
+	{
+		prop.set_value( *static_cast< DirectX::XMFLOAT3* >( refObject.ToPointer() ), newValue );
+	}
+	else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT4 >() )
+	{
+		prop.set_value( *static_cast< DirectX::XMFLOAT4* >( refObject.ToPointer() ), newValue );
+	}
 }
 
 //====================================================================================//
@@ -361,6 +398,40 @@ void XMFloatPropertyWrapper::BuildHierarchy( rttr::type classType )
 void XMFloatPropertyWrapper::BuildHierarchy()
 {
 	BuildHierarchy( RTTRPropertyRapist::MakeProperty( m_metaProperty ).get_type() );
+}
+
+/**@brief */
+void	XMFloatPropertyWrapper::ResetActor		( System::IntPtr objectPtr )
+{
+	auto prop = RTTRPropertyRapist::MakeProperty( m_metaProperty );
+
+	if( m_type == PropertyType::PropertyFloat2 )
+	{
+		auto value = prop.get_value( *static_cast< EngineObject* >( objectPtr.ToPointer() ) );
+		auto& xmfloat = value.get_value< DirectX::XMFLOAT2 >();
+
+		for each( auto property in Properties )
+			property->ResetActor( System::IntPtr( (void*)&xmfloat ) );
+	}
+	else if( m_type == PropertyType::PropertyFloat3 )
+	{
+		auto value = prop.get_value( *static_cast< EngineObject* >( objectPtr.ToPointer() ) );
+		auto& xmfloat = value.get_value< DirectX::XMFLOAT3 >();
+
+		for each( auto property in Properties )
+			property->ResetActor( System::IntPtr( (void*)&xmfloat ) );
+	}
+	else if( m_type == PropertyType::PropertyFloat4 )
+	{
+		auto value = prop.get_value( *static_cast< EngineObject* >( objectPtr.ToPointer() ) );
+		auto& xmfloat = value.get_value< DirectX::XMFLOAT4 >();
+
+		for each( auto property in Properties )
+			property->ResetActor( System::IntPtr( (void*)&xmfloat ) );
+	}
+	else
+		assert( false );
+	
 }
 
 }

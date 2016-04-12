@@ -238,7 +238,10 @@
   <Target Name="AfterBuild">
 		<Copy SourceFiles="$(ExternalDir)FBX_SDK\lib\vs2013\$(PlatformTarget)\$(ConfigTypeSmallString)\libfbxsdk.dll" DestinationFolder="$(OutputPath)" ContinueOnError="true" />
 		<Copy SourceFiles="$(EngineLibDir)Reflection\v120\$(PlatformTarget)\$(ConfigTypeSmallString)\Reflection.dll" DestinationFolder="$(OutputPath)" ContinueOnError="true" />
+  </Target>
+  <Target Name="AfterBuild" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
 		<Move SourceFiles="$(OutputPath)$(AssemblyName).pdb" DestinationFolder="$(EnginePDBDir)\EditorApp\EditorApp_$(Configuration)_$(PlatformTarget)\" ContinueOnError="true" />
   </Target>
-
+  
+  
 </Project>

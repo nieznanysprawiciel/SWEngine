@@ -80,9 +80,7 @@
 				</Grid.RowDefinitions>
 
 				<Grid Grid.Row="0" >
-					<ListView x:Name="ActorList" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto" ItemsSource="{Binding}" Background="Transparent" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Visible" >
-						<ScrollViewer >
-						</ScrollViewer>
+					<ListView x:Name="ActorList" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto" ItemsSource="{Binding}" Background="Transparent" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="ActorSelectionChanged" SelectionMode="Single" >
 						<ListView.View>
 							<GridView>
 								<GridView.ColumnHeaderContainerStyle>
@@ -105,7 +103,7 @@
 				<GridSplitter Grid.Row="1" Height="2" Width="400" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ResizeDirection="Rows" Style="{StaticResource GridSplitterStyle}"/>
 
 				<Grid Grid.Row="2" >
-					<TreeView x:Name="ActorPreview" HorizontalAlignment="Stretch" Height="509" Margin="10, 10, 10, 10" VerticalAlignment="Stretch" Width="400" ItemsSource="{Binding}" Background="Transparent" BorderThickness="2">
+					<TreeView x:Name="ActorPreview" HorizontalAlignment="Stretch" Height="509" Margin="10, 10, 10, 10" VerticalAlignment="Stretch" Width="400" ItemsSource="{Binding Properties}" Background="Transparent" BorderThickness="2">
 						<TreeView.Resources>
 							<HierarchicalDataTemplate DataType="{x:Type engine:ActorClassMetaInfo}" ItemsSource="{Binding Properties}" >
 								<TextBlock Text="{Binding TypeName}" Style="{StaticResource TextBlockStyle}"/>
@@ -117,7 +115,10 @@
 								<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}"/>
 							</HierarchicalDataTemplate>
 							<DataTemplate DataType="{x:Type engine:FloatPropertyWrapper}">
-								<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}"/>
+								<StackPanel Orientation="Horizontal">
+									<TextBlock Width="50" Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}"/>
+									<TextBlock Width="150" Text="{Binding Value}" Style="{StaticResource TextBlockStyle}" />
+								</StackPanel>
 							</DataTemplate>
 						</TreeView.Resources>
 					</TreeView>

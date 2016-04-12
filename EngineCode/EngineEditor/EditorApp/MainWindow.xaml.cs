@@ -47,6 +47,12 @@ namespace EditorApp
 			EditorLogic.LoadClick( sender, e );
 		}
 
+		private void ActorSelectionChanged( object sender, System.Windows.Controls.SelectionChangedEventArgs e )
+		{
+			EditorLogic.ProjectManager.ActorsLogic.ActorSelectionChanged( sender, e );
+		}
+
+
 		#region Properties
 
 		public Logic EditorLogic

@@ -24,6 +24,7 @@ public:
 	ActorWrapper		( EngineObject* actor, const ActorInfo* actorInfo );
 
 	System::String^		GetTypeName();
+	System::IntPtr		GetActorPtr();
 
 public:
 	property System::String^	ActorName
@@ -31,6 +32,12 @@ public:
 		System::String^		get		()							{ return m_name; }
 		void				set		( System::String^ name )	{ m_name = name; }
 	}
+
+	property int	Type
+	{
+		int			get ();
+	}
+
 
 	property bool	EnableDisplay
 	{

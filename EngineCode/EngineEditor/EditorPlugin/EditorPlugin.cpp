@@ -105,7 +105,7 @@ List< ActorClassMetaInfo^ >^		EngineWrapper::CreateActorsMetadata		()
 
 	for( auto& regClass : registeredClasses )
 	{
-		ActorClassMetaInfo^ actorInfo = gcnew ActorClassMetaInfo( regClass.second );
+		ActorClassMetaInfo^ actorInfo = gcnew ActorClassMetaInfo( regClass.second.get_raw_type() );
 		actorsList->Add( actorInfo );
 	}
 
