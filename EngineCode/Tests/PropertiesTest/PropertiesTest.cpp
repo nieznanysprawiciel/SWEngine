@@ -51,16 +51,16 @@ int main()
 
 	auto value = rotProperty.get_value( base );
 	bool isArray = value.is_array();
-	auto arrayView = value.get_value< DirectX::XMFLOAT4 >();
+	auto arrayView = value.get_value< DirectX::XMFLOAT4* >();
 	//std::cout << "Rotation x: " << arrayView.get_value( 0 ).to_float() << std::endl;
 	//std::cout << "Rotation y: " << arrayView.get_value( 1 ).to_float() << std::endl;
 	//std::cout << "Rotation z: " << arrayView.get_value( 2 ).to_float() << std::endl;
 	//std::cout << "Rotation w: " << arrayView.get_value( 3 ).to_float() << std::endl;
 
-	auto propertyX = rttr::type::get< DirectX::XMFLOAT4 >().get_property( "X" );
-	auto propertyY = rttr::type::get< DirectX::XMFLOAT4 >().get_property( "Y" );
-	auto propertyZ = rttr::type::get< DirectX::XMFLOAT4 >().get_property( "Z" );
-	auto propertyW = rttr::type::get< DirectX::XMFLOAT4 >().get_property( "W" );
+	auto propertyX = rttr::type::get< DirectX::XMFLOAT4* >().get_property( "X" );
+	auto propertyY = rttr::type::get< DirectX::XMFLOAT4* >().get_property( "Y" );
+	auto propertyZ = rttr::type::get< DirectX::XMFLOAT4* >().get_property( "Z" );
+	auto propertyW = rttr::type::get< DirectX::XMFLOAT4* >().get_property( "W" );
 
 	std::cout << "Rotation x: " << propertyX.get_value( arrayView ).to_float() << std::endl;
 	std::cout << "Rotation y: " << propertyY.get_value( arrayView ).to_float() << std::endl;
@@ -69,14 +69,19 @@ int main()
 
 
 	std::cout << "		Set Rotation" << std::endl;
-	bool result = rotProperty.set_value( base, DirectX::XMFLOAT4( 3.0f, 4.0f, 6.0f, 32.4f ) );
+	//bool result = rotProperty.set_value( base, DirectX::XMFLOAT4( 3.0f, 4.0f, 6.0f, 32.4f ) );
+
+	propertyX.set_value( arrayView, 3.0f );
+	propertyY.set_value( arrayView, 4.0f );
+	propertyZ.set_value( arrayView, 6.0f );
+	propertyW.set_value( arrayView, 32.4f );
 
 	value = rotProperty.get_value( base );
-	arrayView = value.get_value< DirectX::XMFLOAT4 >();
-	std::cout << "Rotation x: " << arrayView.x << std::endl;
-	std::cout << "Rotation y: " << arrayView.y << std::endl;
-	std::cout << "Rotation z: " << arrayView.z << std::endl;
-	std::cout << "Rotation w: " << arrayView.w << std::endl;
+	arrayView = value.get_value< DirectX::XMFLOAT4* >();
+	std::cout << "Rotation x: " << arrayView->x << std::endl;
+	std::cout << "Rotation y: " << arrayView->y << std::endl;
+	std::cout << "Rotation z: " << arrayView->z << std::endl;
+	std::cout << "Rotation w: " << arrayView->w << std::endl;
 
 	SEPARATOR
 

@@ -48,11 +48,11 @@ using namespace System::Collections::Generic;
 				return PropertyType::PropertyBool;
 			else if( propertyType == rttr::type::get< double >() )
 				return PropertyType::PropertyDouble;
-			else if( propertyType == rttr::type::get< DirectX::XMFLOAT2 >() )
+			else if( propertyType == rttr::type::get< DirectX::XMFLOAT2* >() )
 				return PropertyType::PropertyFloat2;
-			else if( propertyType == rttr::type::get< DirectX::XMFLOAT3 >() )
+			else if( propertyType == rttr::type::get< DirectX::XMFLOAT3* >() )
 				return PropertyType::PropertyFloat3;
-			else if( propertyType == rttr::type::get< DirectX::XMFLOAT4 >() )
+			else if( propertyType == rttr::type::get< DirectX::XMFLOAT4* >() )
 				return PropertyType::PropertyFloat4;
 			else if( propertyType.is_derived_from< EngineObject >() )
 				return PropertyType::PropertyActor;

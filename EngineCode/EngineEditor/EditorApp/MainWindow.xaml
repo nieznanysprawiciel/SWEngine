@@ -104,10 +104,12 @@
 
 				<Grid Grid.Row="2" >
 					<TreeView x:Name="ActorPreview" HorizontalAlignment="Stretch" Height="509" Margin="10, 10, 10, 10" VerticalAlignment="Stretch" Width="400" ItemsSource="{Binding Properties}" Background="Transparent" BorderThickness="2">
+						<TreeView.ItemContainerStyle>
+							<Style TargetType="{x:Type TreeViewItem}">
+								<Setter Property="IsExpanded" Value="True" />
+							</Style>
+						</TreeView.ItemContainerStyle>
 						<TreeView.Resources>
-							<HierarchicalDataTemplate DataType="{x:Type engine:ActorClassMetaInfo}" ItemsSource="{Binding Properties}" >
-								<TextBlock Text="{Binding TypeName}" Style="{StaticResource TextBlockStyle}"/>
-							</HierarchicalDataTemplate>
 							<HierarchicalDataTemplate DataType="{x:Type engine:ObjectPropertyWrapper}" ItemsSource="{Binding Properties}" >
 								<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}"/>
 							</HierarchicalDataTemplate>

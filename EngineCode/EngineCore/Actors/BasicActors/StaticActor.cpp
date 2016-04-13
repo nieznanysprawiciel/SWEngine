@@ -10,11 +10,13 @@ RTTR_REGISTRATION
 	rttr::registration::class_< StaticActor >( "StaticActor" )
 		.property( "Position", &StaticActor::position )
 		(
-			rttr::metadata( MetaDataType::Category, "Transformation" )
+			rttr::metadata( MetaDataType::Category, "Transformation" ),
+			rttr::policy::prop::BindAsPtr()
 		)
 		.property( "Orientation", &StaticActor::orientation )
 		(
-			rttr::metadata( MetaDataType::Category, "Transformation" )
+			rttr::metadata( MetaDataType::Category, "Transformation" ),
+			rttr::policy::prop::BindAsPtr()
 		);
 }
 

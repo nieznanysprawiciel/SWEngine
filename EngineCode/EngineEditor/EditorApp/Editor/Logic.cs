@@ -62,7 +62,7 @@ namespace EditorApp
 
 			if( result )
 			{
-				MainWindowRef.ActorPreview.DataContext = ProjectManager.ActorsLogic.ActorsTypesList;
+				MainWindowRef.ActorPreview.DataContext = null;	// ProjectManager.ActorsLogic.ActorsTypesList;
 				MainWindowRef.ActorList.DataContext = ProjectManager.ActorsLogic.Actors;
 			}
 

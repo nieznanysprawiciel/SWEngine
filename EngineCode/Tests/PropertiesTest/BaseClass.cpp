@@ -8,7 +8,8 @@ RTTR_REGISTRATION
 		.property( "PositionY", &BaseClass::positionY )
 		.property( "PositionZ", &BaseClass::positionZ )
 		.property( "NumObjects", &BaseClass::numObjects )
-		.property( "Rotation", &BaseClass::rotation );
+		.property( "Rotation", &BaseClass::rotation )
+		( rttr::policy::prop::BindAsPtr() );
 }
 
 

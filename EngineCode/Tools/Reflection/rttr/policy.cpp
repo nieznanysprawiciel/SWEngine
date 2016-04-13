@@ -48,4 +48,23 @@ const detail::as_object policy::ctor::as_object = {};
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+
+const detail::bind_as_ptr&			policy::prop::BindAsPtr()
+{	return bind_as_ptr;		}
+
+const detail::return_as_ptr&		policy::meth::ReturnAsPtr()
+{	return return_ref_as_ptr;	}
+
+const detail::discard_return&		policy::meth::DiscarReturn()
+{	return discard_return;	}
+
+const detail::as_raw_pointer&		policy::ctor::AsRawPtr()
+{	return as_raw_ptr;		}
+
+const detail::as_std_shared_ptr&	policy::ctor::AsStdSharedPtr()
+{	return as_std_shared_ptr;	}
+
+const detail::as_object&			policy::ctor::AsObject()
+{	return as_object;	}
+
 } // end namespace rttr
