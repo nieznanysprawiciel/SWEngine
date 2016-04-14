@@ -4,8 +4,14 @@
 					xmlns:engine="clr-namespace:EditorPlugin;assembly=EditorPlugin"
 					xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
 
+	<Color x:Key="BasicTextColor">#FFCFC8C8</Color>
+	<Color x:Key="ControlsBorderColor">#55CFC8C8</Color>
+	<SolidColorBrush x:Key="BasicTextColorBrush" Color="{StaticResource BasicTextColor}"/>
+	<SolidColorBrush x:Key="ControlsBorderColorBrush" Color="{StaticResource ControlsBorderColor}"/>
+	
+
 	<Style x:Key="TextBlockBaseStyle" TargetType="TextBlock">
-		<Setter Property="Foreground" Value="#FFCFC8C8"/>
+		<Setter Property="Foreground" Value="{StaticResource BasicTextColorBrush}"/>
 		<Setter Property="Width" Value="50" />
 	</Style>
 
@@ -19,6 +25,26 @@
 		<Setter Property="FontWeight" Value="Bold" />
 		<Setter Property="FontSize" Value="12" />
 		<Setter Property="Width" Value="Auto" />
+	</Style>
+
+	<Style x:Key="DoubleSpinBoxStyle" TargetType="xctk:DoubleUpDown">
+		<Setter Property="FormatString" Value="F7" />
+		<Setter Property="Increment" Value="0.001" />
+		<Setter Property="UpdateValueOnEnterKey" Value="True" />
+		<Setter Property="FontSize" Value="12" />
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="Foreground" Value="{StaticResource BasicTextColorBrush}" />
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="BorderBrush" Value="{StaticResource ControlsBorderColorBrush}" />
+	</Style>
+
+	<Style x:Key="IntSpinBoxStyle" TargetType="xctk:IntegerUpDown">
+		<Setter Property="UpdateValueOnEnterKey" Value="True" />
+		<Setter Property="FontSize" Value="12" />
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="Foreground" Value="{StaticResource BasicTextColorBrush}" />
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="BorderBrush" Value="{StaticResource ControlsBorderColorBrush}" />
 	</Style>
 
 	<HierarchicalDataTemplate DataType="{x:Type engine:ObjectPropertyWrapper}" ItemsSource="{Binding Properties}" >
@@ -50,13 +76,13 @@
 	<DataTemplate DataType="{x:Type engine:FloatPropertyWrapper}">
 		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
 			<TextBlock Width="50" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
-			<xctk:DoubleUpDown Width="85" FormatString="F7" Increment="0.001" Value="{Binding Value}" />
+			<xctk:DoubleUpDown Width="150" Style="{StaticResource DoubleSpinBoxStyle}" Value="{Binding Value}" />
 		</StackPanel>
 	</DataTemplate>
 	<DataTemplate DataType="{x:Type engine:IntPropertyWrapper}">
 		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
 			<TextBlock Width="50" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
-			<xctk:IntegerUpDown Width="85" Value="{Binding Value}"/>
+			<xctk:IntegerUpDown Width="150" Value="{Binding Value}" Style="{StaticResource IntSpinBoxStyle}"/>
 		</StackPanel>
 	</DataTemplate>
 	<DataTemplate DataType="{x:Type engine:BoolPropertyWrapper}">
