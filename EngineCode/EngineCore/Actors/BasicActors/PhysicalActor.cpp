@@ -11,6 +11,10 @@ RTTR_REGISTRATION
 		.property( "Mass", &PhysicalActor::mass )
 		(
 			rttr::metadata( MetaDataType::Category, "Physical properties" )
+		)
+		.property( "TestInt", &PhysicalActor::testInt )
+		(
+			rttr::metadata( MetaDataType::Category, "Physical properties" )
 		);
 }
 
@@ -18,6 +22,7 @@ RTTR_REGISTRATION
 PhysicalActor::PhysicalActor()
 {
 	mass = 1;
+	testInt = 300;
 }
 
 

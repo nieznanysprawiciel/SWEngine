@@ -86,11 +86,11 @@ using namespace System::Collections::Generic;
 			: PropertyWrapper( PropertyType::PropertyFloat2, prop, prop.get_name().c_str() )
 		{}
 
-		float		GetValueX		( System::IntPtr refObject );
-		void		SetValueX		( System::IntPtr refObject, float newValue );
+		float		GetValueX		( EngineObject* refObject );
+		void		SetValueX		( EngineObject* refObject, float newValue );
 
-		float		GetValueY		( System::IntPtr refObject );
-		void		SetValueY		( System::IntPtr refObject, float newValue );
+		float		GetValueY		( EngineObject* refObject );
+		void		SetValueY		( EngineObject* refObject, float newValue );
 
 	};
 
@@ -103,14 +103,14 @@ using namespace System::Collections::Generic;
 			: PropertyWrapper( PropertyType::PropertyFloat3, prop, prop.get_name().c_str() )
 		{}
 
-		float		GetValueX		( System::IntPtr refObject );
-		void		SetValueX		( System::IntPtr refObject, float newValue );
+		float		GetValueX		( EngineObject* refObject );
+		void		SetValueX		( EngineObject* refObject, float newValue );
 
-		float		GetValueY		( System::IntPtr refObject );
-		void		SetValueY		( System::IntPtr refObject, float newValue );
+		float		GetValueY		( EngineObject* refObject );
+		void		SetValueY		( EngineObject* refObject, float newValue );
 
-		float		GetValueZ		( System::IntPtr refObject );
-		void		SetValueZ		( System::IntPtr refObject, float newValue );
+		float		GetValueZ		( EngineObject* refObject );
+		void		SetValueZ		( EngineObject* refObject, float newValue );
 	};
 
 	/**@brief Property typu DirectX::XMFLOAT4.
@@ -123,17 +123,17 @@ using namespace System::Collections::Generic;
 		{}
 
 
-		float		GetValueX		( System::IntPtr refObject );
-		void		SetValueX		( System::IntPtr refObject, float newValue );
+		float		GetValueX		( EngineObject* refObject );
+		void		SetValueX		( EngineObject* refObject, float newValue );
 
-		float		GetValueY		( System::IntPtr refObject );
-		void		SetValueY		( System::IntPtr refObject, float newValue );
+		float		GetValueY		( EngineObject*refObject );
+		void		SetValueY		( EngineObject* refObject, float newValue );
 
-		float		GetValueZ		( System::IntPtr refObject );
-		void		SetValueZ		( System::IntPtr refObject, float newValue );
+		float		GetValueZ		( EngineObject* refObject );
+		void		SetValueZ		( EngineObject* refObject, float newValue );
 
-		float		GetValueW		( System::IntPtr refObject );
-		void		SetValueW		( System::IntPtr refObject, float newValue );
+		float		GetValueW		( EngineObject* refObject );
+		void		SetValueW		( EngineObject* refObject, float newValue );
 	};
 
 	/**@brief Property typy in.*/
@@ -144,8 +144,24 @@ using namespace System::Collections::Generic;
 			: PropertyWrapper( PropertyType::PropertyInt, prop, prop.get_name().c_str() )
 		{}
 
-		int						GetValue		( System::IntPtr refObject );
-		void					SetValue		( System::IntPtr refObject, int newValue );
+		int						GetValue		( EngineObject* refObject );
+		void					SetValue		( EngineObject* refObject, int newValue );
+
+		property int		Value
+		{
+			int			get ()
+			{
+				if( m_actorPtr )
+					return GetValue( m_actorPtr );
+				return std::numeric_limits< int >::max();
+			}
+
+			void		set	( int value )
+			{
+				if( m_actorPtr )
+					SetValue( m_actorPtr, value );
+			}
+		}
 	};
 
 	/**@brief Property typu bool.*/
@@ -156,8 +172,24 @@ using namespace System::Collections::Generic;
 			: PropertyWrapper( PropertyType::PropertyBool, prop, prop.get_name().c_str() )
 		{}
 
-		bool		GetValue		( System::IntPtr refObject );
-		void		SetValue		( System::IntPtr refObject, bool newValue );
+		bool		GetValue		( EngineObject* refObject );
+		void		SetValue		( EngineObject* refObject, bool newValue );
+
+		property bool		Value
+		{
+			bool		get ()
+			{
+				if( m_actorPtr )
+					return GetValue( m_actorPtr );
+				return std::numeric_limits< bool >::max();
+			}
+
+			void		set ( bool value )
+			{
+				if( m_actorPtr )
+					SetValue( m_actorPtr, value );
+			}
+		}
 	};
 
 	/**@brief Property typu float.*/
@@ -168,16 +200,22 @@ using namespace System::Collections::Generic;
 			: PropertyWrapper( PropertyType::PropertyFloat, prop, prop.get_name().c_str() )
 		{}
 
-		float		GetValue		( System::IntPtr refObject );
-		void		SetValue		( System::IntPtr refObject, float newValue );
+		float		GetValue		( EngineObject* refObject );
+		void		SetValue		( EngineObject* refObject, float newValue );
 
 		property float		Value
 		{
 			float		get ()
 			{
 				if( m_actorPtr )
-					return  GetValue( System::IntPtr( m_actorPtr ) );
+					return GetValue( m_actorPtr );
 				return std::numeric_limits< float >::max();
+			}
+
+			void		set ( float value )
+			{
+				if( m_actorPtr )
+					SetValue( m_actorPtr, value );
 			}
 		}
 	};
@@ -190,27 +228,25 @@ using namespace System::Collections::Generic;
 			: PropertyWrapper( PropertyType::PropertyDouble, prop, prop.get_name().c_str() )
 		{}
 
-		double		GetValue		( System::IntPtr refObject );
-		void		SetValue		( System::IntPtr refObject, double newValue );
+		double		GetValue		( EngineObject* refObject );
+		void		SetValue		( EngineObject* refObject, double newValue );
 
 	public:
-		//property double		Value
-		//{
-		//	double get()
-		//	{
-		//		if( m_actorPtr )
-		//			return GetValue( m_actorPtr );
-		//		return std::numeric_limits< double >::max();
-		//	}
+		property double		Value
+		{
+			double		get	()
+			{
+				if( m_actorPtr )
+					return GetValue( m_actorPtr );
+				return std::numeric_limits< double >::max();
+			}
 
-		//	void set( double value )
-		//	{
-		//		if( m_actorPtr )
-		//			SetValue( m_actorPtr, value );
-		//		else
-		//			SetValue( m_actorPtr, std::numeric_limits< double >::max() );
-		//	}
-		//}
+			void		set	( double value )
+			{
+				if( m_actorPtr )
+					SetValue( m_actorPtr, value );
+			}
+		}
 	};
 
 //====================================================================================//

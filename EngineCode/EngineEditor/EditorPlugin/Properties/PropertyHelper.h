@@ -4,6 +4,7 @@
 #include "Common/TypesDefinitions.h"
 #include <DirectXMath.h>
 
+class EngineObject;
 
 namespace EditorPlugin
 {

@@ -13,7 +13,10 @@ class ComplexActor : public DynamicActor
 {
 	RTTR_ENABLE( DynamicActor )
 protected:
-	std::vector<DynamicActor*>	part;
+
+	std::vector<DynamicActor*>	m_components;
+
+
 public:
 	void MoveComplex( float time_interval, const DirectX::XMFLOAT3& parent_speed, const DirectX::XMFLOAT4& parent_rotation );
 
