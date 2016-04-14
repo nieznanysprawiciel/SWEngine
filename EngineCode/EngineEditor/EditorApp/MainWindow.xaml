@@ -104,7 +104,66 @@
 				<GridSplitter Grid.Row="1" Height="2" Width="400" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ResizeDirection="Rows" Style="{StaticResource GridSplitterStyle}"/>
 
 				<Grid Grid.Row="2" >
-					<TreeView x:Name="ActorPreview" HorizontalAlignment="Stretch" Height="509" Margin="10, 10, 10, 10" VerticalAlignment="Stretch" Width="400" ItemsSource="{Binding Properties}" Background="Transparent" BorderThickness="2">
+					<ListView x:Name="ActorPreview" HorizontalAlignment="Stretch" Height="509" Margin="10, 10, 10, 10" VerticalAlignment="Stretch" Width="400" ItemsSource="{Binding Properties}" Background="Transparent" BorderThickness="2">
+						<ListView.ItemContainerStyle>
+							<Style TargetType="{x:Type ListViewItem}">
+								<Setter Property="Focusable" Value="False"/>
+								<Style.Triggers>
+									<Trigger Property="IsSelected" Value="True">
+										<Setter Property="Background" Value="{x:Null}" />
+										<Setter Property="BorderBrush" Value="{x:Null}" />
+									</Trigger>
+								</Style.Triggers>
+							</Style>
+						</ListView.ItemContainerStyle>
+						<ListView.Resources>
+							<HierarchicalDataTemplate x:Key="ObjectPropertyDataTemplate" DataType="{x:Type engine:ObjectPropertyWrapper}" ItemsSource="{Binding Properties}" >
+								<Expander IsExpanded="True" >
+									<Expander.Header>
+										<BulletDecorator>
+											<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" FontSize="12" />
+										</BulletDecorator>
+									</Expander.Header>
+									<ItemsControl ItemsSource="{Binding Properties}" Margin="0, 5, 0, 0"/>
+								</Expander>
+							</HierarchicalDataTemplate>
+							<HierarchicalDataTemplate DataType="{x:Type engine:CategoryPropertyWrapper}" ItemsSource="{Binding Properties}" >
+								<Expander IsExpanded="True">
+									<Expander.Header>
+										<BulletDecorator>
+											<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" FontSize="15" />
+										</BulletDecorator>
+									</Expander.Header>
+									<ItemsControl ItemsSource="{Binding Properties}" Margin="0, 5, 0, 0"/>
+								</Expander>
+							</HierarchicalDataTemplate>
+							<HierarchicalDataTemplate DataType="{x:Type engine:XMFloatPropertyWrapper}" ItemsSource="{Binding Properties}" >
+								<StackPanel Margin="20, 5, 0, 5">
+									<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}" FontWeight="Bold" FontSize="12" />
+									<ItemsControl ItemsSource="{Binding Properties}" />
+								</StackPanel>
+							</HierarchicalDataTemplate>
+							<DataTemplate DataType="{x:Type engine:FloatPropertyWrapper}">
+								<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+									<TextBlock Width="50" Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}"/>
+									<xctk:DoubleUpDown Width="85" FormatString="F7" Increment="0.001" Value="{Binding Value}" />
+								</StackPanel>
+							</DataTemplate>
+							<DataTemplate DataType="{x:Type engine:IntPropertyWrapper}">
+								<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+									<TextBlock Width="50" Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}"/>
+									<xctk:IntegerUpDown Width="85" Value="{Binding Value}"/>
+								</StackPanel>
+							</DataTemplate>
+							<DataTemplate DataType="{x:Type engine:BoolPropertyWrapper}">
+								<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+									<TextBlock Width="50" Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}"/>
+									<CheckBox IsChecked="{Binding Value}" />
+								</StackPanel>
+							</DataTemplate>
+						</ListView.Resources>
+					</ListView>
+					<!--<TreeView x:Name="ActorPreview" HorizontalAlignment="Stretch" Height="509" Margin="10, 10, 10, 10" VerticalAlignment="Stretch" Width="400" ItemsSource="{Binding Properties}" Background="Transparent" BorderThickness="2">
 						<TreeView.ItemContainerStyle>
 							<Style TargetType="{x:Type TreeViewItem}">
 								<Setter Property="IsExpanded" Value="True" />
@@ -120,17 +179,23 @@
 							<DataTemplate DataType="{x:Type engine:FloatPropertyWrapper}">
 								<StackPanel Orientation="Horizontal">
 									<TextBlock Width="50" Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}"/>
-									<xctk:DoubleUpDown Width="150" Value="{Binding Value}" />
+									<xctk:DoubleUpDown Width="85" FormatString="F7" Increment="0.001" Value="{Binding Value}" />
 								</StackPanel>
 							</DataTemplate>
 							<DataTemplate DataType="{x:Type engine:IntPropertyWrapper}">
 								<StackPanel Orientation="Horizontal" >
 									<TextBlock Width="50" Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}"/>
-									<xctk:IntegerUpDown Width="150" Value="{Binding Value}"/>
+									<xctk:IntegerUpDown Width="85" Value="{Binding Value}"/>
+								</StackPanel>
+							</DataTemplate>
+							<DataTemplate DataType="{x:Type engine:BoolPropertyWrapper}">
+								<StackPanel Orientation="Horizontal">
+									<TextBlock Width="50" Text="{Binding PropertyName}" Style="{StaticResource TextBlockStyle}"/>
+									<CheckBox IsChecked="{Binding Value}" />
 								</StackPanel>
 							</DataTemplate>
 						</TreeView.Resources>
-					</TreeView>
+					</TreeView>-->
 				</Grid>
 			</Grid>
 
