@@ -1,0 +1,70 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:EditorApp.Styles.BlueStyle"
+					xmlns:engine="clr-namespace:EditorPlugin;assembly=EditorPlugin"
+					xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
+
+	<Style x:Key="TextBlockBaseStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="#FFCFC8C8"/>
+		<Setter Property="Width" Value="50" />
+	</Style>
+
+	<Style x:Key="TextBlockCategoryStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBaseStyle}">
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="FontSize" Value="15" />
+		<Setter Property="Width" Value="Auto" />
+	</Style>
+
+	<Style x:Key="TextBlockObjectStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBaseStyle}">
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="FontSize" Value="12" />
+		<Setter Property="Width" Value="Auto" />
+	</Style>
+
+	<HierarchicalDataTemplate DataType="{x:Type engine:ObjectPropertyWrapper}" ItemsSource="{Binding Properties}" >
+		<Expander IsExpanded="True" >
+			<Expander.Header>
+				<BulletDecorator>
+					<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockObjectStyle}" />
+				</BulletDecorator>
+			</Expander.Header>
+			<ItemsControl ItemsSource="{Binding Properties}" Margin="0, 5, 0, 0"/>
+		</Expander>
+	</HierarchicalDataTemplate>
+	<HierarchicalDataTemplate DataType="{x:Type engine:CategoryPropertyWrapper}" ItemsSource="{Binding Properties}" >
+		<Expander IsExpanded="True">
+			<Expander.Header>
+				<BulletDecorator>
+					<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockCategoryStyle}" />
+				</BulletDecorator>
+			</Expander.Header>
+			<ItemsControl ItemsSource="{Binding Properties}" Margin="0, 5, 0, 0"/>
+		</Expander>
+	</HierarchicalDataTemplate>
+	<HierarchicalDataTemplate DataType="{x:Type engine:XMFloatPropertyWrapper}" ItemsSource="{Binding Properties}" >
+		<StackPanel Margin="20, 5, 0, 5">
+			<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockObjectStyle}" />
+			<ItemsControl ItemsSource="{Binding Properties}" />
+		</StackPanel>
+	</HierarchicalDataTemplate>
+	<DataTemplate DataType="{x:Type engine:FloatPropertyWrapper}">
+		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+			<TextBlock Width="50" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
+			<xctk:DoubleUpDown Width="85" FormatString="F7" Increment="0.001" Value="{Binding Value}" />
+		</StackPanel>
+	</DataTemplate>
+	<DataTemplate DataType="{x:Type engine:IntPropertyWrapper}">
+		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+			<TextBlock Width="50" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
+			<xctk:IntegerUpDown Width="85" Value="{Binding Value}"/>
+		</StackPanel>
+	</DataTemplate>
+	<DataTemplate DataType="{x:Type engine:BoolPropertyWrapper}">
+		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+			<TextBlock Width="50" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
+			<CheckBox IsChecked="{Binding Value}" />
+		</StackPanel>
+	</DataTemplate>
+	
+	
+</ResourceDictionary>

@@ -24,4 +24,23 @@
 		<Setter Property="Background" Value="#FFCFC8C8" />
 	</Style>
 
+	<!--Actors ListView-->
+	<Style TargetType="ListBoxItem" x:Key="ActorsContainerStyle">
+		<Setter Property="Focusable" Value="False" />
+	</Style>
+	
+	<Style x:Key="ListViewStyleBase" TargetType="ListView">
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="Margin" Value="10, 10, 10, 10" />
+		<Setter Property="VerticalAlignment" Value="Stretch" />
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="BorderThickness" Value="2" />
+		<Setter Property="ItemContainerStyle" Value="{StaticResource ActorsContainerStyle}" />
+
+		<Style.Resources>
+			<ResourceDictionary Source="/Styles/BlueStyle/ActorDisplayStyle.xaml"/>
+		</Style.Resources>
+	</Style>
+
+
 </ResourceDictionary >

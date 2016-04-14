@@ -245,6 +245,10 @@
     <Resource Include="Language\English.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Styles\BlueStyle\ActorDisplayStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\BlueStyle\MainWindowStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
