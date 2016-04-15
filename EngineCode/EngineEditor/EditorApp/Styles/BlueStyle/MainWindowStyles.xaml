@@ -20,8 +20,17 @@
 		<Setter Property="Foreground" Value="#FFCFC8C8"/>
 	</Style>
 
-	<Style x:Key="GridSplitterStyle" TargetType="GridSplitter">
+	<Style x:Key="HorizontalGridSplitterStyle" TargetType="GridSplitter">
 		<Setter Property="Background" Value="#FFCFC8C8" />
+		<Setter Property="HorizontalAlignment" Value="Left" />
+		<Setter Property="ResizeDirection" Value="Columns" />
+	</Style>
+
+	<Style x:Key="VerticalGridSplitterStyle" TargetType="GridSplitter">
+		<Setter Property="Background" Value="#FFCFC8C8" />
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="VerticalAlignment" Value="Stretch" />
+		<Setter Property="ResizeDirection" Value="Rows" />
 	</Style>
 
 	<!--Actors ListView-->

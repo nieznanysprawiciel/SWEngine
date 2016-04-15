@@ -39,7 +39,7 @@
 						<AccessText Text="{Binding Source={StaticResource ControlsLanguageVersion}, XPath=MainMenu/ItemFile/ItemNewProject/@Name}"/>
 					</MenuItem.Header>
 				</MenuItem>
-				<MenuItem Style="{StaticResource MenuItemStyle}">
+				<MenuItem Style="{StaticResource MenuItemStyle}" Click="LoadClick">
 					<MenuItem.Header>
 						<AccessText Text="{Binding Source={StaticResource ControlsLanguageVersion}, XPath=MainMenu/ItemFile/ItemOpenProject/@Name}"/>
 					</MenuItem.Header>
@@ -63,17 +63,20 @@
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="Auto"  MinWidth="1000"/>
 				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
 
 			<Grid Grid.Column="0" Height="Auto" Width="Auto" HorizontalAlignment="Left"/>
 
-			<GridSplitter Grid.Column="1" Grid.ColumnSpan="1" Width="2" ResizeDirection="Columns" HorizontalAlignment="Left" Style="{StaticResource GridSplitterStyle}" ></GridSplitter>
+			<GridSplitter Grid.Column="1" Grid.ColumnSpan="1" Width="2" Style="{StaticResource HorizontalGridSplitterStyle}" ></GridSplitter>
 
 			<Grid Grid.Column="2" Grid.ColumnSpan="1" Height="Auto" >
 				<Image x:Name="EngineViewport" Height="800" Width="1000" Margin="2" HorizontalAlignment="Left" VerticalAlignment="Top" />
 			</Grid>
 
-			<Grid Grid.Column="3" Height="Auto" >
+			<GridSplitter Grid.Column="3" Grid.ColumnSpan="1" Width="2" Style="{StaticResource HorizontalGridSplitterStyle}" ></GridSplitter>
+			
+			<Grid Grid.Column="4" Height="Auto" >
 				<Grid.RowDefinitions>
 					<RowDefinition Height="390" ></RowDefinition>
 					<RowDefinition Height="5" ></RowDefinition>
@@ -101,7 +104,7 @@
 					</ListView>
 				</Grid>
 				
-				<GridSplitter Grid.Row="1" Height="2" Width="400" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ResizeDirection="Rows" Style="{StaticResource GridSplitterStyle}"/>
+				<GridSplitter Grid.Row="1" Height="2" Width="400" Style="{StaticResource VerticalGridSplitterStyle}"/>
 
 				<Grid Grid.Row="2" >
 					<ListView x:Name="ActorPreview" Height="509" Width="400" ItemsSource="{Binding Properties}" Style="{StaticResource ListViewStyleBase}" />

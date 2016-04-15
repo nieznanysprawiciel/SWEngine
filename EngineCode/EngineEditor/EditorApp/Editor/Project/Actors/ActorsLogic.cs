@@ -23,9 +23,16 @@ namespace EditorApp.Editor.Project.Actors
 			Actors = new List<ActorWrapper>();
 		}
 
+		private void ClearState()
+		{
+			m_actorsTypesList = null;
+			m_actors = null;
+		}
 
 		public void PostInitLevel()
 		{
+			ClearState();
+
 			EngineWrapper engine = m_editorLogic.Displayer.EngineWrapper;
 			m_actorsTypesList = engine.CreateActorsMetadata();
 			m_actors = engine.CreateActorsList();

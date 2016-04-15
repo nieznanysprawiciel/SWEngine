@@ -7,6 +7,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using System.Windows;
+using Microsoft.Win32;
 
 namespace EditorApp
 {
@@ -55,10 +56,10 @@ namespace EditorApp
 			return true;
 		}
 
-		public bool			LoadProject	( string projectPath )
+		public bool			LoadProject	( string projectFile )
 		{
-			PathsManager.UpdateProjectPaths( projectPath );
-			bool result = ProjectManager.LoadProject( projectPath );
+			PathsManager.UpdateProjectPaths( projectFile );
+			bool result = ProjectManager.LoadProject( projectFile );
 
 			if( result )
 			{
@@ -76,8 +77,20 @@ namespace EditorApp
 
 		public void LoadClick( object sender, RoutedEventArgs e )
 		{
+			OpenFileDialog fileDialog = new OpenFileDialog();
+			fileDialog.CheckFileExists = true;
+			fileDialog.CheckPathExists = true;
 
+			fileDialog.DefaultExt = ".swproj";
+			fileDialog.Filter = "SW Engine Projects (*.swproj)|*.swproj;";
 
+			Nullable<bool> result = fileDialog.ShowDialog();
+
+			if( result.HasValue && result.Value )
+			{
+				//var directory = Path.GetDirectoryName( fileDialog.FileName );
+				LoadProject( fileDialog.FileName );
+			}
 		}
 
 		public void			RenderFrame( object sender, EventArgs e )
