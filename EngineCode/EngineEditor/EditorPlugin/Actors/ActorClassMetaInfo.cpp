@@ -16,12 +16,12 @@ ActorClassMetaInfo::ActorClassMetaInfo			( rttr::type classType )
 }
 
 /**@brief Ustawia instancjê aktora. Umo¿liwia to pobieranie wartoœci jego parametrów.*/
-void		ActorClassMetaInfo::ResetActor		( System::IntPtr objectPtr )
+void		ActorClassMetaInfo::ResetActor		( ActorWrapper^ objectPtr )
 {
-	m_actorPtr = static_cast< EngineObject* >( objectPtr.ToPointer() );
+	m_actorPtr = objectPtr;
 
 	for each( PropertyWrapper^ prop in m_properties )
-		prop->ResetActor( objectPtr );
+		prop->ResetActor( m_actorPtr->GetActorPtr() );
 }
 
 /**@brief Tworzy metadane od podanej klasie.*/

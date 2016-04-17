@@ -3,6 +3,7 @@
 #include "Common/RTTR.h"
 
 #include "EngineEditor/EditorPlugin/Properties/PropertyWrapper.h"
+#include "EngineEditor/EditorPlugin/Actors/ActorWrapper.h"
 
 
 class EngineObject;
@@ -36,14 +37,14 @@ private:
 	List< PropertyWrapper^ >^			m_properties;
 
 	// Object data
-	EngineObject*						m_actorPtr;		///< WskaŸnik u¿ywany do pobierania parametrów obiektu klasy.
+	ActorWrapper^						m_actorPtr;		///< WskaŸnik u¿ywany do pobierania parametrów obiektu klasy.
 
 public:
 
 	explicit ActorClassMetaInfo	( rttr::type classType );
 
 
-	void		ResetActor		( System::IntPtr objectPtr );
+	void		ResetActor		( ActorWrapper^ objectPtr );
 
 public:
 
@@ -63,6 +64,11 @@ public:
 	property List< PropertyWrapper^ >^	Properties
 	{
 		List< PropertyWrapper^ >^		get()	{ return m_properties; }
+	}
+
+	property ActorWrapper^				Actor
+	{
+		ActorWrapper^					get ()	{ return m_actorPtr; }
 	}
 
 private:

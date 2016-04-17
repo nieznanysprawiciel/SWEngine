@@ -27,6 +27,12 @@
 		<Setter Property="Width" Value="Auto" />
 	</Style>
 
+	<Style x:Key="TextBlockActorStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBaseStyle}">
+		<Setter Property="FontWeight" Value="Bold" />
+		<Setter Property="FontSize" Value="17" />
+		<Setter Property="Width" Value="Auto" />
+	</Style>
+
 	<Style x:Key="DoubleSpinBoxStyle" TargetType="xctk:DoubleUpDown">
 		<Setter Property="FormatString" Value="F7" />
 		<Setter Property="Increment" Value="0.001" />
@@ -47,6 +53,9 @@
 		<Setter Property="BorderBrush" Value="{StaticResource ControlsBorderColorBrush}" />
 	</Style>
 
+
+	
+	<!--ObjectPropertyWrapper-->
 	<HierarchicalDataTemplate DataType="{x:Type engine:ObjectPropertyWrapper}" ItemsSource="{Binding Properties}" >
 		<Expander IsExpanded="True" >
 			<Expander.Header>
@@ -57,6 +66,8 @@
 			<ItemsControl ItemsSource="{Binding Properties}" Margin="0, 5, 0, 0"/>
 		</Expander>
 	</HierarchicalDataTemplate>
+
+	<!--CategoryPropertyWrapper-->
 	<HierarchicalDataTemplate DataType="{x:Type engine:CategoryPropertyWrapper}" ItemsSource="{Binding Properties}" >
 		<Expander IsExpanded="True">
 			<Expander.Header>
@@ -67,30 +78,89 @@
 			<ItemsControl ItemsSource="{Binding Properties}" Margin="0, 5, 0, 0"/>
 		</Expander>
 	</HierarchicalDataTemplate>
+
+	<!--XMFloatPropertyWrapper-->
 	<HierarchicalDataTemplate DataType="{x:Type engine:XMFloatPropertyWrapper}" ItemsSource="{Binding Properties}" >
 		<StackPanel Margin="20, 5, 0, 5">
 			<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockObjectStyle}" />
 			<ItemsControl ItemsSource="{Binding Properties}" />
 		</StackPanel>
 	</HierarchicalDataTemplate>
+
+	<!--FloatPropertyWrapper-->
 	<DataTemplate DataType="{x:Type engine:FloatPropertyWrapper}">
 		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
 			<TextBlock Width="50" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
 			<xctk:DoubleUpDown Width="150" Style="{StaticResource DoubleSpinBoxStyle}" Value="{Binding Value}" />
 		</StackPanel>
 	</DataTemplate>
+
+	<!--IntPropertyWrapper-->
 	<DataTemplate DataType="{x:Type engine:IntPropertyWrapper}">
 		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
 			<TextBlock Width="50" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
 			<xctk:IntegerUpDown Width="150" Value="{Binding Value}" Style="{StaticResource IntSpinBoxStyle}"/>
 		</StackPanel>
 	</DataTemplate>
+
+	<!--BoolPropertyWrapper-->
 	<DataTemplate DataType="{x:Type engine:BoolPropertyWrapper}">
 		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
-			<TextBlock Width="50" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
-			<CheckBox IsChecked="{Binding Value}" />
+			<CheckBox Width="20" IsChecked="{Binding Value}" />
+			<TextBlock Width="150" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
 		</StackPanel>
 	</DataTemplate>
-	
-	
+
+	<!--ActorClassMetaInfo-->
+	<DataTemplate DataType="{x:Type engine:ActorWrapper}" >
+		<StackPanel>
+			<TextBlock Text="{Binding ActorName}" Style="{StaticResource TextBlockActorStyle}" />
+			<StackPanel Orientation="Vertical" Margin="0, 5, 0, 0">
+				<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 10" >
+					<TextBlock Text="Type" Style="{StaticResource TextBlockBaseStyle}"/>
+					<TextBlock Text="{Binding TypeName}" Width="150" Style="{StaticResource TextBlockBaseStyle}"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+					<CheckBox Width="20" IsChecked="{Binding EnableDisplay}" />
+					<TextBlock Width="150" Text="Display Actor" Style="{StaticResource TextBlockBaseStyle}"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+					<CheckBox Width="20" IsChecked="{Binding EnableMovement}" />
+					<TextBlock Width="150" Text="Enable Movement" Style="{StaticResource TextBlockBaseStyle}"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+					<CheckBox Width="20" IsChecked="{Binding EnablePhysic}" />
+					<TextBlock Width="150" Text="Enable Physic" Style="{StaticResource TextBlockBaseStyle}"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+					<CheckBox Width="20" IsChecked="{Binding EnableCollisions}" />
+					<TextBlock Width="150" Text="Enable Collisions" Style="{StaticResource TextBlockBaseStyle}"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+					<CheckBox Width="20" IsChecked="{Binding EnableShadow}" />
+					<TextBlock Width="150" Text="Cast Shadow" Style="{StaticResource TextBlockBaseStyle}"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+					<CheckBox Width="20" IsChecked="{Binding EnablePreController}" />
+					<TextBlock Width="150" Text="Pre Movement Cotroller" Style="{StaticResource TextBlockBaseStyle}"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+					<CheckBox Width="20" IsChecked="{Binding EnablePostController}" />
+					<TextBlock Width="150" Text="Post Movement Controller" Style="{StaticResource TextBlockBaseStyle}"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+					<CheckBox Width="20" IsChecked="{Binding IsLight}" IsEnabled="False" />
+					<TextBlock Width="150" Text="Add to Lights" Style="{StaticResource TextBlockBaseStyle}"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+					<CheckBox Width="20" IsChecked="{Binding IsCamera}" IsEnabled="False"/>
+					<TextBlock Width="150" Text="Addd to Cameras" Style="{StaticResource TextBlockBaseStyle}"/>
+				</StackPanel>
+			</StackPanel>
+
+		</StackPanel>
+	</DataTemplate>
+
+
+
 </ResourceDictionary>

@@ -37,13 +37,16 @@
 	<Style TargetType="ListBoxItem" x:Key="ActorsContainerStyle">
 		<Setter Property="Focusable" Value="False" />
 	</Style>
-	
+
 	<Style x:Key="ListViewStyleBase" TargetType="ListView">
 		<Setter Property="HorizontalAlignment" Value="Stretch" />
 		<Setter Property="Margin" Value="10, 10, 10, 10" />
 		<Setter Property="VerticalAlignment" Value="Stretch" />
 		<Setter Property="Background" Value="Transparent" />
 		<Setter Property="BorderThickness" Value="2" />
+	</Style>
+
+	<Style x:Key="ActorListViewStyle" TargetType="ListView" BasedOn="{StaticResource ListViewStyleBase}">
 		<Setter Property="ItemContainerStyle" Value="{StaticResource ActorsContainerStyle}" />
 
 		<Style.Resources>
@@ -51,5 +54,6 @@
 		</Style.Resources>
 	</Style>
 
+	<!--ContentTemplate="{StaticResource ActorWrapperItemTemplate}"-->
 
 </ResourceDictionary >

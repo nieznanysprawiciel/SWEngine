@@ -56,7 +56,7 @@ namespace EditorApp.Editor.Project.Actors
 			{
 				if( actorClass.Type == actor.Type )
 				{
-					actorClass.ResetActor( actor.GetActorPtr() );
+					actorClass.ResetActor( actor );
 					m_editorLogic.MainWindowRef.ActorPreview.DataContext = null;
 					m_editorLogic.MainWindowRef.ActorPreview.DataContext = actorClass;
 				}

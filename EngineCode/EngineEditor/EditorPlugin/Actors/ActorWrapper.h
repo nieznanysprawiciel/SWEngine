@@ -38,50 +38,64 @@ public:
 		int			get ();
 	}
 
+	property System::String^	TypeName
+	{
+		System::String^		get ()		{ return GetTypeName(); }
+	}
+
 
 	property bool	EnableDisplay
 	{
 		bool		get	()				{ return m_actorInfo->enableDisplay; }
+		void		set ( bool value )	{ }
 	}
 
 	property bool	EnableMovement
 	{
 		bool		get ()				{ return m_actorInfo->enableMovement; }
+		void		set ( bool value )	{ }
 	}
 
 	property bool	EnablePhysic
 	{
 		bool		get ()				{ return m_actorInfo->enablePhysic; }
+		void		set ( bool value )	{ }
 	}
 
 	property bool	EnableCollisions
 	{
 		bool		get ()				{ return m_actorInfo->enableCollisions; }
+		void		set ( bool value )	{ }
 	}
 
 	property bool	EnableShadow
 	{
 		bool		get ()				{ return m_actorInfo->enableShadow; }
+		void		set ( bool value )	{ }
 	}
 
 	property bool	EnablePreController
 	{
 		bool		get ()				{ return m_actorInfo->enablePreController; }
+		void		set ( bool value )	{ }
 	}
 
 	property bool	EnablePostController
 	{
 		bool		get ()				{ return m_actorInfo->enablePostController; }
+		void		set ( bool value )	{ }
 	}
 
 	property bool	IsLight
 	{
 		bool		get ()				{ return m_actorInfo->isLight; }
+		void		set ( bool value )	{ }
 	}
 
 	property bool	IsCamera
 	{
 		bool		get ()				{ return m_actorInfo->isCamera; }
+		void		set ( bool value )	{ }
 	}
 };
 
