@@ -1,8 +1,8 @@
 #pragma once
 
 /**@file InputabstractionLayer.h
-@brief Plik zawiera deklaracjê klas InputAbstractionLayer_base, InputAbstractionLayer
-struktur input_mapping i event_mapping oraz definicje standardowych warstw abstrakcji. */
+@brief Plik zawiera deklaracjê klas InputAbstractionLayerBase, InputAbstractionLayer
+struktur InputMapping i EventMapping oraz definicje standardowych warstw abstrakcji. */
 
 
 #include "EngineCore/stdafx.h"
@@ -18,7 +18,7 @@ Warstwa abstrakcji umo¿liwia stworzenie zestawu w³asnych przycisków oraz kontrol
 do których nastêpnie zostan¹ przypisane odpowiednie przyciski fizyczne. Wiele przycisków mo¿e jednoczeœnie
 byæ mapowanych na jeden przycisk wirtualny.
 
-InputAbstractionLayer_base odpowiada za interakcjê z kontrolerami i zapewnia ograniczony dostêp do zasobów
+InputAbstractionLayerBase odpowiada za interakcjê z kontrolerami i zapewnia ograniczony dostêp do zasobów
 klasy, a co najwa¿niejsze, nie pozwala na edycjê danych.
 Klasa InputAbstractionLayer s³u¿y jako interfejs do komunikacji dla obiektu UI_Engine.
 Umo¿liwia modyfikowanie zawartoœci tej klasy. Zostaje w ka¿dej klatce uzupe³niona danymi,
@@ -32,7 +32,7 @@ które z nich maj¹ wysy³aæ eventy przy wciœniêciu lub puszczeniu). Aby przeczytaæ
 abstrakcji: @ref Input.
 
 Kontrolery dostaj¹ wskaŸnik na warstwê abstrakcji, z któr¹ maj¹ wspó³pracowaæ. Aby odczytaæ dane,
-nale¿y wywo³aæ funkcje get_buttons_table oraz get_axis_table. Zwracaj¹ one wskaŸnik na tablice,
+nale¿y wywo³aæ funkcje GetButtonsTable oraz GetAxisTable. Zwracaj¹ one wskaŸnik na tablice,
 pierwsza z przyciskami, a druga z po³o¿eniem na osi.
 Przyciski s¹ opisywane zmiennymi typu char, gdzie wartoœæ 1 oznacza, ¿e przycisk jest wciœniêty,
 a 0, ¿e nie jest. Kolejne przyciski znajduj¹ siê pod kolejnymi indeksami w tablicy. Zasadniczo nie
@@ -45,7 +45,7 @@ Po³o¿enie na osi opisuje wychylenie jakiegoœ urz¹dzenia, np. joysticka. Jego war
 float i zawiera siê w przedziale [-1;1].
 
 @Attention Ka¿dy kontroler przed pobraniem danych z tablic powinien siê zorientowaæ, czy warstwa
-abstrakcji, na której pracuje jest aktywna. Robi siê to wywo³uj¹c funkcjê is_active. Kontrolery
+abstrakcji, na której pracuje jest aktywna. Robi siê to wywo³uj¹c funkcjê IsActive. Kontrolery
 powinny sterowaæ przypisanymi im obiektami jednie wtedy, gdy ich wartwa jest aktywna. W przeciwnym
 razie bêd¹ odczytywaæ dane, które s¹ od dawana nieaktualne, poniewa¿ aktualizowana jest tylko aktywna warstwa.
 
@@ -54,77 +54,75 @@ W szczególnoœci wypada³oby przynajmniej sprawdziæ czy zakres tablic wirtualnych 
 wymagany przez kontroler.
 
 */
-class InputAbstractionLayer_base
+class InputAbstractionLayerBase
 {
 protected:
 	short	mouseX;			///<Po³o¿enie myszki w X
 	short	mouseY;			///<Po³o¿enie myszi w Y
 
-	char*	virtual_button;	///<Tablica wirtualnych przycisków
-	float*	virtual_axis;	///<Tablica dla kontrolerów osiowych
-
-	unsigned short	num_buttons;	///<Liczba przycisków
-	unsigned short	num_axis;		///<Liczba kontrolerów osiowych
+	std::vector< char >		m_virtualButtons;		///<Tablica wirtualnych przycisków
+	std::vector< float>		m_virtualAxis;			///<Tablica dla kontrolerów osiowych
 
 	bool	active;			///<Stwierdza czy dana wartstwa abstrakcji jest aktualnie aktywna
 
-	InputAbstractionLayer_base();
+	InputAbstractionLayerBase();
 public:
-	~InputAbstractionLayer_base();
+	~InputAbstractionLayerBase();
 
-	inline bool is_active() { return active; }	///<Informuje czy warstwa jest aktywna
-	inline const char* get_buttons_table() { return virtual_button; }	///<Zwraca tablicê wirtualnych przycisków
-	inline const float* get_axis_table() { return virtual_axis; }		///<Zwraca tablicê wirtualnych osi
-	inline short get_mouseX() { return mouseX; }		///<Zwraca po³o¿enie myszy w X
-	inline short get_mouseY() { return mouseY; }		///<Zwraca po³o¿enie myszy w Y
-	inline unsigned short get_num_axis() { return num_axis; }			///<Zwraca liczbe osi
-	inline unsigned short get_num_buttons() { return num_buttons; }	///<Zwraca liczbe przycisków
+	inline bool				IsActive()				{ return active; }						///<Informuje czy warstwa jest aktywna
+	inline short			GetMouseX()				{ return mouseX; }						///<Zwraca po³o¿enie myszy w X
+	inline short			GetMouseY()				{ return mouseY; }						///<Zwraca po³o¿enie myszy w Y
+	inline unsigned short	GetNumAxis()			{ return (unsigned short)m_virtualAxis.size(); }		///<Zwraca liczbe osi
+	inline unsigned short	GetNumButtons()			{ return (unsigned short)m_virtualButtons.size(); }		///<Zwraca liczbe przycisków
+
+	inline const std::vector< char >&		GetButtonsTable()		{ return m_virtualButtons; }	///<Zwraca tablicê wirtualnych przycisków
+	inline const std::vector< float>&		GetAxisTable()			{ return m_virtualAxis; }	///<Zwraca tablicê wirtualnych osi
 };
 
 /**@brief Klasa stanowi interfejs umo¿liwiaj¹cy definiowanie i modyfikowanie wastwy abstrakcji.
-Zalecam przeczytanie opisu klasy InputAbstractionLayer_base, który zawiera wszystkie potrzebne informacje.
+Zalecam przeczytanie opisu klasy InputAbstractionLayerBase, który zawiera wszystkie potrzebne informacje.
 
 Klasa bazowa stanowi interfejs uniemo¿liwiaj¹cy nadpisanie danych w klasie i tylko
 w takim celu istnieje to rozdzielenie. Nie powinny istnieæ ¿adne obiekty klasy
-InputAbstractionLayer_base, poniewa¿ nie ma to ¿adnego sensu. Taki obiekt nie móg³by
+InputAbstractionLayerBase, poniewa¿ nie ma to ¿adnego sensu. Taki obiekt nie móg³by
 zostaæ w ¿aden sposób uzupe³niony danymi.
 */
-class InputAbstractionLayer : public InputAbstractionLayer_base
+class InputAbstractionLayer : public InputAbstractionLayerBase
 {
 private:
-	/**Zmienna active_changed jest ustawiana w momencie, kiedy obiekt staje
+	/**Zmienna m_activeChanged jest ustawiana w momencie, kiedy obiekt staje
 		siê aktywn¹ warstw¹ abstrakcji.Ma za zadanie zapobiegac wysy³aniu eventów
 		o wciœniêciu przycisków, które zosta³y wciœniête w momencie aktywnoœci poprzedniej
 		wartwy abstrakcji.Zmienna chroni tylko przed eventami typu wciœniêcie przycisku,
 		nie da siê za jej pomoc¹ zablokowaæ eventów typu puszczenie przycisku,
 		poniewa¿ mo¿e to nast¹piæ wiele klatek póŸniej.*/
-	bool active_changed;
+	bool m_activeChanged;
 
-	std::vector<input_mapping>		buttons_mapping_table;	///<Tablica mapowania przycisków fizycznych na wirtualne
-	std::vector<input_mapping>		axis_mapping_table;		///<Tablica mapowania osi fizycznych na wirtualne
-	std::vector<event_mapping>		event_mapping_table;	///<Tablica rz¹danych eventów
+	std::vector<InputMapping>		m_buttonsMapping;	///<Tablica mapowania przycisków fizycznych na wirtualne
+	std::vector<InputMapping>		m_axisMapping;		///<Tablica mapowania osi fizycznych na wirtualne
+	std::vector<EventMapping>		m_requestedEvents;	///<Tablica ¿¹danych eventów
 
 public:
 	InputAbstractionLayer();
 	~InputAbstractionLayer();
 
-	void inline set_active(bool activate) { active = activate; if(active) active_changed = true; }	///<Ustawia warstwê abstrakcji jako aktywn¹
-	void inline set_mouse_position(short X, short Y) { mouseX = X; mouseY = Y; }		///<Ustawia pozycjê myszy
+	void inline set_active			( bool activate ) { active = activate; if( active ) m_activeChanged = true; }	///<Ustawia warstwê abstrakcji jako aktywn¹
+	void inline set_mouse_position	( short X, short Y ) { mouseX = X; mouseY = Y; }								///<Ustawia pozycjê myszy
 
-	void begin_event_collection();
-	void send_events(Engine*);
+	void	begin_event_collection		();
+	void	send_events					(Engine*);
 
-	void update_keyboard_device( short device_nr, const char* keyboard_state );
-	void update_mouse_device( short device_nr, const DIMOUSESTATE2* mouse_state, int window_width, int window_height);
-	void update_joystick_device( short device_nr, const DIJOYSTATE* joystick_state );
+	void	update_keyboard_device		( DeviceNumber DeviceNr, const char* keyboard_state );
+	void	update_mouse_device			( DeviceNumber DeviceNr, const DIMOUSESTATE2* mouse_state, int window_width, int window_height);
+	void	update_joystick_device		( DeviceNumber DeviceNr, const DIJOYSTATE* joystick_state );
 
-	void demand_down_event( unsigned short v_index );
-	void demand_up_event( unsigned short v_index );
-	void delete_up_event( unsigned short v_index );
-	void delete_down_event( unsigned short v_index );
+	void	demand_down_event			( VirtualKeyIndex virtualIdx );
+	void	demand_up_event				( VirtualKeyIndex virtualIdx );
+	void	delete_up_event				( VirtualKeyIndex virtualIdx );
+	void	delete_down_event			( VirtualKeyIndex virtualIdx );
 
-	void setup_buttons_layer( input_mapping* mapping, unsigned int length );
-	void setup_axis_layer( input_mapping* mapping, unsigned int length );
-	int setup_layer_from_file( const std::string& file_name );
+	void	SetupButtonsLayer			( std::vector< InputMapping >&& mapping );
+	void	SetupAxisLayer				( std::vector< InputMapping >&& mapping );
+	int		SetupLayerFromFile			( const std::string& file_name );
 };
 

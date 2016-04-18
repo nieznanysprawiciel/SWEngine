@@ -233,16 +233,16 @@ void LightmapLogic::GenerateLightmaps			( Event* keyEvent )
 	if( keyEvent->type == (unsigned int)EventType::KeyDownEvent )
 	{
 		KeyDownEvent* genLightmapEvent = static_cast<KeyDownEvent*>( keyEvent );
-		if( genLightmapEvent->virtual_index == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 ||
-			genLightmapEvent->virtual_index == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS2 ||
-			genLightmapEvent->virtual_index == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS3 ||
-			genLightmapEvent->virtual_index == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS4 ||
-			genLightmapEvent->virtual_index == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS5 )
+		if( genLightmapEvent->VirtualIndex == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 ||
+			genLightmapEvent->VirtualIndex == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS2 ||
+			genLightmapEvent->VirtualIndex == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS3 ||
+			genLightmapEvent->VirtualIndex == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS4 ||
+			genLightmapEvent->VirtualIndex == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS5 )
 		{
 			SceneData* sceneData = PrepareSceneData();
 
 			// Tutaj wysy³amy dane do innych w¹tków, ¿eby liczy³y wszystko w tle.
-			if( genLightmapEvent->virtual_index == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 )
+			if( genLightmapEvent->VirtualIndex == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 )
 			{
 				LightmapWorkerCPU* worker = new LightmapWorkerCPU( sceneData );
 				m_lightmapWorker = worker;
@@ -251,7 +251,7 @@ void LightmapLogic::GenerateLightmaps			( Event* keyEvent )
 
 			m_lightmapState = LightmapState::Generating;
 		}
-		else if( genLightmapEvent->virtual_index == STANDARD_LAYERS::PROTOTYPE_BUTTONS::LOAD_LIGHTMAP_SCENE )
+		else if( genLightmapEvent->VirtualIndex == STANDARD_LAYERS::PROTOTYPE_BUTTONS::LOAD_LIGHTMAP_SCENE )
 			LoadScene( genLightmapEvent );
 	}
 }

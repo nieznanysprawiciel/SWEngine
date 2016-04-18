@@ -21,7 +21,7 @@ CameraActor
 */
 
 class DynamicActor;
-class InputAbstractionLayer_base;
+class InputAbstractionLayerBase;
 
 #include "BasicActors/EngineObject.h"
 #include "BasicActors/StaticActor.h"
@@ -54,13 +54,13 @@ class BaseAIController : public Controller
 class BaseInputController : public Controller
 {
 protected:
-	InputAbstractionLayer_base*		abstraction_layer;
+	InputAbstractionLayerBase*		abstraction_layer;
 
 public:
-	BaseInputController( InputAbstractionLayer_base* layer );
+	BaseInputController( InputAbstractionLayerBase* layer );
 	virtual ~BaseInputController();
 
-	void SetAbstractionLayer( InputAbstractionLayer_base* layer ) { abstraction_layer = layer; };
+	void SetAbstractionLayer( InputAbstractionLayerBase* layer ) { abstraction_layer = layer; };
 
 	virtual void ControlObject( DynamicActor* ) = 0;
 };

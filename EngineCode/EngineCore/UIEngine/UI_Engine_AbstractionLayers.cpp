@@ -13,8 +13,8 @@ void UI_Engine::InitAbstractionLayers( )
 	//kolejnoœæ dodawania powinna byæ zgodna z enumem STANDARD_ABSTRACTION_LAYER,
 	//poniewa¿ s³u¿y on potem jako indeks do odwo³ywania siê do tablicy
 	InputAbstractionLayer* newLayer = new InputAbstractionLayer;
-	newLayer->setup_buttons_layer( STANDARD_LAYERS::PROTOTYPE_BUTTONS_mapping, STANDARD_LAYERS::PROTOTYPE_BUTTONS_MAPPING_COUNT );
-	newLayer->setup_axis_layer( STANDARD_LAYERS::PROTOTYPE_AXES_mapping, STANDARD_LAYERS::PROTOTYPE_AXES_MAPPING_COUNT );
+	newLayer->SetupButtonsLayer( std::vector< InputMapping>( STANDARD_LAYERS::PROTOTYPE_BUTTONS_mapping ) );	///<@todo Zastanowiæ siê czy nie zrobiæ std::move na tym wektorze.
+	newLayer->SetupAxisLayer( std::vector< InputMapping>( STANDARD_LAYERS::PROTOTYPE_AXES_mapping ) );
 	//newLayer->demand_down_event( )
 	m_abstractionLayers.push_back( newLayer );
 

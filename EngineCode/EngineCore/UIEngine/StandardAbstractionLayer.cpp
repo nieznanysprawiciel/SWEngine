@@ -1,11 +1,12 @@
 #include "EngineCore/stdafx.h"
 #include "EngineCore/UIEngine/StandardAbstractionLayers.h"
 
+#include <vector>
 
 namespace STANDARD_LAYERS
 {
 
-	input_mapping PROTOTYPE_BUTTONS_mapping[PROTOTYPE_BUTTONS_MAPPING_COUNT] =
+	std::vector< InputMapping > PROTOTYPE_BUTTONS_mapping =
 	{
 
 		{ DEVICE_IDs::KEYBOARD, PROTOTYPE_BUTTONS::FORWARD, DIK_W },
@@ -27,7 +28,7 @@ namespace STANDARD_LAYERS
 		{ DEVICE_IDs::KEYBOARD, PROTOTYPE_BUTTONS::LOAD_LIGHTMAP_SCENE, DIK_L },
 	};
 
-	input_mapping PROTOTYPE_AXES_mapping[PROTOTYPE_AXES_MAPPING_COUNT] =
+	std::vector< InputMapping > PROTOTYPE_AXES_mapping =
 	{
 		{ DEVICE_IDs::MOUSE, PROTOTYPE_AXES::X_AXIS, DIMOUSE_XAXIS },
 		{ DEVICE_IDs::MOUSE, PROTOTYPE_AXES::Y_AXIS, DIMOUSE_YAXIS }, 

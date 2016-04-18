@@ -20,7 +20,7 @@ Event::Event( unsigned int type )
 KeyDownEvent::KeyDownEvent(short v_index)
 : Event( (unsigned int)EventType::KeyDownEvent )
 {
-	virtual_index = v_index;
+	VirtualIndex = v_index;
 }
 
 
@@ -31,7 +31,7 @@ KeyDownEvent::KeyDownEvent(short v_index)
 KeyUpEvent::KeyUpEvent(short v_index)
 : Event( (unsigned int)EventType::KeyUpEvent )
 {
-	virtual_index = v_index;
+	VirtualIndex = v_index;
 }
 
 

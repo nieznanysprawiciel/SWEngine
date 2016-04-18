@@ -30,7 +30,7 @@ private:
 	float button_rot_speed;		///<Prêdkoœæ ruchu obrotowego (dla przycisku)
 	float axis_rot_speed;		///<Prêdkoœæ ruchu obrotowego (dla myszy/jousticka)
 public:
-	camera_controller_PROTOTYPE( InputAbstractionLayer_base* layer );
+	camera_controller_PROTOTYPE( InputAbstractionLayerBase* layer );
 	virtual ~camera_controller_PROTOTYPE();
 
 	virtual void ControlObject( DynamicActor* );

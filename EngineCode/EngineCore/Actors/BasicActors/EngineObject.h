@@ -9,7 +9,7 @@ class Engine;
 class ControllersEngine;
 class Controller;
 class Event;
-class InputAbstractionLayer_base;
+class InputAbstractionLayerBase;
 class IRenderer;
 class Model3DFromFile;
 

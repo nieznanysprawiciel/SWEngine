@@ -71,7 +71,7 @@
 			<GridSplitter Grid.Column="1" Grid.ColumnSpan="1" Width="2" Style="{StaticResource HorizontalGridSplitterStyle}" ></GridSplitter>
 
 			<Grid Grid.Column="2" Grid.ColumnSpan="1" Height="Auto" >
-				<Image x:Name="EngineViewport" Height="800" Width="1000" Margin="2" HorizontalAlignment="Left" VerticalAlignment="Top" />
+				<Image x:Name="EngineViewport" Height="800" Width="1000" Margin="2" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="True" />
 			</Grid>
 
 			<GridSplitter Grid.Column="3" Grid.ColumnSpan="1" Width="2" Style="{StaticResource HorizontalGridSplitterStyle}" ></GridSplitter>

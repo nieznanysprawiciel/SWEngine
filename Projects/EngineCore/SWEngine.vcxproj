@@ -219,6 +219,7 @@
     <ClInclude Include="$(EngineCoreSourceDir)MainEngine\TimeManager.h" />
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\EngineContext.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\IInput.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\ActorsApi.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\Assets.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\ApiGroup.h" />

@@ -7,7 +7,7 @@
 
 using namespace DirectX;
 
-camera_controller_PROTOTYPE::camera_controller_PROTOTYPE( InputAbstractionLayer_base* layer )
+camera_controller_PROTOTYPE::camera_controller_PROTOTYPE( InputAbstractionLayerBase* layer )
 	:	BaseInputController(layer)
 {
 	move_speed = 1000.0;
@@ -25,10 +25,10 @@ using namespace STANDARD_LAYERS;
 
 void camera_controller_PROTOTYPE::ControlObject( DynamicActor* object )
 {
-	if ( !abstraction_layer->is_active() )
+	if ( !abstraction_layer->IsActive() )
 		return;
 	//pobieramy tablicê przycisków
-	const char* button_state = abstraction_layer->get_buttons_table();
+	auto& button_state = abstraction_layer->GetButtonsTable();
 
 	XMVECTOR forward = XMVectorSet( 0.0, 0.0, 0.0, 0.0 );
 	XMVECTOR left = XMVectorSet( 0.0, 0.0, 0.0, 0.0 );
@@ -108,7 +108,7 @@ void camera_controller_PROTOTYPE::ControlObject( DynamicActor* object )
 	}
 
 	//pobieramy tablicê osi
-	const float* axis_state = abstraction_layer->get_axis_table();
+	auto& axis_state = abstraction_layer->GetAxisTable();
 
 	float y_axis = axis_state[ PROTOTYPE_AXES::Y_AXIS ];
 	if( y_axis != 0.0f )

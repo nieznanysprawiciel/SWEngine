@@ -34,7 +34,7 @@ class KeyDownEvent	:	public Event
 {
 public:
 	InputAbstractionLayer*	layer;		//wskaŸnik na aktualn¹ warstwê abstrakcji
-	short virtual_index;				//indeks przycisku w tablicy
+	short VirtualIndex;				//indeks przycisku w tablicy
 	short mouseX;
 	short mouseY;
 
@@ -46,7 +46,7 @@ class KeyUpEvent	:	public Event
 {
 public:
 	InputAbstractionLayer*	layer;		//wskaŸnik na aktualn¹ warstwê abstrakcji
-	short virtual_index;				//indeks przycisku w tablicy
+	short VirtualIndex;				//indeks przycisku w tablicy
 	short mouseX;
 	short mouseY;
 

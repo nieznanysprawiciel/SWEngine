@@ -311,6 +311,9 @@
     <ClInclude Include="..\..\EngineCode\Common\RTTR.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\IInput.h">
+      <Filter>EngineCore\UIEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">

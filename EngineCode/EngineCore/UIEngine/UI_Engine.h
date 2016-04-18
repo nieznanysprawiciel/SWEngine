@@ -12,7 +12,9 @@ class Engine;
 
 
 /**@brief Modu³ do obs³ugi wejœcia wyjœcia.
-@ingroup EngineCore*/
+@ingroup EngineCore
+
+@todo Wydzieliæ obs³ugê DirectInput do osobnego modu³u.*/
 class UI_Engine
 {
 private:
@@ -42,8 +44,8 @@ public:
 	int init_direct_input();
 
 	//called by Engine in main loop
-	void		ProceedInput(float time_interval);
-	void		DrawGUI( float time_interval, float time_lag );
+	void		ProceedInput					( float time_interval );
+	void		DrawGUI							( float time_interval, float time_lag );
 
 	//abstraction layers
 	int			ChangeAbstractionLayer			( InputAbstractionLayer* next_layer );

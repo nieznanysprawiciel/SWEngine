@@ -12,7 +12,7 @@
 //									BaseInputController
 //----------------------------------------------------------------------------------------------//
 
-BaseInputController::BaseInputController( InputAbstractionLayer_base* layer )
+BaseInputController::BaseInputController( InputAbstractionLayerBase* layer )
 : abstraction_layer( layer )
 {}
 
