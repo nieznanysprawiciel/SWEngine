@@ -29,13 +29,16 @@ private:
 	char						keyboard_state[256];
 	DIMOUSESTATE2				mouse_state;
 
-	//directX functions
-	void clean_direct_input();
-
 //abstraction layers
 	InputAbstractionLayer*					m_currentAbstractionLayer;
 	std::vector<InputAbstractionLayer*>		m_abstractionLayers;
 
+// hack dla edytora
+	bool						m_enableInput;
+
+private:
+	//directX functions
+	void clean_direct_input();
 public:
 	UI_Engine(Engine* engine);
 	~UI_Engine();
@@ -60,6 +63,8 @@ public:
 			return nullptr;
 		return m_abstractionLayers[layer];
 	};
+
+	void		EnableInput						( bool val );
 
 private:
 	//abstraction layers

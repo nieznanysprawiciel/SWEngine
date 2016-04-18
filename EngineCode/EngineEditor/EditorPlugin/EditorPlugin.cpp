@@ -97,6 +97,12 @@ void EngineWrapper::BasicScene()
 	m_engine->SetSkydomeAndCamera();
 }
 
+/**@brief W³¹cza/Wy³¹cza przychwytywanie inputu.*/
+void EngineWrapper::EnableInput( bool val )
+{
+	m_engine->EnableInput( val );
+}
+
 /**@brief Twqorzy listê typów zarejestrowanych aktorów.*/
 List< ActorClassMetaInfo^ >^		EngineWrapper::CreateActorsMetadata		()
 {

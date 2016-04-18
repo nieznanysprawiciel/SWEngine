@@ -122,10 +122,13 @@ Funkcja jest wywo³ywana przez UI_engine, dlatego jest prywatna. W ka¿dej klatce 
 aktualizacja danych w aktualnie aktywnej warstwie abstrakcji.*/
 void UI_Engine::UpdateAbstractionLayer( )
 {
-	m_currentAbstractionLayer->begin_event_collection();
+	if( m_enableInput )
+	{
+		m_currentAbstractionLayer->begin_event_collection();
 
-	m_currentAbstractionLayer->update_keyboard_device( DEVICE_IDs::KEYBOARD, keyboard_state );
-	m_currentAbstractionLayer->update_mouse_device( DEVICE_IDs::MOUSE, &mouse_state, engine->GetWindowWidth(), engine->GetWindowHeight());
+		m_currentAbstractionLayer->update_keyboard_device( DEVICE_IDs::KEYBOARD, keyboard_state );
+		m_currentAbstractionLayer->update_mouse_device( DEVICE_IDs::MOUSE, &mouse_state, engine->GetWindowWidth(), engine->GetWindowHeight());
 
-	m_currentAbstractionLayer->send_events( engine );
+		m_currentAbstractionLayer->send_events( engine );
+	}
 }

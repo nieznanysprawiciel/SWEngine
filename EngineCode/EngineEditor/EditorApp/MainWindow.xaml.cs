@@ -52,6 +52,15 @@ namespace EditorApp
 			EditorLogic.ProjectManager.ActorsLogic.ActorSelectionChanged( sender, e );
 		}
 
+		private void EngineViewportLostFocus( object sender, RoutedEventArgs e )
+		{
+			EditorLogic.Displayer.EngineWrapper.EnableInput( false );
+		}
+
+		private void EngineViewportGotFocus( object sender, RoutedEventArgs e )
+		{
+			EditorLogic.Displayer.EngineWrapper.EnableInput( true );
+		}
 
 		#region Properties
 

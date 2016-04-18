@@ -122,8 +122,9 @@ wejœcia o intefejsie klawiatury. Zazwyczaj wywo³uje siê j¹ dla klawiatury, a
 
 void InputAbstractionLayer::update_keyboard_device( DeviceNumber DeviceNr, const char* keyboard_state )
 {
-	//mamy jedynie przyciski
+	// Mamy jedynie przyciski
 	for ( unsigned int i = 0; i < m_buttonsMapping.size(); ++i )
+	{
 		if ( m_buttonsMapping[i].DeviceNr == DeviceNr )
 		{
 			short dev_index = m_buttonsMapping[i].PhysicalIndex;
@@ -135,7 +136,7 @@ void InputAbstractionLayer::update_keyboard_device( DeviceNumber DeviceNr, const
 				m_virtualButtons[v_index] = 1;
 			}
 		}
-		
+	}
 }
 
 /**@brief Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków oraz osi na podstawie
@@ -150,6 +151,20 @@ wejœcia o intefejsie myszy. Zazwyczaj wywo³uje siê j¹ dla myszy, ale mo¿e b
 void InputAbstractionLayer::update_mouse_device( DeviceNumber DeviceNr, const DIMOUSESTATE2* mouse_state, int window_width, int window_height)
 {
 	//TODO:	przyciski
+	for ( unsigned int i = 0; i < m_buttonsMapping.size(); ++i )
+	{
+		if ( m_buttonsMapping[i].DeviceNr == DeviceNr )
+		{
+			short devIndex = m_buttonsMapping[i].PhysicalIndex;
+			if ( mouse_state->rgbButtons[ devIndex ] )
+			{//tablica jest wyzerowana, wiêc iteresuj¹ nas jedynie w³¹czone przyciski
+			//je¿eli wiele przycisków fizycznych odnosi siê do jednego wirtualnego, to wtedy
+			//wystarczy jeden wciœniêty, ¿eby stan przycisku wirtualnego zosta³ ustawiony
+				short v_index = m_buttonsMapping[i].VirtualIndex;
+				m_virtualButtons[v_index] = 1;
+			}
+		}
+	}
 
 	//osie
 	for ( unsigned int i = 0; i < m_axisMapping.size(); ++i )

@@ -32,8 +32,8 @@ namespace EditorApp.Engine
 				m_editorReady = true;
 			else
 				return false;
-			
 
+			m_engineWrapper.EnableInput( false );
 			//m_engineWrapper.BasicScene();
 			m_engineWrapper.TestScene();
 

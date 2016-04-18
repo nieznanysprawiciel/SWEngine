@@ -63,6 +63,7 @@ using namespace System::Collections::Generic;
 
 		void				TestScene					();
 		void				BasicScene					();
+		void				EnableInput					( bool val );
 
 		List< ActorClassMetaInfo^ >^		CreateActorsMetadata		();
 		List< ActorWrapper^ >^				CreateActorsList			();

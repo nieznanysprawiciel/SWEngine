@@ -18,6 +18,8 @@ UI_Engine::UI_Engine( Engine* engine )
 	keyboard_input = nullptr;
 	mouse_input = nullptr;
 
+	m_enableInput = true;
+
 	InitAbstractionLayers();
 }
 
@@ -29,7 +31,21 @@ UI_Engine::~UI_Engine()
 	clean_direct_input();
 }
 
-
+/**@brief Funkcja umo¿liwia edytorowi wy³¹czenie inputu, gdy kontrolka odpowiedzialna
+za wyœwietlanie renderowanego obrazu nie ma focusa.*/
+void		UI_Engine::EnableInput						( bool val )
+{
+	if( val )
+	{
+		m_enableInput = true;
+		m_currentAbstractionLayer->set_active( true );
+	}
+	else
+	{
+		m_enableInput = false;
+		m_currentAbstractionLayer->set_active( false );
+	}
+}
 
 /**@brief Inicjalizuje obiekty Direct Inputa
 

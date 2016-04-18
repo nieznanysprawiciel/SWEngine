@@ -61,7 +61,7 @@ protected:
 	short	mouseY;			///<Po³o¿enie myszi w Y
 
 	std::vector< char >		m_virtualButtons;		///<Tablica wirtualnych przycisków
-	std::vector< float>		m_virtualAxis;			///<Tablica dla kontrolerów osiowych
+	std::vector< float >	m_virtualAxis;			///<Tablica dla kontrolerów osiowych
 
 	bool	active;			///<Stwierdza czy dana wartstwa abstrakcji jest aktualnie aktywna
 
@@ -76,7 +76,7 @@ public:
 	inline unsigned short	GetNumButtons()			{ return (unsigned short)m_virtualButtons.size(); }		///<Zwraca liczbe przycisków
 
 	inline const std::vector< char >&		GetButtonsTable()		{ return m_virtualButtons; }	///<Zwraca tablicê wirtualnych przycisków
-	inline const std::vector< float>&		GetAxisTable()			{ return m_virtualAxis; }	///<Zwraca tablicê wirtualnych osi
+	inline const std::vector< float >&		GetAxisTable()			{ return m_virtualAxis; }	///<Zwraca tablicê wirtualnych osi
 };
 
 /**@brief Klasa stanowi interfejs umo¿liwiaj¹cy definiowanie i modyfikowanie wastwy abstrakcji.

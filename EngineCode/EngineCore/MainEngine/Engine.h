@@ -154,6 +154,8 @@ public:
 	int						GetWindowWidth();
 	int						GetWindowHeight();
 	///@}
+
+	void					EnableInput( bool val );
 };
 
 
