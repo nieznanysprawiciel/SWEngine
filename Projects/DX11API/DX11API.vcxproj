@@ -160,6 +160,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\EngineCode\Common\EngineObject.h" />
     <ClInclude Include="..\..\EngineCode\Common\MacrosSwitches.h" />
     <ClInclude Include="..\..\EngineCode\Common\MemoryLeaks.h" />
     <ClInclude Include="..\..\EngineCode\Common\ObjectDeleter.h" />

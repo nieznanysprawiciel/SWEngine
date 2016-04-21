@@ -1,6 +1,6 @@
 #pragma once
 
-#include "EngineObject.h"
+#include "ActorBase.h"
 
 #include <DirectXMath.h>
 
@@ -15,9 +15,9 @@ Swapowanie nastêpujê w funkcji @ref DynamicActor::Move. @todo Trzeba zbadaæ czy 
 w których nie bêdzie zachodziæ swapowanie, a powinno (wydaje mi siê ¿e przy niektórych kontrolerach)
 i jakoœ rozwi¹zaæ tê sytuacjê.
 */
-class StaticActor : public EngineObject
+class StaticActor : public ActorBase
 {
-	RTTR_ENABLE( EngineObject )
+	RTTR_ENABLE( ActorBase )
 	RTTR_REGISTRATION_FRIEND
 private:
 	DirectX::XMFLOAT3		position;				///< Pozycja obiektu (lub bufor tylny)
@@ -106,7 +106,7 @@ public:
 	DirectX::XMVECTOR		GetInterpolatedPosition		( float frame_percent ) const;
 	DirectX::XMVECTOR		GetInterpolatedOrientation	( float frame_percent ) const;
 
-	static EngineObject*			Create()	{ return new StaticActor; }
+	static ActorBase*			Create()	{ return new StaticActor; }
 };
 
 

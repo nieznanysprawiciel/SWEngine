@@ -23,17 +23,17 @@ public:
 
 	inline ActorFactory&									GetActorFactory	()	{ return m_actorFactory; }
 
-	template< typename Type = EngineObject >	Type*		CreateActor		( const std::string& name, ActorInfo actorModules );
-	template< typename Type = EngineObject >	Type*		CreateActor		( ActorType id, ActorInfo actorModules );
+	template< typename Type = ActorBase >	Type*		CreateActor		( const std::string& name, ActorInfo actorModules );
+	template< typename Type = ActorBase >	Type*		CreateActor		( ActorType id, ActorInfo actorModules );
 
-	void													UpdateActor		( EngineObject* actor, ActorInfo actorModules );
+	void													UpdateActor		( ActorBase* actor, ActorInfo actorModules );
 	const std::vector< ActorData >&							GetAllActors	();
 
 private:
 
-	void													AddActor		( EngineObject* newActor );
+	void													AddActor		( ActorBase* newActor );
 	
-	template< typename Type = EngineObject >	ActorData*	FindActor( EngineObject* actor );
+	template< typename Type = ActorBase >	ActorData*	FindActor( ActorBase* actor );
 };
 
 
@@ -68,7 +68,7 @@ inline Type* ActorsManager::CreateActor( ActorType id, ActorInfo actorModules )
 }
 
 /**@brief Wyszukuje aktora.*/
-template< typename Type > ActorData*	ActorsManager::FindActor( EngineObject* actor )
+template< typename Type > ActorData*	ActorsManager::FindActor( ActorBase* actor )
 {
 	for( auto& actorData : m_objectList )
 	{

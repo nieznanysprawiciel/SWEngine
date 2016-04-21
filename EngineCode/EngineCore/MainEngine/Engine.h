@@ -13,7 +13,7 @@
 #include <queue>
 
 class IGamePlay;
-class EngineObject;
+class ActorBase;
 class Event;
 
 

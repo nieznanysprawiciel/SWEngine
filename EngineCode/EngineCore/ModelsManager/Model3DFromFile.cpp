@@ -14,6 +14,12 @@ ModelsManager* Model3DFromFile::models_manager = nullptr;
 //==============================================================================================//
 
 
+RTTR_REGISTRATION
+{
+	rttr::registration::class_< Model3DFromFile >( "Model3DFromFile" )
+	.property( "File Name", &Model3DFromFile::m_filePath );
+}
+
 //----------------------------------------------------------------------------------------------//
 //								contructor, destructor											//
 //----------------------------------------------------------------------------------------------//
@@ -22,7 +28,7 @@ ModelsManager* Model3DFromFile::models_manager = nullptr;
 Model3DFromFile::Model3DFromFile( const std::wstring& file_name )
 : ResourceObject( WRONG_ID )
 {
-	file_path = file_name;
+	m_filePath = file_name;
 	vertex_buffer = nullptr;
 	index_buffer = nullptr;
 	tmp_data = nullptr;
@@ -207,7 +213,7 @@ zawartoœæ, a jedynie nazwy.
 @return Indentyfikator obiektu.*/
 unsigned int Model3DFromFile::add_material( const MaterialObject* material, const std::wstring& material_name )
 {
-	std::wstring name = file_path;
+	std::wstring name = m_filePath;
 	name += L"::";
 	name += material_name;
 
@@ -416,7 +422,7 @@ void Model3DFromFile::EndEdit_vertex_buffer_processing( )
 		delete[] tmp_data->table[i]->vertices_tab;		// Tablica alokowana w add_vertex_buffer()
 	}
 	// Tworzymy obiekt bufora wierzcho³ków i go zapisujemy
-	vertex_buffer = models_manager->AddVertexBuffer( file_path, verticies, sizeof( VertexNormalTexCord1 ), vertex_buffer_length );
+	vertex_buffer = models_manager->AddVertexBuffer( m_filePath, verticies, sizeof( VertexNormalTexCord1 ), vertex_buffer_length );
 	vertex_buffer->AddAssetReference( );		// Zaznaczamy, ¿e siê do niego odwo³ujemy
 	
 	
@@ -460,7 +466,7 @@ void Model3DFromFile::EndEdit_index_buffer_processing( )
 		// UWAGA!! Nie przypisujemy nullptra, bo chcemy wiedzieæ, ¿e jest bufor indeksów !!!!
 	}
 	// Tworzymy obiekt bufora indeksów i go zapisujemy
-	index_buffer = models_manager->AddIndexBuffer( file_path, indicies, sizeof( VERT_INDEX ), index_buffer_length );
+	index_buffer = models_manager->AddIndexBuffer( m_filePath, indicies, sizeof( VERT_INDEX ), index_buffer_length );
 	index_buffer->AddAssetReference( );		// Zaznaczamy, ¿e siê do niego odwo³ujemy
 
 	delete[] indicies;							// Bufor by³ tylko tymczasowy

@@ -20,7 +20,7 @@ public:
 	void set_scale( float sc ) { scale = sc; };
 #endif
 protected:
-	Model3DFromFile*				model_reference;					//zapisujemy odwo³anie, ¿ebyœmy wiedzieli, ¿e nie mo¿emy kasowaæ tego obiektu
+	Model3DFromFile*				m_modelRef;							//zapisujemy odwo³anie, ¿ebyœmy wiedzieli, ¿e nie mo¿emy kasowaæ tego obiektu
 	BufferObject*					vertex_buffer;						//ca³y bufor przechowujemy w jednym obiekcie
 	BufferObject*					index_buffer;						//tak samo bufor indeksów
 	std::vector<ModelPart>			model_parts;
@@ -41,7 +41,7 @@ public:
 	void						AddModelPart	( ModelPart& modelPart );
 	///
 
-	static EngineObject*				Create()	{ return new DynamicMeshActor; }
+	static ActorBase*				Create()	{ return new DynamicMeshActor; }
 
 private:
 	void AddReferences( const ModelPart* part );
@@ -55,6 +55,8 @@ private:
 	poniewa¿ uniemo¿liwia on skuteczn¹ optymalizacjê renderowania.
 
 	@see @ref selfDrawingObjects
+	@todo Prawdopodobnie trzeba usun¹æ mo¿liwoœc samo - renderowania siê obiektów. Zamiast tego bêdzie mo¿na
+	tworzyæ w³asne przebiegi renderowania, które zrobio¹ co trzeba.
 
 	@param[in] device_context WskaŸnik do obiektu directXa s³u¿¹cego do renderowania sceny.
 	@param[in] time_interval Czas od ostatniej klatki.

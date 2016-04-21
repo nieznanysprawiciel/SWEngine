@@ -18,13 +18,16 @@ RTTR_REGISTRATION
 			rttr::metadata( MetaDataType::Category, "Transformation" )
 		)
 #endif
-	;
+		.property( "Asset", &DynamicMeshActor::m_modelRef )
+		(
+			rttr::metadata( MetaDataType::Category, "Mesh" )
+		);
 }
 
 
 DynamicMeshActor::DynamicMeshActor()
 {
-	model_reference = nullptr;
+	m_modelRef = nullptr;
 	model_changed = false;
 	vertex_buffer = nullptr;
 	index_buffer = nullptr;
@@ -37,7 +40,7 @@ DynamicMeshActor::DynamicMeshActor( BufferObject* vertexBuffer, BufferObject* in
 	: vertex_buffer( vertexBuffer ),
 	index_buffer( indexBuffer )
 {
-	model_reference = nullptr;
+	m_modelRef = nullptr;
 	model_changed = false;
 #ifdef _SCALEABLE_OBJECTS
 	scale = 1.0;
@@ -63,7 +66,7 @@ int DynamicMeshActor::SetModel(Model3DFromFile* model)
 	DeleteAllReferences();
 
 	//dodajemy now¹ zawartoœæ
-	model_reference = model;
+	m_modelRef = model;
 	model->AddObjectReference();
 
 	vertex_buffer = model->get_vertex_buffer();
@@ -129,15 +132,15 @@ void DynamicMeshActor::AddReferences( const ModelPart* part )
 
 /**
 Kasuje odwo³ania do obiektów, których w³asnoœci¹ jest ModelsManager albo Model3DFromFile
-w tablicy model_parts oraz wskaŸniku model_reference i vertex_buffer.
+w tablicy model_parts oraz wskaŸniku m_modelRef i vertex_buffer.
 
 ¯adne obiekty nie s¹ kasowane, poniewa¿ nie nale¿¹ one do nas.
 Wszystkie zmienne s¹ za to czyszczone.*/
 void DynamicMeshActor::DeleteAllReferences( )
 {
-	if ( model_reference != nullptr )
-		model_reference->DeleteObjectReference( );
-	model_reference = nullptr;
+	if ( m_modelRef != nullptr )
+		m_modelRef->DeleteObjectReference( );
+	m_modelRef = nullptr;
 
 	if ( vertex_buffer )
 		vertex_buffer->DeleteObjectReference();

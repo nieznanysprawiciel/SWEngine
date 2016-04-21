@@ -305,9 +305,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\StaticActor.h">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\EngineObject.h">
-      <Filter>EngineCore\Actors\BasicActors</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\RTTR.h">
       <Filter>Common</Filter>
     </ClInclude>
@@ -328,6 +325,12 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeNode.h">
       <Filter>EngineCore\PhysicEngine\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\EngineObject.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\ActorBase.h">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -493,9 +496,6 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\StaticActor.cpp">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\EngineObject.cpp">
-      <Filter>EngineCore\Actors\BasicActors</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\CollisionEngine.cpp">
       <Filter>EngineCore\PhysicEngine</Filter>
     </ClCompile>
@@ -507,6 +507,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeNode.cpp">
       <Filter>EngineCore\PhysicEngine\Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\ActorBase.cpp">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

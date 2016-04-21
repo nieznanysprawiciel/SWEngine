@@ -1,11 +1,12 @@
 #pragma once
-
 /**@file ResourceObject.h
 @author nieznanysprawiciel
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 
 @brief Plik zawiera deklaracjê i definicjê klasy ResourceObject s³u¿¹c¹
 do zliczania odwo³añ do obiektu.*/
+
+#include "Common/EngineObject.h"
 
 
 /**@brief Klasa u³atwiaj¹ca zarz¹dzanie odwo³aniami do assetów.
@@ -29,8 +30,9 @@ Jest to wymagane do u³atwienia obs³ugi wielow¹tkowoœci. Inaczej mog³yby siê pokr
 @todo Zliczanie referencji w ResourceObject nie nadaje siê do wielow¹tkowoœci. Poprawiæ w odpowiednim momencie.
 */
 
-class ResourceObject
+class ResourceObject	: public EngineObject
 {
+	RTTR_ENABLE( EngineObject )
 private:
 	unsigned int	m_assetReferences;	///< Liczba assetów, które sie odwo³uj¹.
 	unsigned int	m_objectReferences;	///< Liczba obiektów aktorów, które siê odwo³uj¹.

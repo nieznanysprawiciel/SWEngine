@@ -126,7 +126,7 @@ List< ActorWrapper^ >^				EngineWrapper::CreateActorsList			()
 
 	for each( auto& actor in existingActors )
 	{
-		ActorWrapper^ newActor = gcnew ActorWrapper( actor.first, &actor.second );
+		ActorWrapper^ newActor = gcnew ActorWrapper( (EngineObject*)actor.first, &actor.second );
 		actorsList->Add( newActor );
 	}
 

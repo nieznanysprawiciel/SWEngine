@@ -37,6 +37,6 @@ public:
 	void				Move					( float time_interval );
 	virtual void		MoveComplex				( float time_interval, const DirectX::XMFLOAT3& parent_speed, const DirectX::XMFLOAT4& parent_rotation );
 
-	static EngineObject*		Create()	{ return new DynamicActor; }
+	static ActorBase*		Create()	{ return new DynamicActor; }
 };
 

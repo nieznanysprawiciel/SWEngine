@@ -20,14 +20,17 @@ namespace EditorPlugin
 		PropertyDouble,
 		PropertyActor,
 		PropertyCategory,
+		PropertyResource,
+		PropertyString,
+		PropertyWString,
 		PropertyUnknown
 	};
 
 	template< typename PropertyType >
-	PropertyType		GetXMFloat( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
+	PropertyType		GetPropertyValue( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
 
 	template< typename PropertyType >
-	void				SetXMFloat( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, PropertyType newValue );
+	void				SetPropertyValue( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, PropertyType newValue );
 
 	/**@brief Helper class to extract private property_wrapper_base from rttr::property.*/
 	public class RTTRPropertyRapist
@@ -43,27 +46,36 @@ namespace EditorPlugin
 		friend ref class CategoryPropertyWrapper;
 		friend ref class ObjectPropertyWrapper;
 		friend ref class XMFloatPropertyWrapper;
+		friend ref class CategoryLessPropertyWrapper;
+		friend ref class StringPropertyWrapper;
+		friend ref class WStringPropertyWrapper;
 
-		friend DirectX::XMFLOAT2	GetXMFloat< DirectX::XMFLOAT2 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
-		friend void					SetXMFloat< DirectX::XMFLOAT2 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, DirectX::XMFLOAT2 newValue );
+		friend DirectX::XMFLOAT2	GetPropertyValue< DirectX::XMFLOAT2 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
+		friend void					SetPropertyValue< DirectX::XMFLOAT2 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, DirectX::XMFLOAT2 newValue );
 
-		friend DirectX::XMFLOAT3	GetXMFloat< DirectX::XMFLOAT3 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
-		friend void					SetXMFloat< DirectX::XMFLOAT3 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, DirectX::XMFLOAT3 newValue );
+		friend DirectX::XMFLOAT3	GetPropertyValue< DirectX::XMFLOAT3 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
+		friend void					SetPropertyValue< DirectX::XMFLOAT3 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, DirectX::XMFLOAT3 newValue );
 
-		friend DirectX::XMFLOAT4	GetXMFloat< DirectX::XMFLOAT4 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
-		friend void					SetXMFloat< DirectX::XMFLOAT4 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, DirectX::XMFLOAT4 newValue );
+		friend DirectX::XMFLOAT4	GetPropertyValue< DirectX::XMFLOAT4 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
+		friend void					SetPropertyValue< DirectX::XMFLOAT4 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, DirectX::XMFLOAT4 newValue );
 
-		friend int					GetXMFloat< int >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
-		friend void					SetXMFloat< int >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, int newValue );
+		friend int					GetPropertyValue< int >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
+		friend void					SetPropertyValue< int >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, int newValue );
 
-		friend float				GetXMFloat< float >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
-		friend void					SetXMFloat< float >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, float newValue );
+		friend float				GetPropertyValue< float >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
+		friend void					SetPropertyValue< float >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, float newValue );
 
-		friend double				GetXMFloat< double >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
-		friend void					SetXMFloat< double >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, double newValue );
+		friend double				GetPropertyValue< double >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
+		friend void					SetPropertyValue< double >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, double newValue );
 
-		friend bool					GetXMFloat< bool >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
-		friend void					SetXMFloat< bool >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, bool newValue );
+		friend bool					GetPropertyValue< bool >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
+		friend void					SetPropertyValue< bool >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, bool newValue );
+
+		friend std::string 			GetPropertyValue< std::string >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
+		friend void					SetPropertyValue< std::string >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, std::string newValue );
+
+		friend std::wstring 		GetPropertyValue< std::wstring >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
+		friend void					SetPropertyValue< std::wstring >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, std::wstring newValue );
 
 		inline static rttr::property									MakeProperty		( const rttr::detail::property_wrapper_base* wrapper )
 		{		return rttr::property( wrapper );		}

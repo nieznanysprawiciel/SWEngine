@@ -2,7 +2,7 @@
 
 #include <utility>
 
-class EngineObject;
+class ActorBase;
 
 
 
@@ -41,7 +41,7 @@ struct ActorInfo
 	void			operator|=	( ActorInfo second );
 };
 
-typedef std::pair< EngineObject*, ActorInfo > ActorData;
+typedef std::pair< ActorBase*, ActorInfo > ActorData;
 
 /**@brief Ustawia zerowy stan struktury ActorInfo.*/
 inline ActorInfo::ActorInfo	()

@@ -3,7 +3,9 @@
 //using Float3 = System::Numerics::;
 
 #include "PropertyHelper.h"
-#include "EngineCore/Actors/BasicActors/EngineObject.h"
+#include "Common/EngineObject.h"
+#include "GraphicAPI/ResourceObject.h"
+
 
 #include <memory>
 
@@ -56,6 +58,12 @@ using namespace System::Collections::Generic;
 				return PropertyType::PropertyFloat4;
 			else if( propertyType.is_derived_from< EngineObject >() )
 				return PropertyType::PropertyActor;
+			else if( propertyType.is_derived_from< ResourceObject >() )
+				return PropertyType::PropertyResource;
+			else if( propertyType == rttr::type::get< std::string >() )
+				return PropertyType::PropertyString;
+			else if( propertyType == rttr::type::get< std::wstring >() )
+				return PropertyType::PropertyWString;
 			else
 				return PropertyType::PropertyUnknown;
 		}
@@ -77,7 +85,8 @@ using namespace System::Collections::Generic;
 //			Classes derived from PropertyWrapper	
 //====================================================================================//
 
-	/**@brief Property typu DirectX::XMFLOAT2.
+#pragma region UnusedXMFloatProperties
+		/**@brief Property typu DirectX::XMFLOAT2.
 	@attention KLasa nieu¿ywana.*/
 	public ref class Float2PropertyWrapper : PropertyWrapper
 	{
@@ -135,6 +144,9 @@ using namespace System::Collections::Generic;
 		float		GetValueW		( EngineObject* refObject );
 		void		SetValueW		( EngineObject* refObject, float newValue );
 	};
+
+#pragma endregion
+
 
 	/**@brief Property typy in.*/
 	public ref class IntPropertyWrapper : PropertyWrapper
@@ -249,6 +261,64 @@ using namespace System::Collections::Generic;
 		}
 	};
 
+	/**@brief Property typu std::string.*/
+	public ref class StringPropertyWrapper : PropertyWrapper
+	{
+	public:
+		StringPropertyWrapper( rttr::property prop )
+			: PropertyWrapper( PropertyType::PropertyString, prop, prop.get_name().c_str() )
+		{}
+
+		System::String^		GetValue		( EngineObject* refObject );
+		void				SetValue		( EngineObject* refObject, System::String^ newValue );
+
+	public:
+		property System::String^		Value
+		{
+			System::String^		get	()
+			{
+				if( m_actorPtr )
+					return GetValue( m_actorPtr );
+				return gcnew System::String( "" );
+			}
+
+			void				set	( System::String^ value )
+			{
+				if( m_actorPtr )
+					SetValue( m_actorPtr, value );
+			}
+		}
+	};
+
+	/**@brief Property typu std::wstring.*/
+	public ref class WStringPropertyWrapper : PropertyWrapper
+	{
+	public:
+		WStringPropertyWrapper( rttr::property prop )
+			: PropertyWrapper( PropertyType::PropertyWString, prop, prop.get_name().c_str() )
+		{}
+
+		System::String^		GetValue		( EngineObject* refObject );
+		void				SetValue		( EngineObject* refObject, System::String^ newValue );
+
+	public:
+		property System::String^		Value
+		{
+			System::String^		get	()
+			{
+				if( m_actorPtr )
+					return GetValue( m_actorPtr );
+				return gcnew System::String( "" );
+			}
+
+			void				set	( System::String^ value )
+			{
+				if( m_actorPtr )
+					SetValue( m_actorPtr, value );
+			}
+		}
+	};
+
 //====================================================================================//
 //			Generic object wrapper	
 //====================================================================================//
@@ -306,21 +376,43 @@ using namespace System::Collections::Generic;
 
 	};
 
-	/**@brief Property typu DirectX::XMFLOAT2, XMFLOAT3, XMFLOAT4.*/
-	public ref class XMFloatPropertyWrapper : CategoryPropertyWrapper
+	/**@brief Property dla typów, które nie grupuj¹ swoich w³aœciwoœci w podkategorie
+	tylko wyœwietlaj¹ je bezpoœrednio.*/
+	public ref class CategoryLessPropertyWrapper : CategoryPropertyWrapper
 	{
 	private:
-	public:
-		XMFloatPropertyWrapper( rttr::property prop )
-			: CategoryPropertyWrapper( GetPropertyType( prop ), prop, prop.get_name().c_str() )
+	protected:
+		CategoryLessPropertyWrapper( PropertyType type, rttr::property prop, const char* name )
+			: CategoryPropertyWrapper( type, prop, name )
 		{}
+
+	public:
 
 		void			BuildHierarchy	( rttr::type classType ) override;
 		void			BuildHierarchy	();
-	
+
 	public:
 		virtual void	ResetActor		( System::IntPtr objectPtr ) override;
 	};
 
+	/**@brief Property typu DirectX::XMFLOAT2, XMFLOAT3, XMFLOAT4.*/
+	public ref class XMFloatPropertyWrapper : CategoryLessPropertyWrapper
+	{
+	private:
+	public:
+		XMFloatPropertyWrapper( rttr::property prop )
+			: CategoryLessPropertyWrapper( GetPropertyType( prop ), prop, prop.get_name().c_str() )
+		{}
+	};
+
+	/**@brief Property dla obiektów zasobów: Model3DFromFile, BufferObject, MaterialObject, TextureObject*/
+	public ref class ResourceObjectPropertyWrapper : CategoryLessPropertyWrapper
+	{
+	private:
+	public:
+		ResourceObjectPropertyWrapper( rttr::property prop )
+			: CategoryLessPropertyWrapper( PropertyType::PropertyResource, prop, prop.get_name().c_str() )
+		{}
+	};
 
 }

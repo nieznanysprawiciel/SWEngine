@@ -10,6 +10,7 @@
 
 #include "Common/ObjectDeleter.h"
 #include "Common/MacrosSwitches.h"
+
 #include "GraphicAPI/ResourceObject.h"
 #include "GraphicAPI/ITexture.h"
 #include "GraphicAPI/IShader.h"

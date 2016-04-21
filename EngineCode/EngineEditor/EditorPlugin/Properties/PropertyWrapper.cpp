@@ -1,5 +1,5 @@
 #include "PropertyWrapper.h"
-
+#include <msclr/marshal_cppstd.h>
 
 
 namespace EditorPlugin
@@ -9,7 +9,7 @@ namespace EditorPlugin
 
 /**@brief */
 template< typename PropertyType >
-PropertyType	GetXMFloat( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject )
+PropertyType	GetPropertyValue( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject )
 {
 	rttr::property prop = RTTRPropertyRapist::MakeProperty( metaProperty );
 
@@ -39,7 +39,7 @@ PropertyType	GetXMFloat( const rttr::detail::property_wrapper_base* metaProperty
 
 /**@brief */
 template< typename PropertyType >
-void		SetXMFloat( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, PropertyType newValue )
+void		SetPropertyValue( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, PropertyType newValue )
 {
 	rttr::property prop = RTTRPropertyRapist::MakeProperty( metaProperty );
 
@@ -73,7 +73,7 @@ void			PropertyWrapper::ResetActor		( System::IntPtr objectPtr )
 }
 
 
-
+#pragma region UnusedXMFloatProperties
 /**************************************************************************************/
 //====================================================================================//
 //				DirectXMath types	
@@ -84,34 +84,36 @@ void			PropertyWrapper::ResetActor		( System::IntPtr objectPtr )
 //				Float2PropertyWrapper
 //====================================================================================//
 
+
+
 /**@brief */
 float		Float2PropertyWrapper::GetValueX	( EngineObject* refObject )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT2 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT2 >( m_metaProperty, System::IntPtr( refObject ) );
 	return value.x;
 }
 
 /**@brief */
 void		Float2PropertyWrapper::SetValueX	( EngineObject* refObject, float newValue )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT2 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT2 >( m_metaProperty, System::IntPtr( refObject ) );
 	value.x = newValue;
-	SetXMFloat( m_metaProperty, System::IntPtr( refObject ), value );
+	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
 }
 
 /**@brief */
 float		Float2PropertyWrapper::GetValueY	( EngineObject* refObject )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT2 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT2 >( m_metaProperty, System::IntPtr( refObject ) );
 	return value.y;
 }
 
 /**@brief */
 void		Float2PropertyWrapper::SetValueY	( EngineObject* refObject, float newValue )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT2 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT2 >( m_metaProperty, System::IntPtr( refObject ) );
 	value.y = newValue;
-	SetXMFloat( m_metaProperty, System::IntPtr( refObject ), value );
+	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
 }
 
 //====================================================================================//
@@ -123,46 +125,46 @@ void		Float2PropertyWrapper::SetValueY	( EngineObject* refObject, float newValue
 /**@brief */
 float		Float3PropertyWrapper::GetValueX	( EngineObject* refObject )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
 	return value.x;
 }
 
 /**@brief */
 void		Float3PropertyWrapper::SetValueX	( EngineObject* refObject, float newValue )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
 	value.x = newValue;
-	SetXMFloat( m_metaProperty, System::IntPtr( refObject ), value );
+	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
 }
 
 /**@brief */
 float		Float3PropertyWrapper::GetValueY	( EngineObject* refObject )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
 	return value.y;
 }
 
 /**@brief */
 void		Float3PropertyWrapper::SetValueY	( EngineObject* refObject, float newValue )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
 	value.y = newValue;
-	SetXMFloat( m_metaProperty, System::IntPtr( refObject ), value );
+	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
 }
 
 /**@brief */
 float		Float3PropertyWrapper::GetValueZ	( EngineObject* refObject )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
 	return value.z;
 }
 
 /**@brief */
 void		Float3PropertyWrapper::SetValueZ	( EngineObject* refObject, float newValue )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
 	value.z = newValue;
-	SetXMFloat( m_metaProperty, System::IntPtr( refObject ), value );
+	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
 }
 
 
@@ -173,124 +175,153 @@ void		Float3PropertyWrapper::SetValueZ	( EngineObject* refObject, float newValue
 /**@brief */
 float		Float4PropertyWrapper::GetValueX	( EngineObject* refObject )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
 	return value.x;
 }
 
 /**@brief */
 void		Float4PropertyWrapper::SetValueX	( EngineObject* refObject, float newValue )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
 	value.x = newValue;
-	SetXMFloat( m_metaProperty, System::IntPtr( refObject ), value );
+	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
 }
 
 /**@brief */
 float		Float4PropertyWrapper::GetValueY	( EngineObject* refObject )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
 	return value.y;
 }
 
 /**@brief */
 void		Float4PropertyWrapper::SetValueY	( EngineObject* refObject, float newValue )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
 	value.y = newValue;
-	SetXMFloat( m_metaProperty, System::IntPtr( refObject ), value );
+	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
 }
 
 /**@brief */
 float		Float4PropertyWrapper::GetValueZ	( EngineObject* refObject )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
 	return value.z;
 }
 
 /**@brief */
 void		Float4PropertyWrapper::SetValueZ	( EngineObject* refObject, float newValue )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
 	value.z = newValue;
-	SetXMFloat( m_metaProperty, System::IntPtr( refObject ), value );
+	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
 }
 
 /**@brief */
 float		Float4PropertyWrapper::GetValueW	( EngineObject* refObject )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
 	return value.w;
 }
 
 /**@brief */
 void		Float4PropertyWrapper::SetValueW	( EngineObject* refObject, float newValue )
 {
-	auto value = GetXMFloat< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
 	value.w = newValue;
-	SetXMFloat( m_metaProperty, System::IntPtr( refObject ), value );
+	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
 }
 
+#pragma endregion
+
 //====================================================================================//
-//				
+//			Regular Properties	
 //====================================================================================//
 
 
 /**@brief */
 int IntPropertyWrapper::GetValue( EngineObject* refObject )
 {
-	auto value = GetXMFloat< int >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< int >( m_metaProperty, System::IntPtr( refObject ) );
 	return value;
 }
 
 /**@brief */
 void IntPropertyWrapper::SetValue( EngineObject* refObject, int newValue )
 {
-	SetXMFloat< int >( m_metaProperty, System::IntPtr( refObject ), newValue );
+	SetPropertyValue< int >( m_metaProperty, System::IntPtr( refObject ), newValue );
 }
 
 
 /**@brief */
 bool BoolPropertyWrapper::GetValue( EngineObject* refObject )
 {
-	auto value = GetXMFloat< bool >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< bool >( m_metaProperty, System::IntPtr( refObject ) );
 	return value;
 }
 
 /**@brief */
 void BoolPropertyWrapper::SetValue( EngineObject* refObject, bool newValue )
 {
-	SetXMFloat< bool >( m_metaProperty, System::IntPtr( refObject ), newValue );
+	SetPropertyValue< bool >( m_metaProperty, System::IntPtr( refObject ), newValue );
 }
 
 
 /**@brief */
 float FloatPropertyWrapper::GetValue( EngineObject* refObject )
 {
-	auto value = GetXMFloat< float >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< float >( m_metaProperty, System::IntPtr( refObject ) );
 	return value;
 }
 
 /**@brief */
 void FloatPropertyWrapper::SetValue( EngineObject* refObject, float newValue )
 {
-	SetXMFloat< float >( m_metaProperty, System::IntPtr( refObject ), newValue );
+	SetPropertyValue< float >( m_metaProperty, System::IntPtr( refObject ), newValue );
 }
 
 /**@brief */
 double DoublePropertyWrapper::GetValue( EngineObject* refObject )
 {
-	auto value = GetXMFloat< double >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< double >( m_metaProperty, System::IntPtr( refObject ) );
 	return value;
 }
 
 /**@brief */
 void DoublePropertyWrapper::SetValue( EngineObject* refObject, double newValue )
 {
-	SetXMFloat< double >( m_metaProperty, System::IntPtr( refObject ), newValue );
+	SetPropertyValue< double >( m_metaProperty, System::IntPtr( refObject ), newValue );
 }
 
+/**@brief */
+System::String ^ StringPropertyWrapper::GetValue( EngineObject* refObject )
+{
+	auto value = GetPropertyValue< std::string >( m_metaProperty, System::IntPtr( refObject ) );
+	return gcnew System::String( value.c_str() );
+}
+
+/**@brief */
+void StringPropertyWrapper::SetValue( EngineObject* refObject, System::String^ newValue )
+{
+	SetPropertyValue< std::string >( m_metaProperty, System::IntPtr( refObject ), msclr::interop::marshal_as< std::string >( newValue ) );
+}
+
+/**@brief */
+System::String ^ WStringPropertyWrapper::GetValue( EngineObject* refObject )
+{
+	auto value = GetPropertyValue< std::wstring >( m_metaProperty, System::IntPtr( refObject ) );
+	return gcnew System::String( value.c_str() );
+}
+
+/**@brief */
+void WStringPropertyWrapper::SetValue( EngineObject* refObject, System::String^ newValue )
+{
+	SetPropertyValue< std::wstring >( m_metaProperty, System::IntPtr( refObject ), msclr::interop::marshal_as< std::wstring >( newValue ) );
+}
+
+
 //====================================================================================//
-//			ObjectPropertyWrapper	
+//			ObjectPropertyWrapper	CategoryPropertyWrapper
 //====================================================================================//
 
 /**@brief */
@@ -354,11 +385,28 @@ PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( rttr::property property
 	{
 		return gcnew DoublePropertyWrapper( property );
 	}
+	else if( propertyType == rttr::type::get< std::string >() )
+	{
+		return gcnew StringPropertyWrapper( property );
+	}
+	else if( propertyType == rttr::type::get< std::wstring >() )
+	{
+		return gcnew WStringPropertyWrapper( property );
+	}
 	else if( propertyType == rttr::type::get< DirectX::XMFLOAT2* >()
 			 || propertyType == rttr::type::get< DirectX::XMFLOAT3* >() 
 			 || propertyType == rttr::type::get< DirectX::XMFLOAT4* >() )
 	{
 		auto propertyWrapper = gcnew XMFloatPropertyWrapper( property );
+		propertyWrapper->BuildHierarchy();
+		return propertyWrapper;
+	}
+	else if( propertyType.is_derived_from< ResourceObject >() )
+	{
+		// Najpierw sprawdzamy czy dziedziczy po ResourceObject dopiero potem
+		// EngineObject. Dziêki temu mo¿emy oddzieliæ zasoby od innych w³aœciowoœci
+		// i obs³u¿yæ je inaczej.
+		auto propertyWrapper = gcnew ResourceObjectPropertyWrapper( property );
 		propertyWrapper->BuildHierarchy();
 		return propertyWrapper;
 	}
@@ -378,12 +426,16 @@ void ObjectPropertyWrapper::BuildHierarchy()
 	BuildHierarchy( RTTRPropertyRapist::MakeProperty( m_metaProperty ).get_type() );
 }
 
+//====================================================================================//
+//				CategoryLessPropertyWrapper
+//====================================================================================//
+
 /**@brief Buduje hierarchiê dla typów DirectX::XMFLOAT...
 
 Funkcja nie grupuje Property w kategorie w przeciwieñstwie do
 @ref CategoryPropertyWrapper::BuildHierarchy.
 */
-void XMFloatPropertyWrapper::BuildHierarchy( rttr::type classType )
+void CategoryLessPropertyWrapper::BuildHierarchy( rttr::type classType )
 {
 	classType = classType.get_raw_type();
 	auto properties = classType.get_properties();
@@ -395,13 +447,13 @@ void XMFloatPropertyWrapper::BuildHierarchy( rttr::type classType )
 }
 
 /**@brief Zbuduj hierarchiê metadanych z podanego obiektu.*/
-void XMFloatPropertyWrapper::BuildHierarchy()
+void CategoryLessPropertyWrapper::BuildHierarchy()
 {
 	BuildHierarchy( RTTRPropertyRapist::MakeProperty( m_metaProperty ).get_type() );
 }
 
 /**@brief */
-void	XMFloatPropertyWrapper::ResetActor		( System::IntPtr objectPtr )
+void	CategoryLessPropertyWrapper::ResetActor		( System::IntPtr objectPtr )
 {
 	auto prop = RTTRPropertyRapist::MakeProperty( m_metaProperty );
 
@@ -429,9 +481,18 @@ void	XMFloatPropertyWrapper::ResetActor		( System::IntPtr objectPtr )
 		for each( auto property in Properties )
 			property->ResetActor( System::IntPtr( (void*)xmfloat ) );
 	}
+	else if( m_type == PropertyType::PropertyResource || m_type == PropertyType::PropertyActor )
+	{
+		auto value = prop.get_value( *static_cast< EngineObject* >( objectPtr.ToPointer() ) );
+		auto object = value.get_value< EngineObject* >();
+
+		for each( auto property in Properties )
+			property->ResetActor( System::IntPtr( (void*)object ) );
+	}
 	else
 		assert( false );
 	
 }
+
 
 }

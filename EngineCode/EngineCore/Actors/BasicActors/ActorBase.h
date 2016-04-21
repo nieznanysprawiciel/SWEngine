@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "Common/RTTR.h"
+#include "Common/EngineObject.h"
 
 
 class EngineInterface;
@@ -14,19 +14,12 @@ class IRenderer;
 class Model3DFromFile;
 
 
-enum class MetaDataType
-{
-	Category,
-	Serialize,
-	ShowInEditor
-};
-
 
 /**@brief Klasa bazowa dla wszystkich obiektów w grze (aktorów).
 */
-class EngineObject
+class ActorBase	:	public EngineObject
 {
-	RTTR_ENABLE()
+	RTTR_ENABLE( EngineObject )
 private:
 	static Engine*	engine;		///< WskaŸnik na g³ówny obiekt silnika.
 protected:
@@ -38,7 +31,7 @@ protected:
 	*/
 	EngineInterface*	GetEngineInterface(){ return reinterpret_cast<EngineInterface*>(engine); }
 public:
-	virtual ~EngineObject() = default;
+	virtual ~ActorBase() = default;
 	virtual void		Init(){};
 
 	/**@brief Funkcja ustawia wskaŸnik na g³ówny obiekt silnika.
@@ -47,5 +40,5 @@ public:
 	*/
 	static void			SetEngine( Engine* engine_ptr ) { if( !engine ) engine = engine_ptr; }
 
-	static EngineObject*		Create()	{ return new EngineObject; }
+	static ActorBase*		Create()	{ return new ActorBase; }
 };

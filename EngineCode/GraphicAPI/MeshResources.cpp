@@ -4,6 +4,12 @@
 
 
 
+RTTR_REGISTRATION
+{
+	rttr::registration::class_< ResourceObject >( "ResourceObject" );
+	RTTR_REGISTRATION_STANDARD_TYPE_VARIANTS( std::wstring )
+}
+
 
 //----------------------------------------------------------------------------------------------//
 //								PixelShaderObject												//

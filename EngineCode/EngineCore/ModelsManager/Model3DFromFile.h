@@ -98,6 +98,9 @@ MaterialObject::SetNullMaterial.
 
 class Model3DFromFile : public ResourceObject
 {
+	RTTR_ENABLE( ResourceObject )
+	RTTR_REGISTRATION_FRIEND
+
 	friend ObjectDeleter<Model3DFromFile>;
 	friend ModelsManager;
 private:
@@ -107,7 +110,7 @@ private:
 	std::vector<ModelPart>			model_parts;		///<Vector zawieraj¹cy info o poszczególnych czêœciach mesha
 	BufferObject*					vertex_buffer;		///<Bufor wierzcho³ków
 	BufferObject*					index_buffer;		///<Bufor indeksów
-	std::wstring					file_path;			///<Plik, z którego powsta³ obiekt
+	std::wstring					m_filePath;			///<Plik, z którego powsta³ obiekt
 
 	//wskaxnik na tymczasow¹ strukture, która bêdzie u¿ywana podczas wype³niania obiektu danymi
 	EditTMP*						tmp_data;			///<Dane tymczasowe u¿ywane podczas wype³niania

@@ -1,7 +1,7 @@
 #include "ActorWrapper.h"
 #include "Common/RTTR.h"
 
-#include "EngineCore/Actors/BasicActors/EngineObject.h"
+#include "Common/EngineObject.h"
 
 
 namespace EditorPlugin
