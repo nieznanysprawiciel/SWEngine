@@ -12,14 +12,14 @@ class MovementEngine
 private:
 	Engine* engine;
 
-	std::vector<DynamicActor*>			dynamic_objects;
-	std::vector<ComplexActor*>		complex_objects;
+	std::vector< DynamicActor* >			m_dynamicObjects;
+	std::vector< ComplexActor *>			m_complexObjects;
 public:
-	MovementEngine(Engine* engine);
+	MovementEngine( Engine* engine );
 	~MovementEngine();
 
-	void proceed_movement(float time_interval);
-	Size add_moveable_object(DynamicActor* dyn_object);
+	void		ProceedMovement			( float timeInterval );
+	Size		AddMoveableObject		( DynamicActor* dynObject );
 };
 
 

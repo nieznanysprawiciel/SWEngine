@@ -179,7 +179,6 @@
     <BuildLog />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="$(EngineCoreSourceDir)CollisionEngine\CollisionEngine.h" />
     <ClInclude Include="$(EngineCoreSourceDir)ControllersEngine\camera_controller_PROTOTYPE.h" />
     <ClInclude Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.h" />
     <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\ConstantBuffersFormat.h" />
@@ -219,6 +218,11 @@
     <ClInclude Include="$(EngineCoreSourceDir)MainEngine\TimeManager.h" />
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\EngineContext.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\CollisionEngine.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\CollisionOctree.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\IOctreeNode.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeLeaf.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeNode.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\IInput.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\ActorsApi.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\Assets.h" />
@@ -256,7 +260,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\MovementEngine.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(EngineCoreSourceDir)CollisionEngine\CollisionEngine.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)ControllersEngine\camera_controller_PROTOTYPE.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
@@ -305,6 +308,10 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\ActorClassesInitializer.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\AssetsInitializer.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\DisplayerInitializer.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\CollisionEngine.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\CollisionOctree.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeLeaf.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeNode.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Actors\ActorsApi.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Actors\Assets.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\ApiGroup.cpp" />
@@ -357,4 +364,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="\ProgramyVS\SWEngine\EngineRepo\EngineCode\EngineCore\SW_engine.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

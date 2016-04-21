@@ -8,16 +8,18 @@
 CollisionEngine::CollisionEngine(Engine* engine)
 	: engine(engine)
 {
+	m_octree = new CollisionOctree();
 }
 
 
 CollisionEngine::~CollisionEngine()
 {
+	delete m_octree;
 }
 
 
 
-void CollisionEngine::proceed_collisions(float time_interval)
+void CollisionEngine::ProceedCollisions(float time_interval)
 {
 
 }

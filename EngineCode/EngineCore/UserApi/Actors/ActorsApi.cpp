@@ -52,7 +52,7 @@ void ActorsApi::AddToModules( EngineObject* newActor, ActorInfo actorModules )
 	{
 		// @todo Pomyœleæ co zrobiæ w trybie release.
 		assert( rttr::rttr_cast< DynamicActor* >( newActor ) );
-		Context->movementEngine->add_moveable_object( static_cast< DynamicActor* >( newActor ) );
+		Context->movementEngine->AddMoveableObject( static_cast< DynamicActor* >( newActor ) );
 	}
 
 	if( actorModules.enablePreController )

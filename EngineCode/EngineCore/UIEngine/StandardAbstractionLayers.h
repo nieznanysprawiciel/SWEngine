@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Common/TypesDefinitions.h"
+#include <vector>
 
 typedef int16 DeviceNumber;
 typedef uint16 VirtualKeyIndex;

@@ -87,13 +87,13 @@
     <Filter Include="EngineCore\UserApi\Assets">
       <UniqueIdentifier>{2c1a2f9b-05ee-44e1-b030-ce3806629ee0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\PhysicEngine\Collisions">
+      <UniqueIdentifier>{dacb917f-6284-4481-8b7e-d279bfa31024}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
       <Filter>EngineCore\SoundEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)CollisionEngine\CollisionEngine.h">
-      <Filter>EngineCore\CollisionEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ResourceContainer.h">
       <Filter>EngineCore\ModelsManagment</Filter>
@@ -314,6 +314,21 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\IInput.h">
       <Filter>EngineCore\UIEngine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\CollisionEngine.h">
+      <Filter>EngineCore\PhysicEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\CollisionOctree.h">
+      <Filter>EngineCore\PhysicEngine\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeLeaf.h">
+      <Filter>EngineCore\PhysicEngine\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\IOctreeNode.h">
+      <Filter>EngineCore\PhysicEngine\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeNode.h">
+      <Filter>EngineCore\PhysicEngine\Collisions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -321,9 +336,6 @@
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\ModelsManager.cpp">
       <Filter>EngineCore\ModelsManagment</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)CollisionEngine\CollisionEngine.cpp">
-      <Filter>EngineCore\CollisionEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.cpp">
       <Filter>EngineCore\SoundEngine</Filter>
@@ -483,6 +495,18 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\EngineObject.cpp">
       <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\CollisionEngine.cpp">
+      <Filter>EngineCore\PhysicEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeLeaf.cpp">
+      <Filter>EngineCore\PhysicEngine\Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\CollisionOctree.cpp">
+      <Filter>EngineCore\PhysicEngine\Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeNode.cpp">
+      <Filter>EngineCore\PhysicEngine\Collisions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -16,18 +16,18 @@ MovementEngine::~MovementEngine()
 }
 
 
-void MovementEngine::proceed_movement(float time_interval)
+void MovementEngine::ProceedMovement(float time_interval)
 {
-	for ( unsigned int i = 0; i < dynamic_objects.size(); ++i )
+	for ( unsigned int i = 0; i < m_dynamicObjects.size(); ++i )
 	{
-		DynamicActor* object = dynamic_objects[i];
+		DynamicActor* object = m_dynamicObjects[i];
 		object->Move( time_interval );
 		object->swap();		// Zamieniamy bufory wewn¹trz obiektu
 	}
 }
 
-Size MovementEngine::add_moveable_object(DynamicActor* dyn_object)
+Size MovementEngine::AddMoveableObject(DynamicActor* dyn_object)
 {
-	dynamic_objects.push_back(dyn_object);
-	return dynamic_objects.size() - 1;		//zwracamy indeks elementu dodanego
+	m_dynamicObjects.push_back(dyn_object);
+	return m_dynamicObjects.size() - 1;		//zwracamy indeks elementu dodanego
 }

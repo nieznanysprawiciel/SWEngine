@@ -10,7 +10,7 @@
 #include <string>
 
 #include "EngineCore/EventsManager/Event.h"
-#include "EngineCore/CollisionEngine/CollisionEngine.h"
+#include "EngineCore/PhysicEngine/CollisionEngine.h"
 #include "EngineCore/ControllersEngine/ControllersEngine.h"
 #include "EngineCore/GamePlay/FableEngine.h"
 #include "EngineCore/DisplayEngine/DisplayEngine.h"
