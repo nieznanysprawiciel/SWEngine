@@ -94,7 +94,8 @@ MaterialObject::SetNullMaterial.
 @todo Przepisaæ tak, ¿eby by³o jakoœ bardziej estetycznie.
 - Dodaæ klasê MemoryChunk zamiast go³ych wskaŸników na tablicê wierzcho³ków.
 - Zastosowaæ semantykê move z C++11. Ograniczyæ kopiowanie pamiêci na ile siê da.
-- Uzupe³niæ o mo¿liwoœæ wczytywania layotów i innych rzeczy, których brakuje.*/
+- Uzupe³niæ o mo¿liwoœæ wczytywania layotów i innych rzeczy, których brakuje.
+- Wydzieliæ funkcjonalnoœ budowania modelu w inne miejsce (tmp_data).*/
 
 class Model3DFromFile : public ResourceObject
 {
