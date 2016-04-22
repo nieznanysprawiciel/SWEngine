@@ -26,6 +26,16 @@ namespace EditorPlugin
 		PropertyUnknown
 	};
 
+	public enum ResourcePropertyType
+	{
+		BufferProperty,
+		TextureProperty,
+		VertexShaderProperty,
+		PixelShaderProperty,
+		MeshProperty,
+		UnknownProperty
+	};
+
 	template< typename PropertyType >
 	PropertyType		GetPropertyValue( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
 
