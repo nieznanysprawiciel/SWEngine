@@ -22,7 +22,7 @@ namespace EditorApp
 	{
 		public PathsManager			PathsManager { get; }
 		public GlobalSettings		GlobalSettings { get; }
-		public Project.Manager		ProjectManager { get; }
+		public Project.ProjectManager		ProjectManager { get; }
 		public Engine.Displayer		Displayer { get; }
 
 		public MainWindow			MainWindowRef { get; }
@@ -34,7 +34,7 @@ namespace EditorApp
 
 			PathsManager = new PathsManager();
 			GlobalSettings = new GlobalSettings();
-			ProjectManager = new Project.Manager( this );
+			ProjectManager = new Project.ProjectManager( this );
 			Displayer = new Engine.Displayer();
 		}
 
@@ -65,6 +65,7 @@ namespace EditorApp
 			{
 				MainWindowRef.ActorPreview.DataContext = null;	// ProjectManager.ActorsLogic.ActorsTypesList;
 				MainWindowRef.ActorList.DataContext = ProjectManager.ActorsLogic.Actors;
+				MainWindowRef.ContentTree.DataContext = ProjectManager.ContentManager;
 			}
 
 			return result;

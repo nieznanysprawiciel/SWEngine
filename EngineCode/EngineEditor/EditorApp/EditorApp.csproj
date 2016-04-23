@@ -156,9 +156,12 @@
     <Compile Include="Editor\Logic.cs" />
     <Compile Include="Editor\GlobalSettings.cs" />
     <Compile Include="Editor\Project\Actors\ActorsLogic.cs" />
+    <Compile Include="Editor\Project\Content\ContentManager.cs" />
+    <Compile Include="Editor\Project\Content\FileTreeNode.cs" />
     <Compile Include="Editor\Project\LevelInfo.cs" />
-    <Compile Include="Editor\Project\Manager.cs" />
+    <Compile Include="Editor\Project\ProjectManager.cs" />
     <Compile Include="Editor\PathsManager.cs" />
+    <Compile Include="GUI\DatabindingDebugConverter .cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -229,6 +232,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Styles\BlueStyle\ActorDisplayStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\BlueStyle\ContentStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

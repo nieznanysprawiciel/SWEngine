@@ -4,15 +4,17 @@
 		xmlns:engine="clr-namespace:EditorPlugin;assembly=EditorPlugin"
 		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
 		xmlns:osc="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter"
+		xmlns:content="clr-namespace:EditorApp.Editor.Project.Content"
+		xmlns:debug="clr-namespace:EditorApp.Debug"
         Title="Engine Editor" Height="1000" Width="1920" WindowStartupLocation="CenterScreen">
 	<Window.Resources>
 		<ResourceDictionary>
+			<!--<debug:DatabindingDebugConverter x:Key="debugConverter" />-->
 			<XmlDataProvider x:Key="ControlsLanguageVersion" Source="/Language/Polish.xml" XPath="Language/MainWindow"/>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="/Styles/BlueStyle/MainWindowStyles.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
-
 	</Window.Resources>
 
 	<Window.Background>
@@ -55,10 +57,11 @@
 
 		<TabControl DockPanel.Dock="Left" Style="{StaticResource TabControlStyleBase}" Margin="10, 10, 10, 10" Width="400" >
 			<TabItem Header="Assets">
-
+				<TreeView Name="ContentTree" Style="{StaticResource ContentTreeViewStyle}" ItemsSource="{Binding Path=FileTreeRoot.DirectoryContent}">
+				</TreeView>
 			</TabItem>
 			<TabItem Header="Actors">
-
+				<!--Style="{StaticResource ContentTreeViewStyle}"-->
 			</TabItem>
 		</TabControl>
 		<osc:DockPanelSplitter DockPanel.Dock="Left" Width="4"/>

@@ -54,12 +54,25 @@
 		</Style.Resources>
 	</Style>
 
+	<!--Content tree view-->
+	<Style x:Key="TreeViewStyleBase" TargetType="TreeView">
+		<Setter Property="Background" Value="Transparent" />
+		
+	</Style>
+
+	<Style x:Key="ContentTreeViewStyle" TargetType="TreeView" BasedOn="{StaticResource TreeViewStyleBase}">
+		
+		<Style.Resources>
+			<ResourceDictionary Source="/Styles/BlueStyle/ContentStyle.xaml"/>
+		</Style.Resources>
+	</Style>
+
 	<!--Tab control-->
 	<Style x:Key="TabItemBase" TargetType="TabItem">
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="TabItem">
-					<Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="20,8,0,0" Margin="2,0">
+					<Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="20,8,0,0" Margin="-2,0">
 						<ContentPresenter x:Name="ContentSite"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"

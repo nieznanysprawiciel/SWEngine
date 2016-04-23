@@ -6,25 +6,26 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.IO;
 using EditorApp.Editor.Project.Actors;
+using EditorApp.Editor.Project.Content;
 
 namespace EditorApp.Project
 {
-	public class Manager
+	public class ProjectManager
 	{
 		private ProjectSettings				m_projectSettings;
 		private UserSettings                m_userSettings;
 		private ActorsLogic                 m_actorsLogic;
-		private Logic                       m_editorLogic;
-
-		///< Referencja na główny obiekt edytora.
+		private ContentManager              m_contentManager;
+		private Logic                       m_editorLogic;		///< Referencja na główny obiekt edytora.
 
 		#region Contructor
 
-		public Manager( Logic editorLogic )
+		public ProjectManager( Logic editorLogic )
 		{
 			m_projectSettings = new ProjectSettings();
 			m_userSettings = new UserSettings();
 			m_actorsLogic = new ActorsLogic( editorLogic );
+			m_contentManager = new ContentManager();
 			m_editorLogic = editorLogic;
 		}
 
@@ -50,6 +51,7 @@ namespace EditorApp.Project
 			}
 
 			m_actorsLogic.PostInitLevel();
+			m_contentManager.ResetAssetsRoot( m_editorLogic.PathsManager.DefaultAssetsDir );
 
 			return true;
 		}
@@ -83,6 +85,19 @@ namespace EditorApp.Project
 			get
 			{
 				return m_actorsLogic;
+			}
+		}
+
+		public ContentManager ContentManager
+		{
+			get
+			{
+				return m_contentManager;
+			}
+
+			set
+			{
+				m_contentManager = value;
 			}
 		}
 
