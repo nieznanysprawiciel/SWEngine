@@ -51,7 +51,7 @@ namespace EditorApp.Project
 			}
 
 			m_actorsLogic.PostInitLevel();
-			m_contentManager.ResetAssetsRoot( m_editorLogic.PathsManager.DefaultAssetsDir );
+			m_contentManager.ResetAssetsRoot( m_editorLogic.PathsManager.AssetsDir );
 
 			return true;
 		}

@@ -86,7 +86,7 @@
 							<GridViewColumn Header="Name" Width="Auto" >
 								<GridViewColumn.CellTemplate>
 									<DataTemplate>
-										<TextBlock Text="{Binding ActorName}" Style="{StaticResource TextBlockStyle}" />
+										<TextBlock Text="{Binding ActorName}" Style="{StaticResource TextBlockBaseStyle}" />
 									</DataTemplate>
 								</GridViewColumn.CellTemplate>
 							</GridViewColumn>

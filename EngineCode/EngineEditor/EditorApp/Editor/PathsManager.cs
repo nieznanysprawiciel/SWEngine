@@ -8,11 +8,21 @@ namespace EditorApp
 		string          m_defaultAssetsDir;
 
 		string          m_projectDir;
+		string          m_assetsDir;
 		string          m_projectFileName;
+		string          m_sourceCodeDir;
+		string          m_visualProjectsDir;
 
+		// Relative directories
+		string          m_shadersRelativeDir;
+		string          m_levelsRelativeDir;
+		string          m_texturesRelativeDir;
+		string          m_animationsRelativeDir;
 
 		public void			InitPaths( string[] cmdArguments )
 		{
+			InitDefaultRelativesPaths();
+
 			string appPath = cmdArguments[ 0 ];
 
 			if( appPath.Contains( "EngineBuildDir" ) )
@@ -43,10 +53,21 @@ namespace EditorApp
 			}
 		}
 
+		void InitDefaultRelativesPaths()
+		{
+			m_shadersRelativeDir = "shaders";
+			m_levelsRelativeDir = "levels";
+			m_texturesRelativeDir = "textures";
+			m_animationsRelativeDir = "animations";
+		}
+
 		public void			UpdateProjectPaths( string projectPath )
 		{
 			ProjectDir = Path.GetDirectoryName( projectPath );
 			ProjectFileName = Path.GetFileName( projectPath );
+			m_assetsDir = Path.Combine( ProjectDir, "GameRelease" );
+			m_sourceCodeDir = Path.Combine( ProjectDir, "ProjectCode" );
+			m_visualProjectsDir = Path.Combine( ProjectDir, "VisualProjects" );
 		}
 
 		#region GettersSetters
@@ -100,6 +121,91 @@ namespace EditorApp
 			set
 			{
 				m_projectFileName = value;
+			}
+		}
+
+		public string AssetsDir
+		{
+			get
+			{
+				return m_assetsDir;
+			}
+
+			//set
+			//{
+			//	m_assetsDir = value;
+			//}
+		}
+
+		public string GameReleaseDir
+		{
+			get
+			{
+				// It's the same directory.
+				return m_assetsDir;
+			}
+
+			//set
+			//{
+			//	m_assetsDir = value;
+			//}
+		}
+
+		public string ShadersDir
+		{
+			get
+			{
+				return Path.Combine( ProjectDir, m_shadersRelativeDir );
+			}
+		}
+
+		public string LevelsDir
+		{
+			get
+			{
+				return Path.Combine( ProjectDir, m_levelsRelativeDir );
+			}
+		}
+
+		public string TexturesDir
+		{
+			get
+			{
+				return Path.Combine( ProjectDir, m_texturesRelativeDir );
+			}
+		}
+
+		public string AnimationsDir
+		{
+			get
+			{
+				return Path.Combine( ProjectDir, m_animationsRelativeDir );
+			}
+		}
+
+		public string SourceCodeDir
+		{
+			get
+			{
+				return m_sourceCodeDir;
+			}
+
+			set
+			{
+				m_sourceCodeDir = value;
+			}
+		}
+
+		public string VisualProjectsDir
+		{
+			get
+			{
+				return m_visualProjectsDir;
+			}
+
+			set
+			{
+				m_visualProjectsDir = value;
 			}
 		}
 

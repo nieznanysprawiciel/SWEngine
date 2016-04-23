@@ -235,6 +235,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\BlueStyle\BaseStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\BlueStyle\ContentStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -253,15 +257,17 @@
   <Target Name="BeforeBuild">
   </Target>
   -->
-  <Target Name="AfterBuild" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <Message Text="Copy Reflection.dll and libfbxsdk.dll to $(OutputPath)" />
-    <Copy SourceFiles="$(ExternalDir)FBX_SDK\lib\vs2013\$(PlatformTarget)\$(ConfigTypeSmallString)\libfbxsdk.dll" DestinationFolder="$(OutputPath)" ContinueOnError="false" />
-    <Copy SourceFiles="$(EngineLibDir)Reflection\v120\$(PlatformTarget)\$(ConfigTypeSmallString)\Reflection.dll" DestinationFolder="$(OutputPath)" ContinueOnError="false" />
-    <Move SourceFiles="$(OutputPath)$(AssemblyName).pdb" DestinationFolder="$(EnginePDBDir)\EditorApp\EditorApp_$(Configuration)_$(PlatformTarget)\" ContinueOnError="true" />
-  </Target>
   <Target Name="AfterBuild">
     <Message Text="Copy Reflection.dll and libfbxsdk.dll to $(OutputPath)" />
     <Copy SourceFiles="$(ExternalDir)FBX_SDK\lib\vs2013\$(PlatformTarget)\$(ConfigTypeSmallString)\libfbxsdk.dll" DestinationFolder="$(OutputPath)" ContinueOnError="false" />
     <Copy SourceFiles="$(EngineLibDir)Reflection\v120\$(PlatformTarget)\$(ConfigTypeSmallString)\Reflection.dll" DestinationFolder="$(OutputPath)" ContinueOnError="false" />
+    <Move	SourceFiles="$(OutputPath)$(AssemblyName).pdb"
+				DestinationFolder="$(EnginePDBDir)\EditorApp\EditorApp_$(Configuration)_$(PlatformTarget)\"
+				Condition="'$(Configuration)|$(Platform)' == 'Release|x64'"
+				ContinueOnError="false" />
+	 <Move	SourceFiles="$(OutputPath)DockPanelSplitter.pdb"
+				DestinationFolder="$(EnginePDBDir)\EditorApp\EditorApp_$(Configuration)_$(PlatformTarget)\"
+				Condition="'$(Configuration)|$(Platform)' == 'Release|x64'"
+				ContinueOnError="false" />
   </Target>
 </Project>

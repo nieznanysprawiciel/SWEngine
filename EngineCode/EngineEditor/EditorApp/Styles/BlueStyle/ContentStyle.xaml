@@ -4,29 +4,19 @@
 					xmlns:debug="clr-namespace:EditorApp.Debug"
                     xmlns:local="clr-namespace:EditorApp.Styles.BlueStyle">
 
-	<debug:DatabindingDebugConverter x:Key="debugConverter" />
+
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="/Styles/BlueStyle/BaseStyles.xaml"/>
+	</ResourceDictionary.MergedDictionaries>
 	
-	<Color x:Key="BasicTextColor">#FFCFC8C8</Color>
-	<Color x:Key="ControlsBorderColor">#55CFC8C8</Color>
-	<SolidColorBrush x:Key="BasicTextColorBrush" Color="{StaticResource BasicTextColor}"/>
-	<SolidColorBrush x:Key="ControlsBorderColorBrush" Color="{StaticResource ControlsBorderColor}"/>
-
-
-	<Style x:Key="TextBlockBaseStyle" TargetType="TextBlock">
-		<Setter Property="Foreground" Value="{StaticResource BasicTextColorBrush}"/>
-		<Setter Property="Width" Value="50" />
-	</Style>
+	
+	<!--<debug:DatabindingDebugConverter x:Key="debugConverter" />-->
+	
 
 	<HierarchicalDataTemplate DataType="{x:Type content:FileTreeNode}" ItemsSource="{Binding DirectoryContent}">
 		<StackPanel>
-			<TextBlock Width="Auto" Text="{Binding Name}" Style="{StaticResource TextBlockBaseStyle}"/>
+			<TextBlock Padding="2" Width="Auto" Text="{Binding Name}" Style="{StaticResource TextBlockBaseStyle}"/>
 		</StackPanel>
 	</HierarchicalDataTemplate>
 
-	<!--<DataTemplate DataType="{x:Type content:FileNode}">
-		<StackPanel>
-			<TextBlock Width="150" Text="{Binding Name, Converter={StaticResource debugConverter}}" Style="{StaticResource TextBlockBaseStyle}"/>
-		</StackPanel>
-	</DataTemplate>-->
-	
 </ResourceDictionary>
