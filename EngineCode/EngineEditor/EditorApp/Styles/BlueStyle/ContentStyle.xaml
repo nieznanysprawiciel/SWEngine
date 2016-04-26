@@ -2,20 +2,23 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:content="clr-namespace:EditorApp.Editor.Project.Content"
 					xmlns:debug="clr-namespace:EditorApp.Debug"
+					xmlns:gui="clr-namespace:EditorApp.GUI"
                     xmlns:local="clr-namespace:EditorApp.Styles.BlueStyle">
 
 
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="/Styles/BlueStyle/BaseStyles.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
-	
-	
+
+	<gui:FileIconConverter x:Key="FileTypeIconConverter" />
+
 	<!--<debug:DatabindingDebugConverter x:Key="debugConverter" />-->
 	
 
 	<HierarchicalDataTemplate DataType="{x:Type content:FileTreeNode}" ItemsSource="{Binding DirectoryContent}">
-		<StackPanel>
-			<TextBlock Padding="2" Width="Auto" Text="{Binding Name}" Style="{StaticResource TextBlockBaseStyle}"/>
+		<StackPanel Orientation="Horizontal">
+			<Image Width="20" Height="20" Source="{Binding Type, Converter={StaticResource FileTypeIconConverter}}" />
+			<TextBlock Padding="2" Margin="5, 0, 0, 0" Width="Auto" Text="{Binding Name}" Style="{StaticResource TextBlockBaseStyle}"/>
 		</StackPanel>
 	</HierarchicalDataTemplate>
 

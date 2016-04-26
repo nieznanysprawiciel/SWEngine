@@ -17,7 +17,7 @@ namespace EditorApp.Editor.Project.Content
 
 		public void		ResetAssetsRoot		( string directory )
 		{
-			FileTreeRoot = new FileTreeNode( "" );
+			FileTreeRoot = new FileTreeNode( "", FileTreeNodeType.Directory );
 			FileTreeRoot.BuildTreeFromDir( directory );
 		}
 

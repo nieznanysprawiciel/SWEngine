@@ -156,6 +156,7 @@
 	<li>@ref ProjectSettings
 	<li>@ref FolderStructure
 	<li>@ref ModulesStructure
+	<li>@ref License
 </ul>
 */
 

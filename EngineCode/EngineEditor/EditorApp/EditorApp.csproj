@@ -123,6 +123,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -162,10 +163,15 @@
     <Compile Include="Editor\Project\ProjectManager.cs" />
     <Compile Include="Editor\PathsManager.cs" />
     <Compile Include="GUI\DatabindingDebugConverter .cs" />
+    <Compile Include="GUI\FileIconConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Styles\BlueStyle\Resources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Editor\Project\ProjectSettings.cs" />
@@ -251,6 +257,16 @@
   <ItemGroup>
     <Folder Include="Styles\GreyStyle\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\BlueStyle\Images\model3dIcon.ico" />
+    <Resource Include="Styles\BlueStyle\Images\SchopenhauerMini.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\BlueStyle\Images\Folder.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\BlueStyle\Images\ShaderIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -261,13 +277,7 @@
     <Message Text="Copy Reflection.dll and libfbxsdk.dll to $(OutputPath)" />
     <Copy SourceFiles="$(ExternalDir)FBX_SDK\lib\vs2013\$(PlatformTarget)\$(ConfigTypeSmallString)\libfbxsdk.dll" DestinationFolder="$(OutputPath)" ContinueOnError="false" />
     <Copy SourceFiles="$(EngineLibDir)Reflection\v120\$(PlatformTarget)\$(ConfigTypeSmallString)\Reflection.dll" DestinationFolder="$(OutputPath)" ContinueOnError="false" />
-    <Move	SourceFiles="$(OutputPath)$(AssemblyName).pdb"
-				DestinationFolder="$(EnginePDBDir)\EditorApp\EditorApp_$(Configuration)_$(PlatformTarget)\"
-				Condition="'$(Configuration)|$(Platform)' == 'Release|x64'"
-				ContinueOnError="false" />
-	 <Move	SourceFiles="$(OutputPath)DockPanelSplitter.pdb"
-				DestinationFolder="$(EnginePDBDir)\EditorApp\EditorApp_$(Configuration)_$(PlatformTarget)\"
-				Condition="'$(Configuration)|$(Platform)' == 'Release|x64'"
-				ContinueOnError="false" />
+    <Move SourceFiles="$(OutputPath)$(AssemblyName).pdb" DestinationFolder="$(EnginePDBDir)\EditorApp\EditorApp_$(Configuration)_$(PlatformTarget)\" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" ContinueOnError="false" />
+    <Move SourceFiles="$(OutputPath)DockPanelSplitter.pdb" DestinationFolder="$(EnginePDBDir)\EditorApp\EditorApp_$(Configuration)_$(PlatformTarget)\" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" ContinueOnError="false" />
   </Target>
 </Project>
