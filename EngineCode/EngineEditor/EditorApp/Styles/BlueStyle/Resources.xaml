@@ -5,5 +5,8 @@
 	<BitmapImage x:Key="FolderIcon" UriSource="pack://application:,,,/Styles/BlueStyle/Images/Folder.ico" />
 	<BitmapImage x:Key="Model3dIcon" UriSource="pack://application:,,,/Styles/BlueStyle/Images/Model3DIcon.ico" />
 	<BitmapImage x:Key="ShaderIcon" UriSource="pack://application:,,,/Styles/BlueStyle/Images/ShaderIcon.png" />
-	
+
+	<BitmapImage x:Key="FindAssetIcon" UriSource="pack://application:,,,/Styles/BlueStyle/Images/SearchIcon.ico" />
+	<BitmapImage x:Key="LoadAssetIcon" UriSource="pack://application:,,,/Styles/BlueStyle/Images/LoadAssetIcon.ico" />
+
 </ResourceDictionary>

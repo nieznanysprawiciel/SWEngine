@@ -7,11 +7,12 @@
 
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="/Styles/BlueStyle/BaseStyles.xaml"/>
+		<ResourceDictionary Source="/Styles/BlueStyle/Resources.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
 
 	<!--ObjectPropertyWrapper-->
 	<HierarchicalDataTemplate DataType="{x:Type engine:ObjectPropertyWrapper}" ItemsSource="{Binding Properties}" >
-		<Expander IsExpanded="True" >
+		<Expander IsExpanded="True" Margin="20, 0, 0, 0">
 			<Expander.Header>
 				<BulletDecorator>
 					<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockObjectStyle}" />
@@ -23,7 +24,7 @@
 
 	<!--CategoryPropertyWrapper-->
 	<HierarchicalDataTemplate DataType="{x:Type engine:CategoryPropertyWrapper}" ItemsSource="{Binding Properties}" >
-		<Expander IsExpanded="True">
+		<Expander IsExpanded="True" Margin="20, 0, 0, 0">
 			<Expander.Header>
 				<BulletDecorator>
 					<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockCategoryStyle}" />
@@ -43,13 +44,21 @@
 
 	<!--ResourceObjectPropertyWrapper-->
 	<HierarchicalDataTemplate DataType="{x:Type engine:ResourceObjectPropertyWrapper}" ItemsSource="{Binding Properties}" >
-		<Expander IsExpanded="True">
+		<Expander IsExpanded="True" Margin="20, 0, 0, 0">
 			<Expander.Header>
 				<BulletDecorator>
-					<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockCategoryStyle}" />
+					<StackPanel Orientation="Horizontal" >
+						<TextBlock VerticalAlignment="Center" Text="{Binding PropertyName}" Style="{StaticResource TextBlockCategoryStyle}" />
+						<Button Margin="50, 0, 0, 0" Width="32" Height="32" ToolTip="Find asset in content browser." Background="Transparent" BorderBrush="Transparent">
+							<Image Source="{StaticResource FindAssetIcon}" />
+						</Button>
+						<Button Width="32" Height="32" ToolTip="Load current asset from AssetManager." Background="Transparent" BorderBrush="Transparent">
+							<Image Source="{StaticResource LoadAssetIcon}" />
+						</Button>
+					</StackPanel>
 				</BulletDecorator>
 			</Expander.Header>
-			<StackPanel Margin="20, 5, 0, 5">
+			<StackPanel Margin="0, 5, 0, 5">
 				<ItemsControl ItemsSource="{Binding Properties}" />
 			</StackPanel>
 		</Expander>
@@ -97,7 +106,7 @@
 
 	<!--ActorClassMetaInfo-->
 	<DataTemplate DataType="{x:Type engine:ActorWrapper}" >
-		<StackPanel>
+		<StackPanel Margin="20, 0, 0, 0">
 			<TextBlock Text="{Binding ActorName}" Style="{StaticResource TextBlockActorStyle}" />
 			<Expander IsExpanded="True" Margin="0, 10, 0, 0">
 				<Expander.Header>
