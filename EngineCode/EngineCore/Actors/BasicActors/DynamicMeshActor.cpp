@@ -56,10 +56,10 @@ DynamicMeshActor::~DynamicMeshActor()
 	DeleteAllReferences();
 }
 
-int DynamicMeshActor::SetModel(Model3DFromFile* model)
+bool DynamicMeshActor::SetModel(Model3DFromFile* model)
 {
 	if( model == nullptr )
-		return 1;
+		return false;
 
 	//najpierw czyœcimy poprzedni¹ zawartoœæ
 	//kasujemy referencje bezpoœrednie
@@ -71,7 +71,7 @@ int DynamicMeshActor::SetModel(Model3DFromFile* model)
 
 	vertex_buffer = model->get_vertex_buffer();
 	if ( !vertex_buffer )
-		return 1;	// Nie ma bufora wierzcho³ków, to nie ma dalej czego szukaæ
+		return false;	// Nie ma bufora wierzcho³ków, to nie ma dalej czego szukaæ
 	vertex_buffer->AddObjectReference();
 
 
@@ -97,7 +97,7 @@ int DynamicMeshActor::SetModel(Model3DFromFile* model)
 
 	model_changed = false;		//Zawartoœæ tablic odpowiada modelowi
 
-	return 0;
+	return true;
 }
 
 void DynamicMeshActor::AddModelPart( ModelPart& modelPart )

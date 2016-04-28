@@ -25,7 +25,7 @@ namespace EditorApp.Editor.Project.Content
 	public class FileTreeNode : INotifyPropertyChanged
 	{
 		ObservableCollection< FileTreeNode >				m_folderContent;
-		string												m_name;
+		string												m_nodePath;
 		FileTreeNodeType									m_type;
 
 		public event PropertyChangedEventHandler			PropertyChanged;
@@ -33,9 +33,9 @@ namespace EditorApp.Editor.Project.Content
 
 
 
-		public FileTreeNode( string name, FileTreeNodeType type )
+		public FileTreeNode( string path, FileTreeNodeType type )
 		{
-			Name = name;
+			m_nodePath = path;
 			Type = type;
 			m_folderContent = new ObservableCollection< FileTreeNode >();
 		}
@@ -49,14 +49,14 @@ namespace EditorApp.Editor.Project.Content
 
 				foreach( var dir in directories )
 				{
-					var dirNode = new FileTreeNode( Path.GetFileName( dir ), FileTreeNodeType.Directory );
+					var dirNode = new FileTreeNode( dir, FileTreeNodeType.Directory );
 					dirNode.BuildTreeFromDir( Path.Combine( directory, dir ) );
 					DirectoryContent.Add( dirNode );
 				}
 
 				foreach( var file in files )
 				{
-					DirectoryContent.Add( new FileTreeNode( Path.GetFileName( file ), GetFileTypeByExtension( file ) ) );
+					DirectoryContent.Add( new FileTreeNode( file, GetFileTypeByExtension( file ) ) );
 				}
 			}
 		}
@@ -90,12 +90,7 @@ namespace EditorApp.Editor.Project.Content
 		{
 			get
 			{
-				return m_name;
-			}
-
-			set
-			{
-				m_name = value;
+				return Path.GetFileName( m_nodePath );
 			}
 		}
 
@@ -109,6 +104,19 @@ namespace EditorApp.Editor.Project.Content
 			set
 			{
 				m_type = value;
+			}
+		}
+
+		public string FilePath
+		{
+			get
+			{
+				return m_nodePath;
+			}
+
+			set
+			{
+				m_nodePath = value;
 			}
 		}
 

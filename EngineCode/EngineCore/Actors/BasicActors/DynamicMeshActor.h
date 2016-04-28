@@ -31,7 +31,7 @@ public:
 	DynamicMeshActor( BufferObject* vertexBuffer, BufferObject* indexBuffer );
 	virtual ~DynamicMeshActor();
 
-	int							SetModel		( Model3DFromFile* model );
+	bool						SetModel		( Model3DFromFile* model );
 
 	/// @todo Przemyœleæ czy te funkcje s¹ konieczne.
 	BufferObject*				GetVertexBuffer	()	{ return vertex_buffer; }

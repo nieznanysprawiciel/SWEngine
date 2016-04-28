@@ -78,7 +78,13 @@ namespace EditorApp.Editor.Project.Actors
 
 		public void	LoadAsset		( object parameter )
 		{
-			var str = parameter.ToString();
+			ResourceObjectPropertyWrapper resource = parameter as ResourceObjectPropertyWrapper;
+			var assetPath = m_editorLogic.ProjectManager.ContentManager.GetSelectedFilePath();
+
+			if( assetPath == null )
+				throw new ArgumentException( "There's no selected asset" );
+
+			SelectedActor.LoadMesh( assetPath );
 		}
 
 		private bool CanLoadAsset	( object parameter )

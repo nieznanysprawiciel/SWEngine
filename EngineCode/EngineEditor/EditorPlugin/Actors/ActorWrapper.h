@@ -23,8 +23,10 @@ private:
 public:
 	ActorWrapper		( EngineObject* actor, const ActorInfo* actorInfo );
 
-	System::String^		GetTypeName();
-	System::IntPtr		GetActorPtr();
+	System::String^		GetTypeName	();
+	System::IntPtr		GetActorPtr	();
+	
+	bool				LoadMesh	( System::String^ meshPath );
 
 public:
 	property System::String^	ActorName

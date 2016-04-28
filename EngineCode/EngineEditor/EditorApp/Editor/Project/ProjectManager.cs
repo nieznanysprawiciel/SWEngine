@@ -25,7 +25,7 @@ namespace EditorApp.Project
 			m_projectSettings = new ProjectSettings();
 			m_userSettings = new UserSettings();
 			m_actorsLogic = new ActorsLogic( editorLogic );
-			m_contentManager = new ContentManager();
+			m_contentManager = new ContentManager( editorLogic );
 			m_editorLogic = editorLogic;
 		}
 
