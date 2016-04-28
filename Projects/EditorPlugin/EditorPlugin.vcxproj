@@ -26,6 +26,7 @@
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</CompileAsManaged>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourceObjectPropertyWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorClassMetaInfo.h" />
@@ -34,6 +35,7 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EnginePointerProvider.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyHelper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourceObjectPropertyWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Resource.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\targetver.h" />
   </ItemGroup>

@@ -16,6 +16,8 @@ namespace EditorApp.Editor.Project.Content
 		Directory,
 		Model3D,
 		Shader,
+		Texture,
+		Buffer,
 		UnknownFileType
 	}
 

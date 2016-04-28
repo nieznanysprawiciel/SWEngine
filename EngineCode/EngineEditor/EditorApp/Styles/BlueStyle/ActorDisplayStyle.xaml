@@ -49,10 +49,10 @@
 				<BulletDecorator>
 					<StackPanel Orientation="Horizontal" >
 						<TextBlock VerticalAlignment="Center" Text="{Binding PropertyName}" Style="{StaticResource TextBlockCategoryStyle}" />
-						<Button Margin="50, 0, 0, 0" Width="32" Height="32" ToolTip="Find asset in content browser." Background="Transparent" BorderBrush="Transparent">
+						<Button Margin="50, 0, 0, 0" Style="{StaticResource IconButtonStyle}" ToolTip="Find asset in Content Manager." >
 							<Image Source="{StaticResource FindAssetIcon}" />
 						</Button>
-						<Button Width="32" Height="32" ToolTip="Load current asset from AssetManager." Background="Transparent" BorderBrush="Transparent">
+						<Button Command="{Binding Path=DataContext.LoadAssetCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" Style="{StaticResource IconButtonStyle}" ToolTip="Load current asset from Content Manager." >
 							<Image Source="{StaticResource LoadAssetIcon}" />
 						</Button>
 					</StackPanel>
@@ -91,7 +91,7 @@
 	<!--StringPropertyWrapper-->
 	<DataTemplate DataType="{x:Type engine:StringPropertyWrapper}">
 		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
-			<TextBlock Width="150" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
+			<TextBlock Width="80" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
 			<TextBlock Width="Auto" Text="{Binding Value}" Style="{StaticResource TextBlockBaseStyle}"/>
 		</StackPanel>
 	</DataTemplate>
@@ -99,7 +99,7 @@
 	<!--WStringPropertyWrapper-->
 	<DataTemplate DataType="{x:Type engine:WStringPropertyWrapper}">
 		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
-			<TextBlock Width="150" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
+			<TextBlock Width="80" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
 			<TextBlock Width="Auto" Text="{Binding Value}" Style="{StaticResource TextBlockBaseStyle}"/>
 		</StackPanel>
 	</DataTemplate>

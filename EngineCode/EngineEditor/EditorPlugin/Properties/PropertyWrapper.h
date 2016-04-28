@@ -405,14 +405,6 @@ using namespace System::Collections::Generic;
 		{}
 	};
 
-	/**@brief Property dla obiektów zasobów: Model3DFromFile, BufferObject, MaterialObject, TextureObject*/
-	public ref class ResourceObjectPropertyWrapper : CategoryLessPropertyWrapper
-	{
-	private:
-	public:
-		ResourceObjectPropertyWrapper( rttr::property prop )
-			: CategoryLessPropertyWrapper( PropertyType::PropertyResource, prop, prop.get_name().c_str() )
-		{}
-	};
+
 
 }

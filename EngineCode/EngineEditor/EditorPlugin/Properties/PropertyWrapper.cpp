@@ -1,65 +1,14 @@
 #include "PropertyWrapper.h"
 #include <msclr/marshal_cppstd.h>
 
+#include "ResourceObjectPropertyWrapper.h"
 
 namespace EditorPlugin
 {
 
 
 
-/**@brief */
-template< typename PropertyType >
-PropertyType	GetPropertyValue( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject )
-{
-	rttr::property prop = RTTRPropertyRapist::MakeProperty( metaProperty );
 
-	if( prop.get_declaring_type().is_derived_from< EngineObject >() )
-	{
-		auto value = prop.get_value( *static_cast< EngineObject* >( refObject.ToPointer() ) );
-		return value.get_value< PropertyType >();
-	}
-	else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT2 >() )
-	{
-		auto value = prop.get_value( static_cast< DirectX::XMFLOAT2* >( refObject.ToPointer() ) );
-		return value.get_value< PropertyType >();
-	}
-	else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT3 >() )
-	{
-		auto value = prop.get_value( static_cast< DirectX::XMFLOAT3* >( refObject.ToPointer() ) );
-		return value.get_value< PropertyType >();
-	}
-	else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT4 >() )
-	{
-		auto value = prop.get_value( static_cast< DirectX::XMFLOAT4* >( refObject.ToPointer() ) );
-		return value.get_value< PropertyType >();
-	}
-	else
-		assert( false );	return PropertyType();
-}
-
-/**@brief */
-template< typename PropertyType >
-void		SetPropertyValue( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, PropertyType newValue )
-{
-	rttr::property prop = RTTRPropertyRapist::MakeProperty( metaProperty );
-
-	if( prop.get_declaring_type().is_derived_from< EngineObject >() )
-	{
-		prop.set_value( *static_cast< EngineObject* >( refObject.ToPointer() ), newValue );
-	}
-	else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT2 >() )
-	{
-		prop.set_value( static_cast< DirectX::XMFLOAT2* >( refObject.ToPointer() ), newValue );
-	}
-	else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT3 >() )
-	{
-		prop.set_value( static_cast< DirectX::XMFLOAT3* >( refObject.ToPointer() ), newValue );
-	}
-	else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT4 >() )
-	{
-		prop.set_value( static_cast< DirectX::XMFLOAT4* >( refObject.ToPointer() ), newValue );
-	}
-}
 
 //====================================================================================//
 //			PropertyWrapper implementation	

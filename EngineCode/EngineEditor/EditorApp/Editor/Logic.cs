@@ -20,12 +20,12 @@ namespace EditorApp
 
 	public class Logic
 	{
-		public PathsManager			PathsManager { get; }
-		public GlobalSettings		GlobalSettings { get; }
-		public Project.ProjectManager		ProjectManager { get; }
-		public Engine.Displayer		Displayer { get; }
+		public PathsManager				PathsManager { get; }
+		public GlobalSettings			GlobalSettings { get; }
+		public Project.ProjectManager	ProjectManager { get; }
+		public Engine.Displayer			Displayer { get; }
 
-		public MainWindow			MainWindowRef { get; }
+		public MainWindow				MainWindowRef { get; }
 
 
 		public Logic( MainWindow windowRef )
@@ -63,8 +63,8 @@ namespace EditorApp
 
 			if( result )
 			{
-				MainWindowRef.ActorPreview.DataContext = null;	// ProjectManager.ActorsLogic.ActorsTypesList;
-				MainWindowRef.ActorList.DataContext = ProjectManager.ActorsLogic.Actors;
+				MainWindowRef.ActorPreview.DataContext = null;
+				MainWindowRef.ActorList.DataContext = ProjectManager.ActorsLogic;
 				MainWindowRef.ContentTree.DataContext = ProjectManager.ContentManager;
 			}
 

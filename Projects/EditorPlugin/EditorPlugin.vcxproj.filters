@@ -30,6 +30,9 @@
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorWrapper.cpp">
       <Filter>EditorPlugin\Actors</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourceObjectPropertyWrapper.cpp">
+      <Filter>EditorPlugin\Properties</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\targetver.h">
@@ -55,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorWrapper.h">
       <Filter>EditorPlugin\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourceObjectPropertyWrapper.h">
+      <Filter>EditorPlugin\Properties</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

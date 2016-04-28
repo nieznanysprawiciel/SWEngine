@@ -6,6 +6,7 @@
 		xmlns:osc="clr-namespace:OpenSourceControls;assembly=DockPanelSplitter"
 		xmlns:content="clr-namespace:EditorApp.Editor.Project.Content"
 		xmlns:debug="clr-namespace:EditorApp.Debug"
+		xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         Title="Engine Editor" Height="1000" Width="1920" WindowStartupLocation="CenterScreen">
 	<Window.Resources>
 		<ResourceDictionary>
@@ -58,6 +59,11 @@
 		<TabControl DockPanel.Dock="Left" Style="{StaticResource TabControlStyleBase}" Margin="10, 10, 10, 10" Width="400" >
 			<TabItem Header="Assets">
 				<TreeView Name="ContentTree" Style="{StaticResource ContentTreeViewStyle}" ItemsSource="{Binding Path=FileTreeRoot.DirectoryContent}">
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="SelectedItemChanged">
+							<i:InvokeCommandAction CommandParameter="{Binding Path=SelectedItem, ElementName=ContentTree}" Command="{Binding Path=DataContext.SelectedAssetChangedCommand, RelativeSource={RelativeSource AncestorType={x:Type TreeView}}}"/>
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
 				</TreeView>
 			</TabItem>
 			<TabItem Header="Actors">
@@ -75,7 +81,7 @@
 			</Grid.RowDefinitions>
 
 			<Grid Grid.Row="0" >
-				<ListView x:Name="ActorList" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto" ItemsSource="{Binding}" Background="Transparent" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="ActorSelectionChanged" SelectionMode="Single" >
+				<ListView x:Name="ActorList" HorizontalAlignment="Stretch" Height="Auto" Margin="10,10,10,10" VerticalAlignment="Stretch" Width="Auto" ItemsSource="{Binding Actors}" Background="Transparent" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="ActorSelectionChanged" SelectionMode="Single" >
 					<ListView.View>
 						<GridView>
 							<GridView.ColumnHeaderContainerStyle>
@@ -100,9 +106,9 @@
 			<Grid Grid.Row="2" >
 				<ListView x:Name="ActorPreview" Height="Auto" Width="Auto" Style="{StaticResource ActorListViewStyle}" >
 					<ListView.Resources>
-						<CollectionViewSource x:Key="PropertiesCollection" Source="{Binding Properties}" />
+						<CollectionViewSource x:Key="PropertiesCollection" Source="{Binding Path=SelectedActorMeta.Properties}" />
 						<x:Array x:Key="ActorInfoCollectionItem" Type="ListViewItem" >
-							<ListViewItem ContentTemplate="{Binding}" Content="{Binding Actor}"/>
+							<ListViewItem ContentTemplate="{Binding}" Content="{Binding Path=SelectedActorMeta.Actor}"/>
 						</x:Array>
 						<CollectionViewSource x:Key="ActorInfoCollection" Source="{StaticResource ActorInfoCollectionItem}" />
 					</ListView.Resources>
