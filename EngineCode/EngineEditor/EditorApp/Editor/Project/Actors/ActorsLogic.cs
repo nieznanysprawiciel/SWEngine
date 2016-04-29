@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Microsoft.TeamFoundation.MVVM;
 using EditorPlugin;
+using EditorApp.Editor.Commands;
 
 namespace EditorApp.Editor.Project.Actors
 {

@@ -113,6 +113,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>SchopenhauerWeltschmerz.ico</ApplicationIcon>
+    <!--added this line for system.windows.interactivity.dll to dump the localized dll's-->
+    <SupportedCultures>en-US</SupportedCultures>
   </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
@@ -121,11 +123,13 @@
     <Reference Include="DockPanelSplitter">
       <HintPath>..\..\..\External\DockPanelSplitter\DockPanelSplitter.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.TeamFoundation.Controls, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\External\System.Windows.Interactivity\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -159,6 +163,7 @@
     <Compile Include="Editor\Logic.cs" />
     <Compile Include="Editor\GlobalSettings.cs" />
     <Compile Include="Editor\Project\Actors\ActorsLogic.cs" />
+    <Compile Include="Editor\Commands\RelayCommand.cs" />
     <Compile Include="Editor\Project\Content\ContentManager.cs" />
     <Compile Include="Editor\Project\Content\FileTreeNode.cs" />
     <Compile Include="Editor\Project\LevelInfo.cs" />
