@@ -20,12 +20,12 @@ namespace EditorApp
 
 	public class Logic
 	{
-		public PathsManager				PathsManager { get; }
-		public GlobalSettings			GlobalSettings { get; }
-		public Project.ProjectManager	ProjectManager { get; }
-		public Engine.Displayer			Displayer { get; }
+        public PathsManager             PathsManager { get; internal set; }
+        public GlobalSettings           GlobalSettings { get; internal set; }
+        public Project.ProjectManager   ProjectManager { get; internal set; }
+        public Engine.Displayer         Displayer { get; internal set; }
 
-		public MainWindow				MainWindowRef { get; }
+        public MainWindow MainWindowRef { get; internal set; }
 
 
 		public Logic( MainWindow windowRef )

@@ -9,7 +9,12 @@ namespace EditorApp
 {
 	public class GlobalSettings
 	{
-		[XmlIgnore]
-		public string ProjectFileExt { get; } = ".swproj";
+        [XmlIgnore]
+        public string ProjectFileExt { get; internal set; }
+
+        public GlobalSettings()
+        {
+            ProjectFileExt = ".swproj";
+        }
 	}
 }
