@@ -32,6 +32,8 @@
 		<Setter Property="FontSize" Value="17" />
 		<Setter Property="Width" Value="Auto" />
 	</Style>
+	
+	<!--Spin boxes--> 
 
 	<Style x:Key="DoubleSpinBoxStyle" TargetType="xctk:DoubleUpDown">
 		<Setter Property="FormatString" Value="F7" />
@@ -53,6 +55,8 @@
 		<Setter Property="BorderBrush" Value="{StaticResource ControlsBorderColorBrush}" />
 	</Style>
 
+	<!--Icon button-->
+	
 	<Style x:Key="IconButtonStyle" TargetType="Button" >
 		<Setter Property="Background" Value="Transparent" />
 		<Setter Property="BorderBrush" Value="Transparent" />
@@ -68,6 +72,42 @@
 
 	<Style x:Key="TreeViewStyleBase" TargetType="TreeView">
 		<Setter Property="Background" Value="Transparent" />
+	</Style>
+
+	<!--Grid Splitters-->
+
+	<Style x:Key="HorizontalGridSplitterStyle" TargetType="GridSplitter">
+		<Setter Property="Background" Value="#FFCFC8C8" />
+		<Setter Property="HorizontalAlignment" Value="Left" />
+		<Setter Property="ResizeDirection" Value="Columns" />
+	</Style>
+
+	<Style x:Key="VerticalGridSplitterStyle" TargetType="GridSplitter">
+		<Setter Property="Background" Value="#FFCFC8C8" />
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="VerticalAlignment" Value="Stretch" />
+		<Setter Property="ResizeDirection" Value="Rows" />
+	</Style>
+
+
+	<!--Actors ListView-->
+	<Style TargetType="ListBoxItem" x:Key="ActorsContainerStyle">
+		<Setter Property="Focusable" Value="False" />
+	</Style>
+
+	<Style x:Key="ListViewStyleBase" TargetType="ListView">
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="VerticalAlignment" Value="Stretch" />
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="BorderThickness" Value="2" />
+	</Style>
+
+	<Style x:Key="ActorListViewStyle" TargetType="ListView" BasedOn="{StaticResource ListViewStyleBase}">
+		<Setter Property="ItemContainerStyle" Value="{StaticResource ActorsContainerStyle}" />
+
+		<Style.Resources>
+			<ResourceDictionary Source="/Styles/BlueStyle/ActorDisplayDataTemplates.xaml"/>
+		</Style.Resources>
 	</Style>
 
 </ResourceDictionary>

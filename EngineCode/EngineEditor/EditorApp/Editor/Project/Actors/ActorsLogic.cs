@@ -30,6 +30,7 @@ namespace EditorApp.Editor.Project.Actors
 			SelectedActorMeta = null;
 
 			LoadAssetCommand = new RelayCommand( LoadAsset, CanLoadAsset );
+			//ActorSelectionChangedCommand = new RelayCommand( ActorSelectionChanged );
 		}
 
 		private void ClearState()
@@ -173,6 +174,12 @@ namespace EditorApp.Editor.Project.Actors
 		}
 
 		public ICommand LoadAssetCommand
+		{
+			get;
+			internal set;
+		}
+
+		public ICommand ActorSelectionChangedCommand
 		{
 			get;
 			internal set;

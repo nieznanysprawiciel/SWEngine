@@ -14,6 +14,7 @@
 			<!--<debug:DatabindingDebugConverter x:Key="debugConverter" />-->
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="/Styles/BlueStyle/MainWindowStyles.xaml"/>
+				<ResourceDictionary Source="/Styles/BlueStyle/BaseStyles.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Window.Resources>
@@ -49,6 +50,7 @@
 				<ResourceDictionary Source="/Styles/BlueStyle/TabControlDataTemplates.xaml"/>
 			</TabControl.Resources>
 		</TabControl>
+		
 		<osc:DockPanelSplitter DockPanel.Dock="Left" Width="4"/>
 
 		<TabControl DockPanel.Dock="Right" Style="{StaticResource TabControlStyleBase}" Margin="10, 10, 10, 10" Width="400" >
@@ -61,7 +63,12 @@
 					</Grid.RowDefinitions>
 
 					<Grid Grid.Row="0" >
-						<ListView x:Name="ActorList" HorizontalAlignment="Stretch" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="Auto" ItemsSource="{Binding Actors}" Background="Transparent" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="ActorSelectionChanged" SelectionMode="Single" >
+						<ListView x:Name="ActorList" Style="{StaticResource ListViewStyleBase}" Height="Auto" Margin="0,0,0,0" Width="Auto" ItemsSource="{Binding Actors}" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="ActorSelectionChanged" SelectionMode="Single" >
+							<!--<i:Interaction.Triggers>
+								<i:EventTrigger EventName="SelectedItemChanged">
+									<i:InvokeCommandAction CommandParameter="{Binding Path=SelectedItem, ElementName=ContentTree}" Command="{Binding Path=DataContext.ActorSelectionChangedCommand, RelativeSource={RelativeSource AncestorType={x:Type TreeView}}}"/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>-->
 							<ListView.View>
 								<GridView>
 									<GridView.ColumnHeaderContainerStyle>
