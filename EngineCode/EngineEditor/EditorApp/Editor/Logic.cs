@@ -50,6 +50,7 @@ namespace EditorApp
 			Displayer = new Engine.Displayer();
 
 			LeftPanelView.Add( ProjectManager.ContentManager );
+			RightPanelView.Add( ProjectManager.ActorsLogic );
 		}
 
 		public bool			Init		( string[] cmdArgs )

@@ -12,7 +12,7 @@ using EditorApp.Editor.Commands;
 
 namespace EditorApp.Editor.Project.Actors
 {
-	public class ActorsLogic
+	public class ActorsLogic : UpdatableViewBase
 	{
 		private List< ActorClassMetaInfo >						m_actorsTypesList;
 		private ObservableCollection< ActorWrapper >			m_actors;
@@ -25,6 +25,8 @@ namespace EditorApp.Editor.Project.Actors
 
 		public ActorsLogic		( Logic editorLogic )
 		{
+			DisplayName = "Actors Viewer";
+
 			m_editorLogic = editorLogic;
 			m_actorsTypesList = null;
 			Actors = new ObservableCollection<ActorWrapper>();
@@ -55,6 +57,8 @@ namespace EditorApp.Editor.Project.Actors
 				actor.ActorName = actor.GetTypeName() + actorCounter.ToString();
 				++actorCounter;
 			}
+
+			OnPropertyChanged( "Actors" );
 		}
 
 		public void ActorSelectionChanged( object parameter )
@@ -67,10 +71,12 @@ namespace EditorApp.Editor.Project.Actors
 				if( actorClass.Type == actor.Type )
 				{
 					actorClass.ResetActor( actor );
-					SelectedActorMeta = actorClass;
 
-					m_editorLogic.MainWindowRef.ActorPreview.DataContext = null;
-					m_editorLogic.MainWindowRef.ActorPreview.DataContext = this;
+					// Awfull code. How to do this better ?
+					SelectedActorMeta = null;
+					OnPropertyChanged( "SelectedActorMeta" );
+					SelectedActorMeta = actorClass;
+					OnPropertyChanged( "SelectedActorMeta" );
 				}
 			}
 		}

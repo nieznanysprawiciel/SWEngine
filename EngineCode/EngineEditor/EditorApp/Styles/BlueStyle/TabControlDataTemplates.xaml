@@ -2,10 +2,15 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:gui="clr-namespace:EditorApp.GUI"
 					xmlns:content="clr-namespace:EditorApp.Editor.Project.Content;assembly="
+					xmlns:actors="clr-namespace:EditorApp.Editor.Project.Actors;assembly="
                     xmlns:local="clr-namespace:EditorApp.Styles.BlueStyle">
 
 	<DataTemplate DataType="{x:Type content:ContentManager}" >
 		<gui:ContentBrowser />
 	</DataTemplate>
 
+	<DataTemplate DataType="{x:Type actors:ActorsLogic}" >
+		<gui:ActorViewer />
+	</DataTemplate>
+	
 </ResourceDictionary>
