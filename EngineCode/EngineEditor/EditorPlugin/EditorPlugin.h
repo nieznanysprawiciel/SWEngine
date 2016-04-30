@@ -43,6 +43,7 @@ ref class ActorWrapper;
 namespace EditorPlugin
 {
 using namespace System::Collections::Generic;
+using namespace System::Collections::ObjectModel;
 
 	/**@brief Klasa wrapera do inicjowania silnika i renderowania po stronie kodu zarz¹dzanego.
 	@ingroup EditorPlugin*/
@@ -65,8 +66,8 @@ using namespace System::Collections::Generic;
 		void				BasicScene					();
 		void				EnableInput					( bool val );
 
-		List< ActorClassMetaInfo^ >^		CreateActorsMetadata		();
-		List< ActorWrapper^ >^				CreateActorsList			();
+		List< ActorClassMetaInfo^ >^						CreateActorsMetadata		();
+		ObservableCollection< ActorWrapper^ >^				CreateActorsList			();
 	};
 
 }

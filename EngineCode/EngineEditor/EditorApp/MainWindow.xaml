@@ -63,12 +63,12 @@
 					</Grid.RowDefinitions>
 
 					<Grid Grid.Row="0" >
-						<ListView x:Name="ActorList" Style="{StaticResource ListViewStyleBase}" Height="Auto" Margin="0,0,0,0" Width="Auto" ItemsSource="{Binding Actors}" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="ActorSelectionChanged" SelectionMode="Single" >
-							<!--<i:Interaction.Triggers>
-								<i:EventTrigger EventName="SelectedItemChanged">
-									<i:InvokeCommandAction CommandParameter="{Binding Path=SelectedItem, ElementName=ContentTree}" Command="{Binding Path=DataContext.ActorSelectionChangedCommand, RelativeSource={RelativeSource AncestorType={x:Type TreeView}}}"/>
+						<ListView Style="{StaticResource ListViewStyleBase}" Height="Auto" Width="Auto" DataContext="{Binding Path=ProjectManager.ActorsLogic}" ItemsSource="{Binding Actors}" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Single" >
+							<i:Interaction.Triggers>
+								<i:EventTrigger EventName="SelectionChanged">
+									<i:InvokeCommandAction CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" Command="{Binding Path=DataContext.ActorSelectionChangedCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"/>
 								</i:EventTrigger>
-							</i:Interaction.Triggers>-->
+							</i:Interaction.Triggers>
 							<ListView.View>
 								<GridView>
 									<GridView.ColumnHeaderContainerStyle>

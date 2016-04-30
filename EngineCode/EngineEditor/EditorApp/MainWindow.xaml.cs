@@ -49,10 +49,10 @@ namespace EditorApp
 			EditorLogic.LoadClick( sender, e );
 		}
 
-		private void ActorSelectionChanged( object sender, System.Windows.Controls.SelectionChangedEventArgs e )
-		{
-			EditorLogic.ProjectManager.ActorsLogic.ActorSelectionChanged( sender, e );
-		}
+		//private void ActorSelectionChanged( object sender, System.Windows.Controls.SelectionChangedEventArgs e )
+		//{
+		//	EditorLogic.ProjectManager.ActorsLogic.ActorSelectionChanged( sender, e );
+		//}
 
 		private void EngineViewportLostFocus( object sender, RoutedEventArgs e )
 		{

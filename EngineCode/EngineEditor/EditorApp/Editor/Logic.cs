@@ -75,11 +75,11 @@ namespace EditorApp
 			PathsManager.UpdateProjectPaths( projectFile );
 			bool result = ProjectManager.LoadProject( projectFile );
 
-			if( result )
-			{
-				MainWindowRef.ActorPreview.DataContext = null;
-				MainWindowRef.ActorList.DataContext = ProjectManager.ActorsLogic;
-			}
+			//if( result )
+			//{
+			//	MainWindowRef.ActorPreview.DataContext = null;
+			//	MainWindowRef.ActorList.DataContext = ProjectManager.ActorsLogic;
+			//}
 
 			return result;
 		}

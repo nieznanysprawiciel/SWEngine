@@ -4,16 +4,18 @@ using System.Windows.Controls;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using EditorPlugin;
 using EditorApp.Editor.Commands;
+
 
 namespace EditorApp.Editor.Project.Actors
 {
 	public class ActorsLogic
 	{
-		private List<ActorClassMetaInfo >		m_actorsTypesList;
-		private List<ActorWrapper>				m_actors;
+		private List< ActorClassMetaInfo >						m_actorsTypesList;
+		private ObservableCollection< ActorWrapper >			m_actors;
 
 		private ActorClassMetaInfo              m_selectedActorMeta;
 		private ActorWrapper                    m_selectedActor;
@@ -25,12 +27,12 @@ namespace EditorApp.Editor.Project.Actors
 		{
 			m_editorLogic = editorLogic;
 			m_actorsTypesList = null;
-			Actors = new List<ActorWrapper>();
+			Actors = new ObservableCollection<ActorWrapper>();
 			SelectedActor = null;
 			SelectedActorMeta = null;
 
 			LoadAssetCommand = new RelayCommand( LoadAsset, CanLoadAsset );
-			//ActorSelectionChangedCommand = new RelayCommand( ActorSelectionChanged );
+			ActorSelectionChangedCommand = new RelayCommand( ActorSelectionChanged );
 		}
 
 		private void ClearState()
@@ -55,12 +57,9 @@ namespace EditorApp.Editor.Project.Actors
 			}
 		}
 
-		public void ActorSelectionChanged( object sender, SelectionChangedEventArgs e )
+		public void ActorSelectionChanged( object parameter )
 		{
-			ListView actorsListView = sender as ListView;
-			var selectedIndex = actorsListView.SelectedIndex;
-
-			var actor = m_actors.ElementAt( selectedIndex );
+			var actor = parameter as ActorWrapper;
 			SelectedActor = actor;
 
 			foreach( var actorClass in m_actorsTypesList )
@@ -134,7 +133,7 @@ namespace EditorApp.Editor.Project.Actors
 			get	{	return m_actorsTypesList;	}
 		}
 
-		public List<ActorWrapper> Actors
+		public ObservableCollection<ActorWrapper> Actors
 		{
 			get
 			{

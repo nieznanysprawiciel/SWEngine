@@ -119,9 +119,9 @@ List< ActorClassMetaInfo^ >^		EngineWrapper::CreateActorsMetadata		()
 }
 
 
-List< ActorWrapper^ >^				EngineWrapper::CreateActorsList			()
+ObservableCollection< ActorWrapper^ >^		EngineWrapper::CreateActorsList			()
 {
-	List< ActorWrapper^ >^ actorsList = gcnew List< ActorWrapper^ >();
+	ObservableCollection< ActorWrapper^ >^ actorsList = gcnew ObservableCollection< ActorWrapper^ >();
 	auto& existingActors = m_engine->Actors.GetAllActors();
 
 	for each( auto& actor in existingActors )

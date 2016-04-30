@@ -45,6 +45,9 @@
   <ItemGroup>
     <ResourceCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\SW_engine.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D6D5F6EF-4B74-4EBE-8D8D-E76C7C423D05}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
