@@ -44,13 +44,10 @@
 			</MenuItem>
 		</Menu>
 
-		<TabControl DockPanel.Dock="Left" Style="{StaticResource TabControlStyleBase}" Margin="10, 10, 10, 10" Width="400" >
-			<TabItem Header="Content Browser">
-				<gui:ContentBrowser x:Name="ContentTree" />
-			</TabItem>
-			<TabItem Header="Actors Creator">
-				<!--Style="{StaticResource ContentTreeViewStyle}"-->
-			</TabItem>
+		<TabControl DockPanel.Dock="Left" ItemsSource="{Binding LeftPanelView}" Style="{StaticResource TabControlStyleBase}" Margin="10, 10, 10, 10" Width="400" >
+			<TabControl.Resources>
+				<ResourceDictionary Source="/Styles/BlueStyle/TabControlDataTemplates.xaml"/>
+			</TabControl.Resources>
 		</TabControl>
 		<osc:DockPanelSplitter DockPanel.Dock="Left" Width="4"/>
 

@@ -151,7 +151,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GUI\ActorsCreator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\ActorViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\ContentBrowser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\RendererPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,16 +186,29 @@
     <Compile Include="Editor\Project\ProjectManager.cs" />
     <Compile Include="Editor\PathsManager.cs" />
     <Compile Include="Editor\UpdatableViewBase.cs" />
+    <Compile Include="GUI\ActorsCreator.xaml.cs">
+      <DependentUpon>ActorsCreator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ActorViewer.xaml.cs">
+      <DependentUpon>ActorViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\ContentBrowser.xaml.cs">
       <DependentUpon>ContentBrowser.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\DatabindingDebugConverter .cs" />
     <Compile Include="GUI\FileIconConverter.cs" />
+    <Compile Include="GUI\RendererPreview.xaml.cs">
+      <DependentUpon>RendererPreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Styles\BlueStyle\Resources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\BlueStyle\TabControlDataTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -252,7 +277,7 @@
     <Resource Include="Language\English.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Styles\BlueStyle\ActorDisplayStyle.xaml">
+    <Page Include="Styles\BlueStyle\ActorDisplayDataTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

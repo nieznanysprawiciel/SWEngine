@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:gui="clr-namespace:EditorApp.GUI"
+					xmlns:content="clr-namespace:EditorApp.Editor.Project.Content;assembly="
+                    xmlns:local="clr-namespace:EditorApp.Styles.BlueStyle">
+
+	<DataTemplate DataType="{x:Type content:ContentManager}" >
+		<gui:ContentBrowser />
+	</DataTemplate>
+
+</ResourceDictionary>

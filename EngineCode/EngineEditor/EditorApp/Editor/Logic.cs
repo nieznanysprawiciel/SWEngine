@@ -48,6 +48,8 @@ namespace EditorApp
 			GlobalSettings = new GlobalSettings();
 			ProjectManager = new Project.ProjectManager( this );
 			Displayer = new Engine.Displayer();
+
+			LeftPanelView.Add( ProjectManager.ContentManager );
 		}
 
 		public bool			Init		( string[] cmdArgs )
@@ -77,7 +79,6 @@ namespace EditorApp
 			{
 				MainWindowRef.ActorPreview.DataContext = null;
 				MainWindowRef.ActorList.DataContext = ProjectManager.ActorsLogic;
-				MainWindowRef.ContentTree.DataContext = ProjectManager.ContentManager;
 			}
 
 			return result;

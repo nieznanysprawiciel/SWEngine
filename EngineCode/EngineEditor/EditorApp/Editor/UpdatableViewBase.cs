@@ -8,6 +8,8 @@ namespace EditorApp.Editor
 {
 	public abstract class UpdatableViewBase : INotifyPropertyChanged, IDisposable
 	{
+		public string DisplayName { get; protected set; }
+
 		#region Constructor
 
 		protected UpdatableViewBase()
@@ -96,9 +98,9 @@ namespace EditorApp.Editor
         /// <summary>
         /// Useful for ensuring that ViewModel objects are properly garbage collected.
         /// </summary>
-        ~ViewModelBase()
+        ~UpdatableViewBase()
         {
-            string msg = string.Format("{0} ({1}) ({2}) Finalized", this.GetType().Name, this.DisplayName, this.GetHashCode());
+            string msg = string.Format("{0} ({1}) Finalized", this.GetType().Name, this.GetHashCode());
             System.Diagnostics.Debug.WriteLine(msg);
         }
 #endif

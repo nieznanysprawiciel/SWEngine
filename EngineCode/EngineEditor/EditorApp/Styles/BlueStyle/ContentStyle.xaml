@@ -13,11 +13,6 @@
 	<gui:FileIconConverter x:Key="FileTypeIconConverter" />
 
 	<!--Content tree view-->
-	<Style x:Key="TreeViewStyleBase" TargetType="TreeView">
-		<Setter Property="Background" Value="Transparent" />
-
-	</Style>
-
 	<Style x:Key="ContentTreeViewStyle" TargetType="TreeView" BasedOn="{StaticResource TreeViewStyleBase}">
 
 		<Style.Resources>

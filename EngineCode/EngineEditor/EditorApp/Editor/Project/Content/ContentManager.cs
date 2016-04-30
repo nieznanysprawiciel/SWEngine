@@ -20,6 +20,8 @@ namespace EditorApp.Editor.Project.Content
 
 		public			ContentManager		( Logic editorLogic )
 		{
+			DisplayName = "Content Browser";
+
 			m_editorLogic = editorLogic;
 			SelectedAssetChangedCommand = new RelayCommand( ActorSelectionChanged );
 			SelectedFile = null;

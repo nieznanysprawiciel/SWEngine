@@ -20,6 +20,8 @@
 		<Setter Property="BorderBrush" Value="#FF8BBEEA"/>
 	</Style>
 
+	<!--Grid Splitters-->
+	
 	<Style x:Key="HorizontalGridSplitterStyle" TargetType="GridSplitter">
 		<Setter Property="Background" Value="#FFCFC8C8" />
 		<Setter Property="HorizontalAlignment" Value="Left" />
@@ -49,25 +51,13 @@
 		<Setter Property="ItemContainerStyle" Value="{StaticResource ActorsContainerStyle}" />
 
 		<Style.Resources>
-			<ResourceDictionary Source="/Styles/BlueStyle/ActorDisplayStyle.xaml"/>
-		</Style.Resources>
-	</Style>
-
-	<!--Content tree view-->
-	<Style x:Key="TreeViewStyleBase" TargetType="TreeView">
-		<Setter Property="Background" Value="Transparent" />
-		
-	</Style>
-
-	<Style x:Key="ContentTreeViewStyle" TargetType="TreeView" BasedOn="{StaticResource TreeViewStyleBase}">
-		
-		<Style.Resources>
-			<ResourceDictionary Source="/Styles/BlueStyle/ContentStyle.xaml"/>
+			<ResourceDictionary Source="/Styles/BlueStyle/ActorDisplayDataTemplates.xaml"/>
 		</Style.Resources>
 	</Style>
 
 	<!--Tab control-->
 	<Style x:Key="TabItemBase" TargetType="TabItem">
+		<Setter Property="Header" Value="{Binding DisplayName}" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="TabItem">
@@ -97,6 +87,7 @@
 
 	
 	<Style x:Key="TabControlStyleBase" TargetType="TabControl">
+		<Setter Property="IsSynchronizedWithCurrentItem" Value="True" />
 		<Setter Property="HorizontalAlignment" Value="Stretch"/>
 		<Setter Property="VerticalAlignment" Value="Stretch" />
 		<Setter Property="Background" Value="Transparent" />

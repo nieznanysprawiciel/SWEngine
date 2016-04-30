@@ -65,5 +65,9 @@
 			</Trigger>
 		</Style.Triggers>
 	</Style>
-	
+
+	<Style x:Key="TreeViewStyleBase" TargetType="TreeView">
+		<Setter Property="Background" Value="Transparent" />
+	</Style>
+
 </ResourceDictionary>
