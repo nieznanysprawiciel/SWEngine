@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using System.Windows;
 using Microsoft.Win32;
+using EditorApp.Editor;
 
 namespace EditorApp
 {
@@ -25,11 +27,21 @@ namespace EditorApp
         public Project.ProjectManager   ProjectManager { get; internal set; }
         public Engine.Displayer         Displayer { get; internal set; }
 
-        public MainWindow MainWindowRef { get; internal set; }
+		private ObservableCollection< UpdatableViewBase >        m_leftPanelView;
+		private ObservableCollection< UpdatableViewBase >        m_rightPanelView;
+		private ObservableCollection< UpdatableViewBase >        m_mainPanelView;
+
+		/// Dobry design aplikacji nie powinien zawierać żadnego obiektu GUI.
+		/// Trzeba to traktować jak rozwiązanie tymczasowe.
+		public MainWindow MainWindowRef { get; internal set; }
 
 
 		public Logic( MainWindow windowRef )
 		{
+			LeftPanelView = new ObservableCollection< UpdatableViewBase >();
+			RightPanelView = new ObservableCollection< UpdatableViewBase >();
+			MainPanelView = new ObservableCollection< UpdatableViewBase >();
+
 			MainWindowRef = windowRef;
 
 			PathsManager = new PathsManager();
@@ -120,6 +132,48 @@ namespace EditorApp
 		}
 
 
+		#endregion
+
+		#region Properties
+
+		public ObservableCollection<UpdatableViewBase> LeftPanelView
+		{
+			get
+			{
+				return m_leftPanelView;
+			}
+
+			internal set
+			{
+				m_leftPanelView = value;
+			}
+		}
+
+		public ObservableCollection<UpdatableViewBase> RightPanelView
+		{
+			get
+			{
+				return m_rightPanelView;
+			}
+
+			internal set
+			{
+				m_rightPanelView = value;
+			}
+		}
+
+		public ObservableCollection<UpdatableViewBase> MainPanelView
+		{
+			get
+			{
+				return m_mainPanelView;
+			}
+
+			internal set
+			{
+				m_mainPanelView = value;
+			}
+		}
 		#endregion
 	}
 }

@@ -8,7 +8,7 @@ using EditorApp.Editor.Commands;
 
 namespace EditorApp.Editor.Project.Content
 {
-	public class ContentManager
+	public class ContentManager : UpdatableViewBase
 	{
 		FileTreeNode		m_fileTreeRoot;
 		FileTreeNode        m_selectedFile;
@@ -66,6 +66,7 @@ namespace EditorApp.Editor.Project.Content
 			set
 			{
 				m_fileTreeRoot = value;
+				OnPropertyChanged( "FileTreeRoot" );
 			}
 		}
 
@@ -85,6 +86,7 @@ namespace EditorApp.Editor.Project.Content
 			set
 			{
 				m_selectedFile = value;
+				OnPropertyChanged( "SelectedFile" );
 			}
 		}
 

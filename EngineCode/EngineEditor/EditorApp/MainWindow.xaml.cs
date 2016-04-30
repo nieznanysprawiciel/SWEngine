@@ -28,6 +28,8 @@ namespace EditorApp
 			EditorLogic = new Logic( this );
 			EditorLogic.Init( cmdArgs );
 
+			DataContext = EditorLogic;
+
             CompositionTarget.Rendering += EditorLogic.RenderFrame;
         }
 

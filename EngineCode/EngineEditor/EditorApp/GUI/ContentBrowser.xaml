@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="EditorApp.GUI.ContentBrowser"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EditorApp.GUI"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+	<UserControl.Resources>
+		<ResourceDictionary Source="/Styles/BlueStyle/ContentStyle.xaml"/>
+	</UserControl.Resources>
+	
+	<TreeView Name="ContentTree" Style="{StaticResource ContentTreeViewStyle}" ItemsSource="{Binding Path=FileTreeRoot.DirectoryContent}">
+		<i:Interaction.Triggers>
+			<i:EventTrigger EventName="SelectedItemChanged">
+				<i:InvokeCommandAction CommandParameter="{Binding Path=SelectedItem, ElementName=ContentTree}" Command="{Binding Path=DataContext.SelectedAssetChangedCommand, RelativeSource={RelativeSource AncestorType={x:Type TreeView}}}"/>
+			</i:EventTrigger>
+		</i:Interaction.Triggers>
+	</TreeView>
+</UserControl>

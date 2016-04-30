@@ -151,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GUI\ContentBrowser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -169,6 +173,10 @@
     <Compile Include="Editor\Project\LevelInfo.cs" />
     <Compile Include="Editor\Project\ProjectManager.cs" />
     <Compile Include="Editor\PathsManager.cs" />
+    <Compile Include="Editor\UpdatableViewBase.cs" />
+    <Compile Include="GUI\ContentBrowser.xaml.cs">
+      <DependentUpon>ContentBrowser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\DatabindingDebugConverter .cs" />
     <Compile Include="GUI\FileIconConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
