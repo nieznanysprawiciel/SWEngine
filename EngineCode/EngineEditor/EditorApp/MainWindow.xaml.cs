@@ -39,31 +39,6 @@ namespace EditorApp
         }
 
 
-		private void SaveClick( object sender, RoutedEventArgs e )
-		{
-			EditorLogic.SaveClick( sender, e );
-		}
-
-		private void LoadClick( object sender, RoutedEventArgs e )
-		{
-			EditorLogic.LoadClick( sender, e );
-		}
-
-		//private void ActorSelectionChanged( object sender, System.Windows.Controls.SelectionChangedEventArgs e )
-		//{
-		//	EditorLogic.ProjectManager.ActorsLogic.ActorSelectionChanged( sender, e );
-		//}
-
-		private void EngineViewportLostFocus( object sender, RoutedEventArgs e )
-		{
-			EditorLogic.Displayer.EngineWrapper.EnableInput( false );
-		}
-
-		private void EngineViewportGotFocus( object sender, RoutedEventArgs e )
-		{
-			EditorLogic.Displayer.EngineWrapper.EnableInput( true );
-		}
-
 		#region Properties
 
 		public Logic EditorLogic

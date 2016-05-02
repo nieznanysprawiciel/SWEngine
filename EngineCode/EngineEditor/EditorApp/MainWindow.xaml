@@ -30,8 +30,8 @@
 			<MenuItem Style="{StaticResource MenuItemStyle}" Header="File">
 				<!--Subitems-->
 				<MenuItem Header="New Project" Style="{StaticResource MenuItemStyle}"/>
-				<MenuItem Header="Open Project" Style="{StaticResource MenuItemStyle}" Click="LoadClick" />
-				<MenuItem Header="Save Project" Style="{StaticResource MenuItemStyle}" Click="SaveClick" />
+				<MenuItem Header="Open Project" Style="{StaticResource MenuItemStyle}" Command="{Binding LoadCommand}" />
+				<MenuItem Header="Save Project" Style="{StaticResource MenuItemStyle}" Command="{Binding SaveCommand}" />
 				<MenuItem Header="Exit" Style="{StaticResource MenuItemStyle}" />
 			</MenuItem>
 			<MenuItem Style="{StaticResource MenuItemStyle}" Header="View" >
@@ -40,7 +40,7 @@
 				<Separator />
 				<MenuItem IsCheckable="True" IsChecked="True" Header="Show Rendering Preview" Style="{StaticResource MenuItemStyle}" />
 				<Separator />
-				<MenuItem IsCheckable="True" IsChecked="True" Header="Show ActorsViewer" Style="{StaticResource MenuItemStyle}" />
+				<MenuItem IsCheckable="True" IsChecked="True" Header="Show Actors Viewer" Style="{StaticResource MenuItemStyle}" />
 			</MenuItem>
 		</Menu>
 
@@ -59,12 +59,10 @@
 		</TabControl>
 		<osc:DockPanelSplitter DockPanel.Dock="Right" Width="4"/>
 
-		<TabControl Style="{StaticResource TabControlStyleBase}" Margin="0, 10, 5, 10" >
-			<TabItem Header="Preview">
-				<Grid Grid.Column="2" Grid.ColumnSpan="1" Height="Auto" >
-					<Image x:Name="EngineViewport" Height="800" Width="1000" Margin="2" HorizontalAlignment="Left" VerticalAlignment="Top" Focusable="True" MouseLeave="EngineViewportLostFocus" MouseEnter="EngineViewportGotFocus" />
-				</Grid>
-			</TabItem>
+		<TabControl ItemsSource="{Binding MainPanelView}" Style="{StaticResource TabControlStyleBase}" Margin="0, 10, 5, 10" >
+			<TabControl.Resources>
+				<ResourceDictionary Source="/Styles/BlueStyle/TabControlDataTemplates.xaml"/>
+			</TabControl.Resources>
 		</TabControl>
 
 	</DockPanel>

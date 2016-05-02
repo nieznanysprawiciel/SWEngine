@@ -4,21 +4,33 @@ using System.Windows.Interop;
 using System.Runtime.InteropServices;
 using EditorPlugin;
 using System.Windows;
+using System.Windows.Input;
+using EditorApp.Editor.Commands;
+using EditorApp.Editor;
 
 namespace EditorApp.Engine
 {
-	public class Displayer
+	public class Displayer : UpdatableViewBase
 	{
 		private D3DImageEx                      m_viewportSurface;
 		private EngineWrapper                   m_engineWrapper;
 		private bool                            m_editorReady = false;
 
+		private int                             m_width;
+		private int                             m_height;
 
 
 		public Displayer()
 		{
+			DisplayName = "Preview";
+			Height = 800;
+			Width = 1000;
+
 			m_viewportSurface = null;
 			m_engineWrapper = null;
+
+			GotFocusCommand = new RelayCommand( GotFocus );
+			LostFocusCommand = new RelayCommand( LostFocus );
 		}
 		
 		public bool		InitRenderer()
@@ -36,6 +48,8 @@ namespace EditorApp.Engine
 			m_engineWrapper.EnableInput( false );
 			//m_engineWrapper.BasicScene();
 			m_engineWrapper.TestScene();
+
+			ViewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, EngineWrapper.GetRenderTarget( (ushort)Width, (ushort)Height ) );
 
 			return true;
 		}
@@ -57,6 +71,15 @@ namespace EditorApp.Engine
 			}
 		}
 
+		public void		GotFocus	( object parameter )
+		{
+			m_engineWrapper.EnableInput( true );
+		}
+
+		public void		LostFocus	( object parameter )
+		{
+			m_engineWrapper.EnableInput( false );
+		}
 
 
 		#region PrivateHelpers
@@ -95,6 +118,43 @@ namespace EditorApp.Engine
 			}
 		}
 
+		public ICommand		GotFocusCommand
+		{
+			get;
+			internal set;
+		}
+
+		public ICommand		LostFocusCommand
+		{
+			get;
+			internal set;
+		}
+
+		public int Width
+		{
+			get
+			{
+				return m_width;
+			}
+
+			set
+			{
+				m_width = value;
+			}
+		}
+
+		public int Height
+		{
+			get
+			{
+				return m_height;
+			}
+
+			set
+			{
+				m_height = value;
+			}
+		}
 
 		#endregion
 	}

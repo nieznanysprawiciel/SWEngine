@@ -8,8 +8,11 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using System.Windows;
+using System.Windows.Input;
 using Microsoft.Win32;
 using EditorApp.Editor;
+using EditorApp.Editor.Commands;
+
 
 namespace EditorApp
 {
@@ -36,7 +39,7 @@ namespace EditorApp
 		public MainWindow MainWindowRef { get; internal set; }
 
 
-		public Logic( MainWindow windowRef )
+		public				Logic		( MainWindow windowRef )
 		{
 			LeftPanelView = new ObservableCollection< UpdatableViewBase >();
 			RightPanelView = new ObservableCollection< UpdatableViewBase >();
@@ -51,6 +54,10 @@ namespace EditorApp
 
 			LeftPanelView.Add( ProjectManager.ContentManager );
 			RightPanelView.Add( ProjectManager.ActorsLogic );
+			MainPanelView.Add( Displayer );
+
+			LoadCommand = new RelayCommand( LoadClick );
+			SaveCommand = new RelayCommand( SaveClick );
 		}
 
 		public bool			Init		( string[] cmdArgs )
@@ -60,10 +67,6 @@ namespace EditorApp
 			if( !Displayer.InitRenderer() )
 				return false;
 
-			MainWindowRef.EngineViewport.Source = Displayer.ViewportSurface;
-			Displayer.ViewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, Displayer.EngineWrapper.GetRenderTarget( (ushort)MainWindowRef.EngineViewport.Width, (ushort)MainWindowRef.EngineViewport.Height ) );
-
-
 			string projectPath = ParseCmdLineProject( cmdArgs );
 			if( projectPath != null )
 				return LoadProject( projectPath );
@@ -71,26 +74,20 @@ namespace EditorApp
 			return true;
 		}
 
-		public bool			LoadProject	( string projectFile )
+		public bool			LoadProject		( string projectFile )
 		{
 			PathsManager.UpdateProjectPaths( projectFile );
 			bool result = ProjectManager.LoadProject( projectFile );
 
-			//if( result )
-			//{
-			//	MainWindowRef.ActorPreview.DataContext = null;
-			//	MainWindowRef.ActorList.DataContext = ProjectManager.ActorsLogic;
-			//}
-
 			return result;
 		}
 
-		public void SaveClick( object sender, RoutedEventArgs e )
+		public void			SaveClick		( object parameter )
 		{
 			ProjectManager.SaveProject();
 		}
 
-		public void LoadClick( object sender, RoutedEventArgs e )
+		public void			LoadClick		( object parameter )
 		{
 			OpenFileDialog fileDialog = new OpenFileDialog();
 			fileDialog.CheckFileExists = true;
@@ -176,6 +173,27 @@ namespace EditorApp
 				m_mainPanelView = value;
 			}
 		}
+
+		public ICommand SaveCommand
+		{
+			get;
+			internal set;
+		}
+
+		public ICommand LoadCommand
+		{
+			get;
+			internal set;
+		}
+
+		//public ICommand ExitCommand
+		//{
+		//	get;
+		//	internal set;
+		//}
+
+
+
 		#endregion
 	}
 }
