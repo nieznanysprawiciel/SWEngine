@@ -6,7 +6,27 @@
              xmlns:local="clr-namespace:EditorApp.GUI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+	
+	<UserControl.Resources>
+		<ResourceDictionary Source="/Styles/BlueStyle/BaseStyles.xaml"/>
+	</UserControl.Resources>
+
+	<ListView Style="{StaticResource ListViewStyleBase}" Height="Auto" Width="Auto" DataContext="{Binding}" ItemsSource="{Binding ActorsMetaData}" SelectionMode="Single">
+		<ListView.View>
+			<GridView>
+				<GridView.ColumnHeaderContainerStyle>
+					<Style>
+						<Setter Property="FrameworkElement.Visibility" Value="Collapsed"/>
+					</Style>
+				</GridView.ColumnHeaderContainerStyle>
+				<GridViewColumn Header="Name" Width="Auto" >
+					<GridViewColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding TypeName}" Style="{StaticResource TextBlockObjectStyle}" />
+						</DataTemplate>
+					</GridViewColumn.CellTemplate>
+				</GridViewColumn>
+			</GridView>
+		</ListView.View>
+	</ListView>
 </UserControl>

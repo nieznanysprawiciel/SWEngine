@@ -178,6 +178,7 @@
     <Compile Include="Editor\Engine\Displayer.cs" />
     <Compile Include="Editor\Logic.cs" />
     <Compile Include="Editor\GlobalSettings.cs" />
+    <Compile Include="Editor\Project\Actors\ActorsCreatorView.cs" />
     <Compile Include="Editor\Project\Actors\ActorsLogic.cs" />
     <Compile Include="Editor\Commands\RelayCommand.cs" />
     <Compile Include="Editor\Project\Content\ContentManager.cs" />

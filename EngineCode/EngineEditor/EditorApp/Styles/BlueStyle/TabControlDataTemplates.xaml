@@ -15,6 +15,10 @@
 		<gui:ActorViewer />
 	</DataTemplate>
 
+	<DataTemplate DataType="{x:Type actors:ActorsCreatorView}" >
+		<gui:ActorsCreator />
+	</DataTemplate>
+	
 	<DataTemplate DataType="{x:Type engine:Displayer}" >
 		<Image Height="{Binding Height}"
 			   Width="{Binding Width}"

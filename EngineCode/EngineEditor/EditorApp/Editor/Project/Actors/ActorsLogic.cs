@@ -22,6 +22,8 @@ namespace EditorApp.Editor.Project.Actors
 
 		private Logic							m_editorLogic;      ///< Referencja na główny obiekt edytora.
 
+		private ActorsCreatorView               m_actorsCreatorView;
+
 
 		public ActorsLogic		( Logic editorLogic )
 		{
@@ -35,6 +37,8 @@ namespace EditorApp.Editor.Project.Actors
 
 			LoadAssetCommand = new RelayCommand( LoadAsset, CanLoadAsset );
 			ActorSelectionChangedCommand = new RelayCommand( ActorSelectionChanged );
+
+			ActorsCreatorView = new ActorsCreatorView( this );
 		}
 
 		private void ClearState()
@@ -50,6 +54,7 @@ namespace EditorApp.Editor.Project.Actors
 			EngineWrapper engine = m_editorLogic.Displayer.EngineWrapper;
 			m_actorsTypesList = engine.CreateActorsMetadata();
 			m_actors = engine.CreateActorsList();
+
 
 			int actorCounter = 0;
 			foreach( var actor in m_actors )
@@ -188,6 +193,19 @@ namespace EditorApp.Editor.Project.Actors
 		{
 			get;
 			internal set;
+		}
+
+		public ActorsCreatorView ActorsCreatorView
+		{
+			get
+			{
+				return m_actorsCreatorView;
+			}
+
+			internal set
+			{
+				m_actorsCreatorView = value;
+			}
 		}
 
 		#endregion
