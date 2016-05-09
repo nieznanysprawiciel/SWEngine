@@ -16,6 +16,8 @@ namespace EditorApp.GUI
 
 			if( fileType.Value == FileTreeNodeType.Directory )
 				return Application.Current.FindResource( "FolderIcon" ) as BitmapImage;
+			else if( fileType.Value == FileTreeNodeType.Texture )
+				return Application.Current.FindResource( "TextureIcon" ) as BitmapImage;
 			else if( fileType.Value == FileTreeNodeType.Model3D )
 				return Application.Current.FindResource( "Model3dIcon" ) as BitmapImage;
 			else if( fileType.Value == FileTreeNodeType.Shader )

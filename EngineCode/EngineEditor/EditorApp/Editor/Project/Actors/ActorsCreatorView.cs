@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EditorPlugin;
+using System.Windows.Input;
+using EditorApp.GUI;
+using EditorApp.Editor.Commands;
+
 
 namespace EditorApp.Editor.Project.Actors
 {
@@ -15,6 +19,8 @@ namespace EditorApp.Editor.Project.Actors
 		{
 			DisplayName = "Actors Creator";
 			m_logicRef = actorsLogic;
+
+			CreateActor = new RelayCommand( m_logicRef.CreateActor );
 		}
 
 		public List<ActorClassMetaInfo> ActorsMetaData
@@ -23,6 +29,12 @@ namespace EditorApp.Editor.Project.Actors
 			{
 				return m_logicRef.ActorsTypesList;
 			}
+		}
+
+		public ICommand CreateActor
+		{
+			get;
+			internal set;
 		}
 
 	}

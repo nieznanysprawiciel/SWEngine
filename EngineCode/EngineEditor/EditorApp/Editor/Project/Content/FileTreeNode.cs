@@ -66,6 +66,10 @@ namespace EditorApp.Editor.Project.Content
 			string extension = Path.GetExtension( fileName ).ToLower();
 			if( extension == ".fbx" )
 				return FileTreeNodeType.Model3D;
+			else if( extension == ".bmp"
+				|| extension == ".jpg"
+				|| extension == ".png" )
+				return FileTreeNodeType.Texture;
 			else if( extension == ".hlsl"
 				|| extension == ".glsl"
 				|| extension == ".fx" )

@@ -7,10 +7,11 @@ using System.Windows;
 using System.Windows.Input;
 using EditorApp.Editor.Commands;
 using EditorApp.Editor;
+using EditorApp.GUI;
 
 namespace EditorApp.Engine
 {
-	public class Displayer : UpdatableViewBase
+	public class Displayer : UpdatableViewBase, IDropable
 	{
 		private D3DImageEx                      m_viewportSurface;
 		private EngineWrapper                   m_engineWrapper;
@@ -82,6 +83,22 @@ namespace EditorApp.Engine
 		}
 
 
+
+		#region IDropable Implementation
+		public Type DataType
+		{
+			get
+			{
+				return typeof( ActorClassMetaInfo );
+			}
+		}
+
+		public void Drop			( object data, int index = -1 )
+		{
+			throw new NotImplementedException();
+		}
+		#endregion
+
 		#region PrivateHelpers
 
 		private void InvalidateD3DImage()
@@ -95,7 +112,7 @@ namespace EditorApp.Engine
 				Width = m_viewportSurface.PixelWidth
 			} );
 			m_viewportSurface.Unlock();
-		} 
+		}
 
 		#endregion
 

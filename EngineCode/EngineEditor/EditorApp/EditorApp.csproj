@@ -123,12 +123,25 @@
     <Reference Include="DockPanelSplitter">
       <HintPath>..\..\..\External\DockPanelSplitter\DockPanelSplitter.dll</HintPath>
     </Reference>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\..\..\External\Packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras">
+      <HintPath>..\..\..\External\Packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform">
+      <HintPath>..\..\..\External\Packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\..\External\Packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\External\System.Windows.Interactivity\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\..\..\External\Packages\MvvmLightLibs.5.3.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -151,6 +164,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GUI\Bahaviors\DragAndDrop\FrameworkElementAdorner.cs" />
+    <Compile Include="GUI\Bahaviors\DragAndDrop\FrameworkElementDragBehavior.cs" />
+    <Compile Include="GUI\Bahaviors\DragAndDrop\FrameworkElementDropBehavior.cs" />
+    <Compile Include="GUI\Bahaviors\DragAndDrop\IDragable.cs" />
+    <Compile Include="GUI\Bahaviors\DragAndDrop\IDropable.cs" />
+    <Compile Include="GUI\Converters\DatabindingDebugConverter .cs" />
+    <Compile Include="GUI\Converters\FileIconConverter.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="GUI\ActorsCreator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -196,8 +218,6 @@
     <Compile Include="GUI\ContentBrowser.xaml.cs">
       <DependentUpon>ContentBrowser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\DatabindingDebugConverter .cs" />
-    <Compile Include="GUI\FileIconConverter.cs" />
     <Compile Include="GUI\RendererPreview.xaml.cs">
       <DependentUpon>RendererPreview.xaml</DependentUpon>
     </Compile>
@@ -311,6 +331,9 @@
   <ItemGroup>
     <Resource Include="Styles\BlueStyle\Images\LoadAssetIcon.ico" />
     <Resource Include="Styles\BlueStyle\Images\SearchIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\BlueStyle\Images\TextureIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

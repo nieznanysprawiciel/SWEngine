@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using EditorPlugin;
@@ -86,6 +87,12 @@ namespace EditorApp.Editor.Project.Actors
 			}
 		}
 
+
+		public void CreateActor		( object parameter )
+		{
+			var eventArg = parameter as RoutedEventHandler;
+			//eventArg.
+		}
 
 		public void	LoadAsset		( object parameter )
 		{

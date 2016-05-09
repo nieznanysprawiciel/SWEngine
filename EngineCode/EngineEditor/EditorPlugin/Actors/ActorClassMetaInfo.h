@@ -4,6 +4,7 @@
 
 #include "EngineEditor/EditorPlugin/Properties/PropertyWrapper.h"
 #include "EngineEditor/EditorPlugin/Actors/ActorWrapper.h"
+#include "EngineEditor/EditorPlugin/EditorApp/IDragable.h"
 
 
 class EngineObject;
@@ -26,7 +27,7 @@ obiektów jak ten wskaŸnik. Ale wtedy oznacza³oby to powielenie tych klas, aby mo
 i wymusi³oby to ka¿dorazowe alokowanie ca³ej hierarchii przy klikniêciu na jakiœ obiekt.
 Obecne rozwi¹zanie pozwala na prost¹ podmianê wskaŸnika.
 */
-public ref class ActorClassMetaInfo
+public ref class ActorClassMetaInfo : public EditorApp::GUI::IDragable
 {
 private:
 
@@ -69,6 +70,20 @@ public:
 	property ActorWrapper^				Actor
 	{
 		ActorWrapper^					get ()	{ return m_actorPtr; }
+	}
+
+
+	property System::Type^		DataType
+	{
+		virtual System::Type^		get ()
+		{
+			return ActorClassMetaInfo::typeid;
+		}
+	}
+
+	virtual void				Remove( System::Object^ i )
+	{
+		// Nic nie robi. Funkcja remove powinna zostaæ usuniêta.
 	}
 
 private:

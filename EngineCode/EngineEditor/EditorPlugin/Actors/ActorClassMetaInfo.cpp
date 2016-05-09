@@ -1,6 +1,8 @@
 #include "ActorClassMetaInfo.h"
 
-
+// Bardzo wa¿ny include. Je¿eli ten plik nie zostanie gdzieœ zaincludowany, to wszystko siê skompiluje
+// ale interfejs nie bêdzie widoczny poza dllk¹.
+#include "EngineEditor/EditorPlugin/EditorApp/IDragable.h"
 
 namespace EditorPlugin
 {

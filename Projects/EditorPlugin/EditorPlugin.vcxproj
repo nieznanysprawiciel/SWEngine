@@ -31,6 +31,9 @@
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorClassMetaInfo.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorWrapper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorApp\IDragable.h">
+      <FileType>CppHeader</FileType>
+    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorPlugin.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EnginePointerProvider.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyHelper.h" />

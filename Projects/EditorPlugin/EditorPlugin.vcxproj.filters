@@ -13,6 +13,9 @@
     <Filter Include="EditorPlugin\Actors">
       <UniqueIdentifier>{71478c14-da7c-41db-9654-9d676d5f623a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EditorPlugin\EditorApp">
+      <UniqueIdentifier>{c163a8d5-a2cc-48da-b195-1512cc9e6ae3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\dllmain.cpp">
@@ -61,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourceObjectPropertyWrapper.h">
       <Filter>EditorPlugin\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorApp\IDragable.cpp">
+      <Filter>EditorPlugin\EditorApp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
