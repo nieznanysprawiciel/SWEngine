@@ -10,6 +10,9 @@
 // Engine include
 #include "EngineCore/MainEngine/Engine.h"
 #include "Common/MacrosSwitches.h"
+#include "EngineCore/Actors/ActorObjects.h"
+
+#include <msclr/marshal_cppstd.h>
 
 
 Engine*		EnginePointerProvider::engine = nullptr;
@@ -103,7 +106,24 @@ void EngineWrapper::EnableInput( bool val )
 	m_engine->EnableInput( val );
 }
 
-/**@brief Twqorzy listê typów zarejestrowanych aktorów.*/
+/**@brief */
+ActorWrapper^						EngineWrapper::CreateActor				( System::String^ actorName, int mouseX, int mouseY )
+{
+	auto actor = m_engine->Actors.CreateActor( msclr::interop::marshal_as< std::string >( actorName ) );
+	auto actorData = m_engine->Actors.FindActor( actor );
+
+	m_engine->Actors.AddToModules( actor, ActorInfoFlag::EnableDisplay );
+
+	if( rttr::type::get( *actor ).is_derived_from< CameraActor >() )
+		m_engine->Actors.AddToModules( actor, ActorInfoFlag::AsCamera );
+
+	if( actor && actorData )
+		return gcnew ActorWrapper( (EngineObject*)actor, &actorData->second );
+
+	return gcnew ActorWrapper( nullptr, nullptr );
+}
+
+/**@brief Tworzy listê typów zarejestrowanych aktorów.*/
 List< ActorClassMetaInfo^ >^		EngineWrapper::CreateActorsMetadata		()
 {
 	auto& registeredClasses = m_engine->Actors.GetRegisteredClasses();
@@ -118,7 +138,7 @@ List< ActorClassMetaInfo^ >^		EngineWrapper::CreateActorsMetadata		()
 	return actorsList;
 }
 
-
+/**@brief */
 ObservableCollection< ActorWrapper^ >^		EngineWrapper::CreateActorsList			()
 {
 	ObservableCollection< ActorWrapper^ >^ actorsList = gcnew ObservableCollection< ActorWrapper^ >();

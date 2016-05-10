@@ -36,7 +36,7 @@
 				</GridViewColumn>
 			</GridView>
 		</ListView.View>
-		<ListView.ContextMenu>
+		<!--<ListView.ContextMenu>
 			<ContextMenu>
 				<MenuItem Header="Create" >
 					<i:Interaction.Triggers>
@@ -46,6 +46,6 @@
 					</i:Interaction.Triggers>
 				</MenuItem>
 			</ContextMenu>
-		</ListView.ContextMenu>
+		</ListView.ContextMenu>-->
 	</ListView>
 </UserControl>

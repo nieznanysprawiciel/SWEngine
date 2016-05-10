@@ -47,15 +47,19 @@ namespace Api
 		template< typename Type = ActorBase >	Type*		CreateActor				( ActorType id, ActorInfo actorModules );
 		template< typename Type = ActorBase >	Type*		CreateActor				( const std::string& name );
 		template< typename Type = ActorBase >	Type*		CreateActor				( ActorType id );
+		
 
 		//void			DeleteActor				( ActorBase* actor );
 		//void			RemoveFromModules		( ActorBase* newActor, ActorInfo actorModules );
 		void			AddToModules			( ActorBase* newActor, ActorInfo actorModules );
+		
+		const ActorData*								FindActor				( ActorBase* actor );
 
 		const std::map< std::string, ActorType >&		GetRegisteredClasses	();
 		const std::vector< ActorData >&					GetAllActors			();
 	};
 
+	template<>							ActorBase*		ActorsApi::CreateActor				( const std::string& name );
 
 	/**@brief Tworzy aktora na podstawie nazwy.
 	
@@ -101,7 +105,7 @@ namespace Api
 	template<typename Type>
 	inline Type* ActorsApi::CreateActor( const std::string& name )
 	{
-		Type* newActor = Context->actorsManager->CreateActor< Type >( name, actorModules );
+		Type* newActor = Context->actorsManager->CreateActor< Type >( name, ActorInfoFlag::DisableAll );
 
 		if( newActor == nullptr )
 			return nullptr;
@@ -117,7 +121,7 @@ namespace Api
 	template<typename Type>
 	inline Type* ActorsApi::CreateActor( ActorType id )
 	{
-		Type* newActor = Context->actorsManager->CreateActor< Type >( id, actorModules );
+		Type* newActor = Context->actorsManager->CreateActor< Type >( id, ActorInfoFlag::DisableAll );
 
 		if( newActor == nullptr )
 			return nullptr;

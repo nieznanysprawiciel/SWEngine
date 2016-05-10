@@ -50,7 +50,7 @@ namespace EditorApp
 			PathsManager = new PathsManager();
 			GlobalSettings = new GlobalSettings();
 			ProjectManager = new Project.ProjectManager( this );
-			Displayer = new Engine.Displayer();
+			Displayer = new Engine.Displayer( this );
 
 			LeftPanelView.Add( ProjectManager.ContentManager );
 			LeftPanelView.Add( ProjectManager.ActorsLogic.ActorsCreatorView );

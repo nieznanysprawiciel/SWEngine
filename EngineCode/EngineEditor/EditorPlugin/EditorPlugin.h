@@ -66,8 +66,13 @@ using namespace System::Collections::ObjectModel;
 		void				BasicScene					();
 		void				EnableInput					( bool val );
 
+		// Actors
+		ActorWrapper^		CreateActor					( System::String^ actorName, int mouseX, int mouseY );
+		
 		List< ActorClassMetaInfo^ >^						CreateActorsMetadata		();
 		ObservableCollection< ActorWrapper^ >^				CreateActorsList			();
+
+
 	};
 
 }

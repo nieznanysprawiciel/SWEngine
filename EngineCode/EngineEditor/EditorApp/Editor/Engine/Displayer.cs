@@ -20,8 +20,10 @@ namespace EditorApp.Engine
 		private int                             m_width;
 		private int                             m_height;
 
+		private Logic                           m_logicRef;	/// Wolałbym, żeby ta referencja nie była potrzebna.
 
-		public Displayer()
+
+		public Displayer( Logic appLogic )
 		{
 			DisplayName = "Preview";
 			Height = 800;
@@ -32,6 +34,8 @@ namespace EditorApp.Engine
 
 			GotFocusCommand = new RelayCommand( GotFocus );
 			LostFocusCommand = new RelayCommand( LostFocus );
+
+			m_logicRef = appLogic;
 		}
 		
 		public bool		InitRenderer()
@@ -95,7 +99,9 @@ namespace EditorApp.Engine
 
 		public void Drop			( object data, int index = -1 )
 		{
-			throw new NotImplementedException();
+			// Dodać informacje o pozycji myszy w momencie upuszczenia obiektu.
+			ActorClassMetaInfo actorClass = data as ActorClassMetaInfo;
+			m_logicRef.ProjectManager.ActorsLogic.CreateActor( actorClass );
 		}
 		#endregion
 

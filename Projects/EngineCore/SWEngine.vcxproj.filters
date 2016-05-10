@@ -42,9 +42,6 @@
     <Filter Include="EngineCore\ControllersEngine">
       <UniqueIdentifier>{e662f704-3493-494c-9f9a-78cc8e248b88}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EngineCore\CollisionEngine">
-      <UniqueIdentifier>{2a60f048-e5ee-422c-b713-88dcae0e30dc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="EngineCore\DisplayEngine">
       <UniqueIdentifier>{3f99a4a6-a6b3-4938-be1a-674961b15ae0}</UniqueIdentifier>
     </Filter>

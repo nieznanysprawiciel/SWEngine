@@ -38,6 +38,7 @@ namespace EditorApp.GUI
 
         protected override void OnRender(DrawingContext drawingContext)
         {
+			/// @todo Zmienić ten kod i narysować coś bardziej w stylu silnika.
             Rect adornedElementRect = new Rect(this.AdornedElement.DesiredSize);
 
             SolidColorBrush renderBrush = new SolidColorBrush(Colors.Red);

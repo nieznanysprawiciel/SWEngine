@@ -65,7 +65,7 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourceObjectPropertyWrapper.h">
       <Filter>EditorPlugin\Properties</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorApp\IDragable.cpp">
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorApp\IDragable.h">
       <Filter>EditorPlugin\EditorApp</Filter>
     </ClInclude>
   </ItemGroup>

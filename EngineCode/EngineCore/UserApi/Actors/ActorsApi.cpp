@@ -82,6 +82,12 @@ void ActorsApi::AddToModules( ActorBase* newActor, ActorInfo actorModules )
 	//@todo Dodaæ do pozosta³ych modu³ów, kiedy bêdzie to mo¿liwe.
 }
 
+/**@brief Zwraca dane o podanym aktorze.*/
+const ActorData*					ActorsApi::FindActor				( ActorBase* actor )
+{
+	return Context->actorsManager->FindActor( actor );
+}
+
 /**@brief Pobiera dane o wszystkich aktorach.
 
 @return Zwraca referencjê na wektor @ref ActorData.*/
@@ -90,6 +96,17 @@ const std::vector<ActorData>&		ActorsApi::GetAllActors()
 	return Context->actorsManager->GetAllActors();
 }
 
+/**@brief Specjalizacja szablonu dla ActorBase. Dziêki temu edytor nie bêdzie musia³ includowaæ
+EngineContext i nie bêdzie krzycza³, ¿e klasa std::mutex mu nie pasuje.*/
+template<>
+ActorBase*							ActorsApi::CreateActor< ActorBase >		( const std::string& name )
+{
+	ActorBase* newActor = Context->actorsManager->CreateActor< ActorBase >( name, ActorInfoFlag::DisableAll );
 
+	if( newActor == nullptr )
+		return nullptr;
+
+	return newActor;
+}
 
 }	// Api

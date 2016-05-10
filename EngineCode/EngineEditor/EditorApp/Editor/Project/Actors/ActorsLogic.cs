@@ -94,6 +94,15 @@ namespace EditorApp.Editor.Project.Actors
 			//eventArg.
 		}
 
+		public void CreateActor		( ActorClassMetaInfo actorInfo )
+		{
+			EngineWrapper engine = m_editorLogic.Displayer.EngineWrapper;
+			var newActor = engine.CreateActor( actorInfo.TypeName, 0, 0 );
+
+			newActor.ActorName = newActor.TypeName + Actors.Count.ToString();
+			Actors.Add( newActor );
+		}
+
 		public void	LoadAsset		( object parameter )
 		{
 			ResourceObjectPropertyWrapper resource = parameter as ResourceObjectPropertyWrapper;

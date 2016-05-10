@@ -23,17 +23,18 @@ public:
 
 	inline ActorFactory&									GetActorFactory	()	{ return m_actorFactory; }
 
-	template< typename Type = ActorBase >	Type*		CreateActor		( const std::string& name, ActorInfo actorModules );
-	template< typename Type = ActorBase >	Type*		CreateActor		( ActorType id, ActorInfo actorModules );
+	template< typename Type = ActorBase >	Type*			CreateActor		( const std::string& name, ActorInfo actorModules );
+	template< typename Type = ActorBase >	Type*			CreateActor		( ActorType id, ActorInfo actorModules );
 
 	void													UpdateActor		( ActorBase* actor, ActorInfo actorModules );
 	const std::vector< ActorData >&							GetAllActors	();
+
+	template< typename Type = ActorBase >	ActorData*		FindActor		( ActorBase* actor );
 
 private:
 
 	void													AddActor		( ActorBase* newActor );
 	
-	template< typename Type = ActorBase >	ActorData*	FindActor( ActorBase* actor );
 };
 
 
