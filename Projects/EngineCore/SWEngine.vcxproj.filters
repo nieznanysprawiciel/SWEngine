@@ -335,6 +335,21 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\SpawnPoint.h">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DirectionalLight.h">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\LightBase.h">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\PointLight.h">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\SpotLight.h">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\TriggerActor.h">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -518,6 +533,21 @@
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\SpawnPoint.cpp">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DirectionalLight.cpp">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\LightBase.cpp">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\PointLight.cpp">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\SpotLight.cpp">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\TriggerActor.cpp">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClCompile>
   </ItemGroup>

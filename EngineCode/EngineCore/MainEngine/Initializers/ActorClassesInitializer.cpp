@@ -52,6 +52,10 @@ bool Engine::InitDefaultActorsClasses()
 	actorsFactory.RegisterClass< CameraActor >( GetTypeidName< CameraActor >(), CameraActor::Create );
 	actorsFactory.RegisterClass< PathNode >( GetTypeidName< PathNode >(), PathNode::Create );
 	actorsFactory.RegisterClass< SpawnPoint >( GetTypeidName< SpawnPoint >(), SpawnPoint::Create );
+	actorsFactory.RegisterClass< PointLight >( GetTypeidName< PointLight >(), PointLight::Create );
+	actorsFactory.RegisterClass< DirectionalLight >( GetTypeidName< DirectionalLight >(), DirectionalLight::Create );
+	actorsFactory.RegisterClass< SpotLight >( GetTypeidName< SpotLight >(), SpotLight::Create );
+	actorsFactory.RegisterClass< TriggerActor >( GetTypeidName< TriggerActor >(), TriggerActor::Create );
 
 
 	return true;

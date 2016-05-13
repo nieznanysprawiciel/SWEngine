@@ -20,6 +20,11 @@
 @ref CameraActor
 @ref PathNode
 @ref SpawnPoint
+@ref LightBase
+@ref SpotLight
+@ref DirectionalLight
+@ref PointLight
+#ref TriggerActor
 */
 
 class DynamicActor;
@@ -36,6 +41,10 @@ class InputAbstractionLayerBase;
 #include "BasicActors/ComplexActor.h"
 #include "BasicActors/PathNode.h"
 #include "BasicActors/SpawnPoint.h"
+#include "BasicActors/DirectionalLight.h"
+#include "BasicActors/SpotLight.h"
+#include "BasicActors/PointLight.h"
+#include "BasicActors/TriggerActor.h"
 
 
 /**@brief Klasa bazowa dla wszystkich kontrolerów dla obiektów.*/
