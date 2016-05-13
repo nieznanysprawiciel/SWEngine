@@ -7,17 +7,19 @@
 
 @brief Zawiera deklaracje klas bazowych dla obiektów(aktorów):
 
-ActorBase
-Static_object
-DynamicActor
-Collision_object
-PhysicalActor
-DynamicMeshActor
-AnimationActor
-Controller
-Standard_AI_controller
-Standard_input_controller
-CameraActor
+@ref ActorBase
+@ref StaticActor
+@ref DynamicActor
+@ref CollisionActor
+@ref PhysicalActor
+@ref DynamicMeshActor
+@ref AnimationActor
+@ref Controller
+@ref BaseAIController
+@ref BaseInputController
+@ref CameraActor
+@ref PathNode
+@ref SpawnPoint
 */
 
 class DynamicActor;
@@ -28,11 +30,12 @@ class InputAbstractionLayerBase;
 #include "BasicActors/DynamicActor.h"
 #include "BasicActors/CollisionActor.h"
 #include "BasicActors/PhysicalActor.h"
-#include "BasicActors/PhysicalActor.h"
 #include "BasicActors/DynamicMeshActor.h"
 #include "BasicActors/AnimationActor.h"
 #include "BasicActors/CameraActor.h"
 #include "BasicActors/ComplexActor.h"
+#include "BasicActors/PathNode.h"
+#include "BasicActors/SpawnPoint.h"
 
 
 /**@brief Klasa bazowa dla wszystkich kontrolerów dla obiektów.*/

@@ -329,6 +329,12 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\ActorBase.h">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\PathNode.h">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\SpawnPoint.h">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -506,6 +512,12 @@
       <Filter>EngineCore\PhysicEngine\Collisions</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\ActorBase.cpp">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\PathNode.cpp">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\SpawnPoint.cpp">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClCompile>
   </ItemGroup>

@@ -203,7 +203,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DynamicActor.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DynamicMeshActor.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\ActorBase.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\PathNode.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\PhysicalActor.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\SpawnPoint.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\StaticActor.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\EventManager.h" />
@@ -276,7 +278,9 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DynamicActor.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DynamicMeshActor.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\ActorBase.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\PathNode.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\PhysicalActor.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\SpawnPoint.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\StaticActor.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\EventsManager\EventManager.cpp" />

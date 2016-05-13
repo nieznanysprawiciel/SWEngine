@@ -366,7 +366,10 @@ PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( rttr::property property
 		return propertyWrapper;
 	}
 	else
-		throw gcnew System::NotImplementedException();
+		throw gcnew System::ArgumentException( gcnew System::String( "Property type: [" )
+											   + gcnew System::String( property.get_name().c_str() )
+											   + gcnew System::String( "] is not supported" ),
+											   gcnew System::String( "property" ) );
 }
 
 /**@brief Zbuduj hierarchiê metadanych z podanego obiektu.*/

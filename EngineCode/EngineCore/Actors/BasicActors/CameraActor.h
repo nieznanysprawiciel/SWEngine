@@ -10,14 +10,41 @@ class CameraActor : public DynamicActor
 	friend class DisplayEngine;
 
 	RTTR_ENABLE( DynamicActor )
+	RTTR_REGISTRATION_FRIEND
 protected:
 
-	DirectX::XMFLOAT4X4		projection_matrix;		///<Macierz projekcji. Dla ka¿dej kamery mo¿e byæ inna. @attention Na razie nieu¿ywane. Macierz projekcji jest ustawiana na sta³e w DisplayEngine.
+	float					m_fov;
+	float					m_width;
+	float					m_height;
+	float					m_nearPlane;
+	float					m_farPlane;
+	bool					m_isPerspective;
+
+	DirectX::XMFLOAT4X4		m_projectionMatrix;		///<Macierz projekcji. Dla ka¿dej kamery mo¿e byæ inna. @attention Na razie nieu¿ywane. Macierz projekcji jest ustawiana na sta³e w DisplayEngine.
 
 public:
-	void SetProjectionMatrix( float angle, float X_to_Y, float near_plane, float far_plane );
+	explicit CameraActor();
 
+	void				SetPerspectiveProjectionMatrix		( float angle, float aspect, float nearPlane, float farPlane );
+	void				SetOrthogonalProjectionMatrix		( float width, float height, float nearPlane, float farPlane );
 
-	static ActorBase*			Create()	{ return new CameraActor; }
+	void				SetPerspective		( bool value );
+	void				SetWidth			( float width );
+	void				SetHeight			( float height );
+	void				SetNearPlane		( float plane );
+	void				SetFarPlane			( float plane );
+	void				SetFov				( float fov );
+
+	bool				GetIsPerspective	()					{ return m_isPerspective; }
+	float				GetWidth			()					{ return m_width; }
+	float				GetHeight			()					{ return m_height; }
+	float				GetNearPlane		()					{ return m_nearPlane; }
+	float				GetFarPlane			()					{ return m_farPlane; }
+	float				GetFov				()					{ return m_fov; }
+
+	static ActorBase*	Create				()					{ return new CameraActor; }
+
+private:
+	void				UpdateMatrix		();
 };
 
