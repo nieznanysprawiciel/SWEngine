@@ -317,22 +317,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Styles\GreyStyle\" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Styles\BlueStyle\Images\model3dIcon.ico" />
     <Resource Include="Styles\BlueStyle\Images\SchopenhauerMini.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Styles\BlueStyle\Images\Folder.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Styles\BlueStyle\Images\ShaderIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Styles\BlueStyle\Images\LoadAssetIcon.ico" />
     <Resource Include="Styles\BlueStyle\Images\SearchIcon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Styles\BlueStyle\Images\TextureIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -345,7 +335,17 @@
     <Message Text="Copy Reflection.dll and libfbxsdk.dll to $(OutputPath)" />
     <Copy SourceFiles="$(ExternalDir)FBX_SDK\lib\vs2013\$(PlatformTarget)\$(ConfigTypeSmallString)\libfbxsdk.dll" DestinationFolder="$(OutputPath)" ContinueOnError="false" />
     <Copy SourceFiles="$(EngineLibDir)Reflection\v120\$(PlatformTarget)\$(ConfigTypeSmallString)\Reflection.dll" DestinationFolder="$(OutputPath)" ContinueOnError="false" />
-    <Move SourceFiles="$(OutputPath)$(AssemblyName).pdb" DestinationFolder="$(EnginePDBDir)\EditorApp\EditorApp_$(Configuration)_$(PlatformTarget)\" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" ContinueOnError="false" />
-    <Move SourceFiles="$(OutputPath)DockPanelSplitter.pdb" DestinationFolder="$(EnginePDBDir)\EditorApp\EditorApp_$(Configuration)_$(PlatformTarget)\" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" ContinueOnError="false" />
+	 
+	 <ItemGroup>
+		<PDBFilesToMove Include="$(OutputPath)*.pdb" />
+		<XMLToDelete Include="$(OutputPath)*.xml" />
+	 </ItemGroup>
+<!--     <Move SourceFiles="$(OutputPath)$(AssemblyName).pdb" DestinationFolder="$(EnginePDBDir)\EditorApp\EditorApp_$(Configuration)_$(PlatformTarget)\" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" ContinueOnError="false" />
+    <Move SourceFiles="$(OutputPath)DockPanelSplitter.pdb" DestinationFolder="$(EnginePDBDir)\EditorApp\EditorApp_$(Configuration)_$(PlatformTarget)\" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" ContinueOnError="false" /> -->
+	 <Move SourceFiles="@(PDBFilesToMove)" DestinationFolder="$(EnginePDBDir)\EditorApp\EditorApp_$(Configuration)_$(PlatformTarget)\" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" ContinueOnError="false" />
+	 <Delete Files="@(XMLToDelete)" />
+  </Target>
+  <Target Name="CleanRelease" >
+	<Message Text="CleanRelease target triggered" />
   </Target>
 </Project>
