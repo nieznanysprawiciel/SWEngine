@@ -14,7 +14,7 @@
 @ref PhysicalActor
 @ref DynamicMeshActor
 @ref AnimationActor
-@ref Controller
+@ref IController
 @ref BaseAIController
 @ref BaseInputController
 @ref CameraActor
@@ -27,8 +27,8 @@
 #ref TriggerActor
 */
 
-class DynamicActor;
-class InputAbstractionLayerBase;
+
+
 
 #include "BasicActors/ActorBase.h"
 #include "BasicActors/StaticActor.h"
@@ -47,33 +47,6 @@ class InputAbstractionLayerBase;
 #include "BasicActors/TriggerActor.h"
 
 
-/**@brief Klasa bazowa dla wszystkich kontrolerów dla obiektów.*/
-class Controller
-{
-public:
-	virtual ~Controller() = default;
-	virtual void ControlObject( DynamicActor* ) = 0;
-};
 
-/**@brief Klasa bazowa dla wszystkich kontrolerów sztucznej inteligencji.*/
-class BaseAIController : public Controller
-{
 
-	virtual void ControlObject( DynamicActor* ) = 0;
-};
-
-/**@brief Klasa bazowa dla wszystkich kontrolerów do sterowania przez u¿ytkownika.*/
-class BaseInputController : public Controller
-{
-protected:
-	InputAbstractionLayerBase*		abstraction_layer;
-
-public:
-	BaseInputController( InputAbstractionLayerBase* layer );
-	virtual ~BaseInputController();
-
-	void SetAbstractionLayer( InputAbstractionLayerBase* layer ) { abstraction_layer = layer; };
-
-	virtual void ControlObject( DynamicActor* ) = 0;
-};
 

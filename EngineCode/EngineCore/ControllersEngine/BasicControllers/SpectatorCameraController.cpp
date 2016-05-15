@@ -1,34 +1,42 @@
 #include "EngineCore/stdafx.h"
-#include "camera_controller_PROTOTYPE.h"
-#include "EngineCore/UIEngine/InputAbstractionLayer.h"
+#include "SpectatorCameraController.h"
 
+#include "EngineCore/UIEngine/InputAbstractionLayer.h"
+#include "EngineCore/Actors/BasicActors/DynamicActor.h"
 
 #include "Common/MemoryLeaks.h"
 
-using namespace DirectX;
 
-camera_controller_PROTOTYPE::camera_controller_PROTOTYPE( InputAbstractionLayerBase* layer )
-	:	BaseInputController(layer)
+RTTR_REGISTRATION
 {
-	move_speed = 1000.0;
-	button_rot_speed = 1.0;
-	axis_rot_speed = 120.0;
+	rttr::registration::class_< SpectatorCameraController >( "SpectatorCameraController" );
 }
 
 
-camera_controller_PROTOTYPE::~camera_controller_PROTOTYPE()
+using namespace DirectX;
+
+SpectatorCameraController::SpectatorCameraController( InputAbstractionLayerBase* layer )
+	:	BaseInputController(layer)
+{
+	m_moveSpeed = 1000.0;
+	m_buttonRotSpeed = 1.0;
+	m_axisRotSpeed = 120.0;
+}
+
+
+SpectatorCameraController::~SpectatorCameraController()
 {
 }
 
 /*Funkcja g³ówna odpowiedzialna za sterowanie ruchem obiektu.*/
 using namespace STANDARD_LAYERS;
 
-void camera_controller_PROTOTYPE::ControlObject( DynamicActor* object )
+void SpectatorCameraController::ControlObjectPre( DynamicActor* object )
 {
-	if ( !abstraction_layer->IsActive() )
+	if ( !m_abstractionLayer->IsActive() )
 		return;
 	//pobieramy tablicê przycisków
-	auto& buttonState = abstraction_layer->GetButtonsTable();
+	auto& buttonState = m_abstractionLayer->GetButtonsTable();
 
 	XMVECTOR forward = XMVectorSet( 0.0, 0.0, 0.0, 0.0 );
 	XMVECTOR left = XMVectorSet( 0.0, 0.0, 0.0, 0.0 );
@@ -43,7 +51,7 @@ void camera_controller_PROTOTYPE::ControlObject( DynamicActor* object )
 		XMVECTOR orientation = object->GetOrientation( );
 		XMMATRIX orient = XMMatrixRotationQuaternion( orientation );
 		forward = XMVector4Transform( versor, orient );
-		forward *= move_speed;
+		forward *= m_moveSpeed;
 	}
 	else if ( buttonState[PROTOTYPE_BUTTONS::BACKWARD] && !buttonState[PROTOTYPE_BUTTONS::FORWARD] )
 	{
@@ -51,7 +59,7 @@ void camera_controller_PROTOTYPE::ControlObject( DynamicActor* object )
 		XMVECTOR orientation = object->GetOrientation( );
 		XMMATRIX orient = XMMatrixRotationQuaternion( orientation );
 		forward = XMVector4Transform( versor, orient );
-		forward *= move_speed;
+		forward *= m_moveSpeed;
 	}
 
 	//ruch w lewo albo w prawo
@@ -61,7 +69,7 @@ void camera_controller_PROTOTYPE::ControlObject( DynamicActor* object )
 		XMVECTOR orientation = object->GetOrientation( );
 		XMMATRIX orient = XMMatrixRotationQuaternion( orientation );
 		left = XMVector4Transform( versor, orient );
-		left *= move_speed;
+		left *= m_moveSpeed;
 	}
 	else if ( buttonState[PROTOTYPE_BUTTONS::RIGHT] && !buttonState[PROTOTYPE_BUTTONS::LEFT] )
 	{
@@ -69,7 +77,7 @@ void camera_controller_PROTOTYPE::ControlObject( DynamicActor* object )
 		XMVECTOR orientation = object->GetOrientation( );
 		XMMATRIX orient = XMMatrixRotationQuaternion( orientation );
 		left = XMVector4Transform( versor, orient );
-		left *= move_speed;
+		left *= m_moveSpeed;
 	}
 
 	forward = forward + left;		//dodajemy ruch posuwisty
@@ -83,7 +91,7 @@ void camera_controller_PROTOTYPE::ControlObject( DynamicActor* object )
 		XMVECTOR orientation = object->GetOrientation( );
 		XMMATRIX orient = XMMatrixRotationQuaternion( orientation );
 		down_rotate = XMVector4Transform( versor, orient );
-		down_rotate *= button_rot_speed;
+		down_rotate *= m_buttonRotSpeed;
 	}
 	else if ( buttonState[PROTOTYPE_BUTTONS::UP] && !buttonState[PROTOTYPE_BUTTONS::DOWN] )
 	{
@@ -91,24 +99,24 @@ void camera_controller_PROTOTYPE::ControlObject( DynamicActor* object )
 		XMVECTOR orientation = object->GetOrientation( );
 		XMMATRIX orient = XMMatrixRotationQuaternion( orientation );
 		down_rotate = XMVector4Transform( versor, orient );
-		down_rotate *= button_rot_speed;
+		down_rotate *= m_buttonRotSpeed;
 	}
 
 	if ( buttonState[PROTOTYPE_BUTTONS::TURN_LEFT] && !buttonState[PROTOTYPE_BUTTONS::TURN_RIGHT] )
 	{
 		left_rotate = XMVectorSet( 0.0, 1.0, 0.0, 0.0 );
 		//zawsze obracamy wzglêdem osi pionowej, dlatego nie mno¿ymy przez kwaternion orientacji
-		left_rotate *= button_rot_speed;
+		left_rotate *= m_buttonRotSpeed;
 	}
 	else if ( buttonState[PROTOTYPE_BUTTONS::TURN_RIGHT] && !buttonState[PROTOTYPE_BUTTONS::TURN_LEFT] )
 	{
 		left_rotate = XMVectorSet( 0.0, -1.0, 0.0, 0.0 );
 		//zawsze obracamy wzglêdem osi pionowej, dlatego nie mno¿ymy przez kwaternion orientacji
-		left_rotate *= button_rot_speed;
+		left_rotate *= m_buttonRotSpeed;
 	}
 
 	//pobieramy tablicê osi
-	auto& axis_state = abstraction_layer->GetAxisTable();
+	auto& axis_state = m_abstractionLayer->GetAxisTable();
 
 	if( buttonState[ PROTOTYPE_BUTTONS::RIGHT_CLICK ] )
 	{
@@ -119,7 +127,7 @@ void camera_controller_PROTOTYPE::ControlObject( DynamicActor* object )
 			XMVECTOR orientation = object->GetOrientation();
 			XMMATRIX orient = XMMatrixRotationQuaternion( orientation );
 			XMVECTOR axis_down_rotate = XMVector4Transform( versor, orient );
-			axis_down_rotate *= y_axis * axis_rot_speed;
+			axis_down_rotate *= y_axis * m_axisRotSpeed;
 
 			down_rotate += axis_down_rotate;
 		}
@@ -128,7 +136,7 @@ void camera_controller_PROTOTYPE::ControlObject( DynamicActor* object )
 		if( x_axis != 0.0f )
 		{
 			XMVECTOR axis_left_rotate = XMVectorSet( 0.0, -1.0, 0.0, 0.0 );
-			axis_left_rotate *= x_axis * axis_rot_speed;
+			axis_left_rotate *= x_axis * m_axisRotSpeed;
 
 			left_rotate += axis_left_rotate;
 		}
@@ -142,4 +150,12 @@ void camera_controller_PROTOTYPE::ControlObject( DynamicActor* object )
 	object->SetRotationSpeed( down_rotate );
 
 	
+}
+
+/**@brief Funkcja nic nie robi.
+
+W trybie debug funkcja zatrzymuje siê na assercie.*/
+void SpectatorCameraController::ControlObjectPost( DynamicActor* object )
+{
+	assert( !"This is only pre controlled class." );
 }

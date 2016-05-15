@@ -87,6 +87,12 @@
     <Filter Include="EngineCore\PhysicEngine\Collisions">
       <UniqueIdentifier>{dacb917f-6284-4481-8b7e-d279bfa31024}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\ControllersEngine\BaseClasses">
+      <UniqueIdentifier>{9d051b8d-92c2-43d8-973c-a797373ca60c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\ControllersEngine\BasicControllers">
+      <UniqueIdentifier>{d58b9d6c-cde4-4495-b503-06fc06b1d15c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -108,9 +114,6 @@
       <Filter>EngineCore\Features\HosekSkylightModel</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.h">
-      <Filter>EngineCore\ControllersEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)ControllersEngine\camera_controller_PROTOTYPE.h">
       <Filter>EngineCore\ControllersEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)targetver.h">
@@ -350,6 +353,18 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\TriggerActor.h">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\SpectatorCameraController.h">
+      <Filter>EngineCore\ControllersEngine\BasicControllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\BaseAIController.h">
+      <Filter>EngineCore\ControllersEngine\BaseClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\BaseInputController.h">
+      <Filter>EngineCore\ControllersEngine\BaseClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\IController.h">
+      <Filter>EngineCore\ControllersEngine\BaseClasses</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -362,9 +377,6 @@
       <Filter>EngineCore\SoundEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.cpp">
-      <Filter>EngineCore\ControllersEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)ControllersEngine\camera_controller_PROTOTYPE.cpp">
       <Filter>EngineCore\ControllersEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkylightModel.cpp">
@@ -423,9 +435,6 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\GamePlay\FableEngine.cpp">
       <Filter>EngineCore\GamePlay</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\ActorObjects.cpp">
-      <Filter>EngineCore\Actors</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.cpp">
       <Filter>EngineCore\DisplayEngine</Filter>
@@ -549,6 +558,18 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\TriggerActor.cpp">
       <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\SpectatorCameraController.cpp">
+      <Filter>EngineCore\ControllersEngine\BasicControllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\BaseAIController.cpp">
+      <Filter>EngineCore\ControllersEngine\BaseClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\BaseInputController.cpp">
+      <Filter>EngineCore\ControllersEngine\BaseClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\IController.cpp">
+      <Filter>EngineCore\ControllersEngine\BaseClasses</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

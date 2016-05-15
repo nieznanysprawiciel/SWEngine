@@ -32,7 +32,7 @@ EngineInterface::~EngineInterface()
 
 #ifdef __TEST
 
-#include "EngineCore/ControllersEngine/camera_controller_PROTOTYPE.h"
+#include "EngineCore/ControllersEngine/BasicControllers/SpectatorCameraController.h"
 #include "EngineCore/Features/HosekSkylightModel/HosekSkyDome.h"
 
 #include <math.h>
@@ -168,7 +168,7 @@ void Engine::SetSkydomeAndCamera()
 	XMVECTOR camera_pos = XMVectorSet( 0.0, 0.0, 0.0, 0.0 );
 	camera->Teleport( camera_pos );
 	//przypisujemy kontroler ( dla kontrolerów trzeba zrobiæ jakiœ mechanizm przechowywania i zwalniania)
-	camera_controller_PROTOTYPE* controller = new camera_controller_PROTOTYPE(
+	SpectatorCameraController* controller = new SpectatorCameraController(
 	Context->ui_engine->GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ) );
 	camera->SetController( controller );
 

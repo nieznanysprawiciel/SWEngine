@@ -18,7 +18,7 @@ protected:
 
 	DirectX::XMFLOAT3		speed;				///< Prêdkoœæ postepowa obiektu.
 	DirectX::XMFLOAT4		rotation_speed;		///< Prêdkoœæ k¹towa obiektu (wyra¿ona wektorem i k¹tem obrotu w sk³adowej w).
-	Controller*				controller;			///< WskaŸnik na kontroler, poruszaj¹cy obiektem.
+	IController*				controller;			///< WskaŸnik na kontroler, poruszaj¹cy obiektem.
 
 public:
 
@@ -31,8 +31,8 @@ public:
 	DirectX::XMVECTOR	GetSpeed				() const						{ return XMLoadFloat3( &speed ); }	///< Zwraca prêdkoœæ postêpow¹ obiektu.
 	DirectX::XMVECTOR	GetRotationSpeed		() const						{ return XMLoadFloat4( &rotation_speed ); }	///< Zwraca prêdkoœæ obrotow¹ obiektu.
 
-	void				SetController			( Controller* ctrl )			{ controller = ctrl; }	///< Ustawia podany w parametrze kontroler
-	Controller*			GetController			()								{ return controller; }
+	void				SetController			( IController* ctrl )			{ controller = ctrl; }	///< Ustawia podany w parametrze kontroler
+	IController*			GetController			()								{ return controller; }
 
 	void				Move					( float time_interval );
 	virtual void		MoveComplex				( float time_interval, const DirectX::XMFLOAT3& parent_speed, const DirectX::XMFLOAT4& parent_rotation );

@@ -1,6 +1,7 @@
 #pragma once
 #include "EngineCore/stdafx.h"
 #include "EngineCore/Actors/ActorObjects.h"
+#include "BaseClasses/IController.h"
 
 class Engine;
 

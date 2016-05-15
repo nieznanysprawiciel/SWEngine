@@ -1,21 +1,19 @@
 #include "EngineCore/stdafx.h"
-/**@file basic_interfaces.cpp
-@brief Plik zawiera definicje metod klas z pliku basic_interfaces.h
-*/
+#include "BaseInputController.h"
 
-#include "ActorObjects.h"
 
-#include "Common/MemoryLeaks.h"
-
+RTTR_REGISTRATION
+{
+	rttr::registration::class_< BaseInputController >( "BaseInputController" );
+}
 
 //----------------------------------------------------------------------------------------------//
 //									BaseInputController
 //----------------------------------------------------------------------------------------------//
 
 BaseInputController::BaseInputController( InputAbstractionLayerBase* layer )
-: abstraction_layer( layer )
+: m_abstractionLayer( layer )
 {}
 
 BaseInputController::~BaseInputController(){};
-
 

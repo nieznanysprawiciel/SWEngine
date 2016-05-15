@@ -7,7 +7,7 @@
 class EngineInterface;
 class Engine;
 class ControllersEngine;
-class Controller;
+class IController;
 class Event;
 class InputAbstractionLayerBase;
 class IRenderer;
