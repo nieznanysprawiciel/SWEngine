@@ -69,6 +69,7 @@ Engine::Engine(HINSTANCE instance)
 	Context->soundEngine			= new SoundEngine( this );
 	Context->ui_engine				= new UI_Engine( this );
 	Context->actorsManager			= new ActorsManager( this );
+	Context->eventsManager			= new EventManager( this );
 
 	//inicjujemy licznik klatek
 	Context->pause = false;
@@ -225,6 +226,7 @@ void Engine::RenderFrame()
 		Context->controllersEngine->ProceedControllersPost( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->collisionEngine->ProceedCollisions( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->fableEngine->ProceedFable( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->eventsManager->ProcessEvents( FIXED_MOVE_UPDATE_INTERVAL );
 
 		lag -= FIXED_MOVE_UPDATE_INTERVAL;
 		Context->timeManager.UpdateTimeLag( lag );
@@ -278,6 +280,7 @@ void Engine::UpdateScene( float& lag, float timeInterval )
 		Context->controllersEngine->ProceedControllersPost( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->collisionEngine->ProceedCollisions( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->fableEngine->ProceedFable( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->eventsManager->ProcessEvents( FIXED_MOVE_UPDATE_INTERVAL );
 
 		lag -= FIXED_MOVE_UPDATE_INTERVAL;
 		//timeManager.UpdateTimeLag( lag );

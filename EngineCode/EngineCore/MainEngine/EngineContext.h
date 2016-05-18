@@ -20,6 +20,7 @@
 #include "EngineCore/SoundEngine/SoundEngine.h"
 #include "EngineCore/UIEngine/UI_Engine.h"
 #include "EngineCore/Actors/ActorsManager.h"
+#include "EngineCore/EventsManager/EventManager.h"
 
 
 
@@ -77,6 +78,7 @@ struct EngineContext
 	SoundEngine*				soundEngine;			///<Zarz¹dza muzyk¹ i dŸwiêkami
 	UI_Engine*					ui_engine;				///<Interfejs u¿ytkownika (tak¿e graficzny)
 	ActorsManager*				actorsManager;			///<Zarz¹dzanie aktorami.
+	EventManager*				eventsManager;			///<Zarz¹dzanie eventami.
 
 	/**@brief SpinLock do synchronizacji komunikacji miêdzy GamePlayem a silnikiem.
 

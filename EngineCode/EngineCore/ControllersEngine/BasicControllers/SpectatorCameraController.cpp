@@ -28,9 +28,10 @@ SpectatorCameraController::~SpectatorCameraController()
 {
 }
 
-/*Funkcja g³ówna odpowiedzialna za sterowanie ruchem obiektu.*/
+
 using namespace STANDARD_LAYERS;
 
+/*Funkcja g³ówna odpowiedzialna za sterowanie ruchem obiektu.*/
 void SpectatorCameraController::ControlObjectPre( DynamicActor* object )
 {
 	if ( !m_abstractionLayer->IsActive() )
