@@ -9,7 +9,6 @@
 #include <queue>
 #include <string>
 
-#include "EngineCore/EventsManager/Event.h"
 #include "EngineCore/PhysicEngine/CollisionEngine.h"
 #include "EngineCore/ControllersEngine/ControllersEngine.h"
 #include "EngineCore/GamePlay/FableEngine.h"

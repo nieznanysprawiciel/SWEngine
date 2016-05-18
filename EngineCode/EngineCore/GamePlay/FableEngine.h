@@ -1,10 +1,10 @@
 #pragma once
 #include "EngineCore/stdafx.h"
-#include "EngineCore/EventsManager/Event.h"
 #include "EngineCore/GamePlay/IGamePlay.h"
 
 
 class Engine;
+class Event;
 
 
 /**@brief Modu³ do zarz¹dzania fabu³¹.

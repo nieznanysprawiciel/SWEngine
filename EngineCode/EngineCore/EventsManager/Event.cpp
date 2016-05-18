@@ -4,6 +4,15 @@
 
 #include "Common/MemoryLeaks.h"
 
+
+RTTR_REGISTRATION
+{
+	rttr::registration::class_< Event >( "Event" );
+	rttr::registration::class_< KeyDownEvent >( "KeyDownEvent" );
+	rttr::registration::class_< KeyUpEvent >( "KeyUpEvent" );
+	rttr::registration::class_< RenderOnceEndedEvent >( "RenderOnceEndedEvent" );
+}
+
 //=================================================================//
 //								Event
 //=================================================================//

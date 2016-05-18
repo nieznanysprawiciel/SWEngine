@@ -1,11 +1,11 @@
 #pragma once
 
-#include "EngineCore/EventsManager/Event.h"
 #include "EngineCore/EventsManager/Signal.h"
 
 #include "Common/Multithreading/SpinLockedQueue.h"
 
 class Engine;
+class Event;
 
 /**@defgroup EventsSignals Eventy i Sygna³y
 @ingroup EngineCore

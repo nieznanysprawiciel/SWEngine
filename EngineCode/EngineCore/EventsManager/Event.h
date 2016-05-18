@@ -4,6 +4,8 @@
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
+#include "Common/RTTR.h"
+
 class InputAbstractionLayer;
 class RenderPass;
 
@@ -22,8 +24,9 @@ typedef enum class EventType
 //Klasa bazowa dla wszystkich eventów w silniku
 class Event
 {
+	RTTR_ENABLE()
 public:
-	unsigned int				type;
+	unsigned int				type;		// @deprecated Zmienna okreœlaj¹ca typ zostanie zast¹piona przez RTTR.
 
 	Event( unsigned int type );
 	virtual ~Event() = default;
@@ -32,6 +35,7 @@ public:
 
 class KeyDownEvent	:	public Event
 {
+	RTTR_ENABLE( Event )
 public:
 	InputAbstractionLayer*	layer;		//wskaŸnik na aktualn¹ warstwê abstrakcji
 	short VirtualIndex;				//indeks przycisku w tablicy
@@ -44,6 +48,7 @@ public:
 
 class KeyUpEvent	:	public Event
 {
+	RTTR_ENABLE( Event )
 public:
 	InputAbstractionLayer*	layer;		//wskaŸnik na aktualn¹ warstwê abstrakcji
 	short VirtualIndex;				//indeks przycisku w tablicy
@@ -57,6 +62,7 @@ public:
 
 class RenderOnceEndedEvent	:	public Event
 {
+	RTTR_ENABLE( Event )
 private:
 protected:
 public:

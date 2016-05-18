@@ -7,11 +7,11 @@
 
 #include "EngineCore/MainEngine/EngineInterface.h"
 #include "FastDelegate.h"
-#include "EngineCore/EventsManager/Event.h"
 
 
 class IGamePlay;
 class FableEngine;
+class Event;
 
 //typedef void (*EventDelegate)(IGamePlay*, Event*);
 typedef fastdelegate::FastDelegate1<Event*> EventDelegate;
