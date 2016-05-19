@@ -5,6 +5,9 @@
 #include "EngineCore/DisplayEngine/RenderPass.h"
 #include "EngineCore/ModelsManager/DefaultAssets.h"
 
+#include "EngineCore/EventsManager/Events/RenderOnceEndedEvent.h"
+#include "EngineCore/EventsManager/Events/KeyDownEvent.h"
+
 #include "LightmapWorkers/LightmapWorkerCPU.h"
 
 #include <limits>

@@ -11,7 +11,7 @@
 #include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/EngineHelpers/PerformanceCheck.h"
 #include "EngineCore/ModelsManager/ModelsManager.h"
-#include "EngineCore//EventsManager/Event.h"
+#include "EngineCore/EventsManager/Events/RenderOnceEndedEvent.h"
 
 #include "Common/MemoryLeaks.h"
 

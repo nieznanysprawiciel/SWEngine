@@ -33,10 +33,7 @@
 
 #include <DirectXMath.h>
 
-#pragma warning( disable : 4005 )
-	#define DIRECTINPUT_VERSION 0x0800
-	#include <dinput.h>
-#pragma warning( default : 4005 )
+#include "EngineCore/UIEngine/IncludeDirectInput.h"
 
 #include "Common/MacrosSwitches.h"
 #include "EngineCore/EventsManager/Event.h"

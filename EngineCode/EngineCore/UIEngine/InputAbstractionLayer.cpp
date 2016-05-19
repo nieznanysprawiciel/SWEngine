@@ -6,7 +6,8 @@ oraz definicje standardowych warstw abstrakcji.
 #include "EngineCore/stdafx.h"
 #include "InputAbstractionLayer.h"
 #include "EngineCore/MainEngine/Engine.h"
-#include "EngineCore/EventsManager/Event.h"
+#include "EngineCore/EventsManager/Events/KeyUpEvent.h"
+#include "EngineCore/EventsManager/Events/KeyDownEvent.h"
 
 #include "Common/MemoryLeaks.h"
 
@@ -84,9 +85,9 @@ void InputAbstractionLayer::send_events(Engine* engine)
 				{//je¿eli dopiero co staliœmy siê aktywn¹ wartw¹ to eventów nie wysy³amy, bo prawdopodobnie wciœniêcie
 				//dotyczy³o jeszcze poprzedniej warstwy
 					KeyUpEvent* event = new KeyUpEvent( m_requestedEvents[i].VirtualIndex );
-					event->mouseX = mouseX;
-					event->mouseY = mouseY;
-					event->layer = this;
+					event->MouseX = mouseX;
+					event->MouseY = mouseY;
+					event->Layer = this;
 
 					engine->SendEvent(event);
 				}
@@ -96,9 +97,9 @@ void InputAbstractionLayer::send_events(Engine* engine)
 				if( m_requestedEvents[i].DownEvent && !m_activeChanged )
 				{
 					KeyDownEvent* event = new KeyDownEvent( m_requestedEvents[i].VirtualIndex );
-					event->mouseX = mouseX;
-					event->mouseY = mouseY;
-					event->layer = this;
+					event->MouseX = mouseX;
+					event->MouseY = mouseY;
+					event->Layer = this;
 
 					engine->SendEvent( event );
 				}

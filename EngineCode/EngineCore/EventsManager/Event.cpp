@@ -1,6 +1,10 @@
 #include "EngineCore/stdafx.h"
 #include "Event.h"
 
+#include "EngineCore/EventsManager/Events/KeyDownEvent.h"
+#include "EngineCore/EventsManager/Events/KeyUpEvent.h"
+#include "EngineCore/EventsManager/Events/RenderOnceEndedEvent.h"
+
 
 #include "Common/MemoryLeaks.h"
 

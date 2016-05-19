@@ -218,6 +218,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\SpectatorCameraController.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\EventManager.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\Events\KeyDownEvent.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\Events\KeyUpEvent.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\Events\RenderOnceEndedEvent.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\Signal.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Features\SkyDome.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\Commands\Command.h" />
@@ -237,6 +240,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeLeaf.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeNode.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\IInput.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\IncludeDirectInput.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\ActorsApi.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\Assets.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\ApiGroup.h" />

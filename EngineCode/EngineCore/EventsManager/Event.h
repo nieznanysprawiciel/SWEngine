@@ -6,12 +6,11 @@
 
 #include "Common/RTTR.h"
 
-class InputAbstractionLayer;
-class RenderPass;
 
 
 #define	BUILD_IN_EVENTS				3
 
+/**@brief @deprecated Zamiast tego u¿yj rttr::type.*/
 typedef enum class EventType
 {
 	KeyDownEvent,
@@ -21,7 +20,7 @@ typedef enum class EventType
 
 
 
-//Klasa bazowa dla wszystkich eventów w silniku
+/**Klasa bazowa dla wszystkich eventów w silniku.*/
 class Event
 {
 	RTTR_ENABLE()
@@ -32,42 +31,3 @@ public:
 	virtual ~Event() = default;
 };
 
-
-class KeyDownEvent	:	public Event
-{
-	RTTR_ENABLE( Event )
-public:
-	InputAbstractionLayer*	layer;		//wskaŸnik na aktualn¹ warstwê abstrakcji
-	short VirtualIndex;				//indeks przycisku w tablicy
-	short mouseX;
-	short mouseY;
-
-	KeyDownEvent( short v_index );
-	~KeyDownEvent() = default;
-};
-
-class KeyUpEvent	:	public Event
-{
-	RTTR_ENABLE( Event )
-public:
-	InputAbstractionLayer*	layer;		//wskaŸnik na aktualn¹ warstwê abstrakcji
-	short VirtualIndex;				//indeks przycisku w tablicy
-	short mouseX;
-	short mouseY;
-
-	KeyUpEvent( short v_index );
-	~KeyUpEvent() = default;
-};
-
-
-class RenderOnceEndedEvent	:	public Event
-{
-	RTTR_ENABLE( Event )
-private:
-protected:
-public:
-	RenderOnceEndedEvent();
-	~RenderOnceEndedEvent() = default;
-public:
-	RenderPass*		renderPass;
-};

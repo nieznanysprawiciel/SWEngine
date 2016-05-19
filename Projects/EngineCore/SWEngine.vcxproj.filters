@@ -93,6 +93,9 @@
     <Filter Include="EngineCore\ControllersEngine\BasicControllers">
       <UniqueIdentifier>{d58b9d6c-cde4-4495-b503-06fc06b1d15c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\EventsManager\Events">
+      <UniqueIdentifier>{506fcf2b-baa4-4f87-9a68-757ce8adc0d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -370,6 +373,18 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\Multithreading\SpinLockedQueue.h">
       <Filter>Common\Multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\Events\KeyUpEvent.h">
+      <Filter>EngineCore\EventsManager\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\Events\RenderOnceEndedEvent.h">
+      <Filter>EngineCore\EventsManager\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\Events\KeyDownEvent.h">
+      <Filter>EngineCore\EventsManager\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\IncludeDirectInput.h">
+      <Filter>EngineCore\UIEngine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
