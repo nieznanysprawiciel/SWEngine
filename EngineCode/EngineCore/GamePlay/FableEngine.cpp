@@ -64,7 +64,7 @@ Wartoœci¹ zwracan¹ jest identyfikator, który nale¿y wpisywaæ w polu type klasy E
 Identyfikator jest nastêpn¹ w kolejce liczb¹ po ostatnim zarejestrowanym Evencie.
 
 @param[in] eventDelegate Delegat, który zostanie wywo³any w przypadku pojawienia siê eventu.*/
-unsigned int FableEngine::RegisterEvent( EventDelegate eventDelegate )
+unsigned int FableEngine::RegisterEvent( EventDelegateTmp eventDelegate )
 {
 	m_eventDelegates.push_back( eventDelegate );
 	++m_delegatesCount;
@@ -73,7 +73,7 @@ unsigned int FableEngine::RegisterEvent( EventDelegate eventDelegate )
 
 /**Zmieniamy delegate pod indeksem id. Je¿eli delegat o takim indeksie nie istnieje nic z³ego siê
 nie stanie, ale funkcja nie poinformuje w ¿aden sposób o b³êdzie.*/
-void FableEngine::ChangeDelegate( unsigned int id, EventDelegate eventDelegate )
+void FableEngine::ChangeDelegate( unsigned int id, EventDelegateTmp eventDelegate )
 {
 	if( id >= m_delegatesCount )
 		return;		//nie istnieje event

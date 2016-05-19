@@ -1,6 +1,8 @@
 #pragma once
-#include "EngineCore/stdafx.h"
+
 #include "EngineCore/GamePlay/IGamePlay.h"
+
+#include <queue>
 
 
 class Engine;
@@ -20,15 +22,15 @@ private:
 	std::queue<Event*>			m_eventsQueue;
 
 	//IGamePlay - tablica obs³ugi Eventów
-	std::vector<EventDelegate>	m_eventDelegates;
+	std::vector<EventDelegateTmp>	m_eventDelegates;
 	unsigned int				m_delegatesCount;
 
 public:
 	FableEngine(Engine* engine);
 	~FableEngine();
 
-	unsigned int		RegisterEvent		( EventDelegate eventDelegate );
-	void				ChangeDelegate		( unsigned int id, EventDelegate eventDelegate );
+	unsigned int		RegisterEvent		( EventDelegateTmp eventDelegate );
+	void				ChangeDelegate		( unsigned int id, EventDelegateTmp eventDelegate );
 	void				DeleteDelegate		( unsigned int id );
 
 

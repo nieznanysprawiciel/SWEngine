@@ -5,6 +5,7 @@
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
+#include "Common/EngineObject.h"
 #include "EngineCore/MainEngine/EngineInterface.h"
 #include "FastDelegate.h"
 
@@ -14,7 +15,7 @@ class FableEngine;
 class Event;
 
 //typedef void (*EventDelegate)(IGamePlay*, Event*);
-typedef fastdelegate::FastDelegate1<Event*> EventDelegate;
+typedef fastdelegate::FastDelegate1<Event*> EventDelegateTmp;
 
 /*Klasa jest interfejsem dla klasy GamePlaya, któr¹ powinien stworzyæ u¿ytkownik silnika.
 Zadaniem klasy jest implementowanie funkcji obs³ugi eventów, startowanie i koñczenie levelów,
@@ -33,7 +34,7 @@ dzia³ania silnika.
 W momencie przetwarzania funkcji GamePlaya po³o¿enia wszystkich obiektów s¹ ju¿ policzone, podobnie jak kolizje,
 oddzia³ywania fizyczne, zachowania AI oraz dane z wejœcia.*/
 
-class IGamePlay
+class IGamePlay	: public EngineObject
 {
 private:
 

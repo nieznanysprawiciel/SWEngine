@@ -46,7 +46,7 @@ int LightmapLogic::LoadLevel					()
 	m_layout->AddObjectReference();
 
 
-	EventDelegate genLightmap, renderEnded;
+	EventDelegateTmp genLightmap, renderEnded;
 	genLightmap.bind( this, &LightmapLogic::GenerateLightmaps );
 	renderEnded.bind( this, &LightmapLogic::RenderEnded );
 	m_fableEngine->ChangeDelegate( (unsigned int)EventType::KeyDownEvent, genLightmap );

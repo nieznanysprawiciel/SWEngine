@@ -5,6 +5,8 @@
 
 @brief Plik zawiera deklaracjê g³ównego obiektu silnika.*/
 
+#include <Windows.h>		///< @todo Delete in future
+
 #include "Common/MacrosSwitches.h"
 
 #include "EngineCore/SW_engine.h"

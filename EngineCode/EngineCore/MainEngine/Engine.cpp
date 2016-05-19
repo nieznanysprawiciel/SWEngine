@@ -396,9 +396,9 @@ void Engine::time_controller(float& time_interval)
 
 @see Events
 @param[in] new_event Event do wys³ania.*/
-void			Engine::SendEvent(Event* new_event)
+void			Engine::SendEvent( Event* newEvent )
 {
-	Context->eventsQueue->push(new_event);
+	Context->eventsManager->SendEvent( newEvent );
 }
 
 /**@brief */

@@ -1,18 +1,30 @@
 #pragma once
 
+#include "Common/EngineObject.h"
 #include "FastDelegate.h"
 
-typedef fastdelegate::FastDelegate1<Event*> SignalDelegate;
-
 class Event;
-class ActorBase;
+
+
+typedef fastdelegate::FastDelegate2< const EngineObject*, Event* >		SignalDelegate;
+typedef fastdelegate::FastDelegate2< const EngineObject*, Event* >		EventDelegate;
+
+
 
 
 struct Signal
 {
-	const ActorBase*		Sender;
-	const ActorBase*		Receiver;
-	Event*					Parameters;
-	SignalDelegate			Callback;
+	const EngineObject*		Sender;
+	const EngineObject*		Receiver;
+	Event*					Parameters;		///< Event zawieraj¹cy parametry wywo³ania.
+	SignalDelegate			SignalHandler;	///< Delegat zawieraj¹cy funkcjê obs³ugi sygna³u.
+	SignalDelegate			OnExecuted;		///< Delegat wywo³ywany, gdy zakoñczy siê obs³uga signa³u.
+};
+
+
+struct EventListener
+{
+	const EngineObject*		Receiver;
+	EventDelegate			EventHandler;
 };
 

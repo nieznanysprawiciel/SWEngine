@@ -1,5 +1,4 @@
-
-#include "../stdafx.h"
+#include "TestEngine/stdafx.h"
 #include "EntryPointGamePlay.h"
 
 EntryPointGamePlay::EntryPointGamePlay()

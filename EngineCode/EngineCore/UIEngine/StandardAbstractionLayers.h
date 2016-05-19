@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Common/TypesDefinitions.h"
+#include "EngineCore/EventsManager/Signal.h"
+
 #include <vector>
 
 typedef int16 DeviceNumber;
@@ -33,6 +35,8 @@ struct EventMapping
 	char				DownEvent : 4;				///<Info czy chcemy event o wciœniêciu
 	char				UpEvent : 4;				///<Info czy chcemy event o puszczeniu
 	char				Value;						///<Zmienna pomocnicza, nie u¿ywaæ
+	EventListener		DownEventListener;			///< Do kogo wys³aæ event o wciœniêciu przycisku.
+	EventListener		UpEventListener;			///< Do kogo wys³aæ event o puszczeniu przycisku.
 };
 
 
