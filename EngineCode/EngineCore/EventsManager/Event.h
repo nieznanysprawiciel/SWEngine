@@ -8,7 +8,6 @@
 
 
 
-#define	BUILD_IN_EVENTS				3
 
 /**@brief @deprecated Zamiast tego u¿yj rttr::type.*/
 typedef enum class EventType

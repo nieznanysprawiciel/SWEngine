@@ -32,12 +32,12 @@ bool FindInVector( std::vector<Type>& vector, Type value, size_t& index )
 int LightmapLogic::LoadLevel					()
 {
 	auto layer = m_engine->Input.GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS );
-	layer->demand_down_event( STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 );
-	layer->demand_down_event( STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS2 );
-	layer->demand_down_event( STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS3 );
-	layer->demand_down_event( STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS4 );
-	layer->demand_down_event( STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS5 );
-	layer->demand_down_event( STANDARD_LAYERS::PROTOTYPE_BUTTONS::LOAD_LIGHTMAP_SCENE );
+	layer->DemandDownEvent( STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 );
+	layer->DemandDownEvent( STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS2 );
+	layer->DemandDownEvent( STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS3 );
+	layer->DemandDownEvent( STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS4 );
+	layer->DemandDownEvent( STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS5 );
+	layer->DemandDownEvent( STANDARD_LAYERS::PROTOTYPE_BUTTONS::LOAD_LIGHTMAP_SCENE );
 
 	// Wczytujemy shadery na przysz³oœæ.
 	m_engine->Assets.Shaders.LoadVertexShaderSync( DEFAULT_COORD_COLOR_VERTEX_SHADER_PATH, &m_layout, DefaultAssets::LAYOUT_COORD_COLOR );
@@ -46,11 +46,13 @@ int LightmapLogic::LoadLevel					()
 	m_layout->AddObjectReference();
 
 
-	EventDelegateTmp genLightmap, renderEnded;
-	genLightmap.bind( this, &LightmapLogic::GenerateLightmaps );
-	renderEnded.bind( this, &LightmapLogic::RenderEnded );
-	m_fableEngine->ChangeDelegate( (unsigned int)EventType::KeyDownEvent, genLightmap );
-	m_fableEngine->ChangeDelegate( (unsigned int)EventType::RenderOnceEndedEvent, renderEnded );
+	//EventDelegateTmp genLightmap, renderEnded;
+	//genLightmap.bind( this, &LightmapLogic::GenerateLightmaps );
+	//renderEnded.bind( this, &LightmapLogic::RenderEnded );
+	//m_fableEngine->ChangeDelegate( (unsigned int)EventType::KeyDownEvent, genLightmap );
+	//m_fableEngine->ChangeDelegate( (unsigned int)EventType::RenderOnceEndedEvent, renderEnded );
+	m_engine->Actors.Communication.AddListenerDelayed< RenderOnceEndedEvent, LightmapLogic >( this, &LightmapLogic::RenderEnded );
+	m_engine->Actors.Communication.AddListenerDelayed< KeyDownEvent, LightmapLogic >( this, &LightmapLogic::GenerateLightmaps );
 
 	// Przygotowanie sceny
 	const wchar_t room1ModelString[] = L"levels/Room1/Room1.FBX";
@@ -166,7 +168,7 @@ void LightmapLogic::ProceedGameLogic			( float time )
 
 Funkcja zbiera kolejne lightmapy i wstawia do odpowiednich obiektów.
 Ponadto kasuje obiekty stworzone do jednorazowego renderowania.*/
-void LightmapLogic::RenderEnded( Event* renderEndedEvent )
+void LightmapLogic::RenderEnded( const EngineObject* sender, Event* renderEndedEvent )
 {
 	if( renderEndedEvent->type == (unsigned int)EventType::RenderOnceEndedEvent )
 	{
@@ -228,7 +230,7 @@ obs³ugi pod jeden event, to wywo³ywana jest te¿ funkcja LoadScene, je¿eli wciœni
 
 @param[in] genLightmapEvent Event generowany po wciœniêciu odpowiedniego przycisku.
 */
-void LightmapLogic::GenerateLightmaps			( Event* keyEvent )
+void LightmapLogic::GenerateLightmaps			( const EngineObject* sender, Event* keyEvent )
 {
 	if( m_lightmapState != LightmapState::ReadyToGenerate )
 		return;

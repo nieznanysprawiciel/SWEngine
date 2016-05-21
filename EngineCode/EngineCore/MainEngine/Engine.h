@@ -132,9 +132,6 @@ public:
 	///@name Obs³uga eventów
 	///@{
 	void							SendEvent				( Event* newEvent );
-
-	std::queue<Event*>*				GetEventsQueue			();
-	void							SetEventsQueue			( std::queue<Event*>* queue );
 	///@}
 
 	///@name Interfejs do ustawiania GamePlaya

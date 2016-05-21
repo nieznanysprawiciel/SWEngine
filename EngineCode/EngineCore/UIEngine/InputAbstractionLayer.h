@@ -4,7 +4,7 @@
 @brief Plik zawiera deklaracjê klas InputAbstractionLayerBase, InputAbstractionLayer
 struktur InputMapping i EventMapping oraz definicje standardowych warstw abstrakcji. */
 
-
+#include "Common/EngineObject.h"
 #include "EngineCore/UIEngine/StandardAbstractionLayers.h"
 #include "EngineCore/UIEngine/IncludeDirectInput.h"		///@todo Wydzieliæ direct input do jakiegoœ modu³u i ukryæ implementacje, ¿eby nie by³o takich includów.
 
@@ -54,7 +54,7 @@ W szczególnoœci wypada³oby przynajmniej sprawdziæ czy zakres tablic wirtualnych 
 wymagany przez kontroler.
 
 */
-class InputAbstractionLayerBase
+class InputAbstractionLayerBase : public EngineObject
 {
 protected:
 	short	mouseX;			///<Po³o¿enie myszki w X
@@ -106,20 +106,20 @@ public:
 	InputAbstractionLayer();
 	~InputAbstractionLayer();
 
-	void inline set_active			( bool activate ) { active = activate; if( active ) m_activeChanged = true; }	///<Ustawia warstwê abstrakcji jako aktywn¹
-	void inline set_mouse_position	( short X, short Y ) { mouseX = X; mouseY = Y; }								///<Ustawia pozycjê myszy
+	void inline SetActive				( bool activate ) { active = activate; if( active ) m_activeChanged = true; }	///<Ustawia warstwê abstrakcji jako aktywn¹
+	void inline SetMousePosition		( short X, short Y ) { mouseX = X; mouseY = Y; }								///<Ustawia pozycjê myszy
 
-	void	begin_event_collection		();
-	void	send_events					(Engine*);
+	void	BeginEventCollection		();
+	void	SendEvents					( Engine* );
 
-	void	update_keyboard_device		( DeviceNumber DeviceNr, const char* keyboard_state );
-	void	update_mouse_device			( DeviceNumber DeviceNr, const DIMOUSESTATE2* mouse_state, int window_width, int window_height);
-	void	update_joystick_device		( DeviceNumber DeviceNr, const DIJOYSTATE* joystick_state );
+	void	UpdateKeyboardDevice		( DeviceNumber DeviceNr, const char* keyboard_state );
+	void	UpdateMouseDevice			( DeviceNumber DeviceNr, const DIMOUSESTATE2* mouse_state, int window_width, int window_height);
+	void	UpdateJoystickDevice		( DeviceNumber DeviceNr, const DIJOYSTATE* joystick_state );
 
-	void	demand_down_event			( VirtualKeyIndex virtualIdx );
-	void	demand_up_event				( VirtualKeyIndex virtualIdx );
-	void	delete_up_event				( VirtualKeyIndex virtualIdx );
-	void	delete_down_event			( VirtualKeyIndex virtualIdx );
+	void	DemandDownEvent				( VirtualKeyIndex virtualIdx );
+	void	DemandUpEvent				( VirtualKeyIndex virtualIdx );
+	void	DeleteUpEvent				( VirtualKeyIndex virtualIdx );
+	void	DeleteDownEvent				( VirtualKeyIndex virtualIdx );
 
 	void	SetupButtonsLayer			( std::vector< InputMapping >&& mapping );
 	void	SetupAxisLayer				( std::vector< InputMapping >&& mapping );

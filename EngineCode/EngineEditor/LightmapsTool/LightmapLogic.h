@@ -7,6 +7,8 @@
 #include <set>
 #include <thread>
 
+class KeyDownEvent;
+
 /**Klasa obs³uguj¹ca generowanie lightmap.
 
 Aby w³¹czyæ generowanie nale¿y wcisn¹æ przycisk 1, 2, 3, 4 lub 5.
@@ -38,8 +40,8 @@ public:
 private:
 	///@name Funkcje obs³ugi eventów.
 	///@{
-	void			GenerateLightmaps			( Event* );
-	void			RenderEnded					( Event* );
+	void			GenerateLightmaps			( const EngineObject* sender, Event* );
+	void			RenderEnded					( const EngineObject* sender, Event* );
 	void			LoadScene					( Event* );
 	///@}
 private:

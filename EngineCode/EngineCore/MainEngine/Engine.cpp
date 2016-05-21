@@ -47,8 +47,6 @@ Engine::Engine(HINSTANCE instance)
 	join_render_thread = false;
 #endif
 
-	Context->eventsQueue = nullptr;
-
 	Context->fullScreen = false;			//inicjalizacja jako false potrzebna w funkcji init_window
 	Context->engineReady = false;			//jeszcze nie zainicjowaliœmy
 	Context->instanceHandler = instance;
@@ -401,17 +399,6 @@ void			Engine::SendEvent( Event* newEvent )
 	Context->eventsManager->SendEvent( newEvent );
 }
 
-/**@brief */
-std::queue<Event*>* Engine::GetEventsQueue()
-{
-	return Context->eventsQueue;
-}
-
-/**@brief */
-void			Engine::SetEventsQueue( std::queue<Event*>* queue )
-{
-	Context->eventsQueue = queue;
-}
 
 HINSTANCE		Engine::GetInstanceHandler()								{ return Context->instanceHandler; }
 HWND			Engine::GetWindowHandler()									{ return Context->windowHandler; }

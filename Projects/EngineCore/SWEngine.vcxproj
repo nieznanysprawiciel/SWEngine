@@ -243,6 +243,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\IncludeDirectInput.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\ActorsApi.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\Assets.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\Communication.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\ApiGroup.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Animations.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\AssetsApi.h" />
@@ -340,6 +341,7 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeNode.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Actors\ActorsApi.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Actors\Assets.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Actors\Communication.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\ApiGroup.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Animations.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

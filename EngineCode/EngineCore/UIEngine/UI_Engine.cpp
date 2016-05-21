@@ -38,12 +38,12 @@ void		UI_Engine::EnableInput						( bool val )
 	if( val )
 	{
 		m_enableInput = true;
-		m_currentAbstractionLayer->set_active( true );
+		m_currentAbstractionLayer->SetActive( true );
 	}
 	else
 	{
 		m_enableInput = false;
-		m_currentAbstractionLayer->set_active( false );
+		m_currentAbstractionLayer->SetActive( false );
 	}
 }
 

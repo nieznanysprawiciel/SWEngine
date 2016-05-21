@@ -15,11 +15,11 @@ void UI_Engine::InitAbstractionLayers( )
 	InputAbstractionLayer* newLayer = new InputAbstractionLayer;
 	newLayer->SetupButtonsLayer( std::vector< InputMapping>( STANDARD_LAYERS::PROTOTYPE_BUTTONS_mapping ) );	///<@todo Zastanowiæ siê czy nie zrobiæ std::move na tym wektorze.
 	newLayer->SetupAxisLayer( std::vector< InputMapping>( STANDARD_LAYERS::PROTOTYPE_AXES_mapping ) );
-	//newLayer->demand_down_event( )
+	//newLayer->DemandDownEvent( )
 	m_abstractionLayers.push_back( newLayer );
 
 	m_currentAbstractionLayer = newLayer;
-	m_currentAbstractionLayer->set_active( true );
+	m_currentAbstractionLayer->SetActive( true );
 }
 
 /**@brief Zmienia aktualnie ustawion¹ warstwê abstrakcji na podan¹ w argumencie.
@@ -42,9 +42,9 @@ int UI_Engine::ChangeAbstractionLayer( InputAbstractionLayer* next_layer )
 	if ( next_layer == m_currentAbstractionLayer )
 		return 1;
 
-	m_currentAbstractionLayer->set_active( false );
+	m_currentAbstractionLayer->SetActive( false );
 	m_currentAbstractionLayer = next_layer;
-	m_currentAbstractionLayer->set_active( true );
+	m_currentAbstractionLayer->SetActive( true );
 
 	return 0;
 }
@@ -124,11 +124,11 @@ void UI_Engine::UpdateAbstractionLayer( )
 {
 	if( m_enableInput )
 	{
-		m_currentAbstractionLayer->begin_event_collection();
+		m_currentAbstractionLayer->BeginEventCollection();
 
-		m_currentAbstractionLayer->update_keyboard_device( DEVICE_IDs::KEYBOARD, keyboard_state );
-		m_currentAbstractionLayer->update_mouse_device( DEVICE_IDs::MOUSE, &mouse_state, engine->GetWindowWidth(), engine->GetWindowHeight());
+		m_currentAbstractionLayer->UpdateKeyboardDevice( DEVICE_IDs::KEYBOARD, keyboard_state );
+		m_currentAbstractionLayer->UpdateMouseDevice( DEVICE_IDs::MOUSE, &mouse_state, engine->GetWindowWidth(), engine->GetWindowHeight());
 
-		m_currentAbstractionLayer->send_events( engine );
+		m_currentAbstractionLayer->SendEvents( engine );
 	}
 }

@@ -386,6 +386,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\IncludeDirectInput.h">
       <Filter>EngineCore\UIEngine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\Communication.h">
+      <Filter>EngineCore\UserApi\Actors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -591,6 +594,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\IController.cpp">
       <Filter>EngineCore\ControllersEngine\BaseClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Actors\Communication.cpp">
+      <Filter>EngineCore\UserApi\Actors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

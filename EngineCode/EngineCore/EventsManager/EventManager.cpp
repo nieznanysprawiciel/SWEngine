@@ -2,6 +2,7 @@
 #include "EngineCore/EventsManager/EventManager.h"
 
 
+/**@brief */
 EventManager::EventManager( Engine* engine )
 	: engine( engine )
 {}
@@ -18,7 +19,7 @@ void			EventManager::ProcessEvents	( float timeInterval )
 		Event* evt;
 		while( m_events.TryPop( evt ) )
 		{
-			rttr::type eventType = rttr::type::get( evt );
+			rttr::type eventType = rttr::type::get( *evt );
 			auto& listenersVec = m_listeners.find( eventType );
 			if( listenersVec != m_listeners.end() )
 			{

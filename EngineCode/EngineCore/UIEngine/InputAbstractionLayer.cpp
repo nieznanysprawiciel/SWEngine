@@ -48,9 +48,9 @@ sprawdzenie, gdzie zmieni³y siê stany przycisków i wys³anie eventów.
 Do tego nale¿y wywo³aæ funkcjê end_events.
 
 Wszystkie wywo³ania funkcji ustawiaj¹cych stan przycisków i osi powinny
-znajdowaæ siê pomiêdzy wywo³aniami begin_event_collection i send_events.
+znajdowaæ siê pomiêdzy wywo³aniami BeginEventCollection i SendEvents.
 Inaczej nic nie zadzia³a, poniewa¿ funkcje zak³adaj¹, ¿e tablice s¹ wyzerowane.*/
-void InputAbstractionLayer::begin_event_collection()
+void InputAbstractionLayer::BeginEventCollection()
 {
 	//przegl¹damy tablicê eventów i zapisujemy wartoœci z poprzedniej klatki
 	for ( unsigned int i = 0; i < m_requestedEvents.size(); ++i)
@@ -69,7 +69,7 @@ Aby tak siê sta³o, musi znajdowaæ siê odpowiedni wpis w tablicy m_requestedE
 
 @param[in] engine WskaŸnik jest aby, potrzebny móc wys³aæ event.
 */
-void InputAbstractionLayer::send_events(Engine* engine)
+void InputAbstractionLayer::SendEvents(Engine* engine)
 {
 //Przechodzimy po tablicy eventów i sprawdzamy czy zapisane wartoœci siê zmieni³y.
 //Je¿eli siê zmieni³y, znaczy to, ¿e trzeba wys³aæ jakiœ event, bo przycisk albo zosta³
@@ -121,7 +121,7 @@ wejœcia o intefejsie klawiatury. Zazwyczaj wywo³uje siê j¹ dla klawiatury, a
 @param[in] DeviceNr Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci @ref DEVICE_IDs.
 @param[in] keyboard_state Tablica 255 elementów opisuj¹ca stan klawiatury.*/
 
-void InputAbstractionLayer::update_keyboard_device( DeviceNumber DeviceNr, const char* keyboard_state )
+void InputAbstractionLayer::UpdateKeyboardDevice( DeviceNumber DeviceNr, const char* keyboard_state )
 {
 	// Mamy jedynie przyciski
 	for ( unsigned int i = 0; i < m_buttonsMapping.size(); ++i )
@@ -149,7 +149,7 @@ wejœcia o intefejsie myszy. Zazwyczaj wywo³uje siê j¹ dla myszy, ale mo¿e b
 @param[in] window_width Szerokość okna
 @param[in] window_height Wysokość okna
 */
-void InputAbstractionLayer::update_mouse_device( DeviceNumber DeviceNr, const DIMOUSESTATE2* mouse_state, int window_width, int window_height)
+void InputAbstractionLayer::UpdateMouseDevice( DeviceNumber DeviceNr, const DIMOUSESTATE2* mouse_state, int window_width, int window_height)
 {
 	//TODO:	przyciski
 	for ( unsigned int i = 0; i < m_buttonsMapping.size(); ++i )
@@ -213,7 +213,7 @@ inne urz¹dzenie takim samym interfejsem.
 
 @param[in] DeviceNr Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci @ref DEVICE_IDs.
 @param[in] joystick_state Struktura opisuj¹ca stan urz¹dzenia, które da siê opisaæ takim interfejsem.*/
-void InputAbstractionLayer::update_joystick_device( DeviceNumber DeviceNr, const DIJOYSTATE* joystick_state )
+void InputAbstractionLayer::UpdateJoystickDevice( DeviceNumber DeviceNr, const DIJOYSTATE* joystick_state )
 {
 
 }
@@ -231,7 +231,7 @@ Obecnie mechanizm jest bardzo niewygodny. W funkcji obsługi eventu trzeba spraw
 jaki przycisk został wciśnięty faktycznie.
 
 @param[in] virtualIdx Indeks wirtualnego przycisku w tablicy.*/
-void InputAbstractionLayer::demand_down_event( VirtualKeyIndex virtualIdx )
+void InputAbstractionLayer::DemandDownEvent( VirtualKeyIndex virtualIdx )
 {
 	unsigned int i = 0;
 	for( ; i < m_requestedEvents.size(); ++i )
@@ -253,7 +253,7 @@ void InputAbstractionLayer::demand_down_event( VirtualKeyIndex virtualIdx )
 /**@brief ¯¹da wysy³ania eventów o puszczeniu wirtualnego przycisku
 o podanym indeksie.
 @param[in] virtualIdx Indeks wirtualnego przycisku w tablicy.*/
-void InputAbstractionLayer::demand_up_event( VirtualKeyIndex virtualIdx )
+void InputAbstractionLayer::DemandUpEvent( VirtualKeyIndex virtualIdx )
 {
 	unsigned int i = 0;
 	for( ; i < m_requestedEvents.size( ); ++i )
@@ -275,7 +275,7 @@ void InputAbstractionLayer::demand_up_event( VirtualKeyIndex virtualIdx )
 /**@brief ¯¹da zaprzestania wysy³ania eventów o wciœniêciu wirtualnego przycisku
 o podanym indeksie.
 @param[in] virtualIdx Indeks wirtualnego przycisku w tablicy.*/
-void InputAbstractionLayer::delete_up_event( VirtualKeyIndex virtualIdx )
+void InputAbstractionLayer::DeleteUpEvent( VirtualKeyIndex virtualIdx )
 {
 	for( unsigned int i = 0; i < m_requestedEvents.size(); ++i )
 	{
@@ -292,7 +292,7 @@ void InputAbstractionLayer::delete_up_event( VirtualKeyIndex virtualIdx )
 /**@brief ¯¹da zaprzestania wysy³ania eventów o puszczeniu wirtualnego przycisku
 o podanym indeksie.
 @param[in] virtualIdx Indeks wirtualnego przycisku w tablicy.*/
-void InputAbstractionLayer::delete_down_event( VirtualKeyIndex virtualIdx )
+void InputAbstractionLayer::DeleteDownEvent( VirtualKeyIndex virtualIdx )
 {
 	for( unsigned int i = 0; i < m_requestedEvents.size( ); ++i )
 	{

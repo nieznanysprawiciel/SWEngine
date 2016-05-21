@@ -11,6 +11,7 @@ class StaticActor;
 
 #include "EngineCore/UserApi/ApiGroup.h"
 #include "EngineCore/UserApi/Actors/Assets.h"
+#include "EngineCore/UserApi/Actors/Communication.h"
 #include "EngineCore/Actors/ActorInfo.h"
 
 #include <vector>
@@ -30,7 +31,8 @@ namespace Api
 	class ActorsApi : public ApiGroup
 	{
 	public:
-		Actors::Assets		Assets;			///< Pozwala na ustawianie assetów aktorom.
+		Actors::Assets			Assets;			///< Pozwala na ustawianie assetów aktorom.
+		Actors::Communication	Communication;	///< Pozwala na rejestrowanie funkcji obs³ugi eventów i wysy³anie sygna³ów.
 
 	private:
 	protected:
