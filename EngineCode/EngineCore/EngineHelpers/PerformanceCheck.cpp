@@ -9,7 +9,11 @@
 
 #ifdef PERFORMANCE_CHECK
 
-PerformanceCheck performanceCheck;
+PerformanceCheck&		GetPerformanceCheck()
+{
+	static PerformanceCheck performanceCheck;
+	return performanceCheck;
+}
 
 #endif
 
@@ -100,10 +104,13 @@ void PerformanceCheck::print( const std::string& outputFile, std::vector<_perfor
 		output << taskData.task_name;
 		output.width( 0 );
 		output << std::fixed;
-		output << std::setprecision( floatPrintPrecision ) << taskData.hole_time_spent / double( taskData.task_executions * counterFreq.QuadPart ) << " s	";
-		output << std::setprecision( floatPrintPrecision ) << taskData.min_time_spent / double( counterFreq.QuadPart ) << " s	";
-		output << std::setprecision( floatPrintPrecision ) << taskData.max_time_spent / double( counterFreq.QuadPart ) << " s" << std::endl;
+		output << std::setprecision( floatPrintPrecision ) << 1000 * taskData.hole_time_spent / double( taskData.task_executions * counterFreq.QuadPart ) << " ms	";
+		output << std::setprecision( floatPrintPrecision ) << 1000 * taskData.min_time_spent / double( counterFreq.QuadPart ) << " ms	";
+		output << std::setprecision( floatPrintPrecision ) << 1000 * taskData.max_time_spent / double( counterFreq.QuadPart ) << " ms" << std::endl;
 	}
+	output << std::endl;
+
+	output.close();
 }
 
 

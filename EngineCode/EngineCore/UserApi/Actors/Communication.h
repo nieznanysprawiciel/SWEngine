@@ -31,10 +31,13 @@ namespace Api { namespace Actors {
 		void			RemoveListenerDelayed	( rttr::type eventType, const EngineObject* handlerOwner );
 		void			ClearListenersDelayed	();
 
-		void			SendEvent		( Event* evt );
+		void			SendEvent				( Event* evt );
 
 		template< typename EventType, typename ClassType >
 		void			AddListenerDelayed		( ClassType* handlerOwner, void (ClassType::* handler) ( const EngineObject*, Event* ) );
+
+		template< typename EventType >
+		void			RemoveListenerDelayed	( EngineObject* handlerOwner );
 	};
 
 
@@ -50,6 +53,12 @@ namespace Api { namespace Actors {
 		EventDelegate delegate;
 		delegate.bind( handlerOwner, static_cast< void (EngineObject::*)( const EngineObject*, Event* ) >( handler ) );
 		AddListenerDelayed( rttr::type::get< EventType >(), handlerOwner, delegate );
+	}
+
+	template< typename EventType >
+	inline void Communication::RemoveListenerDelayed( EngineObject* handlerOwner )
+	{
+		RemoveListenerDelayed( rttr::type::get< EventType >(), handlerOwner );
 	}
 
 }	// Actors

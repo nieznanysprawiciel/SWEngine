@@ -216,8 +216,9 @@ void LightmapLogic::RenderEnded( const EngineObject* sender, Event* renderEndedE
 int LightmapLogic::UnloadLevel					()
 {	
 	m_layout->DeleteObjectReference();
-	m_fableEngine->DeleteDelegate( (unsigned int)EventType::KeyDownEvent );		// Po zmianie klasy IGameLogic na inn¹, ktoœ móg³by nadal próbowaæ wywo³aæ nieistniej¹cy kawa³ek kodu.
-	m_fableEngine->DeleteDelegate( (unsigned int)EventType::RenderOnceEndedEvent );
+	m_engine->Actors.Communication.RemoveListenerDelayed< KeyDownEvent >( this );
+	m_engine->Actors.Communication.RemoveListenerDelayed< RenderOnceEndedEvent >( this );
+
 	return 0;
 }
 
