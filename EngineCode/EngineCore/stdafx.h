@@ -33,7 +33,7 @@
 
 #include <DirectXMath.h>
 
-#include "EngineCore/UIEngine/IncludeDirectInput.h"
+#include "EngineCore/UIEngine/InputLibrary/DirectInput/IncludeDirectInput.h"
 
 #include "Common/MacrosSwitches.h"
 #include "EngineCore/EventsManager/Event.h"

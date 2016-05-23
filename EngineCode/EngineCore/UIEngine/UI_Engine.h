@@ -2,6 +2,7 @@
 
 
 #include "EngineCore/stdafx.h"
+#include "EngineCore/UIEngine/InputLibrary/IInput.h"
 #include "InputAbstractionLayer.h"
 
 #define DIRECT_INPUT_OK				DI_OK
@@ -45,6 +46,8 @@ public:
 
 	//directX functions
 	int init_direct_input();
+
+	bool		InitInputModule					();
 
 	//called by Engine in main loop
 	void		ProceedInput					( float time_interval );

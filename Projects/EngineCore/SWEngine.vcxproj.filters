@@ -96,6 +96,18 @@
     <Filter Include="EngineCore\EventsManager\Events">
       <UniqueIdentifier>{506fcf2b-baa4-4f87-9a68-757ce8adc0d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\ControllersEngine\BasicControllers\Editor">
+      <UniqueIdentifier>{32d2f89a-54e2-47dc-96de-fd1865a06d32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\UIEngine\InputLibrary">
+      <UniqueIdentifier>{f5f313fb-0a6b-4dfd-9149-c4b91887bd07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\UIEngine\InputLibrary\DirectInput">
+      <UniqueIdentifier>{6cb17f4a-04c8-4698-bc97-0128a528bec4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\UIEngine\InputLibrary\InputWPF">
+      <UniqueIdentifier>{77ca789f-6aa7-499d-b6ae-a956da79e17d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -311,9 +323,6 @@
     <ClInclude Include="..\..\EngineCode\Common\RTTR.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\IInput.h">
-      <Filter>EngineCore\UIEngine</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\CollisionEngine.h">
       <Filter>EngineCore\PhysicEngine</Filter>
     </ClInclude>
@@ -383,11 +392,32 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\Events\KeyDownEvent.h">
       <Filter>EngineCore\EventsManager\Events</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\IncludeDirectInput.h">
-      <Filter>EngineCore\UIEngine</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\Communication.h">
       <Filter>EngineCore\UserApi\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\Editor\GizmoController.h">
+      <Filter>EngineCore\ControllersEngine\BasicControllers\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\IInput.h">
+      <Filter>EngineCore\UIEngine\InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\DirectInput\IncludeDirectInput.h">
+      <Filter>EngineCore\UIEngine\InputLibrary\DirectInput</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\KeyboardState.h">
+      <Filter>EngineCore\UIEngine\InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\MouseState.h">
+      <Filter>EngineCore\UIEngine\InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\JoystickState.h">
+      <Filter>EngineCore\UIEngine\InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\InputDeviceInfo.h">
+      <Filter>EngineCore\UIEngine\InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\DirectInput\DirectInputModule.h">
+      <Filter>EngineCore\UIEngine\InputLibrary\DirectInput</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -597,6 +627,21 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Actors\Communication.cpp">
       <Filter>EngineCore\UserApi\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\Editor\GizmoController.cpp">
+      <Filter>EngineCore\ControllersEngine\BasicControllers\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\KeyboardState.cpp">
+      <Filter>EngineCore\UIEngine\InputLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\MouseState.cpp">
+      <Filter>EngineCore\UIEngine\InputLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\JoystickState.cpp">
+      <Filter>EngineCore\UIEngine\InputLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\DirectInput\DirectInputModule.cpp">
+      <Filter>EngineCore\UIEngine\InputLibrary\DirectInput</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

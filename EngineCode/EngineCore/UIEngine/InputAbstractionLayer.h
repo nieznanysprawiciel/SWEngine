@@ -6,7 +6,7 @@ struktur InputMapping i EventMapping oraz definicje standardowych warstw abstrak
 
 #include "Common/EngineObject.h"
 #include "EngineCore/UIEngine/StandardAbstractionLayers.h"
-#include "EngineCore/UIEngine/IncludeDirectInput.h"		///@todo Wydzieliæ direct input do jakiegoœ modu³u i ukryæ implementacje, ¿eby nie by³o takich includów.
+#include "EngineCore/UIEngine/InputLibrary/DirectInput/IncludeDirectInput.h"		///@todo Wydzieliæ direct input do jakiegoœ modu³u i ukryæ implementacje, ¿eby nie by³o takich includów.
 
 class Engine;
 

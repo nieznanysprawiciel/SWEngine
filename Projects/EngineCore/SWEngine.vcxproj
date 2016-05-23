@@ -215,6 +215,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\BaseAIController.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\BaseInputController.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\IController.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\Editor\GizmoController.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\SpectatorCameraController.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\EventManager.h" />
@@ -239,8 +240,13 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\IOctreeNode.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeLeaf.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeNode.h" />
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\IInput.h" />
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\IncludeDirectInput.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\DirectInput\DirectInputModule.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\DirectInput\IncludeDirectInput.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\IInput.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\InputDeviceInfo.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\JoystickState.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\KeyboardState.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\MouseState.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\ActorsApi.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\Assets.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\Communication.h" />
@@ -303,6 +309,7 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\BaseAIController.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\BaseInputController.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\IController.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\Editor\GizmoController.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\SpectatorCameraController.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\EventsManager\EventManager.cpp" />
@@ -339,6 +346,10 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\CollisionOctree.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeLeaf.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeNode.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\DirectInput\DirectInputModule.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\JoystickState.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\KeyboardState.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\MouseState.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Actors\ActorsApi.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Actors\Assets.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Actors\Communication.cpp" />
