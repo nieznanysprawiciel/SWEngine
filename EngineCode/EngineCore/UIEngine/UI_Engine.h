@@ -1,11 +1,13 @@
 #pragma once
+/**
+@file UI_Engine.h
+@author nieznanysprawiciel
+@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+*/
 
 
-#include "EngineCore/stdafx.h"
 #include "EngineCore/UIEngine/InputLibrary/IInput.h"
 #include "InputAbstractionLayer.h"
-
-#define DIRECT_INPUT_OK				DI_OK
 
 
 
@@ -21,33 +23,19 @@ class UI_Engine
 private:
 	Engine* engine;
 
-	//direct input
-	LPDIRECTINPUT8				direct_input;
-	LPDIRECTINPUTDEVICE8		keyboard_input;
-	LPDIRECTINPUTDEVICE8		mouse_input;
-
-	//keyboard, mouse joystick
-	char						keyboard_state[256];
-	DIMOUSESTATE2				mouse_state;
-
 	IInput*						m_inputModule;
 
-//abstraction layers
+// Abstraction layers
 	InputAbstractionLayer*					m_currentAbstractionLayer;
 	std::vector<InputAbstractionLayer*>		m_abstractionLayers;
 
-// hack dla edytora
+// Hack dla edytora
 	bool						m_enableInput;
 
-private:
-	//directX functions
-	void clean_direct_input();
 public:
-	UI_Engine(Engine* engine);
-	~UI_Engine();
+				UI_Engine						(Engine* engine);
+				~UI_Engine						();
 
-	//directX functions
-	int init_direct_input();
 
 	IInput*		ChangeInputModule				( IInput* module );
 	IInput*		GetInputModule					();
