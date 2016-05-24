@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: DisplayEngine Class Reference</title>
+<title>Schopenhauers Weltschmerz Engine: DisplayEngine Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -92,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_display_engine-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">DisplayEngine Class Reference</div>  </div>
+<div class="title">DisplayEngine Class Reference<div class="ingroups"><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___engine_core.html">EngineCore</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -121,84 +122,95 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>EndScene</b> ()</td><
 <tr class="separator:abad7947d091d6aa4aa21fe854db1342b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa097821a36dd4487abb7e111d61ff98a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#aa097821a36dd4487abb7e111d61ff98a">SetMainRenderTarget</a> (<a class="el" href="class_render_target_object.html">RenderTargetObject</a> *renderTarget)</td></tr>
 <tr class="separator:aa097821a36dd4487abb7e111d61ff98a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa685306eb205307b22801e0b4e4cbd8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#afa685306eb205307b22801e0b4e4cbd8">display_scene</a> (float time_interval, float time_lag)</td></tr>
-<tr class="memdesc:afa685306eb205307b22801e0b4e4cbd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja do renderowania sceny.  <a href="#afa685306eb205307b22801e0b4e4cbd8">More...</a><br /></td></tr>
-<tr class="separator:afa685306eb205307b22801e0b4e4cbd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2d303139e3336cb9d21229146643632"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#ab2d303139e3336cb9d21229146643632">interpolate_positions</a> (float time_lag)</td></tr>
-<tr class="memdesc:ab2d303139e3336cb9d21229146643632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wykonuje interpolację położeń dla wszystkich obiektów dynamicznych w silniku.  <a href="#ab2d303139e3336cb9d21229146643632">More...</a><br /></td></tr>
-<tr class="separator:ab2d303139e3336cb9d21229146643632"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b2ae4123bbe4f59911b391752f51796"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a5b2ae4123bbe4f59911b391752f51796">DisplayScene</a> (float time_interval, float time_lag)</td></tr>
+<tr class="memdesc:a5b2ae4123bbe4f59911b391752f51796"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja do renderowania sceny.  <a href="#a5b2ae4123bbe4f59911b391752f51796">More...</a><br /></td></tr>
+<tr class="separator:a5b2ae4123bbe4f59911b391752f51796"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a8ec511cb5905cd6b6e8e8d448d1af5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a0a8ec511cb5905cd6b6e8e8d448d1af5">InterpolatePositions</a> (float time_lag)</td></tr>
+<tr class="memdesc:a0a8ec511cb5905cd6b6e8e8d448d1af5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wykonuje interpolację położeń dla wszystkich obiektów dynamicznych w silniku.  <a href="#a0a8ec511cb5905cd6b6e8e8d448d1af5">More...</a><br /></td></tr>
+<tr class="separator:a0a8ec511cb5905cd6b6e8e8d448d1af5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abae2e191c0fb8099b7ec28fdd0c2381a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#abae2e191c0fb8099b7ec28fdd0c2381a">SetProjectionMatrix</a> (float angle, float X_to_Y, float near_plane, float far_plane)</td></tr>
-<tr class="memdesc:abae2e191c0fb8099b7ec28fdd0c2381a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tworzy macierz projekcji i zapamiętuje ją w polu projection_matrix klasy. W każdym wywołaniu funkcji display_scene ustawiana jest macierz zapisana w tym polu.  <a href="#abae2e191c0fb8099b7ec28fdd0c2381a">More...</a><br /></td></tr>
+<tr class="memdesc:abae2e191c0fb8099b7ec28fdd0c2381a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tworzy macierz projekcji i zapamiętuje ją w polu projection_matrix klasy. W każdym wywołaniu funkcji DisplayScene ustawiana jest macierz zapisana w tym polu.  <a href="#abae2e191c0fb8099b7ec28fdd0c2381a">More...</a><br /></td></tr>
 <tr class="separator:abae2e191c0fb8099b7ec28fdd0c2381a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a142487f9a15391fd45739bce79e09b40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a142487f9a15391fd45739bce79e09b40">add_dynamic_mesh_object</a> (<a class="el" href="class_dynamic_mesh_object.html">DynamicMeshObject</a> *object)</td></tr>
-<tr class="memdesc:a142487f9a15391fd45739bce79e09b40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje obiekt, który ma zostać wyświetlony.  <a href="#a142487f9a15391fd45739bce79e09b40">More...</a><br /></td></tr>
-<tr class="separator:a142487f9a15391fd45739bce79e09b40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a575257b8da6fdcbd1164d9275848d4ae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a575257b8da6fdcbd1164d9275848d4ae">set_directional_light</a> (const DirectX::XMFLOAT4 &amp;direction, const DirectX::XMFLOAT4 &amp;color, unsigned int index)</td></tr>
-<tr class="memdesc:a575257b8da6fdcbd1164d9275848d4ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia światło kierunkowe.  <a href="#a575257b8da6fdcbd1164d9275848d4ae">More...</a><br /></td></tr>
-<tr class="separator:a575257b8da6fdcbd1164d9275848d4ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc6f3ea1ad6b38cf2beada19abf11f42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#acc6f3ea1ad6b38cf2beada19abf11f42">set_ambient_light</a> (const DirectX::XMFLOAT4 &amp;color)</td></tr>
-<tr class="memdesc:acc6f3ea1ad6b38cf2beada19abf11f42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia światło ambient.  <a href="#acc6f3ea1ad6b38cf2beada19abf11f42">More...</a><br /></td></tr>
-<tr class="separator:acc6f3ea1ad6b38cf2beada19abf11f42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38333a2500e739541de82bda64e4c6ce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a38333a2500e739541de82bda64e4c6ce">add_camera</a> (<a class="el" href="class_camera_object.html">CameraObject</a> *camera)</td></tr>
-<tr class="memdesc:a38333a2500e739541de82bda64e4c6ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje kamerę do spisu kamer w silniku.  <a href="#a38333a2500e739541de82bda64e4c6ce">More...</a><br /></td></tr>
-<tr class="separator:a38333a2500e739541de82bda64e4c6ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab01df50fbf868436e83076445729f6cf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#ab01df50fbf868436e83076445729f6cf">set_current_camera</a> (<a class="el" href="class_camera_object.html">CameraObject</a> *camera)</td></tr>
-<tr class="memdesc:ab01df50fbf868436e83076445729f6cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia aktualnie używaną kamerę.  <a href="#ab01df50fbf868436e83076445729f6cf">More...</a><br /></td></tr>
-<tr class="separator:ab01df50fbf868436e83076445729f6cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a019ae60a6e9dd547760b570400f4ef30"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sky_dome.html">SkyDome</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a019ae60a6e9dd547760b570400f4ef30">set_skydome</a> (<a class="el" href="class_sky_dome.html">SkyDome</a> *dome)</td></tr>
-<tr class="memdesc:a019ae60a6e9dd547760b570400f4ef30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia nowego skydome'a dla gry.  <a href="#a019ae60a6e9dd547760b570400f4ef30">More...</a><br /></td></tr>
-<tr class="separator:a019ae60a6e9dd547760b570400f4ef30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a420e8bebef4419cc11a41c0cdacae013"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a420e8bebef4419cc11a41c0cdacae013">AddDynamicMeshObject</a> (<a class="el" href="class_dynamic_mesh_actor.html">DynamicMeshActor</a> *object)</td></tr>
+<tr class="memdesc:a420e8bebef4419cc11a41c0cdacae013"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje obiekt, który ma zostać wyświetlony.  <a href="#a420e8bebef4419cc11a41c0cdacae013">More...</a><br /></td></tr>
+<tr class="separator:a420e8bebef4419cc11a41c0cdacae013"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e6e9861ee3d7e8e8b4a788822614e41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e6e9861ee3d7e8e8b4a788822614e41"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>DeleteAllMeshes</b> ()</td></tr>
+<tr class="separator:a8e6e9861ee3d7e8e8b4a788822614e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3728e336b2e6b2750e0843593fec39f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_dynamic_mesh_actor.html">DynamicMeshActor</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#af3728e336b2e6b2750e0843593fec39f">GetSceneObjects</a> ()</td></tr>
+<tr class="separator:af3728e336b2e6b2750e0843593fec39f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a842bf75fdd964fef61f08c51d6329385"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a842bf75fdd964fef61f08c51d6329385">SetDirectionalLight</a> (const DirectX::XMFLOAT4 &amp;direction, const DirectX::XMFLOAT4 &amp;color, unsigned int index)</td></tr>
+<tr class="memdesc:a842bf75fdd964fef61f08c51d6329385"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia światło kierunkowe.  <a href="#a842bf75fdd964fef61f08c51d6329385">More...</a><br /></td></tr>
+<tr class="separator:a842bf75fdd964fef61f08c51d6329385"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5c2e40d6836e7287e533a96930a386e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#af5c2e40d6836e7287e533a96930a386e">SetAmbientLight</a> (const DirectX::XMFLOAT4 &amp;color)</td></tr>
+<tr class="memdesc:af5c2e40d6836e7287e533a96930a386e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia światło ambient.  <a href="#af5c2e40d6836e7287e533a96930a386e">More...</a><br /></td></tr>
+<tr class="separator:af5c2e40d6836e7287e533a96930a386e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ffa9603ede0a5530d7183196a3b8f14"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a7ffa9603ede0a5530d7183196a3b8f14">AddCamera</a> (<a class="el" href="class_camera_actor.html">CameraActor</a> *camera)</td></tr>
+<tr class="memdesc:a7ffa9603ede0a5530d7183196a3b8f14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje kamerę do spisu kamer w silniku.  <a href="#a7ffa9603ede0a5530d7183196a3b8f14">More...</a><br /></td></tr>
+<tr class="separator:a7ffa9603ede0a5530d7183196a3b8f14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0ea33c7770c079eb3fd9f0100aec538"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#ae0ea33c7770c079eb3fd9f0100aec538">SetCurrentCamera</a> (<a class="el" href="class_camera_actor.html">CameraActor</a> *camera)</td></tr>
+<tr class="memdesc:ae0ea33c7770c079eb3fd9f0100aec538"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia aktualnie używaną kamerę.  <a href="#ae0ea33c7770c079eb3fd9f0100aec538">More...</a><br /></td></tr>
+<tr class="separator:ae0ea33c7770c079eb3fd9f0100aec538"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adecfdfb1a335bd9b4cd0d6fcd3a572c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adecfdfb1a335bd9b4cd0d6fcd3a572c9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>RenderOnce</b> (<a class="el" href="class_render_pass.html">RenderPass</a> *pass)</td></tr>
+<tr class="separator:adecfdfb1a335bd9b4cd0d6fcd3a572c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2446a83f62894ae324664b5d9e0f1469"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sky_dome.html">SkyDome</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a2446a83f62894ae324664b5d9e0f1469">SetSkydome</a> (<a class="el" href="class_sky_dome.html">SkyDome</a> *dome)</td></tr>
+<tr class="memdesc:a2446a83f62894ae324664b5d9e0f1469"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia nowego skydome'a dla gry.  <a href="#a2446a83f62894ae324664b5d9e0f1469">More...</a><br /></td></tr>
+<tr class="separator:a2446a83f62894ae324664b5d9e0f1469"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a913d925119d0340a79f44b76c02c7550"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a913d925119d0340a79f44b76c02c7550">set_view_matrix</a> (float time_lag)</td></tr>
-<tr class="memdesc:a913d925119d0340a79f44b76c02c7550"><td class="mdescLeft">&#160;</td><td class="mdescRight">Używa aktualnie ustawionej kamery, żeby stworzyć macierz widoku.  <a href="#a913d925119d0340a79f44b76c02c7550">More...</a><br /></td></tr>
-<tr class="separator:a913d925119d0340a79f44b76c02c7550"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7ed0981f2e29e30fedff66b6784511f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#ad7ed0981f2e29e30fedff66b6784511f">SetViewMatrix</a> (float time_lag)</td></tr>
+<tr class="memdesc:ad7ed0981f2e29e30fedff66b6784511f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Używa aktualnie ustawionej kamery, żeby stworzyć macierz widoku.  <a href="#ad7ed0981f2e29e30fedff66b6784511f">More...</a><br /></td></tr>
+<tr class="separator:ad7ed0981f2e29e30fedff66b6784511f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadfb8904fe972fb42421133bbc944ac6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#aadfb8904fe972fb42421133bbc944ac6">realocate_interpolation_memory</a> (unsigned int min=1)</td></tr>
 <tr class="memdesc:aadfb8904fe972fb42421133bbc944ac6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Powiększamy tablicę macierzy, w których umieszcza się wyniki interpolacji położeń obiektów tuż przed ich wyświetleniem w kolejnej klatce animacji.  <a href="#aadfb8904fe972fb42421133bbc944ac6">More...</a><br /></td></tr>
 <tr class="separator:aadfb8904fe972fb42421133bbc944ac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e717dff0d206ecb536794f3689461db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a0e717dff0d206ecb536794f3689461db">interpolate_object</a> (float time_lag, const <a class="el" href="class_dynamic_object.html">DynamicObject</a> *object, DirectX::XMFLOAT4X4 *result_matrix)</td></tr>
-<tr class="memdesc:a0e717dff0d206ecb536794f3689461db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja tworzy macierz przekształcenia dla podanego obiektu, interpolując jego pozycję z prędkości postępowej i kątowej.  <a href="#a0e717dff0d206ecb536794f3689461db">More...</a><br /></td></tr>
-<tr class="separator:a0e717dff0d206ecb536794f3689461db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2242c4949986d9908596b88750c07841"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a2242c4949986d9908596b88750c07841">interpolate_object2</a> (float time_lag, const <a class="el" href="class_dynamic_object.html">DynamicObject</a> *object, DirectX::XMFLOAT4X4 *result_matrix)</td></tr>
-<tr class="memdesc:a2242c4949986d9908596b88750c07841"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja tworzy macierz przekształcenia dla podanego obiektu, interpolując jego pozycję z prędkości postępowej i kątowej.  <a href="#a2242c4949986d9908596b88750c07841">More...</a><br /></td></tr>
-<tr class="separator:a2242c4949986d9908596b88750c07841"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affaac07818ca048ae5fc70d530b9a31c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#affaac07818ca048ae5fc70d530b9a31c">display_instanced_meshes</a> (float time_interval, float time_lag)</td></tr>
-<tr class="memdesc:affaac07818ca048ae5fc70d530b9a31c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja służy do wyświetlania meshy instancjonowanych, które są jednocześniej obiektami statycznymi w scenie.  <a href="#affaac07818ca048ae5fc70d530b9a31c">More...</a><br /></td></tr>
-<tr class="separator:affaac07818ca048ae5fc70d530b9a31c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04dcbfd21db9275db28414cff464341c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a04dcbfd21db9275db28414cff464341c">display_dynamic_objects</a> (float time_interval, float time_lag)</td></tr>
-<tr class="memdesc:a04dcbfd21db9275db28414cff464341c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja służy do wyświetlania obiektów dynamicznych, które są rzadko niszczone.  <a href="#a04dcbfd21db9275db28414cff464341c">More...</a><br /></td></tr>
-<tr class="separator:a04dcbfd21db9275db28414cff464341c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bbab867adbfaa010bacdd0eea5e5512"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a6bbab867adbfaa010bacdd0eea5e5512">display_particles</a> (float time_interval, float time_lag)</td></tr>
-<tr class="memdesc:a6bbab867adbfaa010bacdd0eea5e5512"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja służy do wyświetlania systemów cząstek.  <a href="#a6bbab867adbfaa010bacdd0eea5e5512">More...</a><br /></td></tr>
-<tr class="separator:a6bbab867adbfaa010bacdd0eea5e5512"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d88fb2178f4fdccc320733543ecc324"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a1d88fb2178f4fdccc320733543ecc324">display_short_live_objects</a> (float time_interval, float time_lag)</td></tr>
-<tr class="memdesc:a1d88fb2178f4fdccc320733543ecc324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja służy do wyświetlania obiektów dynamicznych o krótkim czasie życia jak np. pociski.  <a href="#a1d88fb2178f4fdccc320733543ecc324">More...</a><br /></td></tr>
-<tr class="separator:a1d88fb2178f4fdccc320733543ecc324"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7f1377c4b0e937b007beabfc50ea9fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#ab7f1377c4b0e937b007beabfc50ea9fb">display_sky_box</a> (float time_interval, float time_lag)</td></tr>
-<tr class="memdesc:ab7f1377c4b0e937b007beabfc50ea9fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja służy do wyświetlania skyboxa lub też każdej innej formy, która służy za tło.  <a href="#ab7f1377c4b0e937b007beabfc50ea9fb">More...</a><br /></td></tr>
-<tr class="separator:ab7f1377c4b0e937b007beabfc50ea9fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ff52b9e9aa74e3f8186bf6fe8461af4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a8ff52b9e9aa74e3f8186bf6fe8461af4">display_skeletons</a> (float time_interval, float time_lag)</td></tr>
-<tr class="memdesc:a8ff52b9e9aa74e3f8186bf6fe8461af4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja służy do wyświetlania obiektów z animacją szkieletową, czyli głównie postaci.  <a href="#a8ff52b9e9aa74e3f8186bf6fe8461af4">More...</a><br /></td></tr>
-<tr class="separator:a8ff52b9e9aa74e3f8186bf6fe8461af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ad77ec10589f4acdd54ef93a59363ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a4ad77ec10589f4acdd54ef93a59363ae">display_self_drawing_objects</a> (float time_interval, float time_lag)</td></tr>
-<tr class="memdesc:a4ad77ec10589f4acdd54ef93a59363ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wyświetla obiekty, które mają zaimplementowany inny niż domyślny algorytm wyswietlania.  <a href="#a4ad77ec10589f4acdd54ef93a59363ae">More...</a><br /></td></tr>
-<tr class="separator:a4ad77ec10589f4acdd54ef93a59363ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe57c7b9d98c436d59dd14daafc21547"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe57c7b9d98c436d59dd14daafc21547"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set_textures</b> (const <a class="el" href="struct_model_part.html">ModelPart</a> &amp;model)</td></tr>
-<tr class="separator:afe57c7b9d98c436d59dd14daafc21547"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6344b14da5ddad04f4f9ed2c1c854058"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6344b14da5ddad04f4f9ed2c1c854058"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set_index_buffer</b> (<a class="el" href="class_buffer_object.html">BufferObject</a> *buffer)</td></tr>
-<tr class="separator:a6344b14da5ddad04f4f9ed2c1c854058"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb07da0aa3236e8f580e12e266932b46"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb07da0aa3236e8f580e12e266932b46"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>set_vertex_buffer</b> (<a class="el" href="class_buffer_object.html">BufferObject</a> *buffer)</td></tr>
-<tr class="separator:acb07da0aa3236e8f580e12e266932b46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addca9b30cacc01d5a6a0cbc94c775f5b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#addca9b30cacc01d5a6a0cbc94c775f5b">copy_material</a> (<a class="el" href="struct_constant_per_mesh.html">ConstantPerMesh</a> *shader_data_per_mesh, const <a class="el" href="struct_model_part.html">ModelPart</a> *model)</td></tr>
-<tr class="memdesc:addca9b30cacc01d5a6a0cbc94c775f5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">kopiuje materiał do struktury, która posłuży do zaktualizowania bufora stałych.  <a href="#addca9b30cacc01d5a6a0cbc94c775f5b">More...</a><br /></td></tr>
-<tr class="separator:addca9b30cacc01d5a6a0cbc94c775f5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a629819c16f6e7793a578a73a59373a6e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a629819c16f6e7793a578a73a59373a6e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>depth_buffer_enable</b> (bool state)</td></tr>
-<tr class="separator:a629819c16f6e7793a578a73a59373a6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9387d68dedcccd6cb214e8af7e93155a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a9387d68dedcccd6cb214e8af7e93155a">interpolate_object</a> (float timeLag, const <a class="el" href="class_dynamic_actor.html">DynamicActor</a> *object, DirectX::XMFLOAT4X4 *result_matrix)</td></tr>
+<tr class="memdesc:a9387d68dedcccd6cb214e8af7e93155a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja tworzy macierz przekształcenia dla podanego obiektu, interpolując jego pozycję z prędkości postępowej i kątowej.  <a href="#a9387d68dedcccd6cb214e8af7e93155a">More...</a><br /></td></tr>
+<tr class="separator:a9387d68dedcccd6cb214e8af7e93155a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ba5a41b7629736e1289cb91a161f862"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a0ba5a41b7629736e1289cb91a161f862">interpolate_object2</a> (float timeLag, const <a class="el" href="class_dynamic_actor.html">DynamicActor</a> *object, DirectX::XMFLOAT4X4 *result_matrix)</td></tr>
+<tr class="memdesc:a0ba5a41b7629736e1289cb91a161f862"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja tworzy macierz przekształcenia dla podanego obiektu, interpolując jego pozycję z prędkości postępowej i kątowej.  <a href="#a0ba5a41b7629736e1289cb91a161f862">More...</a><br /></td></tr>
+<tr class="separator:a0ba5a41b7629736e1289cb91a161f862"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4965de19fde4cab798195b76c30c144"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#af4965de19fde4cab798195b76c30c144">DisplayInstancedMeshes</a> (float timeInterval, float timeLag)</td></tr>
+<tr class="memdesc:af4965de19fde4cab798195b76c30c144"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja służy do wyświetlania meshy instancjonowanych, które są jednocześniej obiektami statycznymi w scenie.  <a href="#af4965de19fde4cab798195b76c30c144">More...</a><br /></td></tr>
+<tr class="separator:af4965de19fde4cab798195b76c30c144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaab3b3b26907befd5fd4f7f03324cf17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#aaab3b3b26907befd5fd4f7f03324cf17">DisplayDynamicObjects</a> (float timeInterval, float timeLag)</td></tr>
+<tr class="memdesc:aaab3b3b26907befd5fd4f7f03324cf17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja służy do wyświetlania obiektów dynamicznych, które są rzadko niszczone.  <a href="#aaab3b3b26907befd5fd4f7f03324cf17">More...</a><br /></td></tr>
+<tr class="separator:aaab3b3b26907befd5fd4f7f03324cf17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc02fe1e2cbcae9b4a0e7cd68543677c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#abc02fe1e2cbcae9b4a0e7cd68543677c">DisplayParticles</a> (float timeInterval, float timeLag)</td></tr>
+<tr class="memdesc:abc02fe1e2cbcae9b4a0e7cd68543677c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja służy do wyświetlania systemów cząstek.  <a href="#abc02fe1e2cbcae9b4a0e7cd68543677c">More...</a><br /></td></tr>
+<tr class="separator:abc02fe1e2cbcae9b4a0e7cd68543677c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab61dce7b57a40ece81688e4002554b65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#ab61dce7b57a40ece81688e4002554b65">DisplayShortLiveObjects</a> (float timeInterval, float timeLag)</td></tr>
+<tr class="memdesc:ab61dce7b57a40ece81688e4002554b65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja służy do wyświetlania obiektów dynamicznych o krótkim czasie życia jak np. pociski.  <a href="#ab61dce7b57a40ece81688e4002554b65">More...</a><br /></td></tr>
+<tr class="separator:ab61dce7b57a40ece81688e4002554b65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2164dc633cb94e5040024fc8fabcdfa4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a2164dc633cb94e5040024fc8fabcdfa4">DisplaySkyBox</a> (float timeInterval, float timeLag)</td></tr>
+<tr class="memdesc:a2164dc633cb94e5040024fc8fabcdfa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja służy do wyświetlania skyboxa lub też każdej innej formy, która służy za tło.  <a href="#a2164dc633cb94e5040024fc8fabcdfa4">More...</a><br /></td></tr>
+<tr class="separator:a2164dc633cb94e5040024fc8fabcdfa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23e7e1a3bdf9ea477c0f430613c4be58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a23e7e1a3bdf9ea477c0f430613c4be58">DisplaySkeletons</a> (float timeInterval, float timeLag)</td></tr>
+<tr class="memdesc:a23e7e1a3bdf9ea477c0f430613c4be58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja służy do wyświetlania obiektów z animacją szkieletową, czyli głównie postaci.  <a href="#a23e7e1a3bdf9ea477c0f430613c4be58">More...</a><br /></td></tr>
+<tr class="separator:a23e7e1a3bdf9ea477c0f430613c4be58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89e8955dfd5324e4d87ec3e6055c2dd0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a89e8955dfd5324e4d87ec3e6055c2dd0">DisplaySelfDrawingObjects</a> (float timeInterval, float timeLag)</td></tr>
+<tr class="memdesc:a89e8955dfd5324e4d87ec3e6055c2dd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wyświetla obiekty, które mają zaimplementowany inny niż domyślny algorytm wyswietlania.  <a href="#a89e8955dfd5324e4d87ec3e6055c2dd0">More...</a><br /></td></tr>
+<tr class="separator:a89e8955dfd5324e4d87ec3e6055c2dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a791d9ab90c167eafff98180df2d18056"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a791d9ab90c167eafff98180df2d18056">RenderFromQueue</a> (float timeInterval, float timeLag)</td></tr>
+<tr class="memdesc:a791d9ab90c167eafff98180df2d18056"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wybiera z kolejki przebiegi do wyrenderowania i renderuje je.  <a href="#a791d9ab90c167eafff98180df2d18056">More...</a><br /></td></tr>
+<tr class="separator:a791d9ab90c167eafff98180df2d18056"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a415a682d70cc538b87c0cf54b14cbfd8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a415a682d70cc538b87c0cf54b14cbfd8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTextures</b> (const <a class="el" href="struct_model_part.html">ModelPart</a> &amp;model)</td></tr>
+<tr class="separator:a415a682d70cc538b87c0cf54b14cbfd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affaea2d4b638745219c78f437727f041"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affaea2d4b638745219c78f437727f041"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetIndexBuffer</b> (<a class="el" href="class_buffer_object.html">BufferObject</a> *buffer)</td></tr>
+<tr class="separator:affaea2d4b638745219c78f437727f041"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff68ed5ba440839569e7a7e7e9ea94ec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff68ed5ba440839569e7a7e7e9ea94ec"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>SetVertexBuffer</b> (<a class="el" href="class_buffer_object.html">BufferObject</a> *buffer)</td></tr>
+<tr class="separator:aff68ed5ba440839569e7a7e7e9ea94ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af19f05cc7a9b87304e8ac9400b0c4569"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#af19f05cc7a9b87304e8ac9400b0c4569">CopyMaterial</a> (<a class="el" href="struct_constant_per_mesh.html">ConstantPerMesh</a> *shader_data_per_mesh, const <a class="el" href="struct_model_part.html">ModelPart</a> *model)</td></tr>
+<tr class="memdesc:af19f05cc7a9b87304e8ac9400b0c4569"><td class="mdescLeft">&#160;</td><td class="mdescRight">kopiuje materiał do struktury, która posłuży do zaktualizowania bufora stałych.  <a href="#af19f05cc7a9b87304e8ac9400b0c4569">More...</a><br /></td></tr>
+<tr class="separator:af19f05cc7a9b87304e8ac9400b0c4569"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aded430b4b66a6620b22a2d671332ccf2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aded430b4b66a6620b22a2d671332ccf2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>DepthBufferEnable</b> (bool state)</td></tr>
+<tr class="separator:aded430b4b66a6620b22a2d671332ccf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -224,35 +236,43 @@ std::vector&lt; <a class="el" href="class_i_renderer.html">IRenderer</a> * &gt;&
 <a class="el" href="class_buffer_object.html">BufferObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a38a51a9dd77656759f39f8126b3a4684">m_constantsPerMesh</a></td></tr>
 <tr class="memdesc:a38a51a9dd77656759f39f8126b3a4684"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bufor stałych zmiennych dla każdego fragmentu mesha. <br /></td></tr>
 <tr class="separator:a38a51a9dd77656759f39f8126b3a4684"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7d23ecf90c32004453cdd71ee4e6771"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad7d23ecf90c32004453cdd71ee4e6771"></a>
-<a class="el" href="class_camera_object.html">CameraObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#ad7d23ecf90c32004453cdd71ee4e6771">current_camera</a></td></tr>
-<tr class="memdesc:ad7d23ecf90c32004453cdd71ee4e6771"><td class="mdescLeft">&#160;</td><td class="mdescRight">Akutalnie aktywna kamera. <br /></td></tr>
-<tr class="separator:ad7d23ecf90c32004453cdd71ee4e6771"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe4d3adb31633488b3137a2201b6936a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe4d3adb31633488b3137a2201b6936a"></a>
+<a class="el" href="class_camera_actor.html">CameraActor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#abe4d3adb31633488b3137a2201b6936a">current_camera</a></td></tr>
+<tr class="memdesc:abe4d3adb31633488b3137a2201b6936a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Akutalnie aktywna kamera. <br /></td></tr>
+<tr class="separator:abe4d3adb31633488b3137a2201b6936a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cecc5b07bf947a096dca3b0321e083e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4cecc5b07bf947a096dca3b0321e083e"></a>
 <a class="el" href="class_sky_dome.html">SkyDome</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a4cecc5b07bf947a096dca3b0321e083e">sky_dome</a></td></tr>
 <tr class="memdesc:a4cecc5b07bf947a096dca3b0321e083e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa odpowiedzialna za kopułę nieba. <br /></td></tr>
 <tr class="separator:a4cecc5b07bf947a096dca3b0321e083e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e201e9e8a2ef45ddff8ba8923e2a132"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e201e9e8a2ef45ddff8ba8923e2a132"></a>
-std::vector&lt; <a class="el" href="class_dynamic_mesh_object.html">DynamicMeshObject</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a5e201e9e8a2ef45ddff8ba8923e2a132">meshes</a></td></tr>
-<tr class="memdesc:a5e201e9e8a2ef45ddff8ba8923e2a132"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modele nieanimowane. <br /></td></tr>
-<tr class="separator:a5e201e9e8a2ef45ddff8ba8923e2a132"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa87c52c49cda959244374b2160051d18"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa87c52c49cda959244374b2160051d18"></a>
-XMFLOAT4X4 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#aa87c52c49cda959244374b2160051d18">interpolated_matrixes</a></td></tr>
-<tr class="memdesc:aa87c52c49cda959244374b2160051d18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tablica macierzy interpolowanych położeń obiektów. <br /></td></tr>
-<tr class="separator:aa87c52c49cda959244374b2160051d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fb8a4da411db15df4e85bc64700d58f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2fb8a4da411db15df4e85bc64700d58f"></a>
+std::vector&lt; <a class="el" href="class_dynamic_mesh_actor.html">DynamicMeshActor</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a2fb8a4da411db15df4e85bc64700d58f">meshes</a></td></tr>
+<tr class="memdesc:a2fb8a4da411db15df4e85bc64700d58f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modele nieanimowane. <br /></td></tr>
+<tr class="separator:a2fb8a4da411db15df4e85bc64700d58f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3608e129a41c070291ab3e031c5dab7e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3608e129a41c070291ab3e031c5dab7e"></a>
+DirectX::XMFLOAT4X4 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a3608e129a41c070291ab3e031c5dab7e">interpolated_matrixes</a></td></tr>
+<tr class="memdesc:a3608e129a41c070291ab3e031c5dab7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tablica macierzy interpolowanych położeń obiektów. <br /></td></tr>
+<tr class="separator:a3608e129a41c070291ab3e031c5dab7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6388a3c706c8faae614135526908d55"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa6388a3c706c8faae614135526908d55"></a>
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#aa6388a3c706c8faae614135526908d55">interpol_matrixes_count</a></td></tr>
 <tr class="memdesc:aa6388a3c706c8faae614135526908d55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba macierzy interpolowanych. <br /></td></tr>
 <tr class="separator:aa6388a3c706c8faae614135526908d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a760d508488fb8e2fecf4b867eb36e66f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a760d508488fb8e2fecf4b867eb36e66f"></a>
-std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a760d508488fb8e2fecf4b867eb36e66f">cameras</a></td></tr>
-<tr class="memdesc:a760d508488fb8e2fecf4b867eb36e66f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kontener zawierający kamery. <br /></td></tr>
-<tr class="separator:a760d508488fb8e2fecf4b867eb36e66f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37d38ad4b8bb8ed30496f4119c4a073f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a37d38ad4b8bb8ed30496f4119c4a073f"></a>
+std::vector&lt; <a class="el" href="class_camera_actor.html">CameraActor</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a37d38ad4b8bb8ed30496f4119c4a073f">cameras</a></td></tr>
+<tr class="memdesc:a37d38ad4b8bb8ed30496f4119c4a073f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kontener zawierający kamery. <br /></td></tr>
+<tr class="separator:a37d38ad4b8bb8ed30496f4119c4a073f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27b0fea7b5ed5b1816eb6664af236826"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_shader_input_layout_object.html">ShaderInputLayoutObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a27b0fea7b5ed5b1816eb6664af236826">defaultLayout</a></td></tr>
 <tr class="separator:a27b0fea7b5ed5b1816eb6664af236826"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b8c0e494fb6b63b14c67edf3ece2d38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_render_target_object.html">RenderTargetObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a8b8c0e494fb6b63b14c67edf3ece2d38">m_mainRenderTarget</a></td></tr>
 <tr class="memdesc:a8b8c0e494fb6b63b14c67edf3ece2d38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render target okna aplikacji.  <a href="#a8b8c0e494fb6b63b14c67edf3ece2d38">More...</a><br /></td></tr>
 <tr class="separator:a8b8c0e494fb6b63b14c67edf3ece2d38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac28740e3261cbc452946273e22127962"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac28740e3261cbc452946273e22127962"></a>
+std::queue&lt; <a class="el" href="class_render_pass.html">RenderPass</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#ac28740e3261cbc452946273e22127962">m_renderOnceQueue</a></td></tr>
+<tr class="memdesc:ac28740e3261cbc452946273e22127962"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kolejka przebiegów, które mają zostać wyrenderowane tylko raz. <br /></td></tr>
+<tr class="separator:ac28740e3261cbc452946273e22127962"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c0be94cb001f738468ee4706780fd0f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c0be94cb001f738468ee4706780fd0f"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_display_engine.html#a3c0be94cb001f738468ee4706780fd0f">m_maxQueuedPassesPerFrame</a></td></tr>
+<tr class="memdesc:a3c0be94cb001f738468ee4706780fd0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalna liczba przebiegów jaka zostanie wzięta z kolejki w każdej ramce. <br /></td></tr>
+<tr class="separator:a3c0be94cb001f738468ee4706780fd0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów. </p>
@@ -264,14 +284,14 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 <li>Skyboxy, sky sphere'y, sky plane'y i inne obiekty służące za tło Każda z tych grup ma swój własny sposób reprezentacji i wyświetlania ze względu na odmienny charakter i inne możliwości optymalizacji. </li>
 </ul>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a38333a2500e739541de82bda64e4c6ce"></a>
+<a class="anchor" id="a7ffa9603ede0a5530d7183196a3b8f14"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int DisplayEngine::add_camera </td>
+          <td class="memname">int DisplayEngine::AddCamera </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_camera_object.html">CameraObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="class_camera_actor.html">CameraActor</a> *&#160;</td>
           <td class="paramname"><em>camera</em></td><td>)</td>
           <td></td>
         </tr>
@@ -289,14 +309,14 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 
 </div>
 </div>
-<a class="anchor" id="a142487f9a15391fd45739bce79e09b40"></a>
+<a class="anchor" id="a420e8bebef4419cc11a41c0cdacae013"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void DisplayEngine::add_dynamic_mesh_object </td>
+          <td class="memname">void DisplayEngine::AddDynamicMeshObject </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_dynamic_mesh_object.html">DynamicMeshObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="class_dynamic_mesh_actor.html">DynamicMeshActor</a> *&#160;</td>
           <td class="paramname"><em>object</em></td><td>)</td>
           <td></td>
         </tr>
@@ -306,14 +326,14 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 <p>Dodaje obiekt, który ma zostać wyświetlony. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">object</td><td><a class="el" href="class_object.html" title="Klasa bazowa dla wszystkich obiektów w grze (aktorów). ">Object</a>, który ma zostać dopisany do tablic wyświetlania. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">object</td><td><a class="el" href="class_actor_base.html" title="Klasa bazowa dla wszystkich obiektów w grze (aktorów). ">ActorBase</a>, który ma zostać dopisany do tablic wyświetlania. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="addca9b30cacc01d5a6a0cbc94c775f5b"></a>
+<a class="anchor" id="af19f05cc7a9b87304e8ac9400b0c4569"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -321,7 +341,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void DisplayEngine::copy_material </td>
+          <td class="memname">void DisplayEngine::CopyMaterial </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_constant_per_mesh.html">ConstantPerMesh</a> *&#160;</td>
           <td class="paramname"><em>shader_data_per_mesh</em>, </td>
@@ -348,7 +368,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 <p>kopiuje materiał do struktury, która posłuży do zaktualizowania bufora stałych. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">shader_data_per_mesh</td><td>Struktura docelowa. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">shaderDataPerMesh</td><td>Struktura docelowa. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">model</td><td><a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> z którego pobieramy dane. </td></tr>
   </table>
   </dd>
@@ -356,7 +376,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 
 </div>
 </div>
-<a class="anchor" id="a04dcbfd21db9275db28414cff464341c"></a>
+<a class="anchor" id="aaab3b3b26907befd5fd4f7f03324cf17"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -364,7 +384,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void DisplayEngine::display_dynamic_objects </td>
+          <td class="memname">void DisplayEngine::DisplayDynamicObjects </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>time_interval</em>, </td>
@@ -396,11 +416,11 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
   </table>
   </dd>
 </dl>
-<p>&lt;</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Docelowo ma to działać wielowątkowo i wybierać jeden z rendererów. </dd></dl>
+<p>&lt;</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>Docelowo ma to działać wielowątkowo i wybierać jeden z rendererów. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="affaac07818ca048ae5fc70d530b9a31c"></a>
+<a class="anchor" id="af4965de19fde4cab798195b76c30c144"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -408,7 +428,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void DisplayEngine::display_instanced_meshes </td>
+          <td class="memname">void DisplayEngine::DisplayInstancedMeshes </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>time_interval</em>, </td>
@@ -443,7 +463,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 
 </div>
 </div>
-<a class="anchor" id="a6bbab867adbfaa010bacdd0eea5e5512"></a>
+<a class="anchor" id="abc02fe1e2cbcae9b4a0e7cd68543677c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -451,7 +471,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void DisplayEngine::display_particles </td>
+          <td class="memname">void DisplayEngine::DisplayParticles </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>time_interval</em>, </td>
@@ -486,21 +506,21 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 
 </div>
 </div>
-<a class="anchor" id="afa685306eb205307b22801e0b4e4cbd8"></a>
+<a class="anchor" id="a5b2ae4123bbe4f59911b391752f51796"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void DisplayEngine::display_scene </td>
+          <td class="memname">void DisplayEngine::DisplayScene </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>time_interval</em>, </td>
+          <td class="paramname"><em>timeInterval</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>time_lag</em>&#160;</td>
+          <td class="paramname"><em>timeLag</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -511,20 +531,20 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 </div><div class="memdoc">
 
 <p>Funkcja do renderowania sceny. </p>
-<p>Ponieważ klasa <a class="el" href="class_u_i___engine.html">UI_Engine</a> także wykonuje renderowanie( wyświetla elementy interfejsu graficznego ), funkcja display_engine nie może sama wywoływać BeginScene( ) i EndScene( ) z bilbioteki directX, aby nie było podwojnego wywołania. Z tego względu powyższe funkcje są wywoływane zewnetrznie w pętli głównej przez klasę <a class="el" href="class_engine.html" title="Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika. W aplikacji powinien...">Engine</a>.</p>
-<p>Funkcja display_engine ma obowiązek za każdym razem od nowa ustawić macierz widoku i projekcji, ponieważ mogą być zmodyfikowane przez UI_Engine.Innymi słowy nie można założyć, że jak się raz ustawiło macierze, to przy następnym wywołaniu będą takie same.</p>
+<p>Ponieważ klasa <a class="el" href="class_u_i___engine.html" title="Moduł do obsługi wejścia wyjścia. ">UI_Engine</a> także wykonuje renderowanie( wyświetla elementy interfejsu graficznego ), funkcja displayEngine nie może sama wywoływać BeginScene( ) i EndScene( ) z bilbioteki directX, aby nie było podwojnego wywołania. Z tego względu powyższe funkcje są wywoływane zewnetrznie w pętli głównej przez klasę <a class="el" href="class_engine.html" title="Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika.">Engine</a>.</p>
+<p>Funkcja displayEngine ma obowiązek za każdym razem od nowa ustawić macierz widoku i projekcji, ponieważ mogą być zmodyfikowane przez UI_Engine.Innymi słowy nie można założyć, że jak się raz ustawiło macierze, to przy następnym wywołaniu będą takie same.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">time_interval</td><td>Czas od ostatniej klatki. Przy ustawionej stałej FIXED_FRAMES_COUNT czas ten jest stały i wynosi tyle ile wartość stałej FIXED_MOVE_UPDATE_INTERVAL. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">time_lag</td><td>Ułamek czasu jaki upłynął między ostanią klatką a następną. Zakres [0,1]. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timeInterval</td><td>Czas od ostatniej klatki. Przy ustawionej stałej FIXED_FRAMES_COUNT czas ten jest stały i wynosi tyle ile wartość stałej FIXED_MOVE_UPDATE_INTERVAL. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timeLag</td><td>Ułamek czasu jaki upłynął między ostanią klatką a następną. Zakres [0,1]. </td></tr>
   </table>
   </dd>
 </dl>
-<p>&lt;</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>Docelowo ma to działać wielowątkowo i wybierać jeden z rendererów. </dd></dl>
+<p>&lt;</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>Docelowo ma to działać wielowątkowo i wybierać jeden z rendererów. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a4ad77ec10589f4acdd54ef93a59363ae"></a>
+<a class="anchor" id="a89e8955dfd5324e4d87ec3e6055c2dd0"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -532,7 +552,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void DisplayEngine::display_self_drawing_objects </td>
+          <td class="memname">void DisplayEngine::DisplaySelfDrawingObjects </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>time_interval</em>, </td>
@@ -568,7 +588,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 
 </div>
 </div>
-<a class="anchor" id="a1d88fb2178f4fdccc320733543ecc324"></a>
+<a class="anchor" id="ab61dce7b57a40ece81688e4002554b65"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -576,7 +596,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void DisplayEngine::display_short_live_objects </td>
+          <td class="memname">void DisplayEngine::DisplayShortLiveObjects </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>time_interval</em>, </td>
@@ -611,7 +631,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 
 </div>
 </div>
-<a class="anchor" id="a8ff52b9e9aa74e3f8186bf6fe8461af4"></a>
+<a class="anchor" id="a23e7e1a3bdf9ea477c0f430613c4be58"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -619,7 +639,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void DisplayEngine::display_skeletons </td>
+          <td class="memname">void DisplayEngine::DisplaySkeletons </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>time_interval</em>, </td>
@@ -654,7 +674,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 
 </div>
 </div>
-<a class="anchor" id="ab7f1377c4b0e937b007beabfc50ea9fb"></a>
+<a class="anchor" id="a2164dc633cb94e5040024fc8fabcdfa4"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -662,7 +682,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void DisplayEngine::display_sky_box </td>
+          <td class="memname">void DisplayEngine::DisplaySkyBox </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>time_interval</em>, </td>
@@ -696,10 +716,34 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
   </table>
   </dd>
 </dl>
-<p>&lt;</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>Docelowo ma to działać wielowątkowo i wybierać jeden z rendererów. </dd></dl>
-<p>&lt;</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>Trzeba pobrać tutaj <a class="el" href="class_buffer_object.html" title="Obiekt opakowujący bufor.Bufor może być zarówno buforem wierzchołków, indeksów jak i stałych...">BufferObject</a> zamiast ID3D11Buffer. </dd></dl>
-<p>&lt; Wyłączamy z-bufor.</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>To musi robić renderer. </dd></dl>
-<p>&lt; Włączamy z-bufor spowrotem.</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>To musi robić renderer. </dd></dl>
+<p>&lt;</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>Docelowo ma to działać wielowątkowo i wybierać jeden z rendererów. </dd></dl>
+<p>&lt;</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>Trzeba pobrać tutaj <a class="el" href="class_buffer_object.html" title="Obiekt opakowujący bufor.Bufor może być zarówno buforem wierzchołków, indeksów jak i stałych...">BufferObject</a> zamiast ID3D11Buffer. </dd></dl>
+<p>&lt; Wyłączamy z-bufor.</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>To musi robić renderer. </dd></dl>
+<p>&lt; Włączamy z-bufor spowrotem.</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>To musi robić renderer. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af3728e336b2e6b2750e0843593fec39f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="class_dynamic_mesh_actor.html">DynamicMeshActor</a>*&gt; DisplayEngine::GetSceneObjects </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000021">Todo:</a></b></dt><dd>Pobieranie meshy z <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a> jest tymczasowe. Trzeba wymyśleć docelowy mechanizm. </dd></dl>
 
 </div>
 </div>
@@ -737,11 +781,11 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 </div><div class="memdoc">
 
 <p>Inicjuje renderer (lub kilka jeżeli renderujemy wielowątkowo). Poza tym inicjuje bufory stałych. Przy okazji inicjuje też stany z-bufora do szybkiego włączania i wyłączania algorytmu. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Zrobić inicjację wielowątkową. Gdzieś musi zostać podjęta decyzja o liczbie wątków. Trzeba pomyśleć gdzie. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>Zrobić inicjację wielowątkową. Gdzieś musi zostać podjęta decyzja o liczbie wątków. Trzeba pomyśleć gdzie. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a0e717dff0d206ecb536794f3689461db"></a>
+<a class="anchor" id="a9387d68dedcccd6cb214e8af7e93155a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -757,7 +801,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="class_dynamic_object.html">DynamicObject</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_dynamic_actor.html">DynamicActor</a> *&#160;</td>
           <td class="paramname"><em>object</em>, </td>
         </tr>
         <tr>
@@ -792,7 +836,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 
 </div>
 </div>
-<a class="anchor" id="a2242c4949986d9908596b88750c07841"></a>
+<a class="anchor" id="a0ba5a41b7629736e1289cb91a161f862"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -808,7 +852,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="class_dynamic_object.html">DynamicObject</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_dynamic_actor.html">DynamicActor</a> *&#160;</td>
           <td class="paramname"><em>object</em>, </td>
         </tr>
         <tr>
@@ -842,12 +886,12 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 
 </div>
 </div>
-<a class="anchor" id="ab2d303139e3336cb9d21229146643632"></a>
+<a class="anchor" id="a0a8ec511cb5905cd6b6e8e8d448d1af5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void DisplayEngine::interpolate_positions </td>
+          <td class="memname">void DisplayEngine::InterpolatePositions </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>time_lag</em></td><td>)</td>
@@ -859,7 +903,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 <p>Funkcja wykonuje interpolację położeń dla wszystkich obiektów dynamicznych w silniku. </p>
 <p>Obiekty są one przesuwane o taką odległość jaka wynika z ich prędkości oraz ze zmiennej time_lag, która oznacza czas, jaki upłynął od ostatniego przeliczenia klatki.</p>
 <p>Pozycję z ostatniego wyliczenia klatki znajdują się w zmiennych position i orientation obiektów dynamicznych. Docelowe macierze przekształceń obiektów zostaną umieszczone w tablicy interpolated_matrixes, w których indeks elementu odpowiada indeksom w tablicy meshes.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>[docelowo do wykonania wielowątkowego]</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>[docelowo do wykonania wielowątkowego]</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">time_lag</td><td>Ułamek czasu jaki upłynął między ostanią klatką a następną. Zakres [0,1]. </td></tr>
@@ -902,12 +946,57 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 
 </div>
 </div>
-<a class="anchor" id="acc6f3ea1ad6b38cf2beada19abf11f42"></a>
+<a class="anchor" id="a791d9ab90c167eafff98180df2d18056"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DisplayEngine::RenderFromQueue </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>time_interval</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>time_lag</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Wybiera z kolejki przebiegi do wyrenderowania i renderuje je. </p>
+<p>Kolejka zawiera tylko przebiegi, które mają być wyrenderowane raz. Po wyrenderowaniu wysyłany jest event <a class="el" href="class_render_once_ended_event.html" title="Event wysyłany w momencie zakończenia zleconego renderowania. ">RenderOnceEndedEvent</a>.</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>To jest tak straszliwie tymczasowa funkcja, że właściwie się nadaje tylko do renderowania lightmap. Trzeba to napisać bardzo porządnie.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">time_interval</td><td>Czas od ostatniej klatki. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">time_lag</td><td>Ułamek czasu jaki upłynął między ostanią klatką a następną. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af5c2e40d6836e7287e533a96930a386e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void DisplayEngine::set_ambient_light </td>
+          <td class="memname">void DisplayEngine::SetAmbientLight </td>
           <td>(</td>
           <td class="paramtype">const DirectX::XMFLOAT4 &amp;&#160;</td>
           <td class="paramname"><em>color</em></td><td>)</td>
@@ -926,14 +1015,14 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 
 </div>
 </div>
-<a class="anchor" id="ab01df50fbf868436e83076445729f6cf"></a>
+<a class="anchor" id="ae0ea33c7770c079eb3fd9f0100aec538"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int DisplayEngine::set_current_camera </td>
+          <td class="memname">int DisplayEngine::SetCurrentCamera </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_camera_object.html">CameraObject</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="class_camera_actor.html">CameraActor</a> *&#160;</td>
           <td class="paramname"><em>camera</em></td><td>)</td>
           <td></td>
         </tr>
@@ -951,12 +1040,12 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 
 </div>
 </div>
-<a class="anchor" id="a575257b8da6fdcbd1164d9275848d4ae"></a>
+<a class="anchor" id="a842bf75fdd964fef61f08c51d6329385"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int DisplayEngine::set_directional_light </td>
+          <td class="memname">int DisplayEngine::SetDirectionalLight </td>
           <td>(</td>
           <td class="paramtype">const DirectX::XMFLOAT4 &amp;&#160;</td>
           <td class="paramname"><em>direction</em>, </td>
@@ -986,71 +1075,11 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">direction</td><td>Kierunek świecenia światła </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">color</td><td>Kolor światła </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Indeks światła w tablicy świateł. Maksymalnie wynosi <a class="el" href="macros__switches_8h.html#a48a5c65b842a78ae371647be94f0cce1">ENGINE_MAX_LIGHTS</a> - 1. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Indeks światła w tablicy świateł. Maksymalnie wynosi ENGINE_MAX_LIGHTS - 1. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 w przypadku powodzenia, -1 jeżeli jest niepoprawny indeks. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a019ae60a6e9dd547760b570400f4ef30"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_sky_dome.html">SkyDome</a> * DisplayEngine::set_skydome </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_sky_dome.html">SkyDome</a> *&#160;</td>
-          <td class="paramname"><em>dome</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Ustawia nowego skydome'a dla gry. </p>
-<p>Należy podać w pełni skonstruowanego i gotowego do wyświetlania <a class="el" href="class_sky_dome.html" title="Klasa jest interfejsem dla wszystkich klas, które mają wyświetlać jakieś tło. ">SkyDome</a>'a. Funkcja zwraca poprzednio ustawionego <a class="el" href="class_sky_dome.html" title="Klasa jest interfejsem dla wszystkich klas, które mają wyświetlać jakieś tło. ">SkyDome</a>'a, którego należy zwolnić samemu. Aktualnie ustawiony <a class="el" href="class_sky_dome.html" title="Klasa jest interfejsem dla wszystkich klas, które mają wyświetlać jakieś tło. ">SkyDome</a> jest pod koniec programu zwalniany w destruktorze.</p>
-<dl class="section note"><dt>Note</dt><dd>Jeżeli tło ma nie być wyświetlane należy podać w parametrze nullptr.</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dome</td><td>Nowy <a class="el" href="class_sky_dome.html" title="Klasa jest interfejsem dla wszystkich klas, które mają wyświetlać jakieś tło. ">SkyDome</a>, który ma zostać ustawiony. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Zwraca poprzedniego <a class="el" href="class_sky_dome.html" title="Klasa jest interfejsem dla wszystkich klas, które mają wyświetlać jakieś tło. ">SkyDome</a>'a. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a913d925119d0340a79f44b76c02c7550"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void DisplayEngine::set_view_matrix </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>time_lag</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Używa aktualnie ustawionej kamery, żeby stworzyć macierz widoku. </p>
-<p>Macierz widoku jest zapisywana w strukturze, która posłuży do wypełnienia bufora stałych Funkcja jest prywatna, ponieważ jest wywoływana podczas renderowania sceny. Aby ingerować z zewnątrz w ustawienie kamery należy zmienić aktualnie ustawioną kamerę na jedną z innych zapisanych w silniku.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">time_lag</td><td>Ułamek czasu jaki upłynął między ostanią klatką a następną. Zakres [0,1]. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -1075,7 +1104,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>Hack. Zlikwidować i zrobić docelowy sposób obsługi layotów. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>Hack. Zlikwidować i zrobić docelowy sposób obsługi layotów. </dd></dl>
 
 </div>
 </div>
@@ -1092,7 +1121,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>Hack. Zrobić docelowy sposób ustawiania render targetów. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>Hack. Zrobić docelowy sposób ustawiania render targetów. </dd></dl>
 
 </div>
 </div>
@@ -1132,13 +1161,73 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
       </table>
 </div><div class="memdoc">
 
-<p>Tworzy macierz projekcji i zapamiętuje ją w polu projection_matrix klasy. W każdym wywołaniu funkcji display_scene ustawiana jest macierz zapisana w tym polu. </p>
+<p>Tworzy macierz projekcji i zapamiętuje ją w polu projection_matrix klasy. W każdym wywołaniu funkcji DisplayScene ustawiana jest macierz zapisana w tym polu. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">angle</td><td>Kąt widzenia w pionie </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">X_to_Y</td><td>Stosunek Szerokości do wysokości ekranu </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">near_plane</td><td>Bliższa płaszczyzna obcinania </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">far_plane</td><td>Dalsza płaszczyzna obcinania </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a2446a83f62894ae324664b5d9e0f1469"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_sky_dome.html">SkyDome</a> * DisplayEngine::SetSkydome </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_sky_dome.html">SkyDome</a> *&#160;</td>
+          <td class="paramname"><em>dome</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ustawia nowego skydome'a dla gry. </p>
+<p>Należy podać w pełni skonstruowanego i gotowego do wyświetlania <a class="el" href="class_sky_dome.html" title="Klasa jest interfejsem dla wszystkich klas, które mają wyświetlać jakieś tło. ">SkyDome</a>'a. Funkcja zwraca poprzednio ustawionego <a class="el" href="class_sky_dome.html" title="Klasa jest interfejsem dla wszystkich klas, które mają wyświetlać jakieś tło. ">SkyDome</a>'a, którego należy zwolnić samemu. Aktualnie ustawiony <a class="el" href="class_sky_dome.html" title="Klasa jest interfejsem dla wszystkich klas, które mają wyświetlać jakieś tło. ">SkyDome</a> jest pod koniec programu zwalniany w destruktorze.</p>
+<dl class="section note"><dt>Note</dt><dd>Jeżeli tło ma nie być wyświetlane należy podać w parametrze nullptr.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">dome</td><td>Nowy <a class="el" href="class_sky_dome.html" title="Klasa jest interfejsem dla wszystkich klas, które mają wyświetlać jakieś tło. ">SkyDome</a>, który ma zostać ustawiony. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Zwraca poprzedniego <a class="el" href="class_sky_dome.html" title="Klasa jest interfejsem dla wszystkich klas, które mają wyświetlać jakieś tło. ">SkyDome</a>'a. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad7ed0981f2e29e30fedff66b6784511f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DisplayEngine::SetViewMatrix </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>time_lag</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Używa aktualnie ustawionej kamery, żeby stworzyć macierz widoku. </p>
+<p>Macierz widoku jest zapisywana w strukturze, która posłuży do wypełnienia bufora stałych Funkcja jest prywatna, ponieważ jest wywoływana podczas renderowania sceny. Aby ingerować z zewnątrz w ustawienie kamery należy zmienić aktualnie ustawioną kamerę na jedną z innych zapisanych w silniku.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">time_lag</td><td>Ułamek czasu jaki upłynął między ostanią klatką a następną. Zakres [0,1]. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1163,7 +1252,7 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>Hack. Zlikwidować. Silnik powinien obsługiwać dowolne layouty, a przynajmniej jakiś ustalony zbiór. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>Hack. Zlikwidować. Silnik powinien obsługiwać dowolne layouty, a przynajmniej jakiś ustalony zbiór. </dd></dl>
 
 </div>
 </div>
@@ -1186,18 +1275,18 @@ std::vector&lt; <a class="el" href="class_camera_object.html">CameraObject</a> *
 </div><div class="memdoc">
 
 <p>Render target okna aplikacji. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>W ostatecznej wersji powinien być render target ustawiany dla każdego przebiegu. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>W ostatecznej wersji powinien być render target ustawiany dla każdego przebiegu. </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/DisplayEngine/<a class="el" href="_display_engine_8h_source.html">DisplayEngine.h</a></li>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/DisplayEngine/<a class="el" href="_display_engine_8cpp.html">DisplayEngine.cpp</a></li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/DisplayEngine/<a class="el" href="_display_engine_8h_source.html">DisplayEngine.h</a></li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/DisplayEngine/<a class="el" href="_display_engine_8cpp.html">DisplayEngine.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:18 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

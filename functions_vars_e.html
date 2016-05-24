@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: Class Members - Variables</title>
+<title>Schopenhauers Weltschmerz Engine: Class Members - Variables</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -75,6 +76,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>All</span></a></li>
       <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li class="current"><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_prop.html"><span>Properties</span></a></li>
+      <li><a href="functions_evnt.html"><span>Events</span></a></li>
       <li><a href="functions_rela.html"><span>Related&#160;Functions</span></a></li>
     </ul>
   </div>
@@ -87,6 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_vars_d.html#index_d"><span>d</span></a></li>
       <li class="current"><a href="functions_vars_e.html#index_e"><span>e</span></a></li>
       <li><a href="functions_vars_f.html#index_f"><span>f</span></a></li>
+      <li><a href="functions_vars_g.html#index_g"><span>g</span></a></li>
       <li><a href="functions_vars_h.html#index_h"><span>h</span></a></li>
       <li><a href="functions_vars_i.html#index_i"><span>i</span></a></li>
       <li><a href="functions_vars_l.html#index_l"><span>l</span></a></li>
@@ -122,6 +126,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 &#160;
 
 <h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
+<li>emissive
+: <a class="el" href="struct_scene_object_data.html#af0a01ca1c26072192de17bdb979b4b58">SceneObjectData</a>
+</li>
 <li>enable_onAlignmentChange
 : <a class="el" href="class_x_g_u_i_1_1_abstract_text.html#a370447fb11f96a4f85e21aba5e03d512">XGUI::AbstractText</a>
 </li>
@@ -188,11 +195,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>enable_onTextSizeChange
 : <a class="el" href="class_x_g_u_i_1_1_abstract_text.html#ae6c91e888b1a94824c88be238f2ddc81">XGUI::AbstractText</a>
 </li>
-<li>engine
-: <a class="el" href="class_object.html#af592a1a1baed70ecd49d096b4a3f8847">Object</a>
+<li>enableCollisions
+: <a class="el" href="struct_actor_info.html#a8c9ba3224bd537042f24ff8adda2c990">ActorInfo</a>
 </li>
-<li>event_mapping_table
-: <a class="el" href="class_input_abstraction_layer.html#ad794ed39c3c8116bc580dbcd062816f1">InputAbstractionLayer</a>
+<li>enableDisplay
+: <a class="el" href="struct_actor_info.html#af374ee91d3cfb1d8657e73bd9b1216c9">ActorInfo</a>
+</li>
+<li>enableMovement
+: <a class="el" href="struct_actor_info.html#a81a634daee43fc11d7abd7e4fac07a72">ActorInfo</a>
+</li>
+<li>enablePhysic
+: <a class="el" href="struct_actor_info.html#a3df6f4e4b77fcfdedd9936d228fb2da5">ActorInfo</a>
+</li>
+<li>enablePostController
+: <a class="el" href="struct_actor_info.html#a602880129d3f0859d84b0b6f6ce0dff4">ActorInfo</a>
+</li>
+<li>enablePreController
+: <a class="el" href="struct_actor_info.html#a417210c2d37c6f9284f5dc2a61d7f4c4">ActorInfo</a>
+</li>
+<li>enableShadow
+: <a class="el" href="struct_actor_info.html#a0df3dd1d969a9f4604b3f17c149cd5aa">ActorInfo</a>
+</li>
+<li>engine
+: <a class="el" href="class_actor_base.html#aa6e7ace5e4cb75137392d1976f5d1a31">ActorBase</a>
+</li>
+<li>engineLock
+: <a class="el" href="struct_engine_context.html#a31ac7e501ea17aa476752362f1b03117">EngineContext</a>
+</li>
+<li>engineReady
+: <a class="el" href="struct_engine_context.html#a32acdd0c66f26f3f3780a0ecc81747db">EngineContext</a>
 </li>
 <li>eventChangeState
 : <a class="el" href="class_x_g_u_i_1_1_abstract_button.html#ac1121e21114c7d85d4f6a487f43a3986">XGUI::AbstractButton</a>
@@ -239,14 +270,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>eventRightUnClick
 : <a class="el" href="class_x_g_u_i_1_1_control.html#a6c8d057c13c3761e17cd904e0764e481">XGUI::Control</a>
 </li>
-<li>events_queue
-: <a class="el" href="class_engine_interface.html#a7ed65216cc2af4f445d10e2dbfecfce9">EngineInterface</a>
+<li>eventsManager
+: <a class="el" href="struct_engine_context.html#a50724f04a5babb1cf845afd17605c12c">EngineContext</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:04 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

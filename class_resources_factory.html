@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: ResourcesFactory Class Reference</title>
+<title>Schopenhauers Weltschmerz Engine: ResourcesFactory Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -125,6 +126,9 @@ Static Private Member Functions</h2></td></tr>
 <tr class="memitem:aaded56f3625e71ad4fbdc8c481e62708"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_pixel_shader_object.html">PixelShaderObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resources_factory.html#aaded56f3625e71ad4fbdc8c481e62708">CreatePixelShaderFromFile</a> (const std::wstring &amp;fileName, const std::string &amp;shaderName, const char *shaderModel=&quot;ps_4_0&quot;)</td></tr>
 <tr class="memdesc:aaded56f3625e71ad4fbdc8c481e62708"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tworzy obekt pixel shadera.  <a href="#aaded56f3625e71ad4fbdc8c481e62708">More...</a><br /></td></tr>
 <tr class="separator:aaded56f3625e71ad4fbdc8c481e62708"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a051cff9a28358ebeba2614bbaeaebf"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_compute_shader_object.html">ComputeShaderObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resources_factory.html#a9a051cff9a28358ebeba2614bbaeaebf">CreateComputeShaderFromFile</a> (const std::wstring &amp;fileName, const std::string &amp;shaderName, const char *shaderModel=&quot;cs_4_0&quot;)</td></tr>
+<tr class="memdesc:a9a051cff9a28358ebeba2614bbaeaebf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tworzy obekt compute shadera.  <a href="#a9a051cff9a28358ebeba2614bbaeaebf">More...</a><br /></td></tr>
+<tr class="separator:a9a051cff9a28358ebeba2614bbaeaebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad59a6e4fcf28de4ed02fba65ceb12d69"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_buffer_object.html">BufferObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resources_factory.html#ad59a6e4fcf28de4ed02fba65ceb12d69">CreateBufferFromMemory</a> (const void *buffer, unsigned int elementSize, unsigned int vertCount, <a class="el" href="_graphic_a_p_i_constants_8h.html#a4b24413c03a6404267f30673d8f5015b">ResourceBinding</a> bindFlag, <a class="el" href="_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1">ResourceUsage</a> usage=<a class="el" href="_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1add9612467790276a699be1a4f087394d">ResourceUsage::RESOURCE_USAGE_STATIC</a>)</td></tr>
 <tr class="memdesc:ad59a6e4fcf28de4ed02fba65ceb12d69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tworzy bufor na podstawie sanych w pamięci.  <a href="#ad59a6e4fcf28de4ed02fba65ceb12d69">More...</a><br /></td></tr>
 <tr class="separator:ad59a6e4fcf28de4ed02fba65ceb12d69"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,6 +208,57 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ModelsManager</b></t
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Zwraca wskaźnik na obiekt bufora lub nullptr w przypadku niepowodzenia. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9a051cff9a28358ebeba2614bbaeaebf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_compute_shader_object.html">ComputeShaderObject</a> * ResourcesFactory::CreateComputeShaderFromFile </td>
+          <td>(</td>
+          <td class="paramtype">const std::wstring &amp;&#160;</td>
+          <td class="paramname"><em>fileName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>shaderName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>shaderModel</em> = <code>&quot;cs_4_0&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tworzy obekt compute shadera. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fileName</td><td>Nazwa pliku z kodem shadera. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">shaderName</td><td>Nazwa funkcji, od której ma się rozpocząć wykonanie programu shadera. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">shaderModel</td><td>Shader model. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Zwraca obiekt vertex shadera lub nullptr w przypadku niepowodzenia. </dd></dl>
 
 </div>
 </div>
@@ -458,13 +513,13 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ModelsManager</b></t
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/ProgramyVS/SWEngine/EngineCode/GraphicAPI/<a class="el" href="_resources_factory_8h_source.html">ResourcesFactory.h</a></li>
-<li>D:/ProgramyVS/SWEngine/EngineCode/GraphicAPI/DX11API/DX11Resources/ResourcesFactory.cpp</li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/GraphicAPI/<a class="el" href="_resources_factory_8h_source.html">ResourcesFactory.h</a></li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/GraphicAPI/DX11API/DX11Resources/ResourcesFactory.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

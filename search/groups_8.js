@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['zasoby',['Zasoby',['../group___resources.html',1,'']]],
-  ['zarządzenie_20zasobami',['Zarządzenie zasobami',['../group___resources_managment.html',1,'']]]
+  ['pisanie_20loaderów',['Pisanie loaderów',['../group___making_loaders.html',1,'']]]
 ];

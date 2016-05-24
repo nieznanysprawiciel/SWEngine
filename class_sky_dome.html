@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: SkyDome Class Reference</title>
+<title>Schopenhauers Weltschmerz Engine: SkyDome Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -150,9 +151,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ad87eea2c0dd21e89ac251f0cd6abbb99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sky_dome.html#ad87eea2c0dd21e89ac251f0cd6abbb99">set_texture</a> (const std::wstring &amp;name, <a class="el" href="_mesh_resources_8h.html#ac3601c766e904acff2b729f45ccba47c">TextureTypes</a> type)</td></tr>
-<tr class="memdesc:ad87eea2c0dd21e89ac251f0cd6abbb99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ustawia w zmiennej display_data teksturę. Tekstura jest pobierana z ModelsManagera, jeżeli nie istnieje jest dodawana.  <a href="#ad87eea2c0dd21e89ac251f0cd6abbb99">More...</a><br /></td></tr>
-<tr class="separator:ad87eea2c0dd21e89ac251f0cd6abbb99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a318f5565f0bf63e26f4f1e27bf7a1f9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sky_dome.html#a318f5565f0bf63e26f4f1e27bf7a1f9d">set_texture</a> (const std::wstring &amp;name, <a class="el" href="_mesh_resources_8h.html#a48164fb43b28aacf28ac6403bc1003be">TextureUse</a> type)</td></tr>
+<tr class="memdesc:a318f5565f0bf63e26f4f1e27bf7a1f9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ustawia w zmiennej display_data teksturę. Tekstura jest pobierana z ModelsManagera, jeżeli nie istnieje jest dodawana.  <a href="#a318f5565f0bf63e26f4f1e27bf7a1f9d">More...</a><br /></td></tr>
+<tr class="separator:a318f5565f0bf63e26f4f1e27bf7a1f9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64a1bbe428e52cdce5a0a143a293b319"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sky_dome.html#a64a1bbe428e52cdce5a0a143a293b319">set_vertex_shader</a> (const std::wstring &amp;file_name, const std::string &amp;shader_entry, <a class="el" href="class_input_layout_descriptor.html">InputLayoutDescriptor</a> *layout_desc)</td></tr>
 <tr class="memdesc:a64a1bbe428e52cdce5a0a143a293b319"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ustawia w zmiennej display_data vertex shader. Shader jest pobierany z ModelsManagera, jeżeli nie istnieje jest dodawany.  <a href="#a64a1bbe428e52cdce5a0a143a293b319">More...</a><br /></td></tr>
 <tr class="separator:a64a1bbe428e52cdce5a0a143a293b319"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -207,7 +208,7 @@ Private Attributes</h2></td></tr>
 <p>Interfejs zawiera jedynie metody do komunikacji z klasa <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a>. Poza tym nie ma konieczności tworzenia jednolitego interfejsu. Nawet nie jest to do końca możliwe, bo użytkownik musi podać do inicjacji dane specyficzne dla konkretnego modelu nieba.</p>
 <p>Implementując własną klasę, trzeba pamiętać, że po dodaniu do <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a>, obiekt musi być w każdej chwili gotowy do wyświetlania. Trzeba także uważać na wielowatkowość, aby nie występowały niespójności w danych. Klasa <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a> nie będzie używała żadnych narzędzi do synchronizacji, więc jedyne istniejące, to te wbudowane w bufory.</p>
 <p>W strukturze <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> pole mesh jest zainicjowane zaalokowaną strukturą <a class="el" href="struct_mesh_part_object.html" title="Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach.W zależności od zawartości pola index_buffer w strukturze ModelPart, mesh jest wyświetlany w trybie indeksowanym lub nie. Jeżeli wartość tego pola wynosi nullptr, to wtedy używane są zmienne buffer offset i vertices count, które jednoznacznie wskazują, która część bufora wierzchołków ma zostać wyświetlona. ">MeshPartObject</a> i jest również zwalaniane w destruktorze klasy <a class="el" href="class_sky_dome.html" title="Klasa jest interfejsem dla wszystkich klas, które mają wyświetlać jakieś tło. ">SkyDome</a>.</p>
-<p>Polecam zapoznać się z opisem funkcji <a class="el" href="class_display_engine.html#ab7f1377c4b0e937b007beabfc50ea9fb" title="Funkcja służy do wyświetlania skyboxa lub też każdej innej formy, która służy za tło. ">DisplayEngine::display_sky_box</a> w celu lepszego zorientowania się co się dzieje podczas wyświetlania kopuły.</p>
+<p>Polecam zapoznać się z opisem funkcji DisplayEngine::display_sky_box w celu lepszego zorientowania się co się dzieje podczas wyświetlania kopuły.</p>
 <dl class="section note"><dt>Note</dt><dd>Używając funkcji przeznaczonych do wypełniania poszczególnych pól klasy, zwalniamy z siebie obowiązek dodawania odwołań. Funkcje pilnują także, żeby kasować odwołania w przypadku, gdy jakieś pole zostało nadpisane. Wszystkie odwołania do obiektów są kasowane w destruktorze, więc nie trzeba się wogóle przejmować żadnymi odwołaniami. </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="ab652faf96d6b8a9533ba2125b76fad06"></a>
@@ -403,7 +404,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad87eea2c0dd21e89ac251f0cd6abbb99"></a>
+<a class="anchor" id="a318f5565f0bf63e26f4f1e27bf7a1f9d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -419,7 +420,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_mesh_resources_8h.html#ac3601c766e904acff2b729f45ccba47c">TextureTypes</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_mesh_resources_8h.html#a48164fb43b28aacf28ac6403bc1003be">TextureUse</a>&#160;</td>
           <td class="paramname"><em>type</em>&#160;</td>
         </tr>
         <tr>
@@ -586,12 +587,12 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/Features/<a class="el" href="_sky_dome_8h_source.html">SkyDome.h</a></li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/Features/<a class="el" href="_sky_dome_8h_source.html">SkyDome.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

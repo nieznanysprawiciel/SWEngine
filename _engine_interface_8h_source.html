@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: D:/ProgramyVS/SWEngine/EngineCode/EngineCore/MainEngine/EngineInterface.h Source File</title>
+<title>Schopenhauers Weltschmerz Engine: D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/MainEngine/EngineInterface.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -84,7 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_07852cf1fee5477a7df52c44b8e8dc93.html">EngineCore</a></li><li class="navelem"><a class="el" href="dir_1f28d0cb362e367a18cb6986db6aba30.html">MainEngine</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5eb15d33cea2c0f983bce569376c8449.html">EngineCore</a></li><li class="navelem"><a class="el" href="dir_cb440893ffa2a9aa323743d9802eebbb.html">MainEngine</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -94,115 +95,52 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <a href="_engine_interface_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;queue&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_time_manager_8h.html">EngineCore/MainEngine/TimeManager.h</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_input_api_8h.html">EngineCore/UserApi/Input/InputApi.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;EngineCore/UserApi/Rendering/RenderApi.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;EngineCore/UserApi/Actors/ActorsApi.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_assets_api_8h.html">EngineCore/UserApi/Assets/AssetsApi.h</a>&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span><a class="code" href="class_controllers_engine.html">ControllersEngine</a>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">struct </span><a class="code" href="struct_index_prediction.html">IndexPrediction</a>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">class </span><a class="code" href="class_event.html">Event</a>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">class </span><a class="code" href="class_controllers_engine.html">ControllersEngine</a>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">class </span><a class="code" href="class_models_manager.html">ModelsManager</a>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">class </span><a class="code" href="class_physic_engine.html">PhysicEngine</a>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">class </span><a class="code" href="class_fable_engine.html">FableEngine</a>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">class </span><a class="code" href="class_movement_engine.html">MovementEngine</a>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">class </span><a class="code" href="class_display_engine.html">DisplayEngine</a>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">class </span><a class="code" href="class_collision_engine.html">CollisionEngine</a>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">class </span><a class="code" href="class_sound_engine.html">SoundEngine</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">class </span><a class="code" href="class_u_i___engine.html">UI_Engine</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">class </span><a class="code" href="class_object.html">Object</a>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">class </span><a class="code" href="class_i_graphic_a_p_i_initializer.html">IGraphicAPIInitializer</a>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_engine_interface.html">   41</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_engine_interface.html">EngineInterface</a></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">// Dziedziczymy z DX11_constant_buffers_container a nie z DX11_interfaces_container, ponieważ</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">// musimy wywołać funkcję release_DirectX z klasy pochodnej. Inaczej nie zwolnimy tamtych obiektów wogóle.</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">//directX and windows variables</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a115dd4202750297d873a15f7b2e952b4">   48</a></span>&#160;    <span class="keywordtype">bool</span>                        <a class="code" href="class_engine_interface.html#a115dd4202750297d873a15f7b2e952b4">m_engineReady</a>;          </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="class_engine_interface.html#af9b095af4eba60d7123e6c2a64c526eb">   50</a></span>&#160;    <span class="keywordtype">bool</span>                        <a class="code" href="class_engine_interface.html#af9b095af4eba60d7123e6c2a64c526eb">full_screen</a>;            </div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a14907609b3e139240de67e18844203cf">   51</a></span>&#160;    HWND                        <a class="code" href="class_engine_interface.html#a14907609b3e139240de67e18844203cf">window_handler</a>;         </div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a4b22d5ef46882d3c448f3c3fdc6ec974">   52</a></span>&#160;    HINSTANCE                   <a class="code" href="class_engine_interface.html#a4b22d5ef46882d3c448f3c3fdc6ec974">instance_handler</a>;       </div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a89fc8708fd82d25024f97ee7c1bbfa48">   53</a></span>&#160;    <span class="keywordtype">int</span>                         <a class="code" href="class_engine_interface.html#a89fc8708fd82d25024f97ee7c1bbfa48">window_width</a>;           </div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a497c1083f192c9cb1897cd227256189a">   54</a></span>&#160;    <span class="keywordtype">int</span>                         <a class="code" href="class_engine_interface.html#a497c1083f192c9cb1897cd227256189a">window_height</a>;          </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a98a1683f3db6dc0045ebad5f64269d78">   56</a></span>&#160;    <a class="code" href="class_i_graphic_a_p_i_initializer.html">IGraphicAPIInitializer</a>*     <a class="code" href="class_engine_interface.html#a98a1683f3db6dc0045ebad5f64269d78">m_graphicInitializer</a>;   </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">struct </span><a class="code" href="struct_engine_context.html">EngineContext</a>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span><a class="code" href="class_engine.html">Engine</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="class_engine_interface.html">   42</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_engine_interface.html">EngineInterface</a></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a9efd0897dba0a861de748a5a196092a8">   45</a></span>&#160;    <a class="code" href="struct_engine_context.html">EngineContext</a>*      <a class="code" href="class_engine_interface.html#a9efd0897dba0a861de748a5a196092a8">Context</a>;        </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="class_engine_interface.html">EngineInterface</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    ~<a class="code" href="class_engine_interface.html">EngineInterface</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a056ab594e080784a6d03ce892fa63b05">   53</a></span>&#160;    <a class="code" href="class_api_1_1_assets_api.html">Api::AssetsApi</a>          <a class="code" href="class_engine_interface.html#a056ab594e080784a6d03ce892fa63b05">Assets</a>;     </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a6c82902255497db7976fbaf169a36ebb">   54</a></span>&#160;    <a class="code" href="class_api_1_1_actors_api.html">Api::ActorsApi</a>          <a class="code" href="class_engine_interface.html#a6c82902255497db7976fbaf169a36ebb">Actors</a>;     </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a4004c7df99a879758ff38b49016a38f2">   55</a></span>&#160;    <a class="code" href="class_api_1_1_rendering_api.html">Api::RenderingApi</a>       <a class="code" href="class_engine_interface.html#a4004c7df99a879758ff38b49016a38f2">Rendering</a>;  </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a7c998043ae5448c3dc2fede183aeeddf">   56</a></span>&#160;    <a class="code" href="class_api_1_1_input_api.html">Api::InputApi</a>           <a class="code" href="class_engine_interface.html#a7c998043ae5448c3dc2fede183aeeddf">Input</a>;      </div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">//Modules</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a7e28bc7ca2a5a349bb3e2247b384a231">   59</a></span>&#160;    <a class="code" href="class_controllers_engine.html">ControllersEngine</a>*          <a class="code" href="class_engine_interface.html#a7e28bc7ca2a5a349bb3e2247b384a231">controllers_engine</a>;     </div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="class_engine_interface.html#ac3b3f666f060612a681cad2398760fb8">   60</a></span>&#160;    <a class="code" href="class_movement_engine.html">MovementEngine</a>*             <a class="code" href="class_engine_interface.html#ac3b3f666f060612a681cad2398760fb8">movement_engine</a>;        </div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="class_engine_interface.html#ad41a553cec70cf6e29d9663365f1a059">   61</a></span>&#160;    <a class="code" href="class_display_engine.html">DisplayEngine</a>*              <a class="code" href="class_engine_interface.html#ad41a553cec70cf6e29d9663365f1a059">display_engine</a>;         </div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a3d4e298ebc284dd43a96914e00af29e5">   62</a></span>&#160;    <a class="code" href="class_collision_engine.html">CollisionEngine</a>*            <a class="code" href="class_engine_interface.html#a3d4e298ebc284dd43a96914e00af29e5">collision_engine</a>;       </div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a08574dc42032dfcbfb0e81b8fc32494d">   63</a></span>&#160;    <a class="code" href="class_physic_engine.html">PhysicEngine</a>*               <a class="code" href="class_engine_interface.html#a08574dc42032dfcbfb0e81b8fc32494d">physic_engine</a>;          </div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a1c6dac750bd5027902ef6cfcbaf8a3b7">   64</a></span>&#160;    <a class="code" href="class_models_manager.html">ModelsManager</a>*              <a class="code" href="class_engine_interface.html#a1c6dac750bd5027902ef6cfcbaf8a3b7">models_manager</a>;         </div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="class_engine_interface.html#ab0d767baa0f337a5053323af4b43a5f8">   65</a></span>&#160;    <a class="code" href="class_fable_engine.html">FableEngine</a>*                <a class="code" href="class_engine_interface.html#ab0d767baa0f337a5053323af4b43a5f8">fable_engine</a>;           </div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a1a887787ad58153dd0d9d7eaeb99e957">   66</a></span>&#160;    <a class="code" href="class_sound_engine.html">SoundEngine</a>*                <a class="code" href="class_engine_interface.html#a1a887787ad58153dd0d9d7eaeb99e957">sound_engine</a>;           </div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="class_engine_interface.html#adc3fc8d70a1d9b6770dfba033b5b4f37">   67</a></span>&#160;    <a class="code" href="class_u_i___engine.html">UI_Engine</a>*                  <a class="code" href="class_engine_interface.html#adc3fc8d70a1d9b6770dfba033b5b4f37">ui_engine</a>;              </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">//Objects</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">//std::vector&lt;IndexPrediction&gt;      index_predictor;</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a75660a0e2c0d8df324416271c8275f58">   72</a></span>&#160;    <a class="code" href="class_time_manager.html">TimeManager</a>                 <a class="code" href="class_engine_interface.html#a75660a0e2c0d8df324416271c8275f58">m_timeManager</a>;  </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="class_engine_interface.html#ab4e51e1ca05121a4a67b4310f5546869">   74</a></span>&#160;    <span class="keywordtype">bool</span>                        <a class="code" href="class_engine_interface.html#ab4e51e1ca05121a4a67b4310f5546869">pause</a>;          </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">//queue</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="class_engine_interface.html#a7ed65216cc2af4f445d10e2dbfecfce9">   77</a></span>&#160;    std::queue&lt;Event*&gt;*         <a class="code" href="class_engine_interface.html#a7ed65216cc2af4f445d10e2dbfecfce9">events_queue</a>;   </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    ~<a class="code" href="class_engine_interface.html">EngineInterface</a>(){};</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">//FableEngine - ta klasa jest dostępna bezpośrednio z IGamePlay</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;};</div>
-<div class="ttc" id="class_engine_interface_html"><div class="ttname"><a href="class_engine_interface.html">EngineInterface</a></div><div class="ttdoc">Klasa jest interfejsem dla użytkownika użytkującego silnik. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:41</div></div>
-<div class="ttc" id="class_engine_interface_html_ad41a553cec70cf6e29d9663365f1a059"><div class="ttname"><a href="class_engine_interface.html#ad41a553cec70cf6e29d9663365f1a059">EngineInterface::display_engine</a></div><div class="ttdeci">DisplayEngine * display_engine</div><div class="ttdoc">Wyświetla obiekty na scenie. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:61</div></div>
-<div class="ttc" id="class_i_graphic_a_p_i_initializer_html"><div class="ttname"><a href="class_i_graphic_a_p_i_initializer.html">IGraphicAPIInitializer</a></div><div class="ttdoc">Interfejs klasy do inicjowania API graficznego. </div><div class="ttdef"><b>Definition:</b> IGraphicAPIInitializer.h:57</div></div>
-<div class="ttc" id="class_engine_interface_html_af9b095af4eba60d7123e6c2a64c526eb"><div class="ttname"><a href="class_engine_interface.html#af9b095af4eba60d7123e6c2a64c526eb">EngineInterface::full_screen</a></div><div class="ttdeci">bool full_screen</div><div class="ttdoc">Pełny ekran lub renderowanie w oknie. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:50</div></div>
-<div class="ttc" id="_time_manager_8h_html"><div class="ttname"><a href="_time_manager_8h.html">TimeManager.h</a></div><div class="ttdoc">Plik zawiera deklarację klasy TimeManager do obsługi rzeczy związanych z czasem. </div></div>
-<div class="ttc" id="class_event_html"><div class="ttname"><a href="class_event.html">Event</a></div><div class="ttdef"><b>Definition:</b> Event.h:22</div></div>
-<div class="ttc" id="class_fable_engine_html"><div class="ttname"><a href="class_fable_engine.html">FableEngine</a></div><div class="ttdef"><b>Definition:</b> FableEngine.h:11</div></div>
-<div class="ttc" id="class_engine_interface_html_ab4e51e1ca05121a4a67b4310f5546869"><div class="ttname"><a href="class_engine_interface.html#ab4e51e1ca05121a4a67b4310f5546869">EngineInterface::pause</a></div><div class="ttdeci">bool pause</div><div class="ttdoc">Pauza. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:74</div></div>
-<div class="ttc" id="class_display_engine_html"><div class="ttname"><a href="class_display_engine.html">DisplayEngine</a></div><div class="ttdoc">Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...</div><div class="ttdef"><b>Definition:</b> DisplayEngine.h:36</div></div>
-<div class="ttc" id="class_models_manager_html"><div class="ttname"><a href="class_models_manager.html">ModelsManager</a></div><div class="ttdoc">Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dźwięków, które raczej zostaną oddelego...</div><div class="ttdef"><b>Definition:</b> ModelsManager.h:58</div></div>
-<div class="ttc" id="class_controllers_engine_html"><div class="ttname"><a href="class_controllers_engine.html">ControllersEngine</a></div><div class="ttdef"><b>Definition:</b> ControllersEngine.h:7</div></div>
-<div class="ttc" id="class_physic_engine_html"><div class="ttname"><a href="class_physic_engine.html">PhysicEngine</a></div><div class="ttdef"><b>Definition:</b> PhysicEngine.h:5</div></div>
-<div class="ttc" id="class_movement_engine_html"><div class="ttname"><a href="class_movement_engine.html">MovementEngine</a></div><div class="ttdef"><b>Definition:</b> MovementEngine.h:8</div></div>
-<div class="ttc" id="class_engine_interface_html_a89fc8708fd82d25024f97ee7c1bbfa48"><div class="ttname"><a href="class_engine_interface.html#a89fc8708fd82d25024f97ee7c1bbfa48">EngineInterface::window_width</a></div><div class="ttdeci">int window_width</div><div class="ttdoc">Szerokość okna/ekranu. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:53</div></div>
-<div class="ttc" id="class_engine_interface_html_a4b22d5ef46882d3c448f3c3fdc6ec974"><div class="ttname"><a href="class_engine_interface.html#a4b22d5ef46882d3c448f3c3fdc6ec974">EngineInterface::instance_handler</a></div><div class="ttdeci">HINSTANCE instance_handler</div><div class="ttdoc">Uchwyt instancji procesu. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:52</div></div>
-<div class="ttc" id="class_engine_interface_html_a75660a0e2c0d8df324416271c8275f58"><div class="ttname"><a href="class_engine_interface.html#a75660a0e2c0d8df324416271c8275f58">EngineInterface::m_timeManager</a></div><div class="ttdeci">TimeManager m_timeManager</div><div class="ttdoc">Obiekt do zarządzania czasem. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:72</div></div>
-<div class="ttc" id="class_engine_interface_html_a7ed65216cc2af4f445d10e2dbfecfce9"><div class="ttname"><a href="class_engine_interface.html#a7ed65216cc2af4f445d10e2dbfecfce9">EngineInterface::events_queue</a></div><div class="ttdeci">std::queue&lt; Event * &gt; * events_queue</div><div class="ttdoc">Wskaźnik na kolejke komunikatów w celu szybszego dostępu. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:77</div></div>
-<div class="ttc" id="struct_index_prediction_html"><div class="ttname"><a href="struct_index_prediction.html">IndexPrediction</a></div><div class="ttdef"><b>Definition:</b> Engine.h:164</div></div>
-<div class="ttc" id="class_engine_interface_html_adc3fc8d70a1d9b6770dfba033b5b4f37"><div class="ttname"><a href="class_engine_interface.html#adc3fc8d70a1d9b6770dfba033b5b4f37">EngineInterface::ui_engine</a></div><div class="ttdeci">UI_Engine * ui_engine</div><div class="ttdoc">Interfejs użytkownika (także graficzny) </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:67</div></div>
-<div class="ttc" id="class_engine_interface_html_a1c6dac750bd5027902ef6cfcbaf8a3b7"><div class="ttname"><a href="class_engine_interface.html#a1c6dac750bd5027902ef6cfcbaf8a3b7">EngineInterface::models_manager</a></div><div class="ttdeci">ModelsManager * models_manager</div><div class="ttdoc">Zarządza modelami, teksturami i materiałami. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:64</div></div>
-<div class="ttc" id="class_collision_engine_html"><div class="ttname"><a href="class_collision_engine.html">CollisionEngine</a></div><div class="ttdef"><b>Definition:</b> CollisionEngine.h:5</div></div>
-<div class="ttc" id="class_u_i___engine_html"><div class="ttname"><a href="class_u_i___engine.html">UI_Engine</a></div><div class="ttdef"><b>Definition:</b> UI_Engine.h:13</div></div>
-<div class="ttc" id="class_engine_interface_html_ac3b3f666f060612a681cad2398760fb8"><div class="ttname"><a href="class_engine_interface.html#ac3b3f666f060612a681cad2398760fb8">EngineInterface::movement_engine</a></div><div class="ttdeci">MovementEngine * movement_engine</div><div class="ttdoc">Przelicza pozycję obiektów w następnej klatce. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:60</div></div>
-<div class="ttc" id="class_engine_interface_html_a3d4e298ebc284dd43a96914e00af29e5"><div class="ttname"><a href="class_engine_interface.html#a3d4e298ebc284dd43a96914e00af29e5">EngineInterface::collision_engine</a></div><div class="ttdeci">CollisionEngine * collision_engine</div><div class="ttdoc">Liczy kolizje. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:62</div></div>
-<div class="ttc" id="class_engine_interface_html_a1a887787ad58153dd0d9d7eaeb99e957"><div class="ttname"><a href="class_engine_interface.html#a1a887787ad58153dd0d9d7eaeb99e957">EngineInterface::sound_engine</a></div><div class="ttdeci">SoundEngine * sound_engine</div><div class="ttdoc">Zarządza muzyką i dźwiękami. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:66</div></div>
-<div class="ttc" id="class_engine_interface_html_a7e28bc7ca2a5a349bb3e2247b384a231"><div class="ttname"><a href="class_engine_interface.html#a7e28bc7ca2a5a349bb3e2247b384a231">EngineInterface::controllers_engine</a></div><div class="ttdeci">ControllersEngine * controllers_engine</div><div class="ttdoc">Kontroluje AI (klawiaturę trzeba przenieść) </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:59</div></div>
-<div class="ttc" id="class_engine_interface_html_a98a1683f3db6dc0045ebad5f64269d78"><div class="ttname"><a href="class_engine_interface.html#a98a1683f3db6dc0045ebad5f64269d78">EngineInterface::m_graphicInitializer</a></div><div class="ttdeci">IGraphicAPIInitializer * m_graphicInitializer</div><div class="ttdoc">Obsługuje używane API graficzne. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:56</div></div>
-<div class="ttc" id="class_engine_interface_html_a115dd4202750297d873a15f7b2e952b4"><div class="ttname"><a href="class_engine_interface.html#a115dd4202750297d873a15f7b2e952b4">EngineInterface::m_engineReady</a></div><div class="ttdeci">bool m_engineReady</div><div class="ttdoc">Jeżeli zmienna jest niepoprawna, nie renderujemy. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:48</div></div>
-<div class="ttc" id="class_object_html"><div class="ttname"><a href="class_object.html">Object</a></div><div class="ttdoc">Klasa bazowa dla wszystkich obiektów w grze (aktorów). </div><div class="ttdef"><b>Definition:</b> ActorObjects.h:41</div></div>
-<div class="ttc" id="class_time_manager_html"><div class="ttname"><a href="class_time_manager.html">TimeManager</a></div><div class="ttdoc">Klasa obsługuje wszystko co związane z czasem. </div><div class="ttdef"><b>Definition:</b> TimeManager.h:21</div></div>
-<div class="ttc" id="class_engine_interface_html_a497c1083f192c9cb1897cd227256189a"><div class="ttname"><a href="class_engine_interface.html#a497c1083f192c9cb1897cd227256189a">EngineInterface::window_height</a></div><div class="ttdeci">int window_height</div><div class="ttdoc">Wysokość okna/ekranu. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:54</div></div>
-<div class="ttc" id="class_engine_interface_html_a08574dc42032dfcbfb0e81b8fc32494d"><div class="ttname"><a href="class_engine_interface.html#a08574dc42032dfcbfb0e81b8fc32494d">EngineInterface::physic_engine</a></div><div class="ttdeci">PhysicEngine * physic_engine</div><div class="ttdoc">Liczy oddziaływania fizyczne. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:63</div></div>
-<div class="ttc" id="class_sound_engine_html"><div class="ttname"><a href="class_sound_engine.html">SoundEngine</a></div><div class="ttdef"><b>Definition:</b> SoundEngine.h:6</div></div>
-<div class="ttc" id="class_engine_interface_html_a14907609b3e139240de67e18844203cf"><div class="ttname"><a href="class_engine_interface.html#a14907609b3e139240de67e18844203cf">EngineInterface::window_handler</a></div><div class="ttdeci">HWND window_handler</div><div class="ttdoc">Uchwyt okna aplikacji. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:51</div></div>
-<div class="ttc" id="class_engine_interface_html_ab0d767baa0f337a5053323af4b43a5f8"><div class="ttname"><a href="class_engine_interface.html#ab0d767baa0f337a5053323af4b43a5f8">EngineInterface::fable_engine</a></div><div class="ttdeci">FableEngine * fable_engine</div><div class="ttdoc">Zarządza fabułą gry, interakcjami obiektów itd. Odpowiada za treść </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:65</div></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;};</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="ttc" id="struct_engine_context_html"><div class="ttname"><a href="struct_engine_context.html">EngineContext</a></div><div class="ttdoc">Przechowuje wszystkie zmienne, które powinny znaleźć się w klasie EngineInterface.Struktura jest potrzebna, żeby komendy mogły mieć dostęp do stanu silnika. </div><div class="ttdef"><b>Definition:</b> EngineContext.h:56</div></div>
+<div class="ttc" id="class_engine_interface_html"><div class="ttname"><a href="class_engine_interface.html">EngineInterface</a></div><div class="ttdoc">Klasa jest interfejsem dla użytkownika użytkującego silnik.Taki interfejs będzie widział użytkownik s...</div><div class="ttdef"><b>Definition:</b> EngineInterface.h:42</div></div>
+<div class="ttc" id="class_api_1_1_actors_api_html"><div class="ttname"><a href="class_api_1_1_actors_api.html">Api::ActorsApi</a></div><div class="ttdoc">Zawiera funkcje do obsługi aktorów. </div><div class="ttdef"><b>Definition:</b> ActorsApi.h:31</div></div>
+<div class="ttc" id="class_engine_interface_html_a056ab594e080784a6d03ce892fa63b05"><div class="ttname"><a href="class_engine_interface.html#a056ab594e080784a6d03ce892fa63b05">EngineInterface::Assets</a></div><div class="ttdeci">Api::AssetsApi Assets</div><div class="ttdoc">Funkcje do zarządzania assetami. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:53</div></div>
+<div class="ttc" id="class_engine_interface_html_a9efd0897dba0a861de748a5a196092a8"><div class="ttname"><a href="class_engine_interface.html#a9efd0897dba0a861de748a5a196092a8">EngineInterface::Context</a></div><div class="ttdeci">EngineContext * Context</div><div class="ttdoc">Zawiera wskaźniki na wszystkie moduły i zmienne silnika. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:45</div></div>
+<div class="ttc" id="class_api_1_1_assets_api_html"><div class="ttname"><a href="class_api_1_1_assets_api.html">Api::AssetsApi</a></div><div class="ttdoc">Zawiera funkcje do zarządzania assetami. </div><div class="ttdef"><b>Definition:</b> AssetsApi.h:30</div></div>
+<div class="ttc" id="_input_api_8h_html"><div class="ttname"><a href="_input_api_8h.html">InputApi.h</a></div><div class="ttdoc">Deklaracja klasy InputApi. </div></div>
+<div class="ttc" id="class_engine_interface_html_a7c998043ae5448c3dc2fede183aeeddf"><div class="ttname"><a href="class_engine_interface.html#a7c998043ae5448c3dc2fede183aeeddf">EngineInterface::Input</a></div><div class="ttdeci">Api::InputApi Input</div><div class="ttdoc">Funkcje do zarządzania wejściem od użytkownika. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:56</div></div>
+<div class="ttc" id="class_engine_interface_html_a4004c7df99a879758ff38b49016a38f2"><div class="ttname"><a href="class_engine_interface.html#a4004c7df99a879758ff38b49016a38f2">EngineInterface::Rendering</a></div><div class="ttdeci">Api::RenderingApi Rendering</div><div class="ttdoc">Funkcje do zarzadzania renderowaniem. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:55</div></div>
+<div class="ttc" id="class_engine_interface_html_a6c82902255497db7976fbaf169a36ebb"><div class="ttname"><a href="class_engine_interface.html#a6c82902255497db7976fbaf169a36ebb">EngineInterface::Actors</a></div><div class="ttdeci">Api::ActorsApi Actors</div><div class="ttdoc">Funkcje do zarządzania aktorami. </div><div class="ttdef"><b>Definition:</b> EngineInterface.h:54</div></div>
+<div class="ttc" id="class_api_1_1_rendering_api_html"><div class="ttname"><a href="class_api_1_1_rendering_api.html">Api::RenderingApi</a></div><div class="ttdoc">Zawiera funkcje do obsługi wejścia użytkownika. </div><div class="ttdef"><b>Definition:</b> RenderApi.h:24</div></div>
+<div class="ttc" id="_assets_api_8h_html"><div class="ttname"><a href="_assets_api_8h.html">AssetsApi.h</a></div><div class="ttdoc">Deklaracja klasy AssetsApi. </div></div>
+<div class="ttc" id="class_engine_html"><div class="ttname"><a href="class_engine.html">Engine</a></div><div class="ttdoc">Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika.</div><div class="ttdef"><b>Definition:</b> Engine.h:70</div></div>
+<div class="ttc" id="class_api_1_1_input_api_html"><div class="ttname"><a href="class_api_1_1_input_api.html">Api::InputApi</a></div><div class="ttdoc">Zawiera funkcje do obsługi wejścia użytkownika. </div><div class="ttdef"><b>Definition:</b> InputApi.h:23</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:17 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

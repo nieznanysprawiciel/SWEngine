@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: ResourceObject Class Reference</title>
+<title>Schopenhauers Weltschmerz Engine: ResourceObject Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -106,14 +107,15 @@ Inheritance diagram for ResourceObject:</div>
  <div class="center">
   <img src="class_resource_object.png" usemap="#ResourceObject_map" alt=""/>
   <map id="ResourceObject_map" name="ResourceObject_map">
-<area href="class_i_buffer.html" alt="IBuffer" shape="rect" coords="131,56,252,80"/>
-<area href="class_i_render_target.html" alt="IRenderTarget" shape="rect" coords="131,112,252,136"/>
-<area href="class_i_shader.html" alt="IShader" shape="rect" coords="131,168,252,192"/>
-<area href="class_i_shader_input_layout.html" alt="IShaderInputLayout" shape="rect" coords="131,224,252,248"/>
-<area href="class_i_texture.html" alt="ITexture" shape="rect" coords="131,280,252,304"/>
-<area href="struct_material_object.html" title="Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. " alt="MaterialObject" shape="rect" coords="131,336,252,360"/>
-<area href="struct_mesh_part_object.html" title="Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach.W zależności od zawartości pola index_buffer w strukturze ModelPart, mesh jest wyświetlany w trybie indeksowanym lub nie. Jeżeli wartość tego pola wynosi nullptr, to wtedy używane są zmienne buffer offset i vertices count, które jednoznacznie wskazują, która część bufora wierzchołków ma zostać wyświetlona. " alt="MeshPartObject" shape="rect" coords="131,392,252,416"/>
-<area href="class_model3_d_from_file.html" title="Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ..." alt="Model3DFromFile" shape="rect" coords="131,448,252,472"/>
+<area href="class_engine_object.html" title="Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz..." alt="EngineObject" shape="rect" coords="0,0,121,24"/>
+<area href="class_i_buffer.html" alt="IBuffer" shape="rect" coords="131,112,252,136"/>
+<area href="class_i_render_target.html" alt="IRenderTarget" shape="rect" coords="131,168,252,192"/>
+<area href="class_i_shader.html" alt="IShader" shape="rect" coords="131,224,252,248"/>
+<area href="class_i_shader_input_layout.html" alt="IShaderInputLayout" shape="rect" coords="131,280,252,304"/>
+<area href="class_i_texture.html" alt="ITexture" shape="rect" coords="131,336,252,360"/>
+<area href="struct_material_object.html" title="Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. " alt="MaterialObject" shape="rect" coords="131,392,252,416"/>
+<area href="struct_mesh_part_object.html" title="Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach.W zależności od zawartości pola index_buffer w strukturze ModelPart, mesh jest wyświetlany w trybie indeksowanym lub nie. Jeżeli wartość tego pola wynosi nullptr, to wtedy używane są zmienne buffer offset i vertices count, które jednoznacznie wskazują, która część bufora wierzchołków ma zostać wyświetlona. " alt="MeshPartObject" shape="rect" coords="131,448,252,472"/>
+<area href="class_model3_d_from_file.html" title="Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ..." alt="Model3DFromFile" shape="rect" coords="131,504,252,528"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -121,36 +123,35 @@ Inheritance diagram for ResourceObject:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab532d0711da06a23e6fe10dad6153332"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#ab532d0711da06a23e6fe10dad6153332">ResourceObject</a> (int id)</td></tr>
 <tr class="separator:ab532d0711da06a23e6fe10dad6153332"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73e6d5e7c62c3a7b097bafe6aa997d8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73e6d5e7c62c3a7b097bafe6aa997d8b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a73e6d5e7c62c3a7b097bafe6aa997d8b">set_id</a> (unsigned int id)</td></tr>
-<tr class="memdesc:a73e6d5e7c62c3a7b097bafe6aa997d8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia identyfikator obiektu. <br /></td></tr>
-<tr class="separator:a73e6d5e7c62c3a7b097bafe6aa997d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac276bd05fcbf702396031c7834593550"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#ac276bd05fcbf702396031c7834593550">can_delete</a> (unsigned int &amp;file_ref, unsigned int &amp;other_ref)</td></tr>
-<tr class="memdesc:ac276bd05fcbf702396031c7834593550"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja informuje czy obiekt są obiektu, które odwołują się do assetu.  <a href="#ac276bd05fcbf702396031c7834593550">More...</a><br /></td></tr>
-<tr class="separator:ac276bd05fcbf702396031c7834593550"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc3727f0ec4d7ad7fec23f027b19e5bb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#adc3727f0ec4d7ad7fec23f027b19e5bb">can_delete</a> ()</td></tr>
-<tr class="memdesc:adc3727f0ec4d7ad7fec23f027b19e5bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja informuje czy obiekt są obiektu, które odwołują się do assetu.  <a href="#adc3727f0ec4d7ad7fec23f027b19e5bb">More...</a><br /></td></tr>
-<tr class="separator:adc3727f0ec4d7ad7fec23f027b19e5bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa3457aec51fa38cd36e369bf6bf7eff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa3457aec51fa38cd36e369bf6bf7eff"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#afa3457aec51fa38cd36e369bf6bf7eff">add_file_reference</a> ()</td></tr>
-<tr class="memdesc:afa3457aec51fa38cd36e369bf6bf7eff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje odwołanie plikowe do assetu. <br /></td></tr>
-<tr class="separator:afa3457aec51fa38cd36e369bf6bf7eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a392d38b450b38642181d28ff917bd613"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a392d38b450b38642181d28ff917bd613"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a392d38b450b38642181d28ff917bd613">add_object_reference</a> ()</td></tr>
-<tr class="memdesc:a392d38b450b38642181d28ff917bd613"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje odwołanie bezpośrednie obiektu do assetu. <br /></td></tr>
-<tr class="separator:a392d38b450b38642181d28ff917bd613"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa539d462f2dd86bf465caf09a36b8fb5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa539d462f2dd86bf465caf09a36b8fb5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#aa539d462f2dd86bf465caf09a36b8fb5">delete_file_reference</a> ()</td></tr>
-<tr class="memdesc:aa539d462f2dd86bf465caf09a36b8fb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kasuje odwołanie plikowe do assetu. <br /></td></tr>
-<tr class="separator:aa539d462f2dd86bf465caf09a36b8fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ba8eb7e51759275f8bc8e498a306f1a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ba8eb7e51759275f8bc8e498a306f1a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a0ba8eb7e51759275f8bc8e498a306f1a">delete_object_reference</a> ()</td></tr>
-<tr class="memdesc:a0ba8eb7e51759275f8bc8e498a306f1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kasuje odwołanie bezpośrednie obiektu do assetu. <br /></td></tr>
-<tr class="separator:a0ba8eb7e51759275f8bc8e498a306f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5066dbf8924f37f103f2634afa750be7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5066dbf8924f37f103f2634afa750be7"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a5066dbf8924f37f103f2634afa750be7">get_id</a> ()</td></tr>
-<tr class="memdesc:a5066dbf8924f37f103f2634afa750be7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca identyfikator nadany assetowi. <br /></td></tr>
-<tr class="separator:a5066dbf8924f37f103f2634afa750be7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b1680584fc628dd44360dd19bc6d4c6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b1680584fc628dd44360dd19bc6d4c6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a9b1680584fc628dd44360dd19bc6d4c6">SetID</a> (unsigned int id)</td></tr>
+<tr class="memdesc:a9b1680584fc628dd44360dd19bc6d4c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia identyfikator obiektu. <br /></td></tr>
+<tr class="separator:a9b1680584fc628dd44360dd19bc6d4c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe4c6dde245866bf652b96815226b31c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#afe4c6dde245866bf652b96815226b31c">CanDelete</a> (unsigned int &amp;assetRef, unsigned int &amp;objectRef)</td></tr>
+<tr class="memdesc:afe4c6dde245866bf652b96815226b31c"><td class="mdescLeft">&#160;</td><td class="mdescRight">sprawdza czy można zwolnić zmienną  <a href="#afe4c6dde245866bf652b96815226b31c">More...</a><br /></td></tr>
+<tr class="separator:afe4c6dde245866bf652b96815226b31c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88803e81f3fdcb96d82d41648bc2e85a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a88803e81f3fdcb96d82d41648bc2e85a">CanDelete</a> ()</td></tr>
+<tr class="memdesc:a88803e81f3fdcb96d82d41648bc2e85a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja informuje czy obiekt są obiektu, które odwołują się do assetu.  <a href="#a88803e81f3fdcb96d82d41648bc2e85a">More...</a><br /></td></tr>
+<tr class="separator:a88803e81f3fdcb96d82d41648bc2e85a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a765b943116ed1ebe6bc0a3653bcd4092"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a765b943116ed1ebe6bc0a3653bcd4092">AddAssetReference</a> ()</td></tr>
+<tr class="memdesc:a765b943116ed1ebe6bc0a3653bcd4092"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje odwołanie plikowe do assetu.  <a href="#a765b943116ed1ebe6bc0a3653bcd4092">More...</a><br /></td></tr>
+<tr class="separator:a765b943116ed1ebe6bc0a3653bcd4092"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef54fb618f3a8e1b0d2fd215fde64e8d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef54fb618f3a8e1b0d2fd215fde64e8d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#aef54fb618f3a8e1b0d2fd215fde64e8d">AddObjectReference</a> ()</td></tr>
+<tr class="memdesc:aef54fb618f3a8e1b0d2fd215fde64e8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje odwołanie bezpośrednie obiektu do assetu. <br /></td></tr>
+<tr class="separator:aef54fb618f3a8e1b0d2fd215fde64e8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36147350cabe229ff9af9917a53b5bec"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36147350cabe229ff9af9917a53b5bec"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a36147350cabe229ff9af9917a53b5bec">DeleteAssetReference</a> ()</td></tr>
+<tr class="memdesc:a36147350cabe229ff9af9917a53b5bec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kasuje odwołanie plikowe do assetu. <br /></td></tr>
+<tr class="separator:a36147350cabe229ff9af9917a53b5bec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0a72bef6807a0f765beed2a49e1826e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad0a72bef6807a0f765beed2a49e1826e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#ad0a72bef6807a0f765beed2a49e1826e">DeleteObjectReference</a> ()</td></tr>
+<tr class="memdesc:ad0a72bef6807a0f765beed2a49e1826e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kasuje odwołanie bezpośrednie obiektu do assetu. <br /></td></tr>
+<tr class="separator:ad0a72bef6807a0f765beed2a49e1826e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace003f472621b17c7a7ed569e51248b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace003f472621b17c7a7ed569e51248b8"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#ace003f472621b17c7a7ed569e51248b8">GetID</a> ()</td></tr>
+<tr class="memdesc:ace003f472621b17c7a7ed569e51248b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca identyfikator nadany assetowi. <br /></td></tr>
+<tr class="separator:ace003f472621b17c7a7ed569e51248b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -161,24 +162,25 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a9a4cf0b1fc0d7464c464ca3454a008a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a4cf0b1fc0d7464c464ca3454a008a8"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a9a4cf0b1fc0d7464c464ca3454a008a8">file_references</a></td></tr>
-<tr class="memdesc:a9a4cf0b1fc0d7464c464ca3454a008a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba plików, które sie odwołują <br /></td></tr>
-<tr class="separator:a9a4cf0b1fc0d7464c464ca3454a008a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af740f86bcb54d10a00d937643576ce4a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af740f86bcb54d10a00d937643576ce4a"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#af740f86bcb54d10a00d937643576ce4a">object_references</a></td></tr>
-<tr class="memdesc:af740f86bcb54d10a00d937643576ce4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba modeli, które się odwołują <br /></td></tr>
-<tr class="separator:af740f86bcb54d10a00d937643576ce4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade3721ff932982674e8ee157a30b6493"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade3721ff932982674e8ee157a30b6493"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#ade3721ff932982674e8ee157a30b6493">unique_id</a></td></tr>
-<tr class="memdesc:ade3721ff932982674e8ee157a30b6493"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unikalny identyfikator zasobu. <br /></td></tr>
-<tr class="separator:ade3721ff932982674e8ee157a30b6493"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a370a08b9dc8557827d2013f0ab620c52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a370a08b9dc8557827d2013f0ab620c52"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a370a08b9dc8557827d2013f0ab620c52">m_assetReferences</a></td></tr>
+<tr class="memdesc:a370a08b9dc8557827d2013f0ab620c52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba assetów, które sie odwołują. <br /></td></tr>
+<tr class="separator:a370a08b9dc8557827d2013f0ab620c52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1557acb2249b2e2a90d47b3b3ac46dc6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1557acb2249b2e2a90d47b3b3ac46dc6"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a1557acb2249b2e2a90d47b3b3ac46dc6">m_objectReferences</a></td></tr>
+<tr class="memdesc:a1557acb2249b2e2a90d47b3b3ac46dc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba obiektów aktorów, które się odwołują. <br /></td></tr>
+<tr class="separator:a1557acb2249b2e2a90d47b3b3ac46dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b6032f47345118df4b9481ee0d01d78"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b6032f47345118df4b9481ee0d01d78"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a5b6032f47345118df4b9481ee0d01d78">m_uniqueId</a></td></tr>
+<tr class="memdesc:a5b6032f47345118df4b9481ee0d01d78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unikalny identyfikator zasobu. <br /></td></tr>
+<tr class="separator:a5b6032f47345118df4b9481ee0d01d78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Klasa ułatwiająca zarządzanie odwołaniami do assetów.</p>
 <p>Obiekty assetów (np. <a class="el" href="struct_material_object.html" title="Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. ">MaterialObject</a>, <a class="el" href="class_texture_object.html" title="Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności. ">TextureObject</a>, <a class="el" href="class_vertex_shader_object.html" title="Klasa przechowująca vertex shader. ">VertexShaderObject</a>, <a class="el" href="class_pixel_shader_object.html" title="Klasa przechowująca pixel shader. ">PixelShaderObject</a> itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. </p>
-<p>Do każdego pojedynczego obiektu mogą istnieć wilokrotne odwołania w klasie <a class="el" href="class_model3_d_from_file.html" title="Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ...">Model3DFromFile</a>, a także w obiektach dziedziczących po <a class="el" href="class_dynamic_mesh_object.html">DynamicMeshObject</a>. Z tego względu istnieją zmienne file_references i object_references. Pierwsza określa, ile razy występują odwołania do obiektu w klasie <a class="el" href="class_model3_d_from_file.html" title="Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ...">Model3DFromFile</a>. (uwaga: nie zliczamy, ile klas się odwołuje. Jeżeli w klasie pojawiają się 3 odwołania, to liczą się jako 3. Taka konwencja ułatwia zliczanie i zwalnianie pamięci) Druga zmienna określa, ile wystepuje odwołań bezpośrednich przez obiekty, które będą następnie wyświetlane. Oznacza to, że przypisując jakiemus obiektowi plik z modelem, musimy zinkrementować other_references o tyle, ile było odwołań w tym pliku. Żaden obiekt nie powinien być kasowany, dopóki istnieją do niego odwołania.</p>
-<p>Zmienna unique_id jest na początku ustawiana na 0. Jej faktyczne ustawienie odbywa robi klasa <a class="el" href="class_resource_container.html" title="Szablon klasy do przechowywania assetów. ">ResourceContainer</a>. Jest to wymagane do ułatwienia obsługi wielowątkowości. Inaczej mogłyby się pokrywać identyfikatory. </p>
+<p>Do każdego pojedynczego obiektu mogą istnieć wilokrotne odwołania w klasie <a class="el" href="class_model3_d_from_file.html" title="Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ...">Model3DFromFile</a>, a także w obiektach dziedziczących po <a class="el" href="class_dynamic_mesh_actor.html">DynamicMeshActor</a>. Z tego względu istnieją zmienne m_assetReferences i m_objectReferences. Pierwsza określa, ile razy występują odwołania do obiektu w klasie <a class="el" href="class_model3_d_from_file.html" title="Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ...">Model3DFromFile</a>. (uwaga: nie zliczamy, ile klas się odwołuje. Jeżeli w klasie pojawiają się 3 odwołania, to liczą się jako 3. Taka konwencja ułatwia zliczanie i zwalnianie pamięci) Druga zmienna określa, ile wystepuje odwołań bezpośrednich przez obiekty, które będą następnie wyświetlane. Oznacza to, że przypisując jakiemus obiektowi plik z modelem, musimy zinkrementować other_references o tyle, ile było odwołań w tym pliku. Żaden obiekt nie powinien być kasowany, dopóki istnieją do niego odwołania.</p>
+<p>Zmienna m_uniqueId jest na początku ustawiana na 0. Jej faktyczne ustawienie odbywa robi klasa <a class="el" href="class_resource_container.html" title="Szablon klasy do przechowywania assetów. ">ResourceContainer</a>. Jest to wymagane do ułatwienia obsługi wielowątkowości. Inaczej mogłyby się pokrywać identyfikatory.</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000078">Todo:</a></b></dt><dd>Zliczanie referencji w <a class="el" href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. ">ResourceObject</a> nie nadaje się do wielowątkowości. Poprawić w odpowiednim momencie. </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab532d0711da06a23e6fe10dad6153332"></a>
 <div class="memitem">
@@ -206,7 +208,7 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ac276bd05fcbf702396031c7834593550"></a>
+<a class="anchor" id="a765b943116ed1ebe6bc0a3653bcd4092"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -214,16 +216,42 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool ResourceObject::can_delete </td>
+          <td class="memname">void ResourceObject::AddAssetReference </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dodaje odwołanie plikowe do assetu. </p>
+<p>Funkcje służące do zarządzania odwołaniami. Należy pilnować, aby wszystkie funkcje, które modyfikują jakiekolwiek przypisania obiektów do tekstur, materiałów i meshy, modyfikowały również ilość odwołań. Użytkownik silnika powinien mieć udostępnioną wartstwę pośredniczacą, żeby nie musiał pamiętać o odwołaniach. </p>
+
+</div>
+</div>
+<a class="anchor" id="afe4c6dde245866bf652b96815226b31c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ResourceObject::CanDelete </td>
           <td>(</td>
           <td class="paramtype">unsigned int &amp;&#160;</td>
-          <td class="paramname"><em>file_ref</em>, </td>
+          <td class="paramname"><em>assetRef</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">unsigned int &amp;&#160;</td>
-          <td class="paramname"><em>other_ref</em>&#160;</td>
+          <td class="paramname"><em>objectRef</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -238,7 +266,8 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </table>
 </div><div class="memdoc">
 
-<p>Funkcja informuje czy obiekt są obiektu, które odwołują się do assetu. </p>
+<p>sprawdza czy można zwolnić zmienną </p>
+<p>Funkcja informuje czy obiekt są obiektu, które odwołują się do assetu.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">file_ref</td><td>W zmiennej zostanie umieszczona liczba referencji plikowych. </td></tr>
@@ -250,7 +279,7 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a class="anchor" id="adc3727f0ec4d7ad7fec23f027b19e5bb"></a>
+<a class="anchor" id="a88803e81f3fdcb96d82d41648bc2e85a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -258,7 +287,7 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool ResourceObject::can_delete </td>
+          <td class="memname">bool ResourceObject::CanDelete </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -277,12 +306,12 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>D:/ProgramyVS/SWEngine/EngineCode/GraphicAPI/<a class="el" href="_resource_object_8h_source.html">ResourceObject.h</a></li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/GraphicAPI/<a class="el" href="_resource_object_8h_source.html">ResourceObject.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

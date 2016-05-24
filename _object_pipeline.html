@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: Potok przetwarzania obiektów</title>
+<title>Schopenhauers Weltschmerz Engine: Potok przetwarzania obiektów</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -101,13 +102,13 @@ Code</h2>
 <div class="line">    {</div>
 <div class="line">        START_PERFORMANCE_CHECK(FRAME_COMPUTING_TIME)</div>
 <div class="line"></div>
-<div class="line">        <a class="code" href="class_engine_interface.html#adc3fc8d70a1d9b6770dfba033b5b4f37">ui_engine</a>-&gt;proceed_input( FIXED_MOVE_UPDATE_INTERVAL );</div>
-<div class="line">        <a class="code" href="class_engine_interface.html#a08574dc42032dfcbfb0e81b8fc32494d">physic_engine</a>-&gt;proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );</div>
-<div class="line">        <a class="code" href="class_engine_interface.html#a7e28bc7ca2a5a349bb3e2247b384a231">controllers_engine</a>-&gt;proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );</div>
-<div class="line">        <a class="code" href="class_engine_interface.html#ac3b3f666f060612a681cad2398760fb8">movement_engine</a>-&gt;proceed_movement( FIXED_MOVE_UPDATE_INTERVAL );</div>
-<div class="line">        <a class="code" href="class_engine_interface.html#a7e28bc7ca2a5a349bb3e2247b384a231">controllers_engine</a>-&gt;proceed_controllers_post( FIXED_MOVE_UPDATE_INTERVAL );</div>
-<div class="line">        <a class="code" href="class_engine_interface.html#a3d4e298ebc284dd43a96914e00af29e5">collision_engine</a>-&gt;proceed_collisions( FIXED_MOVE_UPDATE_INTERVAL );</div>
-<div class="line">        <a class="code" href="class_engine_interface.html#ab0d767baa0f337a5053323af4b43a5f8">fable_engine</a>-&gt;proceed_fable( FIXED_MOVE_UPDATE_INTERVAL );</div>
+<div class="line">        ui_engine-&gt;proceed_input( FIXED_MOVE_UPDATE_INTERVAL );</div>
+<div class="line">        physic_engine-&gt;proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );</div>
+<div class="line">        controllers_engine-&gt;proceed_controllers_pre( FIXED_MOVE_UPDATE_INTERVAL );</div>
+<div class="line">        movement_engine-&gt;proceed_movement( FIXED_MOVE_UPDATE_INTERVAL );</div>
+<div class="line">        controllers_engine-&gt;proceed_controllers_post( FIXED_MOVE_UPDATE_INTERVAL );</div>
+<div class="line">        collision_engine-&gt;proceed_collisions( FIXED_MOVE_UPDATE_INTERVAL );</div>
+<div class="line">        fable_engine-&gt;proceed_fable( FIXED_MOVE_UPDATE_INTERVAL );</div>
 <div class="line"></div>
 <div class="line">        lag -= FIXED_MOVE_UPDATE_INTERVAL;</div>
 <div class="line">        time_manager.updateTimeLag( lag );</div>
@@ -119,7 +120,7 @@ Code</h2>
 <div class="line"><span class="preprocessor">#ifdef _INTERPOLATE_POSITIONS</span></div>
 <div class="line">    START_PERFORMANCE_CHECK( INTERPOLATION_TIME )</div>
 <div class="line"></div>
-<div class="line">    <a class="code" href="class_engine_interface.html#ad41a553cec70cf6e29d9663365f1a059">display_engine</a>-&gt;interpolate_positions( lag / FIXED_MOVE_UPDATE_INTERVAL );</div>
+<div class="line">    display_engine-&gt;interpolate_positions( lag / FIXED_MOVE_UPDATE_INTERVAL );</div>
 <div class="line"></div>
 <div class="line">    END_PERFORMANCE_CHECK( INTERPOLATION_TIME )</div>
 <div class="line"><span class="preprocessor">#endif</span></div>
@@ -129,8 +130,8 @@ Code</h2>
 <div class="line">    <span class="comment">//Renderujemy scenę oraz interfejs użytkownika</span></div>
 <div class="line">    begin_scene();</div>
 <div class="line"></div>
-<div class="line">    <a class="code" href="class_engine_interface.html#ad41a553cec70cf6e29d9663365f1a059">display_engine</a>-&gt;display_scene( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );</div>
-<div class="line">    <a class="code" href="class_engine_interface.html#adc3fc8d70a1d9b6770dfba033b5b4f37">ui_engine</a>-&gt;draw_GUI( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );</div>
+<div class="line">    display_engine-&gt;display_scene( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );</div>
+<div class="line">    ui_engine-&gt;draw_GUI( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );</div>
 <div class="line"></div>
 <div class="line">    END_PERFORMANCE_CHECK( RENDERING_TIME )     </div>
 <div class="line"></div>
@@ -152,7 +153,7 @@ Schemat potoku przetwarzania obiektów</h2>
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:18 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

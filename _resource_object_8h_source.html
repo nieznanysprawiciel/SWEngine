@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: D:/ProgramyVS/SWEngine/EngineCode/GraphicAPI/ResourceObject.h Source File</title>
+<title>Schopenhauers Weltschmerz Engine: D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/GraphicAPI/ResourceObject.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -84,7 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_f252de6f3e1ad386b2812e6013e16b78.html">GraphicAPI</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d8777cc46500d740a33a6c9eddd161af.html">GraphicAPI</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -94,88 +95,87 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <a href="_resource_object_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_resource_object.html">   30</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_resource_object.html">ResourceObject</a></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_resource_object.html#a9a4cf0b1fc0d7464c464ca3454a008a8">   33</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>    <a class="code" href="class_resource_object.html#a9a4cf0b1fc0d7464c464ca3454a008a8">file_references</a>;    </div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="class_resource_object.html#af740f86bcb54d10a00d937643576ce4a">   34</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>    <a class="code" href="class_resource_object.html#af740f86bcb54d10a00d937643576ce4a">object_references</a>;  </div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_resource_object.html#ade3721ff932982674e8ee157a30b6493">   35</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>    <a class="code" href="class_resource_object.html#ade3721ff932982674e8ee157a30b6493">unique_id</a>;          </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_resource_object.html#a38cce868f5e80e797c3bfd65e0c55aeb">~ResourceObject</a>() = <span class="keywordflow">default</span>;        </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_resource_object.html#ab532d0711da06a23e6fe10dad6153332">   43</a></span>&#160;    <a class="code" href="class_resource_object.html#ab532d0711da06a23e6fe10dad6153332">ResourceObject</a>( <span class="keywordtype">int</span> <span class="keywordtype">id</span> )</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        file_references = 0;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        object_references = 0;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        unique_id = id;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="class_resource_object.html#a73e6d5e7c62c3a7b097bafe6aa997d8b">   51</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_resource_object.html#a73e6d5e7c62c3a7b097bafe6aa997d8b">set_id</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span> ) { unique_id = id; }   </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">//sprawdza czy można zwolnić zmienną</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_resource_object.html#adc3727f0ec4d7ad7fec23f027b19e5bb">can_delete</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>&amp; file_ref, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>&amp; other_ref );</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_resource_object.html#adc3727f0ec4d7ad7fec23f027b19e5bb">can_delete</a>();</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;Common/EngineObject.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_resource_object.html">   33</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_resource_object.html">ResourceObject</a>    : <span class="keyword">public</span> <a class="code" href="class_engine_object.html">EngineObject</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    RTTR_ENABLE( <a class="code" href="class_engine_object.html">EngineObject</a> )</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="class_resource_object.html#a370a08b9dc8557827d2013f0ab620c52">   37</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>    <a class="code" href="class_resource_object.html#a370a08b9dc8557827d2013f0ab620c52">m_assetReferences</a>;  </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="class_resource_object.html#a1557acb2249b2e2a90d47b3b3ac46dc6">   38</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>    <a class="code" href="class_resource_object.html#a1557acb2249b2e2a90d47b3b3ac46dc6">m_objectReferences</a>; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="class_resource_object.html#a5b6032f47345118df4b9481ee0d01d78">   39</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>    <a class="code" href="class_resource_object.html#a5b6032f47345118df4b9481ee0d01d78">m_uniqueId</a>;         </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_resource_object.html#a38cce868f5e80e797c3bfd65e0c55aeb">~ResourceObject</a>() = <span class="keywordflow">default</span>;        </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="class_resource_object.html#ab532d0711da06a23e6fe10dad6153332">   47</a></span>&#160;    <a class="code" href="class_resource_object.html#ab532d0711da06a23e6fe10dad6153332">ResourceObject</a>( <span class="keywordtype">int</span> <span class="keywordtype">id</span> )</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        m_assetReferences = 0;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        m_objectReferences = 0;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        m_uniqueId = id;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="class_resource_object.html#a9b1680584fc628dd44360dd19bc6d4c6">   55</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_resource_object.html#a9b1680584fc628dd44360dd19bc6d4c6">SetID</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span> ) { m_uniqueId = id; }   </div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">/*Funkcje służące do zarządzania odwołaniami.</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">    *Należy pilnować, aby wszystkie funkcje, które modyfikują jakiekolwiek przypisania obiektów</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">    *do tekstur, materiałów i meshy, modyfikowały również ilość odwołań.</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">    *Użytkownik silnika powinien mieć udostępnioną wartstwę pośredniczacą, żeby nie musiał</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">    *pamiętać o odwołaniach.*/</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="class_resource_object.html#afa3457aec51fa38cd36e369bf6bf7eff">   62</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_resource_object.html#afa3457aec51fa38cd36e369bf6bf7eff">add_file_reference</a>( ) { ++<a class="code" href="class_resource_object.html#a9a4cf0b1fc0d7464c464ca3454a008a8">file_references</a>; }        </div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="class_resource_object.html#a392d38b450b38642181d28ff917bd613">   63</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_resource_object.html#a392d38b450b38642181d28ff917bd613">add_object_reference</a>( ) { ++<a class="code" href="class_resource_object.html#af740f86bcb54d10a00d937643576ce4a">object_references</a>; }    </div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="class_resource_object.html#aa539d462f2dd86bf465caf09a36b8fb5">   64</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_resource_object.html#aa539d462f2dd86bf465caf09a36b8fb5">delete_file_reference</a>( ) { --<a class="code" href="class_resource_object.html#a9a4cf0b1fc0d7464c464ca3454a008a8">file_references</a>; }     </div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="class_resource_object.html#a0ba8eb7e51759275f8bc8e498a306f1a">   65</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_resource_object.html#a0ba8eb7e51759275f8bc8e498a306f1a">delete_object_reference</a>( ) { --<a class="code" href="class_resource_object.html#af740f86bcb54d10a00d937643576ce4a">object_references</a>; } </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="class_resource_object.html#a5066dbf8924f37f103f2634afa750be7">   67</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_resource_object.html#a5066dbf8924f37f103f2634afa750be7">get_id</a>() { <span class="keywordflow">return</span> <a class="code" href="class_resource_object.html#ade3721ff932982674e8ee157a30b6493">unique_id</a>; }              </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;};</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_resource_object.html#a88803e81f3fdcb96d82d41648bc2e85a">CanDelete</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>&amp; assetRef, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>&amp; objectRef );</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_resource_object.html#a88803e81f3fdcb96d82d41648bc2e85a">CanDelete</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="class_resource_object.html#a765b943116ed1ebe6bc0a3653bcd4092">   66</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_resource_object.html#a765b943116ed1ebe6bc0a3653bcd4092">AddAssetReference</a>()     { ++<a class="code" href="class_resource_object.html#a370a08b9dc8557827d2013f0ab620c52">m_assetReferences</a>; }    </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="class_resource_object.html#aef54fb618f3a8e1b0d2fd215fde64e8d">   67</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_resource_object.html#aef54fb618f3a8e1b0d2fd215fde64e8d">AddObjectReference</a>()    { ++<a class="code" href="class_resource_object.html#a1557acb2249b2e2a90d47b3b3ac46dc6">m_objectReferences</a>; }   </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="class_resource_object.html#a36147350cabe229ff9af9917a53b5bec">   68</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_resource_object.html#a36147350cabe229ff9af9917a53b5bec">DeleteAssetReference</a>()  { --<a class="code" href="class_resource_object.html#a370a08b9dc8557827d2013f0ab620c52">m_assetReferences</a>; }    </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="class_resource_object.html#ad0a72bef6807a0f765beed2a49e1826e">   69</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="class_resource_object.html#ad0a72bef6807a0f765beed2a49e1826e">DeleteObjectReference</a>() { --<a class="code" href="class_resource_object.html#a1557acb2249b2e2a90d47b3b3ac46dc6">m_objectReferences</a>; }   </div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">//----------------------------------------------------------------------------------------------//</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">//                                  ResourceObject                                          //</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">//----------------------------------------------------------------------------------------------//</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="class_resource_object.html#ace003f472621b17c7a7ed569e51248b8">   71</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_resource_object.html#ace003f472621b17c7a7ed569e51248b8">GetID</a>()         { <span class="keywordflow">return</span> <a class="code" href="class_resource_object.html#a5b6032f47345118df4b9481ee0d01d78">m_uniqueId</a>; }      </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">//==============================================================================================//</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">//----------------------------------------------------------------------------------------------//</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">//                                  ResourceObject                                          //</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">//----------------------------------------------------------------------------------------------//</span></div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="class_resource_object.html#ac276bd05fcbf702396031c7834593550">   87</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_resource_object.html#adc3727f0ec4d7ad7fec23f027b19e5bb">ResourceObject::can_delete</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>&amp; file_ref, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>&amp; other_ref)</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;{</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    file_ref = <a class="code" href="class_resource_object.html#a9a4cf0b1fc0d7464c464ca3454a008a8">file_references</a>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    other_ref = <a class="code" href="class_resource_object.html#af740f86bcb54d10a00d937643576ce4a">object_references</a>;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_resource_object.html#a9a4cf0b1fc0d7464c464ca3454a008a8">file_references</a> == 0 &amp;&amp; <a class="code" href="class_resource_object.html#af740f86bcb54d10a00d937643576ce4a">object_references</a> == 0)</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="class_resource_object.html#adc3727f0ec4d7ad7fec23f027b19e5bb">  101</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_resource_object.html#adc3727f0ec4d7ad7fec23f027b19e5bb">ResourceObject::can_delete</a>()</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;{</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_resource_object.html#a9a4cf0b1fc0d7464c464ca3454a008a8">file_references</a> == 0 &amp;&amp; <a class="code" href="class_resource_object.html#af740f86bcb54d10a00d937643576ce4a">object_references</a> == 0)</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
-<div class="ttc" id="class_resource_object_html_ab532d0711da06a23e6fe10dad6153332"><div class="ttname"><a href="class_resource_object.html#ab532d0711da06a23e6fe10dad6153332">ResourceObject::ResourceObject</a></div><div class="ttdeci">ResourceObject(int id)</div><div class="ttdef"><b>Definition:</b> ResourceObject.h:43</div></div>
-<div class="ttc" id="class_resource_object_html_adc3727f0ec4d7ad7fec23f027b19e5bb"><div class="ttname"><a href="class_resource_object.html#adc3727f0ec4d7ad7fec23f027b19e5bb">ResourceObject::can_delete</a></div><div class="ttdeci">bool can_delete()</div><div class="ttdoc">Funkcja informuje czy obiekt są obiektu, które odwołują się do assetu. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:101</div></div>
-<div class="ttc" id="class_resource_object_html_a9a4cf0b1fc0d7464c464ca3454a008a8"><div class="ttname"><a href="class_resource_object.html#a9a4cf0b1fc0d7464c464ca3454a008a8">ResourceObject::file_references</a></div><div class="ttdeci">unsigned int file_references</div><div class="ttdoc">Liczba plików, które sie odwołują </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:33</div></div>
-<div class="ttc" id="class_resource_object_html_af740f86bcb54d10a00d937643576ce4a"><div class="ttname"><a href="class_resource_object.html#af740f86bcb54d10a00d937643576ce4a">ResourceObject::object_references</a></div><div class="ttdeci">unsigned int object_references</div><div class="ttdoc">Liczba modeli, które się odwołują </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:34</div></div>
-<div class="ttc" id="class_resource_object_html_aa539d462f2dd86bf465caf09a36b8fb5"><div class="ttname"><a href="class_resource_object.html#aa539d462f2dd86bf465caf09a36b8fb5">ResourceObject::delete_file_reference</a></div><div class="ttdeci">void delete_file_reference()</div><div class="ttdoc">Kasuje odwołanie plikowe do assetu. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:64</div></div>
-<div class="ttc" id="class_resource_object_html_afa3457aec51fa38cd36e369bf6bf7eff"><div class="ttname"><a href="class_resource_object.html#afa3457aec51fa38cd36e369bf6bf7eff">ResourceObject::add_file_reference</a></div><div class="ttdeci">void add_file_reference()</div><div class="ttdoc">Dodaje odwołanie plikowe do assetu. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:62</div></div>
-<div class="ttc" id="class_resource_object_html_a392d38b450b38642181d28ff917bd613"><div class="ttname"><a href="class_resource_object.html#a392d38b450b38642181d28ff917bd613">ResourceObject::add_object_reference</a></div><div class="ttdeci">void add_object_reference()</div><div class="ttdoc">Dodaje odwołanie bezpośrednie obiektu do assetu. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:63</div></div>
-<div class="ttc" id="class_resource_object_html_a73e6d5e7c62c3a7b097bafe6aa997d8b"><div class="ttname"><a href="class_resource_object.html#a73e6d5e7c62c3a7b097bafe6aa997d8b">ResourceObject::set_id</a></div><div class="ttdeci">void set_id(unsigned int id)</div><div class="ttdoc">Ustawia identyfikator obiektu. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:51</div></div>
-<div class="ttc" id="class_resource_object_html_a5066dbf8924f37f103f2634afa750be7"><div class="ttname"><a href="class_resource_object.html#a5066dbf8924f37f103f2634afa750be7">ResourceObject::get_id</a></div><div class="ttdeci">unsigned int get_id()</div><div class="ttdoc">Zwraca identyfikator nadany assetowi. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:67</div></div>
-<div class="ttc" id="class_resource_object_html_a0ba8eb7e51759275f8bc8e498a306f1a"><div class="ttname"><a href="class_resource_object.html#a0ba8eb7e51759275f8bc8e498a306f1a">ResourceObject::delete_object_reference</a></div><div class="ttdeci">void delete_object_reference()</div><div class="ttdoc">Kasuje odwołanie bezpośrednie obiektu do assetu. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:65</div></div>
-<div class="ttc" id="class_resource_object_html"><div class="ttname"><a href="class_resource_object.html">ResourceObject</a></div><div class="ttdoc">Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:30</div></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">//==============================================================================================//</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="class_resource_object.html#afe4c6dde245866bf652b96815226b31c">   91</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_resource_object.html#a88803e81f3fdcb96d82d41648bc2e85a">ResourceObject::CanDelete</a>( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>&amp; assetRef, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>&amp; objectRef )</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;{</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    assetRef = <a class="code" href="class_resource_object.html#a370a08b9dc8557827d2013f0ab620c52">m_assetReferences</a>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    objectRef = <a class="code" href="class_resource_object.html#a1557acb2249b2e2a90d47b3b3ac46dc6">m_objectReferences</a>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">if</span>( <a class="code" href="class_resource_object.html#a370a08b9dc8557827d2013f0ab620c52">m_assetReferences</a> == 0 &amp;&amp; <a class="code" href="class_resource_object.html#a1557acb2249b2e2a90d47b3b3ac46dc6">m_objectReferences</a> == 0 )</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="class_resource_object.html#a88803e81f3fdcb96d82d41648bc2e85a">  105</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="class_resource_object.html#a88803e81f3fdcb96d82d41648bc2e85a">ResourceObject::CanDelete</a>()</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;{</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">if</span>( <a class="code" href="class_resource_object.html#a370a08b9dc8557827d2013f0ab620c52">m_assetReferences</a> == 0 &amp;&amp; <a class="code" href="class_resource_object.html#a1557acb2249b2e2a90d47b3b3ac46dc6">m_objectReferences</a> == 0 )</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
+<div class="ttc" id="class_resource_object_html_aef54fb618f3a8e1b0d2fd215fde64e8d"><div class="ttname"><a href="class_resource_object.html#aef54fb618f3a8e1b0d2fd215fde64e8d">ResourceObject::AddObjectReference</a></div><div class="ttdeci">void AddObjectReference()</div><div class="ttdoc">Dodaje odwołanie bezpośrednie obiektu do assetu. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:67</div></div>
+<div class="ttc" id="class_resource_object_html_a88803e81f3fdcb96d82d41648bc2e85a"><div class="ttname"><a href="class_resource_object.html#a88803e81f3fdcb96d82d41648bc2e85a">ResourceObject::CanDelete</a></div><div class="ttdeci">bool CanDelete()</div><div class="ttdoc">Funkcja informuje czy obiekt są obiektu, które odwołują się do assetu. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:105</div></div>
+<div class="ttc" id="class_resource_object_html_ab532d0711da06a23e6fe10dad6153332"><div class="ttname"><a href="class_resource_object.html#ab532d0711da06a23e6fe10dad6153332">ResourceObject::ResourceObject</a></div><div class="ttdeci">ResourceObject(int id)</div><div class="ttdef"><b>Definition:</b> ResourceObject.h:47</div></div>
+<div class="ttc" id="class_resource_object_html_a5b6032f47345118df4b9481ee0d01d78"><div class="ttname"><a href="class_resource_object.html#a5b6032f47345118df4b9481ee0d01d78">ResourceObject::m_uniqueId</a></div><div class="ttdeci">unsigned int m_uniqueId</div><div class="ttdoc">Unikalny identyfikator zasobu. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:39</div></div>
+<div class="ttc" id="class_resource_object_html_a370a08b9dc8557827d2013f0ab620c52"><div class="ttname"><a href="class_resource_object.html#a370a08b9dc8557827d2013f0ab620c52">ResourceObject::m_assetReferences</a></div><div class="ttdeci">unsigned int m_assetReferences</div><div class="ttdoc">Liczba assetów, które sie odwołują. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:37</div></div>
+<div class="ttc" id="class_resource_object_html_a765b943116ed1ebe6bc0a3653bcd4092"><div class="ttname"><a href="class_resource_object.html#a765b943116ed1ebe6bc0a3653bcd4092">ResourceObject::AddAssetReference</a></div><div class="ttdeci">void AddAssetReference()</div><div class="ttdoc">Dodaje odwołanie plikowe do assetu. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:66</div></div>
+<div class="ttc" id="class_resource_object_html_ad0a72bef6807a0f765beed2a49e1826e"><div class="ttname"><a href="class_resource_object.html#ad0a72bef6807a0f765beed2a49e1826e">ResourceObject::DeleteObjectReference</a></div><div class="ttdeci">void DeleteObjectReference()</div><div class="ttdoc">Kasuje odwołanie bezpośrednie obiektu do assetu. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:69</div></div>
+<div class="ttc" id="class_resource_object_html_a1557acb2249b2e2a90d47b3b3ac46dc6"><div class="ttname"><a href="class_resource_object.html#a1557acb2249b2e2a90d47b3b3ac46dc6">ResourceObject::m_objectReferences</a></div><div class="ttdeci">unsigned int m_objectReferences</div><div class="ttdoc">Liczba obiektów aktorów, które się odwołują. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:38</div></div>
+<div class="ttc" id="class_engine_object_html"><div class="ttname"><a href="class_engine_object.html">EngineObject</a></div><div class="ttdoc">Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz...</div><div class="ttdef"><b>Definition:</b> EngineObject.h:15</div></div>
+<div class="ttc" id="class_resource_object_html_ace003f472621b17c7a7ed569e51248b8"><div class="ttname"><a href="class_resource_object.html#ace003f472621b17c7a7ed569e51248b8">ResourceObject::GetID</a></div><div class="ttdeci">unsigned int GetID()</div><div class="ttdoc">Zwraca identyfikator nadany assetowi. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:71</div></div>
+<div class="ttc" id="class_resource_object_html_a9b1680584fc628dd44360dd19bc6d4c6"><div class="ttname"><a href="class_resource_object.html#a9b1680584fc628dd44360dd19bc6d4c6">ResourceObject::SetID</a></div><div class="ttdeci">void SetID(unsigned int id)</div><div class="ttdoc">Ustawia identyfikator obiektu. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:55</div></div>
+<div class="ttc" id="class_resource_object_html_a36147350cabe229ff9af9917a53b5bec"><div class="ttname"><a href="class_resource_object.html#a36147350cabe229ff9af9917a53b5bec">ResourceObject::DeleteAssetReference</a></div><div class="ttdeci">void DeleteAssetReference()</div><div class="ttdoc">Kasuje odwołanie plikowe do assetu. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:68</div></div>
+<div class="ttc" id="class_resource_object_html"><div class="ttname"><a href="class_resource_object.html">ResourceObject</a></div><div class="ttdoc">Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:33</div></div>
 <div class="ttc" id="class_resource_object_html_a38cce868f5e80e797c3bfd65e0c55aeb"><div class="ttname"><a href="class_resource_object.html#a38cce868f5e80e797c3bfd65e0c55aeb">ResourceObject::~ResourceObject</a></div><div class="ttdeci">virtual ~ResourceObject()=default</div><div class="ttdoc">Nie każdy może skasować obiekt. </div></div>
-<div class="ttc" id="class_resource_object_html_ade3721ff932982674e8ee157a30b6493"><div class="ttname"><a href="class_resource_object.html#ade3721ff932982674e8ee157a30b6493">ResourceObject::unique_id</a></div><div class="ttdeci">unsigned int unique_id</div><div class="ttdoc">Unikalny identyfikator zasobu. </div><div class="ttdef"><b>Definition:</b> ResourceObject.h:35</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:17 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

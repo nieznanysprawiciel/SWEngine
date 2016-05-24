@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hole_5ftime_5fspent',['hole_time_spent',['../struct__performance__data.html#a622e69bb71f6d4e3497a45d8b84f6dbd',1,'_performance_data']]]
+  ['graphicinitializer',['graphicInitializer',['../struct_engine_context.html#a15c37734f09c78cb4f930b8aac7a7fba',1,'EngineContext']]]
 ];

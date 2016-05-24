@@ -6,7 +6,6 @@ var searchData=
   ['base_5fvertex',['base_vertex',['../struct_mesh_part_object.html#a538996a78b2ca53a9041597d632ea72e',1,'MeshPartObject']]],
   ['bottom_5fright',['bottom_right',['../struct_x_g_u_i_1_1_rect.html#a3907daaf2930bbe933e2cfbf8dc8e8fb',1,'XGUI::Rect']]],
   ['buffer_5foffset',['buffer_offset',['../struct_mesh_part_object.html#ab526545bddb2fb51083a613d098d00c0',1,'MeshPartObject']]],
-  ['button_5faxis_5fid',['button_axis_id',['../structinput__mapping.html#ab4a8c918a7409ec2dff98bfe154111c3',1,'input_mapping']]],
-  ['button_5frot_5fspeed',['button_rot_speed',['../classcamera__controller___p_r_o_t_o_t_y_p_e.html#a521fe451df8672e2d9c7f1f2d66e40c7',1,'camera_controller_PROTOTYPE']]],
-  ['buttons_5fmapping_5ftable',['buttons_mapping_table',['../class_input_abstraction_layer.html#ac14acdbf5ad901c82813fcce19885093',1,'InputAbstractionLayer']]]
+  ['bufferoffset',['bufferOffset',['../struct_scene_object_data.html#a4d4c105c83746b0c73f0436f8269e6ca',1,'SceneObjectData']]],
+  ['buffers',['buffers',['../struct_scene_data.html#a4b4d460d754533812b221251ecb22781',1,'SceneData']]]
 ];

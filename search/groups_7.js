@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['usuwanie_20zasobów_20silnika',['Usuwanie zasobów silnika',['../group___deleting_objects.html',1,'']]]
+  ['obsługa_20modułów_20do_20renderowania_2e',['Obsługa modułów do renderowania.',['../group___rendering_a_p_i.html',1,'']]]
 ];

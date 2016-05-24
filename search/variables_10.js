@@ -1,20 +1,15 @@
 var searchData=
 [
-  ['task_5fexecutions',['task_executions',['../struct__performance__data.html#a64b12fefd7fe7e780d6a25b984ed2dd1',1,'_performance_data']]],
-  ['task_5fname',['task_name',['../struct__performance__data.html#a43b950aa5b3b7e1b7abed3330f049b70',1,'_performance_data']]],
-  ['tex_5fcords',['tex_cords',['../struct_vertex_normal_tex_cord1.html#a84a82408bf598654a4ac5b8c3ce23bb1',1,'VertexNormalTexCord1::tex_cords()'],['../struct_vertex_tex_cord1.html#a895313635a262ce2eb9fc06d9ad0741b',1,'VertexTexCord1::tex_cords()']]],
-  ['text',['text',['../class_x_g_u_i_1_1_abstract_text.html#ad5c3b810dbac6010c9a7d2bede2fc47d',1,'XGUI::AbstractText::text()'],['../class_x_g_u_i_1_1_abstract_text_input.html#aca2b321c5b7d6a36e5e0839c6a648bac',1,'XGUI::AbstractTextInput::text()']]],
-  ['text_5falignment',['text_alignment',['../class_x_g_u_i_1_1_abstract_text.html#aca3930402faf59ddd885bfa5999a9ea5',1,'XGUI::AbstractText']]],
-  ['text_5fcolor',['text_color',['../class_x_g_u_i_1_1_abstract_text.html#a2281db6a640171d46c60eb6402e977ed',1,'XGUI::AbstractText']]],
-  ['texture',['texture',['../class_x_g_u_i_1_1_abstract_textured_region.html#a770784a7049f4f69639a352ef77c70b3',1,'XGUI::AbstractTexturedRegion']]],
-  ['textureheight',['textureHeight',['../struct_render_target_descriptor.html#ac3c66f10c0047a2b9a96a41e9e6875d3',1,'RenderTargetDescriptor']]],
-  ['texturetype',['textureType',['../struct_render_target_descriptor.html#a38953b70b9f095d6171caf4763a1204b',1,'RenderTargetDescriptor']]],
-  ['texturewidth',['textureWidth',['../struct_render_target_descriptor.html#a5f40efc31c2f2707bbb84b3afdbb61cf',1,'RenderTargetDescriptor']]],
-  ['this_5fptr',['this_ptr',['../class_d_x11_a_p_i_objects.html#a1db5e21336aab4057c36042838b8aeb9',1,'DX11APIObjects']]],
-  ['time',['time',['../struct_constant_per_frame.html#a704803b996fe435093ed1c40c18eb335',1,'ConstantPerFrame']]],
-  ['time_5flag',['time_lag',['../struct_constant_per_frame.html#a661ddf5092791ee824bd93627d69891d',1,'ConstantPerFrame']]],
-  ['tmp_5fdata',['tmp_data',['../class_model3_d_from_file.html#aa59d7d3ea66af31f45b59d934520a99f',1,'Model3DFromFile']]],
-  ['top_5fleft',['top_left',['../struct_x_g_u_i_1_1_rect.html#a79f25ff03bca78559437f4322021c7a4',1,'XGUI::Rect']]],
-  ['transform_5fmatrix',['transform_matrix',['../struct_mesh_part_object.html#ac79031ebb80bacca70ad8f3a4a766b6b',1,'MeshPartObject']]],
-  ['type',['type',['../struct_x_g_u_i_1_1_g_u_i_event.html#ad00ab098f3655f72c78376fa5ee68e88',1,'XGUI::GUIEvent']]]
+  ['samplesquality',['samplesQuality',['../struct_render_target_descriptor.html#a5fd4a800f261d7eb9962c5d036a88330',1,'RenderTargetDescriptor']]],
+  ['selected',['selected',['../class_x_g_u_i_1_1_abstract_item.html#a7aa0052dce2cd72ba98832dd07bfa41c',1,'XGUI::AbstractItem::selected()'],['../class_x_g_u_i_1_1_abstract_menu.html#ad276e26a9307c5e6c2b63d936db5e9f5',1,'XGUI::AbstractMenu::selected()']]],
+  ['selection',['selection',['../class_x_g_u_i_1_1_abstract_text_input.html#a3203d6fee3be76137f4eae8e673ea062',1,'XGUI::AbstractTextInput']]],
+  ['shader_5fdata_5fper_5fframe',['shader_data_per_frame',['../class_display_engine.html#a79af380c860de99523e0b63d4b0f3d33',1,'DisplayEngine']]],
+  ['signalhandler',['SignalHandler',['../struct_signal.html#a41a6c79f6c533a793f0b8fdfa9e7f08b',1,'Signal']]],
+  ['sky_5fdome',['sky_dome',['../class_display_engine.html#a4cecc5b07bf947a096dca3b0321e083e',1,'DisplayEngine']]],
+  ['skylight_5fmodel',['skylight_model',['../class_hosek_sky_dome.html#a9d0e48cc485815a90da99d1056dbc764',1,'HosekSkyDome']]],
+  ['skymodel_5fstate',['skymodel_state',['../class_hosek_skylight_model.html#a963ed067846fd212674138e827e194bc',1,'HosekSkylightModel']]],
+  ['soundengine',['soundEngine',['../struct_engine_context.html#ae189c09f9bd6348d08235dbc5d504d67',1,'EngineContext']]],
+  ['speed',['speed',['../class_dynamic_actor.html#ab2dff4469a6d2c15fd5733a1865e8019',1,'DynamicActor']]],
+  ['swap_5fchain',['swap_chain',['../class_d_x11_a_p_i_objects.html#ade44f2410db7ffaf4d10778aaf13b008',1,'DX11APIObjects']]],
+  ['swap_5fdata',['swap_data',['../class_static_actor.html#a75079fdfd89cab7c35ee936f1881e1bd',1,'StaticActor']]]
 ];

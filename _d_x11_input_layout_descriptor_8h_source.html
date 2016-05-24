@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: D:/ProgramyVS/SWEngine/EngineCode/GraphicAPI/DX11API/DX11Resources/DX11InputLayoutDescriptor.h Source File</title>
+<title>Schopenhauers Weltschmerz Engine: D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/GraphicAPI/DX11API/DX11Resources/DX11InputLayoutDescriptor.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -84,7 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_f252de6f3e1ad386b2812e6013e16b78.html">GraphicAPI</a></li><li class="navelem"><a class="el" href="dir_57c817bfe874122647e1a8295fc2f9b9.html">DX11API</a></li><li class="navelem"><a class="el" href="dir_f086f8d9ba9c2ce7a011393771106a82.html">DX11Resources</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d8777cc46500d740a33a6c9eddd161af.html">GraphicAPI</a></li><li class="navelem"><a class="el" href="dir_430df0916eb770ac65b50abf11977577.html">DX11API</a></li><li class="navelem"><a class="el" href="dir_9c2c0372d4ff419886d6d4c3084d7116.html">DX11Resources</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -108,7 +109,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_d_x11_input_layout_descriptor.html">DX11InputLayoutDescriptor</a>( <span class="keyword">const</span> std::wstring&amp; layoutName ) : <a class="code" href="class_input_layout_descriptor.html">InputLayoutDescriptor</a>( layoutName ) {}</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    ~<a class="code" href="class_d_x11_input_layout_descriptor.html">DX11InputLayoutDescriptor</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">size_t</span>                          GetNumElements()        { <span class="keywordflow">return</span> m_inputElement.size(); }</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    Size                            GetNumElements()        { <span class="keywordflow">return</span> m_inputElement.size(); }</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    D3D11_INPUT_ELEMENT_DESC*       GetDescriptorPtr()      { <span class="keywordflow">return</span> m_inputElement.data(); }</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span>                    AddRow( <span class="keyword">const</span> <span class="keywordtype">char</span>* semanticName,</div>
@@ -122,12 +123,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;};</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
 <div class="ttc" id="class_d_x11_input_layout_descriptor_html"><div class="ttname"><a href="class_d_x11_input_layout_descriptor.html">DX11InputLayoutDescriptor</a></div><div class="ttdoc">Deskryptor layoutu dla DirectX 11. </div><div class="ttdef"><b>Definition:</b> DX11InputLayoutDescriptor.h:11</div></div>
-<div class="ttc" id="class_input_layout_descriptor_html"><div class="ttname"><a href="class_input_layout_descriptor.html">InputLayoutDescriptor</a></div><div class="ttdoc">Klasa przechowuje opis layoutu wierzchołka, na podstawie którego tworzony jest obiekt layoutu...</div><div class="ttdef"><b>Definition:</b> MeshResources.h:325</div></div>
+<div class="ttc" id="class_input_layout_descriptor_html"><div class="ttname"><a href="class_input_layout_descriptor.html">InputLayoutDescriptor</a></div><div class="ttdoc">Klasa przechowuje opis layoutu wierzchołka, na podstawie którego tworzony jest obiekt layoutu...</div><div class="ttdef"><b>Definition:</b> MeshResources.h:327</div></div>
 <div class="ttc" id="_graphic_a_p_i_constants_8h_html_af9e15cb1b0d041b19045d8db37e38f5b"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#af9e15cb1b0d041b19045d8db37e38f5b">ResourceFormat</a></div><div class="ttdeci">ResourceFormat</div><div class="ttdoc">Specyfikuje format tekstury bądź innego zasobu. </div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:84</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:17 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

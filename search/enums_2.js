@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['modelsmanagerresult',['ModelsManagerResult',['../_models_manager_8h.html#af77f55adc0bc9bab8d0423de0012fc0b',1,'ModelsManager.h']]],
-  ['modules',['Modules',['../_engine_8h.html#aa0bc9bf69d2f543079f0bd0135af0dcb',1,'Engine.h']]]
+  ['loaderresult',['LoaderResult',['../_i_loader_8h.html#af8f65444450e50ed3f0f0e73c1e2a296',1,'ILoader.h']]]
 ];

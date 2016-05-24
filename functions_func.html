@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: Class Members - Functions</title>
+<title>Schopenhauers Weltschmerz Engine: Class Members - Functions</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -75,6 +76,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>All</span></a></li>
       <li class="current"><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_prop.html"><span>Properties</span></a></li>
+      <li><a href="functions_evnt.html"><span>Events</span></a></li>
       <li><a href="functions_rela.html"><span>Related&#160;Functions</span></a></li>
     </ul>
   </div>
@@ -91,6 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_func_i.html#index_i"><span>i</span></a></li>
       <li><a href="functions_func_l.html#index_l"><span>l</span></a></li>
       <li><a href="functions_func_m.html#index_m"><span>m</span></a></li>
+      <li><a href="functions_func_n.html#index_n"><span>n</span></a></li>
       <li><a href="functions_func_o.html#index_o"><span>o</span></a></li>
       <li><a href="functions_func_p.html#index_p"><span>p</span></a></li>
       <li><a href="functions_func_q.html#index_q"><span>q</span></a></li>
@@ -121,17 +125,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 &#160;
 
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
-<li>add_abstraction_layer()
-: <a class="el" href="class_u_i___engine.html#a3fa8be78118e62690704763ffe3292d0">UI_Engine</a>
-</li>
-<li>add_camera()
-: <a class="el" href="class_display_engine.html#a38333a2500e739541de82bda64e4c6ce">DisplayEngine</a>
-</li>
-<li>add_dynamic_mesh_object()
-: <a class="el" href="class_display_engine.html#a142487f9a15391fd45739bce79e09b40">DisplayEngine</a>
-</li>
-<li>add_file_reference()
-: <a class="el" href="class_resource_object.html#afa3457aec51fa38cd36e369bf6bf7eff">ResourceObject</a>
+<li>ActorInfo()
+: <a class="el" href="struct_actor_info.html#ad6de73b754078d86043a36f344825470">ActorInfo</a>
 </li>
 <li>add_index_buffer()
 : <a class="el" href="class_model3_d_from_file.html#a9f7d535399c2abe6f860d66fd5774371">Model3DFromFile</a>
@@ -139,17 +134,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>add_material()
 : <a class="el" href="class_model3_d_from_file.html#adb13f06a3414f7ed8f41b761d4a9ab0c">Model3DFromFile</a>
 </li>
-<li>add_object_reference()
-: <a class="el" href="class_resource_object.html#a392d38b450b38642181d28ff917bd613">ResourceObject</a>
-</li>
 <li>add_pixel_shader()
 : <a class="el" href="class_model3_d_from_file.html#a6d3edfe7563ba8c62b61cea78b0f15a7">Model3DFromFile</a>
 </li>
-<li>add_references()
-: <a class="el" href="class_dynamic_mesh_object.html#ac5a62c21b3494265acc618e062ff5991">DynamicMeshObject</a>
-</li>
 <li>add_texture()
-: <a class="el" href="class_model3_d_from_file.html#ae7c1d566c5c9bbf0760d66c388e1303f">Model3DFromFile</a>
+: <a class="el" href="class_model3_d_from_file.html#a6f8bf6ad5a86d02874f98832b6365444">Model3DFromFile</a>
 </li>
 <li>add_transformation()
 : <a class="el" href="class_model3_d_from_file.html#a198d7b293ad1a3ca445b8af86e9993cf">Model3DFromFile</a>
@@ -160,35 +149,83 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>add_vertex_shader()
 : <a class="el" href="class_model3_d_from_file.html#a727f3011a8ef7f26d3199f69171e9d52">Model3DFromFile</a>
 </li>
+<li>AddAbstractionLayer()
+: <a class="el" href="class_u_i___engine.html#a756e869768f02c0e958675cf34f24d1c">UI_Engine</a>
+</li>
+<li>AddActor()
+: <a class="el" href="class_actors_manager.html#ac3b30de4f4fa906c602b1bcc2cbe3574">ActorsManager</a>
+</li>
+<li>AddAssetReference()
+: <a class="el" href="class_resource_object.html#a765b943116ed1ebe6bc0a3653bcd4092">ResourceObject</a>
+</li>
+<li>AddCamera()
+: <a class="el" href="class_display_engine.html#a7ffa9603ede0a5530d7183196a3b8f14">DisplayEngine</a>
+</li>
 <li>AddConstantsBuffer()
 : <a class="el" href="class_models_manager.html#a895b95e8f12698b2f84717f18b8f5648">ModelsManager</a>
+</li>
+<li>AddDynamicActor()
+: <a class="el" href="class_octree_leaf.html#a49db0e0823ef28825865fa0725dee4a3">OctreeLeaf</a>
+</li>
+<li>AddDynamicMesh()
+: <a class="el" href="class_api_1_1_actors_api.html#a98582bf37073183bb3b2dd0827e35e00">Api::ActorsApi</a>
+</li>
+<li>AddDynamicMeshObject()
+: <a class="el" href="class_display_engine.html#a420e8bebef4419cc11a41c0cdacae013">DisplayEngine</a>
 </li>
 <li>AddIndexBuffer()
 : <a class="el" href="class_models_manager.html#a1f419f6cb55a91b2c6990535b979c524">ModelsManager</a>
 </li>
+<li>AddListener()
+: <a class="el" href="class_event_manager.html#a5719c16b93c92d87ebd4064458ea20e8">EventManager</a>
+</li>
+<li>AddListenerDelayed()
+: <a class="el" href="class_api_1_1_actors_1_1_communication.html#a97fb7c4aad6b8b172acc71e3ac97875c">Api::Actors::Communication</a>
+</li>
 <li>AddMaterial()
 : <a class="el" href="class_models_manager.html#a3f8c9efdc041fd21a5700b33c7d8e608">ModelsManager</a>
+</li>
+<li>AddObjectReference()
+: <a class="el" href="class_resource_object.html#aef54fb618f3a8e1b0d2fd215fde64e8d">ResourceObject</a>
 </li>
 <li>AddPixelShader()
 : <a class="el" href="class_models_manager.html#ac496ebf143424b02100b9505ad6b9cd5">ModelsManager</a>
 </li>
+<li>AddPostControlled()
+: <a class="el" href="class_controllers_engine.html#abaf43fe0f8aee2db49055177956bbdda">ControllersEngine</a>
+</li>
+<li>AddPreControlled()
+: <a class="el" href="class_controllers_engine.html#a84b8f524333fe113470f22a1c852226b">ControllersEngine</a>
+</li>
+<li>AddReferences()
+: <a class="el" href="class_dynamic_mesh_actor.html#ad3ba6c68a6370254ce284e84d0345b0f">DynamicMeshActor</a>
+</li>
 <li>AddRenderTarget()
 : <a class="el" href="class_models_manager.html#a8d4b6ce9ab3ac9e1ab23a9ba80fe1816">ModelsManager</a>
 </li>
+<li>AddStaticActor()
+: <a class="el" href="class_octree_leaf.html#a7994285a7d249549b9a2d0e1e865ac69">OctreeLeaf</a>
+</li>
 <li>AddTexture()
 : <a class="el" href="class_models_manager.html#a7e426667e9c611d8dea5a6331ee97a7b">ModelsManager</a>
+</li>
+<li>AddToModules()
+: <a class="el" href="class_api_1_1_actors_api.html#a28b1047690df4c25915a29f925527399">Api::ActorsApi</a>
 </li>
 <li>AddVertexBuffer()
 : <a class="el" href="class_models_manager.html#a27cd6e567c6704a03fbb2fa6294b7762">ModelsManager</a>
 </li>
 <li>AddVertexShader()
-: <a class="el" href="class_models_manager.html#addc873642d4e16d298d9c3edd75e4867">ModelsManager</a>
+: <a class="el" href="class_models_manager.html#a6e9b5dfc98242afd526166ad532a70e9">ModelsManager</a>
+</li>
+<li>AverageNormal()
+: <a class="el" href="class_lightmap_worker_c_p_u.html#a744f19b2f2880642d0d3688196b81c94">LightmapWorkerCPU</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:04 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

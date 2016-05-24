@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: IGamePlay Class Reference</title>
+<title>Schopenhauers Weltschmerz Engine: IGamePlay Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -100,41 +101,43 @@ Inheritance diagram for IGamePlay:</div>
  <div class="center">
   <img src="class_i_game_play.png" usemap="#IGamePlay_map" alt=""/>
   <map id="IGamePlay_map" name="IGamePlay_map">
-<area href="class_entry_point_game_play.html" alt="EntryPointGamePlay" shape="rect" coords="0,56,127,80"/>
+<area href="class_engine_object.html" title="Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz..." alt="EngineObject" shape="rect" coords="68,0,195,24"/>
+<area href="class_entry_point_game_play.html" alt="EntryPointGamePlay" shape="rect" coords="0,112,127,136"/>
+<area href="class_lightmap_logic.html" alt="LightmapLogic" shape="rect" coords="137,112,264,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a055e34031b0e1f11855ce1164023a9ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a055e34031b0e1f11855ce1164023a9ad"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_engine_and_fable</b> (<a class="el" href="class_engine_interface.html">EngineInterface</a> *game_engine, <a class="el" href="class_fable_engine.html">FableEngine</a> *fable)</td></tr>
-<tr class="separator:a055e34031b0e1f11855ce1164023a9ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47a61be61c85bc3663164cd4d50c764e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47a61be61c85bc3663164cd4d50c764e"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>proceed_game_play</b> (float time_interval)=0</td></tr>
-<tr class="separator:a47a61be61c85bc3663164cd4d50c764e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6b1d5cd2ac74fbad77c970fb52bbdf9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6b1d5cd2ac74fbad77c970fb52bbdf9"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>load_level</b> ()=0</td></tr>
-<tr class="separator:ac6b1d5cd2ac74fbad77c970fb52bbdf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f83026e7c1ee7c980a6a4cc391575ca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f83026e7c1ee7c980a6a4cc391575ca"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>unload_level</b> ()=0</td></tr>
-<tr class="separator:a3f83026e7c1ee7c980a6a4cc391575ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0034cbcd2a384e1d936bd73ae78c9428"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0034cbcd2a384e1d936bd73ae78c9428"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetEngineReference</b> (<a class="el" href="class_engine_interface.html">EngineInterface</a> *game_engine, <a class="el" href="class_fable_engine.html">FableEngine</a> *fable)</td></tr>
+<tr class="separator:a0034cbcd2a384e1d936bd73ae78c9428"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d6f549a97f7df67ff6525b37c6b57d6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d6f549a97f7df67ff6525b37c6b57d6"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ProceedGameLogic</b> (float time)=0</td></tr>
+<tr class="separator:a1d6f549a97f7df67ff6525b37c6b57d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb07f59e225f675559e4f2c27c3e614a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb07f59e225f675559e4f2c27c3e614a"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>LoadLevel</b> ()=0</td></tr>
+<tr class="separator:afb07f59e225f675559e4f2c27c3e614a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a6c05f18aa6c146c18876b7b20138c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a6c05f18aa6c146c18876b7b20138c8"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>UnloadLevel</b> ()=0</td></tr>
+<tr class="separator:a2a6c05f18aa6c146c18876b7b20138c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a88dccf2055f4959910178136a887adc2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88dccf2055f4959910178136a887adc2"></a>
-<a class="el" href="class_engine_interface.html">EngineInterface</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>engine</b></td></tr>
-<tr class="separator:a88dccf2055f4959910178136a887adc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a126f310fd0538d4e9202caf9b8e80f8d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a126f310fd0538d4e9202caf9b8e80f8d"></a>
-<a class="el" href="class_fable_engine.html">FableEngine</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>fable_engine</b></td></tr>
-<tr class="separator:a126f310fd0538d4e9202caf9b8e80f8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09296d55a7dfeae759f9453095baae71"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09296d55a7dfeae759f9453095baae71"></a>
+<a class="el" href="class_engine_interface.html">EngineInterface</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_engine</b></td></tr>
+<tr class="separator:a09296d55a7dfeae759f9453095baae71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57b6bff9043c2ef6d7d6e4dda402829d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57b6bff9043c2ef6d7d6e4dda402829d"></a>
+<a class="el" href="class_fable_engine.html">FableEngine</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_fableEngine</b></td></tr>
+<tr class="separator:a57b6bff9043c2ef6d7d6e4dda402829d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/GamePlay/<a class="el" href="_i_game_play_8h_source.html">IGamePlay.h</a></li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/GamePlay/<a class="el" href="_i_game_play_8h_source.html">IGamePlay.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:18 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

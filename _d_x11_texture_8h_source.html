@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: D:/ProgramyVS/SWEngine/EngineCode/GraphicAPI/DX11API/DX11Resources/DX11Texture.h Source File</title>
+<title>Schopenhauers Weltschmerz Engine: D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/GraphicAPI/DX11API/DX11Resources/DX11Texture.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -84,7 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_f252de6f3e1ad386b2812e6013e16b78.html">GraphicAPI</a></li><li class="navelem"><a class="el" href="dir_57c817bfe874122647e1a8295fc2f9b9.html">DX11API</a></li><li class="navelem"><a class="el" href="dir_f086f8d9ba9c2ce7a011393771106a82.html">DX11Resources</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d8777cc46500d740a33a6c9eddd161af.html">GraphicAPI</a></li><li class="navelem"><a class="el" href="dir_430df0916eb770ac65b50abf11977577.html">DX11API</a></li><li class="navelem"><a class="el" href="dir_9c2c0372d4ff419886d6d4c3084d7116.html">DX11Resources</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -110,19 +111,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">inline</span> ID3D11ShaderResourceView*        Get() { <span class="keywordflow">return</span> m_texture; }</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_d_x11_texture.html">DX11Texture</a>*                     <a class="code" href="class_d_x11_texture.html#aaf83085f43ffc2f961eb733178f0a5f4">CreateFromFile</a>          ( <span class="keyword">const</span> std::wstring&amp; fileName );</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_d_x11_texture.html">DX11Texture</a>*                     CreateFromMemory        ();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">bool</span>                                    <a class="code" href="class_d_x11_texture.html#a5bec48c61990e15fae3bfb4c77da2a22">SaveToFile</a>              ( <span class="keyword">const</span> std::string&amp; filePath ) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_d_x11_texture.html">DX11Texture</a>*                     <a class="code" href="class_d_x11_texture.html#aaf83085f43ffc2f961eb733178f0a5f4">CreateFromFile</a>          ( <span class="keyword">const</span> std::wstring&amp; fileName );</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_d_x11_texture.html">DX11Texture</a>*                     CreateFromMemory        ();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="ttc" id="class_d_x11_texture_html_a5bec48c61990e15fae3bfb4c77da2a22"><div class="ttname"><a href="class_d_x11_texture.html#a5bec48c61990e15fae3bfb4c77da2a22">DX11Texture::SaveToFile</a></div><div class="ttdeci">bool SaveToFile(const std::string &amp;filePath) override</div><div class="ttdoc">Zapisuje podaną teksturę do pliku. </div><div class="ttdef"><b>Definition:</b> DX11Texture.cpp:22</div></div>
 <div class="ttc" id="class_d_x11_a_p_i_objects_html"><div class="ttname"><a href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></div><div class="ttdoc">Klasa przechowuje w zmiennych statycznych najważniejsze interfejsy DirectX11. </div><div class="ttdef"><b>Definition:</b> DX11APIObjects.h:64</div></div>
 <div class="ttc" id="_mesh_resources_8h_html"><div class="ttname"><a href="_mesh_resources_8h.html">MeshResources.h</a></div><div class="ttdoc">Plik zawiera deklaracje formatów wierzchołków oraz klas zawierających assety shadery itp...</div></div>
-<div class="ttc" id="class_texture_object_html"><div class="ttname"><a href="class_texture_object.html">TextureObject</a></div><div class="ttdoc">Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:223</div></div>
-<div class="ttc" id="class_d_x11_texture_html_aaf83085f43ffc2f961eb733178f0a5f4"><div class="ttname"><a href="class_d_x11_texture.html#aaf83085f43ffc2f961eb733178f0a5f4">DX11Texture::CreateFromFile</a></div><div class="ttdeci">static DX11Texture * CreateFromFile(const std::wstring &amp;fileName)</div><div class="ttdoc">Tworzy teksturę na podstawie podanego pliku. </div><div class="ttdef"><b>Definition:</b> DX11Texture.cpp:23</div></div>
+<div class="ttc" id="class_texture_object_html"><div class="ttname"><a href="class_texture_object.html">TextureObject</a></div><div class="ttdoc">Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:225</div></div>
+<div class="ttc" id="class_d_x11_texture_html_aaf83085f43ffc2f961eb733178f0a5f4"><div class="ttname"><a href="class_d_x11_texture.html#aaf83085f43ffc2f961eb733178f0a5f4">DX11Texture::CreateFromFile</a></div><div class="ttdeci">static DX11Texture * CreateFromFile(const std::wstring &amp;fileName)</div><div class="ttdoc">Tworzy teksturę na podstawie podanego pliku. </div><div class="ttdef"><b>Definition:</b> DX11Texture.cpp:34</div></div>
 <div class="ttc" id="class_d_x11_texture_html"><div class="ttname"><a href="class_d_x11_texture.html">DX11Texture</a></div><div class="ttdoc">Implementacja tekstury w DirectX 11. </div><div class="ttdef"><b>Definition:</b> DX11Texture.h:9</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:17 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

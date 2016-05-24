@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: D:/ProgramyVS/SWEngine/EngineCode/GraphicAPI/DX11API/DX11Resources/DX11Buffer.h Source File</title>
+<title>Schopenhauers Weltschmerz Engine: D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/GraphicAPI/DX11API/DX11Resources/DX11Buffer.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -84,7 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_f252de6f3e1ad386b2812e6013e16b78.html">GraphicAPI</a></li><li class="navelem"><a class="el" href="dir_57c817bfe874122647e1a8295fc2f9b9.html">DX11API</a></li><li class="navelem"><a class="el" href="dir_f086f8d9ba9c2ce7a011393771106a82.html">DX11Resources</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d8777cc46500d740a33a6c9eddd161af.html">GraphicAPI</a></li><li class="navelem"><a class="el" href="dir_430df0916eb770ac65b50abf11977577.html">DX11API</a></li><li class="navelem"><a class="el" href="dir_9c2c0372d4ff419886d6d4c3084d7116.html">DX11Resources</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -113,20 +114,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                                                    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> vertCount,</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                                                    <a class="code" href="_graphic_a_p_i_constants_8h.html#a4b24413c03a6404267f30673d8f5015b">ResourceBinding</a> bindFlag,</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                                                    <a class="code" href="_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1">ResourceUsage</a> usage = <a class="code" href="_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1add9612467790276a699be1a4f087394d">ResourceUsage::RESOURCE_USAGE_STATIC</a> );</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;};</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="ttc" id="class_buffer_object_html"><div class="ttname"><a href="class_buffer_object.html">BufferObject</a></div><div class="ttdoc">Obiekt opakowujący bufor.Bufor może być zarówno buforem wierzchołków, indeksów jak i stałych...</div><div class="ttdef"><b>Definition:</b> MeshResources.h:401</div></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_memory_chunk.html">MemoryChunk</a>         <a class="code" href="class_d_x11_buffer.html#a1f05f8c6e7a8dbbf8a27491976a6342c">CopyData</a>        () <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;};</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="ttc" id="class_buffer_object_html"><div class="ttname"><a href="class_buffer_object.html">BufferObject</a></div><div class="ttdoc">Obiekt opakowujący bufor.Bufor może być zarówno buforem wierzchołków, indeksów jak i stałych...</div><div class="ttdef"><b>Definition:</b> MeshResources.h:403</div></div>
 <div class="ttc" id="_graphic_a_p_i_constants_8h_html_a397e45c96a8884109d4aad7d3255cab1add9612467790276a699be1a4f087394d"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1add9612467790276a699be1a4f087394d">ResourceUsage::RESOURCE_USAGE_STATIC</a></div><div class="ttdoc">Zasób raz stworzony i nigdy nie jest zmieniany. </div></div>
 <div class="ttc" id="_graphic_a_p_i_constants_8h_html_a4b24413c03a6404267f30673d8f5015b"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#a4b24413c03a6404267f30673d8f5015b">ResourceBinding</a></div><div class="ttdeci">ResourceBinding</div><div class="ttdoc">Określa jak będzie używany dany zasób w potoku karty graficznej. </div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:38</div></div>
 <div class="ttc" id="class_d_x11_a_p_i_objects_html"><div class="ttname"><a href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></div><div class="ttdoc">Klasa przechowuje w zmiennych statycznych najważniejsze interfejsy DirectX11. </div><div class="ttdef"><b>Definition:</b> DX11APIObjects.h:64</div></div>
+<div class="ttc" id="class_memory_chunk_html"><div class="ttname"><a href="class_memory_chunk.html">MemoryChunk</a></div><div class="ttdoc">Klasa przechowuje pamięć o dowolnym przeznaczeniu. </div><div class="ttdef"><b>Definition:</b> MemoryChunk.h:8</div></div>
 <div class="ttc" id="_mesh_resources_8h_html"><div class="ttname"><a href="_mesh_resources_8h.html">MeshResources.h</a></div><div class="ttdoc">Plik zawiera deklaracje formatów wierzchołków oraz klas zawierających assety shadery itp...</div></div>
+<div class="ttc" id="class_d_x11_buffer_html_a1f05f8c6e7a8dbbf8a27491976a6342c"><div class="ttname"><a href="class_d_x11_buffer.html#a1f05f8c6e7a8dbbf8a27491976a6342c">DX11Buffer::CopyData</a></div><div class="ttdeci">virtual MemoryChunk CopyData() override</div><div class="ttdoc">Kopiuje pamięć bufora i zwraca w MemoryChunku. </div><div class="ttdef"><b>Definition:</b> DX11Buffer.cpp:74</div></div>
 <div class="ttc" id="class_d_x11_buffer_html"><div class="ttname"><a href="class_d_x11_buffer.html">DX11Buffer</a></div><div class="ttdoc">Implementacja bufora w DirectX11. </div><div class="ttdef"><b>Definition:</b> DX11Buffer.h:14</div></div>
 <div class="ttc" id="class_d_x11_buffer_html_a9ebd60a69f8ba538ab5c2e2f161acb6a"><div class="ttname"><a href="class_d_x11_buffer.html#a9ebd60a69f8ba538ab5c2e2f161acb6a">DX11Buffer::CreateFromMemory</a></div><div class="ttdeci">static DX11Buffer * CreateFromMemory(const void *buffer, unsigned int elementSize, unsigned int vertCount, ResourceBinding bindFlag, ResourceUsage usage=ResourceUsage::RESOURCE_USAGE_STATIC)</div><div class="ttdoc">Tworzy bufor wierzchołków, indeksów lub stałych o podanych parametrach. </div><div class="ttdef"><b>Definition:</b> DX11Buffer.cpp:28</div></div>
 <div class="ttc" id="_graphic_a_p_i_constants_8h_html_a397e45c96a8884109d4aad7d3255cab1"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1">ResourceUsage</a></div><div class="ttdeci">ResourceUsage</div><div class="ttdoc">Specyfikuje typ dostępu do pamięci danego zasobu. </div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:17 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: Kontrolery</title>
+<title>Schopenhauers Weltschmerz Engine: Kontrolery</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -92,12 +93,12 @@ Spis Treści</h1>
 Do czego służą kotrolery</h2>
 <h2><a class="anchor" id="PrePostControllers"></a>
 Kotrolery pre i post</h2>
-<p>Istnieją kotrolery, których ruch uzależniony jest od położenia innych obiektów. Z racji tego nie mogą one zostać wywołane przed policzeniem przemieszczeń, bo byłyby zawsze opóźnione o jedną klatkę. Pozostałe kotrolery służą do wpływania na ruch obiektów, dlatego nie mogą być wywołane, po obliczeniu położeń obiektów. Z tego względu kotrolery obsługiwane są dwukrotnie, jedne w funkcji <a class="el" href="class_controllers_engine.html">ControllersEngine</a>:: proceed_controllers_pre tuż przed wywołaniem MovementEngine::proceed_movement, a drugie tuż po tym wywołaniu w funkcji ControllersEngine::proceed_controllers_post.</p>
+<p>Istnieją kotrolery, których ruch uzależniony jest od położenia innych obiektów. Z racji tego nie mogą one zostać wywołane przed policzeniem przemieszczeń, bo byłyby zawsze opóźnione o jedną klatkę. Pozostałe kotrolery służą do wpływania na ruch obiektów, dlatego nie mogą być wywołane, po obliczeniu położeń obiektów. Z tego względu kotrolery obsługiwane są dwukrotnie, jedne w funkcji <a class="el" href="class_controllers_engine.html" title="Moduł do zarządzania kontrolerami obiektów. ">ControllersEngine</a>:: proceed_controllers_pre tuż przed wywołaniem MovementEngine::proceed_movement, a drugie tuż po tym wywołaniu w funkcji ControllersEngine::proceed_controllers_post.</p>
 <p>Do kontrolerów post zaliczamy kotrolery śledzące jakis obiekt, do kotrolerów pre wszystkie kontrolery odpowiedzialne za AI oraz sterujące ruchem na podstawie klawiatury czy myszy. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:18 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: D:/ProgramyVS/SWEngine/EngineCode/EngineCore/Features/HosekSkylightModel/HosekSkyDome.h Source File</title>
+<title>Schopenhauers Weltschmerz Engine: D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/Features/HosekSkylightModel/HosekSkyDome.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -84,7 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_07852cf1fee5477a7df52c44b8e8dc93.html">EngineCore</a></li><li class="navelem"><a class="el" href="dir_2731223dce62d9de030333c42992c989.html">Features</a></li><li class="navelem"><a class="el" href="dir_a45b9db7144fd1606a5d496c7a77ed82.html">HosekSkylightModel</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5eb15d33cea2c0f983bce569376c8449.html">EngineCore</a></li><li class="navelem"><a class="el" href="dir_43969150feb5bb11edbb4c102e15d834.html">Features</a></li><li class="navelem"><a class="el" href="dir_5abbf47076d613566c3e729b7248172e.html">HosekSkylightModel</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -107,7 +108,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="class_hosek_sky_dome.html">   29</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_hosek_sky_dome.html">HosekSkyDome</a> : <span class="keyword">public</span> <a class="code" href="class_sky_dome.html">SkyDome</a></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_hosek_sky_dome.html#a6a7a87589e9fcf584337bdd87cbcc985">   32</a></span>&#160;    <a class="code" href="macros__switches_8h.html#a4dc36f6c611c1c027dba3c4a3dde8ad5">VERT_INDEX</a>* <a class="code" href="class_hosek_sky_dome.html#a6a7a87589e9fcf584337bdd87cbcc985">back_ind_buffer</a>;        </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_hosek_sky_dome.html#a6a7a87589e9fcf584337bdd87cbcc985">   32</a></span>&#160;    VERT_INDEX* <a class="code" href="class_hosek_sky_dome.html#a6a7a87589e9fcf584337bdd87cbcc985">back_ind_buffer</a>;        </div>
 <div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_hosek_sky_dome.html#a061e4bfc2f028ce9e219fa00941697cf">   33</a></span>&#160;    <a class="code" href="struct_sky_dome_vertex.html">SkyDomeVertex</a>* <a class="code" href="class_hosek_sky_dome.html#a061e4bfc2f028ce9e219fa00941697cf">back_vert_buffer</a>;    </div>
 <div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="class_hosek_sky_dome.html#a8f693c36cf6f6ef3eff798f05f670441">   34</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_hosek_sky_dome.html#a8f693c36cf6f6ef3eff798f05f670441">vert_count</a>;            </div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
@@ -136,11 +137,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
 <div class="ttc" id="class_hosek_sky_dome_html_a07ef8c3026ddbab81ffb993f24dd4a02"><div class="ttname"><a href="class_hosek_sky_dome.html#a07ef8c3026ddbab81ffb993f24dd4a02">HosekSkyDome::generate_sphere</a></div><div class="ttdeci">void generate_sphere(int vertical, int horizontal, float radius)</div><div class="ttdoc">Funkcja generuje w back_vert_buffer i back_ind_buffer sferę dla kpuły nieba. Jest to sfera z punktami...</div><div class="ttdef"><b>Definition:</b> HosekSkyDome.cpp:149</div></div>
 <div class="ttc" id="struct_sky_dome_vertex_html_a916233cbec84d036f39c5eee2f9f7259"><div class="ttname"><a href="struct_sky_dome_vertex.html#a916233cbec84d036f39c5eee2f9f7259">SkyDomeVertex::color</a></div><div class="ttdeci">DirectX::XMFLOAT3 color</div><div class="ttdoc">Kolor wierzchołka. </div><div class="ttdef"><b>Definition:</b> HosekSkyDome.h:20</div></div>
-<div class="ttc" id="class_models_manager_html"><div class="ttname"><a href="class_models_manager.html">ModelsManager</a></div><div class="ttdoc">Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dźwięków, które raczej zostaną oddelego...</div><div class="ttdef"><b>Definition:</b> ModelsManager.h:58</div></div>
+<div class="ttc" id="class_models_manager_html"><div class="ttname"><a href="class_models_manager.html">ModelsManager</a></div><div class="ttdoc">Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dźwięków, które raczej zostaną oddelego...</div><div class="ttdef"><b>Definition:</b> ModelsManager.h:60</div></div>
 <div class="ttc" id="class_i_renderer_html"><div class="ttname"><a href="class_i_renderer.html">IRenderer</a></div><div class="ttdoc">Klasa interfejsu renderera. </div><div class="ttdef"><b>Definition:</b> IRenderer.h:26</div></div>
 <div class="ttc" id="struct_sky_dome_vertex_html"><div class="ttname"><a href="struct_sky_dome_vertex.html">SkyDomeVertex</a></div><div class="ttdoc">Struktura wierzchołka używana przez klasę HosekSkyDome. </div><div class="ttdef"><b>Definition:</b> HosekSkyDome.h:17</div></div>
 <div class="ttc" id="class_hosek_sky_dome_html_a25c09a76d30d1f44eac12e6dcd1ae48b"><div class="ttname"><a href="class_hosek_sky_dome.html#a25c09a76d30d1f44eac12e6dcd1ae48b">HosekSkyDome::update_sky_dome</a></div><div class="ttdeci">void update_sky_dome(DirectX::XMVECTOR sun_direction, const double turbidity, const double *albedo, float sky_intensity=1.0f, float sun_intensity=1.0f)</div><div class="ttdoc">Funkcja ta służy do przeliczenia na nowo danych o kolorach. </div><div class="ttdef"><b>Definition:</b> HosekSkyDome.cpp:102</div></div>
-<div class="ttc" id="macros__switches_8h_html_a4dc36f6c611c1c027dba3c4a3dde8ad5"><div class="ttname"><a href="macros__switches_8h.html#a4dc36f6c611c1c027dba3c4a3dde8ad5">VERT_INDEX</a></div><div class="ttdeci">uint32 VERT_INDEX</div><div class="ttdoc">W zależności od tego czy wybierzemy bufor 16 bitowy czy 32 bitowy VERT_INDEX jest ustawiany jako UINT...</div><div class="ttdef"><b>Definition:</b> macros_switches.h:67</div></div>
 <div class="ttc" id="class_hosek_sky_dome_html_ae7a67d042e81b292a33ec8c7af2e6362"><div class="ttname"><a href="class_hosek_sky_dome.html#ae7a67d042e81b292a33ec8c7af2e6362">HosekSkyDome::update_buffers</a></div><div class="ttdeci">void update_buffers(IRenderer *renderer) override</div><div class="ttdoc">Funkcja aktualizuje bufor wierzchołków zawartością tylnego bufora. </div><div class="ttdef"><b>Definition:</b> HosekSkyDome.cpp:248</div></div>
 <div class="ttc" id="class_hosek_sky_dome_html_a8f693c36cf6f6ef3eff798f05f670441"><div class="ttname"><a href="class_hosek_sky_dome.html#a8f693c36cf6f6ef3eff798f05f670441">HosekSkyDome::vert_count</a></div><div class="ttdeci">unsigned int vert_count</div><div class="ttdoc">Liczba wierzchołków w buforze wierzchołków. </div><div class="ttdef"><b>Definition:</b> HosekSkyDome.h:34</div></div>
 <div class="ttc" id="class_hosek_sky_dome_html_a061e4bfc2f028ce9e219fa00941697cf"><div class="ttname"><a href="class_hosek_sky_dome.html#a061e4bfc2f028ce9e219fa00941697cf">HosekSkyDome::back_vert_buffer</a></div><div class="ttdeci">SkyDomeVertex * back_vert_buffer</div><div class="ttdoc">Tylny bufor wierzchołków. </div><div class="ttdef"><b>Definition:</b> HosekSkyDome.h:33</div></div>
@@ -156,7 +156,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:17 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

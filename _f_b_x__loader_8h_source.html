@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: D:/ProgramyVS/SWEngine/EngineCode/EngineCore/ModelsManager/Loaders/FBX_files_loader/FBX_loader.h Source File</title>
+<title>Schopenhauers Weltschmerz Engine: D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/ModelsManager/Loaders/FBX_files_loader/FBX_loader.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -84,7 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_07852cf1fee5477a7df52c44b8e8dc93.html">EngineCore</a></li><li class="navelem"><a class="el" href="dir_e3683236452e106f52aca482fdb9b84e.html">ModelsManager</a></li><li class="navelem"><a class="el" href="dir_0de0741cbe93fabbcf2e6525bee1f7bd.html">Loaders</a></li><li class="navelem"><a class="el" href="dir_3763d12520d286eaccac18678cd78ad8.html">FBX_files_loader</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5eb15d33cea2c0f983bce569376c8449.html">EngineCore</a></li><li class="navelem"><a class="el" href="dir_1b014ddd2399c8693a92bf0609a63f3e.html">ModelsManager</a></li><li class="navelem"><a class="el" href="dir_48315660d85b2701b2358a2e9893787f.html">Loaders</a></li><li class="navelem"><a class="el" href="dir_d5209778e3fd73e889f7949ad0f11de5.html">FBX_files_loader</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -97,60 +98,67 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_i_loader_8h.html">EngineCore/ModelsManager/Loaders/ILoader.h</a>&quot;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;fbxsdk.h&quot;</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespace_direct_x.html">DirectX</a>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_f_b_x__loader.html">   26</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_f_b_x__loader.html">FBX_loader</a>    :   <span class="keyword">public</span> <a class="code" href="class_i_loader.html">ILoader</a></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    FbxManager*         fbx_manager;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    FbxIOSettings*      fbx_IOsettings;</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="class_f_b_x__loader.html#a88ed2c4f32e84865ed13c66651df60a8">   31</a></span>&#160;    <a class="code" href="class_model3_d_from_file.html">Model3DFromFile</a>*    <a class="code" href="class_f_b_x__loader.html#a88ed2c4f32e84865ed13c66651df60a8">cur_model</a>;      </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="class_f_b_x__loader.html">   25</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_f_b_x__loader.html">FBX_loader</a>    :   <span class="keyword">public</span> <a class="code" href="class_i_loader.html">ILoader</a></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    FbxManager*         fbx_manager;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    FbxIOSettings*      fbx_IOsettings;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_f_b_x__loader.html#a88ed2c4f32e84865ed13c66651df60a8">   30</a></span>&#160;    <a class="code" href="class_model3_d_from_file.html">Model3DFromFile</a>*    <a class="code" href="class_f_b_x__loader.html#a88ed2c4f32e84865ed13c66651df60a8">cur_model</a>;      </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> process_node(FbxNode* node);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> process_mesh(FbxNode* node, FbxMesh* mesh, <span class="keyword">const</span> DirectX::XMFLOAT4X4&amp; transformation);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">int</span> process_tree(FbxNode* root_node);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> read_UVs(FbxMesh* mesh, <span class="keywordtype">int</span> control_point, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> vertex_counter, XMFLOAT2&amp; UV_cords);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">int</span> read_material_index(FbxMesh* mesh, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> polygon_counter);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">//void copy_material( D3DMATERIAL9&amp; directXmaterial, const FbxSurfacePhong&amp; FBXmaterial );</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> copy_material( <a class="code" href="struct_material_object.html">MaterialObject</a>&amp; engine_material, <span class="keyword">const</span> FbxSurfacePhong&amp; FBXmaterial );</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="class_f_b_x__loader.html">FBX_loader</a>(<a class="code" href="class_models_manager.html">ModelsManager</a>* models_manager);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    ~<a class="code" href="class_f_b_x__loader.html">FBX_loader</a>();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="_i_loader_8h.html#af8f65444450e50ed3f0f0e73c1e2a296">LoaderResult</a> load_mesh( <a class="code" href="class_model3_d_from_file.html">Model3DFromFile</a>* new_file_mesh, <span class="keyword">const</span> std::wstring&amp; name ) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">bool</span> can_load(<span class="keyword">const</span> std::wstring&amp; name) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_f_b_x__loader.html#a83d88ad1872f1acb7ea623c5d94254f2">process_node</a>( FbxNode* node );</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_f_b_x__loader.html#a21236ecbeb3e916adfeae74b1ba76a12">process_mesh</a>( FbxNode* node, FbxMesh* mesh, <span class="keyword">const</span> DirectX::XMFLOAT4X4&amp; transformation );</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_f_b_x__loader.html#afb86f10a3626ca3a4941280dc3d5ebac">process_tree</a>( FbxNode* root_node );</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_f_b_x__loader.html#acbe105c706f6a1534af75376af99c2e7">read_UVs</a>( FbxMesh* mesh, <span class="keywordtype">int</span> control_point, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> vertex_counter, DirectX::XMFLOAT2&amp; UV_cords );</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_f_b_x__loader.html#aee718bce559788dfc18954522b10aac0">read_material_index</a>( FbxMesh* mesh, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> polygon_counter );</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="comment">//void copy_material( D3DMATERIAL9&amp; directXmaterial, const FbxSurfacePhong&amp; FBXmaterial );</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_f_b_x__loader.html#ae82d55690390e7bf2a4d8674763588dd">CopyMaterial</a>( <a class="code" href="struct_material_object.html">MaterialObject</a>&amp; engine_material, <span class="keyword">const</span> FbxSurfacePhong&amp; FBXmaterial );</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="class_f_b_x__loader.html#a75098593ef7bc7ef5ebf25bfa6964700">FBX_loader</a>( <a class="code" href="class_models_manager.html">ModelsManager</a>* models_manager );</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    ~<a class="code" href="class_f_b_x__loader.html">FBX_loader</a>();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="_i_loader_8h.html#af8f65444450e50ed3f0f0e73c1e2a296">LoaderResult</a> <a class="code" href="class_f_b_x__loader.html#a13d5e95b1048dfd28d16cad8c520e836">load_mesh</a>( <a class="code" href="class_model3_d_from_file.html">Model3DFromFile</a>* new_file_mesh, <span class="keyword">const</span> std::wstring&amp; name ) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_f_b_x__loader.html#a0096de300d4510b5c008ea7bbb4b967a">can_load</a>( <span class="keyword">const</span> std::wstring&amp; name ) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#ifndef __UNUSED</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">//juz nieużywane, ale zachowane na ewentualną przyszłość</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    std::vector&lt;std::pair&lt;MaterialObject*, FbxSurfacePhong*&gt;&gt;       materials;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">bool</span> process_existing_mesh(FbxNode* node, FbxMesh* mesh, <span class="keyword">const</span> DirectX::XMFLOAT4X4&amp; transformation);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> process_materials(FbxNode* node);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">bool</span> check_if_exists(<a class="code" href="struct_material_object.html">MaterialObject</a>** directXmaterial, FbxSurfacePhong* FBXmaterial);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> add_pair(<a class="code" href="struct_material_object.html">MaterialObject</a>* directXmaterial, FbxSurfacePhong* FBXmaterial);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;};</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="ttc" id="namespace_direct_x_html"><div class="ttname"><a href="namespace_direct_x.html">DirectX</a></div></div>
-<div class="ttc" id="class_models_manager_html"><div class="ttname"><a href="class_models_manager.html">ModelsManager</a></div><div class="ttdoc">Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dźwięków, które raczej zostaną oddelego...</div><div class="ttdef"><b>Definition:</b> ModelsManager.h:58</div></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#ifndef __UNUSED</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">//juz nieużywane, ale zachowane na ewentualną przyszłość</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::vector&lt;std::pair&lt;MaterialObject*, FbxSurfacePhong*&gt;&gt;       Materials;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">bool</span> process_existing_mesh(FbxNode* node, FbxMesh* mesh, <span class="keyword">const</span> DirectX::XMFLOAT4X4&amp; transformation);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> process_materials(FbxNode* node);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">bool</span> check_if_exists(<a class="code" href="struct_material_object.html">MaterialObject</a>** directXmaterial, FbxSurfacePhong* FBXmaterial);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> add_pair(<a class="code" href="struct_material_object.html">MaterialObject</a>* directXmaterial, FbxSurfacePhong* FBXmaterial);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;};</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="ttc" id="class_f_b_x__loader_html_aee718bce559788dfc18954522b10aac0"><div class="ttname"><a href="class_f_b_x__loader.html#aee718bce559788dfc18954522b10aac0">FBX_loader::read_material_index</a></div><div class="ttdeci">int read_material_index(FbxMesh *mesh, unsigned int polygon_counter)</div><div class="ttdoc">Dla podanego polygona odczytujemy jego indeks materiału. Jeżeli nie ma żadnych materiałów przypisanyc...</div><div class="ttdef"><b>Definition:</b> FBX_loader.cpp:282</div></div>
+<div class="ttc" id="class_f_b_x__loader_html_a0096de300d4510b5c008ea7bbb4b967a"><div class="ttname"><a href="class_f_b_x__loader.html#a0096de300d4510b5c008ea7bbb4b967a">FBX_loader::can_load</a></div><div class="ttdeci">bool can_load(const std::wstring &amp;name) override</div><div class="ttdoc">Sprawdza czy umie wczytać podany plik. Funkcja robi to na podstawie rozszerzenia pliku. </div><div class="ttdef"><b>Definition:</b> FBX_loader.cpp:32</div></div>
+<div class="ttc" id="class_models_manager_html"><div class="ttname"><a href="class_models_manager.html">ModelsManager</a></div><div class="ttdoc">Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dźwięków, które raczej zostaną oddelego...</div><div class="ttdef"><b>Definition:</b> ModelsManager.h:60</div></div>
+<div class="ttc" id="class_f_b_x__loader_html_a75098593ef7bc7ef5ebf25bfa6964700"><div class="ttname"><a href="class_f_b_x__loader.html#a75098593ef7bc7ef5ebf25bfa6964700">FBX_loader::FBX_loader</a></div><div class="ttdeci">FBX_loader(ModelsManager *models_manager)</div><div class="ttdoc">Kontruktr inicjuje obiekty FBX SDK, konieczne do wczytania modelu. </div><div class="ttdef"><b>Definition:</b> FBX_loader.cpp:10</div></div>
 <div class="ttc" id="class_i_loader_html"><div class="ttname"><a href="class_i_loader.html">ILoader</a></div><div class="ttdoc">Interfejs klasy do wczytywania plików z modelami. Aby stworzyć klasę do wczytywania własnego formatu ...</div><div class="ttdef"><b>Definition:</b> ILoader.h:39</div></div>
 <div class="ttc" id="_i_loader_8h_html_af8f65444450e50ed3f0f0e73c1e2a296"><div class="ttname"><a href="_i_loader_8h.html#af8f65444450e50ed3f0f0e73c1e2a296">LoaderResult</a></div><div class="ttdeci">LoaderResult</div><div class="ttdoc">Wartości, możliwe do zwrócenia przez klasę Loader. </div><div class="ttdef"><b>Definition:</b> ILoader.h:21</div></div>
-<div class="ttc" id="class_model3_d_from_file_html"><div class="ttname"><a href="class_model3_d_from_file.html">Model3DFromFile</a></div><div class="ttdoc">Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ...</div><div class="ttdef"><b>Definition:</b> Model3DFromFile.h:99</div></div>
-<div class="ttc" id="class_f_b_x__loader_html"><div class="ttname"><a href="class_f_b_x__loader.html">FBX_loader</a></div><div class="ttdoc">Klasa służy do wczytywania plików w formacie Autodesk FBX. </div><div class="ttdef"><b>Definition:</b> FBX_loader.h:26</div></div>
-<div class="ttc" id="class_f_b_x__loader_html_a88ed2c4f32e84865ed13c66651df60a8"><div class="ttname"><a href="class_f_b_x__loader.html#a88ed2c4f32e84865ed13c66651df60a8">FBX_loader::cur_model</a></div><div class="ttdeci">Model3DFromFile * cur_model</div><div class="ttdoc">Na czas wczytywania zapisujemy sobie obiekt, do którego wczytujemy dane. </div><div class="ttdef"><b>Definition:</b> FBX_loader.h:31</div></div>
-<div class="ttc" id="struct_material_object_html"><div class="ttname"><a href="struct_material_object.html">MaterialObject</a></div><div class="ttdoc">Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:441</div></div>
+<div class="ttc" id="class_model3_d_from_file_html"><div class="ttname"><a href="class_model3_d_from_file.html">Model3DFromFile</a></div><div class="ttdoc">Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ...</div><div class="ttdef"><b>Definition:</b> Model3DFromFile.h:100</div></div>
+<div class="ttc" id="class_f_b_x__loader_html_a83d88ad1872f1acb7ea623c5d94254f2"><div class="ttname"><a href="class_f_b_x__loader.html#a83d88ad1872f1acb7ea623c5d94254f2">FBX_loader::process_node</a></div><div class="ttdeci">void process_node(FbxNode *node)</div><div class="ttdoc">Przetwarzamy jeden węzeł drzewa oraz rekurencyjnie wszystkie jego dzieci. Wszystkie dane zostaną umie...</div><div class="ttdef"><b>Definition:</b> FBX_loader.cpp:120</div></div>
+<div class="ttc" id="class_f_b_x__loader_html"><div class="ttname"><a href="class_f_b_x__loader.html">FBX_loader</a></div><div class="ttdoc">Klasa służy do wczytywania plików w formacie Autodesk FBX. </div><div class="ttdef"><b>Definition:</b> FBX_loader.h:25</div></div>
+<div class="ttc" id="class_f_b_x__loader_html_a88ed2c4f32e84865ed13c66651df60a8"><div class="ttname"><a href="class_f_b_x__loader.html#a88ed2c4f32e84865ed13c66651df60a8">FBX_loader::cur_model</a></div><div class="ttdeci">Model3DFromFile * cur_model</div><div class="ttdoc">Na czas wczytywania zapisujemy sobie obiekt, do którego wczytujemy dane. </div><div class="ttdef"><b>Definition:</b> FBX_loader.h:30</div></div>
+<div class="ttc" id="class_f_b_x__loader_html_a21236ecbeb3e916adfeae74b1ba76a12"><div class="ttname"><a href="class_f_b_x__loader.html#a21236ecbeb3e916adfeae74b1ba76a12">FBX_loader::process_mesh</a></div><div class="ttdeci">void process_mesh(FbxNode *node, FbxMesh *mesh, const DirectX::XMFLOAT4X4 &amp;transformation)</div><div class="ttdoc">Przetwarzamy mesha przypisanego do jednego z node&#39;ów drzewa. </div><div class="ttdef"><b>Definition:</b> FBX_loader.cpp:156</div></div>
+<div class="ttc" id="struct_material_object_html"><div class="ttname"><a href="struct_material_object.html">MaterialObject</a></div><div class="ttdoc">Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:443</div></div>
+<div class="ttc" id="class_f_b_x__loader_html_ae82d55690390e7bf2a4d8674763588dd"><div class="ttname"><a href="class_f_b_x__loader.html#ae82d55690390e7bf2a4d8674763588dd">FBX_loader::CopyMaterial</a></div><div class="ttdeci">void CopyMaterial(MaterialObject &amp;engine_material, const FbxSurfacePhong &amp;FBXmaterial)</div><div class="ttdoc">Kopiujemy materiał konwertując go z formatu używanego przez FBX SDK do formatu używanego w silniku...</div><div class="ttdef"><b>Definition:</b> FBX_loader.cpp:388</div></div>
+<div class="ttc" id="class_f_b_x__loader_html_acbe105c706f6a1534af75376af99c2e7"><div class="ttname"><a href="class_f_b_x__loader.html#acbe105c706f6a1534af75376af99c2e7">FBX_loader::read_UVs</a></div><div class="ttdeci">void read_UVs(FbxMesh *mesh, int control_point, unsigned int vertex_counter, DirectX::XMFLOAT2 &amp;UV_cords)</div><div class="ttdoc">Wczytuje UVs dla podanego wierzchołka. </div><div class="ttdef"><b>Definition:</b> FBX_loader.cpp:304</div></div>
 <div class="ttc" id="_i_loader_8h_html"><div class="ttname"><a href="_i_loader_8h.html">ILoader.h</a></div><div class="ttdoc">Zawiera deklarację interfejsu dla loaderów plików z modelami. </div></div>
+<div class="ttc" id="class_f_b_x__loader_html_a13d5e95b1048dfd28d16cad8c520e836"><div class="ttname"><a href="class_f_b_x__loader.html#a13d5e95b1048dfd28d16cad8c520e836">FBX_loader::load_mesh</a></div><div class="ttdeci">LoaderResult load_mesh(Model3DFromFile *new_file_mesh, const std::wstring &amp;name) override</div><div class="ttdoc">Funkcja ma za zadanie wczytać podany plik. </div><div class="ttdef"><b>Definition:</b> FBX_loader.cpp:64</div></div>
+<div class="ttc" id="class_f_b_x__loader_html_afb86f10a3626ca3a4941280dc3d5ebac"><div class="ttname"><a href="class_f_b_x__loader.html#afb86f10a3626ca3a4941280dc3d5ebac">FBX_loader::process_tree</a></div><div class="ttdeci">int process_tree(FbxNode *root_node)</div><div class="ttdoc">Dobieramy się do drzewa, zwróconego przez FBX SDK. </div><div class="ttdef"><b>Definition:</b> FBX_loader.cpp:104</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:17 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

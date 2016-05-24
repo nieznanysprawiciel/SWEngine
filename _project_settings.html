@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: Konfigurowanie projektów</title>
+<title>Schopenhauers Weltschmerz Engine: Konfigurowanie projektów</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -83,17 +84,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><h2>Konfiguracje projektu</h2>
-<dl class="section note"><dt>Note</dt><dd>Zmian w konfiguracjach projektu raczej nie należy wprowadzać bezpośrednio dla konfiguracji Debug i Release. Do tego służą pliki .props, które można zobaczyć otwierając Property Manager dla projektów C++.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Zmian w konfiguracjach projektu raczej nie należy wprowadzać bezpośrednio dla konfiguracji Debug i Release. Do tego służą pliki .props, które można zobaczyć otwierając <a class="el" href="class_property.html">Property</a> Manager dla projektów C++.</dd></dl>
 <p>Ułatwia to zarządzanie ustawieniami, ponieważ pliki te odnoszą się do wszystkich konfiguracji projektu na raz. Ponadto można je współdzielić w wielu projektach jednocześnie.</p>
 <p>Bezpośrednio w konfiguracji można wprowadzać jedynie te zmiany, które odnoszą się konkretnie do danej konfiguracji (np. do Debug x86).</p>
 <h2>Podstawowe pliki konfiguracyjne</h2>
-<p>Istnieją dwa pliki .props, których powinien używac każdy projekt:</p><ul>
-<li>DebugConfig lub ReleaseConfig</li>
+<p>Każdy projekt powinien używać pliku:</p><ul>
+<li>PathsMacros</li>
 </ul>
-<p>Te pliki definiują makra ConfigTypeString, które zawierają napis "Debug" lub "Release" w zależności od konfiguracji. Następnie te makra są używane do tworzenia nazw ścieżek i plików.</p>
-<ul>
-<li>PathsMacros Zawiera podstawowe ścieżki silnikowe, do których odwołują się później kolejne pliki .props.</li>
-</ul>
+<p>Zawiera podstawowe ścieżki silnikowe, do których odwołują się później kolejne pliki .props.</p>
 <p>Każdy projekt ma dwa właściwe tylko dla siebie pliki konfiguracyjne</p><ul>
 <li>[NazwaProjektu]PathMacros</li>
 <li>[NazwaProjektu]Configuration</li>
@@ -101,11 +99,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Pierwszy plik zawiera definicje makr, zawierających podstawowe ścieżki i nazwy dla danego projektu. Makra mają pewien schemat i każdy nowy projekt powinien się go mniej więcej trzymać. Najlepszym sposobem jest przekopiowanie i edytowanie pliku .props w edytorze tekstowym zamiast w Visual Studio.</p>
 <p>Dla projektów kompilujących się do biblioteki statycznej, plik ten zawiera również w sekcji Linker komendy umożliwiające zlinkowanie tej biblioteki. Projekt, który chce zlinkować bibliotekę musi jedynie dodać odpowiedni plik .props.</p>
 <p>[NazwaProjektu]Configuration zawiera zasadnicze ustawienia projektu. W żadnym razie nie należy ustawień umieszczać w [NazwaProjektu]PathMacros, ponieważ ustawienia są dziedziczone i mogą wpływać na inne projekty.</p>
-<p>Większość projektów umieszcza tu w Additional Include Directories ścieżkę $( EngineSourceDir ). </p>
+<p>Większość projektów umieszcza tu w Additional Include Directories ścieżkę $( EngineSourceDir ).</p>
+<h2>Makra definiowane przez silnik:</h2>
+<p>W pliku PathsMacros.props zdefiniowane są makra ze ścieżkami wewnątrz katalogów silnika:</p><ul>
+<li>EngineShortcut</li>
+<li>EngineVersion</li>
+<li>EngineVersionString</li>
+<li>RootDir</li>
+<li>ExternalDir</li>
+<li>GameReleaseDir</li>
+<li>EngineLibDir</li>
+<li>EngineBuildDir</li>
+<li>EngineSourceDir</li>
+<li>EngineLibName</li>
+<li>CommonDir</li>
+<li>BuildFolder</li>
+<li>EditorReleaseDir</li>
+<li>InstallerReleaseDir</li>
+<li>ConfigTypeString</li>
+<li>ConfigTypeSmallString</li>
+<li>DebugSuffix </li>
+</ul>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:18 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

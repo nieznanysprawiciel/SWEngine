@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: Class Members</title>
+<title>Schopenhauers Weltschmerz Engine: Class Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -75,6 +76,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="functions.html"><span>All</span></a></li>
       <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_prop.html"><span>Properties</span></a></li>
+      <li><a href="functions_evnt.html"><span>Events</span></a></li>
       <li><a href="functions_rela.html"><span>Related&#160;Functions</span></a></li>
     </ul>
   </div>
@@ -125,14 +128,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
 
 <h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
-<li>object_references
-: <a class="el" href="class_resource_object.html#af740f86bcb54d10a00d937643576ce4a">ResourceObject</a>
+<li>object
+: <a class="el" href="struct_scene_object_data.html#a48510788ec59df76fdaef25da884d3b5">SceneObjectData</a>
 </li>
 <li>ObjectDeleter()
 : <a class="el" href="class_object_deleter.html#af9abdc5f54232b4e36e3c9e200ba7661">ObjectDeleter&lt; class_type &gt;</a>
 </li>
 <li>ObjectDeleterKey()
 : <a class="el" href="class_object_deleter_key.html#a9ba66de585fb7a7996389113127f598b">ObjectDeleterKey&lt; class_type &gt;</a>
+</li>
+<li>objectParts
+: <a class="el" href="struct_scene_data.html#a2bde07dc5f633b35bfda4d5d9f36678b">SceneData</a>
+</li>
+<li>OctreeLeaf()
+: <a class="el" href="class_octree_leaf.html#add1abe428a1cc09406717695800fec85">OctreeLeaf</a>
 </li>
 <li>on_mouse_reaction()
 : <a class="el" href="class_x_g_u_i_1_1_control.html#ae34f4a2bc2a7d881b540f35a630c587d">XGUI::Control</a>
@@ -143,8 +152,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>onDisable()
 : <a class="el" href="class_x_g_u_i_1_1_control.html#addadd314f50c8a7998b36ce1711aece7">XGUI::Control</a>
 </li>
+<li>OnDispose()
+: <a class="el" href="class_editor_app_1_1_editor_1_1_updatable_view_base.html#ae53b71ded3a0bb2d80624a3ec98bbcdf">EditorApp.Editor.UpdatableViewBase</a>
+</li>
 <li>onDraw()
 : <a class="el" href="class_x_g_u_i_1_1_control.html#a6f08b079ade735cd26e4bbdfa3644d6d">XGUI::Control</a>
+</li>
+<li>OnExecuted
+: <a class="el" href="struct_signal.html#ab66f1286d31976dfbc03f950e2726d30">Signal</a>
 </li>
 <li>onFocusLost()
 : <a class="el" href="class_x_g_u_i_1_1_control.html#ac086fcb9e4cf28bbc1f39cf20512f62e">XGUI::Control</a>
@@ -170,6 +185,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>onMouseOut()
 : <a class="el" href="class_x_g_u_i_1_1_control.html#a4db1eebf39d90126fdc05ded1366bd85">XGUI::Control</a>
 </li>
+<li>OnPropertyChanged()
+: <a class="el" href="class_editor_app_1_1_editor_1_1_updatable_view_base.html#ae1a986ed3769395965b8020073c0d808">EditorApp.Editor.UpdatableViewBase</a>
+</li>
+<li>OnRender()
+: <a class="el" href="class_editor_app_1_1_g_u_i_1_1_framework_element_adorner.html#a6afbcde563ad18105732d37bc59b3922">EditorApp.GUI.FrameworkElementAdorner</a>
+</li>
 <li>onRightClick()
 : <a class="el" href="class_x_g_u_i_1_1_control.html#a02ca5331b312e150d52e233ac1ac5f7d">XGUI::Control</a>
 </li>
@@ -191,20 +212,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>onTextSizeChange()
 : <a class="el" href="class_x_g_u_i_1_1_abstract_text.html#af17b3d9ac968e1c77b80f70142c2ce1b">XGUI::AbstractText</a>
 </li>
+<li>operator=()
+: <a class="el" href="class_memory_chunk.html#a36a9c8e9dc0bed71eedd2de8d8225ee4">MemoryChunk</a>
+</li>
 <li>operator==()
-: <a class="el" href="class_texture_object.html#ab28daa296baf8421732d330aa9178248">TextureObject</a>
+: <a class="el" href="class_texture_object.html#ad5924a71062f45dff478bf1961862e25">TextureObject</a>
+</li>
+<li>operator|=()
+: <a class="el" href="struct_actor_info.html#af6ed7e98e6450743eb52fdb65ce2107d">ActorInfo</a>
 </li>
 <li>orientation
-: <a class="el" href="class_static_object.html#a8abadf1dcd6f41a061598130a624156a">StaticObject</a>
+: <a class="el" href="class_static_actor.html#a884af920831b53de82076d4903a68d2b">StaticActor</a>
 </li>
 <li>orientation_back
-: <a class="el" href="class_static_object.html#ab1e9c311aac6dc219c7795f9a97f8de5">StaticObject</a>
+: <a class="el" href="class_static_actor.html#a5364b3fc809fb546a377e91f4ba7723d">StaticActor</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:04 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

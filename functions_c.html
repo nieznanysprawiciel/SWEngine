@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: Class Members</title>
+<title>Schopenhauers Weltschmerz Engine: Class Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -75,6 +76,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="functions.html"><span>All</span></a></li>
       <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_prop.html"><span>Properties</span></a></li>
+      <li><a href="functions_evnt.html"><span>Events</span></a></li>
       <li><a href="functions_rela.html"><span>Related&#160;Functions</span></a></li>
     </ul>
   </div>
@@ -125,27 +128,60 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
 
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
-<li>cameras
-: <a class="el" href="class_display_engine.html#a760d508488fb8e2fecf4b867eb36e66f">DisplayEngine</a>
+<li>CameraActor()
+: <a class="el" href="class_camera_actor.html#a096525b036e97956c0080b6345b22264">CameraActor</a>
 </li>
-<li>can_delete()
-: <a class="el" href="class_resource_object.html#ac276bd05fcbf702396031c7834593550">ResourceObject</a>
+<li>cameras
+: <a class="el" href="class_display_engine.html#a37d38ad4b8bb8ed30496f4119c4a073f">DisplayEngine</a>
 </li>
 <li>can_load()
 : <a class="el" href="class_f_b_x__loader.html#a0096de300d4510b5c008ea7bbb4b967a">FBX_loader</a>
 , <a class="el" href="class_i_loader.html#a48662089154c9a52d373cf81479c6470">ILoader</a>
 </li>
+<li>CanDelete()
+: <a class="el" href="class_resource_object.html#afe4c6dde245866bf652b96815226b31c">ResourceObject</a>
+</li>
 <li>caret
 : <a class="el" href="class_x_g_u_i_1_1_abstract_text_input.html#a475be333e737ca90ad039857e6b6b321">XGUI::AbstractTextInput</a>
 </li>
-<li>change_abstraction_layer()
-: <a class="el" href="class_u_i___engine.html#a9e738c71113e3dd7078b927281e7adeb">UI_Engine</a>
+<li>ChangeAbstractionLayer()
+: <a class="el" href="class_u_i___engine.html#a4aa715b943f67a9220891d734df8d031">UI_Engine</a>
+</li>
+<li>ChangePixelShaders()
+: <a class="el" href="class_api_1_1_actors_1_1_assets.html#a38add00b5e414aad43c5ebb310acb574">Api::Actors::Assets</a>
+</li>
+<li>ChangeTextures()
+: <a class="el" href="class_api_1_1_actors_1_1_assets.html#a2ffdca67075634f7181870ca5fde342b">Api::Actors::Assets</a>
+</li>
+<li>ChangeVertexShaders()
+: <a class="el" href="class_api_1_1_actors_1_1_assets.html#aeca0a58ef939b800857361142e9c8ae3">Api::Actors::Assets</a>
+</li>
+<li>CheckListener()
+: <a class="el" href="class_event_manager.html#a4aa8387cf7ee204c1d497ddba6c642f6">EventManager</a>
+</li>
+<li>chunkIdx
+: <a class="el" href="struct_scene_object_data.html#a3a4abb7539b1e6333bf9cec617e292a5">SceneObjectData</a>
 </li>
 <li>clean_direct_input()
 : <a class="el" href="class_u_i___engine.html#a32abdf7045d4a65bc7182aeebc5cf843">UI_Engine</a>
 </li>
-<li>clear_abstraction_layers()
-: <a class="el" href="class_u_i___engine.html#a95acf55102db8712e5d4a891e2516feb">UI_Engine</a>
+<li>CleanDirectInput()
+: <a class="el" href="class_direct_input_module.html#a5c535b7a8fc0bc6ae280956158e87b3c">DirectInputModule</a>
+</li>
+<li>ClearAbstractionLayers()
+: <a class="el" href="class_u_i___engine.html#a972c02350e6bca22c6eb2c54aba18161">UI_Engine</a>
+</li>
+<li>ClearAllActors()
+: <a class="el" href="class_octree_leaf.html#a45a40687a42c69479edcd27ea7b0e083">OctreeLeaf</a>
+</li>
+<li>ClearDynamicActors()
+: <a class="el" href="class_octree_leaf.html#a1d269e540850469327ce009ed89f8aa2">OctreeLeaf</a>
+</li>
+<li>ClearListeners()
+: <a class="el" href="class_event_manager.html#a9ca840f7944a1892d5adaad0708af5b3">EventManager</a>
+</li>
+<li>ClearListenersDelayed()
+: <a class="el" href="class_api_1_1_actors_1_1_communication.html#a446ded7315fa947e1b6c396b6a70ff27">Api::Actors::Communication</a>
 </li>
 <li>close_button
 : <a class="el" href="class_x_g_u_i_1_1_abstract_window.html#aeff0e721aa85bb9a10b84acd98f3a73d">XGUI::AbstractWindow</a>
@@ -153,15 +189,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>close_window_button
 : <a class="el" href="class_x_g_u_i_1_1_abstract_window.html#a0630bf50b8269de3d399fe489cab4955">XGUI::AbstractWindow</a>
 </li>
-<li>collision_engine
-: <a class="el" href="class_engine_interface.html#a3d4e298ebc284dd43a96914e00af29e5">EngineInterface</a>
+<li>collisionEngine
+: <a class="el" href="struct_engine_context.html#a2e4129ea60f97a467b9322ba6c5ffd4e">EngineContext</a>
 </li>
 <li>color
-: <a class="el" href="struct_sky_dome_vertex.html#a916233cbec84d036f39c5eee2f9f7259">SkyDomeVertex</a>
+: <a class="el" href="struct_coord_color.html#a65a2f46bd8b26fe751e76fb3e2e029ab">CoordColor</a>
+, <a class="el" href="struct_sky_dome_vertex.html#a916233cbec84d036f39c5eee2f9f7259">SkyDomeVertex</a>
 , <a class="el" href="struct_vertex_color.html#a723bdf3b562fd0fe4f74c9fa7435bc6f">VertexColor</a>
 </li>
 <li>colorBuffFormat
 : <a class="el" href="struct_render_target_descriptor.html#a2697ab33201d52e5626acf497cca92fa">RenderTargetDescriptor</a>
+</li>
+<li>CombineVersionsByPath()
+: <a class="el" href="class_installer_1_1_version_1_1_version_manager.html#a6d08bbbf485b4795e3ded03e7134f061">Installer.Version.VersionManager</a>
+</li>
+<li>CombineVersionsByVersion()
+: <a class="el" href="class_installer_1_1_version_1_1_version_manager.html#a753139bdae8e10f0167efd615a2d2116">Installer.Version.VersionManager</a>
+</li>
+<li>commandQueue
+: <a class="el" href="struct_engine_context.html#a810f60682f8876977775923db45c3e5a">EngineContext</a>
+</li>
+<li>Communication
+: <a class="el" href="class_api_1_1_actors_api.html#a6720ac57179d5e166a03bb9c96b7c5f7">Api::ActorsApi</a>
 </li>
 <li>const_per_frame
 : <a class="el" href="class_d_x11_auxiliary_objects.html#a8658e0dd754267c74c00885f242baa5b">DX11AuxiliaryObjects</a>
@@ -175,18 +224,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>container
 : <a class="el" href="class_resource_container.html#af48cbcabc0639a0116ac7ace47fdb738">ResourceContainer&lt; TYPE &gt;</a>
 </li>
+<li>Context
+: <a class="el" href="class_engine_interface.html#a9efd0897dba0a861de748a5a196092a8">EngineInterface</a>
+</li>
 <li>Control::draw_clipped
 : <a class="el" href="class_x_g_u_i_1_1_renderer.html#ac9be7832dc7251e98a0db26f73732444">XGUI::Renderer</a>
 </li>
 <li>controller
-: <a class="el" href="class_dynamic_object.html#af10ca99e6a04e7bd9fc30271bc3859eb">DynamicObject</a>
+: <a class="el" href="class_dynamic_actor.html#a83fac432277956a2069c6051c9c29dc1">DynamicActor</a>
 </li>
-<li>controllers_engine
-: <a class="el" href="class_engine_interface.html#a7e28bc7ca2a5a349bb3e2247b384a231">EngineInterface</a>
+<li>controllersEngine
+: <a class="el" href="struct_engine_context.html#af34c0da547a737768681b508ddcfe940">EngineContext</a>
 </li>
-<li>copy_material()
-: <a class="el" href="class_display_engine.html#addca9b30cacc01d5a6a0cbc94c775f5b">DisplayEngine</a>
-, <a class="el" href="class_f_b_x__loader.html#a93bf7c8b2aa936617b87b194162442ce">FBX_loader</a>
+<li>ControlObjectPost()
+: <a class="el" href="class_gizmo_controller.html#aa96c56aec5a3a5d21f09e548d2f73028">GizmoController</a>
+, <a class="el" href="class_spectator_camera_controller.html#af6cf49fa6ea4ec576e96307b81d37882">SpectatorCameraController</a>
+</li>
+<li>CopyData()
+: <a class="el" href="class_d_x11_buffer.html#a1f05f8c6e7a8dbbf8a27491976a6342c">DX11Buffer</a>
+, <a class="el" href="class_i_buffer.html#a32f2ba857528f4b287d38a2fde496992">IBuffer</a>
+</li>
+<li>CopyMaterial()
+: <a class="el" href="class_display_engine.html#af19f05cc7a9b87304e8ac9400b0c4569">DisplayEngine</a>
+, <a class="el" href="class_f_b_x__loader.html#ae82d55690390e7bf2a4d8674763588dd">FBX_loader</a>
+</li>
+<li>Count()
+: <a class="el" href="class_memory_chunk.html#ac5a803361336a16426f0d7041471c69f">MemoryChunk</a>
 </li>
 <li>count
 : <a class="el" href="class_resource_container.html#a86c4642a177fad08bfecbfbc9c3e15b8">ResourceContainer&lt; TYPE &gt;</a>
@@ -197,11 +260,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>CPUWrite
 : <a class="el" href="struct_render_target_descriptor.html#a78e27d4aff1de375646d4383b691ef5c">RenderTargetDescriptor</a>
 </li>
-<li>createActor()
-: <a class="el" href="class_actor_creator.html#ad4db23f6b10931552e8a85a50bc706eb">ActorCreator</a>
+<li>CreateActor()
+: <a class="el" href="class_actor_factory.html#acc7aa561151d93f53c93dd06c97f1008">ActorFactory</a>
+, <a class="el" href="class_actors_manager.html#a33d14cb61a46317339d3211f5aa2b9c9">ActorsManager</a>
+, <a class="el" href="class_api_1_1_actors_api.html#afee325898eb0c4590c9d775da97d3d28">Api::ActorsApi</a>
+</li>
+<li>CreateActorsMetadata()
+: <a class="el" href="class_editor_plugin_1_1_engine_wrapper.html#abbbb8a203e338eeec006d1aff93d2344">EditorPlugin::EngineWrapper</a>
 </li>
 <li>CreateBufferFromMemory()
 : <a class="el" href="class_resources_factory.html#ad59a6e4fcf28de4ed02fba65ceb12d69">ResourcesFactory</a>
+</li>
+<li>CreateComputeShaderFromFile()
+: <a class="el" href="class_resources_factory.html#a9a051cff9a28358ebeba2614bbaeaebf">ResourcesFactory</a>
 </li>
 <li>CreateFromFile()
 : <a class="el" href="class_d_x11_pixel_shader.html#ae520bd1baea2bdbb1f7a06c61c7f22c5">DX11PixelShader</a>
@@ -231,6 +302,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>CreateTextureFromFile()
 : <a class="el" href="class_resources_factory.html#a93c6488d46d5f4a3682fb4c5b6124d83">ResourcesFactory</a>
 </li>
+<li>CreateVertexBufferSync()
+: <a class="el" href="class_api_1_1_assets_1_1_buffers.html#abfb591fa24726f9c3719071030b1308e">Api::Assets::Buffers</a>
+</li>
 <li>CreateVertexShaderFromFile()
 : <a class="el" href="class_resources_factory.html#ab4363b1ae502507b371539ac54fb2855">ResourcesFactory</a>
 </li>
@@ -238,13 +312,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_f_b_x__loader.html#a88ed2c4f32e84865ed13c66651df60a8">FBX_loader</a>
 </li>
 <li>current_camera
-: <a class="el" href="class_display_engine.html#ad7d23ecf90c32004453cdd71ee4e6771">DisplayEngine</a>
+: <a class="el" href="class_display_engine.html#abe4d3adb31633488b3137a2201b6936a">DisplayEngine</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:04 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

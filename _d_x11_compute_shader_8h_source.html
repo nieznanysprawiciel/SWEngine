@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: D:/ProgramyVS/SWEngine/EngineCode/GraphicAPI/DX11API/DX11Resources/DX11ComputeShader.h Source File</title>
+<title>Schopenhauers Weltschmerz Engine: D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/GraphicAPI/DX11API/DX11Resources/DX11ComputeShader.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -84,7 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_f252de6f3e1ad386b2812e6013e16b78.html">GraphicAPI</a></li><li class="navelem"><a class="el" href="dir_57c817bfe874122647e1a8295fc2f9b9.html">DX11API</a></li><li class="navelem"><a class="el" href="dir_f086f8d9ba9c2ce7a011393771106a82.html">DX11Resources</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d8777cc46500d740a33a6c9eddd161af.html">GraphicAPI</a></li><li class="navelem"><a class="el" href="dir_430df0916eb770ac65b50abf11977577.html">DX11API</a></li><li class="navelem"><a class="el" href="dir_9c2c0372d4ff419886d6d4c3084d7116.html">DX11Resources</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -105,25 +106,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    ~<a class="code" href="class_d_x11_compute_shader.html">DX11ComputeShader</a>();</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_d_x11_compute_shader.html">DX11ComputeShader</a>();</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_d_x11_compute_shader.html">DX11ComputeShader</a>      ( ID3D11ComputeShader* shader );</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">inline</span> ID3D11ComputeShader*     Get() { <span class="keywordflow">return</span> m_computeShader; }</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span>                    ReloadFromFile          () <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span>                    ReloadFromBinFile       () <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span>                    SaveShaderBinFile       ( <span class="keyword">const</span> std::wstring&amp; file_name ) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span>                    SaveShaderBinFile       ( <span class="keyword">const</span> std::wstring&amp; fileName ) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_d_x11_compute_shader.html">DX11ComputeShader</a>*       CreateFromFile( <span class="keyword">const</span> std::wstring&amp; file_name, <span class="keyword">const</span> std::string&amp; shader_name, <span class="keyword">const</span> <span class="keywordtype">char</span>* shader_model = <span class="stringliteral">&quot;vs_4_0&quot;</span> );</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_d_x11_compute_shader.html">DX11ComputeShader</a>*       CreateFromBinFile( <span class="keyword">const</span> std::wstring&amp; file_name );</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_d_x11_compute_shader.html">DX11ComputeShader</a>*       CreateFromFile          ( <span class="keyword">const</span> std::wstring&amp; fileName, <span class="keyword">const</span> std::string&amp; shaderName, <span class="keyword">const</span> <span class="keywordtype">char</span>* shaderModel = <span class="stringliteral">&quot;cs_4_0&quot;</span> );</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_d_x11_compute_shader.html">DX11ComputeShader</a>*       CreateFromBinFile       ( <span class="keyword">const</span> std::wstring&amp; fileName );</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;};</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
 <div class="ttc" id="class_d_x11_a_p_i_objects_html"><div class="ttname"><a href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></div><div class="ttdoc">Klasa przechowuje w zmiennych statycznych najważniejsze interfejsy DirectX11. </div><div class="ttdef"><b>Definition:</b> DX11APIObjects.h:64</div></div>
-<div class="ttc" id="class_compute_shader_object_html"><div class="ttname"><a href="class_compute_shader_object.html">ComputeShaderObject</a></div><div class="ttdoc">Klasa przechowująca compute shader. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:381</div></div>
+<div class="ttc" id="class_compute_shader_object_html"><div class="ttname"><a href="class_compute_shader_object.html">ComputeShaderObject</a></div><div class="ttdoc">Klasa przechowująca compute shader. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:383</div></div>
 <div class="ttc" id="class_d_x11_compute_shader_html"><div class="ttname"><a href="class_d_x11_compute_shader.html">DX11ComputeShader</a></div><div class="ttdoc">Implementacja compute shadera w DirectX11. </div><div class="ttdef"><b>Definition:</b> DX11ComputeShader.h:9</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:17 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

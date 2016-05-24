@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: D:/ProgramyVS/SWEngine/EngineCode/EngineCore/ModelsManager/ResourceContainer.h Source File</title>
+<title>Schopenhauers Weltschmerz Engine: D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/ModelsManager/ResourceContainer.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -84,7 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_07852cf1fee5477a7df52c44b8e8dc93.html">EngineCore</a></li><li class="navelem"><a class="el" href="dir_e3683236452e106f52aca482fdb9b84e.html">ModelsManager</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5eb15d33cea2c0f983bce569376c8449.html">EngineCore</a></li><li class="navelem"><a class="el" href="dir_1b014ddd2399c8693a92bf0609a63f3e.html">ModelsManager</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -158,7 +159,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;{</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">for</span> ( <span class="keyword">auto</span> iter = container.begin(); iter != container.end(); iter++ )</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">if</span> ( iter-&gt;second-&gt;get_id() == id )</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">if</span> ( iter-&gt;second-&gt;GetID() == id )</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            <span class="keywordflow">return</span> iter-&gt;second;</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
@@ -183,7 +184,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    container[name] = resource;</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    resource-&gt;set_id( count );</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    resource-&gt;SetID( count );</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    ++count;            <span class="comment">// Inkrementujemy licznik</span></div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
@@ -206,7 +207,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordflow">if</span> ( iter != container.end() )</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="keywordflow">return</span> -1;      <span class="comment">// Nie znaleźliśmy elementu</span></div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordflow">if</span> ( !iter-&gt;second-&gt;can_delete() )</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordflow">if</span> ( !iter-&gt;second-&gt;CanDelete() )</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keywordflow">return</span> 1;       <span class="comment">// Nie możemy skasować, bo są odwołania</span></div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    release_memory( iter-&gt;second );     <span class="comment">// Zwalniamy pamięć spod wskaźnika</span></div>
@@ -221,10 +222,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;{</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <span class="keywordflow">for</span> ( <span class="keyword">auto</span> iter = container.begin( ); iter != container.end( ); iter++ )</div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    {</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="keywordflow">if</span> ( iter-&gt;second-&gt;get_id() == id )</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="keywordflow">if</span> ( iter-&gt;second-&gt;GetID() == id )</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        {</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            <span class="comment">// Sprawdzamy czy nie ma jakichś odwołań do obiektu</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            <span class="keywordflow">if</span> ( !iter-&gt;second-&gt;can_delete() )</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            <span class="keywordflow">if</span> ( !iter-&gt;second-&gt;CanDelete() )</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                <span class="keywordflow">return</span> 1;               <span class="comment">// Są odwołania, więc nie kasujemy</span></div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            release_memory( iter-&gt;second );     <span class="comment">// Zwalniamy pamięć spod wskaźnika</span></div>
@@ -242,7 +243,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordtype">int</span> count = 0;</div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordflow">for</span> ( <span class="keyword">auto</span> iter = container.begin(); iter != container.end(); iter++ )</div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    {<span class="comment">// Iterujemy po całej mapie</span></div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        <span class="keywordflow">if</span> ( iter-&gt;second-&gt;can_delete() )</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        <span class="keywordflow">if</span> ( iter-&gt;second-&gt;CanDelete() )</div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        {</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            <span class="comment">// Możemy skasować obiekt, bo nikt go nie używa</span></div>
 <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            release_memory( iter-&gt;second );     <span class="comment">// Zwalniamy pamięć spod wskaźnika</span></div>
@@ -272,7 +273,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;{</div>
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <span class="keywordflow">for</span> ( <span class="keyword">auto</span> iter = container.begin( ); iter != container.end( ); iter++ )</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    {</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        <span class="keywordflow">if</span> ( iter-&gt;second-&gt;get_id( ) == id )</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        <span class="keywordflow">if</span> ( iter-&gt;second-&gt;GetID( ) == id )</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        {</div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;            <span class="keyword">delete</span> iter-&gt;second;        <span class="comment">// Zwalniamy pamięć spod wskaźnika</span></div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;            <span class="keywordflow">return</span> 0;</div>
@@ -294,7 +295,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;</div>
 <div class="ttc" id="class_resource_container_html_af48cbcabc0639a0116ac7ace47fdb738"><div class="ttname"><a href="class_resource_container.html#af48cbcabc0639a0116ac7ace47fdb738">ResourceContainer::container</a></div><div class="ttdeci">std::map&lt; std::wstring, TYPE * &gt; container</div><div class="ttdoc">Kontener zawierający assety powiazane z ich nazwą </div><div class="ttdef"><b>Definition:</b> ResourceContainer.h:29</div></div>
 <div class="ttc" id="class_resource_container_html_a7c3e76cf87aacd201ddd3bce2da7f5cc"><div class="ttname"><a href="class_resource_container.html#a7c3e76cf87aacd201ddd3bce2da7f5cc">ResourceContainer::force_remove_all</a></div><div class="ttdeci">void force_remove_all()</div><div class="ttdoc">Kasuje wszystkie elementy niezależnie od tego czy były używane, a następnie czyści mapę...</div><div class="ttdef"><b>Definition:</b> ResourceContainer.h:263</div></div>
-<div class="ttc" id="class_models_manager_html"><div class="ttname"><a href="class_models_manager.html">ModelsManager</a></div><div class="ttdoc">Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dźwięków, które raczej zostaną oddelego...</div><div class="ttdef"><b>Definition:</b> ModelsManager.h:58</div></div>
+<div class="ttc" id="class_models_manager_html"><div class="ttname"><a href="class_models_manager.html">ModelsManager</a></div><div class="ttdoc">Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dźwięków, które raczej zostaną oddelego...</div><div class="ttdef"><b>Definition:</b> ModelsManager.h:60</div></div>
 <div class="ttc" id="class_resource_container_html_a86c4642a177fad08bfecbfbc9c3e15b8"><div class="ttname"><a href="class_resource_container.html#a86c4642a177fad08bfecbfbc9c3e15b8">ResourceContainer::count</a></div><div class="ttdeci">unsigned int count</div><div class="ttdoc">Indentyfikator jaki zostanie przydzielony kolejnemy elementowi. </div><div class="ttdef"><b>Definition:</b> ResourceContainer.h:26</div></div>
 <div class="ttc" id="class_resource_container_html_a6d582832951a4376f83df247d317e1aa"><div class="ttname"><a href="class_resource_container.html#a6d582832951a4376f83df247d317e1aa">ResourceContainer::force_remove</a></div><div class="ttdeci">int force_remove(const std::wstring &amp;name)</div><div class="ttdoc">Wymusza skasowanie podanego elementu, nawet jeżeli jest używany. </div><div class="ttdef"><b>Definition:</b> ResourceContainer.h:230</div></div>
 <div class="ttc" id="class_resource_container_html_a1939dc49ac74d941b5e668799edb28a6"><div class="ttname"><a href="class_resource_container.html#a1939dc49ac74d941b5e668799edb28a6">ResourceContainer::remove</a></div><div class="ttdeci">int remove(const std::wstring &amp;name)</div><div class="ttdoc">Usuwa element o podanej nazwie, jeżeli nie ma do niego odwołań. </div><div class="ttdef"><b>Definition:</b> ResourceContainer.h:156</div></div>
@@ -311,7 +312,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:17 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: PerformanceCheck Class Reference</title>
+<title>Schopenhauers Weltschmerz Engine: PerformanceCheck Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -135,7 +136,7 @@ std::vector&lt; <a class="el" href="struct__performance__data.html">_performance
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Klasa służy do pomiaru wydajności poszczególnych fragmentów kodu. </p>
-<p>Sposób użycia klasy: Są dwie metody. Można normalnie korzystać z klasy jak ze zwykłego obiektu i wywoływać jej funkcje lub można użyć zamiast tego specjalnie zdefiniowanych makr. W drugim przypadku kod służący do pomiaru będzie załączany jedynie w przypadku zdefiniowania makra PERFORMANCE_CHECK. W innym razie wszystkie użyte makra będą rozwijały się do pustych instrukcji.</p>
+<p>Sposób użycia klasy: Są dwie metody. Można normalnie korzystać z klasy jak ze zwykłego obiektu i wywoływać jej funkcje lub można użyć zamiast tego specjalnie zdefiniowanych makr. W drugim przypadku kod służący do pomiaru będzie załączany jedynie w przypadku zdefiniowania makra PERFORMANCE_CHECK. W innym przypadku wszystkie użyte makra będą rozwijały się do pustych instrukcji.</p>
 <ol type="1">
 <li>Normalne używanie klasy. Aby użyć klasy należy zarejestrować nazwy wybranych zadań. Robi się to funkcją registerTaskName. Funkcja zwraca identyfikator, który potem posłuży do wywoływania pomiarów dla tego zadania.</li>
 </ol>
@@ -144,10 +145,10 @@ std::vector&lt; <a class="el" href="struct__performance__data.html">_performance
 <div class="fragment"><div class="line"><span class="preprocessor">#include PerformanceCheck.h</span></div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> taskID;</div>
+<div class="line"><a class="code" href="class_performance_check.html">PerformanceCheck</a> stats;</div>
 <div class="line"></div>
 <div class="line">myClass::myClass()</div>
 <div class="line">{</div>
-<div class="line">    <a class="code" href="class_performance_check.html">PerformanceCheck</a> stats;</div>
 <div class="line">    taskID = stats.<a class="code" href="class_performance_check.html#a153184490057f9372b25441404701d11">registerTaskName</a>(<span class="stringliteral">&quot;task_name&quot;</span>);</div>
 <div class="line">}</div>
 <div class="line"></div>
@@ -166,21 +167,15 @@ std::vector&lt; <a class="el" href="struct__performance__data.html">_performance
 <li>włącza definicje pozostałych potrzebnych makr</li>
 <li>załącza kod tworzący obiekt tej klasy (obiekt jest zmienną globalną w pliku PerformanceCheck.cpp)</li>
 </ul>
-<p>Następnie trzeba zadeklarować chęć użycia pomiaru dla jakiegoś zadania wywołująć makro USE_PERFORMANCE_CHECK i podając nazwę zadania. Makro powinno zostać wywołane w takim miejscu, jakbyśmy deklarowali zmienną, która ma być dostępna w miejscach, gdzie będziemy robili pomiary czasu. (Ponieważ to robi niejawnie to makro - definiuje taką zmienną).</p>
+<p>Następnie trzeba zadeklarować chęć użycia pomiaru dla jakiegoś zadania wywołująć makro REGISTER_PERFORMANCE_CHECK i podając nazwę zadania. Makro powinno zostać wywołane globalnie, w tej samej przestrzeni nazw, w jakiej będzie wywoływana funkcja do pomiaru czasu.</p>
 <p>Nazwa powinna być pojedynczym ciągiem znaków. NIE może być w cudzysłowie.</p>
-<p>Zadanie musi zostać zarejestrowane przed użyciem makr do pomiaru poprzez wywołanie REGISTER_PERFORMANCE_TASK z podaniem nazwy zadania, która zostanie potem zapisana w pliku.</p>
 <p>W miejscu pomiaru należy wywołać parami makra START_PERFORMANCE_CHECK i END_PERFORMANCE_CHECK podając w parametrze taki sam ciąg znaków, jakim zostało zarejestrowane zadanie.</p>
 <p>Wypisanie statystyk robi się za pomocą makra PRINT_STATISTICS i podaje nazwę pliku. </p><dl class="section attention"><dt>Attention</dt><dd>Nazwa pliku jest w cudzysłowie w przeciwieństwie do innych miejsc, w których wywołuje się makra.</dd></dl>
 <div class="fragment"><div class="line"><span class="preprocessor">#include PerformanceCheck.h</span></div>
 <div class="line"></div>
-<div class="line">USE_PERFORMANCE_CHECK( TASK_NAME )</div>
+<div class="line">REGISTER_PERFORMANCE_CHECK( TASK_NAME )</div>
 <div class="line"></div>
-<div class="line">myClass::myClass()</div>
-<div class="line">{</div>
-<div class="line">    REGISTER_PERFORMANCE_TASK( TASK_NAME )</div>
-<div class="line">}</div>
-<div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> timer()</div>
+<div class="line">void FunctionToProfile()</div>
 <div class="line">{</div>
 <div class="line">    START_PERFORMANCE_CHECK( TASK_NAME )</div>
 <div class="line"></div>
@@ -288,13 +283,13 @@ std::vector&lt; <a class="el" href="struct__performance__data.html">_performance
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/EngineHelpers/<a class="el" href="_performance_check_8h_source.html">PerformanceCheck.h</a></li>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/EngineHelpers/PerformanceCheck.cpp</li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/EngineHelpers/<a class="el" href="_performance_check_8h_source.html">PerformanceCheck.h</a></li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/EngineHelpers/PerformanceCheck.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:18 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

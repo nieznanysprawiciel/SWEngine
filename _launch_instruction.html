@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: Instrukcja uruchamiania</title>
+<title>Schopenhauers Weltschmerz Engine: Instrukcja uruchamiania</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -86,7 +87,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Aby skompilować projekt, trzeba mieć ściągnięte DirectX SDK (<a href="http://www.microsoft.com/en-us/download/details.aspx?id=6812">http://www.microsoft.com/en-us/download/details.aspx?id=6812</a>)</p>
 <p>Przy instalacji najczęściej są problemy. Jeżeli wystąpi błąd S1023 należy odinstalować Visual C++ 2010 Redistributable (zarówno x86 jak i x64). Błąd jest podobno związany z Service Packiem 1, dokładniej można przeczytać w internecie co i jak.</p>
 <p>Po dezinstalacji Visual C++ 2010 Redistributable, DirectX SDK daje się zainstalować poprawnie. Potem należy ponownie zainstalować Visual C++ 2010 Redistributable, co nie powoduje już problemów, a przynajmniej nic nie wiem. (link: <a href="http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=26999">http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=26999</a>)</p>
-<p>Slnik używa również FBX SDK do wczytywania modeli w tym formacie. Biblioteka znajduje się w folderze /External.</p>
+<p>Silnik używa również FBX SDK do wczytywania modeli w tym formacie. Biblioteka znajduje się w folderze /External. Do skompilowania edytora potrzebne jest kilka pakietów, które Visual Studio automatycznie ściągnie przy pierwszej kompilacji.</p>
+<p>Silnik używa też bibilioteki RTTR Axela Menzela, do obsługiwania dynamicznej informacji o typach i metadanych o klasach. Niestety do kompilacji potrzebna jest odpowiednia wersja kompilatora z C++ 11. Visual C++ 12 (2013) z Updatem 2 nie działa, ponieważ wyskakują błędy z redefinicją funkcji szablonowych przy użyciu wzorca projektowego SFINAE. Na pewno działa od Updatu 4.</p>
 <p>Kompilowanie wersji 32-bitowej poprzez Visual Studio odbywa się normalnie BUILD-&gt;Build Solution.</p>
 <h2>Kompilowanie wersji 64-bitowej</h2>
 <p>Wszystkie ustawienia projektu dla wersji 64-bitowej są poprawnie ustawione. Jedyne co należy zrobić, to przestawić active solution platform z Win32 na x64. Można to zrobić następująco:</p><ul>
@@ -95,9 +97,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Po prawej stronie na górze zmieniamy Active Solution Platform na x64</li>
 <li>Zamykamy okno Od tej pory silnik będzie kompilowany do wersji 64-bitowej.</li>
 </ul>
-<p>Katalogiem wynikowym pliku .exe jest GameRelease/binaries_x64. Wersja 64-bitowa uruchamia się w Visual Studio, ale poza nim nie, ponieważ jest w złym katalogu. Instrukcja uruchamiania znajduje się w pliku GameRelease/binaries_x64/read_before_use.txt.</p>
+<p>Katalogiem wynikowym pliku .exe jest GameRelease (dostępny pod makrem ). Przy każdej kompilacji do tego katalogu kopiowana jest biblioteka libfbxsdk.dll odpowiadająca aktualnie używanej wersji aplikacji. Z tego względu klikając myszką plik .exe można uruchomić jedynie ostatnio kompilowaną wersję aplikacji. Aby przetestować inną wersję trzeba ją uruchomić z poziomu Visual Studio.</p>
 <h2>Uruchamianie</h2>
-<p>Jedynym uruchamialnym w tej chwili projektem jest TestEngine. Wywołuje on funkje testujące silnika, które wczytują modele z katalogów GameRelease/tylko_do_testow. Pozostałe projekty kompilują się do bibliotek statycznych.</p>
+<p>Uruchamialne projekty:</p><ul>
+<li>TestEngine</li>
+<li><a class="el" href="namespace_editor_app.html">EditorApp</a></li>
+<li>SerializationJSONTest</li>
+<li>SerializationXMLTest</li>
+</ul>
+<p>Wszystkie projekty oprócz <a class="el" href="namespace_editor_app.html">EditorApp</a> powinny mieć ustawiony katalog roboczy na GameRelease. Properties -&gt; Debugging -&gt; Working Directory Uwaga!! Trzeba zmienić katalog dla wszystkich konfiguracji projektu (Release/Debug; Win32/x64), żeby potem nie być zaskoczonym, że coś nie działa.</p>
+<p><a class="el" href="namespace_editor_app.html">EditorApp</a> powinien miec ustawiony katalog roboczy na EditorRelease (makro ).</p>
 <h2>Dokumentacja</h2>
 <p>Dokumentacja jest dostępna online pod linkiem: <a href="http://nieznanysprawiciel.github.io/SWEngine/">http://nieznanysprawiciel.github.io/SWEngine/</a></p>
 <p>Istnieje specjalny branch gh-pages, który zawiera tylko i wyłącznie dokumentację w postaci html-ów.</p>
@@ -122,7 +131,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:18 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

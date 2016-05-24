@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: FBX_loader Class Reference</title>
+<title>Schopenhauers Weltschmerz Engine: FBX_loader Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -138,17 +139,18 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:afb86f10a3626ca3a4941280dc3d5ebac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_b_x__loader.html#afb86f10a3626ca3a4941280dc3d5ebac">process_tree</a> (FbxNode *root_node)</td></tr>
 <tr class="memdesc:afb86f10a3626ca3a4941280dc3d5ebac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dobieramy się do drzewa, zwróconego przez FBX SDK.  <a href="#afb86f10a3626ca3a4941280dc3d5ebac">More...</a><br /></td></tr>
 <tr class="separator:afb86f10a3626ca3a4941280dc3d5ebac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18c43ece20566c7dc92a990340955400"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a18c43ece20566c7dc92a990340955400"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_b_x__loader.html#a18c43ece20566c7dc92a990340955400">read_UVs</a> (FbxMesh *mesh, int control_point, unsigned int vertex_counter, XMFLOAT2 &amp;UV_cords)</td></tr>
-<tr class="memdesc:a18c43ece20566c7dc92a990340955400"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wczytuje UVs dla podanego wierzchołka. <br /></td></tr>
-<tr class="separator:a18c43ece20566c7dc92a990340955400"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbe105c706f6a1534af75376af99c2e7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acbe105c706f6a1534af75376af99c2e7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_b_x__loader.html#acbe105c706f6a1534af75376af99c2e7">read_UVs</a> (FbxMesh *mesh, int control_point, unsigned int vertex_counter, DirectX::XMFLOAT2 &amp;UV_cords)</td></tr>
+<tr class="memdesc:acbe105c706f6a1534af75376af99c2e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wczytuje UVs dla podanego wierzchołka. <br /></td></tr>
+<tr class="separator:acbe105c706f6a1534af75376af99c2e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee718bce559788dfc18954522b10aac0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee718bce559788dfc18954522b10aac0"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_b_x__loader.html#aee718bce559788dfc18954522b10aac0">read_material_index</a> (FbxMesh *mesh, unsigned int polygon_counter)</td></tr>
 <tr class="memdesc:aee718bce559788dfc18954522b10aac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dla podanego polygona odczytujemy jego indeks materiału. Jeżeli nie ma żadnych materiałów przypisanych to dostajemy 0. Kiedy potem będziemy wybierać, do której tablicy mesha zapisać wierzchołek, wszystko będzie działało poprawnie nawet, jak materiąłu nie będzie. <br /></td></tr>
 <tr class="separator:aee718bce559788dfc18954522b10aac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93bf7c8b2aa936617b87b194162442ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_b_x__loader.html#a93bf7c8b2aa936617b87b194162442ce">copy_material</a> (<a class="el" href="struct_material_object.html">MaterialObject</a> &amp;engine_material, const FbxSurfacePhong &amp;FBXmaterial)</td></tr>
-<tr class="memdesc:a93bf7c8b2aa936617b87b194162442ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kopiujemy materiał konwertując go z formatu używanego przez FBX SDK do formatu directX.  <a href="#a93bf7c8b2aa936617b87b194162442ce">More...</a><br /></td></tr>
-<tr class="separator:a93bf7c8b2aa936617b87b194162442ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae82d55690390e7bf2a4d8674763588dd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae82d55690390e7bf2a4d8674763588dd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_b_x__loader.html#ae82d55690390e7bf2a4d8674763588dd">CopyMaterial</a> (<a class="el" href="struct_material_object.html">MaterialObject</a> &amp;engine_material, const FbxSurfacePhong &amp;FBXmaterial)</td></tr>
+<tr class="memdesc:ae82d55690390e7bf2a4d8674763588dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kopiujemy materiał konwertując go z formatu używanego przez FBX SDK do formatu używanego w silniku. <br /></td></tr>
+<tr class="separator:ae82d55690390e7bf2a4d8674763588dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af05403facdcc21eba95ace482009f392"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af05403facdcc21eba95ace482009f392"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>process_existing_mesh</b> (FbxNode *node, FbxMesh *mesh, const DirectX::XMFLOAT4X4 &amp;transformation)</td></tr>
 <tr class="separator:af05403facdcc21eba95ace482009f392"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -174,9 +176,9 @@ FbxIOSettings *&#160;</td><td class="memItemRight" valign="bottom"><b>fbx_IOsett
 <a class="el" href="class_model3_d_from_file.html">Model3DFromFile</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_f_b_x__loader.html#a88ed2c4f32e84865ed13c66651df60a8">cur_model</a></td></tr>
 <tr class="memdesc:a88ed2c4f32e84865ed13c66651df60a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Na czas wczytywania zapisujemy sobie obiekt, do którego wczytujemy dane. <br /></td></tr>
 <tr class="separator:a88ed2c4f32e84865ed13c66651df60a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a014081bdd2f50785d6f8eee67b0d55d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a014081bdd2f50785d6f8eee67b0d55d7"></a>
-std::vector&lt; std::pair&lt; <a class="el" href="struct_material_object.html">MaterialObject</a> *, FbxSurfacePhong * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>materials</b></td></tr>
-<tr class="separator:a014081bdd2f50785d6f8eee67b0d55d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa170d1b033fad46333c70852529b979"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa170d1b033fad46333c70852529b979"></a>
+std::vector&lt; std::pair&lt; <a class="el" href="struct_material_object.html">MaterialObject</a> *, FbxSurfacePhong * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Materials</b></td></tr>
+<tr class="separator:aaa170d1b033fad46333c70852529b979"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -216,44 +218,6 @@ Additional Inherited Members</h2></td></tr>
 </ul>
 
 <p>Implements <a class="el" href="class_i_loader.html#a48662089154c9a52d373cf81479c6470">ILoader</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a93bf7c8b2aa936617b87b194162442ce"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void FBX_loader::copy_material </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_material_object.html">MaterialObject</a> &amp;&#160;</td>
-          <td class="paramname"><em>engine_material</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const FbxSurfacePhong &amp;&#160;</td>
-          <td class="paramname"><em>FBXmaterial</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Kopiujemy materiał konwertując go z formatu używanego przez FBX SDK do formatu directX. </p>
-<p>Kopiujemy materiał konwertując go z formatu używanego przez FBX SDK do formatu używanego w silniku.</p>
-<p>Wersja dla DirectX11 nie potrzebuje już materiałów DirectX9 </p>
 
 </div>
 </div>
@@ -418,13 +382,13 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/ModelsManager/Loaders/FBX_files_loader/<a class="el" href="_f_b_x__loader_8h_source.html">FBX_loader.h</a></li>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/ModelsManager/Loaders/FBX_files_loader/FBX_loader.cpp</li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/ModelsManager/Loaders/FBX_files_loader/<a class="el" href="_f_b_x__loader_8h_source.html">FBX_loader.h</a></li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/ModelsManager/Loaders/FBX_files_loader/FBX_loader.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:18 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

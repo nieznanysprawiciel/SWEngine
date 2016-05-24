@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: BaseAIController Class Reference</title>
+<title>Schopenhauers Weltschmerz Engine: BaseAIController Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -87,45 +88,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="class_base_a_i_controller-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">BaseAIController Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">BaseAIController Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p>Klasa bazowa dla wszystkich kontrolerów sztucznej inteligencji.  
  <a href="class_base_a_i_controller.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="_actor_objects_8h_source.html">ActorObjects.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="_base_a_i_controller_8h_source.html">BaseAIController.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for BaseAIController:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_base_a_i_controller.png" usemap="#BaseAIController_map" alt=""/>
   <map id="BaseAIController_map" name="BaseAIController_map">
-<area href="class_controller.html" title="Klasa bazowa dla wszystkich kontrolerów dla obiektów. " alt="Controller" shape="rect" coords="0,0,108,24"/>
+<area href="class_i_controller.html" title="Klasa bazowa dla wszystkich kontrolerów dla obiektów. " alt="IController" shape="rect" coords="0,56,108,80"/>
+<area href="class_engine_object.html" title="Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz..." alt="EngineObject" shape="rect" coords="0,0,108,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
-<tr class="memitem:a1442f17d7db91d9886df8ec2b89e89c0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1442f17d7db91d9886df8ec2b89e89c0"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>control_object</b> (<a class="el" href="class_dynamic_object.html">DynamicObject</a> *)=0</td></tr>
-<tr class="separator:a1442f17d7db91d9886df8ec2b89e89c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_methods_class_i_controller"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_i_controller')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_i_controller.html">IController</a></td></tr>
+<tr class="memitem:adaba0c1d379062e6d7d367e55554dc71 inherit pub_methods_class_i_controller"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adaba0c1d379062e6d7d367e55554dc71"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ControlObjectPre</b> (<a class="el" href="class_dynamic_actor.html">DynamicActor</a> *)=0</td></tr>
+<tr class="separator:adaba0c1d379062e6d7d367e55554dc71 inherit pub_methods_class_i_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79d1c3f75cf497bec1ce3ab3554ca190 inherit pub_methods_class_i_controller"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79d1c3f75cf497bec1ce3ab3554ca190"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ControlObjectPost</b> (<a class="el" href="class_dynamic_actor.html">DynamicActor</a> *)=0</td></tr>
+<tr class="separator:a79d1c3f75cf497bec1ce3ab3554ca190 inherit pub_methods_class_i_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Klasa bazowa dla wszystkich kontrolerów sztucznej inteligencji. </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/Actors/<a class="el" href="_actor_objects_8h_source.html">ActorObjects.h</a></li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/ControllersEngine/BaseClasses/<a class="el" href="_base_a_i_controller_8h_source.html">BaseAIController.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:18 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

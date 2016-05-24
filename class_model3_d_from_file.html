@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: Model3DFromFile Class Reference</title>
+<title>Schopenhauers Weltschmerz Engine: Model3DFromFile Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -93,7 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="class_model3_d_from_file-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Model3DFromFile Class Reference<div class="ingroups"><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___engine_core.html">EngineCore</a> &raquo; <a class="el" href="group___resources_managment.html">Zarządzenie zasobami</a><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___engine_core.html">EngineCore</a> &raquo; <a class="el" href="group___resources_managment.html">Zarządzenie zasobami</a> &raquo;  &#124; <a class="el" href="group___resources.html">Zasoby</a></div></div>  </div>
+<div class="title">Model3DFromFile Class Reference<div class="ingroups"><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___engine_core.html">EngineCore</a> &raquo; <a class="el" href="group___resources_managment.html">Zarządzenie zasobami</a><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___engine_core.html">EngineCore</a> &raquo; <a class="el" href="group___resources_managment.html">Zarządzenie zasobami</a><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo;  &#124; <a class="el" href="group___graphic_a_p_i.html">GraphicAPI</a> &raquo;  &#124; <a class="el" href="group___resources.html">Zasoby</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -107,7 +108,8 @@ Inheritance diagram for Model3DFromFile:</div>
  <div class="center">
   <img src="class_model3_d_from_file.png" usemap="#Model3DFromFile_map" alt=""/>
   <map id="Model3DFromFile_map" name="Model3DFromFile_map">
-<area href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. " alt="ResourceObject" shape="rect" coords="0,0,113,24"/>
+<area href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. " alt="ResourceObject" shape="rect" coords="0,56,113,80"/>
+<area href="class_engine_object.html" title="Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz..." alt="EngineObject" shape="rect" coords="0,0,113,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -131,9 +133,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a330d5fca683a380c8d0c9d03776b30dc">EndPart</a> ()</td></tr>
 <tr class="memdesc:a330d5fca683a380c8d0c9d03776b30dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcje BeginPart i EndPart są wywoływane przez loader i mają otaczać wszystkie instrukcje dodające jedną część mesha do struktury. <br /></td></tr>
 <tr class="separator:a330d5fca683a380c8d0c9d03776b30dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7c1d566c5c9bbf0760d66c388e1303f"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#ae7c1d566c5c9bbf0760d66c388e1303f">add_texture</a> (const std::wstring &amp;file_name, <a class="el" href="_mesh_resources_8h.html#ac3601c766e904acff2b729f45ccba47c">TextureTypes</a> type=TEX_DIFFUSE)</td></tr>
-<tr class="memdesc:ae7c1d566c5c9bbf0760d66c388e1303f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje teksturę na aktualnej pozycji w tablicy.  <a href="#ae7c1d566c5c9bbf0760d66c388e1303f">More...</a><br /></td></tr>
-<tr class="separator:ae7c1d566c5c9bbf0760d66c388e1303f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f8bf6ad5a86d02874f98832b6365444"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a6f8bf6ad5a86d02874f98832b6365444">add_texture</a> (const std::wstring &amp;file_name, <a class="el" href="_mesh_resources_8h.html#a48164fb43b28aacf28ac6403bc1003be">TextureUse</a> type=TEX_DIFFUSE)</td></tr>
+<tr class="memdesc:a6f8bf6ad5a86d02874f98832b6365444"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje teksturę na aktualnej pozycji w tablicy.  <a href="#a6f8bf6ad5a86d02874f98832b6365444">More...</a><br /></td></tr>
+<tr class="separator:a6f8bf6ad5a86d02874f98832b6365444"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb13f06a3414f7ed8f41b761d4a9ab0c"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#adb13f06a3414f7ed8f41b761d4a9ab0c">add_material</a> (const <a class="el" href="struct_material_object.html">MaterialObject</a> *material, const std::wstring &amp;material_name)</td></tr>
 <tr class="memdesc:adb13f06a3414f7ed8f41b761d4a9ab0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje materiał na aktualnej pozycji w tablicy.  <a href="#adb13f06a3414f7ed8f41b761d4a9ab0c">More...</a><br /></td></tr>
 <tr class="separator:adb13f06a3414f7ed8f41b761d4a9ab0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,13 +152,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a198d7b293ad1a3ca445b8af86e9993cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nadaje aktualnej części mesha macierz transformacji.  <a href="#a198d7b293ad1a3ca445b8af86e9993cf">More...</a><br /></td></tr>
 <tr class="separator:a198d7b293ad1a3ca445b8af86e9993cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f7d535399c2abe6f860d66fd5774371"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f7d535399c2abe6f860d66fd5774371"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a9f7d535399c2abe6f860d66fd5774371">add_index_buffer</a> (const <a class="el" href="macros__switches_8h.html#a4dc36f6c611c1c027dba3c4a3dde8ad5">VERT_INDEX</a> *buffer, unsigned int ind_count, int vertex_buffer_offset)</td></tr>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a9f7d535399c2abe6f860d66fd5774371">add_index_buffer</a> (const VERT_INDEX *buffer, unsigned int ind_count, int vertex_buffer_offset)</td></tr>
 <tr class="memdesc:a9f7d535399c2abe6f860d66fd5774371"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja dodaje do tymczasowej tablicy dane potrzebne do stworzenia bufora wierzchołków. Indeksy są przepisywane z podanej tablicy i trzeba ją zwolnić samemu. <br /></td></tr>
 <tr class="separator:a9f7d535399c2abe6f860d66fd5774371"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bcadde88faedb6c5e6c737f4b0d7a18"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2bcadde88faedb6c5e6c737f4b0d7a18"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a2bcadde88faedb6c5e6c737f4b0d7a18">get_parts_count</a> ()</td></tr>
-<tr class="memdesc:a2bcadde88faedb6c5e6c737f4b0d7a18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca liczbę obiektów <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> w tablicy. <br /></td></tr>
-<tr class="separator:a2bcadde88faedb6c5e6c737f4b0d7a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32f8a85edd4916c9caa8787e7d2d7ed4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32f8a85edd4916c9caa8787e7d2d7ed4"></a>
+Size&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a32f8a85edd4916c9caa8787e7d2d7ed4">get_parts_count</a> ()</td></tr>
+<tr class="memdesc:a32f8a85edd4916c9caa8787e7d2d7ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca liczbę obiektów <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> w tablicy. <br /></td></tr>
+<tr class="separator:a32f8a85edd4916c9caa8787e7d2d7ed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d600291e082d605c9374e52e15f184f"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_model_part.html">ModelPart</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a6d600291e082d605c9374e52e15f184f">get_part</a> (unsigned int index)</td></tr>
 <tr class="memdesc:a6d600291e082d605c9374e52e15f184f"><td class="mdescLeft">&#160;</td><td class="mdescRight">zwraca wskaźnik na <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> spod podanego indeksu.  <a href="#a6d600291e082d605c9374e52e15f184f">More...</a><br /></td></tr>
 <tr class="separator:a6d600291e082d605c9374e52e15f184f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -171,36 +173,35 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="inherit_header pub_methods_class_resource_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_resource_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_resource_object.html">ResourceObject</a></td></tr>
 <tr class="memitem:ab532d0711da06a23e6fe10dad6153332 inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#ab532d0711da06a23e6fe10dad6153332">ResourceObject</a> (int id)</td></tr>
 <tr class="separator:ab532d0711da06a23e6fe10dad6153332 inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73e6d5e7c62c3a7b097bafe6aa997d8b inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a73e6d5e7c62c3a7b097bafe6aa997d8b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a73e6d5e7c62c3a7b097bafe6aa997d8b">set_id</a> (unsigned int id)</td></tr>
-<tr class="memdesc:a73e6d5e7c62c3a7b097bafe6aa997d8b inherit pub_methods_class_resource_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia identyfikator obiektu. <br /></td></tr>
-<tr class="separator:a73e6d5e7c62c3a7b097bafe6aa997d8b inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac276bd05fcbf702396031c7834593550 inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#ac276bd05fcbf702396031c7834593550">can_delete</a> (unsigned int &amp;file_ref, unsigned int &amp;other_ref)</td></tr>
-<tr class="memdesc:ac276bd05fcbf702396031c7834593550 inherit pub_methods_class_resource_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja informuje czy obiekt są obiektu, które odwołują się do assetu.  <a href="#ac276bd05fcbf702396031c7834593550">More...</a><br /></td></tr>
-<tr class="separator:ac276bd05fcbf702396031c7834593550 inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc3727f0ec4d7ad7fec23f027b19e5bb inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#adc3727f0ec4d7ad7fec23f027b19e5bb">can_delete</a> ()</td></tr>
-<tr class="memdesc:adc3727f0ec4d7ad7fec23f027b19e5bb inherit pub_methods_class_resource_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja informuje czy obiekt są obiektu, które odwołują się do assetu.  <a href="#adc3727f0ec4d7ad7fec23f027b19e5bb">More...</a><br /></td></tr>
-<tr class="separator:adc3727f0ec4d7ad7fec23f027b19e5bb inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa3457aec51fa38cd36e369bf6bf7eff inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa3457aec51fa38cd36e369bf6bf7eff"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#afa3457aec51fa38cd36e369bf6bf7eff">add_file_reference</a> ()</td></tr>
-<tr class="memdesc:afa3457aec51fa38cd36e369bf6bf7eff inherit pub_methods_class_resource_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje odwołanie plikowe do assetu. <br /></td></tr>
-<tr class="separator:afa3457aec51fa38cd36e369bf6bf7eff inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a392d38b450b38642181d28ff917bd613 inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a392d38b450b38642181d28ff917bd613"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a392d38b450b38642181d28ff917bd613">add_object_reference</a> ()</td></tr>
-<tr class="memdesc:a392d38b450b38642181d28ff917bd613 inherit pub_methods_class_resource_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje odwołanie bezpośrednie obiektu do assetu. <br /></td></tr>
-<tr class="separator:a392d38b450b38642181d28ff917bd613 inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa539d462f2dd86bf465caf09a36b8fb5 inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa539d462f2dd86bf465caf09a36b8fb5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#aa539d462f2dd86bf465caf09a36b8fb5">delete_file_reference</a> ()</td></tr>
-<tr class="memdesc:aa539d462f2dd86bf465caf09a36b8fb5 inherit pub_methods_class_resource_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kasuje odwołanie plikowe do assetu. <br /></td></tr>
-<tr class="separator:aa539d462f2dd86bf465caf09a36b8fb5 inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ba8eb7e51759275f8bc8e498a306f1a inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ba8eb7e51759275f8bc8e498a306f1a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a0ba8eb7e51759275f8bc8e498a306f1a">delete_object_reference</a> ()</td></tr>
-<tr class="memdesc:a0ba8eb7e51759275f8bc8e498a306f1a inherit pub_methods_class_resource_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kasuje odwołanie bezpośrednie obiektu do assetu. <br /></td></tr>
-<tr class="separator:a0ba8eb7e51759275f8bc8e498a306f1a inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5066dbf8924f37f103f2634afa750be7 inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5066dbf8924f37f103f2634afa750be7"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a5066dbf8924f37f103f2634afa750be7">get_id</a> ()</td></tr>
-<tr class="memdesc:a5066dbf8924f37f103f2634afa750be7 inherit pub_methods_class_resource_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca identyfikator nadany assetowi. <br /></td></tr>
-<tr class="separator:a5066dbf8924f37f103f2634afa750be7 inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b1680584fc628dd44360dd19bc6d4c6 inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b1680584fc628dd44360dd19bc6d4c6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a9b1680584fc628dd44360dd19bc6d4c6">SetID</a> (unsigned int id)</td></tr>
+<tr class="memdesc:a9b1680584fc628dd44360dd19bc6d4c6 inherit pub_methods_class_resource_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia identyfikator obiektu. <br /></td></tr>
+<tr class="separator:a9b1680584fc628dd44360dd19bc6d4c6 inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe4c6dde245866bf652b96815226b31c inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#afe4c6dde245866bf652b96815226b31c">CanDelete</a> (unsigned int &amp;assetRef, unsigned int &amp;objectRef)</td></tr>
+<tr class="memdesc:afe4c6dde245866bf652b96815226b31c inherit pub_methods_class_resource_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">sprawdza czy można zwolnić zmienną  <a href="#afe4c6dde245866bf652b96815226b31c">More...</a><br /></td></tr>
+<tr class="separator:afe4c6dde245866bf652b96815226b31c inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88803e81f3fdcb96d82d41648bc2e85a inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a88803e81f3fdcb96d82d41648bc2e85a">CanDelete</a> ()</td></tr>
+<tr class="memdesc:a88803e81f3fdcb96d82d41648bc2e85a inherit pub_methods_class_resource_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja informuje czy obiekt są obiektu, które odwołują się do assetu.  <a href="#a88803e81f3fdcb96d82d41648bc2e85a">More...</a><br /></td></tr>
+<tr class="separator:a88803e81f3fdcb96d82d41648bc2e85a inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a765b943116ed1ebe6bc0a3653bcd4092 inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a765b943116ed1ebe6bc0a3653bcd4092">AddAssetReference</a> ()</td></tr>
+<tr class="memdesc:a765b943116ed1ebe6bc0a3653bcd4092 inherit pub_methods_class_resource_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje odwołanie plikowe do assetu.  <a href="#a765b943116ed1ebe6bc0a3653bcd4092">More...</a><br /></td></tr>
+<tr class="separator:a765b943116ed1ebe6bc0a3653bcd4092 inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef54fb618f3a8e1b0d2fd215fde64e8d inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef54fb618f3a8e1b0d2fd215fde64e8d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#aef54fb618f3a8e1b0d2fd215fde64e8d">AddObjectReference</a> ()</td></tr>
+<tr class="memdesc:aef54fb618f3a8e1b0d2fd215fde64e8d inherit pub_methods_class_resource_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje odwołanie bezpośrednie obiektu do assetu. <br /></td></tr>
+<tr class="separator:aef54fb618f3a8e1b0d2fd215fde64e8d inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36147350cabe229ff9af9917a53b5bec inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36147350cabe229ff9af9917a53b5bec"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#a36147350cabe229ff9af9917a53b5bec">DeleteAssetReference</a> ()</td></tr>
+<tr class="memdesc:a36147350cabe229ff9af9917a53b5bec inherit pub_methods_class_resource_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kasuje odwołanie plikowe do assetu. <br /></td></tr>
+<tr class="separator:a36147350cabe229ff9af9917a53b5bec inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0a72bef6807a0f765beed2a49e1826e inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad0a72bef6807a0f765beed2a49e1826e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#ad0a72bef6807a0f765beed2a49e1826e">DeleteObjectReference</a> ()</td></tr>
+<tr class="memdesc:ad0a72bef6807a0f765beed2a49e1826e inherit pub_methods_class_resource_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kasuje odwołanie bezpośrednie obiektu do assetu. <br /></td></tr>
+<tr class="separator:ad0a72bef6807a0f765beed2a49e1826e inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace003f472621b17c7a7ed569e51248b8 inherit pub_methods_class_resource_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace003f472621b17c7a7ed569e51248b8"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#ace003f472621b17c7a7ed569e51248b8">GetID</a> ()</td></tr>
+<tr class="memdesc:ace003f472621b17c7a7ed569e51248b8 inherit pub_methods_class_resource_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca identyfikator nadany assetowi. <br /></td></tr>
+<tr class="separator:ace003f472621b17c7a7ed569e51248b8 inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -224,9 +225,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a3c9d9142d2d1f9a499a5bf7bfd06b4ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c9d9142d2d1f9a499a5bf7bfd06b4ad"></a>
-friend&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectDeleter&lt; Model3DFromFile &gt;</b></td></tr>
-<tr class="separator:a3c9d9142d2d1f9a499a5bf7bfd06b4ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a0be3936c10334f816e21cc1e235154"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a0be3936c10334f816e21cc1e235154"></a>
+RTTR_REGISTRATION_FRIEND friend&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectDeleter&lt; Model3DFromFile &gt;</b></td></tr>
+<tr class="separator:a3a0be3936c10334f816e21cc1e235154"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afabb6aae2725edcd3db80c7765410db2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afabb6aae2725edcd3db80c7765410db2"></a>
 friend&#160;</td><td class="memItemRight" valign="bottom"><b>ModelsManager</b></td></tr>
 <tr class="separator:afabb6aae2725edcd3db80c7765410db2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -242,10 +243,10 @@ std::vector&lt; <a class="el" href="struct_model_part.html">ModelPart</a> &gt;&#
 <a class="el" href="class_buffer_object.html">BufferObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a201050c4caed40db8bd2ff77b91a9d6d">index_buffer</a></td></tr>
 <tr class="memdesc:a201050c4caed40db8bd2ff77b91a9d6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bufor indeksów. <br /></td></tr>
 <tr class="separator:a201050c4caed40db8bd2ff77b91a9d6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d63525f5ab8114306bce9771d9f1f39"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d63525f5ab8114306bce9771d9f1f39"></a>
-std::wstring&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a6d63525f5ab8114306bce9771d9f1f39">file_path</a></td></tr>
-<tr class="memdesc:a6d63525f5ab8114306bce9771d9f1f39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plik, z którego powstał obiekt. <br /></td></tr>
-<tr class="separator:a6d63525f5ab8114306bce9771d9f1f39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82477815c0660a4f9c0d7610f3e4875b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82477815c0660a4f9c0d7610f3e4875b"></a>
+std::wstring&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#a82477815c0660a4f9c0d7610f3e4875b">m_filePath</a></td></tr>
+<tr class="memdesc:a82477815c0660a4f9c0d7610f3e4875b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plik, z którego powstał obiekt. <br /></td></tr>
+<tr class="separator:a82477815c0660a4f9c0d7610f3e4875b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa59d7d3ea66af31f45b59d934520a99f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa59d7d3ea66af31f45b59d934520a99f"></a>
 <a class="el" href="struct_edit_t_m_p.html">EditTMP</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model3_d_from_file.html#aa59d7d3ea66af31f45b59d934520a99f">tmp_data</a></td></tr>
 <tr class="memdesc:aa59d7d3ea66af31f45b59d934520a99f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dane tymczasowe używane podczas wypełniania. <br /></td></tr>
@@ -267,13 +268,14 @@ static <a class="el" href="class_models_manager.html">ModelsManager</a> *&#160;<
 <p>Następnie między wywołaniami BeginEdit i EndEdit podaje się wszystkie informacje, jakie mają zostać zawarte w poszczególnych obiektach <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a>. Wypełnianie każdego parta musi być otoczone wywołaniem funkcji BeginPart i EndPart. BeginPart alokuje pamięć dla kolejnego ModelParta, a EndEdit przesuwa aktualny indeks, pod którego dodajemy część mesha.</p>
 <p>Niedodanie bufora indeksów powoduje, że aktualny Part jest wyświetlany w trybie bezpośrednim, w przeciwnym razie jest używany tryb indeksowany. W strukturze musi istnieć przynajmniej jeden bufor wierzchołków. Brak bufora wierzchołków jest błędem, ale zasadniczo nie skutkuje niczym poważnym, bo <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a> pomija takie obiekty.</p>
 <p>Nie ma konieczności podawania bufora wierzchołków dla każdego ModelParta. Bufory indeksów mogą być ustawiane względem poprzednio dodanych buforów wierzchołków. Błędem jest za to niepodanie ani bufora wierzchołków ani bufora indeksów. <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a> będzie próbował wyświetlić takiego mesha o liczbie wierzchołków równej 0, co niepotrzebnie spowalnia program.</p>
-<p>Jeżeli dodane tekstury są zgodne z domyślnym przeznaczeniem (zdefiniowanym enumeracją TextureTypes), to nie ma potrzeby dodawania własnych shaderów. Funkcja <a class="el" href="class_models_manager.html#abea55b3714861ef2682cb814c1d4a0a6" title="Dopasowuje najlepszy z domyślnych shaderów, który pasuje do podanej tablicy tekstur. Tablica ma tyle elementów ile zmienna ENGINE_MAX_TEXTURES. ">ModelsManager::FindBestVertexShader</a> i <a class="el" href="class_models_manager.html#a2c310edc07839b02eeb44dc49a218ae4" title="Dopasowuje najlepszy z domyślnych shaderów, który pasuje do podanej tablicy tekstur. Tablica ma tyle elementów ile zmienna ENGINE_MAX_TEXTURES. ">ModelsManager::FindBestPixelShader</a> znajdą najlepiej pasujący shader do podanej tablicy tekstur.</p>
+<p>Jeżeli dodane tekstury są zgodne z domyślnym przeznaczeniem (zdefiniowanym enumeracją TextureUse), to nie ma potrzeby dodawania własnych shaderów. Funkcja <a class="el" href="class_models_manager.html#abea55b3714861ef2682cb814c1d4a0a6" title="Dopasowuje najlepszy z domyślnych shaderów, który pasuje do podanej tablicy tekstur. Tablica ma tyle elementów ile zmienna ENGINE_MAX_TEXTURES. ">ModelsManager::FindBestVertexShader</a> i <a class="el" href="class_models_manager.html#a2c310edc07839b02eeb44dc49a218ae4" title="Dopasowuje najlepszy z domyślnych shaderów, który pasuje do podanej tablicy tekstur. Tablica ma tyle elementów ile zmienna ENGINE_MAX_TEXTURES. ">ModelsManager::FindBestPixelShader</a> znajdą najlepiej pasujący shader do podanej tablicy tekstur.</p>
 <p>Jeżeli nie zostanie podany żaden materiał, <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> dostanie domyślny materiał, który jest ustawiany przez funkcję <a class="el" href="struct_material_object.html#a78c54ca82d12fc9ab3ac30b13fec75d8" title="Ustawia materiał na wartości domyślne dla silnika. ">MaterialObject::SetNullMaterial</a>.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_buffer_object.html" title="Obiekt opakowujący bufor.Bufor może być zarówno buforem wierzchołków, indeksów jak i stałych...">BufferObject</a>, <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a>, <a class="el" href="class_texture_object.html" title="Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności. ">TextureObject</a>, <a class="el" href="class_vertex_shader_object.html" title="Klasa przechowująca vertex shader. ">VertexShaderObject</a>, <a class="el" href="class_pixel_shader_object.html" title="Klasa przechowująca pixel shader. ">PixelShaderObject</a>, <a class="el" href="struct_material_object.html" title="Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. ">MaterialObject</a>, <a class="el" href="struct_mesh_part_object.html" title="Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach.W zależności od zawartości pola index_buffer w strukturze ModelPart, mesh jest wyświetlany w trybie indeksowanym lub nie. Jeżeli wartość tego pola wynosi nullptr, to wtedy używane są zmienne buffer offset i vertices count, które jednoznacznie wskazują, która część bufora wierzchołków ma zostać wyświetlona. ">MeshPartObject</a></dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>Przepisać tak, żeby było jakoś bardziej estetycznie.<ul>
-<li>Dodać klasę MemoryChunk zamiast gołych wskaźników na tablicę wierzchołków.</li>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000031">Todo:</a></b></dt><dd>Przepisać tak, żeby było jakoś bardziej estetycznie.<ul>
+<li>Dodać klasę <a class="el" href="class_memory_chunk.html" title="Klasa przechowuje pamięć o dowolnym przeznaczeniu. ">MemoryChunk</a> zamiast gołych wskaźników na tablicę wierzchołków.</li>
 <li>Zastosować semantykę move z C++11. Ograniczyć kopiowanie pamięci na ile się da.</li>
-<li>Uzupełnić o możliwość wczytywania layotów i innych rzeczy, których brakuje. </li>
+<li>Uzupełnić o możliwość wczytywania layotów i innych rzeczy, których brakuje.</li>
+<li>Wydzielić funkcjonalnoś budowania modelu w inne miejsce (tmp_data). </li>
 </ul>
 </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
@@ -340,7 +342,7 @@ static <a class="el" href="class_models_manager.html">ModelsManager</a> *&#160;<
 
 </div>
 </div>
-<a class="anchor" id="ae7c1d566c5c9bbf0760d66c388e1303f"></a>
+<a class="anchor" id="a6f8bf6ad5a86d02874f98832b6365444"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -353,7 +355,7 @@ static <a class="el" href="class_models_manager.html">ModelsManager</a> *&#160;<
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_mesh_resources_8h.html#ac3601c766e904acff2b729f45ccba47c">TextureTypes</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="_mesh_resources_8h.html#a48164fb43b28aacf28ac6403bc1003be">TextureUse</a>&#160;</td>
           <td class="paramname"><em>type</em> = <code>TEX_DIFFUSE</code>&#160;</td>
         </tr>
         <tr>
@@ -368,7 +370,7 @@ static <a class="el" href="class_models_manager.html">ModelsManager</a> *&#160;<
 <p>Tekstura jest umieszczana w tablicy ModelPart.texture zgodnie z indeksem reprezentowanym przez type. Obiekt jest dodawany do ModelsManagera jeżeli jeszcze nie istniał. Jeżeli istniał nie jest duplikowany, ale zamiast niego wstawia się wskaźnik na istniejący obiekt. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">file_name</td><td>Ścieżka do tekstury </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>Type tekstury. Zobacz definicję TextureTypes. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">type</td><td>Type tekstury. Zobacz definicję TextureUse. </td></tr>
   </table>
   </dd>
 </dl>
@@ -631,13 +633,13 @@ static <a class="el" href="class_models_manager.html">ModelsManager</a> *&#160;<
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/ModelsManager/<a class="el" href="_model3_d_from_file_8h_source.html">Model3DFromFile.h</a></li>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/ModelsManager/Model3DFromFile.cpp</li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/ModelsManager/<a class="el" href="_model3_d_from_file_8h_source.html">Model3DFromFile.h</a></li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/ModelsManager/Model3DFromFile.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:18 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

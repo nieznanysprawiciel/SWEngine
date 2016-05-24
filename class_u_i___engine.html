@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: UI_Engine Class Reference</title>
+<title>Schopenhauers Weltschmerz Engine: UI_Engine Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -92,9 +93,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_u_i___engine-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">UI_Engine Class Reference</div>  </div>
+<div class="title">UI_Engine Class Reference<div class="ingroups"><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___engine_core.html">EngineCore</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Moduł do obsługi wejścia wyjścia.  
+ <a href="class_u_i___engine.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_u_i___engine_8h_source.html">UI_Engine.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -104,31 +110,38 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a80b5fd7398f4fa090be9a583be033da9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a80b5fd7398f4fa090be9a583be033da9">init_direct_input</a> ()</td></tr>
 <tr class="memdesc:a80b5fd7398f4fa090be9a583be033da9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje obiekty Direct Inputa.  <a href="#a80b5fd7398f4fa090be9a583be033da9">More...</a><br /></td></tr>
 <tr class="separator:a80b5fd7398f4fa090be9a583be033da9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a311793fd82ced881778b0888f3b85adf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a311793fd82ced881778b0888f3b85adf">proceed_input</a> (float time_interval)</td></tr>
-<tr class="memdesc:a311793fd82ced881778b0888f3b85adf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wywoływana przez klasę <a class="el" href="class_engine.html" title="Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika. W aplikacji powinien...">Engine</a> w każdym obiegu głównej petli programu. Przechwytujemy klawiaturę, wykonujemy wszytkie funkcje obsługi obiektów sterowanych.  <a href="#a311793fd82ced881778b0888f3b85adf">More...</a><br /></td></tr>
-<tr class="separator:a311793fd82ced881778b0888f3b85adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3af17bfbc4207669a0e6c1eb86475cc1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a3af17bfbc4207669a0e6c1eb86475cc1">draw_GUI</a> (float time_interval, float time_lag)</td></tr>
-<tr class="memdesc:a3af17bfbc4207669a0e6c1eb86475cc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja rysująca graficzny interfejs użytkownika. Jest wywoływana zaraz po wszystkich procedurach rysujących obiekty na scenie.  <a href="#a3af17bfbc4207669a0e6c1eb86475cc1">More...</a><br /></td></tr>
-<tr class="separator:a3af17bfbc4207669a0e6c1eb86475cc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e738c71113e3dd7078b927281e7adeb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a9e738c71113e3dd7078b927281e7adeb">change_abstraction_layer</a> (<a class="el" href="class_input_abstraction_layer.html">InputAbstractionLayer</a> *next_layer)</td></tr>
-<tr class="memdesc:a9e738c71113e3dd7078b927281e7adeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zmienia aktualnie ustawioną warstwę abstrakcji na podaną w argumencie. Warstwa nie musi być wcześniej dodana do <a class="el" href="class_u_i___engine.html">UI_Engine</a>, ale zaleca się, aby dodawać wszystkie obiekty w celu pilnowania pamięci.  <a href="#a9e738c71113e3dd7078b927281e7adeb">More...</a><br /></td></tr>
-<tr class="separator:a9e738c71113e3dd7078b927281e7adeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fa8be78118e62690704763ffe3292d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a3fa8be78118e62690704763ffe3292d0">add_abstraction_layer</a> (<a class="el" href="class_input_abstraction_layer.html">InputAbstractionLayer</a> *new_layer)</td></tr>
-<tr class="memdesc:a3fa8be78118e62690704763ffe3292d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje do wewnętrznych tablic <a class="el" href="class_u_i___engine.html">UI_Engine</a> nową warstwę abstrakcji. Nie jest to do niczego konieczne, ale warto to robić, aby silnik zarządzał pamięcią zajmowaną przez warstwę.  <a href="#a3fa8be78118e62690704763ffe3292d0">More...</a><br /></td></tr>
-<tr class="separator:a3fa8be78118e62690704763ffe3292d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8fe5de79f4732d900880b34d990b9697"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a8fe5de79f4732d900880b34d990b9697">delete_abstraction_layer</a> (<a class="el" href="class_input_abstraction_layer.html">InputAbstractionLayer</a> *layer)</td></tr>
-<tr class="memdesc:a8fe5de79f4732d900880b34d990b9697"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kasuje z tablic <a class="el" href="class_u_i___engine.html">UI_Engine</a> wartwę abstrakcji podaną w argumencie. Wartwa nie może być w tym czasie aktywna.  <a href="#a8fe5de79f4732d900880b34d990b9697">More...</a><br /></td></tr>
-<tr class="separator:a8fe5de79f4732d900880b34d990b9697"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae14ae04fc613f3019a699e7041a5e800"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#ae14ae04fc613f3019a699e7041a5e800">set_standard_abstraction_layer</a> (<a class="el" href="_input_abstraction_layer_8h.html#a923b71e93f04f69ce98d7a8b926c3f5d">STANDARD_ABSTRACTION_LAYER</a> layer)</td></tr>
-<tr class="memdesc:ae14ae04fc613f3019a699e7041a5e800"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia jedną ze standardowych warstw abstrakcji wbudowanych w silnik.  <a href="#ae14ae04fc613f3019a699e7041a5e800">More...</a><br /></td></tr>
-<tr class="separator:ae14ae04fc613f3019a699e7041a5e800"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95acf55102db8712e5d4a891e2516feb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a95acf55102db8712e5d4a891e2516feb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a95acf55102db8712e5d4a891e2516feb">clear_abstraction_layers</a> ()</td></tr>
-<tr class="memdesc:a95acf55102db8712e5d4a891e2516feb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kasuje i zwalnia pamięć po wszystkich dodanych do silnika przez użytkownika warstwach abstrakcji. Jeżeli jedna z tych warstw abstrakcji będzie aktywna zostanie również usunięta, a na jej miejsce zostanie ustawiona jedna z wartstw wbudowanych. <br /></td></tr>
-<tr class="separator:a95acf55102db8712e5d4a891e2516feb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adaffe00d52e9d988cfc1a1042937baa8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adaffe00d52e9d988cfc1a1042937baa8"></a>
-<a class="el" href="class_input_abstraction_layer.html">InputAbstractionLayer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_standard_abstraction_layer</b> (<a class="el" href="_input_abstraction_layer_8h.html#a923b71e93f04f69ce98d7a8b926c3f5d">STANDARD_ABSTRACTION_LAYER</a> layer)</td></tr>
-<tr class="separator:adaffe00d52e9d988cfc1a1042937baa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adad9d08efd9fde77ab0419f304f9c964"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adad9d08efd9fde77ab0419f304f9c964"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>InitInputModule</b> ()</td></tr>
+<tr class="separator:adad9d08efd9fde77ab0419f304f9c964"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfffc7bd4e3b7a4f43bf81de3db7fd0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#abfffc7bd4e3b7a4f43bf81de3db7fd0a">ProceedInput</a> (float time_interval)</td></tr>
+<tr class="memdesc:abfffc7bd4e3b7a4f43bf81de3db7fd0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wywoływana przez klasę <a class="el" href="class_engine.html" title="Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika.">Engine</a> w każdym obiegu głównej petli programu. Przechwytujemy klawiaturę, wykonujemy wszytkie funkcje obsługi obiektów sterowanych.  <a href="#abfffc7bd4e3b7a4f43bf81de3db7fd0a">More...</a><br /></td></tr>
+<tr class="separator:abfffc7bd4e3b7a4f43bf81de3db7fd0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b3b184fe2f8988e08a5a525929f6c9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a0b3b184fe2f8988e08a5a525929f6c9e">DrawGUI</a> (float time_interval, float time_lag)</td></tr>
+<tr class="memdesc:a0b3b184fe2f8988e08a5a525929f6c9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja rysująca graficzny interfejs użytkownika. Jest wywoływana zaraz po wszystkich procedurach rysujących obiekty na scenie.  <a href="#a0b3b184fe2f8988e08a5a525929f6c9e">More...</a><br /></td></tr>
+<tr class="separator:a0b3b184fe2f8988e08a5a525929f6c9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4aa715b943f67a9220891d734df8d031"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a4aa715b943f67a9220891d734df8d031">ChangeAbstractionLayer</a> (<a class="el" href="class_input_abstraction_layer.html">InputAbstractionLayer</a> *next_layer)</td></tr>
+<tr class="memdesc:a4aa715b943f67a9220891d734df8d031"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zmienia aktualnie ustawioną warstwę abstrakcji na podaną w argumencie. Warstwa nie musi być wcześniej dodana do <a class="el" href="class_u_i___engine.html" title="Moduł do obsługi wejścia wyjścia. ">UI_Engine</a>, ale zaleca się, aby dodawać wszystkie obiekty w celu pilnowania pamięci.  <a href="#a4aa715b943f67a9220891d734df8d031">More...</a><br /></td></tr>
+<tr class="separator:a4aa715b943f67a9220891d734df8d031"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a756e869768f02c0e958675cf34f24d1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a756e869768f02c0e958675cf34f24d1c">AddAbstractionLayer</a> (<a class="el" href="class_input_abstraction_layer.html">InputAbstractionLayer</a> *new_layer)</td></tr>
+<tr class="memdesc:a756e869768f02c0e958675cf34f24d1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje do wewnętrznych tablic <a class="el" href="class_u_i___engine.html" title="Moduł do obsługi wejścia wyjścia. ">UI_Engine</a> nową warstwę abstrakcji. Nie jest to do niczego konieczne, ale warto to robić, aby silnik zarządzał pamięcią zajmowaną przez warstwę.  <a href="#a756e869768f02c0e958675cf34f24d1c">More...</a><br /></td></tr>
+<tr class="separator:a756e869768f02c0e958675cf34f24d1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2c1e169c1a5b5d9a5f5af3068a9d276"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#ac2c1e169c1a5b5d9a5f5af3068a9d276">DeleteAbstractionLayer</a> (<a class="el" href="class_input_abstraction_layer.html">InputAbstractionLayer</a> *layer)</td></tr>
+<tr class="memdesc:ac2c1e169c1a5b5d9a5f5af3068a9d276"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kasuje z tablic <a class="el" href="class_u_i___engine.html" title="Moduł do obsługi wejścia wyjścia. ">UI_Engine</a> wartwę abstrakcji podaną w argumencie. Wartwa nie może być w tym czasie aktywna.  <a href="#ac2c1e169c1a5b5d9a5f5af3068a9d276">More...</a><br /></td></tr>
+<tr class="separator:ac2c1e169c1a5b5d9a5f5af3068a9d276"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a480a40466279cc28a6ade56b5ab9ad10"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a480a40466279cc28a6ade56b5ab9ad10">SetStandardAbstractionLayer</a> (STANDARD_ABSTRACTION_LAYER layer)</td></tr>
+<tr class="memdesc:a480a40466279cc28a6ade56b5ab9ad10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia jedną ze standardowych warstw abstrakcji wbudowanych w silnik.  <a href="#a480a40466279cc28a6ade56b5ab9ad10">More...</a><br /></td></tr>
+<tr class="separator:a480a40466279cc28a6ade56b5ab9ad10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a972c02350e6bca22c6eb2c54aba18161"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a972c02350e6bca22c6eb2c54aba18161"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a972c02350e6bca22c6eb2c54aba18161">ClearAbstractionLayers</a> ()</td></tr>
+<tr class="memdesc:a972c02350e6bca22c6eb2c54aba18161"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kasuje i zwalnia pamięć po wszystkich dodanych do silnika przez użytkownika warstwach abstrakcji. Jeżeli jedna z tych warstw abstrakcji będzie aktywna zostanie również usunięta, a na jej miejsce zostanie ustawiona jedna z wartstw wbudowanych. <br /></td></tr>
+<tr class="separator:a972c02350e6bca22c6eb2c54aba18161"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64273d83594e4f19b4b2064f3d891119"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64273d83594e4f19b4b2064f3d891119"></a>
+<a class="el" href="class_input_abstraction_layer.html">InputAbstractionLayer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetStandardAbstractionLayer</b> (STANDARD_ABSTRACTION_LAYER layer)</td></tr>
+<tr class="separator:a64273d83594e4f19b4b2064f3d891119"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a599ce358c18ac2e82c66134a746fbc33"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a599ce358c18ac2e82c66134a746fbc33"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a599ce358c18ac2e82c66134a746fbc33">EnableInput</a> (bool val)</td></tr>
+<tr class="memdesc:a599ce358c18ac2e82c66134a746fbc33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja umożliwia edytorowi wyłączenie inputu, gdy kontrolka odpowiedzialna za wyświetlanie renderowanego obrazu nie ma focusa. <br /></td></tr>
+<tr class="separator:a599ce358c18ac2e82c66134a746fbc33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -136,13 +149,12 @@ Private Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a32abdf7045d4a65bc7182aeebc5cf843">clean_direct_input</a> ()</td></tr>
 <tr class="memdesc:a32abdf7045d4a65bc7182aeebc5cf843"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwalnia obiekty Direct Inputa. <br /></td></tr>
 <tr class="separator:a32abdf7045d4a65bc7182aeebc5cf843"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1495ef36f42830d40be70f6212063fe7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a1495ef36f42830d40be70f6212063fe7">update_abstraction_layer</a> ()</td></tr>
-<tr class="memdesc:a1495ef36f42830d40be70f6212063fe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja aktualizuje tablice w aktualnie aktywnej warstwie abstrakcji.  <a href="#a1495ef36f42830d40be70f6212063fe7">More...</a><br /></td></tr>
-<tr class="separator:a1495ef36f42830d40be70f6212063fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec46b77dd53790396092aea86ad8d838"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aec46b77dd53790396092aea86ad8d838"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#aec46b77dd53790396092aea86ad8d838">init_abstraction_layers</a> ()</td></tr>
-<tr class="memdesc:aec46b77dd53790396092aea86ad8d838"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ustawia domyślne warstwy abstrakcji w klasie UI_engine. <br /></td></tr>
-<tr class="separator:aec46b77dd53790396092aea86ad8d838"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f3812493f952abd4fce4b994ef529fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a5f3812493f952abd4fce4b994ef529fe">UpdateAbstractionLayer</a> ()</td></tr>
+<tr class="memdesc:a5f3812493f952abd4fce4b994ef529fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja aktualizuje tablice w aktualnie aktywnej warstwie abstrakcji.  <a href="#a5f3812493f952abd4fce4b994ef529fe">More...</a><br /></td></tr>
+<tr class="separator:a5f3812493f952abd4fce4b994ef529fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d00d7060bdc3c8ccf7b4e301d60bc65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a5d00d7060bdc3c8ccf7b4e301d60bc65">InitAbstractionLayers</a> ()</td></tr>
+<tr class="memdesc:a5d00d7060bdc3c8ccf7b4e301d60bc65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ustawia domyślne warstwy abstrakcji w klasie UI_engine.  <a href="#a5d00d7060bdc3c8ccf7b4e301d60bc65">More...</a><br /></td></tr>
+<tr class="separator:a5d00d7060bdc3c8ccf7b4e301d60bc65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -164,20 +176,29 @@ char&#160;</td><td class="memItemRight" valign="bottom"><b>keyboard_state</b> [2
 <tr class="memitem:a8df204c0d8999402c8cdb2b6e79f6bab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8df204c0d8999402c8cdb2b6e79f6bab"></a>
 DIMOUSESTATE2&#160;</td><td class="memItemRight" valign="bottom"><b>mouse_state</b></td></tr>
 <tr class="separator:a8df204c0d8999402c8cdb2b6e79f6bab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a992b26473ae20defbf41fd55ffde5090"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a992b26473ae20defbf41fd55ffde5090"></a>
-<a class="el" href="class_input_abstraction_layer.html">InputAbstractionLayer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>current_abstraction_layer</b></td></tr>
-<tr class="separator:a992b26473ae20defbf41fd55ffde5090"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1479ef93030d1bb52e568324d9ec221c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1479ef93030d1bb52e568324d9ec221c"></a>
-std::vector&lt; <a class="el" href="class_input_abstraction_layer.html">InputAbstractionLayer</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>abstraction_layers</b></td></tr>
-<tr class="separator:a1479ef93030d1bb52e568324d9ec221c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46fa04674cb976db0d4a60bf91b05e70"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46fa04674cb976db0d4a60bf91b05e70"></a>
+<a class="el" href="class_i_input.html">IInput</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_inputModule</b></td></tr>
+<tr class="separator:a46fa04674cb976db0d4a60bf91b05e70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6adfc7de9bd97773fe258a1a4b80fc4a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6adfc7de9bd97773fe258a1a4b80fc4a"></a>
+<a class="el" href="class_input_abstraction_layer.html">InputAbstractionLayer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_currentAbstractionLayer</b></td></tr>
+<tr class="separator:a6adfc7de9bd97773fe258a1a4b80fc4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8c82eca8559b0f5a188a977f741419d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae8c82eca8559b0f5a188a977f741419d"></a>
+std::vector&lt; <a class="el" href="class_input_abstraction_layer.html">InputAbstractionLayer</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_abstractionLayers</b></td></tr>
+<tr class="separator:ae8c82eca8559b0f5a188a977f741419d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ab90b8daddead3de5d2cfcdef83faff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ab90b8daddead3de5d2cfcdef83faff"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_enableInput</b></td></tr>
+<tr class="separator:a4ab90b8daddead3de5d2cfcdef83faff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a3fa8be78118e62690704763ffe3292d0"></a>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Moduł do obsługi wejścia wyjścia. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000046">Todo:</a></b></dt><dd>Wydzielić obsługę DirectInput do osobnego modułu. </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a756e869768f02c0e958675cf34f24d1c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void UI_Engine::add_abstraction_layer </td>
+          <td class="memname">void UI_Engine::AddAbstractionLayer </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_input_abstraction_layer.html">InputAbstractionLayer</a> *&#160;</td>
           <td class="paramname"><em>new_layer</em></td><td>)</td>
@@ -186,22 +207,22 @@ std::vector&lt; <a class="el" href="class_input_abstraction_layer.html">InputAbs
       </table>
 </div><div class="memdoc">
 
-<p>Dodaje do wewnętrznych tablic <a class="el" href="class_u_i___engine.html">UI_Engine</a> nową warstwę abstrakcji. Nie jest to do niczego konieczne, ale warto to robić, aby silnik zarządzał pamięcią zajmowaną przez warstwę. </p>
+<p>Dodaje do wewnętrznych tablic <a class="el" href="class_u_i___engine.html" title="Moduł do obsługi wejścia wyjścia. ">UI_Engine</a> nową warstwę abstrakcji. Nie jest to do niczego konieczne, ale warto to robić, aby silnik zarządzał pamięcią zajmowaną przez warstwę. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">new_layer</td><td>Warstwa do dodania. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">newLayer</td><td>Warstwa do dodania. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a9e738c71113e3dd7078b927281e7adeb"></a>
+<a class="anchor" id="a4aa715b943f67a9220891d734df8d031"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int UI_Engine::change_abstraction_layer </td>
+          <td class="memname">int UI_Engine::ChangeAbstractionLayer </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_input_abstraction_layer.html">InputAbstractionLayer</a> *&#160;</td>
           <td class="paramname"><em>next_layer</em></td><td>)</td>
@@ -210,7 +231,7 @@ std::vector&lt; <a class="el" href="class_input_abstraction_layer.html">InputAbs
       </table>
 </div><div class="memdoc">
 
-<p>Zmienia aktualnie ustawioną warstwę abstrakcji na podaną w argumencie. Warstwa nie musi być wcześniej dodana do <a class="el" href="class_u_i___engine.html">UI_Engine</a>, ale zaleca się, aby dodawać wszystkie obiekty w celu pilnowania pamięci. </p>
+<p>Zmienia aktualnie ustawioną warstwę abstrakcji na podaną w argumencie. Warstwa nie musi być wcześniej dodana do <a class="el" href="class_u_i___engine.html" title="Moduł do obsługi wejścia wyjścia. ">UI_Engine</a>, ale zaleca się, aby dodawać wszystkie obiekty w celu pilnowania pamięci. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">next_layer</td><td>warstwa abstrakcji, która ma być aktywna. </td></tr>
@@ -226,12 +247,12 @@ std::vector&lt; <a class="el" href="class_input_abstraction_layer.html">InputAbs
 
 </div>
 </div>
-<a class="anchor" id="a8fe5de79f4732d900880b34d990b9697"></a>
+<a class="anchor" id="ac2c1e169c1a5b5d9a5f5af3068a9d276"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int UI_Engine::delete_abstraction_layer </td>
+          <td class="memname">int UI_Engine::DeleteAbstractionLayer </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_input_abstraction_layer.html">InputAbstractionLayer</a> *&#160;</td>
           <td class="paramname"><em>layer</em></td><td>)</td>
@@ -240,7 +261,7 @@ std::vector&lt; <a class="el" href="class_input_abstraction_layer.html">InputAbs
       </table>
 </div><div class="memdoc">
 
-<p>Kasuje z tablic <a class="el" href="class_u_i___engine.html">UI_Engine</a> wartwę abstrakcji podaną w argumencie. Wartwa nie może być w tym czasie aktywna. </p>
+<p>Kasuje z tablic <a class="el" href="class_u_i___engine.html" title="Moduł do obsługi wejścia wyjścia. ">UI_Engine</a> wartwę abstrakcji podaną w argumencie. Wartwa nie może być w tym czasie aktywna. </p>
 <dl class="section attention"><dt>Attention</dt><dd>Warstwa zostanie usunięta, a pamięć zwolniona. Do wskaźnika podanego w argumencie nie wolno się więcej odwoływać.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -256,12 +277,12 @@ std::vector&lt; <a class="el" href="class_input_abstraction_layer.html">InputAbs
 
 </div>
 </div>
-<a class="anchor" id="a3af17bfbc4207669a0e6c1eb86475cc1"></a>
+<a class="anchor" id="a0b3b184fe2f8988e08a5a525929f6c9e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void UI_Engine::draw_GUI </td>
+          <td class="memname">void UI_Engine::DrawGUI </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>time_interval</em>, </td>
@@ -308,12 +329,38 @@ std::vector&lt; <a class="el" href="class_input_abstraction_layer.html">InputAbs
 
 </div>
 </div>
-<a class="anchor" id="a311793fd82ced881778b0888f3b85adf"></a>
+<a class="anchor" id="a5d00d7060bdc3c8ccf7b4e301d60bc65"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UI_Engine::InitAbstractionLayers </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Funkcja ustawia domyślne warstwy abstrakcji w klasie UI_engine. </p>
+<p>&lt;</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000047">Todo:</a></b></dt><dd>Zastanowić się czy nie zrobić std::move na tym wektorze. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abfffc7bd4e3b7a4f43bf81de3db7fd0a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void UI_Engine::proceed_input </td>
+          <td class="memname">void UI_Engine::ProceedInput </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>time_interval</em></td><td>)</td>
@@ -322,7 +369,7 @@ std::vector&lt; <a class="el" href="class_input_abstraction_layer.html">InputAbs
       </table>
 </div><div class="memdoc">
 
-<p>Funkcja wywoływana przez klasę <a class="el" href="class_engine.html" title="Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika. W aplikacji powinien...">Engine</a> w każdym obiegu głównej petli programu. Przechwytujemy klawiaturę, wykonujemy wszytkie funkcje obsługi obiektów sterowanych. </p>
+<p>Funkcja wywoływana przez klasę <a class="el" href="class_engine.html" title="Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika.">Engine</a> w każdym obiegu głównej petli programu. Przechwytujemy klawiaturę, wykonujemy wszytkie funkcje obsługi obiektów sterowanych. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">time_interval</td><td>Parametrem jest czas który upłynął od ostatniego wywołania </td></tr>
@@ -334,14 +381,14 @@ std::vector&lt; <a class="el" href="class_input_abstraction_layer.html">InputAbs
 
 </div>
 </div>
-<a class="anchor" id="ae14ae04fc613f3019a699e7041a5e800"></a>
+<a class="anchor" id="a480a40466279cc28a6ade56b5ab9ad10"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int UI_Engine::set_standard_abstraction_layer </td>
+          <td class="memname">int UI_Engine::SetStandardAbstractionLayer </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="_input_abstraction_layer_8h.html#a923b71e93f04f69ce98d7a8b926c3f5d">STANDARD_ABSTRACTION_LAYER</a>&#160;</td>
+          <td class="paramtype">STANDARD_ABSTRACTION_LAYER&#160;</td>
           <td class="paramname"><em>layer</em></td><td>)</td>
           <td></td>
         </tr>
@@ -351,7 +398,7 @@ std::vector&lt; <a class="el" href="class_input_abstraction_layer.html">InputAbs
 <p>Ustawia jedną ze standardowych warstw abstrakcji wbudowanych w silnik. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">layer</td><td>Jedna z wartości <a class="el" href="_input_abstraction_layer_8h.html#a923b71e93f04f69ce98d7a8b926c3f5d">STANDARD_ABSTRACTION_LAYER</a>, która indentyfikuje warstwę do ustawienia. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">layer</td><td>Jedna z wartości STANDARD_ABSTRACTION_LAYER, która indentyfikuje warstwę do ustawienia. </td></tr>
   </table>
   </dd>
 </dl>
@@ -359,7 +406,7 @@ std::vector&lt; <a class="el" href="class_input_abstraction_layer.html">InputAbs
 
 </div>
 </div>
-<a class="anchor" id="a1495ef36f42830d40be70f6212063fe7"></a>
+<a class="anchor" id="a5f3812493f952abd4fce4b994ef529fe"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -367,7 +414,7 @@ std::vector&lt; <a class="el" href="class_input_abstraction_layer.html">InputAbs
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void UI_Engine::update_abstraction_layer </td>
+          <td class="memname">void UI_Engine::UpdateAbstractionLayer </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -386,14 +433,14 @@ std::vector&lt; <a class="el" href="class_input_abstraction_layer.html">InputAbs
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/UIEngine/<a class="el" href="_u_i___engine_8h_source.html">UI_Engine.h</a></li>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/UIEngine/UI_Engine.cpp</li>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/UIEngine/UI_Engine_AbstractionLayers.cpp</li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/UIEngine/<a class="el" href="_u_i___engine_8h_source.html">UI_Engine.h</a></li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/UIEngine/UI_Engine.cpp</li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/UIEngine/UI_Engine_AbstractionLayers.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

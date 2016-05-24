@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: Dokumentacja silnika SWEngine</title>
+<title>Schopenhauers Weltschmerz Engine: Dokumentacja silnika SWEngine</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -94,13 +95,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a class="el" href="_folder_structure.html">Struktura katalogowa projektu</a> </li>
 <li>
 <a class="el" href="group___modules_structure.html">Moduły silnika</a> </li>
+<li>
+<a class="el" href="_license.html">Licencja</a> </li>
 </ul>
 </li>
 <li>
 <p class="startli"><a class="el" href="_theme_description.html">Opis tematyczny</a></p>
 <ul>
 <li>
-<a class="el" href="_events.html">Eventy</a> </li>
+<a class="el" href="group___events_signals.html#Events">Eventy</a> </li>
 <li>
 <a class="el" href="_engine_init.html">Inicjowanie silnika</a> </li>
 <li>
@@ -115,6 +118,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 ObjectInterpolation </li>
 <li>
 <a class="el" href="_main_loop.html">Pętla główna silnika</a> </li>
+<li>
+<a class="el" href="_engine_interface_commands.html">Komendy silnika</a> </li>
 <li>
 <a class="el" href="group___making_loaders.html">Pisanie loaderów</a> </li>
 <li>
@@ -139,15 +144,15 @@ ObjectInterpolation </li>
 <li>
 <a class="el" href="class_buffer_object.html" title="Obiekt opakowujący bufor.Bufor może być zarówno buforem wierzchołków, indeksów jak i stałych...">BufferObject</a> </li>
 <li>
-<a class="el" href="structevent__mapping.html">event_mapping</a> </li>
+event_mapping </li>
 <li>
-<a class="el" href="class_input_abstraction_layer.html" title="Klasa stanowi interfejs umożliwiający definiowanie i modyfikowanie wastwy abstrakcji. Zalecam przeczytanie opisu klasy InputAbstractionLayer_base, który zawiera wszystkie potrzebne informacje. ">InputAbstractionLayer</a> </li>
+<a class="el" href="class_input_abstraction_layer.html" title="Klasa stanowi interfejs umożliwiający definiowanie i modyfikowanie wastwy abstrakcji. Zalecam przeczytanie opisu klasy InputAbstractionLayerBase, który zawiera wszystkie potrzebne informacje. ">InputAbstractionLayer</a> </li>
 <li>
-<a class="el" href="class_input_abstraction_layer__base.html" title="Klasa reprezentująca warstwę abstrakcji między wartościami zwracanymi z directInputa, a wejściem aplikacji. ">InputAbstractionLayer_base</a> </li>
+InputAbstractionLayer_base </li>
 <li>
 <a class="el" href="class_input_layout_descriptor.html" title="Klasa przechowuje opis layoutu wierzchołka, na podstawie którego tworzony jest obiekt layoutu...">InputLayoutDescriptor</a> </li>
 <li>
-<a class="el" href="structinput__mapping.html">input_mapping</a> </li>
+input_mapping </li>
 <li>
 <a class="el" href="struct_material_object.html" title="Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. ">MaterialObject</a> </li>
 <li>
@@ -180,49 +185,49 @@ ObjectInterpolation </li>
 <p class="startli"><a class="el" href="_predefined_classes.html">Klasy predefiniowane</a></p>
 <ul>
 <li>
-<a class="el" href="classcamera__controller___p_r_o_t_o_t_y_p_e.html" title="Kontroler kamery zgodny z wartwą abstrakcji PROTOTYPE. ">camera_controller_PROTOTYPE</a> </li>
+camera_controller_PROTOTYPE </li>
 </ul>
 </li>
 <li>
 <p class="startli"><a class="el" href="_base_engine_objects.html">Klasy bazowe dla obiektów predefiniowanych</a></p>
 <ul>
 <li>
-<a class="el" href="class_animation_object.html">AnimationObject</a> </li>
+<a class="el" href="class_animation_actor.html">AnimationActor</a> </li>
 <li>
 <a class="el" href="class_base_a_i_controller.html" title="Klasa bazowa dla wszystkich kontrolerów sztucznej inteligencji. ">BaseAIController</a> </li>
 <li>
 <a class="el" href="class_base_input_controller.html" title="Klasa bazowa dla wszystkich kontrolerów do sterowania przez użytkownika. ">BaseInputController</a> </li>
 <li>
-<a class="el" href="class_camera_object.html" title="Klasa bazowa dla wszystkich obiektów kamer w silniku. ">CameraObject</a> </li>
+<a class="el" href="class_camera_actor.html" title="Klasa bazowa dla wszystkich obiektów kamer w silniku. ">CameraActor</a> </li>
 <li>
-<a class="el" href="class_collision_object.html" title="Klasa bazowa dla obiektów zdolnych do kolizji. ">CollisionObject</a> </li>
+<a class="el" href="class_collision_actor.html" title="Klasa bazowa dla obiektów zdolnych do kolizji. ">CollisionActor</a> </li>
 <li>
-<a class="el" href="class_complex_object.html">ComplexObject</a> </li>
+<a class="el" href="class_complex_actor.html">ComplexActor</a> </li>
 <li>
-<a class="el" href="class_controller.html" title="Klasa bazowa dla wszystkich kontrolerów dla obiektów. ">Controller</a> </li>
+Controller </li>
 <li>
-<a class="el" href="class_dynamic_mesh_object.html" title="Klasa bazowa dla obiektów, które będą renderowane. ">DynamicMeshObject</a> </li>
+<a class="el" href="class_dynamic_mesh_actor.html" title="Klasa bazowa dla obiektów, które będą renderowane. ">DynamicMeshActor</a> </li>
 <li>
-<a class="el" href="class_dynamic_object.html" title="Klasa bazowa dla obiektów dynamicznych. ">DynamicObject</a> </li>
+<a class="el" href="class_dynamic_actor.html" title="Klasa bazowa dla obiektów dynamicznych. ">DynamicActor</a> </li>
 <li>
 <a class="el" href="class_event.html">Event</a> </li>
 <li>
 InstancedMesh </li>
 <li>
-<a class="el" href="class_object.html" title="Klasa bazowa dla wszystkich obiektów w grze (aktorów). ">Object</a> </li>
+<a class="el" href="class_engine_object.html" title="Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz...">EngineObject</a> </li>
 <li>
-<a class="el" href="class_physical_object.html">PhysicalObject</a> </li>
+<a class="el" href="class_physical_actor.html">PhysicalActor</a> </li>
 <li>
-<a class="el" href="class_static_object.html" title="Klasa bazowa dla wszystkich obiektów statycznych w silniku. ">StaticObject</a> </li>
+<a class="el" href="class_static_actor.html" title="Klasa bazowa dla wszystkich obiektów statycznych w silniku. ">StaticActor</a> </li>
 <li>
-TriggerObject </li>
+<a class="el" href="class_trigger_actor.html">TriggerActor</a> </li>
 </ul>
 </li>
 <li>
 <p class="startli"><a class="el" href="_main_interfaces.html">Interfejsy</a></p>
 <ul>
 <li>
-<a class="el" href="class_engine_interface.html" title="Klasa jest interfejsem dla użytkownika użytkującego silnik. ">EngineInterface</a> </li>
+<a class="el" href="class_engine_interface.html" title="Klasa jest interfejsem dla użytkownika użytkującego silnik.Taki interfejs będzie widział użytkownik s...">EngineInterface</a> </li>
 <li>
 <a class="el" href="class_i_game_play.html">IGamePlay</a> </li>
 <li>
@@ -235,42 +240,44 @@ TriggerObject </li>
 <p class="startli"><a class="el" href="_engine_core_modules.html">Moduły EngineCore</a></p>
 <ul>
 <li>
-<a class="el" href="class_collision_engine.html">CollisionEngine</a> </li>
+<a class="el" href="class_actors_manager.html" title="Moduł do zarządzania aktorami. ">ActorsManager</a> </li>
 <li>
-<a class="el" href="class_controllers_engine.html">ControllersEngine</a> </li>
+<a class="el" href="class_collision_engine.html" title="Moduł obsługujący kolizje. ">CollisionEngine</a> </li>
+<li>
+<a class="el" href="class_controllers_engine.html" title="Moduł do zarządzania kontrolerami obiektów. ">ControllersEngine</a> </li>
 <li>
 <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a> </li>
 <li>
-<a class="el" href="class_engine.html" title="Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika. W aplikacji powinien...">Engine</a> </li>
+<a class="el" href="class_engine.html" title="Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika.">Engine</a> </li>
 <li>
-<a class="el" href="class_fable_engine.html">FableEngine</a> </li>
+<a class="el" href="class_fable_engine.html" title="Moduł do zarządzania fabułą. ">FableEngine</a> </li>
 <li>
 <a class="el" href="class_models_manager.html" title="Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dźwięków, które raczej zostaną oddelego...">ModelsManager</a> </li>
 <li>
-<a class="el" href="class_movement_engine.html">MovementEngine</a> </li>
+<a class="el" href="class_movement_engine.html" title="Moduł do obsługi obiektów dynamicznych. ">MovementEngine</a> </li>
 <li>
-<a class="el" href="class_physic_engine.html">PhysicEngine</a> </li>
+<a class="el" href="class_physic_engine.html" title="Moduł fizyki. ">PhysicEngine</a> </li>
 <li>
-<a class="el" href="class_sound_engine.html">SoundEngine</a> </li>
+<a class="el" href="class_sound_engine.html" title="Moduł do obsługi dźwięków. ">SoundEngine</a> </li>
 <li>
-<a class="el" href="class_u_i___engine.html">UI_Engine</a> </li>
+<a class="el" href="class_u_i___engine.html" title="Moduł do obsługi wejścia wyjścia. ">UI_Engine</a> </li>
 </ul>
 </li>
 <li>
 <p class="startli"><a class="el" href="_constants_macros.html">Stałe i makrodefinicje</a></p>
 <ul>
 <li>
-<a class="el" href="macros__switches_8h.html#a401b10c98a7a9fdbfabe1549ea348a49">_INTERPOLATE_POSITIONS</a> </li>
+_INTERPOLATE_POSITIONS </li>
 <li>
-<a class="el" href="macros__switches_8h.html#a30ba771950f948d8bc5c4951db8a15a6">__TEST</a> </li>
+__TEST </li>
 <li>
 __UNUSED </li>
 <li>
-<a class="el" href="macros__switches_8h.html#aacb06f18bf1d2140627cd4ab6edc26ef">_SCALEABLE_OBJECTS</a> </li>
+_SCALEABLE_OBJECTS </li>
 <li>
-<a class="el" href="macros__switches_8h.html#a36f190ee08b08696d7e8d0277e366ebb">ENGINE_MAX_TEXTURES</a> </li>
+ENGINE_MAX_TEXTURES </li>
 <li>
-<a class="el" href="macros__switches_8h.html#a48a5c65b842a78ae371647be94f0cce1">ENGINE_MAX_LIGHTS</a> </li>
+ENGINE_MAX_LIGHTS </li>
 <li>
 FIXED_MOVE_UPDATE_INTERVAL </li>
 <li>
@@ -282,7 +289,7 @@ FRAMES_PER_SEC_UPDATE </li>
 <li>
 <a class="el" href="_engine_8h.html#aa0bc9bf69d2f543079f0bd0135af0dcb">Modules</a> </li>
 <li>
-<a class="el" href="macros__switches_8h.html#aa6b95d3b3d22c5f14f2708a5b01dd0bf">PERFORMANCE_CHECK</a> </li>
+PERFORMANCE_CHECK </li>
 <li>
 PERFORMANCE_STATISTICS_FILE_PATH </li>
 <li>
@@ -298,13 +305,13 @@ PERFORMANCE_STATISTICS_FILE_PATH </li>
 <li>
 SHOW_MEMORY_LEAKS </li>
 <li>
-<a class="el" href="_input_abstraction_layer_8h.html#a923b71e93f04f69ce98d7a8b926c3f5d">STANDARD_ABSTRACTION_LAYER</a> </li>
+STANDARD_ABSTRACTION_LAYER </li>
 <li>
 STANDARD_ABSTRACTION_LAYER_COUNT </li>
 <li>
 <a class="el" href="_graphic_a_p_i_constants_8h.html#a65468556d79304b3a4bfc464cc12e549">TextureType</a> </li>
 <li>
-<a class="el" href="_mesh_resources_8h.html#ac3601c766e904acff2b729f45ccba47c">TextureTypes</a> </li>
+TextureTypes </li>
 <li>
 <a class="el" href="_mesh_resources_8h.html#a0429535275068adae77d61a7913e11dc">WRONG_ID</a> </li>
 </ul>
@@ -313,7 +320,7 @@ STANDARD_ABSTRACTION_LAYER_COUNT </li>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:04 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

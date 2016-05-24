@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['active',['active',['../class_input_abstraction_layer__base.html#a1f4963c97620e82632312ffc801ee38f',1,'InputAbstractionLayer_base']]],
-  ['active_5fchanged',['active_changed',['../class_input_abstraction_layer.html#ab8b346bff56f17f1b71957bce9877456',1,'InputAbstractionLayer']]],
+  ['active',['active',['../class_input_abstraction_layer_base.html#a72609b95c20c755d9eeea3d7fb688bfa',1,'InputAbstractionLayerBase']]],
+  ['actors',['Actors',['../class_engine_interface.html#a6c82902255497db7976fbaf169a36ebb',1,'EngineInterface']]],
+  ['actorsmanager',['actorsManager',['../struct_engine_context.html#a64466e1ffca7718b2ddb8cdbd1d737be',1,'EngineContext']]],
   ['alignment',['alignment',['../class_x_g_u_i_1_1_control.html#a26cead3660846b8902d4c33373ce981c',1,'XGUI::Control']]],
   ['allowshareresource',['allowShareResource',['../struct_render_target_descriptor.html#a57d6567094d31a95a52156a80d08203c',1,'RenderTargetDescriptor']]],
   ['arraysize',['arraySize',['../struct_render_target_descriptor.html#a45fba2dbb4aca0e7f8327a023c55d0b4',1,'RenderTargetDescriptor']]],
-  ['axis_5fmapping_5ftable',['axis_mapping_table',['../class_input_abstraction_layer.html#aa2859895aa7bc3353a31200689cdb9d5',1,'InputAbstractionLayer']]],
-  ['axis_5frot_5fspeed',['axis_rot_speed',['../classcamera__controller___p_r_o_t_o_t_y_p_e.html#a43fa3ba132d281635feae9c340c34343',1,'camera_controller_PROTOTYPE']]]
+  ['assets',['Assets',['../class_engine_interface.html#a056ab594e080784a6d03ce892fa63b05',1,'EngineInterface::Assets()'],['../class_api_1_1_actors_api.html#a0c8c120236f1cc84aff5aae0c626af3b',1,'Api::ActorsApi::Assets()']]]
 ];

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: InputAbstractionLayer Class Reference</title>
+<title>Schopenhauers Weltschmerz Engine: InputAbstractionLayer Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -95,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa stanowi interfejs umożliwiający definiowanie i modyfikowanie wastwy abstrakcji. Zalecam przeczytanie opisu klasy <a class="el" href="class_input_abstraction_layer__base.html" title="Klasa reprezentująca warstwę abstrakcji między wartościami zwracanymi z directInputa, a wejściem aplikacji. ">InputAbstractionLayer_base</a>, który zawiera wszystkie potrzebne informacje.  
+<p>Klasa stanowi interfejs umożliwiający definiowanie i modyfikowanie wastwy abstrakcji. Zalecam przeczytanie opisu klasy <a class="el" href="class_input_abstraction_layer_base.html" title="Klasa reprezentująca warstwę abstrakcji między wartościami zwracanymi z directInputa, a wejściem aplikacji. ">InputAbstractionLayerBase</a>, który zawiera wszystkie potrzebne informacje.  
  <a href="class_input_abstraction_layer.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_input_abstraction_layer_8h_source.html">InputAbstractionLayer.h</a>&gt;</code></p>
@@ -105,145 +106,138 @@ Inheritance diagram for InputAbstractionLayer:</div>
  <div class="center">
   <img src="class_input_abstraction_layer.png" usemap="#InputAbstractionLayer_map" alt=""/>
   <map id="InputAbstractionLayer_map" name="InputAbstractionLayer_map">
-<area href="class_input_abstraction_layer__base.html" title="Klasa reprezentująca warstwę abstrakcji między wartościami zwracanymi z directInputa, a wejściem aplikacji. " alt="InputAbstractionLayer_base" shape="rect" coords="0,0,170,24"/>
+<area href="class_input_abstraction_layer_base.html" title="Klasa reprezentująca warstwę abstrakcji między wartościami zwracanymi z directInputa, a wejściem aplikacji. " alt="InputAbstractionLayerBase" shape="rect" coords="0,56,164,80"/>
+<area href="class_engine_object.html" title="Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz..." alt="EngineObject" shape="rect" coords="0,0,164,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0703e8054bbcfbe399f3b34d5e7ff84e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0703e8054bbcfbe399f3b34d5e7ff84e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a0703e8054bbcfbe399f3b34d5e7ff84e">set_active</a> (bool activate)</td></tr>
-<tr class="memdesc:a0703e8054bbcfbe399f3b34d5e7ff84e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia warstwę abstrakcji jako aktywną <br /></td></tr>
-<tr class="separator:a0703e8054bbcfbe399f3b34d5e7ff84e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af999a1c7b405d997936f7677633f0ae0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af999a1c7b405d997936f7677633f0ae0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#af999a1c7b405d997936f7677633f0ae0">set_mouse_position</a> (short X, short Y)</td></tr>
-<tr class="memdesc:af999a1c7b405d997936f7677633f0ae0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia pozycję myszy. <br /></td></tr>
-<tr class="separator:af999a1c7b405d997936f7677633f0ae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19a3bf1829949dc7c3e3799e2d60eb34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a19a3bf1829949dc7c3e3799e2d60eb34">begin_event_collection</a> ()</td></tr>
-<tr class="memdesc:a19a3bf1829949dc7c3e3799e2d60eb34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja zapisuje wszystkie wartoœci przycisków, które potencjalnie mog¹ wys³aæ eventy. Nastêpnie tablice s¹ zerowane.  <a href="#a19a3bf1829949dc7c3e3799e2d60eb34">More...</a><br /></td></tr>
-<tr class="separator:a19a3bf1829949dc7c3e3799e2d60eb34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68f592f49445e095ca0562b635d5487d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a68f592f49445e095ca0562b635d5487d">send_events</a> (<a class="el" href="class_engine.html">Engine</a> *)</td></tr>
-<tr class="memdesc:a68f592f49445e095ca0562b635d5487d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wysy³a eventy, je¿eli jakieœ przyciski wirtualne zosta³y wciœniête. Aby tak siê sta³o, musi znajdowaæ siê odpowiedni wpis w tablicy event_mapping_table.  <a href="#a68f592f49445e095ca0562b635d5487d">More...</a><br /></td></tr>
-<tr class="separator:a68f592f49445e095ca0562b635d5487d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a050a7ddafe1e46bbaa007c8a616ab728"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a050a7ddafe1e46bbaa007c8a616ab728">update_keyboard_device</a> (short device_nr, const char *keyboard_state)</td></tr>
-<tr class="memdesc:a050a7ddafe1e46bbaa007c8a616ab728"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków na podstawie wejœcia o intefejsie klawiatury. Zazwyczaj wywo³uje siê j¹ dla klawiatury, ale mo¿e byæ te¿ tak, ¿e directX reprezentuje jakieœ inne urz¹dzenie takim samym interfejsem.  <a href="#a050a7ddafe1e46bbaa007c8a616ab728">More...</a><br /></td></tr>
-<tr class="separator:a050a7ddafe1e46bbaa007c8a616ab728"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a66bf71869a1c512213c985651eb973"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a1a66bf71869a1c512213c985651eb973">update_mouse_device</a> (short device_nr, const DIMOUSESTATE2 *mouse_state, int window_width, int window_height)</td></tr>
-<tr class="memdesc:a1a66bf71869a1c512213c985651eb973"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków oraz osi na podstawie wejœcia o intefejsie myszy. Zazwyczaj wywo³uje siê j¹ dla myszy, ale mo¿e byæ te¿ tak, ¿e directX reprezentuje jakieœ inne urz¹dzenie takim samym interfejsem.  <a href="#a1a66bf71869a1c512213c985651eb973">More...</a><br /></td></tr>
-<tr class="separator:a1a66bf71869a1c512213c985651eb973"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26f320da1418e851ce34d87071bada4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a26f320da1418e851ce34d87071bada4d">update_joystick_device</a> (short device_nr, const DIJOYSTATE *joystick_state)</td></tr>
-<tr class="memdesc:a26f320da1418e851ce34d87071bada4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków oraz osi na podstawie wejœcia o intefejsie joysticka.  <a href="#a26f320da1418e851ce34d87071bada4d">More...</a><br /></td></tr>
-<tr class="separator:a26f320da1418e851ce34d87071bada4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29c4242d6685ce2e5424f6e02ed0dc3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a29c4242d6685ce2e5424f6e02ed0dc3c">demand_down_event</a> (unsigned short v_index)</td></tr>
-<tr class="memdesc:a29c4242d6685ce2e5424f6e02ed0dc3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">¯¹da wysy³ania eventów o wciœniêciu wirtualnego przycisku o podanym indeksie.  <a href="#a29c4242d6685ce2e5424f6e02ed0dc3c">More...</a><br /></td></tr>
-<tr class="separator:a29c4242d6685ce2e5424f6e02ed0dc3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a7e70137132949c2b7c302e85675b0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a0a7e70137132949c2b7c302e85675b0c">demand_up_event</a> (unsigned short v_index)</td></tr>
-<tr class="memdesc:a0a7e70137132949c2b7c302e85675b0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">¯¹da wysy³ania eventów o puszczeniu wirtualnego przycisku o podanym indeksie.  <a href="#a0a7e70137132949c2b7c302e85675b0c">More...</a><br /></td></tr>
-<tr class="separator:a0a7e70137132949c2b7c302e85675b0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a073a068a3ca88e55228fecd3a6f59235"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a073a068a3ca88e55228fecd3a6f59235">delete_up_event</a> (unsigned short v_index)</td></tr>
-<tr class="memdesc:a073a068a3ca88e55228fecd3a6f59235"><td class="mdescLeft">&#160;</td><td class="mdescRight">¯¹da zaprzestania wysy³ania eventów o wciœniêciu wirtualnego przycisku o podanym indeksie.  <a href="#a073a068a3ca88e55228fecd3a6f59235">More...</a><br /></td></tr>
-<tr class="separator:a073a068a3ca88e55228fecd3a6f59235"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9539e07cbb146c4121bbe560c78024d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#ac9539e07cbb146c4121bbe560c78024d">delete_down_event</a> (unsigned short v_index)</td></tr>
-<tr class="memdesc:ac9539e07cbb146c4121bbe560c78024d"><td class="mdescLeft">&#160;</td><td class="mdescRight">¯¹da zaprzestania wysy³ania eventów o puszczeniu wirtualnego przycisku o podanym indeksie.  <a href="#ac9539e07cbb146c4121bbe560c78024d">More...</a><br /></td></tr>
-<tr class="separator:ac9539e07cbb146c4121bbe560c78024d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31835690a9e964f970bee309e919503a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a31835690a9e964f970bee309e919503a">setup_buttons_layer</a> (<a class="el" href="structinput__mapping.html">input_mapping</a> *mapping, unsigned int length)</td></tr>
-<tr class="memdesc:a31835690a9e964f970bee309e919503a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja s³u¿y do zdefiniowania wartstwy abstrakcji dla przycisków.  <a href="#a31835690a9e964f970bee309e919503a">More...</a><br /></td></tr>
-<tr class="separator:a31835690a9e964f970bee309e919503a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa059a046439cecb27bc5304ab42a8056"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#aa059a046439cecb27bc5304ab42a8056">setup_axis_layer</a> (<a class="el" href="structinput__mapping.html">input_mapping</a> *mapping, unsigned int length)</td></tr>
-<tr class="memdesc:aa059a046439cecb27bc5304ab42a8056"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja s³u¿y do zdefiniowania wartstwy abstrakcji dla osi.  <a href="#aa059a046439cecb27bc5304ab42a8056">More...</a><br /></td></tr>
-<tr class="separator:aa059a046439cecb27bc5304ab42a8056"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a991d5d7e7604b241d5172d9d044a0bfe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a991d5d7e7604b241d5172d9d044a0bfe">setup_layer_from_file</a> (const std::string &amp;file_name)</td></tr>
-<tr class="memdesc:a991d5d7e7604b241d5172d9d044a0bfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja tworz¹ca warstwê abstrakcji na podstawie podanego pliku.  <a href="#a991d5d7e7604b241d5172d9d044a0bfe">More...</a><br /></td></tr>
-<tr class="separator:a991d5d7e7604b241d5172d9d044a0bfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_class_input_abstraction_layer__base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_input_abstraction_layer__base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_input_abstraction_layer__base.html">InputAbstractionLayer_base</a></td></tr>
-<tr class="memitem:a72814289ba430318a6f2fe7423eee202 inherit pub_methods_class_input_abstraction_layer__base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72814289ba430318a6f2fe7423eee202"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer__base.html#a72814289ba430318a6f2fe7423eee202">is_active</a> ()</td></tr>
-<tr class="memdesc:a72814289ba430318a6f2fe7423eee202 inherit pub_methods_class_input_abstraction_layer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informuje czy warstwa jest aktywna. <br /></td></tr>
-<tr class="separator:a72814289ba430318a6f2fe7423eee202 inherit pub_methods_class_input_abstraction_layer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f3a8849304e9dacc0d0c194cf0e6145 inherit pub_methods_class_input_abstraction_layer__base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f3a8849304e9dacc0d0c194cf0e6145"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer__base.html#a0f3a8849304e9dacc0d0c194cf0e6145">get_buttons_table</a> ()</td></tr>
-<tr class="memdesc:a0f3a8849304e9dacc0d0c194cf0e6145 inherit pub_methods_class_input_abstraction_layer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca tablicę wirtualnych przycisków. <br /></td></tr>
-<tr class="separator:a0f3a8849304e9dacc0d0c194cf0e6145 inherit pub_methods_class_input_abstraction_layer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08fd83cd83643bef0e4c3dc48dbe4ae0 inherit pub_methods_class_input_abstraction_layer__base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a08fd83cd83643bef0e4c3dc48dbe4ae0"></a>
-const float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer__base.html#a08fd83cd83643bef0e4c3dc48dbe4ae0">get_axis_table</a> ()</td></tr>
-<tr class="memdesc:a08fd83cd83643bef0e4c3dc48dbe4ae0 inherit pub_methods_class_input_abstraction_layer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca tablicę wirtualnych osi. <br /></td></tr>
-<tr class="separator:a08fd83cd83643bef0e4c3dc48dbe4ae0 inherit pub_methods_class_input_abstraction_layer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4dd21f4836f1a45def4a17d8eb304d49 inherit pub_methods_class_input_abstraction_layer__base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4dd21f4836f1a45def4a17d8eb304d49"></a>
-short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer__base.html#a4dd21f4836f1a45def4a17d8eb304d49">get_mouseX</a> ()</td></tr>
-<tr class="memdesc:a4dd21f4836f1a45def4a17d8eb304d49 inherit pub_methods_class_input_abstraction_layer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca położenie myszy w X. <br /></td></tr>
-<tr class="separator:a4dd21f4836f1a45def4a17d8eb304d49 inherit pub_methods_class_input_abstraction_layer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af213993dbcf88ab9d2292c92b260d663 inherit pub_methods_class_input_abstraction_layer__base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af213993dbcf88ab9d2292c92b260d663"></a>
-short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer__base.html#af213993dbcf88ab9d2292c92b260d663">get_mouseY</a> ()</td></tr>
-<tr class="memdesc:af213993dbcf88ab9d2292c92b260d663 inherit pub_methods_class_input_abstraction_layer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca położenie myszy w Y. <br /></td></tr>
-<tr class="separator:af213993dbcf88ab9d2292c92b260d663 inherit pub_methods_class_input_abstraction_layer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae23a09adb0cb32324e84460d6272b4b6 inherit pub_methods_class_input_abstraction_layer__base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae23a09adb0cb32324e84460d6272b4b6"></a>
-unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer__base.html#ae23a09adb0cb32324e84460d6272b4b6">get_num_axis</a> ()</td></tr>
-<tr class="memdesc:ae23a09adb0cb32324e84460d6272b4b6 inherit pub_methods_class_input_abstraction_layer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca liczbe osi. <br /></td></tr>
-<tr class="separator:ae23a09adb0cb32324e84460d6272b4b6 inherit pub_methods_class_input_abstraction_layer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e0c42cd515cd42ba73884b079534a3b inherit pub_methods_class_input_abstraction_layer__base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e0c42cd515cd42ba73884b079534a3b"></a>
-unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer__base.html#a5e0c42cd515cd42ba73884b079534a3b">get_num_buttons</a> ()</td></tr>
-<tr class="memdesc:a5e0c42cd515cd42ba73884b079534a3b inherit pub_methods_class_input_abstraction_layer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca liczbe przycisków. <br /></td></tr>
-<tr class="separator:a5e0c42cd515cd42ba73884b079534a3b inherit pub_methods_class_input_abstraction_layer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a422f2296424ab55beb8c5ba6e3a78449"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a422f2296424ab55beb8c5ba6e3a78449"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a422f2296424ab55beb8c5ba6e3a78449">SetActive</a> (bool activate)</td></tr>
+<tr class="memdesc:a422f2296424ab55beb8c5ba6e3a78449"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia warstwę abstrakcji jako aktywną <br /></td></tr>
+<tr class="separator:a422f2296424ab55beb8c5ba6e3a78449"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75c60ef68dd9ec591c524400c9ecaa04"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a75c60ef68dd9ec591c524400c9ecaa04"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a75c60ef68dd9ec591c524400c9ecaa04">SetMousePosition</a> (short X, short Y)</td></tr>
+<tr class="memdesc:a75c60ef68dd9ec591c524400c9ecaa04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia pozycję myszy. <br /></td></tr>
+<tr class="separator:a75c60ef68dd9ec591c524400c9ecaa04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5077c678d776bc823c6cb51a4b9a472"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#ab5077c678d776bc823c6cb51a4b9a472">BeginEventCollection</a> ()</td></tr>
+<tr class="memdesc:ab5077c678d776bc823c6cb51a4b9a472"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja zapisuje wszystkie wartoœci przycisków, które potencjalnie mog¹ wys³aæ eventy. Nastêpnie tablice s¹ zerowane.  <a href="#ab5077c678d776bc823c6cb51a4b9a472">More...</a><br /></td></tr>
+<tr class="separator:ab5077c678d776bc823c6cb51a4b9a472"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aded8e48b95ddd726ada6434ad14d8f28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#aded8e48b95ddd726ada6434ad14d8f28">SendEvents</a> (<a class="el" href="class_engine.html">Engine</a> *)</td></tr>
+<tr class="memdesc:aded8e48b95ddd726ada6434ad14d8f28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wysy³a eventy, je¿eli jakieœ przyciski wirtualne zosta³y wciœniête. Aby tak siê sta³o, musi znajdowaæ siê odpowiedni wpis w tablicy m_requestedEvents.  <a href="#aded8e48b95ddd726ada6434ad14d8f28">More...</a><br /></td></tr>
+<tr class="separator:aded8e48b95ddd726ada6434ad14d8f28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ff11221a3ffcb241595a169c215e3fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a9ff11221a3ffcb241595a169c215e3fb">UpdateKeyboardDevice</a> (DeviceNumber DeviceNr, const char *keyboard_state)</td></tr>
+<tr class="memdesc:a9ff11221a3ffcb241595a169c215e3fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków na podstawie wejœcia o intefejsie klawiatury. Zazwyczaj wywo³uje siê j¹ dla klawiatury, ale mo¿e byæ te¿ tak, ¿e directX reprezentuje jakieœ inne urz¹dzenie takim samym interfejsem.  <a href="#a9ff11221a3ffcb241595a169c215e3fb">More...</a><br /></td></tr>
+<tr class="separator:a9ff11221a3ffcb241595a169c215e3fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f52cf9017d0e557a20158324b47e29e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a7f52cf9017d0e557a20158324b47e29e">UpdateMouseDevice</a> (DeviceNumber DeviceNr, const DIMOUSESTATE2 *mouse_state, int window_width, int window_height)</td></tr>
+<tr class="memdesc:a7f52cf9017d0e557a20158324b47e29e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków oraz osi na podstawie wejœcia o intefejsie myszy. Zazwyczaj wywo³uje siê j¹ dla myszy, ale mo¿e byæ te¿ tak, ¿e directX reprezentuje jakieœ inne urz¹dzenie takim samym interfejsem.  <a href="#a7f52cf9017d0e557a20158324b47e29e">More...</a><br /></td></tr>
+<tr class="separator:a7f52cf9017d0e557a20158324b47e29e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51e3c29ae0a635b7f79ad078418e262a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a51e3c29ae0a635b7f79ad078418e262a">UpdateJoystickDevice</a> (DeviceNumber DeviceNr, const DIJOYSTATE *joystick_state)</td></tr>
+<tr class="memdesc:a51e3c29ae0a635b7f79ad078418e262a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków oraz osi na podstawie wejœcia o intefejsie joysticka.  <a href="#a51e3c29ae0a635b7f79ad078418e262a">More...</a><br /></td></tr>
+<tr class="separator:a51e3c29ae0a635b7f79ad078418e262a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cdc3ae858dc97f1a658143c3dbe74ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a4cdc3ae858dc97f1a658143c3dbe74ca">DemandDownEvent</a> (VirtualKeyIndex virtualIdx)</td></tr>
+<tr class="memdesc:a4cdc3ae858dc97f1a658143c3dbe74ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Żąda wysyłania eventów o wciśnięciu wirtualnego przycisku o podanym indeksie.  <a href="#a4cdc3ae858dc97f1a658143c3dbe74ca">More...</a><br /></td></tr>
+<tr class="separator:a4cdc3ae858dc97f1a658143c3dbe74ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad838baa879f5bb69d27f651bf03d297e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#ad838baa879f5bb69d27f651bf03d297e">DemandUpEvent</a> (VirtualKeyIndex virtualIdx)</td></tr>
+<tr class="memdesc:ad838baa879f5bb69d27f651bf03d297e"><td class="mdescLeft">&#160;</td><td class="mdescRight">¯¹da wysy³ania eventów o puszczeniu wirtualnego przycisku o podanym indeksie.  <a href="#ad838baa879f5bb69d27f651bf03d297e">More...</a><br /></td></tr>
+<tr class="separator:ad838baa879f5bb69d27f651bf03d297e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a826da21e412c5bbccdb3f5b9226eda7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a826da21e412c5bbccdb3f5b9226eda7a">DeleteUpEvent</a> (VirtualKeyIndex virtualIdx)</td></tr>
+<tr class="memdesc:a826da21e412c5bbccdb3f5b9226eda7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">¯¹da zaprzestania wysy³ania eventów o wciœniêciu wirtualnego przycisku o podanym indeksie.  <a href="#a826da21e412c5bbccdb3f5b9226eda7a">More...</a><br /></td></tr>
+<tr class="separator:a826da21e412c5bbccdb3f5b9226eda7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc2c18e8cfabbd0d17a2b882170a0d08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#acc2c18e8cfabbd0d17a2b882170a0d08">DeleteDownEvent</a> (VirtualKeyIndex virtualIdx)</td></tr>
+<tr class="memdesc:acc2c18e8cfabbd0d17a2b882170a0d08"><td class="mdescLeft">&#160;</td><td class="mdescRight">¯¹da zaprzestania wysy³ania eventów o puszczeniu wirtualnego przycisku o podanym indeksie.  <a href="#acc2c18e8cfabbd0d17a2b882170a0d08">More...</a><br /></td></tr>
+<tr class="separator:acc2c18e8cfabbd0d17a2b882170a0d08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adea5c04fd7eb5ccf1cae119091c7132f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#adea5c04fd7eb5ccf1cae119091c7132f">SetupButtonsLayer</a> (std::vector&lt; <a class="el" href="struct_input_mapping.html">InputMapping</a> &gt; &amp;&amp;mapping)</td></tr>
+<tr class="memdesc:adea5c04fd7eb5ccf1cae119091c7132f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja s³u¿y do zdefiniowania wartstwy abstrakcji dla przycisków.  <a href="#adea5c04fd7eb5ccf1cae119091c7132f">More...</a><br /></td></tr>
+<tr class="separator:adea5c04fd7eb5ccf1cae119091c7132f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57a6a2ddd1e1097ba50b923c04d4c9d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a57a6a2ddd1e1097ba50b923c04d4c9d3">SetupAxisLayer</a> (std::vector&lt; <a class="el" href="struct_input_mapping.html">InputMapping</a> &gt; &amp;&amp;mapping)</td></tr>
+<tr class="memdesc:a57a6a2ddd1e1097ba50b923c04d4c9d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja s³u¿y do zdefiniowania wartstwy abstrakcji dla osi.  <a href="#a57a6a2ddd1e1097ba50b923c04d4c9d3">More...</a><br /></td></tr>
+<tr class="separator:a57a6a2ddd1e1097ba50b923c04d4c9d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0118216390e935385cdaae81561387fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a0118216390e935385cdaae81561387fe">SetupLayerFromFile</a> (const std::string &amp;file_name)</td></tr>
+<tr class="memdesc:a0118216390e935385cdaae81561387fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja tworz¹ca warstwê abstrakcji na podstawie podanego pliku.  <a href="#a0118216390e935385cdaae81561387fe">More...</a><br /></td></tr>
+<tr class="separator:a0118216390e935385cdaae81561387fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_input_abstraction_layer_base"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_input_abstraction_layer_base')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_input_abstraction_layer_base.html">InputAbstractionLayerBase</a></td></tr>
+<tr class="memitem:af9df9419cebe425f8ca2d86e3cccd48c inherit pub_methods_class_input_abstraction_layer_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af9df9419cebe425f8ca2d86e3cccd48c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer_base.html#af9df9419cebe425f8ca2d86e3cccd48c">IsActive</a> ()</td></tr>
+<tr class="memdesc:af9df9419cebe425f8ca2d86e3cccd48c inherit pub_methods_class_input_abstraction_layer_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informuje czy warstwa jest aktywna. <br /></td></tr>
+<tr class="separator:af9df9419cebe425f8ca2d86e3cccd48c inherit pub_methods_class_input_abstraction_layer_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb4a190adf30cb078bff1ae3875fd349 inherit pub_methods_class_input_abstraction_layer_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb4a190adf30cb078bff1ae3875fd349"></a>
+short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer_base.html#acb4a190adf30cb078bff1ae3875fd349">GetMouseX</a> ()</td></tr>
+<tr class="memdesc:acb4a190adf30cb078bff1ae3875fd349 inherit pub_methods_class_input_abstraction_layer_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca położenie myszy w X. <br /></td></tr>
+<tr class="separator:acb4a190adf30cb078bff1ae3875fd349 inherit pub_methods_class_input_abstraction_layer_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ebd93f37092dacb8577873f34ec4576 inherit pub_methods_class_input_abstraction_layer_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ebd93f37092dacb8577873f34ec4576"></a>
+short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer_base.html#a2ebd93f37092dacb8577873f34ec4576">GetMouseY</a> ()</td></tr>
+<tr class="memdesc:a2ebd93f37092dacb8577873f34ec4576 inherit pub_methods_class_input_abstraction_layer_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca położenie myszy w Y. <br /></td></tr>
+<tr class="separator:a2ebd93f37092dacb8577873f34ec4576 inherit pub_methods_class_input_abstraction_layer_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dbab4942ea703745eba452f8f85d46f inherit pub_methods_class_input_abstraction_layer_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5dbab4942ea703745eba452f8f85d46f"></a>
+unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer_base.html#a5dbab4942ea703745eba452f8f85d46f">GetNumAxis</a> ()</td></tr>
+<tr class="memdesc:a5dbab4942ea703745eba452f8f85d46f inherit pub_methods_class_input_abstraction_layer_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca liczbe osi. <br /></td></tr>
+<tr class="separator:a5dbab4942ea703745eba452f8f85d46f inherit pub_methods_class_input_abstraction_layer_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca5570a9a8bc3213e4b4df01799e616e inherit pub_methods_class_input_abstraction_layer_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca5570a9a8bc3213e4b4df01799e616e"></a>
+unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer_base.html#aca5570a9a8bc3213e4b4df01799e616e">GetNumButtons</a> ()</td></tr>
+<tr class="memdesc:aca5570a9a8bc3213e4b4df01799e616e inherit pub_methods_class_input_abstraction_layer_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca liczbe przycisków. <br /></td></tr>
+<tr class="separator:aca5570a9a8bc3213e4b4df01799e616e inherit pub_methods_class_input_abstraction_layer_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f3dbc6bbd0a79a7791a81827fb8356b inherit pub_methods_class_input_abstraction_layer_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f3dbc6bbd0a79a7791a81827fb8356b"></a>
+const std::vector&lt; char &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer_base.html#a0f3dbc6bbd0a79a7791a81827fb8356b">GetButtonsTable</a> ()</td></tr>
+<tr class="memdesc:a0f3dbc6bbd0a79a7791a81827fb8356b inherit pub_methods_class_input_abstraction_layer_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca tablicę wirtualnych przycisków. <br /></td></tr>
+<tr class="separator:a0f3dbc6bbd0a79a7791a81827fb8356b inherit pub_methods_class_input_abstraction_layer_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a904992af00ef038d0c66a7f62bea7321 inherit pub_methods_class_input_abstraction_layer_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a904992af00ef038d0c66a7f62bea7321"></a>
+const std::vector&lt; float &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer_base.html#a904992af00ef038d0c66a7f62bea7321">GetAxisTable</a> ()</td></tr>
+<tr class="memdesc:a904992af00ef038d0c66a7f62bea7321 inherit pub_methods_class_input_abstraction_layer_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca tablicę wirtualnych osi. <br /></td></tr>
+<tr class="separator:a904992af00ef038d0c66a7f62bea7321 inherit pub_methods_class_input_abstraction_layer_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:ab8b346bff56f17f1b71957bce9877456"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#ab8b346bff56f17f1b71957bce9877456">active_changed</a></td></tr>
-<tr class="separator:ab8b346bff56f17f1b71957bce9877456"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac14acdbf5ad901c82813fcce19885093"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac14acdbf5ad901c82813fcce19885093"></a>
-std::vector&lt; <a class="el" href="structinput__mapping.html">input_mapping</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#ac14acdbf5ad901c82813fcce19885093">buttons_mapping_table</a></td></tr>
-<tr class="memdesc:ac14acdbf5ad901c82813fcce19885093"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tablica mapowania przycisków fizycznych na wirtualne. <br /></td></tr>
-<tr class="separator:ac14acdbf5ad901c82813fcce19885093"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2859895aa7bc3353a31200689cdb9d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2859895aa7bc3353a31200689cdb9d5"></a>
-std::vector&lt; <a class="el" href="structinput__mapping.html">input_mapping</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#aa2859895aa7bc3353a31200689cdb9d5">axis_mapping_table</a></td></tr>
-<tr class="memdesc:aa2859895aa7bc3353a31200689cdb9d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tablica mapowania osi fizycznych na wirtualne. <br /></td></tr>
-<tr class="separator:aa2859895aa7bc3353a31200689cdb9d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad794ed39c3c8116bc580dbcd062816f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad794ed39c3c8116bc580dbcd062816f1"></a>
-std::vector&lt; <a class="el" href="structevent__mapping.html">event_mapping</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#ad794ed39c3c8116bc580dbcd062816f1">event_mapping_table</a></td></tr>
-<tr class="memdesc:ad794ed39c3c8116bc580dbcd062816f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tablica rządanych eventów. <br /></td></tr>
-<tr class="separator:ad794ed39c3c8116bc580dbcd062816f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28335b37ecf741949b1621fbd532daec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a28335b37ecf741949b1621fbd532daec">m_activeChanged</a></td></tr>
+<tr class="separator:a28335b37ecf741949b1621fbd532daec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4835208b404dda1ba822ee6e0e31f10d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4835208b404dda1ba822ee6e0e31f10d"></a>
+std::vector&lt; <a class="el" href="struct_input_mapping.html">InputMapping</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a4835208b404dda1ba822ee6e0e31f10d">m_buttonsMapping</a></td></tr>
+<tr class="memdesc:a4835208b404dda1ba822ee6e0e31f10d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tablica mapowania przycisków fizycznych na wirtualne. <br /></td></tr>
+<tr class="separator:a4835208b404dda1ba822ee6e0e31f10d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88a14417182ffa26c9808ee67e6e961d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88a14417182ffa26c9808ee67e6e961d"></a>
+std::vector&lt; <a class="el" href="struct_input_mapping.html">InputMapping</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a88a14417182ffa26c9808ee67e6e961d">m_axisMapping</a></td></tr>
+<tr class="memdesc:a88a14417182ffa26c9808ee67e6e961d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tablica mapowania osi fizycznych na wirtualne. <br /></td></tr>
+<tr class="separator:a88a14417182ffa26c9808ee67e6e961d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27109b62b14275e0d8797938c17b32b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a27109b62b14275e0d8797938c17b32b3"></a>
+std::vector&lt; <a class="el" href="struct_event_mapping.html">EventMapping</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer.html#a27109b62b14275e0d8797938c17b32b3">m_requestedEvents</a></td></tr>
+<tr class="memdesc:a27109b62b14275e0d8797938c17b32b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tablica żądanych eventów. <br /></td></tr>
+<tr class="separator:a27109b62b14275e0d8797938c17b32b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pro_attribs_class_input_abstraction_layer__base"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_input_abstraction_layer__base')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_input_abstraction_layer__base.html">InputAbstractionLayer_base</a></td></tr>
-<tr class="memitem:af0669b55e1466a6e95522ba27722384a inherit pro_attribs_class_input_abstraction_layer__base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af0669b55e1466a6e95522ba27722384a"></a>
-short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer__base.html#af0669b55e1466a6e95522ba27722384a">mouseX</a></td></tr>
-<tr class="memdesc:af0669b55e1466a6e95522ba27722384a inherit pro_attribs_class_input_abstraction_layer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Położenie myszki w X. <br /></td></tr>
-<tr class="separator:af0669b55e1466a6e95522ba27722384a inherit pro_attribs_class_input_abstraction_layer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af06c099d187640adf895f9ca9f0a54e6 inherit pro_attribs_class_input_abstraction_layer__base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af06c099d187640adf895f9ca9f0a54e6"></a>
-short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer__base.html#af06c099d187640adf895f9ca9f0a54e6">mouseY</a></td></tr>
-<tr class="memdesc:af06c099d187640adf895f9ca9f0a54e6 inherit pro_attribs_class_input_abstraction_layer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Położenie myszi w Y. <br /></td></tr>
-<tr class="separator:af06c099d187640adf895f9ca9f0a54e6 inherit pro_attribs_class_input_abstraction_layer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d7171d23759f06f4726f0f645127186 inherit pro_attribs_class_input_abstraction_layer__base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d7171d23759f06f4726f0f645127186"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer__base.html#a1d7171d23759f06f4726f0f645127186">virtual_button</a></td></tr>
-<tr class="memdesc:a1d7171d23759f06f4726f0f645127186 inherit pro_attribs_class_input_abstraction_layer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tablica wirtualnych przycisków. <br /></td></tr>
-<tr class="separator:a1d7171d23759f06f4726f0f645127186 inherit pro_attribs_class_input_abstraction_layer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a606f0f64fbe18af58751d35e2b1f45a6 inherit pro_attribs_class_input_abstraction_layer__base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a606f0f64fbe18af58751d35e2b1f45a6"></a>
-float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer__base.html#a606f0f64fbe18af58751d35e2b1f45a6">virtual_axis</a></td></tr>
-<tr class="memdesc:a606f0f64fbe18af58751d35e2b1f45a6 inherit pro_attribs_class_input_abstraction_layer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tablica dla kontrolerów osiowych. <br /></td></tr>
-<tr class="separator:a606f0f64fbe18af58751d35e2b1f45a6 inherit pro_attribs_class_input_abstraction_layer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1b1241363d72a686c1d6dc284b884b9 inherit pro_attribs_class_input_abstraction_layer__base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af1b1241363d72a686c1d6dc284b884b9"></a>
-unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer__base.html#af1b1241363d72a686c1d6dc284b884b9">num_buttons</a></td></tr>
-<tr class="memdesc:af1b1241363d72a686c1d6dc284b884b9 inherit pro_attribs_class_input_abstraction_layer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba przycisków. <br /></td></tr>
-<tr class="separator:af1b1241363d72a686c1d6dc284b884b9 inherit pro_attribs_class_input_abstraction_layer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34ac9dc5a64470353e3093f0b7d9a698 inherit pro_attribs_class_input_abstraction_layer__base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34ac9dc5a64470353e3093f0b7d9a698"></a>
-unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer__base.html#a34ac9dc5a64470353e3093f0b7d9a698">num_axis</a></td></tr>
-<tr class="memdesc:a34ac9dc5a64470353e3093f0b7d9a698 inherit pro_attribs_class_input_abstraction_layer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba kontrolerów osiowych. <br /></td></tr>
-<tr class="separator:a34ac9dc5a64470353e3093f0b7d9a698 inherit pro_attribs_class_input_abstraction_layer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f4963c97620e82632312ffc801ee38f inherit pro_attribs_class_input_abstraction_layer__base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f4963c97620e82632312ffc801ee38f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer__base.html#a1f4963c97620e82632312ffc801ee38f">active</a></td></tr>
-<tr class="memdesc:a1f4963c97620e82632312ffc801ee38f inherit pro_attribs_class_input_abstraction_layer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stwierdza czy dana wartstwa abstrakcji jest aktualnie aktywna. <br /></td></tr>
-<tr class="separator:a1f4963c97620e82632312ffc801ee38f inherit pro_attribs_class_input_abstraction_layer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_input_abstraction_layer_base"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_input_abstraction_layer_base')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_input_abstraction_layer_base.html">InputAbstractionLayerBase</a></td></tr>
+<tr class="memitem:a99788959d7f5471930d80eee5f959813 inherit pro_attribs_class_input_abstraction_layer_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a99788959d7f5471930d80eee5f959813"></a>
+short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer_base.html#a99788959d7f5471930d80eee5f959813">mouseX</a></td></tr>
+<tr class="memdesc:a99788959d7f5471930d80eee5f959813 inherit pro_attribs_class_input_abstraction_layer_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Położenie myszki w X. <br /></td></tr>
+<tr class="separator:a99788959d7f5471930d80eee5f959813 inherit pro_attribs_class_input_abstraction_layer_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c53f023046e9fc92e29ae5d4a857cdc inherit pro_attribs_class_input_abstraction_layer_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c53f023046e9fc92e29ae5d4a857cdc"></a>
+short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer_base.html#a8c53f023046e9fc92e29ae5d4a857cdc">mouseY</a></td></tr>
+<tr class="memdesc:a8c53f023046e9fc92e29ae5d4a857cdc inherit pro_attribs_class_input_abstraction_layer_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Położenie myszi w Y. <br /></td></tr>
+<tr class="separator:a8c53f023046e9fc92e29ae5d4a857cdc inherit pro_attribs_class_input_abstraction_layer_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4d0d304d83b25ae4bc313624be430d9 inherit pro_attribs_class_input_abstraction_layer_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4d0d304d83b25ae4bc313624be430d9"></a>
+std::vector&lt; char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer_base.html#ae4d0d304d83b25ae4bc313624be430d9">m_virtualButtons</a></td></tr>
+<tr class="memdesc:ae4d0d304d83b25ae4bc313624be430d9 inherit pro_attribs_class_input_abstraction_layer_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tablica wirtualnych przycisków. <br /></td></tr>
+<tr class="separator:ae4d0d304d83b25ae4bc313624be430d9 inherit pro_attribs_class_input_abstraction_layer_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f1670bf9ebb90774e5712a9166e9afd inherit pro_attribs_class_input_abstraction_layer_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f1670bf9ebb90774e5712a9166e9afd"></a>
+std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer_base.html#a1f1670bf9ebb90774e5712a9166e9afd">m_virtualAxis</a></td></tr>
+<tr class="memdesc:a1f1670bf9ebb90774e5712a9166e9afd inherit pro_attribs_class_input_abstraction_layer_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tablica dla kontrolerów osiowych. <br /></td></tr>
+<tr class="separator:a1f1670bf9ebb90774e5712a9166e9afd inherit pro_attribs_class_input_abstraction_layer_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72609b95c20c755d9eeea3d7fb688bfa inherit pro_attribs_class_input_abstraction_layer_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72609b95c20c755d9eeea3d7fb688bfa"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_abstraction_layer_base.html#a72609b95c20c755d9eeea3d7fb688bfa">active</a></td></tr>
+<tr class="memdesc:a72609b95c20c755d9eeea3d7fb688bfa inherit pro_attribs_class_input_abstraction_layer_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stwierdza czy dana wartstwa abstrakcji jest aktualnie aktywna. <br /></td></tr>
+<tr class="separator:a72609b95c20c755d9eeea3d7fb688bfa inherit pro_attribs_class_input_abstraction_layer_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa stanowi interfejs umożliwiający definiowanie i modyfikowanie wastwy abstrakcji. Zalecam przeczytanie opisu klasy <a class="el" href="class_input_abstraction_layer__base.html" title="Klasa reprezentująca warstwę abstrakcji między wartościami zwracanymi z directInputa, a wejściem aplikacji. ">InputAbstractionLayer_base</a>, który zawiera wszystkie potrzebne informacje. </p>
-<p>Klasa bazowa stanowi interfejs uniemożliwiający nadpisanie danych w klasie i tylko w takim celu istnieje to rozdzielenie. Nie powinny istnieć żadne obiekty klasy <a class="el" href="class_input_abstraction_layer__base.html" title="Klasa reprezentująca warstwę abstrakcji między wartościami zwracanymi z directInputa, a wejściem aplikacji. ">InputAbstractionLayer_base</a>, ponieważ nie ma to żadnego sensu. Taki obiekt nie mógłby zostać w żaden sposób uzupełniony danymi. </p>
+<div class="textblock"><p>Klasa stanowi interfejs umożliwiający definiowanie i modyfikowanie wastwy abstrakcji. Zalecam przeczytanie opisu klasy <a class="el" href="class_input_abstraction_layer_base.html" title="Klasa reprezentująca warstwę abstrakcji między wartościami zwracanymi z directInputa, a wejściem aplikacji. ">InputAbstractionLayerBase</a>, który zawiera wszystkie potrzebne informacje. </p>
+<p>Klasa bazowa stanowi interfejs uniemożliwiający nadpisanie danych w klasie i tylko w takim celu istnieje to rozdzielenie. Nie powinny istnieć żadne obiekty klasy <a class="el" href="class_input_abstraction_layer_base.html" title="Klasa reprezentująca warstwę abstrakcji między wartościami zwracanymi z directInputa, a wejściem aplikacji. ">InputAbstractionLayerBase</a>, ponieważ nie ma to żadnego sensu. Taki obiekt nie mógłby zostać w żaden sposób uzupełniony danymi. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a19a3bf1829949dc7c3e3799e2d60eb34"></a>
+<a class="anchor" id="ab5077c678d776bc823c6cb51a4b9a472"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputAbstractionLayer::begin_event_collection </td>
+          <td class="memname">void InputAbstractionLayer::BeginEventCollection </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -253,19 +247,19 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Funkcja zapisuje wszystkie wartoœci przycisków, które potencjalnie mog¹ wys³aæ eventy. Nastêpnie tablice s¹ zerowane. </p>
 <p>Po dostarczeniu klasie wszystkich informacji o urzadzeniach wejœciowych, nast¹pi sprawdzenie, gdzie zmieni³y siê stany przycisków i wys³anie eventów. Do tego nale¿y wywo³aæ funkcjê end_events.</p>
-<p>Wszystkie wywo³ania funkcji ustawiaj¹cych stan przycisków i osi powinny znajdowaæ siê pomiêdzy wywo³aniami begin_event_collection i send_events. Inaczej nic nie zadzia³a, poniewa¿ funkcje zak³adaj¹, ¿e tablice s¹ wyzerowane. </p>
+<p>Wszystkie wywo³ania funkcji ustawiaj¹cych stan przycisków i osi powinny znajdowaæ siê pomiêdzy wywo³aniami BeginEventCollection i SendEvents. Inaczej nic nie zadzia³a, poniewa¿ funkcje zak³adaj¹, ¿e tablice s¹ wyzerowane. </p>
 
 </div>
 </div>
-<a class="anchor" id="ac9539e07cbb146c4121bbe560c78024d"></a>
+<a class="anchor" id="acc2c18e8cfabbd0d17a2b882170a0d08"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputAbstractionLayer::delete_down_event </td>
+          <td class="memname">void InputAbstractionLayer::DeleteDownEvent </td>
           <td>(</td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>v_index</em></td><td>)</td>
+          <td class="paramtype">VirtualKeyIndex&#160;</td>
+          <td class="paramname"><em>virtualIdx</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -274,22 +268,22 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>¯¹da zaprzestania wysy³ania eventów o puszczeniu wirtualnego przycisku o podanym indeksie. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">v_index</td><td>Indeks wirtualnego przycisku w tablicy. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">virtualIdx</td><td>Indeks wirtualnego przycisku w tablicy. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a073a068a3ca88e55228fecd3a6f59235"></a>
+<a class="anchor" id="a826da21e412c5bbccdb3f5b9226eda7a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputAbstractionLayer::delete_up_event </td>
+          <td class="memname">void InputAbstractionLayer::DeleteUpEvent </td>
           <td>(</td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>v_index</em></td><td>)</td>
+          <td class="paramtype">VirtualKeyIndex&#160;</td>
+          <td class="paramname"><em>virtualIdx</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -298,46 +292,47 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>¯¹da zaprzestania wysy³ania eventów o wciœniêciu wirtualnego przycisku o podanym indeksie. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">v_index</td><td>Indeks wirtualnego przycisku w tablicy. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">virtualIdx</td><td>Indeks wirtualnego przycisku w tablicy. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a29c4242d6685ce2e5424f6e02ed0dc3c"></a>
+<a class="anchor" id="a4cdc3ae858dc97f1a658143c3dbe74ca"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputAbstractionLayer::demand_down_event </td>
+          <td class="memname">void InputAbstractionLayer::DemandDownEvent </td>
           <td>(</td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>v_index</em></td><td>)</td>
+          <td class="paramtype">VirtualKeyIndex&#160;</td>
+          <td class="paramname"><em>virtualIdx</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>¯¹da wysy³ania eventów o wciœniêciu wirtualnego przycisku o podanym indeksie. </p>
+<p>Żąda wysyłania eventów o wciśnięciu wirtualnego przycisku o podanym indeksie. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000039">Todo:</a></b></dt><dd>Po napisaniu porządnego sposobu obsługi eventów należy umożliwić tutaj wstawienie konkretnego delegata, który zostanie wywołany jako obsługa eventu. Obecnie mechanizm jest bardzo niewygodny. W funkcji obsługi eventu trzeba sprawdzać jaki przycisk został wciśnięty faktycznie.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">v_index</td><td>Indeks wirtualnego przycisku w tablicy. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">virtualIdx</td><td>Indeks wirtualnego przycisku w tablicy. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a0a7e70137132949c2b7c302e85675b0c"></a>
+<a class="anchor" id="ad838baa879f5bb69d27f651bf03d297e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputAbstractionLayer::demand_up_event </td>
+          <td class="memname">void InputAbstractionLayer::DemandUpEvent </td>
           <td>(</td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>v_index</em></td><td>)</td>
+          <td class="paramtype">VirtualKeyIndex&#160;</td>
+          <td class="paramname"><em>virtualIdx</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -346,19 +341,19 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>¯¹da wysy³ania eventów o puszczeniu wirtualnego przycisku o podanym indeksie. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">v_index</td><td>Indeks wirtualnego przycisku w tablicy. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">virtualIdx</td><td>Indeks wirtualnego przycisku w tablicy. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a68f592f49445e095ca0562b635d5487d"></a>
+<a class="anchor" id="aded8e48b95ddd726ada6434ad14d8f28"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputAbstractionLayer::send_events </td>
+          <td class="memname">void InputAbstractionLayer::SendEvents </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_engine.html">Engine</a> *&#160;</td>
           <td class="paramname"><em>engine</em></td><td>)</td>
@@ -367,7 +362,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
       </table>
 </div><div class="memdoc">
 
-<p>Funkcja wysy³a eventy, je¿eli jakieœ przyciski wirtualne zosta³y wciœniête. Aby tak siê sta³o, musi znajdowaæ siê odpowiedni wpis w tablicy event_mapping_table. </p>
+<p>Funkcja wysy³a eventy, je¿eli jakieœ przyciski wirtualne zosta³y wciœniête. Aby tak siê sta³o, musi znajdowaæ siê odpowiedni wpis w tablicy m_requestedEvents. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">engine</td><td>WskaŸnik jest aby, potrzebny móc wys³aæ event. </td></tr>
@@ -377,26 +372,16 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a class="anchor" id="aa059a046439cecb27bc5304ab42a8056"></a>
+<a class="anchor" id="a57a6a2ddd1e1097ba50b923c04d4c9d3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputAbstractionLayer::setup_axis_layer </td>
+          <td class="memname">void InputAbstractionLayer::SetupAxisLayer </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structinput__mapping.html">input_mapping</a> *&#160;</td>
-          <td class="paramname"><em>mapping</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="struct_input_mapping.html">InputMapping</a> &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>mapping</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>length</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -412,26 +397,16 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a class="anchor" id="a31835690a9e964f970bee309e919503a"></a>
+<a class="anchor" id="adea5c04fd7eb5ccf1cae119091c7132f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputAbstractionLayer::setup_buttons_layer </td>
+          <td class="memname">void InputAbstractionLayer::SetupButtonsLayer </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structinput__mapping.html">input_mapping</a> *&#160;</td>
-          <td class="paramname"><em>mapping</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="struct_input_mapping.html">InputMapping</a> &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>mapping</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>length</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -447,12 +422,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a class="anchor" id="a991d5d7e7604b241d5172d9d044a0bfe"></a>
+<a class="anchor" id="a0118216390e935385cdaae81561387fe"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int InputAbstractionLayer::setup_layer_from_file </td>
+          <td class="memname">int InputAbstractionLayer::SetupLayerFromFile </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>file_name</em></td><td>)</td>
@@ -462,7 +437,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>Funkcja tworz¹ca warstwê abstrakcji na podstawie podanego pliku. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd>Funkcja do napisania, struktura pliku musi zostaæ okreœlona.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000040">Todo:</a></b></dt><dd>Funkcja do napisania, struktura pliku musi zostaæ okreœlona.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">file_name</td><td>Nazwa pliku do wczytania. </td></tr>
@@ -473,15 +448,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a class="anchor" id="a26f320da1418e851ce34d87071bada4d"></a>
+<a class="anchor" id="a51e3c29ae0a635b7f79ad078418e262a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputAbstractionLayer::update_joystick_device </td>
+          <td class="memname">void InputAbstractionLayer::UpdateJoystickDevice </td>
           <td>(</td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>device_nr</em>, </td>
+          <td class="paramtype">DeviceNumber&#160;</td>
+          <td class="paramname"><em>DeviceNr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -501,7 +476,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Zazwyczaj wywo³uje siê j¹ dla joysticka i wszystkich innych urz¹dzeñ, które nie sa klawiatur¹ albo mysz¹, ale mo¿e byæ te¿ tak, ¿e directX reprezentuje jakieœ inne urz¹dzenie takim samym interfejsem.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">device_nr</td><td>Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci <a class="el" href="_input_abstraction_layer_8h.html#a8c5c07e0f92a0223fd6beb6870dff2d5">DEVICE_IDs</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">DeviceNr</td><td>Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci DEVICE_IDs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">joystick_state</td><td>Struktura opisuj¹ca stan urz¹dzenia, które da siê opisaæ takim interfejsem. </td></tr>
   </table>
   </dd>
@@ -509,15 +484,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a class="anchor" id="a050a7ddafe1e46bbaa007c8a616ab728"></a>
+<a class="anchor" id="a9ff11221a3ffcb241595a169c215e3fb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputAbstractionLayer::update_keyboard_device </td>
+          <td class="memname">void InputAbstractionLayer::UpdateKeyboardDevice </td>
           <td>(</td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>device_nr</em>, </td>
+          <td class="paramtype">DeviceNumber&#160;</td>
+          <td class="paramname"><em>DeviceNr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -536,7 +511,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków na podstawie wejœcia o intefejsie klawiatury. Zazwyczaj wywo³uje siê j¹ dla klawiatury, ale mo¿e byæ te¿ tak, ¿e directX reprezentuje jakieœ inne urz¹dzenie takim samym interfejsem. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">device_nr</td><td>Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci <a class="el" href="_input_abstraction_layer_8h.html#a8c5c07e0f92a0223fd6beb6870dff2d5">DEVICE_IDs</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">DeviceNr</td><td>Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci DEVICE_IDs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">keyboard_state</td><td>Tablica 255 elementów opisuj¹ca stan klawiatury. </td></tr>
   </table>
   </dd>
@@ -544,15 +519,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a class="anchor" id="a1a66bf71869a1c512213c985651eb973"></a>
+<a class="anchor" id="a7f52cf9017d0e557a20158324b47e29e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputAbstractionLayer::update_mouse_device </td>
+          <td class="memname">void InputAbstractionLayer::UpdateMouseDevice </td>
           <td>(</td>
-          <td class="paramtype">short&#160;</td>
-          <td class="paramname"><em>device_nr</em>, </td>
+          <td class="paramtype">DeviceNumber&#160;</td>
+          <td class="paramname"><em>DeviceNr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -583,7 +558,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków oraz osi na podstawie wejœcia o intefejsie myszy. Zazwyczaj wywo³uje siê j¹ dla myszy, ale mo¿e byæ te¿ tak, ¿e directX reprezentuje jakieœ inne urz¹dzenie takim samym interfejsem. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">device_nr</td><td>Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci <a class="el" href="_input_abstraction_layer_8h.html#a8c5c07e0f92a0223fd6beb6870dff2d5">DEVICE_IDs</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">DeviceNr</td><td>Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci DEVICE_IDs. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">mouse_state</td><td>Struktura opisuj¹ca stan urz¹dzenia, które da siê opisaæ takim interfejsem. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">window_width</td><td>Szerokość okna </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">window_height</td><td>Wysokość okna </td></tr>
@@ -594,7 +569,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="ab8b346bff56f17f1b71957bce9877456"></a>
+<a class="anchor" id="a28335b37ecf741949b1621fbd532daec"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -602,7 +577,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool InputAbstractionLayer::active_changed</td>
+          <td class="memname">bool InputAbstractionLayer::m_activeChanged</td>
         </tr>
       </table>
   </td>
@@ -611,18 +586,18 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Zmienna active_changed jest ustawiana w momencie, kiedy obiekt staje się aktywną warstwą abstrakcji.Ma za zadanie zapobiegac wysyłaniu eventów o wciśnięciu przycisków, które zostały wciśnięte w momencie aktywności poprzedniej wartwy abstrakcji.Zmienna chroni tylko przed eventami typu wciśnięcie przycisku, nie da się za jej pomocą zablokować eventów typu puszczenie przycisku, ponieważ może to nastąpić wiele klatek później. </p>
+<p>Zmienna m_activeChanged jest ustawiana w momencie, kiedy obiekt staje się aktywną warstwą abstrakcji.Ma za zadanie zapobiegac wysyłaniu eventów o wciśnięciu przycisków, które zostały wciśnięte w momencie aktywności poprzedniej wartwy abstrakcji.Zmienna chroni tylko przed eventami typu wciśnięcie przycisku, nie da się za jej pomocą zablokować eventów typu puszczenie przycisku, ponieważ może to nastąpić wiele klatek później. </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/UIEngine/<a class="el" href="_input_abstraction_layer_8h_source.html">InputAbstractionLayer.h</a></li>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/UIEngine/<a class="el" href="_input_abstraction_layer_8cpp.html">InputAbstractionLayer.cpp</a></li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/UIEngine/<a class="el" href="_input_abstraction_layer_8h_source.html">InputAbstractionLayer.h</a></li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/UIEngine/<a class="el" href="_input_abstraction_layer_8cpp.html">InputAbstractionLayer.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:18 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

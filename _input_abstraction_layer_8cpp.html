@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: D:/ProgramyVS/SWEngine/EngineCode/EngineCore/UIEngine/InputAbstractionLayer.cpp File Reference</title>
+<title>Schopenhauers Weltschmerz Engine: D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/UIEngine/InputAbstractionLayer.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -84,38 +85,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_07852cf1fee5477a7df52c44b8e8dc93.html">EngineCore</a></li><li class="navelem"><a class="el" href="dir_af95d645c20dd9b254cd1763b157d7ab.html">UIEngine</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5eb15d33cea2c0f983bce569376c8449.html">EngineCore</a></li><li class="navelem"><a class="el" href="dir_75aed751d82adb0383f1166dc25d490a.html">UIEngine</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">InputAbstractionLayer.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Plik zawiera definicje metod klasy <a class="el" href="class_input_abstraction_layer__base.html" title="Klasa reprezentująca warstwę abstrakcji między wartościami zwracanymi z directInputa, a wejściem aplikacji. ">InputAbstractionLayer_base</a>, <a class="el" href="class_input_abstraction_layer.html" title="Klasa stanowi interfejs umożliwiający definiowanie i modyfikowanie wastwy abstrakcji. Zalecam przeczytanie opisu klasy InputAbstractionLayer_base, który zawiera wszystkie potrzebne informacje. ">InputAbstractionLayer</a> oraz definicje standardowych warstw abstrakcji.  
+<p>Plik zawiera definicje metod klasy <a class="el" href="class_input_abstraction_layer_base.html" title="Klasa reprezentująca warstwę abstrakcji między wartościami zwracanymi z directInputa, a wejściem aplikacji. ">InputAbstractionLayerBase</a>, <a class="el" href="class_input_abstraction_layer.html" title="Klasa stanowi interfejs umożliwiający definiowanie i modyfikowanie wastwy abstrakcji. Zalecam przeczytanie opisu klasy InputAbstractionLayerBase, który zawiera wszystkie potrzebne informacje. ">InputAbstractionLayer</a> oraz definicje standardowych warstw abstrakcji.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;EngineCore/stdafx.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="_input_abstraction_layer_8h_source.html">InputAbstractionLayer.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_engine_8h_source.html">EngineCore/MainEngine/Engine.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_event_8h_source.html">EngineCore/EventsManager/Event.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="memory__leaks_8h_source.html">Common\memory_leaks.h</a>&quot;</code><br />
-</div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:af6f8f5b23341b877d5ba3017753b6696"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structinput__mapping.html">input_mapping</a>&#160;</td><td class="memItemRight" valign="bottom"><b>STANDARD_LAYERS::PROTOTYPE_BUTTONS_mapping</b> [PROTOTYPE_BUTTONS_MAPPING_COUNT]</td></tr>
-<tr class="separator:af6f8f5b23341b877d5ba3017753b6696"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a771d6864ff1bdbf486bfaf1da2d6c954"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structinput__mapping.html">input_mapping</a>&#160;</td><td class="memItemRight" valign="bottom"><b>STANDARD_LAYERS::PROTOTYPE_AXES_mapping</b> [PROTOTYPE_AXES_MAPPING_COUNT]</td></tr>
-<tr class="separator:a771d6864ff1bdbf486bfaf1da2d6c954"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Plik zawiera definicje metod klasy <a class="el" href="class_input_abstraction_layer__base.html" title="Klasa reprezentująca warstwę abstrakcji między wartościami zwracanymi z directInputa, a wejściem aplikacji. ">InputAbstractionLayer_base</a>, <a class="el" href="class_input_abstraction_layer.html" title="Klasa stanowi interfejs umożliwiający definiowanie i modyfikowanie wastwy abstrakcji. Zalecam przeczytanie opisu klasy InputAbstractionLayer_base, który zawiera wszystkie potrzebne informacje. ">InputAbstractionLayer</a> oraz definicje standardowych warstw abstrakcji. </p>
+<code>#include &quot;<a class="el" href="_key_up_event_8h_source.html">EngineCore/EventsManager/Events/KeyUpEvent.h</a>&quot;</code><br />
+<code>#include &quot;EngineCore/EventsManager/Events/KeyDownEvent.h&quot;</code><br />
+<code>#include &quot;Common/MemoryLeaks.h&quot;</code><br />
+</div><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Plik zawiera definicje metod klasy <a class="el" href="class_input_abstraction_layer_base.html" title="Klasa reprezentująca warstwę abstrakcji między wartościami zwracanymi z directInputa, a wejściem aplikacji. ">InputAbstractionLayerBase</a>, <a class="el" href="class_input_abstraction_layer.html" title="Klasa stanowi interfejs umożliwiający definiowanie i modyfikowanie wastwy abstrakcji. Zalecam przeczytanie opisu klasy InputAbstractionLayerBase, który zawiera wszystkie potrzebne informacje. ">InputAbstractionLayer</a> oraz definicje standardowych warstw abstrakcji. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:18 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: CollisionEngine Class Reference</title>
+<title>Schopenhauers Weltschmerz Engine: CollisionEngine Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -91,33 +92,70 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_collision_engine-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">CollisionEngine Class Reference</div>  </div>
+<div class="title">CollisionEngine Class Reference<div class="ingroups"><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___engine_core.html">EngineCore</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Moduł obsługujący kolizje.  
+ <a href="class_collision_engine.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_collision_engine_8h_source.html">CollisionEngine.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a47abee10af14bc24c6098ea02e383446"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47abee10af14bc24c6098ea02e383446"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>CollisionEngine</b> (<a class="el" href="class_engine.html">Engine</a> *engine)</td></tr>
 <tr class="separator:a47abee10af14bc24c6098ea02e383446"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cd8466f7503c8af26b301d261ea9efa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4cd8466f7503c8af26b301d261ea9efa"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>proceed_collisions</b> (float time_interval)</td></tr>
-<tr class="separator:a4cd8466f7503c8af26b301d261ea9efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af59e60b05869709832f09f07819697f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af59e60b05869709832f09f07819697f8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ProceedCollisions</b> (float timeInterval)</td></tr>
+<tr class="separator:af59e60b05869709832f09f07819697f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a8437cf7481310c6e1a1636c4b4ac1ad0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8437cf7481310c6e1a1636c4b4ac1ad0"></a>
 <a class="el" href="class_engine.html">Engine</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>engine</b></td></tr>
 <tr class="separator:a8437cf7481310c6e1a1636c4b4ac1ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab90f9afd0d7be655282b27bbe18d3988"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_collision_octree.html">CollisionOctree</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_collision_engine.html#ab90f9afd0d7be655282b27bbe18d3988">m_octree</a></td></tr>
+<tr class="separator:ab90f9afd0d7be655282b27bbe18d3988"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7012ac6094159cc42b805ba9d4e24cc0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7012ac6094159cc42b805ba9d4e24cc0"></a>
+std::vector&lt; <a class="el" href="class_collision_actor.html">CollisionActor</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_staticActors</b></td></tr>
+<tr class="separator:a7012ac6094159cc42b805ba9d4e24cc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a043e37b14db7a8c2484a710ff5883eef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a043e37b14db7a8c2484a710ff5883eef"></a>
+std::vector&lt; <a class="el" href="class_collision_actor.html">CollisionActor</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_dynamicActors</b></td></tr>
+<tr class="separator:a043e37b14db7a8c2484a710ff5883eef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Moduł obsługujący kolizje. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ab90f9afd0d7be655282b27bbe18d3988"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_collision_octree.html">CollisionOctree</a>* CollisionEngine::m_octree</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Kontener przechowujący i sortuający obiekty. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000038">Todo:</a></b></dt><dd>W przyszłości warto by tutaj móc wstawiać różne kontenery. Użytkownik powinien mieć przynajmniej możliwość wyboru zastosowanego kontenera, zmienianie w trakcie może nie koniecznie. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/CollisionEngine/<a class="el" href="_collision_engine_8h_source.html">CollisionEngine.h</a></li>
-<li>D:/ProgramyVS/SWEngine/EngineCode/EngineCore/CollisionEngine/CollisionEngine.cpp</li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/PhysicEngine/<a class="el" href="_collision_engine_8h_source.html">CollisionEngine.h</a></li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/PhysicEngine/CollisionEngine.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:03 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:18 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

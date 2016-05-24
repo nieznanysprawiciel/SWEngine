@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: D:/ProgramyVS/SWEngine/EngineCode/EngineCore/DisplayEngine/DisplayEngine.h File Reference</title>
+<title>Schopenhauers Weltschmerz Engine: D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/DisplayEngine/DisplayEngine.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -84,7 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_07852cf1fee5477a7df52c44b8e8dc93.html">EngineCore</a></li><li class="navelem"><a class="el" href="dir_44bc6dba402a374e0646aebe535194d3.html">DisplayEngine</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_5eb15d33cea2c0f983bce569376c8449.html">EngineCore</a></li><li class="navelem"><a class="el" href="dir_f5c2e0b2a031eb72e53c6a223db743ab.html">DisplayEngine</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -98,10 +99,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>Plik zawiera deklarację klasy <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a> i funkcje pomocnicze.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;EngineCore/Actors/ActorObjects.h&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="_i_renderer_8h_source.html">GraphicAPI/IRenderer.h</a>&quot;</code><br />
+<code>#include &quot;EngineCore/Actors/ActorObjects.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="_constant_buffers_format_8h_source.html">ConstantBuffersFormat.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_sky_dome_8h_source.html">EngineCore/Features/SkyDome.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_i_renderer_8h_source.html">GraphicAPI/IRenderer.h</a>&quot;</code><br />
+<code>#include &quot;EngineCore/DisplayEngine/RenderPass.h&quot;</code><br />
+<code>#include &lt;DirectXMath.h&gt;</code><br />
+<code>#include &lt;queue&gt;</code><br />
 </div>
 <p><a href="_display_engine_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -113,12 +117,12 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad4eb67d0e5ed6941be630fe2997077bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_engine_8h.html#ad4eb67d0e5ed6941be630fe2997077bf">interpolate_position</a> (float time_lag, const <a class="el" href="class_dynamic_object.html">DynamicObject</a> *object, DirectX::XMVECTOR &amp;result_vector)</td></tr>
-<tr class="memdesc:ad4eb67d0e5ed6941be630fe2997077bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja interpoluje wartość położenia obiektu.  <a href="#ad4eb67d0e5ed6941be630fe2997077bf">More...</a><br /></td></tr>
-<tr class="separator:ad4eb67d0e5ed6941be630fe2997077bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a942587e663f74718aab60b4ebc1fe4ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_engine_8h.html#a942587e663f74718aab60b4ebc1fe4ce">interpolate_orientation</a> (float time_lag, const <a class="el" href="class_dynamic_object.html">DynamicObject</a> *object, DirectX::XMVECTOR &amp;result_vector)</td></tr>
-<tr class="memdesc:a942587e663f74718aab60b4ebc1fe4ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja interpoluje orientację obiektu.  <a href="#a942587e663f74718aab60b4ebc1fe4ce">More...</a><br /></td></tr>
-<tr class="separator:a942587e663f74718aab60b4ebc1fe4ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfd3b915618bdd468832cef869d03dc6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_engine_8h.html#acfd3b915618bdd468832cef869d03dc6">interpolate_position</a> (float time_lag, const <a class="el" href="class_dynamic_actor.html">DynamicActor</a> *object, DirectX::XMVECTOR &amp;result_vector)</td></tr>
+<tr class="memdesc:acfd3b915618bdd468832cef869d03dc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja interpoluje wartość położenia obiektu.  <a href="#acfd3b915618bdd468832cef869d03dc6">More...</a><br /></td></tr>
+<tr class="separator:acfd3b915618bdd468832cef869d03dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f433fc38b1317b7af4c2f42244c4812"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_engine_8h.html#a0f433fc38b1317b7af4c2f42244c4812">interpolate_orientation</a> (float time_lag, const <a class="el" href="class_dynamic_actor.html">DynamicActor</a> *object, DirectX::XMVECTOR &amp;result_vector)</td></tr>
+<tr class="memdesc:a0f433fc38b1317b7af4c2f42244c4812"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja interpoluje orientację obiektu.  <a href="#a0f433fc38b1317b7af4c2f42244c4812">More...</a><br /></td></tr>
+<tr class="separator:a0f433fc38b1317b7af4c2f42244c4812"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98fb882dd1ded3cfdb88b2228d2ef927"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_display_engine_8h.html#a98fb882dd1ded3cfdb88b2228d2ef927">inverse_camera_position</a> (DirectX::XMVECTOR &amp;result_vector)</td></tr>
 <tr class="memdesc:a98fb882dd1ded3cfdb88b2228d2ef927"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja odwraca wektor pozycji, aby był zwrócony w przeciwnym kierunku. Potrzebne w momencie tworzenia macierzy widoku na podstawie położenia kamery.  <a href="#a98fb882dd1ded3cfdb88b2228d2ef927">More...</a><br /></td></tr>
 <tr class="separator:a98fb882dd1ded3cfdb88b2228d2ef927"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,7 +135,7 @@ Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>nieznanysprawiciel </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Plik jest częścią silnika graficznego SWEngine. </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a942587e663f74718aab60b4ebc1fe4ce"></a>
+<a class="anchor" id="a0f433fc38b1317b7af4c2f42244c4812"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -147,7 +151,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="class_dynamic_object.html">DynamicObject</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_dynamic_actor.html">DynamicActor</a> *&#160;</td>
           <td class="paramname"><em>object</em>, </td>
         </tr>
         <tr>
@@ -182,7 +186,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ad4eb67d0e5ed6941be630fe2997077bf"></a>
+<a class="anchor" id="acfd3b915618bdd468832cef869d03dc6"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -198,7 +202,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="class_dynamic_object.html">DynamicObject</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_dynamic_actor.html">DynamicActor</a> *&#160;</td>
           <td class="paramname"><em>object</em>, </td>
         </tr>
         <tr>
@@ -300,7 +304,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:17 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>SWEngine: D:/ProgramyVS/SWEngine/EngineCode/EngineEditor/EditorPlugin/EditorPlugin.h Source File</title>
+<title>Schopenhauers Weltschmerz Engine: D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineEditor/EditorPlugin/EditorPlugin.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,9 +23,10 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">SWEngine
-   &#160;<span id="projectnumber">Wersja 1.009</span>
+   <div id="projectname">Schopenhauers Weltschmerz Engine
+   &#160;<span id="projectnumber">Wersja 1.010</span>
    </div>
+   <div id="projectbrief">SWEngine</div>
   </td>
  </tr>
  </tbody>
@@ -84,7 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_8e247e8f5d661a34857050ed83a5fb08.html">EngineEditor</a></li><li class="navelem"><a class="el" href="dir_b8784001c1a8ceebb1633ffb50fd8ae9.html">EditorPlugin</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_c9b464d5fda64516e310c13ad960ba79.html">EngineEditor</a></li><li class="navelem"><a class="el" href="dir_1b2c17155fa66773f49167c7225b935f.html">EditorPlugin</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -99,45 +100,60 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#define WIN32_LEAN_AND_MEAN</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;windows.h&gt;</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">//========================================//</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">// Engine include</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_engine_8h.html">EngineCore/MainEngine/Engine.h</a>&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_editor_plugin.html">EditorPlugin</a></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_editor_plugin_1_1_engine_wrapper.html">   41</a></span>&#160;    <span class="keyword">public ref class</span> <a class="code" href="class_editor_plugin_1_1_engine_wrapper.html">EngineWrapper</a></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="class_engine.html">Engine</a>*             m_engine;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">bool</span>                <a class="code" href="class_editor_plugin_1_1_engine_wrapper.html#ad2cfddbec7af50bba7b707add796a3b0">InitializeEngine</a>            ( System::IntPtr moduleHandle );</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordtype">void</span>                <a class="code" href="class_editor_plugin_1_1_engine_wrapper.html#a2eac62589abffe88fa5324eef3162fe5">ReleaseEngine</a>               ();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        System::IntPtr      GetRenderTarget             ( System::UInt16 width, System::UInt16 height );</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordtype">void</span>                <a class="code" href="class_editor_plugin_1_1_engine_wrapper.html#abcc994ad754e7061c4b155305229182b">UpdateScene</a>                 ();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">void</span>                <a class="code" href="class_editor_plugin_1_1_engine_wrapper.html#a5ee8a1ba36de7206b32274574512e067">RenderScene</a>                 ();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordtype">void</span>                <a class="code" href="class_editor_plugin_1_1_engine_wrapper.html#a600ac03238741f66af7279077d8f2678">ShowWindow</a>                  ();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">void</span>                <a class="code" href="class_editor_plugin_1_1_engine_wrapper.html#a96b1c5a58aadf1ffa551b71462e2f321">TestScene</a>                   ();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    };</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
-<div class="ttc" id="class_editor_plugin_1_1_engine_wrapper_html_a600ac03238741f66af7279077d8f2678"><div class="ttname"><a href="class_editor_plugin_1_1_engine_wrapper.html#a600ac03238741f66af7279077d8f2678">EditorPlugin::EngineWrapper::ShowWindow</a></div><div class="ttdeci">void ShowWindow()</div><div class="ttdoc">Pokazuje okno aplikacji stworzone w EngineCore. </div><div class="ttdef"><b>Definition:</b> EditorPlugin.cpp:70</div></div>
-<div class="ttc" id="class_editor_plugin_1_1_engine_wrapper_html_a5ee8a1ba36de7206b32274574512e067"><div class="ttname"><a href="class_editor_plugin_1_1_engine_wrapper.html#a5ee8a1ba36de7206b32274574512e067">EditorPlugin::EngineWrapper::RenderScene</a></div><div class="ttdeci">void RenderScene()</div><div class="ttdoc">Renderuje scenę. </div><div class="ttdef"><b>Definition:</b> EditorPlugin.cpp:63</div></div>
-<div class="ttc" id="_engine_8h_html"><div class="ttname"><a href="_engine_8h.html">Engine.h</a></div><div class="ttdoc">Plik zawiera deklarację głównego obiektu silnika. </div></div>
-<div class="ttc" id="namespace_editor_plugin_html"><div class="ttname"><a href="namespace_editor_plugin.html">EditorPlugin</a></div><div class="ttdef"><b>Definition:</b> EditorPlugin.cpp:11</div></div>
-<div class="ttc" id="class_editor_plugin_1_1_engine_wrapper_html_a96b1c5a58aadf1ffa551b71462e2f321"><div class="ttname"><a href="class_editor_plugin_1_1_engine_wrapper.html#a96b1c5a58aadf1ffa551b71462e2f321">EditorPlugin::EngineWrapper::TestScene</a></div><div class="ttdeci">void TestScene()</div><div class="ttdoc">Wywołuje funkcje wczytujące obiekty testowe silnika. </div><div class="ttdef"><b>Definition:</b> EditorPlugin.cpp:76</div></div>
-<div class="ttc" id="class_editor_plugin_1_1_engine_wrapper_html_ad2cfddbec7af50bba7b707add796a3b0"><div class="ttname"><a href="class_editor_plugin_1_1_engine_wrapper.html#ad2cfddbec7af50bba7b707add796a3b0">EditorPlugin::EngineWrapper::InitializeEngine</a></div><div class="ttdeci">bool InitializeEngine(System::IntPtr moduleHandle)</div><div class="ttdoc">Tworzy obiekt silnika i inicjuje go. </div><div class="ttdef"><b>Definition:</b> EditorPlugin.cpp:22</div></div>
-<div class="ttc" id="class_editor_plugin_1_1_engine_wrapper_html"><div class="ttname"><a href="class_editor_plugin_1_1_engine_wrapper.html">EditorPlugin::EngineWrapper</a></div><div class="ttdoc">Klasa wrapera do inicjowania silnika i renderowania po stronie kodu zarządzanego. ...</div><div class="ttdef"><b>Definition:</b> EditorPlugin.h:41</div></div>
-<div class="ttc" id="class_editor_plugin_1_1_engine_wrapper_html_a2eac62589abffe88fa5324eef3162fe5"><div class="ttname"><a href="class_editor_plugin_1_1_engine_wrapper.html#a2eac62589abffe88fa5324eef3162fe5">EditorPlugin::EngineWrapper::ReleaseEngine</a></div><div class="ttdeci">void ReleaseEngine()</div><div class="ttdoc">Zwalnia zasoby silnika. </div><div class="ttdef"><b>Definition:</b> EditorPlugin.cpp:40</div></div>
-<div class="ttc" id="class_engine_html"><div class="ttname"><a href="class_engine.html">Engine</a></div><div class="ttdoc">Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika. W aplikacji powinien...</div><div class="ttdef"><b>Definition:</b> Engine.h:58</div></div>
-<div class="ttc" id="class_editor_plugin_1_1_engine_wrapper_html_abcc994ad754e7061c4b155305229182b"><div class="ttname"><a href="class_editor_plugin_1_1_engine_wrapper.html#abcc994ad754e7061c4b155305229182b">EditorPlugin::EngineWrapper::UpdateScene</a></div><div class="ttdeci">void UpdateScene()</div><div class="ttdoc">Wywołuje funkcje odpowiedzialne za przeliczanie położenia obiektów. </div><div class="ttdef"><b>Definition:</b> EditorPlugin.cpp:51</div></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;EngineEditor/EditorPlugin/Actors/ActorClassMetaInfo.h&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;EngineEditor/EditorPlugin/EnginePointerProvider.h&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;Actors/ActorWrapper.h&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">class </span><a class="code" href="class_engine.html">Engine</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">ref class</span> ActorClassMetaInfo;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">ref class</span> ActorWrapper;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_editor_plugin.html">EditorPlugin</a></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespace_system_1_1_collections_1_1_generic.html">System::Collections::Generic</a>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespace_system_1_1_collections_1_1_object_model.html">System::Collections::ObjectModel</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="class_editor_plugin_1_1_engine_wrapper.html">   50</a></span>&#160;    <span class="keyword">public ref class</span> <a class="code" href="class_editor_plugin_1_1_engine_wrapper.html">EngineWrapper</a></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="class_engine.html">Engine</a>*             m_engine;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">bool</span>                InitializeEngine            ( System::IntPtr moduleHandle );</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordtype">void</span>                ReleaseEngine               ();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        System::IntPtr      GetRenderTarget             ( System::UInt16 width, System::UInt16 height );</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">void</span>                UpdateScene                 ();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordtype">void</span>                RenderScene                 ();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordtype">void</span>                ShowWindow                  ();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">void</span>                TestScene                   ();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordtype">void</span>                BasicScene                  ();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordtype">void</span>                EnableInput                 ( <span class="keywordtype">bool</span> val );</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="comment">// Actors</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="class_editor_plugin_1_1_actor_wrapper.html">ActorWrapper</a>^       CreateActor                 ( System::String^ actorName, <span class="keywordtype">int</span> mouseX, <span class="keywordtype">int</span> mouseY );</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        List&lt; ActorClassMetaInfo^ &gt;^                        CreateActorsMetadata        ();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        ObservableCollection&lt; ActorWrapper^ &gt;^              CreateActorsList            ();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    };</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
+<div class="ttc" id="namespace_system_1_1_collections_1_1_object_model_html"><div class="ttname"><a href="namespace_system_1_1_collections_1_1_object_model.html">ObjectModel</a></div></div>
+<div class="ttc" id="namespace_system_1_1_collections_1_1_generic_html"><div class="ttname"><a href="namespace_system_1_1_collections_1_1_generic.html">Generic</a></div></div>
+<div class="ttc" id="class_editor_plugin_1_1_actor_wrapper_html"><div class="ttname"><a href="class_editor_plugin_1_1_actor_wrapper.html">EditorPlugin::ActorWrapper</a></div><div class="ttdef"><b>Definition:</b> ActorWrapper.h:15</div></div>
+<div class="ttc" id="namespace_editor_plugin_html"><div class="ttname"><a href="namespace_editor_plugin.html">EditorPlugin</a></div><div class="ttdef"><b>Definition:</b> ActorClassMetaInfo.cpp:7</div></div>
+<div class="ttc" id="class_editor_plugin_1_1_engine_wrapper_html"><div class="ttname"><a href="class_editor_plugin_1_1_engine_wrapper.html">EditorPlugin::EngineWrapper</a></div><div class="ttdoc">Klasa wrapera do inicjowania silnika i renderowania po stronie kodu zarządzanego. ...</div><div class="ttdef"><b>Definition:</b> EditorPlugin.h:50</div></div>
+<div class="ttc" id="class_engine_html"><div class="ttname"><a href="class_engine.html">Engine</a></div><div class="ttdoc">Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika.</div><div class="ttdef"><b>Definition:</b> Engine.h:70</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 10 2015 22:58:02 for SWEngine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 13:51:17 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
