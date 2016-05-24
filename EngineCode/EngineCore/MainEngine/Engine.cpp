@@ -14,6 +14,8 @@ oraz g³ówne funkcje do renderingu.
 #include "EngineCore/GamePlay/IGamePlay.h"
 #include "EngineCore/EngineHelpers/PerformanceCheck.h"
 
+#include "EngineCore/UIEngine/InputLibrary/DirectInput/DirectInputModule.h"
+
 #include "Common/MemoryLeaks.h"
 
 
@@ -170,17 +172,33 @@ bool Engine::InitGraphicAPI( int width, int height, bool fullScreen )
 	return true;
 }
 
-/**@brief */
+/**@brief Inicjuje urz¹dzenie wejœcia. Domyœlnie u¿ywany jest @ref DirectInputModule.*/
 bool Engine::InitInputModule		()
 {
-	int result;
+	DirectInputModule* newModule = new DirectInputModule();
 
-	//Inicjalizowanie directXinputa
-	result = Context->ui_engine->init_direct_input( );
-		assert( result == DIRECT_INPUT_OK );	//Dzia³a tylko w trybie DEBUG
-	if ( result != DIRECT_INPUT_OK )
-		return false;
-	return true;
+	InputInitInfo info;
+	info.AppInstance = Context->instanceHandler;
+	info.WndHandle = Context->windowHandler;
+
+	bool result = newModule->Init( info );
+	if( result )
+	{
+		// Normalnie trzeba skasowaæ zwracany przez tê funkcjê modu³.
+		// W tym przypadku wiemy, ¿e jest nullptrem, poniewa¿ dopiero inicjujemy aplikacjê.
+		auto lastModule = Context->ui_engine->ChangeInputModule( newModule );
+		assert( lastModule == nullptr );	// Na wypadek jakby ktoœ kiedyœ u¿y³ tej funkcji nie w inicjalizacji.
+	}
+	return result;
+
+	//int result;
+
+	////Inicjalizowanie directXinputa
+	//result = Context->ui_engine->init_direct_input( );
+	//	assert( result == DIRECT_INPUT_OK );	//Dzia³a tylko w trybie DEBUG
+	//if ( result != DIRECT_INPUT_OK )
+	//	return false;
+	//return true;
 }
 
 /**@brief */

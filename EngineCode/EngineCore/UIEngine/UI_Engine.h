@@ -30,6 +30,8 @@ private:
 	char						keyboard_state[256];
 	DIMOUSESTATE2				mouse_state;
 
+	IInput*						m_inputModule;
+
 //abstraction layers
 	InputAbstractionLayer*					m_currentAbstractionLayer;
 	std::vector<InputAbstractionLayer*>		m_abstractionLayers;
@@ -47,7 +49,8 @@ public:
 	//directX functions
 	int init_direct_input();
 
-	bool		InitInputModule					();
+	IInput*		ChangeInputModule				( IInput* module );
+	IInput*		GetInputModule					();
 
 	//called by Engine in main loop
 	void		ProceedInput					( float time_interval );
@@ -71,7 +74,9 @@ public:
 
 private:
 	//abstraction layers
-	void		UpdateAbstractionLayer();
+	void		UpdateAbstractionLayer			( const std::vector< KeyboardState* >& keyboards,
+												  const std::vector< MouseState* >& mouses,
+												  const std::vector< JoystickState* >& jousticks );
 	void		InitAbstractionLayers();
 };
 

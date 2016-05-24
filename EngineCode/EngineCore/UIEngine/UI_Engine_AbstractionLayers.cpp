@@ -119,15 +119,20 @@ void UI_Engine::ClearAbstractionLayers( )
 /**@brief Funkcja aktualizuje tablice w aktualnie aktywnej warstwie abstrakcji.
 
 Funkcja jest wywo³ywana przez UI_engine, dlatego jest prywatna. W ka¿dej klatce nastêpuje
-aktualizacja danych w aktualnie aktywnej warstwie abstrakcji.*/
-void UI_Engine::UpdateAbstractionLayer( )
+aktualizacja danych w aktualnie aktywnej warstwie abstrakcji.
+
+@todo Zastanowiæ siê jak obs³ugiwaæ wiele urz¹dzeñ tego samego typu na raz.*/
+void UI_Engine::UpdateAbstractionLayer( const std::vector< KeyboardState* >& keyboards,
+										const std::vector< MouseState* >& mouses,
+										const std::vector< JoystickState* >& joysticks )
 {
 	if( m_enableInput )
 	{
 		m_currentAbstractionLayer->BeginEventCollection();
 
-		m_currentAbstractionLayer->UpdateKeyboardDevice( DEVICE_IDs::KEYBOARD, keyboard_state );
-		m_currentAbstractionLayer->UpdateMouseDevice( DEVICE_IDs::MOUSE, &mouse_state, engine->GetWindowWidth(), engine->GetWindowHeight());
+		m_currentAbstractionLayer->UpdateKeyboardDevice( DEVICE_IDs::KEYBOARD, keyboards[ 0 ] );
+		m_currentAbstractionLayer->UpdateMouseDevice( DEVICE_IDs::MOUSE, mouses[ 0 ], engine->GetWindowWidth(), engine->GetWindowHeight());
+		m_currentAbstractionLayer->UpdateJoystickDevice( DEVICE_IDs::JOYSTICK, joysticks[ 0 ] );
 
 		m_currentAbstractionLayer->SendEvents( engine );
 	}

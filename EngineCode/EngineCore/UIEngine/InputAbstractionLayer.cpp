@@ -121,20 +121,22 @@ wejœcia o intefejsie klawiatury. Zazwyczaj wywo³uje siê j¹ dla klawiatury, a
 @param[in] DeviceNr Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci @ref DEVICE_IDs.
 @param[in] keyboard_state Tablica 255 elementów opisuj¹ca stan klawiatury.*/
 
-void InputAbstractionLayer::UpdateKeyboardDevice( DeviceNumber DeviceNr, const char* keyboard_state )
+void InputAbstractionLayer::UpdateKeyboardDevice( DeviceNumber DeviceNr, KeyboardState* keyboardState )
 {
+	auto state = keyboardState->GetKeyboardState();
+
 	// Mamy jedynie przyciski
-	for ( unsigned int i = 0; i < m_buttonsMapping.size(); ++i )
+	for( unsigned int i = 0; i < m_buttonsMapping.size(); ++i )
 	{
-		if ( m_buttonsMapping[i].DeviceNr == DeviceNr )
+		if( m_buttonsMapping[ i ].DeviceNr == DeviceNr )
 		{
-			short dev_index = m_buttonsMapping[i].PhysicalIndex;
-			if ( keyboard_state[dev_index] )
+			short dev_index = m_buttonsMapping[ i ].PhysicalIndex;
+			if( state[ dev_index ] )
 			{//tablica jest wyzerowana, wiêc iteresuj¹ nas jedynie w³¹czone przyciski
 			//je¿eli wiele przycisków fizycznych odnosi siê do jednego wirtualnego, to wtedy
 			//wystarczy jeden wciœniêty, ¿eby stan przycisku wirtualnego zosta³ ustawiony
-				short v_index = m_buttonsMapping[i].VirtualIndex;
-				m_virtualButtons[v_index] = 1;
+				short v_index = m_buttonsMapping[ i ].VirtualIndex;
+				m_virtualButtons[ v_index ] = 1;
 			}
 		}
 	}
@@ -149,50 +151,52 @@ wejœcia o intefejsie myszy. Zazwyczaj wywo³uje siê j¹ dla myszy, ale mo¿e b
 @param[in] window_width Szerokość okna
 @param[in] window_height Wysokość okna
 */
-void InputAbstractionLayer::UpdateMouseDevice( DeviceNumber DeviceNr, const DIMOUSESTATE2* mouse_state, int window_width, int window_height)
+void InputAbstractionLayer::UpdateMouseDevice( DeviceNumber DeviceNr, MouseState* mouseState, int window_width, int window_height)
 {
-	//TODO:	przyciski
-	for ( unsigned int i = 0; i < m_buttonsMapping.size(); ++i )
+	auto buttons = mouseState->GetButtonsState();
+
+	for( unsigned int i = 0; i < m_buttonsMapping.size(); ++i )
 	{
-		if ( m_buttonsMapping[i].DeviceNr == DeviceNr )
+		if( m_buttonsMapping[ i ].DeviceNr == DeviceNr )
 		{
-			short devIndex = m_buttonsMapping[i].PhysicalIndex;
-			if ( mouse_state->rgbButtons[ devIndex ] )
+			short devIndex = m_buttonsMapping[ i ].PhysicalIndex;
+			if( buttons[ devIndex ] )
 			{//tablica jest wyzerowana, wiêc iteresuj¹ nas jedynie w³¹czone przyciski
 			//je¿eli wiele przycisków fizycznych odnosi siê do jednego wirtualnego, to wtedy
 			//wystarczy jeden wciœniêty, ¿eby stan przycisku wirtualnego zosta³ ustawiony
-				short v_index = m_buttonsMapping[i].VirtualIndex;
-				m_virtualButtons[v_index] = 1;
+				short v_index = m_buttonsMapping[ i ].VirtualIndex;
+				m_virtualButtons[ v_index ] = 1;
 			}
 		}
 	}
 
 	//osie
+	auto axes = mouseState->GetAxesState();
 	for ( unsigned int i = 0; i < m_axisMapping.size(); ++i )
 	{
 		if (m_axisMapping[i].DeviceNr == DeviceNr)
 		{
-			unsigned int dev_index = m_axisMapping[i].PhysicalIndex;
+			unsigned int devIndex = m_axisMapping[i].PhysicalIndex;
 
-			switch (dev_index)
+			switch ( devIndex )
 			{
-			case DIMOUSE_XAXIS:
+			case MouseState::PHYSICAL_AXES::X_AXIS:
 			{
 				short v_x_index = m_axisMapping[i].VirtualIndex;
-				float virtual_x_axis_value = (float)mouse_state->lX / (float)window_width;
+				float virtual_x_axis_value = axes[ MouseState::PHYSICAL_AXES::X_AXIS ] / (float)window_width;
 				virtual_x_axis_value = (virtual_x_axis_value > 1.0f ? 1.0f : virtual_x_axis_value);
 				m_virtualAxis[v_x_index] = virtual_x_axis_value;
 				break;
 			}
-			case DIMOUSE_YAXIS:
+			case MouseState::PHYSICAL_AXES::Y_AXIS:
 			{
 				short v_y_index = m_axisMapping[i].VirtualIndex;
-				float virtual_y_axis_value = (float)mouse_state->lY / (float)window_width;
+				float virtual_y_axis_value = axes[ MouseState::PHYSICAL_AXES::Y_AXIS ] / (float)window_width;
 				virtual_y_axis_value = (virtual_y_axis_value > 1.0f ? 1.0f : virtual_y_axis_value);
 				m_virtualAxis[v_y_index] = virtual_y_axis_value;
 				break;
 			}
-			case DIMOUSE_WHEEL:
+			case MouseState::PHYSICAL_AXES::WHEEL:
 			{
 				//TODO: wheel
 				break;
@@ -213,7 +217,7 @@ inne urz¹dzenie takim samym interfejsem.
 
 @param[in] DeviceNr Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci @ref DEVICE_IDs.
 @param[in] joystick_state Struktura opisuj¹ca stan urz¹dzenia, które da siê opisaæ takim interfejsem.*/
-void InputAbstractionLayer::UpdateJoystickDevice( DeviceNumber DeviceNr, const DIJOYSTATE* joystick_state )
+void InputAbstractionLayer::UpdateJoystickDevice( DeviceNumber DeviceNr, JoystickState* joystickState )
 {
 
 }

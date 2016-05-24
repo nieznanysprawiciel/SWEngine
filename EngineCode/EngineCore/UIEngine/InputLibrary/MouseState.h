@@ -15,9 +15,34 @@ public:
 	MouseState();
 	~MouseState();
 
-	const float*		GetAxesState()		{ return m_axes; }
-	const char*			GetButtonsState()	{ return m_buttons; }
+	float*						GetAxesState()		{ return m_axes; }
+	char*						GetButtonsState()	{ return m_buttons; }
 
-	const InputDeviceInfo&		GetInfo()	{ return m_info; }
+	const InputDeviceInfo&		GetInfo()			{ return m_info; }
+
+public:
+	enum PHYSICAL_BUTTONS
+	{
+		BUTTON0 = 0,
+		BUTTON1 = 1,
+		BUTTON2 = 2,
+		BUTTON3 = 3,
+		BUTTON4 = 4,
+		BUTTON5 = 5,
+		BUTTON6 = 6,
+		BUTTON7 = 7,
+		LEFT_BUTTON = BUTTON0,
+		RIGHT_BUTTON = BUTTON1,
+		MIDDLE_BUTTON = BUTTON2
+	};
+
+	enum PHYSICAL_AXES
+	{
+		X_AXIS = 0,
+		Y_AXIS = 1,
+		Z_AXIS = 2,
+		W_AXIS = 3,
+		WHEEL = Z_AXIS
+	};
+
 };
-

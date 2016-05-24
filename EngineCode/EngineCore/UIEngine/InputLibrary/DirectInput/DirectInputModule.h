@@ -42,5 +42,9 @@ private:
 
 	void			CleanDirectInput	();
 	void			ClearInputStates	();
+
+	void			UpdateKeyboard		( int idx );
+	void			UpdateMouse			( int idx );
+	void			UpdateJoystick		( int idx );
 };
 

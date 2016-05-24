@@ -10,7 +10,10 @@ bool pushedF1 = false;		///< Hack. Zapamiêtuje stan przycisku odpowiedzialnego z
 
 #include "Common/MemoryLeaks.h"
 
+REGISTER_PERFORMANCE_CHECK( INPUT_PROCESSING );
 
+
+/**@brief */
 UI_Engine::UI_Engine( Engine* engine )
 	: engine( engine )
 {
@@ -19,16 +22,34 @@ UI_Engine::UI_Engine( Engine* engine )
 	mouse_input = nullptr;
 
 	m_enableInput = true;
+	m_inputModule = nullptr;
 
 	InitAbstractionLayers();
 }
 
-
+/**@brief */
 UI_Engine::~UI_Engine()
 {
 	for ( unsigned int i = 0; i < m_abstractionLayers.size(); ++i )
 		delete m_abstractionLayers[i];
 	clean_direct_input();
+}
+
+/**@brief Ustawia nowy modu³ do obs³ugi wejœcia u¿ytkownika.
+
+@return Zwraca poprzedni modu³. Zwolnienie modu³u nale¿y do wo³aj¹cego.*/
+IInput*		UI_Engine::ChangeInputModule					( IInput* module )
+{
+	auto lastModule = m_inputModule;
+	m_inputModule = module;
+
+	return lastModule;
+}
+
+/**@brief Zwraca aktualnie u¿ywany modu³ do obs³ugi wejœcia u¿ytkownika.*/
+IInput*		UI_Engine::GetInputModule					()
+{
+	return m_inputModule;
 }
 
 /**@brief Funkcja umo¿liwia edytorowi wy³¹czenie inputu, gdy kontrolka odpowiedzialna
@@ -110,25 +131,38 @@ void UI_Engine::clean_direct_input()
 ///@brief Funkcja wywo³ywana przez klasê Engine w ka¿dym obiegu g³ównej petli programu.
 ///Przechwytujemy klawiaturê, wykonujemy wszytkie funkcje obs³ugi obiektów sterowanych.
 ///@param[in] time_interval Parametrem jest czas który up³yn¹³ od ostatniego wywo³ania
-void UI_Engine::ProceedInput(float time_interval)
+void UI_Engine::ProceedInput( float timeInterval )
 {
-	keyboard_input->GetDeviceState(256, keyboard_state);
-	mouse_input->GetDeviceState(sizeof(mouse_state), &mouse_state);
+	START_PERFORMANCE_CHECK( INPUT_PROCESSING );
 
-	///<@fixme Wy³¹czenia aplikacji musi siê odbywaæ w jakiœ inny sposób. Powinien byæ jakiœ domyœlny mechanizm, ¿eby u¿ytkownik nie zapomnia³ zrobiæ wy³¹czania.
-	if ( keyboard_state[DIK_ESCAPE] & 0x80 )
-		engine->EndAplication();
-
-	///<@fixme To jest hack i nie mam pojêcia jak to robiæ w wersji docelowej.
-	if ( (keyboard_state[DIK_F1] & 0x80) && !pushedF1 )
+	if( m_inputModule )
 	{
-		pushedF1 = true;
-		PRINT_STATISTICS( PERFORMANCE_STATISTICS_FILE_PATH );
-	}
-	if ( !(keyboard_state[DIK_F1] & 0x80) )
-		pushedF1 = false;
+		m_inputModule->Update( timeInterval );
 
-	UpdateAbstractionLayer();
+		auto keyboards = m_inputModule->GetKeyboardStates();
+		auto mouses = m_inputModule->GetMouseStates();
+		auto joysticks = m_inputModule->GetJoystickStates();
+
+		/// @todo To jest tymczasowy hack. Trzeba to obs³u¿yæ eventami.
+		auto keyboardState = keyboards[ 0 ]->GetKeyboardState();
+
+		///<@fixme Wy³¹czenia aplikacji musi siê odbywaæ w jakiœ inny sposób. Powinien byæ jakiœ domyœlny mechanizm, ¿eby u¿ytkownik nie zapomnia³ zrobiæ wy³¹czania.
+		if ( keyboardState[ KeyboardState::PHYSICAL_KEYS::KEY_ESCAPE ] & 0x80 )
+			engine->EndAplication();
+
+		///<@fixme To jest hack i nie mam pojêcia jak to robiæ w wersji docelowej.
+		if ( (keyboardState[ KeyboardState::PHYSICAL_KEYS::KEY_F1 ] & 0x80) && !pushedF1 )
+		{
+			pushedF1 = true;
+			PRINT_STATISTICS( PERFORMANCE_STATISTICS_FILE_PATH );
+		}
+		if ( !(keyboardState[ KeyboardState::PHYSICAL_KEYS::KEY_F1 ] & 0x80) )
+			pushedF1 = false;
+
+		UpdateAbstractionLayer( keyboards, mouses, joysticks );
+	}
+
+	END_PERFORMANCE_CHECK( INPUT_PROCESSING );
 }
 
 /** @brief Funkcja rysuj¹ca graficzny interfejs u¿ytkownika.

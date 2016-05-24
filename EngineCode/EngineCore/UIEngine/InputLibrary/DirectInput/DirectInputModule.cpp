@@ -22,7 +22,7 @@ DirectInputModule::~DirectInputModule()
 /**@brief */
 bool									DirectInputModule::Init				( const InputInitInfo& initInfo )
 {
-	int result = DirectInput8Create( (HINSTANCE)initInfo.AppInstance/* engine->GetInstanceHandler()*/,
+	int result = DirectInput8Create( (HINSTANCE)initInfo.AppInstance,
 									 DIRECTINPUT_VERSION, IID_IDirectInput8, (LPVOID*)&m_directInput, NULL );
 	if( result != DIRECT_INPUT_OK )
 		return false;
@@ -35,7 +35,7 @@ bool									DirectInputModule::Init				( const InputInitInfo& initInfo )
 		return false;
 	}
 	m_keyboardInput->SetDataFormat( &c_dfDIKeyboard );
-	m_keyboardInput->SetCooperativeLevel( (HWND)initInfo.WndHandle/*engine->GetWindowHandler()*/, DISCL_BACKGROUND | DISCL_NONEXCLUSIVE );
+	m_keyboardInput->SetCooperativeLevel( (HWND)initInfo.WndHandle, DISCL_BACKGROUND | DISCL_NONEXCLUSIVE );
 
 	//tworzymy obiekt myszy
 	result = m_directInput->CreateDevice( GUID_SysMouse, &m_mouseInput, nullptr );
@@ -46,7 +46,7 @@ bool									DirectInputModule::Init				( const InputInitInfo& initInfo )
 		return false;
 	}
 	m_mouseInput->SetDataFormat( &c_dfDIMouse2 );
-	m_mouseInput->SetCooperativeLevel( (HWND)initInfo.WndHandle/*engine->GetWindowHandler()*/, DISCL_BACKGROUND | DISCL_NONEXCLUSIVE );
+	m_mouseInput->SetCooperativeLevel( (HWND)initInfo.WndHandle, DISCL_BACKGROUND | DISCL_NONEXCLUSIVE );
 
 	//todo: sprawdziæ czy jest w systemie joystick i go wczytaæ
 
@@ -55,9 +55,13 @@ bool									DirectInputModule::Init				( const InputInitInfo& initInfo )
 
 	m_keyboards.push_back( new KeyboardState() );
 	m_mouses.push_back( new MouseState() );
+	m_joysticks.push_back( new JoystickState() );
 
 	return true;
 }
+
+
+
 
 /**@copydoc IInput::GetKeyboardStates*/
 const std::vector< KeyboardState* >&	DirectInputModule::GetKeyboardStates	()
@@ -94,8 +98,45 @@ std::vector< const InputDeviceInfo* >	DirectInputModule::GetDevicesInfo		()
 /**@brief */
 void									DirectInputModule::Update				( float timeInterval )
 {
+	// Klawiatura
+	for( int i = 0; i < m_keyboards.size(); ++i )
+		UpdateKeyboard( i );
 
+	// Myszka
+	for( int i = 0; i < m_mouses.size(); ++i )
+		UpdateMouse( i );
+
+	// Joystick
+	for( int i = 0; i < m_joysticks.size(); ++i )
+		UpdateJoystick( i );
 }
+
+/**@brief */
+void DirectInputModule::UpdateKeyboard( int idx )
+{
+	m_keyboardInput->GetDeviceState( 256, m_keyboards[ idx ]->GetKeyboardState() );
+}
+
+/**@brief */
+void DirectInputModule::UpdateMouse( int idx )
+{
+	DIMOUSESTATE2	mouseStruct;
+	m_mouseInput->GetDeviceState( sizeof( mouseStruct ), &mouseStruct );
+	
+	auto mouseAxes = m_mouses[ idx ]->GetAxesState();
+	mouseAxes[ 0 ] = static_cast< float >( mouseStruct.lX );
+	mouseAxes[ 1 ] = static_cast< float >( mouseStruct.lY );
+	mouseAxes[ 2 ] = static_cast< float >( mouseStruct.lZ );
+
+	auto mouseButtons = m_mouses[ idx ]->GetButtonsState();
+	for( int i = 0; i < 8; ++i )
+		mouseButtons[ i ] = mouseStruct.rgbButtons[ i ];
+}
+
+/**@brief */
+void DirectInputModule::UpdateJoystick( int idx )
+{ }
+
 
 /**@brief */
 bool									DirectInputModule::UpdateDevices()

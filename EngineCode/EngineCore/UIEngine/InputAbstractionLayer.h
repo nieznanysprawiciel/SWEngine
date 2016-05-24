@@ -8,6 +8,10 @@ struktur InputMapping i EventMapping oraz definicje standardowych warstw abstrak
 #include "EngineCore/UIEngine/StandardAbstractionLayers.h"
 #include "EngineCore/UIEngine/InputLibrary/DirectInput/IncludeDirectInput.h"		///@todo Wydzieliæ direct input do jakiegoœ modu³u i ukryæ implementacje, ¿eby nie by³o takich includów.
 
+#include "EngineCore/UIEngine/InputLibrary/KeyboardState.h"
+#include "EngineCore/UIEngine/InputLibrary/MouseState.h"
+#include "EngineCore/UIEngine/InputLibrary/JoystickState.h"
+
 class Engine;
 
 
@@ -112,9 +116,9 @@ public:
 	void	BeginEventCollection		();
 	void	SendEvents					( Engine* );
 
-	void	UpdateKeyboardDevice		( DeviceNumber DeviceNr, const char* keyboard_state );
-	void	UpdateMouseDevice			( DeviceNumber DeviceNr, const DIMOUSESTATE2* mouse_state, int window_width, int window_height);
-	void	UpdateJoystickDevice		( DeviceNumber DeviceNr, const DIJOYSTATE* joystick_state );
+	void	UpdateKeyboardDevice		( DeviceNumber DeviceNr, KeyboardState* keyboardState );
+	void	UpdateMouseDevice			( DeviceNumber DeviceNr, MouseState* mouseState, int window_width, int window_height);
+	void	UpdateJoystickDevice		( DeviceNumber DeviceNr, JoystickState* joystickState );
 
 	void	DemandDownEvent				( VirtualKeyIndex virtualIdx );
 	void	DemandUpEvent				( VirtualKeyIndex virtualIdx );
@@ -123,6 +127,6 @@ public:
 
 	void	SetupButtonsLayer			( std::vector< InputMapping >&& mapping );
 	void	SetupAxisLayer				( std::vector< InputMapping >&& mapping );
-	int		SetupLayerFromFile			( const std::string& file_name );
+	int		SetupLayerFromFile			( const std::string& fileName );
 };
 
