@@ -150,6 +150,8 @@ wejœcia o intefejsie myszy. Zazwyczaj wywo³uje siê j¹ dla myszy, ale mo¿e b
 @param[in] mouse_state Struktura opisuj¹ca stan urz¹dzenia, które da siê opisaæ takim interfejsem.
 @param[in] window_width Szerokość okna
 @param[in] window_height Wysokość okna
+@todo Zastanowić się czy wysokość i szerokość okna jest wogóle potrzebna (i dlaczego nie).
+@todo Uzupełnić implementację dla pozostałych osi myszy.
 */
 void InputAbstractionLayer::UpdateMouseDevice( DeviceNumber DeviceNr, MouseState* mouseState, int window_width, int window_height)
 {
@@ -169,6 +171,9 @@ void InputAbstractionLayer::UpdateMouseDevice( DeviceNumber DeviceNr, MouseState
 			}
 		}
 	}
+
+	mouseX = mouseState->GetPositionX();
+	mouseY = mouseState->GetPositionY();
 
 	//osie
 	auto axes = mouseState->GetAxesState();

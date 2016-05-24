@@ -7,6 +7,8 @@
 /**@brief */
 DirectInputModule::DirectInputModule()
 {
+	m_windowHandle = nullptr;
+
 	m_directInput = nullptr;
 	m_mouseInput = nullptr;
 	m_keyboardInput = nullptr;
@@ -22,6 +24,7 @@ DirectInputModule::~DirectInputModule()
 /**@brief */
 bool									DirectInputModule::Init				( const InputInitInfo& initInfo )
 {
+	m_windowHandle = (HWND)initInfo.WndHandle;
 	int result = DirectInput8Create( (HINSTANCE)initInfo.AppInstance,
 									 DIRECTINPUT_VERSION, IID_IDirectInput8, (LPVOID*)&m_directInput, NULL );
 	if( result != DIRECT_INPUT_OK )
@@ -103,8 +106,18 @@ void									DirectInputModule::Update				( float timeInterval )
 		UpdateKeyboard( i );
 
 	// Myszka
+	bool result;
+	POINT pos;
+	
+	result = GetCursorPos( &pos ) !=0;
+	result = result && ScreenToClient( m_windowHandle, &pos ) !=0;
+	assert( result );
+
 	for( int i = 0; i < m_mouses.size(); ++i )
+	{
 		UpdateMouse( i );
+		m_mouses[ i ]->SetPosition( (short)pos.x, (short)pos.y );
+	}
 
 	// Joystick
 	for( int i = 0; i < m_joysticks.size(); ++i )

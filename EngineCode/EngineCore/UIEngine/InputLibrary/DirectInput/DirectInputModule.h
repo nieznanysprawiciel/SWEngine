@@ -15,6 +15,8 @@ class DirectInputModule : public IInput
 {
 private:
 
+	HWND						m_windowHandle;
+
 	LPDIRECTINPUT8				m_directInput;
 	LPDIRECTINPUTDEVICE8		m_keyboardInput;		///<@todo Pewnie to powienien byæ wektor.
 	LPDIRECTINPUTDEVICE8		m_mouseInput;			///<@todo Pewnie to powienien byæ wektor.

@@ -14,3 +14,12 @@ MouseState::MouseState()
 /**@brief */
 MouseState::~MouseState()
 { }
+
+/**@brief Ustawia pozycjê myszy.
+
+Powinno byæ u¿ywane jedynie przez modu³ wejœcia (@ref IInput).*/
+void			MouseState::SetPosition			( short X, short Y )
+{
+	m_position[ 0 ] = X;
+	m_position[ 1 ] = Y;
+}

@@ -9,6 +9,7 @@ private:
 	InputDeviceInfo		m_info;
 
 	float				m_axes[ 4 ];
+	short				m_position[ 2 ];	///< Wspó³rzêdne X i Y.
 	char				m_buttons[ 8 ];
 
 public:
@@ -17,6 +18,11 @@ public:
 
 	float*						GetAxesState()		{ return m_axes; }
 	char*						GetButtonsState()	{ return m_buttons; }
+
+	short						GetPositionX()		{ return m_position[ 0 ]; }
+	short						GetPositionY()		{ return m_position[ 1 ]; }
+
+	void						SetPosition			( short X, short Y );
 
 	const InputDeviceInfo&		GetInfo()			{ return m_info; }
 

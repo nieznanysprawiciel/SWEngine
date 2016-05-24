@@ -116,7 +116,7 @@ public:
 	void	SendEvents					( Engine* );
 
 	void	UpdateKeyboardDevice		( DeviceNumber DeviceNr, KeyboardState* keyboardState );
-	void	UpdateMouseDevice			( DeviceNumber DeviceNr, MouseState* mouseState, int window_width, int window_height);
+	void	UpdateMouseDevice			( DeviceNumber DeviceNr, MouseState* mouseState, int windowWidth, int windowHeight);
 	void	UpdateJoystickDevice		( DeviceNumber DeviceNr, JoystickState* joystickState );
 
 	void	DemandDownEvent				( VirtualKeyIndex virtualIdx );
