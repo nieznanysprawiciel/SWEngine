@@ -87,8 +87,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Aby skompilować projekt, trzeba mieć ściągnięte DirectX SDK (<a href="http://www.microsoft.com/en-us/download/details.aspx?id=6812">http://www.microsoft.com/en-us/download/details.aspx?id=6812</a>)</p>
 <p>Przy instalacji najczęściej są problemy. Jeżeli wystąpi błąd S1023 należy odinstalować Visual C++ 2010 Redistributable (zarówno x86 jak i x64). Błąd jest podobno związany z Service Packiem 1, dokładniej można przeczytać w internecie co i jak.</p>
 <p>Po dezinstalacji Visual C++ 2010 Redistributable, DirectX SDK daje się zainstalować poprawnie. Potem należy ponownie zainstalować Visual C++ 2010 Redistributable, co nie powoduje już problemów, a przynajmniej nic nie wiem. (link: <a href="http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=26999">http://www.microsoft.com/en-us/download/details.aspx?displaylang=en&amp;id=26999</a>)</p>
-<p>Silnik używa również FBX SDK do wczytywania modeli w tym formacie. Biblioteka znajduje się w folderze /External. Do skompilowania edytora potrzebne jest kilka pakietów, które Visual Studio automatycznie ściągnie przy pierwszej kompilacji.</p>
 <p>Silnik używa też bibilioteki RTTR Axela Menzela, do obsługiwania dynamicznej informacji o typach i metadanych o klasach. Niestety do kompilacji potrzebna jest odpowiednia wersja kompilatora z C++ 11. Visual C++ 12 (2013) z Updatem 2 nie działa, ponieważ wyskakują błędy z redefinicją funkcji szablonowych przy użyciu wzorca projektowego SFINAE. Na pewno działa od Updatu 4.</p>
+<p>Silnik używa również FBX SDK do wczytywania modeli w tym formacie. Biblioteka znajduje się w folderze /External. Do skompilowania edytora potrzebne jest kilka pakietów, które Visual Studio automatycznie ściągnie przy pierwszej kompilacji.</p>
 <p>Kompilowanie wersji 32-bitowej poprzez Visual Studio odbywa się normalnie BUILD-&gt;Build Solution.</p>
 <h2>Kompilowanie wersji 64-bitowej</h2>
 <p>Wszystkie ustawienia projektu dla wersji 64-bitowej są poprawnie ustawione. Jedyne co należy zrobić, to przestawić active solution platform z Win32 na x64. Można to zrobić następująco:</p><ul>
@@ -105,21 +105,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>SerializationJSONTest</li>
 <li>SerializationXMLTest</li>
 </ul>
-<p>Wszystkie projekty oprócz <a class="el" href="namespace_editor_app.html">EditorApp</a> powinny mieć ustawiony katalog roboczy na GameRelease. Properties -&gt; Debugging -&gt; Working Directory Uwaga!! Trzeba zmienić katalog dla wszystkich konfiguracji projektu (Release/Debug; Win32/x64), żeby potem nie być zaskoczonym, że coś nie działa.</p>
-<p><a class="el" href="namespace_editor_app.html">EditorApp</a> powinien miec ustawiony katalog roboczy na EditorRelease (makro ).</p>
+<p>Wszystkie projekty oprócz <a class="el" href="namespace_editor_app.html">EditorApp</a> powinny mieć ustawiony katalog roboczy na GameRelease. Properties -&gt; Debugging -&gt; Working Directory</p>
+<p>Uwaga!! Trzeba zmienić katalog dla wszystkich konfiguracji projektu (Release/Debug; Win32/x64), żeby potem nie być zaskoczonym, że coś nie działa.</p>
+<p><a class="el" href="namespace_editor_app.html">EditorApp</a> powinien mieć ustawiony katalog roboczy na EditorRelease (makro ).</p>
 <h2>Dokumentacja</h2>
 <p>Dokumentacja jest dostępna online pod linkiem: <a href="http://nieznanysprawiciel.github.io/SWEngine/">http://nieznanysprawiciel.github.io/SWEngine/</a></p>
 <p>Istnieje specjalny branch gh-pages, który zawiera tylko i wyłącznie dokumentację w postaci html-ów.</p>
-<dl class="section attention"><dt>Attention</dt><dd>Aby móc generować dokumentację do tego brancha, sklonowałem całe repo tak, żeby nowy folder .git znajdował się w katalogu Documentation/html/. Dzięki temu będąc w branchu gh-pages można generować dokumentację z plików źródłowych projektu znajdujących się kilka katalogów wyżej.</dd></dl>
+<dl class="section attention"><dt>Attention</dt><dd>Normalnie plik index.html powinien być w tym samym katalogu co folder .git. Ale wtedy trzeba by wyrzucić kod silnika, a jak się to zrobi, to nie da się wygenerować dokumentacji. Aby móc generować dokumentację do tego brancha, sklonowałem całe repo tak, żeby nowy folder .git znajdował się w katalogu Documentation/html/. Dzięki temu będąc w branchu gh-pages można generować dokumentację z plików źródłowych projektu znajdujących się kilka katalogów wyżej.</dd></dl>
 <p>Przez taką strukturę należy też bardzo uważać co się gdzie commituje, pushuje i pulluje. Branch gh-pages nie ma prawa mieć nic oprócz dokumentacji, a pozostałe branche nie mają prawa mieć żadnego wygenerowanego przez doxygen pliku.</p>
 <p>Najlepiej jest WOGÓLE nic nie commitować, pushować ani pullować z brancha gh-pages.</p>
+<p>Ponieważ github używa Jekylla, to jest jakiś problem z nazwami plików, które zaczynają się od podkreślenia. Dlatego w katalogu SWEngine/Documentation/html musi znajdować się plik .nojekyll, który ten problem rozwiązuje.</p>
 <h2>Generowanie dokumentacji</h2>
-<p>Dokumentacja jest generowana automatycznie na podstawie kodu źródłowego w komentarzach. Poza tym w katalogu SWEngine/EngineCode/documentation znajdują się pliki dodatkowe z opisem tematycznym niektórych zagadnień. Jak ktoś będzie kiedyś implementował jakieś funkcje, to musi na bieżąco komentować swoje osiągnięcia.</p>
+<p>Dokumentacja jest generowana automatycznie na podstawie kodu źródłowego w komentarzach. Poza tym w katalogu SWEngine/EngineCode/documentation znajdują się pliki dodatkowe z opisem tematycznym niektórych zagadnień. Jak ktoś będzie kiedyś implementował jakieś funkcje, to najlepiej na bieżąco komentować, co się robi, bo najczęściej potem się nie chce.</p>
 <p>Aby wygenerować dokumentację:</p>
 <ul>
 <li>Należy ściągnąć program doxywizard ze strony: <a href="http://www.stack.nl/~dimitri/doxygen/download.html">http://www.stack.nl/~dimitri/doxygen/download.html</a></li>
 <li>Ustawić working directory, żeby odpowiadało temu, gdzie trzymasz projekt</li>
-<li>Wczytac plik konfiguracyjny doxywizarda</li>
+<li>Wczytać plik konfiguracyjny doxywizarda</li>
 <li>Przejść do zakładki Run i kliknąć Run doxygen</li>
 </ul>
 <p>Plik konfiguracyjny silnika znajduje się w katalogu: SWEngine/EngineCode/documentation i nazywa się Doxyfile</p>
@@ -131,7 +133,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 13:51:18 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
