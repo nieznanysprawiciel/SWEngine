@@ -38,7 +38,6 @@
 	<li>@ref MakingLoaders
 	<li>@ref ObjectPipeline
 	<li>@ref GUIRender
-	<li>@ref selfDrawingObjects
 	<li>@ref SceneRender
 	<li>@ref CoordinatesSystem
 	<li>@ref ResourcesManagment
@@ -58,7 +57,6 @@
 	<li>@ref LoaderResult
 	<li>@ref ModelsManagerResult
 	<li>@ref Modules
-	<li>@ref PERFORMANCE_CHECK
 	<li>@ref PERFORMANCE_STATISTICS_FILE_PATH
 	<li>@ref PrimitiveTopology
 	<li>@ref RendererUsage
@@ -66,8 +64,6 @@
 	<li>@ref ResourceFormat
 	<li>@ref ResourceUsage
 	<li>@ref SHOW_MEMORY_LEAKS
-	<li>@ref STANDARD_ABSTRACTION_LAYER
-	<li>@ref STANDARD_ABSTRACTION_LAYER_COUNT
 	<li>@ref TextureType
 	<li>@ref TextureTypes
 	<li>@ref WRONG_ID
@@ -91,15 +87,16 @@
 	<li>CameraActor
 	<li>CollisionActor
 	<li>ComplexActor
-	<li>Controller
 	<li>DynamicMeshActor
 	<li>DynamicActor
 	<li>Event
-	<li>InstancedMesh
 	<li>EngineObject
 	<li>PhysicalActor
 	<li>StaticActor
 	<li>TriggerActor
+	<li>PointLight
+	<li>SpotLight
+	<li>DirectionalLight
 </ul>
 */
 
@@ -113,11 +110,11 @@
 <ul>
 	<li>ComputeShaderObject
 	<li>BufferObject
-	<li>event_mapping
+	<li>EventMapping
 	<li>InputAbstractionLayer
-	<li>InputAbstractionLayer_base
+	<li>InputAbstractionLayerBase
 	<li>InputLayoutDescriptor
-	<li>input_mapping
+	<li>InputMapping
 	<li>MaterialObject
 	<li>MeshPartObject
 	<li>Model3DFromFile

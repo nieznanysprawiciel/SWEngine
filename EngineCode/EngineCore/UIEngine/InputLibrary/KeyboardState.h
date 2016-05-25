@@ -31,7 +31,8 @@ public:
 	Numery pokrywaj¹ siê w ca³oœci z definicj¹ z DirectInputa.*/
 	enum PHYSICAL_KEYS
 	{
-		  KEY_ESCAPE          = 0x01
+		  KEY_NONE			  = 0x00
+		, KEY_ESCAPE          = 0x01
 		, KEY_1               = 0x02
 		, KEY_2               = 0x03
 		, KEY_3               = 0x04

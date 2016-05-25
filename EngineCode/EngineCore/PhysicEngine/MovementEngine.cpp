@@ -15,17 +15,18 @@ MovementEngine::~MovementEngine()
 {
 }
 
-
-void MovementEngine::ProceedMovement(float time_interval)
+/**@brief Przemieszcza obiekty na podstawie ich prêdkoœci.*/
+void MovementEngine::ProceedMovement(float timeInterval)
 {
 	for ( unsigned int i = 0; i < m_dynamicObjects.size(); ++i )
 	{
 		DynamicActor* object = m_dynamicObjects[i];
-		object->Move( time_interval );
+		object->Move( timeInterval );
 		object->swap();		// Zamieniamy bufory wewn¹trz obiektu
 	}
 }
 
+/**@brief */
 Size MovementEngine::AddMoveableObject(DynamicActor* dyn_object)
 {
 	m_dynamicObjects.push_back(dyn_object);

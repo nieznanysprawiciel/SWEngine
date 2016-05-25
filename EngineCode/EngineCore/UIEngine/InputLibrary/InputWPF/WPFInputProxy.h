@@ -18,6 +18,9 @@ private:
 	std::vector< MouseState* >		m_mouses;		///< Uzywany jest tylko pierwszy element tablicy.
 	std::vector< JoystickState* >	m_joysticks;	///< Uzywany jest tylko pierwszy element tablicy.
 
+	double			m_lastX;
+	double			m_lastY;
+
 public:
 	WPFInputProxy();
 	~WPFInputProxy();
@@ -32,5 +35,15 @@ public:
 
 	virtual void									Update				( float timeInterval ) override;
 	virtual bool									UpdateDevices		() override;
+
+public:
+	///@name WPF API
+	///@{
+	void				KeyboardChange				( int keyId, bool pressed );
+	void				MouseButtonChange			( int button, bool pressed );
+	void				MousePositionChange			( double X, double Y );
+
+	void				LostFocus					();
+	///@}
 };
 

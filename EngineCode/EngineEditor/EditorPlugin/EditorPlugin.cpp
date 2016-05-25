@@ -29,6 +29,13 @@ const int window_width = 700;
 const int window_height = 1300;
 
 
+EngineWrapper::EngineWrapper()
+	:	m_engine( nullptr )
+	,	m_inputWPF( nullptr )
+	,	m_directInput( nullptr )
+{}
+
+
 /**@brief Tworzy obiekt silnika i inicjuje go.
 @return Zwraca true, je¿eli inicjowanie powid³o siê.*/
 bool EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
@@ -48,7 +55,20 @@ bool EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
 
 	EnginePointerProvider::engine = m_engine;
 
-	return true;
+	// Zmieniamy modu³ wejœcia (klawiatury) na proxy WPFowe
+	WPFInputProxy* proxyInput = new WPFInputProxy();
+	
+	InputInitInfo initInfo;
+	initInfo.AppInstance = handle;
+	initInfo.WndHandle = nullptr;
+
+	bool result2 = proxyInput->Init( initInfo );
+	assert( result2 );
+
+	m_directInput = m_engine->ChangeInputModule( proxyInput );
+	m_inputWPF = proxyInput;
+
+	return result2;
 }
 
 /**@brief Zwalnia zasoby silnika.*/
@@ -152,6 +172,28 @@ ObservableCollection< ActorWrapper^ >^		EngineWrapper::CreateActorsList			()
 	}
 
 	return actorsList;
+}
+
+//====================================================================================//
+//			Input	
+//====================================================================================//
+
+/**@brief */
+void		EngineWrapper::KeyboardChange		( System::Windows::Input::Key keyId, bool pressed )
+{
+	m_inputWPF->KeyboardChange( (int) keyId, pressed );
+}
+
+/**@brief */
+void		EngineWrapper::MouseButtonChange	( System::Windows::Input::MouseButton button, bool pressed )
+{
+	m_inputWPF->MouseButtonChange( (int)button, pressed );
+}
+
+/**@brief */
+void		EngineWrapper::MousePositionChange	( double X, double Y )
+{
+	m_inputWPF->MousePositionChange( X, Y );
 }
 
 } //EditorPlugin

@@ -19,8 +19,8 @@ public:
 	ControllersEngine( Engine* parent );
 	~ControllersEngine();
 
-	void		ProceedControllersPre			( float time_interval );
-	void		ProceedControllersPost			( float time_interval );
+	void		ProceedControllersPre			( float timeInterval );
+	void		ProceedControllersPost			( float timeInterval );
 
 	bool		AddPreControlled				( DynamicActor* object );
 	bool		AddPostControlled				( DynamicActor* object );

@@ -32,6 +32,7 @@ napisanego w C#.
 
 #include "EngineEditor/EditorPlugin/Actors/ActorClassMetaInfo.h"
 #include "EngineEditor/EditorPlugin/EnginePointerProvider.h"
+#include "EngineCore/UIEngine/InputLibrary/InputWPF/WPFInputProxy.h"
 
 #include "Actors/ActorWrapper.h"
 
@@ -51,6 +52,9 @@ using namespace System::Collections::ObjectModel;
 	{
 	private:
 		Engine*				m_engine;
+		WPFInputProxy*		m_inputWPF;		///< Modu³ wejœcia u¿ywany domyœlnie przez edytor.
+		IInput*				m_directInput;	///< Modu³ u¿ywany w trybie grania w osobnym oknie.
+
 	protected:
 	public:
 		bool				InitializeEngine			( System::IntPtr moduleHandle );
@@ -72,7 +76,13 @@ using namespace System::Collections::ObjectModel;
 		List< ActorClassMetaInfo^ >^						CreateActorsMetadata		();
 		ObservableCollection< ActorWrapper^ >^				CreateActorsList			();
 
+		// Input
+		void				KeyboardChange				( System::Windows::Input::Key keyId, bool pressed );
+		void				MouseButtonChange			( System::Windows::Input::MouseButton button, bool pressed );
+		void				MousePositionChange			( double X, double Y );
 
+	public:
+		EngineWrapper();
 	};
 
 }

@@ -419,6 +419,8 @@ int				Engine::GetWindowWidth()									{ return Context->windowWidth; }
 int				Engine::GetWindowHeight()									{ return Context->windowHeight; }
 void			Engine::EnableInput( bool val )								{ Context->ui_engine->EnableInput( val ); }
 
+IInput*			Engine::ChangeInputModule( IInput* newModule )				{ return Context->ui_engine->ChangeInputModule( newModule ); }
+
 /**@brief Funkcja wczytuj¹ca startowy level do silnika. Najczêœciej na tym etapie wczytuje siê tylko menu,
 oraz wszytkie elementy, które s¹ przydatne na ka¿dym etapie gry.
 

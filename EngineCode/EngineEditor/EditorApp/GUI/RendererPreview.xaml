@@ -15,16 +15,9 @@
 			   VerticalAlignment="Top"
 			   Focusable="True"
 			   Source="{Binding ViewportSurface}">
-		<i:Interaction.Triggers>
-			<i:EventTrigger EventName="MouseLeave">
-				<i:InvokeCommandAction Command="{Binding LostFocusCommand}"/>
-			</i:EventTrigger>
-			<i:EventTrigger EventName="MouseEnter">
-				<i:InvokeCommandAction Command="{Binding GotFocusCommand}"/>
-			</i:EventTrigger>
-		</i:Interaction.Triggers>
 		<i:Interaction.Behaviors>
 			<gui:FrameworkElementDropBehavior DropSrcReferenceType="Reference" />
+			<gui:InputProxyBehavior />
 		</i:Interaction.Behaviors>
 	</Image>
 </UserControl>

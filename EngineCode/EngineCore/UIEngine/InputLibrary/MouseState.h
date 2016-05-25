@@ -27,6 +27,12 @@ public:
 	const InputDeviceInfo&		GetInfo()			{ return m_info; }
 
 public:
+
+	/**@brief Przyciski fizyczne.
+	
+	Od BUTTON0 do BUTTON2 s¹ to przyciski prawy, lewy i œrodkowy, które
+	maj¹ te¿ aliasy LEFT_BUTTON, RIGHT_BUTTON, MIDDLE_BUTTON.
+	Kolejne numery oznaczaj¹ pozosta³e przyciski, jakie mo¿e posiadaæ mysz.*/
 	enum PHYSICAL_BUTTONS
 	{
 		BUTTON0 = 0,

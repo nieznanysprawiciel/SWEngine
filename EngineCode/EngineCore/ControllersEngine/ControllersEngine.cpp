@@ -21,9 +21,11 @@ ControllersEngine::~ControllersEngine()
 
 
 
-//funkcja wywo³ywana przez klasê Engine w ka¿dym obiegu g³ównej petli programu
-//parametrem jest czas który up³yn¹³ od ostatniego wywo³ania
-void ControllersEngine::ProceedControllersPre(float time_interval)
+/**@brief Wywo³uje kontrolery na obs³ugiwanych obiektach.
+
+Funkcja wywo³ywana przed MovementEngine::ProceedMovement.
+@see @ref Controllers*/
+void ControllersEngine::ProceedControllersPre( float timeInterval )
 {
 	//todo:	przerobiæ na wersjê wielow¹tkow¹
 	for ( unsigned int i = 0; i < m_preControlledObjects.size(); ++i )
@@ -31,8 +33,11 @@ void ControllersEngine::ProceedControllersPre(float time_interval)
 			m_preControlledObjects[i]->GetController()->ControlObjectPre( m_preControlledObjects[i] );
 }
 
+/**@brief Wywo³uje kontrolery na obs³ugiwanych obiektach.
 
-void ControllersEngine::ProceedControllersPost( float time_interval )
+Funkcja wywo³ywana po MovementEngine::ProceedMovement.
+@see @ref Controllers*/
+void ControllersEngine::ProceedControllersPost( float timeInterval )
 {
 	//todo:	przerobiæ na wersjê wielow¹tkow¹
 	for ( unsigned int i = 0; i < m_postControlledObjects.size( ); ++i )

@@ -17,6 +17,7 @@
 class IGamePlay;
 class ActorBase;
 class Event;
+class IInput;
 
 
 //	window defines
@@ -154,7 +155,11 @@ public:
 	int						GetWindowHeight();
 	///@}
 
-	void					EnableInput( bool val );
+	///@name Input
+	///@{
+	void					EnableInput			( bool val );
+	IInput*					ChangeInputModule	( IInput* newModule );
+	///@}
 };
 
 

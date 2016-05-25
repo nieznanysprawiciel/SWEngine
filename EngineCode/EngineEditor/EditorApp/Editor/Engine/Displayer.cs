@@ -32,9 +32,6 @@ namespace EditorApp.Engine
 			m_viewportSurface = null;
 			m_engineWrapper = null;
 
-			GotFocusCommand = new RelayCommand( GotFocus );
-			LostFocusCommand = new RelayCommand( LostFocus );
-
 			m_logicRef = appLogic;
 		}
 		
@@ -50,7 +47,7 @@ namespace EditorApp.Engine
 			else
 				return false;
 
-			m_engineWrapper.EnableInput( false );
+			m_engineWrapper.EnableInput( true );
 			//m_engineWrapper.BasicScene();
 			m_engineWrapper.TestScene();
 
@@ -76,12 +73,12 @@ namespace EditorApp.Engine
 			}
 		}
 
-		public void		GotFocus	( object parameter )
+		public void		GotFocus	()
 		{
 			m_engineWrapper.EnableInput( true );
 		}
 
-		public void		LostFocus	( object parameter )
+		public void		LostFocus	()
 		{
 			m_engineWrapper.EnableInput( false );
 		}
@@ -139,18 +136,6 @@ namespace EditorApp.Engine
 			{
 				return m_engineWrapper;
 			}
-		}
-
-		public ICommand		GotFocusCommand
-		{
-			get;
-			internal set;
-		}
-
-		public ICommand		LostFocusCommand
-		{
-			get;
-			internal set;
 		}
 
 		public int Width
