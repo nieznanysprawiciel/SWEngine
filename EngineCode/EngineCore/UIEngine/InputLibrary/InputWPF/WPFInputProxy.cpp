@@ -10,6 +10,7 @@ WPFInputProxy::WPFInputProxy()
 WPFInputProxy::~WPFInputProxy()
 { }
 
+/**@brief */
 bool WPFInputProxy::Init( const InputInitInfo & initInfo )
 {
 	m_keyboards.push_back( new KeyboardState() );

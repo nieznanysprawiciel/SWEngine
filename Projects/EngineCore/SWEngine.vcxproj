@@ -244,6 +244,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\DirectInput\IncludeDirectInput.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\IInput.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\InputDeviceInfo.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\InputWPF\WPFInputProxy.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\JoystickState.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\KeyboardState.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\MouseState.h" />
@@ -347,6 +348,7 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeLeaf.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeNode.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\DirectInput\DirectInputModule.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\InputWPF\WPFInputProxy.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\JoystickState.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\KeyboardState.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\MouseState.cpp" />

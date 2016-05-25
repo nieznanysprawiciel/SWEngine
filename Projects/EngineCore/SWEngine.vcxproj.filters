@@ -419,6 +419,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\DirectInput\DirectInputModule.h">
       <Filter>EngineCore\UIEngine\InputLibrary\DirectInput</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\InputWPF\WPFInputProxy.h">
+      <Filter>EngineCore\UIEngine\InputLibrary\InputWPF</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -642,6 +645,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\DirectInput\DirectInputModule.cpp">
       <Filter>EngineCore\UIEngine\InputLibrary\DirectInput</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\InputWPF\WPFInputProxy.cpp">
+      <Filter>EngineCore\UIEngine\InputLibrary\InputWPF</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
