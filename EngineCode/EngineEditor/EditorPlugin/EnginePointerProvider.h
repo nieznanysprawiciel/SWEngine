@@ -8,7 +8,7 @@ namespace EditorPlugin
 }
 
 /**@brief Udostêpnie wybranym klasom dostêp do wskaŸnika na g³ówny obiekt silnika.*/
-struct EnginePointerProvider
+public struct EnginePointerProvider
 {
 	friend ref class EditorPlugin::EngineWrapper;
 

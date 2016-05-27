@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorClassMetaInfo.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorWrapper.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EditorActorsFactory.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\dllmain.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorPlugin.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</CompileAsManaged>
@@ -31,6 +32,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorClassMetaInfo.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorWrapper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EditorActorsFactory.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorApp\IDragable.h">
       <FileType>CppHeader</FileType>
     </ClInclude>

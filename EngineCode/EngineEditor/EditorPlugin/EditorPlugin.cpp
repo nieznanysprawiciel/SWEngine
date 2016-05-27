@@ -12,6 +12,9 @@
 #include "Common/MacrosSwitches.h"
 #include "EngineCore/Actors/ActorObjects.h"
 
+#include "EngineCore/ControllersEngine/BaseClasses/IController.h"
+#include "EngineCore/ControllersEngine/BasicControllers/Editor/GizmoController.h"
+
 #include <msclr/marshal_cppstd.h>
 
 
@@ -142,6 +145,20 @@ ActorWrapper^						EngineWrapper::CreateActor				( System::String^ actorName, in
 		return gcnew ActorWrapper( (EngineObject*)actor, &actorData->second );
 
 	return gcnew ActorWrapper( nullptr, nullptr );
+}
+
+/**@brief Przyczepia do wybranego aktora (selection) kontroler gizma.*/
+void								EngineWrapper::SelectActor( ActorWrapper^ gizmo, ActorWrapper^ selection )
+{
+	auto gizmoPtr = static_cast< DynamicMeshActor* >( gizmo->GetActorPtr().ToPointer() );
+	auto selectionPtr = static_cast< StaticActor* >( selection->GetActorPtr().ToPointer() );
+
+	assert( rttr::rttr_cast< DynamicMeshActor* >( gizmoPtr ) );
+
+	auto gizmoController = static_cast< GizmoController* >( gizmoPtr->GetController() );
+	assert( rttr::rttr_cast< GizmoController* >( gizmoController ) );
+
+	gizmoController->SetFollowedActor( selectionPtr );
 }
 
 /**@brief Tworzy listê typów zarejestrowanych aktorów.*/

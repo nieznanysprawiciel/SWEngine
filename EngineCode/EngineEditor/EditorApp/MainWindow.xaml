@@ -42,6 +42,9 @@
 				<Separator />
 				<MenuItem IsCheckable="True" IsChecked="True" Header="Show Actors Viewer" Style="{StaticResource MenuItemStyle}" />
 			</MenuItem>
+			<MenuItem Style="{StaticResource MenuItemStyle}" Header="Debug Editor" >
+				<MenuItem Header="Save Config" Style="{StaticResource MenuItemStyle}" Command="{Binding SaveGlobalConfig}"/>
+			</MenuItem>
 		</Menu>
 
 		<TabControl DockPanel.Dock="Left" ItemsSource="{Binding LeftPanelView}" Style="{StaticResource TabControlStyleBase}" Margin="10, 10, 10, 10" Width="400" >

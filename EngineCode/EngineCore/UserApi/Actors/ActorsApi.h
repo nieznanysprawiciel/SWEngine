@@ -62,6 +62,7 @@ namespace Api
 	};
 
 	template<>							ActorBase*		ActorsApi::CreateActor				( const std::string& name );
+	template<>							ActorBase*		ActorsApi::CreateActor				( ActorType id );
 
 	/**@brief Tworzy aktora na podstawie nazwy.
 	

@@ -10,11 +10,20 @@ namespace EditorApp
 	public class GlobalSettings
 	{
         [XmlIgnore]
-        public string ProjectFileExt { get; internal set; }
+        public string		ProjectFileExt { get; set; }
 
-        public GlobalSettings()
+		// Default assets file names
+		public string		GizmoAssetFile { get; set; }
+
+
+
+		public GlobalSettings()
         {
             ProjectFileExt = ".swproj";
-        }
+			GizmoAssetFile = "Gizmo.FBX";
+
+		}
+
+
 	}
 }

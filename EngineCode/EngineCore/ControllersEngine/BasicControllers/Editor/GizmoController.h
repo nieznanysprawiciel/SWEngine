@@ -19,6 +19,7 @@ Sterowanie:
 @todo Uzupe³niæ dokumentacjê sterowania.*/
 class GizmoController :	public BaseInputController
 {
+	RTTR_ENABLE( BaseInputController )
 private:
 
 	StaticActor*		m_followedActor;

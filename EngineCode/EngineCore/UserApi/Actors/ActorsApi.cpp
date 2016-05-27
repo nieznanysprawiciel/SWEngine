@@ -109,4 +109,17 @@ ActorBase*							ActorsApi::CreateActor< ActorBase >		( const std::string& name 
 	return newActor;
 }
 
+/**@brief Specjalizacja szablonu dla ActorBase. Dziêki temu edytor nie bêdzie musia³ includowaæ
+EngineContext i nie bêdzie krzycza³, ¿e klasa std::mutex mu nie pasuje.*/
+template<>
+ActorBase*							ActorsApi::CreateActor< ActorBase >		( ActorType id )
+{
+	ActorBase* newActor = Context->actorsManager->CreateActor< ActorBase >( id, ActorInfoFlag::DisableAll );
+
+	if( newActor == nullptr )
+		return nullptr;
+
+	return newActor;
+}
+
 }	// Api

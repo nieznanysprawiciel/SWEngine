@@ -4,6 +4,12 @@
 #include "EngineCore/Actors/BasicActors/DynamicActor.h"
 
 
+RTTR_REGISTRATION
+{
+	rttr::registration::class_< GizmoController >( "GizmoController" );
+}
+
+
 /**@brief */
 GizmoController::GizmoController( InputAbstractionLayerBase* layer )
 	:	BaseInputController( layer )

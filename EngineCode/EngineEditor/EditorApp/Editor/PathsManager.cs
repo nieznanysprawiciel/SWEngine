@@ -20,6 +20,10 @@ namespace EditorApp
 		string          m_levelsRelativeDir;
 		string          m_texturesRelativeDir;
 		string          m_animationsRelativeDir;
+		string          m_meshesRelativeDir;
+
+		string          m_globalConfigRelativePath;
+
 
 		public void			InitPaths( string[] cmdArguments )
 		{
@@ -61,6 +65,9 @@ namespace EditorApp
 			m_levelsRelativeDir = "levels";
 			m_texturesRelativeDir = "textures";
 			m_animationsRelativeDir = "animations";
+			m_meshesRelativeDir = "meshes";
+
+			m_globalConfigRelativePath = "Configuration/GlobalConfig.xml";
 		}
 
 		public void			UpdateProjectPaths( string projectPath )
@@ -129,6 +136,9 @@ namespace EditorApp
 			}
 		}
 
+		/// <summary>
+		/// Directory with Editor binaries (Release version).
+		/// </summary>
 		public string EditorDir
 		{
 			get
@@ -142,6 +152,9 @@ namespace EditorApp
 			}
 		}
 
+		/// <summary>
+		/// Directory, where default editor and engine assets are stored.
+		/// </summary>
 		public string DefaultAssetsDir
 		{
 			get
@@ -168,6 +181,9 @@ namespace EditorApp
 			}
 		}
 
+		/// <summary>
+		/// Project directory with assets.
+		/// </summary>
 		public string AssetsDir
 		{
 			get
@@ -194,6 +210,35 @@ namespace EditorApp
 			//	m_assetsDir = value;
 			//}
 		}
+
+		public string SourceCodeDir
+		{
+			get
+			{
+				return m_sourceCodeDir;
+			}
+
+			set
+			{
+				m_sourceCodeDir = value;
+			}
+		}
+
+		public string VisualProjectsDir
+		{
+			get
+			{
+				return m_visualProjectsDir;
+			}
+
+			set
+			{
+				m_visualProjectsDir = value;
+			}
+		}
+
+		/// Assets in current project directory
+		#region AssetsDirs
 
 		public string ShadersDir
 		{
@@ -227,31 +272,65 @@ namespace EditorApp
 			}
 		}
 
-		public string SourceCodeDir
+		public string MeshesDir
 		{
 			get
 			{
-				return m_sourceCodeDir;
-			}
-
-			set
-			{
-				m_sourceCodeDir = value;
+				return Path.Combine( ProjectDir, m_meshesRelativeDir );
 			}
 		}
+		#endregion
 
-		public string VisualProjectsDir
+
+		/// Default assets directories (engine assets)
+		#region DefaultAssetsDirs
+
+		public string DefaultShadersDir
 		{
 			get
 			{
-				return m_visualProjectsDir;
-			}
-
-			set
-			{
-				m_visualProjectsDir = value;
+				return Path.Combine( DefaultAssetsDir, m_shadersRelativeDir );
 			}
 		}
+
+		public string DefaultTexturesDir
+		{
+			get
+			{
+				return Path.Combine( DefaultAssetsDir, m_texturesRelativeDir );
+			}
+		}
+
+		public string DefaultAnimationsDir
+		{
+			get
+			{
+				return Path.Combine( DefaultAssetsDir, m_animationsRelativeDir );
+			}
+		}
+
+		public string DefaultMeshesDir
+		{
+			get
+			{
+				return Path.Combine( DefaultAssetsDir, m_meshesRelativeDir );
+			}
+		}
+		#endregion
+
+
+		/// <summary>
+		/// Ścieżka do głównego pliku konfiguracyjnego.
+		/// </summary>
+		public string GlobalConfigPath
+		{
+			get
+			{
+				return  Path.Combine( EditorDir, m_globalConfigRelativePath );
+			}
+		}
+
+
 
 		#endregion
 	}

@@ -8,18 +8,12 @@
 		@copydoc ProjectStructure
 	<li> @ref ThemeDescription
 		@copydoc ThemeDescription
-	<li> @ref BasicObjects
-		@copydoc BasicObjects
 	<li> @ref PredefinedClasses
 		@copydoc PredefinedClasses
-	<li> @ref BaseEngineObjects
-		@copydoc BaseEngineObjects
+	<li> @ref BaseActorsObjects
+		@copydoc BaseActorsObjects
 	<li> @ref MainInterfaces
 		@copydoc MainInterfaces
-	<li> @ref EngineCoreModules
-		@copydoc EngineCoreModules
-	<li> @ref ConstantsMacros
-		@copydoc ConstantsMacros
 </ul>
 */
 
@@ -79,7 +73,7 @@
 </ul>
 */
 
-/**@page BaseEngineObjects Klasy bazowe dla obiektów predefiniowanych
+/**@page BaseActorsObjects Klasy bazowe Aktorów
 <ul>
 	<li>AnimationActor
 	<li>BaseAIController
@@ -89,7 +83,6 @@
 	<li>ComplexActor
 	<li>DynamicMeshActor
 	<li>DynamicActor
-	<li>Event
 	<li>EngineObject
 	<li>PhysicalActor
 	<li>StaticActor
@@ -102,7 +95,8 @@
 
 /**@page PredefinedClasses Klasy predefiniowane
 <ul>
-	<li>camera_controller_PROTOTYPE
+	<li>SpectatorCameraController
+	<li>GizmoController
 </ul>
 */
 

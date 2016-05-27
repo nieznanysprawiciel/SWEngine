@@ -59,11 +59,13 @@ namespace EditorApp
 
 			LoadCommand = new RelayCommand( LoadClick );
 			SaveCommand = new RelayCommand( SaveClick );
+			SaveGlobalConfig = new RelayCommand( SaveGlobalConfigImpl );
 		}
 
 		public bool			Init		( string[] cmdArgs )
 		{
 			PathsManager.InitPaths( cmdArgs );
+			GlobalSettings = Editor.Helpers.Serialization.Deserialize< GlobalSettings >( PathsManager.GlobalConfigPath );
 
 			if( !Displayer.InitRenderer() )
 				return false;
@@ -187,13 +189,29 @@ namespace EditorApp
 			internal set;
 		}
 
+		/// <summary>
+		/// Komenda tymczasowa. Zapisuje GlobalSettings do pliku.
+		/// </summary>
+		public ICommand SaveGlobalConfig
+		{
+			get;
+			internal set;
+		}
+
 		//public ICommand ExitCommand
 		//{
 		//	get;
 		//	internal set;
 		//}
 
+		#endregion
 
+		#region TemporaryFunctions
+
+		private void SaveGlobalConfigImpl( object parameter )
+		{
+			Editor.Helpers.Serialization.Serialize( PathsManager.GlobalConfigPath, GlobalSettings );
+		}
 
 		#endregion
 	}

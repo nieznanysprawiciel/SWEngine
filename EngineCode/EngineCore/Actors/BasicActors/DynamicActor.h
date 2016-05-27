@@ -9,7 +9,8 @@ Je¿eli jest zdefiniowana sta³a _QUATERNION_SPEED, to prêdkoœci k¹towe s¹ wyra¿on
 kwaternionem w przeciwnym razie jest to wektor, w którym sk³adowa w jest k¹tem obrotu.
 W docelowej wersji bêdzie najprawdopodobniej wybrana opcja z wetorem a nie kwaternionem.
 
-@note Niezaleznie od tego jak jest wyra¿ona prêdkoœæ, orientacja zawsze jest kwaternionem.*/
+@note Niezaleznie od tego jak jest wyra¿ona prêdkoœæ, orientacja zawsze jest kwaternionem.
+@todo Zastanowiæ siê czy controller nie powinien byæ unique_ptrem.*/
 class DynamicActor : public CollisionActor
 {
 	RTTR_REGISTRATION_FRIEND
@@ -22,16 +23,17 @@ protected:
 
 public:
 
-	DynamicActor();	///< Kontruktor ustawi¹j¹cy zerow¹ prêdkoœæ k¹tow¹ i postêpow¹.
-	DynamicActor( const DirectX::XMFLOAT3& move_speed, const DirectX::XMFLOAT4& rot_speed );	///< Kontruktor ustawia podan¹ w parametrach prêdkoœæ.
+	explicit			DynamicActor			();	///< Kontruktor ustawi¹j¹cy zerow¹ prêdkoœæ k¹tow¹ i postêpow¹.
+	explicit			DynamicActor			( const DirectX::XMFLOAT3& move_speed, const DirectX::XMFLOAT4& rot_speed );	///< Kontruktor ustawia podan¹ w parametrach prêdkoœæ.
+	virtual				~DynamicActor();
 
-	void				SetSpeed				( const DirectX::XMVECTOR& vector )		{ XMStoreFloat3( &speed, vector ); }	///<Ustawia prêdkoœæ obiektu @param[in] vector Wektor prêdkoœci.
+	void				SetSpeed				( const DirectX::XMVECTOR& vector )		{ XMStoreFloat3( &speed, vector ); }				///<Ustawia prêdkoœæ obiektu @param[in] vector Wektor prêdkoœci.
 	void				SetRotationSpeed		( const DirectX::XMVECTOR& quaternion )	{ XMStoreFloat4( &rotation_speed, quaternion ); }	///<Ustawia prêdkoœæ obrotow¹ @param[in] quaternion Wektor prêdkoœci.
-	void				SetRotationSpeed		( const DirectX::XMFLOAT4 axis_angle )	{ rotation_speed = axis_angle; }		///<Ustawia prêdkoœæ obrotow¹ @param[in] quaternion Wektor prêdkoœci.
-	DirectX::XMVECTOR	GetSpeed				() const						{ return XMLoadFloat3( &speed ); }	///< Zwraca prêdkoœæ postêpow¹ obiektu.
-	DirectX::XMVECTOR	GetRotationSpeed		() const						{ return XMLoadFloat4( &rotation_speed ); }	///< Zwraca prêdkoœæ obrotow¹ obiektu.
+	void				SetRotationSpeed		( const DirectX::XMFLOAT4 axis_angle )	{ rotation_speed = axis_angle; }					///<Ustawia prêdkoœæ obrotow¹ @param[in] quaternion Wektor prêdkoœci.
+	DirectX::XMVECTOR	GetSpeed				() const						{ return XMLoadFloat3( &speed ); }							///< Zwraca prêdkoœæ postêpow¹ obiektu.
+	DirectX::XMVECTOR	GetRotationSpeed		() const						{ return XMLoadFloat4( &rotation_speed ); }					///< Zwraca prêdkoœæ obrotow¹ obiektu.
 
-	void				SetController			( IController* ctrl )			{ controller = ctrl; }	///< Ustawia podany w parametrze kontroler
+	void				SetController			( IController* ctrl )			{ controller = ctrl; }			///< Ustawia podany w parametrze kontroler
 	IController*		GetController			()								{ return controller; }
 
 	void				Move					( float time_interval );

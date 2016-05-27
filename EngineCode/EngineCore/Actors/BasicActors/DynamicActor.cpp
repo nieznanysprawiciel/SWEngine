@@ -1,5 +1,6 @@
 #include "EngineCore/stdafx.h"
 #include "DynamicActor.h"
+#include "EngineCore/ControllersEngine/BaseClasses/IController.h"
 
 #include "Common/MemoryLeaks.h"
 
@@ -46,6 +47,11 @@ DynamicActor::DynamicActor( const XMFLOAT3& move_speed, const XMFLOAT4& rot_spee
 	rotation_speed = rot_speed;
 }
 
+/**@brief Usuwa przypisany kontroler.*/
+DynamicActor::~DynamicActor()
+{
+	delete controller;
+}
 
 /**Funkcja wykonywana w ka¿dym obiegu pêtli renderingu przez obiekt MovementEngine.
  Dodajemy aktualny wektor prêdkoœci i prêdkoœci obrotowej do wektorów po³o¿enia i orientacji.

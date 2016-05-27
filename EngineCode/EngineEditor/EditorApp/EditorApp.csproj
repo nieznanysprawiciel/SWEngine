@@ -164,6 +164,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Editor\Helpers\Serialization.cs" />
     <Compile Include="GUI\Bahaviors\DragAndDrop\FrameworkElementAdorner.cs" />
     <Compile Include="GUI\Bahaviors\DragAndDrop\FrameworkElementDragBehavior.cs" />
     <Compile Include="GUI\Bahaviors\DragAndDrop\FrameworkElementDropBehavior.cs" />

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.IO;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using EditorPlugin;
@@ -18,8 +19,16 @@ namespace EditorApp.Editor.Project.Actors
 		private List< ActorClassMetaInfo >						m_actorsTypesList;
 		private ObservableCollection< ActorWrapper >			m_actors;
 
+		/// <summary>
+		/// Lista aktorów, którzy pełnią funkcję pomocniczą dla edytora, ale nie wystąpią w grze. Są to np. wizualne reprezentacje 
+		/// świateł, triggerów, gizmo itp.
+		/// </summary>
+		private List< ActorWrapper >                            m_editorActors;		
+
+
 		private ActorClassMetaInfo              m_selectedActorMeta;
 		private ActorWrapper                    m_selectedActor;
+		private ActorWrapper                    m_gizmoActor;
 
 		private Logic							m_editorLogic;      ///< Referencja na główny obiekt edytora.
 
@@ -32,9 +41,12 @@ namespace EditorApp.Editor.Project.Actors
 
 			m_editorLogic = editorLogic;
 			m_actorsTypesList = null;
+			m_editorActors = new List<ActorWrapper>();
 			Actors = new ObservableCollection<ActorWrapper>();
+
 			SelectedActor = null;
 			SelectedActorMeta = null;
+			m_gizmoActor = null;
 
 			LoadAssetCommand = new RelayCommand( LoadAsset, CanLoadAsset );
 			ActorSelectionChangedCommand = new RelayCommand( ActorSelectionChanged );
@@ -46,17 +58,28 @@ namespace EditorApp.Editor.Project.Actors
 		{
 			m_actorsTypesList = null;
 			m_actors = null;
+
+			m_editorActors = new List<ActorWrapper>();
+
+			SelectedActor = null;
+			SelectedActorMeta = null;
+			m_gizmoActor = null;
 		}
 
 		public void PostInitLevel()
 		{
 			ClearState();
 
+			// Pobieramy aktorów ze sceny oraz metadane o typach aktorów.
 			EngineWrapper engine = m_editorLogic.Displayer.EngineWrapper;
 			m_actorsTypesList = engine.CreateActorsMetadata();
 			m_actors = engine.CreateActorsList();
 
+			// Tworzymy aktorów pomocniczych.
+			m_gizmoActor = EditorActorsFactory.CreateGizmoActor( Path.Combine( m_editorLogic.PathsManager.DefaultMeshesDir, m_editorLogic.GlobalSettings.GizmoAssetFile ) );
+			m_editorActors.Add( m_gizmoActor );
 
+			// Przypisujemy nazwy aktorom.
 			int actorCounter = 0;
 			foreach( var actor in m_actors )
 			{
@@ -71,6 +94,7 @@ namespace EditorApp.Editor.Project.Actors
 		{
 			var actor = parameter as ActorWrapper;
 			SelectedActor = actor;
+			m_editorLogic.Displayer.EngineWrapper.SelectActor( m_gizmoActor, actor );
 
 			foreach( var actorClass in m_actorsTypesList )
 			{
@@ -91,7 +115,6 @@ namespace EditorApp.Editor.Project.Actors
 		public void CreateActor		( object parameter )
 		{
 			var eventArg = parameter as RoutedEventHandler;
-			//eventArg.
 		}
 
 		public void CreateActor		( ActorClassMetaInfo actorInfo )
