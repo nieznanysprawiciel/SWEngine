@@ -20,9 +20,21 @@ to z kolejki bêdzie wybieranych tylko kilka ¿¹dañ, a pozosta³e zostan¹ od³o¿one 
 które zostan¹ w nim umieszczone. W przysz³oœci trzeba zrobiæ jakiœ m¹drzejszy mechanizm.
 
 @param[in] pass Dane przebiegu uzywane przy renderowaniu.*/
-void Api::RenderingApi::RenderOnce( RenderPass* pass )
+void			RenderingApi::RenderOnce		( RenderPass* pass )
 {
 	Context->displayEngine->RenderOnce( pass );
+}
+
+/**@copydoc DisplayEngine::GetCurrentCamera*/
+CameraActor*	RenderingApi::GetCurrentCamera	()
+{
+	return Context->displayEngine->GetCurrentCamera();
+}
+
+/**@copydoc DisplayEngine::SetCurrentCamera*/
+void			RenderingApi::SetCurrentCamera	( CameraActor* camera )
+{
+	Context->displayEngine->SetCurrentCamera( camera );
 }
 
 

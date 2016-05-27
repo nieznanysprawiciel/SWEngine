@@ -110,6 +110,21 @@ void				CameraActor::SetFov				( float fov )
 	UpdateMatrix();
 }
 
+/**@copydoc CameraData*/
+CameraData CameraActor::GetCameraData()
+{
+	CameraData data;
+	data.IsPerspective = m_isPerspective;
+	data.FarPlane = m_farPlane;
+	data.Fov = m_fov;
+	data.Height = m_height;
+	data.NearPlane = m_nearPlane;
+	data.Width = m_width;
+	XMStoreFloat4( &data.Orientation, GetOrientation() );
+	XMStoreFloat3( &data.Position, GetPosition() );
+	return data;
+}
+
 /**@brief Aktualizuje przechowywan¹ macierz na podstawie wartoœci pól klasy.*/
 void				CameraActor::UpdateMatrix		()
 {

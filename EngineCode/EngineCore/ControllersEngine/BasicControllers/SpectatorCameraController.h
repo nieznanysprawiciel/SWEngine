@@ -34,7 +34,7 @@ public:
 	explicit SpectatorCameraController			( InputAbstractionLayerBase* layer );
 	virtual ~SpectatorCameraController			();
 
-	virtual void		ControlObjectPre		( DynamicActor* );
-	virtual void		ControlObjectPost		( DynamicActor* );
+	virtual void		ControlObjectPre		( DynamicActor* actor, IControllersState* globalState );
+	virtual void		ControlObjectPost		( DynamicActor* actor, IControllersState* globalState );
 };
 

@@ -6,6 +6,7 @@
 @brief Klasa bazowa dla kontrolerów.*/
 
 #include "Common/EngineObject.h"
+#include "EngineCore/ControllersEngine/IControllersState.h"
 
 class DynamicActor;
 
@@ -16,8 +17,8 @@ class IController : public EngineObject
 public:
 	virtual ~IController() = default;
 
-	virtual void		ControlObjectPre		( DynamicActor* ) = 0;	///< Funkcja wywo³ywana przed 
-	virtual void		ControlObjectPost		( DynamicActor* ) = 0;
+	virtual void		ControlObjectPre		( DynamicActor* actor, IControllersState* globalState ) = 0;	///< Funkcja wywo³ywana przed 
+	virtual void		ControlObjectPost		( DynamicActor* actor, IControllersState* globalState ) = 0;
 };
 
 

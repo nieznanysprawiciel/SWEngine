@@ -422,6 +422,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\InputWPF\WPFInputProxy.h">
       <Filter>EngineCore\UIEngine\InputLibrary\InputWPF</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\IControllersState.h">
+      <Filter>EngineCore\ControllersEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -648,6 +651,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\InputWPF\WPFInputProxy.cpp">
       <Filter>EngineCore\UIEngine\InputLibrary\InputWPF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\IControllersState.cpp">
+      <Filter>EngineCore\ControllersEngine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

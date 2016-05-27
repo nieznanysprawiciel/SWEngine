@@ -616,6 +616,12 @@ int DisplayEngine::SetCurrentCamera( CameraActor* camera )
 	return 0;
 }
 
+/**@brief Zwraca aktualnie ustawion¹ kamerê g³ówn¹.*/
+CameraActor* DisplayEngine::GetCurrentCamera()
+{
+	return current_camera;
+}
+
 //=================================================================//
 //					interpolation
 //=================================================================//

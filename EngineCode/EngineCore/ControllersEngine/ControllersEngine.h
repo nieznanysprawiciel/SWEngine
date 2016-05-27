@@ -4,6 +4,7 @@
 #include "BaseClasses/IController.h"
 
 class Engine;
+struct IControllersState;
 
 /**@brief Modu³ do zarz¹dzania kontrolerami obiektów.
 @ingroup EngineCore*/
@@ -15,9 +16,11 @@ private:
 	std::vector<DynamicActor*>		m_preControlledObjects;
 	std::vector<DynamicActor*>		m_postControlledObjects;
 
+	IControllersState*				m_globalState;
+
 public:
-	ControllersEngine( Engine* parent );
-	~ControllersEngine();
+	explicit	ControllersEngine				( Engine* parent );
+				~ControllersEngine				();
 
 	void		ProceedControllersPre			( float timeInterval );
 	void		ProceedControllersPost			( float timeInterval );

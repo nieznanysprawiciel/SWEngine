@@ -3,20 +3,22 @@
 #include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/Actors/ActorObjects.h"
 
+#include "EngineCore/ControllersEngine/IControllersState.h"
 
 #include "Common/MemoryLeaks.h"
 
 
-ControllersEngine::ControllersEngine(Engine* parent)
+ControllersEngine::ControllersEngine( Engine* parent )
 {
 	engine = parent;
-
+	m_globalState = new IControllersState();
+	m_globalState->Engine = engine;
 }
 
 
 ControllersEngine::~ControllersEngine()
 {
-
+	delete m_globalState;
 }
 
 
@@ -30,7 +32,7 @@ void ControllersEngine::ProceedControllersPre( float timeInterval )
 	//todo:	przerobiæ na wersjê wielow¹tkow¹
 	for ( unsigned int i = 0; i < m_preControlledObjects.size(); ++i )
 		if ( m_preControlledObjects[i]->GetController() != nullptr )
-			m_preControlledObjects[i]->GetController()->ControlObjectPre( m_preControlledObjects[i] );
+			m_preControlledObjects[i]->GetController()->ControlObjectPre( m_preControlledObjects[i], m_globalState );
 }
 
 /**@brief Wywo³uje kontrolery na obs³ugiwanych obiektach.
@@ -42,7 +44,7 @@ void ControllersEngine::ProceedControllersPost( float timeInterval )
 	//todo:	przerobiæ na wersjê wielow¹tkow¹
 	for ( unsigned int i = 0; i < m_postControlledObjects.size( ); ++i )
 		if ( m_postControlledObjects[i]->GetController( ) != nullptr )
-			m_postControlledObjects[i]->GetController( )->ControlObjectPost( m_postControlledObjects[i] );
+			m_postControlledObjects[i]->GetController( )->ControlObjectPost( m_postControlledObjects[i], m_globalState );
 }
 
 

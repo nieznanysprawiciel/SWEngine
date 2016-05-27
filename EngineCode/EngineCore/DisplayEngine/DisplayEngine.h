@@ -95,6 +95,7 @@ public:
 	// camera functions
 	int				AddCamera						( CameraActor* camera );
 	int				SetCurrentCamera				( CameraActor* camera );
+	CameraActor*	GetCurrentCamera				();
 
 	// Renderowanie
 	void			RenderOnce						( RenderPass* pass )	{	m_renderOnceQueue.push( pass );	}

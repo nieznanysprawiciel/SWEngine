@@ -3,6 +3,28 @@
 #include "DynamicActor.h"
 
 
+/**@brief Struktura do wymieniania informacji o danych kamery.
+
+Generalnie aktorzy nie powinni siê wzajemnie odpytywaæ o swoje dane.
+Jest zagro¿enie, ¿e z powodu wykonania wielow¹tkowego jakiœ aktor odczyta niespójne dane.
+Celem powstania tej struktury jest przechowywanie stanu kamery zarejestrowanego przed
+wywo³aniem kontrolerów.
+
+@todo Prawdopodobnie jakiœ mechanizm odpytywania siê wzajemnie aktorów o swoje dane bêdzie potrzebny.
+W momencie jak siê on pojawi trzeba siê pozbyæ tej struktury i zrobiæ to nowym mechanizmem.*/
+struct CameraData
+{
+	DirectX::XMFLOAT3	Position;
+	DirectX::XMFLOAT4	Orientation;
+	float				Fov;
+	float				Width;
+	float				Height;
+	float				NearPlane;
+	float				FarPlane;
+	bool				IsPerspective;
+};
+
+
 /**@brief Klasa bazowa dla wszystkich obiektów kamer w silniku.
 */
 class CameraActor : public DynamicActor
@@ -41,6 +63,8 @@ public:
 	float				GetNearPlane		()					{ return m_nearPlane; }
 	float				GetFarPlane			()					{ return m_farPlane; }
 	float				GetFov				()					{ return m_fov; }
+
+	CameraData			GetCameraData		();
 
 	static ActorBase*	Create				()					{ return new CameraActor; }
 

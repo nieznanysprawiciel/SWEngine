@@ -28,8 +28,8 @@ public:
 	explicit			GizmoController			( InputAbstractionLayerBase* layer );
 						~GizmoController		();
 
-	virtual void		ControlObjectPre		( DynamicActor* );
-	virtual void		ControlObjectPost		( DynamicActor* );
+	virtual void		ControlObjectPre		( DynamicActor* actor, IControllersState* globalState );
+	virtual void		ControlObjectPost		( DynamicActor* actor, IControllersState* globalState );
 
 	void				SetFollowedActor		( StaticActor* actor )		{ m_followedActor = actor; }
 	StaticActor*		GetFollowedActor		()							{ return m_followedActor; }

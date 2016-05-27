@@ -8,7 +8,7 @@
 #include "EngineCore/UserApi/ApiGroup.h"
 
 class RenderPass;
-
+class CameraActor;
 
 namespace Api
 {
@@ -29,7 +29,9 @@ namespace Api
 		RenderingApi() = default;
 		~RenderingApi() = default;
 	public:
-		void		RenderOnce		( RenderPass* );
+		void				RenderOnce			( RenderPass* );
+		CameraActor*		GetCurrentCamera	();
+		void				SetCurrentCamera	( CameraActor* camera );
 	};
 
 
