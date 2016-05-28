@@ -9,13 +9,13 @@
 
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
 // Windows Header Files:
-#include <windows.h>
+//#include <windows.h>
 
 // C RunTime Header Files
-#include <stdlib.h>
-#include <malloc.h>
-#include <memory.h>
-#include <tchar.h>
+//#include <stdlib.h>
+//#include <malloc.h>
+//#include <memory.h>
+//#include <tchar.h>
 
 
 #define D3D_DEBUG_INFO
@@ -32,8 +32,6 @@
 #include <map>
 
 #include <DirectXMath.h>
-
-#include "EngineCore/UIEngine/InputLibrary/DirectInput/IncludeDirectInput.h"
 
 #include "Common/MacrosSwitches.h"
 #include "EngineCore/EventsManager/Event.h"

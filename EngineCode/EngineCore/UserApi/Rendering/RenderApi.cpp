@@ -37,6 +37,18 @@ void			RenderingApi::SetCurrentCamera	( CameraActor* camera )
 	Context->displayEngine->SetCurrentCamera( camera );
 }
 
+/**@brief Zwraca szerokoœæ g³ównego render targetu.*/
+int				RenderingApi::GetWindowWidth()
+{
+	return Context->windowWidth;
+}
+
+/**@brief Zwraca wysokoœæ g³ównego render targetu.*/
+int				RenderingApi::GetWindowHeight()
+{
+	return Context->windowHeight;
+}
+
 
 
 }	// Api

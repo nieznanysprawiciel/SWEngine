@@ -190,15 +190,6 @@ bool Engine::InitInputModule		()
 		assert( lastModule == nullptr );	// Na wypadek jakby ktoœ kiedyœ u¿y³ tej funkcji nie w inicjalizacji.
 	}
 	return result;
-
-	//int result;
-
-	////Inicjalizowanie directXinputa
-	//result = Context->ui_engine->init_direct_input( );
-	//	assert( result == DIRECT_INPUT_OK );	//Dzia³a tylko w trybie DEBUG
-	//if ( result != DIRECT_INPUT_OK )
-	//	return false;
-	//return true;
 }
 
 /**@brief */
@@ -221,7 +212,7 @@ bool Engine::InitSoundModule		()
 /**@brief To tutaj dziej¹ siê wszystkie rzeczy, które s¹ wywo³ywane co ka¿d¹ klatkê.*/
 void Engine::RenderFrame()
 {
-	float time_interval = Context->timeManager.onStartRenderFrame();
+	float timeInterval = Context->timeManager.onStartRenderFrame();
 	float lag = Context->timeManager.GetFrameLag();
 
 
@@ -238,8 +229,14 @@ void Engine::RenderFrame()
 		Context->fableEngine->ProceedFable( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->eventsManager->ProcessEvents( FIXED_MOVE_UPDATE_INTERVAL );
 
+		SingleThreadedUpdatePhase( lag, timeInterval );
+
+		// Aktualizacja czasu po wykonaniu kodu dla danej klatki.
 		lag -= FIXED_MOVE_UPDATE_INTERVAL;
 		Context->timeManager.UpdateTimeLag( lag );
+
+		timeInterval = Context->timeManager.onStartRenderFrame();
+		lag = Context->timeManager.GetFrameLag();
 
 		END_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
 	}
@@ -258,14 +255,25 @@ void Engine::RenderFrame()
 	//Renderujemy scenê oraz interfejs u¿ytkownika
 	Context->displayEngine->BeginScene();
 
-	Context->displayEngine->DisplayScene( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
-	Context->ui_engine->DrawGUI( time_interval, lag / FIXED_MOVE_UPDATE_INTERVAL );
+	Context->displayEngine->DisplayScene( timeInterval, lag / FIXED_MOVE_UPDATE_INTERVAL );
+	Context->ui_engine->DrawGUI( timeInterval, lag / FIXED_MOVE_UPDATE_INTERVAL );
 
 	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
 
 	Context->displayEngine->EndScene();
 }
 
+/**@brief W tej funkcji wywo³ywane s¹ wszystkie funkcje, które aktualizuj¹ stan silnika
+po wykonaniu ca³ej logiki w danej klatce.
+
+Stan silnika jest w czasie trwania klatki niezmienny. Jest tak dlatego, ¿e logika gry
+jest (bêdzie) wykonywana wielow¹tkowo i aktorzy odpytuj¹cy o stan powinni dostaæ informacjê
+o tym co by³o w ostaniej klatce, a nie co jest w danym momencie, poniewa¿ taki tymczasowy
+stan w zasadzie niewiele mówi.*/
+void Engine::SingleThreadedUpdatePhase( float& lag, float timeInterval )
+{
+	Context->controllersEngine->SingleThreadedUpdatePhase( timeInterval );
+}
 
 
 /**
@@ -291,6 +299,8 @@ void Engine::UpdateScene( float& lag, float timeInterval )
 		Context->collisionEngine->ProceedCollisions( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->fableEngine->ProceedFable( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->eventsManager->ProcessEvents( FIXED_MOVE_UPDATE_INTERVAL );
+
+		SingleThreadedUpdatePhase( lag, timeInterval );
 
 		lag -= FIXED_MOVE_UPDATE_INTERVAL;
 		//timeManager.UpdateTimeLag( lag );
@@ -356,6 +366,9 @@ void* Engine::GetRenderTargetHandle( uint16 width, uint16 height )
 	RenderTargetObject* renderTarget = Context->modelsManager->CreateRenderTarget( EDITOR_RENDERTARGET_STRING, descriptor );
 	Context->displayEngine->SetMainRenderTarget( renderTarget );
 	Context->displayEngine->SetProjectionMatrix( DirectX::XMConvertToRadians( 45 ), (float)width / (float)height, 1, 100000 );
+
+	Context->windowHeight = height;
+	Context->windowWidth = width;
 
 	return Context->graphicInitializer->GetRenderTargetHandle( renderTarget );
 }

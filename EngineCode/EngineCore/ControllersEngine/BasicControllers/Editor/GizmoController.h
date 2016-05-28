@@ -33,5 +33,9 @@ public:
 
 	void				SetFollowedActor		( StaticActor* actor )		{ m_followedActor = actor; }
 	StaticActor*		GetFollowedActor		()							{ return m_followedActor; }
+
+private:
+
+	DirectX::XMVECTOR	ComputeMouseRayDirection( IControllersState* globalState );
 };
 

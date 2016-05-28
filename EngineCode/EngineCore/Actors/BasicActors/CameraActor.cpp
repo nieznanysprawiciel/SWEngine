@@ -38,24 +38,33 @@ CameraActor::CameraActor()
 	m_farPlane = 100000.0f;
 	m_fov = 45.0f;
 
-	SetPerspectiveProjectionMatrix( DirectX::XMConvertToRadians( m_fov ), m_width / m_height, m_nearPlane, m_farPlane );
+	SetPerspectiveProjectionMatrix( m_fov, m_width, m_height, m_nearPlane, m_farPlane );
 }
 
 
-/**@brief Tworzy macierz projekcji perspektywicznej dla danej kamery i umieszcza w polu projection_matrix.
+/**@brief Tworzy macierz projekcji perspektywicznej dla danej kamery i umieszcza w polu m_projectionMatrix.
 
-@param[in] angle K¹t widzenia w pionie
+@param[in] angle K¹t widzenia w pionie wyra¿ony w stopniach
 @param[in] aspect Stosunek Szerokoœci do wysokoœci ekranu
 @param[in] nearPlane Bli¿sza p³aszczyzna obcinania
 @param[in] farPlane Dalsza p³aszczyzna obcinania*/
-void CameraActor::SetPerspectiveProjectionMatrix		( float angle, float aspect, float nearPlane, float farPlane )
+void CameraActor::SetPerspectiveProjectionMatrix		( float angle, float width, float height, float nearPlane, float farPlane )
 {
-	XMMATRIX proj_matrix = XMMatrixPerspectiveFovLH( angle, aspect, nearPlane, farPlane );
-	proj_matrix = XMMatrixTranspose( proj_matrix );
-	XMStoreFloat4x4( &m_projectionMatrix, proj_matrix );
+	m_isPerspective = true;
+	m_height = height;
+	m_width = width;
+	m_fov = angle;
+	m_nearPlane = nearPlane;
+	m_farPlane = farPlane;
+
+	float aspect = width / height;
+
+	XMMATRIX projMatrix = XMMatrixPerspectiveFovLH( DirectX::XMConvertToRadians( m_fov ), aspect, nearPlane, farPlane );
+	projMatrix = XMMatrixTranspose( projMatrix );
+	XMStoreFloat4x4( &m_projectionMatrix, projMatrix );
 }
 
-/**@brief Tworzy macierz projekcji ortogonalnej dla danej kamery i umieszcza w polu projection_matrix.
+/**@brief Tworzy macierz projekcji ortogonalnej dla danej kamery i umieszcza w polu m_projectionMatrix.
 
 @param[in] angle K¹t widzenia w pionie
 @param[in] aspect Stosunek Szerokoœci do wysokoœci ekranu
@@ -63,9 +72,15 @@ void CameraActor::SetPerspectiveProjectionMatrix		( float angle, float aspect, f
 @param[in] farPlane Dalsza p³aszczyzna obcinania*/
 void CameraActor::SetOrthogonalProjectionMatrix			( float width, float height, float nearPlane, float farPlane )
 {
-	XMMATRIX proj_matrix = XMMatrixOrthographicLH( width, height, nearPlane, farPlane );
-	proj_matrix = XMMatrixTranspose( proj_matrix );
-	XMStoreFloat4x4( &m_projectionMatrix, proj_matrix );
+	m_isPerspective = false;
+	m_height = height;
+	m_width = width;
+	m_nearPlane = nearPlane;
+	m_farPlane = farPlane;
+
+	XMMATRIX projMatrix = XMMatrixOrthographicLH( width, height, nearPlane, farPlane );
+	projMatrix = XMMatrixTranspose( projMatrix );
+	XMStoreFloat4x4( &m_projectionMatrix, projMatrix );
 }
 
 /**@brief Ustawia macierz perspektywiczn¹ lub ortogonaln¹.*/
@@ -120,8 +135,22 @@ CameraData CameraActor::GetCameraData()
 	data.Height = m_height;
 	data.NearPlane = m_nearPlane;
 	data.Width = m_width;
-	XMStoreFloat4( &data.Orientation, GetOrientation() );
+	XMStoreFloat4( &data.OrientationQuat, GetOrientation() );
 	XMStoreFloat3( &data.Position, GetPosition() );
+
+	XMMATRIX rotationMat = XMMatrixRotationQuaternion( GetOrientation() );
+	XMVECTOR direction = XMVectorSet( 0.0f, 0.0f, -1.0f, 0.0f );
+	XMVECTOR upVector = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
+	XMVECTOR rightVector = XMVectorSet( 1.0f, 0.0f, 0.0f, 0.0f );
+
+	direction = XMVector3Transform( direction, rotationMat );
+	upVector = XMVector3Transform( upVector, rotationMat );
+	rightVector = XMVector3Transform( rightVector, rotationMat );
+
+	XMStoreFloat3( &data.Direction, direction );
+	XMStoreFloat3( &data.UpVector, upVector );
+	XMStoreFloat3( &data.RightVector, rightVector );
+
 	return data;
 }
 
@@ -129,7 +158,7 @@ CameraData CameraActor::GetCameraData()
 void				CameraActor::UpdateMatrix		()
 {
 	if( m_isPerspective )
-		SetPerspectiveProjectionMatrix( DirectX::XMConvertToRadians( m_fov ), m_width / m_height, m_nearPlane, m_farPlane );
+		SetPerspectiveProjectionMatrix( m_fov, m_width, m_height, m_nearPlane, m_farPlane );
 	else
 		SetOrthogonalProjectionMatrix( m_width, m_height, m_nearPlane, m_farPlane );
 }

@@ -25,6 +25,7 @@ using namespace DirectX;
 
 
 DynamicActor::DynamicActor()
+	: controller( nullptr )
 {
 	speed.x = 0.0;
 	speed.y = 0.0;
@@ -42,6 +43,7 @@ DynamicActor::DynamicActor()
 }
 
 DynamicActor::DynamicActor( const XMFLOAT3& move_speed, const XMFLOAT4& rot_speed )
+	: controller( nullptr )
 {
 	speed = move_speed;
 	rotation_speed = rot_speed;

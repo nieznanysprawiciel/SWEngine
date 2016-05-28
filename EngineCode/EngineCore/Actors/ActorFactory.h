@@ -38,10 +38,6 @@ oraz wektor funkcji do tworzenia obiektów.
 
 Obiekty mo¿na tworzyæ podaj¹c stringi z nazw¹ lub identyfikatory.
 Dostêp przy pomocy identyfikatoów jest szybszy, bo nie wymaga przeszukiwania mapy.
-
-@todo Ze wzglêdu na pojawienie siê biblioteki RTTR, byæ mo¿e zamiast vectora funkcji
-m_createFunctions, warto by by³o, aby ActorType to by³ identyfikator generowany przez
-RTTR.
 */
 class ActorFactory
 {

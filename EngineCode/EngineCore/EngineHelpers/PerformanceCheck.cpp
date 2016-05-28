@@ -3,6 +3,7 @@
 #include <future>
 #include <fstream>
 #include <iomanip>
+#include <Windows.h>
 
 #include "Common/MemoryLeaks.h"
 

@@ -31,20 +31,6 @@ class IInput;
 @ingroup ModulesStructure
 @brief Podstawowe funkcjonalnoœci silnika SWEngine.*/
 
-/**@brief Enumeracja zawieraj¹ca identyfikatory dla poszczegolnych modu³ów silnika.*/
-typedef enum
-{
-	E_CONTROLLERS = 0,			///<Klasa ControllersEngine
-	E_PHYSIC = 1,				///<Klasa PhysicEngine
-	E_FABLE = 2,				///<Klasa FableEngine
-	E_MOVEMENT_DYNAMIC = 3,		///<Obiekty dynamiczne w klasie MovementEngine
-	E_MOVEMENT_COMPLEX = 4,		///<Obiekty z³o¿one w klasie MovementEngine
-	E_DISPLAY = 5,				///<Klasa DisplayEngine
-	E_COLLISION = 6,			///<Klasa CollisionEngine
-	E_UI = 7,					///<Klasa UI_engine
-	E_MODELS_MANAGER = 8		///<Klasa ModelsManager
-} Modules;
-
 
 
 //global variables
@@ -89,6 +75,7 @@ public:
 	///@{
 	void		RenderFrame					();
 	void		UpdateScene					( float& lag, float timeInterval );
+	void		SingleThreadedUpdatePhase	( float& lag, float timeInterval );
 	void		RenderScene					( float lag, float timeInterval );
 	void*		GetRenderTargetHandle		( uint16 width, uint16 height );
 	///@}

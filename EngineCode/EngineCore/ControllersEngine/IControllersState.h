@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Common/EngineObject.h"
+#include "EngineCore/Actors/BasicActors/CameraActor.h"
 
 class EngineInterface;
 
@@ -15,7 +16,7 @@ które udostêpni im u¿ytkownik.
 struct IControllersState : public EngineObject
 {
 	EngineInterface*		Engine;
-
+	CameraData				Camera;
 
 public:
 	explicit IControllersState();

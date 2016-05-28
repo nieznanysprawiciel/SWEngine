@@ -29,9 +29,13 @@ namespace Api
 		RenderingApi() = default;
 		~RenderingApi() = default;
 	public:
+
 		void				RenderOnce			( RenderPass* );
 		CameraActor*		GetCurrentCamera	();
 		void				SetCurrentCamera	( CameraActor* camera );
+
+		int					GetWindowWidth		();
+		int					GetWindowHeight		();
 	};
 
 

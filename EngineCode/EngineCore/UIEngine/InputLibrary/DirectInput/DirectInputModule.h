@@ -10,7 +10,8 @@
 
 U¿ywa interfejsu Direct Inputa.
 
-@todo Zrobiæ obs³ugê wielu urz¹dzeñ tego samego typu i jousticka.*/
+@todo Zrobiæ obs³ugê wielu urz¹dzeñ tego samego typu i jousticka.
+@todo Pozbyæ siê includowania direct input z EngineCore.*/
 class DirectInputModule : public IInput
 {
 private:

@@ -47,6 +47,12 @@ void ControllersEngine::ProceedControllersPost( float timeInterval )
 			m_postControlledObjects[i]->GetController( )->ControlObjectPost( m_postControlledObjects[i], m_globalState );
 }
 
+/**@brief Aktualizuje stan m_globalState.*/
+void ControllersEngine::SingleThreadedUpdatePhase( float timeInterval )
+{
+	UpdateGlobalState( timeInterval );
+}
+
 
 /**@brief Dodaje podany obiekt do kontrolerów wywo³ywanych przed przesuniêciem obiektów.*/
 bool ControllersEngine::AddPreControlled( DynamicActor* object )
@@ -67,3 +73,13 @@ bool ControllersEngine::AddPostControlled( DynamicActor* object )
 	m_postControlledObjects.push_back( object );
 	return true;
 }
+
+//====================================================================================//
+//			Private	
+//====================================================================================//
+
+void		ControllersEngine::UpdateGlobalState				( float timeInterval )
+{
+	m_globalState->Camera = engine->Rendering.GetCurrentCamera()->GetCameraData();
+}
+

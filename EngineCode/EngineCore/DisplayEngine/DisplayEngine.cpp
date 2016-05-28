@@ -362,7 +362,7 @@ void DisplayEngine::DisplaySkyBox( float time_interval, float time_lag )
 	renderer->VSSetConstantBuffers( 1, m_constantsPerMesh );
 	renderer->PSSetConstantBuffers( 1, m_constantsPerMesh );
 
-	BufferObject* const_buffer = sky_dome->get_constant_buffer();	///< @todo Trzeba pobraæ tutaj BufferObject zamiast ID3D11Buffer.
+	BufferObject* const_buffer = sky_dome->get_constant_buffer();
 	if( const_buffer )
 	{
 		renderer->VSSetConstantBuffers( 2, const_buffer );

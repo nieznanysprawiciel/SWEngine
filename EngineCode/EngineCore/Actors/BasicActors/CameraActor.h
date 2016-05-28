@@ -15,13 +15,21 @@ W momencie jak siê on pojawi trzeba siê pozbyæ tej struktury i zrobiæ to nowym m
 struct CameraData
 {
 	DirectX::XMFLOAT3	Position;
-	DirectX::XMFLOAT4	Orientation;
+	DirectX::XMFLOAT3	Direction;
+	DirectX::XMFLOAT3	UpVector;
+	DirectX::XMFLOAT3	RightVector;
+	DirectX::XMFLOAT4	OrientationQuat;
 	float				Fov;
 	float				Width;
 	float				Height;
 	float				NearPlane;
 	float				FarPlane;
 	bool				IsPerspective;
+
+	DirectX::XMVECTOR	GetDirection()		{	return DirectX::XMLoadFloat3( &Direction );		}
+	DirectX::XMVECTOR	GetUpVector()		{	return DirectX::XMLoadFloat3( &UpVector );		}
+	DirectX::XMVECTOR	GetRightVector()	{	return DirectX::XMLoadFloat3( &RightVector );	}
+	DirectX::XMVECTOR	GetOrientation()	{	return DirectX::XMLoadFloat4( &OrientationQuat );	}
 };
 
 
@@ -47,7 +55,7 @@ protected:
 public:
 	explicit CameraActor();
 
-	void				SetPerspectiveProjectionMatrix		( float angle, float aspect, float nearPlane, float farPlane );
+	void				SetPerspectiveProjectionMatrix		( float angle, float width, float height, float nearPlane, float farPlane );
 	void				SetOrthogonalProjectionMatrix		( float width, float height, float nearPlane, float farPlane );
 
 	void				SetPerspective		( bool value );

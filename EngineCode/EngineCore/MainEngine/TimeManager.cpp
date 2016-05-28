@@ -1,6 +1,8 @@
 #include "EngineCore/stdafx.h"
 #include "TimeManager.h"
 
+#include <Windows.h>
+
 #include "Common/MemoryLeaks.h"
 
 /**@brief Kontruktor inicjuje wartoœci m_frames i m_framesPerSec na 0.*/

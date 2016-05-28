@@ -24,8 +24,13 @@ public:
 
 	void		ProceedControllersPre			( float timeInterval );
 	void		ProceedControllersPost			( float timeInterval );
+	
+	void		SingleThreadedUpdatePhase		( float timeInterval );
 
 	bool		AddPreControlled				( DynamicActor* object );
 	bool		AddPostControlled				( DynamicActor* object );
+
+private:
+	void		UpdateGlobalState				( float timeInterval );
 };
 
