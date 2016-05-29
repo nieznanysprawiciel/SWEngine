@@ -16,7 +16,14 @@ Kontroler automatycznie ustawia gizmo w œrodku œledzonego obiektu. Przechywuje t
 i mysz aby przesuwaæ obiekt w zadane przez u¿ytkownika po³o¿enie.
 
 Sterowanie:
-@todo Uzupe³niæ dokumentacjê sterowania.*/
+Obiekt przesuwa siê tylko w wybranych osiach. Do wyboru osi s³u¿¹ przyciski:
+- PROTOTYPE_BUTTONS::ENABLE_MOVE_X
+- PROTOTYPE_BUTTONS::ENABLE_MOVE_Y
+- PROTOTYPE_BUTTONS::ENABLE_MOVE_Z
+
+Przesuwa siê klikaj¹c mysz¹ w obpowiednim miejscu przyciskiem:
+PROTOTYPE_BUTTONS::LEFT_CLICK
+*/
 class GizmoController :	public BaseInputController
 {
 	RTTR_ENABLE( BaseInputController )

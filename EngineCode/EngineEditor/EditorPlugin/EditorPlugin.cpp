@@ -91,6 +91,9 @@ void EngineWrapper::UpdateScene()
 {
 	float lag = FIXED_MOVE_UPDATE_INTERVAL;
 	m_engine->UpdateScene( lag, 0 );
+
+	// Poniewa¿ nie dostajemy eventów kiedy kó³ko myszy siê nie rusza, to trzeba zerowaæ za ka¿dym razem.
+	m_inputWPF->MouseWheelChange( 0.0 );
 }
 
 
@@ -211,6 +214,12 @@ void		EngineWrapper::MouseButtonChange	( System::Windows::Input::MouseButton but
 void		EngineWrapper::MousePositionChange	( double X, double Y )
 {
 	m_inputWPF->MousePositionChange( X, Y );
+}
+
+/**@brief */
+void EngineWrapper::MouseWheelChange( double delta )
+{
+	m_inputWPF->MouseWheelChange( delta );
 }
 
 } //EditorPlugin

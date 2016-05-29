@@ -177,33 +177,35 @@ void InputAbstractionLayer::UpdateMouseDevice( DeviceNumber DeviceNr, MouseState
 
 	//osie
 	auto axes = mouseState->GetAxesState();
-	for ( unsigned int i = 0; i < m_axisMapping.size(); ++i )
+	for( unsigned int i = 0; i < m_axisMapping.size(); ++i )
 	{
-		if (m_axisMapping[i].DeviceNr == DeviceNr)
+		if( m_axisMapping[ i ].DeviceNr == DeviceNr )
 		{
-			unsigned int devIndex = m_axisMapping[i].PhysicalIndex;
+			unsigned int devIndex = m_axisMapping[ i ].PhysicalIndex;
 
-			switch ( devIndex )
+			switch( devIndex )
 			{
 			case MouseState::PHYSICAL_AXES::X_AXIS:
 			{
-				short v_x_index = m_axisMapping[i].VirtualIndex;
+				short v_x_index = m_axisMapping[ i ].VirtualIndex;
 				float virtual_x_axis_value = axes[ MouseState::PHYSICAL_AXES::X_AXIS ] / (float)window_width;
-				virtual_x_axis_value = (virtual_x_axis_value > 1.0f ? 1.0f : virtual_x_axis_value);
-				m_virtualAxis[v_x_index] = virtual_x_axis_value;
+				virtual_x_axis_value = ( virtual_x_axis_value > 1.0f ? 1.0f : virtual_x_axis_value );
+				m_virtualAxis[ v_x_index ] = virtual_x_axis_value;
 				break;
 			}
 			case MouseState::PHYSICAL_AXES::Y_AXIS:
 			{
-				short v_y_index = m_axisMapping[i].VirtualIndex;
+				short v_y_index = m_axisMapping[ i ].VirtualIndex;
 				float virtual_y_axis_value = axes[ MouseState::PHYSICAL_AXES::Y_AXIS ] / (float)window_width;
-				virtual_y_axis_value = (virtual_y_axis_value > 1.0f ? 1.0f : virtual_y_axis_value);
-				m_virtualAxis[v_y_index] = virtual_y_axis_value;
+				virtual_y_axis_value = ( virtual_y_axis_value > 1.0f ? 1.0f : virtual_y_axis_value );
+				m_virtualAxis[ v_y_index ] = virtual_y_axis_value;
 				break;
 			}
 			case MouseState::PHYSICAL_AXES::WHEEL:
+			case MouseState::PHYSICAL_AXES::W_AXIS:
 			{
-				//TODO: wheel
+				short virtualIdx = m_axisMapping[ i ].VirtualIndex;
+				m_virtualAxis[ virtualIdx ] = axes[ devIndex ];
 				break;
 			}
 			}

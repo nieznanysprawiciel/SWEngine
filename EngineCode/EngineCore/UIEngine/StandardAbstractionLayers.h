@@ -79,6 +79,8 @@ namespace STANDARD_LAYERS
 		DOWN,
 		TURN_LEFT,
 		TURN_RIGHT,
+		TURN_UP,
+		TURN_DOWN,
 		SHOT1,
 		SHOT2,
 		SHOT3,
@@ -106,8 +108,9 @@ namespace STANDARD_LAYERS
 	typedef enum
 	{
 		X_AXIS = 0,
-		Y_AXIS, 
-		Z_AXIS,
+		Y_AXIS,
+		ZOOM,
+
 		PROTOTYPE_AXES_MAPPING_COUNT
 	} PROTOTYPE_AXES;
 

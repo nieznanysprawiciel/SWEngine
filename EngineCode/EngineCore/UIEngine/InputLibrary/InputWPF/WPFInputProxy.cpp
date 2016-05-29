@@ -316,6 +316,13 @@ void WPFInputProxy::MousePositionChange( double X, double Y )
 	mouse->SetPosition( (short)X, (short)Y );
 }
 
+/**@brief Ustawia przesuniêcie kó³ka myszy.*/
+void WPFInputProxy::MouseWheelChange( double delta )
+{
+	auto& mouse = m_mouses[ 0 ];
+	mouse->GetAxesState()[ MouseState::PHYSICAL_AXES::WHEEL ] = (float)delta;
+}
+
 /**@brief Poniewa¿ okno straci³o focus to czyœcimy stan przycisków i myszy.
 
 @todo Dokoñczyæ*/

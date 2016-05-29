@@ -508,7 +508,9 @@ DisplayScene ustawiana jest macierz zapisana w tym polu.
 @param[in] angle K¹t widzenia w pionie
 @param[in] X_to_Y Stosunek Szerokoœci do wysokoœci ekranu
 @param[in] near_plane Bli¿sza p³aszczyzna obcinania
-@param[in] far_plane Dalsza p³aszczyzna obcinania*/
+@param[in] far_plane Dalsza p³aszczyzna obcinania
+
+@deprecated Zacz¹æ u¿ywaæ danych z kamer, a tê funkcjê zlikwidowaæ*/
 void DisplayEngine::SetProjectionMatrix( float angle, float X_to_Y, float near_plane, float far_plane )
 {
 	XMMATRIX proj_matrix = XMMatrixPerspectiveFovRH( angle, X_to_Y, near_plane, far_plane );

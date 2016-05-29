@@ -42,6 +42,7 @@ public:
 	void				KeyboardChange				( int keyId, bool pressed );
 	void				MouseButtonChange			( int button, bool pressed );
 	void				MousePositionChange			( double X, double Y );
+	void				MouseWheelChange			( double delta );
 
 	void				LostFocus					();
 	///@}

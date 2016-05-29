@@ -81,6 +81,7 @@ using namespace System::Collections::ObjectModel;
 		void				KeyboardChange				( System::Windows::Input::Key keyId, bool pressed );
 		void				MouseButtonChange			( System::Windows::Input::MouseButton button, bool pressed );
 		void				MousePositionChange			( double X, double Y );
+		void				MouseWheelChange			( double delta );
 
 	public:
 		EngineWrapper();
