@@ -23,6 +23,6 @@ namespace EditorApp.GUI
         /// </summary>
         /// <param name="data">The data to be dropped</param>
         /// <param name="index">optional: The index location to insert the data</param>
-        void Drop(object data, int index = -1);
+        void Drop(object data, double mouseX, double mouseY, int index = -1);
     }
 }

@@ -48,9 +48,11 @@ namespace EditorApp.GUI
                 //if the data type can be dropped 
                 if (e.Data.GetDataPresent(dataType))
                 {
-                    //drop the data
-                    IDropable target = this.AssociatedObject.DataContext as IDropable;
-                    target.Drop(e.Data.GetData(dataType));
+					//drop the data
+					IDropable target = this.AssociatedObject.DataContext as IDropable;
+					Point mousePos = e.GetPosition( this.AssociatedObject );
+
+					target.Drop( e.Data.GetData( dataType ), mousePos.X, mousePos.Y );
 
 					if( DropSrcReferenceType == DragAndDropType.Move )
 					{

@@ -8,6 +8,8 @@
 #include "EngineCore/Actors/BasicActors/CameraActor.h"
 #include "EngineCore/MainEngine/EngineInterface.h"
 
+#include "EngineCore/EngineHelpers/Intersections.h"
+
 
 RTTR_REGISTRATION
 {
@@ -42,7 +44,7 @@ void GizmoController::ControlObjectPre		( DynamicActor* actor, IControllersState
 
 		CameraData& camera = globalState->Camera;
 
-		XMVECTOR rayDir = XMVector3Normalize( XMVector3Rotate( ComputeMouseRayDirection( globalState ), camera.GetOrientation() ) );
+		XMVECTOR rayDir = ComputeMouseRayDirection( globalState );
 		XMVECTOR rayPoint = XMVectorSetW( XMLoadFloat3( &camera.Position ), 1.0f );
 
 		auto actorPosition = actor->GetPosition();
@@ -54,8 +56,7 @@ void GizmoController::ControlObjectPre		( DynamicActor* actor, IControllersState
 
 		if( moveX || moveZ )
 		{
-			XMVECTOR planeXY = XMVectorSet( 0.0f, 1.0f, 0.0f, -XMVectorGetY( actorPosition ) );
-			XMVECTOR intersection = XMPlaneIntersectLine( planeXY, rayPoint, XMVectorAdd( rayPoint, rayDir ) );
+			XMVECTOR intersection = Intersections::PlaneXZIntersection( rayDir, rayPoint, -XMVectorGetY( actorPosition ) );
 
 			if( moveX && !isnan( XMVectorGetX( intersection ) ) )
 				newPosition = XMVectorSetX( newPosition, XMVectorGetX( intersection ) );
@@ -100,12 +101,6 @@ DirectX::XMVECTOR GizmoController::ComputeMouseRayDirection( IControllersState* 
 	float mouseX = (float)m_abstractionLayer->GetMouseX();
 	float mouseY = (float)m_abstractionLayer->GetMouseY();
 
-	float halfWindowX = (float)globalState->Engine->Rendering.GetWindowWidth() / 2.0f;
-	float halfWindowY = (float)globalState->Engine->Rendering.GetWindowHeight() / 2.0f;
-
-	CameraData& camera = globalState->Camera;
-	float depth = static_cast< float >( halfWindowY / tan( DirectX::XMConvertToRadians( camera.Fov ) / 2.0f ) );
-
-	return DirectX::XMVectorSet( mouseX - halfWindowX, halfWindowY - mouseY, -depth, 0.0f );
+	return Intersections::ComputeMouseRayDirection( globalState->Engine, globalState->Camera, mouseX, mouseY );
 }
 

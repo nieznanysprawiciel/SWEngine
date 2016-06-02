@@ -117,10 +117,10 @@ namespace EditorApp.Editor.Project.Actors
 			var eventArg = parameter as RoutedEventHandler;
 		}
 
-		public void CreateActor		( ActorClassMetaInfo actorInfo )
+		public void CreateActor		( ActorClassMetaInfo actorInfo, double mouseX, double mouseY )
 		{
 			EngineWrapper engine = m_editorLogic.Displayer.EngineWrapper;
-			var newActor = engine.CreateActor( actorInfo.TypeName, 0, 0 );
+			var newActor = engine.CreateActor( actorInfo.TypeName, mouseX, mouseY );
 
 			newActor.ActorName = newActor.TypeName + Actors.Count.ToString();
 			Actors.Add( newActor );

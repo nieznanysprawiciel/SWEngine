@@ -71,7 +71,8 @@ using namespace System::Collections::ObjectModel;
 		void				EnableInput					( bool val );
 
 		// Actors
-		ActorWrapper^		CreateActor					( System::String^ actorName, int mouseX, int mouseY );
+		ActorWrapper^		CreateActor					( System::String^ actorName, double mouseX, double mouseY );
+		ActorWrapper^		CreateActor					( System::String^ actorName );
 		void				SelectActor					( ActorWrapper^ gizmo, ActorWrapper^ selection );
 
 		List< ActorClassMetaInfo^ >^						CreateActorsMetadata		();

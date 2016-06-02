@@ -425,6 +425,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\IControllersState.h">
       <Filter>EngineCore\ControllersEngine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\EngineHelpers\Intersections.h">
+      <Filter>EngineCore\EngineHelpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -654,6 +657,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\IControllersState.cpp">
       <Filter>EngineCore\ControllersEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\EngineHelpers\Intersections.cpp">
+      <Filter>EngineCore\EngineHelpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

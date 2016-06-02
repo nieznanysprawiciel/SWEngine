@@ -23,7 +23,7 @@ namespace EditorApp.Editor.Project.Content
 			DisplayName = "Content Browser";
 
 			m_editorLogic = editorLogic;
-			SelectedAssetChangedCommand = new RelayCommand( ActorSelectionChanged );
+			SelectedAssetChangedCommand = new RelayCommand( SelectionChanged );
 			SelectedFile = null;
 		}
 
@@ -48,10 +48,10 @@ namespace EditorApp.Editor.Project.Content
 			return null;
 		}
 
-		private void	ActorSelectionChanged	( object parameter )
+		private void	SelectionChanged	( object parameter )
 		{
 			FileTreeNode contentNode = parameter as FileTreeNode;
-			if( contentNode.Type != FileTreeNodeType.Directory )
+			if( contentNode != null && contentNode.Type != FileTreeNodeType.Directory )
 				SelectedFile = contentNode;
 			else
 				SelectedFile = null;

@@ -74,6 +74,12 @@ bool ControllersEngine::AddPostControlled( DynamicActor* object )
 	return true;
 }
 
+/**@brief */
+IControllersState* ControllersEngine::GetGlobalState()
+{
+	return m_globalState;
+}
+
 //====================================================================================//
 //			Private	
 //====================================================================================//

@@ -4,16 +4,18 @@
 #include "EditorPlugin.h"
 
 
-
-//#pragma managed(push, off)
 //========================================//
 // Engine include
+
+
 #include "EngineCore/MainEngine/Engine.h"
 #include "Common/MacrosSwitches.h"
 #include "EngineCore/Actors/ActorObjects.h"
 
 #include "EngineCore/ControllersEngine/BaseClasses/IController.h"
 #include "EngineCore/ControllersEngine/BasicControllers/Editor/GizmoController.h"
+
+#include "EngineEditor/EditorPlugin/Native/SceneHelpers.h"
 
 #include <msclr/marshal_cppstd.h>
 
@@ -132,8 +134,8 @@ void EngineWrapper::EnableInput( bool val )
 	m_engine->EnableInput( val );
 }
 
-/**@brief */
-ActorWrapper^						EngineWrapper::CreateActor				( System::String^ actorName, int mouseX, int mouseY )
+/**@brief Tworzy aktora.*/
+ActorWrapper^						EngineWrapper::CreateActor				( System::String^ actorName )
 {
 	auto actor = m_engine->Actors.CreateActor( msclr::interop::marshal_as< std::string >( actorName ) );
 	auto actorData = m_engine->Actors.FindActor( actor );
@@ -147,11 +149,29 @@ ActorWrapper^						EngineWrapper::CreateActor				( System::String^ actorName, in
 	if( actor && actorData )
 		return gcnew ActorWrapper( (EngineObject*)actor, &actorData->second );
 
-	return gcnew ActorWrapper( nullptr, nullptr );
+	return nullptr;
+}
+
+
+/**@brief Tworzy aktora i ustawia go na pozycji wskazywanej przez wspó³rzêdne myszy.
+
+Wspó³rzêdne s¹ przeliczane na wektor zgodnie z aktualnie ustawion¹ kamer¹.
+Wyliczane jest przeciêcie prostej na której le¿y wektor z p³aszczyzn¹ XZ (Y = 0 przynajmniej na razie).
+Aktor jest ustawiany w tym punkcie.*/
+ActorWrapper^						EngineWrapper::CreateActor				( System::String^ actorName, double mouseX, double mouseY )
+{
+	ActorWrapper^ newActor = CreateActor( actorName );
+	if( newActor == nullptr )
+		return nullptr;
+
+	StaticActor* actor = static_cast< StaticActor* >( newActor->GetActorPtr().ToPointer() );
+	SceneHelpers::SetActorInitialPosition( actor, mouseX, mouseY );
+
+	return newActor;
 }
 
 /**@brief Przyczepia do wybranego aktora (selection) kontroler gizma.*/
-void								EngineWrapper::SelectActor( ActorWrapper^ gizmo, ActorWrapper^ selection )
+void								EngineWrapper::SelectActor				( ActorWrapper^ gizmo, ActorWrapper^ selection )
 {
 	auto gizmoPtr = static_cast< DynamicMeshActor* >( gizmo->GetActorPtr().ToPointer() );
 	auto selectionPtr = static_cast< StaticActor* >( selection->GetActorPtr().ToPointer() );

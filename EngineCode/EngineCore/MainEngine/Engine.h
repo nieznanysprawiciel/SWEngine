@@ -18,7 +18,7 @@ class IGamePlay;
 class ActorBase;
 class Event;
 class IInput;
-
+struct CameraData;
 
 //	window defines
 #define		MAX_LOADSTRING			100
@@ -77,8 +77,17 @@ public:
 	void		UpdateScene					( float& lag, float timeInterval );
 	void		SingleThreadedUpdatePhase	( float& lag, float timeInterval );
 	void		RenderScene					( float lag, float timeInterval );
-	void*		GetRenderTargetHandle		( uint16 width, uint16 height );
 	///@}
+
+	///@name Funkcje dla EditorPlugin
+	///@brief Funkcje mog¹ byæ niebezpieczne w u¿ytku, jak siê nie wie co siê robi. U¿ywaæ ostro¿nie!
+	///@{
+	void*		GetRenderTargetHandle		( uint16 width, uint16 height );
+	CameraData&	GetMainCamera				();
+
+	///@}
+
+
 #ifndef __UNUSED
 	//render thread joining
 	bool join_render_thread;

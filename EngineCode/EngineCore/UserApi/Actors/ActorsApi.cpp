@@ -41,35 +41,35 @@ void ActorsApi::AddToModules( ActorBase* newActor, ActorInfo actorModules )
 {
 	assert( newActor != nullptr );		// W trybie release nie powinno siê zdarzyæ.
 
-	if( actorModules.enableDisplay )
+	if( actorModules.EnableDisplay() )
 	{
 		// @todo Pomyœleæ co zrobiæ w trybie release.
 		assert( rttr::rttr_cast< DynamicMeshActor* >( newActor ) );
 		Context->displayEngine->AddDynamicMeshObject( static_cast< DynamicMeshActor* >( newActor ) );
 	}
 
-	if( actorModules.enableMovement )
+	if( actorModules.EnableMovement() )
 	{
 		// @todo Pomyœleæ co zrobiæ w trybie release.
 		assert( rttr::rttr_cast< DynamicActor* >( newActor ) );
 		Context->movementEngine->AddMoveableObject( static_cast< DynamicActor* >( newActor ) );
 	}
 
-	if( actorModules.enablePreController )
+	if( actorModules.EnablePreController() )
 	{
 		// @todo Pomyœleæ co zrobiæ w trybie release.
 		assert( rttr::rttr_cast< DynamicActor* >( newActor ) );
 		Context->controllersEngine->AddPreControlled( static_cast< DynamicActor* >( newActor ) );
 	}
 
-	if( actorModules.enablePostController )
+	if( actorModules.EnablePostController() )
 	{
 		// @todo Pomyœleæ co zrobiæ w trybie release.
 		assert( rttr::rttr_cast< DynamicActor* >( newActor ) );
 		Context->controllersEngine->AddPostControlled( static_cast< DynamicActor* >( newActor ) );
 	}
 
-	if( actorModules.isCamera )
+	if( actorModules.IsCamera() )
 	{
 		// @todo Pomyœleæ co zrobiæ w trybie release.
 		assert( rttr::rttr_cast< CameraActor* >( newActor ) );

@@ -30,6 +30,9 @@ public:
 	bool		AddPreControlled				( DynamicActor* object );
 	bool		AddPostControlled				( DynamicActor* object );
 
+
+	IControllersState*		GetGlobalState		();
+
 private:
 	void		UpdateGlobalState				( float timeInterval );
 };

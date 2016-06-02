@@ -33,7 +33,7 @@
 								<Setter Property="FrameworkElement.Visibility" Value="Collapsed"/>
 							</Style>
 						</GridView.ColumnHeaderContainerStyle>
-						<GridViewColumn Header="Name" Width="Auto" >
+						<GridViewColumn Header="Name" Width="200" >
 							<GridViewColumn.CellTemplate>
 								<DataTemplate>
 									<TextBlock Text="{Binding ActorName}" Style="{StaticResource TextBlockBaseStyle}" />

@@ -373,6 +373,13 @@ void* Engine::GetRenderTargetHandle( uint16 width, uint16 height )
 	return Context->graphicInitializer->GetRenderTargetHandle( renderTarget );
 }
 
+/**@brief Zwraca strukturê EngineContext.
+@attention Dziêki temu mo¿na zrobiæ w zasadzie wszystko i to du¿o u³atwia, ale mo¿na siê skrzywdziæ.*/
+CameraData& Engine::GetMainCamera()
+{
+	return Context->controllersEngine->GetGlobalState()->Camera;;
+}
+
 
 #ifndef __UNUSED
 

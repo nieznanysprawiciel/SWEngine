@@ -16,6 +16,9 @@
     <Filter Include="EditorPlugin\EditorApp">
       <UniqueIdentifier>{c163a8d5-a2cc-48da-b195-1512cc9e6ae3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EditorPlugin\Native">
+      <UniqueIdentifier>{11957c73-a8b8-4951-b6a4-ae6c79d1b19b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\dllmain.cpp">
@@ -38,6 +41,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EditorActorsFactory.cpp">
       <Filter>EditorPlugin\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Native\SceneHelpers.cpp">
+      <Filter>EditorPlugin\Native</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EditorActorsFactory.h">
       <Filter>EditorPlugin\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Native\SceneHelpers.h">
+      <Filter>EditorPlugin\Native</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -94,11 +94,11 @@ namespace EditorApp.Engine
 			}
 		}
 
-		public void Drop			( object data, int index = -1 )
+		public void Drop			( object data, double mouseX, double mouseY, int index = -1 )
 		{
 			// Dodać informacje o pozycji myszy w momencie upuszczenia obiektu.
 			ActorClassMetaInfo actorClass = data as ActorClassMetaInfo;
-			m_logicRef.ProjectManager.ActorsLogic.CreateActor( actorClass );
+			m_logicRef.ProjectManager.ActorsLogic.CreateActor( actorClass, mouseX, mouseY );
 		}
 		#endregion
 

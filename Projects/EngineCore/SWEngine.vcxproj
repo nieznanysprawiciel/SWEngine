@@ -215,6 +215,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\SpectatorCameraController.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\IControllersState.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\EngineHelpers\Intersections.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\EventManager.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\Events\KeyDownEvent.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\Events\KeyUpEvent.h" />
@@ -311,6 +312,7 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\SpectatorCameraController.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\IControllersState.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\EngineHelpers\Intersections.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\EventsManager\EventManager.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Engine.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.cpp" />

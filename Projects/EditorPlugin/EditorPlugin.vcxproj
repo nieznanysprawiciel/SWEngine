@@ -26,6 +26,7 @@
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorPlugin.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</CompileAsManaged>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Native\SceneHelpers.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourceObjectPropertyWrapper.cpp" />
   </ItemGroup>
@@ -38,6 +39,7 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorPlugin.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EnginePointerProvider.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Native\SceneHelpers.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyHelper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourceObjectPropertyWrapper.h" />

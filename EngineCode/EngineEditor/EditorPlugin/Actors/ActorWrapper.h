@@ -17,7 +17,7 @@ public ref class ActorWrapper
 private:
 
 	EngineObject*		m_actorPtr;		///< WskaŸnik na aktora.
-	const ActorInfo*	m_actorInfo;	///< Informacje o modu³¹ch, w których znajduje siê aktor.
+	const ActorInfo*	m_actorInfo;	///< Informacje o modu³ach, w których znajduje siê aktor.
 	System::String^		m_name;			///< Nazwa aktora wyœwietlana w edytorze.
 
 public:
@@ -48,55 +48,55 @@ public:
 
 	property bool	EnableDisplay
 	{
-		bool		get	()				{ return m_actorInfo->enableDisplay; }
+		bool		get	()				{ return m_actorInfo->EnableDisplay(); }
 		void		set ( bool value )	{ }
 	}
 
 	property bool	EnableMovement
 	{
-		bool		get ()				{ return m_actorInfo->enableMovement; }
+		bool		get ()				{ return m_actorInfo->EnableMovement(); }
 		void		set ( bool value )	{ }
 	}
 
 	property bool	EnablePhysic
 	{
-		bool		get ()				{ return m_actorInfo->enablePhysic; }
+		bool		get ()				{ return m_actorInfo->EnablePhysic(); }
 		void		set ( bool value )	{ }
 	}
 
 	property bool	EnableCollisions
 	{
-		bool		get ()				{ return m_actorInfo->enableCollisions; }
+		bool		get ()				{ return m_actorInfo->EnableCollisions(); }
 		void		set ( bool value )	{ }
 	}
 
 	property bool	EnableShadow
 	{
-		bool		get ()				{ return m_actorInfo->enableShadow; }
+		bool		get ()				{ return m_actorInfo->EnableShadow(); }
 		void		set ( bool value )	{ }
 	}
 
 	property bool	EnablePreController
 	{
-		bool		get ()				{ return m_actorInfo->enablePreController; }
+		bool		get ()				{ return m_actorInfo->EnablePreController(); }
 		void		set ( bool value )	{ }
 	}
 
 	property bool	EnablePostController
 	{
-		bool		get ()				{ return m_actorInfo->enablePostController; }
+		bool		get ()				{ return m_actorInfo->EnablePostController(); }
 		void		set ( bool value )	{ }
 	}
 
 	property bool	IsLight
 	{
-		bool		get ()				{ return m_actorInfo->isLight; }
+		bool		get ()				{ return m_actorInfo->IsLight(); }
 		void		set ( bool value )	{ }
 	}
 
 	property bool	IsCamera
 	{
-		bool		get ()				{ return m_actorInfo->isCamera; }
+		bool		get ()				{ return m_actorInfo->IsCamera(); }
 		void		set ( bool value )	{ }
 	}
 };
