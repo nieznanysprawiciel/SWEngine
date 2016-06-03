@@ -3,6 +3,7 @@
 					xmlns:content="clr-namespace:EditorApp.Editor.Project.Content"
 					xmlns:debug="clr-namespace:EditorApp.Debug"
 					xmlns:gui="clr-namespace:EditorApp.GUI"
+					xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                     xmlns:local="clr-namespace:EditorApp.Styles.BlueStyle">
 
 
@@ -28,6 +29,9 @@
 		<StackPanel Orientation="Horizontal">
 			<Image Width="20" Height="20" Source="{Binding Type, Converter={StaticResource FileTypeIconConverter}}" />
 			<TextBlock Padding="2" Margin="5, 0, 0, 0" Width="Auto" Text="{Binding Name}" Style="{StaticResource TextBlockBaseStyle}"/>
+			<i:Interaction.Behaviors>
+				<gui:FrameworkElementDragBehavior />
+			</i:Interaction.Behaviors>
 		</StackPanel>
 	</HierarchicalDataTemplate>
 

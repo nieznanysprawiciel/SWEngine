@@ -47,7 +47,7 @@ namespace EditorApp.GUI
                 {
                     DataObject data = new DataObject();
                     data.SetData(dragObject.DataType, this.AssociatedObject.DataContext);
-                    System.Windows.DragDrop.DoDragDrop(this.AssociatedObject, data, DragDropEffects.Move);
+                    DragDrop.DoDragDrop(this.AssociatedObject, data, DragDropEffects.Move);
                 }
             }
             isMouseClicked = false;

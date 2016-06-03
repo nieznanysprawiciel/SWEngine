@@ -8,5 +8,12 @@ namespace EditorApp.Project
 {
 	public class UserSettings
 	{
+		public string DefaultMeshActorTypeName { get; set; }
+
+
+		public UserSettings()
+		{
+			DefaultMeshActorTypeName = "DynamicMeshActor";
+		}
 	}
 }

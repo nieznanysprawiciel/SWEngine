@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.IO;
 using System.Collections.ObjectModel;
+using EditorApp.GUI;
 
 
 namespace EditorApp.Editor.Project.Content
@@ -22,7 +23,7 @@ namespace EditorApp.Editor.Project.Content
 	}
 
 
-	public class FileTreeNode : INotifyPropertyChanged
+	public class FileTreeNode : INotifyPropertyChanged, IDragable
 	{
 		ObservableCollection< FileTreeNode >				m_folderContent;
 		string												m_nodePath;
@@ -79,6 +80,19 @@ namespace EditorApp.Editor.Project.Content
 		}
 
 
+		Type IDragable.DataType
+		{
+			get
+			{
+				return typeof( FileTreeNode );
+			}
+		}
+
+		void IDragable.Remove( object i )
+		{
+			throw new NotImplementedException();
+		}
+
 		#region Properties
 		public ObservableCollection<FileTreeNode> DirectoryContent
 		{
@@ -111,6 +125,9 @@ namespace EditorApp.Editor.Project.Content
 			}
 		}
 
+		/// <summary>
+		/// Ścieżka względem wybranego katalogu nadrzędnego.
+		/// </summary>
 		public string FilePath
 		{
 			get
@@ -124,6 +141,7 @@ namespace EditorApp.Editor.Project.Content
 			}
 		}
 
+
 		// Create the OnPropertyChanged method to raise the event
 		protected void OnPropertyChanged( string name )
 		{
@@ -132,7 +150,9 @@ namespace EditorApp.Editor.Project.Content
 			{
 				handler( this, new PropertyChangedEventArgs( name ) );
 			}
-		} 
+		}
+
+
 		#endregion
 	}
 

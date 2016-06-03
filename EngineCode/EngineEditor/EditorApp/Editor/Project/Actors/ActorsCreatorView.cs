@@ -20,7 +20,7 @@ namespace EditorApp.Editor.Project.Actors
 			DisplayName = "Actors Creator";
 			m_logicRef = actorsLogic;
 
-			CreateActor = new RelayCommand( m_logicRef.CreateActor );
+			//CreateActor = new RelayCommand();
 		}
 
 		public List<ActorClassMetaInfo> ActorsMetaData
@@ -31,11 +31,11 @@ namespace EditorApp.Editor.Project.Actors
 			}
 		}
 
-		public ICommand CreateActor
-		{
-			get;
-			internal set;
-		}
+		//public ICommand CreateActor
+		//{
+		//	get;
+		//	internal set;
+		//}
 
 	}
 }

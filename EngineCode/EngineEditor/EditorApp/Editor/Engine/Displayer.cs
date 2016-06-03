@@ -4,10 +4,12 @@ using System.Windows.Interop;
 using System.Runtime.InteropServices;
 using EditorPlugin;
 using System.Windows;
+using System.Collections.Generic;
 using System.Windows.Input;
 using EditorApp.Editor.Commands;
 using EditorApp.Editor;
 using EditorApp.GUI;
+using EditorApp.Editor.Project.Content;
 
 namespace EditorApp.Engine
 {
@@ -19,6 +21,8 @@ namespace EditorApp.Engine
 
 		private int                             m_width;
 		private int                             m_height;
+
+		List<Type>                              m_dropableTypes;
 
 		private Logic                           m_logicRef;	/// Wolałbym, żeby ta referencja nie była potrzebna.
 
@@ -33,6 +37,10 @@ namespace EditorApp.Engine
 			m_engineWrapper = null;
 
 			m_logicRef = appLogic;
+
+			m_dropableTypes = new List<Type>();
+			m_dropableTypes.Add( typeof( ActorClassMetaInfo ) );
+			m_dropableTypes.Add( typeof( FileTreeNode ) );
 		}
 		
 		public bool		InitRenderer()
@@ -86,19 +94,28 @@ namespace EditorApp.Engine
 
 
 		#region IDropable Implementation
-		public Type DataType
+
+		List<Type> IDropable.DataTypes
 		{
 			get
 			{
-				return typeof( ActorClassMetaInfo );
+				return m_dropableTypes;
 			}
 		}
 
-		public void Drop			( object data, double mouseX, double mouseY, int index = -1 )
+		void IDropable.Drop( object data, double mouseX, double mouseY, int index )
 		{
-			// Dodać informacje o pozycji myszy w momencie upuszczenia obiektu.
-			ActorClassMetaInfo actorClass = data as ActorClassMetaInfo;
-			m_logicRef.ProjectManager.ActorsLogic.CreateActor( actorClass, mouseX, mouseY );
+			if( data.GetType() == typeof( ActorClassMetaInfo ) )
+			{
+				ActorClassMetaInfo actorClass = data as ActorClassMetaInfo;
+				m_logicRef.ProjectManager.ActorsLogic.CreateActor( actorClass, mouseX, mouseY );
+			}
+			else if( data.GetType() == typeof( FileTreeNode) )
+			{
+				FileTreeNode file = data as FileTreeNode;
+				if( file.Type == FileTreeNodeType.Model3D )
+					m_logicRef.ProjectManager.ActorsLogic.CreateMeshActor( file.FilePath, mouseX, mouseY );
+			}
 		}
 		#endregion
 
@@ -163,6 +180,7 @@ namespace EditorApp.Engine
 				m_height = value;
 			}
 		}
+
 
 		#endregion
 	}

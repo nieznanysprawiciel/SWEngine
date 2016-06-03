@@ -66,7 +66,7 @@ namespace EditorApp.Editor.Project.Actors
 			m_gizmoActor = null;
 		}
 
-		public void PostInitLevel()
+		public void				PostInitLevel()
 		{
 			ClearState();
 
@@ -90,7 +90,7 @@ namespace EditorApp.Editor.Project.Actors
 			OnPropertyChanged( "Actors" );
 		}
 
-		public void SelectActor( ActorWrapper actor )
+		public void				SelectActor( ActorWrapper actor )
 		{
 			SelectedActor = actor;
 			OnPropertyChanged( "SelectedActor" );
@@ -98,7 +98,7 @@ namespace EditorApp.Editor.Project.Actors
 			ActorSelectionChanged( actor );
 		}
 
-		public void ActorSelectionChanged( object parameter )
+		public void				ActorSelectionChanged( object parameter )
 		{
 			var actor = parameter as ActorWrapper;
 
@@ -119,24 +119,44 @@ namespace EditorApp.Editor.Project.Actors
 			}
 		}
 
-
-		public void CreateActor		( object parameter )
+		public ActorWrapper		CreateMeshActor	( string meshPath, double mouseX, double mouseY )
 		{
-			var eventArg = parameter as RoutedEventHandler;
+			if( meshPath != null )
+			{
+				string meshActorName = m_editorLogic.ProjectManager.UserSettings.DefaultMeshActorTypeName;
+				ActorWrapper newActor = CreateActor( meshActorName, mouseX, mouseY );
+				if( newActor != null )
+				{
+					newActor.LoadMesh( meshPath );
+				}
+			}
+			return null;
 		}
 
-		public void CreateActor		( ActorClassMetaInfo actorInfo, double mouseX, double mouseY )
+		public ActorWrapper		CreateActor		( ActorClassMetaInfo actorInfo, double mouseX, double mouseY )
 		{
-			EngineWrapper engine = m_editorLogic.Displayer.EngineWrapper;
-			var newActor = engine.CreateActor( actorInfo.TypeName, mouseX, mouseY );
-
-			newActor.ActorName = newActor.TypeName + Actors.Count.ToString();
-			Actors.Add( newActor );
-
-			SelectActor( newActor );
+			if( actorInfo != null )
+				return CreateActor( actorInfo.TypeName, mouseX, mouseY );
+			return null;
 		}
 
-		public void	LoadAsset		( object parameter )
+		public ActorWrapper		CreateActor		( string actorTypeName, double mouseX, double mouseY )
+		{
+			if( actorTypeName != null )
+			{
+				EngineWrapper engine = m_editorLogic.Displayer.EngineWrapper;
+				var newActor = engine.CreateActor( actorTypeName, mouseX, mouseY );
+
+				newActor.ActorName = newActor.TypeName + Actors.Count.ToString();
+				Actors.Add( newActor );
+
+				SelectActor( newActor );
+				return newActor;
+			}
+			return null;
+		}
+
+		public void				LoadAsset		( object parameter )
 		{
 			ResourceObjectPropertyWrapper resource = parameter as ResourceObjectPropertyWrapper;
 			var assetPath = m_editorLogic.ProjectManager.ContentManager.GetSelectedFilePath();

@@ -101,6 +101,19 @@ namespace EditorApp.Project
 			}
 		}
 
+		public UserSettings UserSettings
+		{
+			get
+			{
+				return m_userSettings;
+			}
+
+			set
+			{
+				m_userSettings = value;
+			}
+		}
+
 		#endregion
 
 	}
