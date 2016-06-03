@@ -100,23 +100,32 @@ namespace EditorApp.Editor.Project.Actors
 
 		public void				ActorSelectionChanged( object parameter )
 		{
-			var actor = parameter as ActorWrapper;
-
-			m_editorLogic.Displayer.EngineWrapper.SelectActor( m_gizmoActor, actor );
-
-			foreach( var actorClass in m_actorsTypesList )
+			if( parameter != null )
 			{
-				if( actorClass.Type == actor.Type )
-				{
-					actorClass.ResetActor( actor );
+				var actor = parameter as ActorWrapper;
+				m_editorLogic.Displayer.EngineWrapper.SelectActor( m_gizmoActor, actor );
 
-					// Awfull code. How to do this better ?
-					SelectedActorMeta = null;
-					OnPropertyChanged( "SelectedActorMeta" );
-					SelectedActorMeta = actorClass;
-					OnPropertyChanged( "SelectedActorMeta" );
+				foreach( var actorClass in m_actorsTypesList )
+				{
+					if( actorClass.Type == actor.Type )
+					{
+						actorClass.ResetActor( actor );
+
+						// Awfull code. How to do this better ?
+						SelectedActorMeta = null;
+						OnPropertyChanged( "SelectedActorMeta" );
+						SelectedActorMeta = actorClass;
+						OnPropertyChanged( "SelectedActorMeta" );
+					}
 				}
 			}
+			else
+			{
+				// Nie ma wybranego aktora, więc nie wyświetlamy jego danych.
+				SelectedActorMeta = null;
+				OnPropertyChanged( "SelectedActorMeta" );
+			}
+
 		}
 
 		public ActorWrapper		CreateMeshActor	( string meshPath, double mouseX, double mouseY )
