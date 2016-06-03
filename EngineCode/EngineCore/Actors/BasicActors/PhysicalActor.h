@@ -12,7 +12,6 @@ class PhysicalActor : public DynamicActor
 protected:
 
 	float			mass;
-	int				testInt;
 
 public:
 

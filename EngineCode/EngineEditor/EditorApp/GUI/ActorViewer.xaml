@@ -20,7 +20,7 @@
 		</Grid.RowDefinitions>
 
 		<Grid Grid.Row="0" >
-			<ListView Style="{StaticResource ListViewStyleBase}" Height="Auto" Width="Auto" DataContext="{Binding}" ItemsSource="{Binding Actors}" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Single" >
+			<ListView Style="{StaticResource ListViewStyleBase}" Height="Auto" Width="Auto" DataContext="{Binding}" ItemsSource="{Binding Actors}" SelectedItem="{Binding SelectedActor, Mode=TwoWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Single" >
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="SelectionChanged">
 						<i:InvokeCommandAction CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" Command="{Binding Path=DataContext.ActorSelectionChangedCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"/>

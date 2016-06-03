@@ -33,7 +33,7 @@ GizmoController::~GizmoController()
 Aktor gizmo jest przemieszczany dopiero przez funkcjê ControlObjectPost.*/
 void GizmoController::ControlObjectPre		( DynamicActor* actor, IControllersState* globalState )
 {
-	if ( !m_abstractionLayer->IsActive() )
+	if ( !m_abstractionLayer->IsActive() || !m_followedActor )
 		return;
 
 	auto buttons = m_abstractionLayer->GetButtonsTable();
@@ -56,7 +56,7 @@ void GizmoController::ControlObjectPre		( DynamicActor* actor, IControllersState
 
 		if( moveX || moveZ )
 		{
-			XMVECTOR intersection = Intersections::PlaneXZIntersection( rayDir, rayPoint, -XMVectorGetY( actorPosition ) );
+			XMVECTOR intersection = Intersections::PlaneXZIntersection( rayDir, rayPoint, XMVectorGetY( actorPosition ) );
 
 			if( moveX && !isnan( XMVectorGetX( intersection ) ) )
 				newPosition = XMVectorSetX( newPosition, XMVectorGetX( intersection ) );

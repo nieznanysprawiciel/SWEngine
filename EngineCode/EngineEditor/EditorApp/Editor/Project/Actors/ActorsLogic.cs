@@ -90,10 +90,18 @@ namespace EditorApp.Editor.Project.Actors
 			OnPropertyChanged( "Actors" );
 		}
 
+		public void SelectActor( ActorWrapper actor )
+		{
+			SelectedActor = actor;
+			OnPropertyChanged( "SelectedActor" );
+
+			ActorSelectionChanged( actor );
+		}
+
 		public void ActorSelectionChanged( object parameter )
 		{
 			var actor = parameter as ActorWrapper;
-			SelectedActor = actor;
+
 			m_editorLogic.Displayer.EngineWrapper.SelectActor( m_gizmoActor, actor );
 
 			foreach( var actorClass in m_actorsTypesList )
@@ -124,6 +132,8 @@ namespace EditorApp.Editor.Project.Actors
 
 			newActor.ActorName = newActor.TypeName + Actors.Count.ToString();
 			Actors.Add( newActor );
+
+			SelectActor( newActor );
 		}
 
 		public void	LoadAsset		( object parameter )
