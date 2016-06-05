@@ -1,6 +1,8 @@
 #include "EngineCore/stdafx.h"
 #include "ActorsManager.h"
 
+#include "Common/Serialization/Deserializer.h"
+#include "Common/Serialization/Serializer.h"
 
 
 /**@brief */
@@ -38,4 +40,32 @@ void ActorsManager::UpdateActor		( ActorBase* actor, ActorInfo actorModules )
 const std::vector<ActorData>&		ActorsManager::GetAllActors()
 {
 	return m_objectList;
+}
+
+//====================================================================================//
+//			Serialization	
+//====================================================================================//
+
+const std::string		ACTORS_ARRAY_NAME		= "Actors";
+const std::string		ACTOR_INSTANCE_NAME		= "Actor";
+
+/**@brief Serializuje aktorów.*/
+void								ActorsManager::Serialize( ISerializer* ser )
+{
+	ser->EnterArray( ACTORS_ARRAY_NAME );
+
+	for( auto& obj : m_objectList )
+	{
+		ser->EnterObject( ACTOR_INSTANCE_NAME );
+		obj.first->Serialize( ser );
+		ser->Exit();
+	}
+
+	ser->Exit();
+}
+
+/**@brief Deserializuje aktorów.*/
+void								ActorsManager::Deserialize( IDeserializer* deser )
+{
+
 }

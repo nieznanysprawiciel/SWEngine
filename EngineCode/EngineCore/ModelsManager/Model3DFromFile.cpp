@@ -1,6 +1,8 @@
 #include "EngineCore/stdafx.h"
 #include "ModelsManager.h"
 
+#include "Common/Serialization/SW/Serialization.h"
+
 #include "Common/MemoryLeaks.h"
 
 
@@ -17,7 +19,7 @@ ModelsManager* Model3DFromFile::models_manager = nullptr;
 RTTR_REGISTRATION
 {
 	rttr::registration::class_< Model3DFromFile >( "Model3DFromFile" )
-	.property( "File Name", &Model3DFromFile::m_filePath );
+	.property( "FileName", &Model3DFromFile::m_filePath );
 }
 
 //----------------------------------------------------------------------------------------------//
@@ -536,4 +538,17 @@ Size Model3DFromFile::get_parts_count()
 	return model_parts.size();
 }
 
+//====================================================================================//
+//			Serializacja	
+//====================================================================================//
 
+/**@brief Domyœlna serializacja.
+
+@todo W zasadzie domyœlny tryb serializacji powinna implementowaæ klasa EngineObject.*/
+void Model3DFromFile::Serialize( ISerializer* ser ) const
+{
+	Serialization::DefaultSerialize( ser, this );
+}
+
+void Model3DFromFile::Deserialize( IDeserializer* deser )
+{ }

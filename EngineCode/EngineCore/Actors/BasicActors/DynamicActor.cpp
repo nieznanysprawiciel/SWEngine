@@ -13,7 +13,7 @@ RTTR_REGISTRATION
 			rttr::metadata( MetaDataType::Category, "Movement" ),
 			rttr::policy::prop::BindAsPtr()
 		)
-		.property( "Rotation speed", &DynamicActor::rotation_speed )
+		.property( "RotationSpeed", &DynamicActor::rotation_speed )
 		(
 			rttr::metadata( MetaDataType::Category, "Movement" ),
 			rttr::policy::prop::BindAsPtr()

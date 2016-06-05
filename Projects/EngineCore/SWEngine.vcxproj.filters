@@ -108,6 +108,12 @@
     <Filter Include="EngineCore\UIEngine\InputLibrary\InputWPF">
       <UniqueIdentifier>{77ca789f-6aa7-499d-b6ae-a956da79e17d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\Serialization">
+      <UniqueIdentifier>{4cbc9588-af5c-436c-a81c-f2d37e7b7ef2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Serialization\SW">
+      <UniqueIdentifier>{c89ee080-766a-478b-b1e0-274b255cef21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -428,6 +434,21 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\EngineHelpers\Intersections.h">
       <Filter>EngineCore\EngineHelpers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\Serialization\Deserializer.h">
+      <Filter>Common\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\Serialization\SerializationContext.h">
+      <Filter>Common\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\Serialization\Serializer.h">
+      <Filter>Common\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\Serialization\SW\EngineSerializationContext.h">
+      <Filter>Common\Serialization\SW</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\Serialization\SW\Serialization.h">
+      <Filter>Common\Serialization\SW</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -661,10 +682,18 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\EngineHelpers\Intersections.cpp">
       <Filter>EngineCore\EngineHelpers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\Common\Serialization\SW\Serialization.cpp">
+      <Filter>Common\Serialization\SW</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(EngineCoreSourceDir)SW_engine.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\EngineCode\Common\Serialization\SW\Serialization.inl">
+      <Filter>Common\Serialization\SW</Filter>
+    </None>
   </ItemGroup>
 </Project>

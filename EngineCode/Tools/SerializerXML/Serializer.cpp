@@ -33,11 +33,11 @@ inline void SetAttributeHelper( SerializerImpl* impl, const char* name, Size nam
 } //anonymous
 
 /**@brief Konstruktor*/
-ISerializer::ISerializer()
+ISerializer::ISerializer( std::unique_ptr< SerializationContext > serContext )
+	: context( std::move( serContext ) )
 {
 	impl = new SerializerImpl;
 	impl->valuesStack.push( &impl->root );
-	context = nullptr;
 }
 
 /**@brief Destruktor*/

@@ -38,7 +38,10 @@ public:
 	@attention Wolno u¿ywaæ tylko klasie Engine w konstruktorze.
 	@param[in] engine_ptr WskaŸnik na g³ówny obiekt silnika.
 	*/
-	static void			SetEngine( Engine* engine_ptr ) { if( !engine ) engine = engine_ptr; }
+	static void			SetEngine		( Engine* engine_ptr )	{ if( !engine ) engine = engine_ptr; }
 
-	static ActorBase*		Create()	{ return new ActorBase; }
+	static ActorBase*	Create			()						{ return new ActorBase; }
+
+	virtual void		Serialize		( ISerializer* ser ) const override;
+	virtual void		Deserialize		( IDeserializer* deser ) override;
 };

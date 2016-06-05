@@ -53,13 +53,12 @@ inline void WriteToStreamBuffer( rapidjson::StringBuffer& buffer, rapidjson::Doc
 
 
 /**@brief Konstruktor*/
-ISerializer::ISerializer()
+ISerializer::ISerializer( std::unique_ptr< SerializationContext > serContext )
+	: context( std::move( serContext ) )
 {
 	impl = new SerializerImpl;
 	rapidjson::Value newObject( rapidjson::kObjectType );
 	impl->valuesStack.push( std::move( newObject ) );
-
-	context = nullptr;
 }
 
 /**@brief Destruktor*/

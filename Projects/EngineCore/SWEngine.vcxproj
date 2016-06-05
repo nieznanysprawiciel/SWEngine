@@ -187,6 +187,11 @@
     <ClInclude Include="..\..\EngineCode\Common\Properties\IMetaProperty.h" />
     <ClInclude Include="..\..\EngineCode\Common\Properties\Property.h" />
     <ClInclude Include="..\..\EngineCode\Common\RTTR.h" />
+    <ClInclude Include="..\..\EngineCode\Common\Serialization\Deserializer.h" />
+    <ClInclude Include="..\..\EngineCode\Common\Serialization\SerializationContext.h" />
+    <ClInclude Include="..\..\EngineCode\Common\Serialization\Serializer.h" />
+    <ClInclude Include="..\..\EngineCode\Common\Serialization\SW\EngineSerializationContext.h" />
+    <ClInclude Include="..\..\EngineCode\Common\Serialization\SW\Serialization.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorFactory.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorInfo.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorObjects.h" />
@@ -287,6 +292,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.cpp" />
+    <ClCompile Include="..\..\EngineCode\Common\Serialization\SW\Serialization.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\ActorFactory.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\ActorsManager.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\AnimationActor.cpp" />
@@ -401,6 +407,9 @@
     <ProjectReference Include="..\DX11API\DX11API.vcxproj">
       <Project>{44643d7f-1c71-41c1-b452-b2dc5e088a58}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\EngineCode\Common\Serialization\SW\Serialization.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

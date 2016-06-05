@@ -150,6 +150,9 @@ public:
 
 	inline BufferObject* get_vertex_buffer() { return vertex_buffer; }		///<Zwraca wskaŸnik na bufor wierzcho³ków
 	inline BufferObject* get_index_buffer() { return index_buffer; }		///<Zwraca wskaŸnik na bufor indeksów
+
+	virtual void		Serialize		( ISerializer* ser ) const override;
+	virtual void		Deserialize		( IDeserializer* deser ) override;
 };
 
 

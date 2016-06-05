@@ -134,6 +134,12 @@ void EngineWrapper::EnableInput( bool val )
 	m_engine->EnableInput( val );
 }
 
+/**@brief Zapisuje aktualny level*/
+void EngineWrapper::SaveLevel( System::String^ filePath )
+{
+	m_engine->SaveMap( msclr::interop::marshal_as< std::string >( filePath ) );
+}
+
 /**@brief Tworzy aktora.*/
 ActorWrapper^						EngineWrapper::CreateActor				( System::String^ actorName )
 {

@@ -25,16 +25,6 @@ enum ActorInfoFlag	: unsigned short
 aktor.*/
 struct ActorInfo
 {
-	//bool			enableDisplay		: 1;	///< Obiekt znajduje siê w module DisplayEngine.
-	//bool			enableMovement		: 1;	///< Obiekt znajduje siê w module MovementEngine.
-	//bool			enablePhysic		: 1;	///< Obiekt znajduje siê w module PhysicEngine.
-	//bool			enableCollisions	: 1;	///< Obiekt znajduje siê w module CollisionsEngine.
-	//bool			enableShadow		: 1;	///< Obiekt rzuca cieñ.
-	//bool			enablePreController	: 1;	///< Obiekt posiada controller typu pre. @ref PrePostControllers
-	//bool			enablePostController: 1;	///< Obiekt posiada controller typu post. @ref PrePostControllers
-	//bool			isLight				: 1;	///< Obiekt jest œwiat³em i zosta³ dodany do modu³u obs³uguj¹cego oœwietlenie.
-	//bool			isCamera			: 1;	///< Obiekt jest kamer¹ i zostanie dodany do modu³u DisplayEngine.
-
 	unsigned short	actorFlags;
 
 					ActorInfo	();
@@ -65,16 +55,6 @@ inline ActorInfo::ActorInfo	()
 flag ActorInfoFlag.*/
 inline ActorInfo::ActorInfo( unsigned short actorInfoFlag )
 {
-	//enableDisplay = actorInfoFlag & ActorInfoFlag::EnableDisplay ? true : false;
-	//enableMovement = actorInfoFlag & ActorInfoFlag::EnableMovement ? true : false;
-	//enablePhysic = actorInfoFlag & ActorInfoFlag::EnablePhysic ? true : false;
-	//enableCollisions = actorInfoFlag & ActorInfoFlag::EnableCollisions ? true : false;
-	//enableShadow = actorInfoFlag & ActorInfoFlag::EnableShadow ? true : false;
-	//enablePreController = actorInfoFlag & ActorInfoFlag::EnablePreController ? true : false;
-	//enablePostController = actorInfoFlag & ActorInfoFlag::EnablePostController ? true : false;
-	//isLight = actorInfoFlag & ActorInfoFlag::AsLight ? true : false;
-	//isCamera = actorInfoFlag & ActorInfoFlag::AsCamera ? true : false;
-
 	actorFlags = actorInfoFlag;
 }
 
@@ -82,30 +62,10 @@ inline ActorInfo::ActorInfo( unsigned short actorInfoFlag )
 inline void ActorInfo::InitZero()
 {
 	actorFlags = 0;
-
-	//enableDisplay			= false;
-	//enableMovement			= false;
-	//enableCollisions		= false;
-	//enablePhysic			= false;
-	//enableShadow			= false;
-	//enablePreController		= false;
-	//enablePostController	= false;
-	//isLight					= false;
-	//isCamera				= false;
 }
 
 /**@brief Wylicza sumê dla ka¿dej pary flag.*/
 inline void ActorInfo::operator|=( ActorInfo second )
 {
-	//enableDisplay			= enableDisplay | second.enableDisplay;
-	//enableMovement			= enableMovement | second.enableMovement;
-	//enableCollisions		= enableCollisions | second.enableCollisions;
-	//enablePhysic			= enablePhysic | second.enablePhysic;
-	//enableShadow			= enableShadow | second.enableShadow;
-	//enablePreController		= enablePreController | second.enablePreController;
-	//enablePostController	= enablePostController | second.enablePostController;
-	//isLight					= isLight | second.isLight;
-	//isCamera				= isCamera | second.isCamera;
-
 	actorFlags = actorFlags | second.actorFlags;
 }

@@ -75,6 +75,9 @@ namespace EditorApp.Project
 				return false;
 			}
 
+			// TEMP
+			m_editorLogic.Displayer.EngineWrapper.SaveLevel( Path.Combine( m_editorLogic.PathsManager.GameReleaseDir + "/levels/TestLevel.swMap" ) );
+
 			return true;
 		}
 

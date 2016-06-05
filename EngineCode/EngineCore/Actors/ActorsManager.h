@@ -4,7 +4,8 @@
 #include "ActorInfo.h"
 
 class Engine;
-
+class ISerializer;
+class IDeserializer;
 
 
 /**@brief Modu³ do zarz¹dzania aktorami.
@@ -28,6 +29,9 @@ public:
 
 	void													UpdateActor		( ActorBase* actor, ActorInfo actorModules );
 	const std::vector< ActorData >&							GetAllActors	();
+
+	void													Serialize		( ISerializer* ser );
+	void													Deserialize		( IDeserializer* deser );
 
 	template< typename Type = ActorBase >	ActorData*		FindActor		( ActorBase* actor );
 

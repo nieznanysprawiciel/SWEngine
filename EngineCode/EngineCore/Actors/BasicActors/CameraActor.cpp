@@ -12,9 +12,9 @@ RTTR_REGISTRATION
 			(	rttr::metadata( MetaDataType::Category, "Camera View" )		)
 		.property( "Height", &CameraActor::GetHeight, &CameraActor::SetHeight )
 			(	rttr::metadata( MetaDataType::Category, "Camera View" )		)
-		.property( "Near Plane", &CameraActor::GetNearPlane, &CameraActor::SetNearPlane )
+		.property( "NearPlane", &CameraActor::GetNearPlane, &CameraActor::SetNearPlane )
 			(	rttr::metadata( MetaDataType::Category, "Camera View" )		)
-		.property( "Far Plane", &CameraActor::GetFarPlane, &CameraActor::SetFarPlane )
+		.property( "FarPlane", &CameraActor::GetFarPlane, &CameraActor::SetFarPlane )
 			(	rttr::metadata( MetaDataType::Category, "Camera View" )		)
 		.property( "FOV", &CameraActor::GetFov, &CameraActor::SetFov )
 			(	rttr::metadata( MetaDataType::Category, "Camera View" )		);
