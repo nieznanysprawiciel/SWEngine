@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 using System.IO;
 using EditorApp.Editor.Project.Actors;
 using EditorApp.Editor.Project.Content;
+using EditorApp.Editor.Helpers;
 
 namespace EditorApp.Project
 {
@@ -34,21 +35,7 @@ namespace EditorApp.Project
 
 		public bool			LoadProject( string projectFilePath )
 		{
-			try
-			{
-				XmlSerializer deser = new XmlSerializer( typeof( ProjectSettings ) );
-
-				using( System.IO.FileStream reader = new System.IO.FileStream( projectFilePath, FileMode.Open ) )
-				{
-					m_projectSettings = deser.Deserialize( reader ) as ProjectSettings;
-				}
-
-			}
-			catch( Exception e )
-			{
-				Console.WriteLine( e.ToString() );
-				return false;
-			}
+			m_projectSettings = Serialization.Deserialize<ProjectSettings>( projectFilePath );
 
 			m_actorsLogic.PostInitLevel();
 			m_contentManager.ResetAssetsRoot( m_editorLogic.PathsManager.AssetsDir );
@@ -58,25 +45,11 @@ namespace EditorApp.Project
 
 		public bool			SaveProject()
 		{
-			try
-			{
-				XmlSerializer ser = new XmlSerializer( typeof( ProjectSettings ) );
-
-				string projectFilePath = Path.Combine( m_editorLogic.PathsManager.ProjectDir, m_editorLogic.PathsManager.ProjectFileName );
-
-				using( System.IO.FileStream writer = new System.IO.FileStream( projectFilePath, FileMode.Truncate ) )
-				{
-					ser.Serialize( writer, m_projectSettings );
-				}
-			}
-			catch( Exception e )
-			{
-				Console.WriteLine( e.ToString() );
-				return false;
-			}
+			string projectFilePath = Path.Combine( m_editorLogic.PathsManager.ProjectDir, m_editorLogic.PathsManager.ProjectFileName );
+			Serialization.Serialize( projectFilePath, m_projectSettings );
 
 			// TEMP
-			m_editorLogic.Displayer.EngineWrapper.SaveLevel( Path.Combine( m_editorLogic.PathsManager.GameReleaseDir + "/levels/TestLevel.swMap" ) );
+			m_editorLogic.Displayer.EngineWrapper.SaveLevel( Path.Combine( m_editorLogic.PathsManager.LevelsDir, "TestLevel.swmap" ) );
 
 			return true;
 		}

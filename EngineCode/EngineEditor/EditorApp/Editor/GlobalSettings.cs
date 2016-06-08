@@ -11,6 +11,8 @@ namespace EditorApp
 	{
         [XmlIgnore]
         public string		ProjectFileExt { get; set; }
+		[XmlIgnore]
+		public string		LevelMapFileExt { get; set; }
 
 		// Default assets file names
 		public string		GizmoAssetFile { get; set; }
@@ -19,7 +21,8 @@ namespace EditorApp
 
 		public GlobalSettings()
         {
-            ProjectFileExt = ".swproj";
+			LevelMapFileExt = ".swmap";
+			ProjectFileExt = ".swproj";
 			GizmoAssetFile = "Gizmo.FBX";
 
 		}

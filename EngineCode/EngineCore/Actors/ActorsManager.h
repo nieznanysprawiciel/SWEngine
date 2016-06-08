@@ -3,6 +3,11 @@
 #include "ActorFactory.h"
 #include "ActorInfo.h"
 
+#include <map>
+#include <vector>
+#include <string>
+
+
 class Engine;
 class ISerializer;
 class IDeserializer;
@@ -13,9 +18,10 @@ class IDeserializer;
 class ActorsManager
 {
 private:
-	ActorFactory				m_actorFactory;
+	ActorFactory							m_actorFactory;
 
-	std::vector< ActorData >	m_objectList;
+	std::vector< ActorData >				m_objectList;
+	std::map< std::string, ActorBase* >		m_actorNamesMap;
 
 protected:
 public:
@@ -27,18 +33,23 @@ public:
 	template< typename Type = ActorBase >	Type*			CreateActor		( const std::string& name, ActorInfo actorModules );
 	template< typename Type = ActorBase >	Type*			CreateActor		( ActorType id, ActorInfo actorModules );
 
+	const std::vector< ActorData >&							GetAllActors	() const;
+	const std::map< std::string, ActorBase* >				GetActorsNames	() const;
+
+	ActorData*												FindActor		( ActorBase* actor );
+	ActorData*												FindActorByName	( const std::string& name );
+	ActorBase*												GetActorByName	( const std::string& name );
+
 	void													UpdateActor		( ActorBase* actor, ActorInfo actorModules );
-	const std::vector< ActorData >&							GetAllActors	();
-
-	void													Serialize		( ISerializer* ser );
-	void													Deserialize		( IDeserializer* deser );
-
-	template< typename Type = ActorBase >	ActorData*		FindActor		( ActorBase* actor );
 
 private:
 
 	void													AddActor		( ActorBase* newActor );
 	
+public:
+
+	void													Serialize		( ISerializer* ser );
+	void													Deserialize		( IDeserializer* deser );
 };
 
 
@@ -72,13 +83,3 @@ inline Type* ActorsManager::CreateActor( ActorType id, ActorInfo actorModules )
 	return newActor;
 }
 
-/**@brief Wyszukuje aktora.*/
-template< typename Type > ActorData*	ActorsManager::FindActor( ActorBase* actor )
-{
-	for( auto& actorData : m_objectList )
-	{
-		if( actorData.first == actor )
-			return &actorData;
-	}
-	return nullptr;
-}

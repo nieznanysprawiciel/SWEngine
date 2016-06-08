@@ -9,5 +9,6 @@ namespace EditorApp.Project
 	public class LevelInfo
 	{
 		public string			LevelName { get; set; }
+		public string			LevelPath { get; set; }
 	}
 }

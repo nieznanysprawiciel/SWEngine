@@ -159,6 +159,9 @@ void Engine::test()
 
 	SetSkydomeAndCamera();
 
+
+	int actorInfoSize = sizeof( ActorInfo );
+	int actorDataSize = sizeof( ActorData );
 }
 
 void Engine::SetSkydomeAndCamera()

@@ -56,9 +56,12 @@ namespace Api
 		void			AddToModules			( ActorBase* newActor, ActorInfo actorModules );
 		
 		const ActorData*								FindActor				( ActorBase* actor );
+		ActorData*										FindActorByName			( const std::string& name );
+		ActorBase*										GetActorByName			( const std::string& name );
 
 		const std::map< std::string, ActorType >&		GetRegisteredClasses	();
 		const std::vector< ActorData >&					GetAllActors			();
+		const std::map< std::string, ActorBase* >		GetActorsNames			();
 	};
 
 	template<>							ActorBase*		ActorsApi::CreateActor				( const std::string& name );

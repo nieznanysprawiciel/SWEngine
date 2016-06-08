@@ -18,7 +18,7 @@ namespace EditorPlugin
 
 ActorWrapper::ActorWrapper( EngineObject* actor, const ActorInfo* actorInfo )
 	:	m_actorPtr( actor )
-	,	m_actorInfo( actorInfo )
+	,	m_actorInfo( actorInfo->GetRawInfo() )
 {
 	m_name = gcnew System::String( "" );
 }

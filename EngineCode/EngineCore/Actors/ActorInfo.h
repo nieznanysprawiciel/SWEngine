@@ -18,7 +18,8 @@ enum ActorInfoFlag	: unsigned short
 	EnablePreController		= 1 << 5,		///< Obiekt posiada controller typu pre. @ref PrePostControllers
 	EnablePostController	= 1 << 6,		///< Obiekt posiada controller typu post. @ref PrePostControllers
 	AsLight					= 1 << 7,		///< Obiekt jest œwiat³em i zosta³ dodany do modu³u obs³uguj¹cego oœwietlenie.
-	AsCamera				= 1 << 8		///< Obiekt jest kamer¹ i zostanie dodany do modu³u DisplayEngine.
+	AsCamera				= 1 << 8,		///< Obiekt jest kamer¹ i zostanie dodany do modu³u DisplayEngine.
+	EnableSavingToFile		= 1 << 9		///< Obiekt zostanie zapisany do pliku przy zapisywaniu gry.
 };
 
 /**@brief Przechowuje informacje w jakich modu³ach silnika znajduje siê
@@ -31,6 +32,9 @@ struct ActorInfo
 					ActorInfo	( unsigned short actorInfoFlag );
 	inline void		InitZero	();
 	void			operator|=	( ActorInfo second );
+	void			operator&=	( ActorInfo second );
+	void			operator-=	( ActorInfo second );
+	void			operator+=	( ActorInfo second );
 
 	bool EnableDisplay			() const		{ return ( actorFlags & ActorInfoFlag::EnableDisplay ) != 0; }
 	bool EnableMovement			() const		{ return ( actorFlags & ActorInfoFlag::EnableMovement ) != 0; }
@@ -41,6 +45,9 @@ struct ActorInfo
 	bool EnablePostController	() const		{ return ( actorFlags & ActorInfoFlag::EnablePostController ) != 0; }
 	bool IsLight				() const		{ return ( actorFlags & ActorInfoFlag::AsLight ) != 0; }
 	bool IsCamera				() const		{ return ( actorFlags & ActorInfoFlag::AsCamera ) != 0; }
+	bool EnableSavingToFile		() const		{ return ( actorFlags & ActorInfoFlag::EnableSavingToFile ) != 0; }
+
+	unsigned short	GetRawInfo	() const		{ return actorFlags; }
 };
 
 typedef std::pair< ActorBase*, ActorInfo > ActorData;
@@ -69,3 +76,23 @@ inline void ActorInfo::operator|=( ActorInfo second )
 {
 	actorFlags = actorFlags | second.actorFlags;
 }
+
+/**@brief Wylicza sumê dla ka¿dej pary flag.*/
+inline void ActorInfo::operator&=( ActorInfo second )
+{
+	actorFlags = actorFlags & second.actorFlags;
+}
+
+/**@brief Dodaje do obiektu flagi podane w parametrze.*/
+inline void ActorInfo::operator+=( ActorInfo second )
+{
+	actorFlags = actorFlags | second.actorFlags;
+}
+
+/**@brief Usuwa flagi podane w parametrze.*/
+inline void ActorInfo::operator-=( ActorInfo second )
+{
+	actorFlags = actorFlags & ~second.actorFlags;
+}
+
+

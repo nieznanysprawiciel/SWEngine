@@ -88,12 +88,30 @@ const ActorData*					ActorsApi::FindActor				( ActorBase* actor )
 	return Context->actorsManager->FindActor( actor );
 }
 
+/**@copydoc ActorsManager::FindActorByName*/
+ActorData*							ActorsApi::FindActorByName			( const std::string& name )
+{
+	return Context->actorsManager->FindActorByName( name );
+}
+
+/**@copydoc ActorsManager::GetActorByName*/
+ActorBase*							ActorsApi::GetActorByName			( const std::string& name )
+{
+	return Context->actorsManager->GetActorByName( name );
+}
+
 /**@brief Pobiera dane o wszystkich aktorach.
 
 @return Zwraca referencjê na wektor @ref ActorData.*/
 const std::vector<ActorData>&		ActorsApi::GetAllActors()
 {
 	return Context->actorsManager->GetAllActors();
+}
+
+/**@copydoc ActorsManager::GetActorsNames*/
+const std::map<std::string, ActorBase*> ActorsApi::GetActorsNames()
+{
+	return Context->actorsManager->GetActorsNames();
 }
 
 /**@brief Specjalizacja szablonu dla ActorBase. Dziêki temu edytor nie bêdzie musia³ includowaæ

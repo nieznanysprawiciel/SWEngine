@@ -56,8 +56,8 @@ namespace EditorApp.Engine
 				return false;
 
 			m_engineWrapper.EnableInput( true );
-			//m_engineWrapper.BasicScene();
-			m_engineWrapper.TestScene();
+			m_engineWrapper.BasicScene();
+			//m_engineWrapper.TestScene();
 
 			ViewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, EngineWrapper.GetRenderTarget( (ushort)Width, (ushort)Height ) );
 
