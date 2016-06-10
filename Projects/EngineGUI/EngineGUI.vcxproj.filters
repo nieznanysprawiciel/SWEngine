@@ -7,72 +7,93 @@
     <Filter Include="EngineGUI">
       <UniqueIdentifier>{e9d5caa6-af62-4385-8920-d9e98a01281d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineGUI\System">
+      <UniqueIdentifier>{60c54db1-0e13-4bf6-bb8e-ab60ea848f72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineGUI\Controls">
+      <UniqueIdentifier>{774b1ce6-12e5-42c3-9683-86e75e033158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineGUI\System\Events">
+      <UniqueIdentifier>{cd4f9f1c-0719-481d-83b4-ff11d52368f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineGUI\System\Events\Input">
+      <UniqueIdentifier>{cb217187-f6ff-4754-8cf9-ed59c105e437}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineGUI\Controls\ArrangeControls">
+      <UniqueIdentifier>{ec02b47f-e168-46d5-884c-6d01fe49a764}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractButton.h">
-      <Filter>EngineGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractItem.h">
-      <Filter>EngineGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractMenu.h">
-      <Filter>EngineGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractText.h">
-      <Filter>EngineGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractTextInput.h">
-      <Filter>EngineGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractTexturedRegion.h">
-      <Filter>EngineGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineGUI\AbstractWindow.h">
-      <Filter>EngineGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineGUI\GUIEvent.h">
-      <Filter>EngineGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineGUI\targetver.h">
-      <Filter>EngineGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineGUI\XGUI.h">
-      <Filter>EngineGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineGUI\Renderer.h">
-      <Filter>EngineGUI</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\MemoryLeaks.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\targetver.h">
+      <Filter>EngineGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\IControl.h">
+      <Filter>EngineGUI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\IEventArgs.h">
+      <Filter>EngineGUI\System\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\Input\InputEventArgs.h">
+      <Filter>EngineGUI\System\Events\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseEventArgs.h">
+      <Filter>EngineGUI\System\Events\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseButtonEventArgs.h">
+      <Filter>EngineGUI\System\Events\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\IPanel.h">
+      <Filter>EngineGUI\Controls\ArrangeControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\Grid.h">
+      <Filter>EngineGUI\Controls\ArrangeControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\StackPanel.h">
+      <Filter>EngineGUI\Controls\ArrangeControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\DockPanel.h">
+      <Filter>EngineGUI\Controls\ArrangeControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\WrapPanel.h">
+      <Filter>EngineGUI\Controls\ArrangeControls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\EngineCode\EngineGUI\AbstractButton.cpp">
-      <Filter>EngineGUI</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\IControl.cpp">
+      <Filter>EngineGUI\Controls</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineGUI\AbstractItem.cpp">
-      <Filter>EngineGUI</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\InputEventArgs.cpp">
+      <Filter>EngineGUI\System\Events\Input</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineGUI\AbstractMenu.cpp">
-      <Filter>EngineGUI</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseEventArgs.cpp">
+      <Filter>EngineGUI\System\Events\Input</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineGUI\AbstractText.cpp">
-      <Filter>EngineGUI</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseButtonEventArgs.cpp">
+      <Filter>EngineGUI\System\Events\Input</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineGUI\AbstractTextInput.cpp">
-      <Filter>EngineGUI</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\IEventArgs.cpp">
+      <Filter>EngineGUI\System\Events</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineGUI\AbstractTexturedRegion.cpp">
-      <Filter>EngineGUI</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\IPanel.cpp">
+      <Filter>EngineGUI\Controls\ArrangeControls</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineGUI\AbstractWindow.cpp">
-      <Filter>EngineGUI</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\Grid.cpp">
+      <Filter>EngineGUI\Controls\ArrangeControls</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineGUI\Control.cpp">
-      <Filter>EngineGUI</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\StackPanel.cpp">
+      <Filter>EngineGUI\Controls\ArrangeControls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\DockPanel.cpp">
+      <Filter>EngineGUI\Controls\ArrangeControls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\WrapPanel.cpp">
+      <Filter>EngineGUI\Controls\ArrangeControls</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
