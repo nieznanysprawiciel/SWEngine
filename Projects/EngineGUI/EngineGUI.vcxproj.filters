@@ -22,6 +22,9 @@
     <Filter Include="EngineGUI\Controls\ArrangeControls">
       <UniqueIdentifier>{ec02b47f-e168-46d5-884c-6d01fe49a764}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineGUI\System\Windows">
+      <UniqueIdentifier>{66f98e77-03de-4536-b03e-c471bdf63f5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h">
@@ -63,6 +66,21 @@
     <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\WrapPanel.h">
       <Filter>EngineGUI\Controls\ArrangeControls</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseWheelEventArgs.h">
+      <Filter>EngineGUI\System\Events\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\HostWindow.h">
+      <Filter>EngineGUI\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Windows\INativeWindow.h">
+      <Filter>EngineGUI\System\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\TopLevelControl.h">
+      <Filter>EngineGUI\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\GUISystem.h">
+      <Filter>EngineGUI\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\IControl.cpp">
@@ -94,6 +112,15 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\WrapPanel.cpp">
       <Filter>EngineGUI\Controls\ArrangeControls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseWheelEventArgs.cpp">
+      <Filter>EngineGUI\System\Events\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\System\HostWindow.cpp">
+      <Filter>EngineGUI\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\System\GUISystem.cpp">
+      <Filter>EngineGUI\System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

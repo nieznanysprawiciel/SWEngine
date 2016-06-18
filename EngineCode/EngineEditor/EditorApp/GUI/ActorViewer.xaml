@@ -20,7 +20,7 @@
 		</Grid.RowDefinitions>
 
 		<Grid Grid.Row="0" >
-			<ListView Style="{StaticResource ListViewStyleBase}" Height="Auto" Width="Auto" DataContext="{Binding}" ItemsSource="{Binding Actors}" SelectedItem="{Binding SelectedActor, Mode=TwoWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Single" >
+			<!--<ListView Style="{StaticResource ListViewStyleBase}" Height="Auto" Width="Auto" DataContext="{Binding}" ItemsSource="{Binding Actors}" SelectedItem="{Binding SelectedActor, Mode=TwoWay}" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Single" >
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="SelectionChanged">
 						<i:InvokeCommandAction CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" Command="{Binding Path=DataContext.ActorSelectionChangedCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"/>
@@ -42,7 +42,37 @@
 						</GridViewColumn>
 					</GridView>
 				</ListView.View>
-			</ListView>
+			</ListView>-->
+			<DataGrid Height="Auto"
+					  Width="Auto"
+					  Style="{StaticResource DataGridStyleBase}"
+					  DataContext="{Binding}"
+					  ItemsSource="{Binding Actors}"
+					  SelectedItem="{Binding SelectedActor, Mode=TwoWay}"
+					  SelectionUnit="FullRow"
+					  SelectionMode="Single"
+					  AutoGenerateColumns="False"
+					  CanUserResizeRows="False" >
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="SelectionChanged">
+						<i:InvokeCommandAction CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Command="{Binding Path=DataContext.ActorSelectionChangedCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+				<DataGrid.ColumnHeaderStyle>
+					<Style>
+						<Setter Property="FrameworkElement.Visibility" Value="Collapsed"/>
+					</Style>
+				</DataGrid.ColumnHeaderStyle>
+				<DataGrid.Columns>
+					<DataGridTemplateColumn Header="Actor Name" Width="200" IsReadOnly="False">
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding ActorName}" Style="{StaticResource TextBlockBaseStyle}" />
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+				</DataGrid.Columns>
+			</DataGrid>
 		</Grid>
 
 		<GridSplitter Grid.Row="1" Height="2" Width="400" Style="{StaticResource VerticalGridSplitterStyle}"/>

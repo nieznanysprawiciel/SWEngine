@@ -114,6 +114,9 @@
     <Filter Include="Common\Serialization\SW">
       <UniqueIdentifier>{c89ee080-766a-478b-b1e0-274b255cef21}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\MainEngine\Diagnostics">
+      <UniqueIdentifier>{68fcd04a-83f8-4914-b41b-aa84fc2f7147}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">

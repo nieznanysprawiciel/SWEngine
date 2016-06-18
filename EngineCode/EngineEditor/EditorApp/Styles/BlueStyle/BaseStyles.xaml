@@ -14,6 +14,12 @@
 		<Setter Property="Foreground" Value="{StaticResource BasicTextColorBrush}"/>
 	</Style>
 
+	<Style x:Key="TextBoxBaseStyle" TargetType="TextBox">
+		<Setter Property="Foreground" Value="{StaticResource BasicTextColorBrush}"/>
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="BorderBrush" Value="Transparent" />
+	</Style>
+
 
 	<Style x:Key="TextBlockCategoryStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBaseStyle}">
 		<Setter Property="FontWeight" Value="Bold" />
@@ -100,6 +106,20 @@
 		<Setter Property="VerticalAlignment" Value="Stretch" />
 		<Setter Property="Background" Value="Transparent" />
 		<Setter Property="BorderThickness" Value="2" />
+	</Style>
+
+	<Style x:Key="DataGridStyleBase" TargetType="DataGrid">
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="VerticalAlignment" Value="Stretch" />
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="RowBackground" Value="Transparent" />
+		<Setter Property="GridLinesVisibility" Value="None" />
+		<Setter Property="BorderThickness" Value="2" />
+		<!--<Style.Triggers>
+			<Trigger Property="">
+				
+			</Trigger>
+		</Style.Triggers>-->
 	</Style>
 
 	<Style x:Key="ActorListViewStyle" TargetType="ListView" BasedOn="{StaticResource ListViewStyleBase}">

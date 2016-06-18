@@ -162,6 +162,9 @@ void Engine::test()
 
 	int actorInfoSize = sizeof( ActorInfo );
 	int actorDataSize = sizeof( ActorData );
+
+	Size VadersTieSize = VaderTIE->ObjectSize();
+	Size DynamicMeshActorSize = sizeof( DynamicMeshActor );
 }
 
 void Engine::SetSkydomeAndCamera()
