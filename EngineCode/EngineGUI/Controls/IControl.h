@@ -8,14 +8,19 @@
 @ingroup ModulesStructure
 @brief Modu³ s³u¿¹cy do renderowania interfejsu graficznego u¿ytkownika.*/
 
+namespace GUI
+{
+
 struct IEventArgs;
 struct InputEventArgs;
 struct MouseEventArgs;
 struct MouseButtonEventArgs;
 struct MouseWheelEventArgs;
 
-namespace GUI
-{
+class HostWindow;
+class TopLevelControl;
+
+
 
 /**@brief Klasa bazowa dla kontrolek.*/
 class IControl : public EngineObject
@@ -28,13 +33,15 @@ protected:
 	IControl*			m_parent;
 
 public:
-							IControl	( IControl* parent );
-	virtual					~IControl	();
+							IControl		( IControl* parent );
+	virtual					~IControl		();
 
-	IControl*				GetParent	()			{ return m_parent; }
+	IControl*				GetParent		()			{ return m_parent; }
+	TopLevelControl*		GetRootControl	();
+	HostWindow*				GetHost			();
 
 
-	virtual bool			HitTest		( float X, float Y );
+	virtual bool			HitTest			( float X, float Y );
 
 public:
 	// Event handlers

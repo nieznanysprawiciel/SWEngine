@@ -36,6 +36,8 @@ public:
 	explicit		HostWindow	() = default;
 					~HostWindow	() = default;
 
+
+	Size			GetMemorySize		();
 };
 
 

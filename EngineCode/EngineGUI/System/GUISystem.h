@@ -44,6 +44,8 @@ public:
 
 
 	EngineObject*&	DataContext		();
+
+	Size			GetMemorySize	();
 };
 
 
