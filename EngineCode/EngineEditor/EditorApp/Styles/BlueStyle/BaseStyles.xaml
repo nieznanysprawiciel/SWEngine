@@ -9,6 +9,12 @@
 	<SolidColorBrush x:Key="BasicTextColorBrush" Color="{StaticResource BasicTextColor}"/>
 	<SolidColorBrush x:Key="ControlsBorderColorBrush" Color="{StaticResource ControlsBorderColor}"/>
 
+	<Color x:Key="ScrollerThumbColor">#AE2F33</Color>
+	<SolidColorBrush x:Key="ScrollerThumbBrush" Color="{StaticResource ScrollerThumbColor}" />
+
+	<Color x:Key="ScollBarBackgroundStart">#77C64D45</Color>
+	<Color x:Key="ScollBarBackgroundEnd">#99C64D45</Color>
+
 
 	<Style x:Key="TextBlockBaseStyle" TargetType="TextBlock">
 		<Setter Property="Foreground" Value="{StaticResource BasicTextColorBrush}"/>
@@ -95,6 +101,133 @@
 		<Setter Property="ResizeDirection" Value="Rows" />
 	</Style>
 
+	<!--Scroll bars-->
+
+	<LinearGradientBrush x:Key="ScollBarBackgroundBrush" StartPoint="0,0" EndPoint="1,0">
+		<LinearGradientBrush.GradientStops>
+			<GradientStop Offset="0" Color="{StaticResource ScollBarBackgroundStart}" />
+			<GradientStop Offset="1" Color="{StaticResource ScollBarBackgroundEnd}" />
+		</LinearGradientBrush.GradientStops>
+	</LinearGradientBrush>
+
+	<Style x:Key="ScrollerButton" TargetType="{x:Type RepeatButton}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type RepeatButton}">
+					<Border Name="Border" Background="Transparent">
+						<ContentPresenter />
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="VerticalThumbStyle" TargetType="Thumb" >
+		<Setter Property="Background" Value="{StaticResource ScrollerThumbBrush}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Thumb}">
+					<Grid>
+						<Rectangle
+						 Width="7"
+						 Height="Auto"
+						 HorizontalAlignment="Stretch"
+						 VerticalAlignment="Stretch"
+						 Fill="{TemplateBinding Background}"
+						 RadiusX="4"
+						 RadiusY="4" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="HorizontalThumbStyle" TargetType="Thumb" >
+		<Setter Property="Background" Value="{StaticResource ScrollerThumbBrush}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Thumb}">
+					<Grid>
+						<Rectangle
+						 Width="Auto"
+						 Height="7"
+						 HorizontalAlignment="Stretch"
+						 VerticalAlignment="Stretch"
+						 Fill="{TemplateBinding Background}"
+						 RadiusX="4"
+						 RadiusY="4" />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
+		<Grid Background="{TemplateBinding Background}">
+			<Grid.RowDefinitions>
+				<RowDefinition MaxHeight="18" />
+				<RowDefinition Height="0.00001*" />
+				<RowDefinition MaxHeight="18" />
+			</Grid.RowDefinitions>
+
+			<RepeatButton Grid.Row="0" Style="{StaticResource ScrollerButton}" Width="18" Command="ScrollBar.LineUpCommand" >
+				<Path x:Name="DecreaseArrow" HorizontalAlignment="Center" VerticalAlignment="Center" Data="F1 M 3.5,0L 0,7L 7,7L 3.5,0 Z " Fill="{StaticResource ScrollerThumbBrush}" />
+			</RepeatButton>
+
+			<Track x:Name="PART_Track" Grid.Row="1" Focusable="False" IsDirectionReversed="True">
+				<Track.Thumb>
+					<Thumb Style="{StaticResource VerticalThumbStyle}" />
+				</Track.Thumb>
+			</Track>
+
+			<RepeatButton Grid.Row="2" Style="{StaticResource ScrollerButton}" Width="18" Command="ScrollBar.LineDownCommand" >
+				<Path x:Name="IncreaseArrow" HorizontalAlignment="Center" VerticalAlignment="Center" Data="F1 M 3.5,7L 7,0L 0,0L 3.5,7 Z " Fill="{StaticResource ScrollerThumbBrush}" />
+			</RepeatButton>
+		</Grid>
+	</ControlTemplate>
+
+	<ControlTemplate x:Key="HorizontalScrollBar" TargetType="{x:Type ScrollBar}">
+		<Grid Background="{TemplateBinding Background}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition MaxWidth="18" />
+				<ColumnDefinition Width="0.00001*" />
+				<ColumnDefinition MaxWidth="18" />
+			</Grid.ColumnDefinitions>
+
+			<RepeatButton Grid.Column="0" Style="{StaticResource ScrollerButton}" Width="18" Command="ScrollBar.LineLeftCommand" >
+				<Path x:Name="DecreaseArrow" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 4 0 L 4 8 L 0 4 Z" Fill="{StaticResource ScrollerThumbBrush}" />
+			</RepeatButton>
+
+			<Track x:Name="PART_Track" Grid.Column="1" Focusable="False" IsDirectionReversed="False">
+				<Track.Thumb>
+					<Thumb Style="{StaticResource HorizontalThumbStyle}" />
+				</Track.Thumb>
+			</Track>
+
+			<RepeatButton Grid.Column="2" Style="{StaticResource ScrollerButton}" Width="18" Command="ScrollBar.LineRightCommand" >
+				<Path x:Name="IncreaseArrow" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 0 8 Z" Fill="{StaticResource ScrollerThumbBrush}" />
+			</RepeatButton>
+		</Grid>
+	</ControlTemplate>
+
+
+	<Style TargetType="{x:Type ScrollBar}">
+		<Setter Property="Background" Value="{StaticResource ScollBarBackgroundBrush}" />
+		<Style.Triggers>
+			<Trigger Property="Orientation" Value="Horizontal">
+				<Setter Property="Width" Value="Auto" />
+				<Setter Property="Height" Value="12" />
+				<Setter Property="Template" Value="{StaticResource HorizontalScrollBar}" />
+			</Trigger>
+			<Trigger Property="Orientation" Value="Vertical">
+				<Setter Property="Width" Value="12" />
+				<Setter Property="Height" Value="Auto" />
+				<Setter Property="Template" Value="{StaticResource VerticalScrollBar}" />
+			</Trigger>
+		</Style.Triggers>
+	</Style>
+
+
 
 	<!--Actors ListView-->
 	<Style TargetType="ListBoxItem" x:Key="ActorsContainerStyle">
@@ -108,20 +241,6 @@
 		<Setter Property="BorderThickness" Value="2" />
 	</Style>
 
-	<Style x:Key="DataGridStyleBase" TargetType="DataGrid">
-		<Setter Property="HorizontalAlignment" Value="Stretch" />
-		<Setter Property="VerticalAlignment" Value="Stretch" />
-		<Setter Property="Background" Value="Transparent" />
-		<Setter Property="RowBackground" Value="Transparent" />
-		<Setter Property="GridLinesVisibility" Value="None" />
-		<Setter Property="BorderThickness" Value="2" />
-		<!--<Style.Triggers>
-			<Trigger Property="">
-				
-			</Trigger>
-		</Style.Triggers>-->
-	</Style>
-
 	<Style x:Key="ActorListViewStyle" TargetType="ListView" BasedOn="{StaticResource ListViewStyleBase}">
 		<Setter Property="ItemContainerStyle" Value="{StaticResource ActorsContainerStyle}" />
 
@@ -129,5 +248,74 @@
 			<ResourceDictionary Source="/Styles/BlueStyle/ActorDisplayDataTemplates.xaml"/>
 		</Style.Resources>
 	</Style>
+	
+	
+	<!--Data Grid styles-->
+
+	<Style TargetType="{x:Type DataGridRow}">
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type DataGridRow}">
+					<Grid x:Name="DGR_Grid"
+					        SnapsToDevicePixels="True">
+						<Grid.Background>
+							<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+								<GradientStop Offset="0" Color="Transparent" />
+								<GradientStop Offset="1" Color="Transparent" />
+							</LinearGradientBrush>
+						</Grid.Background>
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal" />
+								<VisualState x:Name="MouseOver">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Grid" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
+											<EasingColorKeyFrame KeyTime="0" Value="#AAEA9595" />
+										</ColorAnimationUsingKeyFrames>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Grid" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+											<EasingColorKeyFrame KeyTime="0" Value="#AAF54B4B" />
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="NormalSelected" >
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Grid" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
+											<EasingColorKeyFrame KeyTime="0" Value="#AAEA9595" />
+										</ColorAnimationUsingKeyFrames>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Grid" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+											<EasingColorKeyFrame KeyTime="0" Value="#AAFFFFFF" />
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<SelectiveScrollingGrid>
+							<SelectiveScrollingGrid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="*" />
+							</SelectiveScrollingGrid.ColumnDefinitions>
+							<SelectiveScrollingGrid.RowDefinitions>
+								<RowDefinition Height="*" />
+								<RowDefinition Height="Auto" />
+							</SelectiveScrollingGrid.RowDefinitions>
+							<DataGridCellsPresenter Grid.Column="1" ItemsPanel="{TemplateBinding ItemsPanel}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+							<DataGridRowHeader Visibility="Hidden" />
+						</SelectiveScrollingGrid>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="DataGridStyleBase" TargetType="DataGrid">
+		<Setter Property="HorizontalAlignment" Value="Stretch" />
+		<Setter Property="VerticalAlignment" Value="Stretch" />
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="RowBackground" Value="Transparent" />
+		<Setter Property="GridLinesVisibility" Value="None" />
+		<Setter Property="BorderThickness" Value="2" />
+	</Style>
+
 
 </ResourceDictionary>

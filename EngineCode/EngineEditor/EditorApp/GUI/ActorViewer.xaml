@@ -64,7 +64,7 @@
 					</Style>
 				</DataGrid.ColumnHeaderStyle>
 				<DataGrid.Columns>
-					<DataGridTemplateColumn Header="Actor Name" Width="200" IsReadOnly="False">
+					<DataGridTemplateColumn Header="Actor Name" Width="*" IsReadOnly="False">
 						<DataGridTemplateColumn.CellTemplate>
 							<DataTemplate>
 								<TextBlock Text="{Binding ActorName}" Style="{StaticResource TextBlockBaseStyle}" />
