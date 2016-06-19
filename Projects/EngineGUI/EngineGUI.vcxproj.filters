@@ -81,6 +81,12 @@
     <ClInclude Include="..\..\EngineCode\EngineGUI\System\GUISystem.h">
       <Filter>EngineGUI\System</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\Input\KeyboardEventArgs.h">
+      <Filter>EngineGUI\System\Events\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\Input\KeyEventArgs.h">
+      <Filter>EngineGUI\System\Events\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\IControl.cpp">
@@ -121,6 +127,12 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineGUI\System\GUISystem.cpp">
       <Filter>EngineGUI\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\KeyboardEventArgs.cpp">
+      <Filter>EngineGUI\System\Events\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\KeyEventArgs.cpp">
+      <Filter>EngineGUI\System\Events\Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

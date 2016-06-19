@@ -16,6 +16,7 @@ struct InputEventArgs;
 struct MouseEventArgs;
 struct MouseButtonEventArgs;
 struct MouseWheelEventArgs;
+struct KeyEventArgs;
 
 class HostWindow;
 class TopLevelControl;
@@ -83,6 +84,11 @@ public:
 	virtual void			PreviewMouseLeftButtonUp		( IControl* sender, MouseButtonEventArgs* e )		{}
 
 	//Keyboard
+	virtual void			KeyDown							( IControl* sender, KeyEventArgs* e )				{}
+	virtual void			KeyUp							( IControl* sender, KeyEventArgs* e )				{}
+
+	virtual void			PreviewKeyDown					( IControl* sender, KeyEventArgs* e )				{}
+	virtual void			PreviewKeyUp					( IControl* sender, KeyEventArgs* e )				{}
 
 
 };

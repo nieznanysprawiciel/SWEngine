@@ -8,7 +8,7 @@ namespace GUI
 
 struct InputEventArgs : public IEventArgs
 {
-	RTTR_ENABLE()
+	RTTR_ENABLE( IEventArgs )
 public:
 
 };
