@@ -315,6 +315,7 @@
 		<Setter Property="RowBackground" Value="Transparent" />
 		<Setter Property="GridLinesVisibility" Value="None" />
 		<Setter Property="BorderThickness" Value="2" />
+		<Setter Property="Foreground" Value="{StaticResource BasicTextColorBrush}" />
 	</Style>
 
 
