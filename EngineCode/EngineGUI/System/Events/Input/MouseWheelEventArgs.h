@@ -8,7 +8,7 @@ namespace GUI
 
 struct MouseWheelEventArgs : public MouseEventArgs
 {
-	RTTR_ENABLE( MouseWheelEventArgs )
+	RTTR_ENABLE( MouseEventArgs )
 public:
 
 };

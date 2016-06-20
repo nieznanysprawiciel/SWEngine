@@ -64,6 +64,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PropertiesTest", "Tests\Pro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Reflection", "Reflection\Reflection.vcxproj", "{59FA8028-2346-4246-854F-14DCFAB6AB56}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PrototyperGUI", "Tests\PrototyperGUI\PrototyperGUI.vcxproj", "{F2104B29-1AF3-4434-BA9C-78D0F2A4635F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C6DAB3EE-E9A7-47FC-9B33-A8F4250C219B} = {C6DAB3EE-E9A7-47FC-9B33-A8F4250C219B}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -316,6 +321,22 @@ Global
 		{59FA8028-2346-4246-854F-14DCFAB6AB56}.Release|Win32.Build.0 = Release|Win32
 		{59FA8028-2346-4246-854F-14DCFAB6AB56}.Release|x64.ActiveCfg = Release|x64
 		{59FA8028-2346-4246-854F-14DCFAB6AB56}.Release|x64.Build.0 = Release|x64
+		{F2104B29-1AF3-4434-BA9C-78D0F2A4635F}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{F2104B29-1AF3-4434-BA9C-78D0F2A4635F}.Debug|ARM.ActiveCfg = Debug|Win32
+		{F2104B29-1AF3-4434-BA9C-78D0F2A4635F}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{F2104B29-1AF3-4434-BA9C-78D0F2A4635F}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{F2104B29-1AF3-4434-BA9C-78D0F2A4635F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F2104B29-1AF3-4434-BA9C-78D0F2A4635F}.Debug|Win32.Build.0 = Debug|Win32
+		{F2104B29-1AF3-4434-BA9C-78D0F2A4635F}.Debug|x64.ActiveCfg = Debug|x64
+		{F2104B29-1AF3-4434-BA9C-78D0F2A4635F}.Debug|x64.Build.0 = Debug|x64
+		{F2104B29-1AF3-4434-BA9C-78D0F2A4635F}.Release|Any CPU.ActiveCfg = Release|Win32
+		{F2104B29-1AF3-4434-BA9C-78D0F2A4635F}.Release|ARM.ActiveCfg = Release|Win32
+		{F2104B29-1AF3-4434-BA9C-78D0F2A4635F}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{F2104B29-1AF3-4434-BA9C-78D0F2A4635F}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{F2104B29-1AF3-4434-BA9C-78D0F2A4635F}.Release|Win32.ActiveCfg = Release|Win32
+		{F2104B29-1AF3-4434-BA9C-78D0F2A4635F}.Release|Win32.Build.0 = Release|Win32
+		{F2104B29-1AF3-4434-BA9C-78D0F2A4635F}.Release|x64.ActiveCfg = Release|x64
+		{F2104B29-1AF3-4434-BA9C-78D0F2A4635F}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -332,5 +353,6 @@ Global
 		{E2866C51-5348-4F94-AC58-C6372C1E53D7} = {415F8C84-7E86-4306-9173-7A5AEE6A5A67}
 		{1276506A-9D46-4A96-BFD1-333765D1849A} = {415F8C84-7E86-4306-9173-7A5AEE6A5A67}
 		{59FA8028-2346-4246-854F-14DCFAB6AB56} = {DD0F00A4-19CD-45DA-99CF-541925389744}
+		{F2104B29-1AF3-4434-BA9C-78D0F2A4635F} = {415F8C84-7E86-4306-9173-7A5AEE6A5A67}
 	EndGlobalSection
 EndGlobal

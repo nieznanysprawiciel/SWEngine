@@ -3,6 +3,8 @@
 #include "Common/EngineObject.h"
 #include "Common/Delegate.h"
 
+#include <string>
+
 
 /**@defgroup EngineGUI
 @ingroup ModulesStructure
@@ -33,16 +35,35 @@ protected:
 
 	IControl*			m_parent;
 
+	// Properties
+	float				m_width;
+	float				m_maxWidth;
+	float				m_minWidth;
+	float				m_height;
+	float				m_maxHeight;
+	float				m_minHeight;
+
+	std::wstring		m_name;
+
+	bool				m_isVisible : 1;
+	bool				m_isEnabled : 1;
+	bool				m_isMouseOver : 1;
+	bool				m_isFocused : 1;
+	bool				m_isFocusable : 1;
+
+	EngineObject*		m_dataContext;
+
 public:
 							IControl		( IControl* parent );
 	virtual					~IControl		();
 
+	virtual bool			HitTest			( float X, float Y );
+
+protected:
+
 	IControl*				GetParent		()			{ return m_parent; }
 	TopLevelControl*		GetRootControl	();
 	HostWindow*				GetHost			();
-
-
-	virtual bool			HitTest			( float X, float Y );
 
 public:
 	// Event handlers

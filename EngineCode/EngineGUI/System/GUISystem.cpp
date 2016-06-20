@@ -11,6 +11,8 @@ namespace GUI
 */
 int					GUISystem::MainLoop()
 {
+	int size = sizeof( IControl );
+
 	return 0;
 }
 

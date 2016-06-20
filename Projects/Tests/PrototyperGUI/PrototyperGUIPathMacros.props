@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <PrototyperGUIName>PrototyperGUI</PrototyperGUIName>
+    <PrototyperGUILibDir>$(EngineLibDir)$(PrototyperGUIName)\</PrototyperGUILibDir>
+    <PrototyperGUISourceDir>$(EngineSourceDir)Tools\$(PrototyperGUIName)\</PrototyperGUISourceDir>
+    <PrototyperGUIFileName>$(EngineShortcut)$(PrototyperGUIName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</PrototyperGUIFileName>
+    <PrototyperGUIBuildDir>$(EngineBuildDir)$(PrototyperGUIName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</PrototyperGUIBuildDir>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup>
+    <BuildMacro Include="PrototyperGUIName">
+      <Value>$(PrototyperGUIName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PrototyperGUILibDir">
+      <Value>$(PrototyperGUILibDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PrototyperGUISourceDir">
+      <Value>$(PrototyperGUISourceDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PrototyperGUIFileName">
+      <Value>$(PrototyperGUIFileName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PrototyperGUIBuildDir">
+      <Value>$(PrototyperGUIBuildDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
