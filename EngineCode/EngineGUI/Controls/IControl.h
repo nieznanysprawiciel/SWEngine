@@ -3,6 +3,8 @@
 #include "Common/EngineObject.h"
 #include "Common/Delegate.h"
 
+#include "EngineGUI/System/CommonTypes/Thickness.h"
+
 #include <string>
 
 
@@ -25,6 +27,23 @@ class TopLevelControl;
 
 
 
+enum class VerticalAlignement : char
+{
+	Bottom,
+	Center,
+	Stretch,
+	Top
+};
+
+enum class HorizontalAlignement : char
+{
+	Left,
+	Center,
+	Right,
+	Stretch
+};
+
+
 /**@brief Klasa bazowa dla kontrolek.*/
 class IControl : public EngineObject
 {
@@ -33,25 +52,30 @@ class IControl : public EngineObject
 private:
 protected:
 
-	IControl*			m_parent;
+	IControl*				m_parent;
 
 	// Properties
-	float				m_width;
-	float				m_maxWidth;
-	float				m_minWidth;
-	float				m_height;
-	float				m_maxHeight;
-	float				m_minHeight;
+	float					m_width;
+	float					m_maxWidth;
+	float					m_minWidth;
+	float					m_height;
+	float					m_maxHeight;
+	float					m_minHeight;
 
-	std::wstring		m_name;
+	std::string				m_name;
 
-	bool				m_isVisible : 1;
-	bool				m_isEnabled : 1;
-	bool				m_isMouseOver : 1;
-	bool				m_isFocused : 1;
-	bool				m_isFocusable : 1;
+	bool					m_isVisible : 1;
+	bool					m_isEnabled : 1;
+	bool					m_isMouseOver : 1;
+	bool					m_isFocused : 1;
+	bool					m_isFocusable : 1;
 
-	EngineObject*		m_dataContext;
+	VerticalAlignement		m_verticalAlignement;
+	HorizontalAlignement	m_horizontalAlignement;
+
+	Thickness				m_margin;
+
+	EngineObject*			m_dataContext;
 
 public:
 							IControl		( IControl* parent );

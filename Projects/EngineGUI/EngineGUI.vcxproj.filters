@@ -25,6 +25,9 @@
     <Filter Include="EngineGUI\System\Windows">
       <UniqueIdentifier>{66f98e77-03de-4536-b03e-c471bdf63f5d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineGUI\System\CommonTypes">
+      <UniqueIdentifier>{a0d3499c-5079-4a81-a5c4-06ce7231e3ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h">
@@ -86,6 +89,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\Input\KeyEventArgs.h">
       <Filter>EngineGUI\System\Events\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\CommonTypes\Thickness.h">
+      <Filter>EngineGUI\System\CommonTypes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,8 @@
 #include "GUISystem.h"
 
+#include <map>
+#include <string>
+
 namespace GUI
 {
 
@@ -12,6 +15,8 @@ namespace GUI
 int					GUISystem::MainLoop()
 {
 	int size = sizeof( IControl );
+	int stringSize = sizeof( std::string );
+	int mapSize = sizeof( std::map< std::string, void* > );
 
 	return 0;
 }
