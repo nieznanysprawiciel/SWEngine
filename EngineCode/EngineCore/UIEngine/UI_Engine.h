@@ -6,7 +6,7 @@
 */
 
 
-#include "EngineCore/UIEngine/InputLibrary/IInput.h"
+#include "InputLibrary/IInput.h"
 #include "InputAbstractionLayer.h"
 
 

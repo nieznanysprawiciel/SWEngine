@@ -12,7 +12,7 @@
   <ItemDefinitionGroup>
     <Link>
       <AdditionalDependencies>$(SWEngineGUIFileName).lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SWEngineGUILibDir)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SWEngineGUILibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

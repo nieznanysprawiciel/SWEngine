@@ -7,9 +7,9 @@ struktur InputMapping i EventMapping oraz definicje standardowych warstw abstrak
 #include "Common/EngineObject.h"
 #include "EngineCore/UIEngine/StandardAbstractionLayers.h"
 
-#include "EngineCore/UIEngine/InputLibrary/KeyboardState.h"
-#include "EngineCore/UIEngine/InputLibrary/MouseState.h"
-#include "EngineCore/UIEngine/InputLibrary/JoystickState.h"
+#include "InputLibrary/KeyboardState.h"
+#include "InputLibrary/MouseState.h"
+#include "InputLibrary/JoystickState.h"
 
 class Engine;
 

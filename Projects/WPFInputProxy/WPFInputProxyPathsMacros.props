@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <WPFInputProxyName>WPFInputProxy</WPFInputProxyName>
+    <WPFInputProxySourceDir>$(EngineSourceDir)InputLibrary\$(WPFInputProxyName)\</WPFInputProxySourceDir>
+    <WPFInputProxyLibDir>$(EngineLibDir)InputLibrary\$(WPFInputProxyName)\</WPFInputProxyLibDir>
+    <WPFInputProxyFileName>$(WPFInputProxyName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</WPFInputProxyFileName>
+    <WPFInputProxyBuildDir>$(EngineBuildDir)$(WPFInputProxyName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</WPFInputProxyBuildDir>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalLibraryDirectories>$(WPFInputProxyLibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(WPFInputProxyFileName).lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="WPFInputProxyName">
+      <Value>$(WPFInputProxyName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="WPFInputProxySourceDir">
+      <Value>$(WPFInputProxySourceDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="WPFInputProxyLibDir">
+      <Value>$(WPFInputProxyLibDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="WPFInputProxyFileName">
+      <Value>$(WPFInputProxyFileName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="WPFInputProxyBuildDir">
+      <Value>$(WPFInputProxyBuildDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

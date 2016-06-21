@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <DirectInputName>DirectInput</DirectInputName>
+    <DirectInputSourceDir>$(EngineSourceDir)InputLibrary\$(DirectInputName)\</DirectInputSourceDir>
+    <DirectInputLibDir>$(EngineLibDir)InputLibrary\$(DirectInputName)\</DirectInputLibDir>
+    <DirectInputFileName>$(DirectInputName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</DirectInputFileName>
+    <DirectInputBuildDir>$(EngineBuildDir)$(DirectInputName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</DirectInputBuildDir>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\$(PlatformTarget);$(DirectInputLibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(DirectInputFileName).lib;dinput8.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <ClCompile>
+      <PreprocessorDefinitions>INITGUID;DIRECTINPUT_VERSION=0x0800;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="DirectInputName">
+      <Value>$(DirectInputName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DirectInputSourceDir">
+      <Value>$(DirectInputSourceDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DirectInputLibDir">
+      <Value>$(DirectInputLibDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DirectInputFileName">
+      <Value>$(DirectInputFileName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="DirectInputBuildDir">
+      <Value>$(DirectInputBuildDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

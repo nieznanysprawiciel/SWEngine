@@ -28,6 +28,9 @@
     <Filter Include="EngineGUI\System\CommonTypes">
       <UniqueIdentifier>{a0d3499c-5079-4a81-a5c4-06ce7231e3ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="InputLibrary">
+      <UniqueIdentifier>{556b6893-e638-4372-b2c8-8810419333b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h">
@@ -93,6 +96,24 @@
     <ClInclude Include="..\..\EngineCode\EngineGUI\System\CommonTypes\Thickness.h">
       <Filter>EngineGUI\System\CommonTypes</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\IInput.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\InputDeviceInfo.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\JoystickState.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\KeyboardState.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\MouseState.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\Factory.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\IControl.cpp">
@@ -139,6 +160,15 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\KeyEventArgs.cpp">
       <Filter>EngineGUI\System\Events\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\InputLibrary\JoystickState.cpp">
+      <Filter>InputLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\InputLibrary\KeyboardState.cpp">
+      <Filter>InputLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\InputLibrary\MouseState.cpp">
+      <Filter>InputLibrary</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

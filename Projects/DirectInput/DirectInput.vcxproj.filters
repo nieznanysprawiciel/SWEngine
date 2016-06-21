@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="DirectInput">
+      <UniqueIdentifier>{65fa13a9-b410-4f98-8751-bafd00a45de2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InputLibrary">
+      <UniqueIdentifier>{245f00fd-e4ca-43a2-85cb-ee99ccddcb4e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\EngineCode\InputLibrary\DirectInput\DirectInputModule.cpp">
+      <Filter>DirectInput</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\DirectInput\DirectInputModule.h">
+      <Filter>DirectInput</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\DirectInput\IncludeDirectInput.h">
+      <Filter>DirectInput</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\IInput.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\InputDeviceInfo.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\JoystickState.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\KeyboardState.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\MouseState.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\Factory.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

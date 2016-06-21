@@ -14,7 +14,7 @@ oraz g³ówne funkcje do renderingu.
 #include "EngineCore/GamePlay/IGamePlay.h"
 #include "EngineCore/EngineHelpers/PerformanceCheck.h"
 
-#include "EngineCore/UIEngine/InputLibrary/DirectInput/DirectInputModule.h"
+#include "InputLibrary/Factory.h"
 
 #include "Common/Serialization/Serializer.h"
 #include "Common/Serialization/SW/EngineSerializationContext.h"
@@ -178,7 +178,7 @@ bool Engine::InitGraphicAPI( int width, int height, bool fullScreen )
 /**@brief Inicjuje urz¹dzenie wejœcia. Domyœlnie u¿ywany jest @ref DirectInputModule.*/
 bool Engine::InitInputModule		()
 {
-	DirectInputModule* newModule = new DirectInputModule();
+	IInput* newModule = InputFactory::CreateDirectInput();
 
 	InputInitInfo info;
 	info.AppInstance = Context->instanceHandler;

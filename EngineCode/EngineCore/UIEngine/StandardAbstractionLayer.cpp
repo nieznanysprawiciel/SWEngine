@@ -1,8 +1,8 @@
 #include "EngineCore/stdafx.h"
 #include "EngineCore/UIEngine/StandardAbstractionLayers.h"
 
-#include "EngineCore/UIEngine/InputLibrary/KeyboardState.h"
-#include "EngineCore/UIEngine/InputLibrary/MouseState.h"
+#include "InputLibrary/KeyboardState.h"
+#include "InputLibrary/MouseState.h"
 
 #include <vector>
 

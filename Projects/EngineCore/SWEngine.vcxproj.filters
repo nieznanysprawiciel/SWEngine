@@ -99,15 +99,6 @@
     <Filter Include="EngineCore\ControllersEngine\BasicControllers\Editor">
       <UniqueIdentifier>{32d2f89a-54e2-47dc-96de-fd1865a06d32}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EngineCore\UIEngine\InputLibrary">
-      <UniqueIdentifier>{f5f313fb-0a6b-4dfd-9149-c4b91887bd07}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EngineCore\UIEngine\InputLibrary\DirectInput">
-      <UniqueIdentifier>{6cb17f4a-04c8-4698-bc97-0128a528bec4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EngineCore\UIEngine\InputLibrary\InputWPF">
-      <UniqueIdentifier>{77ca789f-6aa7-499d-b6ae-a956da79e17d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Common\Serialization">
       <UniqueIdentifier>{4cbc9588-af5c-436c-a81c-f2d37e7b7ef2}</UniqueIdentifier>
     </Filter>
@@ -116,6 +107,12 @@
     </Filter>
     <Filter Include="EngineCore\MainEngine\Diagnostics">
       <UniqueIdentifier>{68fcd04a-83f8-4914-b41b-aa84fc2f7147}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InputLibrary">
+      <UniqueIdentifier>{248639e6-686e-495f-82c3-ead51ccff49b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GraphicAPI">
+      <UniqueIdentifier>{e7335025-5a29-428f-bfc9-7ca876de2cf8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -407,30 +404,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\Editor\GizmoController.h">
       <Filter>EngineCore\ControllersEngine\BasicControllers\Editor</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\IInput.h">
-      <Filter>EngineCore\UIEngine\InputLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\DirectInput\IncludeDirectInput.h">
-      <Filter>EngineCore\UIEngine\InputLibrary\DirectInput</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\KeyboardState.h">
-      <Filter>EngineCore\UIEngine\InputLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\MouseState.h">
-      <Filter>EngineCore\UIEngine\InputLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\JoystickState.h">
-      <Filter>EngineCore\UIEngine\InputLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\InputDeviceInfo.h">
-      <Filter>EngineCore\UIEngine\InputLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\DirectInput\DirectInputModule.h">
-      <Filter>EngineCore\UIEngine\InputLibrary\DirectInput</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\InputWPF\WPFInputProxy.h">
-      <Filter>EngineCore\UIEngine\InputLibrary\InputWPF</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\IControllersState.h">
       <Filter>EngineCore\ControllersEngine</Filter>
     </ClInclude>
@@ -451,6 +424,57 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\Serialization\SW\Serialization.h">
       <Filter>Common\Serialization\SW</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\IInput.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\InputDeviceInfo.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\JoystickState.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\KeyboardState.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\MouseState.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\GraphicAPIConstants.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IBuffer.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IGraphicAPIInitializer.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderer.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderTarget.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IShader.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IShaderInputLayout.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ITexture.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\MeshResources.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourceObject.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcesFactory.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\Factory.h">
+      <Filter>InputLibrary</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -663,21 +687,6 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\Editor\GizmoController.cpp">
       <Filter>EngineCore\ControllersEngine\BasicControllers\Editor</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\KeyboardState.cpp">
-      <Filter>EngineCore\UIEngine\InputLibrary</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\MouseState.cpp">
-      <Filter>EngineCore\UIEngine\InputLibrary</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\JoystickState.cpp">
-      <Filter>EngineCore\UIEngine\InputLibrary</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\DirectInput\DirectInputModule.cpp">
-      <Filter>EngineCore\UIEngine\InputLibrary\DirectInput</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\InputWPF\WPFInputProxy.cpp">
-      <Filter>EngineCore\UIEngine\InputLibrary\InputWPF</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\IControllersState.cpp">
       <Filter>EngineCore\ControllersEngine</Filter>

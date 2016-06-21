@@ -18,11 +18,22 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\EngineCode\InputLibrary\InputWPF\WPFInputProxy.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\Factory.h" />
+    <ClInclude Include="..\..\EngineCode\InputLibrary\IInput.h" />
+    <ClInclude Include="..\..\EngineCode\InputLibrary\InputDeviceInfo.h" />
+    <ClInclude Include="..\..\EngineCode\InputLibrary\InputWPF\WPFInputProxy.h" />
+    <ClInclude Include="..\..\EngineCode\InputLibrary\JoystickState.h" />
+    <ClInclude Include="..\..\EngineCode\InputLibrary\KeyboardState.h" />
+    <ClInclude Include="..\..\EngineCode\InputLibrary\MouseState.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{C6DAB3EE-E9A7-47FC-9B33-A8F4250C219B}</ProjectGuid>
+    <ProjectGuid>{364E3CFB-CCAA-4AAF-AA03-D6E2D9749228}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>SWGUI</RootNamespace>
-    <ProjectName>EngineGUI</ProjectName>
+    <RootNamespace>WPFInputProxy</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -57,30 +68,26 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\IncludeExternal.props" />
-    <Import Project="EngineGUIPathMacros.props" />
-    <Import Project="EngineGUIConfiguration.props" />
+    <Import Project="WPFInputProxyPathsMacros.props" />
+    <Import Project="WPFInputProxyConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\IncludeExternal.props" />
-    <Import Project="EngineGUIPathMacros.props" />
-    <Import Project="EngineGUIConfiguration.props" />
+    <Import Project="WPFInputProxyPathsMacros.props" />
+    <Import Project="WPFInputProxyConfiguration.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\IncludeExternal.props" />
-    <Import Project="EngineGUIPathMacros.props" />
-    <Import Project="EngineGUIConfiguration.props" />
+    <Import Project="WPFInputProxyPathsMacros.props" />
+    <Import Project="WPFInputProxyConfiguration.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\IncludeExternal.props" />
-    <Import Project="EngineGUIPathMacros.props" />
-    <Import Project="EngineGUIConfiguration.props" />
+    <Import Project="WPFInputProxyPathsMacros.props" />
+    <Import Project="WPFInputProxyConfiguration.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
@@ -91,7 +98,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -105,7 +111,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -121,7 +126,6 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -139,7 +143,6 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -148,55 +151,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\EngineCode\Common\MemoryLeaks.h" />
-    <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\DockPanel.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\Grid.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\IPanel.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\StackPanel.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\WrapPanel.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\IControl.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\TopLevelControl.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\System\CommonTypes\Thickness.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\Input\KeyboardEventArgs.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\Input\KeyEventArgs.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\System\GUISystem.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\IEventArgs.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\Input\InputEventArgs.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseButtonEventArgs.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseEventArgs.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseWheelEventArgs.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\System\HostWindow.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Windows\INativeWindow.h" />
-    <ClInclude Include="..\..\EngineCode\EngineGUI\targetver.h" />
-    <ClInclude Include="..\..\EngineCode\InputLibrary\Factory.h" />
-    <ClInclude Include="..\..\EngineCode\InputLibrary\IInput.h" />
-    <ClInclude Include="..\..\EngineCode\InputLibrary\InputDeviceInfo.h" />
-    <ClInclude Include="..\..\EngineCode\InputLibrary\JoystickState.h" />
-    <ClInclude Include="..\..\EngineCode\InputLibrary\KeyboardState.h" />
-    <ClInclude Include="..\..\EngineCode\InputLibrary\MouseState.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\DockPanel.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\Grid.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\IPanel.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\StackPanel.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\WrapPanel.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\IControl.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\KeyboardEventArgs.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\KeyEventArgs.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineGUI\System\GUISystem.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\IEventArgs.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\InputEventArgs.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseButtonEventArgs.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseEventArgs.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseWheelEventArgs.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineGUI\System\HostWindow.cpp" />
-    <ClCompile Include="..\..\EngineCode\InputLibrary\JoystickState.cpp" />
-    <ClCompile Include="..\..\EngineCode\InputLibrary\KeyboardState.cpp" />
-    <ClCompile Include="..\..\EngineCode\InputLibrary\MouseState.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

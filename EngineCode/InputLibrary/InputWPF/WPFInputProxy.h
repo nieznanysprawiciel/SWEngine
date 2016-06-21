@@ -6,7 +6,7 @@
 */
 
 
-#include "EngineCore/UIEngine/InputLibrary/IInput.h"
+#include "InputLibrary/IInput.h"
 
 
 /**@brief Klasa do przekierowywania do silnika wejœcia pobranego z WPFa.*/

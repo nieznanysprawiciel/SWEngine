@@ -1,6 +1,6 @@
 #pragma once
 
-#include "EngineCore/UIEngine/InputLibrary/IInput.h"
+#include "InputLibrary/IInput.h"
 #include "IncludeDirectInput.h"
 
 #include <vector>

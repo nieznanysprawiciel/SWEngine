@@ -57,7 +57,6 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\IncludeDirectInput.props" />
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="EngineCorePathMacros.props" />
     <Import Project="EngineCoreConfiguration.props" />
@@ -65,7 +64,6 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\IncludeDirectInput.props" />
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="EngineCorePathMacros.props" />
     <Import Project="EngineCoreConfiguration.props" />
@@ -73,7 +71,6 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\IncludeDirectInput.props" />
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="EngineCorePathMacros.props" />
     <Import Project="EngineCoreConfiguration.props" />
@@ -81,7 +78,6 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\Props\PathsMacros.props" />
-    <Import Project="..\Props\IncludeDirectInput.props" />
     <Import Project="..\Props\IncludeFBX_SDK.props" />
     <Import Project="EngineCorePathMacros.props" />
     <Import Project="EngineCoreConfiguration.props" />
@@ -243,14 +239,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\IOctreeNode.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeLeaf.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeNode.h" />
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\DirectInput\DirectInputModule.h" />
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\DirectInput\IncludeDirectInput.h" />
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\IInput.h" />
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\InputDeviceInfo.h" />
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\InputWPF\WPFInputProxy.h" />
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\JoystickState.h" />
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\KeyboardState.h" />
-    <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\MouseState.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\ActorsApi.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\Assets.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Actors\Communication.h" />
@@ -286,6 +274,23 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Model3DFromFile.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\MovementEngine.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\GraphicAPIConstants.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IBuffer.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IGraphicAPIInitializer.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderer.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderTarget.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IShader.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IShaderInputLayout.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ITexture.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\MeshResources.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourceObject.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcesFactory.h" />
+    <ClInclude Include="..\..\EngineCode\InputLibrary\Factory.h" />
+    <ClInclude Include="..\..\EngineCode\InputLibrary\IInput.h" />
+    <ClInclude Include="..\..\EngineCode\InputLibrary\InputDeviceInfo.h" />
+    <ClInclude Include="..\..\EngineCode\InputLibrary\JoystickState.h" />
+    <ClInclude Include="..\..\EngineCode\InputLibrary\KeyboardState.h" />
+    <ClInclude Include="..\..\EngineCode\InputLibrary\MouseState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.cpp">
@@ -353,11 +358,6 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\CollisionOctree.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeLeaf.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeNode.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\DirectInput\DirectInputModule.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\InputWPF\WPFInputProxy.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\JoystickState.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\KeyboardState.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputLibrary\MouseState.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Actors\ActorsApi.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Actors\Assets.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Actors\Communication.cpp" />

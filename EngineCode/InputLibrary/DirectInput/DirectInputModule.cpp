@@ -1,5 +1,11 @@
-#include "EngineCore/stdafx.h"
 #include "DirectInputModule.h"
+#include "Common/TypesDefinitions.h"
+
+#include "InputLibrary/Factory.h"
+
+#include "Common/MemoryLeaks.h"
+
+#include <assert.h>
 
 
 #define DIRECT_INPUT_OK				DI_OK
@@ -102,8 +108,8 @@ std::vector< const InputDeviceInfo* >	DirectInputModule::GetDevicesInfo		()
 void									DirectInputModule::Update				( float timeInterval )
 {
 	// Klawiatura
-	for( int i = 0; i < m_keyboards.size(); ++i )
-		UpdateKeyboard( i );
+	for( Size i = 0; i < m_keyboards.size(); ++i )
+		UpdateKeyboard( (int)i );
 
 	// Myszka
 	bool result;
@@ -113,15 +119,15 @@ void									DirectInputModule::Update				( float timeInterval )
 	result = result && ScreenToClient( m_windowHandle, &pos ) !=0;
 	assert( result );
 
-	for( int i = 0; i < m_mouses.size(); ++i )
+	for( Size i = 0; i < m_mouses.size(); ++i )
 	{
-		UpdateMouse( i );
+		UpdateMouse( (int)i );
 		m_mouses[ i ]->SetPosition( (short)pos.x, (short)pos.y );
 	}
 
 	// Joystick
-	for( int i = 0; i < m_joysticks.size(); ++i )
-		UpdateJoystick( i );
+	for( Size i = 0; i < m_joysticks.size(); ++i )
+		UpdateJoystick( (int)i );
 }
 
 /**@brief */
@@ -187,4 +193,13 @@ void			DirectInputModule::ClearInputStates	()
 		delete state;
 	for( auto state : m_joysticks )
 		delete state;
+}
+
+//====================================================================================//
+//			Creating	
+//====================================================================================//
+
+IInput*			InputFactory::CreateDirectInput		()
+{
+	return new DirectInputModule();
 }

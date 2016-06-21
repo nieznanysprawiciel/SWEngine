@@ -32,7 +32,7 @@ napisanego w C#.
 
 #include "EngineEditor/EditorPlugin/Actors/ActorClassMetaInfo.h"
 #include "EngineEditor/EditorPlugin/EnginePointerProvider.h"
-#include "EngineCore/UIEngine/InputLibrary/InputWPF/WPFInputProxy.h"
+#include "InputLibrary/InputWPF/WPFInputProxy.h"
 
 #include "Actors/ActorWrapper.h"
 
