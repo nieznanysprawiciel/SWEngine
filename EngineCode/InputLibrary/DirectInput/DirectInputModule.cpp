@@ -133,7 +133,12 @@ void									DirectInputModule::Update				( float timeInterval )
 /**@brief */
 void DirectInputModule::UpdateKeyboard( int idx )
 {
-	m_keyboardInput->GetDeviceState( 256, m_keyboards[ idx ]->GetKeyboardState() );
+	char newState[ 256 ];
+	m_keyboardInput->GetDeviceState( 256, newState );
+
+	auto prevState = m_keyboards[ idx ]->KeysState();
+	for( int i = 0; i < 256; ++i )
+		prevState[ i ] = newState[ i ] != 0;
 }
 
 /**@brief */

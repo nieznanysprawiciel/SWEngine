@@ -1,5 +1,7 @@
 #include "GUISystem.h"
 
+#include "InputLibrary/KeyboardState.h"
+
 #include <map>
 #include <string>
 
@@ -17,6 +19,7 @@ int					GUISystem::MainLoop()
 	int size = sizeof( IControl );
 	int stringSize = sizeof( std::string );
 	int mapSize = sizeof( std::map< std::string, void* > );
+	int stateSize = sizeof( KeyState );
 
 	return 0;
 }

@@ -221,8 +221,8 @@ Móg³by to byæ np któryæ bit ustawiony na 1 czy coœ.*/
 void WinApiInputProxy::KeyboardChange( int keyId, bool pressed )
 {
 	auto& keyboard = m_keyboards[ 0 ];
-	auto state = keyboard->GetKeyboardState();
-	state[ KEYBOARD_BUTTONS_MAPPING[ keyId ] ] = (char)pressed;
+	auto state = keyboard->KeysState();
+	state[ KEYBOARD_BUTTONS_MAPPING[ keyId ] ] = pressed;
 }
 
 /**@brief Ustawia nowy stan przycisku myszy.

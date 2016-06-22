@@ -5,8 +5,6 @@
 
 
 #include "EngineCore/EngineHelpers/PerformanceCheck.h"
-bool pushedF1 = false;		///< Hack. Zapamiêtuje stan przycisku odpowiedzialnego za wys³anie statystyk do pliku, ¿eby nie by³o zdublowanych wywo³añ.
-
 
 #include "Common/MemoryLeaks.h"
 
@@ -85,17 +83,14 @@ void UI_Engine::ProceedInput( float timeInterval )
 		auto keyboardState = keyboards[ 0 ]->GetKeyboardState();
 
 		///<@fixme Wy³¹czenia aplikacji musi siê odbywaæ w jakiœ inny sposób. Powinien byæ jakiœ domyœlny mechanizm, ¿eby u¿ytkownik nie zapomnia³ zrobiæ wy³¹czania.
-		if ( keyboardState[ KeyboardState::PHYSICAL_KEYS::KEY_ESCAPE ] & 0x80 )
+		if ( keyboardState[ KeyboardState::PHYSICAL_KEYS::KEY_ESCAPE ].IsPressed() )
 			engine->EndAplication();
 
 		///<@fixme To jest hack i nie mam pojêcia jak to robiæ w wersji docelowej.
-		if ( (keyboardState[ KeyboardState::PHYSICAL_KEYS::KEY_F1 ] & 0x80) && !pushedF1 )
+		if( keyboardState[ KeyboardState::PHYSICAL_KEYS::KEY_F1 ].IsKeyDownEvent() )
 		{
-			pushedF1 = true;
 			PRINT_STATISTICS( PERFORMANCE_STATISTICS_FILE_PATH );
 		}
-		if ( !(keyboardState[ KeyboardState::PHYSICAL_KEYS::KEY_F1 ] & 0x80) )
-			pushedF1 = false;
 
 		UpdateAbstractionLayer( keyboards, mouses, joysticks );
 	}
