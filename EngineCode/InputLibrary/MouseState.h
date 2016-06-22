@@ -1,6 +1,8 @@
 #pragma once
 
 #include "InputDeviceInfo.h"
+#include "KeyState.h"
+
 
 class MouseState
 {
@@ -10,14 +12,14 @@ private:
 
 	float				m_axes[ 4 ];
 	short				m_position[ 2 ];	///< Wspó³rzêdne X i Y.
-	char				m_buttons[ 8 ];
+	KeyState			m_buttons[ 8 ];
 
 public:
 	MouseState();
 	~MouseState();
 
 	float*						GetAxesState()		{ return m_axes; }
-	char*						GetButtonsState()	{ return m_buttons; }
+	KeyState*					GetButtonsState()	{ return m_buttons; }
 
 	short						GetPositionX()		{ return m_position[ 0 ]; }
 	short						GetPositionY()		{ return m_position[ 1 ]; }
@@ -60,3 +62,26 @@ public:
 	};
 
 };
+
+/**@brief */
+inline MouseState::MouseState()
+{
+	for( auto& val : m_axes )
+		val = 0.0f;
+	for( auto& val : m_buttons )
+		val = 0;
+}
+
+/**@brief */
+inline MouseState::~MouseState()
+{ }
+
+/**@brief Ustawia pozycjê myszy.
+
+Powinno byæ u¿ywane jedynie przez modu³ wejœcia (@ref IInput).*/
+inline void			MouseState::SetPosition			( short X, short Y )
+{
+	m_position[ 0 ] = X;
+	m_position[ 1 ] = Y;
+}
+

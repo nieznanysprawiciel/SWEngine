@@ -25,6 +25,7 @@
     <ClInclude Include="..\..\EngineCode\InputLibrary\InputWinApi\WinApiInputProxy.h" />
     <ClInclude Include="..\..\EngineCode\InputLibrary\JoystickState.h" />
     <ClInclude Include="..\..\EngineCode\InputLibrary\KeyboardState.h" />
+    <ClInclude Include="..\..\EngineCode\InputLibrary\KeyState.h" />
     <ClInclude Include="..\..\EngineCode\InputLibrary\MouseState.h" />
   </ItemGroup>
   <ItemGroup>

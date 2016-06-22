@@ -30,6 +30,9 @@
     <ClInclude Include="..\..\EngineCode\InputLibrary\InputWinApi\WinApiInputProxy.h">
       <Filter>WinApiInputProxy</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\KeyState.h">
+      <Filter>InputLibrary</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\InputLibrary\InputWinApi\WinApiInputProxy.cpp">

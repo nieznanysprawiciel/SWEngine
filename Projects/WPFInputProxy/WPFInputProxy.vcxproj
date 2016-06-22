@@ -28,6 +28,7 @@
     <ClInclude Include="..\..\EngineCode\InputLibrary\InputWPF\WPFInputProxy.h" />
     <ClInclude Include="..\..\EngineCode\InputLibrary\JoystickState.h" />
     <ClInclude Include="..\..\EngineCode\InputLibrary\KeyboardState.h" />
+    <ClInclude Include="..\..\EngineCode\InputLibrary\KeyState.h" />
     <ClInclude Include="..\..\EngineCode\InputLibrary\MouseState.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

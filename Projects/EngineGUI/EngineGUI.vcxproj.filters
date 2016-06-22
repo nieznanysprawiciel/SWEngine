@@ -161,14 +161,5 @@
     <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\KeyEventArgs.cpp">
       <Filter>EngineGUI\System\Events\Input</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\InputLibrary\JoystickState.cpp">
-      <Filter>InputLibrary</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\InputLibrary\KeyboardState.cpp">
-      <Filter>InputLibrary</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\InputLibrary\MouseState.cpp">
-      <Filter>InputLibrary</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

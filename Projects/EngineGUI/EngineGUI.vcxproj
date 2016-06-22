@@ -193,9 +193,6 @@
     <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseEventArgs.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseWheelEventArgs.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineGUI\System\HostWindow.cpp" />
-    <ClCompile Include="..\..\EngineCode\InputLibrary\JoystickState.cpp" />
-    <ClCompile Include="..\..\EngineCode\InputLibrary\KeyboardState.cpp" />
-    <ClCompile Include="..\..\EngineCode\InputLibrary\MouseState.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

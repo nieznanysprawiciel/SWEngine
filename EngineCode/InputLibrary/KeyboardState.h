@@ -7,57 +7,17 @@
 
 
 #include "InputDeviceInfo.h"
+#include "KeyState.h"
 
-class KeyState
-{
-	enum KeyStateFlag
-	{
-		Pressed = 0x1,
-		DownEvent = 0x2,
-		UpEvent = 0x4
-	};
 
-private:
-
-	char	m_state;
-
-public:
-
-	inline bool		IsPressed		() const	{ return ( m_state & Pressed ) != 0; }
-	inline bool		IsUp			() const	{ return !IsPressed(); }
-
-	inline bool		IsKeyDownEvent	() const	{ return ( m_state & DownEvent ) != 0; }
-	inline bool		ISKeyUpEvent	() const	{ return ( m_state & UpEvent ) != 0; }
-
-	/// Umo¿liwia na umieszczanie w ifach if( KeyState )
-	inline operator void*			() const	{ return (void*)IsPressed(); }
-
-public:
-	///@name Funkcje do ustawiania stanu (tylko dla dzieci IInput)
-	///@{
-	inline void		Press		()	{ m_state = Pressed | DownEvent; }	///< Wciska przycisk.
-	inline void		UnPress		()	{ m_state = UpEvent; }				///< Puszcza przycisk.
-	inline void		HoldState	()	{ m_state = m_state & Pressed; }	///< Podtrzymuje stan przycisku i kasuje info o eventach.
-
-	inline void		operator=	( bool newState )
-	{
-		if( !IsPressed() && newState )
-			Press();
-		else if( IsPressed() && !newState )
-			UnPress();
-		else
-			HoldState();
-	}
-	///@}
-};
-
+#define KEYBOARD_STATE_KEYS_NUMBER 256
 
 class KeyboardState
 {
 private:
 
 	InputDeviceInfo		m_info;
-	KeyState			m_keyboardState[ 256 ];
+	KeyState			m_keyboardState[ KEYBOARD_STATE_KEYS_NUMBER ];
 
 public:
 	explicit KeyboardState();
@@ -66,8 +26,11 @@ public:
 	const KeyState*				GetKeyboardState() const		{ return m_keyboardState; }
 	const InputDeviceInfo&		GetInfo			() const		{ return m_info; }
 
-	/// Funkcja tylko dla dzieci IInput.
+	///@name Funkcje do ustawiania stanu (tylko dla dzieci IInput)
+	///@{
 	KeyState*					KeysState		()				{ return m_keyboardState; }
+
+	///@}
 
 public:
 	/**@brief Fizyczne numery przycisków na klawiaturze.
@@ -247,3 +210,17 @@ public:
 	};
 
 };
+
+
+
+/**@brief */
+inline KeyboardState::KeyboardState()
+{
+	for( auto& val : m_keyboardState )
+		val = 0;
+}
+
+/**@brief */
+inline KeyboardState::~KeyboardState()
+{ }
+

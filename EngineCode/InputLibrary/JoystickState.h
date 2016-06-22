@@ -25,3 +25,11 @@ public:
 	const InputDeviceInfo&		GetInfo()	{ return m_info; }
 };
 
+inline JoystickState::JoystickState()
+{ }
+
+
+inline JoystickState::~JoystickState()
+{ }
+
+

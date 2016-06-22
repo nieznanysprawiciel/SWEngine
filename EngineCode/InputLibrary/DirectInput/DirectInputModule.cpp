@@ -133,11 +133,11 @@ void									DirectInputModule::Update				( float timeInterval )
 /**@brief */
 void DirectInputModule::UpdateKeyboard( int idx )
 {
-	char newState[ 256 ];
-	m_keyboardInput->GetDeviceState( 256, newState );
+	char newState[ KEYBOARD_STATE_KEYS_NUMBER ];
+	m_keyboardInput->GetDeviceState( KEYBOARD_STATE_KEYS_NUMBER, newState );
 
 	auto prevState = m_keyboards[ idx ]->KeysState();
-	for( int i = 0; i < 256; ++i )
+	for( int i = 0; i < KEYBOARD_STATE_KEYS_NUMBER; ++i )
 		prevState[ i ] = newState[ i ] != 0;
 }
 
@@ -154,7 +154,7 @@ void DirectInputModule::UpdateMouse( int idx )
 
 	auto mouseButtons = m_mouses[ idx ]->GetButtonsState();
 	for( int i = 0; i < 8; ++i )
-		mouseButtons[ i ] = mouseStruct.rgbButtons[ i ];
+		mouseButtons[ i ] = mouseStruct.rgbButtons[ i ] != 0;
 }
 
 /**@brief */

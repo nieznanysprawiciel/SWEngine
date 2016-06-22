@@ -211,6 +211,8 @@ bool ArrayStaticInitializerFun()
 	KEYBOARD_BUTTONS_MAPPING[ VK_LSHIFT ]	= KeyboardState::PHYSICAL_KEYS::KEY_LSHIFT;
 
 	KEYBOARD_BUTTONS_MAPPING[ VK_RSHIFT ]	= KeyboardState::PHYSICAL_KEYS::KEY_RSHIFT;
+
+	return false;
 }
 static bool arrayStaticInitializer = ArrayStaticInitializerFun();
 
