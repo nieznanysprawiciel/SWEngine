@@ -1,4 +1,3 @@
-#include "EngineCore/stdafx.h"
 #include "WPFInputProxy.h"
 
 

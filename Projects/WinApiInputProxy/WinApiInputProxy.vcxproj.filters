@@ -27,5 +27,13 @@
     <ClInclude Include="..\..\EngineCode\InputLibrary\Factory.h">
       <Filter>InputLibrary</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\InputLibrary\InputWinApi\WinApiInputProxy.h">
+      <Filter>WinApiInputProxy</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\EngineCode\InputLibrary\InputWinApi\WinApiInputProxy.cpp">
+      <Filter>WinApiInputProxy</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

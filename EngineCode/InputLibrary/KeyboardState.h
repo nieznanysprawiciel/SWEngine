@@ -195,6 +195,10 @@ public:
 		, KEY_RIGHTARROW      = KEY_RIGHT           /* RightArrow on arrow keypad */
 		, KEY_DOWNARROW       = KEY_DOWN            /* DownArrow on arrow keypad */
 		, KEY_PGDN            = KEY_NEXT            /* PgDn on arrow keypad */
+
+		, KEY_PAGEUP		  = KEY_PGUP
+		, KEY_PAGEDOWN		  = KEY_PGDN
+		, KEY_PRINTSCREEN	  = KEY_SYSRQ
 	};
 
 };

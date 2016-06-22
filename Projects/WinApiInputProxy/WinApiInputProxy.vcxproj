@@ -22,9 +22,13 @@
     <ClInclude Include="..\..\EngineCode\InputLibrary\Factory.h" />
     <ClInclude Include="..\..\EngineCode\InputLibrary\IInput.h" />
     <ClInclude Include="..\..\EngineCode\InputLibrary\InputDeviceInfo.h" />
+    <ClInclude Include="..\..\EngineCode\InputLibrary\InputWinApi\WinApiInputProxy.h" />
     <ClInclude Include="..\..\EngineCode\InputLibrary\JoystickState.h" />
     <ClInclude Include="..\..\EngineCode\InputLibrary\KeyboardState.h" />
     <ClInclude Include="..\..\EngineCode\InputLibrary\MouseState.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\EngineCode\InputLibrary\InputWinApi\WinApiInputProxy.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9351732D-B6EC-4DB2-BD75-F18E880B3815}</ProjectGuid>
