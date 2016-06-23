@@ -63,7 +63,7 @@ protected:
 	short	mouseX;			///<Po³o¿enie myszki w X
 	short	mouseY;			///<Po³o¿enie myszi w Y
 
-	std::vector< char >		m_virtualButtons;		///<Tablica wirtualnych przycisków
+	std::vector< KeyState >	m_virtualButtons;		///<Tablica wirtualnych przycisków
 	std::vector< float >	m_virtualAxis;			///<Tablica dla kontrolerów osiowych
 
 	bool	active;			///<Stwierdza czy dana wartstwa abstrakcji jest aktualnie aktywna
@@ -78,7 +78,7 @@ public:
 	inline unsigned short	GetNumAxis()			{ return (unsigned short)m_virtualAxis.size(); }		///<Zwraca liczbe osi
 	inline unsigned short	GetNumButtons()			{ return (unsigned short)m_virtualButtons.size(); }		///<Zwraca liczbe przycisków
 
-	inline const std::vector< char >&		GetButtonsTable()		{ return m_virtualButtons; }	///<Zwraca tablicê wirtualnych przycisków
+	inline const std::vector< KeyState >&	GetButtonsTable()		{ return m_virtualButtons; }	///<Zwraca tablicê wirtualnych przycisków
 	inline const std::vector< float >&		GetAxisTable()			{ return m_virtualAxis; }	///<Zwraca tablicê wirtualnych osi
 };
 
@@ -94,9 +94,9 @@ class InputAbstractionLayer : public InputAbstractionLayerBase
 {
 private:
 	/**Zmienna m_activeChanged jest ustawiana w momencie, kiedy obiekt staje
-		siê aktywn¹ warstw¹ abstrakcji.Ma za zadanie zapobiegac wysy³aniu eventów
+		siê aktywn¹ warstw¹ abstrakcji. Ma za zadanie zapobiegaæ wysy³aniu eventów
 		o wciœniêciu przycisków, które zosta³y wciœniête w momencie aktywnoœci poprzedniej
-		wartwy abstrakcji.Zmienna chroni tylko przed eventami typu wciœniêcie przycisku,
+		wartwy abstrakcji.Z mienna chroni tylko przed eventami typu wciœniêcie przycisku,
 		nie da siê za jej pomoc¹ zablokowaæ eventów typu puszczenie przycisku,
 		poniewa¿ mo¿e to nast¹piæ wiele klatek póŸniej.*/
 	bool m_activeChanged;

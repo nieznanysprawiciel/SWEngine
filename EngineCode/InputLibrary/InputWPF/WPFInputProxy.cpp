@@ -69,6 +69,12 @@ void WPFInputProxy::Update( float timeInterval )
 
 	m_lastX = mouse->GetPositionX();
 	m_lastY = mouse->GetPositionY();
+
+	for( auto& keyboard : m_keyboards )
+		keyboard->RemoveEvents();
+
+	for( auto& mouse : m_mouses )
+		mouse->RemoveEvents();
 }
 
 /**@copydoc IInput::UpdateDevices
@@ -288,13 +294,20 @@ KeyboardState::PHYSICAL_KEYS KEYBOARD_BUTTONS_MAPPING[ NUM_WPF_KEYBOARD_BUTTONS 
 
 /**@brief Ustawia nowy stan przycisku na klawiaturze.
 
-@todo W przysz³oœci mo¿e trzeba bêdzie dodaæ informacjê o zmienie stanu.
-Móg³by to byæ np któryæ bit ustawiony na 1 czy coœ.*/
+Wpf mo¿e wygenerowaæ eventy o kolejnych wciœniêciach kiedy u¿ytkownik wciœn¹³
+i przytrzyma³ przez jakiœ czas klawisz. W takiej sytuacji te eventy s¹ równie¿
+dostêpne.*/
 void WPFInputProxy::KeyboardChange( int keyId, bool pressed )
 {
 	auto& keyboard = m_keyboards[ 0 ];
 	auto state = keyboard->KeysState();
-	state[ KEYBOARD_BUTTONS_MAPPING[ keyId ] ] = pressed;
+
+	// Nie u¿ywamy przeci¹¿onego operatora=, poniewa¿ wtedy nie moglibyœmy wy³apywaæ
+	// wielokrotnych wciœnieæ (keystrokes??)
+	if( pressed )
+		state[ KEYBOARD_BUTTONS_MAPPING[ keyId ] ].Press();
+	else
+		state[ KEYBOARD_BUTTONS_MAPPING[ keyId ] ].UnPress();
 }
 
 /**@brief Ustawia nowy stan przycisku myszy.
@@ -305,7 +318,10 @@ void WPFInputProxy::MouseButtonChange( int button, bool pressed )
 {
 	auto& mouse = m_mouses[ 0 ];
 	auto buttonsState = mouse->GetButtonsState();
-	buttonsState[ MOUSE_BUTTONS_MAPPING[ button ] ] = (char)pressed;
+	if( pressed )
+		buttonsState[ MOUSE_BUTTONS_MAPPING[ button ] ].Press();
+	else
+		buttonsState[ MOUSE_BUTTONS_MAPPING[ button ] ].UnPress();
 }
 
 /**@brief Ustawia now¹ pozycjê myszy.*/

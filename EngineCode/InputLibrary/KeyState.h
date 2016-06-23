@@ -21,10 +21,15 @@ public:
 	inline bool		IsUp			() const	{ return !IsPressed(); }
 
 	inline bool		IsKeyDownEvent	() const	{ return ( m_state & DownEvent ) != 0; }
-	inline bool		ISKeyUpEvent	() const	{ return ( m_state & UpEvent ) != 0; }
+	inline bool		IsKeyUpEvent	() const	{ return ( m_state & UpEvent ) != 0; }
 
 	/// Umo¿liwia na umieszczanie w ifach if( KeyState )
 	inline operator void*			() const	{ return (void*)IsPressed(); }
+
+	inline void		operator=		( KeyState newState )
+	{
+		
+	}
 
 public:
 	///@name Funkcje do ustawiania stanu (tylko dla dzieci IInput)

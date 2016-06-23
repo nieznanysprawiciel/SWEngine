@@ -69,6 +69,12 @@ void WinApiInputProxy::Update( float timeInterval )
 
 	m_lastX = mouse->GetPositionX();
 	m_lastY = mouse->GetPositionY();
+
+	for( auto& keyboard : m_keyboards )
+		keyboard->RemoveEvents();
+
+	for( auto& mouse : m_mouses )
+		mouse->RemoveEvents();
 }
 
 /**@copydoc IInput::UpdateDevices

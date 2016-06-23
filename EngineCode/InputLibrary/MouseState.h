@@ -4,6 +4,8 @@
 #include "KeyState.h"
 
 
+#define MOUSE_STATE_BUTTONS_NUMBER 8
+
 class MouseState
 {
 private:
@@ -12,7 +14,7 @@ private:
 
 	float				m_axes[ 4 ];
 	short				m_position[ 2 ];	///< Wspó³rzêdne X i Y.
-	KeyState			m_buttons[ 8 ];
+	KeyState			m_buttons[ MOUSE_STATE_BUTTONS_NUMBER ];
 
 public:
 	MouseState();
@@ -27,6 +29,11 @@ public:
 	void						SetPosition			( short X, short Y );
 
 	const InputDeviceInfo&		GetInfo()			{ return m_info; }
+
+	///@name Funkcje do ustawiania stanu (tylko dla dzieci IInput)
+	///@{
+	void						RemoveEvents	();
+	///@}
 
 public:
 
@@ -83,5 +90,12 @@ inline void			MouseState::SetPosition			( short X, short Y )
 {
 	m_position[ 0 ] = X;
 	m_position[ 1 ] = Y;
+}
+
+/**@brief Czyœci tablicê z eventów o wciœniêciu klawiszy, ale podtrzymuje stan przycisków.*/
+inline void			MouseState::RemoveEvents	()
+{
+	for( int i = 0; i < MOUSE_STATE_BUTTONS_NUMBER; ++i )
+		m_buttons[ i ].HoldState();
 }
 

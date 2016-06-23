@@ -26,7 +26,7 @@ void UI_Engine::InitAbstractionLayers( )
 Warstwa nie musi byæ wczeœniej dodana do UI_Engine, ale zaleca siê, aby dodawaæ
 wszystkie obiekty w celu pilnowania pamiêci.
 
-@param[in] next_layer warstwa abstrakcji, która ma byæ aktywna.
+@param[in] nextLayer warstwa abstrakcji, która ma byæ aktywna.
 @return
 Zwraca wartoœæ 0 w przypadku powodzenia, a inne wartoœci, je¿eli podany argument
 by³ nieprawid³owy:
@@ -35,15 +35,15 @@ by³ nieprawid³owy:
 
 Zasadniczo nie ma potrzeby sprawdzania wartoœci zwracanej, w przypadkach innych
 ni¿ debugowanie programu.*/
-int UI_Engine::ChangeAbstractionLayer( InputAbstractionLayer* next_layer )
+int UI_Engine::ChangeAbstractionLayer( InputAbstractionLayer* nextLayer )
 {
-	if ( next_layer == nullptr )
+	if ( nextLayer == nullptr )
 		return 2;
-	if ( next_layer == m_currentAbstractionLayer )
+	if ( nextLayer == m_currentAbstractionLayer )
 		return 1;
 
 	m_currentAbstractionLayer->SetActive( false );
-	m_currentAbstractionLayer = next_layer;
+	m_currentAbstractionLayer = nextLayer;
 	m_currentAbstractionLayer->SetActive( true );
 
 	return 0;

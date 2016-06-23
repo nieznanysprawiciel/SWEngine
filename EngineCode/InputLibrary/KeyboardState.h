@@ -29,7 +29,7 @@ public:
 	///@name Funkcje do ustawiania stanu (tylko dla dzieci IInput)
 	///@{
 	KeyState*					KeysState		()				{ return m_keyboardState; }
-
+	void						RemoveEvents	();
 	///@}
 
 public:
@@ -214,13 +214,19 @@ public:
 
 
 /**@brief */
-inline KeyboardState::KeyboardState()
+inline			KeyboardState::KeyboardState()
 {
 	for( auto& val : m_keyboardState )
 		val = 0;
 }
 
 /**@brief */
-inline KeyboardState::~KeyboardState()
+inline			KeyboardState::~KeyboardState()
 { }
 
+/**@brief Czyœci tablicê z eventów o wciœniêciu klawiszy, ale podtrzymuje stan przycisków.*/
+inline void		KeyboardState::RemoveEvents	()
+{
+	for( int i = 0; i < KEYBOARD_STATE_KEYS_NUMBER; ++i )
+		m_keyboardState[ i ].HoldState();
+}

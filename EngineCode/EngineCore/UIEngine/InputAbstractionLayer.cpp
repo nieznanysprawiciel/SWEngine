@@ -40,73 +40,44 @@ InputAbstractionLayer::~InputAbstractionLayer()
 {}
 
 
-/**@brief Funkcja zapisuje wszystkie wartoœci przycisków, które potencjalnie mog¹ wys³aæ
-eventy. Nastêpnie tablice s¹ zerowane.
-
-Po dostarczeniu klasie wszystkich informacji o urzadzeniach wejœciowych, nast¹pi
-sprawdzenie, gdzie zmieni³y siê stany przycisków i wys³anie eventów.
-Do tego nale¿y wywo³aæ funkcjê end_events.
-
-Wszystkie wywo³ania funkcji ustawiaj¹cych stan przycisków i osi powinny
-znajdowaæ siê pomiêdzy wywo³aniami BeginEventCollection i SendEvents.
-Inaczej nic nie zadzia³a, poniewa¿ funkcje zak³adaj¹, ¿e tablice s¹ wyzerowane.*/
+/**@brief Funkcja podtrzymuje stan przycisków, ale kasuje z nich informacje o eventach.*/
 void InputAbstractionLayer::BeginEventCollection()
 {
-	//przegl¹damy tablicê eventów i zapisujemy wartoœci z poprzedniej klatki
-	for ( unsigned int i = 0; i < m_requestedEvents.size(); ++i)
-		m_requestedEvents[i].Value = m_virtualButtons[m_requestedEvents[i].VirtualIndex];
-	//zerujemy wartoœci w tablicach
-	//kolejne funkcje bêd¹ zak³ada³y, ¿e tablice s¹ wyzerowane, wiêc nie wolno tego zmieniaæ
 	for (int i = 0; i < m_virtualButtons.size(); ++i)
-		m_virtualButtons[i] = 0;
-	for (int i = 0; i < m_virtualAxis.size(); ++i)
-		m_virtualAxis[i] = 0;
-
+		m_virtualButtons[ i ].HoldState();
 }
 
-/**@brief Funkcja wysy³a eventy, je¿eli jakieœ przyciski wirtualne zosta³y wciœniête.
-Aby tak siê sta³o, musi znajdowaæ siê odpowiedni wpis w tablicy m_requestedEvents.
+/**@brief Funkcja wysyła eventy, jeżeli jakieś przyciski wirtualne zostały wciśnięte.
+Aby tak się stało, musi znajdować się odpowiedni wpis z żądaniem w tablicy m_requestedEvents.
 
-@param[in] engine WskaŸnik jest aby, potrzebny móc wys³aæ event.
+@param[in] engine Wskaźnik na silnik jest potrzebny, aby móc wysłać event.
 */
 void InputAbstractionLayer::SendEvents(Engine* engine)
 {
-//Przechodzimy po tablicy eventów i sprawdzamy czy zapisane wartoœci siê zmieni³y.
-//Je¿eli siê zmieni³y, znaczy to, ¿e trzeba wys³aæ jakiœ event, bo przycisk albo zosta³
-//wciœniêty albo puszczony.
 	for( unsigned int i = 0; i < m_requestedEvents.size(); ++i )
 	{
-		char button_state = m_virtualButtons[m_requestedEvents[i].VirtualIndex];
-		if( m_requestedEvents[i].Value != button_state )
-		{//zmieni³a siê wartoœæ, byæ mo¿e czas na event
-			if( button_state == 0 )
-			{
-				if( m_requestedEvents[i].UpEvent && !m_activeChanged )
-				{//je¿eli dopiero co staliœmy siê aktywn¹ wartw¹ to eventów nie wysy³amy, bo prawdopodobnie wciœniêcie
-				//dotyczy³o jeszcze poprzedniej warstwy
-					KeyUpEvent* event = new KeyUpEvent( m_requestedEvents[i].VirtualIndex );
-					event->MouseX = mouseX;
-					event->MouseY = mouseY;
-					event->Layer = this;
+		KeyState state = m_virtualButtons[ m_requestedEvents[ i ].VirtualIndex ];
 
-					engine->SendEvent(event);
-				}
-			}
-			else //button_state == 1
-			{
-				if( m_requestedEvents[i].DownEvent && !m_activeChanged )
-				{
-					KeyDownEvent* event = new KeyDownEvent( m_requestedEvents[i].VirtualIndex );
-					event->MouseX = mouseX;
-					event->MouseY = mouseY;
-					event->Layer = this;
+		if( state.IsKeyDownEvent() && !m_activeChanged )
+		{
+			KeyDownEvent* event = new KeyDownEvent( m_requestedEvents[i].VirtualIndex );
+			event->MouseX = mouseX;
+			event->MouseY = mouseY;
+			event->Layer = this;
 
-					engine->SendEvent( event );
-				}
-			}
+			engine->SendEvent( event );
+		}
+		else if( state.IsKeyUpEvent() && !m_activeChanged )
+		{
+			KeyUpEvent* event = new KeyUpEvent( m_requestedEvents[i].VirtualIndex );
+			event->MouseX = mouseX;
+			event->MouseY = mouseY;
+			event->Layer = this;
+
+			engine->SendEvent(event);
 		}
 	}
-
+		
 	m_activeChanged = false;
 }
 
@@ -114,13 +85,16 @@ void InputAbstractionLayer::SendEvents(Engine* engine)
 //						ustawianie stanu przycisków
 //=================================================================//
 
-/**@brief Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków na podstawie
-wejœcia o intefejsie klawiatury. Zazwyczaj wywo³uje siê j¹ dla klawiatury, ale mo¿e byæ te¿ tak,
-¿e directX reprezentuje jakieœ inne urz¹dzenie takim samym interfejsem.
+/**@brief Funkcja wywoływana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków na podstawie
+wejścia o intefejsie klawiatury. Zazwyczaj wywłuje się ją dla klawiatury, ale może byæ teć tak,
+że direct input albo inne api wejścia reprezentuje jakieś inne urządzenie takim samym interfejsem.
 
-@param[in] DeviceNr Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci @ref DEVICE_IDs.
-@param[in] keyboard_state Tablica 255 elementów opisuj¹ca stan klawiatury.*/
+@param[in] DeviceNr Identyfikator urządzenia, które aktualizujemy, jedna z wartoœci @ref DEVICE_IDs.
+@param[in] keyboardState Tablica 255 elementów opisująca stan klawiatury.
 
+@todo Rozwiązać problemy z przypadkami, gdy kilka przycisków mapuje sie na jeden wirtualny.
+Problematyczna sekwencja Press1 -> Press2 -> UnPress1 -> Problem -> UnPress2.
+Być może wirtualny przycisk powinien byś w tym miejscu nadal wciśnięty.*/
 void InputAbstractionLayer::UpdateKeyboardDevice( DeviceNumber DeviceNr, KeyboardState* keyboardState )
 {
 	auto state = keyboardState->GetKeyboardState();
@@ -130,30 +104,33 @@ void InputAbstractionLayer::UpdateKeyboardDevice( DeviceNumber DeviceNr, Keyboar
 	{
 		if( m_buttonsMapping[ i ].DeviceNr == DeviceNr )
 		{
-			short dev_index = m_buttonsMapping[ i ].PhysicalIndex;
-			if( state[ dev_index ] )
-			{//tablica jest wyzerowana, wiêc iteresuj¹ nas jedynie w³¹czone przyciski
-			//je¿eli wiele przycisków fizycznych odnosi siê do jednego wirtualnego, to wtedy
-			//wystarczy jeden wciœniêty, ¿eby stan przycisku wirtualnego zosta³ ustawiony
-				short v_index = m_buttonsMapping[ i ].VirtualIndex;
-				m_virtualButtons[ v_index ] = 1;
+			short devIndex = m_buttonsMapping[ i ].PhysicalIndex;
+			if( state[ devIndex ].IsKeyDownEvent() )
+			{
+				short virtualIndex = m_buttonsMapping[ i ].VirtualIndex;
+				m_virtualButtons[ virtualIndex ].Press();
+			}
+			else if( state[ devIndex ].IsKeyUpEvent() )
+			{
+				short virtualIndex = m_buttonsMapping[ i ].VirtualIndex;
+				m_virtualButtons[ virtualIndex ].UnPress();				
 			}
 		}
 	}
 }
 
-/**@brief Funkcja wywo³ywana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków oraz osi na podstawie
-wejœcia o intefejsie myszy. Zazwyczaj wywo³uje siê j¹ dla myszy, ale mo¿e byæ te¿ tak,
-¿e directX reprezentuje jakieœ inne urz¹dzenie takim samym interfejsem.
+/**@brief Funkcja wywoływana w ka¿dej klatce do ustawienia stanu wirtualnych przycisków oraz osi na podstawie
+wejœcia o intefejsie myszy. Zazwyczaj wywołuje się ją dla myszy, ale może być też tak,
+że direct input albo inne api wejścia reprezentuje jakieœ inne urz¹dzenie takim samym interfejsem.
 
-@param[in] DeviceNr Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci @ref DEVICE_IDs.
-@param[in] mouse_state Struktura opisuj¹ca stan urz¹dzenia, które da siê opisaæ takim interfejsem.
-@param[in] window_width Szerokość okna
-@param[in] window_height Wysokość okna
+@param[in] DeviceNr Identyfikator urządzenia, które aktualizujemy, jedna z wartości @ref DEVICE_IDs.
+@param[in] mouseState Struktura opisująca stan urządzenia, które da się opisać takim interfejsem.
+@param[in] windowWidth Szerokość okna
+@param[in] windowHeight Wysokość okna
 @todo Zastanowić się czy wysokość i szerokość okna jest wogóle potrzebna (i dlaczego nie).
 @todo Uzupełnić implementację dla pozostałych osi myszy.
 */
-void InputAbstractionLayer::UpdateMouseDevice( DeviceNumber DeviceNr, MouseState* mouseState, int window_width, int window_height)
+void InputAbstractionLayer::UpdateMouseDevice( DeviceNumber DeviceNr, MouseState* mouseState, int windowWidth, int windowHeight)
 {
 	auto buttons = mouseState->GetButtonsState();
 
@@ -162,12 +139,15 @@ void InputAbstractionLayer::UpdateMouseDevice( DeviceNumber DeviceNr, MouseState
 		if( m_buttonsMapping[ i ].DeviceNr == DeviceNr )
 		{
 			short devIndex = m_buttonsMapping[ i ].PhysicalIndex;
-			if( buttons[ devIndex ] )
-			{//tablica jest wyzerowana, wiêc iteresuj¹ nas jedynie w³¹czone przyciski
-			//je¿eli wiele przycisków fizycznych odnosi siê do jednego wirtualnego, to wtedy
-			//wystarczy jeden wciœniêty, ¿eby stan przycisku wirtualnego zosta³ ustawiony
-				short v_index = m_buttonsMapping[ i ].VirtualIndex;
-				m_virtualButtons[ v_index ] = 1;
+			if( buttons[ devIndex ].IsKeyDownEvent() )
+			{
+				short virtualIndex = m_buttonsMapping[ i ].VirtualIndex;
+				m_virtualButtons[ virtualIndex ].Press();
+			}
+			else if( buttons[ devIndex ].IsKeyUpEvent() )
+			{
+				short virtualIndex = m_buttonsMapping[ i ].VirtualIndex;
+				m_virtualButtons[ virtualIndex ].UnPress();				
 			}
 		}
 	}
@@ -188,7 +168,7 @@ void InputAbstractionLayer::UpdateMouseDevice( DeviceNumber DeviceNr, MouseState
 			case MouseState::PHYSICAL_AXES::X_AXIS:
 			{
 				short v_x_index = m_axisMapping[ i ].VirtualIndex;
-				float virtual_x_axis_value = axes[ MouseState::PHYSICAL_AXES::X_AXIS ] / (float)window_width;
+				float virtual_x_axis_value = axes[ MouseState::PHYSICAL_AXES::X_AXIS ] / (float)windowWidth;
 				virtual_x_axis_value = ( virtual_x_axis_value > 1.0f ? 1.0f : virtual_x_axis_value );
 				m_virtualAxis[ v_x_index ] = virtual_x_axis_value;
 				break;
@@ -196,7 +176,7 @@ void InputAbstractionLayer::UpdateMouseDevice( DeviceNumber DeviceNr, MouseState
 			case MouseState::PHYSICAL_AXES::Y_AXIS:
 			{
 				short v_y_index = m_axisMapping[ i ].VirtualIndex;
-				float virtual_y_axis_value = axes[ MouseState::PHYSICAL_AXES::Y_AXIS ] / (float)window_width;
+				float virtual_y_axis_value = axes[ MouseState::PHYSICAL_AXES::Y_AXIS ] / (float)windowWidth;
 				virtual_y_axis_value = ( virtual_y_axis_value > 1.0f ? 1.0f : virtual_y_axis_value );
 				m_virtualAxis[ v_y_index ] = virtual_y_axis_value;
 				break;
