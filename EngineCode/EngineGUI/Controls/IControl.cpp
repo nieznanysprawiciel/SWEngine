@@ -1,6 +1,7 @@
 #include "IControl.h"
 
 #include "EngineGUI/Controls/TopLevelControl.h"
+#include "EngineGUI/System/HostWindow.h"
 
 
 RTTR_REGISTRATION
@@ -40,5 +41,11 @@ HostWindow*			IControl::GetHost()
 	return topLevel->GetHostWindow();
 }
 
+/**@brief Gets name of control if it was set. Otherwise it returns empty string.*/
+const std::string&	IControl::GetName()
+{
+	auto host = GetHost();
+	return host->GetControlName( this );
+}
 
 }	// GUI

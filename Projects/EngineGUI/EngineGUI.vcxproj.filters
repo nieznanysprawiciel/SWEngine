@@ -114,6 +114,9 @@
     <ClInclude Include="..\..\EngineCode\InputLibrary\Factory.h">
       <Filter>InputLibrary</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\CommonTypes\CommonTypes.h">
+      <Filter>EngineGUI\System\CommonTypes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\IControl.cpp">

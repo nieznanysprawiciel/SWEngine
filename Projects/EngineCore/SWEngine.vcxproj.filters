@@ -479,6 +479,9 @@
     <ClInclude Include="..\..\EngineCode\InputLibrary\KeyState.h">
       <Filter>InputLibrary</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\SwapChain.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">

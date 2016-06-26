@@ -8,12 +8,20 @@
 namespace GUI
 {
 
+GUISystem*			GUISystem::m_instance = nullptr;
 
 
-/**@brief G³ówna pêtla aplikacji.
+GUISystem::GUISystem( int argc, char** argv )
+	:	m_cmdArgs( argc, argv )
+{
+	m_instance = this;
 
-@see Application
-*/
+}
+
+
+/**@brief Application main loop.
+
+@see Application*/
 int					GUISystem::MainLoop()
 {
 	int size = sizeof( IControl );
@@ -42,6 +50,33 @@ Size				GUISystem::GetMemorySize()
 		size += window->GetMemorySize();
 
 	return size;
+}
+
+/**@brief Gets number of commnad line arguments.
+
+Function doesn't take program nameinto account .*/
+int			GUISystem::NumCommandLineArgs()
+{
+	return m_cmdArgs.ArgsCount - 1;
+}
+
+/**@brief Returns command line argument. 0 is first argument
+not program name.*/
+const char* GUISystem::CommandLineArg( int num )
+{
+	return m_cmdArgs.Arguments[ num -1 ];
+}
+
+/**@brief Returns program name retrived from 0 command line argument.*/
+const char* GUISystem::ProgramPath()
+{
+	return m_cmdArgs.ProgramName();
+}
+
+/**@brief */
+GUISystem&	GUISystem::Get()
+{
+	return *m_instance;
 }
 
 }	// GUI

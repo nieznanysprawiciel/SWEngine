@@ -1,4 +1,4 @@
-#include "../../ResourcesFactory.h"
+#include "GraphicAPI/ResourcesFactory.h"
 #include "../DX11Initializer/DX11Initializer.h"
 
 #include "DX11VertexShader.h"
@@ -9,6 +9,7 @@
 #include "DX11RenderTarget.h"
 #include "DX11InputLayoutDescriptor.h"
 #include "DX11InputLayout.h"
+#include "DX11SwapChain.h"
 
 #include "Common/MemoryLeaks.h"
 
@@ -117,6 +118,11 @@ BufferObject*			ResourcesFactory::CreateBufferFromMemory( const void* buffer,
 RenderTargetObject*		ResourcesFactory::CreateScreenRenderTarget()
 {
 	return DX11RenderTarget::CreateScreenRenderTarget();
+}
+
+SwapChain*				ResourcesFactory::CreateScreenSwapChain( RenderTargetObject* screenRT )
+{
+	return DX11SwapChain::CreateScreenSwapChain( screenRT );
 }
 
 IGraphicAPIInitializer* ResourcesFactory::CreateAPIInitializer()

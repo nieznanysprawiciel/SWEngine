@@ -6,8 +6,9 @@
 */
 
 
-#include "../../IGraphicAPIInitializer.h"
+#include "GraphicAPI/IGraphicAPIInitializer.h"
 #include "DX11APIObjects.h"
+#include "GraphicAPI/SwapChain.h"
 
 
 /**@defgroup DX11API
@@ -33,6 +34,7 @@ public:
 	~DX11Initializer() = default;
 
 	virtual IRenderer*		CreateRenderer			( RendererUsage usage ) override;
+	virtual SwapChain*		CreateSwapChain			( SwapChainInitData& swapChainData ) override;
 	virtual bool			InitAPI					( GraphicAPIInitData& initData ) override;
 	virtual void			ReleaseAPI				() override;
 	virtual void*			GetRenderTargetHandle	( RenderTargetObject* renderTarget ) override;

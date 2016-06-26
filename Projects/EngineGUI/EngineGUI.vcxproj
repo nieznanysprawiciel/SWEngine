@@ -158,6 +158,7 @@
     <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\ArrangeControls\WrapPanel.h" />
     <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\IControl.h" />
     <ClInclude Include="..\..\EngineCode\EngineGUI\Controls\TopLevelControl.h" />
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\CommonTypes\CommonTypes.h" />
     <ClInclude Include="..\..\EngineCode\EngineGUI\System\CommonTypes\Thickness.h" />
     <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\Input\KeyboardEventArgs.h" />
     <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\Input\KeyEventArgs.h" />

@@ -22,15 +22,27 @@ IRenderer* DX11Initializer::CreateRenderer( RendererUsage usage )
 	return new DX11Renderer( usage );
 }
 
+/**@brief Tworzy nowy swap chain.*/
+SwapChain* DX11Initializer::CreateSwapChain( SwapChainInitData& swapChainData )
+{
+	assert( !"Implement me" );
+	return nullptr;
+}
+
 /**@brief Inicjalizuje API graficzne.
 
 @param[in] initData Dane u¿ywane do inicjalizacji.
 @return Zwraca true, je¿eli inicjalizacja siê uda.*/
 bool DX11Initializer::InitAPI( GraphicAPIInitData& initData )
 {
-	set_depth_stencil_format( DX11ConstantsMapper::Get( initData.depthStencilFormat ) );
+	set_depth_stencil_format( DX11ConstantsMapper::Get( initData.SwapChain.DepthStencilFormat ) );
 
-	DX11_INIT_RESULT result = init_DX11( initData.windowWidth, initData.windowHeight, (HWND)initData.windowHandle, initData.fullScreen, initData.singleThreaded );
+	DX11_INIT_RESULT result = init_DX11( initData.SwapChain.WindowWidth,
+										 initData.SwapChain.WindowHeight,
+										 (HWND)initData.SwapChain.WindowHandle,
+										 initData.SwapChain.FullScreen,
+										 initData.SingleThreaded );
+
 	if( result != DX11_INIT_RESULT::DX11_INIT_OK )
 		return false;
 

@@ -6,6 +6,7 @@
 */
 
 #include "GraphicAPI/MeshResources.h"
+#include "GraphicAPI/SwapChain.h"
 #include "GraphicAPI/IGraphicAPIInitializer.h"
 
 class ModelsManager;
@@ -39,6 +40,7 @@ private:
 public:
 	static IGraphicAPIInitializer*	CreateAPIInitializer			();
 	static RenderTargetObject*		CreateScreenRenderTarget		();
+	static SwapChain*				CreateScreenSwapChain			( RenderTargetObject* screenRT );
 	static InputLayoutDescriptor*	CreateInputLayoutDescritor		( const std::wstring& layoutName );
 	static RenderTargetObject*		CreateRenderTarget				( const std::wstring& name, const RenderTargetDescriptor& renderTargetDescriptor );
 };

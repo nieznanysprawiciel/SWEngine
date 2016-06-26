@@ -7,10 +7,14 @@
 */
 
 #include "GraphicAPI/IRenderer.h"
+#include "GraphicAPI/SwapChain.h"
+
 #include "EngineCore/Actors/ActorObjects.h"
-#include "ConstantBuffersFormat.h"
 #include "EngineCore/Features/SkyDome.h"
 #include "EngineCore/DisplayEngine/RenderPass.h"
+
+#include "ConstantBuffersFormat.h"
+
 #include <DirectXMath.h>
 
 #include <queue>
@@ -60,6 +64,7 @@ private:
 
 	ShaderInputLayoutObject*				defaultLayout;				///<@todo Hack. Zlikwidowaæ. Silnik powinien obs³ugiwaæ dowolne layouty, a przynajmniej jakiœ ustalony zbiór.
 	RenderTargetObject*						m_mainRenderTarget;			///<Render target okna aplikacji. @todo W ostatecznej wersji powinien byæ render target ustawiany dla ka¿dego przebiegu.
+	SwapChain*								m_mainSwapChain;
 
 	std::queue<RenderPass*>					m_renderOnceQueue;			///<Kolejka przebiegów, które maj¹ zostaæ wyrenderowane tylko raz.
 	unsigned int							m_maxQueuedPassesPerFrame;	///<Maksymalna liczba przebiegów jaka zostanie wziêta z kolejki w ka¿dej ramce.

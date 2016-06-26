@@ -8,6 +8,7 @@
 */
 
 #include "GraphicAPI/IRenderer.h"
+#include "GraphicAPI/SwapChain.h"
 #include "Common/TypesDefinitions.h"
 
 #include <string>
@@ -26,25 +27,39 @@ implementuje API graficzne. Oprócz interfejsów do zaimplementowania, projekt zaw
 pliki .cpp, które powinny byæ skompilowane do biblioteki statycznej razem z poszczególnymi API graficznymi.*/
 
 
+/**@brief Przechowuje informacje potrzebne do SwapChaina. Parametr dla funkcji IGraphicAPIInitializer::CreateSwapChain.
+@ingroup GraphicAPI*/
+struct SwapChainInitData
+{
+	uint16			WindowWidth;
+	uint16			WindowHeight;
+	uint32			WindowHandle;
+	bool			FullScreen;
+	ResourceFormat	DepthStencilFormat;
+
+
+
+	void DefaultSettings()
+	{
+		WindowWidth = 1024;
+		WindowHeight = 768;
+		FullScreen = false;
+		DepthStencilFormat = ResourceFormat::RESOURCE_FORMAT_D24_UNORM_S8_UINT;
+	}
+};
+
 /**@brief Przechowuje informacje potrzebne do inicjalizacji
 API graficznego. Parametr dla funkcji IGraphicAPIInitializer::InitAPI.
 @ingroup GraphicAPI*/
 struct GraphicAPIInitData
 {
-	uint16 windowWidth;
-	uint16 windowHeight;
-	uint32 windowHandle;
-	bool singleThreaded;
-	bool fullScreen;
-	ResourceFormat depthStencilFormat;
+	SwapChainInitData	SwapChain;
+	bool				SingleThreaded;
+
 
 	void DefaultSettings()
 	{
-		windowWidth = 1024;
-		windowHeight = 768;
-		singleThreaded = true;
-		fullScreen = false;
-		depthStencilFormat = ResourceFormat::RESOURCE_FORMAT_D24_UNORM_S8_UINT;
+		SingleThreaded = true;
 	}
 };
 
@@ -61,12 +76,12 @@ protected:
 public:
 	virtual ~IGraphicAPIInitializer() = default;
 
-	virtual IRenderer*		CreateRenderer			( RendererUsage usage ) = 0;
-	virtual bool			InitAPI					( GraphicAPIInitData& initData ) = 0;
-	virtual void			ReleaseAPI				() = 0;
-	virtual void*			GetRenderTargetHandle	( RenderTargetObject* renderTarget ) = 0;
+	virtual IRenderer*		CreateRenderer			( RendererUsage usage )					= 0;
+	virtual SwapChain*		CreateSwapChain			( SwapChainInitData& swapChainData )	= 0;
+	virtual bool			InitAPI					( GraphicAPIInitData& initData )		= 0;
+	virtual void			ReleaseAPI				()										= 0;
+	virtual void*			GetRenderTargetHandle	( RenderTargetObject* renderTarget )	= 0;
 
 	// Future
 	// virtual std::wstring	GetErrorString() = 0;
-	// virtual void			Resize( uint16 newWidth, uint16 newHeight ) = 0;
 };

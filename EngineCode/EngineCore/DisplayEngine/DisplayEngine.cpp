@@ -8,11 +8,14 @@
 
 #include "EngineCore/stdafx.h"
 #include "DisplayEngine.h"
+
 #include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/ModelsManager/ModelsManager.h"
 #include "EngineCore/EventsManager/Events/RenderOnceEndedEvent.h"
 
 #include "EngineCore/EngineHelpers/PerformanceCheck.h"
+#include "GraphicAPI/ResourcesFactory.h"
+
 #include "Common/MemoryLeaks.h"
 
 using namespace DirectX;
@@ -81,6 +84,8 @@ void DisplayEngine::InitDisplayer( ModelsManager* assetsManager )
 
 	m_mainRenderTarget = modelsManager->GetRenderTarget( SCREEN_RENDERTARGET_STRING );
 	m_mainRenderTarget->AddAssetReference();		/// Uniemo¿liwiamy zwolnienie render targetu przez u¿ytkownika.
+
+	m_mainSwapChain = ResourcesFactory::CreateScreenSwapChain( m_mainRenderTarget );
 }
 
 void DisplayEngine::BeginScene()
@@ -90,7 +95,8 @@ void DisplayEngine::BeginScene()
 
 void DisplayEngine::EndScene()
 {
-	m_renderers[ 0 ]->Present();
+	//m_renderers[ 0 ]->Present();
+	m_mainSwapChain->Present( 0 );
 }
 
 void DisplayEngine::SetMainRenderTarget( RenderTargetObject* renderTarget )

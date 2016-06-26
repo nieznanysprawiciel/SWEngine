@@ -3,7 +3,7 @@
 #include "Common/EngineObject.h"
 #include "Common/Delegate.h"
 
-#include "EngineGUI/System/CommonTypes/Thickness.h"
+#include "EngineGUI/System/CommonTypes/CommonTypes.h"
 
 #include <string>
 
@@ -62,8 +62,6 @@ protected:
 	float					m_maxHeight;
 	float					m_minHeight;
 
-	std::string				m_name;
-
 	bool					m_isVisible : 1;
 	bool					m_isEnabled : 1;
 	bool					m_isMouseOver : 1;
@@ -81,7 +79,9 @@ public:
 							IControl		( IControl* parent );
 	virtual					~IControl		();
 
-	virtual bool			HitTest			( float X, float Y );
+	virtual bool			HitTest			( Position mouse, const Rect& parentArea );
+
+	const std::string&		GetName			();
 
 protected:
 
