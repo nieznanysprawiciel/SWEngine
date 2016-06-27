@@ -45,6 +45,7 @@ public:
 	void				MouseWheelChange			( double delta );
 
 	void				LostFocus					();
+	void				PostUpdate					();
 	///@}
 };
 

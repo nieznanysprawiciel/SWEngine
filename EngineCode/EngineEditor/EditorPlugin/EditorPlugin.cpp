@@ -95,7 +95,8 @@ void EngineWrapper::UpdateScene()
 	m_engine->UpdateScene( lag, 0 );
 
 	// Poniewa¿ nie dostajemy eventów kiedy kó³ko myszy siê nie rusza, to trzeba zerowaæ za ka¿dym razem.
-	m_inputWPF->MouseWheelChange( 0.0 );
+	// Poza tym trzeba wyczyœciæ eventy wciœniêcia i puszczenia przycisków.
+	m_inputWPF->PostUpdate();
 }
 
 

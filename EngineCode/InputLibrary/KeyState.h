@@ -1,5 +1,6 @@
 #pragma once
 
+#include <assert.h>
 
 /**@brief Stan przycisku.*/
 class KeyState
@@ -28,7 +29,7 @@ public:
 
 	inline void		operator=		( KeyState newState )
 	{
-		
+		assert(!"");
 	}
 
 public:

@@ -69,12 +69,6 @@ void WPFInputProxy::Update( float timeInterval )
 
 	m_lastX = mouse->GetPositionX();
 	m_lastY = mouse->GetPositionY();
-
-	for( auto& keyboard : m_keyboards )
-		keyboard->RemoveEvents();
-
-	for( auto& mouse : m_mouses )
-		mouse->RemoveEvents();
 }
 
 /**@copydoc IInput::UpdateDevices
@@ -344,6 +338,18 @@ void WPFInputProxy::MouseWheelChange( double delta )
 void WPFInputProxy::LostFocus()
 {
 
+}
+
+/**@brief Funkcja powinna zostaæ wywo³ana po zakoñczeniu przetwarzania inputu przez aplikacjê.*/
+void WPFInputProxy::PostUpdate()
+{
+	MouseWheelChange( 0.0 );
+
+	for( auto& keyboard : m_keyboards )
+		keyboard->RemoveEvents();
+
+	for( auto& mouse : m_mouses )
+		mouse->RemoveEvents();
 }
 
 
