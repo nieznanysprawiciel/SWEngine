@@ -114,7 +114,10 @@ namespace EditorApp.Engine
 			{
 				FileTreeNode file = data as FileTreeNode;
 				if( file.Type == FileTreeNodeType.Model3D )
-					m_logicRef.ProjectManager.ActorsLogic.CreateMeshActor( file.FilePath, mouseX, mouseY );
+				{
+					string filePath = PathsManager.RelativePath( m_logicRef.PathsManager.AssetsDir, file.FilePath );
+					m_logicRef.ProjectManager.ActorsLogic.CreateMeshActor( filePath, mouseX, mouseY );
+				}
 			}
 		}
 		#endregion

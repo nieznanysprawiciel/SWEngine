@@ -77,6 +77,8 @@ namespace EditorApp
 			m_assetsDir = Path.Combine( ProjectDir, "GameRelease" );
 			m_sourceCodeDir = Path.Combine( ProjectDir, "ProjectCode" );
 			m_visualProjectsDir = Path.Combine( ProjectDir, "VisualProjects" );
+
+			Directory.SetCurrentDirectory( GameReleaseDir );
 		}
 
 		// http://mrpmorris.blogspot.com/2007/05/convert-absolute-path-to-relative-path.html

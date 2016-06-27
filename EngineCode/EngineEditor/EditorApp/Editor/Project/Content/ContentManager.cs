@@ -38,12 +38,8 @@ namespace EditorApp.Editor.Project.Content
 		jaką trzeba podać, aby wczytać podany plik.*/
 		public string	GetSelectedFilePath	()
 		{
-			// @todo Zlikwidować rozwiązanie tymczasowe, po opanowaniu ścieżek w edytorze.
 			if( m_selectedFile != null )
-				return m_selectedFile.FilePath;
-
-			//if( m_selectedFile != null )
-			//	return PathsManager.RelativePath( m_selectedFile.FilePath, m_editorLogic.PathsManager.AssetsDir );
+				return PathsManager.RelativePath( m_editorLogic.PathsManager.AssetsDir, m_selectedFile.FilePath );
 
 			return null;
 		}

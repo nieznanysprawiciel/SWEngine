@@ -136,7 +136,8 @@ namespace EditorApp.Editor.Project.Actors
 				ActorWrapper newActor = CreateActor( meshActorName, mouseX, mouseY );
 				if( newActor != null )
 				{
-					newActor.LoadMesh( meshPath );
+					string filePath = PathsManager.RelativePath( m_editorLogic.PathsManager.AssetsDir, meshPath );
+					newActor.LoadMesh( filePath );
 				}
 			}
 			return null;
