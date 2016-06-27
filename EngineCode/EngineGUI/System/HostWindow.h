@@ -4,6 +4,8 @@
 #include "EngineGUI/Controls/IControl.h"
 #include "EngineGUI/Controls/TopLevelControl.h"
 
+#include "InputLibrary/IInput.h"
+
 #include <vector>
 #include <map>
 
@@ -22,7 +24,7 @@ class HostWindow
 private:
 
 	INativeWindow*				m_nativeWindow;
-	//IInput*					m_input;
+	IInput*						m_input;
 
 	std::vector< IControl* >	m_mousePath;		///< Controls hierarchy that captured mouse at this moment.
 	std::vector< IControl* >	m_focusPath;		///< Controls hierarchy that have focus at this moment.
@@ -41,11 +43,11 @@ private:
 
 protected:
 public:
-	explicit		HostWindow	() = default;
+	explicit		HostWindow	( INativeWindow* nativeWindow, IInput* input );
 					~HostWindow	() = default;
 
 
-	Size			GetMemorySize		();
+	Size				GetMemorySize		();
 
 
 	void				RemoveControl		( IControl* control );

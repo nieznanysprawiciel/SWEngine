@@ -1,12 +1,16 @@
-#include "SceneHelpers.h"
-
 #pragma unmanaged
 
-#include "EngineCore/MainEngine/Engine.h"
+
+#include "SceneHelpers.h"
+
+
 #include "Common/MacrosSwitches.h"
+
+#include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/Actors/ActorObjects.h"
 
 #include "EngineCore/EngineHelpers/Intersections.h"
+
 
 #include "EngineEditor/EditorPlugin/EnginePointerProvider.h"
 
@@ -23,5 +27,7 @@ void		SceneHelpers::SetActorInitialPosition		( StaticActor* actor, double mouseX
 
 	actor->Teleport( intersection );
 }
+
+
 
 

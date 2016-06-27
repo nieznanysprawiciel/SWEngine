@@ -1,5 +1,6 @@
 #pragma once
 
+#include "EngineCore/MainEngine/Engine.h"
 
 class Engine;
 namespace EditorPlugin

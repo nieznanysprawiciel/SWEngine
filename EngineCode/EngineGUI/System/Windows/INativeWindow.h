@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GraphicAPI/MeshResources.h"
+#include "GraphicAPI/SwapChain.h"
 
 #include <string>
 
@@ -41,7 +42,7 @@ public:
 
 
 	virtual		RenderTargetObject*			GetRenderTarget		();
-	//virtual		SwapChainObject*			GetSwapChain		();
+	virtual		SwapChain*					GetSwapChain		();
 };
 
 

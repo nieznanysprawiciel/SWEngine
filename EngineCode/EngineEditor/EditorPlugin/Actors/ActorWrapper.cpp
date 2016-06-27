@@ -36,6 +36,12 @@ System::IntPtr		ActorWrapper::GetActorPtr()
 	return System::IntPtr( m_actorPtr );
 }
 
+/**@brief */
+ActorBase* ActorWrapper::Ptr()
+{
+	return static_cast< ActorBase* >( m_actorPtr );
+}
+
 /**@brief Zwraca liczbowy identyfikator typu aktora.*/
 int					ActorWrapper::Type::get()
 {

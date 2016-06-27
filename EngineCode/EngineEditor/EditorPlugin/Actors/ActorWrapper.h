@@ -6,6 +6,7 @@
 
 class Engine;
 class EngineObject;
+class ActorBase;
 
 
 namespace EditorPlugin
@@ -26,6 +27,7 @@ public:
 
 	System::String^		GetTypeName	();
 	System::IntPtr		GetActorPtr	();
+	ActorBase*			Ptr			();
 	
 	bool				LoadMesh	( System::String^ meshPath );
 

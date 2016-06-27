@@ -9,6 +9,15 @@ namespace GUI
 // One pointer at least, but I don't know how much it needs in reality
 #define STD_MAP_OVERHEAD_PER_ELEMENT 8
 
+
+
+HostWindow::HostWindow( INativeWindow* nativeWindow, IInput* input )
+	:	m_input( input )
+	,	m_nativeWindow( nativeWindow )
+{}
+
+
+
 /**@brief Returns memory consumed by this object and all object owned by this.*/
 Size		HostWindow::GetMemorySize()
 {
