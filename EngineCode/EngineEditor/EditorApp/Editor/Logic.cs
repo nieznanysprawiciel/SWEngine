@@ -12,6 +12,7 @@ using System.Windows.Input;
 using Microsoft.Win32;
 using EditorApp.Editor;
 using EditorApp.Editor.Commands;
+using EditorPlugin;
 
 
 namespace EditorApp
@@ -59,6 +60,8 @@ namespace EditorApp
 
 			LoadCommand = new RelayCommand( LoadClick );
 			SaveCommand = new RelayCommand( SaveClick );
+			SaveLevelCommand = new RelayCommand( SaveLevelClick );
+			LoadLevelCommand = new RelayCommand( LoadLevelClick );
 			SaveGlobalConfig = new RelayCommand( SaveGlobalConfigImpl );
 		}
 
@@ -106,6 +109,19 @@ namespace EditorApp
 				//var directory = Path.GetDirectoryName( fileDialog.FileName );
 				LoadProject( fileDialog.FileName );
 			}
+		}
+
+		public void SaveLevelClick( object parameter )
+		{
+			SceneSaver saver = new SceneSaver();
+			saver.ActorsToSave( ProjectManager.ActorsLogic.Actors );
+
+			saver.SaveScene( Path.Combine( PathsManager.LevelsDir, "Test2Level.swmap" ) );
+		}
+
+		public void LoadLevelClick( object parameter )
+		{
+
 		}
 
 		public void			RenderFrame( object sender, EventArgs e )
@@ -184,6 +200,18 @@ namespace EditorApp
 		}
 
 		public ICommand LoadCommand
+		{
+			get;
+			internal set;
+		}
+
+		public ICommand SaveLevelCommand
+		{
+			get;
+			internal set;
+		}
+
+		public ICommand LoadLevelCommand
 		{
 			get;
 			internal set;

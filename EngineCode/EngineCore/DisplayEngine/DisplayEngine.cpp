@@ -38,6 +38,7 @@ DisplayEngine::DisplayEngine( Engine* engine )
 	current_camera = nullptr;
 	sky_dome = nullptr;
 	m_mainRenderTarget = nullptr;
+	m_mainSwapChain = nullptr;
 
 	interpol_matrixes_count = 16;
 	interpolated_matrixes = new XMFLOAT4X4[interpol_matrixes_count];
@@ -56,6 +57,8 @@ DisplayEngine::~DisplayEngine()
 
 	if ( sky_dome )
 		delete sky_dome;
+
+	delete m_mainSwapChain;
 }
 
 /**@brief Inicjuje renderer (lub kilka je¿eli renderujemy wielow¹tkowo).

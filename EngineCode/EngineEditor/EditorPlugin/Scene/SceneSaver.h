@@ -20,7 +20,7 @@ public:
 
 	void			ActorsToSave		( ObservableCollection< ActorWrapper^ >^ actors );
 
-	void			SaveScene			( System::String^ fileName );
+	bool			SaveScene			( System::String^ fileName );
 
 private:
 	void			SerializeActors		( ISerializer* ser );

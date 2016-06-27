@@ -244,7 +244,7 @@ namespace EditorApp
 		{
 			get
 			{
-				return Path.Combine( ProjectDir, m_shadersRelativeDir );
+				return Path.Combine( m_assetsDir, m_shadersRelativeDir );
 			}
 		}
 
@@ -252,7 +252,7 @@ namespace EditorApp
 		{
 			get
 			{
-				return Path.Combine( ProjectDir, m_levelsRelativeDir );
+				return Path.Combine( m_assetsDir, m_levelsRelativeDir );
 			}
 		}
 
@@ -260,7 +260,7 @@ namespace EditorApp
 		{
 			get
 			{
-				return Path.Combine( ProjectDir, m_texturesRelativeDir );
+				return Path.Combine( m_assetsDir, m_texturesRelativeDir );
 			}
 		}
 
@@ -268,7 +268,7 @@ namespace EditorApp
 		{
 			get
 			{
-				return Path.Combine( ProjectDir, m_animationsRelativeDir );
+				return Path.Combine( m_assetsDir, m_animationsRelativeDir );
 			}
 		}
 
@@ -276,7 +276,7 @@ namespace EditorApp
 		{
 			get
 			{
-				return Path.Combine( ProjectDir, m_meshesRelativeDir );
+				return Path.Combine( m_assetsDir, m_meshesRelativeDir );
 			}
 		}
 		#endregion

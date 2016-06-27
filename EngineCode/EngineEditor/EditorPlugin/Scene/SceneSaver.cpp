@@ -25,7 +25,7 @@ void SceneSaver::ActorsToSave( ObservableCollection<ActorWrapper^>^ actors )
 
 
 /**@brief */
-void SceneSaver::SaveScene( System::String^ fileName )
+bool SceneSaver::SaveScene( System::String^ fileName )
 {
 	auto engine = EnginePointerProvider::GetEngine();
 	std::string filePath = msclr::interop::marshal_as< std::string >( fileName );
@@ -33,8 +33,10 @@ void SceneSaver::SaveScene( System::String^ fileName )
 	auto ser = SceneHelpers::CreateSerializerWithContext();	
 	SerializeActors( ser );
 
-	ser->SaveFile( filePath, WritingMode::Readable );
+	bool result = ser->SaveFile( filePath, WritingMode::Readable );
 	delete ser;
+
+	return result;
 }
 
 
