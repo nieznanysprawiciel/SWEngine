@@ -25,9 +25,9 @@ namespace EditorApp.GUI
 
 	public class FrameworkElementDropBehavior : Behavior<FrameworkElement>
 	{
-		private Type dataType;				//the type of the data that can be dropped into this control]
-		private FrameworkElementAdorner adorner;
-		private DragAndDropType srcRefType;
+		private Type						dataType;				//the type of the data that can be dropped into this control]
+		private FrameworkElementAdorner		adorner;
+		private DragAndDropType				srcRefType;
 
 		protected override void OnAttached()
 		{
@@ -61,6 +61,8 @@ namespace EditorApp.GUI
 						IDragable source = e.Data.GetData(dataType) as IDragable;
 						source.Remove( e.Data.GetData( dataType ) );
 					}
+
+					dataType = null;
 				}
 			}
 			if( this.adorner != null )
