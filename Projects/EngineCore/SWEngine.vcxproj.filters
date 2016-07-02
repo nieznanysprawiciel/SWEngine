@@ -114,6 +114,9 @@
     <Filter Include="GraphicAPI">
       <UniqueIdentifier>{e7335025-5a29-428f-bfc9-7ca876de2cf8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\UserApi\Level">
+      <UniqueIdentifier>{187abfab-e16d-4094-84b6-2da745147460}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -482,6 +485,9 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\SwapChain.h">
       <Filter>GraphicAPI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Level\LevelApi.h">
+      <Filter>EngineCore\UserApi\Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -702,6 +708,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\Common\Serialization\SW\Serialization.cpp">
       <Filter>Common\Serialization\SW</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Level\LevelApi.cpp">
+      <Filter>EngineCore\UserApi\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

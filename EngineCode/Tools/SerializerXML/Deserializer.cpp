@@ -22,10 +22,17 @@ struct DeserializerImpl
 };
 
 
+
 IDeserializer::IDeserializer()
+	:	context( nullptr )
 {
 	impl = new DeserializerImpl;
-	context = nullptr;
+}
+
+IDeserializer::IDeserializer( std::unique_ptr< SerializationContext > serContext )
+	: context( std::move( serContext ) )
+{
+	impl = new DeserializerImpl;
 }
 
 IDeserializer::~IDeserializer()

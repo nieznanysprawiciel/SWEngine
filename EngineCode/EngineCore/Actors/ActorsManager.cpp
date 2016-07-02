@@ -84,17 +84,19 @@ ActorBase* ActorsManager::GetActorByName( const std::string& name )
 //			Serialization	
 //====================================================================================//
 
-const std::string		ACTORS_ARRAY_NAME		= "Actors";
-const std::string		ACTOR_INSTANCE_NAME		= "Actor";
+const std::string		ActorsManager::ACTORS_ARRAY_STRING			= "Actors";
+const std::string		ActorsManager::ACTOR_ARRAY_ELEMENT_STRING	= "Actor";
+const std::string		ActorsManager::ACTOR_INFO_STRING			= "ActorInfo";
+const std::string		ActorsManager::ACTOR_OBJECT_NAME			= "ActorName";
 
 /**@brief Serializuje aktorów.*/
 void								ActorsManager::Serialize( ISerializer* ser )
 {
-	ser->EnterArray( ACTORS_ARRAY_NAME );
+	ser->EnterArray( ACTORS_ARRAY_STRING );
 
 	for( auto& obj : m_objectList )
 	{
-		ser->EnterObject( ACTOR_INSTANCE_NAME );
+		ser->EnterObject( ACTOR_ARRAY_ELEMENT_STRING );
 		obj.first->Serialize( ser );
 		ser->Exit();
 	}
@@ -102,8 +104,46 @@ void								ActorsManager::Serialize( ISerializer* ser )
 	ser->Exit();
 }
 
-/**@brief Deserializuje aktorów.*/
+/**@brief Deserializuje aktorów.
+
+@todo Nazwy u¿ywane w serializacji s¹ wpisane na sztywno i s¹ u¿ywane równie¿ w EditorPlugin.
+Trzeba to ujednoliciæ.*/
 void								ActorsManager::Deserialize( IDeserializer* deser )
 {
+	if( deser->EnterArray( ActorsManager::ACTORS_ARRAY_STRING ) )
+	{
+		if( deser->FirstElement() )
+		{
+			do
+			{
+				auto actorName = deser->GetAttribute( ActorsManager::ACTOR_OBJECT_NAME, "" );
 
+				if( deser->EnterObject( ActorsManager::ACTOR_INFO_STRING ) )
+				{
+					/// @todo ActorInfo
+					ActorInfo info;
+					if( deser->GetAttribute( "EnableDisplay", false ) )
+						info.actorFlags = ActorInfoFlag::EnableDisplay;
+					
+					bool actorObjectExists = deser->NextElement();
+					assert( actorObjectExists );
+
+					/// @todo Actors info passed in parameter isn't used. Repair it.
+					auto newActor = CreateActor( deser->GetName() );
+					assert( newActor );
+					UpdateActor( newActor, info );
+
+					newActor->Deserialize( deser );
+
+					if( strcmp( actorName, "" ) )
+						m_actorNamesMap.insert( std::make_pair( actorName, newActor ) );
+
+					deser->Exit();	// ActorsManager::ACTOR_INFO_STRING
+				}
+
+			} while( deser->NextElement() );
+		}
+
+		deser->Exit();	// ACTORS_ARRAY_STRING
+	}
 }

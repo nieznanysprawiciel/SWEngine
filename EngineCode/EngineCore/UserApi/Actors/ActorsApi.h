@@ -76,7 +76,7 @@ namespace Api
 	template<typename Type>
 	inline Type* ActorsApi::CreateActor( const std::string& name, ActorInfo actorModules )
 	{
-		Type* newActor = Context->actorsManager->CreateActor< Type >( name, actorModules );
+		Type* newActor = Context->actorsManager->CreateActor< Type >( name );
 
 		if( newActor == nullptr )
 			return nullptr;
@@ -94,7 +94,7 @@ namespace Api
 	template<typename Type>
 	inline Type* ActorsApi::CreateActor( ActorType id, ActorInfo actorModules )
 	{
-		Type* newActor = Context->actorsManager->CreateActor< Type >( id, actorModules );
+		Type* newActor = Context->actorsManager->CreateActor< Type >( id );
 
 		if( newActor == nullptr )
 			return nullptr;
@@ -111,7 +111,7 @@ namespace Api
 	template<typename Type>
 	inline Type* ActorsApi::CreateActor( const std::string& name )
 	{
-		Type* newActor = Context->actorsManager->CreateActor< Type >( name, ActorInfoFlag::DisableAll );
+		Type* newActor = Context->actorsManager->CreateActor< Type >( name );
 
 		if( newActor == nullptr )
 			return nullptr;
@@ -127,7 +127,7 @@ namespace Api
 	template<typename Type>
 	inline Type* ActorsApi::CreateActor( ActorType id )
 	{
-		Type* newActor = Context->actorsManager->CreateActor< Type >( id, ActorInfoFlag::DisableAll );
+		Type* newActor = Context->actorsManager->CreateActor< Type >( id );
 
 		if( newActor == nullptr )
 			return nullptr;

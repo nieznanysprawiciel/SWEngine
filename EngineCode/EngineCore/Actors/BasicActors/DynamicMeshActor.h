@@ -41,7 +41,9 @@ public:
 	void						AddModelPart	( ModelPart& modelPart );
 	///
 
-	static ActorBase*				Create()	{ return new DynamicMeshActor; }
+	virtual void				Deserialize		( IDeserializer* deser ) override;
+	static ActorBase*			Create			()	{ return new DynamicMeshActor; }
+
 
 private:
 	void AddReferences( const ModelPart* part );

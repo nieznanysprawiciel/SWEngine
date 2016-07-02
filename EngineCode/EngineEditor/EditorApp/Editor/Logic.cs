@@ -111,7 +111,7 @@ namespace EditorApp
 			}
 		}
 
-		public void SaveLevelClick( object parameter )
+		public void			SaveLevelClick( object parameter )
 		{
 			SceneSaver saver = new SceneSaver();
 			saver.ActorsToSave( ProjectManager.ActorsLogic.Actors );
@@ -119,9 +119,13 @@ namespace EditorApp
 			saver.SaveScene( Path.Combine( PathsManager.LevelsDir, "Test2Level.swmap" ) );
 		}
 
-		public void LoadLevelClick( object parameter )
+		public void			LoadLevelClick( object parameter )
 		{
+			SceneLoader loader = new SceneLoader();
+			bool result = loader.LoadScene( Path.Combine( PathsManager.LevelsDir, "Test2Level.swmap" ) );
 
+			if( result )
+				ProjectManager.ActorsLogic.PostInitLevel();
 		}
 
 		public void			RenderFrame( object sender, EventArgs e )

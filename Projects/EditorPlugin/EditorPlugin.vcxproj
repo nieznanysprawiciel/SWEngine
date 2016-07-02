@@ -35,6 +35,7 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourceObjectPropertyWrapper.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneLoader.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneSaver.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +52,7 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourceObjectPropertyWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Resource.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneLoader.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneSaver.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\targetver.h" />
   </ItemGroup>

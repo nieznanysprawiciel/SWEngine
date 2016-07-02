@@ -54,6 +54,9 @@
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Native\SceneHelpersNoClr.cpp">
       <Filter>EditorPlugin\Native</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneLoader.cpp">
+      <Filter>EditorPlugin\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\targetver.h">
@@ -93,6 +96,9 @@
       <Filter>EditorPlugin\Native</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneSaver.h">
+      <Filter>EditorPlugin\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneLoader.h">
       <Filter>EditorPlugin\Scene</Filter>
     </ClInclude>
   </ItemGroup>

@@ -119,7 +119,7 @@ EngineContext i nie bêdzie krzycza³, ¿e klasa std::mutex mu nie pasuje.*/
 template<>
 ActorBase*							ActorsApi::CreateActor< ActorBase >		( const std::string& name )
 {
-	ActorBase* newActor = Context->actorsManager->CreateActor< ActorBase >( name, ActorInfoFlag::DisableAll );
+	ActorBase* newActor = Context->actorsManager->CreateActor< ActorBase >( name );
 
 	if( newActor == nullptr )
 		return nullptr;
@@ -132,7 +132,7 @@ EngineContext i nie bêdzie krzycza³, ¿e klasa std::mutex mu nie pasuje.*/
 template<>
 ActorBase*							ActorsApi::CreateActor< ActorBase >		( ActorType id )
 {
-	ActorBase* newActor = Context->actorsManager->CreateActor< ActorBase >( id, ActorInfoFlag::DisableAll );
+	ActorBase* newActor = Context->actorsManager->CreateActor< ActorBase >( id );
 
 	if( newActor == nullptr )
 		return nullptr;

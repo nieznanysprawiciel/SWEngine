@@ -18,6 +18,7 @@ public ref class EditorActorsFactory
 private:
 public:
 	static ActorWrapper^			CreateGizmoActor		( System::String^ meshPath );
+	static ActorWrapper^			CreateDefaultCamera		( bool setAsCurrent );
 };
 
 }	// EditorPlugin

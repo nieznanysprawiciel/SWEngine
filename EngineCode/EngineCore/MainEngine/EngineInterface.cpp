@@ -38,7 +38,7 @@ EngineInterface::~EngineInterface()
 #include <math.h>
 #include "EngineInterface.h"
 
-
+/**@brief */
 void Engine::test()
 {
 	const wchar_t CLONE_FIGHTER[] = L"tylko_do_testow/ARC.FBX";
@@ -167,21 +167,28 @@ void Engine::test()
 	Size DynamicMeshActorSize = sizeof( DynamicMeshActor );
 }
 
+/**@brief */
 void Engine::SetSkydomeAndCamera()
 {
-	//ustawienie aktywnej kamery
+	// Ustawienie aktywnej kamery
 	CameraActor* camera = Actors.CreateActor< CameraActor >( GetTypeidName< CameraActor >(), AsCamera | EnablePreController | EnableMovement );
-	XMVECTOR camera_pos = XMVectorSet( 0.0, 0.0, 0.0, 0.0 );
-	camera->Teleport( camera_pos );
-	//przypisujemy kontroler ( dla kontrolerów trzeba zrobiæ jakiœ mechanizm przechowywania i zwalniania)
+	XMVECTOR cameraPos = XMVectorSet( 0.0, 0.0, 0.0, 0.0 );
+	camera->Teleport( cameraPos );
+
+	// Przypisujemy kontroler ( dla kontrolerów trzeba zrobiæ jakiœ mechanizm przechowywania i zwalniania)
 	SpectatorCameraController* controller = new SpectatorCameraController(
 	Context->ui_engine->GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ) );
 	camera->SetController( controller );
 
-	//wstawiamy kamerê do odpowiednich modu³ów
+	// Wstawiamy kamerê do odpowiednich modu³ów
 	Context->displayEngine->SetCurrentCamera( camera );
 
+	SetSkydome();
+}
 
+/**@brief */
+void Engine::SetSkydome()
+{
 	double albedo[3] = { 0.8, 0.8, 0.8 };
 	double turbidity = 4;
 	XMVECTOR sun_dir = XMVectorSet( -0.2f, 0.6f, 0.6f, 1.0f );
@@ -198,7 +205,6 @@ void Engine::SetSkydomeAndCamera()
 	// Ustawiamy œwiat³o pod indeksem 0
 	Context->displayEngine->SetDirectionalLight( direction, color, 0 );
 	Context->displayEngine->SetAmbientLight( DirectX::XMFLOAT4( 0.2f, 0.2f, 0.2f, 1.0f ) );
-
 }
 
 #endif

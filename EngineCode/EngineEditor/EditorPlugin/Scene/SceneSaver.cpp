@@ -13,10 +13,6 @@
 namespace EditorPlugin
 {
 
-const std::string		ACTORS_ARRAY_NAME		= "Actors";
-const std::string		ACTOR_INSTANCE_NAME		= "Actor";
-
-
 /**@brief */
 void SceneSaver::ActorsToSave( ObservableCollection<ActorWrapper^>^ actors )
 {
@@ -43,11 +39,11 @@ bool SceneSaver::SaveScene( System::String^ fileName )
 /**@brief */
 void SceneSaver::SerializeActors( ISerializer* ser )
 {
-	ser->EnterArray( ACTORS_ARRAY_NAME );
+	ser->EnterArray( ActorsManager::ACTORS_ARRAY_STRING );
 
 	for each( auto obj in m_actors )
 	{
-		ser->EnterObject( ACTOR_INSTANCE_NAME );
+		ser->EnterObject( ActorsManager::ACTOR_ARRAY_ELEMENT_STRING );
 
 		ser->SetAttribute( "ActorName", msclr::interop::marshal_as< std::string >( obj->ActorName ) );
 

@@ -17,6 +17,12 @@ class IDeserializer;
 @ingroup EngineCore*/
 class ActorsManager
 {
+public:
+	static const std::string	ACTORS_ARRAY_STRING;
+	static const std::string	ACTOR_ARRAY_ELEMENT_STRING;
+	static const std::string	ACTOR_OBJECT_NAME;
+	static const std::string	ACTOR_INFO_STRING;
+
 private:
 	ActorFactory							m_actorFactory;
 
@@ -30,8 +36,8 @@ public:
 
 	inline ActorFactory&									GetActorFactory	()	{ return m_actorFactory; }
 
-	template< typename Type = ActorBase >	Type*			CreateActor		( const std::string& name, ActorInfo actorModules );
-	template< typename Type = ActorBase >	Type*			CreateActor		( ActorType id, ActorInfo actorModules );
+	template< typename Type = ActorBase >	Type*			CreateActor		( const std::string& name );
+	template< typename Type = ActorBase >	Type*			CreateActor		( ActorType id );
 
 	const std::vector< ActorData >&							GetAllActors	() const;
 	const std::map< std::string, ActorBase* >				GetActorsNames	() const;
@@ -55,7 +61,7 @@ public:
 
 /**@brief Tworzy aktora na podstawie nazwy.*/
 template<typename Type>
-inline Type* ActorsManager::CreateActor( const std::string& name, ActorInfo actorModules )
+inline Type* ActorsManager::CreateActor( const std::string& name )
 {
 	Type* newActor = m_actorFactory.CreateActor< Type >( name );
 
@@ -70,7 +76,7 @@ inline Type* ActorsManager::CreateActor( const std::string& name, ActorInfo acto
 
 /**@brief Tworzy aktora na podstawie identyfikatora.*/
 template<typename Type>
-inline Type* ActorsManager::CreateActor( ActorType id, ActorInfo actorModules )
+inline Type* ActorsManager::CreateActor( ActorType id )
 {
 	Type* newActor = m_actorFactory.CreateActor< Type >( id );
 

@@ -2,9 +2,12 @@
 #include "DynamicMeshActor.h"
 
 
+#include "EngineCore/MainEngine/EngineInterface.h"
 #include "EngineCore/ModelsManager/Model3DFromFile.h"
 #include "GraphicAPI/IRenderer.h"
 #include "GraphicAPI/MeshResources.h"
+
+#include "Common/Serialization/SW/Serialization.h"
 
 #include "Common/MemoryLeaks.h"
 
@@ -170,4 +173,24 @@ void DynamicMeshActor::DeleteAllReferences( )
 	model_parts.clear();
 }
 
+//====================================================================================//
+//			Serialization	
+//====================================================================================//
+
+/**@brief Domyœlna implementacja deserializacji.*/
+void DynamicMeshActor::Deserialize( IDeserializer* deser )
+{
+	PhysicalActor::Deserialize( deser );
+
+	///@fixme Trzeba zrobiæ jakiœ ogólny mechanizm dla assetów oraz kontrolerów.
+	if( deser->EnterObject( rttr::type::get< Model3DFromFile >().get_name() ) )
+	{
+		std::wstring filePath = Serialization::UTFToWstring( deser->GetAttribute( "FileName", "" ) );
+		
+		auto mesh = GetEngineInterface()->Assets.Models.LoadSync( filePath );
+		SetModel( mesh );
+
+		deser->Exit();	// DynamicMeshActor name
+	}
+}
 

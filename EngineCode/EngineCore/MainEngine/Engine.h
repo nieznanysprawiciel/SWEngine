@@ -141,6 +141,7 @@ public:
 #ifdef __TEST
 	void test();
 	void SetSkydomeAndCamera();
+	void SetSkydome();
 #endif
 
 	///@name Parametry okna

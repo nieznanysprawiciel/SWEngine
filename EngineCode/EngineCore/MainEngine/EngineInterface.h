@@ -9,6 +9,7 @@
 #include "EngineCore/UserApi/Rendering/RenderApi.h"
 #include "EngineCore/UserApi/Actors/ActorsApi.h"
 #include "EngineCore/UserApi/Assets/AssetsApi.h"
+#include "EngineCore/UserApi/Level/LevelApi.h"
 
 struct EngineContext;
 class Engine;
@@ -54,6 +55,7 @@ public:
 	Api::ActorsApi			Actors;		///<Funkcje do zarz퉐zania aktorami.
 	Api::RenderingApi		Rendering;	///<Funkcje do zarzadzania renderowaniem.
 	Api::InputApi			Input;		///<Funkcje do zarz퉐zania wej쐁iem od u퓓tkownika.
+	Api::LevelApi			Level;		///<Funkcje do zarz퉐zania levelami.
 
 };
 
