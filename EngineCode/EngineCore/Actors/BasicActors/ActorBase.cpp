@@ -50,6 +50,6 @@ void ActorBase::Serialize( ISerializer* ser ) const
 /**@brief Domyœlna implementacja deserializacji.*/
 void ActorBase::Deserialize( IDeserializer* deser )
 {
-	Serialization::DefaultDeserialize( deser, this );
+	GetEngineInterface()->Level.Serialization.DefaultDeserialize( deser, this );
 }
 

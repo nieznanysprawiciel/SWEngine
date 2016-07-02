@@ -8,6 +8,7 @@
 class InputAbstractionLayer;
 
 #include "EngineCore/UserApi/ApiGroup.h"
+#include "EngineCore/UserApi/Level/SerializationApi.h"
 
 #include <string>
 
@@ -28,6 +29,10 @@ namespace Api
 	public:
 		LevelApi() = default;
 		~LevelApi() = default;
+	public:
+
+		Api::SerializationApi		Serialization;	///< Funkcje pomocnicze do serializacji.
+
 	public:
 	
 		bool			LoadLevelSync		( const std::string& levelFileName );

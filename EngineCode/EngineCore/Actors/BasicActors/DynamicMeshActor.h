@@ -32,6 +32,7 @@ public:
 	virtual ~DynamicMeshActor();
 
 	bool						SetModel		( Model3DFromFile* model );
+	Model3DFromFile*			GetModel		()		{ return m_modelRef; }
 
 	/// @todo Przemyœleæ czy te funkcje s¹ konieczne.
 	BufferObject*				GetVertexBuffer	()	{ return vertex_buffer; }
@@ -41,7 +42,6 @@ public:
 	void						AddModelPart	( ModelPart& modelPart );
 	///
 
-	virtual void				Deserialize		( IDeserializer* deser ) override;
 	static ActorBase*			Create			()	{ return new DynamicMeshActor; }
 
 

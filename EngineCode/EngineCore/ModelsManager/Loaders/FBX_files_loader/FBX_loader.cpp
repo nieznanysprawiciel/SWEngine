@@ -40,6 +40,9 @@ bool FBX_loader::can_load(const std::wstring& name)
 		return true;
 	};
 
+	if( name.length() < 4 )
+		return false;
+
 	// Wyjmujemy z nazwy pliku jego rozszerzenie (razem z kropk¹)
 	wchar_t extension[4];
 	extension[0] = name[name.length() - 4];

@@ -488,6 +488,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Level\LevelApi.h">
       <Filter>EngineCore\UserApi\Level</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Level\SerializationApi.h">
+      <Filter>EngineCore\UserApi\Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -710,6 +713,9 @@
       <Filter>Common\Serialization\SW</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Level\LevelApi.cpp">
+      <Filter>EngineCore\UserApi\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Level\SerializationApi.cpp">
       <Filter>EngineCore\UserApi\Level</Filter>
     </ClCompile>
   </ItemGroup>

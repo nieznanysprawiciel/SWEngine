@@ -21,7 +21,7 @@ RTTR_REGISTRATION
 			rttr::metadata( MetaDataType::Category, "Transformation" )
 		)
 #endif
-		.property( "Asset", &DynamicMeshActor::m_modelRef )
+		.property( "Asset", &DynamicMeshActor::GetModel, &DynamicMeshActor::SetModel )
 		(
 			rttr::metadata( MetaDataType::Category, "Mesh" )
 		);
@@ -59,7 +59,7 @@ DynamicMeshActor::~DynamicMeshActor()
 	DeleteAllReferences();
 }
 
-bool DynamicMeshActor::SetModel(Model3DFromFile* model)
+bool DynamicMeshActor::SetModel( Model3DFromFile* model )
 {
 	if( model == nullptr )
 		return false;
@@ -171,26 +171,5 @@ void DynamicMeshActor::DeleteAllReferences( )
 			part->vertex_shader->DeleteObjectReference( );
 	}
 	model_parts.clear();
-}
-
-//====================================================================================//
-//			Serialization	
-//====================================================================================//
-
-/**@brief Domyœlna implementacja deserializacji.*/
-void DynamicMeshActor::Deserialize( IDeserializer* deser )
-{
-	PhysicalActor::Deserialize( deser );
-
-	///@fixme Trzeba zrobiæ jakiœ ogólny mechanizm dla assetów oraz kontrolerów.
-	if( deser->EnterObject( rttr::type::get< Model3DFromFile >().get_name() ) )
-	{
-		std::wstring filePath = Serialization::UTFToWstring( deser->GetAttribute( "FileName", "" ) );
-		
-		auto mesh = GetEngineInterface()->Assets.Models.LoadSync( filePath );
-		SetModel( mesh );
-
-		deser->Exit();	// DynamicMeshActor name
-	}
 }
 
