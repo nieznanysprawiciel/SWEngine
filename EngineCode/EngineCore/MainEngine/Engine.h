@@ -84,8 +84,6 @@ public:
 	///@{
 	void*		GetRenderTargetHandle		( uint16 width, uint16 height );
 	CameraData&	GetMainCamera				();
-
-	void		SaveMap						( const std::string& filePath );
 	///@}
 
 

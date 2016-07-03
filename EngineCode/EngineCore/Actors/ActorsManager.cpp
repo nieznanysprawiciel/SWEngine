@@ -34,6 +34,19 @@ void ActorsManager::UpdateActor		( ActorBase* actor, ActorInfo actorModules )
 	actorData->second |= actorModules;
 }
 
+/**@brief Nadaje nazwê aktorowi.
+
+@return Zwraca false, je¿eli aktor o podanej nazwie istnieje.*/
+bool ActorsManager::NameActor		( ActorBase* actor, const std::string& name )
+{
+	auto iter = m_actorNamesMap.find( name );
+	if( iter != m_actorNamesMap.end() )
+		return false;
+
+	m_actorNamesMap.insert( std::make_pair( name, actor ) );
+	return true;
+}
+
 /**@brief Pobiera dane o wszystkich aktorach.
 
 @return Zwraca referencjê na wektor @ref ActorData.*/
@@ -43,7 +56,7 @@ const std::vector<ActorData>&		ActorsManager::GetAllActors() const
 }
 
 /**@brief Zwraca mapê nazw aktorów i wskaŸników na nich.*/
-const std::map< std::string, ActorBase* > ActorsManager::GetActorsNames() const
+const std::map< std::string, ActorBase* >& ActorsManager::GetActorsNames() const
 {
 	return m_actorNamesMap;
 }
@@ -80,70 +93,3 @@ ActorBase* ActorsManager::GetActorByName( const std::string& name )
 }
 
 
-//====================================================================================//
-//			Serialization	
-//====================================================================================//
-
-const std::string		ActorsManager::ACTORS_ARRAY_STRING			= "Actors";
-const std::string		ActorsManager::ACTOR_ARRAY_ELEMENT_STRING	= "Actor";
-const std::string		ActorsManager::ACTOR_INFO_STRING			= "ActorInfo";
-const std::string		ActorsManager::ACTOR_OBJECT_NAME			= "ActorName";
-
-/**@brief Serializuje aktorów.*/
-void								ActorsManager::Serialize( ISerializer* ser )
-{
-	ser->EnterArray( ACTORS_ARRAY_STRING );
-
-	for( auto& obj : m_objectList )
-	{
-		ser->EnterObject( ACTOR_ARRAY_ELEMENT_STRING );
-		obj.first->Serialize( ser );
-		ser->Exit();
-	}
-
-	ser->Exit();
-}
-
-/**@brief Deserializuje aktorów.
-
-@todo Nazwy u¿ywane w serializacji s¹ wpisane na sztywno i s¹ u¿ywane równie¿ w EditorPlugin.
-Trzeba to ujednoliciæ.*/
-void								ActorsManager::Deserialize( IDeserializer* deser )
-{
-	if( deser->EnterArray( ActorsManager::ACTORS_ARRAY_STRING ) )
-	{
-		if( deser->FirstElement() )
-		{
-			do
-			{
-				auto actorName = deser->GetAttribute( ActorsManager::ACTOR_OBJECT_NAME, "" );
-
-				if( deser->EnterObject( ActorsManager::ACTOR_INFO_STRING ) )
-				{
-					/// @todo ActorInfo
-					ActorInfo info;
-					if( deser->GetAttribute( "EnableDisplay", false ) )
-						info.actorFlags = ActorInfoFlag::EnableDisplay;
-					
-					bool actorObjectExists = deser->NextElement();
-					assert( actorObjectExists );
-
-					/// @todo Actors info passed in parameter isn't used. Repair it.
-					auto newActor = CreateActor( deser->GetName() );
-					assert( newActor );
-					UpdateActor( newActor, info );
-
-					newActor->Deserialize( deser );
-
-					if( strcmp( actorName, "" ) )
-						m_actorNamesMap.insert( std::make_pair( actorName, newActor ) );
-
-					deser->Exit();	// ActorsManager::ACTOR_INFO_STRING
-				}
-
-			} while( deser->NextElement() );
-		}
-
-		deser->Exit();	// ACTORS_ARRAY_STRING
-	}
-}

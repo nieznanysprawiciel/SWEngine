@@ -9,8 +9,23 @@
 #include "Common/Serialization/SW/Serialization.h"
 
 
-namespace Api
+namespace Api { namespace Level
 {
+
+const char*		SerializationApi::ACTOR_INFO_STRING						= "ActorInfo";
+
+const char*		SerializationApi::ACTOR_INFO_ENABLE_DISPLAY				= "EnableDisplay";
+const char*		SerializationApi::ACTOR_INFO_ENABLE_MOVEMENT			= "EnableMovement";
+const char*		SerializationApi::ACTOR_INFO_ENABLE_PRE_CONTROLLERS		= "EnablePreController";
+const char*		SerializationApi::ACTOR_INFO_ENABLE_POST_CONTROLLERS	= "EnablePostController";
+const char*		SerializationApi::ACTOR_INFO_ENABLE_PHYSIC				= "EnablePhysic";
+const char*		SerializationApi::ACTOR_INFO_ENABLE_SHADOW				= "EnableShadow";
+const char*		SerializationApi::ACTOR_INFO_ENABLE_COLLISION			= "EnableCollisions";
+const char*		SerializationApi::ACTOR_INFO_IS_LIGHT					= "IsLight";
+const char*		SerializationApi::ACTOR_INFO_IS_CAMERA					= "IsCamera";
+const char*		SerializationApi::ACTOR_INFO_ENABLE_SAVING_TO_FILE		= "EnableSavingToFile";
+
+
 
 /**@brief Domyœlna deserializacja w silniku.
 
@@ -74,4 +89,41 @@ bool SerializationApi::DeserializeSingleGeneric( IDeserializer* deser, rttr::pro
 	return false;
 }
 
+void SerializationApi::SerializeActorInfo( ISerializer* ser, ActorInfo info )
+{
+	ser->EnterObject( SerializationApi::ACTOR_INFO_STRING );
+
+	ser->SetAttribute( SerializationApi::ACTOR_INFO_ENABLE_DISPLAY, info.EnableDisplay() );
+	ser->SetAttribute( SerializationApi::ACTOR_INFO_ENABLE_MOVEMENT, info.EnableMovement() );
+	ser->SetAttribute( SerializationApi::ACTOR_INFO_ENABLE_PHYSIC, info.EnablePhysic() );
+	ser->SetAttribute( SerializationApi::ACTOR_INFO_ENABLE_COLLISION, info.EnableCollisions() );
+	ser->SetAttribute( SerializationApi::ACTOR_INFO_ENABLE_SHADOW, info.EnableShadow() );
+	ser->SetAttribute( SerializationApi::ACTOR_INFO_ENABLE_PRE_CONTROLLERS, info.EnablePreController() );
+	ser->SetAttribute( SerializationApi::ACTOR_INFO_ENABLE_POST_CONTROLLERS, info.EnablePostController() );
+	ser->SetAttribute( SerializationApi::ACTOR_INFO_IS_LIGHT, info.IsLight() );
+	ser->SetAttribute( SerializationApi::ACTOR_INFO_IS_CAMERA, info.IsCamera() );
+	ser->SetAttribute( SerializationApi::ACTOR_INFO_ENABLE_SAVING_TO_FILE, info.EnableSavingToFile() );
+
+	ser->Exit();	// SerializationApi::ACTOR_INFO_STRING
+}
+
+/**@brief Deserializuje strukturê ActorInfo.*/
+ActorInfo SerializationApi::DeserializeActorInfo( IDeserializer* deser )
+{
+	ActorInfo info;
+	info += deser->GetAttribute( SerializationApi::ACTOR_INFO_ENABLE_DISPLAY, false ) ? ActorInfoFlag::EnableDisplay : ActorInfoFlag::DisableAll;
+	info += deser->GetAttribute( SerializationApi::ACTOR_INFO_ENABLE_MOVEMENT, false ) ? ActorInfoFlag::EnableMovement : ActorInfoFlag::DisableAll;
+	info += deser->GetAttribute( SerializationApi::ACTOR_INFO_ENABLE_PHYSIC, false ) ? ActorInfoFlag::EnablePhysic : ActorInfoFlag::DisableAll;
+	info += deser->GetAttribute( SerializationApi::ACTOR_INFO_ENABLE_COLLISION, false ) ? ActorInfoFlag::EnableCollisions : ActorInfoFlag::DisableAll;
+	info += deser->GetAttribute( SerializationApi::ACTOR_INFO_ENABLE_SHADOW, false ) ? ActorInfoFlag::EnableShadow : ActorInfoFlag::DisableAll;
+	info += deser->GetAttribute( SerializationApi::ACTOR_INFO_ENABLE_PRE_CONTROLLERS, false ) ? ActorInfoFlag::EnablePreController : ActorInfoFlag::DisableAll;
+	info += deser->GetAttribute( SerializationApi::ACTOR_INFO_ENABLE_POST_CONTROLLERS, false ) ? ActorInfoFlag::EnablePostController : ActorInfoFlag::DisableAll;
+	info += deser->GetAttribute( SerializationApi::ACTOR_INFO_IS_LIGHT, false ) ? ActorInfoFlag::AsLight : ActorInfoFlag::DisableAll;
+	info += deser->GetAttribute( SerializationApi::ACTOR_INFO_IS_CAMERA, false ) ? ActorInfoFlag::AsCamera : ActorInfoFlag::DisableAll;
+	info += deser->GetAttribute( SerializationApi::ACTOR_INFO_ENABLE_SAVING_TO_FILE, false ) ? ActorInfoFlag::EnableSavingToFile : ActorInfoFlag::DisableAll;
+
+	return info;
+}
+
+}	// Level
 }	// Api

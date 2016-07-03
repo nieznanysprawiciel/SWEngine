@@ -61,7 +61,7 @@ namespace Api
 
 		const std::map< std::string, ActorType >&		GetRegisteredClasses	();
 		const std::vector< ActorData >&					GetAllActors			();
-		const std::map< std::string, ActorBase* >		GetActorsNames			();
+		const std::map< std::string, ActorBase* >&		GetActorsNames			();
 	};
 
 	template<>							ActorBase*		ActorsApi::CreateActor				( const std::string& name );

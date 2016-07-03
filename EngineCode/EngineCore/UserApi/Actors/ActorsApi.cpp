@@ -109,7 +109,7 @@ const std::vector<ActorData>&		ActorsApi::GetAllActors()
 }
 
 /**@copydoc ActorsManager::GetActorsNames*/
-const std::map<std::string, ActorBase*> ActorsApi::GetActorsNames()
+const std::map<std::string, ActorBase*>& ActorsApi::GetActorsNames()
 {
 	return Context->actorsManager->GetActorsNames();
 }

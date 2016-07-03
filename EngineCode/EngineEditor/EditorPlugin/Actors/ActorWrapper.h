@@ -28,6 +28,7 @@ public:
 	System::String^		GetTypeName	();
 	System::IntPtr		GetActorPtr	();
 	ActorBase*			Ptr			();
+	unsigned short		GetActorInfo()		{ return m_actorInfo; }
 	
 	bool				LoadMesh	( System::String^ meshPath );
 

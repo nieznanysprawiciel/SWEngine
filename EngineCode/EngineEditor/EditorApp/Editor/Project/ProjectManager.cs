@@ -37,7 +37,7 @@ namespace EditorApp.Project
 		{
 			m_projectSettings = Serialization.Deserialize<ProjectSettings>( projectFilePath );
 
-			m_actorsLogic.PostInitLevel();
+			//m_actorsLogic.PostInitLevel();
 			m_contentManager.ResetAssetsRoot( m_editorLogic.PathsManager.AssetsDir );
 
 			return true;
@@ -49,7 +49,7 @@ namespace EditorApp.Project
 			Serialization.Serialize( projectFilePath, m_projectSettings );
 
 			// TEMP
-			m_editorLogic.Displayer.EngineWrapper.SaveLevel( Path.Combine( m_editorLogic.PathsManager.LevelsDir, "TestLevel.swmap" ) );
+			//m_editorLogic.Displayer.EngineWrapper.SaveLevel( Path.Combine( m_editorLogic.PathsManager.LevelsDir, "TestLevel.swmap" ) );
 
 			return true;
 		}

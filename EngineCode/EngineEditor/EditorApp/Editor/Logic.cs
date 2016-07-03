@@ -125,7 +125,7 @@ namespace EditorApp
 			bool result = loader.LoadScene( Path.Combine( PathsManager.LevelsDir, "Test2Level.swmap" ) );
 
 			if( result )
-				ProjectManager.ActorsLogic.PostInitLevel();
+				ProjectManager.ActorsLogic.PostInitLevel( loader );
 		}
 
 		public void			RenderFrame( object sender, EventArgs e )

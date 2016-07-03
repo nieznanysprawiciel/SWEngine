@@ -39,34 +39,23 @@ bool SceneSaver::SaveScene( System::String^ fileName )
 /**@brief */
 void SceneSaver::SerializeActors( ISerializer* ser )
 {
-	ser->EnterArray( ActorsManager::ACTORS_ARRAY_STRING );
+	auto engine = EnginePointerProvider::GetEngine();
+
+	ser->EnterArray( Api::LevelApi::ACTORS_ARRAY_STRING );
 
 	for each( auto obj in m_actors )
 	{
-		ser->EnterObject( ActorsManager::ACTOR_ARRAY_ELEMENT_STRING );
+		ser->EnterObject( Api::LevelApi::ACTOR_ARRAY_ELEMENT_STRING );
 
-		ser->SetAttribute( "ActorName", msclr::interop::marshal_as< std::string >( obj->ActorName ) );
+		ser->SetAttribute( Api::LevelApi::ACTOR_OBJECT_NAME, msclr::interop::marshal_as< std::string >( obj->ActorName ) );
 
-		ser->EnterObject( "ActorInfo");
-
-		ser->SetAttribute( "EnableDisplay", obj->EnableDisplay );
-		ser->SetAttribute( "EnableMovement", obj->EnableMovement );
-		ser->SetAttribute( "EnablePhysic", obj->EnablePhysic );
-		ser->SetAttribute( "EnableCollisions", obj->EnableCollisions );
-		ser->SetAttribute( "EnableShadow", obj->EnableShadow );
-		ser->SetAttribute( "EnablePreController", obj->EnablePreController );
-		ser->SetAttribute( "EnablePostController", obj->EnablePostController );
-		ser->SetAttribute( "IsLight", obj->IsLight );
-		ser->SetAttribute( "IsCamera", obj->IsCamera );
-		ser->SetAttribute( "EnableSavingToFile", obj->EnableSavingToFile );
-
-		ser->Exit();
-
+		engine->Level.Serialization.SerializeActorInfo( ser, obj->GetActorInfo() );
 		obj->Ptr()->Serialize( ser );
-		ser->Exit();
+
+		ser->Exit();	// Api::LevelApi::ACTOR_ARRAY_ELEMENT_STRING
 	}
 
-	ser->Exit();
+	ser->Exit();	// Api::LevelApi::ACTORS_ARRAY_STRING
 }
 
 }	//	EditorPlugin

@@ -383,22 +383,6 @@ CameraData& Engine::GetMainCamera()
 	return Context->controllersEngine->GetGlobalState()->Camera;;
 }
 
-/**@brief Zapisuje mapê na podstawie aktualnego stanu silnika.
-
-@todo Zastanowiæ siê jak celowo ma byæ zapisywana mapa. Byæ mo¿e tê funkcjonalnoœæ
-trzeba przenieœæ bli¿ej edytora.*/
-void Engine::SaveMap( const std::string& filePath )
-{
-	auto context = std::make_unique< EngineSerializationContext >();
-	context->SaveWholeMap = true;
-
-	ISerializer* ser = new ISerializer( std::move( context ) );
-	Context->actorsManager->Serialize( ser );
-
-	ser->SaveFile( filePath, WritingMode::Readable );
-	delete ser;
-}
-
 
 #ifndef __UNUSED
 

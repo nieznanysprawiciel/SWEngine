@@ -66,14 +66,14 @@ namespace EditorApp.Editor.Project.Actors
 			m_gizmoActor = null;
 		}
 
-		public void				PostInitLevel()
+		public void				PostInitLevel( SceneLoader loader )
 		{
 			ClearState();
 
 			// Pobieramy aktorów ze sceny oraz metadane o typach aktorów.
 			EngineWrapper engine = m_editorLogic.Displayer.EngineWrapper;
 			m_actorsTypesList = engine.CreateActorsMetadata();
-			m_actors = engine.CreateActorsList();
+			m_actors = loader.GetLoadedActors();
 
 			// Tworzymy aktorów pomocniczych.
 			m_gizmoActor = EditorActorsFactory.CreateGizmoActor( Path.Combine( m_editorLogic.PathsManager.DefaultMeshesDir, m_editorLogic.GlobalSettings.GizmoAssetFile ) );
@@ -83,8 +83,12 @@ namespace EditorApp.Editor.Project.Actors
 			int actorCounter = 0;
 			foreach( var actor in m_actors )
 			{
-				actor.ActorName = actor.GetTypeName() + actorCounter.ToString();
-				++actorCounter;
+				// Give names to actors without name.
+				if( actor.ActorName == "" )
+				{
+					actor.ActorName = actor.GetTypeName() + actorCounter.ToString();
+					++actorCounter;
+				}
 			}
 
 			OnPropertyChanged( "Actors" );

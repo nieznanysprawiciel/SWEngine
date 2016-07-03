@@ -70,8 +70,6 @@ using namespace System::Collections::ObjectModel;
 		void				BasicScene					();
 		void				EnableInput					( bool val );
 
-		void				SaveLevel					( System::String^ filePath );
-
 		// Actors
 		ActorWrapper^		CreateActor					( System::String^ actorName, double mouseX, double mouseY );
 		ActorWrapper^		CreateActor					( System::String^ actorName );

@@ -135,11 +135,6 @@ void EngineWrapper::EnableInput( bool val )
 	m_engine->EnableInput( val );
 }
 
-/**@brief Zapisuje aktualny level*/
-void EngineWrapper::SaveLevel( System::String^ filePath )
-{
-	m_engine->SaveMap( msclr::interop::marshal_as< std::string >( filePath ) );
-}
 
 /**@brief Tworzy aktora.*/
 ActorWrapper^						EngineWrapper::CreateActor				( System::String^ actorName )
@@ -216,6 +211,19 @@ ObservableCollection< ActorWrapper^ >^		EngineWrapper::CreateActorsList			()
 	{
 		ActorWrapper^ newActor = gcnew ActorWrapper( (EngineObject*)actor.first, &actor.second );
 		actorsList->Add( newActor );
+	}
+
+	auto& actorNamesMap = m_engine->Actors.GetActorsNames();
+	for each( auto& nameActorPair in actorNamesMap )
+	{
+		for each ( auto actor in actorsList )
+		{
+			if( actor->Ptr() == nameActorPair.second )
+			{
+				actor->ActorName = gcnew System::String( nameActorPair.first.c_str() );
+				break;
+			}
+		}
 	}
 
 	return actorsList;
