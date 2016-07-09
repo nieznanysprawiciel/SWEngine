@@ -75,6 +75,7 @@ using namespace System::Collections::ObjectModel;
 		ActorWrapper^		CreateActor					( System::String^ actorName );
 		void				SelectActor					( ActorWrapper^ gizmo, ActorWrapper^ selection );
 		void				ClearActors					();
+		void				DeleteActor					( ActorWrapper^ actor );
 
 		List< ActorClassMetaInfo^ >^						CreateActorsMetadata		();
 		ObservableCollection< ActorWrapper^ >^				CreateActorsList			();

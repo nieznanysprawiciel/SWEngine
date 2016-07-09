@@ -192,6 +192,12 @@ void EngineWrapper::ClearActors()
 	m_engine->Actors.DeleteAllActors();
 }
 
+/**@brief */
+void EngineWrapper::DeleteActor( ActorWrapper^ actor )
+{
+	m_engine->Actors.DeleteActor( actor->Ptr() );
+}
+
 /**@brief Tworzy listê typów zarejestrowanych aktorów.*/
 List< ActorClassMetaInfo^ >^		EngineWrapper::CreateActorsMetadata		()
 {

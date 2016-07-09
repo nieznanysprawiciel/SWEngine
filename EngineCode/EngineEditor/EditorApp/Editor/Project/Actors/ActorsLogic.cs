@@ -10,11 +10,11 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using EditorPlugin;
 using EditorApp.Editor.Commands;
-
+using EditorApp.GUI;
 
 namespace EditorApp.Editor.Project.Actors
 {
-	public class ActorsLogic : UpdatableViewBase
+	public class ActorsLogic : UpdatableViewBase, EditorApp.GUI.IDeletableItem
 	{
 		private List< ActorClassMetaInfo >						m_actorsTypesList;
 		private ObservableCollection< ActorWrapper >			m_actors;
@@ -171,6 +171,13 @@ namespace EditorApp.Editor.Project.Actors
 			return null;
 		}
 
+		public void				DeleteActor		( ActorWrapper actor )
+		{
+			m_editorLogic.Displayer.EngineWrapper.DeleteActor( actor );
+
+			m_actors.Remove( actor );
+		}
+
 		public ActorWrapper		CreateActor		( string actorTypeName, double mouseX, double mouseY )
 		{
 			if( actorTypeName != null )
@@ -235,6 +242,12 @@ namespace EditorApp.Editor.Project.Actors
 		private bool CanFindAsset	( object parameter )
 		{
 			return true;
+		}
+
+		void IDeletableItem.DeleteItem( object item )
+		{
+			DeleteActor( item as ActorWrapper );
+			SelectActor( null );
 		}
 
 		#region Properties

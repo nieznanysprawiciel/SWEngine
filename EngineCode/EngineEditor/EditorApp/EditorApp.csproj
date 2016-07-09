@@ -172,6 +172,8 @@
     <Compile Include="GUI\Bahaviors\DragAndDrop\IDragable.cs" />
     <Compile Include="GUI\Bahaviors\DragAndDrop\IDropable.cs" />
     <Compile Include="GUI\Bahaviors\InputProxy\InputProxyBehavior.cs" />
+    <Compile Include="GUI\Bahaviors\KeyboardShortcut\DeleteItemBehavior.cs" />
+    <Compile Include="GUI\Bahaviors\KeyboardShortcut\IDeletableItem.cs" />
     <Compile Include="GUI\Converters\DatabindingDebugConverter .cs" />
     <Compile Include="GUI\Converters\FileIconConverter.cs" />
     <Compile Include="GUI\ProjectBrowser.xaml.cs">

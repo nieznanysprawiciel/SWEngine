@@ -30,6 +30,9 @@
 					  SelectionMode="Single"
 					  AutoGenerateColumns="False"
 					  CanUserResizeRows="False" >
+				<i:Interaction.Behaviors>
+					<gui:DeleteItemBehavior />
+				</i:Interaction.Behaviors>
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="SelectionChanged">
 						<i:InvokeCommandAction CommandParameter="{Binding Path=SelectedItem, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Command="{Binding Path=DataContext.ActorSelectionChangedCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
