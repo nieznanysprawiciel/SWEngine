@@ -8,7 +8,8 @@ namespace EditorApp.Project
 {
 	public class UserSettings
 	{
-		public string DefaultMeshActorTypeName { get; set; }
+		public string CurrentLevel				{ get; set; }
+		public string DefaultMeshActorTypeName	{ get; set; }
 
 
 		public UserSettings()

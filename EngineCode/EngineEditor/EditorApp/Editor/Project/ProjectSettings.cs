@@ -17,6 +17,7 @@ namespace EditorApp.Project
 
 		public ProjectSettings()
 		{
+			m_projectName = "No loaded project";
 			m_levels = new List<LevelInfo>();
 
 			//LevelInfo levelInfo1 = new LevelInfo();

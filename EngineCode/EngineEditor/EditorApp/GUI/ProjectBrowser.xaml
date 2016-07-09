@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="EditorApp.GUI.ProjectBrowser"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EditorApp.GUI"
+			 xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+	<UserControl.Resources>
+		<ResourceDictionary Source="/Styles/BlueStyle/BaseStyles.xaml"/>
+	</UserControl.Resources>
+	<Grid Margin="20, 10, 20, 20" DataContext="{Binding ProjectSettings}">
+		
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		
+		
+		<StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0, 0, 0, 10">
+			<TextBlock Width="100" Text="Project Name" Style="{StaticResource TextBlockObjectStyle}" />
+			<TextBlock Text="{Binding ProjectName}" Style="{StaticResource TextBlockObjectStyle}" />
+		</StackPanel>
+
+		<StackPanel Grid.Row="1">
+			<TextBlock Text="Levels:" Style="{StaticResource TextBlockObjectStyle}" />
+			<ListView VerticalAlignment="Stretch" Height="500" ItemsSource="{Binding Levels}" Style="{StaticResource ListViewStyleBase}">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<Expander>
+							<Expander.Header>
+								<BulletDecorator>
+									<TextBlock Text="{Binding LevelName}" Style="{StaticResource TextBlockCategoryStyle}" />
+								</BulletDecorator>
+							</Expander.Header>
+
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto" />
+									<RowDefinition Height="Auto" />
+								</Grid.RowDefinitions>
+
+								<StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10, 10, 0, 10">
+									<TextBlock Width="100" Text="Level Name" Style="{StaticResource TextBlockObjectStyle}" />
+									<TextBlock Text="{Binding LevelName}" Style="{StaticResource TextBlockObjectStyle}" />
+								</StackPanel>
+								<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10, 0, 0, 10">
+									<TextBlock Width="100" Text="Level Path" Style="{StaticResource TextBlockObjectStyle}" />
+									<TextBlock Text="{Binding LevelPath}" Style="{StaticResource TextBlockObjectStyle}" />
+								</StackPanel>
+							</Grid>
+						</Expander>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackPanel>
+	</Grid>
+</UserControl>

@@ -165,6 +165,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Editor\Helpers\Serialization.cs" />
+    <Compile Include="Editor\Project\ProjectView.cs" />
     <Compile Include="GUI\Bahaviors\DragAndDrop\FrameworkElementAdorner.cs" />
     <Compile Include="GUI\Bahaviors\DragAndDrop\FrameworkElementDragBehavior.cs" />
     <Compile Include="GUI\Bahaviors\DragAndDrop\FrameworkElementDropBehavior.cs" />
@@ -173,6 +174,9 @@
     <Compile Include="GUI\Bahaviors\InputProxy\InputProxyBehavior.cs" />
     <Compile Include="GUI\Converters\DatabindingDebugConverter .cs" />
     <Compile Include="GUI\Converters\FileIconConverter.cs" />
+    <Compile Include="GUI\ProjectBrowser.xaml.cs">
+      <DependentUpon>ProjectBrowser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="GUI\ActorsCreator.xaml">
@@ -184,6 +188,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\ContentBrowser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\ProjectBrowser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

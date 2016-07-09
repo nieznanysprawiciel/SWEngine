@@ -56,10 +56,12 @@ namespace EditorApp
 			LeftPanelView.Add( ProjectManager.ContentManager );
 			LeftPanelView.Add( ProjectManager.ActorsLogic.ActorsCreatorView );
 			RightPanelView.Add( ProjectManager.ActorsLogic );
+			RightPanelView.Add( ProjectManager.ProjectView );
 			MainPanelView.Add( Displayer );
 
 			LoadCommand = new RelayCommand( LoadClick );
 			SaveCommand = new RelayCommand( SaveClick );
+			NewLevelCommand = new RelayCommand( NewLevelClick );
 			SaveLevelCommand = new RelayCommand( SaveLevelClick );
 			LoadLevelCommand = new RelayCommand( LoadLevelClick );
 			SaveGlobalConfig = new RelayCommand( SaveGlobalConfigImpl );
@@ -126,6 +128,11 @@ namespace EditorApp
 
 			if( result )
 				ProjectManager.ActorsLogic.PostInitLevel( loader );
+		}
+
+		public void			NewLevelClick( object parameter )
+		{
+
 		}
 
 		public void			RenderFrame( object sender, EventArgs e )
@@ -216,6 +223,12 @@ namespace EditorApp
 		}
 
 		public ICommand LoadLevelCommand
+		{
+			get;
+			internal set;
+		}
+
+		public ICommand NewLevelCommand
 		{
 			get;
 			internal set;

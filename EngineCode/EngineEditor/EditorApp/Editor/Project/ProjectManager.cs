@@ -17,7 +17,10 @@ namespace EditorApp.Project
 		private UserSettings                m_userSettings;
 		private ActorsLogic                 m_actorsLogic;
 		private ContentManager              m_contentManager;
-		private Logic                       m_editorLogic;		///< Referencja na główny obiekt edytora.
+
+
+		private Logic                       m_editorLogic;      ///< Referencja na główny obiekt edytora.
+		private ProjectView                 m_projectView;
 
 		#region Contructor
 
@@ -28,6 +31,9 @@ namespace EditorApp.Project
 			m_actorsLogic = new ActorsLogic( editorLogic );
 			m_contentManager = new ContentManager( editorLogic );
 			m_editorLogic = editorLogic;
+
+			ProjectView = new ProjectView();
+			ProjectView.UpdateProjectSettings( m_projectSettings );
 		}
 
 		#endregion
@@ -35,9 +41,11 @@ namespace EditorApp.Project
 
 		public bool			LoadProject( string projectFilePath )
 		{
-			m_projectSettings = Serialization.Deserialize<ProjectSettings>( projectFilePath );
+			LoadProjectSettings( projectFilePath );
+			LoadUserSettings();
 
 			//m_actorsLogic.PostInitLevel();
+			m_actorsLogic.PostInitEngine();
 			m_contentManager.ResetAssetsRoot( m_editorLogic.PathsManager.AssetsDir );
 
 			return true;
@@ -47,11 +55,46 @@ namespace EditorApp.Project
 		{
 			string projectFilePath = Path.Combine( m_editorLogic.PathsManager.ProjectDir, m_editorLogic.PathsManager.ProjectFileName );
 			Serialization.Serialize( projectFilePath, m_projectSettings );
+			Serialization.Serialize( m_editorLogic.PathsManager.UserConfigPath, m_userSettings );
 
 			// TEMP
 			//m_editorLogic.Displayer.EngineWrapper.SaveLevel( Path.Combine( m_editorLogic.PathsManager.LevelsDir, "TestLevel.swmap" ) );
 
 			return true;
+		}
+
+		public bool			LoadProjectSettings	( string projectFilePath )
+		{
+			bool result = true;
+
+			ProjectSettings newProjSettings = Serialization.Deserialize< ProjectSettings >( projectFilePath );
+			if( newProjSettings != null )
+			{
+				ProjectSettings = newProjSettings;
+				result = true;
+			}
+			else
+			{
+				ProjectSettings = new ProjectSettings();
+				result = false;
+			}
+
+			return result;
+		}
+
+		public bool			LoadUserSettings	()
+		{
+			UserSettings newUserSettings = Serialization.Deserialize< UserSettings >( m_editorLogic.PathsManager.UserConfigPath );
+			if( newUserSettings != null )
+			{
+				UserSettings = newUserSettings;
+				return true;
+			}
+			else
+			{
+				UserSettings = new UserSettings();
+				return false;
+			}
 		}
 
 		#region properties
@@ -84,9 +127,36 @@ namespace EditorApp.Project
 				return m_userSettings;
 			}
 
-			set
+			internal set
 			{
 				m_userSettings = value;
+			}
+		}
+
+		public ProjectSettings ProjectSettings
+		{
+			get
+			{
+				return m_projectSettings;
+			}
+
+			internal set
+			{
+				m_projectSettings = value;
+				ProjectView.UpdateProjectSettings( m_projectSettings );
+			}
+		}
+
+		public ProjectView ProjectView
+		{
+			get
+			{
+				return m_projectView;
+			}
+
+			set
+			{
+				m_projectView = value;
 			}
 		}
 

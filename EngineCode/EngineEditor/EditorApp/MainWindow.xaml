@@ -33,6 +33,7 @@
 				<MenuItem Header="Open Project" Style="{StaticResource MenuItemStyle}" Command="{Binding LoadCommand}" />
 				<MenuItem Header="Save Project" Style="{StaticResource MenuItemStyle}" Command="{Binding SaveCommand}" />
 				<Separator/>
+				<MenuItem Header="New Level" Style="{StaticResource MenuItemStyle}" Command="{Binding NewLevelCommand}" />
 				<MenuItem Header="Save Level" Style="{StaticResource MenuItemStyle}" Command="{Binding SaveLevelCommand}" />
 				<MenuItem Header="Load Level" Style="{StaticResource MenuItemStyle}" Command="{Binding LoadLevelCommand}" />
 				<Separator/>

@@ -23,6 +23,7 @@ namespace EditorApp
 		string          m_meshesRelativeDir;
 
 		string          m_globalConfigRelativePath;
+		string          m_userConfigRelativePath;
 
 
 		public void			InitPaths( string[] cmdArguments )
@@ -68,6 +69,7 @@ namespace EditorApp
 			m_meshesRelativeDir = "meshes";
 
 			m_globalConfigRelativePath = "Configuration/GlobalConfig.xml";
+			m_userConfigRelativePath = "Configs/ProjectSettings.user";
 		}
 
 		public void			UpdateProjectPaths( string projectPath )
@@ -332,6 +334,16 @@ namespace EditorApp
 			}
 		}
 
+		/// <summary>
+		/// Ścieżka do głównego pliku konfiguracyjnego.
+		/// </summary>
+		public string UserConfigPath
+		{
+			get
+			{
+				return Path.Combine( ProjectDir, m_userConfigRelativePath );
+			}
+		}
 
 
 		#endregion

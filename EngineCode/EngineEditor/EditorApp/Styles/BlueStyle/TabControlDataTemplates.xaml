@@ -3,6 +3,7 @@
 					xmlns:gui="clr-namespace:EditorApp.GUI"
 					xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
 					xmlns:content="clr-namespace:EditorApp.Editor.Project.Content;assembly="
+					xmlns:proj="clr-namespace:EditorApp.Project;assembly="
 					xmlns:actors="clr-namespace:EditorApp.Editor.Project.Actors;assembly="
 					xmlns:engine="clr-namespace:EditorApp.Engine;assembly="
                     xmlns:local="clr-namespace:EditorApp.Styles.BlueStyle">
@@ -21,6 +22,10 @@
 	
 	<DataTemplate DataType="{x:Type engine:Displayer}" >
 		<gui:RendererPreview />
+	</DataTemplate>
+
+	<DataTemplate DataType="{x:Type proj:ProjectView}" >
+		<gui:ProjectBrowser />
 	</DataTemplate>
 
 </ResourceDictionary>
