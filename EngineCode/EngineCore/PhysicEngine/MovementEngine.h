@@ -20,6 +20,9 @@ public:
 
 	void		ProceedMovement			( float timeInterval );
 	Size		AddMoveableObject		( DynamicActor* dynObject );
+
+	void		RemoveActor				( ActorBase* actor );
+	void		RemoveAllActors			();
 };
 
 

@@ -40,6 +40,8 @@ public:
 	ActorData*												FindActorByName	( const std::string& name );
 	ActorBase*												GetActorByName	( const std::string& name );
 
+	void													RemoveAllActors	();
+	void													RemoveActor		( ActorBase* actor );
 	void													UpdateActor		( ActorBase* actor, ActorInfo actorModules );
 	bool													NameActor		( ActorBase* actor, const std::string& name );
 

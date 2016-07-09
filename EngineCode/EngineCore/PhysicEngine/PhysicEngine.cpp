@@ -16,7 +16,17 @@ PhysicEngine::~PhysicEngine()
 }
 
 /*G³ówna funkcja wykonywana w ka¿dym obiegu pêtli*/
-void PhysicEngine::proceed_physic(float time_interval)
+void PhysicEngine::ProceedPhysic(float time_interval)
 {
 
+}
+
+void PhysicEngine::RemoveActor( ActorBase * actor )
+{
+	// Zaimplementowaæ
+}
+
+void PhysicEngine::RemoveAllActors()
+{
+	// Zaimplementowaæ
 }

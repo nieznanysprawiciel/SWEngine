@@ -2,6 +2,10 @@
 #include "EngineCore/EventsManager/EventManager.h"
 
 
+#include "EngineCore/Actors/BasicActors/ActorBase.h"		// Potrzebne przy usuwaniu aktorów.
+
+
+
 /**@brief */
 EventManager::EventManager( Engine* engine )
 	: engine( engine )
@@ -120,6 +124,48 @@ void			EventManager::RemoveListener( rttr::type eventType, const EngineObject* h
 
 	if( listenerVec.empty() )
 		m_listeners.erase( eventType );
+}
+
+/**@brief Usuwa wszystkie odwo³ania do podanego obiektu.*/
+void			EventManager::RemoveReferences( const EngineObject* handlerOwner )
+{
+	for( auto listenerMapIter = m_listeners.begin(); listenerMapIter != m_listeners.end(); listenerMapIter++ )
+	{
+		auto& listenersVec = listenerMapIter->second;
+		for( auto listenersIter = listenersVec.begin(); listenersIter != listenersVec.end(); listenersIter++ )
+		{
+			if( listenersIter->Receiver == handlerOwner )
+			{
+				listenersIter = listenersVec.erase( listenersIter );
+			}
+		}
+
+		if( listenersVec.empty() )
+		{
+			listenerMapIter = m_listeners.erase( listenerMapIter );
+		}
+	}
+}
+
+/**@brief Usuwa wszystkich aktorów. (nie wszystkie obiekty)*/
+void EventManager::RemoveAllActors()
+{
+	for( auto listenerMapIter = m_listeners.begin(); listenerMapIter != m_listeners.end(); listenerMapIter++ )
+	{
+		auto& listenersVec = listenerMapIter->second;
+		for( auto listenersIter = listenersVec.begin(); listenersIter != listenersVec.end(); listenersIter++ )
+		{
+			if( listenersIter->Receiver->GetType().is_derived_from< ActorBase >() )
+			{
+				listenersIter = listenersVec.erase( listenersIter );
+			}
+		}
+
+		if( listenersVec.empty() )
+		{
+			listenerMapIter = m_listeners.erase( listenerMapIter );
+		}
+	}
 }
 
 /**@brief Usuwa wszystkie funkcje obs³ugi.*/

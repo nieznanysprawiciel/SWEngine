@@ -4,6 +4,8 @@
 #include "Common/Serialization/Deserializer.h"
 #include "Common/Serialization/Serializer.h"
 
+#include "EngineCore/EngineHelpers/ActorsCommonFunctions.h"
+
 
 /**@brief */
 ActorsManager::ActorsManager( Engine* engine )
@@ -22,6 +24,47 @@ void ActorsManager::AddActor( ActorBase* newActor )
 	assert( newActor != nullptr );
 	ActorInfo actorInfo;			// Wszystkie wartoœci false.
 	m_objectList.push_back( std::make_pair( newActor, actorInfo ) );
+}
+
+/**@brief Usuwa wszystkich aktorów.*/
+void ActorsManager::RemoveAllActors()
+{
+	m_actorNamesMap.clear();
+
+	for( int i = 0; i < m_objectList.size(); ++i )
+		delete m_objectList[ i ].first;
+
+	m_objectList.clear();
+}
+
+/**@brief Usuwa aktorów z modu³u.
+
+Poniewa¿ ActorsManager jest w³aœcicielem aktorów, to usuniêcie aktora, wi¹¿e siê
+ze zwolnieniem pamiêci.
+
+@attention Jakaœ zewnêtrzna funkcja musi siê zatroszczyæ o zwolnienie aktorów z pozosta³ych miejsc w silniku.*/
+void ActorsManager::RemoveActor( ActorBase* actor )
+{
+	// Je¿eli aktor mia³ nazwê to kasujemy wpis.
+	for( auto iter = m_actorNamesMap.begin(); iter != m_actorNamesMap.end(); iter++ )
+	{
+		if( iter->second == actor )
+		{
+			m_actorNamesMap.erase( iter );
+			break;
+		}
+	}
+
+	// Kasujemy samego aktora.
+	for( int i = (int)m_objectList.size() - 1; i > 0; --i )
+	{
+		if( m_objectList[ i ].first == actor )
+		{
+			delete m_objectList[ i ].first;
+			m_objectList.erase( m_objectList.begin() + i );
+			break;
+		}
+	}
 }
 
 /**@brief Aktualizuje */

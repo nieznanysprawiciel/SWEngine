@@ -24,7 +24,7 @@
 		</StackPanel>
 
 		<StackPanel Grid.Row="1">
-			<TextBlock Text="Levels:" Style="{StaticResource TextBlockObjectStyle}" />
+			<TextBlock Margin="0, 0, 0, 5" Text="Levels:" Style="{StaticResource TextBlockObjectStyle}" />
 			<ListView VerticalAlignment="Stretch" Height="500" ItemsSource="{Binding Levels}" Style="{StaticResource ListViewStyleBase}">
 				<ListView.ItemTemplate>
 					<DataTemplate>

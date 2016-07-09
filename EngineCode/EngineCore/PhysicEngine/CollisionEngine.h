@@ -8,6 +8,7 @@
 #include "Collisions/CollisionOctree.h"
 
 class Engine;
+class ActorBase;
 
 /**@brief Modu³ obs³uguj¹cy kolizje.
 @ingroup EngineCore*/
@@ -30,5 +31,9 @@ public:
 	~CollisionEngine					();
 
 	void		ProceedCollisions		( float timeInterval );
+
+	void		RemoveActor				( ActorBase* actor );
+	void		RemoveAllActors			();
+
 };
 

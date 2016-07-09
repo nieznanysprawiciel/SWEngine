@@ -5,7 +5,7 @@
 /**@page EngineInterfaceCommands Komendy silnika
 
 Logika gry operuj¹c na funkcjach API w EngineInterface, nie modyfikuje bezpoœrednio
-na stanie silnika. Silnik dzia³a wielow¹tkowo i takie podejœcie mog³oby znacznie utrudniæ
+stanu silnika. Silnik dzia³a wielow¹tkowo i takie podejœcie mog³oby znacznie utrudniæ
 zachowanie spójnoœci danych. Z tego powodu aktorzy widz¹ zawsze stan silnika z pocz¹tku danej
 klatki i na nim operuj¹.
 

@@ -9,13 +9,14 @@ namespace EditorApp.Project
 	public class ProjectView : EditorApp.Editor.UpdatableViewBase
 	{
 		private ProjectSettings     m_projectSettings;
+		private ProjectManager      m_projManagerRef;
 
 
-
-		public ProjectView()
+		public ProjectView( ProjectManager manager )
 		{
 			DisplayName = "Project";
-			ProjectSettings = null;
+			m_projManagerRef = manager;
+			ProjectSettings = manager.ProjectSettings;
 		}
 
 

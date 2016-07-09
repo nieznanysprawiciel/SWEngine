@@ -47,13 +47,13 @@ private:
 	Engine*					engine;
 	ModelsManager*			modelsManager;
 
-	std::vector<IRenderer*>					m_renderers;					///< Zawiera wszystkie renderery. Ka¿dy odpowiada za jeden w¹tek renderuj¹cy.
+	std::vector<IRenderer*>					m_renderers;				///< Zawiera wszystkie renderery. Ka¿dy odpowiada za jeden w¹tek renderuj¹cy.
 
 	ConstantPerFrame						shader_data_per_frame;		///<Bufor sta³ych zmiennych co ramkê animacji.
 	BufferObject*							m_constantsPerFrame;		///<Bufor sta³ych zmiennych co ramkê animacji.
 	BufferObject*							m_constantsPerMesh;			///<Bufor sta³ych zmiennych dla ka¿dego fragmentu mesha.
 
-	CameraActor*							current_camera;				///<Akutalnie aktywna kamera
+	CameraActor*							m_currentCamera;			///<Akutalnie aktywna kamera
 	SkyDome*								sky_dome;					///<Klasa odpowiedzialna za kopu³ê nieba
 
 	std::vector<DynamicMeshActor*>			meshes;						///<Modele nieanimowane
@@ -63,6 +63,8 @@ private:
 	std::vector<CameraActor*>				cameras;					///<Kontener zawieraj¹cy kamery
 
 	ShaderInputLayoutObject*				defaultLayout;				///<@todo Hack. Zlikwidowaæ. Silnik powinien obs³ugiwaæ dowolne layouty, a przynajmniej jakiœ ustalony zbiór.
+	CameraActor*							m_defaultCamera;			///< Domyœlna kamera u¿ywana tylko, jezeli uzytkownik nie ustawi w³asnej.
+
 	RenderTargetObject*						m_mainRenderTarget;			///<Render target okna aplikacji. @todo W ostatecznej wersji powinien byæ render target ustawiany dla ka¿dego przebiegu.
 	SwapChain*								m_mainSwapChain;
 
@@ -88,6 +90,8 @@ public:
 
 	// Zarz¹dzanie meshami
 	void			AddDynamicMeshObject			( DynamicMeshActor* object );
+	void			RemoveActor						( ActorBase* actor );
+	void			RemoveAllActors					();
 	void			DeleteAllMeshes					();
 	
 	/// @todo Pobieranie meshy z DisplayEngine jest tymczasowe. Trzeba wymyœleæ docelowy mechanizm.

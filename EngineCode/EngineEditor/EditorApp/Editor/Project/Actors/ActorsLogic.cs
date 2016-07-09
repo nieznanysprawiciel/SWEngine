@@ -56,6 +56,9 @@ namespace EditorApp.Editor.Project.Actors
 
 		private void ClearState()
 		{
+			EngineWrapper engine = m_editorLogic.Displayer.EngineWrapper;
+			engine.ClearActors();
+
 			m_actorsTypesList = null;
 			m_actors = null;
 
@@ -66,7 +69,12 @@ namespace EditorApp.Editor.Project.Actors
 			m_gizmoActor = null;
 		}
 
-		public void				PostInitEngine()
+		public void				UnloadScene()
+		{
+			ClearState();
+		}
+
+		public void				InitDefaultActors()
 		{
 			// Pobieramy metadane o typach aktorów.
 			EngineWrapper engine = m_editorLogic.Displayer.EngineWrapper;
@@ -75,11 +83,15 @@ namespace EditorApp.Editor.Project.Actors
 			// Tworzymy aktorów pomocniczych.
 			m_gizmoActor = EditorActorsFactory.CreateGizmoActor( Path.Combine( m_editorLogic.PathsManager.DefaultMeshesDir, m_editorLogic.GlobalSettings.GizmoAssetFile ) );
 			m_editorActors.Add( m_gizmoActor );
+
+			var camera = EditorActorsFactory.CreateDefaultCamera( true );
+			m_editorActors.Add( camera );
 		}
 
 		public void				PostInitLevel( SceneLoader loader )
 		{
-			ClearState();
+			// Trzeba dodać aktorów silnikowych.
+			InitDefaultActors();
 
 			// Pobieramy aktorów ze sceny
 			m_actors = loader.GetLoadedActors();

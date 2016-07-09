@@ -186,6 +186,12 @@ void								EngineWrapper::SelectActor				( ActorWrapper^ gizmo, ActorWrapper^ s
 	gizmoController->SetFollowedActor( selectionPtr );
 }
 
+/**@brief Usuwa wszystkich aktorów i czyœci wszystkie ustawienia silnika.*/
+void EngineWrapper::ClearActors()
+{
+	m_engine->Actors.DeleteAllActors();
+}
+
 /**@brief Tworzy listê typów zarejestrowanych aktorów.*/
 List< ActorClassMetaInfo^ >^		EngineWrapper::CreateActorsMetadata		()
 {

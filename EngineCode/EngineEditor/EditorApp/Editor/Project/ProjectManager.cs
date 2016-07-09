@@ -32,8 +32,7 @@ namespace EditorApp.Project
 			m_contentManager = new ContentManager( editorLogic );
 			m_editorLogic = editorLogic;
 
-			ProjectView = new ProjectView();
-			ProjectView.UpdateProjectSettings( m_projectSettings );
+			ProjectView = new ProjectView( this );
 		}
 
 		#endregion
@@ -45,7 +44,7 @@ namespace EditorApp.Project
 			LoadUserSettings();
 
 			//m_actorsLogic.PostInitLevel();
-			m_actorsLogic.PostInitEngine();
+			m_actorsLogic.InitDefaultActors();
 			m_contentManager.ResetAssetsRoot( m_editorLogic.PathsManager.AssetsDir );
 
 			return true;

@@ -14,6 +14,7 @@
 #include "EngineCore/EventsManager/Events/RenderOnceEndedEvent.h"
 
 #include "EngineCore/EngineHelpers/PerformanceCheck.h"
+#include "EngineCore/EngineHelpers/ActorsCommonFunctions.h"
 #include "GraphicAPI/ResourcesFactory.h"
 
 #include "Common/MemoryLeaks.h"
@@ -35,7 +36,8 @@ REGISTER_PERFORMANCE_CHECK( SELF_DRAWING_OBJECTS_RENDERING )
 DisplayEngine::DisplayEngine( Engine* engine )
 	: engine( engine )
 {
-	current_camera = nullptr;
+	m_defaultCamera = nullptr;
+	m_currentCamera = nullptr;
 	sky_dome = nullptr;
 	m_mainRenderTarget = nullptr;
 	m_mainSwapChain = nullptr;
@@ -89,6 +91,9 @@ void DisplayEngine::InitDisplayer( ModelsManager* assetsManager )
 	m_mainRenderTarget->AddAssetReference();		/// Uniemo¿liwiamy zwolnienie render targetu przez u¿ytkownika.
 
 	m_mainSwapChain = ResourcesFactory::CreateScreenSwapChain( m_mainRenderTarget );
+
+	m_defaultCamera = new CameraActor();
+	SetCurrentCamera( m_defaultCamera );
 }
 
 void DisplayEngine::BeginScene()
@@ -352,7 +357,7 @@ void DisplayEngine::DisplaySkyBox( float time_interval, float time_lag )
 	ModelPart* model = sky_dome->get_model_part();
 
 	// Wyliczamy macierz transformacji
-	XMVECTOR quaternion = current_camera->GetInterpolatedOrientation( time_lag );
+	XMVECTOR quaternion = m_currentCamera->GetInterpolatedOrientation( time_lag );
 	inverse_camera_orientation( quaternion );
 
 	XMMATRIX rotation_matrix = XMMatrixRotationQuaternion( quaternion );
@@ -545,25 +550,25 @@ Zakres [0,1].
 void DisplayEngine::SetViewMatrix( float time_lag )
 {
 	XMMATRIX view_matrix;
-	if ( current_camera == nullptr )
+	if ( m_currentCamera == nullptr )
 		view_matrix  = XMMatrixIdentity( );	//tymczasowe
 	else
 	{
 #ifndef _INTERPOLATE_POSITIONS
 		//bêdziemy mno¿yæ macierz translacji * macierz obrotu
 		view_matrix = XMMatrixTranslation(
-			-current_camera->position.x,
-			-current_camera->position.y,
-			-current_camera->position.z);
-		XMVECTOR quaternion = XMLoadFloat4(&(current_camera->orientation));
+			-m_currentCamera->position.x,
+			-m_currentCamera->position.y,
+			-m_currentCamera->position.z);
+		XMVECTOR quaternion = XMLoadFloat4(&(m_currentCamera->orientation));
 		quaternion = XMVectorNegate( quaternion );
 		quaternion = XMVectorSetW( quaternion, -XMVectorGetW( quaternion ) );
 
 		XMMATRIX rotation_matrix = XMMatrixRotationQuaternion(quaternion);
 		view_matrix = view_matrix * rotation_matrix;
 #else
-		XMVECTOR position = current_camera->GetInterpolatedPosition( time_lag );
-		XMVECTOR orientation = current_camera->GetInterpolatedOrientation( time_lag );
+		XMVECTOR position = m_currentCamera->GetInterpolatedPosition( time_lag );
+		XMVECTOR orientation = m_currentCamera->GetInterpolatedOrientation( time_lag );
 		inverse_camera_position( position );
 		inverse_camera_orientation( orientation );
 
@@ -589,6 +594,28 @@ void DisplayEngine::AddDynamicMeshObject( DynamicMeshActor* object )
 	meshes.push_back( object );
 }
 
+/**@brief Usuwa aktora z modu³u.
+
+Funkcja przegl¹da aktorów od ty³u, poniewa¿ bardziej prawdopodobne jest,
+¿e usuwamy aktora stworzonego niedawno.*/
+void DisplayEngine::RemoveActor( ActorBase* actor )
+{
+	ActorsCommonFunctions::RemoveActor( meshes, static_cast< DynamicMeshActor* >( actor ) );
+	ActorsCommonFunctions::RemoveActor( cameras, static_cast< CameraActor* >( actor ) );
+
+	if( m_currentCamera == actor )
+		SetCurrentCamera( m_defaultCamera );
+}
+
+/**@brief Kasuje wszystkich aktorów.*/
+void DisplayEngine::RemoveAllActors()
+{
+	meshes.clear();
+	cameras.clear();
+	SetCurrentCamera( m_defaultCamera );
+}
+
+/**@brief Kasuje wszystkie meshe. Pomijane s¹ kamery.*/
 void DisplayEngine::DeleteAllMeshes()
 {
 	meshes.clear();
@@ -623,14 +650,14 @@ int DisplayEngine::SetCurrentCamera( CameraActor* camera )
 	if ( camera == nullptr )
 		return 1;
 	
-	current_camera = camera;
+	m_currentCamera = camera;
 	return 0;
 }
 
 /**@brief Zwraca aktualnie ustawion¹ kamerê g³ówn¹.*/
 CameraActor* DisplayEngine::GetCurrentCamera()
 {
-	return current_camera;
+	return m_currentCamera;
 }
 
 //=================================================================//

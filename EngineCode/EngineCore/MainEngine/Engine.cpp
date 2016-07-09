@@ -224,7 +224,7 @@ void Engine::RenderFrame()
 		START_PERFORMANCE_CHECK(FRAME_COMPUTING_TIME)
 
 		Context->ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->physicEngine->proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->physicEngine->ProceedPhysic( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->controllersEngine->ProceedControllersPre( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->movementEngine->ProceedMovement( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->controllersEngine->ProceedControllersPost( FIXED_MOVE_UPDATE_INTERVAL );
@@ -295,7 +295,7 @@ void Engine::UpdateScene( float& lag, float timeInterval )
 		START_PERFORMANCE_CHECK(FRAME_COMPUTING_TIME)
 
 		Context->ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->physicEngine->proceed_physic( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->physicEngine->ProceedPhysic( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->controllersEngine->ProceedControllersPre( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->movementEngine->ProceedMovement( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->controllersEngine->ProceedControllersPost( FIXED_MOVE_UPDATE_INTERVAL );

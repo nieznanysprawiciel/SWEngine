@@ -34,6 +34,35 @@ const std::map<std::string, ActorType>& ActorsApi::GetRegisteredClasses()
 	return Context->actorsManager->GetActorFactory().GetRegisteredClasses();
 }
 
+/**@brief Usuwa z silnika wszystkie odwo³ania do podanego aktora.
+
+@todo Funkcja powinna usuwaæ aktora dopiero po zakoñczeniu klatki.*/
+void ActorsApi::DeleteActor( ActorBase* actor )
+{
+	Context->collisionEngine->RemoveActor( actor );
+	Context->controllersEngine->RemoveActor( actor );
+	Context->displayEngine->RemoveActor( actor );
+	Context->movementEngine->RemoveActor( actor );
+	Context->physicEngine->RemoveActor( actor );
+	Context->eventsManager->RemoveReferences( actor );
+
+	// Odwo³anie w ActorsManager kasujemy jako ostatnie.
+	Context->actorsManager->RemoveActor( actor );
+}
+
+/**@brief Usuwa wszystkich aktorów.*/
+void ActorsApi::DeleteAllActors()
+{
+	Context->collisionEngine->RemoveAllActors();
+	Context->controllersEngine->RemoveAllActors();
+	Context->displayEngine->RemoveAllActors();
+	Context->movementEngine->RemoveAllActors();
+	Context->physicEngine->RemoveAllActors();
+	Context->eventsManager->RemoveAllActors();
+
+	// Odwo³anie w ActorsManager kasujemy jako ostatnie.
+	Context->actorsManager->RemoveAllActors();
+}
 
 /**@brief Dodaje aktora do wszystkich modu³ów zgodnie z zawartoœci¹ struktury
 ActorInfo.*/

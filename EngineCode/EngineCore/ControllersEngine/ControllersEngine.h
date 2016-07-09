@@ -27,8 +27,13 @@ public:
 	
 	void		SingleThreadedUpdatePhase		( float timeInterval );
 
-	bool		AddPreControlled				( DynamicActor* object );
-	bool		AddPostControlled				( DynamicActor* object );
+	bool		AddPreControlled				( DynamicActor* actor );
+	bool		AddPostControlled				( DynamicActor* actor );
+
+	void		RemovePreCtrlActor				( ActorBase* actor );
+	void		RemovePostCtrlActor				( ActorBase* actor );
+	void		RemoveActor						( ActorBase* actor );
+	void		RemoveAllActors					();
 
 
 	IControllersState*		GetGlobalState		();

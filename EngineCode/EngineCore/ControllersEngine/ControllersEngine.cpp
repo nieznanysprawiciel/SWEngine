@@ -1,9 +1,12 @@
 #include "EngineCore/stdafx.h"
 #include "ControllersEngine.h"
+
 #include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/Actors/ActorObjects.h"
 
 #include "EngineCore/ControllersEngine/IControllersState.h"
+
+#include "EngineCore/EngineHelpers/ActorsCommonFunctions.h"
 
 #include "Common/MemoryLeaks.h"
 
@@ -55,23 +58,49 @@ void ControllersEngine::SingleThreadedUpdatePhase( float timeInterval )
 
 
 /**@brief Dodaje podany obiekt do kontrolerów wywo³ywanych przed przesuniêciem obiektów.*/
-bool ControllersEngine::AddPreControlled( DynamicActor* object )
+bool ControllersEngine::AddPreControlled( DynamicActor* actor )
 {
-	if ( object == nullptr )
+	if ( actor == nullptr )
 		return false;
 
-	m_preControlledObjects.push_back( object );
+	m_preControlledObjects.push_back( actor );
 	return true;
 }
 
 /**@brief Dodaje podany obiekt do kontrolerów wywo³ywanych po przesuniêciu obiektów.*/
-bool ControllersEngine::AddPostControlled( DynamicActor* object )
+bool ControllersEngine::AddPostControlled( DynamicActor* actor )
 {
-	if ( object == nullptr )
+	if ( actor == nullptr )
 		return false;
 
-	m_postControlledObjects.push_back( object );
+	m_postControlledObjects.push_back( actor );
 	return true;
+}
+
+/**@brief Usuwa aktora z tablicy obiektów pre kontrolowanych.*/
+void ControllersEngine::RemovePreCtrlActor( ActorBase* actor )
+{
+	ActorsCommonFunctions::RemoveActor( m_preControlledObjects, static_cast< DynamicActor* >( actor ) );
+}
+
+/**@brief Usuwa aktora z tablicy obiektów post kontrolowanych.*/
+void ControllersEngine::RemovePostCtrlActor( ActorBase* actor )
+{
+	ActorsCommonFunctions::RemoveActor( m_postControlledObjects, static_cast< DynamicActor* >( actor ) );
+}
+
+/**@brief Usuwa aktora z modu³u.*/
+void ControllersEngine::RemoveActor( ActorBase* actor )
+{
+	RemovePreCtrlActor( actor );
+	RemovePostCtrlActor( actor );
+}
+
+/**@brief Usuwa wszystkich aktorów.*/
+void ControllersEngine::RemoveAllActors()
+{
+	m_postControlledObjects.clear();
+	m_preControlledObjects.clear();
 }
 
 /**@brief */

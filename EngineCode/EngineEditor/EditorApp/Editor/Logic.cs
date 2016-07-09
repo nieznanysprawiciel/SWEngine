@@ -123,6 +123,8 @@ namespace EditorApp
 
 		public void			LoadLevelClick( object parameter )
 		{
+			ProjectManager.ActorsLogic.UnloadScene();
+
 			SceneLoader loader = new SceneLoader();
 			bool result = loader.LoadScene( Path.Combine( PathsManager.LevelsDir, "Test2Level.swmap" ) );
 

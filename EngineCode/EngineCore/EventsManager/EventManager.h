@@ -87,6 +87,8 @@ public:
 	void			AddListener		( rttr::type eventType, const EngineObject* handlerOwner, EventDelegate handler );
 	void			AddListener		( rttr::type eventType, const EventListener& listener );
 	void			RemoveListener	( rttr::type eventType, const EngineObject* handlerOwner );
+	void			RemoveReferences( const EngineObject* handlerOwner );
+	void			RemoveAllActors	();
 	void			ClearListeners	();
 
 	bool			CheckListener	( rttr::type eventType, const EngineObject* handlerOwner );

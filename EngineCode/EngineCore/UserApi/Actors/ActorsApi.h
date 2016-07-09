@@ -51,7 +51,8 @@ namespace Api
 		template< typename Type = ActorBase >	Type*		CreateActor				( ActorType id );
 		
 
-		//void			DeleteActor				( ActorBase* actor );
+		void			DeleteActor				( ActorBase* actor );
+		void			DeleteAllActors			();
 		//void			RemoveFromModules		( ActorBase* newActor, ActorInfo actorModules );
 		void			AddToModules			( ActorBase* newActor, ActorInfo actorModules );
 		
