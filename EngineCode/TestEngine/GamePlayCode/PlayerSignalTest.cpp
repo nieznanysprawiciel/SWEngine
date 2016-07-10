@@ -26,6 +26,9 @@ void	PlayerSignalTest::InitJob		( const EngineObject* sender, Event* keyEvent )
 {
 	m_otherPlayer.SendSignal< &PlayerSignalTest::DoYourJob >( this, new EventData );
 
-	m_otherPlayer.DynamicCast< ActorBase >();
+	const ActorPtr< ActorBase > actor = m_otherPlayer.DynamicCast< ActorBase >();
 	m_otherPlayer.StaticCast< ActorBase >();
+
+	actor.StaticCast< const StaticActor >();
+	actor.DynamicCast< const StaticActor >();
 }

@@ -55,10 +55,16 @@ public:
 	bool					IsValid		()	{ return m_actorPointer != nullptr; }
 
 	template< typename CastType >
-	ActorPtr< CastType >	StaticCast	();
+	ActorPtr< CastType >		StaticCast	();
 
 	template< typename CastType >
-	ActorPtr< CastType >	DynamicCast	();
+	const ActorPtr< CastType >	StaticCast	() const;
+
+	template< typename CastType >
+	ActorPtr< CastType >		DynamicCast	();
+
+	template< typename CastType >
+	const ActorPtr< CastType >	DynamicCast	() const;
 	///@}
 
 public:
@@ -174,14 +180,30 @@ inline bool				ActorPtr< Type >::SendSignal	( const EngineObject* sender, Event*
 
 template< typename Type >
 template< typename CastType >
-inline ActorPtr< CastType >		ActorPtr< Type >::StaticCast()
+inline ActorPtr< CastType >			ActorPtr< Type >::StaticCast()
 {
 	return ActorPtr< CastType >( static_cast< CastType* >( m_actorPointer ) );
 }
 
 template< typename Type >
 template< typename CastType >
-inline ActorPtr< CastType >		ActorPtr< Type >::DynamicCast()
+inline const ActorPtr< CastType >	ActorPtr< Type >::StaticCast() const
 {
+	static_assert( std::is_const< CastType >::value, "You are casting constant object. Add const keyword in template parameter." );
+	return ActorPtr< CastType >( static_cast< CastType* >( m_actorPointer ) );
+}
+
+template< typename Type >
+template< typename CastType >
+inline ActorPtr< CastType >			ActorPtr< Type >::DynamicCast()
+{
+	return ActorPtr< CastType >( rttr::rttr_cast< CastType* >( m_actorPointer ) );
+}
+
+template<typename Type>
+template<typename CastType>
+inline const ActorPtr<CastType> ActorPtr<Type>::DynamicCast() const
+{
+	static_assert( std::is_const< CastType >::value, "You are casting constant object. Add const keyword in template parameter." );
 	return ActorPtr< CastType >( rttr::rttr_cast< CastType* >( m_actorPointer ) );
 }
