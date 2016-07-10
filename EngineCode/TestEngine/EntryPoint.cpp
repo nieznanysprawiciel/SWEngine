@@ -14,8 +14,8 @@ Ca³y kod gry powinien znajdowaæ siê w innych plikach.*/
 
 #include "stdafx.h"
 #include "EngineCore/MainEngine/Engine.h"
-//#include "GamePlayCode/EntryPointGamePlay.h"
-#include "EngineEditor/LightmapsTool/LightmapLogic.h"
+#include "GamePlayCode/EntryPointGamePlay.h"
+//#include "EngineEditor/LightmapsTool/LightmapLogic.h"
 
 #include "Common/MemoryLeaks.h"
 
@@ -44,7 +44,7 @@ int APIENTRY _tWinMain( _In_ HINSTANCE hInstance,
 	int result;
 
 	engine = new Engine( hInstance );
-	LightmapLogic* entry_point = new LightmapLogic();	//UWAGA!! nie kasujemy zmiennej, robi to silnik.
+	EntryPointGamePlay* entryPoint = new EntryPointGamePlay();	//UWAGA!! nie kasujemy zmiennej, robi to silnik.
 												//UWAGA2! Zmienna musi byæ alokowana na stercie, operatorem new z tego samego powodu co wy¿ej
 
 	// Tworzymy g³ówne okno aplikacji, inicjalizujemy DirectX, Directinput i DirectSound.
@@ -57,8 +57,8 @@ int APIENTRY _tWinMain( _In_ HINSTANCE hInstance,
 		return FALSE;
 	}
 
-	engine->SetEntryPoint( entry_point );
-	engine->test();		//to potem zniknie
+	engine->SetEntryPoint( entryPoint );
+	engine->SetSkydomeAndCamera();		//to potem zniknie
 
 	result = engine->MainLoop( );
 	delete engine;

@@ -191,6 +191,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorFactory.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorInfo.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorObjects.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorPointer.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorPreset.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorsManager.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\AnimationActor.h" />

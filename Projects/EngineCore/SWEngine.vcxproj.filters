@@ -494,6 +494,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\EngineHelpers\ActorsCommonFunctions.h">
       <Filter>EngineCore\EngineHelpers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorPointer.h">
+      <Filter>EngineCore\Actors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">

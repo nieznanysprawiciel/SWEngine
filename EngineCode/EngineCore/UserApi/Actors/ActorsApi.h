@@ -13,6 +13,7 @@ class StaticActor;
 #include "EngineCore/UserApi/Actors/Assets.h"
 #include "EngineCore/UserApi/Actors/Communication.h"
 #include "EngineCore/Actors/ActorInfo.h"
+#include "EngineCore/Actors/ActorFactory.h"
 
 #include <vector>
 #include <map>
@@ -49,12 +50,14 @@ namespace Api
 		template< typename Type = ActorBase >	Type*		CreateActor				( ActorType id, ActorInfo actorModules );
 		template< typename Type = ActorBase >	Type*		CreateActor				( const std::string& name );
 		template< typename Type = ActorBase >	Type*		CreateActor				( ActorType id );
-		
+
+		template< typename Type >				ActorType	RegisterClass			( const std::string& name, CreateActorFunction function );
 
 		void			DeleteActor				( ActorBase* actor );
 		void			DeleteAllActors			();
 		//void			RemoveFromModules		( ActorBase* newActor, ActorInfo actorModules );
 		void			AddToModules			( ActorBase* newActor, ActorInfo actorModules );
+
 		
 		const ActorData*								FindActor				( ActorBase* actor );
 		ActorData*										FindActorByName			( const std::string& name );
@@ -134,6 +137,14 @@ namespace Api
 			return nullptr;
 
 		return newActor;
+	}
+
+	/**@brief Rejestruje klasê o odanym typie.*/
+	template< typename Type >
+	inline ActorType ActorsApi::RegisterClass( const std::string& name, CreateActorFunction function )
+	{
+		auto& actorsFactory = Context->actorsManager->GetActorFactory();
+		return actorsFactory.RegisterClass< Type >( name, function );
 	}
 
 }	// Api

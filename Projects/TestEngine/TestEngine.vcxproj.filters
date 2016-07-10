@@ -25,6 +25,9 @@
     <ClCompile Include="..\..\EngineCode\TestEngine\GamePlayCode\EntryPointGamePlay.cpp">
       <Filter>TestEngine\GamePlayCode</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\TestEngine\GamePlayCode\PlayerSignalTest.cpp">
+      <Filter>TestEngine\GamePlayCode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\TestEngine\EntryPoint.h">
@@ -44,6 +47,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\SWEngineInclude.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\TestEngine\GamePlayCode\PlayerSignalTest.h">
+      <Filter>TestEngine\GamePlayCode</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

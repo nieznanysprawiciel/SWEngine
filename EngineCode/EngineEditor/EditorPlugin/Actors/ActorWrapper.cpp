@@ -1,7 +1,8 @@
 #include "ActorWrapper.h"
 #include "Common/RTTR.h"
 
-#include "Common/SWEngineInclude.h"
+#include "EngineCore/MainEngine/EngineInterface.h"
+#include "EngineCore/Actors/ActorObjects.h"
 #include "Common/EngineObject.h"
 
 #include "EngineCore/MainEngine/Engine.h"
