@@ -13,7 +13,7 @@ struct EventData : public Event
 	EventData()
 		:	Event( 4 )	// shit
 	{
-		Data = 4;
+		Data = 1;
 	}
 };
 
@@ -24,6 +24,8 @@ class PlayerSignalTest	: public DynamicMeshActor
 private:
 
 	ActorPtr< PlayerSignalTest >		m_otherPlayer;
+	
+	int									m_testValue;
 
 public:
 	PlayerSignalTest();
@@ -34,7 +36,8 @@ public:
 		m_otherPlayer = other;
 	}
 
-	void		DoYourJob			();
+	void		DoYourJob			( const EngineObject* sender, Event* params );
+	void		InitJob				( const EngineObject* sender, Event* keyEvent );
 
 	static ActorBase*			Create			()	{ return new PlayerSignalTest; }
 };

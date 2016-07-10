@@ -32,6 +32,7 @@ namespace Api { namespace Actors {
 		void			ClearListenersDelayed	();
 
 		void			SendEvent				( Event* evt );
+		void			SendSignal				( const Signal& signal );
 
 		template< typename EventType, typename ClassType >
 		void			AddListenerDelayed		( ClassType* handlerOwner, void (ClassType::* handler) ( const EngineObject*, Event* ) );

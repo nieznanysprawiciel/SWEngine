@@ -8,14 +8,24 @@ RTTR_REGISTRATION
 
 
 PlayerSignalTest::PlayerSignalTest()
-{ }
+{
+	m_testValue = 0;
+}
 
 
 PlayerSignalTest::~PlayerSignalTest()
 { }
 
 /**@brief */
-void PlayerSignalTest::DoYourJob()
+void	PlayerSignalTest::DoYourJob		( const EngineObject* sender, Event* params )
 {
-	m_otherPlayer.Signal< &PlayerSignalTest::DoYourJob >( this, new EventData );
+	m_testValue += static_cast< EventData* >( params )->Data;
+}
+
+void	PlayerSignalTest::InitJob		( const EngineObject* sender, Event* keyEvent )
+{
+	m_otherPlayer.SendSignal< &PlayerSignalTest::DoYourJob >( this, new EventData );
+
+	m_otherPlayer.DynamicCast< ActorBase >();
+	m_otherPlayer.StaticCast< ActorBase >();
 }

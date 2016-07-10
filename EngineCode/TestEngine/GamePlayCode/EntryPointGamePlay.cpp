@@ -4,6 +4,8 @@
 #include "Common/SWEngineInclude.h"
 #include "PlayerSignalTest.h"
 
+#include "EngineCore/EventsManager/Events/KeyDownEvent.h"
+
 
 EntryPointGamePlay::EntryPointGamePlay()
 {
@@ -44,6 +46,12 @@ int EntryPointGamePlay::LoadLevel( )
 	actor2->Teleport( position2 );
 	actor2->SetModel( m_engine->Assets.Models.GetSync( CLONE_FIGHTER ) );
 
+	// Events
+	auto layer = m_engine->Input.GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS );
+	layer->DemandDownEvent( STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 );
+
+	m_engine->Actors.Communication.AddListenerDelayed< KeyDownEvent, PlayerSignalTest >( actor1, &PlayerSignalTest::InitJob );
+
 	return 0;
 }
 
@@ -51,7 +59,7 @@ int EntryPointGamePlay::LoadLevel( )
 Zakoñczona poprawnie powinna zwróciæ wartoœæ 0, w innych wypadkach inn¹.*/
 int EntryPointGamePlay::UnloadLevel( )
 {
-
+	//m_engine->Actors.Communication.RemoveListenerDelayed< KeyDownEvent >( actor1 );
 
 
 	return 0;

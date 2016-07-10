@@ -27,10 +27,16 @@ void Communication::ClearListenersDelayed	()
 	Context->eventsManager->ClearListeners();
 }
 
-/**@brief EventManager::SendEvent*/
+/**@copydoc EventManager::SendEvent*/
 void Communication::SendEvent				( Event * evt )
 {
 	Context->eventsManager->SendEvent( evt );
+}
+
+/**@copydoc EventManager::SendSignal*/
+void Communication::SendSignal( const Signal& signal )
+{
+	Context->eventsManager->SendSignal( signal );
 }
 
 }	// Actors
