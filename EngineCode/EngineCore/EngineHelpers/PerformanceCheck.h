@@ -7,6 +7,7 @@ Zawiera deklaracjê klasy PerformanceCheck, która s³u¿y do pomiaru
 czasu zu¿ywanego na wykonanie wybranych zadañ.*/
 
 #include <string>
+#include <vector>
 #include "Common/TypesDefinitions.h"
 
 

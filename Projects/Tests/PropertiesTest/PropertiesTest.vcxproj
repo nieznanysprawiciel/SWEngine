@@ -166,6 +166,7 @@
     <ClInclude Include="..\..\..\EngineCode\Common\Properties\IEnableProperty.h" />
     <ClInclude Include="..\..\..\EngineCode\Common\Properties\Property.h" />
     <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\BaseClass.h" />
+    <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\ClassMetaInfo\CSharpProperty.h" />
     <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\ClassMetaInfo\EnablePropertyBase.h" />
     <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\DerivedClass.h" />
     <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\InnerStruct.h" />

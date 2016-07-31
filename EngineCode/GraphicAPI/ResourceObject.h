@@ -15,13 +15,13 @@ do zliczania odwo³añ do obiektu.*/
 Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagaj¹ jakiegoœ systemu zapewniaj¹cego wspó³dzielenie miêdzy innymi obiektami.
 
 Do ka¿dego pojedynczego obiektu mog¹ istnieæ wilokrotne odwo³ania w klasie Model3DFromFile,
-a tak¿e w obiektach dziedzicz¹cych po @ref DynamicMeshActor.
+a tak¿e w obiektach dziedzicz¹cych po @ref DynamicMeshActor oraz w modu³ach silnika.
 Z tego wzglêdu istniej¹ zmienne m_assetReferences i m_objectReferences.
 Pierwsza okreœla, ile razy wystêpuj¹ odwo³ania do obiektu w klasie Model3DFromFile.
 (uwaga: nie zliczamy, ile klas siê odwo³uje. Je¿eli w klasie pojawiaj¹ siê 3 odwo³ania, to licz¹ siê jako 3. Taka konwencja
 u³atwia zliczanie i zwalnianie pamiêci)
 Druga zmienna okreœla, ile wystepuje odwo³añ bezpoœrednich przez obiekty, które bêd¹ nastêpnie wyœwietlane. Oznacza to, ¿e przypisuj¹c
-jakiemus obiektowi plik z modelem, musimy zinkrementowaæ other_references o tyle, ile by³o odwo³añ w tym pliku.
+jakiemus obiektowi plik z modelem, musimy zinkrementowaæ m_objectReferences o tyle, ile by³o odwo³añ w tym pliku.
 ¯aden obiekt nie powinien byæ kasowany, dopóki istniej¹ do niego odwo³ania.
 
 Zmienna m_uniqueId jest na pocz¹tku ustawiana na 0. Jej faktyczne ustawienie odbywa robi klasa ResourceContainer.

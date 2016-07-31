@@ -47,12 +47,14 @@ void Engine::test()
 	const wchar_t VADER_TIE[] = L"tylko_do_testow/VadersTIE.FBX";
 	const wchar_t TIE_FIGHTER[] = L"tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX";
 	const wchar_t IMPERIAL_STAR_DESTROYER[] = L"tylko_do_testow/ImperialStarDestroyer.FBX";
+	const wchar_t CHURCH[] = L"tylko_do_testow/Church/AbandonedChurch.FBX";
 
 	Context->modelsManager->LoadModelFromFile( CLONE_FIGHTER );
 	Context->modelsManager->LoadModelFromFile( MOON );
 	Context->modelsManager->LoadModelFromFile( NEBULON );
 	Context->modelsManager->LoadModelFromFile( VADER_TIE );
 	Context->modelsManager->LoadModelFromFile( TIE_FIGHTER );
+	Context->modelsManager->LoadModelFromFile( CHURCH );
 	//modelsManager->LoadModelFromFile( IMPERIAL_STAR_DESTROYER );
 	
 	Context->modelsManager->test();			// Tu sie odbywa wczytywanie
@@ -114,7 +116,12 @@ void Engine::test()
 	cloneFighter->SetModel( Context->modelsManager->GetModel( CLONE_FIGHTER ) );
 
 
+	//dodawanie koœcio³a
+	DynamicMeshActor* church = Actors.CreateActor< DynamicMeshActor >( GetTypeidName< DynamicMeshActor >(), EnableDisplay );
+	position = XMVectorSet( -300.0, 0.0, 500.0, 0.0 );
+	church->Teleport( position );
 
+	church->SetModel( Context->modelsManager->GetModel( CHURCH ) );
 
 
 	//for( unsigned int i = 0; i < 100; ++i )
@@ -162,6 +169,13 @@ void Engine::test()
 
 	int actorInfoSize = sizeof( ActorInfo );
 	int actorDataSize = sizeof( ActorData );
+	int engineInterfaceSize = sizeof( EngineInterface );
+	int actorApiSize = sizeof( Api::AssetsApi );
+	int vectorSize = sizeof( std::vector< int > );
+	int stringSize = sizeof( std::string );
+	int wstringSize = sizeof( std::wstring );
+	int mapSize = sizeof( std::map< int, int > );
+	int hashMapSize = sizeof( std::unordered_map< int, int >);
 
 	Size VadersTieSize = VaderTIE->MemorySize();
 	Size DynamicMeshActorSize = sizeof( DynamicMeshActor );

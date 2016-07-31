@@ -58,7 +58,7 @@ int APIENTRY _tWinMain( _In_ HINSTANCE hInstance,
 	}
 
 	engine->SetEntryPoint( entryPoint );
-	engine->SetSkydomeAndCamera();		//to potem zniknie
+	engine->test();		//to potem zniknie
 
 	result = engine->MainLoop( );
 	delete engine;

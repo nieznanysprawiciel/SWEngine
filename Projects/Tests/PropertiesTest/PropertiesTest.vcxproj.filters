@@ -51,5 +51,8 @@
     <ClInclude Include="..\..\..\EngineCode\Common\Properties\Property.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\ClassMetaInfo\CSharpProperty.h">
+      <Filter>PropertiesTest\ClassMetaInfo</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -74,9 +74,10 @@ LoaderResult FBX_loader::load_mesh( Model3DFromFile* new_file_mesh, const std::w
 
 	typedef std::codecvt_utf8<wchar_t> convert_type;
 	std::wstring_convert<convert_type, wchar_t> converter;
-	std::string converted_name = converter.to_bytes( name );
+	m_filePath = converter.to_bytes( name );
 
-	if ( !fbx_importer->Initialize( converted_name.c_str(), -1, fbx_manager->GetIOSettings() ) )
+
+	if ( !fbx_importer->Initialize( m_filePath.string().c_str(), -1, fbx_manager->GetIOSettings() ) )
 	{
 		//funkcj¹ GetStatus() mo¿na pobraæ informacje o b³êdzie, jakby by³o to potrzebne
 		cur_model = nullptr;		//¿eby potem nie by³o pomy³ek
@@ -89,6 +90,9 @@ LoaderResult FBX_loader::load_mesh( Model3DFromFile* new_file_mesh, const std::w
 	fbx_importer->Destroy();		//po wczytaniu sceny nie jest potrzebny
 
 	//pobieramy korzeñ drzewa i lecimy
+	FbxGeometryConverter triangulator( fbx_manager );
+	triangulator.Triangulate( scene, true );
+
 	FbxNode* root_node = scene->GetRootNode();
 	process_tree(root_node);
 
@@ -259,7 +263,11 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 			{
 				FbxFileTexture* texture = static_cast<FbxFileTexture*>(material->Diffuse.GetSrcObject());
 				if ( texture != nullptr )
-					cur_model->add_texture( converter.from_bytes( texture->GetFileName() ), TextureUse::TEX_DIFFUSE );
+				{
+					filesystem::path texPath = texture->GetRelativeFileName();
+					texPath = m_filePath.parent_path() / texPath;
+					cur_model->add_texture( converter.from_bytes( texPath.string() ), TextureUse::TEX_DIFFUSE );
+				}
 					// Je¿eli dodawanie siê nie uda, to tekstura pozostanie nullptrem
 				//else //tutaj tekstura ma byæ nullem, ale tak siê dzieje domyœlnie
 			}
