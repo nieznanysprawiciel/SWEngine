@@ -108,6 +108,7 @@ Inheritance diagram for EditorApp.Editor.Project.Actors.ActorsLogic:</div>
   <img src="class_editor_app_1_1_editor_1_1_project_1_1_actors_1_1_actors_logic.png" usemap="#EditorApp.Editor.Project.Actors.ActorsLogic_map" alt=""/>
   <map id="EditorApp.Editor.Project.Actors.ActorsLogic_map" name="EditorApp.Editor.Project.Actors.ActorsLogic_map">
 <area href="class_editor_app_1_1_editor_1_1_updatable_view_base.html" alt="EditorApp.Editor.UpdatableViewBase" shape="rect" coords="136,56,398,80"/>
+<area href="interface_editor_app_1_1_g_u_i_1_1_i_deletable_item.html" alt="EditorApp.GUI.IDeletableItem" shape="rect" coords="408,56,670,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -116,18 +117,33 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3562d6547142f433c3bc6952a32cc703"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3562d6547142f433c3bc6952a32cc703"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>ActorsLogic</b> (<a class="el" href="class_editor_app_1_1_logic.html">Logic</a> editorLogic)</td></tr>
 <tr class="separator:a3562d6547142f433c3bc6952a32cc703"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac30d54e172bfbbd9ffcd21e0d59e868c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac30d54e172bfbbd9ffcd21e0d59e868c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>PostInitLevel</b> ()</td></tr>
-<tr class="separator:ac30d54e172bfbbd9ffcd21e0d59e868c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf43b57abe7299bf87ebccffb875ce7b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf43b57abe7299bf87ebccffb875ce7b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>UnloadScene</b> ()</td></tr>
+<tr class="separator:adf43b57abe7299bf87ebccffb875ce7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c90a9208af7088fd9a955d15a19d962"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c90a9208af7088fd9a955d15a19d962"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>InitDefaultActors</b> ()</td></tr>
+<tr class="separator:a1c90a9208af7088fd9a955d15a19d962"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f1b69d3fd62c85807c8a578c2973345"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f1b69d3fd62c85807c8a578c2973345"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>PostInitLevel</b> (<a class="el" href="class_editor_plugin_1_1_scene_loader.html">SceneLoader</a> loader)</td></tr>
+<tr class="separator:a2f1b69d3fd62c85807c8a578c2973345"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5566b79a0e47f616ce87bd5ab092e9b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5566b79a0e47f616ce87bd5ab092e9b6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SelectActor</b> (<a class="el" href="class_editor_plugin_1_1_actor_wrapper.html">ActorWrapper</a> actor)</td></tr>
+<tr class="separator:a5566b79a0e47f616ce87bd5ab092e9b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29fb4f2463dd2da47e656e0a856690eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a29fb4f2463dd2da47e656e0a856690eb"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ActorSelectionChanged</b> (object parameter)</td></tr>
 <tr class="separator:a29fb4f2463dd2da47e656e0a856690eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02191832d33db04b954917b73ba5f749"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02191832d33db04b954917b73ba5f749"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>CreateActor</b> (object parameter)</td></tr>
-<tr class="separator:a02191832d33db04b954917b73ba5f749"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2280c27bc6c5c90adc6f864868c3abf0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2280c27bc6c5c90adc6f864868c3abf0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>CreateActor</b> (<a class="el" href="class_editor_plugin_1_1_actor_class_meta_info.html">ActorClassMetaInfo</a> actorInfo)</td></tr>
-<tr class="separator:a2280c27bc6c5c90adc6f864868c3abf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fcd6f263dbc51070f62d1c3936e9439"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4fcd6f263dbc51070f62d1c3936e9439"></a>
+<a class="el" href="class_editor_plugin_1_1_actor_wrapper.html">ActorWrapper</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CreateMeshActor</b> (string meshPath, double mouseX, double mouseY)</td></tr>
+<tr class="separator:a4fcd6f263dbc51070f62d1c3936e9439"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87ed7c98d04ad92ac3098d9aef6f1176"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a87ed7c98d04ad92ac3098d9aef6f1176"></a>
+<a class="el" href="class_editor_plugin_1_1_actor_wrapper.html">ActorWrapper</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CreateActor</b> (<a class="el" href="class_editor_plugin_1_1_actor_class_meta_info.html">ActorClassMetaInfo</a> actorInfo, double mouseX, double mouseY)</td></tr>
+<tr class="separator:a87ed7c98d04ad92ac3098d9aef6f1176"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a627a892b5d005e5eac5fed88e6ee9b70"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a627a892b5d005e5eac5fed88e6ee9b70"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>DeleteActor</b> (<a class="el" href="class_editor_plugin_1_1_actor_wrapper.html">ActorWrapper</a> actor)</td></tr>
+<tr class="separator:a627a892b5d005e5eac5fed88e6ee9b70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adce0ee79ead15df0401109293d7d6609"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adce0ee79ead15df0401109293d7d6609"></a>
+<a class="el" href="class_editor_plugin_1_1_actor_wrapper.html">ActorWrapper</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CreateActor</b> (string actorTypeName, double mouseX, double mouseY)</td></tr>
+<tr class="separator:adce0ee79ead15df0401109293d7d6609"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2121c2361b1d6e715725c35efd69444"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2121c2361b1d6e715725c35efd69444"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>LoadAsset</b> (object parameter)</td></tr>
 <tr class="separator:af2121c2361b1d6e715725c35efd69444"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,6 +200,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>CanLoadAsset</b> (obj
 <tr class="memitem:a8c49d77f3d13601cb375f98605aa1d28"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c49d77f3d13601cb375f98605aa1d28"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>CanFindAsset</b> (object parameter)</td></tr>
 <tr class="separator:a8c49d77f3d13601cb375f98605aa1d28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b58f7e59ffbe9a714fb910fe8469b51"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0b58f7e59ffbe9a714fb910fe8469b51"></a>
+void IDeletableItem.&#160;</td><td class="memItemRight" valign="bottom"><b>DeleteItem</b> (object item)</td></tr>
+<tr class="separator:a0b58f7e59ffbe9a714fb910fe8469b51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -193,12 +212,18 @@ List&lt; <a class="el" href="class_editor_plugin_1_1_actor_class_meta_info.html"
 <tr class="memitem:a14cb2583b4ceadb13bbb8aef6ea81b7b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a14cb2583b4ceadb13bbb8aef6ea81b7b"></a>
 ObservableCollection&lt; <a class="el" href="class_editor_plugin_1_1_actor_wrapper.html">ActorWrapper</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_actors</b></td></tr>
 <tr class="separator:a14cb2583b4ceadb13bbb8aef6ea81b7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afda64d0b4dbbb120393360057725ffc1"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_editor_plugin_1_1_actor_wrapper.html">ActorWrapper</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor_app_1_1_editor_1_1_project_1_1_actors_1_1_actors_logic.html#afda64d0b4dbbb120393360057725ffc1">m_editorActors</a></td></tr>
+<tr class="memdesc:afda64d0b4dbbb120393360057725ffc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lista aktorów, którzy pełnią funkcję pomocniczą dla edytora, ale nie wystąpią w grze. Są to np. wizualne reprezentacje świateł, triggerów, gizmo itp.  <a href="#afda64d0b4dbbb120393360057725ffc1">More...</a><br /></td></tr>
+<tr class="separator:afda64d0b4dbbb120393360057725ffc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7b82acb755ce98138e7bbd2beb03c17"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7b82acb755ce98138e7bbd2beb03c17"></a>
 <a class="el" href="class_editor_plugin_1_1_actor_class_meta_info.html">ActorClassMetaInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_selectedActorMeta</b></td></tr>
 <tr class="separator:ab7b82acb755ce98138e7bbd2beb03c17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9186898d9f6679ae4be1e9e40bf9f9b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9186898d9f6679ae4be1e9e40bf9f9b7"></a>
 <a class="el" href="class_editor_plugin_1_1_actor_wrapper.html">ActorWrapper</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_selectedActor</b></td></tr>
 <tr class="separator:a9186898d9f6679ae4be1e9e40bf9f9b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a860e9deac5c58221fa368373357db99a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a860e9deac5c58221fa368373357db99a"></a>
+<a class="el" href="class_editor_plugin_1_1_actor_wrapper.html">ActorWrapper</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_gizmoActor</b></td></tr>
+<tr class="separator:a860e9deac5c58221fa368373357db99a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2b00a7bcd103c4d027f39b6c5cbe4cd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2b00a7bcd103c4d027f39b6c5cbe4cd"></a>
 <a class="el" href="class_editor_app_1_1_logic.html">Logic</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor_app_1_1_editor_1_1_project_1_1_actors_1_1_actors_logic.html#ad2b00a7bcd103c4d027f39b6c5cbe4cd">m_editorLogic</a></td></tr>
 <tr class="memdesc:ad2b00a7bcd103c4d027f39b6c5cbe4cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Referencja na główny obiekt edytora. <br /></td></tr>
@@ -221,13 +246,36 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a2bc1637b50a6685ac2acd05093bb9986 inherit events_class_editor_app_1_1_editor_1_1_updatable_view_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Raised when a property on this object has a new value.  <a href="#a2bc1637b50a6685ac2acd05093bb9986">More...</a><br /></td></tr>
 <tr class="separator:a2bc1637b50a6685ac2acd05093bb9986 inherit events_class_editor_app_1_1_editor_1_1_updatable_view_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="afda64d0b4dbbb120393360057725ffc1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; <a class="el" href="class_editor_plugin_1_1_actor_wrapper.html">ActorWrapper</a> &gt; EditorApp.Editor.Project.Actors.ActorsLogic.m_editorActors</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lista aktorów, którzy pełnią funkcję pomocniczą dla edytora, ale nie wystąpią w grze. Są to np. wizualne reprezentacje świateł, triggerów, gizmo itp. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineEditor/EditorApp/Editor/Project/Actors/ActorsLogic.cs</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:59 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:21 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

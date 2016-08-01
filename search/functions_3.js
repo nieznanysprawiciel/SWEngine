@@ -1,7 +1,13 @@
 var searchData=
 [
+  ['datacontext',['DataContext',['../class_g_u_i_1_1_g_u_i_system.html#a90b0f4c76caddc0b4e9dca19df29738a',1,'GUI::GUISystem']]],
+  ['defaultdeserialize',['DefaultDeserialize',['../class_serialization.html#a39419e1238dce1d0e2281b3ef8ee0932',1,'Serialization::DefaultDeserialize()'],['../class_api_1_1_level_1_1_serialization_api.html#a1dd0605de01e33246e8ddf0f44804f3c',1,'Api::Level::SerializationApi::DefaultDeserialize()']]],
+  ['defaultserialize',['DefaultSerialize',['../class_serialization.html#a7351a2335ff63b2c94cb585a4b35bbe9',1,'Serialization']]],
   ['delete_5fobject',['delete_object',['../class_object_deleter.html#a2e45aa4214da60f3a96451674c0f8045',1,'ObjectDeleter::delete_object(class_type *object)'],['../class_object_deleter.html#a44f919839abf35576f2b37dbd2c377d0',1,'ObjectDeleter::delete_object(class_type *object, const ObjectDeleterKey&lt; class_type &gt; &amp;deleter_key)']]],
   ['deleteabstractionlayer',['DeleteAbstractionLayer',['../class_u_i___engine.html#ac2c1e169c1a5b5d9a5f5af3068a9d276',1,'UI_Engine']]],
+  ['deleteactor',['DeleteActor',['../class_api_1_1_actors_api.html#a7f8acaf5955e6dac06d75d1b709fa187',1,'Api::ActorsApi']]],
+  ['deleteallactors',['DeleteAllActors',['../class_api_1_1_actors_api.html#a5dd9fc9a620c6bcfd302c65d7ca6d9d4',1,'Api::ActorsApi']]],
+  ['deleteallmeshes',['DeleteAllMeshes',['../class_display_engine.html#a8e6e9861ee3d7e8e8b4a788822614e41',1,'DisplayEngine']]],
   ['deleteallreferences',['DeleteAllReferences',['../class_dynamic_mesh_actor.html#a6cc20198f08c23834715f6301597a86b',1,'DynamicMeshActor']]],
   ['deleteassetreference',['DeleteAssetReference',['../class_resource_object.html#a36147350cabe229ff9af9917a53b5bec',1,'ResourceObject']]],
   ['deletedownevent',['DeleteDownEvent',['../class_input_abstraction_layer.html#acc2c18e8cfabbd0d17a2b882170a0d08',1,'InputAbstractionLayer']]],
@@ -11,6 +17,13 @@ var searchData=
   ['demandupevent',['DemandUpEvent',['../class_input_abstraction_layer.html#ad838baa879f5bb69d27f651bf03d297e',1,'InputAbstractionLayer']]],
   ['depthbufferenable',['DepthBufferEnable',['../class_d_x11_renderer.html#aea99e069a22e4f9ef82574d33acb11dc',1,'DX11Renderer']]],
   ['depthpass',['DepthPass',['../class_lightmap_worker_c_p_u.html#aae10e3fb1bc239c4fe45597428a51281',1,'LightmapWorkerCPU']]],
+  ['deserialize',['Deserialize',['../class_actor_base.html#ac1a49287b9d3db9af5dfeabb24fcf020',1,'ActorBase']]],
+  ['deserializeactorinfo',['DeserializeActorInfo',['../class_api_1_1_level_1_1_serialization_api.html#abea6daa068ca1e99a3ed28d022c27932',1,'Api::Level::SerializationApi']]],
+  ['deserializebasictypes',['DeserializeBasicTypes',['../class_serialization.html#a6ad512ee183f0b675539f59325ee3ff3',1,'Serialization']]],
+  ['deserializeproperty',['DeserializeProperty',['../class_serialization.html#af9bf46448f46c89715c2cc22a9a7e928',1,'Serialization']]],
+  ['deserializesinglegeneric',['DeserializeSingleGeneric',['../class_api_1_1_level_1_1_serialization_api.html#a2455ed084936f85886a0adac8ba1eeb8',1,'Api::Level::SerializationApi']]],
+  ['deserializestringtypes',['DeserializeStringTypes',['../class_serialization.html#a68ed20785702a4293c96c355388e4de5',1,'Serialization']]],
+  ['deserializevectortypes',['DeserializeVectorTypes',['../class_serialization.html#ab598d51ac75eee3ec551d3527b27acf8',1,'Serialization']]],
   ['displaydynamicobjects',['DisplayDynamicObjects',['../class_display_engine.html#aaab3b3b26907befd5fd4f7f03324cf17',1,'DisplayEngine']]],
   ['displayer',['Displayer',['../class_editor_app_1_1_engine_1_1_displayer.html#a93b9d11451e71fe470ce97ccbfa85a34',1,'EditorApp::Engine::Displayer']]],
   ['displayinstancedmeshes',['DisplayInstancedMeshes',['../class_display_engine.html#af4965de19fde4cab798195b76c30c144',1,'DisplayEngine']]],
@@ -25,7 +38,7 @@ var searchData=
   ['draw_5fclipped',['draw_clipped',['../class_x_g_u_i_1_1_control.html#a24897cdc5acae18d6a4c386a1e847d93',1,'XGUI::Control']]],
   ['drawgui',['DrawGUI',['../class_u_i___engine.html#a0b3b184fe2f8988e08a5a525929f6c9e',1,'UI_Engine']]],
   ['drawindexed',['DrawIndexed',['../class_d_x11_renderer.html#a699564e0e78c74dfb9feea9ea9db447a',1,'DX11Renderer']]],
-  ['drop',['Drop',['../class_editor_app_1_1_engine_1_1_displayer.html#a264c442d19ac2c9a811f05e97c5047f2',1,'EditorApp.Engine.Displayer.Drop()'],['../interface_editor_app_1_1_g_u_i_1_1_i_dropable.html#a0a1d877ec507b540728ae70b7460966d',1,'EditorApp.GUI.IDropable.Drop()'],['../interface_dot_net_lead_1_1_drag_drop_1_1_u_i_1_1_behavior_1_1_i_dropable.html#a26ed0750cfd5184470bbabf3439600ff',1,'DotNetLead.DragDrop.UI.Behavior.IDropable.Drop()']]],
+  ['drop',['Drop',['../class_editor_app_1_1_engine_1_1_displayer.html#a25d2bc9468a60a7fd8118d13931c48ff',1,'EditorApp.Engine.Displayer.Drop()'],['../interface_editor_app_1_1_g_u_i_1_1_i_dropable.html#a2a4c4d960570a39ab2eeb92137397e6c',1,'EditorApp.GUI.IDropable.Drop()'],['../interface_dot_net_lead_1_1_drag_drop_1_1_u_i_1_1_behavior_1_1_i_dropable.html#a26ed0750cfd5184470bbabf3439600ff',1,'DotNetLead.DragDrop.UI.Behavior.IDropable.Drop()']]],
   ['dx11renderer',['DX11Renderer',['../class_d_x11_renderer.html#a8d9db337bddb789c15548b1d5d6ecd48',1,'DX11Renderer']]],
   ['dynamicactor',['DynamicActor',['../class_dynamic_actor.html#a17dd227d3999665218013fc4db7096db',1,'DynamicActor::DynamicActor()'],['../class_dynamic_actor.html#a18b9e9b51b7f722f7107f422bee274a2',1,'DynamicActor::DynamicActor(const DirectX::XMFLOAT3 &amp;move_speed, const DirectX::XMFLOAT4 &amp;rot_speed)']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['throwoninvalidpropertyname',['ThrowOnInvalidPropertyName',['../class_editor_app_1_1_editor_1_1_updatable_view_base.html#a735f73b765e9da02e4278cc593f19cbc',1,'EditorApp::Editor::UpdatableViewBase']]]
+  ['editordir',['EditorDir',['../class_editor_app_1_1_paths_manager.html#a52f297e1af6936e18ec3450171780771',1,'EditorApp::PathsManager']]]
 ];

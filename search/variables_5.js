@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['editorload',['EditorLoad',['../struct_engine_serialization_context.html#ad641b8d35a40f0cba7fdd056ca3f0714',1,'EngineSerializationContext']]],
   ['emissive',['emissive',['../struct_scene_object_data.html#af0a01ca1c26072192de17bdb979b4b58',1,'SceneObjectData']]],
   ['enable_5fonalignmentchange',['enable_onAlignmentChange',['../class_x_g_u_i_1_1_abstract_text.html#a370447fb11f96a4f85e21aba5e03d512',1,'XGUI::AbstractText']]],
   ['enable_5fonchange',['enable_onChange',['../class_x_g_u_i_1_1_abstract_button.html#a52b7b4336db537a2f2db25ecc1aa61fe',1,'XGUI::AbstractButton']]],
@@ -23,13 +24,6 @@ var searchData=
   ['enable_5fontextchange',['enable_onTextChange',['../class_x_g_u_i_1_1_abstract_text.html#a3cfec8767a5680b8f360dbaac3c74117',1,'XGUI::AbstractText']]],
   ['enable_5fontextcolorchange',['enable_onTextColorChange',['../class_x_g_u_i_1_1_abstract_text.html#afeb66ef46b89b0672783c5f5077e3f3e',1,'XGUI::AbstractText']]],
   ['enable_5fontextsizechange',['enable_onTextSizeChange',['../class_x_g_u_i_1_1_abstract_text.html#ae6c91e888b1a94824c88be238f2ddc81',1,'XGUI::AbstractText']]],
-  ['enablecollisions',['enableCollisions',['../struct_actor_info.html#a8c9ba3224bd537042f24ff8adda2c990',1,'ActorInfo']]],
-  ['enabledisplay',['enableDisplay',['../struct_actor_info.html#af374ee91d3cfb1d8657e73bd9b1216c9',1,'ActorInfo']]],
-  ['enablemovement',['enableMovement',['../struct_actor_info.html#a81a634daee43fc11d7abd7e4fac07a72',1,'ActorInfo']]],
-  ['enablephysic',['enablePhysic',['../struct_actor_info.html#a3df6f4e4b77fcfdedd9936d228fb2da5',1,'ActorInfo']]],
-  ['enablepostcontroller',['enablePostController',['../struct_actor_info.html#a602880129d3f0859d84b0b6f6ce0dff4',1,'ActorInfo']]],
-  ['enableprecontroller',['enablePreController',['../struct_actor_info.html#a417210c2d37c6f9284f5dc2a61d7f4c4',1,'ActorInfo']]],
-  ['enableshadow',['enableShadow',['../struct_actor_info.html#a0df3dd1d969a9f4604b3f17c149cd5aa',1,'ActorInfo']]],
   ['engine',['engine',['../class_actor_base.html#aa6e7ace5e4cb75137392d1976f5d1a31',1,'ActorBase']]],
   ['enginelock',['engineLock',['../struct_engine_context.html#a31ac7e501ea17aa476752362f1b03117',1,'EngineContext']]],
   ['engineready',['engineReady',['../struct_engine_context.html#a32acdd0c66f26f3f3780a0ecc81747db',1,'EngineContext']]],

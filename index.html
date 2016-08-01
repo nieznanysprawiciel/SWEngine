@@ -127,8 +127,6 @@ ObjectInterpolation </li>
 <li>
 <a class="el" href="_g_u_i_render.html">Renderowanie GUI</a> </li>
 <li>
-<a class="el" href="self_drawing_objects.html">Samo-rednerujące się obiekty</a> </li>
-<li>
 <a class="el" href="_scene_render.html">Renderowanie sceny</a> </li>
 <li>
 <a class="el" href="_coordinates_system.html">Układ współrzędnych</a> </li>
@@ -137,59 +135,16 @@ ObjectInterpolation </li>
 </ul>
 </li>
 <li>
-<p class="startli"><a class="el" href="_basic_objects.html">Podstawowe obiekty i struktury danych</a></p>
-<ul>
-<li>
-<a class="el" href="class_compute_shader_object.html" title="Klasa przechowująca compute shader. ">ComputeShaderObject</a> </li>
-<li>
-<a class="el" href="class_buffer_object.html" title="Obiekt opakowujący bufor.Bufor może być zarówno buforem wierzchołków, indeksów jak i stałych...">BufferObject</a> </li>
-<li>
-event_mapping </li>
-<li>
-<a class="el" href="class_input_abstraction_layer.html" title="Klasa stanowi interfejs umożliwiający definiowanie i modyfikowanie wastwy abstrakcji. Zalecam przeczytanie opisu klasy InputAbstractionLayerBase, który zawiera wszystkie potrzebne informacje. ">InputAbstractionLayer</a> </li>
-<li>
-InputAbstractionLayer_base </li>
-<li>
-<a class="el" href="class_input_layout_descriptor.html" title="Klasa przechowuje opis layoutu wierzchołka, na podstawie którego tworzony jest obiekt layoutu...">InputLayoutDescriptor</a> </li>
-<li>
-input_mapping </li>
-<li>
-<a class="el" href="struct_material_object.html" title="Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. ">MaterialObject</a> </li>
-<li>
-<a class="el" href="struct_mesh_part_object.html" title="Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach.W zależności od zawartości pola index_buffer w strukturze ModelPart, mesh jest wyświetlany w trybie indeksowanym lub nie. Jeżeli wartość tego pola wynosi nullptr, to wtedy używane są zmienne buffer offset i vertices count, które jednoznacznie wskazują, która część bufora wierzchołków ma zostać wyświetlona. ">MeshPartObject</a> </li>
-<li>
-<a class="el" href="class_model3_d_from_file.html" title="Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ...">Model3DFromFile</a> </li>
-<li>
-<a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> </li>
-<li>
-<a class="el" href="class_pixel_shader_object.html" title="Klasa przechowująca pixel shader. ">PixelShaderObject</a> </li>
-<li>
-<a class="el" href="class_render_target_object.html" title="Klasa dla render targetów.Klasa umożliwia pobranie jednej z tekstur składowych i udostępnienie dla sh...">RenderTargetObject</a> </li>
-<li>
-<a class="el" href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. ">ResourceObject</a> </li>
-<li>
-<a class="el" href="class_resource_container.html" title="Szablon klasy do przechowywania assetów. ">ResourceContainer</a> </li>
-<li>
-<a class="el" href="class_shader_input_layout_object.html" title="Klasa przechowuje layout wierzchołka trafiającego do vertex shadera. ">ShaderInputLayoutObject</a> </li>
-<li>
-<a class="el" href="class_texture_object.html" title="Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności. ">TextureObject</a> </li>
-<li>
-<a class="el" href="struct_vertex_normal_tex_cord1.html" title="Strutkura dla standardowego wierzchołka. ">VertexNormalTexCord1</a> </li>
-<li>
-<a class="el" href="class_vertex_shader_object.html" title="Klasa przechowująca vertex shader. ">VertexShaderObject</a> </li>
-<li>
-<a class="el" href="struct_vertex_tex_cord1.html" title="Struktura wierzchołka stworzona z myślą o GUI. ">VertexTexCord1</a> </li>
-</ul>
-</li>
-<li>
 <p class="startli"><a class="el" href="_predefined_classes.html">Klasy predefiniowane</a></p>
 <ul>
 <li>
-camera_controller_PROTOTYPE </li>
+<a class="el" href="class_spectator_camera_controller.html" title="Kontroler kamery zgodny z wartwą abstrakcji PROTOTYPE. ">SpectatorCameraController</a> </li>
+<li>
+<a class="el" href="class_gizmo_controller.html" title="Kontroler używany przez edytor do przesuwania obiektów. ">GizmoController</a> </li>
 </ul>
 </li>
 <li>
-<p class="startli"><a class="el" href="_base_engine_objects.html">Klasy bazowe dla obiektów predefiniowanych</a></p>
+<p class="startli"><a class="el" href="_base_actors_objects.html">Klasy bazowe Aktorów</a></p>
 <ul>
 <li>
 <a class="el" href="class_animation_actor.html">AnimationActor</a> </li>
@@ -204,15 +159,9 @@ camera_controller_PROTOTYPE </li>
 <li>
 <a class="el" href="class_complex_actor.html">ComplexActor</a> </li>
 <li>
-Controller </li>
-<li>
 <a class="el" href="class_dynamic_mesh_actor.html" title="Klasa bazowa dla obiektów, które będą renderowane. ">DynamicMeshActor</a> </li>
 <li>
 <a class="el" href="class_dynamic_actor.html" title="Klasa bazowa dla obiektów dynamicznych. ">DynamicActor</a> </li>
-<li>
-<a class="el" href="class_event.html">Event</a> </li>
-<li>
-InstancedMesh </li>
 <li>
 <a class="el" href="class_engine_object.html" title="Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz...">EngineObject</a> </li>
 <li>
@@ -221,6 +170,12 @@ InstancedMesh </li>
 <a class="el" href="class_static_actor.html" title="Klasa bazowa dla wszystkich obiektów statycznych w silniku. ">StaticActor</a> </li>
 <li>
 <a class="el" href="class_trigger_actor.html">TriggerActor</a> </li>
+<li>
+<a class="el" href="class_point_light.html">PointLight</a> </li>
+<li>
+<a class="el" href="class_spot_light.html">SpotLight</a> </li>
+<li>
+<a class="el" href="class_directional_light.html">DirectionalLight</a> </li>
 </ul>
 </li>
 <li>
@@ -236,91 +191,11 @@ InstancedMesh </li>
 <a class="el" href="class_sky_dome.html" title="Klasa jest interfejsem dla wszystkich klas, które mają wyświetlać jakieś tło. ">SkyDome</a> </li>
 </ul>
 </li>
-<li>
-<p class="startli"><a class="el" href="_engine_core_modules.html">Moduły EngineCore</a></p>
-<ul>
-<li>
-<a class="el" href="class_actors_manager.html" title="Moduł do zarządzania aktorami. ">ActorsManager</a> </li>
-<li>
-<a class="el" href="class_collision_engine.html" title="Moduł obsługujący kolizje. ">CollisionEngine</a> </li>
-<li>
-<a class="el" href="class_controllers_engine.html" title="Moduł do zarządzania kontrolerami obiektów. ">ControllersEngine</a> </li>
-<li>
-<a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a> </li>
-<li>
-<a class="el" href="class_engine.html" title="Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika.">Engine</a> </li>
-<li>
-<a class="el" href="class_fable_engine.html" title="Moduł do zarządzania fabułą. ">FableEngine</a> </li>
-<li>
-<a class="el" href="class_models_manager.html" title="Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dźwięków, które raczej zostaną oddelego...">ModelsManager</a> </li>
-<li>
-<a class="el" href="class_movement_engine.html" title="Moduł do obsługi obiektów dynamicznych. ">MovementEngine</a> </li>
-<li>
-<a class="el" href="class_physic_engine.html" title="Moduł fizyki. ">PhysicEngine</a> </li>
-<li>
-<a class="el" href="class_sound_engine.html" title="Moduł do obsługi dźwięków. ">SoundEngine</a> </li>
-<li>
-<a class="el" href="class_u_i___engine.html" title="Moduł do obsługi wejścia wyjścia. ">UI_Engine</a> </li>
-</ul>
-</li>
-<li>
-<p class="startli"><a class="el" href="_constants_macros.html">Stałe i makrodefinicje</a></p>
-<ul>
-<li>
-_INTERPOLATE_POSITIONS </li>
-<li>
-__TEST </li>
-<li>
-__UNUSED </li>
-<li>
-_SCALEABLE_OBJECTS </li>
-<li>
-ENGINE_MAX_TEXTURES </li>
-<li>
-ENGINE_MAX_LIGHTS </li>
-<li>
-FIXED_MOVE_UPDATE_INTERVAL </li>
-<li>
-FRAMES_PER_SEC_UPDATE </li>
-<li>
-<a class="el" href="_i_loader_8h.html#af8f65444450e50ed3f0f0e73c1e2a296">LoaderResult</a> </li>
-<li>
-<a class="el" href="_models_manager_8h.html#af77f55adc0bc9bab8d0423de0012fc0b">ModelsManagerResult</a> </li>
-<li>
-<a class="el" href="_engine_8h.html#aa0bc9bf69d2f543079f0bd0135af0dcb">Modules</a> </li>
-<li>
-PERFORMANCE_CHECK </li>
-<li>
-PERFORMANCE_STATISTICS_FILE_PATH </li>
-<li>
-<a class="el" href="_graphic_a_p_i_constants_8h.html#a940e3da6a9b57aae3de0b050e2a7af5e">PrimitiveTopology</a> </li>
-<li>
-<a class="el" href="_i_renderer_8h.html#a638079122796f5eb96dac10b81adf650">RendererUsage</a> </li>
-<li>
-<a class="el" href="_graphic_a_p_i_constants_8h.html#a4b24413c03a6404267f30673d8f5015b">ResourceBinding</a> </li>
-<li>
-<a class="el" href="_graphic_a_p_i_constants_8h.html#af9e15cb1b0d041b19045d8db37e38f5b">ResourceFormat</a> </li>
-<li>
-<a class="el" href="_graphic_a_p_i_constants_8h.html#a397e45c96a8884109d4aad7d3255cab1">ResourceUsage</a> </li>
-<li>
-SHOW_MEMORY_LEAKS </li>
-<li>
-STANDARD_ABSTRACTION_LAYER </li>
-<li>
-STANDARD_ABSTRACTION_LAYER_COUNT </li>
-<li>
-<a class="el" href="_graphic_a_p_i_constants_8h.html#a65468556d79304b3a4bfc464cc12e549">TextureType</a> </li>
-<li>
-TextureTypes </li>
-<li>
-<a class="el" href="_mesh_resources_8h.html#a0429535275068adae77d61a7913e11dc">WRONG_ID</a> </li>
-</ul>
-</li>
 </ul>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:21:00 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:21 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

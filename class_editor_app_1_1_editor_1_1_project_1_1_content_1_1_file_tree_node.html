@@ -109,6 +109,7 @@ Inheritance diagram for EditorApp.Editor.Project.Content.FileTreeNode:</div>
  <div class="center">
   <img src="class_editor_app_1_1_editor_1_1_project_1_1_content_1_1_file_tree_node.png" usemap="#EditorApp.Editor.Project.Content.FileTreeNode_map" alt=""/>
   <map id="EditorApp.Editor.Project.Content.FileTreeNode_map" name="EditorApp.Editor.Project.Content.FileTreeNode_map">
+<area href="interface_editor_app_1_1_g_u_i_1_1_i_dragable.html" alt="EditorApp.GUI::IDragable" shape="rect" coords="287,0,564,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -120,6 +121,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afa488d5e7caf37c4b3a1592decc32848"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa488d5e7caf37c4b3a1592decc32848"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>BuildTreeFromDir</b> (string directory)</td></tr>
 <tr class="separator:afa488d5e7caf37c4b3a1592decc32848"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_interface_editor_app_1_1_g_u_i_1_1_i_dragable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_interface_editor_app_1_1_g_u_i_1_1_i_dragable')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="interface_editor_app_1_1_g_u_i_1_1_i_dragable.html">EditorApp.GUI::IDragable</a></td></tr>
+<tr class="memitem:a1fb3eaebe2a6a15868e545eac8237e45 inherit pub_methods_interface_editor_app_1_1_g_u_i_1_1_i_dragable"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fb3eaebe2a6a15868e545eac8237e45"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Remove</b> (System::Object^i)=0</td></tr>
+<tr class="separator:a1fb3eaebe2a6a15868e545eac8237e45 inherit pub_methods_interface_editor_app_1_1_g_u_i_1_1_i_dragable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -129,6 +134,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>OnPropertyChanged</b>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
+<tr class="memitem:a778a4be53a35b0eb7c2cfe96c8d557aa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a778a4be53a35b0eb7c2cfe96c8d557aa"></a>
+Type IDragable.&#160;</td><td class="memItemRight" valign="bottom"><b>DataType</b><code> [get]</code></td></tr>
+<tr class="separator:a778a4be53a35b0eb7c2cfe96c8d557aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bda7a710fe44b00bd3087218a25af48"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9bda7a710fe44b00bd3087218a25af48"></a>
 ObservableCollection&lt; <a class="el" href="class_editor_app_1_1_editor_1_1_project_1_1_content_1_1_file_tree_node.html">FileTreeNode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>DirectoryContent</b><code> [get, set]</code></td></tr>
 <tr class="separator:a9bda7a710fe44b00bd3087218a25af48"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,8 +146,8 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>Name</b><code> [get
 <tr class="memitem:a9df8b242304f1262eca210af73fdc814"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9df8b242304f1262eca210af73fdc814"></a>
 FileTreeNodeType&#160;</td><td class="memItemRight" valign="bottom"><b>Type</b><code> [get, set]</code></td></tr>
 <tr class="separator:a9df8b242304f1262eca210af73fdc814"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeae242577ad4fa53f13798f1a6ccd70a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeae242577ad4fa53f13798f1a6ccd70a"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>FilePath</b><code> [get, set]</code></td></tr>
+<tr class="memitem:aeae242577ad4fa53f13798f1a6ccd70a"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor_app_1_1_editor_1_1_project_1_1_content_1_1_file_tree_node.html#aeae242577ad4fa53f13798f1a6ccd70a">FilePath</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:aeae242577ad4fa53f13798f1a6ccd70a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ścieżka względem wybranego katalogu nadrzędnego.  <a href="#aeae242577ad4fa53f13798f1a6ccd70a">More...</a><br /></td></tr>
 <tr class="separator:aeae242577ad4fa53f13798f1a6ccd70a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="events"></a>
@@ -153,6 +161,9 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a788abf0322e2138b4f50d88a0da629fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a788abf0322e2138b4f50d88a0da629fe"></a>
 FileTreeNodeType&#160;</td><td class="memItemRight" valign="bottom"><b>GetFileTypeByExtension</b> (string fileName)</td></tr>
 <tr class="separator:a788abf0322e2138b4f50d88a0da629fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab27174d35472c2b9af8e404e361c4647"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab27174d35472c2b9af8e404e361c4647"></a>
+void IDragable.&#160;</td><td class="memItemRight" valign="bottom"><b>Remove</b> (object i)</td></tr>
+<tr class="separator:ab27174d35472c2b9af8e404e361c4647"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -165,14 +176,43 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>m_nodePath</b></td>
 <tr class="memitem:aca0fcf529b63a00f8973f59ba85329e9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca0fcf529b63a00f8973f59ba85329e9"></a>
 FileTreeNodeType&#160;</td><td class="memItemRight" valign="bottom"><b>m_type</b></td></tr>
 <tr class="separator:aca0fcf529b63a00f8973f59ba85329e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_interface_editor_app_1_1_g_u_i_1_1_i_dragable"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_interface_editor_app_1_1_g_u_i_1_1_i_dragable')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="interface_editor_app_1_1_g_u_i_1_1_i_dragable.html">EditorApp.GUI::IDragable</a></td></tr>
+<tr class="memitem:aa91b315f224866a440d843082e07adf2 inherit pub_attribs_interface_editor_app_1_1_g_u_i_1_1_i_dragable"><td class="memItemLeft" align="right" valign="top">property System::Type&#160;</td><td class="memItemRight" valign="bottom"><b>DataType</b></td></tr>
+<tr class="separator:aa91b315f224866a440d843082e07adf2 inherit pub_attribs_interface_editor_app_1_1_g_u_i_1_1_i_dragable"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Property Documentation</h2>
+<a class="anchor" id="aeae242577ad4fa53f13798f1a6ccd70a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string EditorApp.Editor.Project.Content.FileTreeNode.FilePath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ścieżka względem wybranego katalogu nadrzędnego. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineEditor/EditorApp/Editor/Project/Content/FileTreeNode.cs</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:59 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:21 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -92,7 +92,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">Engine.h File Reference</div>  </div>
@@ -124,25 +123,6 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>NUM_OF_MODULES</b>&#160;&#160;&#160;9</td></tr>
 <tr class="separator:a760f206aae116316f9d3483119949e4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:aa0bc9bf69d2f543079f0bd0135af0dcb"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_engine_8h.html#aa0bc9bf69d2f543079f0bd0135af0dcb">Modules</a> { <br />
-&#160;&#160;<a class="el" href="_engine_8h.html#aa0bc9bf69d2f543079f0bd0135af0dcbac686bfd7b8daa1557fac686aa70b9dfa">E_CONTROLLERS</a> = 0, 
-<a class="el" href="_engine_8h.html#aa0bc9bf69d2f543079f0bd0135af0dcba740d57d862ad4f05643b8d2cefa19960">E_PHYSIC</a> = 1, 
-<a class="el" href="_engine_8h.html#aa0bc9bf69d2f543079f0bd0135af0dcbaccd61b1113cd1daa350d332ffe2c0309">E_FABLE</a> = 2, 
-<a class="el" href="_engine_8h.html#aa0bc9bf69d2f543079f0bd0135af0dcba885d68af62e62730044e9e8c7bb14b5b">E_MOVEMENT_DYNAMIC</a> = 3, 
-<br />
-&#160;&#160;<a class="el" href="_engine_8h.html#aa0bc9bf69d2f543079f0bd0135af0dcbaf38c2387a0d722b28413e82fa1a45e8d">E_MOVEMENT_COMPLEX</a> = 4, 
-<a class="el" href="_engine_8h.html#aa0bc9bf69d2f543079f0bd0135af0dcbaa288272bf707b51546f9f9a163df2567">E_DISPLAY</a> = 5, 
-<a class="el" href="_engine_8h.html#aa0bc9bf69d2f543079f0bd0135af0dcbaea2c0c26219992aba8d667b495b991da">E_COLLISION</a> = 6, 
-<a class="el" href="_engine_8h.html#aa0bc9bf69d2f543079f0bd0135af0dcba26fe726848181d3edb4aec974d325c9b">E_UI</a> = 7, 
-<br />
-&#160;&#160;<a class="el" href="_engine_8h.html#aa0bc9bf69d2f543079f0bd0135af0dcbab11b3e0b9a8d3821fbe94e49e1789dbf">E_MODELS_MANAGER</a> = 8
-<br />
- }</td></tr>
-<tr class="memdesc:aa0bc9bf69d2f543079f0bd0135af0dcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeracja zawierająca identyfikatory dla poszczegolnych modułów silnika.  <a href="_engine_8h.html#aa0bc9bf69d2f543079f0bd0135af0dcb">More...</a><br /></td></tr>
-<tr class="separator:aa0bc9bf69d2f543079f0bd0135af0dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a0255997040d96a52f933b0c0d4bd8e01"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0255997040d96a52f933b0c0d4bd8e01"></a>
@@ -157,54 +137,10 @@ TCHAR&#160;</td><td class="memItemRight" valign="bottom"><b>szWindowClass</b> [M
 <p>Wrapper dla obiektu silnika do komunikacji z edytorem.</p>
 <dl class="section author"><dt>Author</dt><dd>nieznanysprawiciel </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Plik jest częścią silnika graficznego SWEngine. </dd></dl>
-</div><h2 class="groupheader">Enumeration Type Documentation</h2>
-<a class="anchor" id="aa0bc9bf69d2f543079f0bd0135af0dcb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="_engine_8h.html#aa0bc9bf69d2f543079f0bd0135af0dcb">Modules</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Enumeracja zawierająca identyfikatory dla poszczegolnych modułów silnika. </p>
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="aa0bc9bf69d2f543079f0bd0135af0dcbac686bfd7b8daa1557fac686aa70b9dfa"></a>E_CONTROLLERS&#160;</td><td class="fielddoc">
-<p>Klasa <a class="el" href="class_controllers_engine.html" title="Moduł do zarządzania kontrolerami obiektów. ">ControllersEngine</a>. </p>
-</td></tr>
-<tr><td class="fieldname"><a class="anchor" id="aa0bc9bf69d2f543079f0bd0135af0dcba740d57d862ad4f05643b8d2cefa19960"></a>E_PHYSIC&#160;</td><td class="fielddoc">
-<p>Klasa <a class="el" href="class_physic_engine.html" title="Moduł fizyki. ">PhysicEngine</a>. </p>
-</td></tr>
-<tr><td class="fieldname"><a class="anchor" id="aa0bc9bf69d2f543079f0bd0135af0dcbaccd61b1113cd1daa350d332ffe2c0309"></a>E_FABLE&#160;</td><td class="fielddoc">
-<p>Klasa <a class="el" href="class_fable_engine.html" title="Moduł do zarządzania fabułą. ">FableEngine</a>. </p>
-</td></tr>
-<tr><td class="fieldname"><a class="anchor" id="aa0bc9bf69d2f543079f0bd0135af0dcba885d68af62e62730044e9e8c7bb14b5b"></a>E_MOVEMENT_DYNAMIC&#160;</td><td class="fielddoc">
-<p>Obiekty dynamiczne w klasie <a class="el" href="class_movement_engine.html" title="Moduł do obsługi obiektów dynamicznych. ">MovementEngine</a>. </p>
-</td></tr>
-<tr><td class="fieldname"><a class="anchor" id="aa0bc9bf69d2f543079f0bd0135af0dcbaf38c2387a0d722b28413e82fa1a45e8d"></a>E_MOVEMENT_COMPLEX&#160;</td><td class="fielddoc">
-<p>Obiekty złożone w klasie <a class="el" href="class_movement_engine.html" title="Moduł do obsługi obiektów dynamicznych. ">MovementEngine</a>. </p>
-</td></tr>
-<tr><td class="fieldname"><a class="anchor" id="aa0bc9bf69d2f543079f0bd0135af0dcbaa288272bf707b51546f9f9a163df2567"></a>E_DISPLAY&#160;</td><td class="fielddoc">
-<p>Klasa <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a>. </p>
-</td></tr>
-<tr><td class="fieldname"><a class="anchor" id="aa0bc9bf69d2f543079f0bd0135af0dcbaea2c0c26219992aba8d667b495b991da"></a>E_COLLISION&#160;</td><td class="fielddoc">
-<p>Klasa <a class="el" href="class_collision_engine.html" title="Moduł obsługujący kolizje. ">CollisionEngine</a>. </p>
-</td></tr>
-<tr><td class="fieldname"><a class="anchor" id="aa0bc9bf69d2f543079f0bd0135af0dcba26fe726848181d3edb4aec974d325c9b"></a>E_UI&#160;</td><td class="fielddoc">
-<p>Klasa UI_engine. </p>
-</td></tr>
-<tr><td class="fieldname"><a class="anchor" id="aa0bc9bf69d2f543079f0bd0135af0dcbab11b3e0b9a8d3821fbe94e49e1789dbf"></a>E_MODELS_MANAGER&#160;</td><td class="fielddoc">
-<p>Klasa <a class="el" href="class_models_manager.html" title="Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dźwięków, które raczej zostaną oddelego...">ModelsManager</a>. </p>
-</td></tr>
-</table>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

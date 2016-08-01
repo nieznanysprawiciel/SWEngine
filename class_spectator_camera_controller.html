@@ -117,12 +117,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7fdeb93f42ca177d37acab4d27e6088c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7fdeb93f42ca177d37acab4d27e6088c"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>SpectatorCameraController</b> (<a class="el" href="class_input_abstraction_layer_base.html">InputAbstractionLayerBase</a> *layer)</td></tr>
 <tr class="separator:a7fdeb93f42ca177d37acab4d27e6088c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad683689f8c24f538d0bebc56ab66bf8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aad683689f8c24f538d0bebc56ab66bf8"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ControlObjectPre</b> (<a class="el" href="class_dynamic_actor.html">DynamicActor</a> *)</td></tr>
-<tr class="separator:aad683689f8c24f538d0bebc56ab66bf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6cf49fa6ea4ec576e96307b81d37882"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spectator_camera_controller.html#af6cf49fa6ea4ec576e96307b81d37882">ControlObjectPost</a> (<a class="el" href="class_dynamic_actor.html">DynamicActor</a> *)</td></tr>
-<tr class="memdesc:af6cf49fa6ea4ec576e96307b81d37882"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja nic nie robi.  <a href="#af6cf49fa6ea4ec576e96307b81d37882">More...</a><br /></td></tr>
-<tr class="separator:af6cf49fa6ea4ec576e96307b81d37882"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa50cbbb2aed7de772f8db3b561e2191d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa50cbbb2aed7de772f8db3b561e2191d"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spectator_camera_controller.html#aa50cbbb2aed7de772f8db3b561e2191d">ControlObjectPre</a> (<a class="el" href="class_dynamic_actor.html">DynamicActor</a> *actor, <a class="el" href="struct_i_controllers_state.html">IControllersState</a> *globalState)</td></tr>
+<tr class="memdesc:aa50cbbb2aed7de772f8db3b561e2191d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wywoływana przed. <br /></td></tr>
+<tr class="separator:aa50cbbb2aed7de772f8db3b561e2191d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42d3e501b3b57c869fbc047a5dfbf851"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spectator_camera_controller.html#a42d3e501b3b57c869fbc047a5dfbf851">ControlObjectPost</a> (<a class="el" href="class_dynamic_actor.html">DynamicActor</a> *actor, <a class="el" href="struct_i_controllers_state.html">IControllersState</a> *globalState)</td></tr>
+<tr class="memdesc:a42d3e501b3b57c869fbc047a5dfbf851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja nic nie robi.  <a href="#a42d3e501b3b57c869fbc047a5dfbf851">More...</a><br /></td></tr>
+<tr class="separator:a42d3e501b3b57c869fbc047a5dfbf851"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_base_input_controller"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_base_input_controller')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_base_input_controller.html">BaseInputController</a></td></tr>
 <tr class="memitem:ad204824d56b0f432c19d04d2d3611677 inherit pub_methods_class_base_input_controller"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad204824d56b0f432c19d04d2d3611677"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>BaseInputController</b> (<a class="el" href="class_input_abstraction_layer_base.html">InputAbstractionLayerBase</a> *layer)</td></tr>
@@ -130,6 +131,18 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ControlObject
 <tr class="memitem:a6725b1b3be4646000de68d1a7b299d77 inherit pub_methods_class_base_input_controller"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6725b1b3be4646000de68d1a7b299d77"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetAbstractionLayer</b> (<a class="el" href="class_input_abstraction_layer_base.html">InputAbstractionLayerBase</a> *layer)</td></tr>
 <tr class="separator:a6725b1b3be4646000de68d1a7b299d77 inherit pub_methods_class_base_input_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_engine_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_engine_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_engine_object.html">EngineObject</a></td></tr>
+<tr class="memitem:abe5f0eabeced7434d6b2abc105e322c4 inherit pub_methods_class_engine_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe5f0eabeced7434d6b2abc105e322c4"></a>
+rttr::type&#160;</td><td class="memItemRight" valign="bottom"><b>GetType</b> () const </td></tr>
+<tr class="separator:abe5f0eabeced7434d6b2abc105e322c4 inherit pub_methods_class_engine_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cb6584bd5d3b639247e66a121774555 inherit pub_methods_class_engine_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5cb6584bd5d3b639247e66a121774555"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Serialize</b> (<a class="el" href="class_i_serializer.html">ISerializer</a> *ser) const </td></tr>
+<tr class="separator:a5cb6584bd5d3b639247e66a121774555 inherit pub_methods_class_engine_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98d8456f78dadb75104e9f886e6fa10a inherit pub_methods_class_engine_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a98d8456f78dadb75104e9f886e6fa10a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Deserialize</b> (<a class="el" href="class_i_deserializer.html">IDeserializer</a> *deser)</td></tr>
+<tr class="separator:a98d8456f78dadb75104e9f886e6fa10a inherit pub_methods_class_engine_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9412b884612f08341e1f638e3cbed90 inherit pub_methods_class_engine_object"><td class="memItemLeft" align="right" valign="top">virtual Size&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_object.html#ae9412b884612f08341e1f638e3cbed90">MemorySize</a> ()</td></tr>
+<tr class="separator:ae9412b884612f08341e1f638e3cbed90 inherit pub_methods_class_engine_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -145,6 +158,10 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spectator_camera_controller.html#a9902a6c33c35e9f1506f6e21eafc4eaf">m_axisRotSpeed</a></td></tr>
 <tr class="memdesc:a9902a6c33c35e9f1506f6e21eafc4eaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prędkość ruchu obrotowego (dla myszy/jousticka) <br /></td></tr>
 <tr class="separator:a9902a6c33c35e9f1506f6e21eafc4eaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1bb157467ef695081e23f9844e2f9d9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af1bb157467ef695081e23f9844e2f9d9"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spectator_camera_controller.html#af1bb157467ef695081e23f9844e2f9d9">m_zoomSpeed</a></td></tr>
+<tr class="memdesc:af1bb157467ef695081e23f9844e2f9d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prędkość zbliżania i oddalania (kółkiem myszy) <br /></td></tr>
+<tr class="separator:af1bb157467ef695081e23f9844e2f9d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -157,17 +174,20 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p>Kontroler kamery zgodny z wartwą abstrakcji PROTOTYPE. </p>
 <p>Kontroler implementuje podstawowe operacje jak przesuwanie w przód, tył, obrót góra, dół i brót względem osi pionowej. Prędkość poszczególnych ruchów jest stała i zależna od zmiennych m_moveSpeed i m_buttonRotSpeed.</p>
 <p>Sterowanie:</p><ul>
-<li>PROTOTYPE::FORWARD Ruch do przodu wzdłuż kierunku patrzenia</li>
-<li>PROTOTYPE::BACKWARD Ruch do tyłu wzdłuż kierunku patrzenia</li>
-<li>PROTOTYPE::LEFT Ruch w lewo Prostopadle do kierunku patrzenia (nie obraca kamery)</li>
-<li>PROTOTYPE::RIGHT Ruch w prawo Prostopadle do kierunku patrzenia (nie obraca kamery)</li>
-<li>PROTOTYPE::DOWN Obrót w dół</li>
-<li>PROTOTYPE::UP Obrót w górę</li>
-<li>PROTOTYPE::TURN_LEFT Obrót w lewo wokół osi pionowej</li>
-<li>PROTOTYPE::TURN_RIGHT Obrót w prawo wokół osi pionowej </li>
+<li>PROTOTYPE_BUTTONS::FORWARD Ruch do przodu wzdłuż kierunku patrzenia</li>
+<li>PROTOTYPE_BUTTONS::BACKWARD Ruch do tyłu wzdłuż kierunku patrzenia</li>
+<li>PROTOTYPE_BUTTONS::LEFT Ruch w lewo Prostopadle do kierunku patrzenia (nie obraca kamery)</li>
+<li>PROTOTYPE_BUTTONS::RIGHT Ruch w prawo Prostopadle do kierunku patrzenia (nie obraca kamery)</li>
+<li>PROTOTYPE_BUTTONS::TURN_DOWN Obrót w dół</li>
+<li>PROTOTYPE_BUTTONS::TURN_UP Obrót w górę</li>
+<li>PROTOTYPE_BUTTONS::TURN_LEFT Obrót w lewo wokół osi pionowej</li>
+<li>PROTOTYPE_BUTTONS::TURN_RIGHT Obrót w prawo wokół osi pionowej</li>
+<li>PROTOTYPE_BUTTONS::UP Przesunięcie w górę po osi Y</li>
+<li>PROTOTYPE_BUTTONS::DOWN Przesunięcie w dół po osi Y</li>
+<li>PROTOTYPE_AXES::ZOOM Przybliżanie i oddalanie (ruch wzdłuż kierunku patrzenia) </li>
 </ul>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="af6cf49fa6ea4ec576e96307b81d37882"></a>
+<a class="anchor" id="a42d3e501b3b57c869fbc047a5dfbf851"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -178,8 +198,18 @@ Additional Inherited Members</h2></td></tr>
           <td class="memname">void SpectatorCameraController::ControlObjectPost </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_dynamic_actor.html">DynamicActor</a> *&#160;</td>
-          <td class="paramname"><em>object</em></td><td>)</td>
+          <td class="paramname"><em>actor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="struct_i_controllers_state.html">IControllersState</a> *&#160;</td>
+          <td class="paramname"><em>globalState</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -203,7 +233,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:59 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:20 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

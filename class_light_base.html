@@ -157,6 +157,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a4369385ecc7b3b906d928d20aba5f996 inherit pub_methods_class_actor_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4369385ecc7b3b906d928d20aba5f996"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Init</b> ()</td></tr>
 <tr class="separator:a4369385ecc7b3b906d928d20aba5f996 inherit pub_methods_class_actor_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af928ecea4a1891125d01e77416cc8d0c inherit pub_methods_class_actor_base"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor_base.html#af928ecea4a1891125d01e77416cc8d0c">Serialize</a> (<a class="el" href="class_i_serializer.html">ISerializer</a> *ser) const override</td></tr>
+<tr class="memdesc:af928ecea4a1891125d01e77416cc8d0c inherit pub_methods_class_actor_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Domyślna implementacja serializacji.  <a href="#af928ecea4a1891125d01e77416cc8d0c">More...</a><br /></td></tr>
+<tr class="separator:af928ecea4a1891125d01e77416cc8d0c inherit pub_methods_class_actor_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1a49287b9d3db9af5dfeabb24fcf020 inherit pub_methods_class_actor_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1a49287b9d3db9af5dfeabb24fcf020"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor_base.html#ac1a49287b9d3db9af5dfeabb24fcf020">Deserialize</a> (<a class="el" href="class_i_deserializer.html">IDeserializer</a> *deser) override</td></tr>
+<tr class="memdesc:ac1a49287b9d3db9af5dfeabb24fcf020 inherit pub_methods_class_actor_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Domyślna implementacja deserializacji. <br /></td></tr>
+<tr class="separator:ac1a49287b9d3db9af5dfeabb24fcf020 inherit pub_methods_class_actor_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_engine_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_engine_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_engine_object.html">EngineObject</a></td></tr>
+<tr class="memitem:abe5f0eabeced7434d6b2abc105e322c4 inherit pub_methods_class_engine_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe5f0eabeced7434d6b2abc105e322c4"></a>
+rttr::type&#160;</td><td class="memItemRight" valign="bottom"><b>GetType</b> () const </td></tr>
+<tr class="separator:abe5f0eabeced7434d6b2abc105e322c4 inherit pub_methods_class_engine_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9412b884612f08341e1f638e3cbed90 inherit pub_methods_class_engine_object"><td class="memItemLeft" align="right" valign="top">virtual Size&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_object.html#ae9412b884612f08341e1f638e3cbed90">MemorySize</a> ()</td></tr>
+<tr class="separator:ae9412b884612f08341e1f638e3cbed90 inherit pub_methods_class_engine_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -184,9 +197,12 @@ static <a class="el" href="class_actor_base.html">ActorBase</a> *&#160;</td><td 
 static <a class="el" href="class_actor_base.html">ActorBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Create</b> ()</td></tr>
 <tr class="separator:a9e0f4215c568b8eee5f27a3511a0599e inherit pub_static_methods_class_static_actor"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_methods_class_actor_base"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_actor_base')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="class_actor_base.html">ActorBase</a></td></tr>
-<tr class="memitem:acbc2f86428b6a953a452ba0a8765bc47 inherit pub_static_methods_class_actor_base"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor_base.html#acbc2f86428b6a953a452ba0a8765bc47">SetEngine</a> (<a class="el" href="class_engine.html">Engine</a> *engine_ptr)</td></tr>
-<tr class="memdesc:acbc2f86428b6a953a452ba0a8765bc47 inherit pub_static_methods_class_actor_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ustawia wskaźnik na główny obiekt silnika.  <a href="#acbc2f86428b6a953a452ba0a8765bc47">More...</a><br /></td></tr>
-<tr class="separator:acbc2f86428b6a953a452ba0a8765bc47 inherit pub_static_methods_class_actor_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a465dfcfe0f3460e79b23dacfa92345c0 inherit pub_static_methods_class_actor_base"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_engine_interface.html">EngineInterface</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor_base.html#a465dfcfe0f3460e79b23dacfa92345c0">GetEngineInterface</a> ()</td></tr>
+<tr class="memdesc:a465dfcfe0f3460e79b23dacfa92345c0 inherit pub_static_methods_class_actor_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca wskaźnik na interfejs silnika, który nadaje się do używania przez programistę gry.  <a href="#a465dfcfe0f3460e79b23dacfa92345c0">More...</a><br /></td></tr>
+<tr class="separator:a465dfcfe0f3460e79b23dacfa92345c0 inherit pub_static_methods_class_actor_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a483f2373c4ad5fff8e5b1e779c65b55e inherit pub_static_methods_class_actor_base"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor_base.html#a483f2373c4ad5fff8e5b1e779c65b55e">SetEngine</a> (<a class="el" href="class_engine.html">Engine</a> *enginePtr)</td></tr>
+<tr class="memdesc:a483f2373c4ad5fff8e5b1e779c65b55e inherit pub_static_methods_class_actor_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ustawia wskaźnik na główny obiekt silnika.  <a href="#a483f2373c4ad5fff8e5b1e779c65b55e">More...</a><br /></td></tr>
+<tr class="separator:a483f2373c4ad5fff8e5b1e779c65b55e inherit pub_static_methods_class_actor_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af505f7cb4384f67cb8cf425f3d0380c8 inherit pub_static_methods_class_actor_base"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af505f7cb4384f67cb8cf425f3d0380c8"></a>
 static <a class="el" href="class_actor_base.html">ActorBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Create</b> ()</td></tr>
 <tr class="separator:af505f7cb4384f67cb8cf425f3d0380c8 inherit pub_static_methods_class_actor_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -200,9 +216,6 @@ static <a class="el" href="class_actor_base.html">ActorBase</a> *&#160;</td><td 
 <tr class="inherit_header pro_methods_class_actor_base"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_actor_base')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_actor_base.html">ActorBase</a></td></tr>
 <tr class="memitem:a691e54297bd6ebfcc727c4de8628040c inherit pro_methods_class_actor_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor_base.html#a691e54297bd6ebfcc727c4de8628040c">event</a> (<a class="el" href="class_event.html">Event</a> *)</td></tr>
 <tr class="separator:a691e54297bd6ebfcc727c4de8628040c inherit pro_methods_class_actor_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dae33d64511baf9e8fec45c094801c4 inherit pro_methods_class_actor_base"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_engine_interface.html">EngineInterface</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor_base.html#a6dae33d64511baf9e8fec45c094801c4">GetEngineInterface</a> ()</td></tr>
-<tr class="memdesc:a6dae33d64511baf9e8fec45c094801c4 inherit pro_methods_class_actor_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca wskaźnik na interfejs silnika, który nadaje się do używania przez programistę gry.  <a href="#a6dae33d64511baf9e8fec45c094801c4">More...</a><br /></td></tr>
-<tr class="separator:a6dae33d64511baf9e8fec45c094801c4 inherit pro_methods_class_actor_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Klasa bazowa dla świateł. </p>
@@ -214,7 +227,7 @@ static <a class="el" href="class_actor_base.html">ActorBase</a> *&#160;</td><td 
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:59 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:20 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

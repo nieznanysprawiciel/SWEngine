@@ -100,10 +100,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Plik zawiera deklarację klasy <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a> i funkcje pomocnicze.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_i_renderer_8h_source.html">GraphicAPI/IRenderer.h</a>&quot;</code><br />
+<code>#include &quot;GraphicAPI/SwapChain.h&quot;</code><br />
 <code>#include &quot;EngineCore/Actors/ActorObjects.h&quot;</code><br />
-<code>#include &quot;<a class="el" href="_constant_buffers_format_8h_source.html">ConstantBuffersFormat.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_sky_dome_8h_source.html">EngineCore/Features/SkyDome.h</a>&quot;</code><br />
 <code>#include &quot;EngineCore/DisplayEngine/RenderPass.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="_constant_buffers_format_8h_source.html">ConstantBuffersFormat.h</a>&quot;</code><br />
 <code>#include &lt;DirectXMath.h&gt;</code><br />
 <code>#include &lt;queue&gt;</code><br />
 </div>
@@ -174,7 +175,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Funkcja interpoluje orientację obiektu. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated:</a></b></dt><dd></dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000006">Deprecated:</a></b></dt><dd></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">tima_lag</td><td>Czas jaki upłynął od ostatniego przeliczenia pozycji obiektów. </td></tr>
@@ -225,7 +226,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Funkcja interpoluje wartość położenia obiektu. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000003">Deprecated:</a></b></dt><dd></dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated:</a></b></dt><dd></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">tima_lag</td><td>Czas jaki upłynął od ostatniego przeliczenia pozycji obiektów. </td></tr>
@@ -304,7 +305,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

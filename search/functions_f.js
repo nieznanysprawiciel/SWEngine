@@ -1,30 +1,5 @@
 var searchData=
 [
-  ['radiosity',['Radiosity',['../class_lightmap_worker_c_p_u.html#a10302e6e70bd5439e7b03cfab2615f99',1,'LightmapWorkerCPU']]],
-  ['rasterizetriangle',['RasterizeTriangle',['../class_lightmap_worker_c_p_u.html#af0ba92104ba2853a8f03d3575f041fc2',1,'LightmapWorkerCPU']]],
-  ['read_5fmaterial_5findex',['read_material_index',['../class_f_b_x__loader.html#aee718bce559788dfc18954522b10aac0',1,'FBX_loader']]],
-  ['read_5fuvs',['read_UVs',['../class_f_b_x__loader.html#acbe105c706f6a1534af75376af99c2e7',1,'FBX_loader']]],
-  ['realocate_5finterpolation_5fmemory',['realocate_interpolation_memory',['../class_display_engine.html#aadfb8904fe972fb42421133bbc944ac6',1,'DisplayEngine']]],
-  ['recreateoctree',['RecreateOctree',['../class_collision_octree.html#a8ee7522bb17be50054577ab0d02400d4',1,'CollisionOctree']]],
-  ['registerclass',['RegisterClass',['../class_actor_factory.html#ae3d2fbe8f4b118c368a09faf0303de20',1,'ActorFactory']]],
-  ['registertaskname',['registerTaskName',['../class_performance_check.html#a153184490057f9372b25441404701d11',1,'PerformanceCheck']]],
-  ['release_5fdirectx',['release_DirectX',['../class_d_x11_a_p_i_objects.html#afdc3c0039417cc6bf466e89f359e4b8b',1,'DX11APIObjects::release_DirectX()'],['../class_d_x11_auxiliary_objects.html#aede0f754d61801d08ab6a4ec63563e84',1,'DX11AuxiliaryObjects::release_DirectX()']]],
-  ['release_5fmemory',['release_memory',['../class_resource_container.html#a14c374d172976bb9b865488c69802da8',1,'ResourceContainer']]],
-  ['releaseapi',['ReleaseAPI',['../class_d_x11_initializer.html#a84204a02f6e2909b4dc53295b6224ab2',1,'DX11Initializer']]],
-  ['releaseengine',['ReleaseEngine',['../class_editor_plugin_1_1_engine_wrapper.html#a2eac62589abffe88fa5324eef3162fe5',1,'EditorPlugin::EngineWrapper']]],
-  ['remove',['Remove',['../interface_dot_net_lead_1_1_drag_drop_1_1_u_i_1_1_behavior_1_1_i_dragable.html#aec81c5060b129170a12727dd7c90d0da',1,'DotNetLead.DragDrop.UI.Behavior.IDragable.Remove()'],['../class_resource_container.html#a1939dc49ac74d941b5e668799edb28a6',1,'ResourceContainer::remove(const std::wstring &amp;name)'],['../class_resource_container.html#aa5a0952b702d5a9f555c26c3794de8ec',1,'ResourceContainer::remove(unsigned int id)']]],
-  ['remove_5funused',['remove_unused',['../class_resource_container.html#a6469a13ab7e50c0952fb5596732ed21a',1,'ResourceContainer']]],
-  ['removeactor',['RemoveActor',['../class_octree_leaf.html#a5a8188a19c9ced27a4a9f2af4c42d577',1,'OctreeLeaf']]],
-  ['removedynamicactor',['RemoveDynamicActor',['../class_octree_leaf.html#a0fe84fde0e62778a15e88cde8a647ea2',1,'OctreeLeaf']]],
-  ['removelistener',['RemoveListener',['../class_event_manager.html#a59117daabf002a9ad55d4da3792d10ce',1,'EventManager']]],
-  ['removelistenerdelayed',['RemoveListenerDelayed',['../class_api_1_1_actors_1_1_communication.html#a75323735dcd58e18735e77553f0473e0',1,'Api::Actors::Communication']]],
-  ['removestaticactor',['RemoveStaticActor',['../class_octree_leaf.html#a8bf9e20dd71f5462370e501a5d684b1e',1,'OctreeLeaf']]],
-  ['renderended',['RenderEnded',['../class_lightmap_logic.html#a4c322f343ce0ebe66daa53cdc47100f2',1,'LightmapLogic']]],
-  ['renderframe',['RenderFrame',['../class_engine.html#a37fbb20f7210a7dc3b26a0394fc6166e',1,'Engine']]],
-  ['renderfromqueue',['RenderFromQueue',['../class_display_engine.html#a791d9ab90c167eafff98180df2d18056',1,'DisplayEngine']]],
-  ['renderonce',['RenderOnce',['../class_api_1_1_rendering_api.html#af7385fccacc489f533ff90cf71a7604b',1,'Api::RenderingApi']]],
-  ['renderscene',['RenderScene',['../class_engine.html#afcf91d997d6aa26a58f10d65c5c24a84',1,'Engine::RenderScene()'],['../class_editor_plugin_1_1_engine_wrapper.html#a5ee8a1ba36de7206b32274574512e067',1,'EditorPlugin::EngineWrapper::RenderScene()']]],
-  ['rendertargetdescriptor',['RenderTargetDescriptor',['../struct_render_target_descriptor.html#a8c3394ab8e30e840a6deb96d3e263bce',1,'RenderTargetDescriptor']]],
-  ['resetactor',['ResetActor',['../class_editor_plugin_1_1_actor_class_meta_info.html#a9a47b2df515012b620ab1115e6202a7f',1,'EditorPlugin::ActorClassMetaInfo']]],
-  ['resourceobject',['ResourceObject',['../class_resource_object.html#ab532d0711da06a23e6fe10dad6153332',1,'ResourceObject']]]
+  ['querycurrenttime',['QueryCurrentTime',['../class_time_manager.html#a6901c718c264707cba5aba85c306142d',1,'TimeManager']]],
+  ['querytimefrombegin',['QueryTimeFromBegin',['../class_time_manager.html#aeb12b0f96dd94bd61ed3719fdfb77f68',1,'TimeManager']]]
 ];

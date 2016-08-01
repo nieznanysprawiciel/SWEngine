@@ -124,10 +124,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a446ded7315fa947e1b6c396b6a70ff27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_1_1_communication.html#a446ded7315fa947e1b6c396b6a70ff27">ClearListenersDelayed</a> ()</td></tr>
 <tr class="memdesc:a446ded7315fa947e1b6c396b6a70ff27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usuwa wszystkie funkcje obsługi.  <a href="#a446ded7315fa947e1b6c396b6a70ff27">More...</a><br /></td></tr>
 <tr class="separator:a446ded7315fa947e1b6c396b6a70ff27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a75ae5c0efe43b223fb37cc3bfb483b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a75ae5c0efe43b223fb37cc3bfb483b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_1_1_communication.html#a4a75ae5c0efe43b223fb37cc3bfb483b">SendEvent</a> (<a class="el" href="class_event.html">Event</a> *evt)</td></tr>
-<tr class="memdesc:a4a75ae5c0efe43b223fb37cc3bfb483b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_event_manager.html#aa412d163637dd94a090d8c7386ce17aa" title="Wstawia do kolejki event, który oczekuje na przetworzenie. ">EventManager::SendEvent</a>. <br /></td></tr>
+<tr class="memitem:a4a75ae5c0efe43b223fb37cc3bfb483b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_1_1_communication.html#a4a75ae5c0efe43b223fb37cc3bfb483b">SendEvent</a> (<a class="el" href="class_event.html">Event</a> *evt)</td></tr>
+<tr class="memdesc:a4a75ae5c0efe43b223fb37cc3bfb483b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wstawia do kolejki event, który oczekuje na przetworzenie.  <a href="#a4a75ae5c0efe43b223fb37cc3bfb483b">More...</a><br /></td></tr>
 <tr class="separator:a4a75ae5c0efe43b223fb37cc3bfb483b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affd7dce239379cfa914b1601950950f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_1_1_communication.html#affd7dce239379cfa914b1601950950f8">SendSignal</a> (const <a class="el" href="struct_signal.html">Signal</a> &amp;signal)</td></tr>
+<tr class="memdesc:affd7dce239379cfa914b1601950950f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wstawia sygnał do kolejki, aby oczekiwał na wywołanie.  <a href="#affd7dce239379cfa914b1601950950f8">More...</a><br /></td></tr>
+<tr class="separator:affd7dce239379cfa914b1601950950f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8768c89b3d2a0851ecc7ee0b743b8a1"><td class="memTemplParams" colspan="2">template&lt;typename EventType , typename ClassType &gt; </td></tr>
 <tr class="memitem:ad8768c89b3d2a0851ecc7ee0b743b8a1"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_1_1_communication.html#ad8768c89b3d2a0851ecc7ee0b743b8a1">AddListenerDelayed</a> (ClassType *handlerOwner, void(ClassType::*handler)(const <a class="el" href="class_engine_object.html">EngineObject</a> *, <a class="el" href="class_event.html">Event</a> *))</td></tr>
 <tr class="memdesc:ad8768c89b3d2a0851ecc7ee0b743b8a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje funkcje obsługi do eventu podanego typu.  <a href="#ad8768c89b3d2a0851ecc7ee0b743b8a1">More...</a><br /></td></tr>
@@ -235,7 +237,7 @@ template&lt;typename EventType , typename ClassType &gt; </div>
   </table>
   </dd>
 </dl>
-<p>Wynik wykonania funkcji jest widoczny dopiero w następnej klatce. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000049">Todo:</a></b></dt><dd>Na razie funkcja dodaje delegata od razu. Poprawić, gdy pojawi się wielowątkowość. </dd></dl>
+<p>Wynik wykonania funkcji jest widoczny dopiero w następnej klatce. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000057">Todo:</a></b></dt><dd>Na razie funkcja dodaje delegata od razu. Poprawić, gdy pojawi się wielowątkowość. </dd></dl>
 
 </div>
 </div>
@@ -285,6 +287,44 @@ template&lt;typename EventType , typename ClassType &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a4a75ae5c0efe43b223fb37cc3bfb483b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Api::Actors::Communication::SendEvent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_event.html">Event</a> *&#160;</td>
+          <td class="paramname"><em>evt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wstawia do kolejki event, który oczekuje na przetworzenie. </p>
+<p>Aby dowiedzieć się o różnicy między eventami i sygnałami przeczytaj <a class="el" href="group___events_signals.html">Eventy i Sygnały</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="affd7dce239379cfa914b1601950950f8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Api::Actors::Communication::SendSignal </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_signal.html">Signal</a> &amp;&#160;</td>
+          <td class="paramname"><em>signal</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wstawia sygnał do kolejki, aby oczekiwał na wywołanie. </p>
+<p>Aby dowiedzieć się o różnicy między eventami i sygnałami przeczytaj <a class="el" href="group___events_signals.html">Eventy i Sygnały</a>. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/UserApi/Actors/<a class="el" href="_communication_8h_source.html">Communication.h</a></li>
 <li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/UserApi/Actors/Communication.cpp</li>
@@ -292,7 +332,7 @@ template&lt;typename EventType , typename ClassType &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:59 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:20 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

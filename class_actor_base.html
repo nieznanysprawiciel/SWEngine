@@ -124,6 +124,7 @@ Inheritance diagram for ActorBase:</div>
 <area href="class_animation_actor.html" alt="AnimationActor" shape="rect" coords="199,336,322,360"/>
 <area href="class_dynamic_mesh_actor.html" title="Klasa bazowa dla obiektów, które będą renderowane. " alt="DynamicMeshActor" shape="rect" coords="332,336,455,360"/>
 <area href="class_spot_light.html" alt="SpotLight" shape="rect" coords="532,336,655,360"/>
+<area href="class_player_signal_test.html" alt="PlayerSignalTest" shape="rect" coords="332,392,455,416"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -132,12 +133,28 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4369385ecc7b3b906d928d20aba5f996"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4369385ecc7b3b906d928d20aba5f996"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Init</b> ()</td></tr>
 <tr class="separator:a4369385ecc7b3b906d928d20aba5f996"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af928ecea4a1891125d01e77416cc8d0c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor_base.html#af928ecea4a1891125d01e77416cc8d0c">Serialize</a> (<a class="el" href="class_i_serializer.html">ISerializer</a> *ser) const override</td></tr>
+<tr class="memdesc:af928ecea4a1891125d01e77416cc8d0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Domyślna implementacja serializacji.  <a href="#af928ecea4a1891125d01e77416cc8d0c">More...</a><br /></td></tr>
+<tr class="separator:af928ecea4a1891125d01e77416cc8d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1a49287b9d3db9af5dfeabb24fcf020"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1a49287b9d3db9af5dfeabb24fcf020"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor_base.html#ac1a49287b9d3db9af5dfeabb24fcf020">Deserialize</a> (<a class="el" href="class_i_deserializer.html">IDeserializer</a> *deser) override</td></tr>
+<tr class="memdesc:ac1a49287b9d3db9af5dfeabb24fcf020"><td class="mdescLeft">&#160;</td><td class="mdescRight">Domyślna implementacja deserializacji. <br /></td></tr>
+<tr class="separator:ac1a49287b9d3db9af5dfeabb24fcf020"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_engine_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_engine_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_engine_object.html">EngineObject</a></td></tr>
+<tr class="memitem:abe5f0eabeced7434d6b2abc105e322c4 inherit pub_methods_class_engine_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe5f0eabeced7434d6b2abc105e322c4"></a>
+rttr::type&#160;</td><td class="memItemRight" valign="bottom"><b>GetType</b> () const </td></tr>
+<tr class="separator:abe5f0eabeced7434d6b2abc105e322c4 inherit pub_methods_class_engine_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9412b884612f08341e1f638e3cbed90 inherit pub_methods_class_engine_object"><td class="memItemLeft" align="right" valign="top">virtual Size&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_object.html#ae9412b884612f08341e1f638e3cbed90">MemorySize</a> ()</td></tr>
+<tr class="separator:ae9412b884612f08341e1f638e3cbed90 inherit pub_methods_class_engine_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:acbc2f86428b6a953a452ba0a8765bc47"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor_base.html#acbc2f86428b6a953a452ba0a8765bc47">SetEngine</a> (<a class="el" href="class_engine.html">Engine</a> *engine_ptr)</td></tr>
-<tr class="memdesc:acbc2f86428b6a953a452ba0a8765bc47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ustawia wskaźnik na główny obiekt silnika.  <a href="#acbc2f86428b6a953a452ba0a8765bc47">More...</a><br /></td></tr>
-<tr class="separator:acbc2f86428b6a953a452ba0a8765bc47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a465dfcfe0f3460e79b23dacfa92345c0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_engine_interface.html">EngineInterface</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor_base.html#a465dfcfe0f3460e79b23dacfa92345c0">GetEngineInterface</a> ()</td></tr>
+<tr class="memdesc:a465dfcfe0f3460e79b23dacfa92345c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca wskaźnik na interfejs silnika, który nadaje się do używania przez programistę gry.  <a href="#a465dfcfe0f3460e79b23dacfa92345c0">More...</a><br /></td></tr>
+<tr class="separator:a465dfcfe0f3460e79b23dacfa92345c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a483f2373c4ad5fff8e5b1e779c65b55e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor_base.html#a483f2373c4ad5fff8e5b1e779c65b55e">SetEngine</a> (<a class="el" href="class_engine.html">Engine</a> *enginePtr)</td></tr>
+<tr class="memdesc:a483f2373c4ad5fff8e5b1e779c65b55e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ustawia wskaźnik na główny obiekt silnika.  <a href="#a483f2373c4ad5fff8e5b1e779c65b55e">More...</a><br /></td></tr>
+<tr class="separator:a483f2373c4ad5fff8e5b1e779c65b55e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af505f7cb4384f67cb8cf425f3d0380c8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af505f7cb4384f67cb8cf425f3d0380c8"></a>
 static <a class="el" href="class_actor_base.html">ActorBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Create</b> ()</td></tr>
 <tr class="separator:af505f7cb4384f67cb8cf425f3d0380c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,9 +163,6 @@ static <a class="el" href="class_actor_base.html">ActorBase</a> *&#160;</td><td 
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a691e54297bd6ebfcc727c4de8628040c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor_base.html#a691e54297bd6ebfcc727c4de8628040c">event</a> (<a class="el" href="class_event.html">Event</a> *)</td></tr>
 <tr class="separator:a691e54297bd6ebfcc727c4de8628040c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dae33d64511baf9e8fec45c094801c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_engine_interface.html">EngineInterface</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actor_base.html#a6dae33d64511baf9e8fec45c094801c4">GetEngineInterface</a> ()</td></tr>
-<tr class="memdesc:a6dae33d64511baf9e8fec45c094801c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca wskaźnik na interfejs silnika, który nadaje się do używania przez programistę gry.  <a href="#a6dae33d64511baf9e8fec45c094801c4">More...</a><br /></td></tr>
-<tr class="separator:a6dae33d64511baf9e8fec45c094801c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
@@ -181,12 +195,13 @@ static <a class="el" href="class_engine.html">Engine</a> *&#160;</td><td class="
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Deprecated:</a></b></dt><dd>Eventy wysyla sie przez API w <a class="el" href="class_engine_interface.html" title="Klasa jest interfejsem dla użytkownika użytkującego silnik.Taki interfejs będzie widział użytkownik s...">EngineInterface</a>. <a class="el" href="class_fable_engine.html" title="Moduł do zarządzania fabułą. ">FableEngine</a> nie odpowiada już za przetwarzanie eventow.</dd></dl>
 <p>Funkcja pozwala wysłać event, który będzie potem przetworzony przez klase <a class="el" href="class_fable_engine.html" title="Moduł do zarządzania fabułą. ">FableEngine</a>. Eventy są metodą komunikacji pomiedzy silnikiem graficznym, silnikiem fizycznym, AI i silnikiem kolizji, a modułem silnika odpowiedzialnym za fabułę. Istnieje szereg eventów wbudowanych, wysyłanych przez silnik, można również definiować własne nowe eventy poprzez dziedziczenie z klasy <a class="el" href="class_event.html">Event</a>. <a class="el" href="class_event.html">Event</a> może być wysłany przez dowolny objekt poprzez wywołanie funkcji <a class="el" href="class_actor_base.html#a691e54297bd6ebfcc727c4de8628040c">ActorBase::event</a>. Aby wysłać własny event trzeba przeciążyć jedną z funkcji klas wbudowanych, która jest potem wywoływana przez silnik i wywołać tę funkję.</p>
 <p>Za zwolnienie pamięci po klasie <a class="el" href="class_event.html">Event</a> odpowiada klasa FabelEngine (jest to robione automatycznie po wywołaniu funkcji obsługi, użytkownik nie musi się tym przejmowac). </p>
 
 </div>
 </div>
-<a class="anchor" id="a6dae33d64511baf9e8fec45c094801c4"></a>
+<a class="anchor" id="a465dfcfe0f3460e79b23dacfa92345c0"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -194,7 +209,7 @@ static <a class="el" href="class_engine.html">Engine</a> *&#160;</td><td class="
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_engine_interface.html">EngineInterface</a>* ActorBase::GetEngineInterface </td>
+          <td class="memname">static <a class="el" href="class_engine_interface.html">EngineInterface</a>* ActorBase::GetEngineInterface </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -202,7 +217,7 @@ static <a class="el" href="class_engine.html">Engine</a> *&#160;</td><td class="
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -212,7 +227,36 @@ static <a class="el" href="class_engine.html">Engine</a> *&#160;</td><td class="
 
 </div>
 </div>
-<a class="anchor" id="acbc2f86428b6a953a452ba0a8765bc47"></a>
+<a class="anchor" id="af928ecea4a1891125d01e77416cc8d0c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ActorBase::Serialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_i_serializer.html">ISerializer</a> *&#160;</td>
+          <td class="paramname"><em>ser</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Domyślna implementacja serializacji. </p>
+<p>Serializuje wszystkie propertiesy oznaczone w metadanych flagą Serialize lub AllowInSaveFile. Serialize oznacza właściwości, które zostaną zapisane do pliku z mapą. AllowInSaveFile to właściwości, które zostaną zapisane w przypadku zapisywania stanu gry. </p>
+
+<p>Reimplemented from <a class="el" href="class_engine_object.html">EngineObject</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a483f2373c4ad5fff8e5b1e779c65b55e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -223,7 +267,7 @@ static <a class="el" href="class_engine.html">Engine</a> *&#160;</td><td class="
           <td class="memname">static void ActorBase::SetEngine </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_engine.html">Engine</a> *&#160;</td>
-          <td class="paramname"><em>engine_ptr</em></td><td>)</td>
+          <td class="paramname"><em>enginePtr</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -252,7 +296,7 @@ static <a class="el" href="class_engine.html">Engine</a> *&#160;</td><td class="
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

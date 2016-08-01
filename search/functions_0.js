@@ -1,6 +1,8 @@
 var searchData=
 [
   ['actorinfo',['ActorInfo',['../struct_actor_info.html#ad6de73b754078d86043a36f344825470',1,'ActorInfo::ActorInfo()'],['../struct_actor_info.html#a2b71643f917310f21eb5f67954375bf9',1,'ActorInfo::ActorInfo(unsigned short actorInfoFlag)']]],
+  ['actorptr',['ActorPtr',['../class_actor_ptr.html#abe1783d852a23c78ba2713989e1b86b7',1,'ActorPtr']]],
+  ['actorptrkey',['ActorPtrKey',['../class_actor_ptr_key.html#a49420c50d8ada725f9f54c34120c6422',1,'ActorPtrKey::ActorPtrKey()=default'],['../class_actor_ptr_key.html#a56edfc2c9fe9526238cb2f7f83312348',1,'ActorPtrKey::ActorPtrKey(const ActorPtrKey &amp;)'],['../class_actor_ptr_key.html#a7d4ff9df80a24fc27467d83f2608195e',1,'ActorPtrKey::ActorPtrKey(const ActorPtrKey &amp;&amp;)']]],
   ['add_5findex_5fbuffer',['add_index_buffer',['../class_model3_d_from_file.html#a9f7d535399c2abe6f860d66fd5774371',1,'Model3DFromFile']]],
   ['add_5fmaterial',['add_material',['../class_model3_d_from_file.html#adb13f06a3414f7ed8f41b761d4a9ab0c',1,'Model3DFromFile']]],
   ['add_5fpixel_5fshader',['add_pixel_shader',['../class_model3_d_from_file.html#a6d3edfe7563ba8c62b61cea78b0f15a7',1,'Model3DFromFile']]],
@@ -21,15 +23,15 @@ var searchData=
   ['addlistenerdelayed',['AddListenerDelayed',['../class_api_1_1_actors_1_1_communication.html#a97fb7c4aad6b8b172acc71e3ac97875c',1,'Api::Actors::Communication::AddListenerDelayed(rttr::type eventType, const EngineObject *handlerOwner, EventDelegate handler)'],['../class_api_1_1_actors_1_1_communication.html#ad8768c89b3d2a0851ecc7ee0b743b8a1',1,'Api::Actors::Communication::AddListenerDelayed(ClassType *handlerOwner, void(ClassType::*handler)(const EngineObject *, Event *))']]],
   ['addmaterial',['AddMaterial',['../class_models_manager.html#a3f8c9efdc041fd21a5700b33c7d8e608',1,'ModelsManager']]],
   ['addobjectreference',['AddObjectReference',['../class_resource_object.html#aef54fb618f3a8e1b0d2fd215fde64e8d',1,'ResourceObject']]],
-  ['addpixelshader',['AddPixelShader',['../class_models_manager.html#ac496ebf143424b02100b9505ad6b9cd5',1,'ModelsManager']]],
-  ['addpostcontrolled',['AddPostControlled',['../class_controllers_engine.html#abaf43fe0f8aee2db49055177956bbdda',1,'ControllersEngine']]],
-  ['addprecontrolled',['AddPreControlled',['../class_controllers_engine.html#a84b8f524333fe113470f22a1c852226b',1,'ControllersEngine']]],
+  ['addpixelshader',['AddPixelShader',['../class_models_manager.html#a4ac3bf2e995441aed5a6723aa65d5d4e',1,'ModelsManager']]],
+  ['addpostcontrolled',['AddPostControlled',['../class_controllers_engine.html#ad90a79cfceecbb16f858b321c2edf938',1,'ControllersEngine']]],
+  ['addprecontrolled',['AddPreControlled',['../class_controllers_engine.html#adab75253df2aa4228c82305c813dd062',1,'ControllersEngine']]],
   ['addreferences',['AddReferences',['../class_dynamic_mesh_actor.html#ad3ba6c68a6370254ce284e84d0345b0f',1,'DynamicMeshActor']]],
   ['addrendertarget',['AddRenderTarget',['../class_models_manager.html#a8d4b6ce9ab3ac9e1ab23a9ba80fe1816',1,'ModelsManager']]],
   ['addstaticactor',['AddStaticActor',['../class_octree_leaf.html#a7994285a7d249549b9a2d0e1e865ac69',1,'OctreeLeaf']]],
   ['addtexture',['AddTexture',['../class_models_manager.html#a7e426667e9c611d8dea5a6331ee97a7b',1,'ModelsManager']]],
   ['addtomodules',['AddToModules',['../class_api_1_1_actors_api.html#a28b1047690df4c25915a29f925527399',1,'Api::ActorsApi']]],
   ['addvertexbuffer',['AddVertexBuffer',['../class_models_manager.html#a27cd6e567c6704a03fbb2fa6294b7762',1,'ModelsManager']]],
-  ['addvertexshader',['AddVertexShader',['../class_models_manager.html#a6e9b5dfc98242afd526166ad532a70e9',1,'ModelsManager::AddVertexShader(const std::wstring &amp;file_name, const std::string &amp;shader_entry)'],['../class_models_manager.html#addc873642d4e16d298d9c3edd75e4867',1,'ModelsManager::AddVertexShader(const std::wstring &amp;file_name, const std::string &amp;shader_entry, ShaderInputLayoutObject **layout, InputLayoutDescriptor *layout_desc)']]],
+  ['addvertexshader',['AddVertexShader',['../class_models_manager.html#a93ba23e45b283da288a01f3a312ff805',1,'ModelsManager::AddVertexShader(const std::wstring &amp;file_name, const std::string &amp;shader_entry)'],['../class_models_manager.html#a422c33f8a3bc23e51bbf589f28cbe3b7',1,'ModelsManager::AddVertexShader(const std::wstring &amp;file_name, const std::string &amp;shader_entry, ShaderInputLayoutObject **layout, InputLayoutDescriptor *layout_desc)']]],
   ['averagenormal',['AverageNormal',['../class_lightmap_worker_c_p_u.html#a744f19b2f2880642d0d3688196b81c94',1,'LightmapWorkerCPU']]]
 ];

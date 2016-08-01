@@ -114,15 +114,16 @@ Inheritance diagram for DX11APIObjects:</div>
 <area href="class_d_x11_input_layout.html" title="Implementacja layout w DirectX 11. " alt="DX11InputLayout" shape="rect" coords="147,224,284,248"/>
 <area href="class_d_x11_pixel_shader.html" title="Implementacja pixel shadera w DirectX 11. " alt="DX11PixelShader" shape="rect" coords="147,280,284,304"/>
 <area href="class_d_x11_render_target.html" title="Implementacja render targetu w DirectX11. " alt="DX11RenderTarget" shape="rect" coords="147,336,284,360"/>
-<area href="class_d_x11_texture.html" title="Implementacja tekstury w DirectX 11. " alt="DX11Texture" shape="rect" coords="147,392,284,416"/>
-<area href="class_d_x11_vertex_shader.html" title="Implementacja vertex shadera w DirectX 11. " alt="DX11VertexShader" shape="rect" coords="147,448,284,472"/>
+<area href="class_d_x11_swap_chain.html" alt="DX11SwapChain" shape="rect" coords="147,392,284,416"/>
+<area href="class_d_x11_texture.html" title="Implementacja tekstury w DirectX 11. " alt="DX11Texture" shape="rect" coords="147,448,284,472"/>
+<area href="class_d_x11_vertex_shader.html" title="Implementacja vertex shadera w DirectX 11. " alt="DX11VertexShader" shape="rect" coords="147,504,284,528"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a5fb8ca2f5ae7529df1de6c20760e431f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_x11_a_p_i_objects.html#a5fb8ca2f5ae7529df1de6c20760e431f">set_swapchain_desc</a> (const DXGI_SWAP_CHAIN_DESC &amp;swap_chain_desc)</td></tr>
-<tr class="memdesc:a5fb8ca2f5ae7529df1de6c20760e431f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ustawia deskryptor dla obiektów Device, DeviceContext i SwapChain DirectXa.  <a href="#a5fb8ca2f5ae7529df1de6c20760e431f">More...</a><br /></td></tr>
+<tr class="memdesc:a5fb8ca2f5ae7529df1de6c20760e431f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ustawia deskryptor dla obiektów Device, DeviceContext i <a class="el" href="class_swap_chain.html">SwapChain</a> DirectXa.  <a href="#a5fb8ca2f5ae7529df1de6c20760e431f">More...</a><br /></td></tr>
 <tr class="separator:a5fb8ca2f5ae7529df1de6c20760e431f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74c2526f56b0cc0e4786b209ced5b5a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_x11_a_p_i_objects.html#a74c2526f56b0cc0e4786b209ced5b5a0">set_viewport_desc</a> (const D3D11_VIEWPORT &amp;view_port_desc)</td></tr>
 <tr class="memdesc:a74c2526f56b0cc0e4786b209ced5b5a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ustawia deskryptor dla Viewportu. Nie jest on ustawiany jako aktywny w DirectX, trzeba wywołać funkcję init_viewport.  <a href="#a74c2526f56b0cc0e4786b209ced5b5a0">More...</a><br /></td></tr>
@@ -149,7 +150,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:aeb82f538b6d255aae6888813397c8319"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia podany w parametrze deskrytptor rasteryzatora. <br /></td></tr>
 <tr class="separator:aeb82f538b6d255aae6888813397c8319"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc6208cb1a1181059f746c1bda66ed76"><td class="memItemLeft" align="right" valign="top">ID3D11VertexShader *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_x11_a_p_i_objects.html#adc6208cb1a1181059f746c1bda66ed76">load_vertex_shader</a> (const std::wstring &amp;file_name, const std::string &amp;shader_name, const char *shader_model)</td></tr>
-<tr class="memdesc:adc6208cb1a1181059f746c1bda66ed76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tworzy obiekt <a class="el" href="class_vertex_shader_object.html" title="Klasa przechowująca vertex shader. ">VertexShaderObject</a> na podstawie pliku.  <a href="#adc6208cb1a1181059f746c1bda66ed76">More...</a><br /></td></tr>
+<tr class="memdesc:adc6208cb1a1181059f746c1bda66ed76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tworzy obiekt <a class="el" href="class_vertex_shader.html" title="Klasa przechowująca vertex shader. ">VertexShader</a> na podstawie pliku.  <a href="#adc6208cb1a1181059f746c1bda66ed76">More...</a><br /></td></tr>
 <tr class="separator:adc6208cb1a1181059f746c1bda66ed76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab75fd083375c3af4f53a7b9dde47632c"><td class="memItemLeft" align="right" valign="top">ID3D11VertexShader *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_x11_a_p_i_objects.html#ab75fd083375c3af4f53a7b9dde47632c">load_vertex_shader</a> (const std::wstring &amp;file_name, const std::string &amp;shader_name, ID3D11InputLayout **layout, D3D11_INPUT_ELEMENT_DESC *layout_desc, unsigned int array_size, const char *shader_model)</td></tr>
 <tr class="memdesc:ab75fd083375c3af4f53a7b9dde47632c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tworzy obiekt vertex shadera na podstawie pliku. Zwraca również layout dla podanej struktury wierzchołka. Nie należy używać tej funkcji, jeżeli layout nie jest rzeczywiście potrzebny. Trzeba pamietać o zwolnieniu go, kiedy przestanie być potrzebny.  <a href="#ab75fd083375c3af4f53a7b9dde47632c">More...</a><br /></td></tr>
@@ -807,7 +808,7 @@ static D3D11_RASTERIZER_DESC&#160;</td><td class="memItemRight" valign="bottom">
 </table>
 </div><div class="memdoc">
 
-<p>Tworzy obiekt <a class="el" href="class_vertex_shader_object.html" title="Klasa przechowująca vertex shader. ">VertexShaderObject</a> na podstawie pliku. </p>
+<p>Tworzy obiekt <a class="el" href="class_vertex_shader.html" title="Klasa przechowująca vertex shader. ">VertexShader</a> na podstawie pliku. </p>
 <p>W przypadku błędów kompilacji w trybie debug są one przekierowane do okna Output.</p>
 <p>Na razie obsługuje tylko nieskompilowane pliki. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -985,7 +986,7 @@ static D3D11_RASTERIZER_DESC&#160;</td><td class="memItemRight" valign="bottom">
 </table>
 </div><div class="memdoc">
 
-<p>Funkcja ustawia deskryptor dla obiektów Device, DeviceContext i SwapChain DirectXa. </p>
+<p>Funkcja ustawia deskryptor dla obiektów Device, DeviceContext i <a class="el" href="class_swap_chain.html">SwapChain</a> DirectXa. </p>
 <p>Wartości takich pól jak:</p><ul>
 <li>BufferDesc.Width</li>
 <li>BufferDesc.Height są pobierane z pól klasy i trzeba je modyfikować dedykowaną do tego funkcją. </li>
@@ -1119,7 +1120,7 @@ static D3D11_RASTERIZER_DESC&#160;</td><td class="memItemRight" valign="bottom">
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:20 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

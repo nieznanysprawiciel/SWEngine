@@ -96,57 +96,73 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="_i_graphic_a_p_i_initializer_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_i_renderer_8h.html">GraphicAPI/IRenderer.h</a>&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_types_definitions_8h.html">Common/TypesDefinitions.h</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="struct_graphic_a_p_i_init_data.html">   32</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_graphic_a_p_i_init_data.html">GraphicAPIInitData</a></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;GraphicAPI/SwapChain.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_types_definitions_8h.html">Common/TypesDefinitions.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="struct_swap_chain_init_data.html">   32</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_swap_chain_init_data.html">SwapChainInitData</a></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    uint16 windowWidth;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    uint16 windowHeight;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    uint32 windowHandle;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">bool</span> singleThreaded;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">bool</span> fullScreen;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="_graphic_a_p_i_constants_8h.html#af9e15cb1b0d041b19045d8db37e38f5b">ResourceFormat</a> depthStencilFormat;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    uint16          WindowWidth;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    uint16          WindowHeight;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    uint32          WindowHandle;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">bool</span>            FullScreen;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="_graphic_a_p_i_constants_8h.html#af9e15cb1b0d041b19045d8db37e38f5b">ResourceFormat</a>  <a class="code" href="_graphic_a_p_i_constants_8h.html#a951fa372102256be9a300400cc4d417d">DepthStencilFormat</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> DefaultSettings()</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        windowWidth = 1024;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        windowHeight = 768;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        singleThreaded = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        fullScreen = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        depthStencilFormat = ResourceFormat::RESOURCE_FORMAT_D24_UNORM_S8_UINT;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> DefaultSettings()</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        WindowWidth = 1024;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        WindowHeight = 768;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        FullScreen = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        DepthStencilFormat = ResourceFormat::RESOURCE_FORMAT_D24_UNORM_S8_UINT;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="class_i_graphic_a_p_i_initializer.html">   57</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_i_graphic_a_p_i_initializer.html">IGraphicAPIInitializer</a></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_i_graphic_a_p_i_initializer.html">IGraphicAPIInitializer</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_i_renderer.html">IRenderer</a>*      CreateRenderer          ( <a class="code" href="_i_renderer_8h.html#a638079122796f5eb96dac10b81adf650">RendererUsage</a> usage ) = 0;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span>            InitAPI                 ( <a class="code" href="struct_graphic_a_p_i_init_data.html">GraphicAPIInitData</a>&amp; initData ) = 0;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span>            ReleaseAPI              () = 0;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span>*           GetRenderTargetHandle   ( <a class="code" href="class_render_target_object.html">RenderTargetObject</a>* renderTarget ) = 0;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">// Future</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">// virtual std::wstring GetErrorString() = 0;</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">// virtual void         Resize( uint16 newWidth, uint16 newHeight ) = 0;</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="struct_graphic_a_p_i_init_data.html">   54</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_graphic_a_p_i_init_data.html">GraphicAPIInitData</a></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="struct_swap_chain_init_data.html">SwapChainInitData</a>   <a class="code" href="class_swap_chain.html">SwapChain</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">bool</span>                SingleThreaded;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> DefaultSettings()</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        SingleThreaded = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;};</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="class_i_graphic_a_p_i_initializer.html">   72</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_i_graphic_a_p_i_initializer.html">IGraphicAPIInitializer</a></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_i_graphic_a_p_i_initializer.html">IGraphicAPIInitializer</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_i_renderer.html">IRenderer</a>*      CreateRenderer          ( <a class="code" href="_i_renderer_8h.html#a638079122796f5eb96dac10b81adf650">RendererUsage</a> usage )                 = 0;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_swap_chain.html">SwapChain</a>*      CreateSwapChain         ( <a class="code" href="struct_swap_chain_init_data.html">SwapChainInitData</a>&amp; swapChainData )    = 0;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span>            InitAPI                 ( <a class="code" href="struct_graphic_a_p_i_init_data.html">GraphicAPIInitData</a>&amp; initData )        = 0;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span>            ReleaseAPI              ()                                      = 0;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span>*           GetRenderTargetHandle   ( <a class="code" href="class_render_target_object.html">RenderTargetObject</a>* renderTarget )    = 0;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">// Future</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">// virtual std::wstring GetErrorString() = 0;</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;};</div>
 <div class="ttc" id="_i_renderer_8h_html"><div class="ttname"><a href="_i_renderer_8h.html">IRenderer.h</a></div></div>
-<div class="ttc" id="class_i_graphic_a_p_i_initializer_html"><div class="ttname"><a href="class_i_graphic_a_p_i_initializer.html">IGraphicAPIInitializer</a></div><div class="ttdoc">Interfejs klasy do inicjowania API graficznego. </div><div class="ttdef"><b>Definition:</b> IGraphicAPIInitializer.h:57</div></div>
+<div class="ttc" id="class_i_graphic_a_p_i_initializer_html"><div class="ttname"><a href="class_i_graphic_a_p_i_initializer.html">IGraphicAPIInitializer</a></div><div class="ttdoc">Interfejs klasy do inicjowania API graficznego. </div><div class="ttdef"><b>Definition:</b> IGraphicAPIInitializer.h:72</div></div>
 <div class="ttc" id="class_i_renderer_html"><div class="ttname"><a href="class_i_renderer.html">IRenderer</a></div><div class="ttdoc">Klasa interfejsu renderera. </div><div class="ttdef"><b>Definition:</b> IRenderer.h:26</div></div>
 <div class="ttc" id="_types_definitions_8h_html"><div class="ttname"><a href="_types_definitions_8h.html">TypesDefinitions.h</a></div><div class="ttdoc">Plik zawiera definicje podstawowych typów zmiennych. </div></div>
 <div class="ttc" id="_i_renderer_8h_html_a638079122796f5eb96dac10b81adf650"><div class="ttname"><a href="_i_renderer_8h.html#a638079122796f5eb96dac10b81adf650">RendererUsage</a></div><div class="ttdeci">RendererUsage</div><div class="ttdoc">Sposób użycia renderera. </div><div class="ttdef"><b>Definition:</b> IRenderer.h:16</div></div>
+<div class="ttc" id="_graphic_a_p_i_constants_8h_html_a951fa372102256be9a300400cc4d417d"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#a951fa372102256be9a300400cc4d417d">DepthStencilFormat</a></div><div class="ttdeci">DepthStencilFormat</div><div class="ttdoc">Typy dostępne dla bufora głębokości. </div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:74</div></div>
 <div class="ttc" id="_graphic_a_p_i_constants_8h_html_af9e15cb1b0d041b19045d8db37e38f5b"><div class="ttname"><a href="_graphic_a_p_i_constants_8h.html#af9e15cb1b0d041b19045d8db37e38f5b">ResourceFormat</a></div><div class="ttdeci">ResourceFormat</div><div class="ttdoc">Specyfikuje format tekstury bądź innego zasobu. </div><div class="ttdef"><b>Definition:</b> GraphicAPIConstants.h:84</div></div>
 <div class="ttc" id="class_render_target_object_html"><div class="ttname"><a href="class_render_target_object.html">RenderTargetObject</a></div><div class="ttdoc">Klasa dla render targetów.Klasa umożliwia pobranie jednej z tekstur składowych i udostępnienie dla sh...</div><div class="ttdef"><b>Definition:</b> MeshResources.h:290</div></div>
-<div class="ttc" id="struct_graphic_a_p_i_init_data_html"><div class="ttname"><a href="struct_graphic_a_p_i_init_data.html">GraphicAPIInitData</a></div><div class="ttdoc">Przechowuje informacje potrzebne do inicjalizacji API graficznego. Parametr dla funkcji IGraphicAPIIn...</div><div class="ttdef"><b>Definition:</b> IGraphicAPIInitializer.h:32</div></div>
+<div class="ttc" id="struct_swap_chain_init_data_html"><div class="ttname"><a href="struct_swap_chain_init_data.html">SwapChainInitData</a></div><div class="ttdoc">Przechowuje informacje potrzebne do SwapChaina. Parametr dla funkcji IGraphicAPIInitializer::CreateSw...</div><div class="ttdef"><b>Definition:</b> IGraphicAPIInitializer.h:32</div></div>
+<div class="ttc" id="struct_graphic_a_p_i_init_data_html"><div class="ttname"><a href="struct_graphic_a_p_i_init_data.html">GraphicAPIInitData</a></div><div class="ttdoc">Przechowuje informacje potrzebne do inicjalizacji API graficznego. Parametr dla funkcji IGraphicAPIIn...</div><div class="ttdef"><b>Definition:</b> IGraphicAPIInitializer.h:54</div></div>
+<div class="ttc" id="class_swap_chain_html"><div class="ttname"><a href="class_swap_chain.html">SwapChain</a></div><div class="ttdef"><b>Definition:</b> SwapChain.h:6</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

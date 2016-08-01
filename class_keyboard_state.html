@@ -88,6 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_keyboard_state-members.html">List of all members</a>  </div>
@@ -96,32 +97,266 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ad08d29038e66da3d6426fab31fc9d675"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_keyboard_state.html#ad08d29038e66da3d6426fab31fc9d675">PHYSICAL_KEYS</a> { <br />
+&#160;&#160;<b>KEY_NONE</b> = 0x00, 
+<b>KEY_ESCAPE</b> = 0x01, 
+<b>KEY_1</b> = 0x02, 
+<b>KEY_2</b> = 0x03, 
+<br />
+&#160;&#160;<b>KEY_3</b> = 0x04, 
+<b>KEY_4</b> = 0x05, 
+<b>KEY_5</b> = 0x06, 
+<b>KEY_6</b> = 0x07, 
+<br />
+&#160;&#160;<b>KEY_7</b> = 0x08, 
+<b>KEY_8</b> = 0x09, 
+<b>KEY_9</b> = 0x0A, 
+<b>KEY_0</b> = 0x0B, 
+<br />
+&#160;&#160;<b>KEY_MINUS</b> = 0x0C, 
+<b>KEY_EQUALS</b> = 0x0D, 
+<b>KEY_BACK</b> = 0x0E, 
+<b>KEY_TAB</b> = 0x0F, 
+<br />
+&#160;&#160;<b>KEY_Q</b> = 0x10, 
+<b>KEY_W</b> = 0x11, 
+<b>KEY_E</b> = 0x12, 
+<b>KEY_R</b> = 0x13, 
+<br />
+&#160;&#160;<b>KEY_T</b> = 0x14, 
+<b>KEY_Y</b> = 0x15, 
+<b>KEY_U</b> = 0x16, 
+<b>KEY_I</b> = 0x17, 
+<br />
+&#160;&#160;<b>KEY_O</b> = 0x18, 
+<b>KEY_P</b> = 0x19, 
+<b>KEY_LBRACKET</b> = 0x1A, 
+<b>KEY_RBRACKET</b> = 0x1B, 
+<br />
+&#160;&#160;<b>KEY_RETURN</b> = 0x1C, 
+<b>KEY_LCONTROL</b> = 0x1D, 
+<b>KEY_A</b> = 0x1E, 
+<b>KEY_S</b> = 0x1F, 
+<br />
+&#160;&#160;<b>KEY_D</b> = 0x20, 
+<b>KEY_F</b> = 0x21, 
+<b>KEY_G</b> = 0x22, 
+<b>KEY_H</b> = 0x23, 
+<br />
+&#160;&#160;<b>KEY_J</b> = 0x24, 
+<b>KEY_K</b> = 0x25, 
+<b>KEY_L</b> = 0x26, 
+<b>KEY_SEMICOLON</b> = 0x27, 
+<br />
+&#160;&#160;<b>KEY_APOSTROPHE</b> = 0x28, 
+<b>KEY_GRAVE</b> = 0x29, 
+<b>KEY_LSHIFT</b> = 0x2A, 
+<b>KEY_BACKSLASH</b> = 0x2B, 
+<br />
+&#160;&#160;<b>KEY_Z</b> = 0x2C, 
+<b>KEY_X</b> = 0x2D, 
+<b>KEY_C</b> = 0x2E, 
+<b>KEY_V</b> = 0x2F, 
+<br />
+&#160;&#160;<b>KEY_B</b> = 0x30, 
+<b>KEY_N</b> = 0x31, 
+<b>KEY_M</b> = 0x32, 
+<b>KEY_COMMA</b> = 0x33, 
+<br />
+&#160;&#160;<b>KEY_PERIOD</b> = 0x34, 
+<b>KEY_SLASH</b> = 0x35, 
+<b>KEY_RSHIFT</b> = 0x36, 
+<b>KEY_MULTIPLY</b> = 0x37, 
+<br />
+&#160;&#160;<b>KEY_LMENU</b> = 0x38, 
+<b>KEY_SPACE</b> = 0x39, 
+<b>KEY_CAPITAL</b> = 0x3A, 
+<b>KEY_F1</b> = 0x3B, 
+<br />
+&#160;&#160;<b>KEY_F2</b> = 0x3C, 
+<b>KEY_F3</b> = 0x3D, 
+<b>KEY_F4</b> = 0x3E, 
+<b>KEY_F5</b> = 0x3F, 
+<br />
+&#160;&#160;<b>KEY_F6</b> = 0x40, 
+<b>KEY_F7</b> = 0x41, 
+<b>KEY_F8</b> = 0x42, 
+<b>KEY_F9</b> = 0x43, 
+<br />
+&#160;&#160;<b>KEY_F10</b> = 0x44, 
+<b>KEY_NUMLOCK</b> = 0x45, 
+<b>KEY_SCROLL</b> = 0x46, 
+<b>KEY_NUMPAD7</b> = 0x47, 
+<br />
+&#160;&#160;<b>KEY_NUMPAD8</b> = 0x48, 
+<b>KEY_NUMPAD9</b> = 0x49, 
+<b>KEY_SUBTRACT</b> = 0x4A, 
+<b>KEY_NUMPAD4</b> = 0x4B, 
+<br />
+&#160;&#160;<b>KEY_NUMPAD5</b> = 0x4C, 
+<b>KEY_NUMPAD6</b> = 0x4D, 
+<b>KEY_ADD</b> = 0x4E, 
+<b>KEY_NUMPAD1</b> = 0x4F, 
+<br />
+&#160;&#160;<b>KEY_NUMPAD2</b> = 0x50, 
+<b>KEY_NUMPAD3</b> = 0x51, 
+<b>KEY_NUMPAD0</b> = 0x52, 
+<b>KEY_DECIMAL</b> = 0x53, 
+<br />
+&#160;&#160;<b>KEY_OEM_102</b> = 0x56, 
+<b>KEY_F11</b> = 0x57, 
+<b>KEY_F12</b> = 0x58, 
+<b>KEY_F13</b> = 0x64, 
+<br />
+&#160;&#160;<b>KEY_F14</b> = 0x65, 
+<b>KEY_F15</b> = 0x66, 
+<b>KEY_KANA</b> = 0x70, 
+<b>KEY_ABNT_C1</b> = 0x73, 
+<br />
+&#160;&#160;<b>KEY_CONVERT</b> = 0x79, 
+<b>KEY_NOCONVERT</b> = 0x7B, 
+<b>KEY_YEN</b> = 0x7D, 
+<b>KEY_ABNT_C2</b> = 0x7E, 
+<br />
+&#160;&#160;<b>KEY_NUMPADEQUALS</b> = 0x8D, 
+<b>KEY_PREVTRACK</b> = 0x90, 
+<b>KEY_AT</b> = 0x91, 
+<b>KEY_COLON</b> = 0x92, 
+<br />
+&#160;&#160;<b>KEY_UNDERLINE</b> = 0x93, 
+<b>KEY_KANJI</b> = 0x94, 
+<b>KEY_STOP</b> = 0x95, 
+<b>KEY_AX</b> = 0x96, 
+<br />
+&#160;&#160;<b>KEY_UNLABELED</b> = 0x97, 
+<b>KEY_NEXTTRACK</b> = 0x99, 
+<b>KEY_NUMPADENTER</b> = 0x9C, 
+<b>KEY_RCONTROL</b> = 0x9D, 
+<br />
+&#160;&#160;<b>KEY_MUTE</b> = 0xA0, 
+<b>KEY_CALCULATOR</b> = 0xA1, 
+<b>KEY_PLAYPAUSE</b> = 0xA2, 
+<b>KEY_MEDIASTOP</b> = 0xA4, 
+<br />
+&#160;&#160;<b>KEY_VOLUMEDOWN</b> = 0xAE, 
+<b>KEY_VOLUMEUP</b> = 0xB0, 
+<b>KEY_WEBHOME</b> = 0xB2, 
+<b>KEY_NUMPADCOMMA</b> = 0xB3, 
+<br />
+&#160;&#160;<b>KEY_DIVIDE</b> = 0xB5, 
+<b>KEY_SYSRQ</b> = 0xB7, 
+<b>KEY_RMENU</b> = 0xB8, 
+<b>KEY_PAUSE</b> = 0xC5, 
+<br />
+&#160;&#160;<b>KEY_HOME</b> = 0xC7, 
+<b>KEY_UP</b> = 0xC8, 
+<b>KEY_PRIOR</b> = 0xC9, 
+<b>KEY_LEFT</b> = 0xCB, 
+<br />
+&#160;&#160;<b>KEY_RIGHT</b> = 0xCD, 
+<b>KEY_END</b> = 0xCF, 
+<b>KEY_DOWN</b> = 0xD0, 
+<b>KEY_NEXT</b> = 0xD1, 
+<br />
+&#160;&#160;<b>KEY_INSERT</b> = 0xD2, 
+<b>KEY_DELETE</b> = 0xD3, 
+<b>KEY_LWIN</b> = 0xDB, 
+<b>KEY_RWIN</b> = 0xDC, 
+<br />
+&#160;&#160;<b>KEY_APPS</b> = 0xDD, 
+<b>KEY_POWER</b> = 0xDE, 
+<b>KEY_SLEEP</b> = 0xDF, 
+<b>KEY_WAKE</b> = 0xE3, 
+<br />
+&#160;&#160;<b>KEY_WEBSEARCH</b> = 0xE5, 
+<b>KEY_WEBFAVORITES</b> = 0xE6, 
+<b>KEY_WEBREFRESH</b> = 0xE7, 
+<b>KEY_WEBSTOP</b> = 0xE8, 
+<br />
+&#160;&#160;<b>KEY_WEBFORWARD</b> = 0xE9, 
+<b>KEY_WEBBACK</b> = 0xEA, 
+<b>KEY_MYCOMPUTER</b> = 0xEB, 
+<b>KEY_MAIL</b> = 0xEC, 
+<br />
+&#160;&#160;<b>KEY_MEDIASELECT</b> = 0xED, 
+<b>KEY_BACKSPACE</b> = KEY_BACK, 
+<b>KEY_NUMPADSTAR</b> = KEY_MULTIPLY, 
+<b>KEY_LALT</b> = KEY_LMENU, 
+<br />
+&#160;&#160;<b>KEY_CAPSLOCK</b> = KEY_CAPITAL, 
+<b>KEY_NUMPADMINUS</b> = KEY_SUBTRACT, 
+<b>KEY_NUMPADPLUS</b> = KEY_ADD, 
+<b>KEY_NUMPADPERIOD</b> = KEY_DECIMAL, 
+<br />
+&#160;&#160;<b>KEY_NUMPADSLASH</b> = KEY_DIVIDE, 
+<b>KEY_RALT</b> = KEY_RMENU, 
+<b>KEY_UPARROW</b> = KEY_UP, 
+<b>KEY_PGUP</b> = KEY_PRIOR, 
+<br />
+&#160;&#160;<b>KEY_LEFTARROW</b> = KEY_LEFT, 
+<b>KEY_RIGHTARROW</b> = KEY_RIGHT, 
+<b>KEY_DOWNARROW</b> = KEY_DOWN, 
+<b>KEY_PGDN</b> = KEY_NEXT, 
+<br />
+&#160;&#160;<b>KEY_PAGEUP</b> = KEY_PGUP, 
+<b>KEY_PAGEDOWN</b> = KEY_PGDN, 
+<b>KEY_PRINTSCREEN</b> = KEY_SYSRQ
+<br />
+ }</td></tr>
+<tr class="memdesc:ad08d29038e66da3d6426fab31fc9d675"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fizyczne numery przycisków na klawiaturze. Należy ich używać w strukturze <a class="el" href="struct_input_mapping.html">InputMapping</a>.  <a href="class_keyboard_state.html#ad08d29038e66da3d6426fab31fc9d675">More...</a><br /></td></tr>
+<tr class="separator:ad08d29038e66da3d6426fab31fc9d675"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aad081de3bd3f1df89aa0da5058a30860"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aad081de3bd3f1df89aa0da5058a30860"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>GetKeyboardState</b> ()</td></tr>
-<tr class="separator:aad081de3bd3f1df89aa0da5058a30860"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48cb1c7e516baffe713608bd0c9bef80"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48cb1c7e516baffe713608bd0c9bef80"></a>
-const <a class="el" href="struct_input_device_info.html">InputDeviceInfo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetInfo</b> ()</td></tr>
-<tr class="separator:a48cb1c7e516baffe713608bd0c9bef80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa71be27d2b32c18aeff14d531de7c51c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa71be27d2b32c18aeff14d531de7c51c"></a>
+const <a class="el" href="class_key_state.html">KeyState</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetKeyboardState</b> () const </td></tr>
+<tr class="separator:aa71be27d2b32c18aeff14d531de7c51c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ca5f70dbb988cced69efea1a3eeb15d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ca5f70dbb988cced69efea1a3eeb15d"></a>
+const <a class="el" href="struct_input_device_info.html">InputDeviceInfo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetInfo</b> () const </td></tr>
+<tr class="separator:a2ca5f70dbb988cced69efea1a3eeb15d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Funkcje do ustawiania stanu (tylko dla dzieci IInput)</div></td></tr>
+<tr class="memitem:a7e8102d6291631ce49d84d688033d5f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e8102d6291631ce49d84d688033d5f6"></a>
+<a class="el" href="class_key_state.html">KeyState</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>KeysState</b> ()</td></tr>
+<tr class="separator:a7e8102d6291631ce49d84d688033d5f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a155d6c3e27da960fce325763d093f760"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a155d6c3e27da960fce325763d093f760"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_keyboard_state.html#a155d6c3e27da960fce325763d093f760">RemoveEvents</a> ()</td></tr>
+<tr class="memdesc:a155d6c3e27da960fce325763d093f760"><td class="mdescLeft">&#160;</td><td class="mdescRight">Czyści tablicę z eventów o wciśnięciu klawiszy, ale podtrzymuje stan przycisków. <br /></td></tr>
+<tr class="separator:a155d6c3e27da960fce325763d093f760"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:abd840a4beebf693c990eb9f6b8771153"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd840a4beebf693c990eb9f6b8771153"></a>
 <a class="el" href="struct_input_device_info.html">InputDeviceInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_info</b></td></tr>
 <tr class="separator:abd840a4beebf693c990eb9f6b8771153"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae467b1d753595e4cd3679e04d8af9e7f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae467b1d753595e4cd3679e04d8af9e7f"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>m_keyboardState</b> [256]</td></tr>
-<tr class="separator:ae467b1d753595e4cd3679e04d8af9e7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51800796ce579f5f1111ee7658d16425"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a51800796ce579f5f1111ee7658d16425"></a>
+<a class="el" href="class_key_state.html">KeyState</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_keyboardState</b> [KEYBOARD_STATE_KEYS_NUMBER]</td></tr>
+<tr class="separator:a51800796ce579f5f1111ee7658d16425"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/UIEngine/InputLibrary/<a class="el" href="_keyboard_state_8h_source.html">KeyboardState.h</a></li>
-<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/UIEngine/InputLibrary/KeyboardState.cpp</li>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="ad08d29038e66da3d6426fab31fc9d675"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_keyboard_state.html#ad08d29038e66da3d6426fab31fc9d675">KeyboardState::PHYSICAL_KEYS</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fizyczne numery przycisków na klawiaturze. Należy ich używać w strukturze <a class="el" href="struct_input_mapping.html">InputMapping</a>. </p>
+<p>Numery pokrywają się w całości z definicją z DirectInputa. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/InputLibrary/<a class="el" href="_keyboard_state_8h_source.html">KeyboardState.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:59 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:20 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

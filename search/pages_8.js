@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['renderowanie_20gui',['Renderowanie GUI',['../_g_u_i_render.html',1,'']]],
-  ['renderowanie_20sceny',['Renderowanie sceny',['../_scene_render.html',1,'']]]
+  ['stałe_20i_20makrodefinicje',['Stałe i makrodefinicje',['../_constants_macros.html',1,'']]],
+  ['struktura_20katalogowa_20projektu',['Struktura katalogowa projektu',['../_folder_structure.html',1,'']]],
+  ['struktura_20projektu',['Struktura projektu',['../_project_structure.html',1,'']]]
 ];

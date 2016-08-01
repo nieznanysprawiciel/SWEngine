@@ -84,105 +84,126 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_todo000002"></a>Class <a class="el" href="class_actor_factory.html">ActorFactory</a>  </dt>
-<dd>Ze względu na pojawienie się biblioteki RTTR, być może zamiast vectora funkcji m_createFunctions, warto by było, aby ActorType to był identyfikator generowany przez RTTR.  </dd>
-<dt><a class="anchor" id="_todo000049"></a>Member <a class="el" href="class_api_1_1_actors_1_1_communication.html#ad8768c89b3d2a0851ecc7ee0b743b8a1">Api::Actors::Communication::AddListenerDelayed</a>  (ClassType *handlerOwner, void(ClassType::*handler)(const <a class="el" href="class_engine_object.html" title="Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz...">EngineObject</a> *, <a class="el" href="class_event.html">Event</a> *))</dt>
+<dt><a class="anchor" id="_todo000007"></a>Member <a class="el" href="class_actors_manager.html#a41105245738a753824107d31023222b0">ActorsManager::FindActor</a>  (<a class="el" href="class_actor_base.html" title="Klasa bazowa dla wszystkich obiektów w grze (aktorów). ">ActorBase</a> *actor)</dt>
+<dd>Być może przeszukiwanie listy aktorów od tyłu będzie wydajniejsze.  </dd>
+<dt><a class="anchor" id="_todo000057"></a>Member <a class="el" href="class_api_1_1_actors_1_1_communication.html#ad8768c89b3d2a0851ecc7ee0b743b8a1">Api::Actors::Communication::AddListenerDelayed</a>  (ClassType *handlerOwner, void(ClassType::*handler)(const <a class="el" href="class_engine_object.html" title="Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz...">EngineObject</a> *, <a class="el" href="class_event.html">Event</a> *))</dt>
 <dd>Na razie funkcja dodaje delegata od razu. Poprawić, gdy pojawi się wielowątkowość.  </dd>
-<dt><a class="anchor" id="_todo000048"></a>Member <a class="el" href="class_api_1_1_actors_api.html#aa8dde4c1194e09603102b3a7df217e20">Api::ActorsApi::GetSceneObjects</a>  ()</dt>
+<dt><a class="anchor" id="_todo000055"></a>Member <a class="el" href="class_api_1_1_actors_api.html#a7f8acaf5955e6dac06d75d1b709fa187">Api::ActorsApi::DeleteActor</a>  (<a class="el" href="class_actor_base.html" title="Klasa bazowa dla wszystkich obiektów w grze (aktorów). ">ActorBase</a> *actor)</dt>
+<dd>Funkcja powinna usuwać aktora dopiero po zakończeniu klatki.  </dd>
+<dt><a class="anchor" id="_todo000056"></a>Member <a class="el" href="class_api_1_1_actors_api.html#aa8dde4c1194e09603102b3a7df217e20">Api::ActorsApi::GetSceneObjects</a>  ()</dt>
 <dd>Zlikwidować GetSceneObjects. Stworzone tylko dla LightmapsTool.  </dd>
-<dt><a class="anchor" id="_todo000038"></a>Member <a class="el" href="class_collision_engine.html#ab90f9afd0d7be655282b27bbe18d3988">CollisionEngine::m_octree</a>  </dt>
+<dt><a class="anchor" id="_todo000058"></a>Member <a class="el" href="class_api_1_1_level_1_1_serialization_api.html#a2455ed084936f85886a0adac8ba1eeb8">Api::Level::SerializationApi::DeserializeSingleGeneric</a>  (<a class="el" href="class_i_deserializer.html" title="Interfejs deserializatorów. ">IDeserializer</a> *deser, rttr::property prop, const <a class="el" href="class_engine_object.html" title="Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz...">EngineObject</a> *object)</dt>
+<dd>Przenieść implementacje do osobnych funkcji a tutaj zostawić tylko wywołania. </dd>
+<dt><a class="anchor" id="_todo000008"></a>Class <a class="el" href="struct_camera_data.html">CameraData</a>  </dt>
+<dd>Prawdopodobnie jakiś mechanizm odpytywania się wzajemnie aktorów o swoje dane będzie potrzebny. W momencie jak się on pojawi trzeba się pozbyć tej struktury i zrobić to nowym mechanizmem.  </dd>
+<dt><a class="anchor" id="_todo000046"></a>Member <a class="el" href="class_collision_engine.html#ab90f9afd0d7be655282b27bbe18d3988">CollisionEngine::m_octree</a>  </dt>
 <dd>W przyszłości warto by tutaj móc wstawiać różne kontenery. Użytkownik powinien mieć przynajmniej możliwość wyboru zastosowanego kontenera, zmienianie w trakcie może nie koniecznie.  </dd>
-<dt><a class="anchor" id="_todo000042"></a>Class <a class="el" href="class_direct_input_module.html">DirectInputModule</a>  </dt>
-<dd>Zrobić obsługę wielu urządzeń tego samego typu i jousticka.  </dd>
-<dt><a class="anchor" id="_todo000043"></a>Member <a class="el" href="class_direct_input_module.html#a7d000f123a3a81ef6743e5c5469b6dfb">DirectInputModule::m_keyboardInput</a>  </dt>
+<dt><a class="anchor" id="_todo000089"></a>Class <a class="el" href="class_direct_input_module.html">DirectInputModule</a>  </dt>
+<dd><p class="startdd">Zrobić obsługę wielu urządzeń tego samego typu i jousticka. </p>
+<p class="enddd">Pozbyć się includowania direct input z EngineCore.  </p>
+</dd>
+<dt><a class="anchor" id="_todo000090"></a>Member <a class="el" href="class_direct_input_module.html#a7d000f123a3a81ef6743e5c5469b6dfb">DirectInputModule::m_keyboardInput</a>  </dt>
 <dd>Pewnie to powienien być wektor.  </dd>
-<dt><a class="anchor" id="_todo000044"></a>Member <a class="el" href="class_direct_input_module.html#a2bb695f011ff87eaf4619b89ea9234d8">DirectInputModule::m_mouseInput</a>  </dt>
+<dt><a class="anchor" id="_todo000091"></a>Member <a class="el" href="class_direct_input_module.html#a2bb695f011ff87eaf4619b89ea9234d8">DirectInputModule::m_mouseInput</a>  </dt>
 <dd>Pewnie to powienien być wektor.  </dd>
-<dt><a class="anchor" id="_todo000017"></a>Member <a class="el" href="class_display_engine.html#a27b0fea7b5ed5b1816eb6664af236826">DisplayEngine::defaultLayout</a>  </dt>
+<dt><a class="anchor" id="_todo000024"></a>Member <a class="el" href="class_display_engine.html#a27b0fea7b5ed5b1816eb6664af236826">DisplayEngine::defaultLayout</a>  </dt>
 <dd>Hack. Zlikwidować. Silnik powinien obsługiwać dowolne layouty, a przynajmniej jakiś ustalony zbiór.  </dd>
-<dt><a class="anchor" id="_todo000010"></a>Member <a class="el" href="class_display_engine.html#aaab3b3b26907befd5fd4f7f03324cf17">DisplayEngine::DisplayDynamicObjects</a>  (float timeInterval, float timeLag)</dt>
+<dt><a class="anchor" id="_todo000018"></a>Member <a class="el" href="class_display_engine.html#aaab3b3b26907befd5fd4f7f03324cf17">DisplayEngine::DisplayDynamicObjects</a>  (float timeInterval, float timeLag)</dt>
 <dd>Docelowo ma to działać wielowątkowo i wybierać jeden z rendererów.  </dd>
-<dt><a class="anchor" id="_todo000009"></a>Member <a class="el" href="class_display_engine.html#a5b2ae4123bbe4f59911b391752f51796">DisplayEngine::DisplayScene</a>  (float time_interval, float time_lag)</dt>
+<dt><a class="anchor" id="_todo000017"></a>Member <a class="el" href="class_display_engine.html#a5b2ae4123bbe4f59911b391752f51796">DisplayEngine::DisplayScene</a>  (float time_interval, float time_lag)</dt>
 <dd>Docelowo ma to działać wielowątkowo i wybierać jeden z rendererów.  </dd>
-<dt><a class="anchor" id="_todo000011"></a>Member <a class="el" href="class_display_engine.html#a2164dc633cb94e5040024fc8fabcdfa4">DisplayEngine::DisplaySkyBox</a>  (float timeInterval, float timeLag)</dt>
+<dt><a class="anchor" id="_todo000019"></a>Member <a class="el" href="class_display_engine.html#a2164dc633cb94e5040024fc8fabcdfa4">DisplayEngine::DisplaySkyBox</a>  (float timeInterval, float timeLag)</dt>
 <dd><p class="startdd">Docelowo ma to działać wielowątkowo i wybierać jeden z rendererów. </p>
-<p>Trzeba pobrać tutaj <a class="el" href="class_buffer_object.html" title="Obiekt opakowujący bufor.Bufor może być zarówno buforem wierzchołków, indeksów jak i stałych...">BufferObject</a> zamiast ID3D11Buffer. </p>
 <p>To musi robić renderer. </p>
 <p class="enddd">To musi robić renderer.  </p>
 </dd>
-<dt><a class="anchor" id="_todo000021"></a>Member <a class="el" href="class_display_engine.html#af3728e336b2e6b2750e0843593fec39f">DisplayEngine::GetSceneObjects</a>  ()</dt>
+<dt><a class="anchor" id="_todo000028"></a>Member <a class="el" href="class_display_engine.html#af3728e336b2e6b2750e0843593fec39f">DisplayEngine::GetSceneObjects</a>  ()</dt>
 <dd>Pobieranie meshy z <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a> jest tymczasowe. Trzeba wymyśleć docelowy mechanizm.  </dd>
-<dt><a class="anchor" id="_todo000008"></a>Member <a class="el" href="class_display_engine.html#a051101964a4c9b6c4cf622825e86f2ec">DisplayEngine::InitRenderer</a>  (<a class="el" href="class_i_renderer.html" title="Klasa interfejsu renderera. ">IRenderer</a> *renderer)</dt>
+<dt><a class="anchor" id="_todo000016"></a>Member <a class="el" href="class_display_engine.html#a051101964a4c9b6c4cf622825e86f2ec">DisplayEngine::InitRenderer</a>  (<a class="el" href="class_i_renderer.html" title="Klasa interfejsu renderera. ">IRenderer</a> *renderer)</dt>
 <dd>Zrobić inicjację wielowątkową. Gdzieś musi zostać podjęta decyzja o liczbie wątków. Trzeba pomyśleć gdzie.  </dd>
-<dt><a class="anchor" id="_todo000016"></a>Member <a class="el" href="class_display_engine.html#a0a8ec511cb5905cd6b6e8e8d448d1af5">DisplayEngine::InterpolatePositions</a>  (float time_lag)</dt>
+<dt><a class="anchor" id="_todo000023"></a>Member <a class="el" href="class_display_engine.html#a0a8ec511cb5905cd6b6e8e8d448d1af5">DisplayEngine::InterpolatePositions</a>  (float time_lag)</dt>
 <dd>[docelowo do wykonania wielowątkowego] </dd>
-<dt><a class="anchor" id="_todo000018"></a>Member <a class="el" href="class_display_engine.html#a8b8c0e494fb6b63b14c67edf3ece2d38">DisplayEngine::m_mainRenderTarget</a>  </dt>
+<dt><a class="anchor" id="_todo000025"></a>Member <a class="el" href="class_display_engine.html#a8b8c0e494fb6b63b14c67edf3ece2d38">DisplayEngine::m_mainRenderTarget</a>  </dt>
 <dd>W ostatecznej wersji powinien być render target ustawiany dla każdego przebiegu.  </dd>
-<dt><a class="anchor" id="_todo000015"></a>Member <a class="el" href="class_display_engine.html#a791d9ab90c167eafff98180df2d18056">DisplayEngine::RenderFromQueue</a>  (float timeInterval, float timeLag)</dt>
+<dt><a class="anchor" id="_todo000022"></a>Member <a class="el" href="class_display_engine.html#a791d9ab90c167eafff98180df2d18056">DisplayEngine::RenderFromQueue</a>  (float timeInterval, float timeLag)</dt>
 <dd>To jest tak straszliwie tymczasowa funkcja, że właściwie się nadaje tylko do renderowania lightmap. Trzeba to napisać bardzo porządnie. </dd>
-<dt><a class="anchor" id="_todo000019"></a>Member <a class="el" href="class_display_engine.html#abad7947d091d6aa4aa21fe854db1342b">DisplayEngine::SetLayout</a>  (<a class="el" href="class_shader_input_layout_object.html" title="Klasa przechowuje layout wierzchołka trafiającego do vertex shadera. ">ShaderInputLayoutObject</a> *layout)</dt>
+<dt><a class="anchor" id="_todo000026"></a>Member <a class="el" href="class_display_engine.html#abad7947d091d6aa4aa21fe854db1342b">DisplayEngine::SetLayout</a>  (<a class="el" href="class_shader_input_layout_object.html" title="Klasa przechowuje layout wierzchołka trafiającego do vertex shadera. ">ShaderInputLayoutObject</a> *layout)</dt>
 <dd>Hack. Zlikwidować i zrobić docelowy sposób obsługi layotów.  </dd>
-<dt><a class="anchor" id="_todo000020"></a>Member <a class="el" href="class_display_engine.html#aa097821a36dd4487abb7e111d61ff98a">DisplayEngine::SetMainRenderTarget</a>  (<a class="el" href="class_render_target_object.html" title="Klasa dla render targetów.Klasa umożliwia pobranie jednej z tekstur składowych i udostępnienie dla sh...">RenderTargetObject</a> *renderTarget)</dt>
+<dt><a class="anchor" id="_todo000027"></a>Member <a class="el" href="class_display_engine.html#aa097821a36dd4487abb7e111d61ff98a">DisplayEngine::SetMainRenderTarget</a>  (<a class="el" href="class_render_target_object.html" title="Klasa dla render targetów.Klasa umożliwia pobranie jednej z tekstur składowych i udostępnienie dla sh...">RenderTargetObject</a> *renderTarget)</dt>
 <dd>Hack. Zrobić docelowy sposób ustawiania render targetów.  </dd>
-<dt><a class="anchor" id="_todo000074"></a>Member <a class="el" href="class_d_x11_buffer.html#a1f05f8c6e7a8dbbf8a27491976a6342c">DX11Buffer::CopyData</a>  () override</dt>
+<dt><a class="anchor" id="_todo000083"></a>Member <a class="el" href="class_d_x11_buffer.html#a1f05f8c6e7a8dbbf8a27491976a6342c">DX11Buffer::CopyData</a>  () override</dt>
 <dd>Nie trzeba by wykonywać kopiowania na GPU, gdyby bufor był stworzony z flagą D3D11_USAGE_STAGING lub D3D11_USAGE_DEFAULT. Trzeba sprawdzić flagi i robić kopiowanie tylko, gdy to konieczne. </dd>
-<dt><a class="anchor" id="_todo000072"></a>Member <a class="el" href="class_d_x11_renderer.html#a11ea0d416e193ad41b6b4b21db82fdd7">DX11Renderer::BeginScene</a>  (<a class="el" href="class_render_target_object.html" title="Klasa dla render targetów.Klasa umożliwia pobranie jednej z tekstur składowych i udostępnienie dla sh...">RenderTargetObject</a> *mainRenderTarget) override</dt>
+<dt><a class="anchor" id="_todo000081"></a>Member <a class="el" href="class_d_x11_renderer.html#a11ea0d416e193ad41b6b4b21db82fdd7">DX11Renderer::BeginScene</a>  (<a class="el" href="class_render_target_object.html" title="Klasa dla render targetów.Klasa umożliwia pobranie jednej z tekstur składowych i udostępnienie dla sh...">RenderTargetObject</a> *mainRenderTarget) override</dt>
 <dd><p class="startdd">Polepszyć, poprawić zmienić. Powinno obsługiwać renderowanie natychmiastowe i synchronizację poziomą w parametrze. </p>
 <p class="enddd">Render target powinien być ustawiany gdzie indziej. To jest tymczasowe rozwiązanie.  </p>
 </dd>
-<dt><a class="anchor" id="_todo000070"></a>Member <a class="el" href="class_d_x11_renderer.html#a82ba6385a278bb2b844477c7ed967aaf">DX11Renderer::IASetPrimitiveTopology</a>  (PrimitiveTopology topology) override</dt>
+<dt><a class="anchor" id="_todo000079"></a>Member <a class="el" href="class_d_x11_renderer.html#a82ba6385a278bb2b844477c7ed967aaf">DX11Renderer::IASetPrimitiveTopology</a>  (PrimitiveTopology topology) override</dt>
 <dd>Funkcja nie powinna przyjmować w parametrze stałej definiowanej w DirectX. Należy zrobić własny zestaw stałych, żeby uniezależnić interfejs renderera od implementacji.  </dd>
-<dt><a class="anchor" id="_todo000068"></a>Member <a class="el" href="class_d_x11_renderer.html#adbfa53f4c5425c47a7529cab7b407b9a">DX11Renderer::InitBuffers</a>  (unsigned int sizePerFram, unsigned int sizePerMesh) override</dt>
+<dt><a class="anchor" id="_todo000077"></a>Member <a class="el" href="class_d_x11_renderer.html#adbfa53f4c5425c47a7529cab7b407b9a">DX11Renderer::InitBuffers</a>  (unsigned int sizePerFram, unsigned int sizePerMesh) override</dt>
 <dd>: Ta funkcja powinna zniknąć. Bufory powinny być inicjowane w <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a>, ale jako <a class="el" href="class_buffer_object.html" title="Obiekt opakowujący bufor.Bufor może być zarówno buforem wierzchołków, indeksów jak i stałych...">BufferObject</a>, a nie bufory DirectXowe.  </dd>
-<dt><a class="anchor" id="_todo000069"></a>Member <a class="el" href="class_d_x11_renderer.html#a79c4ff6d7ecc6766e78f678c5c7d6983">DX11Renderer::InitDepthStates</a>  () override</dt>
+<dt><a class="anchor" id="_todo000078"></a>Member <a class="el" href="class_d_x11_renderer.html#a79c4ff6d7ecc6766e78f678c5c7d6983">DX11Renderer::InitDepthStates</a>  () override</dt>
 <dd>To trzeba załatwiać w jakiś bardziej elegancki sposób.  </dd>
-<dt><a class="anchor" id="_todo000071"></a>Member <a class="el" href="class_d_x11_renderer.html#a86a73e319106aff366623638509f09f8">DX11Renderer::Present</a>  () override</dt>
+<dt><a class="anchor" id="_todo000080"></a>Member <a class="el" href="class_d_x11_renderer.html#a86a73e319106aff366623638509f09f8">DX11Renderer::Present</a>  () override</dt>
 <dd>Polepszyć, poprawić zmienić.  </dd>
-<dt><a class="anchor" id="_todo000067"></a>Member <a class="el" href="class_d_x11_renderer.html#a94edb48e9c1938e980f5e142988a52c0">DX11Renderer::SetDefaultSampler</a>  () override</dt>
+<dt><a class="anchor" id="_todo000076"></a>Member <a class="el" href="class_d_x11_renderer.html#a94edb48e9c1938e980f5e142988a52c0">DX11Renderer::SetDefaultSampler</a>  () override</dt>
 <dd>Wymyśleć lepszą implementację i sposób przechowywania samplerów. (W zasadzie można je definiować w shaderach.)  </dd>
-<dt><a class="anchor" id="_todo000066"></a>Member <a class="el" href="class_d_x11_renderer.html#aa42959e3ff0052102befc9028f5049c0">DX11Renderer::SetDefaultVertexLayout</a>  () override</dt>
+<dt><a class="anchor" id="_todo000075"></a>Member <a class="el" href="class_d_x11_renderer.html#aa42959e3ff0052102befc9028f5049c0">DX11Renderer::SetDefaultVertexLayout</a>  () override</dt>
 <dd>Wymyśleć lepszą implementację i sposób przechowywania layoutów.  </dd>
-<dt><a class="anchor" id="_todo000065"></a>Member <a class="el" href="class_d_x11_renderer.html#a26071911d99ca6596d26ef1a130bfdb4">DX11Renderer::SetTextures</a>  (const <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> &amp;model) override</dt>
+<dt><a class="anchor" id="_todo000074"></a>Member <a class="el" href="class_d_x11_renderer.html#a26071911d99ca6596d26ef1a130bfdb4">DX11Renderer::SetTextures</a>  (const <a class="el" href="struct_model_part.html" title="Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...">ModelPart</a> &amp;model) override</dt>
 <dd>SetShaderResource można użyć do ustawienia od razu całej tablicy. Trzeba umożliwić ustawianie do VS i innych.  </dd>
-<dt><a class="anchor" id="_todo000076"></a>Member <a class="el" href="class_d_x11_render_target.html#a964b118e0963323b0d4215ea4f0dca91">DX11RenderTarget::CreateRenderTarget</a>  (const std::wstring &amp;name, const <a class="el" href="struct_render_target_descriptor.html" title="Struktura używana do tworzenia render targetu. ">RenderTargetDescriptor</a> &amp;renderTargetDescriptor)</dt>
+<dt><a class="anchor" id="_todo000085"></a>Member <a class="el" href="class_d_x11_render_target.html#a964b118e0963323b0d4215ea4f0dca91">DX11RenderTarget::CreateRenderTarget</a>  (const std::wstring &amp;name, const <a class="el" href="struct_render_target_descriptor.html" title="Struktura używana do tworzenia render targetu. ">RenderTargetDescriptor</a> &amp;renderTargetDescriptor)</dt>
 <dd>W przyszłości powinna być możliwość tworzenia tekstur innych niż 2D. Poza tym renderować powinno się móc do dowolnego poziomu mipmap. Decyzja powinna być podejmowana w runtimie, więc trzeba chyba stworzyć wiele widoków (???). Przydatne to jest w przypadku Environmental mappingu. Jeżeli obiekt jest mocno oddalony, to nie ma co renderować mu mapy z dużą rozdzielczością. </dd>
-<dt><a class="anchor" id="_todo000075"></a>Member <a class="el" href="class_d_x11_render_target.html#a3d7f1140a862df6a9444f7bbbab929e3">DX11RenderTarget::CreateScreenRenderTarget</a>  ()</dt>
+<dt><a class="anchor" id="_todo000084"></a>Member <a class="el" href="class_d_x11_render_target.html#a3d7f1140a862df6a9444f7bbbab929e3">DX11RenderTarget::CreateScreenRenderTarget</a>  ()</dt>
 <dd>Wersja troszkę niewłaściwa. RenderTarget jest już stworzony wcześniej przy zwykłej inicjalizacji <a class="el" href="class_d_x11_a_p_i_objects.html" title="Klasa przechowuje w zmiennych statycznych najważniejsze interfejsy DirectX11. ">DX11APIObjects</a>. Tutaj jest jedynie tworzony obiekt silnikowy, który potrafi to obsłużyć. Trzeba to zmienić, żeby całe tworzenie render targetu odbywało się tutaj. </dd>
-<dt><a class="anchor" id="_todo000077"></a>Member <a class="el" href="class_d_x11_vertex_shader.html#a250eb33c0d16e1758ce93c4428a78221">DX11VertexShader::CreateFromFile</a>  (const std::wstring &amp;fileName, const std::string &amp;shaderName, <a class="el" href="class_shader_input_layout_object.html" title="Klasa przechowuje layout wierzchołka trafiającego do vertex shadera. ">ShaderInputLayoutObject</a> **layout, <a class="el" href="class_input_layout_descriptor.html" title="Klasa przechowuje opis layoutu wierzchołka, na podstawie którego tworzony jest obiekt layoutu...">InputLayoutDescriptor</a> *layout_desc, const char *shaderModel="vs_4_0")</dt>
+<dt><a class="anchor" id="_todo000086"></a>Member <a class="el" href="class_d_x11_swap_chain.html#a8331589ab2da2bc6df91ecf70bb367dc">DX11SwapChain::CreateScreenSwapChain</a>  (<a class="el" href="class_render_target_object.html" title="Klasa dla render targetów.Klasa umożliwia pobranie jednej z tekstur składowych i udostępnienie dla sh...">RenderTargetObject</a> *screenRT)</dt>
+<dd>Wersja troszkę niewłaściwa. <a class="el" href="class_swap_chain.html">SwapChain</a> jest już stworzony wcześniej przy zwykłej inicjalizacji <a class="el" href="class_d_x11_a_p_i_objects.html" title="Klasa przechowuje w zmiennych statycznych najważniejsze interfejsy DirectX11. ">DX11APIObjects</a>. Tutaj jest jedynie tworzony obiekt silnikowy, który potrafi to obsłużyć. Trzeba to zmienić, żeby całe tworzenie render targetu odbywało się tutaj.  </dd>
+<dt><a class="anchor" id="_todo000087"></a>Member <a class="el" href="class_d_x11_vertex_shader.html#a250eb33c0d16e1758ce93c4428a78221">DX11VertexShader::CreateFromFile</a>  (const std::wstring &amp;fileName, const std::string &amp;shaderName, <a class="el" href="class_shader_input_layout_object.html" title="Klasa przechowuje layout wierzchołka trafiającego do vertex shadera. ">ShaderInputLayoutObject</a> **layout, <a class="el" href="class_input_layout_descriptor.html" title="Klasa przechowuje opis layoutu wierzchołka, na podstawie którego tworzony jest obiekt layoutu...">InputLayoutDescriptor</a> *layout_desc, const char *shaderModel="vs_4_0")</dt>
 <dd>Lepiej obsłużyć ten błąd.  </dd>
-<dt><a class="anchor" id="_todo000004"></a>Member <a class="el" href="class_dynamic_mesh_actor.html#a4fc7b7e572b86375876f256f5b58b246">DynamicMeshActor::Draw</a>  (<a class="el" href="class_i_renderer.html" title="Klasa interfejsu renderera. ">IRenderer</a> *renderer, float timeInterval, float timeLag)</dt>
+<dt><a class="anchor" id="_todo000009"></a>Class <a class="el" href="class_dynamic_actor.html">DynamicActor</a>  </dt>
+<dd>Zastanowić się czy controller nie powinien być unique_ptrem.  </dd>
+<dt><a class="anchor" id="_todo000011"></a>Member <a class="el" href="class_dynamic_mesh_actor.html#a4fc7b7e572b86375876f256f5b58b246">DynamicMeshActor::Draw</a>  (<a class="el" href="class_i_renderer.html" title="Klasa interfejsu renderera. ">IRenderer</a> *renderer, float timeInterval, float timeLag)</dt>
 <dd>Prawdopodobnie trzeba usunąć możliwośc samo - renderowania się obiektów. Zamiast tego będzie można tworzyć własne przebiegi renderowania, które zrobioą co trzeba. </dd>
-<dt><a class="anchor" id="_todo000003"></a>Member <a class="el" href="class_dynamic_mesh_actor.html#a0ae290adf24e30672fa8252c65b81caf">DynamicMeshActor::GetVertexBuffer</a>  ()</dt>
+<dt><a class="anchor" id="_todo000010"></a>Member <a class="el" href="class_dynamic_mesh_actor.html#a0ae290adf24e30672fa8252c65b81caf">DynamicMeshActor::GetVertexBuffer</a>  ()</dt>
 <dd>Przemyśleć czy te funkcje są konieczne.  </dd>
-<dt><a class="anchor" id="_todo000050"></a>Member <a class="el" href="class_editor_app_1_1_g_u_i_1_1_framework_element_adorner.html#a6afbcde563ad18105732d37bc59b3922">EditorApp.GUI.FrameworkElementAdorner.OnRender</a>  (DrawingContext drawingContext)</dt>
+<dt><a class="anchor" id="_todo000059"></a>Member <a class="el" href="class_editor_app_1_1_g_u_i_1_1_framework_element_adorner.html#a6afbcde563ad18105732d37bc59b3922">EditorApp.GUI.FrameworkElementAdorner.OnRender</a>  (DrawingContext drawingContext)</dt>
 <dd>Zmienić ten kod i narysować coś bardziej w stylu silnika.  </dd>
-<dt><a class="anchor" id="_todo000051"></a>Class <a class="el" href="class_editor_plugin_1_1_actor_class_meta_info.html">EditorPlugin::ActorClassMetaInfo</a>  </dt>
+<dt><a class="anchor" id="_todo000060"></a>Class <a class="el" href="class_editor_plugin_1_1_actor_class_meta_info.html">EditorPlugin::ActorClassMetaInfo</a>  </dt>
 <dd>Bardziej eleganckie by było, gdyby metainformacje były przechowywane osobno od konkretnych danych obiektów jak ten wskaźnik. Ale wtedy oznaczałoby to powielenie tych klas, aby mogły pełnić tę drugą funkcję i wymusiłoby to każdorazowe alokowanie całej hierarchii przy kliknięciu na jakiś obiekt. Obecne rozwiązanie pozwala na prostą podmianę wskaźnika.  </dd>
-<dt><a class="anchor" id="_todo000028"></a>Class <a class="el" href="class_engine.html">Engine</a>  </dt>
+<dt><a class="anchor" id="_todo000035"></a>Class <a class="el" href="class_engine.html">Engine</a>  </dt>
 <dd>Zastanowić się czy edytor nie powinien się komunikować z silnikiem za pomocą zwykłego API. </dd>
-<dt><a class="anchor" id="_todo000029"></a>Member <a class="el" href="class_engine.html#afd8af982b205851ee6961589404b6a82">Engine::InitDefaultAssets</a>  ()</dt>
+<dt><a class="anchor" id="_todo000036"></a>Member <a class="el" href="class_engine.html#afd8af982b205851ee6961589404b6a82">Engine::InitDefaultAssets</a>  ()</dt>
 <dd>Hack. Layout powinien być ustawialny dla każdego mesha z osobna. Zlikwidować.  </dd>
-<dt><a class="anchor" id="_todo000025"></a>Class <a class="el" href="class_event_manager.html">EventManager</a>  </dt>
+<dt><a class="anchor" id="_todo000001"></a>Class <a class="el" href="class_engine_object.html">EngineObject</a>  </dt>
+<dd>Dobrze by było, gdyby <a class="el" href="class_engine_object.html" title="Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz...">EngineObject</a> implementował domyślną serializację, ale wtedy jest problem, że nie wiadomo, która z bibliotek powinna tę implementację kompilować. </dd>
+<dt><a class="anchor" id="_todo000032"></a>Class <a class="el" href="class_event_manager.html">EventManager</a>  </dt>
 <dd><p class="startdd">Przerobić <a class="el" href="class_event_manager.html" title="Moduł do zarządzania eventami.Aby dowiedzieć się o różnicy między eventami i sygnałami przeczytaj Eve...">EventManager</a>, żeby był w pełni wielowątkowy. Oprócz synchronizacji powinien on rozdzielać otrzymane eventy na wątki, tak żeby jednocześnie wykonywały się tylko te zadania, które nie będą powodowały błędów synchronizacji.</p>
 <p class="enddd">Ponieważ eventy będą wysyłane często, a z powodu wielowątkowości muszą zastąpić komunikację między Aktorami, która normalnie byłaby bardzo wydajna, to trzeba zapewnić maksymalną wydajność całego mechanizmu. Najwięcej można zrobić używając jakiejś lepszej maszynki do zarządzania pamięcią. Kolejki m_signals i m_events mogłyby alokować swoje elementy przy pomocy alokatora Memory Pool. Dla klas <a class="el" href="class_event.html">Event</a> można by zrobić alokator stosowy (Stack Allocator), który byłby zwalniany po każdej klatce.  </p>
 </dd>
-<dt><a class="anchor" id="_todo000024"></a>Member <a class="el" href="class_event_manager.html#af7e4b3a2478138aa66e28df8b5b6df8a">EventManager::ProcessEvents</a>  (float timeInterval)</dt>
+<dt><a class="anchor" id="_todo000031"></a>Member <a class="el" href="class_event_manager.html#af7e4b3a2478138aa66e28df8b5b6df8a">EventManager::ProcessEvents</a>  (float timeInterval)</dt>
 <dd>Trzeba się zabezpieczyć w jakiś sposób przed zepętleniem eventów przez użytkownika!!!  </dd>
-<dt><a class="anchor" id="_todo000007"></a>Class <a class="el" href="class_gizmo_controller.html">GizmoController</a>  </dt>
-<dd>Uzupełnić dokumentację sterowania.  </dd>
-<dt><a class="anchor" id="_todo000006"></a>Member <a class="el" href="class_gizmo_controller.html#aa96c56aec5a3a5d21f09e548d2f73028">GizmoController::ControlObjectPost</a>  (<a class="el" href="class_dynamic_actor.html" title="Klasa bazowa dla obiektów dynamicznych. ">DynamicActor</a> *)</dt>
-<dd>Zamiast wywoływać teleport, należy wysłać sygnał.  </dd>
-<dt><a class="anchor" id="_todo000045"></a>Class <a class="el" href="class_i_input.html">IInput</a>  </dt>
+<dt><a class="anchor" id="_todo000014"></a>Member <a class="el" href="class_gizmo_controller.html#a1ecb243f4b501c91666dcd35a6ae0548">GizmoController::ControlObjectPost</a>  (<a class="el" href="class_dynamic_actor.html" title="Klasa bazowa dla obiektów dynamicznych. ">DynamicActor</a> *actor, <a class="el" href="struct_i_controllers_state.html" title="Klasa przechowująca stan kontrolerów oraz silnika i gry. ">IControllersState</a> *globalState)</dt>
+<dd>W zasadzie pobieranie pozycji aktora jest nielegalne z punktu widzenia wielowątkowości. Trzeba jednak wymyśleć coś, żeby można było jakoś dostawać dane od innych aktorów z poprzedniej klatki.  </dd>
+<dt><a class="anchor" id="_todo000013"></a>Member <a class="el" href="class_gizmo_controller.html#a3a0d1ae2c61a106305eb037aa0f808c5">GizmoController::ControlObjectPre</a>  (<a class="el" href="class_dynamic_actor.html" title="Klasa bazowa dla obiektów dynamicznych. ">DynamicActor</a> *actor, <a class="el" href="struct_i_controllers_state.html" title="Klasa przechowująca stan kontrolerów oraz silnika i gry. ">IControllersState</a> *globalState)</dt>
+<dd>Zamiast wywoływać Teleport, należy wysłać sygnał.  </dd>
+<dt><a class="anchor" id="_todo000015"></a>Class <a class="el" href="struct_i_controllers_state.html">IControllersState</a>  </dt>
+<dd>W przyszłości klasa powinna być implementowana przez użytkownika i ustawiana w <a class="el" href="class_controllers_engine.html" title="Moduł do zarządzania kontrolerami obiektów. ">ControllersEngine</a>.  </dd>
+<dt><a class="anchor" id="_todo000092"></a>Class <a class="el" href="class_i_input.html">IInput</a>  </dt>
 <dd>Uzupełnić interfejs i wydzielić moduły obsługujące konkretne implementacje urządzeń wejściowych.  </dd>
-<dt><a class="anchor" id="_todo000039"></a>Member <a class="el" href="class_input_abstraction_layer.html#a4cdc3ae858dc97f1a658143c3dbe74ca">InputAbstractionLayer::DemandDownEvent</a>  (VirtualKeyIndex virtualIdx)</dt>
+<dt><a class="anchor" id="_todo000049"></a>Member <a class="el" href="class_input_abstraction_layer.html#a4cdc3ae858dc97f1a658143c3dbe74ca">InputAbstractionLayer::DemandDownEvent</a>  (VirtualKeyIndex virtualIdx)</dt>
 <dd>Po napisaniu porządnego sposobu obsługi eventów należy umożliwić tutaj wstawienie konkretnego delegata, który zostanie wywołany jako obsługa eventu. Obecnie mechanizm jest bardzo niewygodny. W funkcji obsługi eventu trzeba sprawdzać jaki przycisk został wciśnięty faktycznie. </dd>
-<dt><a class="anchor" id="_todo000040"></a>Member <a class="el" href="class_input_abstraction_layer.html#a0118216390e935385cdaae81561387fe">InputAbstractionLayer::SetupLayerFromFile</a>  (const std::string &amp;file_name)</dt>
+<dt><a class="anchor" id="_todo000050"></a>Member <a class="el" href="class_input_abstraction_layer.html#a8be55b68911e889f3536ccf7b41af4ec">InputAbstractionLayer::SetupLayerFromFile</a>  (const std::string &amp;fileName)</dt>
 <dd>Funkcja do napisania, struktura pliku musi zostaæ okreœlona. </dd>
-<dt><a class="anchor" id="_todo000052"></a>Member <a class="el" href="class_lightmap_logic.html#a93bbb0242e7cb12f94821007bec73409">LightmapLogic::LoadScene</a>  (<a class="el" href="class_event.html">Event</a> *)</dt>
+<dt><a class="anchor" id="_todo000047"></a>Member <a class="el" href="class_input_abstraction_layer.html#af4cb358c30c317939dde1bc657b21952">InputAbstractionLayer::UpdateKeyboardDevice</a>  (DeviceNumber DeviceNr, <a class="el" href="class_keyboard_state.html">KeyboardState</a> *keyboardState)</dt>
+<dd>Rozwiązać problemy z przypadkami, gdy kilka przycisków mapuje sie na jeden wirtualny. Problematyczna sekwencja Press1 -&gt; Press2 -&gt; UnPress1 -&gt; Problem -&gt; UnPress2. Być może wirtualny przycisk powinien byś w tym miejscu nadal wciśnięty.  </dd>
+<dt><a class="anchor" id="_todo000048"></a>Member <a class="el" href="class_input_abstraction_layer.html#aadad0ea2fe5b5697db0a485db86ca0cb">InputAbstractionLayer::UpdateMouseDevice</a>  (DeviceNumber DeviceNr, <a class="el" href="class_mouse_state.html">MouseState</a> *mouseState, int windowWidth, int windowHeight)</dt>
+<dd><p class="startdd">Zastanowić się czy wysokość i szerokość okna jest wogóle potrzebna (i dlaczego nie). </p>
+<p class="enddd">Uzupełnić implementację dla pozostałych osi myszy.  </p>
+</dd>
+<dt><a class="anchor" id="_todo000061"></a>Member <a class="el" href="class_lightmap_logic.html#a93bbb0242e7cb12f94821007bec73409">LightmapLogic::LoadScene</a>  (<a class="el" href="class_event.html">Event</a> *)</dt>
 <dd>Tutaj później znajdzie się kod do ładowania jakiejś sceny, albo nawet kilku. Być może trzeba będzie zrobić jakis plik konfiguracyjny do wczytywania, ale w wersji początkowej może być wszystko tworzone z kodu.  </dd>
-<dt><a class="anchor" id="_todo000030"></a>Module <a class="el" href="group___making_loaders.html">MakingLoaders</a>  </dt>
+<dt><a class="anchor" id="_todo000037"></a>Module <a class="el" href="group___making_loaders.html">MakingLoaders</a>  </dt>
 <dd>Napisać dokumentację.  </dd>
-<dt><a class="anchor" id="_todo000031"></a>Class <a class="el" href="class_model3_d_from_file.html">Model3DFromFile</a>  </dt>
+<dt><a class="anchor" id="_todo000039"></a>Class <a class="el" href="class_model3_d_from_file.html">Model3DFromFile</a>  </dt>
 <dd>Przepisać tak, żeby było jakoś bardziej estetycznie.<ul>
 <li>Dodać klasę <a class="el" href="class_memory_chunk.html" title="Klasa przechowuje pamięć o dowolnym przeznaczeniu. ">MemoryChunk</a> zamiast gołych wskaźników na tablicę wierzchołków.</li>
 <li>Zastosować semantykę move z C++11. Ograniczyć kopiowanie pamięci na ile się da.</li>
@@ -190,59 +211,79 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Wydzielić funkcjonalnoś budowania modelu w inne miejsce (tmp_data).  </li>
 </ul>
 </dd>
-<dt><a class="anchor" id="_todo000035"></a>Member <a class="el" href="class_models_manager.html#a3f8c9efdc041fd21a5700b33c7d8e608">ModelsManager::AddMaterial</a>  (<a class="el" href="struct_material_object.html" title="Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. ">MaterialObject</a> *material, const std::wstring &amp;material_name)</dt>
+<dt><a class="anchor" id="_todo000038"></a>Member <a class="el" href="class_model3_d_from_file.html#a2aace63e60e220f4fa3a7c26e4789f74">Model3DFromFile::Serialize</a>  (<a class="el" href="class_i_serializer.html" title="Interfejs dla serializatorów. ">ISerializer</a> *ser) const override</dt>
+<dd>W zasadzie domyślny tryb serializacji powinna implementować klasa <a class="el" href="class_engine_object.html" title="Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz...">EngineObject</a>.  </dd>
+<dt><a class="anchor" id="_todo000043"></a>Member <a class="el" href="class_models_manager.html#a3f8c9efdc041fd21a5700b33c7d8e608">ModelsManager::AddMaterial</a>  (<a class="el" href="struct_material_object.html" title="Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. ">MaterialObject</a> *material, const std::wstring &amp;material_name)</dt>
 <dd>Nie może tak zostać, że ktoś dodaje materiał i musi sprawdzić czy nie dostał innego. Nie można też zmuszać kogoś do zwalniania pamięci po materiale. </dd>
-<dt><a class="anchor" id="_todo000036"></a>Member <a class="el" href="class_models_manager.html#a8d4b6ce9ab3ac9e1ab23a9ba80fe1816">ModelsManager::AddRenderTarget</a>  (<a class="el" href="class_render_target_object.html" title="Klasa dla render targetów.Klasa umożliwia pobranie jednej z tekstur składowych i udostępnienie dla sh...">RenderTargetObject</a> *renderTarget, const std::wstring &amp;name)</dt>
+<dt><a class="anchor" id="_todo000044"></a>Member <a class="el" href="class_models_manager.html#a8d4b6ce9ab3ac9e1ab23a9ba80fe1816">ModelsManager::AddRenderTarget</a>  (<a class="el" href="class_render_target_object.html" title="Klasa dla render targetów.Klasa umożliwia pobranie jednej z tekstur składowych i udostępnienie dla sh...">RenderTargetObject</a> *renderTarget, const std::wstring &amp;name)</dt>
 <dd>Nie może tak zostać, że ktoś dodaje renderTarget i musi sprawdzić czy nie dostał innego. Nie można też zmuszać kogoś do zwalniania pamięci po renderTargecie. Wogóle dodawanie renderTargetów musi się odbywać jakoś inaczej. Najlepiej, żeby były one tworzone przez <a class="el" href="class_models_manager.html" title="Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dźwięków, które raczej zostaną oddelego...">ModelsManager</a>, ale wtedy trzeba wymyśleć sposób dodawania renderTargetu związanego z buforem okna. </dd>
-<dt><a class="anchor" id="_todo000037"></a>Member <a class="el" href="class_models_manager.html#addc873642d4e16d298d9c3edd75e4867">ModelsManager::AddVertexShader</a>  (const std::wstring &amp;file_name, const std::string &amp;shader_entry, <a class="el" href="class_shader_input_layout_object.html" title="Klasa przechowuje layout wierzchołka trafiającego do vertex shadera. ">ShaderInputLayoutObject</a> **layout, <a class="el" href="class_input_layout_descriptor.html" title="Klasa przechowuje opis layoutu wierzchołka, na podstawie którego tworzony jest obiekt layoutu...">InputLayoutDescriptor</a> *layout_desc)</dt>
+<dt><a class="anchor" id="_todo000045"></a>Member <a class="el" href="class_models_manager.html#a422c33f8a3bc23e51bbf589f28cbe3b7">ModelsManager::AddVertexShader</a>  (const std::wstring &amp;file_name, const std::string &amp;shader_entry, <a class="el" href="class_shader_input_layout_object.html" title="Klasa przechowuje layout wierzchołka trafiającego do vertex shadera. ">ShaderInputLayoutObject</a> **layout, <a class="el" href="class_input_layout_descriptor.html" title="Klasa przechowuje opis layoutu wierzchołka, na podstawie którego tworzony jest obiekt layoutu...">InputLayoutDescriptor</a> *layout_desc)</dt>
 <dd>Ten kod to jakiś totalny shit. Jak komuś się będzie nudziło kiedyś (ha ha), to może niech poprawi.  </dd>
-<dt><a class="anchor" id="_todo000034"></a>Member <a class="el" href="class_models_manager.html#a6ad9dbb3696089dcc116229407a45516">ModelsManager::CreateRenderTarget</a>  (const std::wstring &amp;name, const <a class="el" href="struct_render_target_descriptor.html" title="Struktura używana do tworzenia render targetu. ">RenderTargetDescriptor</a> &amp;renderTargetDescriptor)</dt>
+<dt><a class="anchor" id="_todo000042"></a>Member <a class="el" href="class_models_manager.html#a6ad9dbb3696089dcc116229407a45516">ModelsManager::CreateRenderTarget</a>  (const std::wstring &amp;name, const <a class="el" href="struct_render_target_descriptor.html" title="Struktura używana do tworzenia render targetu. ">RenderTargetDescriptor</a> &amp;renderTargetDescriptor)</dt>
 <dd>Przy dodawaniu tekstur nie jest sprawdzane czy one już istnieją. Trzeba albo to sprawdzać, albo zapewnić np. jakąś polityką nazewnictwa, że w ten sposób nie nadpisujemy istniejącej tekstury. </dd>
-<dt><a class="anchor" id="_todo000033"></a>Member <a class="el" href="class_models_manager.html#a2c310edc07839b02eeb44dc49a218ae4">ModelsManager::FindBestPixelShader</a>  (<a class="el" href="class_texture_object.html" title="Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności. ">TextureObject</a> **textures)</dt>
+<dt><a class="anchor" id="_todo000041"></a>Member <a class="el" href="class_models_manager.html#a3587573c836cf6060feccab40f9ebfd0">ModelsManager::FindBestPixelShader</a>  (<a class="el" href="class_texture_object.html" title="Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności. ">TextureObject</a> **textures)</dt>
 <dd>Oddelegować jakiś inny obiekt do obśługi wartości domyślnych albo przemyśleć lepiej jak to powinno właściwie wyglądać. </dd>
-<dt><a class="anchor" id="_todo000032"></a>Member <a class="el" href="class_models_manager.html#abea55b3714861ef2682cb814c1d4a0a6">ModelsManager::FindBestVertexShader</a>  (<a class="el" href="class_texture_object.html" title="Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności. ">TextureObject</a> **textures)</dt>
+<dt><a class="anchor" id="_todo000040"></a>Member <a class="el" href="class_models_manager.html#a15f25214cc4033fd17a91a1af8a0073c">ModelsManager::FindBestVertexShader</a>  (<a class="el" href="class_texture_object.html" title="Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności. ">TextureObject</a> **textures)</dt>
 <dd>Oddelegować jakiś inny obiekt do obśługi wartości domyślnych albo przemyśleć lepiej jak to powinno właściwie wyglądać. </dd>
-<dt><a class="anchor" id="_todo000023"></a>Member <a class="el" href="class_render_pass.html#afc3f23469f392359ff99da939d992a36">RenderPass::m_bufferLayout</a>  </dt>
+<dt><a class="anchor" id="_todo000030"></a>Member <a class="el" href="class_render_pass.html#afc3f23469f392359ff99da939d992a36">RenderPass::m_bufferLayout</a>  </dt>
 <dd>Jeszcze jedna tymczasowość. Layout jest związany z buforem a nie passem.  </dd>
-<dt><a class="anchor" id="_todo000022"></a>Member <a class="el" href="class_render_pass.html#afb5f5fd64ee8a1d693a3e60a45498650">RenderPass::m_meshes</a>  </dt>
+<dt><a class="anchor" id="_todo000029"></a>Member <a class="el" href="class_render_pass.html#afb5f5fd64ee8a1d693a3e60a45498650">RenderPass::m_meshes</a>  </dt>
 <dd>To będzie trzeba załatwić przez mapy boolów, a wektor będzie jeden na cały <a class="el" href="class_display_engine.html" title="Klasa odpowiedzialna za wyświetlanie sceny, obsługę kamery oraz interpolację położeń obiektów...">DisplayEngine</a>.  </dd>
-<dt><a class="anchor" id="_todo000078"></a>Class <a class="el" href="class_resource_object.html">ResourceObject</a>  </dt>
-<dd>Zliczanie referencji w <a class="el" href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. ">ResourceObject</a> nie nadaje się do wielowątkowości. Poprawić w odpowiednim momencie.  </dd>
-<dt><a class="anchor" id="_todo000005"></a>Class <a class="el" href="class_static_actor.html">StaticActor</a>  </dt>
+<dt><a class="anchor" id="_todo000088"></a>Class <a class="el" href="class_resource_object.html">ResourceObject</a>  </dt>
+<dd>Zliczanie referencji w <a class="el" href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShader, PixelShader itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. ">ResourceObject</a> nie nadaje się do wielowątkowości. Poprawić w odpowiednim momencie.  </dd>
+<dt><a class="anchor" id="_todo000006"></a>Member <a class="el" href="class_serialization.html#af9bf46448f46c89715c2cc22a9a7e928">Serialization::DeserializeProperty</a>  (<a class="el" href="class_i_deserializer.html" title="Interfejs deserializatorów. ">IDeserializer</a> *deser, rttr::property prop, const <a class="el" href="class_engine_object.html" title="Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz...">EngineObject</a> *object)</dt>
+<dd>Można zoptymalizować pobieranie nazwy z właściwości i ograniczyć alokację stringów.  </dd>
+<dt><a class="anchor" id="_todo000005"></a>Member <a class="el" href="class_serialization.html#a733ed8b1b5ec34e9b8115e56a3fe6eeb">Serialization::SerializeProperty</a>  (<a class="el" href="class_i_serializer.html" title="Interfejs dla serializatorów. ">ISerializer</a> *ser, rttr::property prop, const <a class="el" href="class_engine_object.html" title="Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz...">EngineObject</a> *object)</dt>
+<dd>Można zoptymalizować pobieranie nazwy z właściwości i ograniczyć alokację stringów.  </dd>
+<dt><a class="anchor" id="_todo000012"></a>Class <a class="el" href="class_static_actor.html">StaticActor</a>  </dt>
 <dd>Trzeba zbadać czy nie ma przypadków, w których nie będzie zachodzić swapowanie, a powinno (wydaje mi się że przy niektórych kontrolerach) i jakoś rozwiązać tę sytuację.  </dd>
-<dt><a class="anchor" id="_todo000046"></a>Class <a class="el" href="class_u_i___engine.html">UI_Engine</a>  </dt>
+<dt><a class="anchor" id="_todo000052"></a>Class <a class="el" href="class_u_i___engine.html">UI_Engine</a>  </dt>
 <dd>Wydzielić obsługę DirectInput do osobnego modułu.  </dd>
-<dt><a class="anchor" id="_todo000047"></a>Member <a class="el" href="class_u_i___engine.html#a5d00d7060bdc3c8ccf7b4e301d60bc65">UI_Engine::InitAbstractionLayers</a>  ()</dt>
+<dt><a class="anchor" id="_todo000053"></a>Member <a class="el" href="class_u_i___engine.html#a5d00d7060bdc3c8ccf7b4e301d60bc65">UI_Engine::InitAbstractionLayers</a>  ()</dt>
 <dd>Zastanowić się czy nie zrobić std::move na tym wektorze.  </dd>
-<dt><a class="anchor" id="_todo000053"></a>Class <a class="el" href="class_x_g_u_i_1_1_abstract_item.html">XGUI::AbstractItem</a>  </dt>
+<dt><a class="anchor" id="_todo000051"></a>Member <a class="el" href="class_u_i___engine.html#abfffc7bd4e3b7a4f43bf81de3db7fd0a">UI_Engine::ProceedInput</a>  (float time_interval)</dt>
+<dd>To jest tymczasowy hack. Trzeba to obsłużyć eventami.  </dd>
+<dt><a class="anchor" id="_todo000054"></a>Member <a class="el" href="class_u_i___engine.html#a967f88619bb0dfa6d407925f15ec1798">UI_Engine::UpdateAbstractionLayer</a>  (const std::vector&lt; KeyboardState * &gt; &amp;keyboards, const std::vector&lt; MouseState * &gt; &amp;mouses, const std::vector&lt; JoystickState * &gt; &amp;jousticks)</dt>
+<dd>Zastanowić się jak obsługiwać wiele urządzeń tego samego typu na raz.  </dd>
+<dt><a class="anchor" id="_todo000093"></a>Member <a class="el" href="class_win_api_input_proxy.html#a1b654600a98591aade783300885cc9ce">WinApiInputProxy::KeyboardChange</a>  (int keyId, bool pressed)</dt>
+<dd>W przyszłości może trzeba będzie dodać informację o zmienie stanu. Mógłby to być np któryć bit ustawiony na 1 czy coś.  </dd>
+<dt><a class="anchor" id="_todo000095"></a>Member <a class="el" href="class_win_api_input_proxy.html#ac60857271990b64563e41c111deb9308">WinApiInputProxy::LostFocus</a>  ()</dt>
+<dd>Dokończyć  </dd>
+<dt><a class="anchor" id="_todo000094"></a>Member <a class="el" href="class_win_api_input_proxy.html#a863dd320c6e5a6b13276cb17942163b7">WinApiInputProxy::MouseButtonChange</a>  (int button, bool pressed)</dt>
+<dd>W przyszłości może trzeba będzie dodać informację o zmienie stanu. Mógłby to być np któryć bit ustawiony na 1 czy coś.  </dd>
+<dt><a class="anchor" id="_todo000097"></a>Member <a class="el" href="class_w_p_f_input_proxy.html#a02ab673079f250a7e4e6a4da708625b3">WPFInputProxy::LostFocus</a>  ()</dt>
+<dd>Dokończyć  </dd>
+<dt><a class="anchor" id="_todo000096"></a>Member <a class="el" href="class_w_p_f_input_proxy.html#a64698fe94fb6c3e347b4f53bb7de80b0">WPFInputProxy::MouseButtonChange</a>  (int button, bool pressed)</dt>
+<dd>W przyszłości może trzeba będzie dodać informację o zmienie stanu. Mógłby to być np któryć bit ustawiony na 1 czy coś.  </dd>
+<dt><a class="anchor" id="_todo000062"></a>Class <a class="el" href="class_x_g_u_i_1_1_abstract_item.html">XGUI::AbstractItem</a>  </dt>
 <dd>Wszystko jeszcze do wymyślenia.  </dd>
-<dt><a class="anchor" id="_todo000054"></a>Class <a class="el" href="class_x_g_u_i_1_1_abstract_menu.html">XGUI::AbstractMenu</a>  </dt>
+<dt><a class="anchor" id="_todo000063"></a>Class <a class="el" href="class_x_g_u_i_1_1_abstract_menu.html">XGUI::AbstractMenu</a>  </dt>
 <dd>Wszystko jeszcze do wymyślenia.  </dd>
-<dt><a class="anchor" id="_todo000056"></a>Member <a class="el" href="class_x_g_u_i_1_1_abstract_window.html#a4086dd72c1f59844d96480538f9186f7">XGUI::AbstractWindow::maximize_button</a>  </dt>
+<dt><a class="anchor" id="_todo000065"></a>Member <a class="el" href="class_x_g_u_i_1_1_abstract_window.html#a4086dd72c1f59844d96480538f9186f7">XGUI::AbstractWindow::maximize_button</a>  </dt>
 <dd>Wymyśleć cały mechanizm.  </dd>
-<dt><a class="anchor" id="_todo000055"></a>Member <a class="el" href="class_x_g_u_i_1_1_abstract_window.html#a5f913716216627cd3e030fecdad4574d">XGUI::AbstractWindow::minimize_button</a>  </dt>
+<dt><a class="anchor" id="_todo000064"></a>Member <a class="el" href="class_x_g_u_i_1_1_abstract_window.html#a5f913716216627cd3e030fecdad4574d">XGUI::AbstractWindow::minimize_button</a>  </dt>
 <dd>Wymyśleć cały mechanizm.  </dd>
-<dt><a class="anchor" id="_todo000059"></a>Member <a class="el" href="class_x_g_u_i_1_1_control.html#ae34f4a2bc2a7d881b540f35a630c587d">XGUI::Control::on_mouse_reaction</a>  (const DirectX::XMFLOAT2 &amp;point, const <a class="el" href="struct_x_g_u_i_1_1_rect.html" title="Struktura opisująca czworokąt. ">Rect</a> &amp;clipping_rect, const char *buttons)</dt>
+<dt><a class="anchor" id="_todo000068"></a>Member <a class="el" href="class_x_g_u_i_1_1_control.html#ae34f4a2bc2a7d881b540f35a630c587d">XGUI::Control::on_mouse_reaction</a>  (const DirectX::XMFLOAT2 &amp;point, const <a class="el" href="struct_x_g_u_i_1_1_rect.html" title="Struktura opisująca czworokąt. ">Rect</a> &amp;clipping_rect, const char *buttons)</dt>
 <dd>: Trzeba wymyśleć format tej tablicy  </dd>
-<dt><a class="anchor" id="_todo000061"></a>Member <a class="el" href="class_x_g_u_i_1_1_control.html#a9a092e1d9107b9c49a4d62533e242e46">XGUI::Control::onLeftClick</a>  (const DirectX::XMFLOAT2 &amp;point, const <a class="el" href="struct_x_g_u_i_1_1_rect.html" title="Struktura opisująca czworokąt. ">Rect</a> &amp;clipping_rect, const char *buttons)</dt>
+<dt><a class="anchor" id="_todo000070"></a>Member <a class="el" href="class_x_g_u_i_1_1_control.html#a9a092e1d9107b9c49a4d62533e242e46">XGUI::Control::onLeftClick</a>  (const DirectX::XMFLOAT2 &amp;point, const <a class="el" href="struct_x_g_u_i_1_1_rect.html" title="Struktura opisująca czworokąt. ">Rect</a> &amp;clipping_rect, const char *buttons)</dt>
 <dd>: Trzeba wymyśleć format tej tablicy  </dd>
-<dt><a class="anchor" id="_todo000062"></a>Member <a class="el" href="class_x_g_u_i_1_1_control.html#ab810bb1115ac25d9229ff6e3d002294d">XGUI::Control::onLeftUnClick</a>  (const DirectX::XMFLOAT2 &amp;point, const <a class="el" href="struct_x_g_u_i_1_1_rect.html" title="Struktura opisująca czworokąt. ">Rect</a> &amp;clipping_rect, const char *buttons)</dt>
+<dt><a class="anchor" id="_todo000071"></a>Member <a class="el" href="class_x_g_u_i_1_1_control.html#ab810bb1115ac25d9229ff6e3d002294d">XGUI::Control::onLeftUnClick</a>  (const DirectX::XMFLOAT2 &amp;point, const <a class="el" href="struct_x_g_u_i_1_1_rect.html" title="Struktura opisująca czworokąt. ">Rect</a> &amp;clipping_rect, const char *buttons)</dt>
 <dd>: Trzeba wymyśleć format tej tablicy  </dd>
-<dt><a class="anchor" id="_todo000060"></a>Member <a class="el" href="class_x_g_u_i_1_1_control.html#ac3d6e040b0e45b636c9123e48c4a1182">XGUI::Control::onMouseOn</a>  (const DirectX::XMFLOAT2 &amp;point, const <a class="el" href="struct_x_g_u_i_1_1_rect.html" title="Struktura opisująca czworokąt. ">Rect</a> &amp;clipping_rect, const char *buttons)</dt>
+<dt><a class="anchor" id="_todo000069"></a>Member <a class="el" href="class_x_g_u_i_1_1_control.html#ac3d6e040b0e45b636c9123e48c4a1182">XGUI::Control::onMouseOn</a>  (const DirectX::XMFLOAT2 &amp;point, const <a class="el" href="struct_x_g_u_i_1_1_rect.html" title="Struktura opisująca czworokąt. ">Rect</a> &amp;clipping_rect, const char *buttons)</dt>
 <dd>: Trzeba wymyśleć format tej tablicy  </dd>
-<dt><a class="anchor" id="_todo000063"></a>Member <a class="el" href="class_x_g_u_i_1_1_control.html#a02ca5331b312e150d52e233ac1ac5f7d">XGUI::Control::onRightClick</a>  (const DirectX::XMFLOAT2 &amp;point, const <a class="el" href="struct_x_g_u_i_1_1_rect.html" title="Struktura opisująca czworokąt. ">Rect</a> &amp;clipping_rect, const char *buttons)</dt>
+<dt><a class="anchor" id="_todo000072"></a>Member <a class="el" href="class_x_g_u_i_1_1_control.html#a02ca5331b312e150d52e233ac1ac5f7d">XGUI::Control::onRightClick</a>  (const DirectX::XMFLOAT2 &amp;point, const <a class="el" href="struct_x_g_u_i_1_1_rect.html" title="Struktura opisująca czworokąt. ">Rect</a> &amp;clipping_rect, const char *buttons)</dt>
 <dd>: Trzeba wymyśleć format tej tablicy  </dd>
-<dt><a class="anchor" id="_todo000064"></a>Member <a class="el" href="class_x_g_u_i_1_1_control.html#addeb837695e5ac97643134d9f2f47ed5">XGUI::Control::onRightUnClick</a>  (const DirectX::XMFLOAT2 &amp;point, const <a class="el" href="struct_x_g_u_i_1_1_rect.html" title="Struktura opisująca czworokąt. ">Rect</a> &amp;clipping_rect, const char *buttons)</dt>
+<dt><a class="anchor" id="_todo000073"></a>Member <a class="el" href="class_x_g_u_i_1_1_control.html#addeb837695e5ac97643134d9f2f47ed5">XGUI::Control::onRightUnClick</a>  (const DirectX::XMFLOAT2 &amp;point, const <a class="el" href="struct_x_g_u_i_1_1_rect.html" title="Struktura opisująca czworokąt. ">Rect</a> &amp;clipping_rect, const char *buttons)</dt>
 <dd>: Trzeba wymyśleć format tej tablicy  </dd>
-<dt><a class="anchor" id="_todo000057"></a>Member <a class="el" href="class_x_g_u_i_1_1_renderer.html#a69684201eb677fd4d21bddc6a419a2e5">XGUI::Renderer::bindConstantBuffer</a>  ()</dt>
+<dt><a class="anchor" id="_todo000066"></a>Member <a class="el" href="class_x_g_u_i_1_1_renderer.html#a69684201eb677fd4d21bddc6a419a2e5">XGUI::Renderer::bindConstantBuffer</a>  ()</dt>
 <dd></dd>
-<dt><a class="anchor" id="_todo000058"></a>Member <a class="el" href="class_x_g_u_i_1_1_renderer.html#ab2e0bd3bec64fc54101b8222a9279ef5">XGUI::Renderer::getVertexLayout</a>  ()=0</dt>
+<dt><a class="anchor" id="_todo000067"></a>Member <a class="el" href="class_x_g_u_i_1_1_renderer.html#ab2e0bd3bec64fc54101b8222a9279ef5">XGUI::Renderer::getVertexLayout</a>  ()=0</dt>
 <dd></dd>
 </dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

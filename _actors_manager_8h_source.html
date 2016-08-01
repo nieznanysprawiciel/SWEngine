@@ -98,92 +98,105 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_actor_factory_8h.html">ActorFactory.h</a>&quot;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;ActorInfo.h&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">class </span><a class="code" href="class_engine.html">Engine</a>;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_actors_manager.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_actors_manager.html">ActorsManager</a></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="class_actor_factory.html">ActorFactory</a>                m_actorFactory;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::vector&lt; ActorData &gt;    m_objectList;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_actors_manager.html">ActorsManager</a>( <a class="code" href="class_engine.html">Engine</a>* engine );</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    ~<a class="code" href="class_actors_manager.html">ActorsManager</a>();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">inline</span> <a class="code" href="class_actor_factory.html">ActorFactory</a>&amp;                                    GetActorFactory ()  { <span class="keywordflow">return</span> m_actorFactory; }</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">class </span><a class="code" href="class_engine.html">Engine</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">class </span><a class="code" href="class_i_serializer.html">ISerializer</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">class </span><a class="code" href="class_i_deserializer.html">IDeserializer</a>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_actors_manager.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_actors_manager.html">ActorsManager</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_actor_factory.html">ActorFactory</a>                            m_actorFactory;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    std::vector&lt; ActorData &gt;                m_objectList;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    std::map&lt; std::string, ActorBase* &gt;     m_actorNamesMap;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">template</span>&lt; <span class="keyword">typename</span> Type = ActorBase &gt;   Type*           <a class="code" href="class_actors_manager.html#a33d14cb61a46317339d3211f5aa2b9c9">CreateActor</a>     ( <span class="keyword">const</span> std::string&amp; name, <a class="code" href="struct_actor_info.html">ActorInfo</a> actorModules );</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">template</span>&lt; <span class="keyword">typename</span> Type = ActorBase &gt;   Type*           <a class="code" href="class_actors_manager.html#a33d14cb61a46317339d3211f5aa2b9c9">CreateActor</a>     ( ActorType <span class="keywordtype">id</span>, <a class="code" href="struct_actor_info.html">ActorInfo</a> actorModules );</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span>                                                    <a class="code" href="class_actors_manager.html#ab8aa19cdf0ceeed196b26039304e5333">UpdateActor</a>     ( <a class="code" href="class_actor_base.html">ActorBase</a>* actor, <a class="code" href="struct_actor_info.html">ActorInfo</a> actorModules );</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">const</span> std::vector&lt; ActorData &gt;&amp;                         <a class="code" href="class_actors_manager.html#a9c90d698c9b31843d480fecd9427bdd8">GetAllActors</a>    ();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">template</span>&lt; <span class="keyword">typename</span> Type = ActorBase &gt;   ActorData*      <a class="code" href="class_actors_manager.html#a8490490b337fa2d82feb9feddf034336">FindActor</a>       ( <a class="code" href="class_actor_base.html">ActorBase</a>* actor );</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_actors_manager.html">ActorsManager</a>( <a class="code" href="class_engine.html">Engine</a>* engine );</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    ~<a class="code" href="class_actors_manager.html">ActorsManager</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">inline</span> <a class="code" href="class_actor_factory.html">ActorFactory</a>&amp;                                    GetActorFactory ()  { <span class="keywordflow">return</span> m_actorFactory; }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">template</span>&lt; <span class="keyword">typename</span> Type = ActorBase &gt;   Type*           <a class="code" href="class_actors_manager.html#a264acadf3ce20d0bf6d66d2fcb12c7d0">CreateActor</a>     ( <span class="keyword">const</span> std::string&amp; name );</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">template</span>&lt; <span class="keyword">typename</span> Type = ActorBase &gt;   Type*           <a class="code" href="class_actors_manager.html#a264acadf3ce20d0bf6d66d2fcb12c7d0">CreateActor</a>     ( ActorType <span class="keywordtype">id</span> );</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span>                                                    <a class="code" href="class_actors_manager.html#ac3b30de4f4fa906c602b1bcc2cbe3574">AddActor</a>        ( <a class="code" href="class_actor_base.html">ActorBase</a>* newActor );</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;};</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_actors_manager.html#a33d14cb61a46317339d3211f5aa2b9c9">   43</a></span>&#160;<span class="keyword">inline</span> Type* <a class="code" href="class_actors_manager.html#a33d14cb61a46317339d3211f5aa2b9c9">ActorsManager::CreateActor</a>( <span class="keyword">const</span> std::string&amp; name, <a class="code" href="struct_actor_info.html">ActorInfo</a> actorModules )</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    Type* newActor = m_actorFactory.<a class="code" href="class_actor_factory.html#acc7aa561151d93f53c93dd06c97f1008">CreateActor</a>&lt; Type &gt;( name );</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    assert( newActor != <span class="keyword">nullptr</span> );</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">if</span>( newActor == <span class="keyword">nullptr</span> )</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="class_actors_manager.html#ac3b30de4f4fa906c602b1bcc2cbe3574">AddActor</a>( newActor );</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> newActor;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="class_actors_manager.html#a2f3f0f6ff42e1347710587df8f9d2db3">   58</a></span>&#160;<span class="keyword">inline</span> Type* <a class="code" href="class_actors_manager.html#a33d14cb61a46317339d3211f5aa2b9c9">ActorsManager::CreateActor</a>( ActorType <span class="keywordtype">id</span>, <a class="code" href="struct_actor_info.html">ActorInfo</a> actorModules )</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;{</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    Type* newActor = m_actorFactory.<a class="code" href="class_actor_factory.html#acc7aa561151d93f53c93dd06c97f1008">CreateActor</a>&lt; Type &gt;( id );</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    assert( newActor != <span class="keyword">nullptr</span> );</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">if</span>( newActor == <span class="keyword">nullptr</span> )</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="class_actors_manager.html#ac3b30de4f4fa906c602b1bcc2cbe3574">AddActor</a>( newActor );</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">return</span> newActor;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="class_actors_manager.html#a8490490b337fa2d82feb9feddf034336">   72</a></span>&#160;<span class="keyword">template</span>&lt; <span class="keyword">typename</span> Type &gt; ActorData*    <a class="code" href="class_actors_manager.html#a8490490b337fa2d82feb9feddf034336">ActorsManager::FindActor</a>( <a class="code" href="class_actor_base.html">ActorBase</a>* actor )</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">const</span> std::vector&lt; ActorData &gt;&amp;                         <a class="code" href="class_actors_manager.html#ad05f0e76d2c24c72ace52729c64ef9f8">GetAllActors</a>    () <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">const</span> std::map&lt; std::string, ActorBase* &gt;&amp;              <a class="code" href="class_actors_manager.html#af80797de0c6c1828f441292b5126bb4d">GetActorsNames</a>  () <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    ActorData*                                              <a class="code" href="class_actors_manager.html#a41105245738a753824107d31023222b0">FindActor</a>       ( <a class="code" href="class_actor_base.html">ActorBase</a>* actor );</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    ActorData*                                              <a class="code" href="class_actors_manager.html#afb79ebb189bfc4dbdbff17877349c8c7">FindActorByName</a> ( <span class="keyword">const</span> std::string&amp; name );</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="class_actor_base.html">ActorBase</a>*                                              <a class="code" href="class_actors_manager.html#a9cb0af20e87cc609f150c6d4605d61b3">GetActorByName</a>  ( <span class="keyword">const</span> std::string&amp; name );</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span>                                                    <a class="code" href="class_actors_manager.html#a0c02e9a64881fa08a71dcf0ace10d6e9">RemoveAllActors</a> ();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span>                                                    <a class="code" href="class_actors_manager.html#ad51a5e9bf63ec707562db4df50529617">RemoveActor</a>     ( <a class="code" href="class_actor_base.html">ActorBase</a>* actor );</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span>                                                    <a class="code" href="class_actors_manager.html#ab8aa19cdf0ceeed196b26039304e5333">UpdateActor</a>     ( <a class="code" href="class_actor_base.html">ActorBase</a>* actor, <a class="code" href="struct_actor_info.html">ActorInfo</a> actorModules );</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">bool</span>                                                    <a class="code" href="class_actors_manager.html#a6c6827162b146be3b80403630ee7c263">NameActor</a>       ( <a class="code" href="class_actor_base.html">ActorBase</a>* actor, <span class="keyword">const</span> std::string&amp; name );</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span>                                                    <a class="code" href="class_actors_manager.html#ac3b30de4f4fa906c602b1bcc2cbe3574">AddActor</a>        ( <a class="code" href="class_actor_base.html">ActorBase</a>* newActor );</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="class_actors_manager.html#a264acadf3ce20d0bf6d66d2fcb12c7d0">   57</a></span>&#160;<span class="keyword">inline</span> Type* <a class="code" href="class_actors_manager.html#a264acadf3ce20d0bf6d66d2fcb12c7d0">ActorsManager::CreateActor</a>( <span class="keyword">const</span> std::string&amp; name )</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    Type* newActor = m_actorFactory.<a class="code" href="class_actor_factory.html#acc7aa561151d93f53c93dd06c97f1008">CreateActor</a>&lt; Type &gt;( name );</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    assert( newActor != <span class="keyword">nullptr</span> );</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">if</span>( newActor == <span class="keyword">nullptr</span> )</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="class_actors_manager.html#ac3b30de4f4fa906c602b1bcc2cbe3574">AddActor</a>( newActor );</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">return</span> newActor;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="class_actors_manager.html#ab0828440758b9c1ff44883752db922c2">   72</a></span>&#160;<span class="keyword">inline</span> Type* <a class="code" href="class_actors_manager.html#a264acadf3ce20d0bf6d66d2fcb12c7d0">ActorsManager::CreateActor</a>( ActorType <span class="keywordtype">id</span> )</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">for</span>( <span class="keyword">auto</span>&amp; actorData : m_objectList )</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">if</span>( actorData.first == actor )</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keywordflow">return</span> &amp;actorData;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
-<div class="ttc" id="class_actors_manager_html_a8490490b337fa2d82feb9feddf034336"><div class="ttname"><a href="class_actors_manager.html#a8490490b337fa2d82feb9feddf034336">ActorsManager::FindActor</a></div><div class="ttdeci">ActorData * FindActor(ActorBase *actor)</div><div class="ttdoc">Wyszukuje aktora. </div><div class="ttdef"><b>Definition:</b> ActorsManager.h:72</div></div>
-<div class="ttc" id="class_actors_manager_html"><div class="ttname"><a href="class_actors_manager.html">ActorsManager</a></div><div class="ttdoc">Moduł do zarządzania aktorami. </div><div class="ttdef"><b>Definition:</b> ActorsManager.h:12</div></div>
-<div class="ttc" id="class_actors_manager_html_ab8aa19cdf0ceeed196b26039304e5333"><div class="ttname"><a href="class_actors_manager.html#ab8aa19cdf0ceeed196b26039304e5333">ActorsManager::UpdateActor</a></div><div class="ttdeci">void UpdateActor(ActorBase *actor, ActorInfo actorModules)</div><div class="ttdoc">Aktualizuje. </div><div class="ttdef"><b>Definition:</b> ActorsManager.cpp:26</div></div>
-<div class="ttc" id="class_actors_manager_html_a33d14cb61a46317339d3211f5aa2b9c9"><div class="ttname"><a href="class_actors_manager.html#a33d14cb61a46317339d3211f5aa2b9c9">ActorsManager::CreateActor</a></div><div class="ttdeci">Type * CreateActor(const std::string &amp;name, ActorInfo actorModules)</div><div class="ttdoc">Tworzy aktora na podstawie nazwy. </div><div class="ttdef"><b>Definition:</b> ActorsManager.h:43</div></div>
-<div class="ttc" id="struct_actor_info_html"><div class="ttname"><a href="struct_actor_info.html">ActorInfo</a></div><div class="ttdoc">Przechowuje informacje w jakich modułach silnika znajduje się aktor. </div><div class="ttdef"><b>Definition:</b> ActorInfo.h:26</div></div>
-<div class="ttc" id="class_actor_factory_html"><div class="ttname"><a href="class_actor_factory.html">ActorFactory</a></div><div class="ttdoc">Fabryka aktorów silnika. </div><div class="ttdef"><b>Definition:</b> ActorFactory.h:46</div></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    Type* newActor = m_actorFactory.<a class="code" href="class_actor_factory.html#acc7aa561151d93f53c93dd06c97f1008">CreateActor</a>&lt; Type &gt;( id );</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    assert( newActor != <span class="keyword">nullptr</span> );</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">if</span>( newActor == <span class="keyword">nullptr</span> )</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="class_actors_manager.html#ac3b30de4f4fa906c602b1bcc2cbe3574">AddActor</a>( newActor );</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">return</span> newActor;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="ttc" id="class_actors_manager_html"><div class="ttname"><a href="class_actors_manager.html">ActorsManager</a></div><div class="ttdoc">Moduł do zarządzania aktorami. </div><div class="ttdef"><b>Definition:</b> ActorsManager.h:18</div></div>
+<div class="ttc" id="class_i_deserializer_html"><div class="ttname"><a href="class_i_deserializer.html">IDeserializer</a></div><div class="ttdoc">Interfejs deserializatorów. </div><div class="ttdef"><b>Definition:</b> Deserializer.h:38</div></div>
+<div class="ttc" id="class_actors_manager_html_a41105245738a753824107d31023222b0"><div class="ttname"><a href="class_actors_manager.html#a41105245738a753824107d31023222b0">ActorsManager::FindActor</a></div><div class="ttdeci">ActorData * FindActor(ActorBase *actor)</div><div class="ttdoc">Wyszukuje aktora. </div><div class="ttdef"><b>Definition:</b> ActorsManager.cpp:110</div></div>
+<div class="ttc" id="class_actors_manager_html_af80797de0c6c1828f441292b5126bb4d"><div class="ttname"><a href="class_actors_manager.html#af80797de0c6c1828f441292b5126bb4d">ActorsManager::GetActorsNames</a></div><div class="ttdeci">const std::map&lt; std::string, ActorBase * &gt; &amp; GetActorsNames() const </div><div class="ttdoc">Zwraca mapę nazw aktorów i wskaźników na nich. </div><div class="ttdef"><b>Definition:</b> ActorsManager.cpp:102</div></div>
+<div class="ttc" id="class_actors_manager_html_ab8aa19cdf0ceeed196b26039304e5333"><div class="ttname"><a href="class_actors_manager.html#ab8aa19cdf0ceeed196b26039304e5333">ActorsManager::UpdateActor</a></div><div class="ttdeci">void UpdateActor(ActorBase *actor, ActorInfo actorModules)</div><div class="ttdoc">Aktualizuje. </div><div class="ttdef"><b>Definition:</b> ActorsManager.cpp:71</div></div>
+<div class="ttc" id="struct_actor_info_html"><div class="ttname"><a href="struct_actor_info.html">ActorInfo</a></div><div class="ttdoc">Przechowuje informacje w jakich modułach silnika znajduje się aktor. </div><div class="ttdef"><b>Definition:</b> ActorInfo.h:27</div></div>
+<div class="ttc" id="class_actor_factory_html"><div class="ttname"><a href="class_actor_factory.html">ActorFactory</a></div><div class="ttdoc">Fabryka aktorów silnika. </div><div class="ttdef"><b>Definition:</b> ActorFactory.h:42</div></div>
+<div class="ttc" id="class_actors_manager_html_a264acadf3ce20d0bf6d66d2fcb12c7d0"><div class="ttname"><a href="class_actors_manager.html#a264acadf3ce20d0bf6d66d2fcb12c7d0">ActorsManager::CreateActor</a></div><div class="ttdeci">Type * CreateActor(const std::string &amp;name)</div><div class="ttdoc">Tworzy aktora na podstawie nazwy. </div><div class="ttdef"><b>Definition:</b> ActorsManager.h:57</div></div>
+<div class="ttc" id="class_i_serializer_html"><div class="ttname"><a href="class_i_serializer.html">ISerializer</a></div><div class="ttdoc">Interfejs dla serializatorów. </div><div class="ttdef"><b>Definition:</b> Serializer.h:35</div></div>
 <div class="ttc" id="_actor_factory_8h_html"><div class="ttname"><a href="_actor_factory_8h.html">ActorFactory.h</a></div><div class="ttdoc">Fabryka aktorów. </div></div>
-<div class="ttc" id="class_actors_manager_html_ac3b30de4f4fa906c602b1bcc2cbe3574"><div class="ttname"><a href="class_actors_manager.html#ac3b30de4f4fa906c602b1bcc2cbe3574">ActorsManager::AddActor</a></div><div class="ttdeci">void AddActor(ActorBase *newActor)</div><div class="ttdoc">Dodaje aktora do ActorsManagera. </div><div class="ttdef"><b>Definition:</b> ActorsManager.cpp:18</div></div>
+<div class="ttc" id="class_actors_manager_html_ac3b30de4f4fa906c602b1bcc2cbe3574"><div class="ttname"><a href="class_actors_manager.html#ac3b30de4f4fa906c602b1bcc2cbe3574">ActorsManager::AddActor</a></div><div class="ttdeci">void AddActor(ActorBase *newActor)</div><div class="ttdoc">Dodaje aktora do ActorsManagera. </div><div class="ttdef"><b>Definition:</b> ActorsManager.cpp:22</div></div>
 <div class="ttc" id="class_actor_base_html"><div class="ttname"><a href="class_actor_base.html">ActorBase</a></div><div class="ttdoc">Klasa bazowa dla wszystkich obiektów w grze (aktorów). </div><div class="ttdef"><b>Definition:</b> ActorBase.h:20</div></div>
-<div class="ttc" id="class_actors_manager_html_a9c90d698c9b31843d480fecd9427bdd8"><div class="ttname"><a href="class_actors_manager.html#a9c90d698c9b31843d480fecd9427bdd8">ActorsManager::GetAllActors</a></div><div class="ttdeci">const std::vector&lt; ActorData &gt; &amp; GetAllActors()</div><div class="ttdoc">Pobiera dane o wszystkich aktorach. </div><div class="ttdef"><b>Definition:</b> ActorsManager.cpp:38</div></div>
-<div class="ttc" id="class_actor_factory_html_acc7aa561151d93f53c93dd06c97f1008"><div class="ttname"><a href="class_actor_factory.html#acc7aa561151d93f53c93dd06c97f1008">ActorFactory::CreateActor</a></div><div class="ttdeci">Type * CreateActor(const std::string &amp;name)</div><div class="ttdoc">Tworzy obiekt aktora o podanej nazwie. Nazwa musi być wcześniej zarejestrowana. </div><div class="ttdef"><b>Definition:</b> ActorFactory.h:105</div></div>
-<div class="ttc" id="class_engine_html"><div class="ttname"><a href="class_engine.html">Engine</a></div><div class="ttdoc">Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika.</div><div class="ttdef"><b>Definition:</b> Engine.h:70</div></div>
+<div class="ttc" id="class_actors_manager_html_ad05f0e76d2c24c72ace52729c64ef9f8"><div class="ttname"><a href="class_actors_manager.html#ad05f0e76d2c24c72ace52729c64ef9f8">ActorsManager::GetAllActors</a></div><div class="ttdeci">const std::vector&lt; ActorData &gt; &amp; GetAllActors() const </div><div class="ttdoc">Pobiera dane o wszystkich aktorach. </div><div class="ttdef"><b>Definition:</b> ActorsManager.cpp:96</div></div>
+<div class="ttc" id="class_actors_manager_html_ad51a5e9bf63ec707562db4df50529617"><div class="ttname"><a href="class_actors_manager.html#ad51a5e9bf63ec707562db4df50529617">ActorsManager::RemoveActor</a></div><div class="ttdeci">void RemoveActor(ActorBase *actor)</div><div class="ttdoc">Usuwa aktorów z modułu. </div><div class="ttdef"><b>Definition:</b> ActorsManager.cpp:46</div></div>
+<div class="ttc" id="class_actors_manager_html_a6c6827162b146be3b80403630ee7c263"><div class="ttname"><a href="class_actors_manager.html#a6c6827162b146be3b80403630ee7c263">ActorsManager::NameActor</a></div><div class="ttdeci">bool NameActor(ActorBase *actor, const std::string &amp;name)</div><div class="ttdoc">Nadaje nazwę aktorowi. </div><div class="ttdef"><b>Definition:</b> ActorsManager.cpp:83</div></div>
+<div class="ttc" id="class_actors_manager_html_a9cb0af20e87cc609f150c6d4605d61b3"><div class="ttname"><a href="class_actors_manager.html#a9cb0af20e87cc609f150c6d4605d61b3">ActorsManager::GetActorByName</a></div><div class="ttdeci">ActorBase * GetActorByName(const std::string &amp;name)</div><div class="ttdoc">Zwraca wskaźnik na aktora o podanej nazwie. </div><div class="ttdef"><b>Definition:</b> ActorsManager.cpp:130</div></div>
+<div class="ttc" id="class_actor_factory_html_acc7aa561151d93f53c93dd06c97f1008"><div class="ttname"><a href="class_actor_factory.html#acc7aa561151d93f53c93dd06c97f1008">ActorFactory::CreateActor</a></div><div class="ttdeci">Type * CreateActor(const std::string &amp;name)</div><div class="ttdoc">Tworzy obiekt aktora o podanej nazwie. Nazwa musi być wcześniej zarejestrowana. </div><div class="ttdef"><b>Definition:</b> ActorFactory.h:101</div></div>
+<div class="ttc" id="class_actors_manager_html_afb79ebb189bfc4dbdbff17877349c8c7"><div class="ttname"><a href="class_actors_manager.html#afb79ebb189bfc4dbdbff17877349c8c7">ActorsManager::FindActorByName</a></div><div class="ttdeci">ActorData * FindActorByName(const std::string &amp;name)</div><div class="ttdoc">Znajduje dane aktora. </div><div class="ttdef"><b>Definition:</b> ActorsManager.cpp:121</div></div>
+<div class="ttc" id="class_actors_manager_html_a0c02e9a64881fa08a71dcf0ace10d6e9"><div class="ttname"><a href="class_actors_manager.html#a0c02e9a64881fa08a71dcf0ace10d6e9">ActorsManager::RemoveAllActors</a></div><div class="ttdeci">void RemoveAllActors()</div><div class="ttdoc">Usuwa wszystkich aktorów. </div><div class="ttdef"><b>Definition:</b> ActorsManager.cpp:30</div></div>
+<div class="ttc" id="class_engine_html"><div class="ttname"><a href="class_engine.html">Engine</a></div><div class="ttdoc">Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika.</div><div class="ttdef"><b>Definition:</b> Engine.h:57</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:57 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:18 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -104,25 +104,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{   assert( <span class="keyword">false</span> );    }</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">template</span>&lt;&gt;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">inline</span> <a class="code" href="class_vertex_shader_object.html">VertexShaderObject</a>*&amp;     Get( <a class="code" href="struct_model_part.html">ModelPart</a>&amp; modelPart, uint8 index )</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">inline</span> <a class="code" href="class_vertex_shader.html">VertexShader</a>*&amp;       Get( <a class="code" href="struct_model_part.html">ModelPart</a>&amp; modelPart, uint8 index )</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{   <span class="keywordflow">return</span> modelPart.vertex_shader; }</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">template</span>&lt;&gt;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">inline</span> <a class="code" href="class_pixel_shader_object.html">PixelShaderObject</a>*&amp;      Get( <a class="code" href="struct_model_part.html">ModelPart</a>&amp; modelPart, uint8 index )</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">inline</span> <a class="code" href="class_pixel_shader.html">PixelShader</a>*&amp;        Get( <a class="code" href="struct_model_part.html">ModelPart</a>&amp; modelPart, uint8 index )</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{   <span class="keywordflow">return</span> modelPart.pixel_shader;  }   </div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">template</span>&lt;&gt;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">inline</span> <a class="code" href="class_texture_object.html">TextureObject</a>*&amp;          Get( <a class="code" href="struct_model_part.html">ModelPart</a>&amp; modelPart, uint8 index )</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{   <span class="keywordflow">return</span> modelPart.texture[ index ];  }</div>
 <div class="ttc" id="struct_model_part_html"><div class="ttname"><a href="struct_model_part.html">ModelPart</a></div><div class="ttdoc">Struktura opisująca pojedynczą część mesha gotową do wyświetlenia.Meshe są przechowywane w częściach...</div><div class="ttdef"><b>Definition:</b> MeshResources.h:171</div></div>
+<div class="ttc" id="class_pixel_shader_html"><div class="ttname"><a href="class_pixel_shader.html">PixelShader</a></div><div class="ttdoc">Klasa przechowująca pixel shader. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:378</div></div>
 <div class="ttc" id="_mesh_resources_8h_html"><div class="ttname"><a href="_mesh_resources_8h.html">MeshResources.h</a></div><div class="ttdoc">Plik zawiera deklaracje formatów wierzchołków oraz klas zawierających assety shadery itp...</div></div>
-<div class="ttc" id="class_pixel_shader_object_html"><div class="ttname"><a href="class_pixel_shader_object.html">PixelShaderObject</a></div><div class="ttdoc">Klasa przechowująca pixel shader. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:366</div></div>
 <div class="ttc" id="class_texture_object_html"><div class="ttname"><a href="class_texture_object.html">TextureObject</a></div><div class="ttdoc">Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:225</div></div>
-<div class="ttc" id="class_vertex_shader_object_html"><div class="ttname"><a href="class_vertex_shader_object.html">VertexShaderObject</a></div><div class="ttdoc">Klasa przechowująca vertex shader. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:349</div></div>
+<div class="ttc" id="class_vertex_shader_html"><div class="ttname"><a href="class_vertex_shader.html">VertexShader</a></div><div class="ttdoc">Klasa przechowująca vertex shader. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:361</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

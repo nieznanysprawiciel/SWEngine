@@ -88,6 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_mouse_state-members.html">List of all members</a>  </div>
@@ -96,17 +97,63 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a704a22d05159bb63505324fbe62b9f81"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mouse_state.html#a704a22d05159bb63505324fbe62b9f81">PHYSICAL_BUTTONS</a> { <br />
+&#160;&#160;<b>BUTTON0</b> = 0, 
+<b>BUTTON1</b> = 1, 
+<b>BUTTON2</b> = 2, 
+<b>BUTTON3</b> = 3, 
+<br />
+&#160;&#160;<b>BUTTON4</b> = 4, 
+<b>BUTTON5</b> = 5, 
+<b>BUTTON6</b> = 6, 
+<b>BUTTON7</b> = 7, 
+<br />
+&#160;&#160;<b>LEFT_BUTTON</b> = BUTTON0, 
+<b>RIGHT_BUTTON</b> = BUTTON1, 
+<b>MIDDLE_BUTTON</b> = BUTTON2, 
+<b>NONE</b> = 8
+<br />
+ }</td></tr>
+<tr class="memdesc:a704a22d05159bb63505324fbe62b9f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Przyciski fizyczne.  <a href="class_mouse_state.html#a704a22d05159bb63505324fbe62b9f81">More...</a><br /></td></tr>
+<tr class="separator:a704a22d05159bb63505324fbe62b9f81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a855e7db5e0afd25e7683e81f343b5a48"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a855e7db5e0afd25e7683e81f343b5a48"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>PHYSICAL_AXES</b> { <br />
+&#160;&#160;<b>X_AXIS</b> = 0, 
+<b>Y_AXIS</b> = 1, 
+<b>Z_AXIS</b> = 2, 
+<b>W_AXIS</b> = 3, 
+<br />
+&#160;&#160;<b>WHEEL</b> = Z_AXIS
+<br />
+ }</td></tr>
+<tr class="separator:a855e7db5e0afd25e7683e81f343b5a48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a325318b265db250182b91d517f0b625b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a325318b265db250182b91d517f0b625b"></a>
 float *&#160;</td><td class="memItemRight" valign="bottom"><b>GetAxesState</b> ()</td></tr>
 <tr class="separator:a325318b265db250182b91d517f0b625b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82fdc4435615df56ac60490076890d2d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82fdc4435615df56ac60490076890d2d"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>GetButtonsState</b> ()</td></tr>
-<tr class="separator:a82fdc4435615df56ac60490076890d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ef961a862e73300699cdae2212f7186"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ef961a862e73300699cdae2212f7186"></a>
+<a class="el" href="class_key_state.html">KeyState</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetButtonsState</b> ()</td></tr>
+<tr class="separator:a5ef961a862e73300699cdae2212f7186"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab66524642f2362cb83d976e511fd8934"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab66524642f2362cb83d976e511fd8934"></a>
+short&#160;</td><td class="memItemRight" valign="bottom"><b>GetPositionX</b> ()</td></tr>
+<tr class="separator:ab66524642f2362cb83d976e511fd8934"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58245cd5d6a365b9df4f1363bbc39324"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a58245cd5d6a365b9df4f1363bbc39324"></a>
+short&#160;</td><td class="memItemRight" valign="bottom"><b>GetPositionY</b> ()</td></tr>
+<tr class="separator:a58245cd5d6a365b9df4f1363bbc39324"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad139c7bd73a23b7f5802e646a8a42d5b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mouse_state.html#ad139c7bd73a23b7f5802e646a8a42d5b">SetPosition</a> (short X, short Y)</td></tr>
+<tr class="memdesc:ad139c7bd73a23b7f5802e646a8a42d5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia pozycję myszy.  <a href="#ad139c7bd73a23b7f5802e646a8a42d5b">More...</a><br /></td></tr>
+<tr class="separator:ad139c7bd73a23b7f5802e646a8a42d5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cc70c29c139cc6b92bfef2f4ec64cd4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7cc70c29c139cc6b92bfef2f4ec64cd4"></a>
 const <a class="el" href="struct_input_device_info.html">InputDeviceInfo</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>GetInfo</b> ()</td></tr>
 <tr class="separator:a7cc70c29c139cc6b92bfef2f4ec64cd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Funkcje do ustawiania stanu (tylko dla dzieci IInput)</div></td></tr>
+<tr class="memitem:a9b5844b473912cff0725e32b0a358f94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9b5844b473912cff0725e32b0a358f94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mouse_state.html#a9b5844b473912cff0725e32b0a358f94">RemoveEvents</a> ()</td></tr>
+<tr class="memdesc:a9b5844b473912cff0725e32b0a358f94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Czyści tablicę z eventów o wciśnięciu klawiszy, ale podtrzymuje stan przycisków. <br /></td></tr>
+<tr class="separator:a9b5844b473912cff0725e32b0a358f94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -116,18 +163,75 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a4a23e7c32abb0f1df80486f3d35350a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a23e7c32abb0f1df80486f3d35350a6"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>m_axes</b> [4]</td></tr>
 <tr class="separator:a4a23e7c32abb0f1df80486f3d35350a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5e6d52fa2baeda6e57d26544dedefe6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5e6d52fa2baeda6e57d26544dedefe6"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>m_buttons</b> [8]</td></tr>
-<tr class="separator:af5e6d52fa2baeda6e57d26544dedefe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3b63c7c572195e08f4c341f4bdb0286"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3b63c7c572195e08f4c341f4bdb0286"></a>
+short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mouse_state.html#af3b63c7c572195e08f4c341f4bdb0286">m_position</a> [2]</td></tr>
+<tr class="memdesc:af3b63c7c572195e08f4c341f4bdb0286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Współrzędne X i Y. <br /></td></tr>
+<tr class="separator:af3b63c7c572195e08f4c341f4bdb0286"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd0647cb20f1bcaff5f841bd662430ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd0647cb20f1bcaff5f841bd662430ac"></a>
+<a class="el" href="class_key_state.html">KeyState</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_buttons</b> [MOUSE_STATE_BUTTONS_NUMBER]</td></tr>
+<tr class="separator:abd0647cb20f1bcaff5f841bd662430ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/UIEngine/InputLibrary/<a class="el" href="_mouse_state_8h_source.html">MouseState.h</a></li>
-<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/UIEngine/InputLibrary/MouseState.cpp</li>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="a704a22d05159bb63505324fbe62b9f81"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_mouse_state.html#a704a22d05159bb63505324fbe62b9f81">MouseState::PHYSICAL_BUTTONS</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Przyciski fizyczne. </p>
+<p>Od BUTTON0 do BUTTON2 są to przyciski prawy, lewy i środkowy, które mają też aliasy LEFT_BUTTON, RIGHT_BUTTON, MIDDLE_BUTTON. Kolejne numery oznaczają pozostałe przyciski, jakie może posiadać mysz. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ad139c7bd73a23b7f5802e646a8a42d5b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MouseState::SetPosition </td>
+          <td>(</td>
+          <td class="paramtype">short&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">short&#160;</td>
+          <td class="paramname"><em>Y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ustawia pozycję myszy. </p>
+<p>Powinno być używane jedynie przez moduł wejścia (<a class="el" href="class_i_input.html">IInput</a>). </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/InputLibrary/<a class="el" href="_mouse_state_8h_source.html">MouseState.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:59 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:20 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

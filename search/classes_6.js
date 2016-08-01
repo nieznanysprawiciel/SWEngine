@@ -10,8 +10,8 @@ var searchData=
   ['floatpropertywrapper',['FloatPropertyWrapper',['../class_editor_plugin_1_1_float_property_wrapper.html',1,'EditorPlugin']]],
   ['frameworkelementadorner',['FrameworkElementAdorner',['../class_editor_app_1_1_g_u_i_1_1_framework_element_adorner.html',1,'EditorApp::GUI']]],
   ['frameworkelementadorner',['FrameworkElementAdorner',['../class_dot_net_lead_1_1_drag_drop_1_1_u_i_1_1_behavior_1_1_framework_element_adorner.html',1,'DotNetLead::DragDrop::UI::Behavior']]],
-  ['frameworkelementdragbehavior',['FrameworkElementDragBehavior',['../class_editor_app_1_1_g_u_i_1_1_framework_element_drag_behavior.html',1,'EditorApp::GUI']]],
   ['frameworkelementdragbehavior',['FrameworkElementDragBehavior',['../class_dot_net_lead_1_1_drag_drop_1_1_u_i_1_1_behavior_1_1_framework_element_drag_behavior.html',1,'DotNetLead::DragDrop::UI::Behavior']]],
-  ['frameworkelementdropbehavior',['FrameworkElementDropBehavior',['../class_editor_app_1_1_g_u_i_1_1_framework_element_drop_behavior.html',1,'EditorApp::GUI']]],
-  ['frameworkelementdropbehavior',['FrameworkElementDropBehavior',['../class_dot_net_lead_1_1_drag_drop_1_1_u_i_1_1_behavior_1_1_framework_element_drop_behavior.html',1,'DotNetLead::DragDrop::UI::Behavior']]]
+  ['frameworkelementdragbehavior',['FrameworkElementDragBehavior',['../class_editor_app_1_1_g_u_i_1_1_framework_element_drag_behavior.html',1,'EditorApp::GUI']]],
+  ['frameworkelementdropbehavior',['FrameworkElementDropBehavior',['../class_dot_net_lead_1_1_drag_drop_1_1_u_i_1_1_behavior_1_1_framework_element_drop_behavior.html',1,'DotNetLead::DragDrop::UI::Behavior']]],
+  ['frameworkelementdropbehavior',['FrameworkElementDropBehavior',['../class_editor_app_1_1_g_u_i_1_1_framework_element_drop_behavior.html',1,'EditorApp::GUI']]]
 ];

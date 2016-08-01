@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['writingmode',['WritingMode',['../group___serialization.html#ga46d11c2d08142ef2d32761c04d1aaa26',1,'Serializer.h']]]
+  ['vertex_5fbuffer_5foffset',['VERTEX_BUFFER_OFFSET',['../_model3_d_from_file_8h.html#afccb58d9ead5a896469f4004043c1444',1,'Model3DFromFile.h']]]
 ];

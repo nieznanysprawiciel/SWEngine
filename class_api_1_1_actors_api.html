@@ -140,6 +140,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>CleanScene</b> ()</td
 <tr class="memitem:afee325898eb0c4590c9d775da97d3d28"><td class="memTemplItemLeft" align="right" valign="top">Type *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_api.html#afee325898eb0c4590c9d775da97d3d28">CreateActor</a> (ActorType id)</td></tr>
 <tr class="memdesc:afee325898eb0c4590c9d775da97d3d28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tworzy aktora na podstawie identyfikatora.  <a href="#afee325898eb0c4590c9d775da97d3d28">More...</a><br /></td></tr>
 <tr class="separator:afee325898eb0c4590c9d775da97d3d28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f1dcaddd51deb98c7e48b9b627c14ea"><td class="memTemplParams" colspan="2"><a class="anchor" id="a6f1dcaddd51deb98c7e48b9b627c14ea"></a>
+template&lt;typename Type &gt; </td></tr>
+<tr class="memitem:a6f1dcaddd51deb98c7e48b9b627c14ea"><td class="memTemplItemLeft" align="right" valign="top">ActorType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_api.html#a6f1dcaddd51deb98c7e48b9b627c14ea">RegisterClass</a> (const std::string &amp;name, CreateActorFunction function)</td></tr>
+<tr class="memdesc:a6f1dcaddd51deb98c7e48b9b627c14ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rejestruje klasę o odanym typie. <br /></td></tr>
+<tr class="separator:a6f1dcaddd51deb98c7e48b9b627c14ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f8acaf5955e6dac06d75d1b709fa187"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_api.html#a7f8acaf5955e6dac06d75d1b709fa187">DeleteActor</a> (<a class="el" href="class_actor_base.html">ActorBase</a> *actor)</td></tr>
+<tr class="memdesc:a7f8acaf5955e6dac06d75d1b709fa187"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usuwa z silnika wszystkie odwołania do podanego aktora.  <a href="#a7f8acaf5955e6dac06d75d1b709fa187">More...</a><br /></td></tr>
+<tr class="separator:a7f8acaf5955e6dac06d75d1b709fa187"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dd9fc9a620c6bcfd302c65d7ca6d9d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5dd9fc9a620c6bcfd302c65d7ca6d9d4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_api.html#a5dd9fc9a620c6bcfd302c65d7ca6d9d4">DeleteAllActors</a> ()</td></tr>
+<tr class="memdesc:a5dd9fc9a620c6bcfd302c65d7ca6d9d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usuwa wszystkich aktorów. <br /></td></tr>
+<tr class="separator:a5dd9fc9a620c6bcfd302c65d7ca6d9d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28b1047690df4c25915a29f925527399"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a28b1047690df4c25915a29f925527399"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_api.html#a28b1047690df4c25915a29f925527399">AddToModules</a> (<a class="el" href="class_actor_base.html">ActorBase</a> *newActor, <a class="el" href="struct_actor_info.html">ActorInfo</a> actorModules)</td></tr>
 <tr class="memdesc:a28b1047690df4c25915a29f925527399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje aktora do wszystkich modułów zgodnie z zawartością struktury <a class="el" href="struct_actor_info.html" title="Przechowuje informacje w jakich modułach silnika znajduje się aktor. ">ActorInfo</a>. <br /></td></tr>
@@ -148,6 +160,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 const ActorData *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_api.html#a99687bc04b9648483bd321a16f4d71dc">FindActor</a> (<a class="el" href="class_actor_base.html">ActorBase</a> *actor)</td></tr>
 <tr class="memdesc:a99687bc04b9648483bd321a16f4d71dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca dane o podanym aktorze. <br /></td></tr>
 <tr class="separator:a99687bc04b9648483bd321a16f4d71dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5c954642bc57ec994c88dae2df23222"><td class="memItemLeft" align="right" valign="top">ActorData *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_api.html#af5c954642bc57ec994c88dae2df23222">FindActorByName</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:af5c954642bc57ec994c88dae2df23222"><td class="mdescLeft">&#160;</td><td class="mdescRight">Znajduje dane aktora.  <a href="#af5c954642bc57ec994c88dae2df23222">More...</a><br /></td></tr>
+<tr class="separator:af5c954642bc57ec994c88dae2df23222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81a0de6b3a447b6da6700d4d812d6390"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_actor_base.html">ActorBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_api.html#a81a0de6b3a447b6da6700d4d812d6390">GetActorByName</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:a81a0de6b3a447b6da6700d4d812d6390"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca wskaźnik na aktora o podanej nazwie.  <a href="#a81a0de6b3a447b6da6700d4d812d6390">More...</a><br /></td></tr>
+<tr class="separator:a81a0de6b3a447b6da6700d4d812d6390"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40141f78334b285d3ccfc28e9418ba9f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40141f78334b285d3ccfc28e9418ba9f"></a>
 const std::map&lt; std::string, ActorType &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_api.html#a40141f78334b285d3ccfc28e9418ba9f">GetRegisteredClasses</a> ()</td></tr>
 <tr class="memdesc:a40141f78334b285d3ccfc28e9418ba9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca mapę nazw i ich typów. <br /></td></tr>
@@ -155,11 +173,19 @@ const std::map&lt; std::string, ActorType &gt; &amp;&#160;</td><td class="memIte
 <tr class="memitem:af9ab4f5673de94f05b5eb6e4ff74dd2e"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; ActorData &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_api.html#af9ab4f5673de94f05b5eb6e4ff74dd2e">GetAllActors</a> ()</td></tr>
 <tr class="memdesc:af9ab4f5673de94f05b5eb6e4ff74dd2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pobiera dane o wszystkich aktorach.  <a href="#af9ab4f5673de94f05b5eb6e4ff74dd2e">More...</a><br /></td></tr>
 <tr class="separator:af9ab4f5673de94f05b5eb6e4ff74dd2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91c086592a0681a33c75a703f4e11624"><td class="memItemLeft" align="right" valign="top">const std::map&lt; std::string, <a class="el" href="class_actor_base.html">ActorBase</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_api.html#a91c086592a0681a33c75a703f4e11624">GetActorsNames</a> ()</td></tr>
+<tr class="memdesc:a91c086592a0681a33c75a703f4e11624"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca mapę nazw aktorów i wskaźników na nich.  <a href="#a91c086592a0681a33c75a703f4e11624">More...</a><br /></td></tr>
+<tr class="separator:a91c086592a0681a33c75a703f4e11624"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a774be4251ea346b2c1960e2e10f4353e"><td class="memTemplParams" colspan="2"><a class="anchor" id="a774be4251ea346b2c1960e2e10f4353e"></a>
 template&lt;&gt; </td></tr>
 <tr class="memitem:a774be4251ea346b2c1960e2e10f4353e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="class_actor_base.html">ActorBase</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_api.html#a774be4251ea346b2c1960e2e10f4353e">CreateActor</a> (const std::string &amp;name)</td></tr>
 <tr class="memdesc:a774be4251ea346b2c1960e2e10f4353e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specjalizacja szablonu dla <a class="el" href="class_actor_base.html" title="Klasa bazowa dla wszystkich obiektów w grze (aktorów). ">ActorBase</a>. Dzięki temu edytor nie będzie musiał includować <a class="el" href="struct_engine_context.html" title="Przechowuje wszystkie zmienne, które powinny znaleźć się w klasie EngineInterface.Struktura jest potrzebna, żeby komendy mogły mieć dostęp do stanu silnika. ">EngineContext</a> i nie będzie krzyczał, że klasa std::mutex mu nie pasuje. <br /></td></tr>
 <tr class="separator:a774be4251ea346b2c1960e2e10f4353e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8f5e216e8e9c4e4f7c196616d73c7f6"><td class="memTemplParams" colspan="2"><a class="anchor" id="ab8f5e216e8e9c4e4f7c196616d73c7f6"></a>
+template&lt;&gt; </td></tr>
+<tr class="memitem:ab8f5e216e8e9c4e4f7c196616d73c7f6"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="class_actor_base.html">ActorBase</a> *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_api_1_1_actors_api.html#ab8f5e216e8e9c4e4f7c196616d73c7f6">CreateActor</a> (ActorType id)</td></tr>
+<tr class="memdesc:ab8f5e216e8e9c4e4f7c196616d73c7f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specjalizacja szablonu dla <a class="el" href="class_actor_base.html" title="Klasa bazowa dla wszystkich obiektów w grze (aktorów). ">ActorBase</a>. Dzięki temu edytor nie będzie musiał includować <a class="el" href="struct_engine_context.html" title="Przechowuje wszystkie zmienne, które powinny znaleźć się w klasie EngineInterface.Struktura jest potrzebna, żeby komendy mogły mieć dostęp do stanu silnika. ">EngineContext</a> i nie będzie krzyczał, że klasa std::mutex mu nie pasuje. <br /></td></tr>
+<tr class="separator:ab8f5e216e8e9c4e4f7c196616d73c7f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -198,7 +224,7 @@ static <a class="el" href="struct_engine_context.html">EngineContext</a> *&#160;
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000007">Deprecated:</a></b></dt><dd>Pozostawione dla zgodności z LightmapTools. Zamiast tego należy używać funkcji <a class="el" href="class_api_1_1_actors_api.html#a28b1047690df4c25915a29f925527399">ActorsApi::AddToModules</a> </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000009">Deprecated:</a></b></dt><dd>Pozostawione dla zgodności z LightmapTools. Zamiast tego należy używać funkcji <a class="el" href="class_api_1_1_actors_api.html#a28b1047690df4c25915a29f925527399">ActorsApi::AddToModules</a> </dd></dl>
 
 </div>
 </div>
@@ -364,6 +390,78 @@ template&lt;typename Type &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a7f8acaf5955e6dac06d75d1b709fa187"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Api::ActorsApi::DeleteActor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_actor_base.html">ActorBase</a> *&#160;</td>
+          <td class="paramname"><em>actor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Usuwa z silnika wszystkie odwołania do podanego aktora. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000055">Todo:</a></b></dt><dd>Funkcja powinna usuwać aktora dopiero po zakończeniu klatki. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af5c954642bc57ec994c88dae2df23222"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ActorData * Api::ActorsApi::FindActorByName </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Znajduje dane aktora. </p>
+
+</div>
+</div>
+<a class="anchor" id="a81a0de6b3a447b6da6700d4d812d6390"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_actor_base.html">ActorBase</a> * Api::ActorsApi::GetActorByName </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zwraca wskaźnik na aktora o podanej nazwie. </p>
+
+</div>
+</div>
+<a class="anchor" id="a91c086592a0681a33c75a703f4e11624"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::map&lt; std::string, <a class="el" href="class_actor_base.html">ActorBase</a> * &gt; &amp; Api::ActorsApi::GetActorsNames </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zwraca mapę nazw aktorów i wskaźników na nich. </p>
+
+</div>
+</div>
 <a class="anchor" id="af9ab4f5673de94f05b5eb6e4ff74dd2e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -396,8 +494,8 @@ template&lt;typename Type &gt; </div>
 </div><div class="memdoc">
 
 <p>Pobiera aktorów z moduły <a class="el" href="class_display_engine.html">DisplayEngine</a>. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000048">Todo:</a></b></dt><dd>Zlikwidować GetSceneObjects. Stworzone tylko dla LightmapsTool. </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000006">Deprecated:</a></b></dt><dd>Pozostawione dla zgodności z LightmapTools. Zamiast tego należy używać funkcji <a class="el" href="class_api_1_1_actors_api.html#af9ab4f5673de94f05b5eb6e4ff74dd2e">ActorsApi::GetAllActors</a>, która zwaraca wszystkicj aktorów w silniku. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000056">Todo:</a></b></dt><dd>Zlikwidować GetSceneObjects. Stworzone tylko dla LightmapsTool. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000008">Deprecated:</a></b></dt><dd>Pozostawione dla zgodności z LightmapTools. Zamiast tego należy używać funkcji <a class="el" href="class_api_1_1_actors_api.html#af9ab4f5673de94f05b5eb6e4ff74dd2e">ActorsApi::GetAllActors</a>, która zwaraca wszystkicj aktorów w silniku. </dd></dl>
 
 </div>
 </div>
@@ -408,7 +506,7 @@ template&lt;typename Type &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:59 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:20 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

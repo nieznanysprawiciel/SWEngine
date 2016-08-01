@@ -112,6 +112,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>LoadProject</b> (stri
 <tr class="memitem:a83ebf7a5d738d9fa009ff47d446f8681"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a83ebf7a5d738d9fa009ff47d446f8681"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>SaveProject</b> ()</td></tr>
 <tr class="separator:a83ebf7a5d738d9fa009ff47d446f8681"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a27ce5f53c9daed268369850b2596bb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a27ce5f53c9daed268369850b2596bb"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>LoadProjectSettings</b> (string projectFilePath)</td></tr>
+<tr class="separator:a2a27ce5f53c9daed268369850b2596bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbfd05c9b7e6a854237c447d2d6b956e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afbfd05c9b7e6a854237c447d2d6b956e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>LoadUserSettings</b> ()</td></tr>
+<tr class="separator:afbfd05c9b7e6a854237c447d2d6b956e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
@@ -121,6 +127,15 @@ Properties</h2></td></tr>
 <tr class="memitem:a1012c0ae18c1302ce4e91a997d29428b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1012c0ae18c1302ce4e91a997d29428b"></a>
 <a class="el" href="class_editor_app_1_1_editor_1_1_project_1_1_content_1_1_content_manager.html">ContentManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ContentManager</b><code> [get, set]</code></td></tr>
 <tr class="separator:a1012c0ae18c1302ce4e91a997d29428b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28157a0da3136d756f2a994cb08fd7e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a28157a0da3136d756f2a994cb08fd7e6"></a>
+<a class="el" href="class_editor_app_1_1_project_1_1_user_settings.html">UserSettings</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UserSettings</b><code> [get, set]</code></td></tr>
+<tr class="separator:a28157a0da3136d756f2a994cb08fd7e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac974861d21d61c2d56904769eee8596c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac974861d21d61c2d56904769eee8596c"></a>
+<a class="el" href="class_editor_app_1_1_project_1_1_project_settings.html">ProjectSettings</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ProjectSettings</b><code> [get, set]</code></td></tr>
+<tr class="separator:ac974861d21d61c2d56904769eee8596c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a661eacace4878ac0aef6aca6739b943a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a661eacace4878ac0aef6aca6739b943a"></a>
+<a class="el" href="class_editor_app_1_1_project_1_1_project_view.html">ProjectView</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ProjectView</b><code> [get, set]</code></td></tr>
+<tr class="separator:a661eacace4878ac0aef6aca6739b943a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -140,6 +155,9 @@ Private Attributes</h2></td></tr>
 <a class="el" href="class_editor_app_1_1_logic.html">Logic</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_editor_app_1_1_project_1_1_project_manager.html#a5a313150f1eb411e39ad24693d69bf95">m_editorLogic</a></td></tr>
 <tr class="memdesc:a5a313150f1eb411e39ad24693d69bf95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Referencja na główny obiekt edytora. <br /></td></tr>
 <tr class="separator:a5a313150f1eb411e39ad24693d69bf95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad585c9d8388dad32064e0a6397684963"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad585c9d8388dad32064e0a6397684963"></a>
+<a class="el" href="class_editor_app_1_1_project_1_1_project_view.html">ProjectView</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_projectView</b></td></tr>
+<tr class="separator:ad585c9d8388dad32064e0a6397684963"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineEditor/EditorApp/Editor/Project/ProjectManager.cs</li>
@@ -147,7 +165,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:59 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:21 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

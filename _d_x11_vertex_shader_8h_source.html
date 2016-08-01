@@ -99,7 +99,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;../DX11Initializer/DX11APIObjects.h&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="class_d_x11_vertex_shader.html">    9</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_d_x11_vertex_shader.html">DX11VertexShader</a>  :   <span class="keyword">public</span> <a class="code" href="class_vertex_shader_object.html">VertexShaderObject</a>, <span class="keyword">public</span> <a class="code" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="class_d_x11_vertex_shader.html">    9</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_d_x11_vertex_shader.html">DX11VertexShader</a>  :   <span class="keyword">public</span> <a class="code" href="class_vertex_shader.html">VertexShader</a>, <span class="keyword">public</span> <a class="code" href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    ID3D11VertexShader*             m_vertexShader;</div>
@@ -131,14 +131,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_i_shader_html_a75d9c492a3bc08c9c6695a4bd7a394cb"><div class="ttname"><a href="class_i_shader.html#a75d9c492a3bc08c9c6695a4bd7a394cb">IShader::m_shaderFile</a></div><div class="ttdeci">std::wstring m_shaderFile</div><div class="ttdoc">Ścieżka do pliku z shaderem. </div><div class="ttdef"><b>Definition:</b> IShader.h:17</div></div>
 <div class="ttc" id="class_d_x11_a_p_i_objects_html"><div class="ttname"><a href="class_d_x11_a_p_i_objects.html">DX11APIObjects</a></div><div class="ttdoc">Klasa przechowuje w zmiennych statycznych najważniejsze interfejsy DirectX11. </div><div class="ttdef"><b>Definition:</b> DX11APIObjects.h:64</div></div>
 <div class="ttc" id="class_d_x11_vertex_shader_html"><div class="ttname"><a href="class_d_x11_vertex_shader.html">DX11VertexShader</a></div><div class="ttdoc">Implementacja vertex shadera w DirectX 11. </div><div class="ttdef"><b>Definition:</b> DX11VertexShader.h:9</div></div>
-<div class="ttc" id="class_vertex_shader_object_html"><div class="ttname"><a href="class_vertex_shader_object.html">VertexShaderObject</a></div><div class="ttdoc">Klasa przechowująca vertex shader. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:349</div></div>
 <div class="ttc" id="class_d_x11_vertex_shader_html_a0393ab0d1f20a5cab615a874c5711952"><div class="ttname"><a href="class_d_x11_vertex_shader.html#a0393ab0d1f20a5cab615a874c5711952">DX11VertexShader::CreateFromFile</a></div><div class="ttdeci">static DX11VertexShader * CreateFromFile(const std::wstring &amp;fileName, const std::string &amp;shaderName, const char *shaderModel=&quot;vs_4_0&quot;)</div><div class="ttdoc">Tworzy obiekt DX11VertexShader na podstawie pliku. </div><div class="ttdef"><b>Definition:</b> DX11VertexShader.cpp:49</div></div>
 <div class="ttc" id="class_shader_input_layout_object_html"><div class="ttname"><a href="class_shader_input_layout_object.html">ShaderInputLayoutObject</a></div><div class="ttdoc">Klasa przechowuje layout wierzchołka trafiającego do vertex shadera. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:314</div></div>
+<div class="ttc" id="class_vertex_shader_html"><div class="ttname"><a href="class_vertex_shader.html">VertexShader</a></div><div class="ttdoc">Klasa przechowująca vertex shader. </div><div class="ttdef"><b>Definition:</b> MeshResources.h:361</div></div>
 <div class="ttc" id="class_i_shader_html_a8ddf166da0258410e88a0f4c65aaced1"><div class="ttname"><a href="class_i_shader.html#a8ddf166da0258410e88a0f4c65aaced1">IShader::m_shaderEntry</a></div><div class="ttdeci">std::string m_shaderEntry</div><div class="ttdoc">Nazwa głownej funkcji shadera. </div><div class="ttdef"><b>Definition:</b> IShader.h:16</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['use_5fas_5fdeferred',['USE_AS_DEFERRED',['../_i_renderer_8h.html#a638079122796f5eb96dac10b81adf650ad6701dbd766f77bb610540d9b59b9c01',1,'IRenderer.h']]],
-  ['use_5fas_5fimmediate',['USE_AS_IMMEDIATE',['../_i_renderer_8h.html#a638079122796f5eb96dac10b81adf650aa7f4b1c5be397e3eb3262482ca1fae15',1,'IRenderer.h']]]
+  ['vertex_5fcolor',['VERTEX_COLOR',['../_d_x11_a_p_i_objects_8h.html#a63a1087679bdf9e7400ab87314e5f289ab4167a68eadcb622b69fc2d4c2bc84c4',1,'DX11APIObjects.h']]],
+  ['vertex_5fnormal_5fcolor',['VERTEX_NORMAL_COLOR',['../_d_x11_a_p_i_objects_8h.html#a63a1087679bdf9e7400ab87314e5f289a24d9397c3193e950d6af2b4bfbd2b570',1,'DX11APIObjects.h']]],
+  ['vertex_5fnormal_5ftexture',['VERTEX_NORMAL_TEXTURE',['../_d_x11_a_p_i_objects_8h.html#a63a1087679bdf9e7400ab87314e5f289ae40dee314f07eb68ddef02db188be3a9',1,'DX11APIObjects.h']]],
+  ['vertex_5ftexture',['VERTEX_TEXTURE',['../_d_x11_a_p_i_objects_8h.html#a63a1087679bdf9e7400ab87314e5f289ad6a3bec15a4b302e8605587446b67da7',1,'DX11APIObjects.h']]]
 ];

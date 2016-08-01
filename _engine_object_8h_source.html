@@ -96,17 +96,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;Common/RTTR.h&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_types_definitions_8h.html">Common/TypesDefinitions.h</a>&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="class_engine_object.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_engine_object.html">EngineObject</a></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    RTTR_ENABLE()</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;};</div>
-<div class="ttc" id="class_engine_object_html"><div class="ttname"><a href="class_engine_object.html">EngineObject</a></div><div class="ttdoc">Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz...</div><div class="ttdef"><b>Definition:</b> EngineObject.h:15</div></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">class </span><a class="code" href="class_i_serializer.html">ISerializer</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">class </span><a class="code" href="class_i_deserializer.html">IDeserializer</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_engine_object.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_engine_object.html">EngineObject</a></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    RTTR_ENABLE()</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">inline</span> rttr::type   GetType         ()<span class="keyword"> const        </span>{ <span class="keywordflow">return</span> this-&gt;get_type(); }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span>        Serialize       ( <a class="code" href="class_i_serializer.html">ISerializer</a>* ser )<span class="keyword"> const  </span>{}</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span>        Deserialize     ( <a class="code" href="class_i_deserializer.html">IDeserializer</a>* deser )    {}</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_engine_object.html#ae9412b884612f08341e1f638e3cbed90">   35</a></span>&#160;    <span class="keyword">virtual</span> Size        <a class="code" href="class_engine_object.html#ae9412b884612f08341e1f638e3cbed90">MemorySize</a>      ()                          { <span class="keywordflow">return</span> this-&gt;get_type().get_sizeof(); }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;};</div>
+<div class="ttc" id="class_i_deserializer_html"><div class="ttname"><a href="class_i_deserializer.html">IDeserializer</a></div><div class="ttdoc">Interfejs deserializatorów. </div><div class="ttdef"><b>Definition:</b> Deserializer.h:38</div></div>
+<div class="ttc" id="class_i_serializer_html"><div class="ttname"><a href="class_i_serializer.html">ISerializer</a></div><div class="ttdoc">Interfejs dla serializatorów. </div><div class="ttdef"><b>Definition:</b> Serializer.h:35</div></div>
+<div class="ttc" id="_types_definitions_8h_html"><div class="ttname"><a href="_types_definitions_8h.html">TypesDefinitions.h</a></div><div class="ttdoc">Plik zawiera definicje podstawowych typów zmiennych. </div></div>
+<div class="ttc" id="class_engine_object_html"><div class="ttname"><a href="class_engine_object.html">EngineObject</a></div><div class="ttdoc">Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz...</div><div class="ttdef"><b>Definition:</b> EngineObject.h:22</div></div>
+<div class="ttc" id="class_engine_object_html_ae9412b884612f08341e1f638e3cbed90"><div class="ttname"><a href="class_engine_object.html#ae9412b884612f08341e1f638e3cbed90">EngineObject::MemorySize</a></div><div class="ttdeci">virtual Size MemorySize()</div><div class="ttdef"><b>Definition:</b> EngineObject.h:35</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:57 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:18 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

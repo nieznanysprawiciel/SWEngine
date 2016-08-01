@@ -155,6 +155,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateJoystick</b> (i
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr class="memitem:a8b953f8413a1a5a88a5fa80343c3795f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b953f8413a1a5a88a5fa80343c3795f"></a>
+HWND&#160;</td><td class="memItemRight" valign="bottom"><b>m_windowHandle</b></td></tr>
+<tr class="separator:a8b953f8413a1a5a88a5fa80343c3795f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46ff363dd7f12cd42df261d5efe858bc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46ff363dd7f12cd42df261d5efe858bc"></a>
 LPDIRECTINPUT8&#160;</td><td class="memItemRight" valign="bottom"><b>m_directInput</b></td></tr>
 <tr class="separator:a46ff363dd7f12cd42df261d5efe858bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,7 +178,9 @@ std::vector&lt; <a class="el" href="class_joystick_state.html">JoystickState</a>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Klasa obsługująca wejście użytkownika. </p>
 <p>Używa interfejsu Direct Inputa.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000042">Todo:</a></b></dt><dd>Zrobić obsługę wielu urządzeń tego samego typu i jousticka. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000089">Todo:</a></b></dt><dd><p class="startdd">Zrobić obsługę wielu urządzeń tego samego typu i jousticka. </p>
+<p class="enddd">Pozbyć się includowania direct input z EngineCore. </p>
+</dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="ae8f3a11ad86dba0d09309b09d46ec4e1"></a>
 <div class="memitem">
@@ -276,7 +281,7 @@ std::vector&lt; <a class="el" href="class_joystick_state.html">JoystickState</a>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000043">Todo:</a></b></dt><dd>Pewnie to powienien być wektor. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000090">Todo:</a></b></dt><dd>Pewnie to powienien być wektor. </dd></dl>
 
 </div>
 </div>
@@ -297,18 +302,18 @@ std::vector&lt; <a class="el" href="class_joystick_state.html">JoystickState</a>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000044">Todo:</a></b></dt><dd>Pewnie to powienien być wektor. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000091">Todo:</a></b></dt><dd>Pewnie to powienien być wektor. </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/UIEngine/InputLibrary/DirectInput/<a class="el" href="_direct_input_module_8h_source.html">DirectInputModule.h</a></li>
-<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/UIEngine/InputLibrary/DirectInput/DirectInputModule.cpp</li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/InputLibrary/DirectInput/<a class="el" href="_direct_input_module_8h_source.html">DirectInputModule.h</a></li>
+<li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/InputLibrary/DirectInput/DirectInputModule.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -83,14 +83,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Komendy silnika </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Logika gry operując na funkcjach API w <a class="el" href="class_engine_interface.html" title="Klasa jest interfejsem dla użytkownika użytkującego silnik.Taki interfejs będzie widział użytkownik s...">EngineInterface</a>, nie modyfikuje bezpośrednio na stanie silnika. Silnik działa wielowątkowo i takie podejście mogłoby znacznie utrudnić zachowanie spójności danych. Z tego powodu aktorzy widzą zawsze stan silnika z początku danej klatki i na nim operują.</p>
+<div class="textblock"><p>Logika gry operując na funkcjach API w <a class="el" href="class_engine_interface.html" title="Klasa jest interfejsem dla użytkownika użytkującego silnik.Taki interfejs będzie widział użytkownik s...">EngineInterface</a>, nie modyfikuje bezpośrednio stanu silnika. Silnik działa wielowątkowo i takie podejście mogłoby znacznie utrudnić zachowanie spójności danych. Z tego powodu aktorzy widzą zawsze stan silnika z początku danej klatki i na nim operują.</p>
 <p>Funkcje API <a class="el" href="class_engine_interface.html" title="Klasa jest interfejsem dla użytkownika użytkującego silnik.Taki interfejs będzie widział użytkownik s...">EngineInterface</a> tworzą odpowiednie komendy (dzidziczace po klasie <a class="el" href="class_command.html" title="Klasa bazowa dla komend wewnątrz silnika. ">Command</a>) silnika i dodają je do kolejki <a class="el" href="struct_engine_context.html#a810f60682f8876977775923db45c3e5a" title="Kolejka komend wykonywanych po zakończeniu wszystkich obliczeń w danej klatce. Aktualizuje stan silni...">EngineContext::commandQueue</a>. W momencie, gdy wszystkie operacje związane z logiką gry zakończą się, wykonywane są komendy, aby ustawićktóre ustawiają nowy stan silnika.</p>
 <dl class="section note"><dt>Note</dt><dd>Silnik gwarantuje, że komendy są wykonywane w jednym wątku i wywołania funkcji nie wymagają żadnej synchronizacji.</dd></dl>
 <p>Jeżeli funkcje API nie są wystarczające do spełnienia wszystkich funkcjonalności, istnieje możliwość napisania własnej komendy dziedzicząc po klasie <a class="el" href="class_command.html" title="Klasa bazowa dla komend wewnątrz silnika. ">Command</a>. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

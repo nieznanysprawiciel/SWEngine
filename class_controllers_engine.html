@@ -89,6 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_controllers_engine-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -106,20 +107,49 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a46a3248364c848d9387482e62180e00a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46a3248364c848d9387482e62180e00a"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>ControllersEngine</b> (<a class="el" href="class_engine.html">Engine</a> *parent)</td></tr>
 <tr class="separator:a46a3248364c848d9387482e62180e00a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0484a34ce4bb526ff46da616fe853ba5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0484a34ce4bb526ff46da616fe853ba5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ProceedControllersPre</b> (float time_interval)</td></tr>
-<tr class="separator:a0484a34ce4bb526ff46da616fe853ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a116c5da97a61e58c2f36edad288236a7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a116c5da97a61e58c2f36edad288236a7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ProceedControllersPost</b> (float time_interval)</td></tr>
-<tr class="separator:a116c5da97a61e58c2f36edad288236a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84b8f524333fe113470f22a1c852226b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84b8f524333fe113470f22a1c852226b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controllers_engine.html#a84b8f524333fe113470f22a1c852226b">AddPreControlled</a> (<a class="el" href="class_dynamic_actor.html">DynamicActor</a> *object)</td></tr>
-<tr class="memdesc:a84b8f524333fe113470f22a1c852226b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje podany obiekt do kontrolerów wywoływanych przed przesunięciem obiektów. <br /></td></tr>
-<tr class="separator:a84b8f524333fe113470f22a1c852226b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abaf43fe0f8aee2db49055177956bbdda"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abaf43fe0f8aee2db49055177956bbdda"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controllers_engine.html#abaf43fe0f8aee2db49055177956bbdda">AddPostControlled</a> (<a class="el" href="class_dynamic_actor.html">DynamicActor</a> *object)</td></tr>
-<tr class="memdesc:abaf43fe0f8aee2db49055177956bbdda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje podany obiekt do kontrolerów wywoływanych po przesunięciu obiektów. <br /></td></tr>
-<tr class="separator:abaf43fe0f8aee2db49055177956bbdda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19a748bf1f0582668ede8ff121514e7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controllers_engine.html#a19a748bf1f0582668ede8ff121514e7a">ProceedControllersPre</a> (float timeInterval)</td></tr>
+<tr class="memdesc:a19a748bf1f0582668ede8ff121514e7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wywołuje kontrolery na obsługiwanych obiektach.  <a href="#a19a748bf1f0582668ede8ff121514e7a">More...</a><br /></td></tr>
+<tr class="separator:a19a748bf1f0582668ede8ff121514e7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84fa173ef16cfd7f68b11906e0351aa4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controllers_engine.html#a84fa173ef16cfd7f68b11906e0351aa4">ProceedControllersPost</a> (float timeInterval)</td></tr>
+<tr class="memdesc:a84fa173ef16cfd7f68b11906e0351aa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wywołuje kontrolery na obsługiwanych obiektach.  <a href="#a84fa173ef16cfd7f68b11906e0351aa4">More...</a><br /></td></tr>
+<tr class="separator:a84fa173ef16cfd7f68b11906e0351aa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacee401f0608162957e3e22798a8382d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacee401f0608162957e3e22798a8382d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controllers_engine.html#aacee401f0608162957e3e22798a8382d">SingleThreadedUpdatePhase</a> (float timeInterval)</td></tr>
+<tr class="memdesc:aacee401f0608162957e3e22798a8382d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktualizuje stan m_globalState. <br /></td></tr>
+<tr class="separator:aacee401f0608162957e3e22798a8382d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adab75253df2aa4228c82305c813dd062"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adab75253df2aa4228c82305c813dd062"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controllers_engine.html#adab75253df2aa4228c82305c813dd062">AddPreControlled</a> (<a class="el" href="class_dynamic_actor.html">DynamicActor</a> *actor)</td></tr>
+<tr class="memdesc:adab75253df2aa4228c82305c813dd062"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje podany obiekt do kontrolerów wywoływanych przed przesunięciem obiektów. <br /></td></tr>
+<tr class="separator:adab75253df2aa4228c82305c813dd062"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad90a79cfceecbb16f858b321c2edf938"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad90a79cfceecbb16f858b321c2edf938"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controllers_engine.html#ad90a79cfceecbb16f858b321c2edf938">AddPostControlled</a> (<a class="el" href="class_dynamic_actor.html">DynamicActor</a> *actor)</td></tr>
+<tr class="memdesc:ad90a79cfceecbb16f858b321c2edf938"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dodaje podany obiekt do kontrolerów wywoływanych po przesunięciu obiektów. <br /></td></tr>
+<tr class="separator:ad90a79cfceecbb16f858b321c2edf938"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40d18126ebbd37d91a757ccb15970354"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40d18126ebbd37d91a757ccb15970354"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controllers_engine.html#a40d18126ebbd37d91a757ccb15970354">RemovePreCtrlActor</a> (<a class="el" href="class_actor_base.html">ActorBase</a> *actor)</td></tr>
+<tr class="memdesc:a40d18126ebbd37d91a757ccb15970354"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usuwa aktora z tablicy obiektów pre kontrolowanych. <br /></td></tr>
+<tr class="separator:a40d18126ebbd37d91a757ccb15970354"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a637a163d9b02bac164fadbd1e5c162f9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a637a163d9b02bac164fadbd1e5c162f9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controllers_engine.html#a637a163d9b02bac164fadbd1e5c162f9">RemovePostCtrlActor</a> (<a class="el" href="class_actor_base.html">ActorBase</a> *actor)</td></tr>
+<tr class="memdesc:a637a163d9b02bac164fadbd1e5c162f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usuwa aktora z tablicy obiektów post kontrolowanych. <br /></td></tr>
+<tr class="separator:a637a163d9b02bac164fadbd1e5c162f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2de5b97aad532295187c198700b95c1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2de5b97aad532295187c198700b95c1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controllers_engine.html#ae2de5b97aad532295187c198700b95c1">RemoveActor</a> (<a class="el" href="class_actor_base.html">ActorBase</a> *actor)</td></tr>
+<tr class="memdesc:ae2de5b97aad532295187c198700b95c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usuwa aktora z modułu. <br /></td></tr>
+<tr class="separator:ae2de5b97aad532295187c198700b95c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ec2829bc79f690db834228d80c19921"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ec2829bc79f690db834228d80c19921"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controllers_engine.html#a0ec2829bc79f690db834228d80c19921">RemoveAllActors</a> ()</td></tr>
+<tr class="memdesc:a0ec2829bc79f690db834228d80c19921"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usuwa wszystkich aktorów. <br /></td></tr>
+<tr class="separator:a0ec2829bc79f690db834228d80c19921"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef29f34976142ff863003646d4828fc9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef29f34976142ff863003646d4828fc9"></a>
+<a class="el" href="struct_i_controllers_state.html">IControllersState</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetGlobalState</b> ()</td></tr>
+<tr class="separator:aef29f34976142ff863003646d4828fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a79b8c4a67113b3313b01b3c7dbd2ebe4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a79b8c4a67113b3313b01b3c7dbd2ebe4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateGlobalState</b> (float timeInterval)</td></tr>
+<tr class="separator:a79b8c4a67113b3313b01b3c7dbd2ebe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -132,17 +162,59 @@ std::vector&lt; <a class="el" href="class_dynamic_actor.html">DynamicActor</a> *
 <tr class="memitem:a36560505ae256fbb475eb766a762a95f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36560505ae256fbb475eb766a762a95f"></a>
 std::vector&lt; <a class="el" href="class_dynamic_actor.html">DynamicActor</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_postControlledObjects</b></td></tr>
 <tr class="separator:a36560505ae256fbb475eb766a762a95f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afef80412fab0315cc0f6832d65630435"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afef80412fab0315cc0f6832d65630435"></a>
+<a class="el" href="struct_i_controllers_state.html">IControllersState</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_globalState</b></td></tr>
+<tr class="separator:afef80412fab0315cc0f6832d65630435"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Moduł do zarządzania kontrolerami obiektów. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a84fa173ef16cfd7f68b11906e0351aa4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ControllersEngine::ProceedControllersPost </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>timeInterval</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wywołuje kontrolery na obsługiwanych obiektach. </p>
+<p>Funkcja wywoływana po <a class="el" href="class_movement_engine.html#a393fc8906e769cf069bf75f152c14037" title="Przemieszcza obiekty na podstawie ich prędkości. ">MovementEngine::ProceedMovement</a>. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="_controllers.html">Kontrolery</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a19a748bf1f0582668ede8ff121514e7a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ControllersEngine::ProceedControllersPre </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>timeInterval</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wywołuje kontrolery na obsługiwanych obiektach. </p>
+<p>Funkcja wywoływana przed <a class="el" href="class_movement_engine.html#a393fc8906e769cf069bf75f152c14037" title="Przemieszcza obiekty na podstawie ich prędkości. ">MovementEngine::ProceedMovement</a>. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="_controllers.html">Kontrolery</a> </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/ControllersEngine/<a class="el" href="_controllers_engine_8h_source.html">ControllersEngine.h</a></li>
 <li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/ControllersEngine/ControllersEngine.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -124,7 +124,7 @@ Deklarowanie typów obiektów</h2>
 <div class="line">    RTTR_ENABLE( <a class="code" href="class_engine_object.html">EngineObject</a> )</div>
 <div class="line">    <span class="comment">//...</span></div>
 <div class="line">};</div>
-</div><!-- fragment --><p>Następnie w pliku .cpp można dodać metadane klasy</p>
+</div><!-- fragment --><p>Następnie w pliku .cpp można dodać metadane klasy. Nazwy własciwości nie powinny zawierać białych znaków, ponieważ to może powodować problemy przy serializacji do XMLa.</p>
 <div class="fragment"><div class="line">RTTR_REGISTRATION</div>
 <div class="line">{</div>
 <div class="line">    rttr::registration::class_&lt; StaticActor &gt;( <span class="stringliteral">&quot;StaticActor&quot;</span> )</div>
@@ -142,7 +142,7 @@ Deklarowanie typów obiektów</h2>
 </div><!-- fragment --><h2><a class="anchor" id="RTTRNestedClasses"></a>
 Aktorzy z klasami zagnieżdżonymi</h2>
 <p>Typy złożone jak DirectX::XMFLOAT3 powinny być deklarowane z polityką rttr::policy::prop::BindAsPtr() (Tak jak w przykładzie powyżej). W przeciwnym razie edytor nie będzie mógł ich odczytywać i zapisywać. Podobnie sprawa ma się ze strutkurami wewnątrz klasy np:</p>
-<div class="fragment"><div class="line"><span class="keyword">struct </span>Nested</div>
+<div class="fragment"><div class="line"><span class="keyword">struct </span>Nested : <span class="keyword">public</span> <a class="code" href="class_engine_object.html">EngineObject</a></div>
 <div class="line">{</div>
 <div class="line">    <span class="keywordtype">int</span> variable1;</div>
 <div class="line">    <span class="keywordtype">int</span> variable2;</div>
@@ -157,7 +157,7 @@ Aktorzy z klasami zagnieżdżonymi</h2>
 <li>int</li>
 <li>float</li>
 <li>double</li>
-<li>bool nie mogą być deklrowane z polityką BindAsPtr.</li>
+<li>bool nie mogą być deklarowane z polityką BindAsPtr.</li>
 </ul>
 <h2><a class="anchor" id="PrivateMembers"></a>
 Prywatne składowe klasy</h2>
@@ -171,7 +171,7 @@ Prywatne składowe klasy</h2>
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

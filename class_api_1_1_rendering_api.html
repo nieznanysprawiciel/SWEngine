@@ -118,6 +118,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af7385fccacc489f533ff90cf71a7604b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_rendering_api.html#af7385fccacc489f533ff90cf71a7604b">RenderOnce</a> (<a class="el" href="class_render_pass.html">RenderPass</a> *)</td></tr>
 <tr class="memdesc:af7385fccacc489f533ff90cf71a7604b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dorzuca do kolejki renderingu nowy przebieg, który zostanie wyrenderowany tylko raz.  <a href="#af7385fccacc489f533ff90cf71a7604b">More...</a><br /></td></tr>
 <tr class="separator:af7385fccacc489f533ff90cf71a7604b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace4b94741ca84fe69e7f387850ff63f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_camera_actor.html">CameraActor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_rendering_api.html#ace4b94741ca84fe69e7f387850ff63f2">GetCurrentCamera</a> ()</td></tr>
+<tr class="memdesc:ace4b94741ca84fe69e7f387850ff63f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca aktualnie ustawioną kamerę główną.  <a href="#ace4b94741ca84fe69e7f387850ff63f2">More...</a><br /></td></tr>
+<tr class="separator:ace4b94741ca84fe69e7f387850ff63f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60ae1697355727a53eca0ff633c53be9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_rendering_api.html#a60ae1697355727a53eca0ff633c53be9">SetCurrentCamera</a> (<a class="el" href="class_camera_actor.html">CameraActor</a> *camera)</td></tr>
+<tr class="memdesc:a60ae1697355727a53eca0ff633c53be9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia aktualnie używaną kamerę.  <a href="#a60ae1697355727a53eca0ff633c53be9">More...</a><br /></td></tr>
+<tr class="separator:a60ae1697355727a53eca0ff633c53be9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6df569fab55ad1f4ccff209e05a2b653"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6df569fab55ad1f4ccff209e05a2b653"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_rendering_api.html#a6df569fab55ad1f4ccff209e05a2b653">GetWindowWidth</a> ()</td></tr>
+<tr class="memdesc:a6df569fab55ad1f4ccff209e05a2b653"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca szerokość głównego render targetu. <br /></td></tr>
+<tr class="separator:a6df569fab55ad1f4ccff209e05a2b653"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0aafbcd22fe672e03bc1d687f8e5056"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0aafbcd22fe672e03bc1d687f8e5056"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_api_1_1_rendering_api.html#ac0aafbcd22fe672e03bc1d687f8e5056">GetWindowHeight</a> ()</td></tr>
+<tr class="memdesc:ac0aafbcd22fe672e03bc1d687f8e5056"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca wysokość głównego render targetu. <br /></td></tr>
+<tr class="separator:ac0aafbcd22fe672e03bc1d687f8e5056"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -132,6 +146,23 @@ static <a class="el" href="struct_engine_context.html">EngineContext</a> *&#160;
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Zawiera funkcje do obsługi wejścia użytkownika. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ace4b94741ca84fe69e7f387850ff63f2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_camera_actor.html">CameraActor</a> * Api::RenderingApi::GetCurrentCamera </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zwraca aktualnie ustawioną kamerę główną. </p>
+
+</div>
+</div>
 <a class="anchor" id="af7385fccacc489f533ff90cf71a7604b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -159,6 +190,31 @@ static <a class="el" href="struct_engine_context.html">EngineContext</a> *&#160;
 
 </div>
 </div>
+<a class="anchor" id="a60ae1697355727a53eca0ff633c53be9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Api::RenderingApi::SetCurrentCamera </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_camera_actor.html">CameraActor</a> *&#160;</td>
+          <td class="paramname"><em>camera</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ustawia aktualnie używaną kamerę. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">camera</td><td>Kamera do ustawienia </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 w przypadku powodzenia, 1 jeżeli kamera była nullptrem. Zasadniczo nie ma po co sprawdzać wartości zwracanej. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/UserApi/Rendering/<a class="el" href="_render_api_8h_source.html">RenderApi.h</a></li>
 <li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/EngineCore/UserApi/Rendering/RenderApi.cpp</li>
@@ -166,7 +222,7 @@ static <a class="el" href="struct_engine_context.html">EngineContext</a> *&#160;
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:59 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:20 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

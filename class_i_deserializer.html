@@ -103,6 +103,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:abf181d4ba43fb47eb97773e4911fb5c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abf181d4ba43fb47eb97773e4911fb5c7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>IDeserializer</b> (std::unique_ptr&lt; <a class="el" href="struct_serialization_context.html">SerializationContext</a> &gt; serContext)</td></tr>
+<tr class="separator:abf181d4ba43fb47eb97773e4911fb5c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5dde3fe855454ea25728dc7dc1e4c01"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_deserializer.html#ac5dde3fe855454ea25728dc7dc1e4c01">LoadFromFile</a> (const std::string &amp;fileName, <a class="el" href="_deserializer_8h.html#ac1f1e0a72eb3bb133c13c1aedc837223">ParsingMode</a> mode)</td></tr>
 <tr class="memdesc:ac5dde3fe855454ea25728dc7dc1e4c01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wczytuje i parsuje podany plik.  <a href="#ac5dde3fe855454ea25728dc7dc1e4c01">More...</a><br /></td></tr>
 <tr class="separator:ac5dde3fe855454ea25728dc7dc1e4c01"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -197,18 +200,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:aeb74b772044d2b4f2326e0a3e08a2cff"><td class="memTemplItemLeft" align="right" valign="top">ContextType *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_i_deserializer.html#aeb74b772044d2b4f2326e0a3e08a2cff">GetContext</a> ()</td></tr>
 <tr class="memdesc:aeb74b772044d2b4f2326e0a3e08a2cff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca kontekst serializacji.  <a href="#aeb74b772044d2b4f2326e0a3e08a2cff">More...</a><br /></td></tr>
 <tr class="separator:aeb74b772044d2b4f2326e0a3e08a2cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7f4133476f5a5b71745db3dea76a642"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_deserializer.html#ac7f4133476f5a5b71745db3dea76a642">SetContext</a> (<a class="el" href="struct_serialization_context.html">SerializationContext</a> *serContext)</td></tr>
-<tr class="memdesc:ac7f4133476f5a5b71745db3dea76a642"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia kontekst serializacji.  <a href="#ac7f4133476f5a5b71745db3dea76a642">More...</a><br /></td></tr>
-<tr class="separator:ac7f4133476f5a5b71745db3dea76a642"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a157b8e47821fedb5f485263363742d0e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a157b8e47821fedb5f485263363742d0e"></a>
 <a class="el" href="struct_deserializer_impl.html">DeserializerImpl</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>impl</b></td></tr>
 <tr class="separator:a157b8e47821fedb5f485263363742d0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae47e86d0926dfa166ea8e43ffd1aad99"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae47e86d0926dfa166ea8e43ffd1aad99"></a>
-<a class="el" href="struct_serialization_context.html">SerializationContext</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>context</b></td></tr>
-<tr class="separator:ae47e86d0926dfa166ea8e43ffd1aad99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad311eea943c70e35778c3c96d3eccaa0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad311eea943c70e35778c3c96d3eccaa0"></a>
+std::unique_ptr&lt; <a class="el" href="struct_serialization_context.html">SerializationContext</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>context</b></td></tr>
+<tr class="separator:ad311eea943c70e35778c3c96d3eccaa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interfejs deserializatorów. </p>
@@ -1036,33 +1036,6 @@ template&lt;typename ContextType &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="ac7f4133476f5a5b71745db3dea76a642"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void IDeserializer::SetContext </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_serialization_context.html">SerializationContext</a> *&#160;</td>
-          <td class="paramname"><em>serContext</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Ustawia kontekst serializacji. </p>
-<dl class="section attention"><dt>Attention</dt><dd>Deserializator nie przejmuje własności nad kontekstem. </dd></dl>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/Common/Serialization/<a class="el" href="_deserializer_8h_source.html">Deserializer.h</a></li>
 <li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/Tools/SerializerJson/Deserializer.cpp</li>
@@ -1070,7 +1043,7 @@ template&lt;typename ContextType &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:59 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:20 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -76,6 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>All</span></a></li>
       <li class="current"><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
       <li><a href="functions_prop.html"><span>Properties</span></a></li>
       <li><a href="functions_evnt.html"><span>Events</span></a></li>
       <li><a href="functions_rela.html"><span>Related&#160;Functions</span></a></li>
@@ -92,6 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_func_g.html#index_g"><span>g</span></a></li>
       <li><a href="functions_func_h.html#index_h"><span>h</span></a></li>
       <li><a href="functions_func_i.html#index_i"><span>i</span></a></li>
+      <li><a href="functions_func_k.html#index_k"><span>k</span></a></li>
       <li><a href="functions_func_l.html#index_l"><span>l</span></a></li>
       <li><a href="functions_func_m.html#index_m"><span>m</span></a></li>
       <li><a href="functions_func_n.html#index_n"><span>n</span></a></li>
@@ -134,6 +136,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>SaveToFile()
 : <a class="el" href="class_d_x11_texture.html#a5bec48c61990e15fae3bfb4c77da2a22">DX11Texture</a>
 </li>
+<li>SelectActor()
+: <a class="el" href="class_editor_plugin_1_1_engine_wrapper.html#a3ce37ccd730d70e0cea5654160a011e6">EditorPlugin::EngineWrapper</a>
+</li>
 <li>SendEvent()
 : <a class="el" href="class_api_1_1_actors_1_1_communication.html#a4a75ae5c0efe43b223fb37cc3bfb483b">Api::Actors::Communication</a>
 , <a class="el" href="class_engine.html#a70c0c905cc7d506d8c303dceba68c980">Engine</a>
@@ -143,7 +148,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_input_abstraction_layer.html#aded8e48b95ddd726ada6434ad14d8f28">InputAbstractionLayer</a>
 </li>
 <li>SendSignal()
-: <a class="el" href="class_event_manager.html#a58bad9525df3d2e418f38aabd502db3d">EventManager</a>
+: <a class="el" href="class_actor_ptr.html#a54da4c055287ccc226b85cbda71d5bfc">ActorPtr&lt; Type &gt;</a>
+, <a class="el" href="class_api_1_1_actors_1_1_communication.html#affd7dce239379cfa914b1601950950f8">Api::Actors::Communication</a>
+, <a class="el" href="class_event_manager.html#a58bad9525df3d2e418f38aabd502db3d">EventManager</a>
+</li>
+<li>Serialize()
+: <a class="el" href="class_actor_base.html#af928ecea4a1891125d01e77416cc8d0c">ActorBase</a>
+, <a class="el" href="class_model3_d_from_file.html#a2aace63e60e220f4fa3a7c26e4789f74">Model3DFromFile</a>
+</li>
+<li>SerializeBasicTypes()
+: <a class="el" href="class_serialization.html#ad8b56ee91af600169592a945d4bbccf0">Serialization</a>
+</li>
+<li>SerializeProperty()
+: <a class="el" href="class_serialization.html#a733ed8b1b5ec34e9b8115e56a3fe6eeb">Serialization</a>
+</li>
+<li>SerializeVectorTypes()
+: <a class="el" href="class_serialization.html#a1f575613eff3dbae3b8379bad8510ff0">Serialization</a>
 </li>
 <li>set_constants_buffer()
 : <a class="el" href="class_sky_dome.html#ab652faf96d6b8a9533ba2125b76fad06">SkyDome</a>
@@ -201,17 +221,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_display_engine.html#af5c2e40d6836e7287e533a96930a386e">DisplayEngine</a>
 </li>
 <li>SetAttribute()
-: <a class="el" href="class_i_serializer.html#a1db713ead27186c9d902cad3de77d74b">ISerializer</a>
-</li>
-<li>SetContext()
-: <a class="el" href="class_i_deserializer.html#ac7f4133476f5a5b71745db3dea76a642">IDeserializer</a>
-, <a class="el" href="class_i_serializer.html#a7875841e23774e5db94c3aabf434062d">ISerializer</a>
+: <a class="el" href="class_i_serializer.html#a4391f988eeb5082b45097cb05d209588">ISerializer</a>
 </li>
 <li>SetController()
 : <a class="el" href="class_dynamic_actor.html#a4b1c456e5e6be352510f5792dab2e111">DynamicActor</a>
 </li>
 <li>SetCurrentCamera()
-: <a class="el" href="class_display_engine.html#ae0ea33c7770c079eb3fd9f0100aec538">DisplayEngine</a>
+: <a class="el" href="class_api_1_1_rendering_api.html#a60ae1697355727a53eca0ff633c53be9">Api::RenderingApi</a>
+, <a class="el" href="class_display_engine.html#ae0ea33c7770c079eb3fd9f0100aec538">DisplayEngine</a>
 </li>
 <li>SetDefaultSampler()
 : <a class="el" href="class_d_x11_renderer.html#a94edb48e9c1938e980f5e142988a52c0">DX11Renderer</a>
@@ -233,10 +250,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="class_editor_app_1_1_g_u_i_1_1_framework_element_drop_behavior.html#a4f06ac39ef261a3319d5864b84e67623">EditorApp.GUI.FrameworkElementDropBehavior</a>
 </li>
 <li>SetEngine()
-: <a class="el" href="class_actor_base.html#acbc2f86428b6a953a452ba0a8765bc47">ActorBase</a>
+: <a class="el" href="class_actor_base.html#a483f2373c4ad5fff8e5b1e779c65b55e">ActorBase</a>
 </li>
 <li>SetEntryPoint()
-: <a class="el" href="class_engine.html#a853c2afe55722d85c1c9e6788ca694a3">Engine</a>
+: <a class="el" href="class_engine.html#aa5f1c324eb9351bed60653160f3d486e">Engine</a>
 </li>
 <li>SetFarPlane()
 : <a class="el" href="class_camera_actor.html#afe797aca9705bf5426cf5c930a736364">CameraActor</a>
@@ -284,19 +301,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_camera_actor.html#a544a0423937733719aeea4564d611a09">CameraActor</a>
 </li>
 <li>SetPerspectiveProjectionMatrix()
-: <a class="el" href="class_camera_actor.html#abd2828dc3f0ec4c28661ce501803ae67">CameraActor</a>
+: <a class="el" href="class_camera_actor.html#a4b7e3ebcc28f2d456bd1999667edbffd">CameraActor</a>
 </li>
 <li>SetPosition()
-: <a class="el" href="class_static_actor.html#a0e00d811c0f6b046658db400cfd0ef14">StaticActor</a>
+: <a class="el" href="class_mouse_state.html#ad139c7bd73a23b7f5802e646a8a42d5b">MouseState</a>
+, <a class="el" href="class_static_actor.html#a0e00d811c0f6b046658db400cfd0ef14">StaticActor</a>
 </li>
 <li>SetProjectionMatrix()
 : <a class="el" href="class_display_engine.html#abae2e191c0fb8099b7ec28fdd0c2381a">DisplayEngine</a>
+</li>
+<li>SetPropertyValue()
+: <a class="el" href="class_serialization.html#acf05e1fd6c1103115c86627f3c106f99">Serialization</a>
 </li>
 <li>setRelativePosition()
 : <a class="el" href="class_x_g_u_i_1_1_control.html#ad63de1f67d309f86e56624918c89bf39">XGUI::Control</a>
 </li>
 <li>SetRotationSpeed()
-: <a class="el" href="class_dynamic_actor.html#a766dd34d679975aa8b00d123ea355a36">DynamicActor</a>
+: <a class="el" href="class_dynamic_actor.html#a9979e75b7e14d70a94825b5e670b538e">DynamicActor</a>
 </li>
 <li>SetSkydome()
 : <a class="el" href="class_display_engine.html#a2446a83f62894ae324664b5d9e0f1469">DisplayEngine</a>
@@ -324,7 +345,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_input_abstraction_layer.html#adea5c04fd7eb5ccf1cae119091c7132f">InputAbstractionLayer</a>
 </li>
 <li>SetupLayerFromFile()
-: <a class="el" href="class_input_abstraction_layer.html#a0118216390e935385cdaae81561387fe">InputAbstractionLayer</a>
+: <a class="el" href="class_input_abstraction_layer.html#a8be55b68911e889f3536ccf7b41af4ec">InputAbstractionLayer</a>
 </li>
 <li>SetVertexBuffer()
 : <a class="el" href="class_d_x11_renderer.html#a4afdef02b910b64e9f872c487d777be8">DX11Renderer</a>
@@ -338,11 +359,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>SetWidth()
 : <a class="el" href="class_camera_actor.html#ad0a71aafda9d854864ece26bb2e2cd52">CameraActor</a>
 </li>
+<li>ShouldSave()
+: <a class="el" href="class_serialization.html#a69239794c881d3dcf45e94944def09da">Serialization</a>
+</li>
 <li>ShowAppWindow()
 : <a class="el" href="class_engine.html#aa6261f218855fe0d9715e58fc71bcdae">Engine</a>
 </li>
 <li>ShowWindow()
 : <a class="el" href="class_editor_plugin_1_1_engine_wrapper.html#a600ac03238741f66af7279077d8f2678">EditorPlugin::EngineWrapper</a>
+</li>
+<li>SingleThreadedUpdatePhase()
+: <a class="el" href="class_controllers_engine.html#aacee401f0608162957e3e22798a8382d">ControllersEngine</a>
+, <a class="el" href="class_engine.html#a7063b0bf0b133ab06c47e8826060fd58">Engine</a>
 </li>
 <li>sky_radiance()
 : <a class="el" href="class_hosek_skylight_model.html#a5021d619c8b74a01eb590e778a586420">HosekSkylightModel</a>
@@ -367,7 +395,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:21:00 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:21 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

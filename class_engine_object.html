@@ -87,6 +87,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="class_engine_object-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">EngineObject Class Reference<div class="ingroups"><a class="el" href="group___modules_structure.html">Moduły silnika</a> &raquo; <a class="el" href="group___tools.html">Tools</a> &raquo; <a class="el" href="group___reflection.html">Mechanizm refleksji</a></div></div>  </div>
 </div><!--header-->
@@ -102,36 +105,66 @@ Inheritance diagram for EngineObject:</div>
  <div class="center">
   <img src="class_engine_object.png" usemap="#EngineObject_map" alt=""/>
   <map id="EngineObject_map" name="EngineObject_map">
-<area href="class_actor_base.html" title="Klasa bazowa dla wszystkich obiektów w grze (aktorów). " alt="ActorBase" shape="rect" coords="0,56,164,80"/>
-<area href="class_i_controller.html" title="Klasa bazowa dla wszystkich kontrolerów dla obiektów. " alt="IController" shape="rect" coords="174,56,338,80"/>
-<area href="class_i_game_play.html" alt="IGamePlay" shape="rect" coords="522,56,686,80"/>
-<area href="class_input_abstraction_layer_base.html" title="Klasa reprezentująca warstwę abstrakcji między wartościami zwracanymi z directInputa, a wejściem aplikacji. " alt="InputAbstractionLayerBase" shape="rect" coords="870,56,1034,80"/>
-<area href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. " alt="ResourceObject" shape="rect" coords="1044,56,1208,80"/>
-<area href="class_static_actor.html" title="Klasa bazowa dla wszystkich obiektów statycznych w silniku. " alt="StaticActor" shape="rect" coords="0,112,164,136"/>
-<area href="class_base_a_i_controller.html" title="Klasa bazowa dla wszystkich kontrolerów sztucznej inteligencji. " alt="BaseAIController" shape="rect" coords="348,112,512,136"/>
-<area href="class_base_input_controller.html" title="Klasa bazowa dla wszystkich kontrolerów do sterowania przez użytkownika. " alt="BaseInputController" shape="rect" coords="348,168,512,192"/>
-<area href="class_entry_point_game_play.html" alt="EntryPointGamePlay" shape="rect" coords="696,112,860,136"/>
-<area href="class_lightmap_logic.html" alt="LightmapLogic" shape="rect" coords="696,168,860,192"/>
-<area href="class_input_abstraction_layer.html" title="Klasa stanowi interfejs umożliwiający definiowanie i modyfikowanie wastwy abstrakcji. Zalecam przeczytanie opisu klasy InputAbstractionLayerBase, który zawiera wszystkie potrzebne informacje. " alt="InputAbstractionLayer" shape="rect" coords="870,112,1034,136"/>
-<area href="class_i_buffer.html" alt="IBuffer" shape="rect" coords="1218,112,1382,136"/>
-<area href="class_i_render_target.html" alt="IRenderTarget" shape="rect" coords="1218,168,1382,192"/>
-<area href="class_i_shader.html" alt="IShader" shape="rect" coords="1218,224,1382,248"/>
-<area href="class_i_shader_input_layout.html" alt="IShaderInputLayout" shape="rect" coords="1218,280,1382,304"/>
-<area href="class_i_texture.html" alt="ITexture" shape="rect" coords="1218,336,1382,360"/>
-<area href="struct_material_object.html" title="Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. " alt="MaterialObject" shape="rect" coords="1218,392,1382,416"/>
-<area href="struct_mesh_part_object.html" title="Struktura opisuje pojedynczą cząstkę mesha o jednym materiale, teksturze i shaderach.W zależności od zawartości pola index_buffer w strukturze ModelPart, mesh jest wyświetlany w trybie indeksowanym lub nie. Jeżeli wartość tego pola wynosi nullptr, to wtedy używane są zmienne buffer offset i vertices count, które jednoznacznie wskazują, która część bufora wierzchołków ma zostać wyświetlona. " alt="MeshPartObject" shape="rect" coords="1218,448,1382,472"/>
-<area href="class_model3_d_from_file.html" title="Klasa służy do przechowywania danych modelu wczytanego z pliku. Dzięki temu po ponownym użyciu pliku ..." alt="Model3DFromFile" shape="rect" coords="1218,504,1382,528"/>
+<area href="class_actor_base.html" title="Klasa bazowa dla wszystkich obiektów w grze (aktorów). " alt="ActorBase" shape="rect" coords="174,56,338,80"/>
+<area href="class_application.html" alt="Application" shape="rect" coords="174,112,338,136"/>
+<area href="class_g_u_i_1_1_i_control.html" title="Klasa bazowa dla kontrolek. " alt="GUI::IControl" shape="rect" coords="174,168,338,192"/>
+<area href="class_i_controller.html" title="Klasa bazowa dla wszystkich kontrolerów dla obiektów. " alt="IController" shape="rect" coords="174,224,338,248"/>
+<area href="struct_i_controllers_state.html" title="Klasa przechowująca stan kontrolerów oraz silnika i gry. " alt="IControllersState" shape="rect" coords="174,280,338,304"/>
+<area href="class_i_game_play.html" alt="IGamePlay" shape="rect" coords="174,336,338,360"/>
+<area href="class_input_abstraction_layer_base.html" title="Klasa reprezentująca warstwę abstrakcji między wartościami zwracanymi z directInputa, a wejściem aplikacji. " alt="InputAbstractionLayerBase" shape="rect" coords="174,392,338,416"/>
+<area href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShader, PixelShader itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. " alt="ResourceObject" shape="rect" coords="174,448,338,472"/>
 </map>
  </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:abe5f0eabeced7434d6b2abc105e322c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe5f0eabeced7434d6b2abc105e322c4"></a>
+rttr::type&#160;</td><td class="memItemRight" valign="bottom"><b>GetType</b> () const </td></tr>
+<tr class="separator:abe5f0eabeced7434d6b2abc105e322c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cb6584bd5d3b639247e66a121774555"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5cb6584bd5d3b639247e66a121774555"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Serialize</b> (<a class="el" href="class_i_serializer.html">ISerializer</a> *ser) const </td></tr>
+<tr class="separator:a5cb6584bd5d3b639247e66a121774555"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98d8456f78dadb75104e9f886e6fa10a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a98d8456f78dadb75104e9f886e6fa10a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Deserialize</b> (<a class="el" href="class_i_deserializer.html">IDeserializer</a> *deser)</td></tr>
+<tr class="separator:a98d8456f78dadb75104e9f886e6fa10a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9412b884612f08341e1f638e3cbed90"><td class="memItemLeft" align="right" valign="top">virtual Size&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_object.html#ae9412b884612f08341e1f638e3cbed90">MemorySize</a> ()</td></tr>
+<tr class="separator:ae9412b884612f08341e1f638e3cbed90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedziczyć i dodać odpowiednie deklaracje. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Dobrze by było, gdyby <a class="el" href="class_engine_object.html" title="Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz...">EngineObject</a> implementował domyślną serializację, ale wtedy jest problem, że nie wiadomo, która z bibliotek powinna tę implementację kompilować.</dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ae9412b884612f08341e1f638e3cbed90"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual Size EngineObject::MemorySize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Zwraca ilość pamięci zajmowanej przez obiekt. Implementacje w klasach potomnych powinny też doliczać rekurencyjnie pamięć zajmowaną przez obiekty, których właścicielem jest ten obiekt. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/Common/<a class="el" href="_engine_object_8h_source.html">EngineObject.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:20 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

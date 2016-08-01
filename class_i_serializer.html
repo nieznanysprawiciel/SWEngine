@@ -103,10 +103,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad9236cc8f5859e0cd8077fe3506b9aa7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad9236cc8f5859e0cd8077fe3506b9aa7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_serializer.html#ad9236cc8f5859e0cd8077fe3506b9aa7">ISerializer</a> ()</td></tr>
-<tr class="memdesc:ad9236cc8f5859e0cd8077fe3506b9aa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstruktor. <br /></td></tr>
-<tr class="separator:ad9236cc8f5859e0cd8077fe3506b9aa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33d03a7fb1adc4f34a0f09516f9b6d50"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33d03a7fb1adc4f34a0f09516f9b6d50"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_serializer.html#a33d03a7fb1adc4f34a0f09516f9b6d50">ISerializer</a> (std::unique_ptr&lt; <a class="el" href="struct_serialization_context.html">SerializationContext</a> &gt; serContext)</td></tr>
+<tr class="memdesc:a33d03a7fb1adc4f34a0f09516f9b6d50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstruktor. <br /></td></tr>
+<tr class="separator:a33d03a7fb1adc4f34a0f09516f9b6d50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a86cdfeda6e6a80e7d193d94d4cc552"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7a86cdfeda6e6a80e7d193d94d4cc552"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_serializer.html#a7a86cdfeda6e6a80e7d193d94d4cc552">~ISerializer</a> ()</td></tr>
 <tr class="memdesc:a7a86cdfeda6e6a80e7d193d94d4cc552"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruktor. <br /></td></tr>
@@ -155,18 +155,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a9bb3161c90bcf9b9c2aa7ff4f4cb3731"><td class="memTemplItemLeft" align="right" valign="top">ContextType *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_i_serializer.html#a9bb3161c90bcf9b9c2aa7ff4f4cb3731">GetContext</a> ()</td></tr>
 <tr class="memdesc:a9bb3161c90bcf9b9c2aa7ff4f4cb3731"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca kontekst serializacji.  <a href="#a9bb3161c90bcf9b9c2aa7ff4f4cb3731">More...</a><br /></td></tr>
 <tr class="separator:a9bb3161c90bcf9b9c2aa7ff4f4cb3731"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7875841e23774e5db94c3aabf434062d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_serializer.html#a7875841e23774e5db94c3aabf434062d">SetContext</a> (<a class="el" href="struct_serialization_context.html">SerializationContext</a> *serContext)</td></tr>
-<tr class="memdesc:a7875841e23774e5db94c3aabf434062d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia kontekst serializacji.  <a href="#a7875841e23774e5db94c3aabf434062d">More...</a><br /></td></tr>
-<tr class="separator:a7875841e23774e5db94c3aabf434062d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:afa0056f1f42ffac372dd92a53236e975"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa0056f1f42ffac372dd92a53236e975"></a>
 <a class="el" href="struct_serializer_impl.html">SerializerImpl</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>impl</b></td></tr>
 <tr class="separator:afa0056f1f42ffac372dd92a53236e975"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abec86a706cec9b28ffea729e0089fceb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abec86a706cec9b28ffea729e0089fceb"></a>
-<a class="el" href="struct_serialization_context.html">SerializationContext</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>context</b></td></tr>
-<tr class="separator:abec86a706cec9b28ffea729e0089fceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c3f7ca74df08b72d0581e4b3da84580"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c3f7ca74df08b72d0581e4b3da84580"></a>
+std::unique_ptr&lt; <a class="el" href="struct_serialization_context.html">SerializationContext</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>context</b></td></tr>
+<tr class="separator:a7c3f7ca74df08b72d0581e4b3da84580"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interfejs dla serializatorów. </p>
@@ -596,33 +593,6 @@ template&lt;typename ContextType &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a7875841e23774e5db94c3aabf434062d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ISerializer::SetContext </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_serialization_context.html">SerializationContext</a> *&#160;</td>
-          <td class="paramname"><em>serContext</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Ustawia kontekst serializacji. </p>
-<dl class="section attention"><dt>Attention</dt><dd>Serializator nie przejmuje własności nad kontekstem. </dd></dl>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/Common/Serialization/<a class="el" href="_serializer_8h_source.html">Serializer.h</a></li>
 <li>D:/ProgramyVS/SWEngine/EngineRepo/EngineCode/Tools/SerializerJson/Serializer.cpp</li>
@@ -630,7 +600,7 @@ template&lt;typename ContextType &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:59 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:20 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

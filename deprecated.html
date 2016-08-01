@@ -84,23 +84,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_deprecated000007"></a>Member <a class="el" href="class_api_1_1_actors_api.html#a98582bf37073183bb3b2dd0827e35e00">Api::ActorsApi::AddDynamicMesh</a>  (<a class="el" href="class_dynamic_mesh_actor.html" title="Klasa bazowa dla obiektów, które będą renderowane. ">DynamicMeshActor</a> *object)</dt>
+<dt><a class="anchor" id="_deprecated000002"></a>Member <a class="el" href="class_actor_base.html#a691e54297bd6ebfcc727c4de8628040c">ActorBase::event</a>  (<a class="el" href="class_event.html">Event</a> *)</dt>
+<dd>Eventy wysyla sie przez API w <a class="el" href="class_engine_interface.html" title="Klasa jest interfejsem dla użytkownika użytkującego silnik.Taki interfejs będzie widział użytkownik s...">EngineInterface</a>. <a class="el" href="class_fable_engine.html" title="Moduł do zarządzania fabułą. ">FableEngine</a> nie odpowiada już za przetwarzanie eventow. </dd>
+<dt><a class="anchor" id="_deprecated000009"></a>Member <a class="el" href="class_api_1_1_actors_api.html#a98582bf37073183bb3b2dd0827e35e00">Api::ActorsApi::AddDynamicMesh</a>  (<a class="el" href="class_dynamic_mesh_actor.html" title="Klasa bazowa dla obiektów, które będą renderowane. ">DynamicMeshActor</a> *object)</dt>
 <dd>Pozostawione dla zgodności z LightmapTools. Zamiast tego należy używać funkcji <a class="el" href="class_api_1_1_actors_api.html#a28b1047690df4c25915a29f925527399">ActorsApi::AddToModules</a>  </dd>
-<dt><a class="anchor" id="_deprecated000006"></a>Member <a class="el" href="class_api_1_1_actors_api.html#aa8dde4c1194e09603102b3a7df217e20">Api::ActorsApi::GetSceneObjects</a>  ()</dt>
+<dt><a class="anchor" id="_deprecated000008"></a>Member <a class="el" href="class_api_1_1_actors_api.html#aa8dde4c1194e09603102b3a7df217e20">Api::ActorsApi::GetSceneObjects</a>  ()</dt>
 <dd>Pozostawione dla zgodności z LightmapTools. Zamiast tego należy używać funkcji <a class="el" href="class_api_1_1_actors_api.html#af9ab4f5673de94f05b5eb6e4ff74dd2e">ActorsApi::GetAllActors</a>, która zwaraca wszystkicj aktorów w silniku.  </dd>
-<dt><a class="anchor" id="_deprecated000002"></a>Member <a class="el" href="class_display_engine.html#a9387d68dedcccd6cb214e8af7e93155a">DisplayEngine::interpolate_object</a>  (float timeLag, const <a class="el" href="class_dynamic_actor.html" title="Klasa bazowa dla obiektów dynamicznych. ">DynamicActor</a> *object, DirectX::XMFLOAT4X4 *result_matrix)</dt>
+<dt><a class="anchor" id="_deprecated000004"></a>Member <a class="el" href="class_display_engine.html#a9387d68dedcccd6cb214e8af7e93155a">DisplayEngine::interpolate_object</a>  (float timeLag, const <a class="el" href="class_dynamic_actor.html" title="Klasa bazowa dla obiektów dynamicznych. ">DynamicActor</a> *object, DirectX::XMFLOAT4X4 *result_matrix)</dt>
 <dd></dd>
-<dt><a class="anchor" id="_deprecated000010"></a>Member <a class="el" href="class_d_x11_renderer.html#a3bc908f890415764195e67a4b4854e74">DX11Renderer::UpdateSubresource</a>  (<a class="el" href="class_buffer_object.html" title="Obiekt opakowujący bufor.Bufor może być zarówno buforem wierzchołków, indeksów jak i stałych...">BufferObject</a> *pDstResource, const void *pSrcData) override</dt>
+<dt><a class="anchor" id="_deprecated000003"></a>Member <a class="el" href="class_display_engine.html#abae2e191c0fb8099b7ec28fdd0c2381a">DisplayEngine::SetProjectionMatrix</a>  (float angle, float X_to_Y, float near_plane, float far_plane)</dt>
+<dd>Zacząć używać danych z kamer, a tę funkcję zlikwidować  </dd>
+<dt><a class="anchor" id="_deprecated000012"></a>Member <a class="el" href="class_d_x11_renderer.html#a3bc908f890415764195e67a4b4854e74">DX11Renderer::UpdateSubresource</a>  (<a class="el" href="class_buffer_object.html" title="Obiekt opakowujący bufor.Bufor może być zarówno buforem wierzchołków, indeksów jak i stałych...">BufferObject</a> *pDstResource, const void *pSrcData) override</dt>
 <dd>: Depracated jeszcze przed napisaniem funkcji do końca. Myślę, że bufor powinien sam się updatować.  </dd>
-<dt><a class="anchor" id="_deprecated000008"></a>Member <a class="el" href="class_d_x11_renderer.html#a26d6bd6fc03d4dc563a6f5108a0a0213">DX11Renderer::VSSetConstantBuffers</a>  (uint32 slot, <a class="el" href="class_buffer_object.html" title="Obiekt opakowujący bufor.Bufor może być zarówno buforem wierzchołków, indeksów jak i stałych...">BufferObject</a> *buffer) override</dt>
+<dt><a class="anchor" id="_deprecated000010"></a>Member <a class="el" href="class_d_x11_renderer.html#a26d6bd6fc03d4dc563a6f5108a0a0213">DX11Renderer::VSSetConstantBuffers</a>  (uint32 slot, <a class="el" href="class_buffer_object.html" title="Obiekt opakowujący bufor.Bufor może być zarówno buforem wierzchołków, indeksów jak i stałych...">BufferObject</a> *buffer) override</dt>
 <dd><p class="startdd">Powinniśmy użyć bufora silnikowego, a nie DirectXowego, żeby ukryć implementację. Funkcja zniknie w późniejszej wersji. </p>
 <p class="enddd">Powinniśmy użyć bufora silnikowego, a nie DirectXowego, żeby ukryć implementację. Funkcja zniknie w późniejszej wersji.  </p>
 </dd>
-<dt><a class="anchor" id="_deprecated000005"></a>globalScope&gt; Member <a class="el" href="_event_8h.html#a1598a20cf0a523fb6a0e5ec24acde585">EventType</a>  </dt>
+<dt><a class="anchor" id="_deprecated000007"></a>globalScope&gt; Member <a class="el" href="_event_8h.html#a1598a20cf0a523fb6a0e5ec24acde585">EventType</a>  </dt>
 <dd>Zamiast tego użyj rttr::type.  </dd>
-<dt><a class="anchor" id="_deprecated000004"></a>globalScope&gt; Member <a class="el" href="_display_engine_8h.html#a0f433fc38b1317b7af4c2f42244c4812">interpolate_orientation</a>  (float time_lag, const <a class="el" href="class_dynamic_actor.html" title="Klasa bazowa dla obiektów dynamicznych. ">DynamicActor</a> *object, DirectX::XMVECTOR &amp;result_vector)</dt>
+<dt><a class="anchor" id="_deprecated000006"></a>globalScope&gt; Member <a class="el" href="_display_engine_8h.html#a0f433fc38b1317b7af4c2f42244c4812">interpolate_orientation</a>  (float time_lag, const <a class="el" href="class_dynamic_actor.html" title="Klasa bazowa dla obiektów dynamicznych. ">DynamicActor</a> *object, DirectX::XMVECTOR &amp;result_vector)</dt>
 <dd></dd>
-<dt><a class="anchor" id="_deprecated000003"></a>globalScope&gt; Member <a class="el" href="_display_engine_8h.html#acfd3b915618bdd468832cef869d03dc6">interpolate_position</a>  (float time_lag, const <a class="el" href="class_dynamic_actor.html" title="Klasa bazowa dla obiektów dynamicznych. ">DynamicActor</a> *object, DirectX::XMVECTOR &amp;result_vector)</dt>
+<dt><a class="anchor" id="_deprecated000005"></a>globalScope&gt; Member <a class="el" href="_display_engine_8h.html#acfd3b915618bdd468832cef869d03dc6">interpolate_position</a>  (float time_lag, const <a class="el" href="class_dynamic_actor.html" title="Klasa bazowa dla obiektów dynamicznych. ">DynamicActor</a> *object, DirectX::XMVECTOR &amp;result_vector)</dt>
 <dd></dd>
 <dt><a class="anchor" id="_deprecated000001"></a>Page <a class="el" href="_object_pipeline.html">Potok przetwarzania obiektów</a>  </dt>
 <dd>Moduły silnika odpowiedzialne za renderowanie obiektów, GUI oraz przechwytywanie urządzeń wejściowych są wywoływane w każdym obiegu pętli. Obsługa eventów wywoływana jest według schematu dwukrotnie. Jest to konieczne, gdyż chcemy obsługiwać eventy także wtedy, kiedy jesteśmy w trybie pauzy. Nie możemy zabrać obsługi eventów z bloku wykonywanego warunkowo, ponieważ po każdym przeliczeniu położeń i parametrów obiektów, mogą zostać wygenerowane nowe zdarzenia, które trzeba obsłużyć. Blok może zostać wtedy ponownie wykonany, z powodu opóźnienia. W takiej sytuacji obsługa eventów poza pętlą odbyłaby się za późno. Z tych względów musimy wywołać obsługę zarówno po każdym obiegu bloku warunkowego jak i po wyjściu z niego. Nie powoduje to żadnego spowolnienia. Nadmiarowa procedura natrafia w takim wypadku na pustą kolejkę eventów i natychmiast powraca.</dd>
@@ -108,7 +112,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

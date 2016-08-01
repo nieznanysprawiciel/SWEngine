@@ -1,8 +1,10 @@
 var searchData=
 [
   ['samplesquality',['samplesQuality',['../struct_render_target_descriptor.html#a5fd4a800f261d7eb9962c5d036a88330',1,'RenderTargetDescriptor']]],
+  ['savewholemap',['SaveWholeMap',['../struct_engine_serialization_context.html#ad31465f87bf3efcc02a5b28584721710',1,'EngineSerializationContext']]],
   ['selected',['selected',['../class_x_g_u_i_1_1_abstract_item.html#a7aa0052dce2cd72ba98832dd07bfa41c',1,'XGUI::AbstractItem::selected()'],['../class_x_g_u_i_1_1_abstract_menu.html#ad276e26a9307c5e6c2b63d936db5e9f5',1,'XGUI::AbstractMenu::selected()']]],
   ['selection',['selection',['../class_x_g_u_i_1_1_abstract_text_input.html#a3203d6fee3be76137f4eae8e673ea062',1,'XGUI::AbstractTextInput']]],
+  ['serialization',['Serialization',['../class_api_1_1_level_api.html#a65456ae51981142f260d7c67eac3026c',1,'Api::LevelApi']]],
   ['shader_5fdata_5fper_5fframe',['shader_data_per_frame',['../class_display_engine.html#a79af380c860de99523e0b63d4b0f3d33',1,'DisplayEngine']]],
   ['signalhandler',['SignalHandler',['../struct_signal.html#a41a6c79f6c533a793f0b8fdfa9e7f08b',1,'Signal']]],
   ['sky_5fdome',['sky_dome',['../class_display_engine.html#a4cecc5b07bf947a096dca3b0321e083e',1,'DisplayEngine']]],

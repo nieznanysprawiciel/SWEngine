@@ -82,7 +82,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#groups">Modules</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
 <div class="title">GraphicAPI<div class="ingroups"><a class="el" href="group___modules_structure.html">Moduły silnika</a></div></div>  </div>
 </div><!--header-->
@@ -97,11 +98,14 @@ Modules</h2></td></tr>
 <tr class="memdesc:group___d_x11_a_p_i"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementacja renderera, initializera i obiektów zasobów w DirectX 11. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group___resources"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___resources.html">Zasoby</a></td></tr>
-<tr class="memdesc:group___resources"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasy zasobów przechowywanych przez silnik. <br /></td></tr>
+<tr class="memdesc:group___resources"><td class="mdescLeft">&#160;</td><td class="mdescRight">Niskopoziomowe zasoby związane z api graficznym. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_swap_chain_init_data.html">SwapChainInitData</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Przechowuje informacje potrzebne do SwapChaina. Parametr dla funkcji IGraphicAPIInitializer::CreateSwapChain.  <a href="struct_swap_chain_init_data.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_graphic_a_p_i_init_data.html">GraphicAPIInitData</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Przechowuje informacje potrzebne do inicjalizacji API graficznego. Parametr dla funkcji IGraphicAPIInitializer::InitAPI.  <a href="struct_graphic_a_p_i_init_data.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,14 +133,23 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input_layout_descriptor.html">InputLayoutDescriptor</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa przechowuje opis layoutu wierzchołka, na podstawie którego tworzony jest obiekt layoutu.  <a href="class_input_layout_descriptor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vertex_shader_object.html">VertexShaderObject</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa przechowująca vertex shader.  <a href="class_vertex_shader_object.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vertex_shader.html">VertexShader</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa przechowująca vertex shader.  <a href="class_vertex_shader.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pixel_shader_object.html">PixelShaderObject</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa przechowująca pixel shader.  <a href="class_pixel_shader_object.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pixel_shader.html">PixelShader</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa przechowująca pixel shader.  <a href="class_pixel_shader.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_compute_shader_object.html">ComputeShaderObject</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa przechowująca compute shader.  <a href="class_compute_shader_object.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_geometry_shader.html">GeometryShader</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa przechowująca pixel shader.  <a href="class_geometry_shader.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_control_shader.html">ControlShader</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa przechowująca pixel shader.  <a href="class_control_shader.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_evaluation_shader.html">EvaluationShader</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa przechowująca pixel shader.  <a href="class_evaluation_shader.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_compute_shader.html">ComputeShader</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa przechowująca compute shader.  <a href="class_compute_shader.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer_object.html">BufferObject</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obiekt opakowujący bufor.Bufor może być zarówno buforem wierzchołków, indeksów jak i stałych.  <a href="class_buffer_object.html#details">More...</a><br /></td></tr>
@@ -145,7 +158,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych.  <a href="struct_material_object.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html">ResourceObject</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. <a class="el" href="struct_material_object.html" title="Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. ">MaterialObject</a>, <a class="el" href="class_texture_object.html" title="Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności. ">TextureObject</a>, <a class="el" href="class_vertex_shader_object.html" title="Klasa przechowująca vertex shader. ">VertexShaderObject</a>, <a class="el" href="class_pixel_shader_object.html" title="Klasa przechowująca pixel shader. ">PixelShaderObject</a> itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami.  <a href="class_resource_object.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. <a class="el" href="struct_material_object.html" title="Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. ">MaterialObject</a>, <a class="el" href="class_texture_object.html" title="Klasa przechowująca tekstury.Klasa bazowa, która będzie używana przez obiekty silnika. Powinny po niej odziedziczyć obiekty konkretnego API graficznego, żeby zaimplementować najważniejsze funkcjonalności. ">TextureObject</a>, <a class="el" href="class_vertex_shader.html" title="Klasa przechowująca vertex shader. ">VertexShader</a>, <a class="el" href="class_pixel_shader.html" title="Klasa przechowująca pixel shader. ">PixelShader</a> itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami.  <a href="class_resource_object.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resources_factory.html">ResourcesFactory</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Klasa ze statycznymi funkcjami do tworzenia obiektów assetów.Jest potrzebna, żeby wybrać implementację resourców zgodną z typem renderera. Każde API graficzne powinno zaimplementować tę klasę.  <a href="class_resources_factory.html#details">More...</a><br /></td></tr>
@@ -156,6 +169,21 @@ Typedefs</h2></td></tr>
 <tr class="memitem:ga81b7871cfcd52f5f513c9d55b7402720"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="struct_material_object.html">MaterialObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___graphic_a_p_i.html#ga81b7871cfcd52f5f513c9d55b7402720">MaterialObject</a></td></tr>
 <tr class="memdesc:ga81b7871cfcd52f5f513c9d55b7402720"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych.  <a href="#ga81b7871cfcd52f5f513c9d55b7402720">More...</a><br /></td></tr>
 <tr class="separator:ga81b7871cfcd52f5f513c9d55b7402720"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga6230e1b9ecbf2d82d10856fd7e1fde46"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga6230e1b9ecbf2d82d10856fd7e1fde46"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___graphic_a_p_i.html#ga6230e1b9ecbf2d82d10856fd7e1fde46">ShaderType</a> { <br />
+&#160;&#160;<b>VertexShader</b>, 
+<b>PixelShader</b>, 
+<b>GeometryShader</b>, 
+<b>TesselationControlShader</b>, 
+<br />
+&#160;&#160;<b>TesselationEvaluationShader</b>, 
+<b>ComputeShader</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:ga6230e1b9ecbf2d82d10856fd7e1fde46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Typ shadera. <br /></td></tr>
+<tr class="separator:ga6230e1b9ecbf2d82d10856fd7e1fde46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Interfejsy dla obiektów zasobów, renderera i initializera. </p>
@@ -173,7 +201,7 @@ Typedefs</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Struktura przechowująca materiał.DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. </p>
-<p>Struktura zachowuje się jak asset w związku z czym może być współdzielona przez wiele obiektów. Z tego względu nie można jej użyć bezpośrednio w <a class="el" href="struct_constant_per_mesh.html" title="Bufor stałych dla shadera zmieniający się dla każdej części mesha. ">ConstantPerMesh</a>, ponieważ nie chcemy przekazywać do bufora stałych zmiennych odziedziczonych po <a class="el" href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. ">ResourceObject</a>. Zamiast tego trzeba tę strukture przepisać.</p>
+<p>Struktura zachowuje się jak asset w związku z czym może być współdzielona przez wiele obiektów. Z tego względu nie można jej użyć bezpośrednio w <a class="el" href="struct_constant_per_mesh.html" title="Bufor stałych dla shadera zmieniający się dla każdej części mesha. ">ConstantPerMesh</a>, ponieważ nie chcemy przekazywać do bufora stałych zmiennych odziedziczonych po <a class="el" href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShader, PixelShader itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. ">ResourceObject</a>. Zamiast tego trzeba tę strukture przepisać.</p>
 <p>Zwracam uwagę, że tylko kanał Diffuse jest wektorem 4 wymiarowym, w którym składowa w jest odpowiedzialna za przezroczystość. Pozostałe są takie tylko dlatego, że jest to domyślny format przechowywania danych w rejestrach karty graficznej i przyspiesza to operację kopiowania. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_constant_per_frame.html" title="Bufor stałych dla shadera zmieniający się raz na klatkę. ">ConstantPerFrame</a> </dd></dl>
 
 </div>
@@ -181,7 +209,7 @@ Typedefs</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

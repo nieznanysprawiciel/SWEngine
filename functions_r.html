@@ -76,6 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="functions.html"><span>All</span></a></li>
       <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
       <li><a href="functions_prop.html"><span>Properties</span></a></li>
       <li><a href="functions_evnt.html"><span>Events</span></a></li>
       <li><a href="functions_rela.html"><span>Related&#160;Functions</span></a></li>
@@ -93,6 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_g.html#index_g"><span>g</span></a></li>
       <li><a href="functions_h.html#index_h"><span>h</span></a></li>
       <li><a href="functions_i.html#index_i"><span>i</span></a></li>
+      <li><a href="functions_k.html#index_k"><span>k</span></a></li>
       <li><a href="functions_l.html#index_l"><span>l</span></a></li>
       <li><a href="functions_m.html#index_m"><span>m</span></a></li>
       <li><a href="functions_n.html#index_n"><span>n</span></a></li>
@@ -148,6 +150,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>RegisterClass()
 : <a class="el" href="class_actor_factory.html#ae3d2fbe8f4b118c368a09faf0303de20">ActorFactory</a>
+, <a class="el" href="class_api_1_1_actors_api.html#a6f1dcaddd51deb98c7e48b9b627c14ea">Api::ActorsApi</a>
+</li>
+<li>RegisterControlName()
+: <a class="el" href="class_g_u_i_1_1_host_window.html#ad3fb565a8b80d020d44f6c9864a2aa19">GUI::HostWindow</a>
 </li>
 <li>registerTaskName()
 : <a class="el" href="class_performance_check.html#a153184490057f9372b25441404701d11">PerformanceCheck</a>
@@ -178,16 +184,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_resource_container.html#a6469a13ab7e50c0952fb5596732ed21a">ResourceContainer&lt; TYPE &gt;</a>
 </li>
 <li>RemoveActor()
-: <a class="el" href="class_octree_leaf.html#a5a8188a19c9ced27a4a9f2af4c42d577">OctreeLeaf</a>
+: <a class="el" href="class_actors_common_functions.html#ade14c40bbdf0397d509fc630cd6a2ad8">ActorsCommonFunctions</a>
+, <a class="el" href="class_actors_manager.html#ad51a5e9bf63ec707562db4df50529617">ActorsManager</a>
+, <a class="el" href="class_controllers_engine.html#ae2de5b97aad532295187c198700b95c1">ControllersEngine</a>
+, <a class="el" href="class_display_engine.html#ab6823c823480cc65a69c6e1882f5a5ef">DisplayEngine</a>
+, <a class="el" href="class_movement_engine.html#a426c5a3ae0b454f128f8a5c4df91697f">MovementEngine</a>
+, <a class="el" href="class_octree_leaf.html#a5a8188a19c9ced27a4a9f2af4c42d577">OctreeLeaf</a>
+</li>
+<li>RemoveAllActors()
+: <a class="el" href="class_actors_manager.html#a0c02e9a64881fa08a71dcf0ace10d6e9">ActorsManager</a>
+, <a class="el" href="class_controllers_engine.html#a0ec2829bc79f690db834228d80c19921">ControllersEngine</a>
+, <a class="el" href="class_display_engine.html#afb954395b36abe33fbc30ad8d87073c9">DisplayEngine</a>
+, <a class="el" href="class_event_manager.html#a7589280b2d419b0de93bc62b75be2098">EventManager</a>
+</li>
+<li>RemoveControl()
+: <a class="el" href="class_g_u_i_1_1_host_window.html#a4e07d360a225ab6d9d171431062ec0a1">GUI::HostWindow</a>
 </li>
 <li>RemoveDynamicActor()
 : <a class="el" href="class_octree_leaf.html#a0fe84fde0e62778a15e88cde8a647ea2">OctreeLeaf</a>
+</li>
+<li>RemoveEvents()
+: <a class="el" href="class_keyboard_state.html#a155d6c3e27da960fce325763d093f760">KeyboardState</a>
+, <a class="el" href="class_mouse_state.html#a9b5844b473912cff0725e32b0a358f94">MouseState</a>
 </li>
 <li>RemoveListener()
 : <a class="el" href="class_event_manager.html#a59117daabf002a9ad55d4da3792d10ce">EventManager</a>
 </li>
 <li>RemoveListenerDelayed()
 : <a class="el" href="class_api_1_1_actors_1_1_communication.html#a75323735dcd58e18735e77553f0473e0">Api::Actors::Communication</a>
+</li>
+<li>RemovePostCtrlActor()
+: <a class="el" href="class_controllers_engine.html#a637a163d9b02bac164fadbd1e5c162f9">ControllersEngine</a>
+</li>
+<li>RemovePreCtrlActor()
+: <a class="el" href="class_controllers_engine.html#a40d18126ebbd37d91a757ccb15970354">ControllersEngine</a>
+</li>
+<li>RemoveReferences()
+: <a class="el" href="class_event_manager.html#ad41ff565ec3fb90b409d269624b1140f">EventManager</a>
 </li>
 <li>RemoveStaticActor()
 : <a class="el" href="class_octree_leaf.html#a8bf9e20dd71f5462370e501a5d684b1e">OctreeLeaf</a>
@@ -223,6 +256,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>ResetActor()
 : <a class="el" href="class_editor_plugin_1_1_actor_class_meta_info.html#a9a47b2df515012b620ab1115e6202a7f">EditorPlugin::ActorClassMetaInfo</a>
 </li>
+<li>Resize()
+: <a class="el" href="class_d_x11_swap_chain.html#aaba3941e0fcca0663d58122c419af286">DX11SwapChain</a>
+</li>
 <li>resizeable
 : <a class="el" href="class_x_g_u_i_1_1_abstract_window.html#a0c8dee199f69514c9b0598e831be929e">XGUI::AbstractWindow</a>
 </li>
@@ -239,7 +275,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:21:00 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:21 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

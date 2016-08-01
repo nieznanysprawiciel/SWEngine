@@ -91,14 +91,16 @@ Spis Treści</h1>
 </ul>
 <h2><a class="anchor" id="mainUse"></a>
 Do czego służą kotrolery</h2>
+<p>Kontrolery pozwalają na sterowanie ruchem Aktorów. Każdy aktor dziedziczący po <a class="el" href="class_dynamic_actor.html" title="Klasa bazowa dla obiektów dynamicznych. ">DynamicActor</a> może mieć przypisany kontroler przy pomocy funkcji <a class="el" href="class_dynamic_actor.html#a4b1c456e5e6be352510f5792dab2e111" title="Ustawia podany w parametrze kontroler. ">DynamicActor::SetController</a>. Interfejs <a class="el" href="class_i_controller.html" title="Klasa bazowa dla wszystkich kontrolerów dla obiektów. ">IController</a> posiada dwie funkcje <a class="el" href="class_i_controller.html#aa54e6dfa00dd0fb00ee1d5066276655c">IController::ControlObjectPre</a> i IController::ControlObjectPost, które należy zaimplementować. Po dodaniu Aktora do <a class="el" href="class_controllers_engine.html" title="Moduł do zarządzania kontrolerami obiektów. ">ControllersEngine</a> funkcje te są wywoływane w każdej klatce.</p>
+<p>Kontrolery mogą one działać jak sztuczna inteligencja, wtedy trzeba odziedziczyć po klasie <a class="el" href="class_base_a_i_controller.html">BaseAIController</a>, albo odbierać wejście od użytkownika, wtedy trzeba odziedziczyć po <a class="el" href="class_base_input_controller.html">BaseInputController</a>.</p>
 <h2><a class="anchor" id="PrePostControllers"></a>
 Kotrolery pre i post</h2>
-<p>Istnieją kotrolery, których ruch uzależniony jest od położenia innych obiektów. Z racji tego nie mogą one zostać wywołane przed policzeniem przemieszczeń, bo byłyby zawsze opóźnione o jedną klatkę. Pozostałe kotrolery służą do wpływania na ruch obiektów, dlatego nie mogą być wywołane, po obliczeniu położeń obiektów. Z tego względu kotrolery obsługiwane są dwukrotnie, jedne w funkcji <a class="el" href="class_controllers_engine.html" title="Moduł do zarządzania kontrolerami obiektów. ">ControllersEngine</a>:: proceed_controllers_pre tuż przed wywołaniem MovementEngine::proceed_movement, a drugie tuż po tym wywołaniu w funkcji ControllersEngine::proceed_controllers_post.</p>
+<p>Istnieją kotrolery, których ruch uzależniony jest od położenia innych obiektów. Z racji tego nie mogą one zostać wywołane przed policzeniem przemieszczeń, bo byłyby zawsze opóźnione o jedną klatkę. Pozostałe kotrolery służą do wpływania na ruch obiektów, dlatego nie mogą być wywołane, po obliczeniu położeń obiektów. Z tego względu kotrolery obsługiwane są dwukrotnie, jedne w funkcji <a class="el" href="class_controllers_engine.html#a19a748bf1f0582668ede8ff121514e7a" title="Wywołuje kontrolery na obsługiwanych obiektach. ">ControllersEngine::ProceedControllersPre</a> tuż przed wywołaniem <a class="el" href="class_movement_engine.html#a393fc8906e769cf069bf75f152c14037" title="Przemieszcza obiekty na podstawie ich prędkości. ">MovementEngine::ProceedMovement</a>, a drugie tuż po tym wywołaniu w funkcji <a class="el" href="class_controllers_engine.html#a84fa173ef16cfd7f68b11906e0351aa4" title="Wywołuje kontrolery na obsługiwanych obiektach. ">ControllersEngine::ProceedControllersPost</a>.</p>
 <p>Do kontrolerów post zaliczamy kotrolery śledzące jakis obiekt, do kotrolerów pre wszystkie kontrolery odpowiedzialne za AI oraz sterujące ruchem na podstawie klawiatury czy myszy. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

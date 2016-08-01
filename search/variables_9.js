@@ -7,7 +7,5 @@ var searchData=
   ['interpolated_5fmatrixes',['interpolated_matrixes',['../class_display_engine.html#a3608e129a41c070291ab3e031c5dab7e',1,'DisplayEngine']]],
   ['is_5fmoving',['is_moving',['../class_x_g_u_i_1_1_abstract_window.html#ac3254bca409e7b0e8909b08debe4e363',1,'XGUI::AbstractWindow']]],
   ['is_5fresizing',['is_resizing',['../class_x_g_u_i_1_1_abstract_window.html#abc89ed1cc19c57b4955ca8eea6e46205',1,'XGUI::AbstractWindow']]],
-  ['iscamera',['isCamera',['../struct_actor_info.html#af1e000c5c8b94f4ad1bb6aeb7942526e',1,'ActorInfo']]],
-  ['iscubemap',['isCubeMap',['../struct_render_target_descriptor.html#a071efaf2a7f087536aec7e543f9dae60',1,'RenderTargetDescriptor']]],
-  ['islight',['isLight',['../struct_actor_info.html#a64f6ca9018b38181f30ece88f5cfcc05',1,'ActorInfo']]]
+  ['iscubemap',['isCubeMap',['../struct_render_target_descriptor.html#a071efaf2a7f087536aec7e543f9dae60',1,'RenderTargetDescriptor']]]
 ];

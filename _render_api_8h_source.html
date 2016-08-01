@@ -98,7 +98,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;EngineCore/UserApi/ApiGroup.h&quot;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">class </span><a class="code" href="class_render_pass.html">RenderPass</a>;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">class </span><a class="code" href="class_camera_actor.html">CameraActor</a>;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_api.html">Api</a></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
@@ -111,20 +111,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="class_api_1_1_rendering_api.html">RenderingApi</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        ~<a class="code" href="class_api_1_1_rendering_api.html">RenderingApi</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordtype">void</span>        <a class="code" href="class_api_1_1_rendering_api.html#af7385fccacc489f533ff90cf71a7604b">RenderOnce</a>      ( <a class="code" href="class_render_pass.html">RenderPass</a>* );</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    };</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}   <span class="comment">// Api</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordtype">void</span>                <a class="code" href="class_api_1_1_rendering_api.html#af7385fccacc489f533ff90cf71a7604b">RenderOnce</a>          ( <a class="code" href="class_render_pass.html">RenderPass</a>* );</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="class_camera_actor.html">CameraActor</a>*        <a class="code" href="class_api_1_1_rendering_api.html#ace4b94741ca84fe69e7f387850ff63f2">GetCurrentCamera</a>    ();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordtype">void</span>                <a class="code" href="class_api_1_1_rendering_api.html#a60ae1697355727a53eca0ff633c53be9">SetCurrentCamera</a>    ( <a class="code" href="class_camera_actor.html">CameraActor</a>* camera );</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordtype">int</span>                 <a class="code" href="class_api_1_1_rendering_api.html#a6df569fab55ad1f4ccff209e05a2b653">GetWindowWidth</a>      ();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordtype">int</span>                 <a class="code" href="class_api_1_1_rendering_api.html#ac0aafbcd22fe672e03bc1d687f8e5056">GetWindowHeight</a>     ();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    };</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}   <span class="comment">// Api</span></div>
+<div class="ttc" id="class_api_1_1_rendering_api_html_a6df569fab55ad1f4ccff209e05a2b653"><div class="ttname"><a href="class_api_1_1_rendering_api.html#a6df569fab55ad1f4ccff209e05a2b653">Api::RenderingApi::GetWindowWidth</a></div><div class="ttdeci">int GetWindowWidth()</div><div class="ttdoc">Zwraca szerokość głównego render targetu. </div><div class="ttdef"><b>Definition:</b> RenderApi.cpp:41</div></div>
+<div class="ttc" id="class_camera_actor_html"><div class="ttname"><a href="class_camera_actor.html">CameraActor</a></div><div class="ttdoc">Klasa bazowa dla wszystkich obiektów kamer w silniku. </div><div class="ttdef"><b>Definition:</b> CameraActor.h:38</div></div>
 <div class="ttc" id="namespace_api_html"><div class="ttname"><a href="namespace_api.html">Api</a></div><div class="ttdef"><b>Definition:</b> ActorsApi.cpp:7</div></div>
+<div class="ttc" id="class_api_1_1_rendering_api_html_ac0aafbcd22fe672e03bc1d687f8e5056"><div class="ttname"><a href="class_api_1_1_rendering_api.html#ac0aafbcd22fe672e03bc1d687f8e5056">Api::RenderingApi::GetWindowHeight</a></div><div class="ttdeci">int GetWindowHeight()</div><div class="ttdoc">Zwraca wysokość głównego render targetu. </div><div class="ttdef"><b>Definition:</b> RenderApi.cpp:47</div></div>
 <div class="ttc" id="class_render_pass_html"><div class="ttname"><a href="class_render_pass.html">RenderPass</a></div><div class="ttdef"><b>Definition:</b> RenderPass.h:11</div></div>
 <div class="ttc" id="class_api_1_1_rendering_api_html_af7385fccacc489f533ff90cf71a7604b"><div class="ttname"><a href="class_api_1_1_rendering_api.html#af7385fccacc489f533ff90cf71a7604b">Api::RenderingApi::RenderOnce</a></div><div class="ttdeci">void RenderOnce(RenderPass *)</div><div class="ttdoc">Dorzuca do kolejki renderingu nowy przebieg, który zostanie wyrenderowany tylko raz. </div><div class="ttdef"><b>Definition:</b> RenderApi.cpp:23</div></div>
+<div class="ttc" id="class_api_1_1_rendering_api_html_ace4b94741ca84fe69e7f387850ff63f2"><div class="ttname"><a href="class_api_1_1_rendering_api.html#ace4b94741ca84fe69e7f387850ff63f2">Api::RenderingApi::GetCurrentCamera</a></div><div class="ttdeci">CameraActor * GetCurrentCamera()</div><div class="ttdoc">Zwraca aktualnie ustawioną kamerę główną. </div><div class="ttdef"><b>Definition:</b> RenderApi.cpp:29</div></div>
 <div class="ttc" id="class_api_1_1_api_group_html"><div class="ttname"><a href="class_api_1_1_api_group.html">Api::ApiGroup</a></div><div class="ttdoc">Klasa bazowa dla klas w EngineInterface służących do grupowania funkcji interfejsu dla użytkownika (k...</div><div class="ttdef"><b>Definition:</b> ApiGroup.h:18</div></div>
+<div class="ttc" id="class_api_1_1_rendering_api_html_a60ae1697355727a53eca0ff633c53be9"><div class="ttname"><a href="class_api_1_1_rendering_api.html#a60ae1697355727a53eca0ff633c53be9">Api::RenderingApi::SetCurrentCamera</a></div><div class="ttdeci">void SetCurrentCamera(CameraActor *camera)</div><div class="ttdoc">Ustawia aktualnie używaną kamerę. </div><div class="ttdef"><b>Definition:</b> RenderApi.cpp:35</div></div>
 <div class="ttc" id="class_api_1_1_rendering_api_html"><div class="ttname"><a href="class_api_1_1_rendering_api.html">Api::RenderingApi</a></div><div class="ttdoc">Zawiera funkcje do obsługi wejścia użytkownika. </div><div class="ttdef"><b>Definition:</b> RenderApi.h:24</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:19 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

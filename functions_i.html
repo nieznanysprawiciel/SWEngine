@@ -76,6 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="functions.html"><span>All</span></a></li>
       <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
+      <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
       <li><a href="functions_prop.html"><span>Properties</span></a></li>
       <li><a href="functions_evnt.html"><span>Events</span></a></li>
       <li><a href="functions_rela.html"><span>Related&#160;Functions</span></a></li>
@@ -93,6 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_g.html#index_g"><span>g</span></a></li>
       <li><a href="functions_h.html#index_h"><span>h</span></a></li>
       <li class="current"><a href="functions_i.html#index_i"><span>i</span></a></li>
+      <li><a href="functions_k.html#index_k"><span>k</span></a></li>
       <li><a href="functions_l.html#index_l"><span>l</span></a></li>
       <li><a href="functions_m.html#index_m"><span>m</span></a></li>
       <li><a href="functions_n.html#index_n"><span>n</span></a></li>
@@ -146,15 +148,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>Init()
 : <a class="el" href="class_i_input.html#af71ffd5be7a0576bc7ba6b439ebd1d72">IInput</a>
+, <a class="el" href="class_win_api_input_proxy.html#a76f78a18c266024e441ade70301bcad0">WinApiInputProxy</a>
+, <a class="el" href="class_w_p_f_input_proxy.html#a47a7a3bcedbfb6f702e91abb943db16c">WPFInputProxy</a>
 </li>
 <li>init_buffers()
 : <a class="el" href="class_d_x11_auxiliary_objects.html#a371eb21fffc935ce80630d2fb42da0cf">DX11AuxiliaryObjects</a>
 </li>
 <li>init_devices()
 : <a class="el" href="class_d_x11_a_p_i_objects.html#acde24d000d0385bfcfe10775be318991">DX11APIObjects</a>
-</li>
-<li>init_direct_input()
-: <a class="el" href="class_u_i___engine.html#a80b5fd7398f4fa090be9a583be033da9">UI_Engine</a>
 </li>
 <li>init_DX11()
 : <a class="el" href="class_d_x11_a_p_i_objects.html#aee2110fba2c139838f773b424e8cc20b">DX11APIObjects</a>
@@ -205,6 +206,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>InitializeEngine()
 : <a class="el" href="class_editor_plugin_1_1_engine_wrapper.html#ad2cfddbec7af50bba7b707add796a3b0">EditorPlugin::EngineWrapper</a>
 </li>
+<li>InitInputModule()
+: <a class="el" href="class_engine.html#a9517cf31c40292f01143f62779e4053d">Engine</a>
+</li>
 <li>InitInstance()
 : <a class="el" href="class_engine.html#a09cdbc38e14934b870d77cc94eca17fa">Engine</a>
 </li>
@@ -253,9 +257,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>IsActive()
 : <a class="el" href="class_input_abstraction_layer_base.html#af9df9419cebe425f8ca2d86e3cccd48c">InputAbstractionLayerBase</a>
 </li>
-<li>isCamera
-: <a class="el" href="struct_actor_info.html#af1e000c5c8b94f4ad1bb6aeb7942526e">ActorInfo</a>
-</li>
 <li>isChangeOrder()
 : <a class="el" href="class_x_g_u_i_1_1_control.html#a6b24a7e4bea86670de91a8c74c91ac8f">XGUI::Control</a>
 </li>
@@ -275,10 +276,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_spin_locked_queue.html#a6bf49d1f9a35778366a29ed373e97bc8">SpinLockedQueue&lt; ContentType &gt;</a>
 </li>
 <li>ISerializer()
-: <a class="el" href="class_i_serializer.html#ad9236cc8f5859e0cd8077fe3506b9aa7">ISerializer</a>
-</li>
-<li>isLight
-: <a class="el" href="struct_actor_info.html#a64f6ca9018b38181f30ece88f5cfcc05">ActorInfo</a>
+: <a class="el" href="class_i_serializer.html#a33d03a7fb1adc4f34a0f09516f9b6d50">ISerializer</a>
 </li>
 <li>isMouseOn()
 : <a class="el" href="class_x_g_u_i_1_1_control.html#a46713a8e2ac11373cb421f6a00a721d9">XGUI::Control</a>
@@ -299,7 +297,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:21:00 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:21 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

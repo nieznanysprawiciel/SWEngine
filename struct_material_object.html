@@ -106,7 +106,7 @@ Inheritance diagram for MaterialObject:</div>
  <div class="center">
   <img src="struct_material_object.png" usemap="#MaterialObject_map" alt=""/>
   <map id="MaterialObject_map" name="MaterialObject_map">
-<area href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. " alt="ResourceObject" shape="rect" coords="0,56,103,80"/>
+<area href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShader, PixelShader itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. " alt="ResourceObject" shape="rect" coords="0,56,103,80"/>
 <area href="class_engine_object.html" title="Klasa bazowa dla obiektów, które mają być dostępne w edytorze poprzez rttr. Należy po niej odziedzicz..." alt="EngineObject" shape="rect" coords="0,0,103,24"/>
 </map>
  </div></div>
@@ -154,6 +154,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_resource_object.html#ace003f472621b17c7a7ed569e51248b8">GetID</a> ()</td></tr>
 <tr class="memdesc:ace003f472621b17c7a7ed569e51248b8 inherit pub_methods_class_resource_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca identyfikator nadany assetowi. <br /></td></tr>
 <tr class="separator:ace003f472621b17c7a7ed569e51248b8 inherit pub_methods_class_resource_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_engine_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_engine_object')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_engine_object.html">EngineObject</a></td></tr>
+<tr class="memitem:abe5f0eabeced7434d6b2abc105e322c4 inherit pub_methods_class_engine_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe5f0eabeced7434d6b2abc105e322c4"></a>
+rttr::type&#160;</td><td class="memItemRight" valign="bottom"><b>GetType</b> () const </td></tr>
+<tr class="separator:abe5f0eabeced7434d6b2abc105e322c4 inherit pub_methods_class_engine_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cb6584bd5d3b639247e66a121774555 inherit pub_methods_class_engine_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5cb6584bd5d3b639247e66a121774555"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Serialize</b> (<a class="el" href="class_i_serializer.html">ISerializer</a> *ser) const </td></tr>
+<tr class="separator:a5cb6584bd5d3b639247e66a121774555 inherit pub_methods_class_engine_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98d8456f78dadb75104e9f886e6fa10a inherit pub_methods_class_engine_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a98d8456f78dadb75104e9f886e6fa10a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Deserialize</b> (<a class="el" href="class_i_deserializer.html">IDeserializer</a> *deser)</td></tr>
+<tr class="separator:a98d8456f78dadb75104e9f886e6fa10a inherit pub_methods_class_engine_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9412b884612f08341e1f638e3cbed90 inherit pub_methods_class_engine_object"><td class="memItemLeft" align="right" valign="top">virtual Size&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_object.html#ae9412b884612f08341e1f638e3cbed90">MemorySize</a> ()</td></tr>
+<tr class="separator:ae9412b884612f08341e1f638e3cbed90 inherit pub_methods_class_engine_object"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -187,7 +199,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Struktura przechowująca materiał.</p>
 <p>DirectX 11 nie ma własnych obiektów na materiały, ponieważ nie ma już domyślnego potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisać shader i dostarcza mu się takie dane, jakie się chce dostarczyć. Dlatego informacja o materiałach będzie przekazywana z buforze stałych. </p>
-<p>Struktura zachowuje się jak asset w związku z czym może być współdzielona przez wiele obiektów. Z tego względu nie można jej użyć bezpośrednio w <a class="el" href="struct_constant_per_mesh.html" title="Bufor stałych dla shadera zmieniający się dla każdej części mesha. ">ConstantPerMesh</a>, ponieważ nie chcemy przekazywać do bufora stałych zmiennych odziedziczonych po <a class="el" href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. ">ResourceObject</a>. Zamiast tego trzeba tę strukture przepisać.</p>
+<p>Struktura zachowuje się jak asset w związku z czym może być współdzielona przez wiele obiektów. Z tego względu nie można jej użyć bezpośrednio w <a class="el" href="struct_constant_per_mesh.html" title="Bufor stałych dla shadera zmieniający się dla każdej części mesha. ">ConstantPerMesh</a>, ponieważ nie chcemy przekazywać do bufora stałych zmiennych odziedziczonych po <a class="el" href="class_resource_object.html" title="Klasa ułatwiająca zarządzanie odwołaniami do assetów.Obiekty assetów (np. MaterialObject, TextureObject, VertexShader, PixelShader itp.) wymagają jakiegoś systemu zapewniającego współdzielenie między innymi obiektami. ">ResourceObject</a>. Zamiast tego trzeba tę strukture przepisać.</p>
 <p>Zwracam uwagę, że tylko kanał Diffuse jest wektorem 4 wymiarowym, w którym składowa w jest odpowiedzialna za przezroczystość. Pozostałe są takie tylko dlatego, że jest to domyślny format przechowywania danych w rejestrach karty graficznej i przyspiesza to operację kopiowania. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_constant_per_frame.html" title="Bufor stałych dla shadera zmieniający się raz na klatkę. ">ConstantPerFrame</a> </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a78c54ca82d12fc9ab3ac30b13fec75d8"></a>
@@ -215,7 +227,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:59 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:20 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

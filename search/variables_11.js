@@ -19,5 +19,6 @@ var searchData=
   ['top_5fleft',['top_left',['../struct_x_g_u_i_1_1_rect.html#a79f25ff03bca78559437f4322021c7a4',1,'XGUI::Rect']]],
   ['transform',['transform',['../struct_scene_object_data.html#ae230edb1bec63648d9478d36253ffeae',1,'SceneObjectData']]],
   ['transform_5fmatrix',['transform_matrix',['../struct_mesh_part_object.html#ac79031ebb80bacca70ad8f3a4a766b6b',1,'MeshPartObject']]],
-  ['type',['type',['../struct_x_g_u_i_1_1_g_u_i_event.html#ad00ab098f3655f72c78376fa5ee68e88',1,'XGUI::GUIEvent::type()'],['../class_editor_plugin_1_1_actor_class_meta_info.html#af31107e46c455f220587d132cc8a8601',1,'EditorPlugin::ActorClassMetaInfo::Type()']]]
+  ['type',['Type',['../class_editor_plugin_1_1_actor_class_meta_info.html#af31107e46c455f220587d132cc8a8601',1,'EditorPlugin::ActorClassMetaInfo::Type()'],['../struct_x_g_u_i_1_1_g_u_i_event.html#ad00ab098f3655f72c78376fa5ee68e88',1,'XGUI::GUIEvent::type()']]],
+  ['typeproperties',['TypeProperties',['../struct_engine_serialization_context.html#acca96c68548466a3b623475da2fd50dd',1,'EngineSerializationContext']]]
 ];

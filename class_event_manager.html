@@ -125,6 +125,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a59117daabf002a9ad55d4da3792d10ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_event_manager.html#a59117daabf002a9ad55d4da3792d10ce">RemoveListener</a> (rttr::type eventType, const <a class="el" href="class_engine_object.html">EngineObject</a> *handlerOwner)</td></tr>
 <tr class="memdesc:a59117daabf002a9ad55d4da3792d10ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usuwa funkcję obsługi eventu.  <a href="#a59117daabf002a9ad55d4da3792d10ce">More...</a><br /></td></tr>
 <tr class="separator:a59117daabf002a9ad55d4da3792d10ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad41ff565ec3fb90b409d269624b1140f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad41ff565ec3fb90b409d269624b1140f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_event_manager.html#ad41ff565ec3fb90b409d269624b1140f">RemoveReferences</a> (const <a class="el" href="class_engine_object.html">EngineObject</a> *handlerOwner)</td></tr>
+<tr class="memdesc:ad41ff565ec3fb90b409d269624b1140f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usuwa wszystkie odwołania do podanego obiektu. <br /></td></tr>
+<tr class="separator:ad41ff565ec3fb90b409d269624b1140f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7589280b2d419b0de93bc62b75be2098"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7589280b2d419b0de93bc62b75be2098"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_event_manager.html#a7589280b2d419b0de93bc62b75be2098">RemoveAllActors</a> ()</td></tr>
+<tr class="memdesc:a7589280b2d419b0de93bc62b75be2098"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usuwa wszystkich aktorów. (nie wszystkie obiekty) <br /></td></tr>
+<tr class="separator:a7589280b2d419b0de93bc62b75be2098"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ca840f7944a1892d5adaad0708af5b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ca840f7944a1892d5adaad0708af5b3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_event_manager.html#a9ca840f7944a1892d5adaad0708af5b3">ClearListeners</a> ()</td></tr>
 <tr class="memdesc:a9ca840f7944a1892d5adaad0708af5b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usuwa wszystkie funkcje obsługi. <br /></td></tr>
@@ -161,8 +169,8 @@ ListenerHashMap&#160;</td><td class="memItemRight" valign="bottom"><b>m_listener
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Moduł do zarządzania eventami.</p>
 <p>Aby dowiedzieć się o różnicy między eventami i sygnałami przeczytaj <a class="el" href="group___events_signals.html">Eventy i Sygnały</a>. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>Przerobić <a class="el" href="class_event_manager.html" title="Moduł do zarządzania eventami.Aby dowiedzieć się o różnicy między eventami i sygnałami przeczytaj Eve...">EventManager</a>, żeby był w pełni wielowątkowy. Oprócz synchronizacji powinien on rozdzielać otrzymane eventy na wątki, tak żeby jednocześnie wykonywały się tylko te zadania, które nie będą powodowały błędów synchronizacji.</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000026">Todo:</a></b></dt><dd>Ponieważ eventy będą wysyłane często, a z powodu wielowątkowości muszą zastąpić komunikację między Aktorami, która normalnie byłaby bardzo wydajna, to trzeba zapewnić maksymalną wydajność całego mechanizmu. Najwięcej można zrobić używając jakiejś lepszej maszynki do zarządzania pamięcią. Kolejki m_signals i m_events mogłyby alokować swoje elementy przy pomocy alokatora Memory Pool. Dla klas <a class="el" href="class_event.html">Event</a> można by zrobić alokator stosowy (Stack Allocator), który byłby zwalniany po każdej klatce. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000032">Todo:</a></b></dt><dd>Przerobić <a class="el" href="class_event_manager.html" title="Moduł do zarządzania eventami.Aby dowiedzieć się o różnicy między eventami i sygnałami przeczytaj Eve...">EventManager</a>, żeby był w pełni wielowątkowy. Oprócz synchronizacji powinien on rozdzielać otrzymane eventy na wątki, tak żeby jednocześnie wykonywały się tylko te zadania, które nie będą powodowały błędów synchronizacji.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000033">Todo:</a></b></dt><dd>Ponieważ eventy będą wysyłane często, a z powodu wielowątkowości muszą zastąpić komunikację między Aktorami, która normalnie byłaby bardzo wydajna, to trzeba zapewnić maksymalną wydajność całego mechanizmu. Najwięcej można zrobić używając jakiejś lepszej maszynki do zarządzania pamięcią. Kolejki m_signals i m_events mogłyby alokować swoje elementy przy pomocy alokatora Memory Pool. Dla klas <a class="el" href="class_event.html">Event</a> można by zrobić alokator stosowy (Stack Allocator), który byłby zwalniany po każdej klatce. </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a5719c16b93c92d87ebd4064458ea20e8"></a>
 <div class="memitem">
@@ -251,7 +259,7 @@ ListenerHashMap&#160;</td><td class="memItemRight" valign="bottom"><b>m_listener
 </div><div class="memdoc">
 
 <p>Główna funkcja do rozsyłania eventów. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd>Trzeba się zabezpieczyć w jakiś sposób przed zepętleniem eventów przez użytkownika!!! </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000031">Todo:</a></b></dt><dd>Trzeba się zabezpieczyć w jakiś sposób przed zepętleniem eventów przez użytkownika!!! </dd></dl>
 
 </div>
 </div>
@@ -329,7 +337,7 @@ ListenerHashMap&#160;</td><td class="memItemRight" valign="bottom"><b>m_listener
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:58 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:20 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

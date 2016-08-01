@@ -8,8 +8,9 @@ var searchData=
   ['editorapp',['EditorApp',['../namespace_editor_app.html',1,'']]],
   ['engine',['Engine',['../namespace_editor_app_1_1_engine.html',1,'EditorApp']]],
   ['gui',['GUI',['../namespace_editor_app_1_1_g_u_i.html',1,'EditorApp']]],
-  ['project',['Project',['../namespace_editor_app_1_1_editor_1_1_project.html',1,'EditorApp::Editor']]],
+  ['helpers',['Helpers',['../namespace_editor_app_1_1_editor_1_1_helpers.html',1,'EditorApp::Editor']]],
   ['project',['Project',['../namespace_editor_app_1_1_project.html',1,'EditorApp']]],
+  ['project',['Project',['../namespace_editor_app_1_1_editor_1_1_project.html',1,'EditorApp::Editor']]],
   ['properties',['Properties',['../namespace_editor_app_1_1_properties.html',1,'EditorApp']]],
   ['viewmodel',['ViewModel',['../namespace_editor_app_1_1_view_model.html',1,'EditorApp']]]
 ];

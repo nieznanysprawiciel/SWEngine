@@ -107,12 +107,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a148bb05487b143acb89b4233c6c040f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a148bb05487b143acb89b4233c6c040f5"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>UI_Engine</b> (<a class="el" href="class_engine.html">Engine</a> *engine)</td></tr>
 <tr class="separator:a148bb05487b143acb89b4233c6c040f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80b5fd7398f4fa090be9a583be033da9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a80b5fd7398f4fa090be9a583be033da9">init_direct_input</a> ()</td></tr>
-<tr class="memdesc:a80b5fd7398f4fa090be9a583be033da9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje obiekty Direct Inputa.  <a href="#a80b5fd7398f4fa090be9a583be033da9">More...</a><br /></td></tr>
-<tr class="separator:a80b5fd7398f4fa090be9a583be033da9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adad9d08efd9fde77ab0419f304f9c964"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adad9d08efd9fde77ab0419f304f9c964"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>InitInputModule</b> ()</td></tr>
-<tr class="separator:adad9d08efd9fde77ab0419f304f9c964"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97350052b2b3ab76ce4fae106254f4b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_i_input.html">IInput</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a97350052b2b3ab76ce4fae106254f4b5">ChangeInputModule</a> (<a class="el" href="class_i_input.html">IInput</a> *module)</td></tr>
+<tr class="memdesc:a97350052b2b3ab76ce4fae106254f4b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ustawia nowy moduł do obsługi wejścia użytkownika.  <a href="#a97350052b2b3ab76ce4fae106254f4b5">More...</a><br /></td></tr>
+<tr class="separator:a97350052b2b3ab76ce4fae106254f4b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2b4e18d2fce044fde4395a661ecdad3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2b4e18d2fce044fde4395a661ecdad3"></a>
+<a class="el" href="class_i_input.html">IInput</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#ad2b4e18d2fce044fde4395a661ecdad3">GetInputModule</a> ()</td></tr>
+<tr class="memdesc:ad2b4e18d2fce044fde4395a661ecdad3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwraca aktualnie używany moduł do obsługi wejścia użytkownika. <br /></td></tr>
+<tr class="separator:ad2b4e18d2fce044fde4395a661ecdad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfffc7bd4e3b7a4f43bf81de3db7fd0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#abfffc7bd4e3b7a4f43bf81de3db7fd0a">ProceedInput</a> (float time_interval)</td></tr>
 <tr class="memdesc:abfffc7bd4e3b7a4f43bf81de3db7fd0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja wywoływana przez klasę <a class="el" href="class_engine.html" title="Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika.">Engine</a> w każdym obiegu głównej petli programu. Przechwytujemy klawiaturę, wykonujemy wszytkie funkcje obsługi obiektów sterowanych.  <a href="#abfffc7bd4e3b7a4f43bf81de3db7fd0a">More...</a><br /></td></tr>
 <tr class="separator:abfffc7bd4e3b7a4f43bf81de3db7fd0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,13 +146,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a32abdf7045d4a65bc7182aeebc5cf843"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32abdf7045d4a65bc7182aeebc5cf843"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a32abdf7045d4a65bc7182aeebc5cf843">clean_direct_input</a> ()</td></tr>
-<tr class="memdesc:a32abdf7045d4a65bc7182aeebc5cf843"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zwalnia obiekty Direct Inputa. <br /></td></tr>
-<tr class="separator:a32abdf7045d4a65bc7182aeebc5cf843"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f3812493f952abd4fce4b994ef529fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a5f3812493f952abd4fce4b994ef529fe">UpdateAbstractionLayer</a> ()</td></tr>
-<tr class="memdesc:a5f3812493f952abd4fce4b994ef529fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja aktualizuje tablice w aktualnie aktywnej warstwie abstrakcji.  <a href="#a5f3812493f952abd4fce4b994ef529fe">More...</a><br /></td></tr>
-<tr class="separator:a5f3812493f952abd4fce4b994ef529fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a967f88619bb0dfa6d407925f15ec1798"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a967f88619bb0dfa6d407925f15ec1798">UpdateAbstractionLayer</a> (const std::vector&lt; <a class="el" href="class_keyboard_state.html">KeyboardState</a> * &gt; &amp;keyboards, const std::vector&lt; <a class="el" href="class_mouse_state.html">MouseState</a> * &gt; &amp;mouses, const std::vector&lt; <a class="el" href="class_joystick_state.html">JoystickState</a> * &gt; &amp;jousticks)</td></tr>
+<tr class="memdesc:a967f88619bb0dfa6d407925f15ec1798"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja aktualizuje tablice w aktualnie aktywnej warstwie abstrakcji.  <a href="#a967f88619bb0dfa6d407925f15ec1798">More...</a><br /></td></tr>
+<tr class="separator:a967f88619bb0dfa6d407925f15ec1798"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d00d7060bdc3c8ccf7b4e301d60bc65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i___engine.html#a5d00d7060bdc3c8ccf7b4e301d60bc65">InitAbstractionLayers</a> ()</td></tr>
 <tr class="memdesc:a5d00d7060bdc3c8ccf7b4e301d60bc65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja ustawia domyślne warstwy abstrakcji w klasie UI_engine.  <a href="#a5d00d7060bdc3c8ccf7b4e301d60bc65">More...</a><br /></td></tr>
 <tr class="separator:a5d00d7060bdc3c8ccf7b4e301d60bc65"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,21 +158,6 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a8b5a8a311cd591c8b0b66a203dd8268f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b5a8a311cd591c8b0b66a203dd8268f"></a>
 <a class="el" href="class_engine.html">Engine</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>engine</b></td></tr>
 <tr class="separator:a8b5a8a311cd591c8b0b66a203dd8268f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0fcb9f991ea0fc559ec94444dfdd2d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae0fcb9f991ea0fc559ec94444dfdd2d5"></a>
-LPDIRECTINPUT8&#160;</td><td class="memItemRight" valign="bottom"><b>direct_input</b></td></tr>
-<tr class="separator:ae0fcb9f991ea0fc559ec94444dfdd2d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bf374f65f421e18c27897f7eab5a1a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6bf374f65f421e18c27897f7eab5a1a8"></a>
-LPDIRECTINPUTDEVICE8&#160;</td><td class="memItemRight" valign="bottom"><b>keyboard_input</b></td></tr>
-<tr class="separator:a6bf374f65f421e18c27897f7eab5a1a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada83c9810d3d0dc1ef25da5c89e46497"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada83c9810d3d0dc1ef25da5c89e46497"></a>
-LPDIRECTINPUTDEVICE8&#160;</td><td class="memItemRight" valign="bottom"><b>mouse_input</b></td></tr>
-<tr class="separator:ada83c9810d3d0dc1ef25da5c89e46497"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4dee539a21cf214f31d90882006ad278"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4dee539a21cf214f31d90882006ad278"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>keyboard_state</b> [256]</td></tr>
-<tr class="separator:a4dee539a21cf214f31d90882006ad278"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8df204c0d8999402c8cdb2b6e79f6bab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8df204c0d8999402c8cdb2b6e79f6bab"></a>
-DIMOUSESTATE2&#160;</td><td class="memItemRight" valign="bottom"><b>mouse_state</b></td></tr>
-<tr class="separator:a8df204c0d8999402c8cdb2b6e79f6bab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46fa04674cb976db0d4a60bf91b05e70"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46fa04674cb976db0d4a60bf91b05e70"></a>
 <a class="el" href="class_i_input.html">IInput</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_inputModule</b></td></tr>
 <tr class="separator:a46fa04674cb976db0d4a60bf91b05e70"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -191,7 +173,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_enableInput</b></td
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Moduł do obsługi wejścia wyjścia. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000046">Todo:</a></b></dt><dd>Wydzielić obsługę DirectInput do osobnego modułu. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000052">Todo:</a></b></dt><dd>Wydzielić obsługę DirectInput do osobnego modułu. </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a756e869768f02c0e958675cf34f24d1c"></a>
 <div class="memitem">
@@ -225,7 +207,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_enableInput</b></td
           <td class="memname">int UI_Engine::ChangeAbstractionLayer </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_input_abstraction_layer.html">InputAbstractionLayer</a> *&#160;</td>
-          <td class="paramname"><em>next_layer</em></td><td>)</td>
+          <td class="paramname"><em>nextLayer</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -234,7 +216,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_enableInput</b></td
 <p>Zmienia aktualnie ustawioną warstwę abstrakcji na podaną w argumencie. Warstwa nie musi być wcześniej dodana do <a class="el" href="class_u_i___engine.html" title="Moduł do obsługi wejścia wyjścia. ">UI_Engine</a>, ale zaleca się, aby dodawać wszystkie obiekty w celu pilnowania pamięci. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">next_layer</td><td>warstwa abstrakcji, która ma być aktywna. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nextLayer</td><td>warstwa abstrakcji, która ma być aktywna. </td></tr>
   </table>
   </dd>
 </dl>
@@ -244,6 +226,25 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_enableInput</b></td
 </ul>
 </dd></dl>
 <p>Zasadniczo nie ma potrzeby sprawdzania wartości zwracanej, w przypadkach innych niż debugowanie programu. </p>
+
+</div>
+</div>
+<a class="anchor" id="a97350052b2b3ab76ce4fae106254f4b5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_i_input.html">IInput</a> * UI_Engine::ChangeInputModule </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_i_input.html">IInput</a> *&#160;</td>
+          <td class="paramname"><em>module</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ustawia nowy moduł do obsługi wejścia użytkownika. </p>
+<dl class="section return"><dt>Returns</dt><dd>Zwraca poprzedni moduł. Zwolnienie modułu należy do wołającego. </dd></dl>
 
 </div>
 </div>
@@ -311,24 +312,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_enableInput</b></td
 
 </div>
 </div>
-<a class="anchor" id="a80b5fd7398f4fa090be9a583be033da9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int UI_Engine::init_direct_input </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Inicjalizuje obiekty Direct Inputa. </p>
-<dl class="section return"><dt>Returns</dt><dd>Zwraca taką wartość jak funkcje Directinput. </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="a5d00d7060bdc3c8ccf7b4e301d60bc65"></a>
 <div class="memitem">
 <div class="memproto">
@@ -351,7 +334,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_enableInput</b></td
 </div><div class="memdoc">
 
 <p>Funkcja ustawia domyślne warstwy abstrakcji w klasie UI_engine. </p>
-<p>&lt;</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000047">Todo:</a></b></dt><dd>Zastanowić się czy nie zrobić std::move na tym wektorze. </dd></dl>
+<p>&lt;</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000053">Todo:</a></b></dt><dd>Zastanowić się czy nie zrobić std::move na tym wektorze. </dd></dl>
 
 </div>
 </div>
@@ -363,7 +346,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_enableInput</b></td
           <td class="memname">void UI_Engine::ProceedInput </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>time_interval</em></td><td>)</td>
+          <td class="paramname"><em>timeInterval</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -372,10 +355,11 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_enableInput</b></td
 <p>Funkcja wywoływana przez klasę <a class="el" href="class_engine.html" title="Klasa Engine jest nadrzędnym obiektem zarządzającym wszystkimi modułami silnika.">Engine</a> w każdym obiegu głównej petli programu. Przechwytujemy klawiaturę, wykonujemy wszytkie funkcje obsługi obiektów sterowanych. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">time_interval</td><td>Parametrem jest czas który upłynął od ostatniego wywołania </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timeInterval</td><td>Parametrem jest czas który upłynął od ostatniego wywołania </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000051">Todo:</a></b></dt><dd>To jest tymczasowy hack. Trzeba to obsłużyć eventami. </dd></dl>
 <p>&lt; Wyłączenia aplikacji musi się odbywać w jakiś inny sposób. Powinien być jakiś domyślny mechanizm, żeby użytkownik nie zapomniał zrobić wyłączania.</p>
 <p>&lt; To jest hack i nie mam pojęcia jak to robić w wersji docelowej. </p>
 
@@ -406,7 +390,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_enableInput</b></td
 
 </div>
 </div>
-<a class="anchor" id="a5f3812493f952abd4fce4b994ef529fe"></a>
+<a class="anchor" id="a967f88619bb0dfa6d407925f15ec1798"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -416,8 +400,25 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_enableInput</b></td
         <tr>
           <td class="memname">void UI_Engine::UpdateAbstractionLayer </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="class_keyboard_state.html">KeyboardState</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>keyboards</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="class_mouse_state.html">MouseState</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mouses</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="class_joystick_state.html">JoystickState</a> * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>joysticks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -428,7 +429,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_enableInput</b></td
 </div><div class="memdoc">
 
 <p>Funkcja aktualizuje tablice w aktualnie aktywnej warstwie abstrakcji. </p>
-<p>Funkcja jest wywoływana przez UI_engine, dlatego jest prywatna. W każdej klatce następuje aktualizacja danych w aktualnie aktywnej warstwie abstrakcji. </p>
+<p>Funkcja jest wywoływana przez UI_engine, dlatego jest prywatna. W każdej klatce następuje aktualizacja danych w aktualnie aktywnej warstwie abstrakcji.</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000054">Todo:</a></b></dt><dd>Zastanowić się jak obsługiwać wiele urządzeń tego samego typu na raz. </dd></dl>
 
 </div>
 </div>
@@ -440,7 +442,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_enableInput</b></td
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 24 2016 14:20:59 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Aug 1 2016 09:52:20 for Schopenhauers Weltschmerz Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

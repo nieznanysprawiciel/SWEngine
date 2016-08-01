@@ -4,6 +4,9 @@ var searchData=
   ['lastelement',['LastElement',['../class_i_deserializer.html#ac4aae4473eada8a7dc0f9dc9dbd719cb',1,'IDeserializer']]],
   ['layer',['Layer',['../class_key_down_event.html#a53d0c3640232da7e3e7db00724de9a55',1,'KeyDownEvent::Layer()'],['../class_key_up_event.html#a9813857b3a454eded29f5ae5b18a5211',1,'KeyUpEvent::Layer()']]],
   ['layout',['layout',['../class_sky_dome.html#a3ef8efaa8e20556460f536b68b192757',1,'SkyDome']]],
+  ['level',['Level',['../class_engine_interface.html#a5097b492b5f567c80b2f886f67a1635b',1,'EngineInterface']]],
+  ['levelapi',['LevelApi',['../class_api_1_1_level_api.html',1,'Api']]],
+  ['levelapi_2eh',['LevelApi.h',['../_level_api_8h.html',1,'']]],
   ['levelinfo',['LevelInfo',['../class_editor_app_1_1_project_1_1_level_info.html',1,'EditorApp::Project']]],
   ['licencja',['Licencja',['../_license.html',1,'']]],
   ['lightbase',['LightBase',['../class_light_base.html',1,'']]],
@@ -17,12 +20,14 @@ var searchData=
   ['loadfromfile',['LoadFromFile',['../class_i_deserializer.html#ac5dde3fe855454ea25728dc7dc1e4c01',1,'IDeserializer']]],
   ['loadfromstring',['LoadFromString',['../class_i_deserializer.html#a4e3d069c5a72237c7c21bfbea2d98563',1,'IDeserializer']]],
   ['loadlevel',['LoadLevel',['../class_lightmap_logic.html#a87afdc7e441c6c2949f87d4ba02ec329',1,'LightmapLogic']]],
+  ['loadlevelsync',['LoadLevelSync',['../class_api_1_1_level_api.html#aed3e7e4752dfe4d16ce5d0299da7c367',1,'Api::LevelApi']]],
   ['loadmesh',['LoadMesh',['../class_editor_plugin_1_1_actor_wrapper.html#af55f38f2a0e171ca647d26657404a3be',1,'EditorPlugin::ActorWrapper']]],
   ['loadmodelfromfile',['LoadModelFromFile',['../class_models_manager.html#af6ab5c9f5293eded1f22f03af136fa2f',1,'ModelsManager']]],
-  ['loadpixelshadersync',['LoadPixelShaderSync',['../class_api_1_1_assets_1_1_shaders.html#a269a6bd292abb72db548ed173ac1be96',1,'Api::Assets::Shaders']]],
+  ['loadpixelshadersync',['LoadPixelShaderSync',['../class_api_1_1_assets_1_1_shaders.html#ad1a4a070909d4486031c511d2b52a040',1,'Api::Assets::Shaders']]],
   ['loadscene',['LoadScene',['../class_lightmap_logic.html#a93bbb0242e7cb12f94821007bec73409',1,'LightmapLogic']]],
   ['loadsync',['LoadSync',['../class_api_1_1_assets_1_1_models.html#a6021a00ee8f44c4da1b95b1f43a40cad',1,'Api::Assets::Models']]],
-  ['loadvertexshadersync',['LoadVertexShaderSync',['../class_api_1_1_assets_1_1_shaders.html#a4c8d386120d72d3240d9cb95206884d3',1,'Api::Assets::Shaders::LoadVertexShaderSync(const std::wstring &amp;name)'],['../class_api_1_1_assets_1_1_shaders.html#aa72015c32c02a73107196fc1c1077275',1,'Api::Assets::Shaders::LoadVertexShaderSync(const std::wstring &amp;name, ShaderInputLayoutObject **layout, InputLayoutDescriptor *layoutDesc)']]],
+  ['loadvertexshadersync',['LoadVertexShaderSync',['../class_api_1_1_assets_1_1_shaders.html#a72c6fe7968c11cbdc761571368df4fcb',1,'Api::Assets::Shaders::LoadVertexShaderSync(const std::wstring &amp;name)'],['../class_api_1_1_assets_1_1_shaders.html#a34c780aa8683462f3cc748abacca7d54',1,'Api::Assets::Shaders::LoadVertexShaderSync(const std::wstring &amp;name, ShaderInputLayoutObject **layout, InputLayoutDescriptor *layoutDesc)']]],
   ['lock',['lock',['../class_spin_lock.html#a2db046cb75c8febd532923ce36c4c3ad',1,'SpinLock']]],
-  ['logic',['Logic',['../class_editor_app_1_1_logic.html',1,'EditorApp']]]
+  ['logic',['Logic',['../class_editor_app_1_1_logic.html',1,'EditorApp']]],
+  ['lostfocus',['LostFocus',['../class_win_api_input_proxy.html#ac60857271990b64563e41c111deb9308',1,'WinApiInputProxy::LostFocus()'],['../class_w_p_f_input_proxy.html#a02ab673079f250a7e4e6a4da708625b3',1,'WPFInputProxy::LostFocus()']]]
 ];
