@@ -5,8 +5,8 @@
 
 @brief Deklaracja klasy Shaders.*/
 
-class VertexShaderObject;
-class PixelShaderObject;
+class VertexShader;
+class PixelShader;
 class ShaderInputLayoutObject;
 class InputLayoutDescriptor;
 
@@ -28,11 +28,11 @@ namespace Api { namespace Assets {
 		Shaders() = default;
 		~Shaders() = default;
 
-		VertexShaderObject*		GetVertexShaderSync		( const std::wstring& name );
-		VertexShaderObject*		LoadVertexShaderSync	( const std::wstring& name );
-		VertexShaderObject*		LoadVertexShaderSync	( const std::wstring& name, ShaderInputLayoutObject** layout, InputLayoutDescriptor* layoutDesc );
-		PixelShaderObject*		GetPixelShaderSync		( const std::wstring& name );
-		PixelShaderObject*		LoadPixelShaderSync		( const std::wstring& name );
+		VertexShader*		GetVertexShaderSync		( const std::wstring& name );
+		VertexShader*		LoadVertexShaderSync	( const std::wstring& name );
+		VertexShader*		LoadVertexShaderSync	( const std::wstring& name, ShaderInputLayoutObject** layout, InputLayoutDescriptor* layoutDesc );
+		PixelShader*		GetPixelShaderSync		( const std::wstring& name );
+		PixelShader*		LoadPixelShaderSync		( const std::wstring& name );
 	};
 
 

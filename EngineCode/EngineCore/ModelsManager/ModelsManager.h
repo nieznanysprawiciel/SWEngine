@@ -63,8 +63,8 @@ class ModelsManager
 private:
 	Engine* m_engine;			///<WskaŸnik na obiekt g³ówny silnika
 
-	ResourceContainer<VertexShaderObject>		m_vertexShader;		///<Vertex shadery.
-	ResourceContainer<PixelShaderObject>		m_pixelShader;		///<Pixel shadery.
+	ResourceContainer<VertexShader>		m_vertexShader;		///<Vertex shadery.
+	ResourceContainer<PixelShader>		m_pixelShader;		///<Pixel shadery.
 	ResourceContainer<TextureObject>			m_texture;			///<Tekstury.
 	ResourceContainer<BufferObject>				m_vertexBuffer;		///<Bufory wierzcho³ków.
 	ResourceContainer<BufferObject>				m_indexBuffer;		///<Bufory indeksów.
@@ -84,8 +84,8 @@ public:
 	~ModelsManager();
 
 	// Funkcje pomocnicze
-	VertexShaderObject*				FindBestVertexShader		( TextureObject** textures );
-	PixelShaderObject*				FindBestPixelShader			( TextureObject** textures );
+	VertexShader*				FindBestVertexShader		( TextureObject** textures );
+	PixelShader*				FindBestPixelShader			( TextureObject** textures );
 
 
 	// Funkcje do zarz¹dzania assetami
@@ -94,8 +94,8 @@ public:
 
 	inline Model3DFromFile*			GetModel					( const std::wstring& name ) { return m_fileModel.get( name ); }	///<Zwraca model z pliku o podanej nazwie, je¿eli jest wczytany.
 	inline RenderTargetObject*		GetRenderTarget				( const std::wstring& name ) { return m_renderTarget.get( name ); }	///<Zwraca RenderTarget o podanej nazwie, je¿eli jest wczytany.
-	inline VertexShaderObject*		GetVertexShader				( const std::wstring& name ) { return m_vertexShader.get( name ); } ///<Zwraca vertex shader o podanej nazwie, je¿eli jest wczytany.
-	inline PixelShaderObject*		GetPixelShader				( const std::wstring& name ) { return m_pixelShader.get( name ); }	///<Zwraca pixel shader o podanej nazwie, je¿eli jest wczytany.
+	inline VertexShader*		GetVertexShader				( const std::wstring& name ) { return m_vertexShader.get( name ); } ///<Zwraca vertex shader o podanej nazwie, je¿eli jest wczytany.
+	inline PixelShader*		GetPixelShader				( const std::wstring& name ) { return m_pixelShader.get( name ); }	///<Zwraca pixel shader o podanej nazwie, je¿eli jest wczytany.
 	inline TextureObject*			GetTexture					( const std::wstring& name ) { return m_texture.get( name ); }		///<Zwraca teksturê o podanej nazwie, je¿eli jest wczytany.
 	inline BufferObject*			GetVertexBuffer				( const std::wstring& name ) { return m_vertexBuffer.get( name ); }	///<Zwraca bufor wierzcho³ków o podanej nazwie, je¿eli jest wczytany.
 	inline BufferObject*			GetConstantBuffer			( const std::wstring& name ) { return m_constantBuffer.get( name ); }	///<Zwraca bufor sta³ych o podanej nazwie, je¿eli jest wczytany.
@@ -103,9 +103,9 @@ public:
 	inline MaterialObject*			GetMaterial					( const std::wstring& name ) { return m_material.get( name ); }	///<Zwraca materia³ o podanej nazwie, je¿eli jest wczytany.
 
 	TextureObject*					AddTexture					( const std::wstring& file_name );
-	VertexShaderObject*				AddVertexShader				( const std::wstring& file_name, const std::string& shader_entry );
-	VertexShaderObject*				AddVertexShader				( const std::wstring& file_name, const std::string& shader_entry, ShaderInputLayoutObject** layout, InputLayoutDescriptor* layout_desc );
-	PixelShaderObject*				AddPixelShader				( const std::wstring& file_name, const std::string& shader_entry );
+	VertexShader*				AddVertexShader				( const std::wstring& file_name, const std::string& shader_entry );
+	VertexShader*				AddVertexShader				( const std::wstring& file_name, const std::string& shader_entry, ShaderInputLayoutObject** layout, InputLayoutDescriptor* layout_desc );
+	PixelShader*				AddPixelShader				( const std::wstring& file_name, const std::string& shader_entry );
 	BufferObject*					AddVertexBuffer				( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
 	BufferObject*					AddIndexBuffer				( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
 	BufferObject*					AddConstantsBuffer			( const std::wstring& name, const void* buffer, unsigned int size );

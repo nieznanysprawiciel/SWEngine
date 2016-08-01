@@ -14,11 +14,11 @@ inline ResourceType*&			Get( ModelPart& modelPart, uint8 index )
 {	assert( false );	}
 
 template<>
-inline VertexShaderObject*&		Get( ModelPart& modelPart, uint8 index )
+inline VertexShader*&		Get( ModelPart& modelPart, uint8 index )
 {	return modelPart.vertex_shader;	}
 
 template<>
-inline PixelShaderObject*&		Get( ModelPart& modelPart, uint8 index )
+inline PixelShader*&		Get( ModelPart& modelPart, uint8 index )
 {	return modelPart.pixel_shader;	}	
 
 template<>

@@ -248,7 +248,7 @@ i okreœla j¹ makro DEFAULT_VERTEX_SHADER_ENTRY.
 @return Indentyfikator obiektu.*/
 unsigned int Model3DFromFile::add_vertex_shader( const std::wstring& file_name )
 {
-	VertexShaderObject* vertex_shader = models_manager->AddVertexShader( file_name, DEFAULT_VERTEX_SHADER_ENTRY );
+	VertexShader* vertex_shader = models_manager->AddVertexShader( file_name, DEFAULT_VERTEX_SHADER_ENTRY );
 	if ( !vertex_shader )
 		return WRONG_ID;
 
@@ -271,7 +271,7 @@ i okreœla j¹ makro DEFAULT_PIXEL_SHADER_ENTRY.
 @return Indentyfikator obiektu.*/
 unsigned int Model3DFromFile::add_pixel_shader( const std::wstring& file_name )
 {
-	PixelShaderObject* pixel_shader = models_manager->AddPixelShader( file_name, DEFAULT_PIXEL_SHADER_ENTRY );
+	PixelShader* pixel_shader = models_manager->AddPixelShader( file_name, DEFAULT_PIXEL_SHADER_ENTRY );
 	if ( !pixel_shader )
 		return WRONG_ID;
 

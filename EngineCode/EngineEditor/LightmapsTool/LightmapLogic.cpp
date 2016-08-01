@@ -117,8 +117,8 @@ void LightmapLogic::ProceedGameLogic			( float time )
 			delete sceneData;		// Nie bêdzie ju¿ wiêcej potrzebne.
 
 			// Przygotowujemy dane takie same dla wszyskich obiektów.
-			VertexShaderObject* vertexShader = m_engine->Assets.Shaders.GetVertexShaderSync( DEFAULT_COORD_COLOR_VERTEX_SHADER_PATH );
-			PixelShaderObject* pixelShader = m_engine->Assets.Shaders.GetPixelShaderSync( DEFAULT_COORD_COLOR_PIXEL_SHADER_PATH );
+			VertexShader* vertexShader = m_engine->Assets.Shaders.GetVertexShaderSync( DEFAULT_COORD_COLOR_VERTEX_SHADER_PATH );
+			PixelShader* pixelShader = m_engine->Assets.Shaders.GetPixelShaderSync( DEFAULT_COORD_COLOR_PIXEL_SHADER_PATH );
 			RenderTargetDescriptor renderTargetDesc;
 			renderTargetDesc.textureHeight = 1024;
 			renderTargetDesc.textureWidth = 1024;
@@ -191,7 +191,7 @@ void LightmapLogic::RenderEnded( const EngineObject* sender, Event* renderEndedE
 
 		if( realMesh )
 		{
-			PixelShaderObject* pixelShader = m_engine->Assets.Shaders.GetPixelShaderSync( DEFAULT_LIGHTMAP_PIXEL_SHADER_PATH );
+			PixelShader* pixelShader = m_engine->Assets.Shaders.GetPixelShaderSync( DEFAULT_LIGHTMAP_PIXEL_SHADER_PATH );
 			TextureObject* lightmap = renderPass->GetRenderTarget()->GetColorBuffer();
 			m_engine->Actors.Assets.ChangeTextures( realMesh, lightmap, 0, std::numeric_limits<uint16>::max(), TextureUse::TEX_DIFFUSE );	// W przysz³oœci TEX_LIGHTMAP
 			m_engine->Actors.Assets.ChangePixelShaders( realMesh, pixelShader, 0, std::numeric_limits<uint16>::max() );

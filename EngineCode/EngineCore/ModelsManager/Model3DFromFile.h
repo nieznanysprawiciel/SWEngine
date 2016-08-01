@@ -89,7 +89,7 @@ najlepiej pasuj¹cy shader do podanej tablicy tekstur.
 Je¿eli nie zostanie podany ¿aden materia³, ModelPart dostanie domyœlny materia³, który jest ustawiany przez funkcjê
 MaterialObject::SetNullMaterial.
 
-@see BufferObject, ModelPart, TextureObject, VertexShaderObject, PixelShaderObject, MaterialObject, MeshPartObject
+@see BufferObject, ModelPart, TextureObject, VertexShader, PixelShader, MaterialObject, MeshPartObject
 
 @todo Przepisaæ tak, ¿eby by³o jakoœ bardziej estetycznie.
 - Dodaæ klasê MemoryChunk zamiast go³ych wskaŸników na tablicê wierzcho³ków.

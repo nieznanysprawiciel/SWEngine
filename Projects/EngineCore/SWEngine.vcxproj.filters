@@ -117,6 +117,9 @@
     <Filter Include="EngineCore\UserApi\Level">
       <UniqueIdentifier>{187abfab-e16d-4094-84b6-2da745147460}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\ModelsManagment\Assets">
+      <UniqueIdentifier>{7e4b9013-e940-473d-abbc-3f471b7cd163}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -497,6 +500,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorPointer.h">
       <Filter>EngineCore\Actors</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MaterialAsset.h">
+      <Filter>EngineCore\ModelsManagment\Assets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -726,6 +732,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\EngineHelpers\ActorsCommonFunctions.cpp">
       <Filter>EngineCore\EngineHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MaterialAsset.cpp">
+      <Filter>EngineCore\ModelsManagment\Assets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

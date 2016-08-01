@@ -184,7 +184,7 @@ lub nieobecnoœci tekstury w tablicy.
 
 @param[in] textures Tablica tekstur z obiektu ModelPart.
 @return Zwraca obiekt vertex shadera.*/
-VertexShaderObject* ModelsManager::FindBestVertexShader( TextureObject** textures )
+VertexShader* ModelsManager::FindBestVertexShader( TextureObject** textures )
 {
 	// Na razie nie mamy innych domyœlnych shaderów
 	return m_vertexShader.get( DEFAULT_VERTEX_SHADER_STRING );
@@ -202,9 +202,9 @@ lub nieobecnoœci tekstury w tablicy.
 
 @param[in] textures Tablica tekstur z obiektu ModelPart.
 @return Zwraca obiekt pixel shadera.*/
-PixelShaderObject* ModelsManager::FindBestPixelShader( TextureObject** textures )
+PixelShader* ModelsManager::FindBestPixelShader( TextureObject** textures )
 {
-	PixelShaderObject* return_shader = nullptr;
+	PixelShader* return_shader = nullptr;
 
 	// Na razie nie ma innych tekstur ni¿ diffuse, wiêc algorytm nie jest skomplikowany
 	if ( textures[TextureUse::TEX_DIFFUSE] )
@@ -378,9 +378,9 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 @param[in] fileName Nazwa pliku, w którym znajduje siê vertex shader.
 @param[in] shaderEntry Nazwa funkcji od której ma siê zacz¹æ wykonywanie shadera.
 @return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
-VertexShaderObject* ModelsManager::AddVertexShader( const std::wstring& fileName, const std::string& shaderEntry )
+VertexShader* ModelsManager::AddVertexShader( const std::wstring& fileName, const std::string& shaderEntry )
 {
-	VertexShaderObject* shader = m_vertexShader.get( fileName );
+	VertexShader* shader = m_vertexShader.get( fileName );
 	if ( !shader )
 	{
 		// Nie by³o shadera, trzeba go stworzyæ i dodaæ
@@ -414,15 +414,15 @@ kasowany i nie zostaje zdublowany w ModelsManagerze, ale niepotrzebna praca zost
 do takich rzeczy dochodzi³o jak najrzadziej.
 @param[in] layoutDesc Deskryptor opisujacy tworzony layout.
 @return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
-VertexShaderObject* ModelsManager::AddVertexShader( const std::wstring& fileName,
+VertexShader* ModelsManager::AddVertexShader( const std::wstring& fileName,
 													const std::string& shaderEntry,
 													ShaderInputLayoutObject** layout,
 													InputLayoutDescriptor* layoutDesc )
 {
 	/// @todo Ten kod to jakiœ totalny shit. Jak komuœ siê bêdzie nudzi³o kiedyœ (ha ha), to mo¿e niech poprawi.
 	*layout = nullptr;
-	VertexShaderObject* shader = m_vertexShader.get( fileName );
-	VertexShaderObject* newShader = nullptr;
+	VertexShader* shader = m_vertexShader.get( fileName );
+	VertexShader* newShader = nullptr;
 	ShaderInputLayoutObject* inputLayout = m_vertexLayout.get( layoutDesc->GetName() );
 
 
@@ -459,7 +459,7 @@ VertexShaderObject* ModelsManager::AddVertexShader( const std::wstring& fileName
 	else
 	{	// Shader ju¿ by³, wiêc kasujemy nowy
 		// Destruktor jest prywatny, wiêc nie mo¿emy kasowaæ obiektu bezpoœrednio.
-		ObjectDeleter<VertexShaderObject>::delete_object( shader, ObjectDeleterKey<VertexShaderObject>() );
+		ObjectDeleter<VertexShader>::delete_object( shader, ObjectDeleterKey<VertexShader>() );
 	}
 
 	if( !inputLayout )	// Layoutu nie by³o wczeœniej wiêc dodajemy.
@@ -477,9 +477,9 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 @param[in] fileName Nazwa pliku, w którym znajduje siê pixel shader.
 @param[in] shaderEntry Nazwa funkcji od której ma siê zacz¹æ wykonywanie shadera.
 @return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
-PixelShaderObject* ModelsManager::AddPixelShader( const std::wstring& fileName, const std::string& shaderEntry )
+PixelShader* ModelsManager::AddPixelShader( const std::wstring& fileName, const std::string& shaderEntry )
 {
-	PixelShaderObject* shader = m_pixelShader.get( fileName );
+	PixelShader* shader = m_pixelShader.get( fileName );
 	if ( !shader )
 	{
 		// Nie by³o shadera, trzeba go stworzyæ i dodaæ

@@ -569,7 +569,7 @@ DX11_INIT_RESULT DX11APIObjects::init_z_buffer_and_render_target()
 //								Tworzenie domyœlnych shaderów									//
 //----------------------------------------------------------------------------------------------//
 
-/**@brief Tworzy obiekt VertexShaderObject na podstawie pliku.
+/**@brief Tworzy obiekt VertexShader na podstawie pliku.
 
 W przypadku b³êdów kompilacji w trybie debug s¹ one przekierowane do okna Output.
 

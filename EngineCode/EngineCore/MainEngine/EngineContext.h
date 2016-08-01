@@ -30,8 +30,8 @@ class IGraphicAPIInitializer;
 
 class Model3DFromFile;
 struct MaterialObject;
-class PixelShaderObject;
-class VertexShaderObject;
+class PixelShader;
+class VertexShader;
 class TextureObject;
 class BufferObject;
 class RenderTargetObject;

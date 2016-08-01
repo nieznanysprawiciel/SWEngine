@@ -14,10 +14,10 @@
 #include "Common/MemoryLeaks.h"
 
 typedef DX11Texture				Texture;
-typedef DX11VertexShader		VertexShader;
-typedef DX11PixelShader			PixelShader;
+typedef DX11VertexShader		VertexShaderObject;
+typedef DX11PixelShader			PixelShaderObject;
 typedef DX11Buffer				Buffer;
-typedef DX11ComputeShader		ComputeShader;
+typedef DX11ComputeShader		ComputeShaderObject;
 
 
 /**@brief Tworzy teksturê z podanego pliku.
@@ -34,9 +34,9 @@ TextureObject*			ResourcesFactory::CreateTextureFromFile( const std::wstring& fi
 @param[in] shaderName Nazwa funkcji, od której ma siê rozpocz¹æ wykonanie programu shadera.
 @param[in] shaderModel Shader model.
 @return Zwraca obiekt vertex shadera lub nullptr w przypadku niepowodzenia.*/
-VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
+VertexShader*		ResourcesFactory::CreateVertexShaderFromFile( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
 {
-	auto shader = VertexShader::CreateFromFile( fileName, shaderName, shaderModel );
+	auto shader = VertexShaderObject::CreateFromFile( fileName, shaderName, shaderModel );
 	if( shader )
 	{
 		shader->SetFileName( fileName );
@@ -53,13 +53,13 @@ VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile( const std::ws
 @param[in] layoutDesc Deskryptor opisuj¹cy layout.
 @param[in] shaderModel Shader model.
 @return Zwraca obiekt vertex shadera lub nullptr w przypadku niepowodzenia.*/
-VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile	( const std::wstring& fileName,
+VertexShader*		ResourcesFactory::CreateVertexShaderFromFile	( const std::wstring& fileName,
 																		const std::string& shaderName,
 																		ShaderInputLayoutObject** layout,
 																		InputLayoutDescriptor* layoutDesc,
 																		const char* shaderModel/* = "vs_4_0"*/ )
 {
-	auto shader = VertexShader::CreateFromFile( fileName, shaderName, layout, layoutDesc, shaderModel );
+	auto shader = VertexShaderObject::CreateFromFile( fileName, shaderName, layout, layoutDesc, shaderModel );
 	if( shader )
 	{
 		shader->SetFileName( fileName );
@@ -74,9 +74,9 @@ VertexShaderObject*		ResourcesFactory::CreateVertexShaderFromFile	( const std::w
 @param[in] shaderName Nazwa funkcji, od której ma siê rozpocz¹æ wykonanie programu shadera.
 @param[in] shaderModel Shader model.
 @return Zwraca obiekt vertex shadera lub nullptr w przypadku niepowodzenia.*/
-PixelShaderObject*		ResourcesFactory::CreatePixelShaderFromFile( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
+PixelShader*		ResourcesFactory::CreatePixelShaderFromFile( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
 {
-	auto shader = PixelShader::CreateFromFile( fileName, shaderName, shaderModel );
+	auto shader = PixelShaderObject::CreateFromFile( fileName, shaderName, shaderModel );
 	if( shader )
 	{
 		shader->SetFileName( fileName );
@@ -90,9 +90,9 @@ PixelShaderObject*		ResourcesFactory::CreatePixelShaderFromFile( const std::wstr
 @param[in] shaderName Nazwa funkcji, od której ma siê rozpocz¹æ wykonanie programu shadera.
 @param[in] shaderModel Shader model.
 @return Zwraca obiekt vertex shadera lub nullptr w przypadku niepowodzenia.*/
-ComputeShaderObject*		ResourcesFactory::CreateComputeShaderFromFile		( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
+ComputeShader*		ResourcesFactory::CreateComputeShaderFromFile		( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel )
 {
-	return ComputeShader::CreateFromFile( fileName, shaderName, shaderModel );
+	return ComputeShaderObject::CreateFromFile( fileName, shaderName, shaderModel );
 }
 
 /**@brief Tworzy bufor na podstawie sanych w pamiêci.

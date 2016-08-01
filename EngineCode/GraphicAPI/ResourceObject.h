@@ -12,7 +12,7 @@ do zliczania odwo³añ do obiektu.*/
 /**@brief Klasa u³atwiaj¹ca zarz¹dzanie odwo³aniami do assetów.
 @ingroup GraphicAPI
 
-Obiekty assetów (np. MaterialObject, TextureObject, VertexShaderObject, PixelShaderObject itp.) wymagaj¹ jakiegoœ systemu zapewniaj¹cego wspó³dzielenie miêdzy innymi obiektami.
+Obiekty assetów (np. MaterialObject, TextureObject, VertexShader, PixelShader itp.) wymagaj¹ jakiegoœ systemu zapewniaj¹cego wspó³dzielenie miêdzy innymi obiektami.
 
 Do ka¿dego pojedynczego obiektu mog¹ istnieæ wilokrotne odwo³ania w klasie Model3DFromFile,
 a tak¿e w obiektach dziedzicz¹cych po @ref DynamicMeshActor oraz w modu³ach silnika.

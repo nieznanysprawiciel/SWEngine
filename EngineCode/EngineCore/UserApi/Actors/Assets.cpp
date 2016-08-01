@@ -49,9 +49,9 @@ Zmieniany jest zestaw shaderów miêdzy beginPart a endPart (wy³¹cznie).
 @param[in] newShader Shader do ustawienia.
 @param[in] beginPart Indeks pierwszego podmesha, w którym zmieniamy zasób.
 @param[in] endPart Indeks za ostatnim elementem, który zostanie zmieniony.*/
-void Assets::ChangePixelShaders( DynamicMeshActor* mesh, PixelShaderObject* newShader, uint16 beginPart, uint16 endPart )
+void Assets::ChangePixelShaders( DynamicMeshActor* mesh, PixelShader* newShader, uint16 beginPart, uint16 endPart )
 {
-	ChangeResource<PixelShaderObject>( mesh, newShader, beginPart, endPart, 0 );
+	ChangeResource<PixelShader>( mesh, newShader, beginPart, endPart, 0 );
 }
 
 /**@brief Zmienia vertex shader w podanym obiekcie.
@@ -62,9 +62,9 @@ Zmieniany jest zestaw shaderów miêdzy beginPart a endPart (wy³¹cznie).
 @param[in] newShader Shader do ustawienia.
 @param[in] beginPart Indeks pierwszego podmesha, w którym zmieniamy zasób.
 @param[in] endPart Indeks za ostatnim elementem, który zostanie zmieniony.*/
-void Assets::ChangeVertexShaders( DynamicMeshActor* mesh, VertexShaderObject* newShader, uint16 beginPart, uint16 endPart )
+void Assets::ChangeVertexShaders( DynamicMeshActor* mesh, VertexShader* newShader, uint16 beginPart, uint16 endPart )
 {
-	ChangeResource<VertexShaderObject>( mesh, newShader, beginPart, endPart, 0 );
+	ChangeResource<VertexShader>( mesh, newShader, beginPart, endPart, 0 );
 }
 
 

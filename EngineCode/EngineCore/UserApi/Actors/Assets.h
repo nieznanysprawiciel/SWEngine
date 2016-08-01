@@ -7,8 +7,8 @@
 
 class DynamicMeshActor;
 class TextureObject;
-class PixelShaderObject;
-class VertexShaderObject;
+class PixelShader;
+class VertexShader;
 
 #include "EngineCore/UserApi/ApiGroup.h"
 
@@ -27,8 +27,8 @@ namespace Api { namespace Actors {
 
 		void		ChangeTextures		( DynamicMeshActor* mesh, TextureObject* newTex, uint16 beginPart, uint16 endPart, uint8 texIndex );
 
-		void		ChangePixelShaders	( DynamicMeshActor* mesh, PixelShaderObject* newShader, uint16 beginPart, uint16 endPart );
-		void		ChangeVertexShaders	( DynamicMeshActor* mesh, VertexShaderObject* newShader, uint16 beginPart, uint16 endPart );
+		void		ChangePixelShaders	( DynamicMeshActor* mesh, PixelShader* newShader, uint16 beginPart, uint16 endPart );
+		void		ChangeVertexShaders	( DynamicMeshActor* mesh, VertexShader* newShader, uint16 beginPart, uint16 endPart );
 	};
 
 

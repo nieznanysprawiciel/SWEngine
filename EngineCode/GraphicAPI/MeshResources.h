@@ -29,7 +29,7 @@ B³êdny identyfikator assetu w klasie @ref ResourceObject.*/
 /**@defgroup Resources Zasoby
 @ingroup ResourcesManagment
 @ingroup GraphicAPI
-@brief Klasy zasobów przechowywanych przez silnik.
+@brief Niskopoziomowe zasoby zwi¹zane z api graficznym.
 
 Zasoby s¹ silnie zale¿ne od u¿ywanej platformy sprzêtowej. W celu oddzielenia referencji do
 API graficznego od @ref EngineCore, wszystkie obiekty silnika u¿ywaj¹ jedynie klas bazowych, które
@@ -46,8 +46,8 @@ class ModelsManager;
 struct ModelPart;
 class BufferObject;
 class TextureObject;
-class VertexShaderObject;
-class PixelShaderObject;
+class VertexShader;
+class PixelShader;
 struct MeshPartObject;
 struct MaterialObject;
 
@@ -170,8 +170,8 @@ i w taki sposób wykorzystuj¹ je domyœlne shadery.
 */
 struct ModelPart
 {
-	VertexShaderObject*		vertex_shader;
-	PixelShaderObject*		pixel_shader;
+	VertexShader*		vertex_shader;
+	PixelShader*		pixel_shader;
 	MaterialObject*			material;
 	TextureObject*			texture[ENGINE_MAX_TEXTURES];
 	MeshPartObject*			mesh;
@@ -339,55 +339,118 @@ public:
 };
 
 
+/**@brief Typ shadera.
+@ingroup GraphicAPI*/
+enum class ShaderType
+{
+	VertexShader,
+	PixelShader,
+	GeometryShader,
+	TesselationControlShader,
+	TesselationEvaluationShader,
+	ComputeShader
+};
+
 //----------------------------------------------------------------------------------------------//
-//								VertexShaderObject												//
+//								VertexShader													//
 //----------------------------------------------------------------------------------------------//
 
 /** @brief Klasa przechowuj¹ca vertex shader.
 @ingroup Resources
 @ingroup GraphicAPI*/
-class VertexShaderObject : public IShader
+class VertexShader : public IShader
 {
-	friend ObjectDeleter<VertexShaderObject>;
+	friend ObjectDeleter< VertexShader >;
 private:
 protected:
-	~VertexShaderObject() = default;
+	~VertexShader() = default;
 public:
-	VertexShaderObject() = default;
+	VertexShader() = default;
 };
 
 //----------------------------------------------------------------------------------------------//
-//								PixelShaderObject												//
+//								PixelShader														//
 //----------------------------------------------------------------------------------------------//
 
 /**@brief Klasa przechowuj¹ca pixel shader.
 @ingroup Resources
 @ingroup GraphicAPI*/
-class PixelShaderObject : public IShader
+class PixelShader : public IShader
 {
-	friend ObjectDeleter<PixelShaderObject>;
+	friend ObjectDeleter< PixelShader >;
 private:
 protected:
-	~PixelShaderObject() = default;
+	~PixelShader() = default;
 public:
-	PixelShaderObject() = default;
+	PixelShader() = default;
 };
 
 //----------------------------------------------------------------------------------------------//
-//								ComputeShaderObject												//
+//								GeometryShader													//
+//----------------------------------------------------------------------------------------------//
+
+/**@brief Klasa przechowuj¹ca pixel shader.
+@ingroup Resources
+@ingroup GraphicAPI*/
+class GeometryShader : public IShader
+{
+	friend ObjectDeleter<GeometryShader>;
+private:
+protected:
+	~GeometryShader() = default;
+public:
+	GeometryShader() = default;
+};
+
+//----------------------------------------------------------------------------------------------//
+//								ControlShader													//
+//----------------------------------------------------------------------------------------------//
+
+/**@brief Klasa przechowuj¹ca pixel shader.
+@ingroup Resources
+@ingroup GraphicAPI*/
+class ControlShader : public IShader
+{
+	friend ObjectDeleter< ControlShader >;
+private:
+protected:
+	~ControlShader() = default;
+public:
+	ControlShader() = default;
+};
+
+//----------------------------------------------------------------------------------------------//
+//								EvaluationShader												//
+//----------------------------------------------------------------------------------------------//
+
+/**@brief Klasa przechowuj¹ca pixel shader.
+@ingroup Resources
+@ingroup GraphicAPI*/
+class EvaluationShader : public IShader
+{
+	friend ObjectDeleter< EvaluationShader >;
+private:
+protected:
+	~EvaluationShader() = default;
+public:
+	EvaluationShader() = default;
+};
+
+//----------------------------------------------------------------------------------------------//
+//								ComputeShader													//
 //----------------------------------------------------------------------------------------------//
 
 /**@brief Klasa przechowuj¹ca compute shader
 @ingroup Resources
 @ingroup GraphicAPI*/
-class ComputeShaderObject : public IShader
+class ComputeShader : public IShader
 {
-	friend ObjectDeleter<ComputeShaderObject>;
+	friend ObjectDeleter<ComputeShader>;
 private:
 protected:
-	~ComputeShaderObject() = default;
+	~ComputeShader() = default;
 public:
-	ComputeShaderObject() = default;
+	ComputeShader() = default;
 };
 
 //----------------------------------------------------------------------------------------------//
