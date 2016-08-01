@@ -55,7 +55,7 @@ VertexShader*		ResourcesFactory::CreateVertexShaderFromFile( const std::wstring&
 @return Zwraca obiekt vertex shadera lub nullptr w przypadku niepowodzenia.*/
 VertexShader*		ResourcesFactory::CreateVertexShaderFromFile	( const std::wstring& fileName,
 																		const std::string& shaderName,
-																		ShaderInputLayoutObject** layout,
+																		ShaderInputLayout** layout,
 																		InputLayoutDescriptor* layoutDesc,
 																		const char* shaderModel/* = "vs_4_0"*/ )
 {

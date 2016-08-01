@@ -36,7 +36,7 @@ class TextureObject;
 class BufferObject;
 class RenderTargetObject;
 class InputAbstractionLayer;
-class ShaderInputLayoutObject;
+class ShaderInputLayout;
 class InputLayoutDescriptor;
 struct RenderTargetDescriptor;
 struct MaterialObject;

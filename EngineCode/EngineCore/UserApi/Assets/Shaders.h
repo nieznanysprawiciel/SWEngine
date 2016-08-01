@@ -7,7 +7,7 @@
 
 class VertexShader;
 class PixelShader;
-class ShaderInputLayoutObject;
+class ShaderInputLayout;
 class InputLayoutDescriptor;
 
 
@@ -30,7 +30,7 @@ namespace Api { namespace Assets {
 
 		VertexShader*		GetVertexShaderSync		( const std::wstring& name );
 		VertexShader*		LoadVertexShaderSync	( const std::wstring& name );
-		VertexShader*		LoadVertexShaderSync	( const std::wstring& name, ShaderInputLayoutObject** layout, InputLayoutDescriptor* layoutDesc );
+		VertexShader*		LoadVertexShaderSync	( const std::wstring& name, ShaderInputLayout** layout, InputLayoutDescriptor* layoutDesc );
 		PixelShader*		GetPixelShaderSync		( const std::wstring& name );
 		PixelShader*		LoadPixelShaderSync		( const std::wstring& name );
 	};

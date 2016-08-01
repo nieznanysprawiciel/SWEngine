@@ -44,7 +44,7 @@ protected:
 	BufferObject*				vertex_buffer;			///<Bufor wierzcho³ków
 	BufferObject*				index_buffer;			///<Bufor indeksów
 	BufferObject*				constant_buffer;		///<Bufor sta³ych dla shaderów
-	ShaderInputLayoutObject*	layout;					///<Layout wierzcho³ków u¿ywanych przez klasê
+	ShaderInputLayout*	layout;					///<Layout wierzcho³ków u¿ywanych przez klasê
 	ModelPart					display_data;			///<Shadery, tekstury itp.
 
 public:
@@ -86,7 +86,7 @@ public:
 	inline BufferObject*			get_vertex_buffer()		{ return vertex_buffer; }				///<Zwraca bufor wierzcho³ków
 	inline BufferObject*			get_index_buffer()		{ return index_buffer; }				///<Zwraca bufor indeksów
 	inline BufferObject*			get_constant_buffer()	{ return constant_buffer; }				///<Zwraca bufor sta³ych dla shaderów
-	inline ShaderInputLayoutObject*	get_vertex_layout()		{ return layout; }						///<Zwraca layout wierzcho³ka
+	inline ShaderInputLayout*	get_vertex_layout()		{ return layout; }						///<Zwraca layout wierzcho³ka
 	inline ModelPart*				get_model_part()		{ return &display_data; }				///<Zwraca dane potrzebne do wyœwietlania
 
 	/**@brief Funkcja jest wywo³ywana w momencie kiedy zmienna update_vertex_buffer zawiera wartoœæ true.

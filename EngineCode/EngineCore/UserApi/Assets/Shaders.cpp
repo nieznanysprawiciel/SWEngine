@@ -33,7 +33,7 @@ Model jest ³adowany synchronicznie, dzia³anie silnika zawiesza siê, dopóki wczyt
 @param[in] layout WskaŸnik do którego zostanie zwrócony layout.
 @param[in] layoutDesc Deskryptor layoutu do stworzenia.
 @return Zwraca model lub nullptr, je¿eli wczytywanie nie powiod³o siê.*/
-VertexShader* 		Shaders::LoadVertexShaderSync( const std::wstring& name, ShaderInputLayoutObject** layout, InputLayoutDescriptor* layoutDesc )
+VertexShader* 		Shaders::LoadVertexShaderSync( const std::wstring& name, ShaderInputLayout** layout, InputLayoutDescriptor* layoutDesc )
 {
 	return Context->modelsManager->AddVertexShader( name, DEFAULT_VERTEX_SHADER_ENTRY, layout, layoutDesc );
 }

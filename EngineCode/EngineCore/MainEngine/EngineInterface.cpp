@@ -37,6 +37,8 @@ EngineInterface::~EngineInterface()
 
 #include <math.h>
 #include "EngineInterface.h"
+#include "EngineCore/ModelsManager/Assets/MeshAsset.h"
+#include "EngineCore/ModelsManager/Assets/MaterialAsset.h"
 
 /**@brief */
 void Engine::test()
@@ -175,7 +177,13 @@ void Engine::test()
 	int stringSize = sizeof( std::string );
 	int wstringSize = sizeof( std::wstring );
 	int mapSize = sizeof( std::map< int, int > );
-	int hashMapSize = sizeof( std::unordered_map< int, int >);
+	int hashMapSize = sizeof( std::unordered_map< int, int > );
+
+	int model3DFromFileSize = sizeof( Model3DFromFile );
+	int meshAssetSize = sizeof( MeshAsset );
+	int materialObjectSize = sizeof( MaterialObject );
+	int materialAssetSize = sizeof( MaterialAsset );
+	int phongMaterialSize = sizeof( PhongMaterialData );
 
 	Size VadersTieSize = VaderTIE->MemorySize();
 	Size DynamicMeshActorSize = sizeof( DynamicMeshActor );

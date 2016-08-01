@@ -416,14 +416,14 @@ do takich rzeczy dochodzi³o jak najrzadziej.
 @return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
 VertexShader* ModelsManager::AddVertexShader( const std::wstring& fileName,
 													const std::string& shaderEntry,
-													ShaderInputLayoutObject** layout,
+													ShaderInputLayout** layout,
 													InputLayoutDescriptor* layoutDesc )
 {
 	/// @todo Ten kod to jakiœ totalny shit. Jak komuœ siê bêdzie nudzi³o kiedyœ (ha ha), to mo¿e niech poprawi.
 	*layout = nullptr;
 	VertexShader* shader = m_vertexShader.get( fileName );
 	VertexShader* newShader = nullptr;
-	ShaderInputLayoutObject* inputLayout = m_vertexLayout.get( layoutDesc->GetName() );
+	ShaderInputLayout* inputLayout = m_vertexLayout.get( layoutDesc->GetName() );
 
 
 	// Tworzymy potrzebne obiekty

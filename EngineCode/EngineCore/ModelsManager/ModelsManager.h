@@ -70,7 +70,7 @@ private:
 	ResourceContainer<BufferObject>				m_indexBuffer;		///<Bufory indeksów.
 	ResourceContainer<BufferObject>				m_constantBuffer;	///<Bufory sta³ych dla shaderów.
 	ResourceContainer<MaterialObject>			m_material;			///<Materia³y.
-	ResourceContainer<ShaderInputLayoutObject>	m_vertexLayout;		///<Layouty dla róznych formatów wierzcho³ków.
+	ResourceContainer<ShaderInputLayout>	m_vertexLayout;		///<Layouty dla róznych formatów wierzcho³ków.
 	// UWAGA! m_fileModel musi byæ na koñcu. Jego destruktor kasuje odwo³ania do obiektów powy¿ej. Podobnie RenderTargetObject odwo³uje siê do tekstur.
 	// Musz¹ one w tym czasie istnieæ, a destruktory s¹ wywo³ywane w kolejnoœci odwrotnej do zadeklarowanej w klasie.
 	ResourceContainer<RenderTargetObject>		m_renderTarget;		///<Obiekty mog¹ce s³u¿yæ za render target.
@@ -104,7 +104,7 @@ public:
 
 	TextureObject*					AddTexture					( const std::wstring& file_name );
 	VertexShader*				AddVertexShader				( const std::wstring& file_name, const std::string& shader_entry );
-	VertexShader*				AddVertexShader				( const std::wstring& file_name, const std::string& shader_entry, ShaderInputLayoutObject** layout, InputLayoutDescriptor* layout_desc );
+	VertexShader*				AddVertexShader				( const std::wstring& file_name, const std::string& shader_entry, ShaderInputLayout** layout, InputLayoutDescriptor* layout_desc );
 	PixelShader*				AddPixelShader				( const std::wstring& file_name, const std::string& shader_entry );
 	BufferObject*					AddVertexBuffer				( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
 	BufferObject*					AddIndexBuffer				( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );

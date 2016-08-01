@@ -503,6 +503,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MaterialAsset.h">
       <Filter>EngineCore\ModelsManagment\Assets</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MeshAsset.h">
+      <Filter>EngineCore\ModelsManagment\Assets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -734,6 +737,9 @@
       <Filter>EngineCore\EngineHelpers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MaterialAsset.cpp">
+      <Filter>EngineCore\ModelsManagment\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MeshAsset.cpp">
       <Filter>EngineCore\ModelsManagment\Assets</Filter>
     </ClCompile>
   </ItemGroup>

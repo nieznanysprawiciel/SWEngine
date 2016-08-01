@@ -149,7 +149,8 @@ struct MeshPartObject : public ResourceObject
 	}
 };
 
-/** @brief Struktura opisuj¹ca pojedyncz¹ czêœæ mesha gotow¹ do wyœwietlenia.
+/**@brief Struktura opisuj¹ca pojedyncz¹ czêœæ mesha gotow¹ do wyœwietlenia.
+@deprecated Zobacz @ref MeshAsset
 @ingroup Resources
 @ingroup GraphicAPI
 
@@ -170,8 +171,8 @@ i w taki sposób wykorzystuj¹ je domyœlne shadery.
 */
 struct ModelPart
 {
-	VertexShader*		vertex_shader;
-	PixelShader*		pixel_shader;
+	VertexShader*			vertex_shader;
+	PixelShader*			pixel_shader;
 	MaterialObject*			material;
 	TextureObject*			texture[ENGINE_MAX_TEXTURES];
 	MeshPartObject*			mesh;
@@ -304,21 +305,21 @@ public:
 };
 
 //----------------------------------------------------------------------------------------------//
-//								ShaderInputLayoutObject											//
+//								ShaderInputLayout											//
 //----------------------------------------------------------------------------------------------//
 
 /**@brief Klasa przechowuje layout wierzcho³ka trafiaj¹cego do
 vertex shadera.
 @ingroup Resources
 @ingroup GraphicAPI*/
-class ShaderInputLayoutObject : public IShaderInputLayout
+class ShaderInputLayout : public IShaderInputLayout
 {
-	friend ObjectDeleter<ShaderInputLayoutObject>;
+	friend ObjectDeleter< ShaderInputLayout >;
 private:
 protected:
-	virtual ~ShaderInputLayoutObject() = default;
+	virtual ~ShaderInputLayout() = default;
 public:
-	ShaderInputLayoutObject() = default;
+	ShaderInputLayout() = default;
 };
 
 /**@brief Klasa przechowuje opis layoutu wierzcho³ka, na podstawie którego

@@ -62,7 +62,7 @@ private:
 
 	std::vector<CameraActor*>				cameras;					///<Kontener zawieraj¹cy kamery
 
-	ShaderInputLayoutObject*				defaultLayout;				///<@todo Hack. Zlikwidowaæ. Silnik powinien obs³ugiwaæ dowolne layouty, a przynajmniej jakiœ ustalony zbiór.
+	ShaderInputLayout*				defaultLayout;				///<@todo Hack. Zlikwidowaæ. Silnik powinien obs³ugiwaæ dowolne layouty, a przynajmniej jakiœ ustalony zbiór.
 	CameraActor*							m_defaultCamera;			///< Domyœlna kamera u¿ywana tylko, jezeli uzytkownik nie ustawi w³asnej.
 
 	RenderTargetObject*						m_mainRenderTarget;			///<Render target okna aplikacji. @todo W ostatecznej wersji powinien byæ render target ustawiany dla ka¿dego przebiegu.
@@ -79,7 +79,7 @@ public:
 	void BeginScene();
 	void EndScene();
 
-	void SetLayout							( ShaderInputLayoutObject* layout ) { defaultLayout = layout; }	///<@todo Hack. Zlikwidowaæ i zrobiæ docelowy sposób obs³ugi layotów.
+	void SetLayout							( ShaderInputLayout* layout ) { defaultLayout = layout; }	///<@todo Hack. Zlikwidowaæ i zrobiæ docelowy sposób obs³ugi layotów.
 	void SetMainRenderTarget				( RenderTargetObject* renderTarget );					///<@todo Hack. Zrobiæ docelowy sposób ustawiania render targetów.
 
 	// G³ówna funkcja do wyœwietlania sceny

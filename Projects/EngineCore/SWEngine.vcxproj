@@ -237,6 +237,7 @@
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\EngineContext.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MaterialAsset.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MeshAsset.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\CollisionEngine.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\CollisionOctree.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\IOctreeNode.h" />
@@ -363,6 +364,7 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\AssetsInitializer.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\DisplayerInitializer.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MaterialAsset.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MeshAsset.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\CollisionEngine.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\CollisionOctree.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeLeaf.cpp" />

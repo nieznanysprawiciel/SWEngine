@@ -19,7 +19,7 @@ bool Engine::InitDefaultAssets()
 {
 	DefaultAssets::Init();
 
-	ShaderInputLayoutObject* layout;
+	ShaderInputLayout* layout;
 	Context->modelsManager->AddVertexShader( DEFAULT_VERTEX_SHADER_STRING, DEFAULT_VERTEX_SHADER_ENTRY, &layout, DefaultAssets::LAYOUT_POSITION_NORMAL_COORD );
 	Context->modelsManager->AddPixelShader( DEFAULT_PIXEL_SHADER_STRING, DEFAULT_PIXEL_SHADER_ENTRY );
 	Context->modelsManager->AddPixelShader( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH, DEFAULT_PIXEL_SHADER_ENTRY );

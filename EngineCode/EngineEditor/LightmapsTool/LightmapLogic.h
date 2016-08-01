@@ -23,7 +23,7 @@ protected:
 
 	std::vector<DynamicMeshActor*>		m_meshes;
 	std::vector<DynamicMeshActor*>		m_lightmapBuffers;
-	ShaderInputLayoutObject*			m_layout;
+	ShaderInputLayout*			m_layout;
 public:
 	LightmapLogic()
 		:	m_lightmapState( LightmapState::ReadyToGenerate ),

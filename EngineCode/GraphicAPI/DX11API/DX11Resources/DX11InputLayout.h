@@ -10,7 +10,7 @@
 
 /**@brief Implementacja layout w DirectX 11.
 @ingroup DX11API*/
-class DX11InputLayout : public ShaderInputLayoutObject, public DX11APIObjects
+class DX11InputLayout : public ShaderInputLayout, public DX11APIObjects
 {
 private:
 	ID3D11InputLayout*				m_vertexLayout;

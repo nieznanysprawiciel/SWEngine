@@ -7,6 +7,7 @@
 do zliczania odwo³añ do obiektu.*/
 
 #include "Common/EngineObject.h"
+#include <atomic>
 
 
 /**@brief Klasa u³atwiaj¹ca zarz¹dzanie odwo³aniami do assetów.
@@ -34,9 +35,9 @@ class ResourceObject	: public EngineObject
 {
 	RTTR_ENABLE( EngineObject )
 private:
-	unsigned int	m_assetReferences;	///< Liczba assetów, które sie odwo³uj¹.
-	unsigned int	m_objectReferences;	///< Liczba obiektów aktorów, które siê odwo³uj¹.
-	unsigned int	m_uniqueId;			///< Unikalny identyfikator zasobu.
+	std::atomic_ushort		m_assetReferences;	///< Liczba assetów, które sie odwo³uj¹.
+	std::atomic_ushort		m_objectReferences;	///< Liczba obiektów aktorów, które siê odwo³uj¹.
+	unsigned int			m_uniqueId;			///< Unikalny identyfikator zasobu.
 
 protected:
 	virtual ~ResourceObject() = default;		///<Nie ka¿dy mo¿e skasowaæ obiekt

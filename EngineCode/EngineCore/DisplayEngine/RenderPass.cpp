@@ -33,7 +33,7 @@ void RenderPass::SetRenderTarget( RenderTargetObject* renderTarget )
 		m_renderTarget->AddObjectReference();
 }
 
-void RenderPass::SetLayout( ShaderInputLayoutObject* layout )
+void RenderPass::SetLayout( ShaderInputLayout* layout )
 {
 	if( m_bufferLayout )
 		m_bufferLayout->DeleteObjectReference();

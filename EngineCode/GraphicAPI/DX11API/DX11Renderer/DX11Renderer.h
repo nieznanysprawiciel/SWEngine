@@ -48,7 +48,7 @@ public:
 	void InitDepthStates							()																						override;
 
 	void IASetPrimitiveTopology						( PrimitiveTopology topology )															override;
-	void IASetInputLayout							( ShaderInputLayoutObject* pInputLayout )														override;
+	void IASetInputLayout							( ShaderInputLayout* pInputLayout )														override;
 
 
 	void VSSetConstantBuffers						( uint32 slot, BufferObject* buffer )													override;

@@ -34,7 +34,7 @@ private:
 
 	static VertexShader*		CreateVertexShaderFromFile		( const std::wstring& fileName,
 																	const std::string& shaderName,
-																	ShaderInputLayoutObject** layout,
+																	ShaderInputLayout** layout,
 																	InputLayoutDescriptor* layout_desc,
 																	const char* shaderModel = "vs_4_0" );
 public:
