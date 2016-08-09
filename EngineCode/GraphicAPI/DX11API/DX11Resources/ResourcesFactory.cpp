@@ -19,6 +19,12 @@ typedef DX11PixelShader			PixelShaderObject;
 typedef DX11Buffer				Buffer;
 typedef DX11ComputeShader		ComputeShaderObject;
 
+/**@brief Tworzy teksturê z podanego deskryptora.*/
+TextureObject*			ResourcesFactory::CreateTextureFromMemory	( const MemoryChunk& texData, TextureInfo&& texInfo )
+{
+	return Texture::CreateFromMemory( texData, std::move( texInfo ) );
+}
+
 
 /**@brief Tworzy teksturê z podanego pliku.
 @param[in] fileName Nazwa pliku.

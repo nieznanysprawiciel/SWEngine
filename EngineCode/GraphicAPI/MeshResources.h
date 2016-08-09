@@ -10,6 +10,7 @@
 
 #include "Common/ObjectDeleter.h"
 #include "Common/MacrosSwitches.h"
+#include "Common/System/Path.h"
 
 #include "GraphicAPI/ResourceObject.h"
 #include "GraphicAPI/ITexture.h"
@@ -217,6 +218,38 @@ struct ModelPart
 //								TextureObject													//
 //----------------------------------------------------------------------------------------------//
 
+/**@brief Deskryptor tekstury.
+
+@ingroup Resources
+@ingroup GraphicAPI
+*/
+struct TextureInfo
+{
+	uint16				textureWidth;				///<Szerokoœæ tekstury w pikselach.
+	uint16				textureHeight;				///<Wysokoœæ tekstury w pikselach.
+	uint16				arraySize;					///<Liczba elementów tablicy.
+	bool				CPURead : 1;				///<Pozwala na odczyt tekstury przez CPU.
+	bool				CPUWrite : 1;				///<Pozwala na zapis tekstury przez CPU.
+	bool				allowShareResource : 1;		///<Pozwala na dostêp do zasoby z wielu API graficznych i pomiêdzy kontekstami.
+	bool				isCubeMap : 1;				///<Nale¿y ustawiæ je¿eli tekstura jest cubemap¹.
+	bool				generateMipMaps : 1;		///<Automatyczne generowanie mipmap.
+	TextureType			textureType;				///<Typ tekstury (liczba wymiarów, multsampling). Tekstura nie mo¿e byæ inna ni¿ dwuwymiarowa (mo¿e byæ tablic¹).
+	ResourceUsage		usage;						///<Sposób u¿ycia render targetu. Wp³ywa na optymalizacje u³o¿enia w pamiêci.
+	ResourceFormat		format;						///<Format tekstury (liczba kana³ów, liczba bitów na kana³ itp)
+
+	filesystem::Path	filePath;					///< Œcie¿ka do pliku z tekstur¹ lub jej nazwa.
+	
+	TextureInfo()
+	{
+		arraySize = 1;
+		CPURead = false;
+		CPUWrite = false;
+		allowShareResource = false;
+		isCubeMap = false;
+		generateMipMaps = false;
+		usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
+	}
+};
 
 /** @brief Klasa przechowuj¹ca tekstury.
 @ingroup Resources
@@ -250,7 +283,7 @@ public:
 @ingroup GraphicAPI*/
 struct RenderTargetDescriptor
 {
-	uint16				textureWidth;				///<Sszerokoœæ tekstury w pikselach.
+	uint16				textureWidth;				///<Szerokoœæ tekstury w pikselach.
 	uint16				textureHeight;				///<Wysokoœæ tekstury w pikselach.
 	uint16				arraySize;					///<Liczba elementów tablicy.
 	int8				CPURead : 1;				///<Pozwala na odczyt tekstury przez CPU.

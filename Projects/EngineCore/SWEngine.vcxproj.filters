@@ -123,6 +123,15 @@
     <Filter Include="Common\System">
       <UniqueIdentifier>{a1c1e982-4891-436f-8e84-983ffd4f96fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\ModelsManagment\Loaders\Texture">
+      <UniqueIdentifier>{c14f3828-3c7c-4448-afbe-59abbd1c6763}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\ModelsManagment\Loaders\Mesh">
+      <UniqueIdentifier>{84cee6ae-45f7-4b5d-9cf3-5b9655b4d44c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\ModelsManagment\Loaders\Texture\SOIL">
+      <UniqueIdentifier>{2d188d8e-8868-4d2c-a9ae-439bd430e7b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -181,9 +190,6 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.h">
       <Filter>EngineCore\ModelsManagment</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.h">
-      <Filter>EngineCore\ModelsManagment\Loaders</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\stdafx.h">
       <Filter>EngineCore</Filter>
@@ -512,6 +518,60 @@
     <ClInclude Include="..\..\EngineCode\Common\System\Path.h">
       <Filter>Common\System</Filter>
     </ClInclude>
+    <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\TextureLoader.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\etc1_utils.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\image_DXT.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\image_helper.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\jo_jpeg.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\pkm_helper.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\pvr_helper.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stb_image.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stb_image_write.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_DDS.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_DDS_c.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_ext.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_ext_c.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_pkm.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_pkm_c.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_pvr.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_pvr_c.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -555,9 +615,6 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.cpp">
       <Filter>EngineCore\ModelsManagment</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
-      <Filter>EngineCore\ModelsManagment\Loaders</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\EngineWindowFunctions.cpp">
       <Filter>EngineCore\MainEngine</Filter>
@@ -747,6 +804,21 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MeshAsset.cpp">
       <Filter>EngineCore\ModelsManagment\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
+      <Filter>EngineCore\ModelsManagment\Loaders\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\TextureLoader.cpp">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\image_DXT.c">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\image_helper.c">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\etc1_utils.cpp">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
 #include "EngineCore/MainEngine/Engine.h"
 #include "Loaders/ILoader.h"
 #include "Loaders/FBX_files_loader/FBX_loader.h"
+#include "Loaders/Texture/TextureLoader.h"
 #include "Common/ObjectDeleter.h"
 #include "GraphicAPI/ResourcesFactory.h"
 #include "Common/MacrosSwitches.h"
@@ -503,12 +504,17 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 @return Zwraca wskaŸnik na dodan¹ teksturê lub nullptr, je¿eli nie da³o siê wczytaæ.*/
 TextureObject* ModelsManager::AddTexture( const std::wstring& fileName )
 {
-
 	TextureObject* tex = m_texture.get( fileName );
 	if ( !tex )
 	{
 		// Nie by³o tekstury, trzeba j¹ stworzyæ i dodaæ
-		tex = ResourcesFactory::CreateTextureFromFile( fileName );
+		TextureInfo texInfo;
+		texInfo.filePath = filesystem::Path( fileName );
+		texInfo.generateMipMaps = true;
+
+		MemoryChunk texData = TextureLoader::LoadTexture( texInfo.filePath, texInfo );
+
+		tex = ResourcesFactory::CreateTextureFromMemory( texData, std::move( texInfo ) );
 		if ( !tex )		// Tekstura mog³a mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 			return nullptr;
 

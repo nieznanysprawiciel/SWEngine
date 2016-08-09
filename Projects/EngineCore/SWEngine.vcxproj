@@ -99,7 +99,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;INITGUID;__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;INITGUID;__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalOptions>/arch:SSE2 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -117,7 +117,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;INITGUID;__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;INITGUID;__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalOptions>/arch:SSE2 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -135,7 +135,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;INITGUID;__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;INITGUID;__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalOptions>/arch:SSE2 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -157,7 +157,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;INITGUID;__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;INITGUID;__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalOptions>/arch:SSE2 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -239,6 +239,23 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\EngineContext.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MaterialAsset.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MeshAsset.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\etc1_utils.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\image_DXT.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\image_helper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\jo_jpeg.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\pkm_helper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\pvr_helper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_DDS.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_DDS_c.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_ext.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_ext_c.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_pkm.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_pkm_c.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_pvr.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_pvr_c.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stb_image.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stb_image_write.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\TextureLoader.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\CollisionEngine.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\CollisionOctree.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\IOctreeNode.h" />
@@ -366,6 +383,25 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\DisplayerInitializer.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MaterialAsset.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MeshAsset.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\etc1_utils.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\image_DXT.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\image_helper.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\TextureLoader.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\CollisionEngine.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\CollisionOctree.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeLeaf.cpp" />
