@@ -18,7 +18,9 @@
 #include "GraphicAPI/IRenderTarget.h"
 #include "IShaderInputLayout.h"
 #include "GraphicAPI/GraphicAPIConstants.h"
-#include "DirectXMath.h"
+#include "GraphicAPI/ResourcePtr.h"
+
+#include <DirectXMath.h>
 
 
 //definicje

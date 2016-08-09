@@ -6,6 +6,7 @@
 
 #include "EngineCore/stdafx.h"
 #include "MeshAsset.h"
+#include "Common/Serialization/SW/Serialization.h"
 
 #include "Common/MemoryLeaks.h"
 
@@ -18,10 +19,47 @@ RTTR_REGISTRATION
 
 
 
-
-MeshAsset::MeshAsset()
+/**@brief */
+MeshAsset::MeshAsset( const std::wstring& filePath )
 	:	ResourceObject( WRONG_ID )
+	,	m_filePath( filePath )
 { }
 
+/**@brief */
 MeshAsset::~MeshAsset()
+{
+	m_segments.clear( );
+}
+
+
+
+/**@brief zwraca wskaünik na ModelPart spod podanego indeksu.
+@param[in] Indeks.
+@return Wskaünik na ModelPart lub nullptr, jeøeli indeks by≥ nieprawid≥owy.*/
+const MeshPart*	MeshAsset::GetSegment( Size index ) const
+{
+	if ( index < m_segments.size( ) )
+		return &m_segments[index];
+	return nullptr;
+}
+
+/**@brief Zwraca liczbÍ obiektÛw ModelPart w tablicy.*/
+Size		MeshAsset::GetSegmentsCount() const
+{
+	return m_segments.size();
+}
+
+//====================================================================================//
+//			Serializacja	
+//====================================================================================//
+
+/**@brief Domyúlna serializacja.
+
+@todo W zasadzie domyúlny tryb serializacji powinna implementowaÊ klasa EngineObject.*/
+void		MeshAsset::Serialize( ISerializer* ser ) const
+{
+	Serialization::DefaultSerialize( ser, this );
+}
+
+void		MeshAsset::Deserialize( IDeserializer* deser )
 { }

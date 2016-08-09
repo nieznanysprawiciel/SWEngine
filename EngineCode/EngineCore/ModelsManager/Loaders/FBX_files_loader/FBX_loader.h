@@ -19,9 +19,7 @@ drugie, ¿eby wykorzystywaæ wszystkie jego mo¿liwoœci.*/
 #include "EngineCore/ModelsManager/Loaders/ILoader.h"
 #include "fbxsdk.h"
 
-#include <filesystem>
-
-namespace filesystem = std::tr2::sys;
+#include "Common/System/Path.h"
 
 /**@brief Klasa s³u¿y do wczytywania plików w formacie Autodesk FBX.
 @ingroup MakingLoaders*/
@@ -32,7 +30,7 @@ private:
 	FbxIOSettings*		fbx_IOsettings;
 	Model3DFromFile*	cur_model;		///<Na czas wczytywania zapisujemy sobie obiekt, do którego wczytujemy dane
 
-	filesystem::path	m_filePath;
+	filesystem::Path	m_filePath;
 
 	void process_node( FbxNode* node );
 	void process_mesh( FbxNode* node, FbxMesh* mesh, const DirectX::XMFLOAT4X4& transformation );

@@ -77,7 +77,7 @@ LoaderResult FBX_loader::load_mesh( Model3DFromFile* new_file_mesh, const std::w
 	m_filePath = converter.to_bytes( name );
 
 
-	if ( !fbx_importer->Initialize( m_filePath.string().c_str(), -1, fbx_manager->GetIOSettings() ) )
+	if ( !fbx_importer->Initialize( m_filePath.String().c_str(), -1, fbx_manager->GetIOSettings() ) )
 	{
 		//funkcj¹ GetStatus() mo¿na pobraæ informacje o b³êdzie, jakby by³o to potrzebne
 		cur_model = nullptr;		//¿eby potem nie by³o pomy³ek
@@ -264,9 +264,9 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 				FbxFileTexture* texture = static_cast<FbxFileTexture*>(material->Diffuse.GetSrcObject());
 				if ( texture != nullptr )
 				{
-					filesystem::path texPath = texture->GetRelativeFileName();
-					texPath = m_filePath.parent_path() / texPath;
-					cur_model->add_texture( converter.from_bytes( texPath.string() ), TextureUse::TEX_DIFFUSE );
+					filesystem::Path texPath = texture->GetRelativeFileName();
+					texPath = m_filePath.GetParent() / texPath;
+					cur_model->add_texture( converter.from_bytes( texPath.String() ), TextureUse::TEX_DIFFUSE );
 				}
 					// Je¿eli dodawanie siê nie uda, to tekstura pozostanie nullptrem
 				//else //tutaj tekstura ma byæ nullem, ale tak siê dzieje domyœlnie

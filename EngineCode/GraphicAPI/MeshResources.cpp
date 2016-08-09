@@ -132,10 +132,10 @@ void MaterialObject::SetNullMaterial( )
 	Specular.z = 1.0f;
 	Specular.w = 1.0f;
 
-	Emissive.x = 1.0f;
-	Emissive.y = 1.0f;
-	Emissive.z = 1.0f;
-	Emissive.w = 1.0f;
+	Emissive.x = 0.0f;
+	Emissive.y = 0.0f;
+	Emissive.z = 0.0f;
+	Emissive.w = 0.0f;
 
 	Power = 1.0f;
 }

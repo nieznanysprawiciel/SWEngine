@@ -37,6 +37,8 @@ struct PhongMaterialData
 	DirectX::XMFLOAT4		Specular;		///< Kana³ odbicia zwierciadlanego. Komponent w niezu¿ywany.
 	DirectX::XMFLOAT3		Emissive;		///< Kolor materia³u nieoœwietlonego. Komponent w niezu¿ywany.
 	float					Power;			///< Wyk³adnik u¿ywany przy obliczaniu odbicia zwierciadlanego.
+
+	void SetNullMaterial();
 };
 
 

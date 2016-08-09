@@ -39,6 +39,7 @@ EngineInterface::~EngineInterface()
 #include "EngineInterface.h"
 #include "EngineCore/ModelsManager/Assets/MeshAsset.h"
 #include "EngineCore/ModelsManager/Assets/MaterialAsset.h"
+#include "Common/System/Path.h"
 
 /**@brief */
 void Engine::test()
@@ -184,6 +185,8 @@ void Engine::test()
 	int materialObjectSize = sizeof( MaterialObject );
 	int materialAssetSize = sizeof( MaterialAsset );
 	int phongMaterialSize = sizeof( PhongMaterialData );
+
+	int pathSize = sizeof( filesystem::Path );
 
 	Size VadersTieSize = VaderTIE->MemorySize();
 	Size DynamicMeshActorSize = sizeof( DynamicMeshActor );

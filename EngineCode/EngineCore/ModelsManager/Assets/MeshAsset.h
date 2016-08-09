@@ -28,12 +28,12 @@ enum MeshPartFlags : int
 @ingroup MeshAsset*/
 struct MeshPart
 {
-	DirectX::XMFLOAT4X4		TransformMatrix;	///< Macierz przekszta³cenia wzglêdem œrodka modelu. @deprecated Macierz zachowana tylko w ramach zgodnoœci wstecznej. W przysz³oœci wierzcho³ki powinny zostaæ przetransformowane przed wstawieniem do bufora.
-	unsigned int			BufferOffset;		///< Offset wzglêdem pocz¹tku bufora indeksów albo wierzcho³ków. @see MeshAsset.
-	unsigned int			NumVertices;		///< Liczba wierzcho³ków do wyœwietlenia.
-	int						BaseVertex;			///< Wartoœæ dodawana do ka¿dego indeksu przed przeczytaniem wierzcho³ka z bufora. (Tylko wersja indeksowana).
-	int						Flags;				///< Dodatkowe flagi @see MeshPartFlags
-	MaterialAsset*			Material;			///< Materia³ dla danej czêœci mesha.
+	DirectX::XMFLOAT4X4				TransformMatrix;	///< Macierz przekszta³cenia wzglêdem œrodka modelu. @deprecated Macierz zachowana tylko w ramach zgodnoœci wstecznej. W przysz³oœci wierzcho³ki powinny zostaæ przetransformowane przed wstawieniem do bufora.
+	unsigned int					BufferOffset;		///< Offset wzglêdem pocz¹tku bufora indeksów albo wierzcho³ków. @see MeshAsset.
+	unsigned int					NumVertices;		///< Liczba wierzcho³ków do wyœwietlenia.
+	int								BaseVertex;			///< Wartoœæ dodawana do ka¿dego indeksu przed przeczytaniem wierzcho³ka z bufora. (Tylko wersja indeksowana).
+	int								Flags;				///< Dodatkowe flagi @see MeshPartFlags
+	ResourcePtr< MaterialAsset >	Material;			///< Materia³ dla danej czêœci mesha.
 };
 
 
@@ -63,10 +63,10 @@ class MeshAsset : public ResourceObject
 	RTTR_REGISTRATION_FRIEND
 private:
 
-	BufferObject*				m_vertexBuffer;		///< Bufor wierzcho³ków.
-	BufferObject*				m_indexBuffer;		///< Bufor indeksów.
-	ShaderInputLayout*			m_layout;			///< Layout bufora wierzcho³ków.
-	std::vector< MeshPart >		m_segments;			///< Opis segmentów mesha.
+	ResourcePtr< BufferObject >			m_vertexBuffer;		///< Bufor wierzcho³ków.
+	ResourcePtr< BufferObject >			m_indexBuffer;		///< Bufor indeksów.
+	ResourcePtr< ShaderInputLayout >	m_layout;			///< Layout bufora wierzcho³ków.
+	std::vector< MeshPart >				m_segments;			///< Opis segmentów mesha.
 
 	///@name Descriptor
 	///@{
@@ -75,7 +75,17 @@ private:
 	///@}
 	
 public:
-	MeshAsset();
+	explicit					MeshAsset			( const std::wstring& filePath );
+
+	Size						GetSegmentsCount	() const;
+	const MeshPart*				GetSegment			( Size index ) const;
+
+	inline BufferObject*		GetVertexBuffer		()			{ return *m_vertexBuffer; }		///< Zwraca wskaŸnik na bufor wierzcho³ków.
+	inline BufferObject*		GetIndexBuffer		()			{ return *m_indexBuffer; }		///< Zwraca wskaŸnik na bufor indeksów.
+	inline ShaderInputLayout*	GetLayout			()			{ return *m_layout; }			///< Zwraca wskaŸnik na layout bufora wierzcho³ków.
+
+	virtual void				Serialize			( ISerializer* ser ) const override;
+	virtual void				Deserialize			( IDeserializer* deser ) override;
 
 private:
 	~MeshAsset();

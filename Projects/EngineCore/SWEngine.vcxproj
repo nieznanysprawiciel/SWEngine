@@ -188,6 +188,7 @@
     <ClInclude Include="..\..\EngineCode\Common\Serialization\Serializer.h" />
     <ClInclude Include="..\..\EngineCode\Common\Serialization\SW\EngineSerializationContext.h" />
     <ClInclude Include="..\..\EngineCode\Common\Serialization\SW\Serialization.h" />
+    <ClInclude Include="..\..\EngineCode\Common\System\Path.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorFactory.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorInfo.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorObjects.h" />

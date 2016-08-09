@@ -111,6 +111,9 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11SwapChain.h">
       <Filter>DX11API\DX11Resources</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcePtr.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\GraphicAPI\MeshResources.cpp">

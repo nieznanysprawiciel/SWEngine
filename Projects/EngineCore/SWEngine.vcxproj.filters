@@ -120,6 +120,9 @@
     <Filter Include="EngineCore\ModelsManagment\Assets">
       <UniqueIdentifier>{7e4b9013-e940-473d-abbc-3f471b7cd163}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\System">
+      <UniqueIdentifier>{a1c1e982-4891-436f-8e84-983ffd4f96fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -505,6 +508,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MeshAsset.h">
       <Filter>EngineCore\ModelsManagment\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\System\Path.h">
+      <Filter>Common\System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
