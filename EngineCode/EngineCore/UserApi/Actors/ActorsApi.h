@@ -13,10 +13,16 @@ class StaticActor;
 #include "EngineCore/UserApi/Actors/Assets.h"
 #include "EngineCore/UserApi/Actors/Communication.h"
 #include "EngineCore/Actors/ActorInfo.h"
-#include "EngineCore/Actors/ActorFactory.h"
+//#include "EngineCore/Actors/ActorFactory.h"
 
 #include <vector>
 #include <map>
+
+// Predefinicje pozwalaj¹ce nie includowaæ ActorsFactory
+class ActorBase;
+typedef fastdelegate::FastDelegate0< ActorBase* > CreateActorFunction;
+#undef RegisterClass
+
 
 namespace Api
 {
@@ -139,12 +145,5 @@ namespace Api
 		return newActor;
 	}
 
-	/**@brief Rejestruje klasê o odanym typie.*/
-	template< typename Type >
-	inline ActorType ActorsApi::RegisterClass( const std::string& name, CreateActorFunction function )
-	{
-		auto& actorsFactory = Context->actorsManager->GetActorFactory();
-		return actorsFactory.RegisterClass< Type >( name, function );
-	}
 
 }	// Api

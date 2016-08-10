@@ -10,6 +10,7 @@
 #include "EngineCore/MainEngine/EngineContext.h"
 #include "EngineCore/ModelsManager/ModelsManager.h"
 #include "EngineCore/DisplayEngine/DisplayEngine.h"
+#include "EngineCore/UserApi/Actors/ActorsApi.inl"
 #include "GraphicAPI/ResourcesFactory.h"
 
 

@@ -59,6 +59,9 @@ DX11Texture* DX11Texture::CreateFromFile( const std::wstring& fileName )
 @return Zawraca stworzony wewn¹trz obiekt DX11Texture z wczytan¹ tekstur¹ lub nullptr w przypadku niepowodzenia.*/
 DX11Texture* DX11Texture::CreateFromMemory( const MemoryChunk& texData, TextureInfo&& texInfo )
 {
+	if( texData.IsNull() )
+		return nullptr;
+
 	ID3D11Texture2D* texture = nullptr;
 	ID3D11ShaderResourceView* texView = nullptr;
 	D3D11_TEXTURE2D_DESC texDesc;

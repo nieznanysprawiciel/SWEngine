@@ -830,5 +830,8 @@
     <None Include="..\..\EngineCode\Common\Serialization\SW\Serialization.inl">
       <Filter>Common\Serialization\SW</Filter>
     </None>
+    <None Include="..\..\EngineCode\EngineCore\UserApi\Actors\ActorsApi.inl">
+      <Filter>EngineCore\UserApi\Actors</Filter>
+    </None>
   </ItemGroup>
 </Project>

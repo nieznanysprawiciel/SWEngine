@@ -460,6 +460,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\EngineCode\Common\Serialization\SW\Serialization.inl" />
+    <None Include="..\..\EngineCode\EngineCore\UserApi\Actors\ActorsApi.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

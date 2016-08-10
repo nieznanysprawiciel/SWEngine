@@ -30,6 +30,9 @@ MemoryChunk			TextureLoader::LoadTexture( const filesystem::Path& filePath, Text
 	texInfo.textureWidth = width;
 	texInfo.textureHeight = height;
 
+	if( data == nullptr )
+		return MemoryChunk();
+
 	//if( channels == 1 )
 	//	texInfo.format = ResourceFormat::RESOURCE_FORMAT_R8_UNORM;
 	//else if( channels == 2 )

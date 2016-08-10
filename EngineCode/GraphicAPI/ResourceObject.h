@@ -7,7 +7,7 @@
 do zliczania odwo³añ do obiektu.*/
 
 #include "Common/EngineObject.h"
-#include <atomic>
+//#include <atomic>
 
 
 /**@brief Klasa u³atwiaj¹ca zarz¹dzanie odwo³aniami do assetów.
@@ -31,7 +31,7 @@ class ResourceObject	: public EngineObject
 {
 	RTTR_ENABLE( EngineObject )
 private:
-	std::atomic_uint		m_objectReferences;	///< Liczba assetów, które sie odwo³uj¹.
+	unsigned int			m_objectReferences;	///< Liczba assetów, które sie odwo³uj¹. @todo To powinien byæ std::atomic_uint, ale wtedy nie kompiluje siê z CLRem.
 	unsigned int			m_uniqueId;			///< Unikalny identyfikator zasobu.
 
 protected:
@@ -85,7 +85,7 @@ public:
 */
 inline bool ResourceObject::CanDelete( unsigned int& objectRef )
 {
-	objectRef = m_objectReferences.load();
+	objectRef = m_objectReferences;
 
 	if( m_objectReferences == 0 )
 		return true;
