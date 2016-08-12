@@ -66,25 +66,25 @@ DX11Texture* DX11Texture::CreateFromMemory( const MemoryChunk& texData, TextureI
 	ID3D11ShaderResourceView* texView = nullptr;
 	D3D11_TEXTURE2D_DESC texDesc;
 
-	unsigned int arraySize = 1;
-	if( texInfo.textureType == TextureType::TEXTURE_TYPE_TEXTURE2D_ARRAY || texInfo.textureType == TextureType::TEXTURE_TYPE_TEXTURE2D_MULTISAMPLE_ARRAY )
-		arraySize = texInfo.arraySize;
+	unsigned int ArraySize = 1;
+	if( texInfo.TextureType == TextureType::TEXTURE_TYPE_TEXTURE2D_ARRAY || texInfo.TextureType == TextureType::TEXTURE_TYPE_TEXTURE2D_MULTISAMPLE_ARRAY )
+		ArraySize = texInfo.ArraySize;
 
-	texDesc.Width				= texInfo.textureWidth;
-	texDesc.Height				= texInfo.textureHeight;
+	texDesc.Width				= texInfo.TextureWidth;
+	texDesc.Height				= texInfo.TextureHeight;
 	texDesc.MipLevels			= 1;
-	texDesc.Usage				= DX11ConstantsMapper::Get( texInfo.usage );
-	texDesc.ArraySize			= arraySize;
+	texDesc.Usage				= DX11ConstantsMapper::Get( texInfo.Usage );
+	texDesc.ArraySize			= ArraySize;
 	
 	
-	assert( texInfo.textureType != TextureType::TEXTURE_TYPE_TEXTURE2D_MULTISAMPLE && texInfo.textureType != TextureType::TEXTURE_TYPE_TEXTURE2D_MULTISAMPLE_ARRAY );
+	assert( texInfo.TextureType != TextureType::TEXTURE_TYPE_TEXTURE2D_MULTISAMPLE && texInfo.TextureType != TextureType::TEXTURE_TYPE_TEXTURE2D_MULTISAMPLE_ARRAY );
 	texDesc.SampleDesc.Count	= 1;
 	texDesc.SampleDesc.Quality	= 0;
 	
 	texDesc.MiscFlags = 0;
-	if( texInfo.isCubeMap )
+	if( texInfo.IsCubeMap )
 		texDesc.MiscFlags |= D3D11_RESOURCE_MISC_TEXTURECUBE;
-	if( texInfo.allowShareResource )
+	if( texInfo.AllowShareResource )
 		texDesc.MiscFlags |= D3D11_RESOURCE_MISC_SHARED ;
 
 	texDesc.CPUAccessFlags = 0;
@@ -95,8 +95,8 @@ DX11Texture* DX11Texture::CreateFromMemory( const MemoryChunk& texData, TextureI
 
 
 	texDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-	texDesc.Format = DX11ConstantsMapper::Get( texInfo.format );
-	//if( texInfo.generateMipMaps )
+	texDesc.Format = DX11ConstantsMapper::Get( texInfo.Format );
+	//if( texInfo.GenerateMipMaps )
 	//{
 	//	texDesc.BindFlags |= D3D11_BIND_RENDER_TARGET;	// Potrzebne, ¿eby mozna by³o wygenerowaæ mipmapy.
 	//	texDesc.MiscFlags = D3D11_RESOURCE_MISC_GENERATE_MIPS;
@@ -105,14 +105,14 @@ DX11Texture* DX11Texture::CreateFromMemory( const MemoryChunk& texData, TextureI
 
 	D3D11_SUBRESOURCE_DATA data;
 	data.pSysMem = texData.GetMemory< int8 >();
-	data.SysMemPitch = texData.GetMemorySize() / texInfo.textureHeight;
+	data.SysMemPitch = texData.GetMemorySize() / texInfo.TextureHeight;
 
 	HRESULT result = device->CreateTexture2D( &texDesc, &data, &texture );
 	if( result == S_OK )
 	{
 		D3D11_SHADER_RESOURCE_VIEW_DESC viewDesc;
 
-		if( texInfo.textureType == TextureType::TEXTURE_TYPE_TEXTURE2D )
+		if( texInfo.TextureType == TextureType::TEXTURE_TYPE_TEXTURE2D )
 		{
 			viewDesc.Format = texDesc.Format;
 			viewDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;

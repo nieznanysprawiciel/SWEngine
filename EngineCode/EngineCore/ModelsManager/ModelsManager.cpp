@@ -509,10 +509,11 @@ TextureObject* ModelsManager::AddTexture( const std::wstring& fileName )
 	{
 		// Nie by³o tekstury, trzeba j¹ stworzyæ i dodaæ
 		TextureInfo texInfo;
-		texInfo.filePath = filesystem::Path( fileName );
-		texInfo.generateMipMaps = true;
+		texInfo.FilePath = filesystem::Path( fileName );
+		texInfo.GenerateMipMaps = true;
+		texInfo.MipMapFilter = MipMapFilter::Box;
 
-		MemoryChunk texData = TextureLoader::LoadTexture( texInfo.filePath, texInfo );
+		MemoryChunk texData = TextureLoader::LoadTexture( texInfo.FilePath, texInfo );
 
 		tex = ResourcesFactory::CreateTextureFromMemory( texData, std::move( texInfo ) );
 		if ( !tex )		// Tekstura mog³a mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera

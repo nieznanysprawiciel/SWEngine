@@ -218,6 +218,38 @@ struct ModelPart
 //								TextureObject													//
 //----------------------------------------------------------------------------------------------//
 
+/**@brief Tryby filtrowania tekstur.
+
+Poni¿sze tryby filtrowania s¹ u¿ywane przy tworzeniu mipmap.
+Istnieje jeszcze drugi etap filtrowania przy próbkowania w pixel shaderze,
+do którego odnosi siê inna enumeracja.
+
+@ingroup Resources
+@ingroup GraphicAPI
+*/
+enum class MipMapFilter : short
+{
+	Box = 0,
+	Tent,
+	Bell,
+	bSpline,
+	Mitchell,
+	Lanczos3,
+	Blackman,
+	Lanczos4,
+	Lanczos6,
+	Lanczos12,
+	Kaiser,
+	Gaussian,
+	Catmullrom,
+	QuadraticInterpolation,
+	QuadraticAproximation,
+	QuadraticMix,
+
+	Unknown
+};
+
+
 /**@brief Deskryptor tekstury.
 
 @ingroup Resources
@@ -225,29 +257,37 @@ struct ModelPart
 */
 struct TextureInfo
 {
-	uint16				textureWidth;				///<Szerokoœæ tekstury w pikselach.
-	uint16				textureHeight;				///<Wysokoœæ tekstury w pikselach.
-	uint16				arraySize;					///<Liczba elementów tablicy.
-	bool				CPURead : 1;				///<Pozwala na odczyt tekstury przez CPU.
-	bool				CPUWrite : 1;				///<Pozwala na zapis tekstury przez CPU.
-	bool				allowShareResource : 1;		///<Pozwala na dostêp do zasoby z wielu API graficznych i pomiêdzy kontekstami.
-	bool				isCubeMap : 1;				///<Nale¿y ustawiæ je¿eli tekstura jest cubemap¹.
-	bool				generateMipMaps : 1;		///<Automatyczne generowanie mipmap.
-	TextureType			textureType;				///<Typ tekstury (liczba wymiarów, multsampling). Tekstura nie mo¿e byæ inna ni¿ dwuwymiarowa (mo¿e byæ tablic¹).
-	ResourceUsage		usage;						///<Sposób u¿ycia render targetu. Wp³ywa na optymalizacje u³o¿enia w pamiêci.
-	ResourceFormat		format;						///<Format tekstury (liczba kana³ów, liczba bitów na kana³ itp)
+	uint16				TextureWidth;				///< Szerokoœæ tekstury w pikselach.
+	uint16				TextureHeight;				///< Wysokoœæ tekstury w pikselach.
+	uint16				ArraySize;					///< Liczba elementów tablicy.
+	bool				CPURead : 1;				///< Pozwala na odczyt tekstury przez CPU.
+	bool				CPUWrite : 1;				///< Pozwala na zapis tekstury przez CPU.
+	bool				AllowShareResource : 1;		///< Pozwala na dostêp do zasoby z wielu API graficznych i pomiêdzy kontekstami.
+	bool				IsCubeMap : 1;				///< Nale¿y ustawiæ je¿eli tekstura jest cubemap¹.
+	bool				GenerateMipMaps : 1;		///< Automatyczne generowanie mipmap.
+	TextureType			TextureType;				///< Typ tekstury (liczba wymiarów, multsampling). Na razie tekstura nie mo¿e byæ inna ni¿ dwuwymiarowa (mo¿e byæ tablic¹).
+	ResourceUsage		Usage;						///< Sposób u¿ycia render targetu. Wp³ywa na optymalizacje u³o¿enia w pamiêci.
+	ResourceFormat		Format;						///< Format tekstury (liczba kana³ów, liczba bitów na kana³ itp)
+	MipMapFilter		MipMapFilter;				///< Tryb filtrowania tekstury. U¿ywany tylko je¿eli ustawiono GenerateMipMaps na true.
+	uint16				MipMapLevels;				///< Liczba poziomów mipmap. 1 oznacza tylko teksturê oryginaln¹.
+	uint16				CutOffMipMaps;				///< Usuwa podan¹ liczbê poziomów mipmap. Przydatne gdy nie potrzebujemy tekstur zbyt wysokiej rozdzielczoœci (np. stosuj¹c dynamiczny LoD).
+													///< Ustawienie wartoœci 1 oznacza, ¿e oryginalna tekstura zostanie zast¹piona pierwsz¹ mipmap¹ w kolejnoœci.
 
-	filesystem::Path	filePath;					///< Œcie¿ka do pliku z tekstur¹ lub jej nazwa.
+	filesystem::Path	FilePath;					///< Œcie¿ka do pliku z tekstur¹ lub jej nazwa.
 	
 	TextureInfo()
 	{
-		arraySize = 1;
+		ArraySize = 1;
 		CPURead = false;
 		CPUWrite = false;
-		allowShareResource = false;
-		isCubeMap = false;
-		generateMipMaps = false;
-		usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
+		AllowShareResource = false;
+		IsCubeMap = false;
+		GenerateMipMaps = false;
+		Usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
+		MipMapFilter = MipMapFilter::Unknown;
+		MipMapLevels = 1;
+		CutOffMipMaps = 0;
+		TextureType = TextureType::TEXTURE_TYPE_TEXTURE2D;
 	}
 };
 
@@ -283,35 +323,35 @@ public:
 @ingroup GraphicAPI*/
 struct RenderTargetDescriptor
 {
-	uint16				textureWidth;				///<Szerokoœæ tekstury w pikselach.
-	uint16				textureHeight;				///<Wysokoœæ tekstury w pikselach.
-	uint16				arraySize;					///<Liczba elementów tablicy.
+	uint16				TextureWidth;				///<Szerokoœæ tekstury w pikselach.
+	uint16				TextureHeight;				///<Wysokoœæ tekstury w pikselach.
+	uint16				ArraySize;					///<Liczba elementów tablicy.
 	int8				CPURead : 1;				///<Pozwala na odczyt tekstury przez CPU.
 	int8				CPUWrite : 1;				///<Pozwala na zapis tekstury przez CPU.
-	int8				allowShareResource : 1;		///<Pozwala na dostêp do zasoby z wielu API graficznych i pomiêdzy kontekstami.
-	int8				isCubeMap : 1;				///<Nale¿y ustawiæ je¿eli tekstura jest cubemap¹.
+	int8				AllowShareResource : 1;		///<Pozwala na dostêp do zasoby z wielu API graficznych i pomiêdzy kontekstami.
+	int8				IsCubeMap : 1;				///<Nale¿y ustawiæ je¿eli tekstura jest cubemap¹.
 	uint8				numSamples;					///<Liczba próbek w przypadku stosowania multisamplingu.
 	uint16				samplesQuality;				///<Jakoœæ próbek przy multisamplingu.
-	TextureType			textureType;				///<Typ tekstury (liczba wymiarów, multsampling). Tekstura nie mo¿e byæ inna ni¿ dwuwymiarowa (mo¿e byæ tablic¹).
+	TextureType			TextureType;				///<Typ tekstury (liczba wymiarów, multsampling). Tekstura nie mo¿e byæ inna ni¿ dwuwymiarowa (mo¿e byæ tablic¹).
 	ResourceFormat		colorBuffFormat;			///<Format bufora kolorów.
 	DepthStencilFormat	depthStencilFormat;			///<Format bufora g³êbokoœci i stencilu.
-	ResourceUsage		usage;						///<Sposób u¿ycia render targetu. Wp³ywa na optymalizacje u³o¿enia w pamiêci.
+	ResourceUsage		Usage;						///<Sposób u¿ycia render targetu. Wp³ywa na optymalizacje u³o¿enia w pamiêci.
 
 	/**@brief Ustawia domyœlne wartoœci deskryptora.
 	
-	Ustawiane s¹ pola CPURead, CPUWrite, allowShareResource, isCubeMap, usage.
+	Ustawiane s¹ pola CPURead, CPUWrite, AllowShareResource, IsCubeMap, Usage.
 	Te zmienne s¹ u¿ywane rzadko i dlatego powinny mieæ takie wartoœci, ¿eby nie trzeba by³o ich jawnie ustawiaæ.
 	Pozosta³e wartoœci u¿ytkownik i tak musi zdefiniowaæ samemu, wiêc nie ma co nadk³adaæ pracy.
 	
-	Pola numSamples i samplesQuality s¹ ignorowane, je¿eli textureType nie zosta³ ustawiony na teksturê z multisamplingiem.
-	Pole arraySize jest ignorowane, je¿eli tekstura nie jest tablic¹.*/
+	Pola numSamples i samplesQuality s¹ ignorowane, je¿eli TextureType nie zosta³ ustawiony na teksturê z multisamplingiem.
+	Pole ArraySize jest ignorowane, je¿eli tekstura nie jest tablic¹.*/
 	RenderTargetDescriptor()
 	{
 		CPURead = 0;
 		CPUWrite = 0;
-		allowShareResource = 0;
-		isCubeMap = 0;
-		usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
+		AllowShareResource = 0;
+		IsCubeMap = 0;
+		Usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
 	}
 };
 

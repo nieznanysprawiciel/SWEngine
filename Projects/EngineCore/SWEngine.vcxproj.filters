@@ -132,6 +132,9 @@
     <Filter Include="EngineCore\ModelsManagment\Loaders\Texture\SOIL">
       <UniqueIdentifier>{2d188d8e-8868-4d2c-a9ae-439bd430e7b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\ModelsManagment\Loaders\Texture\Resampler">
+      <UniqueIdentifier>{1d09ea1a-cc84-48b2-99e6-d99201bd9d2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -572,6 +575,15 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_pvr_c.h">
       <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\Resampler\resampler.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\Resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\EngineHelpers\Converters.h">
+      <Filter>EngineCore\EngineHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\MipMapGenerator.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -819,6 +831,15 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\etc1_utils.cpp">
       <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\Resampler\resampler.cpp">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture\Resampler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\EngineHelpers\Converters.cpp">
+      <Filter>EngineCore\EngineHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\MipMapGenerator.cpp">
+      <Filter>EngineCore\ModelsManagment\Loaders\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

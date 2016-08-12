@@ -120,9 +120,9 @@ void LightmapLogic::ProceedGameLogic			( float time )
 			VertexShader* vertexShader = m_engine->Assets.Shaders.GetVertexShaderSync( DEFAULT_COORD_COLOR_VERTEX_SHADER_PATH );
 			PixelShader* pixelShader = m_engine->Assets.Shaders.GetPixelShaderSync( DEFAULT_COORD_COLOR_PIXEL_SHADER_PATH );
 			RenderTargetDescriptor renderTargetDesc;
-			renderTargetDesc.textureHeight = 1024;
-			renderTargetDesc.textureWidth = 1024;
-			renderTargetDesc.textureType = TextureType::TEXTURE_TYPE_TEXTURE2D;
+			renderTargetDesc.TextureHeight = 1024;
+			renderTargetDesc.TextureWidth = 1024;
+			renderTargetDesc.TextureType = TextureType::TEXTURE_TYPE_TEXTURE2D;
 			renderTargetDesc.colorBuffFormat = ResourceFormat::RESOURCE_FORMAT_R8G8B8A8_UNORM;
 			renderTargetDesc.depthStencilFormat = DepthStencilFormat::DEPTH_STENCIL_FORMAT_D16_UNORM;
 			

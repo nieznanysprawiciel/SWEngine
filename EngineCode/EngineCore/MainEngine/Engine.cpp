@@ -358,13 +358,13 @@ U¿ywaæ rozs¹dnie.
 void* Engine::GetRenderTargetHandle( uint16 width, uint16 height )
 {
 	RenderTargetDescriptor descriptor;
-	descriptor.allowShareResource = 1;
-	descriptor.textureWidth = width;
-	descriptor.textureHeight = height;
+	descriptor.AllowShareResource = 1;
+	descriptor.TextureWidth = width;
+	descriptor.TextureHeight = height;
 	descriptor.colorBuffFormat = ResourceFormat::RESOURCE_FORMAT_B8G8R8A8_UNORM;
-	descriptor.textureType = TextureType::TEXTURE_TYPE_TEXTURE2D;
+	descriptor.TextureType = TextureType::TEXTURE_TYPE_TEXTURE2D;
 	descriptor.depthStencilFormat = DepthStencilFormat::DEPTH_STENCIL_FORMAT_D24_UNORM_S8_UINT;
-	descriptor.usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
+	descriptor.Usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
 
 	RenderTargetObject* renderTarget = Context->modelsManager->CreateRenderTarget( EDITOR_RENDERTARGET_STRING, descriptor );
 	Context->displayEngine->SetMainRenderTarget( renderTarget );
