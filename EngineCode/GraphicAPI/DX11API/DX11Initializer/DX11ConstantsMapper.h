@@ -34,6 +34,8 @@ public:
 	static inline D3D11_BIND_FLAG			Get( ResourceBinding binding )		{ return DX11ResourceBinding[ (int)binding ]; }
 	static inline D3D11_RTV_DIMENSION		Get( TextureType texType )			{ return DX11TextureType[ (int)texType ]; }
 	static inline DXGI_FORMAT				Get( DepthStencilFormat format )	{ return DX11DepthStencilFormat[ (int)format ]; }
+
+	static ResourceFormat					ConvertBack( DXGI_FORMAT );
 	
 	static inline D3D11_SRV_DIMENSION		ConvertSRV			( TextureType texType )				{ return DX11TextureTypeToSRV[ (int)texType ]; }
 	static inline D3D11_DSV_DIMENSION		ConvertDSV			( TextureType texType )				{ return DX11TextureTypeToDSV[ (int)texType ]; }

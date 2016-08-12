@@ -29,9 +29,9 @@ RTTR_REGISTRATION
 
 Obiekty s¹ takie same, kiedy odwo³uj¹ siê do tego samego pliku.
 */
-bool TextureObject::operator==( TextureObject& object)
+bool TextureObject::operator==( TextureObject& object )
 {
-	if (this->GetFileName() == object.GetFileName())
+	if( this->GetFilePath().String() == object.GetFilePath().String() )
 		return true;
 	return false;
 }
@@ -40,9 +40,13 @@ bool TextureObject::operator==( TextureObject& object)
 
 Obiekty s¹ takie same, kiedy odwo³uj¹ siê do tego samego pliku.
 */
-bool TextureObject::operator==(const std::wstring& fileName)
+bool TextureObject::operator==( const std::wstring& fileName )
 {
-	if (this->GetFileName() == fileName)
+	typedef std::codecvt_utf8<wchar_t> convert_type;
+	std::wstring_convert<convert_type, wchar_t> converter;
+	auto convertedFileName = converter.to_bytes( fileName );
+
+	if( this->GetFilePath().String() == convertedFileName )
 		return true;
 	return false;
 }
@@ -53,9 +57,9 @@ bool TextureObject::operator==(const std::wstring& fileName)
 
 
 RenderTargetObject::RenderTargetObject( TextureObject* colorBuffer, TextureObject* depthBuffer, TextureObject* stencilBuffer )
-	: m_colorBuffer( colorBuffer ),
-	m_depthBuffer( depthBuffer ),
-	m_stencilBuffer( stencilBuffer )
+	:	m_colorBuffer( colorBuffer )
+	,	m_depthBuffer( depthBuffer )
+	,	m_stencilBuffer( stencilBuffer )
 {
 	if( m_colorBuffer )
 		m_colorBuffer->AddAssetReference();

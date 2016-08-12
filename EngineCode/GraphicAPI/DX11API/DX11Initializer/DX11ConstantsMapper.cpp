@@ -2,6 +2,8 @@
 
 #include "Common/MemoryLeaks.h"
 
+
+
 /**@see ResourceUsage.*/
 D3D11_USAGE DX11ResourceUsage[] =
 {	
@@ -263,4 +265,16 @@ DXGI_FORMAT DX11ResourceFormat[] =
 	DXGI_FORMAT_UNKNOWN,
 	DXGI_FORMAT_UNKNOWN
 };
+
+/**@brief Przeprowadza odwrotn¹ konwersjê z natywnego formatu DirectXa do ResourceFormat.*/
+ResourceFormat		DX11ConstantsMapper::ConvertBack( DXGI_FORMAT nativeFormat )
+{
+	for( int i = 0; i < ARRAYSIZE( DX11ResourceFormat ); ++i )
+	{
+		if( nativeFormat == DX11ResourceFormat[ i ] )
+			return static_cast< ResourceFormat >( i );
+	}
+
+	return ResourceFormat::RESOURCE_FORMAT_UNKNOWN;
+}
 

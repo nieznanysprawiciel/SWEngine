@@ -26,14 +26,6 @@ TextureObject*			ResourcesFactory::CreateTextureFromMemory	( const MemoryChunk& 
 }
 
 
-/**@brief Tworzy teksturê z podanego pliku.
-@param[in] fileName Nazwa pliku.
-@return Zwraca wskaŸnik na obiekt tekstury lub nullptr w przypadku niepowodzenia.*/
-TextureObject*			ResourcesFactory::CreateTextureFromFile( const std::wstring& fileName )
-{
-	return Texture::CreateFromFile( fileName );
-}
-
 /**@brief Tworzy obiekt vertex shadera.
 
 @param[in] fileName Nazwa pliku z kodem shadera.

@@ -1,6 +1,7 @@
 #include "EngineCore/stdafx.h"
 #include "FBX_loader.h"
 
+#include "EngineCore/EngineHelpers/Converters.h"
 
 #include "Common/MemoryLeaks.h"
 
@@ -71,10 +72,7 @@ LoaderResult FBX_loader::load_mesh( Model3DFromFile* new_file_mesh, const std::w
 	cur_model = new_file_mesh;
 
 	FbxImporter* fbx_importer = FbxImporter::Create(fbx_manager, "");
-
-	typedef std::codecvt_utf8<wchar_t> convert_type;
-	std::wstring_convert<convert_type, wchar_t> converter;
-	m_filePath = converter.to_bytes( name );
+	m_filePath = Converters::ToString( name );
 
 
 	if ( !fbx_importer->Initialize( m_filePath.String().c_str(), -1, fbx_manager->GetIOSettings() ) )

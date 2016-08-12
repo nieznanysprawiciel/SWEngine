@@ -8,6 +8,10 @@
 @brief Zawiera deklaracjê szblonu klasy kontenera dla assetów.
 */
 
+///@todo Dodaæ IDki obok œcie¿ek.
+///@todo Kontrner powinien obs³ugiwaæ œcie¿ki, jako obiekty typu Path zamiast wstringów.
+//#include "Common/System/Path.h"
+
 #include <map>
 
 

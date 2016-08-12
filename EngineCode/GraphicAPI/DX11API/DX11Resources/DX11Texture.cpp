@@ -6,15 +6,11 @@
 
 
 
-DX11Texture::DX11Texture( const std::wstring& path, ID3D11ShaderResourceView* tex )
-{
-	m_fileName = path;
-	m_textureView = tex;
-}
 
-DX11Texture::DX11Texture( ID3D11Texture2D* tex, ID3D11ShaderResourceView* texView )
+DX11Texture::DX11Texture( TextureInfo&& texInfo, ID3D11Texture2D* tex, ID3D11ShaderResourceView* texView )
 	:	m_texture( tex )
 	,	m_textureView( texView )
+	,	m_descriptor( std::move( texInfo ) )
 {}
 
 DX11Texture::~DX11Texture()
@@ -24,46 +20,102 @@ DX11Texture::~DX11Texture()
 	m_texture = nullptr;
 }
 
-/**@brief Zapisuje podan¹ teksturê do pliku.
 
-@brief filePath Œcie¿ka do pliku, do którego ma zostaæ zapisana tekstura.
-@return Zwraca true, je¿eli zapis siê uda.*/
-bool DX11Texture::SaveToFile( const std::string& filePath )
+/**@copydoc TextureObject::GetDescriptor.*/
+const TextureInfo&			DX11Texture::GetDescriptor() const
 {
-	//HRESULT result = D3DX11SaveTextureToFile( device_context, m_texture, )
-
-	return false;
+	return m_descriptor;
 }
 
-/**@brief Tworzy teksturê na podstawie podanego pliku.
-
-@param[in] fileName Nazwa pliku zawieraj¹cego teksturê
-@return Zawraca stworzony wewn¹trz obiekt DX11Texture z wczytan¹ tekstur¹ lub nullptr w przypadku niepowodzenia.
-*/
-DX11Texture* DX11Texture::CreateFromFile( const std::wstring& fileName )
+/**@copydoc TextureObject::GetFilePath.*/
+const filesystem::Path&		DX11Texture::GetFilePath() const
 {
-	ID3D11ShaderResourceView* textureView;
-	HRESULT result = D3DX11CreateShaderResourceViewFromFile( device, fileName.c_str(),
-															 NULL, NULL,
-															 &textureView, NULL );
-	if( FAILED( result ) )
-		return nullptr;
-
-	DX11Texture* texture = new DX11Texture( fileName, textureView );
-
-	return texture;
+	return m_descriptor.FilePath;
 }
+
 
 /**@brief Tworzy teksturê z podanego wskaŸnika.
 
 @return Zawraca stworzony wewn¹trz obiekt DX11Texture z wczytan¹ tekstur¹ lub nullptr w przypadku niepowodzenia.*/
-DX11Texture* DX11Texture::CreateFromMemory( const MemoryChunk& texData, TextureInfo&& texInfo )
+DX11Texture*	DX11Texture::CreateFromMemory( const MemoryChunk& texData, TextureInfo&& texInfo )
 {
 	if( texData.IsNull() )
 		return nullptr;
 
 	ID3D11Texture2D* texture = nullptr;
 	ID3D11ShaderResourceView* texView = nullptr;
+	D3D11_TEXTURE2D_DESC texDesc = FillDesc( texInfo );
+
+
+	D3D11_SUBRESOURCE_DATA data;
+	data.pSysMem = texData.GetMemory< int8 >();
+	data.SysMemPitch = texData.GetMemorySize() / texInfo.TextureHeight;
+
+	HRESULT result = device->CreateTexture2D( &texDesc, &data, &texture );
+	if( result == S_OK )
+	{
+		D3D11_SHADER_RESOURCE_VIEW_DESC viewDesc;
+
+		if( texInfo.TextureType == TextureType::TEXTURE_TYPE_TEXTURE2D )
+		{
+			viewDesc.Format = texDesc.Format;
+			viewDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+			viewDesc.Texture2D.MostDetailedMip = 0;
+			viewDesc.Texture2D.MipLevels = -1;
+
+			result = device->CreateShaderResourceView( texture, &viewDesc, &texView );
+			if( result == S_OK )
+				return new DX11Texture( std::move( texInfo ), texture, texView );
+			else 
+				return nullptr;
+		}
+		
+		assert( !"Other texture types are not suported" );
+	}
+
+	return nullptr;
+}
+
+
+/**@brief Zwraca zawartoœæ tekstury.
+
+@attention Funkcja wywo³uje metodê DeviceContextu. Mo¿e byæ problem z synchronizacj¹, je¿eli
+wiele w¹tków bêdzie wywo³ywa³o jakieœ funkcje z kontekstu jednoczeœnie.*/
+MemoryChunk					DX11Texture::CopyData() const
+{
+	D3D11_TEXTURE2D_DESC texDesc = FillDesc( m_descriptor );
+	texDesc.CPUAccessFlags	= D3D11_CPU_ACCESS_READ;
+	texDesc.Usage			= D3D11_USAGE::D3D11_USAGE_STAGING;
+
+	ID3D11Texture2D* newTex;
+
+	HRESULT result = device->CreateTexture2D( &texDesc, nullptr, &newTex );
+	if( FAILED( result ) )
+		return MemoryChunk();
+
+
+	// Kopiowanie zawartoœci miêdzy buforami
+	device_context->CopyResource( newTex, m_texture );
+
+	D3D11_MAPPED_SUBRESOURCE data;
+	result = device_context->Map( newTex, 0, D3D11_MAP::D3D11_MAP_READ, 0, &data );
+	if( FAILED( result ) )
+		return MemoryChunk();
+
+	MemoryChunk memoryChunk;
+	memoryChunk.MemoryCopy( (int8*)data.pData, m_descriptor.MemorySize );
+
+	assert( m_descriptor.MemorySize != 0 );
+
+	device_context->Unmap( newTex, 0 );
+	newTex->Release();
+
+	return std::move( memoryChunk );
+}
+
+/**@brief Tworzy deskryptor tekstury 2D na podstawie deskryptora.*/
+D3D11_TEXTURE2D_DESC			DX11Texture::FillDesc	( const TextureInfo& texInfo )
+{
 	D3D11_TEXTURE2D_DESC texDesc;
 
 	unsigned int ArraySize = 1;
@@ -96,39 +148,7 @@ DX11Texture* DX11Texture::CreateFromMemory( const MemoryChunk& texData, TextureI
 
 	texDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
 	texDesc.Format = DX11ConstantsMapper::Get( texInfo.Format );
-	//if( texInfo.GenerateMipMaps )
-	//{
-	//	texDesc.BindFlags |= D3D11_BIND_RENDER_TARGET;	// Potrzebne, ¿eby mozna by³o wygenerowaæ mipmapy.
-	//	texDesc.MiscFlags = D3D11_RESOURCE_MISC_GENERATE_MIPS;
-	//}
 
-
-	D3D11_SUBRESOURCE_DATA data;
-	data.pSysMem = texData.GetMemory< int8 >();
-	data.SysMemPitch = texData.GetMemorySize() / texInfo.TextureHeight;
-
-	HRESULT result = device->CreateTexture2D( &texDesc, &data, &texture );
-	if( result == S_OK )
-	{
-		D3D11_SHADER_RESOURCE_VIEW_DESC viewDesc;
-
-		if( texInfo.TextureType == TextureType::TEXTURE_TYPE_TEXTURE2D )
-		{
-			viewDesc.Format = texDesc.Format;
-			viewDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
-			viewDesc.Texture2D.MostDetailedMip = 0;
-			viewDesc.Texture2D.MipLevels = -1;
-
-			result = device->CreateShaderResourceView( texture, &viewDesc, &texView );
-			if( result == S_OK )
-				return new DX11Texture( texture, texView );
-			else 
-				return nullptr;
-		}
-		
-		assert( !"Other texture types are not suported" );
-	}
-
-	return nullptr;
+	return texDesc;
 }
 

@@ -16,6 +16,7 @@ Funkcja uzupe³nia w strukturze @ref TextureInfo pola:
 - TextureWidth
 - TextureHeight
 - Format
+- MemorySize
 */
 MemoryChunk			TextureLoader::LoadTexture( const filesystem::Path& filePath, TextureInfo& texInfo )
 {
@@ -43,6 +44,7 @@ MemoryChunk			TextureLoader::LoadTexture( const filesystem::Path& filePath, Text
 
 	uint32 size = width * height;
 	size *= 4;//channels;
+	texInfo.MemorySize = size;
 
 	unsigned char* copiedData = new unsigned char[ size ];
 	memcpy( copiedData, data, size );

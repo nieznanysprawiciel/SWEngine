@@ -7,6 +7,7 @@
 #include "Common/ObjectDeleter.h"
 #include "GraphicAPI/ResourcesFactory.h"
 #include "Common/MacrosSwitches.h"
+#include "EngineCore/EngineHelpers/Converters.h"
 
 #include "Common/MemoryLeaks.h"
 
@@ -304,15 +305,15 @@ RenderTargetObject* ModelsManager::CreateRenderTarget( const std::wstring& name,
 		
 		auto colorBuff = newRenderTarget->GetColorBuffer();
 		if( colorBuff )
-			m_texture.unsafe_add( colorBuff->GetFileName(), colorBuff );
+			m_texture.unsafe_add( Converters::FromString( colorBuff->GetFilePath().String(), std::wstring() ), colorBuff );
 
 		auto depthBuffer = newRenderTarget->GetDepthBuffer();
 		if( depthBuffer )
-			m_texture.unsafe_add( depthBuffer->GetFileName(), depthBuffer );
+			m_texture.unsafe_add( Converters::FromString( depthBuffer->GetFilePath().String(), std::wstring() ), depthBuffer );
 
 		auto stencilBuffer = newRenderTarget->GetStencilBuffer();
 		if( stencilBuffer )
-			m_texture.unsafe_add( stencilBuffer->GetFileName(), stencilBuffer );
+			m_texture.unsafe_add( Converters::FromString( stencilBuffer->GetFilePath().String(), std::wstring() ), stencilBuffer );
 	}
 
 	return newRenderTarget;

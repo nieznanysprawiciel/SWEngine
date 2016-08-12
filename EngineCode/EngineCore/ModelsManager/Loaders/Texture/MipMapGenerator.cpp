@@ -23,7 +23,7 @@ Je¿eli rozmiary tekstury nie s¹ potêg¹ dwójki, funkcja skaluje obraz i uzupe³nia
 Pola te s¹ równie¿ modyfikowane, je¿eli ustawiono niezerow¹ wartoœæ CutOffMipMaps.
 Wtedy najwiêksz¹ tekstur¹ staje siê jedna z mipmap.
 
-Oprócz tego ustawiane jest pole MipMapLevels.
+Oprócz tego ustawiane jest pole MipMapLevels i aktualizowane MemorySize.
 */
 MemoryChunk		MipMapGenerator::Generate	( MemoryChunk& source, TextureInfo& texInfo )
 {
@@ -36,7 +36,8 @@ MemoryChunk		MipMapGenerator::Generate	( MemoryChunk& source, TextureInfo& texIn
 
 	assert( newWidth > 0 && newHeight > 0 );
 
-	MemoryChunk texWithMips( ComputeBufferSize( newWidth, newHeight, NumChannels ) );
+	texInfo.MemorySize = ComputeBufferSize( newWidth, newHeight, NumChannels );
+	MemoryChunk texWithMips( texInfo.MemorySize );
 
 	if( newWidth != texInfo.TextureWidth || newHeight != texInfo.TextureHeight )
 	{

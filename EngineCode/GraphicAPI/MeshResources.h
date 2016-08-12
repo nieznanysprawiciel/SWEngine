@@ -13,7 +13,6 @@
 #include "Common/System/Path.h"
 
 #include "GraphicAPI/ResourceObject.h"
-#include "GraphicAPI/ITexture.h"
 #include "GraphicAPI/IShader.h"
 #include "GraphicAPI/IBuffer.h"
 #include "GraphicAPI/IRenderTarget.h"
@@ -273,6 +272,7 @@ struct TextureInfo
 	uint16				CutOffMipMaps;				///< Usuwa podan¹ liczbê poziomów mipmap. Przydatne gdy nie potrzebujemy tekstur zbyt wysokiej rozdzielczoœci (np. stosuj¹c dynamiczny LoD).
 													///< Ustawienie wartoœci 1 oznacza, ¿e oryginalna tekstura zostanie zast¹piona pierwsz¹ mipmap¹ w kolejnoœci.
 
+	uint32				MemorySize;					///<Pamiêæ zajmowana przez teksturê.
 	filesystem::Path	FilePath;					///< Œcie¿ka do pliku z tekstur¹ lub jej nazwa.
 	
 	TextureInfo()
@@ -288,6 +288,7 @@ struct TextureInfo
 		MipMapLevels = 1;
 		CutOffMipMaps = 0;
 		TextureType = TextureType::TEXTURE_TYPE_TEXTURE2D;
+		MemorySize = 0;
 	}
 };
 
@@ -298,18 +299,20 @@ struct TextureInfo
 Klasa bazowa, która bêdzie u¿ywana przez obiekty silnika.
 Powinny po niej odziedziczyæ obiekty konkretnego API graficznego,
 ¿eby zaimplementowaæ najwa¿niejsze funkcjonalnoœci.*/
-class TextureObject : public ITexture
+class TextureObject : public ResourceObject
 {
 	friend ObjectDeleter<TextureObject>;
 private:
 protected:
-	std::wstring				m_fileName;		///<Plik, z którego powsta³a tekstura lub po prostu nazwa tekstury, je¿eli zosta³a wygenerowana.
-
-	//¯eby unikn¹æ pomy³ki, obiekt mo¿e byœ kasowany tylko przez ModelsManager. Zapewnia to ObjectDeleter.
-	~TextureObject() = default;
+	/// ¯eby unikn¹æ pomy³ki, obiekt mo¿e byœ kasowany tylko przez ModelsManager. Zapewnia to ObjectDeleter.
+	virtual ~TextureObject() = default;
 public:
-	TextureObject() = default;
-	std::wstring&	GetFileName() { return m_fileName; }		///<Zwraca nazwê pliku, który pos³u¿y³ do stworzenia obiektu.
+	TextureObject() : ResourceObject( 0 ) {}
+
+	virtual const filesystem::Path&		GetFilePath		() const = 0;		///<Zwraca nazwê pliku, który pos³u¿y³ do stworzenia obiektu
+
+	virtual MemoryChunk					CopyData		() const = 0;		///<Kopiuje dane z bufora i umieszcza je w zwracanym MemoryChunku.
+	virtual const TextureInfo&			GetDescriptor	() const = 0;		///<Pozwala pobraæ deskrytpro tekstury.
 
 	inline bool operator==( TextureObject& object );
 	inline bool operator==( const std::wstring& file_name );
@@ -326,15 +329,15 @@ struct RenderTargetDescriptor
 	uint16				TextureWidth;				///<Szerokoœæ tekstury w pikselach.
 	uint16				TextureHeight;				///<Wysokoœæ tekstury w pikselach.
 	uint16				ArraySize;					///<Liczba elementów tablicy.
-	int8				CPURead : 1;				///<Pozwala na odczyt tekstury przez CPU.
-	int8				CPUWrite : 1;				///<Pozwala na zapis tekstury przez CPU.
-	int8				AllowShareResource : 1;		///<Pozwala na dostêp do zasoby z wielu API graficznych i pomiêdzy kontekstami.
-	int8				IsCubeMap : 1;				///<Nale¿y ustawiæ je¿eli tekstura jest cubemap¹.
-	uint8				numSamples;					///<Liczba próbek w przypadku stosowania multisamplingu.
-	uint16				samplesQuality;				///<Jakoœæ próbek przy multisamplingu.
+	bool				CPURead : 1;				///<Pozwala na odczyt tekstury przez CPU.
+	bool				CPUWrite : 1;				///<Pozwala na zapis tekstury przez CPU.
+	bool				AllowShareResource : 1;		///<Pozwala na dostêp do zasoby z wielu API graficznych i pomiêdzy kontekstami.
+	bool				IsCubeMap : 1;				///<Nale¿y ustawiæ je¿eli tekstura jest cubemap¹.
+	uint8				NumSamples;					///<Liczba próbek w przypadku stosowania multisamplingu.
+	uint16				SamplesQuality;				///<Jakoœæ próbek przy multisamplingu.
 	TextureType			TextureType;				///<Typ tekstury (liczba wymiarów, multsampling). Tekstura nie mo¿e byæ inna ni¿ dwuwymiarowa (mo¿e byæ tablic¹).
-	ResourceFormat		colorBuffFormat;			///<Format bufora kolorów.
-	DepthStencilFormat	depthStencilFormat;			///<Format bufora g³êbokoœci i stencilu.
+	ResourceFormat		ColorBuffFormat;			///<Format bufora kolorów.
+	DepthStencilFormat	DepthStencilFormat;			///<Format bufora g³êbokoœci i stencilu.
 	ResourceUsage		Usage;						///<Sposób u¿ycia render targetu. Wp³ywa na optymalizacje u³o¿enia w pamiêci.
 
 	/**@brief Ustawia domyœlne wartoœci deskryptora.
@@ -343,7 +346,7 @@ struct RenderTargetDescriptor
 	Te zmienne s¹ u¿ywane rzadko i dlatego powinny mieæ takie wartoœci, ¿eby nie trzeba by³o ich jawnie ustawiaæ.
 	Pozosta³e wartoœci u¿ytkownik i tak musi zdefiniowaæ samemu, wiêc nie ma co nadk³adaæ pracy.
 	
-	Pola numSamples i samplesQuality s¹ ignorowane, je¿eli TextureType nie zosta³ ustawiony na teksturê z multisamplingiem.
+	Pola NumSamples i SamplesQuality s¹ ignorowane, je¿eli TextureType nie zosta³ ustawiony na teksturê z multisamplingiem.
 	Pole ArraySize jest ignorowane, je¿eli tekstura nie jest tablic¹.*/
 	RenderTargetDescriptor()
 	{
@@ -352,6 +355,25 @@ struct RenderTargetDescriptor
 		AllowShareResource = 0;
 		IsCubeMap = 0;
 		Usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
+	}
+
+	/**@brief Tworzy strukture TextureInfo wype³nion¹ danymi zgodnymi z deskryptorem RenderTargetu.
+	
+	@attention Funkcja nie ustawia formatu tekstury. Nie da siê wywnioskowaæ formatu na podstawie deskryptora.*/
+	TextureInfo		CreateTextureInfo() const
+	{
+		TextureInfo texInfo;
+		texInfo.TextureWidth = TextureWidth;
+		texInfo.TextureHeight = TextureHeight;
+		texInfo.ArraySize = ArraySize;
+		texInfo.CPURead = CPURead;
+		texInfo.CPUWrite = CPUWrite;
+		texInfo.AllowShareResource = AllowShareResource;
+		texInfo.IsCubeMap = IsCubeMap;
+		texInfo.TextureType = TextureType;
+		texInfo.Usage = Usage;
+
+		return texInfo;
 	}
 };
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-
+#include <codecvt>
 
 
 
@@ -23,10 +23,10 @@ private:
 public:
 
 	template< typename EnumType >
-	static const char*			ToConstChar		( EnumType value);
+	static const char*			ToConstChar		( const EnumType& value);
 
 	template< typename EnumType >
-	static std::string			ToString		( EnumType value );
+	static std::string			ToString		( const EnumType& value );
 
 	template< typename EnumType >
 	static EnumType				FromString		( const std::string& value, EnumType defaultValue );
@@ -35,7 +35,11 @@ public:
 
 
 
+	template<>
+	static std::string			ToString< std::wstring >		( const std::wstring& value );
 
+	template<>
+	static std::wstring			FromString< std::wstring >		( const std::string& value, std::wstring defaultValue );
 };
 
 
@@ -45,14 +49,14 @@ public:
 
 /**@brief Konwertuje enuma do ³añcucha znaków.*/
 template<typename EnumType>
-inline const char*			Converters::ToConstChar		( EnumType value )
+inline const char*			Converters::ToConstChar		( const EnumType& value )
 {
 	return EnumToConstChar( GetEnumMappingArray< EnumType >(), value );
 }
 
 /**@brief Konwertuje enuma do stringa.*/
 template<typename EnumType>
-inline std::string			Converters::ToString		( EnumType value )
+inline std::string			Converters::ToString		( const EnumType& value )
 {
 	return EnumToString( GetEnumMappingArray< EnumType >(), value );
 }
@@ -62,6 +66,26 @@ template<typename EnumType>
 inline EnumType				Converters::FromString		( const std::string& value, EnumType defaultValue )
 {
 	return StringToEnum( GetEnumMappingArray< EnumType >(), value, defaultValue );
+}
+
+//====================================================================================//
+//			Wstring to string	
+//====================================================================================//
+
+template<>
+inline std::string			Converters::ToString		( const std::wstring& value )
+{
+	typedef std::codecvt_utf8<wchar_t> convert_type;
+	std::wstring_convert<convert_type, wchar_t> converter;
+	return converter.to_bytes( value );
+}
+
+template<>
+inline std::wstring			Converters::FromString		( const std::string& value, std::wstring defaultValue )
+{
+	typedef std::codecvt_utf8<wchar_t> convert_type;
+	std::wstring_convert<convert_type, wchar_t> converter;
+	return converter.from_bytes( value );
 }
 
 //====================================================================================//

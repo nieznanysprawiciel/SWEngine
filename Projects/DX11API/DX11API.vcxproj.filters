@@ -30,9 +30,6 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IShader.h">
       <Filter>GraphicAPI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\ITexture.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\MeshResources.h">
       <Filter>GraphicAPI</Filter>
     </ClInclude>
