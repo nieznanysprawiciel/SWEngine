@@ -115,17 +115,24 @@ MemoryChunk					DX11Texture::CopyData() const
 	// Kopiowanie zawartoœci miêdzy buforami
 	device_context->CopyResource( newTex, m_texture );
 
-	D3D11_MAPPED_SUBRESOURCE data;
-	result = device_context->Map( newTex, 0, D3D11_MAP::D3D11_MAP_READ, 0, &data );
-	if( FAILED( result ) )
-		return MemoryChunk();
-
-	MemoryChunk memoryChunk;
-	memoryChunk.MemoryCopy( (int8*)data.pData, m_descriptor.MemorySize );
-
 	assert( m_descriptor.MemorySize != 0 );
 
-	device_context->Unmap( newTex, 0 );
+	MemoryChunk memoryChunk( m_descriptor.MemorySize );
+	PtrOffset offset = 0;
+
+	for( int level = 0; level < m_descriptor.MipMapLevels; level++ )
+	{
+		D3D11_MAPPED_SUBRESOURCE data;
+		result = device_context->Map( newTex, level, D3D11_MAP::D3D11_MAP_READ, 0, &data );
+		if( FAILED( result ) )
+			return MemoryChunk();
+
+		memcpy( memoryChunk.GetMemory< uint8 >() + offset, data.pData, data.RowPitch << ( m_descriptor.MipMapLevels - level - 1 ) );
+
+		device_context->Unmap( newTex, level );
+	}
+
+	
 	newTex->Release();
 
 	return std::move( memoryChunk );

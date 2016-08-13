@@ -153,6 +153,8 @@ public:
 
 	virtual void		Serialize		( ISerializer* ser ) const override;
 	virtual void		Deserialize		( IDeserializer* deser ) override;
+
+	virtual std::string	GetResourceName	() const override;
 };
 
 

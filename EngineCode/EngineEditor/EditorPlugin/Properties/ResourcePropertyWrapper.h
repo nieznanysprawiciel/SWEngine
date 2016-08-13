@@ -21,14 +21,14 @@ public enum class ResourcePropertyType
 };
 
 /**@brief Property dla obiektów zasobów: Model3DFromFile, BufferObject, MaterialObject, TextureObject*/
-public ref class ResourceObjectPropertyWrapper : CategoryLessPropertyWrapper
+public ref class ResourcePropertyWrapper : CategoryLessPropertyWrapper
 {
 protected:
 
 	ResourcePropertyType			m_resourceType;
 
 public:
-	ResourceObjectPropertyWrapper		( rttr::property prop );
+	ResourcePropertyWrapper		( rttr::property prop );
 
 	property ResourcePropertyType	ResourceType
 	{
@@ -41,6 +41,16 @@ public:
 		{
 			m_resourceType = type;
 		}
+	}
+
+	property System::String^		ResourceName
+	{
+		System::String^				get();
+	}
+
+	property int					ID
+	{
+		int							get();
 	}
 
 };

@@ -1,13 +1,15 @@
-#include "ResourceObjectPropertyWrapper.h"
+#include "ResourcePropertyWrapper.h"
 
 #include "GraphicAPI/MeshResources.h"
 #include "EngineCore/ModelsManager/Model3DFromFile.h"
+
+
 
 namespace EditorPlugin
 {
 
 /**@brief */
-ResourceObjectPropertyWrapper::ResourceObjectPropertyWrapper( rttr::property prop )
+ResourcePropertyWrapper::ResourcePropertyWrapper( rttr::property prop )
 	: CategoryLessPropertyWrapper( PropertyType::PropertyResource, prop, prop.get_name().c_str() )
 {
 	auto type = rttr::type::get( prop );
@@ -26,6 +28,22 @@ ResourceObjectPropertyWrapper::ResourceObjectPropertyWrapper( rttr::property pro
 		m_resourceType = ResourcePropertyType::PropertyRenderTarget;
 	else
 		m_resourceType = ResourcePropertyType::PropertyUnKnown;
+}
+
+/**@brief */
+int					ResourcePropertyWrapper::ID::get()
+{
+	if( m_actorPtr )
+		return static_cast< ResourceObject* >( m_actorPtr )->GetID();
+	return std::numeric_limits< uint32 >::max();
+}
+
+/**@brief */
+System::String^		ResourcePropertyWrapper::ResourceName::get()
+{
+	if( m_actorPtr )
+		return gcnew System::String( static_cast< ResourceObject* >( m_actorPtr )->GetResourceName().c_str() );
+	return gcnew System::String( "" );
 }
 
 }	// EditorPlugin

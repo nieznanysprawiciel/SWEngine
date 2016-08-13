@@ -50,6 +50,7 @@ namespace EditorPlugin
 		friend ref class CategoryLessPropertyWrapper;
 		friend ref class StringPropertyWrapper;
 		friend ref class WStringPropertyWrapper;
+		friend ref class TexturePropertyWrapper;
 
 		friend DirectX::XMFLOAT2	GetPropertyValue< DirectX::XMFLOAT2 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
 		friend void					SetPropertyValue< DirectX::XMFLOAT2 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, DirectX::XMFLOAT2 newValue );

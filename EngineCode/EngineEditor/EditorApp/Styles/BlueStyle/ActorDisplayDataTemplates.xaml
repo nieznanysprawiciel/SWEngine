@@ -43,7 +43,7 @@
 	</HierarchicalDataTemplate>
 
 	<!--ResourceObjectPropertyWrapper-->
-	<HierarchicalDataTemplate DataType="{x:Type engine:ResourceObjectPropertyWrapper}" ItemsSource="{Binding Properties}" >
+	<HierarchicalDataTemplate DataType="{x:Type engine:ResourcePropertyWrapper}" ItemsSource="{Binding Properties}" >
 		<Expander IsExpanded="True" Margin="20, 0, 0, 0">
 			<Expander.Header>
 				<BulletDecorator>

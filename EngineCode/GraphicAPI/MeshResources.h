@@ -149,6 +149,8 @@ struct MeshPartObject : public ResourceObject
 		DirectX::XMMATRIX identity = DirectX::XMMatrixIdentity( );
 		XMStoreFloat4x4( &transform_matrix, identity );
 	}
+
+	virtual std::string			GetResourceName	() const override { return ""; }
 };
 
 /**@brief Struktura opisuj¹ca pojedyncz¹ czêœæ mesha gotow¹ do wyœwietlenia.
@@ -290,6 +292,21 @@ struct TextureInfo
 		TextureType = TextureType::TEXTURE_TYPE_TEXTURE2D;
 		MemorySize = 0;
 	}
+
+private:
+	RTTR_REGISTRATION_FRIEND;
+	
+	int		GetWidth		()		{ return TextureWidth; }
+	int		GetHeight		()		{ return TextureHeight; }
+	int		GetArraySize	()		{ return ArraySize; }
+	bool	IsCPUReadable	()		{ return CPURead; }
+	bool	IsCPUWriteable	()		{ return CPUWrite; }
+	bool	IsSharedResource()		{ return AllowShareResource; }
+	bool	IsCubeMapTex	()		{ return IsCubeMap; }
+	bool	GenMipMaps		()		{ return GenerateMipMaps; }
+	int		GetMipLevels	()		{ return MipMapLevels; }
+
+	std::string		GetPath	()		{ return FilePath.String(); }
 };
 
 /** @brief Klasa przechowuj¹ca tekstury.
@@ -313,6 +330,8 @@ public:
 
 	virtual MemoryChunk					CopyData		() const = 0;		///<Kopiuje dane z bufora i umieszcza je w zwracanym MemoryChunku.
 	virtual const TextureInfo&			GetDescriptor	() const = 0;		///<Pozwala pobraæ deskrytpro tekstury.
+
+	virtual std::string					GetResourceName	() const override { return GetFilePath().String(); }
 
 	inline bool operator==( TextureObject& object );
 	inline bool operator==( const std::wstring& file_name );
@@ -399,6 +418,8 @@ public:
 	inline TextureObject*		GetColorBuffer()			{ return m_colorBuffer; }		///<Zwraca obiekt bufora kolorów.
 	inline TextureObject*		GetDepthBuffer()			{ return m_depthBuffer; }		///<Zwraca obiekt bufora g³êbokoœci.
 	inline TextureObject*		GetStencilBuffer()			{ return m_stencilBuffer; }		///<Zwraca obiekt bufora stencilu.
+
+	virtual std::string			GetResourceName	() const override { return m_colorBuffer->GetFilePath().String(); }	///<@todo RenderTargety powinny mieæ swoje nazwy.
 };
 
 //----------------------------------------------------------------------------------------------//
@@ -417,6 +438,8 @@ protected:
 	virtual ~ShaderInputLayout() = default;
 public:
 	ShaderInputLayout() = default;
+
+	virtual std::string			GetResourceName	() const override { return ""; }
 };
 
 /**@brief Klasa przechowuje opis layoutu wierzcho³ka, na podstawie którego
@@ -464,6 +487,8 @@ protected:
 	~VertexShader() = default;
 public:
 	VertexShader() = default;
+
+	virtual std::string			GetResourceName	() const override { return ""; }
 };
 
 //----------------------------------------------------------------------------------------------//
@@ -481,6 +506,8 @@ protected:
 	~PixelShader() = default;
 public:
 	PixelShader() = default;
+
+	virtual std::string			GetResourceName	() const override { return ""; }
 };
 
 //----------------------------------------------------------------------------------------------//
@@ -498,6 +525,8 @@ protected:
 	~GeometryShader() = default;
 public:
 	GeometryShader() = default;
+
+	virtual std::string			GetResourceName	() const override { return ""; }
 };
 
 //----------------------------------------------------------------------------------------------//
@@ -515,6 +544,8 @@ protected:
 	~ControlShader() = default;
 public:
 	ControlShader() = default;
+
+	virtual std::string			GetResourceName	() const override { return ""; }
 };
 
 //----------------------------------------------------------------------------------------------//
@@ -532,6 +563,8 @@ protected:
 	~EvaluationShader() = default;
 public:
 	EvaluationShader() = default;
+
+	virtual std::string			GetResourceName	() const override { return ""; }
 };
 
 //----------------------------------------------------------------------------------------------//
@@ -549,6 +582,8 @@ protected:
 	~ComputeShader() = default;
 public:
 	ComputeShader() = default;
+
+	virtual std::string			GetResourceName	() const override { return ""; }
 };
 
 //----------------------------------------------------------------------------------------------//
@@ -575,6 +610,8 @@ public:
 	inline unsigned int GetStride()				{ return m_elementSize; }		///<Zwraca rozmiar pojedynczego elementu w buforze.
 	inline unsigned int	GetElementSize()		{ return m_elementSize; }		///<Zwraca rozmiar pojedynczego elementu w buforze.
 	inline unsigned int GetElementCount()		{ return m_elementCount; }		///<Zwraca liczbê elementów w buforze.
+
+	virtual std::string	GetResourceName	() const override { return ""; }
 };
 
 //----------------------------------------------------------------------------------------------//
@@ -615,6 +652,8 @@ typedef struct MaterialObject : public ResourceObject
 	MaterialObject( const MaterialObject* material );
 
 	void SetNullMaterial();
+
+	virtual std::string	GetResourceName	() const override { return ""; }
 } MaterialObject;
 
 

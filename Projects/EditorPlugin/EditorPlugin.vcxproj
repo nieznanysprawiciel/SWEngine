@@ -34,7 +34,8 @@
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</CompileAsManaged>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourceObjectPropertyWrapper.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourcePropertyWrapper.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\TexturePropertyWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneLoader.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneSaver.cpp" />
   </ItemGroup>
@@ -50,7 +51,8 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Native\SceneHelpers.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyHelper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourceObjectPropertyWrapper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourcePropertyWrapper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\TexturePropertyWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Resource.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneLoader.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneSaver.h" />

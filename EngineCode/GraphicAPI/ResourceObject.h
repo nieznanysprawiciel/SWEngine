@@ -64,6 +64,8 @@ public:
 	inline void DeleteObjectReference()	{ --m_objectReferences; }	///< Kasuje odwo³anie bezpoœrednie obiektu do assetu
 
 	inline unsigned int GetID()			{ return m_uniqueId; }		///< Zwraca identyfikator nadany assetowi
+
+	virtual std::string GetResourceName() const = 0;				///< Zwraca nazwê zasobu. To mo¿e byæ nazwa pliku, na podstawie którego stworzono zasób, ale zasadniczo interpretacja jest dowolna.
 };
 
 

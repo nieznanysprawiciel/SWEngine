@@ -6,8 +6,27 @@
 
 RTTR_REGISTRATION
 {
+	RTTR_REGISTRATION_STANDARD_TYPE_VARIANTS( std::wstring );
+
 	rttr::registration::class_< ResourceObject >( "ResourceObject" );
-	RTTR_REGISTRATION_STANDARD_TYPE_VARIANTS( std::wstring )
+
+	rttr::registration::class_< TextureInfo >( "TextureInfo" )
+	.property_readonly( "Width", &TextureInfo::GetWidth )
+	.property_readonly( "Height", &TextureInfo::GetHeight )
+	.property_readonly( "ArraySize", &TextureInfo::GetArraySize )
+	.property_readonly( "CPUReadable", &TextureInfo::IsCPUReadable )
+	.property_readonly( "CPUWritable", &TextureInfo::IsCPUWriteable )
+	.property_readonly( "SharedResource", &TextureInfo::IsSharedResource )
+	.property_readonly( "CubeMap", &TextureInfo::IsCubeMapTex )
+	.property_readonly( "GeneratedMipMaps", &TextureInfo::GenMipMaps )
+	.property_readonly( "MipMapsLevels", &TextureInfo::GetMipLevels )
+	.property_readonly( "FilePath", &TextureInfo::GetPath );
+
+	rttr::registration::class_< TextureObject >( "TextureObject" )
+	.property_readonly( "Descriptor", &TextureObject::GetDescriptor )
+	(
+		rttr::policy::prop::BindAsPtr()
+	);
 }
 
 

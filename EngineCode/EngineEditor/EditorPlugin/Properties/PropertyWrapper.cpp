@@ -1,7 +1,7 @@
 #include "PropertyWrapper.h"
 #include <msclr/marshal_cppstd.h>
 
-#include "ResourceObjectPropertyWrapper.h"
+#include "ResourcePropertyWrapper.h"
 
 namespace EditorPlugin
 {
@@ -355,7 +355,7 @@ PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( rttr::property property
 		// Najpierw sprawdzamy czy dziedziczy po ResourceObject dopiero potem
 		// EngineObject. Dziêki temu mo¿emy oddzieliæ zasoby od innych w³aœciowoœci
 		// i obs³u¿yæ je inaczej.
-		auto propertyWrapper = gcnew ResourceObjectPropertyWrapper( property );
+		auto propertyWrapper = gcnew ResourcePropertyWrapper( property );
 		propertyWrapper->BuildHierarchy();
 		return propertyWrapper;
 	}
@@ -405,13 +405,13 @@ void CategoryLessPropertyWrapper::BuildHierarchy()
 }
 
 /**@brief */
-void	CategoryLessPropertyWrapper::ResetActor		( System::IntPtr objectPtr )
+void	CategoryLessPropertyWrapper::ResetActor		( System::IntPtr parentObjectPtr )
 {
 	auto prop = RTTRPropertyRapist::MakeProperty( m_metaProperty );
 
 	if( m_type == PropertyType::PropertyFloat2 )
 	{
-		auto value = prop.get_value( *static_cast< EngineObject* >( objectPtr.ToPointer() ) );
+		auto value = prop.get_value( *static_cast< EngineObject* >( parentObjectPtr.ToPointer() ) );
 		auto xmfloat = value.get_value< DirectX::XMFLOAT2* >();
 
 		for each( auto property in Properties )
@@ -419,7 +419,7 @@ void	CategoryLessPropertyWrapper::ResetActor		( System::IntPtr objectPtr )
 	}
 	else if( m_type == PropertyType::PropertyFloat3 )
 	{
-		auto value = prop.get_value( *static_cast< EngineObject* >( objectPtr.ToPointer() ) );
+		auto value = prop.get_value( *static_cast< EngineObject* >( parentObjectPtr.ToPointer() ) );
 		auto xmfloat = value.get_value< DirectX::XMFLOAT3* >();
 
 		for each( auto property in Properties )
@@ -427,7 +427,7 @@ void	CategoryLessPropertyWrapper::ResetActor		( System::IntPtr objectPtr )
 	}
 	else if( m_type == PropertyType::PropertyFloat4 )
 	{
-		auto value = prop.get_value( *static_cast< EngineObject* >( objectPtr.ToPointer() ) );
+		auto value = prop.get_value( *static_cast< EngineObject* >( parentObjectPtr.ToPointer() ) );
 		auto xmfloat = value.get_value< DirectX::XMFLOAT4* >();
 
 		for each( auto property in Properties )
@@ -435,7 +435,7 @@ void	CategoryLessPropertyWrapper::ResetActor		( System::IntPtr objectPtr )
 	}
 	else if( m_type == PropertyType::PropertyResource || m_type == PropertyType::PropertyActor )
 	{
-		auto value = prop.get_value( *static_cast< EngineObject* >( objectPtr.ToPointer() ) );
+		auto value = prop.get_value( *static_cast< EngineObject* >( parentObjectPtr.ToPointer() ) );
 		auto object = value.get_value< EngineObject* >();
 
 		for each( auto property in Properties )

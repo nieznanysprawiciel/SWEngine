@@ -196,7 +196,7 @@ namespace EditorApp.Editor.Project.Actors
 
 		public void				LoadAsset		( object parameter )
 		{
-			ResourceObjectPropertyWrapper resource = parameter as ResourceObjectPropertyWrapper;
+			ResourcePropertyWrapper resource = parameter as ResourcePropertyWrapper;
 			var assetPath = m_editorLogic.ProjectManager.ContentManager.GetSelectedFilePath();
 
 			if( assetPath == null )
@@ -207,7 +207,7 @@ namespace EditorApp.Editor.Project.Actors
 
 		private bool CanLoadAsset	( object parameter )
 		{
-			ResourceObjectPropertyWrapper resource = parameter as ResourceObjectPropertyWrapper;
+			ResourcePropertyWrapper resource = parameter as ResourcePropertyWrapper;
 
 			if( m_editorLogic.ProjectManager.ContentManager.SelectedFile == null )
 				return false;

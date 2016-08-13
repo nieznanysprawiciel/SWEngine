@@ -1,5 +1,6 @@
 #include "EngineCore/stdafx.h"
 #include "ModelsManager.h"
+#include "EngineCore/EngineHelpers/Converters.h"
 
 #include "Common/Serialization/SW/Serialization.h"
 
@@ -538,6 +539,13 @@ Size Model3DFromFile::get_parts_count()
 	return model_parts.size();
 }
 
+/**@brief */
+std::string Model3DFromFile::GetResourceName() const
+{
+	return Converters::ToString( m_filePath );
+}
+
+
 //====================================================================================//
 //			Serializacja	
 //====================================================================================//
@@ -552,3 +560,5 @@ void Model3DFromFile::Serialize( ISerializer* ser ) const
 
 void Model3DFromFile::Deserialize( IDeserializer* deser )
 { }
+
+

@@ -84,6 +84,8 @@ public:
 	inline BufferObject*		GetIndexBuffer		()			{ return *m_indexBuffer; }		///< Zwraca wskaŸnik na bufor indeksów.
 	inline ShaderInputLayout*	GetLayout			()			{ return *m_layout; }			///< Zwraca wskaŸnik na layout bufora wierzcho³ków.
 
+	virtual std::string			GetResourceName		() const override;
+
 	virtual void				Serialize			( ISerializer* ser ) const override;
 	virtual void				Deserialize			( IDeserializer* deser ) override;
 

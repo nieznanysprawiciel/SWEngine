@@ -6,6 +6,7 @@
 
 #include "EngineCore/stdafx.h"
 #include "MeshAsset.h"
+#include "EngineCore/EngineHelpers/Converters.h"
 #include "Common/Serialization/SW/Serialization.h"
 
 #include "Common/MemoryLeaks.h"
@@ -47,6 +48,12 @@ const MeshPart*	MeshAsset::GetSegment( Size index ) const
 Size		MeshAsset::GetSegmentsCount() const
 {
 	return m_segments.size();
+}
+
+/**@brief Zwraca nazwê mesha (nazwê pliku)*/
+std::string MeshAsset::GetResourceName() const
+{
+	return Converters::ToString( m_filePath );
 }
 
 //====================================================================================//
