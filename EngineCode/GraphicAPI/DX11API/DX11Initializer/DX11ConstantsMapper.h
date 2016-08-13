@@ -35,12 +35,15 @@ public:
 	static inline D3D11_RTV_DIMENSION		Get( TextureType texType )			{ return DX11TextureType[ (int)texType ]; }
 	static inline DXGI_FORMAT				Get( DepthStencilFormat format )	{ return DX11DepthStencilFormat[ (int)format ]; }
 
-	static ResourceFormat					ConvertBack( DXGI_FORMAT );
+	static ResourceFormat					ConvertBack			( DXGI_FORMAT );
 	
 	static inline D3D11_SRV_DIMENSION		ConvertSRV			( TextureType texType )				{ return DX11TextureTypeToSRV[ (int)texType ]; }
 	static inline D3D11_DSV_DIMENSION		ConvertDSV			( TextureType texType )				{ return DX11TextureTypeToDSV[ (int)texType ]; }
 	static inline DXGI_FORMAT				ConvertTypeless		( DepthStencilFormat format )		{ return DX11DepthStencilTypeless[ (int)format ]; }
 	static inline DXGI_FORMAT				ConvertDepthOnly	( DepthStencilFormat format )		{ return DX11DepthOnly[ (int)format ]; }
 	static inline DXGI_FORMAT				ConvertStencilOnly	( DepthStencilFormat format )		{ return DX11StencilOnly[ (int)format ]; }
+
+	static size_t							BitsPerPixel		( DXGI_FORMAT fmt );
+	static inline size_t					BytesPerPixel		( DXGI_FORMAT fmt )					{ return BitsPerPixel( fmt ) / 8; }
 };
 

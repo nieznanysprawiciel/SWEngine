@@ -42,7 +42,7 @@ MemoryChunk		MipMapGenerator::Generate	( MemoryChunk& source, TextureInfo& texIn
 	if( newWidth != texInfo.TextureWidth || newHeight != texInfo.TextureHeight )
 	{
 		// Przeskaluj teksturê, ¿eby jej wymiary by³y potêg¹ dwójki.
-		Resample( texInfo.TextureWidth, texInfo.TextureWidth, newWidth, newHeight, source.GetMemory< uint8 >(), texWithMips.GetMemory< uint8 >(), texInfo.MipMapFilter );
+		Resample( texInfo.TextureWidth, texInfo.TextureHeight, newWidth, newHeight, source.GetMemory< uint8 >(), texWithMips.GetMemory< uint8 >(), texInfo.MipMapFilter );
 	}
 	else
 	{
@@ -53,11 +53,16 @@ MemoryChunk		MipMapGenerator::Generate	( MemoryChunk& source, TextureInfo& texIn
 	// Aktualizujemy informacje o teksturze.
 	texInfo.TextureWidth = newWidth;
 	texInfo.TextureHeight = newHeight;
+	
+	PtrOffset offset = 0;
+	PtrOffset prevOffset = 0;
+	uint16 prevWidth = newWidth;
+	uint16 prevHeight = newHeight;
 
-	// Tworzenie mipmap.
-	for( int level = 0; level < texInfo.MipMapLevels; level++ )
+	// Tworzenie mipmap. Zaczynamy od pierwszego poziomu, bo zerowa tekstura jest ju¿ w buforze (tekstura oryginalna).
+	for( int level = 1; level < texInfo.MipMapLevels; level++ )
 	{
-		PtrOffset offset = newWidth * newHeight * NumChannels;
+		offset += prevWidth * prevHeight * NumChannels;
 		newWidth /= 2;
 		newHeight /= 2;
 
@@ -66,7 +71,11 @@ MemoryChunk		MipMapGenerator::Generate	( MemoryChunk& source, TextureInfo& texIn
 		if( newWidth == 0 )
 			newWidth = 1;
 
-		Resample( texInfo.TextureWidth, texInfo.TextureWidth, newWidth, newHeight, texWithMips.GetMemory< uint8 >(), texWithMips.GetMemory< uint8 >() + offset, texInfo.MipMapFilter );
+		Resample( prevWidth, prevHeight, newWidth, newHeight, texWithMips.GetMemory< uint8 >() + prevOffset, texWithMips.GetMemory< uint8 >() + offset, texInfo.MipMapFilter );
+
+		prevOffset = offset;
+		prevWidth = newWidth;
+		prevHeight = newHeight;
 	}
 
 	return texWithMips;
@@ -224,6 +233,7 @@ uint32			MipMapGenerator::ComputeBufferSize( unsigned int width, unsigned int he
 			height = 1;
 	}
 
+	bufferSize += bytesPerPixel;	// Dodajemy ostatni¹ mipmapê 1x1.
 	return bufferSize;
 }
 

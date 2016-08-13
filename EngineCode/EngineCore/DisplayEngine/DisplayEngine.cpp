@@ -60,6 +60,7 @@ DisplayEngine::~DisplayEngine()
 	if ( sky_dome )
 		delete sky_dome;
 
+	delete m_defaultCamera;
 	delete m_mainSwapChain;
 }
 

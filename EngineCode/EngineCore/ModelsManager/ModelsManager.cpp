@@ -512,7 +512,7 @@ TextureObject* ModelsManager::AddTexture( const std::wstring& fileName )
 		TextureInfo texInfo;
 		texInfo.FilePath = filesystem::Path( fileName );
 		texInfo.GenerateMipMaps = true;
-		texInfo.MipMapFilter = MipMapFilter::Box;
+		texInfo.MipMapFilter = MipMapFilter::Lanczos4;
 
 		MemoryChunk texData = TextureLoader::LoadTexture( texInfo.FilePath, texInfo );
 

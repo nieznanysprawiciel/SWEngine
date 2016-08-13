@@ -272,7 +272,7 @@ struct TextureInfo
 	uint16				CutOffMipMaps;				///< Usuwa podan¹ liczbê poziomów mipmap. Przydatne gdy nie potrzebujemy tekstur zbyt wysokiej rozdzielczoœci (np. stosuj¹c dynamiczny LoD).
 													///< Ustawienie wartoœci 1 oznacza, ¿e oryginalna tekstura zostanie zast¹piona pierwsz¹ mipmap¹ w kolejnoœci.
 
-	uint32				MemorySize;					///<Pamiêæ zajmowana przez teksturê.
+	uint32				MemorySize;					///< Pamiêæ zajmowana przez teksturê.
 	filesystem::Path	FilePath;					///< Œcie¿ka do pliku z tekstur¹ lub jej nazwa.
 	
 	TextureInfo()

@@ -147,3 +147,5 @@ namespace Api
 
 
 }	// Api
+
+#include "ActorsApi.inl"

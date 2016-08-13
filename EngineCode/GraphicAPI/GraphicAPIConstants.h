@@ -5,6 +5,8 @@
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
+#include "Common/TypesDefinitions.h"
+
 /**@brief Specyfikuje typ dostêpu do pamiêci danego zasobu.
 @see @ref GraphicAPI*/
 enum class ResourceUsage
@@ -203,3 +205,7 @@ enum class ResourceFormat
 	RESOURCE_FORMAT_V208 = 131,
 	RESOURCE_FORMAT_V408 = 132,
 };
+
+
+extern uint32				BitsPerPixel		( ResourceFormat fmt );		///< Liczba bitów na piksel danego formatu. Funkcja wymaga zaimplementrowania przez API graficzne.
+extern uint32				BytesPerPixel		( ResourceFormat fmt );		///< Liczba bajtów na piksel danego formatu. Funkcja wymaga zaimplementrowania przez API graficzne.

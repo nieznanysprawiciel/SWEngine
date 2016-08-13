@@ -42,16 +42,34 @@ DX11Texture*	DX11Texture::CreateFromMemory( const MemoryChunk& texData, TextureI
 	if( texData.IsNull() )
 		return nullptr;
 
+	/// @todo Trzeba zacz¹æ kiedyœ obœ³ugiwac inne typy tekstur.
+	assert( texInfo.TextureType == TextureType::TEXTURE_TYPE_TEXTURE2D );
+	if( texInfo.TextureType != TextureType::TEXTURE_TYPE_TEXTURE2D )
+		return nullptr;
+
 	ID3D11Texture2D* texture = nullptr;
 	ID3D11ShaderResourceView* texView = nullptr;
 	D3D11_TEXTURE2D_DESC texDesc = FillDesc( texInfo );
 
+	std::unique_ptr< D3D11_SUBRESOURCE_DATA[] > initData( new D3D11_SUBRESOURCE_DATA[ texInfo.MipMapLevels /** texInfo.ArraySize*/ ] );
+	uint16 mipWidth = texInfo.TextureWidth;
+	uint16 mipHeight = texInfo.TextureHeight;
+	PtrOffset offset = 0;
 
-	D3D11_SUBRESOURCE_DATA data;
-	data.pSysMem = texData.GetMemory< int8 >();
-	data.SysMemPitch = texData.GetMemorySize() / texInfo.TextureHeight;
+	for( int level = 0; level < texInfo.MipMapLevels; level++ )
+	{
+		initData[ level ].pSysMem = texData.GetMemory< int8 >() + offset;
+		initData[ level ].SysMemPitch = (uint32)mipWidth * BytesPerPixel( texInfo.Format );
 
-	HRESULT result = device->CreateTexture2D( &texDesc, &data, &texture );
+		offset += mipWidth * mipHeight * BytesPerPixel( texInfo.Format );
+
+		mipWidth /= 2;
+		mipHeight /= 2;
+		if( mipHeight == 0 )	mipHeight = 1;
+		if( mipWidth == 0 )		mipWidth = 1;
+	}
+
+	HRESULT result = device->CreateTexture2D( &texDesc, initData.get(), &texture );
 	if( result == S_OK )
 	{
 		D3D11_SHADER_RESOURCE_VIEW_DESC viewDesc;
@@ -61,7 +79,7 @@ DX11Texture*	DX11Texture::CreateFromMemory( const MemoryChunk& texData, TextureI
 			viewDesc.Format = texDesc.Format;
 			viewDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
 			viewDesc.Texture2D.MostDetailedMip = 0;
-			viewDesc.Texture2D.MipLevels = -1;
+			viewDesc.Texture2D.MipLevels = texInfo.MipMapLevels;
 
 			result = device->CreateShaderResourceView( texture, &viewDesc, &texView );
 			if( result == S_OK )
@@ -124,7 +142,7 @@ D3D11_TEXTURE2D_DESC			DX11Texture::FillDesc	( const TextureInfo& texInfo )
 
 	texDesc.Width				= texInfo.TextureWidth;
 	texDesc.Height				= texInfo.TextureHeight;
-	texDesc.MipLevels			= 1;
+	texDesc.MipLevels			= texInfo.MipMapLevels;
 	texDesc.Usage				= DX11ConstantsMapper::Get( texInfo.Usage );
 	texDesc.ArraySize			= ArraySize;
 	
