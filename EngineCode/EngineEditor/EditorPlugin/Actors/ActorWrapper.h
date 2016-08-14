@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EngineEditor/EditorPlugin/EnginePointerProvider.h"
+#include "EngineEditor/EditorPlugin/Actors/EngineObjectWrapper.h"
 #include "EngineCore/Actors/ActorInfo.h"
 
 
@@ -14,19 +15,16 @@ namespace EditorPlugin
 
 
 
-public ref class ActorWrapper
+public ref class ActorWrapper : public EngineObjectWrapper
 {
 private:
 
-	EngineObject*		m_actorPtr;		///< WskaŸnik na aktora.
 	unsigned short		m_actorInfo;	///< Informacje o modu³ach, w których znajduje siê aktor.
 	System::String^		m_name;			///< Nazwa aktora wyœwietlana w edytorze.
 
 public:
 	ActorWrapper		( EngineObject* actor, const ActorInfo* actorInfo );
 
-	System::String^		GetTypeName	();
-	System::IntPtr		GetActorPtr	();
 	ActorBase*			Ptr			();
 	unsigned short		GetActorInfo()		{ return m_actorInfo; }
 	
@@ -37,16 +35,6 @@ public:
 	{
 		System::String^		get		()							{ return m_name; }
 		void				set		( System::String^ name )	{ m_name = name; }
-	}
-
-	property int	Type
-	{
-		int			get ();
-	}
-
-	property System::String^	TypeName
-	{
-		System::String^		get ()		{ return GetTypeName(); }
 	}
 
 

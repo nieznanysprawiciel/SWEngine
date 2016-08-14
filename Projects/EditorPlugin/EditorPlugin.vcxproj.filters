@@ -22,6 +22,9 @@
     <Filter Include="EditorPlugin\Scene">
       <UniqueIdentifier>{e4717364-99f4-49d5-942a-2c0f53bd2f3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EditorPlugin\Actors\Resources">
+      <UniqueIdentifier>{65ba392a-7f1e-422d-96f5-93d723a86c2f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\dllmain.cpp">

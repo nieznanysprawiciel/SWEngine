@@ -18,23 +18,10 @@ namespace EditorPlugin
 
 
 ActorWrapper::ActorWrapper( EngineObject* actor, const ActorInfo* actorInfo )
-	:	m_actorPtr( actor )
+	:	EngineObjectWrapper( actor )
 	,	m_actorInfo( actorInfo->GetRawInfo() )
 {
 	m_name = gcnew System::String( "" );
-}
-
-/**@brief Zwraca nazwê typu pobran¹ przez rttr::type.*/
-System::String^		ActorWrapper::GetTypeName()
-{
-	auto typeInfo = rttr::type::get( *m_actorPtr );
-	return gcnew System::String( typeInfo.get_name().c_str() );
-}
-
-/**@brief Zwraca WskaŸnik na aktora przekonwertowany na IntPtr.*/
-System::IntPtr		ActorWrapper::GetActorPtr()
-{
-	return System::IntPtr( m_actorPtr );
 }
 
 /**@brief */
@@ -43,11 +30,6 @@ ActorBase* ActorWrapper::Ptr()
 	return static_cast< ActorBase* >( m_actorPtr );
 }
 
-/**@brief Zwraca liczbowy identyfikator typu aktora.*/
-int					ActorWrapper::Type::get()
-{
-	return rttr::type::get( *m_actorPtr ).get_raw_type().get_id();
-}
 
 /**@brief Wczytuje mesha z podanej œcie¿ki i przypisuje aktorowi.*/
 bool				ActorWrapper::LoadMesh	( System::String^ meshPath )
