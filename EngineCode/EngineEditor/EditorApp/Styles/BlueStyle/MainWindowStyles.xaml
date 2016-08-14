@@ -27,11 +27,19 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="TabItem">
 					<Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="20,8,0,0" Margin="-2,0">
-						<ContentPresenter x:Name="ContentSite"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        ContentSource="Header"
-                                        Margin="10,2"/>
+						<Grid >
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+							
+							<ContentPresenter Grid.Column="0" x:Name="ContentSite"
+											VerticalAlignment="Center"
+											HorizontalAlignment="Center"
+											ContentSource="Header"
+											Margin="10,2"/>
+							<Button Grid.Column="1" Content="X" FontWeight="Bold" Width="20" Height="20" BorderBrush="Transparent" Background="Transparent" Foreground="Brown" Margin="0,0,8,0" VerticalAlignment="Bottom"/>
+						</Grid>
 					</Border>
 					<ControlTemplate.Triggers>
 						<Trigger Property="IsSelected" Value="True">
