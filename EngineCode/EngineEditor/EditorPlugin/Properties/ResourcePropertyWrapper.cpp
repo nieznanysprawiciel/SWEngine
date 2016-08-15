@@ -1,3 +1,4 @@
+#pragma warning(disable : 4561)	// DirectXMath converting fastcall to stdcall
 #include "ResourcePropertyWrapper.h"
 
 #include "GraphicAPI/MeshResources.h"

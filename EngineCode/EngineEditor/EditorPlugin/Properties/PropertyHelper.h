@@ -92,28 +92,12 @@ namespace EditorPlugin
 	{
 		rttr::property prop = RTTRPropertyRapist::MakeProperty( metaProperty );
 
-		if( prop.get_declaring_type().is_derived_from< EngineObject >() )
-		{
-			auto value = prop.get_value( *static_cast< EngineObject* >( refObject.ToPointer() ) );
-			return value.get_value< PropertyType >();
-		}
-		else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT2 >() )
-		{
-			auto value = prop.get_value( static_cast< DirectX::XMFLOAT2* >( refObject.ToPointer() ) );
-			return value.get_value< PropertyType >();
-		}
-		else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT3 >() )
-		{
-			auto value = prop.get_value( static_cast< DirectX::XMFLOAT3* >( refObject.ToPointer() ) );
-			return value.get_value< PropertyType >();
-		}
-		else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT4 >() )
-		{
-			auto value = prop.get_value( static_cast< DirectX::XMFLOAT4* >( refObject.ToPointer() ) );
-			return value.get_value< PropertyType >();
-		}
-		else
-			assert( false );	return PropertyType();
+		// Create variant with void* type and convert it to proper type.
+		rttr::variant declaringObject( refObject.ToPointer() );
+		declaringObject.unsafe_convert_void( prop.get_declaring_type() );
+
+		auto value = prop.get_value( declaringObject );
+		return value.get_value< PropertyType >();
 	}
 
 	/**@brief */
@@ -122,22 +106,11 @@ namespace EditorPlugin
 	{
 		rttr::property prop = RTTRPropertyRapist::MakeProperty( metaProperty );
 
-		if( prop.get_declaring_type().is_derived_from< EngineObject >() )
-		{
-			prop.set_value( *static_cast< EngineObject* >( refObject.ToPointer() ), newValue );
-		}
-		else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT2 >() )
-		{
-			prop.set_value( static_cast< DirectX::XMFLOAT2* >( refObject.ToPointer() ), newValue );
-		}
-		else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT3 >() )
-		{
-			prop.set_value( static_cast< DirectX::XMFLOAT3* >( refObject.ToPointer() ), newValue );
-		}
-		else if( prop.get_declaring_type().is_derived_from< DirectX::XMFLOAT4 >() )
-		{
-			prop.set_value( static_cast< DirectX::XMFLOAT4* >( refObject.ToPointer() ), newValue );
-		}
+		// Create variant with void* type and convert it to proper type.
+		rttr::variant declaringObject( refObject.ToPointer() );
+		declaringObject.unsafe_convert_void( prop.get_declaring_type() );
+
+		prop.set_value( declaringObject, newValue );
 	}
 
 }

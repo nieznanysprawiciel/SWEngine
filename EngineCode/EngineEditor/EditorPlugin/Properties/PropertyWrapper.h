@@ -1,7 +1,5 @@
 #pragma once
 
-//using Float3 = System::Numerics::;
-
 #include "PropertyHelper.h"
 #include "Common/EngineObject.h"
 #include "GraphicAPI/ResourceObject.h"
@@ -22,7 +20,7 @@ using namespace System::Collections::Generic;
 		System::String^			m_name;
 		PropertyType			m_type;
 
-		EngineObject*			m_actorPtr;		///< WskaŸnik u¿ywany do pobierania parametrów obiektu klasy.
+		void*					m_actorPtr;		///< WskaŸnik u¿ywany do pobierania parametrów obiektu klasy.
 
 	protected:
 		
@@ -85,68 +83,6 @@ using namespace System::Collections::Generic;
 //			Classes derived from PropertyWrapper	
 //====================================================================================//
 
-#pragma region UnusedXMFloatProperties
-		/**@brief Property typu DirectX::XMFLOAT2.
-	@attention KLasa nieu¿ywana.*/
-	public ref class Float2PropertyWrapper : PropertyWrapper
-	{
-	public:
-		Float2PropertyWrapper( rttr::property prop )
-			: PropertyWrapper( PropertyType::PropertyFloat2, prop, prop.get_name().c_str() )
-		{}
-
-		float		GetValueX		( EngineObject* refObject );
-		void		SetValueX		( EngineObject* refObject, float newValue );
-
-		float		GetValueY		( EngineObject* refObject );
-		void		SetValueY		( EngineObject* refObject, float newValue );
-
-	};
-
-	/**@brief Property typu DirectX::XMFLOAT3.
-	@attention KLasa nieu¿ywana.*/
-	public ref class Float3PropertyWrapper : PropertyWrapper
-	{
-	public:
-		Float3PropertyWrapper( rttr::property prop )
-			: PropertyWrapper( PropertyType::PropertyFloat3, prop, prop.get_name().c_str() )
-		{}
-
-		float		GetValueX		( EngineObject* refObject );
-		void		SetValueX		( EngineObject* refObject, float newValue );
-
-		float		GetValueY		( EngineObject* refObject );
-		void		SetValueY		( EngineObject* refObject, float newValue );
-
-		float		GetValueZ		( EngineObject* refObject );
-		void		SetValueZ		( EngineObject* refObject, float newValue );
-	};
-
-	/**@brief Property typu DirectX::XMFLOAT4.
-	@attention KLasa nieu¿ywana.*/
-	public ref class Float4PropertyWrapper : PropertyWrapper
-	{
-	public:
-		Float4PropertyWrapper( rttr::property prop )
-			: PropertyWrapper( PropertyType::PropertyFloat4, prop, prop.get_name().c_str() )
-		{}
-
-
-		float		GetValueX		( EngineObject* refObject );
-		void		SetValueX		( EngineObject* refObject, float newValue );
-
-		float		GetValueY		( EngineObject*refObject );
-		void		SetValueY		( EngineObject* refObject, float newValue );
-
-		float		GetValueZ		( EngineObject* refObject );
-		void		SetValueZ		( EngineObject* refObject, float newValue );
-
-		float		GetValueW		( EngineObject* refObject );
-		void		SetValueW		( EngineObject* refObject, float newValue );
-	};
-
-#pragma endregion
-
 
 	/**@brief Property typy in.*/
 	public ref class IntPropertyWrapper : PropertyWrapper
@@ -156,8 +92,6 @@ using namespace System::Collections::Generic;
 			: PropertyWrapper( PropertyType::PropertyInt, prop, prop.get_name().c_str() )
 		{}
 
-		int						GetValue		( EngineObject* refObject );
-		void					SetValue		( EngineObject* refObject, int newValue );
 
 		property int		Value
 		{
@@ -174,6 +108,10 @@ using namespace System::Collections::Generic;
 					SetValue( m_actorPtr, value );
 			}
 		}
+
+	private:
+		int						GetValue( void* refObject );
+		void					SetValue( void* refObject, int newValue );
 	};
 
 	/**@brief Property typu bool.*/
@@ -183,9 +121,6 @@ using namespace System::Collections::Generic;
 		BoolPropertyWrapper( rttr::property prop )
 			: PropertyWrapper( PropertyType::PropertyBool, prop, prop.get_name().c_str() )
 		{}
-
-		bool		GetValue		( EngineObject* refObject );
-		void		SetValue		( EngineObject* refObject, bool newValue );
 
 		property bool		Value
 		{
@@ -202,6 +137,10 @@ using namespace System::Collections::Generic;
 					SetValue( m_actorPtr, value );
 			}
 		}
+
+	private:
+		bool		GetValue( void* refObject );
+		void		SetValue( void* refObject, bool newValue );
 	};
 
 	/**@brief Property typu float.*/
@@ -211,9 +150,6 @@ using namespace System::Collections::Generic;
 		FloatPropertyWrapper( rttr::property prop )
 			: PropertyWrapper( PropertyType::PropertyFloat, prop, prop.get_name().c_str() )
 		{}
-
-		float		GetValue		( EngineObject* refObject );
-		void		SetValue		( EngineObject* refObject, float newValue );
 
 		property float		Value
 		{
@@ -230,6 +166,10 @@ using namespace System::Collections::Generic;
 					SetValue( m_actorPtr, value );
 			}
 		}
+
+	private:
+		float		GetValue( void* refObject );
+		void		SetValue( void* refObject, float newValue );
 	};
 
 	/**@brief Property typu double.*/
@@ -239,9 +179,6 @@ using namespace System::Collections::Generic;
 		DoublePropertyWrapper( rttr::property prop )
 			: PropertyWrapper( PropertyType::PropertyDouble, prop, prop.get_name().c_str() )
 		{}
-
-		double		GetValue		( EngineObject* refObject );
-		void		SetValue		( EngineObject* refObject, double newValue );
 
 	public:
 		property double		Value
@@ -259,6 +196,10 @@ using namespace System::Collections::Generic;
 					SetValue( m_actorPtr, value );
 			}
 		}
+
+	private:
+		double		GetValue( void* refObject );
+		void		SetValue( void* refObject, double newValue );
 	};
 
 	/**@brief Property typu std::string.*/
@@ -269,9 +210,6 @@ using namespace System::Collections::Generic;
 			: PropertyWrapper( PropertyType::PropertyString, prop, prop.get_name().c_str() )
 		{}
 
-		System::String^		GetValue		( EngineObject* refObject );
-		void				SetValue		( EngineObject* refObject, System::String^ newValue );
-
 	public:
 		property System::String^		Value
 		{
@@ -288,6 +226,10 @@ using namespace System::Collections::Generic;
 					SetValue( m_actorPtr, value );
 			}
 		}
+
+	private:
+		System::String^		GetValue( void* refObject );
+		void				SetValue( void* refObject, System::String^ newValue );
 	};
 
 	/**@brief Property typu std::wstring.*/
@@ -298,9 +240,6 @@ using namespace System::Collections::Generic;
 			: PropertyWrapper( PropertyType::PropertyWString, prop, prop.get_name().c_str() )
 		{}
 
-		System::String^		GetValue		( EngineObject* refObject );
-		void				SetValue		( EngineObject* refObject, System::String^ newValue );
-
 	public:
 		property System::String^		Value
 		{
@@ -317,6 +256,10 @@ using namespace System::Collections::Generic;
 					SetValue( m_actorPtr, value );
 			}
 		}
+
+	private:
+		System::String^		GetValue( void* refObject );
+		void				SetValue( void* refObject, System::String^ newValue );
 	};
 
 //====================================================================================//

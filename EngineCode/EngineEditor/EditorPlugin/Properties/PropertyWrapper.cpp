@@ -1,13 +1,13 @@
+#pragma warning(disable : 4561)
 #include "PropertyWrapper.h"
 #include <msclr/marshal_cppstd.h>
 
 #include "ResourcePropertyWrapper.h"
 
+
+
 namespace EditorPlugin
 {
-
-
-
 
 
 //====================================================================================//
@@ -18,170 +18,9 @@ namespace EditorPlugin
 /**@brief */
 void			PropertyWrapper::ResetActor		( System::IntPtr objectPtr )
 {
-	m_actorPtr = static_cast< EngineObject* >( objectPtr.ToPointer() );
+	m_actorPtr = objectPtr.ToPointer();
 }
 
-
-#pragma region UnusedXMFloatProperties
-/**************************************************************************************/
-//====================================================================================//
-//				DirectXMath types	
-//====================================================================================//
-
-
-//====================================================================================//
-//				Float2PropertyWrapper
-//====================================================================================//
-
-
-
-/**@brief */
-float		Float2PropertyWrapper::GetValueX	( EngineObject* refObject )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT2 >( m_metaProperty, System::IntPtr( refObject ) );
-	return value.x;
-}
-
-/**@brief */
-void		Float2PropertyWrapper::SetValueX	( EngineObject* refObject, float newValue )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT2 >( m_metaProperty, System::IntPtr( refObject ) );
-	value.x = newValue;
-	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
-}
-
-/**@brief */
-float		Float2PropertyWrapper::GetValueY	( EngineObject* refObject )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT2 >( m_metaProperty, System::IntPtr( refObject ) );
-	return value.y;
-}
-
-/**@brief */
-void		Float2PropertyWrapper::SetValueY	( EngineObject* refObject, float newValue )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT2 >( m_metaProperty, System::IntPtr( refObject ) );
-	value.y = newValue;
-	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
-}
-
-//====================================================================================//
-//				Float3PropertyWrapper
-//====================================================================================//
-//
-
-
-/**@brief */
-float		Float3PropertyWrapper::GetValueX	( EngineObject* refObject )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
-	return value.x;
-}
-
-/**@brief */
-void		Float3PropertyWrapper::SetValueX	( EngineObject* refObject, float newValue )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
-	value.x = newValue;
-	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
-}
-
-/**@brief */
-float		Float3PropertyWrapper::GetValueY	( EngineObject* refObject )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
-	return value.y;
-}
-
-/**@brief */
-void		Float3PropertyWrapper::SetValueY	( EngineObject* refObject, float newValue )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
-	value.y = newValue;
-	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
-}
-
-/**@brief */
-float		Float3PropertyWrapper::GetValueZ	( EngineObject* refObject )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
-	return value.z;
-}
-
-/**@brief */
-void		Float3PropertyWrapper::SetValueZ	( EngineObject* refObject, float newValue )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT3 >( m_metaProperty, System::IntPtr( refObject ) );
-	value.z = newValue;
-	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
-}
-
-
-//====================================================================================//
-//				Float4PropertyWrapper	
-//====================================================================================//
-
-/**@brief */
-float		Float4PropertyWrapper::GetValueX	( EngineObject* refObject )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
-	return value.x;
-}
-
-/**@brief */
-void		Float4PropertyWrapper::SetValueX	( EngineObject* refObject, float newValue )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
-	value.x = newValue;
-	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
-}
-
-/**@brief */
-float		Float4PropertyWrapper::GetValueY	( EngineObject* refObject )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
-	return value.y;
-}
-
-/**@brief */
-void		Float4PropertyWrapper::SetValueY	( EngineObject* refObject, float newValue )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
-	value.y = newValue;
-	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
-}
-
-/**@brief */
-float		Float4PropertyWrapper::GetValueZ	( EngineObject* refObject )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
-	return value.z;
-}
-
-/**@brief */
-void		Float4PropertyWrapper::SetValueZ	( EngineObject* refObject, float newValue )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
-	value.z = newValue;
-	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
-}
-
-/**@brief */
-float		Float4PropertyWrapper::GetValueW	( EngineObject* refObject )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
-	return value.w;
-}
-
-/**@brief */
-void		Float4PropertyWrapper::SetValueW	( EngineObject* refObject, float newValue )
-{
-	auto value = GetPropertyValue< DirectX::XMFLOAT4 >( m_metaProperty, System::IntPtr( refObject ) );
-	value.w = newValue;
-	SetPropertyValue( m_metaProperty, System::IntPtr( refObject ), value );
-}
-
-#pragma endregion
 
 //====================================================================================//
 //			Regular Properties	
@@ -189,81 +28,81 @@ void		Float4PropertyWrapper::SetValueW	( EngineObject* refObject, float newValue
 
 
 /**@brief */
-int IntPropertyWrapper::GetValue( EngineObject* refObject )
+int IntPropertyWrapper::GetValue( void* refObject )
 {
 	auto value = GetPropertyValue< int >( m_metaProperty, System::IntPtr( refObject ) );
 	return value;
 }
 
 /**@brief */
-void IntPropertyWrapper::SetValue( EngineObject* refObject, int newValue )
+void IntPropertyWrapper::SetValue( void* refObject, int newValue )
 {
 	SetPropertyValue< int >( m_metaProperty, System::IntPtr( refObject ), newValue );
 }
 
 
 /**@brief */
-bool BoolPropertyWrapper::GetValue( EngineObject* refObject )
+bool BoolPropertyWrapper::GetValue( void* refObject )
 {
 	auto value = GetPropertyValue< bool >( m_metaProperty, System::IntPtr( refObject ) );
 	return value;
 }
 
 /**@brief */
-void BoolPropertyWrapper::SetValue( EngineObject* refObject, bool newValue )
+void BoolPropertyWrapper::SetValue( void* refObject, bool newValue )
 {
 	SetPropertyValue< bool >( m_metaProperty, System::IntPtr( refObject ), newValue );
 }
 
 
 /**@brief */
-float FloatPropertyWrapper::GetValue( EngineObject* refObject )
+float FloatPropertyWrapper::GetValue( void* refObject )
 {
 	auto value = GetPropertyValue< float >( m_metaProperty, System::IntPtr( refObject ) );
 	return value;
 }
 
 /**@brief */
-void FloatPropertyWrapper::SetValue( EngineObject* refObject, float newValue )
+void FloatPropertyWrapper::SetValue( void* refObject, float newValue )
 {
 	SetPropertyValue< float >( m_metaProperty, System::IntPtr( refObject ), newValue );
 }
 
 /**@brief */
-double DoublePropertyWrapper::GetValue( EngineObject* refObject )
+double DoublePropertyWrapper::GetValue( void* refObject )
 {
 	auto value = GetPropertyValue< double >( m_metaProperty, System::IntPtr( refObject ) );
 	return value;
 }
 
 /**@brief */
-void DoublePropertyWrapper::SetValue( EngineObject* refObject, double newValue )
+void DoublePropertyWrapper::SetValue( void* refObject, double newValue )
 {
 	SetPropertyValue< double >( m_metaProperty, System::IntPtr( refObject ), newValue );
 }
 
 /**@brief */
-System::String ^ StringPropertyWrapper::GetValue( EngineObject* refObject )
+System::String ^ StringPropertyWrapper::GetValue( void* refObject )
 {
 	auto value = GetPropertyValue< std::string >( m_metaProperty, System::IntPtr( refObject ) );
 	return gcnew System::String( value.c_str() );
 }
 
 /**@brief */
-void StringPropertyWrapper::SetValue( EngineObject* refObject, System::String^ newValue )
+void StringPropertyWrapper::SetValue( void* refObject, System::String^ newValue )
 {
 	SetPropertyValue< std::string >( m_metaProperty, System::IntPtr( refObject ), msclr::interop::marshal_as< std::string >( newValue ) );
 }
 
 /**@brief */
-System::String ^ WStringPropertyWrapper::GetValue( EngineObject* refObject )
+System::String ^ WStringPropertyWrapper::GetValue( void* refObject )
 {
 	auto value = GetPropertyValue< std::wstring >( m_metaProperty, System::IntPtr( refObject ) );
 	return gcnew System::String( value.c_str() );
 }
 
 /**@brief */
-void WStringPropertyWrapper::SetValue( EngineObject* refObject, System::String^ newValue )
+void WStringPropertyWrapper::SetValue( void* refObject, System::String^ newValue )
 {
 	SetPropertyValue< std::wstring >( m_metaProperty, System::IntPtr( refObject ), msclr::interop::marshal_as< std::wstring >( newValue ) );
 }

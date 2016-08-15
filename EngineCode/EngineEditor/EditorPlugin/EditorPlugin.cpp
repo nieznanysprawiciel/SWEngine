@@ -1,5 +1,7 @@
 // EditorPlugin.cpp : Defines the exported functions for the DLL application.
 //
+#pragma warning(disable : 4561)	// DirectXMath converting fastcall to stdcall
+
 
 #include "EditorPlugin.h"
 

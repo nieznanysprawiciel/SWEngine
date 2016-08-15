@@ -1,3 +1,4 @@
+#pragma warning(disable : 4561)	// DirectXMath converting fastcall to stdcall
 #include "ActorClassMetaInfo.h"
 
 // Bardzo wa¿ny include. Je¿eli ten plik nie zostanie gdzieœ zaincludowany, to wszystko siê skompiluje
