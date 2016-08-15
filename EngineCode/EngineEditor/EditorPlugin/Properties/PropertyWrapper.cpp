@@ -365,6 +365,11 @@ PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( rttr::property property
 		propertyWrapper->BuildHierarchy();
 		return propertyWrapper;
 	}
+	else if ( propertyType.is_pointer() )
+	{
+		// All other objects which use BindAsPointer policy.
+		throw gcnew System::NotImplementedException();
+	}
 	else
 		throw gcnew System::ArgumentException( gcnew System::String( "Property type: [" )
 											   + gcnew System::String( property.get_name().c_str() )
