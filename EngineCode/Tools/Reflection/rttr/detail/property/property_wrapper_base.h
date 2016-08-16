@@ -76,7 +76,10 @@ class RTTR_API property_wrapper_base
         //! Returns the class that declares this property.
         type get_declaring_type() const;
 
-        //! Sets the declaring type for this property.
+        //! Returns the class pointer that declares this property.
+        type get_declaring_type_ptr() const;
+
+        //! Sets the declaring type for this property. @attention Pointer to tye instead of type.
         void set_declaring_type(type declaring_type);
 
         //! Retrieve the stored metadata for this property
@@ -93,7 +96,7 @@ class RTTR_API property_wrapper_base
 
     private:
         const char* m_name;
-        type        m_declaring_type;
+        type        m_declaring_type;	///< @attention It's declaring type pointer now. It's easier to retrive original class type from pointer then vice versa.
 };
 
 } // end namespace detail

@@ -87,6 +87,7 @@ class constructor_wrapper<Class_Type, class_ctor, Acc_Level, Policy,
         access_levels get_access_level()    const { return Acc_Level; }
         type get_instanciated_type()        const { return type::get<instanciated_type>(); }
         type get_declaring_type()           const { return type::get<typename raw_type<Class_Type>::type>(); }
+		type get_declaring_type_ptr()       const { return type::get<typename raw_type<Class_Type*>::type>(); }
         
         RTTR_INLINE std::vector<bool> get_is_reference_impl(std::true_type)     const { return {std::is_reference<Ctor_Args>::value...}; }
         RTTR_INLINE std::vector<bool> get_is_reference_impl(std::false_type)    const { return {}; }
@@ -189,6 +190,7 @@ class constructor_wrapper<ClassType, return_func, Acc_Level, Policy,
         access_levels get_access_level()                    const { return Acc_Level; }
         type get_instanciated_type()                        const { return type::get<instanciated_type>();                  }
         type get_declaring_type()                           const { return type::get<typename raw_type<ClassType>::type>(); }
+		type get_declaring_type_ptr()                       const { return type::get<typename raw_type<ClassType*>::type>();}
         std::vector<bool> get_is_reference()                const { return method_accessor<F, Policy>::get_is_reference();  }
         std::vector<bool> get_is_const()                    const { return method_accessor<F, Policy>::get_is_const();      }
         std::vector<parameter_info> get_parameter_infos()   const { return convert_to_parameter_info_list(m_param_infos);   }

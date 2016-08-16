@@ -94,7 +94,9 @@ namespace EditorPlugin
 
 		// Create variant with void* type and convert it to proper type.
 		rttr::variant declaringObject( refObject.ToPointer() );
-		declaringObject.unsafe_convert_void( prop.get_declaring_type() );
+		bool success = declaringObject.unsafe_convert_void( prop.get_declaring_type_ptr() );
+		
+		assert( success );
 
 		auto value = prop.get_value( declaringObject );
 		return value.get_value< PropertyType >();
@@ -108,7 +110,10 @@ namespace EditorPlugin
 
 		// Create variant with void* type and convert it to proper type.
 		rttr::variant declaringObject( refObject.ToPointer() );
-		declaringObject.unsafe_convert_void( prop.get_declaring_type() );
+		//prop.get_declaring_type().
+		bool success = declaringObject.unsafe_convert_void( prop.get_declaring_type_ptr() );
+
+		assert( success );
 
 		prop.set_value( declaringObject, newValue );
 	}

@@ -72,9 +72,11 @@ class RTTR_API enumeration_wrapper_base
 
         type get_declaring_type() const;
 
+		type get_declaring_type_ptr() const;
+
         virtual variant get_metadata(const variant& key) const = 0;
     private:
-        type m_declaring_type;
+        type m_declaring_type;		///< @attention It's declaring type pointer now. It's easier to retrive original class type from pointer then vice versa.
 };
 
 } // end namespace detail

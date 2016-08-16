@@ -58,7 +58,9 @@ int main()
 	auto propertyW = rttr::type::get< DirectX::XMFLOAT4* >().get_property( "W" );
 
 	rttr::variant voidFloatVariant( voidFloat4 );
-	voidFloatVariant.unsafe_convert_void( value.get_type() );
+	rttr::type declaringType = propertyX.get_declaring_type_ptr();
+	rttr::type returnedType = value.get_type();
+	voidFloatVariant.unsafe_convert_void( declaringType );
 
 	std::cout << "Rotation x: " << propertyX.get_value( voidFloatVariant ).to_float() << std::endl;
 	std::cout << "Rotation y: " << propertyY.get_value( voidFloatVariant ).to_float() << std::endl;
@@ -69,15 +71,15 @@ int main()
 	std::cout << "		Set Rotation" << std::endl;
 	//bool result = rotProperty.set_value( base, DirectX::XMFLOAT4( 3.0f, 4.0f, 6.0f, 32.4f ) );
 
-	DirectX::XMFLOAT4* arrayView;
 
-	propertyX.set_value( arrayView, 3.0f );
-	propertyY.set_value( arrayView, 4.0f );
-	propertyZ.set_value( arrayView, 6.0f );
-	propertyW.set_value( arrayView, 32.4f );
+	propertyX.set_value( voidFloatVariant, 3.0f );
+	propertyY.set_value( voidFloatVariant, 4.0f );
+	propertyZ.set_value( voidFloatVariant, 6.0f );
+	propertyW.set_value( voidFloatVariant, 32.4f );
+
 
 	value = rotProperty.get_value( base );
-	arrayView = value.get_value< DirectX::XMFLOAT4* >();
+	auto arrayView = value.get_value< DirectX::XMFLOAT4* >();
 	std::cout << "Rotation x: " << arrayView->x << std::endl;
 	std::cout << "Rotation y: " << arrayView->y << std::endl;
 	std::cout << "Rotation z: " << arrayView->z << std::endl;

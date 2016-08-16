@@ -152,6 +152,16 @@ type property::get_declaring_type() const
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+type property::get_declaring_type_ptr() const
+{
+    if (is_valid())
+        return m_wrapper->get_declaring_type_ptr();
+    else
+        return detail::get_invalid_type();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
 bool property::set_value(instance object, argument arg) const
 {
     if (is_valid())

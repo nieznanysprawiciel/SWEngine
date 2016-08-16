@@ -64,6 +64,7 @@ class RTTR_API method_wrapper_base
         const char* get_name() const;
         void set_declaring_type(type declaring_type);
         type get_declaring_type() const;
+		type get_declaring_type_ptr() const;
         std::string get_signature() const;
 
         virtual access_levels get_access_level() const = 0;
@@ -89,7 +90,7 @@ class RTTR_API method_wrapper_base
 
     private:
         const char* m_name;
-        type        m_declaring_type;
+        type        m_declaring_type;		///< @attention It's declaring type pointer now. It's easier to retrive original class type from pointer then vice versa.
 };
 
 } // end namespace detail

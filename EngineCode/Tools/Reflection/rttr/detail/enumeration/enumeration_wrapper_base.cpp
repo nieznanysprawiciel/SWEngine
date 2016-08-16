@@ -57,6 +57,13 @@ void enumeration_wrapper_base::set_declaring_type(type declaring_type)
 
 type enumeration_wrapper_base::get_declaring_type() const
 {
+    return m_declaring_type.get_raw_type();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+type enumeration_wrapper_base::get_declaring_type_ptr() const
+{
     return m_declaring_type;
 }
 

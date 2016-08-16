@@ -403,7 +403,7 @@ class registration::bind<detail::prop, Class_Type, A, acc_level> : public regist
                 m_prop = create_default_property(m_acc);
         
             m_prop->set_name(m_name);
-            m_prop->set_declaring_type(type::get<Class_Type>());
+            m_prop->set_declaring_type(type::get<Class_Type*>());
             // register the underlying type with the following call:
             m_prop->get_type();
         
@@ -493,7 +493,7 @@ class registration::bind<detail::prop, Class_Type, A1, A2, acc_level> : public r
                 m_prop = create_default_property(m_getter, m_setter);
 
             m_prop->set_name(m_name);
-            m_prop->set_declaring_type(type::get<Class_Type>());
+            m_prop->set_declaring_type(type::get<Class_Type*>());
             // register the underlying type with the following call:
             m_prop->get_type();
             auto wrapper = detail::make_rref(std::move(m_prop));
@@ -581,7 +581,7 @@ class registration::bind<detail::prop_readonly, Class_Type, A, acc_level> : publ
                 m_prop = create_default_property(m_acc);
 
             m_prop->set_name(m_name);
-            m_prop->set_declaring_type(type::get<Class_Type>());
+            m_prop->set_declaring_type(type::get<Class_Type*>());
             // register the underlying type with the following call:
             m_prop->get_type();
             auto wrapper = detail::make_rref(std::move(m_prop));
@@ -712,7 +712,7 @@ class registration::bind<detail::meth, Class_Type, F, acc_level> : public regist
                 m_meth = create_default_method(m_func);
 
             m_meth->set_name(m_name);
-            m_meth->set_declaring_type(type::get<Class_Type>());
+            m_meth->set_declaring_type(type::get<Class_Type*>());
             // register the underlying type with the following call:
             m_meth->get_return_type();
             m_meth->get_parameter_infos();
@@ -781,7 +781,7 @@ class registration::bind<detail::enum_, Class_Type, Enum_Type> : public registra
             type_register::custom_name(type::get<Enum_Type>(), name);
 
             if (!std::is_same<Class_Type, void>::value)
-                m_declared_type = type::get<Class_Type>();
+                m_declared_type = type::get<Class_Type*>();
         }
 
         ~bind()
