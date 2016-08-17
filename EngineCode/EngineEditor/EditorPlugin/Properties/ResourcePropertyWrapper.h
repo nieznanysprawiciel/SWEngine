@@ -28,7 +28,7 @@ protected:
 	ResourcePropertyType			m_resourceType;
 
 public:
-	ResourcePropertyWrapper		( rttr::property prop );
+	ResourcePropertyWrapper			( void* parent, rttr::property prop );
 
 	property ResourcePropertyType	ResourceType
 	{

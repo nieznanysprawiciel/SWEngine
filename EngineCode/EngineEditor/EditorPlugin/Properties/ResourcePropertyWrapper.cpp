@@ -10,8 +10,8 @@ namespace EditorPlugin
 {
 
 /**@brief */
-ResourcePropertyWrapper::ResourcePropertyWrapper( rttr::property prop )
-	: CategoryLessPropertyWrapper( PropertyType::PropertyResource, prop, prop.get_name().c_str() )
+	ResourcePropertyWrapper::ResourcePropertyWrapper( void* parent, rttr::property prop )
+	: CategoryLessPropertyWrapper( parent, PropertyType::PropertyResource, prop, prop.get_name().c_str() )
 {
 	auto type = rttr::type::get( prop );
 

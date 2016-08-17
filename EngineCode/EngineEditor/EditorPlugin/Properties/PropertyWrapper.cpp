@@ -1,5 +1,7 @@
 #pragma warning(disable : 4561)
 #include "PropertyWrapper.h"
+#include "Common/RTTR.h"
+
 #include <msclr/marshal_cppstd.h>
 
 #include "ResourcePropertyWrapper.h"
@@ -11,15 +13,9 @@ namespace EditorPlugin
 
 
 //====================================================================================//
-//			PropertyWrapper implementation	
+//			PropertyWrappers implementation	
 //====================================================================================//
 
-
-/**@brief */
-void			PropertyWrapper::ResetActor		( System::IntPtr objectPtr )
-{
-	m_actorPtr = objectPtr.ToPointer();
-}
 
 
 //====================================================================================//
@@ -112,18 +108,12 @@ void WStringPropertyWrapper::SetValue( void* refObject, System::String^ newValue
 //			ObjectPropertyWrapper	CategoryPropertyWrapper
 //====================================================================================//
 
-/**@brief */
-void			CategoryPropertyWrapper::ResetActor		( System::IntPtr objectPtr )
-{
-	m_actorPtr = static_cast< EngineObject* >( objectPtr.ToPointer() );
-
-	for each( auto property in m_properties )
-		property->ResetActor( objectPtr );
-}
 
 /**@brief */
-void CategoryPropertyWrapper::BuildHierarchy( rttr::type classType )
+void CategoryPropertyWrapper::BuildHierarchy( void* parentPtr, rttr::type classType )
 {
+	m_actorPtr = parentPtr;
+
 	classType = classType.get_raw_type();
 	auto properties = classType.get_properties();
 	Dictionary< System::String^, CategoryPropertyWrapper^ >  categories;
@@ -136,16 +126,16 @@ void CategoryPropertyWrapper::BuildHierarchy( rttr::type classType )
 			const std::string& categoryNameStdStr = categoryNameMeta.get_value< std::string >();
 			System::String^ categoryNameStr = gcnew System::String( categoryNameStdStr.c_str() );
 			if( !categories.ContainsKey( categoryNameStr ) )
-				categories[ categoryNameStr ] = gcnew CategoryPropertyWrapper( categoryNameStdStr.c_str() );
+				categories[ categoryNameStr ] = gcnew CategoryPropertyWrapper( parentPtr, categoryNameStdStr.c_str() );
 
-			categories[ categoryNameStr ]->Properties->Add( BuildProperty( prop ) );
+			categories[ categoryNameStr ]->Properties->Add( BuildProperty( parentPtr, prop ) );
 		}
 		else
 		{
 			if( !categories.ContainsKey( "Other" ) )
-				categories[ "Other" ] = gcnew CategoryPropertyWrapper( "Other" );
+				categories[ "Other" ] = gcnew CategoryPropertyWrapper( parentPtr, "Other" );
 
-			categories[ "Other" ]->Properties->Add( BuildProperty( prop ) );
+			categories[ "Other" ]->Properties->Add( BuildProperty( parentPtr, prop ) );
 		}	
 	}
 
@@ -154,38 +144,38 @@ void CategoryPropertyWrapper::BuildHierarchy( rttr::type classType )
 }
 
 /**@brief */
-PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( rttr::property property )
+PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( void* parent, rttr::property property )
 {
 	auto propertyType = property.get_type();
 	if( propertyType == rttr::type::get< int >() )
 	{
-		return gcnew IntPropertyWrapper( property );
+		return gcnew IntPropertyWrapper( parent, property );
 	}
 	else if( propertyType == rttr::type::get< float >() )
 	{
-		return gcnew FloatPropertyWrapper( property );
+		return gcnew FloatPropertyWrapper( parent, property );
 	}
 	else if( propertyType == rttr::type::get< bool >() )
 	{
-		return gcnew BoolPropertyWrapper( property );
+		return gcnew BoolPropertyWrapper( parent, property );
 	}
 	else if( propertyType == rttr::type::get< double >() )
 	{
-		return gcnew DoublePropertyWrapper( property );
+		return gcnew DoublePropertyWrapper( parent, property );
 	}
 	else if( propertyType == rttr::type::get< std::string >() )
 	{
-		return gcnew StringPropertyWrapper( property );
+		return gcnew StringPropertyWrapper( parent, property );
 	}
 	else if( propertyType == rttr::type::get< std::wstring >() )
 	{
-		return gcnew WStringPropertyWrapper( property );
+		return gcnew WStringPropertyWrapper( parent, property );
 	}
 	else if( propertyType == rttr::type::get< DirectX::XMFLOAT2* >()
 			 || propertyType == rttr::type::get< DirectX::XMFLOAT3* >() 
 			 || propertyType == rttr::type::get< DirectX::XMFLOAT4* >() )
 	{
-		auto propertyWrapper = gcnew XMFloatPropertyWrapper( property );
+		auto propertyWrapper = gcnew XMFloatPropertyWrapper( parent, property );
 		propertyWrapper->BuildHierarchy();
 		return propertyWrapper;
 	}
@@ -194,13 +184,13 @@ PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( rttr::property property
 		// Najpierw sprawdzamy czy dziedziczy po ResourceObject dopiero potem
 		// EngineObject. Dziêki temu mo¿emy oddzieliæ zasoby od innych w³aœciowoœci
 		// i obs³u¿yæ je inaczej.
-		auto propertyWrapper = gcnew ResourcePropertyWrapper( property );
+		auto propertyWrapper = gcnew ResourcePropertyWrapper( parent, property );
 		propertyWrapper->BuildHierarchy();
 		return propertyWrapper;
 	}
 	else if( propertyType.is_derived_from< EngineObject >() )
 	{
-		auto propertyWrapper = gcnew ObjectPropertyWrapper( property );
+		auto propertyWrapper = gcnew ObjectPropertyWrapper( parent, property );
 		propertyWrapper->BuildHierarchy();
 		return propertyWrapper;
 	}
@@ -216,11 +206,6 @@ PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( rttr::property property
 											   gcnew System::String( "property" ) );
 }
 
-/**@brief Zbuduj hierarchiê metadanych z podanego obiektu.*/
-void ObjectPropertyWrapper::BuildHierarchy()
-{
-	BuildHierarchy( RTTRPropertyRapist::MakeProperty( m_metaProperty ).get_type() );
-}
 
 //====================================================================================//
 //				CategoryLessPropertyWrapper
@@ -231,64 +216,78 @@ void ObjectPropertyWrapper::BuildHierarchy()
 Funkcja nie grupuje Property w kategorie w przeciwieñstwie do
 @ref CategoryPropertyWrapper::BuildHierarchy.
 */
-void CategoryLessPropertyWrapper::BuildHierarchy( rttr::type classType )
+void CategoryLessPropertyWrapper::BuildHierarchy( void* parent, rttr::type classType )
 {
 	classType = classType.get_raw_type();
 	auto properties = classType.get_properties();
 
 	for( auto& prop : properties )
 	{
-		Properties->Add( BuildProperty( prop ) );
+		Properties->Add( BuildProperty( parent, prop ) );
 	}
 }
+
+
+void* VoidMove( void* obj )	{ return obj; }
 
 /**@brief Zbuduj hierarchiê metadanych z podanego obiektu.*/
 void CategoryLessPropertyWrapper::BuildHierarchy()
 {
-	BuildHierarchy( RTTRPropertyRapist::MakeProperty( m_metaProperty ).get_type() );
+	auto property = RTTRPropertyRapist::MakeProperty( m_metaProperty );
+
+	rttr::variant declaringObject( VoidMove( m_actorPtr ) );
+	bool success = declaringObject.unsafe_convert_void( property.get_declaring_type_ptr() );
+
+	assert( success );
+
+	// Trzeba pobraæ realny type w³aœciwoœci. Mo¿e byæ tak, ¿e w³aœciwoœæ jest klas¹ bazow¹,
+	// a tak my chcemy zbudowaæ hierarchiê dla klasy pochodnej.
+	auto realContent = property.get_value( declaringObject );
+
+	BuildHierarchy( m_actorPtr, realContent.get_type() );
 }
 
-/**@brief */
-void	CategoryLessPropertyWrapper::ResetActor		( System::IntPtr parentObjectPtr )
-{
-	auto prop = RTTRPropertyRapist::MakeProperty( m_metaProperty );
-
-	if( m_type == PropertyType::PropertyFloat2 )
-	{
-		auto value = prop.get_value( *static_cast< EngineObject* >( parentObjectPtr.ToPointer() ) );
-		auto xmfloat = value.get_value< DirectX::XMFLOAT2* >();
-
-		for each( auto property in Properties )
-			property->ResetActor( System::IntPtr( (void*)xmfloat ) );
-	}
-	else if( m_type == PropertyType::PropertyFloat3 )
-	{
-		auto value = prop.get_value( *static_cast< EngineObject* >( parentObjectPtr.ToPointer() ) );
-		auto xmfloat = value.get_value< DirectX::XMFLOAT3* >();
-
-		for each( auto property in Properties )
-			property->ResetActor( System::IntPtr( (void*)xmfloat ) );
-	}
-	else if( m_type == PropertyType::PropertyFloat4 )
-	{
-		auto value = prop.get_value( *static_cast< EngineObject* >( parentObjectPtr.ToPointer() ) );
-		auto xmfloat = value.get_value< DirectX::XMFLOAT4* >();
-
-		for each( auto property in Properties )
-			property->ResetActor( System::IntPtr( (void*)xmfloat ) );
-	}
-	else if( m_type == PropertyType::PropertyResource || m_type == PropertyType::PropertyActor )
-	{
-		auto value = prop.get_value( *static_cast< EngineObject* >( parentObjectPtr.ToPointer() ) );
-		auto object = value.get_value< EngineObject* >();
-
-		for each( auto property in Properties )
-			property->ResetActor( System::IntPtr( (void*)object ) );
-	}
-	else
-		assert( false );
-	
-}
+///**@brief */
+//void	CategoryLessPropertyWrapper::ResetActor		( System::IntPtr parentObjectPtr )
+//{
+//	auto prop = RTTRPropertyRapist::MakeProperty( m_metaProperty );
+//
+//	if( m_type == PropertyType::PropertyFloat2 )
+//	{
+//		auto value = prop.get_value( *static_cast< EngineObject* >( parentObjectPtr.ToPointer() ) );
+//		auto xmfloat = value.get_value< DirectX::XMFLOAT2* >();
+//
+//		for each( auto property in Properties )
+//			property->ResetActor( System::IntPtr( (void*)xmfloat ) );
+//	}
+//	else if( m_type == PropertyType::PropertyFloat3 )
+//	{
+//		auto value = prop.get_value( *static_cast< EngineObject* >( parentObjectPtr.ToPointer() ) );
+//		auto xmfloat = value.get_value< DirectX::XMFLOAT3* >();
+//
+//		for each( auto property in Properties )
+//			property->ResetActor( System::IntPtr( (void*)xmfloat ) );
+//	}
+//	else if( m_type == PropertyType::PropertyFloat4 )
+//	{
+//		auto value = prop.get_value( *static_cast< EngineObject* >( parentObjectPtr.ToPointer() ) );
+//		auto xmfloat = value.get_value< DirectX::XMFLOAT4* >();
+//
+//		for each( auto property in Properties )
+//			property->ResetActor( System::IntPtr( (void*)xmfloat ) );
+//	}
+//	else if( m_type == PropertyType::PropertyResource || m_type == PropertyType::PropertyActor )
+//	{
+//		auto value = prop.get_value( *static_cast< EngineObject* >( parentObjectPtr.ToPointer() ) );
+//		auto object = value.get_value< EngineObject* >();
+//
+//		for each( auto property in Properties )
+//			property->ResetActor( System::IntPtr( (void*)object ) );
+//	}
+//	else
+//		assert( false );
+//	
+//}
 
 
 }

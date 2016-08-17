@@ -1,3 +1,4 @@
+#pragma warning(disable : 4561)	// DirectXMath converting fastcall to stdcall
 #include "ActorWrapper.h"
 #include "Common/RTTR.h"
 

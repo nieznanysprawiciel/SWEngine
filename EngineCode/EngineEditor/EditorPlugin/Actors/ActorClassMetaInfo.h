@@ -42,12 +42,16 @@ private:
 
 public:
 
-	explicit ActorClassMetaInfo	( rttr::type classType );
+	explicit	ActorClassMetaInfo	( rttr::type classType );
+	explicit	ActorClassMetaInfo	( ActorWrapper^ actor, rttr::type classType );
 
 
 	void		ResetActor		( ActorWrapper^ objectPtr );
 
 public:
+
+	void		BuildHierarchy( ActorWrapper^ objectPtr, rttr::type classType );
+
 
 	/**@brief Zwraca typ obiektu, którym jest @ref rttr::type zwracany przez bibliotekê rttr.*/
 	property int	Type
@@ -85,10 +89,6 @@ public:
 	{
 		// Nic nie robi. Funkcja remove powinna zostaæ usuniêta.
 	}
-
-private:
-
-	void				BuildHierarchy	( rttr::type classType );
 
 };
 

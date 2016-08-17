@@ -27,16 +27,15 @@ using namespace System::Collections::Generic;
 		const rttr::detail::property_wrapper_base*			m_metaProperty;
 
 	public:
-		PropertyWrapper( PropertyType type, rttr::property prop, const char* name )
+		PropertyWrapper( void* parent, PropertyType type, rttr::property prop, const char* name )
 			: m_type( type )
-			, m_actorPtr( nullptr )
+			, m_actorPtr( parent )
 		{
 			m_metaProperty = RTTRPropertyRapist::GetWrapperBase( prop );
 			m_name = gcnew System::String( name );
 		}
 
 
-		virtual void			ResetActor		( System::IntPtr objectPtr );
 		PropertyType			GetPropertyType	( rttr::property prop )
 		{
 			auto propertyType = prop.get_type();
@@ -88,8 +87,8 @@ using namespace System::Collections::Generic;
 	public ref class IntPropertyWrapper : PropertyWrapper
 	{
 	public:
-		IntPropertyWrapper( rttr::property prop )
-			: PropertyWrapper( PropertyType::PropertyInt, prop, prop.get_name().c_str() )
+		IntPropertyWrapper( void* parent, rttr::property prop )
+			: PropertyWrapper( parent, PropertyType::PropertyInt, prop, prop.get_name().c_str() )
 		{}
 
 
@@ -118,8 +117,8 @@ using namespace System::Collections::Generic;
 	public ref class BoolPropertyWrapper : PropertyWrapper
 	{
 	public:
-		BoolPropertyWrapper( rttr::property prop )
-			: PropertyWrapper( PropertyType::PropertyBool, prop, prop.get_name().c_str() )
+		BoolPropertyWrapper( void* parent, rttr::property prop )
+			: PropertyWrapper( parent, PropertyType::PropertyBool, prop, prop.get_name().c_str() )
 		{}
 
 		property bool		Value
@@ -147,8 +146,8 @@ using namespace System::Collections::Generic;
 	public ref class FloatPropertyWrapper : PropertyWrapper
 	{
 	public:
-		FloatPropertyWrapper( rttr::property prop )
-			: PropertyWrapper( PropertyType::PropertyFloat, prop, prop.get_name().c_str() )
+		FloatPropertyWrapper( void* parent, rttr::property prop )
+			: PropertyWrapper( parent, PropertyType::PropertyFloat, prop, prop.get_name().c_str() )
 		{}
 
 		property float		Value
@@ -176,8 +175,8 @@ using namespace System::Collections::Generic;
 	public ref class DoublePropertyWrapper : PropertyWrapper
 	{
 	public:
-		DoublePropertyWrapper( rttr::property prop )
-			: PropertyWrapper( PropertyType::PropertyDouble, prop, prop.get_name().c_str() )
+		DoublePropertyWrapper( void* parent, rttr::property prop )
+			: PropertyWrapper( parent, PropertyType::PropertyDouble, prop, prop.get_name().c_str() )
 		{}
 
 	public:
@@ -206,8 +205,8 @@ using namespace System::Collections::Generic;
 	public ref class StringPropertyWrapper : PropertyWrapper
 	{
 	public:
-		StringPropertyWrapper( rttr::property prop )
-			: PropertyWrapper( PropertyType::PropertyString, prop, prop.get_name().c_str() )
+		StringPropertyWrapper( void* parent, rttr::property prop )
+			: PropertyWrapper( parent, PropertyType::PropertyString, prop, prop.get_name().c_str() )
 		{}
 
 	public:
@@ -236,8 +235,8 @@ using namespace System::Collections::Generic;
 	public ref class WStringPropertyWrapper : PropertyWrapper
 	{
 	public:
-		WStringPropertyWrapper( rttr::property prop )
-			: PropertyWrapper( PropertyType::PropertyWString, prop, prop.get_name().c_str() )
+		WStringPropertyWrapper( void* parent, rttr::property prop )
+			: PropertyWrapper( parent, PropertyType::PropertyWString, prop, prop.get_name().c_str() )
 		{}
 
 	public:
@@ -275,24 +274,23 @@ using namespace System::Collections::Generic;
 
 	protected:
 
-		CategoryPropertyWrapper( PropertyType type, rttr::property prop, const char* name )
-			: PropertyWrapper( type, prop, name )
+		CategoryPropertyWrapper( void* parent, PropertyType type, rttr::property prop, const char* name )
+			: PropertyWrapper( parent, type, prop, name )
 		{
 			m_properties = gcnew List< PropertyWrapper^ >();
 		}
 
 	public:
-		CategoryPropertyWrapper( const char* name )
-			: PropertyWrapper( PropertyType::PropertyCategory, RTTRPropertyRapist::MakeProperty( nullptr ), name )
+		CategoryPropertyWrapper( void* parent, const char* name )
+			: PropertyWrapper( parent, PropertyType::PropertyCategory, RTTRPropertyRapist::MakeProperty( nullptr ), name )
 		{
 			m_properties = gcnew List< PropertyWrapper^ >();
 		}
 
-		virtual void			ResetActor		( System::IntPtr objectPtr ) override;
-		virtual void			BuildHierarchy	( rttr::type classType );
+		virtual void			BuildHierarchy	( void* objectPtr, rttr::type classType );
 
 	protected:
-		PropertyWrapper^		BuildProperty	( rttr::property property );
+		PropertyWrapper^		BuildProperty	( void* parent, rttr::property property );
 
 	public:
 		property List< PropertyWrapper^ >^	Properties
@@ -302,49 +300,43 @@ using namespace System::Collections::Generic;
 	};
 
 
-
-	/**@brief Property dla obiektów z³o¿onych dziedzicz¹cych po EngineObject.*/
-	public ref class ObjectPropertyWrapper : CategoryPropertyWrapper
-	{
-	private:
-
-		List< PropertyWrapper^ >^			m_properties;
-
-	public:
-		ObjectPropertyWrapper( rttr::property prop )
-			: CategoryPropertyWrapper( PropertyType::PropertyActor, prop, prop.get_name().c_str() )
-		{}
-
-		void					BuildHierarchy	();
-
-	};
-
 	/**@brief Property dla typów, które nie grupuj¹ swoich w³aœciwoœci w podkategorie
 	tylko wyœwietlaj¹ je bezpoœrednio.*/
 	public ref class CategoryLessPropertyWrapper : CategoryPropertyWrapper
 	{
 	private:
 	protected:
-		CategoryLessPropertyWrapper( PropertyType type, rttr::property prop, const char* name )
-			: CategoryPropertyWrapper( type, prop, name )
+		CategoryLessPropertyWrapper( void* parent, PropertyType type, rttr::property prop, const char* name )
+			: CategoryPropertyWrapper( parent, type, prop, name )
 		{}
 
 	public:
 
-		void			BuildHierarchy	( rttr::type classType ) override;
+		void			BuildHierarchy	( void* parent, rttr::type classType ) override;
 		void			BuildHierarchy	();
 
-	public:
-		virtual void	ResetActor		( System::IntPtr objectPtr ) override;
 	};
+
+
+
+	/**@brief Property dla obiektów z³o¿onych dziedzicz¹cych po EngineObject.*/
+	public ref class ObjectPropertyWrapper : CategoryLessPropertyWrapper
+	{
+	private:
+	public:
+		ObjectPropertyWrapper( void* parent, rttr::property prop )
+			: CategoryLessPropertyWrapper( parent, PropertyType::PropertyActor, prop, prop.get_name().c_str() )
+		{}
+	};
+
 
 	/**@brief Property typu DirectX::XMFLOAT2, XMFLOAT3, XMFLOAT4.*/
 	public ref class XMFloatPropertyWrapper : CategoryLessPropertyWrapper
 	{
 	private:
 	public:
-		XMFloatPropertyWrapper( rttr::property prop )
-			: CategoryLessPropertyWrapper( GetPropertyType( prop ), prop, prop.get_name().c_str() )
+		XMFloatPropertyWrapper( void* parent, rttr::property prop )
+			: CategoryLessPropertyWrapper( parent, GetPropertyType( prop ), prop, prop.get_name().c_str() )
 		{}
 	};
 

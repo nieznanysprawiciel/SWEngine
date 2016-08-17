@@ -9,31 +9,38 @@ namespace EditorPlugin
 {
 
 
-/**@brief */
+/**@brief Tworzy obiekt metadanych, ale nie wype³nia ich rekurencyjnie.
+
+Aby wype³niæ klasê metadanymi nale¿y wywo³ac funkcjê BuildHierarchy.*/
 ActorClassMetaInfo::ActorClassMetaInfo			( rttr::type classType )
 {
 	m_type = classType.get_id();
 	m_actorClassName = gcnew System::String( classType.get_name().c_str() );
+}
 
-	BuildHierarchy( classType );
+/**@brief Tworzy obiekt i wype³nia go metadanymi.*/
+ActorClassMetaInfo::ActorClassMetaInfo			( ActorWrapper^ actor, rttr::type classType )
+{
+	m_type = classType.get_id();
+	m_actorClassName = gcnew System::String( classType.get_name().c_str() );
+
+	BuildHierarchy( actor, classType );
 }
 
 /**@brief Ustawia instancjê aktora. Umo¿liwia to pobieranie wartoœci jego parametrów.*/
 void		ActorClassMetaInfo::ResetActor		( ActorWrapper^ objectPtr )
 {
 	m_actorPtr = objectPtr;
-
-	for each( PropertyWrapper^ prop in m_properties )
-		prop->ResetActor( m_actorPtr->GetActorPtr() );
+	BuildHierarchy( m_actorPtr, m_actorPtr->Ptr()->GetType() );
 }
 
 /**@brief Tworzy metadane od podanej klasie.*/
-void		ActorClassMetaInfo::BuildHierarchy	( rttr::type classType )
+void		ActorClassMetaInfo::BuildHierarchy	( ActorWrapper^ objectPtr, rttr::type classType )
 {
 	// Tworzymy obiekt, kradniemy od niego pole Properties i o nim zapominamy, ¿eby zosta³ zwolniony.
-	CategoryPropertyWrapper^ actorClassMetaData = gcnew CategoryPropertyWrapper( "" );;
+	CategoryPropertyWrapper^ actorClassMetaData = gcnew CategoryPropertyWrapper( objectPtr->Ptr(), "" );
 	
-	actorClassMetaData->BuildHierarchy( classType );
+	actorClassMetaData->BuildHierarchy( objectPtr->Ptr(), classType );
 	m_properties = actorClassMetaData->Properties;
 }
 
