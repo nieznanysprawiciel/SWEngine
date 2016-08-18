@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EditorApp.GUI
 {
-	interface IDeletableItem
+	public interface IDeletableItem
 	{
 
 		void DeleteItem		( object item );

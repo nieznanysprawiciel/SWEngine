@@ -43,7 +43,7 @@ private:
 public:
 
 	explicit	ActorClassMetaInfo	( rttr::type classType );
-	explicit	ActorClassMetaInfo	( ActorWrapper^ actor, rttr::type classType );
+	explicit	ActorClassMetaInfo	( ActorWrapper^ actor );
 
 
 	void		ResetActor		( ActorWrapper^ objectPtr );

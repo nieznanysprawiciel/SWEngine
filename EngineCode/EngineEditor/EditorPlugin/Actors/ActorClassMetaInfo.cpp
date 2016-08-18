@@ -19,9 +19,12 @@ ActorClassMetaInfo::ActorClassMetaInfo			( rttr::type classType )
 }
 
 /**@brief Tworzy obiekt i wype³nia go metadanymi.*/
-ActorClassMetaInfo::ActorClassMetaInfo			( ActorWrapper^ actor, rttr::type classType )
+ActorClassMetaInfo::ActorClassMetaInfo			( ActorWrapper^ actor )
 {
+	rttr::type classType = actor->Ptr()->GetType();
+
 	m_type = classType.get_id();
+	m_actorPtr = actor;
 	m_actorClassName = gcnew System::String( classType.get_name().c_str() );
 
 	BuildHierarchy( actor, classType );

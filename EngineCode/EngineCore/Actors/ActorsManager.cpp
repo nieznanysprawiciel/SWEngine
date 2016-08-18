@@ -31,7 +31,7 @@ void ActorsManager::RemoveAllActors()
 {
 	m_actorNamesMap.clear();
 
-	for( int i = 0; i < m_objectList.size(); ++i )
+	for( Size i = 0; i < m_objectList.size(); ++i )
 		delete m_objectList[ i ].first;
 
 	m_objectList.clear();

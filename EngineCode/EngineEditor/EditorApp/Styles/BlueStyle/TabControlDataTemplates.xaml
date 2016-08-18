@@ -28,4 +28,8 @@
 		<gui:ProjectBrowser />
 	</DataTemplate>
 
+	<DataTemplate DataType="{x:Type actors:ActorView}" >
+		<gui:ActorProperties />
+	</DataTemplate>
+
 </ResourceDictionary>

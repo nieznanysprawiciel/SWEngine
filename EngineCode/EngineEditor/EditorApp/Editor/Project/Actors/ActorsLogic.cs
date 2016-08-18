@@ -50,6 +50,8 @@ namespace EditorApp.Editor.Project.Actors
 
 			LoadAssetCommand = new RelayCommand( LoadAsset, CanLoadAsset );
 			ActorSelectionChangedCommand = new RelayCommand( ActorSelectionChanged );
+			DeleteActorCommand = new RelayCommand( DeleteItem );
+			ViewActorInNewWindow = new RelayCommand( ViewActor );
 
 			ActorsCreatorView = new ActorsCreatorView( this );
 		}
@@ -174,8 +176,9 @@ namespace EditorApp.Editor.Project.Actors
 		public void				DeleteActor		( ActorWrapper actor )
 		{
 			m_editorLogic.Displayer.EngineWrapper.DeleteActor( actor );
-
 			m_actors.Remove( actor );
+
+			SelectActor( null );
 		}
 
 		public ActorWrapper		CreateActor		( string actorTypeName, double mouseX, double mouseY )
@@ -244,10 +247,22 @@ namespace EditorApp.Editor.Project.Actors
 			return true;
 		}
 
+		private void ViewActor		( object actor )
+		{
+			ActorClassMetaInfo actorMeta = new ActorClassMetaInfo( SelectedActor );
+			ActorView newView = new ActorView( actorMeta );
+
+			m_editorLogic.MainPanelView.Add( newView );
+		}
+
+		private void DeleteItem		( object item )
+		{
+			DeleteActor( SelectedActor );
+		}
+
 		void IDeletableItem.DeleteItem( object item )
 		{
 			DeleteActor( item as ActorWrapper );
-			SelectActor( null );
 		}
 
 		#region Properties
@@ -303,6 +318,18 @@ namespace EditorApp.Editor.Project.Actors
 		}
 
 		public ICommand ActorSelectionChangedCommand
+		{
+			get;
+			internal set;
+		}
+
+		public ICommand DeleteActorCommand
+		{
+			get;
+			internal set;
+		}
+
+		public ICommand ViewActorInNewWindow
 		{
 			get;
 			internal set;

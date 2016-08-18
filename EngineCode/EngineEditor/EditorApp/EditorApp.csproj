@@ -165,7 +165,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Editor\Helpers\Serialization.cs" />
+    <Compile Include="Editor\Project\Actors\ActorView.cs" />
     <Compile Include="Editor\Project\ProjectView.cs" />
+    <Compile Include="GUI\ActorProperties.xaml.cs">
+      <DependentUpon>ActorProperties.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Bahaviors\DragAndDrop\FrameworkElementAdorner.cs" />
     <Compile Include="GUI\Bahaviors\DragAndDrop\FrameworkElementDragBehavior.cs" />
     <Compile Include="GUI\Bahaviors\DragAndDrop\FrameworkElementDropBehavior.cs" />
@@ -181,6 +185,10 @@
     </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Page Include="GUI\ActorProperties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\ActorsCreator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -1,3 +1,4 @@
+#pragma warning(disable : 4561)	// DirectXMath converting fastcall to stdcall
 #include "SceneLoader.h"
 
 #include "EngineEditor/EditorPlugin/Native/SceneHelpers.h"
@@ -42,7 +43,7 @@ ObservableCollection<ActorWrapper^>^ SceneLoader::CreateActorsList( Api::LevelAp
 	auto& actorsInfos = result.ActorsInfo;
 	auto& actorsNames = result.ActorsNames;
 
-	for( int i = 0; i < newActors.size(); i++ )
+	for( Size i = 0; i < newActors.size(); i++ )
 	{
 		ActorWrapper^ newActor = gcnew ActorWrapper( (EngineObject*)newActors[ i ], &actorsInfos[ i ] );
 		newActor->ActorName = gcnew System::String( actorsNames[ i ].c_str() );

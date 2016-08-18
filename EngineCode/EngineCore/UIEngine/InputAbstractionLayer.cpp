@@ -43,7 +43,7 @@ InputAbstractionLayer::~InputAbstractionLayer()
 /**@brief Funkcja podtrzymuje stan przycisków, ale kasuje z nich informacje o eventach.*/
 void InputAbstractionLayer::BeginEventCollection()
 {
-	for (int i = 0; i < m_virtualButtons.size(); ++i)
+	for( Size i = 0; i < m_virtualButtons.size(); ++i )
 		m_virtualButtons[ i ].HoldState();
 }
 

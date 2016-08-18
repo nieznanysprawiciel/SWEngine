@@ -1,3 +1,4 @@
+#pragma warning(disable : 4561)	// DirectXMath converting fastcall to stdcall
 #include "SceneSaver.h"
 
 #include "EngineEditor/EditorPlugin/Native/SceneHelpers.h"
