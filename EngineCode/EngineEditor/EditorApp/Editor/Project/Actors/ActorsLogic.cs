@@ -128,19 +128,8 @@ namespace EditorApp.Editor.Project.Actors
 				var actor = parameter as ActorWrapper;
 				m_editorLogic.Displayer.EngineWrapper.SelectActor( m_gizmoActor, actor );
 
-				foreach( var actorClass in m_actorsTypesList )
-				{
-					if( actorClass.Type == actor.Type )
-					{
-						actorClass.ResetActor( actor );
-
-						// Awfull code. How to do this better ?
-						SelectedActorMeta = null;
-						OnPropertyChanged( "SelectedActorMeta" );
-						SelectedActorMeta = actorClass;
-						OnPropertyChanged( "SelectedActorMeta" );
-					}
-				}
+				SelectedActorMeta = new ActorClassMetaInfo( actor );
+				OnPropertyChanged( "SelectedActorMeta" );
 			}
 			else
 			{

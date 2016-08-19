@@ -16,7 +16,7 @@ namespace EditorApp.Editor.Project.Actors
 
 		public ActorView( ActorClassMetaInfo actor )
 		{
-			DisplayName = actor.Actor.ActorName + " Preview";
+			DisplayName = actor.Actor.ActorName;
 			m_actorPreview = actor;
 		}
 
