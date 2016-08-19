@@ -218,6 +218,8 @@ Funkcja nie grupuje Property w kategorie w przeciwieñstwie do
 */
 void CategoryLessPropertyWrapper::BuildHierarchy( void* parent, rttr::type classType )
 {
+	m_actorPtr = parent;
+
 	classType = classType.get_raw_type();
 	auto properties = classType.get_properties();
 
@@ -244,7 +246,7 @@ void CategoryLessPropertyWrapper::BuildHierarchy()
 	// a tak my chcemy zbudowaæ hierarchiê dla klasy pochodnej.
 	auto realContent = property.get_value( declaringObject );
 
-	BuildHierarchy( m_actorPtr, realContent.get_type() );
+	BuildHierarchy( realContent.get_value< void* >(), realContent.get_type() );
 }
 
 ///**@brief */
