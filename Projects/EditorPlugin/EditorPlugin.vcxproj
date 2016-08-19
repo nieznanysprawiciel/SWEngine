@@ -25,6 +25,7 @@
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EngineObjectMetaInfo.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EngineObjectWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceMetaInfo.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\dllmain.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorPlugin.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</CompileAsManaged>
@@ -48,6 +49,7 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EngineObjectMetaInfo.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EngineObjectWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceMetaInfo.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorApp\IDragable.h">
       <FileType>CppHeader</FileType>
     </ClInclude>

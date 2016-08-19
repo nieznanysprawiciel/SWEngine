@@ -43,16 +43,6 @@ public:
 		}
 	}
 
-	property System::String^		ResourceName
-	{
-		System::String^				get();
-	}
-
-	property int					ID
-	{
-		int							get();
-	}
-
 };
 
 

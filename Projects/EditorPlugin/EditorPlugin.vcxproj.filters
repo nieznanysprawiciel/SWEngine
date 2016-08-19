@@ -69,6 +69,9 @@
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceMetaInfo.cpp">
       <Filter>EditorPlugin\Actors\Resources</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceWrapper.cpp">
+      <Filter>EditorPlugin\Actors\Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\targetver.h">
@@ -120,6 +123,9 @@
       <Filter>EditorPlugin\Actors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceMetaInfo.h">
+      <Filter>EditorPlugin\Actors\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceWrapper.h">
       <Filter>EditorPlugin\Actors\Resources</Filter>
     </ClInclude>
   </ItemGroup>

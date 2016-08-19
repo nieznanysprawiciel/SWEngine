@@ -35,6 +35,7 @@ napisanego w C#.
 #include "InputLibrary/InputWPF/WPFInputProxy.h"
 
 #include "Actors/ActorWrapper.h"
+#include "Actors/Resources/ResourceWrapper.h"
 
 class Engine;
 ref class ActorClassMetaInfo;
@@ -79,6 +80,14 @@ using namespace System::Collections::ObjectModel;
 
 		List< ActorClassMetaInfo^ >^						CreateActorsMetadata		();
 		ObservableCollection< ActorWrapper^ >^				CreateActorsList			();
+		
+		ObservableCollection< ResourceWrapper^ >^			CreateTexturesList			();
+		ObservableCollection< ResourceWrapper^ >^			CreateShadersList			();
+		ObservableCollection< ResourceWrapper^ >^			CreateLayoutsList			();
+		ObservableCollection< ResourceWrapper^ >^			CreateBuffersList			();
+		ObservableCollection< ResourceWrapper^ >^			CreateRenderTargetsList		();
+		ObservableCollection< ResourceWrapper^ >^			CreateMaterialsList			();
+		ObservableCollection< ResourceWrapper^ >^			CreateMeshesList			();
 
 		// Input
 		void				KeyboardChange				( System::Windows::Input::Key keyId, bool pressed );

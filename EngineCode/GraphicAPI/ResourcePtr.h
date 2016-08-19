@@ -88,5 +88,9 @@ public:
 		if( m_resource )
 			m_resource->DeleteObjectReference();
 	}
+
+	ResourceType*	Ptr	() const
+	{ return m_resource; }
+
 };
 

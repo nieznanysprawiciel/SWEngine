@@ -13,6 +13,7 @@
 #include "EngineCore/MainEngine/Engine.h"
 #include "Common/MacrosSwitches.h"
 #include "EngineCore/Actors/ActorObjects.h"
+#include "EngineCore/ModelsManager/Model3DFromFile.h"
 
 #include "EngineCore/ControllersEngine/BaseClasses/IController.h"
 #include "EngineCore/ControllersEngine/BasicControllers/Editor/GizmoController.h"
@@ -241,6 +242,96 @@ ObservableCollection< ActorWrapper^ >^		EngineWrapper::CreateActorsList			()
 	}
 
 	return actorsList;
+}
+
+//====================================================================================//
+//			Resources list	
+//====================================================================================//
+
+template< typename CollectionType >
+ObservableCollection< ResourceWrapper^ >^			CopyResourceList	( CollectionType& resourcesList )
+{
+	ObservableCollection< ResourceWrapper^ >^ resourcesCollection = gcnew ObservableCollection< ResourceWrapper^ >();
+
+	for each( auto& resource in resourcesList )
+	{
+		ResourceWrapper^ newResource = gcnew ResourceWrapper( resource.Ptr() );
+		resourcesCollection->Add( newResource );
+	}
+
+	return resourcesCollection;
+}
+
+template< typename CollectionType >
+void												AppendResourceList	( CollectionType& resourcesList, ObservableCollection< ResourceWrapper^ >^ resourcesCollection )
+{
+	for each( auto& resource in resourcesList )
+	{
+		ResourceWrapper^ newResource = gcnew ResourceWrapper( resource.Ptr() );
+		resourcesCollection->Add( newResource );
+	}
+}
+
+/**@brief */
+ObservableCollection< ResourceWrapper^ >^			EngineWrapper::CreateTexturesList()
+{
+	auto resourcesList = m_engine->Assets.Textures.List();
+	return CopyResourceList( resourcesList );
+}
+
+/**@brief */
+ObservableCollection< ResourceWrapper^ >^			EngineWrapper::CreateMaterialsList()
+{
+	auto resourcesList = m_engine->Assets.Materials.List();
+	return CopyResourceList( resourcesList );
+}
+
+/**@brief */
+ObservableCollection< ResourceWrapper^ >^			EngineWrapper::CreateMeshesList()
+{
+	auto resourcesList = m_engine->Assets.Models.List();
+	return CopyResourceList( resourcesList );
+}
+
+/**@brief */
+ObservableCollection< ResourceWrapper^ >^			EngineWrapper::CreateShadersList()
+{
+	auto resourcesList1 = m_engine->Assets.Shaders.ListVertexShaders();
+	auto collection = CopyResourceList( resourcesList1 );
+
+	auto resourcesList2 = m_engine->Assets.Shaders.ListPixelShaders();
+	AppendResourceList( resourcesList2, collection );
+
+	return collection;
+}
+
+/**@brief */
+ObservableCollection< ResourceWrapper^ >^			EngineWrapper::CreateRenderTargetsList()
+{
+	auto resourcesList = m_engine->Assets.RenderTargets.List();
+	return CopyResourceList( resourcesList );
+}
+
+/**@brief */
+ObservableCollection< ResourceWrapper^ >^			EngineWrapper::CreateLayoutsList()
+{
+	auto resourcesList = m_engine->Assets.Shaders.ListShaderLayouts();
+	return CopyResourceList( resourcesList );
+}
+
+/**@brief */
+ObservableCollection< ResourceWrapper^ >^			EngineWrapper::CreateBuffersList()
+{
+	auto resourcesList1 = m_engine->Assets.Buffers.ListVertexBuffers();
+	auto collection = CopyResourceList( resourcesList1 );
+
+	auto resourcesList2 = m_engine->Assets.Buffers.ListIndexBuffers();
+	AppendResourceList( resourcesList2, collection );
+
+	auto resourcesList3 = m_engine->Assets.Buffers.ListConstantBuffers();
+	AppendResourceList( resourcesList3, collection );
+
+	return collection;
 }
 
 //====================================================================================//

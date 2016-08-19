@@ -1,19 +1,19 @@
-#pragma warning(disable : 4561)	// DirectXMath converting fastcall to stdcall
-#include "ResourcePropertyWrapper.h"
+#include "ResourceWrapper.h"
+
 
 #include "GraphicAPI/MeshResources.h"
 #include "EngineCore/ModelsManager/Model3DFromFile.h"
 
-
-
 namespace EditorPlugin
 {
 
-/**@brief */
-	ResourcePropertyWrapper::ResourcePropertyWrapper( void* parent, rttr::property prop )
-	: CategoryLessPropertyWrapper( parent, PropertyType::PropertyResource, prop, prop.get_name().c_str() )
+
+
+
+ResourceWrapper::ResourceWrapper( ResourceObject* resource )
+	:	EngineObjectWrapper( resource )
 {
-	auto type = rttr::type::get( prop );
+	auto type = resource->GetType();
 
 	if( type.is_derived_from< Model3DFromFile >() )
 		m_resourceType = ResourcePropertyType::PropertyMesh;
@@ -31,5 +31,21 @@ namespace EditorPlugin
 		m_resourceType = ResourcePropertyType::PropertyUnKnown;
 }
 
+
+/**@brief */
+int					ResourceWrapper::ID::get()
+{
+	if( m_actorPtr )
+		return static_cast< ResourceObject* >( m_actorPtr )->GetID();
+	return std::numeric_limits< uint32 >::max();
+}
+
+/**@brief */
+System::String^		ResourceWrapper::ResourceName::get()
+{
+	if( m_actorPtr )
+		return gcnew System::String( static_cast< ResourceObject* >( m_actorPtr )->GetResourceName().c_str() );
+	return gcnew System::String( "" );
+}
 
 }	// EditorPlugin
