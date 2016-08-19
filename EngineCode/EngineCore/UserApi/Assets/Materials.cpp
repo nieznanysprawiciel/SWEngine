@@ -12,6 +12,12 @@ MaterialObject*		Materials::GetSync		( const std::wstring& name )
 	return Context->modelsManager->GetMaterial( name );
 }
 
+/**@copydoc ModelsManager::ListMaterials.*/
+std::vector< ResourcePtr< MaterialObject > > Materials::List()
+{
+	return Context->modelsManager->ListMaterials();
+}
+
 
 
 }	// Assets

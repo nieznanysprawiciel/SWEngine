@@ -16,5 +16,11 @@ TextureObject*		Textures::GetTexture		( const std::wstring& name )
 	return Context->modelsManager->GetTexture( name );
 }
 
+/**@brief Listuje wszystkie wczytane aktualnie tekstury.*/
+std::vector< ResourcePtr< TextureObject > >		Textures::List()
+{
+	return Context->modelsManager->ListTextures();
+}
+
 }	// Assets
 }	// Api

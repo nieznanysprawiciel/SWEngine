@@ -100,7 +100,7 @@ public:
 	inline BufferObject*			GetVertexBuffer				( const std::wstring& name ) { return m_vertexBuffer.get( name ); }	///<Zwraca bufor wierzcho³ków o podanej nazwie, je¿eli jest wczytany.
 	inline BufferObject*			GetConstantBuffer			( const std::wstring& name ) { return m_constantBuffer.get( name ); }	///<Zwraca bufor sta³ych o podanej nazwie, je¿eli jest wczytany.
 	inline BufferObject*			GetIndexBuffer				( const std::wstring& name ) { return m_indexBuffer.get( name ); }	///<Zwraca bufor indeksów o podanej nazwie, je¿eli jest wczytany.
-	inline MaterialObject*			GetMaterial					( const std::wstring& name ) { return m_material.get( name ); }	///<Zwraca materia³ o podanej nazwie, je¿eli jest wczytany.
+	inline MaterialObject*			GetMaterial					( const std::wstring& name ) { return m_material.get( name ); }		///<Zwraca materia³ o podanej nazwie, je¿eli jest wczytany.
 
 	TextureObject*					AddTexture					( const std::wstring& file_name );
 	VertexShader*					AddVertexShader				( const std::wstring& file_name, const std::string& shader_entry );
@@ -112,6 +112,22 @@ public:
 	
 	RenderTargetObject*				AddRenderTarget				( RenderTargetObject* renderTarget, const std::wstring& name );
 	MaterialObject*					AddMaterial					( MaterialObject* material, const std::wstring& material_name );
+
+	// Funkcje do listowania assetów.
+
+	std::vector< ResourcePtr< BufferObject > >			ListVertexBuffers	();
+	std::vector< ResourcePtr< BufferObject > >			ListIndexBuffers	();
+	std::vector< ResourcePtr< BufferObject > >			ListConstantBuffers	();
+	std::vector< ResourcePtr< ShaderInputLayout > >		ListShaderLayouts	();
+
+	std::vector< ResourcePtr< TextureObject > >			ListTextures		();
+	std::vector< ResourcePtr< VertexShader > >			ListVertexShaders	();
+	std::vector< ResourcePtr< PixelShader > >			ListPixelShaders	();
+	
+	std::vector< ResourcePtr< MaterialObject > >		ListMaterials		();
+	std::vector< ResourcePtr< RenderTargetObject > >	ListRenderTargets	();
+	std::vector< ResourcePtr< Model3DFromFile > >		ListMeshes			();
+
 private:
 	ILoader*						FindLoader					( const std::wstring& path );
 	

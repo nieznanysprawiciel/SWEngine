@@ -584,6 +584,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\MipMapGenerator.h">
       <Filter>EngineCore\ModelsManagment\Loaders\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcePtr.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">

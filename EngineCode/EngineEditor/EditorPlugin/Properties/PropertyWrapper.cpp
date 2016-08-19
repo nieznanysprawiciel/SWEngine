@@ -188,16 +188,12 @@ PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( void* parent, rttr::pro
 		propertyWrapper->BuildHierarchy();
 		return propertyWrapper;
 	}
-	else if( propertyType.is_derived_from< EngineObject >() )
+	else if( propertyType.is_derived_from< EngineObject >()
+			 || propertyType.is_pointer() )
 	{
 		auto propertyWrapper = gcnew ObjectPropertyWrapper( parent, property );
 		propertyWrapper->BuildHierarchy();
 		return propertyWrapper;
-	}
-	else if ( propertyType.is_pointer() )
-	{
-		// All other objects which use BindAsPointer policy.
-		throw gcnew System::NotImplementedException();
 	}
 	else
 		throw gcnew System::ArgumentException( gcnew System::String( "Property type: [" )
@@ -249,47 +245,6 @@ void CategoryLessPropertyWrapper::BuildHierarchy()
 	BuildHierarchy( realContent.get_value< void* >(), realContent.get_type() );
 }
 
-///**@brief */
-//void	CategoryLessPropertyWrapper::ResetActor		( System::IntPtr parentObjectPtr )
-//{
-//	auto prop = RTTRPropertyRapist::MakeProperty( m_metaProperty );
-//
-//	if( m_type == PropertyType::PropertyFloat2 )
-//	{
-//		auto value = prop.get_value( *static_cast< EngineObject* >( parentObjectPtr.ToPointer() ) );
-//		auto xmfloat = value.get_value< DirectX::XMFLOAT2* >();
-//
-//		for each( auto property in Properties )
-//			property->ResetActor( System::IntPtr( (void*)xmfloat ) );
-//	}
-//	else if( m_type == PropertyType::PropertyFloat3 )
-//	{
-//		auto value = prop.get_value( *static_cast< EngineObject* >( parentObjectPtr.ToPointer() ) );
-//		auto xmfloat = value.get_value< DirectX::XMFLOAT3* >();
-//
-//		for each( auto property in Properties )
-//			property->ResetActor( System::IntPtr( (void*)xmfloat ) );
-//	}
-//	else if( m_type == PropertyType::PropertyFloat4 )
-//	{
-//		auto value = prop.get_value( *static_cast< EngineObject* >( parentObjectPtr.ToPointer() ) );
-//		auto xmfloat = value.get_value< DirectX::XMFLOAT4* >();
-//
-//		for each( auto property in Properties )
-//			property->ResetActor( System::IntPtr( (void*)xmfloat ) );
-//	}
-//	else if( m_type == PropertyType::PropertyResource || m_type == PropertyType::PropertyActor )
-//	{
-//		auto value = prop.get_value( *static_cast< EngineObject* >( parentObjectPtr.ToPointer() ) );
-//		auto object = value.get_value< EngineObject* >();
-//
-//		for each( auto property in Properties )
-//			property->ResetActor( System::IntPtr( (void*)object ) );
-//	}
-//	else
-//		assert( false );
-//	
-//}
 
 
 }

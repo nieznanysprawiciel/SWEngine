@@ -226,7 +226,7 @@ unsigned int Model3DFromFile::add_material( const MaterialObject* material, cons
 		// Nie by³o materia³u, trzeba j¹ stworzyæ i dodaæ
 		new_material = new MaterialObject( material );
 
-		models_manager->m_material.unsafe_add( name, new_material );	// Dodaliœmy teksturê
+		models_manager->m_material.UnsafeAdd( name, new_material );	// Dodaliœmy teksturê
 	}
 
 	// Teraz musimy dodaæ materia³ na odpowiednie miejsce w tablicy

@@ -8,6 +8,7 @@
 class Model3DFromFile;
 
 #include "EngineCore/UserApi/ApiGroup.h"
+#include "GraphicAPI/ResourcePtr.h"
 
 #include <string>
 
@@ -27,6 +28,8 @@ namespace Api { namespace Assets {
 
 		Model3DFromFile*		GetSync		( const std::wstring& name );
 		Model3DFromFile*		LoadSync	( const std::wstring& name );
+
+		std::vector< ResourcePtr< Model3DFromFile > >		List	();
 	};
 
 

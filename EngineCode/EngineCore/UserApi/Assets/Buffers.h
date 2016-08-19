@@ -8,6 +8,7 @@
 class BufferObject;
 
 #include "EngineCore/UserApi/ApiGroup.h"
+#include "GraphicAPI/ResourcePtr.h"
 #include "Common/MemoryChunk.h"
 
 #include <string>
@@ -26,6 +27,10 @@ namespace Api { namespace Assets {
 		~Buffers() = default;
 
 		BufferObject*		CreateVertexBufferSync	( const std::wstring& name, MemoryChunk& data, unsigned int vertCount );
+
+		std::vector< ResourcePtr< BufferObject > >			ListVertexBuffers	();
+		std::vector< ResourcePtr< BufferObject > >			ListIndexBuffers	();
+		std::vector< ResourcePtr< BufferObject > >			ListConstantBuffers	();
 	};
 
 

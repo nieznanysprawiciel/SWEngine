@@ -311,6 +311,7 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ITexture.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\MeshResources.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourceObject.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcePtr.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcesFactory.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\SwapChain.h" />
     <ClInclude Include="..\..\EngineCode\InputLibrary\Factory.h" />

@@ -31,5 +31,11 @@ Model3DFromFile*	Models::LoadSync	( const std::wstring& name )
 	return Context->modelsManager->GetModel( name );
 }
 
+/**@copydoc ModelsManager::ListMeshes.*/
+std::vector< ResourcePtr< Model3DFromFile > > Models::List()
+{
+	return Context->modelsManager->ListMeshes();
+}
+
 }	// Assets
 }	// Api

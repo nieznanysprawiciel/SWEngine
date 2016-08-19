@@ -8,6 +8,7 @@
 struct MaterialObject;
 
 #include "EngineCore/UserApi/ApiGroup.h"
+#include "GraphicAPI/ResourcePtr.h"
 
 #include <string>
 
@@ -25,7 +26,9 @@ namespace Api { namespace Assets {
 		Materials() = default;
 		~Materials() = default;
 
-		MaterialObject*			GetSync( const std::wstring& name );
+		MaterialObject*			GetSync	( const std::wstring& name );
+
+		std::vector< ResourcePtr< MaterialObject > >		List	();
 	};
 
 

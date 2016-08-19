@@ -8,6 +8,7 @@
 class TextureObject;
 
 #include "EngineCore/UserApi/ApiGroup.h"
+#include "GraphicAPI/ResourcePtr.h"
 
 #include <string>
 
@@ -27,6 +28,8 @@ namespace Api { namespace Assets {
 		~Textures() = default;
 
 		TextureObject*		GetTexture	( const std::wstring& name );
+
+		std::vector< ResourcePtr< TextureObject > >			List	();
 	};
 
 

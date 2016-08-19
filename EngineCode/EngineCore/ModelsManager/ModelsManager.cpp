@@ -32,7 +32,7 @@ ModelsManager::ModelsManager( Engine* engine )
 ModelsManager::~ModelsManager( )
 {
 	// Kasujemy obiekty do wczytywania danych
-	for ( unsigned int i = 0; i < m_loader.size(); ++i )
+	for ( unsigned int i = 0; i <  m_loader.size(); ++i )
 		delete m_loader[i];
 }
 
@@ -145,7 +145,7 @@ void ModelsManager::test( )
 																 sizeof(VertexNormalTexCord1),
 																 36,
 																 D3D11_BIND_VERTEX_BUFFER );
-	vertex_buffer.unsafe_add( L"skrzynia", new_model->vertex_buffer );
+	vertex_buffer.UnsafeAdd( L"skrzynia", new_model->vertex_buffer );
 
 
 	ModelPart part;
@@ -159,7 +159,7 @@ void ModelsManager::test( )
 
 
 
-	m_fileModel.unsafe_add( L"skrzynia", new_model );
+	m_fileModel.UnsafeAdd( L"skrzynia", new_model );
 
 
 	LoadModelFromFile( L"tylko_do_testow/ARC.FBX" );
@@ -225,7 +225,7 @@ PixelShader* ModelsManager::FindBestPixelShader( TextureObject** textures )
 @return WskaŸnik na odpowiedni loader lub nullptr, je¿eli nie znaleziono pasuj¹cego.*/
 ILoader* ModelsManager::FindLoader( const std::wstring& path )
 {
-	for ( unsigned int i = 0; i < m_loader.size( ); ++i )
+	for ( unsigned int i = 0; i <  m_loader.size( ); ++i )
 	if ( m_loader[i]->can_load( path ) )
 		return m_loader[i];
 	return nullptr;
@@ -265,12 +265,12 @@ ModelsManagerResult ModelsManager::LoadModelFromFile( const std::wstring& file )
 	if ( result != LoaderResult::MESH_LOADING_OK )
 	{	// load_mesh powinno zwróciæ 0
 		// Destruktor jest prywatny, wiêc nie mo¿emy kasowaæ obiektu bezpoœrednio.
-		ObjectDeleter<Model3DFromFile>::delete_object( new_model, ObjectDeleterKey<Model3DFromFile>() );
+		ObjectDeleter< Model3DFromFile>::delete_object( new_model, ObjectDeleterKey< Model3DFromFile>() );
 		return ModelsManagerResult::MODELS_MANAGER_CANNOT_LOAD;
 	}
 
 	// Dodajemy model do tablic
-	m_fileModel.unsafe_add( file, new_model );
+	m_fileModel.UnsafeAdd( file, new_model );
 
 	return ModelsManagerResult::MODELS_MANAGER_OK;
 }
@@ -301,19 +301,19 @@ RenderTargetObject* ModelsManager::CreateRenderTarget( const std::wstring& name,
 		newRenderTarget = ResourcesFactory::CreateRenderTarget( name, renderTargetDescriptor );
 		if( !newRenderTarget )	return nullptr;
 
-		m_renderTarget.unsafe_add( name, newRenderTarget );
+		m_renderTarget.UnsafeAdd( name, newRenderTarget );
 		
 		auto colorBuff = newRenderTarget->GetColorBuffer();
 		if( colorBuff )
-			m_texture.unsafe_add( Converters::FromString( colorBuff->GetFilePath().String(), std::wstring() ), colorBuff );
+			m_texture.UnsafeAdd( Converters::FromString( colorBuff->GetFilePath().String(), std::wstring() ), colorBuff );
 
 		auto depthBuffer = newRenderTarget->GetDepthBuffer();
 		if( depthBuffer )
-			m_texture.unsafe_add( Converters::FromString( depthBuffer->GetFilePath().String(), std::wstring() ), depthBuffer );
+			m_texture.UnsafeAdd( Converters::FromString( depthBuffer->GetFilePath().String(), std::wstring() ), depthBuffer );
 
 		auto stencilBuffer = newRenderTarget->GetStencilBuffer();
 		if( stencilBuffer )
-			m_texture.unsafe_add( Converters::FromString( stencilBuffer->GetFilePath().String(), std::wstring() ), stencilBuffer );
+			m_texture.UnsafeAdd( Converters::FromString( stencilBuffer->GetFilePath().String(), std::wstring() ), stencilBuffer );
 	}
 
 	return newRenderTarget;
@@ -342,10 +342,11 @@ MaterialObject* ModelsManager::AddMaterial( MaterialObject* addMaterial, const s
 {
 	MaterialObject* newMaterial = m_material.get( materialName );
 	if ( !newMaterial )
-		m_material.unsafe_add( materialName, addMaterial );	// Dodaliœmy materia³
+		m_material.UnsafeAdd( materialName, addMaterial );	// Dodaliœmy materia³
 
 	return newMaterial;
 }
+
 
 /**@brief Dodaje renderTarget do ModelsManagera, je¿eli jeszcze nie istnia³.
 @note Funkcja nie dodaje odwo³ania do obiektu, bo nie zak³ada, ¿e ktoœ go od razu u¿yje.
@@ -367,7 +368,7 @@ RenderTargetObject* ModelsManager::AddRenderTarget( RenderTargetObject* renderTa
 {
 	RenderTargetObject* newRenderTarget = m_renderTarget.get( name );
 	if ( !newRenderTarget )
-		m_renderTarget.unsafe_add( name, renderTarget );	// Dodaliœmy materia³
+		m_renderTarget.UnsafeAdd( name, renderTarget );	// Dodaliœmy materia³
 
 	return newRenderTarget;
 }
@@ -390,7 +391,7 @@ VertexShader* ModelsManager::AddVertexShader( const std::wstring& fileName, cons
 		if ( !shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 			return nullptr;
 
-		m_vertexShader.unsafe_add( fileName, shader );	// Dodaliœmy teksturê
+		m_vertexShader.UnsafeAdd( fileName, shader );	// Dodaliœmy teksturê
 	}
 
 	return shader;
@@ -455,17 +456,17 @@ VertexShader* ModelsManager::AddVertexShader( const std::wstring& fileName,
 	if ( !shader )
 	{
 		// Nie by³o shadera, trzeba go dodaæ
-		m_vertexShader.unsafe_add( fileName, newShader );	// Dodaliœmy shader
+		m_vertexShader.UnsafeAdd( fileName, newShader );	// Dodaliœmy shader
 		shader = newShader;
 	}
 	else
 	{	// Shader ju¿ by³, wiêc kasujemy nowy
 		// Destruktor jest prywatny, wiêc nie mo¿emy kasowaæ obiektu bezpoœrednio.
-		ObjectDeleter<VertexShader>::delete_object( shader, ObjectDeleterKey<VertexShader>() );
+		ObjectDeleter< VertexShader>::delete_object( shader, ObjectDeleterKey< VertexShader>() );
 	}
 
 	if( !inputLayout )	// Layoutu nie by³o wczeœniej wiêc dodajemy.
-		m_vertexLayout.unsafe_add( layoutDesc->GetName(), *layout );
+		m_vertexLayout.UnsafeAdd( layoutDesc->GetName(), *layout );
 
 	return shader;
 }
@@ -489,7 +490,7 @@ PixelShader* ModelsManager::AddPixelShader( const std::wstring& fileName, const 
 		if ( !shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 			return nullptr;
 
-		m_pixelShader.unsafe_add( fileName, shader );	// Dodaliœmy teksturê
+		m_pixelShader.UnsafeAdd( fileName, shader );	// Dodaliœmy teksturê
 	}
 
 	return shader;
@@ -520,7 +521,7 @@ TextureObject* ModelsManager::AddTexture( const std::wstring& fileName )
 		if ( !tex )		// Tekstura mog³a mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
 			return nullptr;
 
-		m_texture.unsafe_add( fileName, tex );	// Dodaliœmy teksturê
+		m_texture.UnsafeAdd( fileName, tex );	// Dodaliœmy teksturê
 	}
 
 	return tex;
@@ -551,7 +552,7 @@ BufferObject* ModelsManager::AddVertexBuffer( const std::wstring& name,
 	if ( !vertexBuff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 
-	m_vertexBuffer.unsafe_add( name, vertexBuff );	// Dodaliœmy bufor
+	m_vertexBuffer.UnsafeAdd( name, vertexBuff );	// Dodaliœmy bufor
 
 	return vertexBuff;
 }
@@ -581,7 +582,7 @@ BufferObject* ModelsManager::AddIndexBuffer( const std::wstring& name,
 	if ( !indexBuff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 
-	m_indexBuffer.unsafe_add( name, indexBuff );	// Dodaliœmy bufor
+	m_indexBuffer.UnsafeAdd( name, indexBuff );	// Dodaliœmy bufor
 
 	return indexBuff;
 }
@@ -606,7 +607,72 @@ BufferObject* ModelsManager::AddConstantsBuffer( const std::wstring& name, const
 	if ( !constBuff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 
-	m_constantBuffer.unsafe_add( name, constBuff );	// Dodaliœmy bufor
+	m_constantBuffer.UnsafeAdd( name, constBuff );	// Dodaliœmy bufor
 	return constBuff;
+}
+
+//====================================================================================//
+//			Listowanie assetów
+//====================================================================================//
+
+
+/**@brief Listowanie buforów wierzcho³ków.*/
+std::vector< ResourcePtr< BufferObject > >		ModelsManager::ListVertexBuffers()
+{
+	return m_vertexBuffer.List();
+}
+
+/**@brief Listowanie buforów indeksów.*/
+std::vector< ResourcePtr< BufferObject > >		ModelsManager::ListIndexBuffers()
+{
+	return m_indexBuffer.List();
+}
+
+/**@brief Listowanie buforów sta³ych.*/
+std::vector< ResourcePtr< BufferObject > >		ModelsManager::ListConstantBuffers()
+{
+	return m_constantBuffer.List();
+}
+
+/**@brief Listowanie layoutów wierzcho³ków.*/
+std::vector< ResourcePtr< ShaderInputLayout > > ModelsManager::ListShaderLayouts()
+{
+	return m_vertexLayout.List();
+}
+
+/**@brief Listowanie tekstur.*/
+std::vector< ResourcePtr< TextureObject > >		ModelsManager::ListTextures()
+{
+	return m_texture.List();
+}
+
+/**@brief Listowanie vertex shaderów.*/
+std::vector< ResourcePtr< VertexShader > >		ModelsManager::ListVertexShaders()
+{
+	return m_vertexShader.List();
+}
+
+/**@brief Listowanie pixel shaderów.*/
+std::vector< ResourcePtr< PixelShader > >		ModelsManager::ListPixelShaders()
+{
+	return m_pixelShader.List();
+}
+
+/**@brief Listowanie materia³ów.*/
+std::vector< ResourcePtr< MaterialObject > >	ModelsManager::ListMaterials()
+{
+	return m_material.List();
+}
+
+/**@brief Listowanie render targetów.*/
+std::vector< ResourcePtr< RenderTargetObject > > ModelsManager::ListRenderTargets()
+{
+	return m_renderTarget.List();
+}
+
+/**@brief Listowanie meshy.*/
+std::vector< ResourcePtr< Model3DFromFile > >	ModelsManager::ListMeshes()
+{
+	return m_fileModel.List();
 }
 

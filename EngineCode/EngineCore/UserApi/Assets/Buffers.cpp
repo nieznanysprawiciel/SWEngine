@@ -18,6 +18,24 @@ BufferObject*		Buffers::CreateVertexBufferSync		( const std::wstring& name, Memo
 	return Context->modelsManager->AddVertexBuffer( name, data.GetMemory<void>(), data.GetMemorySize() / vertCount, vertCount );
 }
 
+/**@copydoc ModelsManager::ListVertexBuffers.*/
+std::vector< ResourcePtr< BufferObject > >		Buffers::ListVertexBuffers()
+{
+	return Context->modelsManager->ListVertexBuffers();
+}
+
+/**@copydoc ModelsManager::ListIndexBuffers.*/
+std::vector< ResourcePtr< BufferObject > >		Buffers::ListIndexBuffers()
+{
+	return Context->modelsManager->ListIndexBuffers();
+}
+
+/**@copydoc ModelsManager::ListConstantBuffers.*/
+std::vector< ResourcePtr< BufferObject > >		Buffers::ListConstantBuffers()
+{
+	return Context->modelsManager->ListConstantBuffers();
+}
+
 
 }	// Assets
 }	// Api

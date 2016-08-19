@@ -13,6 +13,9 @@
 //#include "Common/System/Path.h"
 
 #include <map>
+#include <vector>
+
+#include "GraphicAPI/ResourcePtr.h"
 
 
 /**
@@ -22,7 +25,7 @@ Wszystkie assety s¹ identyfikowane po nazwie, która najczêœciej jest nazw¹ pliku
 pochodzi. Mapa zapewnia logarytmiczny czas dostêpu po nazwie. Istnieje te¿ mo¿liwoœæ odwo³ania siê
 po identyfikatorze, wtedy czas dostêpu jest liniowy (chyba ¿e iterowanie po kolejnych elementacj mapy
 nie odbywa siê liniowo.*/
-template <class TYPE>
+template < class TYPE >
 class ResourceContainer
 {
 	friend class ModelsManager;
@@ -33,25 +36,25 @@ protected:
 	std::map<std::wstring, TYPE*> container;	///<Kontener zawieraj¹cy assety powiazane z ich nazw¹
 
 	// Kasowanie obiektów
-	int		force_remove		( const std::wstring& name );
-	int		force_remove		( unsigned int id );
-	void	force_remove_all	();
-	void	release_memory		( TYPE* );
+	int		ForceRemove			( const std::wstring& name );
+	int		ForceRemove			( unsigned int id );
+	void	ForceRemoveAll		();
+	void	ReleaseMemory		( TYPE* );
 public:
 	ResourceContainer();
 	~ResourceContainer();
 
 	// Kasowanie obiektów
-	int		remove				( const std::wstring& name );
-	int		remove				( unsigned int id );
-	int		remove_unused		();
+	int		Remove				( const std::wstring& name );
+	int		Remove				( unsigned int id );
+	int		RemoveUnused		();
 
 	// Dodawanie obiektów
-	void	unsafe_add			( const std::wstring& name, TYPE* resource );
+	void	UnsafeAdd			( const std::wstring& name, TYPE* resource );
 
 	// Dostêp do obiektów
 	TYPE*	get					( unsigned int id );
-	inline unsigned int			get_next_id() { return count; }	///<Zwraca identyfikator, który zostanie przydzielony kolejnemu elementowi
+	inline unsigned int			GetNextId() { return count; }	///<Zwraca identyfikator, który zostanie przydzielony kolejnemu elementowi
 
 	/**@brief Zwraca element na podstawie jego nazwy
 	@param[in] name Nazwa elementu, który chcemy dostaæ
@@ -63,6 +66,9 @@ public:
 			return iter->second;
 		return nullptr;
 	}
+
+	// Listowanie obiektów.
+	std::vector< ResourcePtr< TYPE > >		List();
 };
 
 template <class TYPE>
@@ -77,7 +83,7 @@ ResourceContainer<TYPE>::~ResourceContainer( )
 {
 	for ( auto iter = container.begin( ); iter != container.end( ); iter++ )
 	{
-		release_memory( iter->second );
+		ReleaseMemory( iter->second );
 	}
 	container.clear();
 }
@@ -99,6 +105,7 @@ TYPE* ResourceContainer<TYPE>::get( unsigned int id )
 	return nullptr;
 }
 
+
 //-------------------------------------------------------------------------------//
 //							dodawanie obiektów
 //-------------------------------------------------------------------------------//
@@ -118,7 +125,7 @@ znajduje.
 @param[in] name Nazwa elementu, pod jak¹ zostanie dodany.
 @param[in] resource Element dodania.*/
 template <class TYPE>
-void ResourceContainer<TYPE>::unsafe_add( const std::wstring& name, TYPE* resource )
+void ResourceContainer<TYPE>::UnsafeAdd( const std::wstring& name, TYPE* resource )
 {
 	if ( !resource )
 		return;	//Nie mo¿emy potem ustawiæ id
@@ -141,7 +148,7 @@ za poœrednictwem obiektu, który ma uprawnienia do tego.
 @param[in] object Objekt do skasowania.
 */
 template <class TYPE>
-void ResourceContainer<TYPE>::release_memory( TYPE* object )
+void ResourceContainer<TYPE>::ReleaseMemory( TYPE* object )
 {
 	// Destruktor jest prywatny, wiêc nie mo¿emy kasowaæ obiektu bezpoœrednio.
 	ObjectDeleterKey<TYPE> key;							// Tworzymy klucz.
@@ -157,7 +164,7 @@ void ResourceContainer<TYPE>::release_memory( TYPE* object )
 - -1	-	nie znaleziono elementu,
 - 1	-	nie da siê usun¹æ, bo jest w u¿yciu*/
 template <class TYPE>
-int ResourceContainer<TYPE>::remove( const std::wstring& name )
+int ResourceContainer<TYPE>::Remove( const std::wstring& name )
 {
 	auto iter = container.find( name );
 	if ( iter != container.end() )
@@ -166,7 +173,7 @@ int ResourceContainer<TYPE>::remove( const std::wstring& name )
 	if ( !iter->second->CanDelete() )
 		return 1;		// Nie mo¿emy skasowaæ, bo s¹ odwo³ania
 
-	release_memory( iter->second );		// Zwalniamy pamiêæ spod wskaŸnika
+	ReleaseMemory( iter->second );		// Zwalniamy pamiêæ spod wskaŸnika
 	container.erase( iter );	// Kasujemy element z mapy
 
 	return 0;			// Wychodzimy z powodzeniem
@@ -181,7 +188,7 @@ int ResourceContainer<TYPE>::remove( const std::wstring& name )
 - -1	-	nie znaleziono elementu,
 - 1	-	nie da siê usun¹æ, bo jest w u¿yciu*/
 template <class TYPE>
-int ResourceContainer<TYPE>::remove( unsigned int id )
+int ResourceContainer<TYPE>::Remove( unsigned int id )
 {
 	for ( auto iter = container.begin( ); iter != container.end( ); iter++ )
 	{
@@ -191,7 +198,7 @@ int ResourceContainer<TYPE>::remove( unsigned int id )
 			if ( !iter->second->CanDelete() )
 				return 1;				// S¹ odwo³ania, wiêc nie kasujemy
 
-			release_memory( iter->second );		// Zwalniamy pamiêæ spod wskaŸnika
+			ReleaseMemory( iter->second );		// Zwalniamy pamiêæ spod wskaŸnika
 			container.erase( iter );	// Kasujemy element z mapy
 
 			return 0;					// Zwracamy 0 jako powodzenie operacji
@@ -205,7 +212,7 @@ int ResourceContainer<TYPE>::remove( unsigned int id )
 
 @return Zwraca liczbê usuniêtych elementów.*/
 template <class TYPE>
-int ResourceContainer<TYPE>::remove_unused()
+int ResourceContainer<TYPE>::RemoveUnused()
 {
 	int count = 0;
 	for ( auto iter = container.begin(); iter != container.end(); iter++ )
@@ -213,7 +220,7 @@ int ResourceContainer<TYPE>::remove_unused()
 		if ( iter->second->CanDelete() )
 		{
 			// Mo¿emy skasowaæ obiekt, bo nikt go nie u¿ywa
-			release_memory( iter->second );		// Zwalniamy pamiêæ spod wskaŸnika
+			ReleaseMemory( iter->second );		// Zwalniamy pamiêæ spod wskaŸnika
 			container.erase( iter );	// Kasujemy element z mapy
 
 			++count;
@@ -231,7 +238,7 @@ int ResourceContainer<TYPE>::remove_unused()
 - 0	-	w przypadku powodzenia,
 - -1	-	nie znaleziono elementu*/
 template <class TYPE>
-int ResourceContainer<TYPE>::force_remove( const std::wstring& name )
+int ResourceContainer<TYPE>::ForceRemove( const std::wstring& name )
 {
 	auto iter = container.find( name );
 	if ( iter != container.end( ) )
@@ -248,7 +255,7 @@ int ResourceContainer<TYPE>::force_remove( const std::wstring& name )
 - 0	-	w przypadku powodzenia,
 - -1	-	nie znaleziono elementu*/
 template <class TYPE>
-int ResourceContainer<TYPE>::force_remove( unsigned int id )
+int ResourceContainer<TYPE>::ForceRemove( unsigned int id )
 {
 	for ( auto iter = container.begin( ); iter != container.end( ); iter++ )
 	{
@@ -264,7 +271,7 @@ int ResourceContainer<TYPE>::force_remove( unsigned int id )
 /**@brief Kasuje wszystkie elementy niezale¿nie od tego czy by³y u¿ywane,
 a nastêpnie czyœci mapê.*/
 template <class TYPE>
-void ResourceContainer<TYPE>::force_remove_all( )
+void ResourceContainer<TYPE>::ForceRemoveAll( )
 {
 	for ( auto iter = container.begin(); iter != container.end(); iter++ )
 	{// Iterujemy po ca³ej mapie
@@ -273,4 +280,17 @@ void ResourceContainer<TYPE>::force_remove_all( )
 	container.clear();
 }
 
+/**@brief Listuje wszystkie assety danego typu.*/
+template< class TYPE >
+inline std::vector< ResourcePtr< TYPE > > ResourceContainer< TYPE >::List()
+{
+	std::vector< ResourcePtr< TYPE > > resourcesList;
+
+	for( auto iter = container.begin(); iter != container.end(); iter++ )
+	{
+		resourcesList.push_back( ResourcePtr< TYPE >( iter->second ) );
+	}
+
+	return resourcesList;
+}
 

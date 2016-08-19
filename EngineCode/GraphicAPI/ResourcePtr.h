@@ -31,17 +31,28 @@ public:
 
 	~ResourcePtr()
 	{
-		if( m_resource )
-			m_resource->DeleteObjectReference();
+		ReleaseResource();
 	}
 
-	ResourcePtr( const ResourcePtr& ) = delete;
-	ResourcePtr( const ResourcePtr&& ) = delete;
+	ResourcePtr( const ResourcePtr& other )
+	{
+		*this = other;
+	}
+
+	ResourcePtr( ResourcePtr&& other )
+	{
+		if( this != &other)
+		{
+			ReleaseResource();
+
+			m_resource = other.m_resource;
+			other.m_resource = nullptr;
+		}
+	}
 
 	void operator=( ResourceType* ptr )
 	{
-		if( m_resource )
-			m_resource->DeleteObjectReference();
+		ReleaseResource();
 
 		m_resource = ptr;
 		m_resource->AddObjectReference();
@@ -70,6 +81,12 @@ public:
 	const ResourceType* operator->() const
 	{
 		return m_resource;
+	}
+
+	void ReleaseResource()
+	{
+		if( m_resource )
+			m_resource->DeleteObjectReference();
 	}
 };
 

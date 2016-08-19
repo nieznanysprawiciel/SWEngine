@@ -10,6 +10,7 @@ struct RenderTargetDescriptor;
 
 
 #include "EngineCore/UserApi/ApiGroup.h"
+#include "GraphicAPI/ResourcePtr.h"
 
 
 #include <string>
@@ -28,6 +29,8 @@ namespace Api { namespace Assets {
 		~RenderTargets() = default;
 
 		RenderTargetObject*		CreateSync	( const std::wstring& name, const RenderTargetDescriptor& renderTargetDescriptor );
+
+		std::vector< ResourcePtr< RenderTargetObject > >	List	();
 	};
 
 
