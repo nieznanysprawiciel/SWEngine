@@ -5,7 +5,7 @@
 #include "EngineCore/MainEngine/Engine.h"
 
 #include "EngineCore/UIEngine/InputAbstractionLayer.h"
-#include "EngineCore/Actors/BasicActors/DynamicMeshActor.h"
+#include "EngineCore/Actors/BasicActors/DynamicActor.h"
 #include "EngineCore/ControllersEngine/BasicControllers/Editor/GizmoController.h"
 #include "EngineCore/ControllersEngine/BasicControllers/SpectatorCameraController.h"
 
@@ -19,7 +19,7 @@ ActorWrapper^		EditorActorsFactory::CreateGizmoActor( System::String^ meshPath )
 {
 	auto engine = EnginePointerProvider::GetEngine();
 
-	DynamicMeshActor* actor = static_cast< DynamicMeshActor* >( engine->Actors.CreateActor( rttr::type::get< DynamicMeshActor >() ) );
+	DynamicActor* actor = static_cast< DynamicActor* >( engine->Actors.CreateActor( rttr::type::get< DynamicActor >() ) );
 	engine->Actors.AddToModules( actor, ActorInfoFlag::EnablePreController | ActorInfoFlag::EnablePostController | ActorInfoFlag::EnableDisplay );
 
 	// Ustawienie kontrolera

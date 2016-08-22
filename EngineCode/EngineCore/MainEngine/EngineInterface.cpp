@@ -63,43 +63,43 @@ void Engine::test()
 	Context->modelsManager->test();			// Tu sie odbywa wczytywanie
 
 	//dodawanie ksiê¿yca
-	DynamicMeshActor* moon = Actors.CreateActor< DynamicMeshActor >( GetTypeidName< DynamicMeshActor >(), EnableDisplay );
+	StaticActor* moon = Actors.CreateActor< StaticActor >( GetTypeidName< StaticActor >(), EnableDisplay );
 	XMVECTOR position = XMVectorSet( 4000.0, 0.0, 8000.0, 0.0 );
 	moon->Teleport( position );
 
 	moon->SetModel( Context->modelsManager->GetModel( MOON ) );
-	moon->set_scale( 30.0 );
+	moon->SetScale( 30.0 );
 
 
 	//dodawanie Nebulona
-	DynamicMeshActor* nebulon = Actors.CreateActor< DynamicMeshActor >( GetTypeidName< DynamicMeshActor >(), EnableDisplay );
+	StaticActor* nebulon = Actors.CreateActor< StaticActor >( GetTypeidName< StaticActor >(), EnableDisplay );
 	position = XMVectorSet( 400.0, 0.0, -6000.0, 0.0 );
 	nebulon->Teleport( position );
 
 	nebulon->SetModel( Context->modelsManager->GetModel( NEBULON ) );
-	nebulon->set_scale( 1 );	//Nebulon ma Ÿle ustawiony pivot, wiêc jak siê przeskaluje to odleci gdzieœ w kosmos i go nie widaæ.
+	nebulon->SetScale( 1 );	//Nebulon ma Ÿle ustawiony pivot, wiêc jak siê przeskaluje to odleci gdzieœ w kosmos i go nie widaæ.
 
 
 	//dodawanie TIE Fightera
-	DynamicMeshActor* TIE = Actors.CreateActor< DynamicMeshActor >( GetTypeidName< DynamicMeshActor >(), EnableDisplay );
+	StaticActor* TIE = Actors.CreateActor< StaticActor >( GetTypeidName< StaticActor >(), EnableDisplay );
 	position = XMVectorSet( -400.0, 0.0, 800.0, 0.0 );
 	TIE->Teleport( position );
 
 	TIE->SetModel( Context->modelsManager->GetModel( TIE_FIGHTER ) );
-	TIE->set_scale( 10 );
+	TIE->SetScale( 10 );
 
 
 	//dodawanie TIE Fightera Vadera
-	DynamicMeshActor* VaderTIE = Actors.CreateActor< DynamicMeshActor >( GetTypeidName< DynamicMeshActor >(), EnableDisplay );
+	StaticActor* VaderTIE = Actors.CreateActor< StaticActor >( GetTypeidName< StaticActor >(), EnableDisplay );
 	position = XMVectorSet( -400.0, 0.0, -3000.0, 0.0 );
 	VaderTIE->Teleport( position );
 
 	VaderTIE->SetModel( Context->modelsManager->GetModel( VADER_TIE ) );
-	//VaderTIE->set_scale( 1.0 );
+	//VaderTIE->SetScale( 1.0 );
 
 
 	//dodawanie myœliwca
-	DynamicMeshActor* cloneFighter = Actors.CreateActor< DynamicMeshActor >( GetTypeidName< DynamicMeshActor >(), EnableDisplay | EnableMovement );
+	DynamicActor* cloneFighter = Actors.CreateActor< DynamicActor >( GetTypeidName< DynamicActor >(), EnableDisplay | EnableMovement );
 
 	position = XMVectorSet(0.0, 0.0, 6000.0, 0.0);
 	cloneFighter->Teleport( position );
@@ -120,7 +120,7 @@ void Engine::test()
 
 
 	//dodawanie koœcio³a
-	DynamicMeshActor* church = Actors.CreateActor< DynamicMeshActor >( GetTypeidName< DynamicMeshActor >(), EnableDisplay );
+	StaticActor* church = Actors.CreateActor< StaticActor >( GetTypeidName< StaticActor >(), EnableDisplay );
 	position = XMVectorSet( -300.0, 0.0, 500.0, 0.0 );
 	church->Teleport( position );
 
@@ -129,7 +129,7 @@ void Engine::test()
 
 	//for( unsigned int i = 0; i < 100; ++i )
 	//{
-	//	DynamicMeshActor* cloneFighter = Actors.CreateActor< DynamicMeshActor >( "DynamicMeshActor", EnableDisplay );
+	//	DynamicActor* cloneFighter = Actors.CreateActor< DynamicActor >( "DynamicActor", EnableDisplay );
 	//	position = XMVectorSet( 15000.0 * cos( ( 2*i*XM_PI ) / 100 ), 0.0, 15000.0 * sin( ( 2*i*XM_PI ) / 100 ), 0.0 );
 	//	
 	//	cloneFighter->set_model( Context->modelsManager->GetModel( CLONE_FIGHTER ) );
@@ -138,7 +138,7 @@ void Engine::test()
 
 
 	// Dodawanie gwiezdnego niszczyciela Imperial
-	/*DynamicMeshActor* Imperial = Actors.CreateActor< DynamicMeshActor >( "DynamicMeshActor", EnableDisplay );
+	/*StaticActor* Imperial = Actors.CreateActor< StaticActor >( "StaticActor", EnableDisplay );
 	position = XMVectorSet( -4000.0, 0.0, -3000.0, 0.0 );
 	Imperial->set_position( position );
 
@@ -147,7 +147,7 @@ void Engine::test()
 
 	
 	//dodawanie skrzyni
-//	DynamicMeshActor* skrzynia = Actors.CreateActor< DynamicMeshActor >( "DynamicMeshActor", EnableDisplay | EnableMovement );
+//	StaticActor* skrzynia = Actors.CreateActor< StaticActor >( "StaticActor", EnableDisplay | EnableMovement );
 //	position = XMVectorSet( 0.0, 0.0, 2.0, 0.0 );
 //	skrzynia->Teleport( position );
 //
@@ -165,7 +165,7 @@ void Engine::test()
 //
 //	Model3DFromFile* new_model = Context->modelsManager->GetModel( L"skrzynia" );
 //	skrzynia->SetModel( new_model );
-//	//skrzynia->set_scale( 0.1 );
+//	//skrzynia->SetScale( 0.1 );
 
 	SetSkydomeAndCamera();
 
@@ -189,7 +189,7 @@ void Engine::test()
 	int pathSize = sizeof( filesystem::Path );
 
 	Size VadersTieSize = VaderTIE->MemorySize();
-	Size DynamicMeshActorSize = sizeof( DynamicMeshActor );
+	Size StaticActorSize = sizeof( StaticActor );
 }
 
 /**@brief */

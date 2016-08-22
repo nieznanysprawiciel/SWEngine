@@ -225,14 +225,14 @@ void DisplayEngine::DisplayDynamicObjects( float time_interval, float time_lag )
 	//na razie pêtla bez optymalizacji
 	for ( unsigned int i = 0; i < meshes.size( ); ++i )
 	{
-		register DynamicMeshActor* object = meshes[i];
+		register StaticActor* object = meshes[i];
 
 		// Ustawiamy bufor wierzcho³ków
-		if ( renderer->SetVertexBuffer( object->vertex_buffer ) )
+		if ( renderer->SetVertexBuffer( object->GetVertexBuffer() ) )
 			continue;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
 
 		// Ustawiamy bufor indeksów, je¿eli istnieje
-		renderer->SetIndexBuffer( object->index_buffer );
+		renderer->SetIndexBuffer( object->GetIndexBuffer() );
 
 
 #ifdef _INTERPOLATE_POSITIONS
@@ -245,9 +245,9 @@ void DisplayEngine::DisplayDynamicObjects( float time_interval, float time_lag )
 #endif
 
 
-		for ( unsigned int j = 0; j < object->model_parts.size( ); ++j )
+		for ( unsigned int j = 0; j < object->GetModelParts().size( ); ++j )
 		{
-			ModelPart& model = object->model_parts[j];
+			ModelPart& model = object->GetModelParts()[j];
 
 			// Wyliczamy macierz transformacji
 			XMMATRIX worldTransform;
@@ -257,7 +257,7 @@ void DisplayEngine::DisplayDynamicObjects( float time_interval, float time_lag )
 			// Wype³niamy bufor sta³ych
 			ConstantPerMesh shaderDataPerMesh;
 			shaderDataPerMesh.world_matrix = XMMatrixTranspose( worldTransform );	// Transformacja wierzcho³ków
-			shaderDataPerMesh.mesh_scale = XMVectorSetW( XMVectorReplicate( object->scale ), 1.0f );
+			shaderDataPerMesh.mesh_scale = XMVectorSetW( XMVectorReplicate( object->GetScale() ), 1.0f );
 
 			// Przepisujemy materia³
 			CopyMaterial( &shaderDataPerMesh, &model );
@@ -461,10 +461,10 @@ void DisplayEngine::RenderFromQueue( float time_interval, float time_lag )
 			//na razie pêtla bez optymalizacji
 			for ( unsigned int i = 0; i < meshCollection.size( ); ++i )
 			{
-				register DynamicMeshActor* object = meshCollection[i];
+				register StaticActor* object = meshCollection[i];
 
 				// Ustawiamy bufor wierzcho³ków
-				if ( renderer->SetVertexBuffer( object->vertex_buffer ) )
+				if ( renderer->SetVertexBuffer( object->GetVertexBuffer() ) )
 					continue;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
 
 
@@ -473,9 +473,9 @@ void DisplayEngine::RenderFromQueue( float time_interval, float time_lag )
 				XMMATRIX transformation = XMMatrixRotationQuaternion( orientation );
 				transformation = transformation * XMMatrixTranslationFromVector( translation );
 
-				for ( unsigned int j = 0; j < object->model_parts.size( ); ++j )
+				for ( unsigned int j = 0; j < object->GetModelParts().size( ); ++j )
 				{
-					ModelPart& model = object->model_parts[j];
+					ModelPart& model = object->GetModelParts()[j];
 
 					// Wyliczamy macierz transformacji
 					XMMATRIX worldTransform;
@@ -485,7 +485,7 @@ void DisplayEngine::RenderFromQueue( float time_interval, float time_lag )
 					// Wype³niamy bufor sta³ych
 					ConstantPerMesh shaderDataPerMesh;
 					shaderDataPerMesh.world_matrix = XMMatrixTranspose( worldTransform );	// Transformacja wierzcho³ków
-					shaderDataPerMesh.mesh_scale = XMVectorSetW( XMVectorReplicate( object->scale ), 1.0f );
+					shaderDataPerMesh.mesh_scale = XMVectorSetW( XMVectorReplicate( object->GetScale() ), 1.0f );
 
 					// Przepisujemy materia³
 					CopyMaterial( &shaderDataPerMesh, &model );
@@ -588,7 +588,7 @@ void DisplayEngine::SetViewMatrix( float time_lag )
 /**@brief Dodaje obiekt, który ma zostaæ wyœwietlony.
 
 @param[in] object ActorBase, który ma zostaæ dopisany do tablic wyœwietlania.*/
-void DisplayEngine::AddDynamicMeshObject( DynamicMeshActor* object )
+void DisplayEngine::AddMeshObject( StaticActor* object )
 {
 	realocate_interpolation_memory( );		//powiêkszamy tablicê macierzy interpolacji
 							//wykona siê tylko je¿eli jest konieczne
@@ -601,7 +601,7 @@ Funkcja przegl¹da aktorów od ty³u, poniewa¿ bardziej prawdopodobne jest,
 ¿e usuwamy aktora stworzonego niedawno.*/
 void DisplayEngine::RemoveActor( ActorBase* actor )
 {
-	ActorsCommonFunctions::RemoveActor( meshes, static_cast< DynamicMeshActor* >( actor ) );
+	ActorsCommonFunctions::RemoveActor( meshes, static_cast< StaticActor* >( actor ) );
 	ActorsCommonFunctions::RemoveActor( cameras, static_cast< CameraActor* >( actor ) );
 
 	if( m_currentCamera == actor )
@@ -707,53 +707,11 @@ void DisplayEngine::InterpolatePositions( float time_lag )
 {
 	for ( unsigned int i = 0; i < meshes.size(); ++i )
 	{
-		DynamicMeshActor* object = meshes[i];
+		StaticActor* object = meshes[i];
 		interpolate_object2( time_lag, object, &(interpolated_matrixes[i]) );
 	}
 }
 
-
-/**@deprecated
-@brief Funkcja tworzy macierz przekszta³cenia dla podanego obiektu, interpoluj¹c jego pozycjê
-z prêdkoœci postêpowej i k¹towej.
-
-@param[in] tima_lag Czas jaki up³yn¹³ od ostatniego przeliczenia pozycji obiektów.
-@param[in] object Objekt, dla którego liczymy macierz przekszta³cenia.
-@param[out] transform_matrix Zmienna, w której zostanie umieszczona interpolowana macierz przekszta³cenia.
-*/
-void DisplayEngine::interpolate_object( float time_lag, const DynamicActor* object, DirectX::XMFLOAT4X4* result_matrix )
-{
-	XMVECTOR position = object->GetPosition( );
-	XMVECTOR orientation = object->GetOrientation( );
-	XMVECTOR velocity = object->GetSpeed( );
-	XMVECTOR rotation_velocity = object->GetRotationSpeed( );
-
-	position += velocity * time_lag;
-
-#ifdef _QUATERNION_SPEED
-	//najpierw liczymy nowy kwaternion dla obrotu w czasie sekundy
-	rotation_velocity = XMQuaternionMultiply( orientation, rotation_velocity );
-	//teraz interpolujemy poprzedni¹ orientacjê i orientacjê po sekundzie
-	//ze wspóczynnikiem równym czasowi jaki up³yn¹³ faktycznie
-	orientation = XMQuaternionSlerp( orientation, rotation_velocity, timeLag );
-
-	/*Du¿o obliczeñ, mo¿e da siê to jakoœ za³atwiæ bez interpolacji...*/
-#else
-
-
-	if ( !XMVector3Equal( rotation_velocity, XMVectorZero( ) ) )
-	{
-		float rot_angle = XMVectorGetW( rotation_velocity ) * time_lag;					// liczymy k¹t obrotu
-		rotation_velocity = XMQuaternionRotationAxis( rotation_velocity, rot_angle );	// przerabiamy na kwaternion
-		orientation = XMQuaternionMultiply( orientation, rotation_velocity );			// liczymy nowy kwaternion orientacji
-	}
-#endif
-
-	XMMATRIX transformation = XMMatrixRotationQuaternion( orientation );
-	transformation = transformation * XMMatrixTranslationFromVector( position );
-
-	XMStoreFloat4x4( result_matrix, transformation );
-}
 
 /**@brief Funkcja tworzy macierz przekszta³cenia dla podanego obiektu, interpoluj¹c jego pozycjê
 z prêdkoœci postêpowej i k¹towej.
@@ -763,7 +721,7 @@ Zakres [0,1].
 @param[in] object Objekt, dla którego liczymy macierz przekszta³cenia.
 @param[out] transform_matrix Zmienna, w której zostanie umieszczona interpolowana macierz przekszta³cenia.
 */
-void DisplayEngine::interpolate_object2( float time_lag, const DynamicActor* object, DirectX::XMFLOAT4X4* result_matrix )
+void DisplayEngine::interpolate_object2( float time_lag, const StaticActor* object, DirectX::XMFLOAT4X4* result_matrix )
 {
 	XMVECTOR position = object->GetInterpolatedPosition( time_lag );
 	XMVECTOR orientation = object->GetInterpolatedOrientation( time_lag );

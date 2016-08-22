@@ -18,9 +18,9 @@ struct EventData : public Event
 };
 
 
-class PlayerSignalTest	: public DynamicMeshActor
+class PlayerSignalTest	: public DynamicActor
 {
-	RTTR_ENABLE( DynamicMeshActor );
+	RTTR_ENABLE( DynamicActor );
 private:
 
 	ActorPtr< PlayerSignalTest >		m_otherPlayer;

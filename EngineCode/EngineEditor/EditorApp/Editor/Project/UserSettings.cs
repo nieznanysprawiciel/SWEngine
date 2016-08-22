@@ -14,7 +14,7 @@ namespace EditorApp.Project
 
 		public UserSettings()
 		{
-			DefaultMeshActorTypeName = "DynamicMeshActor";
+			DefaultMeshActorTypeName = "StaticActor";
 		}
 	}
 }

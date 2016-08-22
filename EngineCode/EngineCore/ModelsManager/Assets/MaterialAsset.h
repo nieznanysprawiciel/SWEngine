@@ -55,7 +55,7 @@ struct AdditionalBufferInfo
 /**@brief Obiekt opisuj¹cy materia³.
 
 Obiekt przechowuje bufor zawieraj¹cy dane materia³u, wskaŸniki na u¿ywane
-shadery, tekstury oraz deklaruje dodatkowe bufory, które powinny siê znaleŸæ w klasie @ref DynamicMeshActor.
+shadery, tekstury oraz deklaruje dodatkowe bufory, które powinny siê znaleŸæ w klasie @ref StaticActor.
 
 @ingroup Assets
 @ingroup Materials

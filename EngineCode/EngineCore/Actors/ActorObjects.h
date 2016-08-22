@@ -10,9 +10,6 @@
 @ref ActorBase
 @ref StaticActor
 @ref DynamicActor
-@ref CollisionActor
-@ref PhysicalActor
-@ref DynamicMeshActor
 @ref AnimationActor
 @ref IController
 @ref BaseAIController
@@ -33,10 +30,6 @@
 #include "BasicActors/ActorBase.h"
 #include "BasicActors/StaticActor.h"
 #include "BasicActors/DynamicActor.h"
-#include "BasicActors/CollisionActor.h"
-#include "BasicActors/PhysicalActor.h"
-#include "BasicActors/DynamicMeshActor.h"
-#include "BasicActors/AnimationActor.h"
 #include "BasicActors/CameraActor.h"
 #include "BasicActors/ComplexActor.h"
 #include "BasicActors/PathNode.h"

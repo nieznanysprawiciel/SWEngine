@@ -44,7 +44,8 @@ struct MaterialObject;
 class MemoryChunk;
 
 class ActorBase;
-class DynamicMeshActor;
+class StaticActor;
+class DynamicActor;
 class RenderPass;
 
 /**@brief Przechowuje wszystkie zmienne, które powinny znaleŸæ siê w klasie EngineInterface.

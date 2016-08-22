@@ -16,7 +16,7 @@ enum class LightmapState
 /**Dane poszczególnych czêœci obiektów sceny.*/
 struct SceneObjectData
 {
-	DynamicMeshActor*		object;				///< Obiekt, do którego nale¿y dana czêœæ mesha. Potrzebujemy, ¿eby potem stworzyæ tekstury i ustawiæ dla odpowiednich obiektów.
+	StaticActor*			object;				///< Obiekt, do którego nale¿y dana czêœæ mesha. Potrzebujemy, ¿eby potem stworzyæ tekstury i ustawiæ dla odpowiednich obiektów.
 	Size					chunkIdx;			///< Wskazuje na obiekt z danymi wierzcho³ków w strukturze SceneData.
 	DirectX::XMFLOAT4X4		transform;			///< Macierz przekszta³cenia dla danej czêœci mesha.
 	unsigned int			bufferOffset;		///< Offset wzglêdem pocz¹tku bufora albo wierzcho³ków.

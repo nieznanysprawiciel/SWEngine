@@ -320,25 +320,13 @@
     <ClInclude Include="..\..\EngineCode\Common\Properties\IMetaProperty.h">
       <Filter>Common\Properties</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\AnimationActor.h">
-      <Filter>EngineCore\Actors\BasicActors</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\CameraActor.h">
-      <Filter>EngineCore\Actors\BasicActors</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\CollisionActor.h">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\ComplexActor.h">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DynamicActor.h">
-      <Filter>EngineCore\Actors\BasicActors</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DynamicMeshActor.h">
-      <Filter>EngineCore\Actors\BasicActors</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\PhysicalActor.h">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\StaticActor.h">
@@ -718,25 +706,13 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Textures.cpp">
       <Filter>EngineCore\UserApi\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\AnimationActor.cpp">
-      <Filter>EngineCore\Actors\BasicActors</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\CameraActor.cpp">
-      <Filter>EngineCore\Actors\BasicActors</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\CollisionActor.cpp">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\ComplexActor.cpp">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DynamicActor.cpp">
-      <Filter>EngineCore\Actors\BasicActors</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DynamicMeshActor.cpp">
-      <Filter>EngineCore\Actors\BasicActors</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\PhysicalActor.cpp">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\StaticActor.cpp">

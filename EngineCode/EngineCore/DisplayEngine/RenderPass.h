@@ -5,7 +5,7 @@
 
 class RenderTargetObject;
 class CameraActor;
-class DynamicMeshActor;
+class StaticActor;
 class ShaderInputLayout;
 
 class RenderPass
@@ -16,7 +16,7 @@ private:
 
 	DirectX::XMFLOAT4X4			m_projectionMatrix;
 
-	std::vector<DynamicMeshActor*>		m_meshes;			///< @todo To bêdzie trzeba za³atwiæ przez mapy boolów, a wektor bêdzie jeden na ca³y DisplayEngine.
+	std::vector< StaticActor* >	m_meshes;			///< @todo To bêdzie trzeba za³atwiæ przez mapy boolów, a wektor bêdzie jeden na ca³y DisplayEngine.
 	ShaderInputLayout*			m_bufferLayout;		///< @todo Jeszcze jedna tymczasowoœæ. Layout jest zwi¹zany z buforem a nie passem.
 protected:
 public:
@@ -28,9 +28,9 @@ public:
 	inline DirectX::XMMATRIX		GetProjectionMatrix()	{ return DirectX::XMLoadFloat4x4( &m_projectionMatrix ); }
 	inline ShaderInputLayout*	GetLayout()				{ return m_bufferLayout; }
 
-	inline std::vector<DynamicMeshActor*>&		GetMeshes()	{ return m_meshes; }
+	inline std::vector< StaticActor* >&		GetMeshes()	{ return m_meshes; }
 
-	void		AddMesh				( DynamicMeshActor* );
+	void		AddMesh				( StaticActor* );
 	void		SetRenderTarget		( RenderTargetObject* );
 	void		SetLayout			( ShaderInputLayout* );
 };

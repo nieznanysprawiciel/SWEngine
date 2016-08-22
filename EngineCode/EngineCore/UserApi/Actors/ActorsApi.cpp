@@ -10,16 +10,16 @@ namespace Api
 /**@brief Pobiera aktorów z modu³y @ref DisplayEngine.
 @deprecated Pozostawione dla zgodnoœci z LightmapTools. Zamiast tego nale¿y u¿ywaæ funkcji
 @ref ActorsApi::GetAllActors, która zwaraca wszystkicj aktorów w silniku.*/
-std::vector<DynamicMeshActor*> ActorsApi::GetSceneObjects()
+std::vector<StaticActor*> ActorsApi::GetSceneObjects()
 { return Context->displayEngine->GetSceneObjects(); }
 
 
 /**@brief 
 @deprecated Pozostawione dla zgodnoœci z LightmapTools. Zamiast tego nale¿y u¿ywaæ funkcji
 @ref ActorsApi::AddToModules*/
-void ActorsApi::AddDynamicMesh( DynamicMeshActor* object )
+void ActorsApi::AddDynamicMesh( StaticActor* object )
 {
-	Context->displayEngine->AddDynamicMeshObject( object );
+	Context->displayEngine->AddMeshObject( object );
 	Context->objectList.push_back( object );
 }
 
@@ -73,8 +73,8 @@ void ActorsApi::AddToModules( ActorBase* newActor, ActorInfo actorModules )
 	if( actorModules.EnableDisplay() )
 	{
 		// @todo Pomyœleæ co zrobiæ w trybie release.
-		assert( rttr::rttr_cast< DynamicMeshActor* >( newActor ) );
-		Context->displayEngine->AddDynamicMeshObject( static_cast< DynamicMeshActor* >( newActor ) );
+		assert( rttr::rttr_cast< StaticActor* >( newActor ) );
+		Context->displayEngine->AddMeshObject( static_cast< StaticActor* >( newActor ) );
 	}
 
 	if( actorModules.EnableMovement() )

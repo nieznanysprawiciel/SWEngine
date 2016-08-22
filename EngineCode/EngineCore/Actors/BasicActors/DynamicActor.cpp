@@ -8,15 +8,19 @@
 RTTR_REGISTRATION
 {
 	rttr::registration::class_< DynamicActor >( "DynamicActor" )
-		.property( "Speed", &DynamicActor::speed )
+		.property( "Speed", &DynamicActor::m_speed )
 		(
 			rttr::metadata( MetaDataType::Category, "Movement" ),
 			rttr::policy::prop::BindAsPtr()
 		)
-		.property( "RotationSpeed", &DynamicActor::rotation_speed )
+		.property( "RotationSpeed", &DynamicActor::m_rotationSpeed )
 		(
 			rttr::metadata( MetaDataType::Category, "Movement" ),
 			rttr::policy::prop::BindAsPtr()
+		)
+		.property( "Mass", &DynamicActor::m_mass )
+		(
+			rttr::metadata( MetaDataType::Category, "Physical properties" )
 		);
 }
 
@@ -25,35 +29,40 @@ using namespace DirectX;
 
 
 DynamicActor::DynamicActor()
-	: controller( nullptr )
+	: m_controller( nullptr )
 {
-	speed.x = 0.0;
-	speed.y = 0.0;
-	speed.z = 0.0;
+	m_speed.x = 0.0;
+	m_speed.y = 0.0;
+	m_speed.z = 0.0;
 
 #ifdef _QUATERNION_SPEED
 	XMVECTOR quaternion = XMQuaternionIdentity();
-	XMStoreFloat4( &rotation_speed, quaternion );
+	XMStoreFloat4( &m_rotationSpeed, quaternion );
 #else
-	rotation_speed.w = 0.0;
-	rotation_speed.x = 0.0;
-	rotation_speed.y = 0.0;
-	rotation_speed.z = 0.0;
+	m_rotationSpeed.w = 0.0;
+	m_rotationSpeed.x = 0.0;
+	m_rotationSpeed.y = 0.0;
+	m_rotationSpeed.z = 0.0;
 #endif
+
+	m_mass = 1.0f;
 }
 
 DynamicActor::DynamicActor( const XMFLOAT3& move_speed, const XMFLOAT4& rot_speed )
-	: controller( nullptr )
+	: m_controller( nullptr )
 {
-	speed = move_speed;
-	rotation_speed = rot_speed;
+	m_speed = move_speed;
+	m_rotationSpeed = rot_speed;
+
+	m_mass = 1.0f;
 }
 
 /**@brief Usuwa przypisany kontroler.*/
 DynamicActor::~DynamicActor()
 {
-	delete controller;
+	delete m_controller;
 }
+
 
 /**Funkcja wykonywana w ka¿dym obiegu pêtli renderingu przez obiekt MovementEngine.
  Dodajemy aktualny wektor prêdkoœci i prêdkoœci obrotowej do wektorów po³o¿enia i orientacji.
@@ -101,7 +110,7 @@ void DynamicActor::Move(float time_interval)
 
 	if ( !XMVector3Equal( rot, XMVectorZero() ) )
 	{
-		float rot_angle = rotation_speed.w * time_interval;	//liczymy k¹t obrotu
+		float rot_angle = m_rotationSpeed.w * time_interval;	//liczymy k¹t obrotu
 
 		rot = XMQuaternionRotationAxis( rot, rot_angle );		//przerabiamy na kwaternion
 		orient = XMQuaternionMultiply( orient, rot );			//liczymy nowy kwaternion orientacji
@@ -127,7 +136,7 @@ void DynamicActor::MoveComplex(float time_interval, const XMFLOAT3& parent_speed
 	//translacja
 	XMVECTOR pos = GetPosition();
 	XMVECTOR time = XMVectorReplicate(time_interval);
-	XMVECTOR translate = XMLoadFloat3(&speed);
+	XMVECTOR translate = XMLoadFloat3(&m_speed);
 	XMVECTOR parent_translate = XMLoadFloat3(&parent_speed);
 	
 	translate += parent_translate;		//g³ówna ró¿nica: dodajemy przesuniêcie rodzica
@@ -137,7 +146,7 @@ void DynamicActor::MoveComplex(float time_interval, const XMFLOAT3& parent_speed
 
 	//orientacja
 	XMVECTOR orient = GetOrientation();
-	XMVECTOR rot = XMLoadFloat4(&rotation_speed);
+	XMVECTOR rot = XMLoadFloat4(&m_rotationSpeed);
 	XMVECTOR parent_rotn = XMLoadFloat4(&parent_rotation);
 
 	//najpierw liczymy nowy kwaternion dla obrotu w czasie sekundy

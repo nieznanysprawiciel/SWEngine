@@ -7,7 +7,7 @@
 #include "Common/EngineObject.h"
 
 #include "EngineCore/MainEngine/Engine.h"
-#include "EngineCore/Actors/BasicActors/DynamicMeshActor.h"
+#include "EngineCore/Actors/BasicActors/StaticActor.h"
 #include "EngineEditor/EditorPlugin/EnginePointerProvider.h"
 
 #include <msclr/marshal_cppstd.h>
@@ -38,7 +38,7 @@ bool				ActorWrapper::LoadMesh	( System::String^ meshPath )
 	auto engine = EnginePointerProvider::GetEngine();
 
 	auto model = engine->Assets.Models.LoadSync( msclr::interop::marshal_as< std::wstring >( meshPath ) );
-	auto meshActor = rttr::rttr_cast< DynamicMeshActor* >( m_actorPtr );
+	auto meshActor = rttr::rttr_cast< StaticActor* >( m_actorPtr );
 
 	return meshActor->SetModel( model );
 }

@@ -16,7 +16,7 @@ do zliczania odwo³añ do obiektu.*/
 Obiekty assetów (np. MaterialObject, TextureObject, VertexShader, PixelShader itp.) wymagaj¹ jakiegoœ systemu zapewniaj¹cego wspó³dzielenie miêdzy innymi obiektami.
 
 Do ka¿dego pojedynczego obiektu mog¹ istnieæ wilokrotne odwo³ania w klasie MeshAsset,
-a tak¿e w obiektach dziedzicz¹cych po @ref DynamicMeshActor oraz w modu³ach silnika.
+a tak¿e w obiektach dziedzicz¹cych po @ref StaticActor oraz w modu³ach silnika.
 Z tego wzglêdu istnieje zmienna m_objectReferences, która zlicza odwo³ania do obiektów.
 
 ¯aden obiekt nie powinien byæ kasowany, dopóki istniej¹ do niego odwo³ania.

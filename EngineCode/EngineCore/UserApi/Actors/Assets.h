@@ -5,7 +5,7 @@
 
 @brief Deklaracja klasy RenderingApi.*/
 
-class DynamicMeshActor;
+class StaticActor;
 class TextureObject;
 class PixelShader;
 class VertexShader;
@@ -25,10 +25,10 @@ namespace Api { namespace Actors {
 		Assets() = default;
 		~Assets() = default;
 
-		void		ChangeTextures		( DynamicMeshActor* mesh, TextureObject* newTex, uint16 beginPart, uint16 endPart, uint8 texIndex );
+		void		ChangeTextures		( StaticActor* mesh, TextureObject* newTex, uint16 beginPart, uint16 endPart, uint8 texIndex );
 
-		void		ChangePixelShaders	( DynamicMeshActor* mesh, PixelShader* newShader, uint16 beginPart, uint16 endPart );
-		void		ChangeVertexShaders	( DynamicMeshActor* mesh, VertexShader* newShader, uint16 beginPart, uint16 endPart );
+		void		ChangePixelShaders	( StaticActor* mesh, PixelShader* newShader, uint16 beginPart, uint16 endPart );
+		void		ChangeVertexShaders	( StaticActor* mesh, VertexShader* newShader, uint16 beginPart, uint16 endPart );
 	};
 
 

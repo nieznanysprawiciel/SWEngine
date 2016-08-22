@@ -23,7 +23,7 @@ void MovementEngine::ProceedMovement(float timeInterval)
 	{
 		DynamicActor* object = m_dynamicObjects[i];
 		object->Move( timeInterval );
-		object->swap();		// Zamieniamy bufory wewn¹trz obiektu
+		object->Swap();		// Zamieniamy bufory wewn¹trz obiektu
 	}
 }
 

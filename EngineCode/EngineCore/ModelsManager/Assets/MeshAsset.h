@@ -19,7 +19,7 @@
 @ingroup MeshAsset*/
 enum MeshPartFlags : int
 {
-	UseAdditionalBuffer = 0x01,		///< Materia³ u¿ywa dodatkowego bufora, który ma zostaæ wype³niony w klasie @ref DynamicMeshActor.
+	UseAdditionalBuffer = 0x01,		///< Materia³ u¿ywa dodatkowego bufora, który ma zostaæ wype³niony w klasie @ref StaticActor.
 
 };
 

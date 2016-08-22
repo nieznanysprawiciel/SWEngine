@@ -1,12 +1,12 @@
 #pragma once
 
-#include "CollisionActor.h"
+#include "StaticActor.h"
 
 
 /**@brief */
-class TriggerActor : public CollisionActor
+class TriggerActor : public StaticActor
 {
-	RTTR_ENABLE( CollisionActor )
+	RTTR_ENABLE( StaticActor )
 	RTTR_REGISTRATION_FRIEND
 private:
 protected:

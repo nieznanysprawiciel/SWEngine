@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CollisionActor.h"
+#include "DynamicActor.h"
 
 
 enum class LightType
@@ -14,9 +14,9 @@ enum class LightType
 /**@brief Klasa bazowa dla œwiate³.
 
 Klasa dziedziczy po CollisionActor, ¿eby mo¿na by³o wyliczyæ kolizje i eliminowaæ nieprzydatne œwiat³a.*/
-class LightBase : public CollisionActor
+class LightBase : public DynamicActor
 {
-	RTTR_ENABLE( CollisionActor )
+	RTTR_ENABLE( DynamicActor )
 	RTTR_REGISTRATION_FRIEND
 private:
 	LightType			m_type;

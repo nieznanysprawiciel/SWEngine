@@ -18,7 +18,7 @@ RenderPass::~RenderPass()
 		m_bufferLayout->DeleteObjectReference();
 }
 
-void RenderPass::AddMesh( DynamicMeshActor* mesh )
+void RenderPass::AddMesh( StaticActor* mesh )
 {
 	m_meshes.push_back( mesh );
 }

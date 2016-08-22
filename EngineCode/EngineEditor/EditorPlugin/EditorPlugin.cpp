@@ -145,7 +145,7 @@ ActorWrapper^						EngineWrapper::CreateActor				( System::String^ actorName )
 	auto actor = m_engine->Actors.CreateActor( msclr::interop::marshal_as< std::string >( actorName ) );
 	auto actorData = m_engine->Actors.FindActor( actor );
 
-	if( rttr::type::get( *actor ).is_derived_from< DynamicMeshActor >() )
+	if( rttr::type::get( *actor ).is_derived_from< StaticActor >() )
 	m_engine->Actors.AddToModules( actor, ActorInfoFlag::EnableDisplay );
 
 	if( rttr::type::get( *actor ).is_derived_from< CameraActor >() )
@@ -178,10 +178,10 @@ ActorWrapper^						EngineWrapper::CreateActor				( System::String^ actorName, do
 /**@brief Przyczepia do wybranego aktora (selection) kontroler gizma.*/
 void								EngineWrapper::SelectActor				( ActorWrapper^ gizmo, ActorWrapper^ selection )
 {
-	auto gizmoPtr = static_cast< DynamicMeshActor* >( gizmo->GetActorPtr().ToPointer() );
+	auto gizmoPtr = static_cast< DynamicActor* >( gizmo->GetActorPtr().ToPointer() );
 	auto selectionPtr = static_cast< StaticActor* >( selection->GetActorPtr().ToPointer() );
 
-	assert( rttr::rttr_cast< DynamicMeshActor* >( gizmoPtr ) );
+	assert( rttr::rttr_cast< DynamicActor* >( gizmoPtr ) );
 
 	auto gizmoController = static_cast< GizmoController* >( gizmoPtr->GetController() );
 	assert( rttr::rttr_cast< GizmoController* >( gizmoController ) );
