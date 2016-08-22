@@ -8,7 +8,8 @@ namespace EditorPlugin
 {
 
 
-ResourceMetaInfo::ResourceMetaInfo()
+ResourceMetaInfo::ResourceMetaInfo( ResourceWrapper^ resource )
+	:	EngineObjectMetaInfo( resource )
 {}
 
 

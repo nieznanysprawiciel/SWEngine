@@ -29,7 +29,7 @@ protected:
 	EngineObjectWrapper^				m_actorPtr;		///< WskaŸnik u¿ywany do pobierania parametrów obiektu klasy.
 
 public:
-	EngineObjectMetaInfo();
+	EngineObjectMetaInfo( EngineObjectWrapper^ objectPtr );
 
 
 
@@ -76,7 +76,7 @@ public:
 
 protected:
 
-	void				BuildHierarchy	( EngineObjectWrapper^ objectPtr );
+	void				BuildHierarchy	( EngineObjectWrapper^ objectPtr, rttr::type classType );
 
 };
 

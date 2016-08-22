@@ -26,6 +26,11 @@ System::IntPtr		EngineObjectWrapper::GetActorPtr()
 	return System::IntPtr( m_actorPtr );
 }
 
+/**@brief Zwraca natywny wskaünik na obiekt.*/
+EngineObject*		EngineObjectWrapper::GetPtr		()
+{
+	return m_actorPtr;
+}
 
 
 /**@brief Zwraca liczbowy identyfikator typu aktora.*/

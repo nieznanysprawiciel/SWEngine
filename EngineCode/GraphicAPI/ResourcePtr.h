@@ -36,15 +36,14 @@ public:
 
 	ResourcePtr( const ResourcePtr& other )
 	{
-		*this = other;
+		m_resource = other.m_resource;
+		m_resource->AddObjectReference();
 	}
 
 	ResourcePtr( ResourcePtr&& other )
 	{
 		if( this != &other)
 		{
-			ReleaseResource();
-
 			m_resource = other.m_resource;
 			other.m_resource = nullptr;
 		}

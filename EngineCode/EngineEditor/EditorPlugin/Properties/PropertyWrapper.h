@@ -311,6 +311,9 @@ using namespace System::Collections::Generic;
 		{}
 
 	public:
+		CategoryLessPropertyWrapper( void* parent, const char* name )
+			: CategoryPropertyWrapper( parent, name )
+		{}
 
 		void			BuildHierarchy	( void* parent, rttr::type classType ) override;
 		void			BuildHierarchy	();

@@ -285,6 +285,7 @@ template< class TYPE >
 inline std::vector< ResourcePtr< TYPE > > ResourceContainer< TYPE >::List()
 {
 	std::vector< ResourcePtr< TYPE > > resourcesList;
+	resourcesList.reserve( container.size() );
 
 	for( auto iter = container.begin(); iter != container.end(); iter++ )
 	{

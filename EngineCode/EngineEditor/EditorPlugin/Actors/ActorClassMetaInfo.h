@@ -15,17 +15,8 @@ using namespace System::Collections::Generic;
 
 /**@brief Klasa przechowuje metadane na temat typów actorów silnikowych.
 
-Klasa mo¿e byc u¿yta nie tylko do wydobywania metainformacji o typie,
-ale równie¿ mo¿e pos³u¿yæ do pobrania wartoœci dla konkretnego obiektu.
-Przechowywany wewnêtrznie wskaŸnik @ref m_actorPtr mo¿e zostaæ ustawiony przy
-pomocy funkcji reset. Skutkuje to zaktualizowaniem wskaŸnika w ca³ej hierarchii.
-
-WskaŸnik mo¿e byæ nullptrem, wtedy zwracane s¹ jakieœ domyœlne wartoœci dla parametrów.
-
-@todo Bardziej eleganckie by by³o, gdyby metainformacje by³y przechowywane osobno od konkretnych danych
-obiektów jak ten wskaŸnik. Ale wtedy oznacza³oby to powielenie tych klas, aby mog³y pe³niæ tê drug¹ funkcjê
-i wymusi³oby to ka¿dorazowe alokowanie ca³ej hierarchii przy klikniêciu na jakiœ obiekt.
-Obecne rozwi¹zanie pozwala na prost¹ podmianê wskaŸnika.
+Klasa mo¿e byc u¿yta nie tylko do wydobywania metainformacji o typie
+oraz wydobywania poszczególnych parametrów dla aktora.
 */
 public ref class ActorClassMetaInfo : public EditorApp::GUI::IDragable
 {

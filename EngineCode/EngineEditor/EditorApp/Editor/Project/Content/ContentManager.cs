@@ -12,6 +12,7 @@ namespace EditorApp.Editor.Project.Content
 	{
 		FileTreeNode		m_fileTreeRoot;
 		FileTreeNode        m_selectedFile;
+		LoadedAssets        m_loadedAssets;
 
 		private Logic		m_editorLogic;      ///< Referencja na główny obiekt edytora.
 		
@@ -25,6 +26,9 @@ namespace EditorApp.Editor.Project.Content
 			m_editorLogic = editorLogic;
 			SelectedAssetChangedCommand = new RelayCommand( SelectionChanged );
 			SelectedFile = null;
+
+			LoadedAssets = new LoadedAssets( m_editorLogic );
+			m_editorLogic.LeftPanelView.Add( m_loadedAssets );
 		}
 
 
@@ -85,6 +89,19 @@ namespace EditorApp.Editor.Project.Content
 			{
 				m_selectedFile = value;
 				OnPropertyChanged( "SelectedFile" );
+			}
+		}
+
+		public LoadedAssets LoadedAssets
+		{
+			get
+			{
+				return m_loadedAssets;
+			}
+
+			set
+			{
+				m_loadedAssets = value;
 			}
 		}
 

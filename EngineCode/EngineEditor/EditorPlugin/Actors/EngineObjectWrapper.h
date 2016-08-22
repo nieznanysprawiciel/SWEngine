@@ -19,6 +19,7 @@ public:
 
 	System::String^		GetTypeName	();
 	System::IntPtr		GetActorPtr	();
+	EngineObject*		GetPtr		();
 
 
 	property int				Type

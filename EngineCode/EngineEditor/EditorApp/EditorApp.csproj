@@ -166,6 +166,8 @@
     </ApplicationDefinition>
     <Compile Include="Editor\Helpers\Serialization.cs" />
     <Compile Include="Editor\Project\Actors\ActorView.cs" />
+    <Compile Include="Editor\Project\Content\LoadedAssets.cs" />
+    <Compile Include="Editor\Project\Content\AssetView.cs" />
     <Compile Include="Editor\Project\ProjectView.cs" />
     <Compile Include="GUI\ActorProperties.xaml.cs">
       <DependentUpon>ActorProperties.xaml</DependentUpon>
@@ -180,6 +182,12 @@
     <Compile Include="GUI\Bahaviors\KeyboardShortcut\IDeletableItem.cs" />
     <Compile Include="GUI\Converters\DatabindingDebugConverter .cs" />
     <Compile Include="GUI\Converters\FileIconConverter.cs" />
+    <Compile Include="GUI\LoadedAssetsViewer.xaml.cs">
+      <DependentUpon>LoadedAssetsViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ObjectProperties.xaml.cs">
+      <DependentUpon>ObjectProperties.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\ProjectBrowser.xaml.cs">
       <DependentUpon>ProjectBrowser.xaml</DependentUpon>
     </Compile>
@@ -198,6 +206,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\ContentBrowser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\LoadedAssetsViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\ObjectProperties.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

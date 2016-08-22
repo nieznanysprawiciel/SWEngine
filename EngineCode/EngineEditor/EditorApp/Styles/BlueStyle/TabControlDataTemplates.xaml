@@ -32,4 +32,12 @@
 		<gui:ActorProperties />
 	</DataTemplate>
 
+	<DataTemplate DataType="{x:Type content:LoadedAssets}" >
+		<gui:LoadedAssetsViewer />
+	</DataTemplate>
+
+	<DataTemplate DataType="{x:Type content:AssetView}" >
+		<gui:ObjectProperties />
+	</DataTemplate>
+	
 </ResourceDictionary>
