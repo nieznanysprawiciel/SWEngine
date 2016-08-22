@@ -9,12 +9,14 @@ namespace EditorApp.Editor
 	public abstract class UpdatableViewBase : INotifyPropertyChanged, IDisposable
 	{
 		[XmlIgnore]
-		public string DisplayName { get; protected set; }
+		public string	DisplayName { get; protected set; }
+		public bool		IsRemoveable { get; protected set; }
 
 		#region Constructor
 
 		protected UpdatableViewBase()
 		{
+			IsRemoveable = false;
 		}
 
 		#endregion // Constructor

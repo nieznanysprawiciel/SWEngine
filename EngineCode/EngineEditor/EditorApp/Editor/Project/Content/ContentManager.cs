@@ -23,6 +23,7 @@ namespace EditorApp.Editor.Project.Content
 		{
 			DisplayName = "Content Browser";
 
+
 			m_editorLogic = editorLogic;
 			SelectedAssetChangedCommand = new RelayCommand( SelectionChanged );
 			SelectedFile = null;

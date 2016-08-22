@@ -65,6 +65,7 @@ namespace EditorApp
 			SaveLevelCommand = new RelayCommand( SaveLevelClick );
 			LoadLevelCommand = new RelayCommand( LoadLevelClick );
 			SaveGlobalConfig = new RelayCommand( SaveGlobalConfigImpl );
+			CloseTabCommand = new RelayCommand( CloseTab );
 		}
 
 		public bool			Init		( string[] cmdArgs )
@@ -113,7 +114,7 @@ namespace EditorApp
 			}
 		}
 
-		public void			SaveLevelClick( object parameter )
+		public void			SaveLevelClick	( object parameter )
 		{
 			SceneSaver saver = new SceneSaver();
 			saver.ActorsToSave( ProjectManager.ActorsLogic.Actors );
@@ -121,7 +122,7 @@ namespace EditorApp
 			saver.SaveScene( Path.Combine( PathsManager.LevelsDir, "Test2Level.swmap" ) );
 		}
 
-		public void			LoadLevelClick( object parameter )
+		public void			LoadLevelClick	( object parameter )
 		{
 			ProjectManager.ActorsLogic.UnloadScene();
 
@@ -132,12 +133,24 @@ namespace EditorApp
 				ProjectManager.ActorsLogic.PostInitLevel( loader );
 		}
 
-		public void			NewLevelClick( object parameter )
+		public void			NewLevelClick	( object parameter )
 		{
 
 		}
 
-		public void			RenderFrame( object sender, EventArgs e )
+		public void			CloseTab		( object parameter )
+		{
+			UpdatableViewBase view = parameter as UpdatableViewBase;
+
+			if( view != null && view.IsRemoveable )
+			{
+				LeftPanelView.Remove( view );
+				MainPanelView.Remove( view );
+				RightPanelView.Remove( view );
+			}
+		}
+
+		public void			RenderFrame		( object sender, EventArgs e )
 		{
 			Displayer.RenderFrame();
 		}
@@ -231,6 +244,12 @@ namespace EditorApp
 		}
 
 		public ICommand NewLevelCommand
+		{
+			get;
+			internal set;
+		}
+
+		public ICommand CloseTabCommand
 		{
 			get;
 			internal set;

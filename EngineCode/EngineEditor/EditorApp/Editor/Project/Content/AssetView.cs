@@ -15,6 +15,7 @@ namespace EditorApp.Editor.Project.Content
 		public AssetView( ResourceMetaInfo asset )
 		{
 			DisplayName = asset.Resource.ResourceName;
+			IsRemoveable = true;
 
 			ObjectData = asset;
 		}
@@ -32,5 +33,6 @@ namespace EditorApp.Editor.Project.Content
 				m_asset = value as ResourceMetaInfo;
 			}
 		}
+
 	}
 }

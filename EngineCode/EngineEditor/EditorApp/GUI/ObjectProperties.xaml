@@ -16,7 +16,7 @@
 		<TextBlock Text="{Binding TypeName}" Style="{StaticResource TextBlockActorStyle}" />
 
 		<!--Type ID-->
-		<StackPanel Orientation="Horizontal" Margin="20, 10, 0, 5" >
+		<StackPanel Orientation="Horizontal" Margin="20, 10, 0, 5" ToolTip="RTTR type identyfier" >
 			<TextBlock Width="80" Text="TypeID" Style="{StaticResource TextBlockBaseStyle}"/>
 			<TextBlock Text="{Binding Type}" Width="150" Style="{StaticResource TextBlockBaseStyle}"/>
 		</StackPanel>
