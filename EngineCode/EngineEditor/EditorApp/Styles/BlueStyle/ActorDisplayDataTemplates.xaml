@@ -10,6 +10,12 @@
 		<ResourceDictionary Source="/Styles/BlueStyle/Resources.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
 
+	<Style x:Key="PropertyLabelTextBlockStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextBlockBaseStyle}">
+		<Setter Property="MinWidth" Value="90" />
+		<Setter Property="Width" Value="Auto" />
+		<Setter Property="Margin" Value="0,0,10,0" />
+	</Style>
+
 	<!--ObjectPropertyWrapper-->
 	<HierarchicalDataTemplate DataType="{x:Type engine:ObjectPropertyWrapper}" ItemsSource="{Binding Properties}" >
 		<Expander IsExpanded="True" Margin="20, 0, 0, 0">
@@ -67,7 +73,7 @@
 	<!--FloatPropertyWrapper-->
 	<DataTemplate DataType="{x:Type engine:FloatPropertyWrapper}">
 		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
-			<TextBlock Width="80" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
+			<TextBlock Text="{Binding PropertyName}" Style="{StaticResource PropertyLabelTextBlockStyle}"/>
 			<xctk:DoubleUpDown Width="150" Style="{StaticResource DoubleSpinBoxStyle}" Value="{Binding Value}" />
 		</StackPanel>
 	</DataTemplate>
@@ -75,7 +81,7 @@
 	<!--IntPropertyWrapper-->
 	<DataTemplate DataType="{x:Type engine:IntPropertyWrapper}">
 		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
-			<TextBlock Width="80" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
+			<TextBlock Text="{Binding PropertyName}" Style="{StaticResource PropertyLabelTextBlockStyle}"/>
 			<xctk:IntegerUpDown Width="150" Value="{Binding Value}" Style="{StaticResource IntSpinBoxStyle}"/>
 		</StackPanel>
 	</DataTemplate>
@@ -83,7 +89,7 @@
 	<!--UIntPropertyWrapper-->
 	<DataTemplate DataType="{x:Type engine:UIntPropertyWrapper}">
 		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
-			<TextBlock Width="80" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
+			<TextBlock Text="{Binding PropertyName}" Style="{StaticResource PropertyLabelTextBlockStyle}"/>
 			<xctk:IntegerUpDown Width="150" Value="{Binding Value}" Style="{StaticResource IntSpinBoxStyle}"/>
 		</StackPanel>
 	</DataTemplate>
@@ -99,7 +105,7 @@
 	<!--StringPropertyWrapper-->
 	<DataTemplate DataType="{x:Type engine:StringPropertyWrapper}">
 		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
-			<TextBlock Width="80" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
+			<TextBlock Text="{Binding PropertyName}" Style="{StaticResource PropertyLabelTextBlockStyle}"/>
 			<TextBlock Width="Auto" Text="{Binding Value}" Style="{StaticResource TextBlockBaseStyle}"/>
 		</StackPanel>
 	</DataTemplate>
@@ -107,7 +113,7 @@
 	<!--WStringPropertyWrapper-->
 	<DataTemplate DataType="{x:Type engine:WStringPropertyWrapper}">
 		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
-			<TextBlock Width="80" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
+			<TextBlock Text="{Binding PropertyName}" Style="{StaticResource PropertyLabelTextBlockStyle}"/>
 			<TextBlock Width="Auto" Text="{Binding Value}" Style="{StaticResource TextBlockBaseStyle}"/>
 		</StackPanel>
 	</DataTemplate>
