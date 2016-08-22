@@ -10,6 +10,7 @@
 
 class IShaderInputLayout : public ResourceObject
 {
+	RTTR_ENABLE( ResourceObject );
 private:
 protected:
 	IShaderInputLayout() : ResourceObject( 0 ) {}

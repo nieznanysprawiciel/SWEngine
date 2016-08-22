@@ -27,6 +27,14 @@ RTTR_REGISTRATION
 	(
 		rttr::policy::prop::BindAsPtr()
 	);
+
+
+	rttr::registration::class_< SwapChain >( "SwapChain" );
+
+	rttr::registration::class_< BufferObject >( "BufferObject" );
+	rttr::registration::class_< RenderTargetObject >( "RenderTargetObject" );
+	rttr::registration::class_< PixelShader >( "PixelShader" );
+	rttr::registration::class_< VertexShader >( "VertexShader" );
 }
 
 

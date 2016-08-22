@@ -11,6 +11,7 @@
 
 class IShader	:	public ResourceObject
 {
+	RTTR_ENABLE( ResourceObject )
 private:
 protected:
 	std::string				m_shaderEntry;			///< Nazwa g³ownej funkcji shadera.

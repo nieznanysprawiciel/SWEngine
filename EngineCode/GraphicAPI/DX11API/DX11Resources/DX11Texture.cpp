@@ -6,6 +6,11 @@
 
 
 
+RTTR_REGISTRATION
+{
+	rttr::registration::class_< DX11Texture >( "DX11Texture" );
+}
+
 
 DX11Texture::DX11Texture( TextureInfo&& texInfo, ID3D11Texture2D* tex, ID3D11ShaderResourceView* texView )
 	:	m_texture( tex )

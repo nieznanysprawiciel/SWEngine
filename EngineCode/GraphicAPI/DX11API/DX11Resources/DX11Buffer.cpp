@@ -3,10 +3,17 @@
 
 #include "Common/MemoryLeaks.h"
 
+
+RTTR_REGISTRATION
+{
+	rttr::registration::class_< DX11Buffer >( "DX11Buffer" );
+}
+
+
+
 DX11Buffer::DX11Buffer( unsigned int elementSize, unsigned int elementCount, ID3D11Buffer* buff )
 	: BufferObject(elementSize, elementCount), m_buffer( buff )
-{
-}
+{}
 
 DX11Buffer::~DX11Buffer()
 {

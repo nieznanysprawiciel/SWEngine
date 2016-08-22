@@ -5,6 +5,7 @@
 
 class SwapChain
 {
+	RTTR_ENABLE()
 protected:
 
 	RenderTargetObject*		m_renderTarget;

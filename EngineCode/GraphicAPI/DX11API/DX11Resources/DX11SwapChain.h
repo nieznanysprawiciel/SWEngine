@@ -7,6 +7,7 @@
 
 class DX11SwapChain	: public SwapChain, public DX11APIObjects
 {
+	RTTR_ENABLE( SwapChain )
 private:
 
 	IDXGISwapChain*			m_swapChain;

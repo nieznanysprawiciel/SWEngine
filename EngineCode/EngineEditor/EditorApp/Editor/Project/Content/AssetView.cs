@@ -9,18 +9,18 @@ namespace EditorApp.Editor.Project.Content
 {
 	public class AssetView : UpdatableViewBase
 	{
-		private ResourceWrapper     m_asset;
+		private ResourceMetaInfo     m_asset;
 
 
-		public AssetView( ResourceWrapper asset )
+		public AssetView( ResourceMetaInfo asset )
 		{
-			DisplayName = asset.ResourceName;
+			DisplayName = asset.Resource.ResourceName;
 
 			ObjectData = asset;
 		}
 
 
-		public EngineObjectWrapper ObjectData
+		public ResourceMetaInfo ObjectData
 		{
 			get
 			{
@@ -29,7 +29,7 @@ namespace EditorApp.Editor.Project.Content
 
 			internal set
 			{
-				m_asset = value as ResourceWrapper;
+				m_asset = value as ResourceMetaInfo;
 			}
 		}
 	}

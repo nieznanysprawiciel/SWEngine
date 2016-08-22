@@ -12,6 +12,7 @@
 @ingroup DX11API*/
 class DX11InputLayout : public ShaderInputLayout, public DX11APIObjects
 {
+	RTTR_ENABLE( ShaderInputLayout );
 private:
 	ID3D11InputLayout*				m_vertexLayout;
 protected:

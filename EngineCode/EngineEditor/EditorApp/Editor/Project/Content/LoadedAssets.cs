@@ -38,7 +38,9 @@ namespace EditorApp.Editor.Project.Content
 
 			if( asset != null )
 			{
-				AssetView assetView = new AssetView( asset );
+				ResourceMetaInfo assetMeta = new ResourceMetaInfo( asset );
+
+				AssetView assetView = new AssetView( assetMeta );
 				m_editorLogic.MainPanelView.Add( assetView );
 			}
 		}

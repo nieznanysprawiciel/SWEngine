@@ -318,6 +318,7 @@ Powinny po niej odziedziczyæ obiekty konkretnego API graficznego,
 ¿eby zaimplementowaæ najwa¿niejsze funkcjonalnoœci.*/
 class TextureObject : public ResourceObject
 {
+	RTTR_ENABLE( ResourceObject );
 	friend ObjectDeleter<TextureObject>;
 private:
 protected:
@@ -406,6 +407,7 @@ to mo¿e tu byæ przechowywany ten sam obiekt. Ewentualnie mog¹ byæ to dwa obiekty
 które przechowuj¹ inny widok, ale fizycznie odwo³uj¹ siê do tej samej pamiêci.*/
 class RenderTargetObject : public IRenderTarget
 {
+	RTTR_ENABLE( IRenderTarget );
 private:
 protected:
 	TextureObject*			m_colorBuffer;			///<Pozwala na dostêp do bufora kolorów dla innych obiektów. Mo¿e byæ nullptrem.
@@ -432,6 +434,7 @@ vertex shadera.
 @ingroup GraphicAPI*/
 class ShaderInputLayout : public IShaderInputLayout
 {
+	RTTR_ENABLE( IShaderInputLayout );
 	friend ObjectDeleter< ShaderInputLayout >;
 private:
 protected:
@@ -481,6 +484,7 @@ enum class ShaderType
 @ingroup GraphicAPI*/
 class VertexShader : public IShader
 {
+	RTTR_ENABLE( IShader );
 	friend ObjectDeleter< VertexShader >;
 private:
 protected:
@@ -500,6 +504,7 @@ public:
 @ingroup GraphicAPI*/
 class PixelShader : public IShader
 {
+	RTTR_ENABLE( IShader );
 	friend ObjectDeleter< PixelShader >;
 private:
 protected:
@@ -519,6 +524,7 @@ public:
 @ingroup GraphicAPI*/
 class GeometryShader : public IShader
 {
+	RTTR_ENABLE( IShader );
 	friend ObjectDeleter<GeometryShader>;
 private:
 protected:
@@ -538,6 +544,7 @@ public:
 @ingroup GraphicAPI*/
 class ControlShader : public IShader
 {
+	RTTR_ENABLE( IShader );
 	friend ObjectDeleter< ControlShader >;
 private:
 protected:
@@ -557,6 +564,7 @@ public:
 @ingroup GraphicAPI*/
 class EvaluationShader : public IShader
 {
+	RTTR_ENABLE( IShader );
 	friend ObjectDeleter< EvaluationShader >;
 private:
 protected:
@@ -576,6 +584,7 @@ public:
 @ingroup GraphicAPI*/
 class ComputeShader : public IShader
 {
+	RTTR_ENABLE( IShader );
 	friend ObjectDeleter<ComputeShader>;
 private:
 protected:
@@ -598,6 +607,7 @@ Bufor mo¿e byæ zarówno buforem wierzcho³ków, indeksów jak i sta³ych.
 */
 class BufferObject : public IBuffer
 {
+	RTTR_ENABLE( IBuffer )
 	friend ObjectDeleter<BufferObject>;
 protected:
 	unsigned int		m_elementSize;			///<Rozmiar elementu.
@@ -638,8 +648,10 @@ za przezroczystoœæ. Pozosta³e s¹ takie tylko dlatego, ¿e jest to domyœlny format
 w rejestrach karty graficznej i przyspiesza to operacjê kopiowania.
 @see ConstantPerFrame
 */
-typedef struct MaterialObject : public ResourceObject
+struct MaterialObject : public ResourceObject
 {
+	RTTR_ENABLE( ResourceObject );
+public:
 	friend ObjectDeleter<MaterialObject>;
 
 	DirectX::XMFLOAT4		Diffuse;		//Sk³adowa przezroczystoœci odnosi siê do ca³ego materia³u
@@ -654,6 +666,6 @@ typedef struct MaterialObject : public ResourceObject
 	void SetNullMaterial();
 
 	virtual std::string	GetResourceName	() const override { return ""; }
-} MaterialObject;
+};
 
 

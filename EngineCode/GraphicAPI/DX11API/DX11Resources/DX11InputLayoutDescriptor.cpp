@@ -5,6 +5,8 @@
 
 #include "Common/MemoryLeaks.h"
 
+
+
 void DX11InputLayoutDescriptor::AddRow( const char* semanticName, ResourceFormat format, unsigned int inputSlot, unsigned int byteOffset, bool perInstance, unsigned int instanceDataStep )
 {
 	D3D11_INPUT_ELEMENT_DESC inputElement;

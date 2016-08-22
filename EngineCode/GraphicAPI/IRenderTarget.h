@@ -9,6 +9,7 @@
 
 class IRenderTarget : public ResourceObject
 {
+	RTTR_ENABLE( ResourceObject );
 private:
 protected:
 	IRenderTarget() : ResourceObject( 0 ) {}

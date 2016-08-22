@@ -10,6 +10,7 @@
 
 class IBuffer	:	public ResourceObject
 {
+	RTTR_ENABLE( ResourceObject )
 private:
 
 protected:

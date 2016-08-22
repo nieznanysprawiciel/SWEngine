@@ -1,6 +1,12 @@
 #include "DX11SwapChain.h"
 
 
+RTTR_REGISTRATION
+{
+	rttr::registration::class_< DX11SwapChain >( "DX11SwapChain" );
+}
+
+
 
 DX11SwapChain::DX11SwapChain( IDXGISwapChain* chain, DX11RenderTarget* windowRT )
 	:	SwapChain( windowRT )
