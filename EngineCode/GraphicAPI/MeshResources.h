@@ -370,6 +370,7 @@ struct RenderTargetDescriptor
 	Pole ArraySize jest ignorowane, je¿eli tekstura nie jest tablic¹.*/
 	RenderTargetDescriptor()
 	{
+		ArraySize = 1;
 		CPURead = 0;
 		CPUWrite = 0;
 		AllowShareResource = 0;

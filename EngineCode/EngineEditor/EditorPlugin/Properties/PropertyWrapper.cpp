@@ -24,81 +24,94 @@ namespace EditorPlugin
 
 
 /**@brief */
-int IntPropertyWrapper::GetValue( void* refObject )
+int			IntPropertyWrapper::GetValue( void* refObject )
 {
 	auto value = GetPropertyValue< int >( m_metaProperty, System::IntPtr( refObject ) );
 	return value;
 }
 
 /**@brief */
-void IntPropertyWrapper::SetValue( void* refObject, int newValue )
+void		IntPropertyWrapper::SetValue( void* refObject, int newValue )
 {
 	SetPropertyValue< int >( m_metaProperty, System::IntPtr( refObject ), newValue );
 }
 
+/**@brief */
+uint32		UIntPropertyWrapper::GetValue( void* refObject )
+{
+	auto value = GetPropertyValue< int >( m_metaProperty, System::IntPtr( refObject ) );
+	return value;
+}
 
 /**@brief */
-bool BoolPropertyWrapper::GetValue( void* refObject )
+void		UIntPropertyWrapper::SetValue( void* refObject, uint32 newValue )
+{
+	SetPropertyValue< uint32 >( m_metaProperty, System::IntPtr( refObject ), newValue );
+}
+
+
+/**@brief */
+bool		BoolPropertyWrapper::GetValue( void* refObject )
 {
 	auto value = GetPropertyValue< bool >( m_metaProperty, System::IntPtr( refObject ) );
 	return value;
 }
 
 /**@brief */
-void BoolPropertyWrapper::SetValue( void* refObject, bool newValue )
+void		BoolPropertyWrapper::SetValue( void* refObject, bool newValue )
 {
 	SetPropertyValue< bool >( m_metaProperty, System::IntPtr( refObject ), newValue );
 }
 
 
 /**@brief */
-float FloatPropertyWrapper::GetValue( void* refObject )
+float		FloatPropertyWrapper::GetValue( void* refObject )
 {
 	auto value = GetPropertyValue< float >( m_metaProperty, System::IntPtr( refObject ) );
 	return value;
 }
 
 /**@brief */
-void FloatPropertyWrapper::SetValue( void* refObject, float newValue )
+void		FloatPropertyWrapper::SetValue( void* refObject, float newValue )
 {
 	SetPropertyValue< float >( m_metaProperty, System::IntPtr( refObject ), newValue );
 }
 
 /**@brief */
-double DoublePropertyWrapper::GetValue( void* refObject )
+double		DoublePropertyWrapper::GetValue( void* refObject )
 {
 	auto value = GetPropertyValue< double >( m_metaProperty, System::IntPtr( refObject ) );
 	return value;
 }
 
 /**@brief */
-void DoublePropertyWrapper::SetValue( void* refObject, double newValue )
+void		DoublePropertyWrapper::SetValue( void* refObject, double newValue )
 {
 	SetPropertyValue< double >( m_metaProperty, System::IntPtr( refObject ), newValue );
 }
 
 /**@brief */
-System::String ^ StringPropertyWrapper::GetValue( void* refObject )
+System::String^		StringPropertyWrapper::GetValue( void* refObject )
 {
 	auto value = GetPropertyValue< std::string >( m_metaProperty, System::IntPtr( refObject ) );
 	return gcnew System::String( value.c_str() );
 }
 
 /**@brief */
-void StringPropertyWrapper::SetValue( void* refObject, System::String^ newValue )
+void				StringPropertyWrapper::SetValue( void* refObject, System::String^ newValue )
 {
 	SetPropertyValue< std::string >( m_metaProperty, System::IntPtr( refObject ), msclr::interop::marshal_as< std::string >( newValue ) );
 }
 
 /**@brief */
-System::String ^ WStringPropertyWrapper::GetValue( void* refObject )
+System::String^		WStringPropertyWrapper::GetValue( void* refObject )
 {
 	auto value = GetPropertyValue< std::wstring >( m_metaProperty, System::IntPtr( refObject ) );
 	return gcnew System::String( value.c_str() );
 }
 
 /**@brief */
-void WStringPropertyWrapper::SetValue( void* refObject, System::String^ newValue )
+void				WStringPropertyWrapper::SetValue( void* refObject, System::String^ newValue )
 {
 	SetPropertyValue< std::wstring >( m_metaProperty, System::IntPtr( refObject ), msclr::interop::marshal_as< std::wstring >( newValue ) );
 }
@@ -147,21 +160,33 @@ void CategoryPropertyWrapper::BuildHierarchy( void* parentPtr, rttr::type classT
 PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( void* parent, rttr::property property )
 {
 	auto propertyType = property.get_type();
-	if( propertyType == rttr::type::get< int >() )
+	if( propertyType.is_arithmetic() )
 	{
-		return gcnew IntPropertyWrapper( parent, property );
-	}
-	else if( propertyType == rttr::type::get< float >() )
-	{
-		return gcnew FloatPropertyWrapper( parent, property );
-	}
-	else if( propertyType == rttr::type::get< bool >() )
-	{
-		return gcnew BoolPropertyWrapper( parent, property );
-	}
-	else if( propertyType == rttr::type::get< double >() )
-	{
-		return gcnew DoublePropertyWrapper( parent, property );
+		if( propertyType == rttr::type::get< int >() )
+		{
+			return gcnew IntPropertyWrapper( parent, property );
+		}
+		if( propertyType == rttr::type::get< uint32 >() )
+		{
+			return gcnew UIntPropertyWrapper( parent, property );
+		}
+		else if( propertyType == rttr::type::get< float >() )
+		{
+			return gcnew FloatPropertyWrapper( parent, property );
+		}
+		else if( propertyType == rttr::type::get< bool >() )
+		{
+			return gcnew BoolPropertyWrapper( parent, property );
+		}
+		else if( propertyType == rttr::type::get< double >() )
+		{
+			return gcnew DoublePropertyWrapper( parent, property );
+		}
+		else
+			throw gcnew System::ArgumentException( gcnew System::String( "Property type: [" )
+												+ gcnew System::String( property.get_name().c_str() )
+												+ gcnew System::String( "] is not supported" ),
+												gcnew System::String( "property" ) );
 	}
 	else if( propertyType == rttr::type::get< std::string >() )
 	{

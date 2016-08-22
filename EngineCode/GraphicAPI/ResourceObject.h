@@ -29,7 +29,8 @@ Jest to wymagane do u³atwienia obs³ugi wielow¹tkowoœci. Inaczej mog³yby siê pokr
 
 class ResourceObject	: public EngineObject
 {
-	RTTR_ENABLE( EngineObject )
+	RTTR_ENABLE( EngineObject );
+	RTTR_REGISTRATION_FRIEND
 private:
 	unsigned int			m_objectReferences;	///< Liczba assetów, które sie odwo³uj¹. @todo To powinien byæ std::atomic_uint, ale wtedy nie kompiluje siê z CLRem.
 	unsigned int			m_uniqueId;			///< Unikalny identyfikator zasobu.

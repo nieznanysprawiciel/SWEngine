@@ -35,6 +35,44 @@ void		EngineObjectMetaInfo::BuildHierarchy	( EngineObjectWrapper^ objectPtr, rtt
 	m_properties = actorClassMetaData->Properties;
 }
 
+/**@brief */
+List< System::String^ >^	EngineObjectMetaInfo::BaseClasses::get()
+{
+	if( m_actorPtr )
+	{
+		List< System::String^ >^ classesList = gcnew List< System::String^ >();
 
+		auto baseClassesVec = m_actorPtr->GetPtr()->GetType().get_base_classes();
+		for each( auto baseClass in baseClassesVec )
+		{
+			System::String^ className = gcnew System::String( baseClass.get_name().c_str() );
+			classesList->Add( className );
+		}
+
+		return classesList;
+	}
+	else
+		return nullptr;
+}
+
+/**@brief */
+uint32						EngineObjectMetaInfo::TypeSize::get()
+{
+	if( m_actorPtr )
+	{
+		return (uint32)m_actorPtr->GetPtr()->GetType().get_sizeof();
+	}
+	return 0;
+}
+
+/**@brief */
+uint32						EngineObjectMetaInfo::MemorySize::get()
+{
+	if( m_actorPtr )
+	{
+		return (uint32)m_actorPtr->GetPtr()->MemorySize();
+	}
+	return 0;
+}
 
 }	// EditorPlugin

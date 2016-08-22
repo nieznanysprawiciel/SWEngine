@@ -80,6 +80,14 @@
 		</StackPanel>
 	</DataTemplate>
 
+	<!--UIntPropertyWrapper-->
+	<DataTemplate DataType="{x:Type engine:UIntPropertyWrapper}">
+		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+			<TextBlock Width="80" Text="{Binding PropertyName}" Style="{StaticResource TextBlockBaseStyle}"/>
+			<xctk:IntegerUpDown Width="150" Value="{Binding Value}" Style="{StaticResource IntSpinBoxStyle}"/>
+		</StackPanel>
+	</DataTemplate>
+
 	<!--BoolPropertyWrapper-->
 	<DataTemplate DataType="{x:Type engine:BoolPropertyWrapper}">
 		<StackPanel Orientation="Horizontal" Margin="20, 3, 0, 3">

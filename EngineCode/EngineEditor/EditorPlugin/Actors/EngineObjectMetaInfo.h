@@ -49,6 +49,18 @@ public:
 		System::String^					get()	{ return m_actorClassName; }
 	}
 
+	/**@brief Rozmiar klasy (operator sizeof).*/
+	property uint32						TypeSize
+	{
+		uint32							get();
+	}
+
+	/**@brief Rozmiar zajmowany przez klasê razem z alokowan¹ pamiêci¹. (deklarowane przez klasê)*/
+	property uint32						MemorySize
+	{
+		uint32							get();
+	}
+
 	/**@brief Lista wszystkich Property danej klasy.*/
 	property List< PropertyWrapper^ >^	Properties
 	{
@@ -58,6 +70,11 @@ public:
 	property EngineObjectWrapper^		Actor
 	{
 		EngineObjectWrapper^			get ()	{ return m_actorPtr; }
+	}
+
+	property List< System::String^ >^	BaseClasses
+	{
+		List< System::String^ >^		get();
 	}
 
 

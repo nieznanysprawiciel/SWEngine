@@ -15,6 +15,7 @@ namespace EditorPlugin
 		PropertyFloat2,
 		PropertyFloat3,
 		PropertyFloat4,
+		PropertyUInt,
 		PropertyInt,
 		PropertyBool,
 		PropertyDouble,
@@ -42,6 +43,7 @@ namespace EditorPlugin
 		friend ref class Float3PropertyWrapper;
 		friend ref class Float4PropertyWrapper;
 		friend ref class IntPropertyWrapper;
+		friend ref class UIntPropertyWrapper;
 		friend ref class BoolPropertyWrapper;
 		friend ref class ActorClassMetaInfo;
 		friend ref class CategoryPropertyWrapper;
@@ -63,6 +65,9 @@ namespace EditorPlugin
 
 		friend int					GetPropertyValue< int >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
 		friend void					SetPropertyValue< int >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, int newValue );
+
+		friend uint32				GetPropertyValue< uint32 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
+		friend void					SetPropertyValue< uint32 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, uint32 newValue );
 
 		friend float				GetPropertyValue< float >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
 		friend void					SetPropertyValue< float >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, float newValue );

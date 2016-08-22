@@ -113,6 +113,36 @@ using namespace System::Collections::Generic;
 		void					SetValue( void* refObject, int newValue );
 	};
 
+	/**@brief Property typy unsinged int.*/
+	public ref class UIntPropertyWrapper : PropertyWrapper
+	{
+	public:
+		UIntPropertyWrapper( void* parent, rttr::property prop )
+			: PropertyWrapper( parent, PropertyType::PropertyUInt, prop, prop.get_name().c_str() )
+		{}
+
+
+		property uint32		Value
+		{
+			uint32		get ()
+			{
+				if( m_actorPtr )
+					return GetValue( m_actorPtr );
+				return std::numeric_limits< uint32 >::max();
+			}
+
+			void		set	( uint32 value )
+			{
+				if( m_actorPtr )
+					SetValue( m_actorPtr, value );
+			}
+		}
+
+	private:
+		uint32					GetValue( void* refObject );
+		void					SetValue( void* refObject, uint32 newValue );
+	};
+
 	/**@brief Property typu bool.*/
 	public ref class BoolPropertyWrapper : PropertyWrapper
 	{

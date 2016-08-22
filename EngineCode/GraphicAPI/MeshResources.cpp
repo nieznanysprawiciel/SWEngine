@@ -8,7 +8,9 @@ RTTR_REGISTRATION
 {
 	RTTR_REGISTRATION_STANDARD_TYPE_VARIANTS( std::wstring );
 
-	rttr::registration::class_< ResourceObject >( "ResourceObject" );
+	rttr::registration::class_< ResourceObject >( "ResourceObject" )
+	.property_readonly( "ID", &ResourceObject::m_uniqueId )
+	.property_readonly( "References", &ResourceObject::m_objectReferences );
 
 	rttr::registration::class_< TextureInfo >( "TextureInfo" )
 	.property_readonly( "Width", &TextureInfo::GetWidth )
