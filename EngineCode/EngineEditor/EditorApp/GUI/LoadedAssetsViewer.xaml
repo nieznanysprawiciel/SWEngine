@@ -13,7 +13,7 @@
 	</UserControl.Resources>
 
 	<StackPanel>
-		<ListView ItemsSource="{Binding Textures}" Width="Auto" MinHeight="400" Height="Auto" Style="{StaticResource ListViewStyleBase}" SelectionMode="Single" >
+		<ListView ItemsSource="{Binding Textures}" Width="Auto" MinHeight="400" Height="Auto" Style="{StaticResource UnselectableListViewStyle}" SelectionMode="Single" >
 			<ListView.View>
 				<GridView>
 					<GridViewColumn Header="ID" Width="20" DisplayMemberBinding="{Binding ID}" />

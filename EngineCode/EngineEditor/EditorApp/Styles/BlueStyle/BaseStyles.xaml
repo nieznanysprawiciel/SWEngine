@@ -45,6 +45,12 @@
 		<Setter Property="Width" Value="Auto" />
 	</Style>
 	
+	<!--ListView and DataGrid colors and brushes-->
+
+	<Color x:Key="RedGradientFirstColor" >#AAEA9595</Color>
+	<Color x:Key="RedGradientSecondColor" >#AAF54B4B</Color>
+	
+
 	<!--Spin boxes--> 
 
 	<Style x:Key="DoubleSpinBoxStyle" TargetType="xctk:DoubleUpDown">
@@ -249,7 +255,68 @@
 		</Style.Resources>
 	</Style>
 	
-	
+	<!--Other list views-->
+	<Style x:Key="ListColumnHeaderStyle" TargetType="GridViewColumnHeader">
+		<Setter Property="Background" Value="CornflowerBlue" />
+	</Style>
+
+	<Style x:Key="UnselectableListViewItemStyle" TargetType="ListViewItem">
+		<Setter Property="SnapsToDevicePixels" Value="true" />
+		<Setter Property="OverridesDefaultStyle" Value="true" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ListViewItem">
+					<Border x:Name="Border" Padding="2" SnapsToDevicePixels="true" >
+
+						<Border.Background>
+							<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+								<GradientStop Offset="0" Color="Transparent" />
+								<GradientStop Offset="1" Color="Transparent" />
+							</LinearGradientBrush>
+						</Border.Background>
+
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal" />
+								<VisualState x:Name="MouseOver" >
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
+											<EasingColorKeyFrame KeyTime="0" Value="{StaticResource RedGradientFirstColor}" />
+										</ColorAnimationUsingKeyFrames>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+											<EasingColorKeyFrame KeyTime="0" Value="{StaticResource RedGradientSecondColor}" />
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Disabled" />
+							</VisualStateGroup>
+							<VisualStateGroup x:Name="SelectionStates">
+								<VisualState x:Name="Unselected" />
+								<VisualState x:Name="Selected"/>
+								<VisualState x:Name="SelectedUnfocused" />
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+
+
+	<Style x:Key="UnselectableListViewStyle" TargetType="{x:Type ListView}" BasedOn="{StaticResource ListViewStyleBase}" >
+		<Setter Property="ItemContainerStyle" Value="{StaticResource UnselectableListViewItemStyle}" />
+		<Setter Property="Foreground" Value="{StaticResource BasicTextColorBrush}" />
+		<Style.Resources>
+			<!--This style should be avaible for alla controlls-->
+			<Style TargetType="GridViewColumnHeader">
+				<Setter Property="Background" Value="CornflowerBlue" />
+				<Setter Property="BorderBrush" Value="CornflowerBlue" />
+			</Style>
+		</Style.Resources>
+	</Style>
+
 	<!--Data Grid styles-->
 
 	<Style TargetType="{x:Type DataGridRow}">
@@ -257,8 +324,7 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type DataGridRow}">
-					<Grid x:Name="DGR_Grid"
-					        SnapsToDevicePixels="True">
+					<Grid x:Name="DGR_Grid" SnapsToDevicePixels="True">
 						<Grid.Background>
 							<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
 								<GradientStop Offset="0" Color="Transparent" />
@@ -271,20 +337,10 @@
 								<VisualState x:Name="MouseOver">
 									<Storyboard>
 										<ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Grid" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
-											<EasingColorKeyFrame KeyTime="0" Value="#AAEA9595" />
+											<EasingColorKeyFrame KeyTime="0" Value="{StaticResource RedGradientFirstColor}" />
 										</ColorAnimationUsingKeyFrames>
 										<ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Grid" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
-											<EasingColorKeyFrame KeyTime="0" Value="#AAF54B4B" />
-										</ColorAnimationUsingKeyFrames>
-									</Storyboard>
-								</VisualState>
-								<VisualState x:Name="NormalSelected" >
-									<Storyboard>
-										<ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Grid" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
-											<EasingColorKeyFrame KeyTime="0" Value="#AAEA9595" />
-										</ColorAnimationUsingKeyFrames>
-										<ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Grid" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
-											<EasingColorKeyFrame KeyTime="0" Value="#AAFFFFFF" />
+											<EasingColorKeyFrame KeyTime="0" Value="{StaticResource RedGradientSecondColor}" />
 										</ColorAnimationUsingKeyFrames>
 									</Storyboard>
 								</VisualState>

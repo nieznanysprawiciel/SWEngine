@@ -41,7 +41,8 @@
 							<Button Grid.Column="1" Content="X" FontWeight="Bold" Width="20" Height="20"
 									BorderBrush="Transparent" Background="Transparent" Foreground="Brown" Margin="0,0,8,0" VerticalAlignment="Bottom"
 									Command="{Binding Path=DataContext.CloseTabCommand, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" 
-									CommandParameter="{TemplateBinding DataContext}"/>
+									CommandParameter="{TemplateBinding DataContext}">
+							</Button>
 						</Grid>
 					</Border>
 					<ControlTemplate.Triggers>

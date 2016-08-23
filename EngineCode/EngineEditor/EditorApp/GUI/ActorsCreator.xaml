@@ -14,7 +14,7 @@
 		<ResourceDictionary Source="/Styles/BlueStyle/BaseStyles.xaml"/>
 	</UserControl.Resources>
 
-	<ListView Style="{StaticResource ListViewStyleBase}" Height="Auto" Width="Auto" DataContext="{Binding}" ItemsSource="{Binding ActorsMetaData}" SelectionMode="Single">
+	<ListView Style="{StaticResource UnselectableListViewStyle}" Height="Auto" Width="Auto" DataContext="{Binding}" ItemsSource="{Binding ActorsMetaData}" SelectionMode="Single">
 		<ListView.View>
 			<GridView>
 				<GridView.ColumnHeaderContainerStyle>

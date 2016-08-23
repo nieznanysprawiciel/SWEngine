@@ -36,12 +36,23 @@
 		<!--Base classes-->
 		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 5">
 			<TextBlock Width="80" Text="Base Classes" Style="{StaticResource TextBlockBaseStyle}"/>
-			<ListView ItemsSource="{Binding BaseClasses}" Width="Auto" Height="Auto" Style="{StaticResource ListViewStyleBase}" MinWidth="250">
-				<ListView.ItemTemplate>
-					<DataTemplate>
-						<TextBlock Text="{Binding}" Style="{StaticResource TextBlockBaseStyle}" />
-					</DataTemplate>
-				</ListView.ItemTemplate>
+			<ListView ItemsSource="{Binding BaseClasses}" Width="Auto" Height="Auto" Style="{StaticResource UnselectableListViewStyle}" MinWidth="250">
+				<ListView.View>
+					<GridView>
+						<GridView.ColumnHeaderContainerStyle>
+							<Style TargetType="GridViewColumnHeader">
+								<Setter Property="Visibility" Value="Collapsed" />
+							</Style>
+						</GridView.ColumnHeaderContainerStyle>
+						<GridViewColumn >
+							<GridViewColumn.CellTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding}" Style="{StaticResource TextBlockBaseStyle}" />
+								</DataTemplate>
+							</GridViewColumn.CellTemplate>
+						</GridViewColumn>
+					</GridView>
+				</ListView.View>
 			</ListView>
 		</StackPanel>
 

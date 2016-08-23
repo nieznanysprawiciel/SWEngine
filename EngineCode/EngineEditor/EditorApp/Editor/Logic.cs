@@ -53,8 +53,8 @@ namespace EditorApp
 			ProjectManager = new Project.ProjectManager( this );
 			Displayer = new Engine.Displayer( this );
 
-			LeftPanelView.Add( ProjectManager.ContentManager );
-			LeftPanelView.Add( ProjectManager.ActorsLogic.ActorsCreatorView );
+			LeftPanelView.Insert( 0, ProjectManager.ActorsLogic.ActorsCreatorView );
+			LeftPanelView.Insert( 0, ProjectManager.ContentManager );
 			RightPanelView.Add( ProjectManager.ActorsLogic );
 			RightPanelView.Add( ProjectManager.ProjectView );
 			MainPanelView.Add( Displayer );
