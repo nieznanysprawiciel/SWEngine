@@ -16,19 +16,19 @@ namespace EditorPlugin
 	auto type = rttr::type::get( prop );
 
 	if( type.is_derived_from< Model3DFromFile >() )
-		m_resourceType = ResourcePropertyType::PropertyMesh;
+		m_resourceType = ResourcePropertyType::Mesh;
 	else if( type.is_derived_from< BufferObject >() )
-		m_resourceType = ResourcePropertyType::PropertyBuffer;
+		m_resourceType = ResourcePropertyType::Buffer;
 	else if( type.is_derived_from< TextureObject >() )
-		m_resourceType = ResourcePropertyType::PropertyTexture;
+		m_resourceType = ResourcePropertyType::Texture;
 	else if( type.is_derived_from< MaterialObject >() )
-		m_resourceType = ResourcePropertyType::PropertyMaterial;
+		m_resourceType = ResourcePropertyType::Material;
 	else if( type.is_derived_from< IShader >() )
-		m_resourceType = ResourcePropertyType::PropertyShader;
+		m_resourceType = ResourcePropertyType::Shader;
 	else if( type.is_derived_from< RenderTargetObject >() )
-		m_resourceType = ResourcePropertyType::PropertyRenderTarget;
+		m_resourceType = ResourcePropertyType::RenderTarget;
 	else
-		m_resourceType = ResourcePropertyType::PropertyUnKnown;
+		m_resourceType = ResourcePropertyType::UnknownType;
 }
 
 

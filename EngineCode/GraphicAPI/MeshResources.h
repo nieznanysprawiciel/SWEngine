@@ -409,6 +409,7 @@ które przechowuj¹ inny widok, ale fizycznie odwo³uj¹ siê do tej samej pamiêci.*/
 class RenderTargetObject : public IRenderTarget
 {
 	RTTR_ENABLE( IRenderTarget );
+	RTTR_REGISTRATION_FRIEND;
 private:
 protected:
 	TextureObject*			m_colorBuffer;			///<Pozwala na dostêp do bufora kolorów dla innych obiektów. Mo¿e byæ nullptrem.
@@ -422,7 +423,7 @@ public:
 	inline TextureObject*		GetDepthBuffer()			{ return m_depthBuffer; }		///<Zwraca obiekt bufora g³êbokoœci.
 	inline TextureObject*		GetStencilBuffer()			{ return m_stencilBuffer; }		///<Zwraca obiekt bufora stencilu.
 
-	virtual std::string			GetResourceName	() const override { return m_colorBuffer->GetFilePath().String(); }	///<@todo RenderTargety powinny mieæ swoje nazwy.
+	virtual std::string			GetResourceName	() const override;	///<@todo RenderTargety powinny mieæ swoje nazwy.
 };
 
 //----------------------------------------------------------------------------------------------//

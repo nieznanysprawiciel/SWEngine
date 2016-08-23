@@ -37,6 +37,30 @@ RTTR_REGISTRATION
 	rttr::registration::class_< RenderTargetObject >( "RenderTargetObject" );
 	rttr::registration::class_< PixelShader >( "PixelShader" );
 	rttr::registration::class_< VertexShader >( "VertexShader" );
+
+	rttr::registration::class_< RenderTargetObject >( "RenderTargetObject" )
+	.property( "ColorBuffer", &RenderTargetObject::m_colorBuffer )
+	.property( "DepthBuffer", &RenderTargetObject::m_depthBuffer )
+	.property( "StencilBuffer", &RenderTargetObject::m_stencilBuffer );
+
+	rttr::registration::class_< MaterialObject >( "MaterialObject" )
+	.property( "Diffuse", &MaterialObject::Diffuse )
+	(
+		rttr::policy::prop::BindAsPtr()
+	)
+	.property( "Specular", &MaterialObject::Specular )
+	(
+		rttr::policy::prop::BindAsPtr()
+	)
+	.property( "Ambient", &MaterialObject::Ambient )
+	(
+		rttr::policy::prop::BindAsPtr()
+	)
+	.property( "Emissive", &MaterialObject::Emissive )
+	(
+		rttr::policy::prop::BindAsPtr()
+	)
+	.property( "SpecularPower", &MaterialObject::Power );
 }
 
 
@@ -121,6 +145,17 @@ RenderTargetObject::~RenderTargetObject()
 		//if( m_stencilBuffer->CanDelete() )
 		//	ObjectDeleter<TextureObject>::delete_object( m_stencilBuffer, ObjectDeleterKey<TextureObject>() );
 	}
+}
+
+std::string		RenderTargetObject::GetResourceName() const
+{
+	if( m_colorBuffer )
+		return m_colorBuffer->GetFilePath().String();
+	if( m_depthBuffer )
+		return m_depthBuffer->GetFilePath().String();
+	if( m_stencilBuffer )
+		return m_stencilBuffer->GetFilePath().String();
+	return "";
 }
 
 //----------------------------------------------------------------------------------------------//

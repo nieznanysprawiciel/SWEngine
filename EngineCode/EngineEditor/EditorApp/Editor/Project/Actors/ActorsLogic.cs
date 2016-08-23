@@ -207,19 +207,19 @@ namespace EditorApp.Editor.Project.Actors
 			if( m_editorLogic.ProjectManager.ContentManager.SelectedFile.Type == Content.FileTreeNodeType.Directory )
 				return false;
 
-			if( resource.ResourceType == ResourcePropertyType.PropertyMesh &&
+			if( resource.ResourceType == ResourcePropertyType.Mesh &&
 				m_editorLogic.ProjectManager.ContentManager.SelectedFile.Type == Content.FileTreeNodeType.Model3D )
 				return true;
 
-			if( resource.ResourceType == ResourcePropertyType.PropertyShader &&
+			if( resource.ResourceType == ResourcePropertyType.Shader &&
 				m_editorLogic.ProjectManager.ContentManager.SelectedFile.Type == Content.FileTreeNodeType.Shader )
 				return true;
 
-			if( resource.ResourceType == ResourcePropertyType.PropertyTexture &&
+			if( resource.ResourceType == ResourcePropertyType.Texture &&
 				m_editorLogic.ProjectManager.ContentManager.SelectedFile.Type == Content.FileTreeNodeType.Texture )
 				return true;
 
-			if( resource.ResourceType == ResourcePropertyType.PropertyBuffer &&
+			if( resource.ResourceType == ResourcePropertyType.Buffer &&
 				m_editorLogic.ProjectManager.ContentManager.SelectedFile.Type == Content.FileTreeNodeType.Buffer )
 				return true;
 

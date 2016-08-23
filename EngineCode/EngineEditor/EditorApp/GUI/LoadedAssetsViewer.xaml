@@ -4,16 +4,32 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EditorApp.GUI"
+			 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+			 xmlns:engine="clr-namespace:EditorPlugin;assembly=EditorPlugin"
 			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-	
+
 	<UserControl.Resources>
-		<ResourceDictionary Source="/Styles/BlueStyle/BaseStyles.xaml"/>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Styles/BlueStyle/BaseStyles.xaml"/>
+				<ResourceDictionary>
+					<ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="PropertyTypeEnumProvider">
+						<ObjectDataProvider.MethodParameters>
+							<x:Type TypeName="engine:ResourcePropertyType" />
+						</ObjectDataProvider.MethodParameters>
+					</ObjectDataProvider>
+				</ResourceDictionary>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
 	</UserControl.Resources>
 
 	<StackPanel>
-		<ListView ItemsSource="{Binding Textures}" Width="Auto" MinHeight="400" Height="Auto" Style="{StaticResource UnselectableListViewStyle}" SelectionMode="Single" >
+		<ComboBox SelectedItem="{Binding SelectedResourceType}" ItemsSource="{Binding Source={StaticResource PropertyTypeEnumProvider}}" />
+
+
+		<ListView ItemsSource="{Binding SelectedResourceCollection}" Width="Auto" MinHeight="400" Height="Auto" Style="{StaticResource UnselectableListViewStyle}" SelectionMode="Single" >
 			<ListView.View>
 				<GridView>
 					<GridViewColumn Header="ID" Width="20" DisplayMemberBinding="{Binding ID}" />

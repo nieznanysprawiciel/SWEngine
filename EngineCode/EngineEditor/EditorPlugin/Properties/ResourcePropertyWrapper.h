@@ -8,19 +8,19 @@ namespace EditorPlugin
 
 public enum class ResourcePropertyType
 {
-	PropertyMesh,
-	PropertyAnimation,
-	PropertySkeleton,
-	PropertyBuffer,
-	PropertyMaterial,
-	PropertyTexture,
-	PropertyShader,
-	PropertyRenderTarget,
-	PropertyUnKnown
+	Mesh,
+	Animation,
+	Skeleton,
+	Buffer,
+	Material,
+	Texture,
+	Shader,
+	RenderTarget,
+	UnknownType
 
 };
 
-/**@brief Property dla obiektów zasobów: Model3DFromFile, BufferObject, MaterialObject, TextureObject*/
+/**@brief Property dla obiektów zaPropertyAnimationsobów: Model3DFromFile, BufferObject, MaterialObject, TextureObject*/
 public ref class ResourcePropertyWrapper : CategoryLessPropertyWrapper
 {
 protected:
