@@ -267,7 +267,8 @@ void CategoryLessPropertyWrapper::BuildHierarchy()
 	// a tak my chcemy zbudowaæ hierarchiê dla klasy pochodnej.
 	auto realContent = property.get_value( declaringObject );
 
-	BuildHierarchy( realContent.get_value< void* >(), realContent.get_type() );
+	if( realContent.get_value< void* >() != nullptr )
+		BuildHierarchy( realContent.get_value< void* >(), realContent.get_type() );
 }
 
 
