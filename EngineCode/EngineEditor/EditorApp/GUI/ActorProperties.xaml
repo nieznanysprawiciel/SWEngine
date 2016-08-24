@@ -11,19 +11,21 @@
 		<ResourceDictionary Source="/Styles/BlueStyle/BaseStyles.xaml"/>
 	</UserControl.Resources>
 
-	<ListView Height="Auto" Width="Auto" Style="{StaticResource ActorListViewStyle}" >
-		<ListView.Resources>
-			<CollectionViewSource x:Key="PropertiesCollection" Source="{Binding Path=SelectedActorMeta.Properties}" />
-			<x:Array x:Key="ActorInfoCollectionItem" Type="ListViewItem" >
-				<ListViewItem ContentTemplate="{Binding}" Content="{Binding Path=SelectedActorMeta.Actor}"/>
-			</x:Array>
-			<CollectionViewSource x:Key="ActorInfoCollection" Source="{StaticResource ActorInfoCollectionItem}" />
-		</ListView.Resources>
-		<ListView.ItemsSource>
-			<CompositeCollection>
-				<CollectionContainer Collection="{Binding Source={StaticResource ActorInfoCollection}}"/>
-				<CollectionContainer Collection="{Binding Source={StaticResource PropertiesCollection}}"/>
-			</CompositeCollection>
-		</ListView.ItemsSource>
-	</ListView>
+	<ScrollViewer>
+		<ListView Height="Auto" Width="Auto" Style="{StaticResource ActorListViewStyle}" >
+			<ListView.Resources>
+				<CollectionViewSource x:Key="PropertiesCollection" Source="{Binding Path=SelectedActorMeta.Properties}" />
+				<x:Array x:Key="ActorInfoCollectionItem" Type="ListViewItem" >
+					<ListViewItem ContentTemplate="{Binding}" Content="{Binding Path=SelectedActorMeta.Actor}"/>
+				</x:Array>
+				<CollectionViewSource x:Key="ActorInfoCollection" Source="{StaticResource ActorInfoCollectionItem}" />
+			</ListView.Resources>
+			<ListView.ItemsSource>
+				<CompositeCollection>
+					<CollectionContainer Collection="{Binding Source={StaticResource ActorInfoCollection}}"/>
+					<CollectionContainer Collection="{Binding Source={StaticResource PropertiesCollection}}"/>
+				</CompositeCollection>
+			</ListView.ItemsSource>
+		</ListView>
+	</ScrollViewer>
 </UserControl>

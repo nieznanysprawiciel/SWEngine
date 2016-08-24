@@ -44,22 +44,10 @@ RTTR_REGISTRATION
 	.property( "StencilBuffer", &RenderTargetObject::m_stencilBuffer );
 
 	rttr::registration::class_< MaterialObject >( "MaterialObject" )
-	.property( "Diffuse", &MaterialObject::Diffuse )
-	(
-		rttr::policy::prop::BindAsPtr()
-	)
-	.property( "Specular", &MaterialObject::Specular )
-	(
-		rttr::policy::prop::BindAsPtr()
-	)
-	.property( "Ambient", &MaterialObject::Ambient )
-	(
-		rttr::policy::prop::BindAsPtr()
-	)
-	.property( "Emissive", &MaterialObject::Emissive )
-	(
-		rttr::policy::prop::BindAsPtr()
-	)
+	.property( "Diffuse", &MaterialObject::Diffuse ) BIND_AS_PTR
+	.property( "Specular", &MaterialObject::Specular ) BIND_AS_PTR
+	.property( "Ambient", &MaterialObject::Ambient ) BIND_AS_PTR
+	.property( "Emissive", &MaterialObject::Emissive ) BIND_AS_PTR
 	.property( "SpecularPower", &MaterialObject::Power );
 }
 

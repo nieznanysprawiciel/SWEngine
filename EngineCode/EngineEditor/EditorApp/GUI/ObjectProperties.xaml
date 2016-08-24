@@ -11,54 +11,56 @@
 		<ResourceDictionary Source="/Styles/BlueStyle/BaseStyles.xaml"/>
 	</UserControl.Resources>
 
-	<StackPanel Margin="20, 5, 20, 5" DataContext="{Binding ObjectData}">
+	<ScrollViewer>
+		<StackPanel Margin="20, 5, 20, 5" DataContext="{Binding ObjectData}">
 		
-		<TextBlock Text="{Binding TypeName}" Style="{StaticResource TextBlockActorStyle}" />
+			<TextBlock Text="{Binding TypeName}" Style="{StaticResource TextBlockActorStyle}" />
 
-		<!--Type ID-->
-		<StackPanel Orientation="Horizontal" Margin="20, 10, 0, 5" ToolTip="RTTR type identyfier" >
-			<TextBlock Width="80" Text="TypeID" Style="{StaticResource TextBlockBaseStyle}"/>
-			<TextBlock Text="{Binding Type}" Width="150" Style="{StaticResource TextBlockBaseStyle}"/>
-		</StackPanel>
+			<!--Type ID-->
+			<StackPanel Orientation="Horizontal" Margin="20, 10, 0, 5" ToolTip="RTTR type identyfier" >
+				<TextBlock Width="80" Text="TypeID" Style="{StaticResource TextBlockBaseStyle}"/>
+				<TextBlock Text="{Binding Type}" Width="150" Style="{StaticResource TextBlockBaseStyle}"/>
+			</StackPanel>
 
-		<!--Sizeof operator-->
-		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 5" ToolTip="Operator sizeof" >
-			<TextBlock Width="80" Text="Size" Style="{StaticResource TextBlockBaseStyle}"/>
-			<TextBlock Text="{Binding TypeSize}" Width="80" Style="{StaticResource TextBlockBaseStyle}"/>
-		</StackPanel>
+			<!--Sizeof operator-->
+			<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 5" ToolTip="Operator sizeof" >
+				<TextBlock Width="80" Text="Size" Style="{StaticResource TextBlockBaseStyle}"/>
+				<TextBlock Text="{Binding TypeSize}" Width="80" Style="{StaticResource TextBlockBaseStyle}"/>
+			</StackPanel>
 
-		<!--Memory size-->
-		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 5" ToolTip="Memory consumption declared by the class. Can be wrong!!" >
-			<TextBlock Width="80" Text="Memory size" Style="{StaticResource TextBlockBaseStyle}"/>
-			<TextBlock Text="{Binding MemorySize}" Width="80" Style="{StaticResource TextBlockBaseStyle}"/>
-		</StackPanel>
+			<!--Memory size-->
+			<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 5" ToolTip="Memory consumption declared by the class. Can be wrong!!" >
+				<TextBlock Width="80" Text="Memory size" Style="{StaticResource TextBlockBaseStyle}"/>
+				<TextBlock Text="{Binding MemorySize}" Width="80" Style="{StaticResource TextBlockBaseStyle}"/>
+			</StackPanel>
 
-		<!--Base classes-->
-		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 5">
-			<TextBlock Width="80" Text="Base Classes" Style="{StaticResource TextBlockBaseStyle}"/>
-			<ListView ItemsSource="{Binding BaseClasses}" Width="Auto" Height="Auto" Style="{StaticResource UnselectableListViewStyle}" MinWidth="250">
-				<ListView.View>
-					<GridView>
-						<GridView.ColumnHeaderContainerStyle>
-							<Style TargetType="GridViewColumnHeader">
-								<Setter Property="Visibility" Value="Collapsed" />
-							</Style>
-						</GridView.ColumnHeaderContainerStyle>
-						<GridViewColumn >
-							<GridViewColumn.CellTemplate>
-								<DataTemplate>
-									<TextBlock Text="{Binding}" Style="{StaticResource TextBlockBaseStyle}" />
-								</DataTemplate>
-							</GridViewColumn.CellTemplate>
-						</GridViewColumn>
-					</GridView>
-				</ListView.View>
-			</ListView>
-		</StackPanel>
+			<!--Base classes-->
+			<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 5">
+				<TextBlock Width="80" Text="Base Classes" Style="{StaticResource TextBlockBaseStyle}"/>
+				<ListView ItemsSource="{Binding BaseClasses}" Width="Auto" Height="Auto" Style="{StaticResource UnselectableListViewStyle}" MinWidth="250">
+					<ListView.View>
+						<GridView>
+							<GridView.ColumnHeaderContainerStyle>
+								<Style TargetType="GridViewColumnHeader">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</Style>
+							</GridView.ColumnHeaderContainerStyle>
+							<GridViewColumn >
+								<GridViewColumn.CellTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding}" Style="{StaticResource TextBlockBaseStyle}" />
+									</DataTemplate>
+								</GridViewColumn.CellTemplate>
+							</GridViewColumn>
+						</GridView>
+					</ListView.View>
+				</ListView>
+			</StackPanel>
 
-		<!--Properties-->
-		<ListView Height="Auto" Width="Auto" Style="{StaticResource ActorListViewStyle}" ItemsSource="{Binding Properties}" />
+			<!--Properties-->
+			<ListView Height="Auto" Width="Auto" Style="{StaticResource ActorListViewStyle}" ItemsSource="{Binding Properties}" />
 		
-	</StackPanel>
+		</StackPanel>
+	</ScrollViewer>
 
 </UserControl>
