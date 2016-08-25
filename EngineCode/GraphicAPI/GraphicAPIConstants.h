@@ -9,7 +9,7 @@
 
 /**@brief Specyfikuje typ dostêpu do pamiêci danego zasobu.
 @see @ref GraphicAPI*/
-enum class ResourceUsage
+enum class ResourceUsage : uint8
 {
 	RESOURCE_USAGE_DEFAULT		= 0,		///<Pozawala GPU na zapis i odczyt.
 	RESOURCE_USAGE_DYNAMIC		= 1,		///<Pozwala GPU na odczyt, a CPU na zapis. Dobre do czêsto updatowanych zasobów.
@@ -19,7 +19,7 @@ enum class ResourceUsage
 
 /**@brief Topologia wierzcho³ków.
 @see @ref GraphicAPI*/
-enum class PrimitiveTopology
+enum class PrimitiveTopology : uint8
 {
   PRIMITIVE_TOPOLOGY_POINTLIST                     = 0,
   PRIMITIVE_TOPOLOGY_LINELIST                      = 1,
@@ -37,7 +37,7 @@ enum class PrimitiveTopology
 @attention DirectX pozwala na ³¹czenie tych sta³ych jak flag, ale w silniku mo¿na wybraæ tylko
 jedn¹ opcjê.
 @see @ref GraphicAPI*/
-enum ResourceBinding
+enum ResourceBinding : uint8
 {
 	BIND_RESOURCE_VERTEX_BUFFER     = 0x0L,
 	BIND_RESOURCE_INDEX_BUFFER		= 0x1L,
@@ -56,7 +56,7 @@ enum ResourceBinding
 /**@brief Definiuje typ tekstury.
 
 @see @ref GraphicAPI*/
-enum class TextureType
+enum class TextureType : uint8
 {
 	TEXTURE_TYPE_UNKNOW							= 0,
 	TEXTURE_TYPE_BUFFER							= 1,
@@ -73,7 +73,7 @@ enum class TextureType
 /**@brief Typy dostêpne dla bufora g³êbokoœci.
 
 @see @ref GraphicAPI*/
-enum class DepthStencilFormat
+enum class DepthStencilFormat : uint8
 {
 	DEPTH_STENCIL_FORMAT_D32_FLOAT_S8X24_UINT	= 0,
 	DEPTH_STENCIL_FORMAT_D32_FLOAT				= 1,
@@ -83,7 +83,7 @@ enum class DepthStencilFormat
 
 /**@brief Specyfikuje format tekstury b¹dŸ innego zasobu.
 @see @ref GraphicAPI*/
-enum class ResourceFormat
+enum class ResourceFormat : uint8
 {
 	RESOURCE_FORMAT_UNKNOWN = 0,
 	RESOURCE_FORMAT_R32G32B32A32_TYPELESS = 1,

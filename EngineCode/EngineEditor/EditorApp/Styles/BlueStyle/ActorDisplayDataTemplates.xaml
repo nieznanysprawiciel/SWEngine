@@ -47,6 +47,14 @@
 			<ItemsControl ItemsSource="{Binding Properties}" />
 		</StackPanel>
 	</HierarchicalDataTemplate>
+	
+	<!--EnumPropertyWrapper-->
+	<DataTemplate DataType="{x:Type engine:EnumPropertyWrapper}">
+		<StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+			<TextBlock Text="{Binding PropertyName}" Style="{StaticResource PropertyLabelTextBlockStyle}"/>
+			<ComboBox MinWidth="150" ItemsSource="{Binding EnumStrings}" SelectedItem="{Binding Value}" Style="{StaticResource ComboboxBaseStyle}" />
+		</StackPanel>
+	</DataTemplate>
 
 	<!--ResourceObjectPropertyWrapper-->
 	<HierarchicalDataTemplate DataType="{x:Type engine:ResourcePropertyWrapper}" ItemsSource="{Binding Properties}" >

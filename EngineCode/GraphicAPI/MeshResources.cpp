@@ -8,6 +8,18 @@ RTTR_REGISTRATION
 {
 	RTTR_REGISTRATION_STANDARD_TYPE_VARIANTS( std::wstring );
 
+	// Enumerations
+	rttr::registration::enumeration< ResourceUsage >( "ResourceUsage" )
+	(
+		rttr::value( "Default", ResourceUsage::RESOURCE_USAGE_DEFAULT ),
+		rttr::value( "Dynamic", ResourceUsage::RESOURCE_USAGE_DYNAMIC ),
+		rttr::value( "Staging", ResourceUsage::RESOURCE_USAGE_STAGING ),
+		rttr::value( "Static", ResourceUsage::RESOURCE_USAGE_STATIC )
+	);
+
+
+	// Resources
+
 	rttr::registration::class_< ResourceObject >( "ResourceObject" )
 	.property_readonly( "ID", &ResourceObject::m_uniqueId )
 	.property_readonly( "References", &ResourceObject::m_objectReferences );
@@ -21,6 +33,7 @@ RTTR_REGISTRATION
 	.property_readonly( "SharedResource", &TextureInfo::IsSharedResource )
 	.property_readonly( "CubeMap", &TextureInfo::IsCubeMapTex )
 	.property_readonly( "GeneratedMipMaps", &TextureInfo::GenMipMaps )
+	.property_readonly( "Usage", &TextureInfo::Usage )
 	.property_readonly( "MipMapsLevels", &TextureInfo::GetMipLevels )
 	.property_readonly( "FilePath", &TextureInfo::GetPath );
 
@@ -53,11 +66,11 @@ RTTR_REGISTRATION
 
 
 //----------------------------------------------------------------------------------------------//
-//								PixelShader												//
+//								PixelShader														//
 //----------------------------------------------------------------------------------------------//
 
 //----------------------------------------------------------------------------------------------//
-//								VertexShader												//
+//								VertexShader													//
 //----------------------------------------------------------------------------------------------//
 
 
