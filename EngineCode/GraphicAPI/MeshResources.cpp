@@ -8,7 +8,11 @@ RTTR_REGISTRATION
 {
 	RTTR_REGISTRATION_STANDARD_TYPE_VARIANTS( std::wstring );
 
-	// Enumerations
+//====================================================================================//
+//			Enumarations	
+//====================================================================================//
+	
+
 	rttr::registration::enumeration< ResourceUsage >( "ResourceUsage" )
 	(
 		rttr::value( "Default", ResourceUsage::RESOURCE_USAGE_DEFAULT ),
@@ -16,9 +20,168 @@ RTTR_REGISTRATION
 		rttr::value( "Staging", ResourceUsage::RESOURCE_USAGE_STAGING ),
 		rttr::value( "Static", ResourceUsage::RESOURCE_USAGE_STATIC )
 	);
+	
+
+	rttr::registration::enumeration< TextureType >( "TextureType" )
+	(
+		rttr::value( "Buffer", TextureType::TEXTURE_TYPE_BUFFER ),
+		rttr::value( "Texture 1D", TextureType::TEXTURE_TYPE_TEXTURE1D ),
+		rttr::value( "Texture 1D Array", TextureType::TEXTURE_TYPE_TEXTURE1D_ARRAY ),
+		rttr::value( "Texture 2D", TextureType::TEXTURE_TYPE_TEXTURE2D ),
+		rttr::value( "Texture 2D Array", TextureType::TEXTURE_TYPE_TEXTURE2D_ARRAY ),
+		rttr::value( "Texture 2D Multisample", TextureType::TEXTURE_TYPE_TEXTURE2D_MULTISAMPLE ),
+		rttr::value( "Texture 2D Multisample Array", TextureType::TEXTURE_TYPE_TEXTURE2D_MULTISAMPLE_ARRAY ),
+		rttr::value( "Texture 3D", TextureType::TEXTURE_TYPE_TEXTURE3D )
+	);
+
+	rttr::registration::enumeration< ResourceFormat >( "ResourceFormat" )
+	(
+		rttr::value( "Unknown", ResourceFormat::RESOURCE_FORMAT_UNKNOWN ),
+		rttr::value( "R32G32B32A32_TYPELESS", ResourceFormat::RESOURCE_FORMAT_R32G32B32A32_TYPELESS ),
+		rttr::value( "R32G32B32A32_UINT", ResourceFormat::RESOURCE_FORMAT_R32G32B32A32_FLOAT ),
+		rttr::value( "R32G32B32A32_UINT", ResourceFormat::RESOURCE_FORMAT_R32G32B32A32_UINT ),
+		rttr::value( "R32G32B32A32_SINT", ResourceFormat::RESOURCE_FORMAT_R32G32B32A32_SINT ),
+		rttr::value( "R32G32B32_TYPELESS", ResourceFormat::RESOURCE_FORMAT_R32G32B32_TYPELESS ),
+		rttr::value( "R32G32B32_FLOAT", ResourceFormat::RESOURCE_FORMAT_R32G32B32_FLOAT ),
+		rttr::value( "R32G32B32_UINT", ResourceFormat::RESOURCE_FORMAT_R32G32B32_UINT ),
+		rttr::value( "R32G32B32_SINT", ResourceFormat::RESOURCE_FORMAT_R32G32B32_SINT ),
+		rttr::value( "R16G16B16A16_TYPELESS", ResourceFormat::RESOURCE_FORMAT_R16G16B16A16_TYPELESS ),
+		rttr::value( "R16G16B16A16_FLOAT", ResourceFormat::RESOURCE_FORMAT_R16G16B16A16_FLOAT ),
+		rttr::value( "R16G16B16A16_UNORM", ResourceFormat::RESOURCE_FORMAT_R16G16B16A16_UNORM ),
+		rttr::value( "R16G16B16A16_UINT", ResourceFormat::RESOURCE_FORMAT_R16G16B16A16_UINT ),
+		rttr::value( "R16G16B16A16_SNORM", ResourceFormat::RESOURCE_FORMAT_R16G16B16A16_SNORM ),
+		rttr::value( "R16G16B16A16_SINT", ResourceFormat::RESOURCE_FORMAT_R16G16B16A16_SINT ),
+		rttr::value( "R32G32_TYPELESS", ResourceFormat::RESOURCE_FORMAT_R32G32_TYPELESS ),
+		rttr::value( "R32G32_FLOAT", ResourceFormat::RESOURCE_FORMAT_R32G32_FLOAT ),
+		rttr::value( "R32G32_UINT", ResourceFormat::RESOURCE_FORMAT_R32G32_UINT ),
+		rttr::value( "R32G32_SINT", ResourceFormat::RESOURCE_FORMAT_R32G32_SINT ),
+		rttr::value( "R32G8X24_TYPELESS", ResourceFormat::RESOURCE_FORMAT_R32G8X24_TYPELESS ),
+		rttr::value( "D32_FLOAT_S8X24_UINT", ResourceFormat::RESOURCE_FORMAT_D32_FLOAT_S8X24_UINT ),
+		rttr::value( "R32_FLOAT_X8X24_TYPELESS", ResourceFormat::RESOURCE_FORMAT_R32_FLOAT_X8X24_TYPELESS ),
+		rttr::value( "X32_TYPELESS_G8X24_UINT", ResourceFormat::RESOURCE_FORMAT_X32_TYPELESS_G8X24_UINT ),
+		rttr::value( "R10G10B10A2_TYPELESS", ResourceFormat::RESOURCE_FORMAT_R10G10B10A2_TYPELESS ),
+		rttr::value( "R10G10B10A2_UNORM", ResourceFormat::RESOURCE_FORMAT_R10G10B10A2_UNORM ),
+		rttr::value( "R10G10B10A2_UINT", ResourceFormat::RESOURCE_FORMAT_R10G10B10A2_UINT ),
+		rttr::value( "R11G11B10_FLOAT", ResourceFormat::RESOURCE_FORMAT_R11G11B10_FLOAT ),
+		rttr::value( "R8G8B8A8_TYPELESS", ResourceFormat::RESOURCE_FORMAT_R8G8B8A8_TYPELESS ),
+		rttr::value( "R8G8B8A8_UNORM", ResourceFormat::RESOURCE_FORMAT_R8G8B8A8_UNORM ),
+		rttr::value( "R8G8B8A8_UNORM_SRGB", ResourceFormat::RESOURCE_FORMAT_R8G8B8A8_UNORM_SRGB ),
+		rttr::value( "R8G8B8A8_UINT", ResourceFormat::RESOURCE_FORMAT_R8G8B8A8_UINT ),
+		rttr::value( "R8G8B8A8_SNORM", ResourceFormat::RESOURCE_FORMAT_R8G8B8A8_SNORM ),
+		rttr::value( "R8G8B8A8_SINT", ResourceFormat::RESOURCE_FORMAT_R8G8B8A8_SINT ),
+		rttr::value( "R16G16_TYPELESS", ResourceFormat::RESOURCE_FORMAT_R16G16_TYPELESS ),
+		rttr::value( "R16G16_FLOAT", ResourceFormat::RESOURCE_FORMAT_R16G16_FLOAT ),
+		rttr::value( "R16G16_UNORM", ResourceFormat::RESOURCE_FORMAT_R16G16_UNORM ),
+		rttr::value( "R16G16_UINT", ResourceFormat::RESOURCE_FORMAT_R16G16_UINT ),
+		rttr::value( "R16G16_SNORM", ResourceFormat::RESOURCE_FORMAT_R16G16_SNORM ),
+		rttr::value( "R16G16_SINT", ResourceFormat::RESOURCE_FORMAT_R16G16_SINT ),
+		rttr::value( "R32_TYPELESS", ResourceFormat::RESOURCE_FORMAT_R32_TYPELESS ),
+		rttr::value( "D32_FLOAT", ResourceFormat::RESOURCE_FORMAT_D32_FLOAT ),
+		rttr::value( "R32_FLOAT", ResourceFormat::RESOURCE_FORMAT_R32_FLOAT ),
+		rttr::value( "R32_UINT", ResourceFormat::RESOURCE_FORMAT_R32_UINT ),
+		rttr::value( "R32_SINT", ResourceFormat::RESOURCE_FORMAT_R32_SINT ),
+		rttr::value( "R24G8_TYPELESS", ResourceFormat::RESOURCE_FORMAT_R24G8_TYPELESS ),
+		rttr::value( "D24_UNORM_S8_UINT", ResourceFormat::RESOURCE_FORMAT_D24_UNORM_S8_UINT ),
+		rttr::value( "R24_UNORM_X8_TYPELESS", ResourceFormat::RESOURCE_FORMAT_R24_UNORM_X8_TYPELESS ),
+		rttr::value( "X24_TYPELESS_G8_UINT", ResourceFormat::RESOURCE_FORMAT_X24_TYPELESS_G8_UINT ),
+		rttr::value( "R8G8_TYPELESS", ResourceFormat::RESOURCE_FORMAT_R8G8_TYPELESS ),
+		rttr::value( "R8G8_UNORM", ResourceFormat::RESOURCE_FORMAT_R8G8_UNORM ),
+		rttr::value( "R8G8_UINT", ResourceFormat::RESOURCE_FORMAT_R8G8_UINT ),
+		rttr::value( "R8G8_SNORM", ResourceFormat::RESOURCE_FORMAT_R8G8_SNORM ),
+		rttr::value( "R8G8_SINT", ResourceFormat::RESOURCE_FORMAT_R8G8_SINT ),
+		rttr::value( "R16_TYPELESS", ResourceFormat::RESOURCE_FORMAT_R16_TYPELESS ),
+		rttr::value( "R16_FLOAT", ResourceFormat::RESOURCE_FORMAT_R16_FLOAT ),
+		rttr::value( "D16_UNORM", ResourceFormat::RESOURCE_FORMAT_D16_UNORM ),
+		rttr::value( "R16_UNORM", ResourceFormat::RESOURCE_FORMAT_R16_UNORM ),
+		rttr::value( "R16_UINT", ResourceFormat::RESOURCE_FORMAT_R16_UINT ),
+		rttr::value( "R16_SNORM", ResourceFormat::RESOURCE_FORMAT_R16_SNORM ),
+		rttr::value( "R16_SINT", ResourceFormat::RESOURCE_FORMAT_R16_SINT ),
+		rttr::value( "R8_TYPELESS", ResourceFormat::RESOURCE_FORMAT_R8_TYPELESS ),
+		rttr::value( "R8_UNORM", ResourceFormat::RESOURCE_FORMAT_R8_UNORM ),
+		rttr::value( "R8_UINT", ResourceFormat::RESOURCE_FORMAT_R8_UINT ),
+		rttr::value( "R8_SNORM", ResourceFormat::RESOURCE_FORMAT_R8_SNORM ),
+		rttr::value( "R8_SINT", ResourceFormat::RESOURCE_FORMAT_R8_SINT ),
+		rttr::value( "A8_UNORM", ResourceFormat::RESOURCE_FORMAT_A8_UNORM ),
+		rttr::value( "R1_UNORM", ResourceFormat::RESOURCE_FORMAT_R1_UNORM ),
+		rttr::value( "R9G9B9E5_SHAREDEXP", ResourceFormat::RESOURCE_FORMAT_R9G9B9E5_SHAREDEXP ),
+		rttr::value( "R8G8_B8G8_UNORM", ResourceFormat::RESOURCE_FORMAT_R8G8_B8G8_UNORM ),
+		rttr::value( "G8R8_G8B8_UNORM", ResourceFormat::RESOURCE_FORMAT_G8R8_G8B8_UNORM ),
+		rttr::value( "BC1_TYPELESS", ResourceFormat::RESOURCE_FORMAT_BC1_TYPELESS ),
+		rttr::value( "BC1_UNORM", ResourceFormat::RESOURCE_FORMAT_BC1_UNORM ),
+		rttr::value( "BC1_UNORM_SRGB", ResourceFormat::RESOURCE_FORMAT_BC1_UNORM_SRGB ),
+		rttr::value( "BC2_TYPELESS", ResourceFormat::RESOURCE_FORMAT_BC2_TYPELESS ),
+		rttr::value( "BC2_UNORM", ResourceFormat::RESOURCE_FORMAT_BC2_UNORM ),
+		rttr::value( "BC2_UNORM_SRGB", ResourceFormat::RESOURCE_FORMAT_BC2_UNORM_SRGB ),
+		rttr::value( "BC3_TYPELESS", ResourceFormat::RESOURCE_FORMAT_BC3_TYPELESS ),
+		rttr::value( "BC3_UNORM", ResourceFormat::RESOURCE_FORMAT_BC3_UNORM ),
+		rttr::value( "BC3_UNORM_SRGB", ResourceFormat::RESOURCE_FORMAT_BC3_UNORM_SRGB ),
+		rttr::value( "BC4_TYPELESS", ResourceFormat::RESOURCE_FORMAT_BC4_TYPELESS ),
+		rttr::value( "FORMAT_BC4_UNORM", ResourceFormat::RESOURCE_FORMAT_BC4_UNORM ),
+		rttr::value( "BC4_SNORM", ResourceFormat::RESOURCE_FORMAT_BC4_SNORM ),
+		rttr::value( "BC5_TYPELESS", ResourceFormat::RESOURCE_FORMAT_BC5_TYPELESS ),
+		rttr::value( "BC5_UNORM", ResourceFormat::RESOURCE_FORMAT_BC5_UNORM ),
+		rttr::value( "BC5_SNORM", ResourceFormat::RESOURCE_FORMAT_BC5_SNORM ),
+		rttr::value( "B5G6R5_UNORM", ResourceFormat::RESOURCE_FORMAT_B5G6R5_UNORM ),
+		rttr::value( "B5G5R5A1_UNORM", ResourceFormat::RESOURCE_FORMAT_B5G5R5A1_UNORM ),
+		rttr::value( "B8G8R8A8_UNORM", ResourceFormat::RESOURCE_FORMAT_B8G8R8A8_UNORM ),
+		rttr::value( "B8G8R8X8_UNORM", ResourceFormat::RESOURCE_FORMAT_B8G8R8X8_UNORM ),
+		rttr::value( "R10G10B10_XR_BIAS_A2_UNORM", ResourceFormat::RESOURCE_FORMAT_R10G10B10_XR_BIAS_A2_UNORM ),
+		rttr::value( "B8G8R8A8_TYPELESS", ResourceFormat::RESOURCE_FORMAT_B8G8R8A8_TYPELESS ),
+		rttr::value( "B8G8R8A8_UNORM_SRGB", ResourceFormat::RESOURCE_FORMAT_B8G8R8A8_UNORM_SRGB ),
+		rttr::value( "B8G8R8X8_TYPELESS", ResourceFormat::RESOURCE_FORMAT_B8G8R8X8_TYPELESS ),
+		rttr::value( "B8G8R8X8_UNORM_SRGB", ResourceFormat::RESOURCE_FORMAT_B8G8R8X8_UNORM_SRGB ),
+		rttr::value( "BC6H_TYPELESS", ResourceFormat::RESOURCE_FORMAT_BC6H_TYPELESS ),
+		rttr::value( "BC6H_UF16", ResourceFormat::RESOURCE_FORMAT_BC6H_UF16 ),
+		rttr::value( "BC6H_SF16", ResourceFormat::RESOURCE_FORMAT_BC6H_SF16 ),
+		rttr::value( "BC7_TYPELESS", ResourceFormat::RESOURCE_FORMAT_BC7_TYPELESS ),
+		rttr::value( "BC7_UNORM", ResourceFormat::RESOURCE_FORMAT_BC7_UNORM ),
+		rttr::value( "BC7_UNORM_SRGB", ResourceFormat::RESOURCE_FORMAT_BC7_UNORM_SRGB ),
+		rttr::value( "AYUV", ResourceFormat::RESOURCE_FORMAT_AYUV ),
+		rttr::value( "Y410", ResourceFormat::RESOURCE_FORMAT_Y410 ),
+		rttr::value( "Y416", ResourceFormat::RESOURCE_FORMAT_Y416 ),
+		rttr::value( "NV12", ResourceFormat::RESOURCE_FORMAT_NV12 ),
+		rttr::value( "P010", ResourceFormat::RESOURCE_FORMAT_P010 ),
+		rttr::value( "P016", ResourceFormat::RESOURCE_FORMAT_P016 ),
+		rttr::value( "420_OPAQUE", ResourceFormat::RESOURCE_FORMAT_420_OPAQUE ),
+		rttr::value( "YUY2", ResourceFormat::RESOURCE_FORMAT_YUY2 ),
+		rttr::value( "Y210", ResourceFormat::RESOURCE_FORMAT_Y210 ),
+		rttr::value( "Y216", ResourceFormat::RESOURCE_FORMAT_Y216 ),
+		rttr::value( "NV11", ResourceFormat::RESOURCE_FORMAT_NV11 ),
+		rttr::value( "AI44", ResourceFormat::RESOURCE_FORMAT_AI44 ),
+		rttr::value( "IA44", ResourceFormat::RESOURCE_FORMAT_IA44 ),
+		rttr::value( "P8", ResourceFormat::RESOURCE_FORMAT_P8 ),
+		rttr::value( "A8P8", ResourceFormat::RESOURCE_FORMAT_A8P8 ),
+		rttr::value( "B4G4R4A4_UNORM", ResourceFormat::RESOURCE_FORMAT_B4G4R4A4_UNORM ),
+		rttr::value( "P208", ResourceFormat::RESOURCE_FORMAT_P208 ),
+		rttr::value( "V208", ResourceFormat::RESOURCE_FORMAT_V208 ),
+		rttr::value( "V408", ResourceFormat::RESOURCE_FORMAT_V408 )
+	);
 
 
-	// Resources
+	rttr::registration::enumeration< MipMapFilter >( "MipMapFilter" )
+	(
+		rttr::value( "Bell", MipMapFilter::Bell ),
+		rttr::value( "Blackman", MipMapFilter::Blackman ),
+		rttr::value( "Box", MipMapFilter::Box ),
+		rttr::value( "bSpline", MipMapFilter::bSpline ),
+		rttr::value( "Catmullrom", MipMapFilter::Catmullrom ),
+		rttr::value( "Gaussian", MipMapFilter::Gaussian ),
+		rttr::value( "Kaiser", MipMapFilter::Kaiser ),
+		rttr::value( "Lanczos12", MipMapFilter::Lanczos12 ),
+		rttr::value( "Lanczos3", MipMapFilter::Lanczos3 ),
+		rttr::value( "Lanczos4", MipMapFilter::Lanczos4 ),
+		rttr::value( "Lanczos6", MipMapFilter::Lanczos6 ),
+		rttr::value( "Mitchell", MipMapFilter::Mitchell ),
+		rttr::value( "QuadraticAproximation", MipMapFilter::QuadraticAproximation ),
+		rttr::value( "QuadraticInterpolation", MipMapFilter::QuadraticInterpolation ),
+		rttr::value( "QuadraticMix", MipMapFilter::QuadraticMix ),
+		rttr::value( "Tent", MipMapFilter::Tent ),
+		rttr::value( "No filtering", MipMapFilter::Unknown )
+	);
+
+//====================================================================================//
+//			Rasources	
+//====================================================================================//
 
 	rttr::registration::class_< ResourceObject >( "ResourceObject" )
 	.property_readonly( "ID", &ResourceObject::m_uniqueId )
@@ -33,7 +196,10 @@ RTTR_REGISTRATION
 	.property_readonly( "SharedResource", &TextureInfo::IsSharedResource )
 	.property_readonly( "CubeMap", &TextureInfo::IsCubeMapTex )
 	.property_readonly( "GeneratedMipMaps", &TextureInfo::GenMipMaps )
+	.property_readonly( "TextureType", &TextureInfo::TextureType )
 	.property_readonly( "Usage", &TextureInfo::Usage )
+	.property_readonly( "Format", &TextureInfo::Format )
+	.property_readonly( "MipMapFilter", &TextureInfo::MipMapFilter )
 	.property_readonly( "MipMapsLevels", &TextureInfo::GetMipLevels )
 	.property_readonly( "FilePath", &TextureInfo::GetPath );
 
