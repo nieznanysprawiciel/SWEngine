@@ -18,7 +18,7 @@
 
 	<!--ObjectPropertyWrapper-->
 	<HierarchicalDataTemplate DataType="{x:Type engine:ObjectPropertyWrapper}" ItemsSource="{Binding Properties}" >
-		<Expander IsExpanded="True" Margin="20, 0, 0, 0">
+		<Expander IsExpanded="{Binding ExpandProperty}" Margin="20, 0, 0, 0">
 			<Expander.Header>
 				<BulletDecorator>
 					<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockObjectStyle}" />
@@ -30,7 +30,7 @@
 
 	<!--CategoryPropertyWrapper-->
 	<HierarchicalDataTemplate DataType="{x:Type engine:CategoryPropertyWrapper}" ItemsSource="{Binding Properties}" >
-		<Expander IsExpanded="True" Margin="20, 0, 0, 0">
+		<Expander IsExpanded="{Binding ExpandProperty}" Margin="20, 0, 0, 0">
 			<Expander.Header>
 				<BulletDecorator>
 					<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockCategoryStyle}" />
@@ -58,7 +58,7 @@
 
 	<!--ResourceObjectPropertyWrapper-->
 	<HierarchicalDataTemplate DataType="{x:Type engine:ResourcePropertyWrapper}" ItemsSource="{Binding Properties}" >
-		<Expander IsExpanded="True" Margin="20, 0, 0, 0">
+		<Expander IsExpanded="{Binding ExpandProperty}" Margin="20, 0, 0, 0">
 			<Expander.Header>
 				<BulletDecorator>
 					<StackPanel Orientation="Horizontal" >
@@ -130,7 +130,7 @@
 	<DataTemplate DataType="{x:Type engine:ActorWrapper}" >
 		<StackPanel Margin="20, 0, 0, 0">
 			<TextBlock Text="{Binding ActorName}" Style="{StaticResource TextBlockActorStyle}" />
-			<Expander IsExpanded="True" Margin="0, 10, 0, 0">
+			<Expander IsExpanded="{Binding ExpandProperty}" Margin="0, 10, 0, 0">
 				<Expander.Header>
 					<BulletDecorator>
 						<TextBlock Text="Actor Info" Style="{StaticResource TextBlockCategoryStyle}" />

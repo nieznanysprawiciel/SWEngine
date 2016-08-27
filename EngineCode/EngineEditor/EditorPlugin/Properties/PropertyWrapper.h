@@ -19,6 +19,7 @@ using namespace System::Collections::Generic;
 
 		System::String^			m_name;
 		PropertyType			m_type;
+		bool					m_expandProperty;
 
 		void*					m_actorPtr;		///< WskaŸnik u¿ywany do pobierania parametrów obiektu klasy.
 
@@ -28,8 +29,9 @@ using namespace System::Collections::Generic;
 
 	public:
 		PropertyWrapper( void* parent, PropertyType type, rttr::property prop, const char* name )
-			: m_type( type )
-			, m_actorPtr( parent )
+			:	m_type( type )
+			,	m_actorPtr( parent )
+			,	m_expandProperty( true )
 		{
 			m_metaProperty = RTTRPropertyRapist::GetWrapperBase( prop );
 			m_name = gcnew System::String( name );
@@ -74,6 +76,12 @@ using namespace System::Collections::Generic;
 		property System::String^	PropertyName
 		{
 			System::String^		get() { return m_name; }
+		}
+
+		property bool				ExpandProperty
+		{
+			bool				get	()				{ return m_expandProperty; }
+			void				set	( bool value)	{ m_expandProperty = value; }
 		}
 	};
 

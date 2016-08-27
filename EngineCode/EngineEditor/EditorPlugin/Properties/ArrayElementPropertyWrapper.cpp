@@ -11,7 +11,9 @@ namespace EditorPlugin
 //
 ArrayElementPropertyWrapper::ArrayElementPropertyWrapper( void* parent, const std::string& name )
 	:	CategoryLessPropertyWrapper( parent, PropertyType::PropertyUnknown, RTTRPropertyRapist::MakeProperty( nullptr ), name.c_str() )
-{}
+{
+	m_expandProperty = false;
+}
 
 
 // ================================ //

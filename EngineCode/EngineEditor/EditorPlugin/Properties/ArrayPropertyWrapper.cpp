@@ -24,7 +24,7 @@ ArrayPropertyWrapper::ArrayPropertyWrapper( void* parent, rttr::property prop )
 
 	assert( array.get_rank() == 1 );
 
-
+	m_expandProperty = false;
 }
 
 // ================================ //
