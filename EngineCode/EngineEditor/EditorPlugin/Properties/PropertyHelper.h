@@ -25,6 +25,7 @@ namespace EditorPlugin
 		PropertyString,
 		PropertyWString,
 		PropertyEnum,
+		PropertyArray,
 		PropertyUnknown
 	};
 
@@ -55,6 +56,8 @@ namespace EditorPlugin
 		friend ref class WStringPropertyWrapper;
 		friend ref class TexturePropertyWrapper;
 		friend ref class EnumPropertyWrapper;
+		friend ref class ArrayPropertyWrapper;
+		friend ref class ArrayElementPropertyWrapper;
 
 		friend DirectX::XMFLOAT2	GetPropertyValue< DirectX::XMFLOAT2 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
 		friend void					SetPropertyValue< DirectX::XMFLOAT2 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, DirectX::XMFLOAT2 newValue );

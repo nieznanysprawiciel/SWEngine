@@ -158,6 +158,12 @@ class array_wrapper : public array_wrapper_base
             return array_accessor<Array_Type>::get_value(*m_address_data, index_list);
         }
 
+		/// Hack for Editor
+		variant get_value_as_ptr(std::size_t index_1) const
+        {
+            return array_accessor<Array_Type>::get_value_as_ptr(*m_address_data, index_1);
+        }
+
         /////////////////////////////////////////////////////////////////////////////////////////
 
         bool insert_value(std::size_t index_1, argument& arg)

@@ -65,6 +65,13 @@ struct array_accessor
 
     static variant get_value(const Array_Type& array, const std::vector<std::size_t>& index_list);
 
+	/// Hack for Editor properties. Returns pointers instead of value copy. 
+	/// These functions are unsafe, when array is dynamic type with memory realocations.
+    template<typename... Indices>
+    static variant get_value_as_ptr(const Array_Type& array, Indices... indices);
+
+    static variant get_value_as_ptr(const Array_Type& array, const std::vector<std::size_t>& index_list);
+
     /////////////////////////////////////////////////////////////////////////////////////////
 
     template<typename... Indices>

@@ -154,6 +154,16 @@ variant get_value_from_array(const Array_Type& array, std::size_t index, Indices
     return variant(get_value_from_array_impl<return_type, sub_type, go_one_dim_deeper>::get_value(array_mapper<Array_Type>::get_value(array, index), args...));
 }
 
+template<typename Array_Type, typename... Indices>
+variant get_value_from_array_as_ptr(const Array_Type& array, std::size_t index, Indices... args)
+{
+    static_assert(rank<Array_Type>::value >= sizeof...(Indices) + 1, "Invalid return type! The number of specified indices are out of range.");
+    using return_type = typename rank_type<Array_Type, sizeof...(Indices) + 1>::type;
+    using sub_type = typename array_mapper<Array_Type>::sub_type;
+    using go_one_dim_deeper = typename std::integral_constant<bool,  sizeof...(Indices) != 0>::type;
+    return variant(&get_value_from_array_impl<return_type, sub_type, go_one_dim_deeper>::get_value(array_mapper<Array_Type>::get_value(array, index), args...));
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////
 
 template<typename ArrayValue, typename B>
@@ -337,6 +347,14 @@ struct array_accessor_impl<Array_Type, std::true_type>
     static variant get_value(const Array_Type& obj, Indices... indices)
     {
         return get_value_from_array<Array_Type>(obj, indices...);
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    
+    template<typename... Indices>
+    static variant get_value_as_ptr(const Array_Type& obj, Indices... indices)
+    {
+        return get_value_from_array_as_ptr<Array_Type>(obj, indices...);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -689,6 +707,29 @@ variant array_accessor<Array_Type>::get_value(const Array_Type& array, const std
 {
     if (index_list.size() <= rank<Array_Type>::value)
         return array_accessor_impl<Array_Type, std::integral_constant<std::size_t, rank<Array_Type>::value>>::get_value(array, index_list);
+    else
+        return variant();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+/// Hack functions
+
+template<typename Array_Type>
+template<typename... Indices>
+variant array_accessor<Array_Type>::get_value_as_ptr(const Array_Type& array, Indices... indices)
+{
+    using is_rank_in_range = typename std::integral_constant<bool, (sizeof...(Indices) <= rank<Array_Type>::value) >::type;
+    return array_accessor_impl<Array_Type, is_rank_in_range>::get_value_as_ptr(array, indices...);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+template<typename Array_Type>
+variant array_accessor<Array_Type>::get_value_as_ptr(const Array_Type& array, const std::vector<std::size_t>& index_list)
+{
+    if (index_list.size() <= rank<Array_Type>::value)
+        return array_accessor_impl<Array_Type, std::integral_constant<std::size_t, rank<Array_Type>::value>>::get_value_as_ptr(array, index_list);
     else
         return variant();
 }

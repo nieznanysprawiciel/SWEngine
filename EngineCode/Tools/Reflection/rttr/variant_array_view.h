@@ -370,6 +370,16 @@ class RTTR_API variant_array_view
          */
         variant get_value_variadic(const std::vector<std::size_t>& index_list) const;
 
+		/*!
+         * \brief Returns the value pointer of the array in the first dimension at index \p index_1.
+         *
+		 * \attention Functions is unsafe, when array is dynamic type with memory realocations.
+		 * Don't trust returned pointer after inserting elements to vector.
+		 *
+         * \return The value pointer of the given array at the specified indices.
+         */
+        variant get_value_as_ptr(std::size_t index_1) const;
+
         /*!
          * \brief Inserts the given argument \p arg into the array, in the first dimension at index \p index_1.
          *

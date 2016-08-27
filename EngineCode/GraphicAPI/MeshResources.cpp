@@ -228,6 +228,29 @@ RTTR_REGISTRATION
 	.property( "Ambient", &MaterialObject::Ambient ) BIND_AS_PTR
 	.property( "Emissive", &MaterialObject::Emissive ) BIND_AS_PTR
 	.property( "SpecularPower", &MaterialObject::Power );
+
+	/**@deprecated Nadchodzi nowy model. */
+	rttr::registration::class_< ModelPart >( "ModelPart" )
+	.property_readonly( "VertexShader", &ModelPart::vertex_shader )
+	.property_readonly( "PixelShader", &ModelPart::pixel_shader )
+	.property_readonly( "Material", &ModelPart::vertex_shader )
+	.property_readonly( "Texture1", &ModelPart::GetTexture1 )
+	.property_readonly( "Texture2", &ModelPart::GetTexture2 )
+	.property_readonly( "Texture3", &ModelPart::GetTexture3 )
+	.property_readonly( "Texture4", &ModelPart::GetTexture4 )
+	.property_readonly( "Texture5", &ModelPart::GetTexture5 )
+	.property_readonly( "Texture6", &ModelPart::GetTexture6 )
+	.property_readonly( "Texture7", &ModelPart::GetTexture7 )
+	.property_readonly( "Texture8", &ModelPart::GetTexture8 )
+	.property_readonly( "MeshPartObject", &ModelPart::mesh );
+
+	
+	/**@deprecated Nadchodzi nowy model. */
+	rttr::registration::class_< MeshPartObject >( "MeshPartObject" )
+	.property_readonly( "BufferOffset", &MeshPartObject::buffer_offset )
+	.property_readonly( "VerticiesCount", &MeshPartObject::vertices_count )
+	.property_readonly( "BaseVertex", &MeshPartObject::base_vertex )
+	.property_readonly( "UseIndexBuffer", &MeshPartObject::use_index_buf );
 }
 
 

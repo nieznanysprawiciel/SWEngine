@@ -213,6 +213,15 @@ struct ModelPart
 		texture[7] = nullptr;
 #endif
 	}
+
+	TextureObject*		GetTexture1()	{ return texture[ 0 ]; }
+	TextureObject*		GetTexture2()	{ return texture[ 1 ]; }
+	TextureObject*		GetTexture3()	{ return texture[ 2 ]; }
+	TextureObject*		GetTexture4()	{ return texture[ 3 ]; }
+	TextureObject*		GetTexture5()	{ return texture[ 4 ]; }
+	TextureObject*		GetTexture6()	{ return texture[ 5 ]; }
+	TextureObject*		GetTexture7()	{ return texture[ 6 ]; }
+	TextureObject*		GetTexture8()	{ return texture[ 7 ]; }
 };
 
 //----------------------------------------------------------------------------------------------//

@@ -19,8 +19,13 @@ ModelsManager* Model3DFromFile::models_manager = nullptr;
 
 RTTR_REGISTRATION
 {
+	rttr::registration::class_< std::vector< ModelPart > >( "Vector< ModelPart >" );
+
 	rttr::registration::class_< Model3DFromFile >( "Model3DFromFile" )
-	.property( "FileName", &Model3DFromFile::m_filePath );
+	.property( "FileName", &Model3DFromFile::m_filePath )
+	.property( "VertexBuffer", &Model3DFromFile::vertex_buffer )
+	.property( "IndexBuffer", &Model3DFromFile::index_buffer )
+	.property( "Segments", &Model3DFromFile::model_parts );
 }
 
 //----------------------------------------------------------------------------------------------//

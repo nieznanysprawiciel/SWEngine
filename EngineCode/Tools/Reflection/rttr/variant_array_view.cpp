@@ -172,7 +172,7 @@ bool variant_array_view::set_value_variadic(const std::vector<std::size_t>& inde
 
 variant variant_array_view::get_value(std::size_t index_1) const
 {
-    return m_array_wrapper->get_value(index_1);
+    return m_array_wrapper->get_value_as_ptr(index_1);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -194,6 +194,13 @@ variant variant_array_view::get_value(std::size_t index_1, std::size_t index_2, 
 variant variant_array_view::get_value_variadic(const std::vector<std::size_t>& index_list) const
 {
     return m_array_wrapper->get_value_variadic(index_list);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+variant variant_array_view::get_value_as_ptr(std::size_t index_1) const
+{
+	return m_array_wrapper->get_value_as_ptr(index_1);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////

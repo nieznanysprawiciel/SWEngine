@@ -5,6 +5,7 @@
 #include <msclr/marshal_cppstd.h>
 
 #include "ResourcePropertyWrapper.h"
+#include "ArrayPropertyWrapper.h"
 
 
 
@@ -275,6 +276,12 @@ PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( void* parent, rttr::pro
 	else if( property.is_enumeration() )
 	{
 		return gcnew EnumPropertyWrapper( parent, property );
+	}
+	else if( property.is_array() )
+	{
+		auto propertyWrapper = gcnew ArrayPropertyWrapper( parent, property );
+		propertyWrapper->BuildHierarchy();
+		return propertyWrapper;
 	}
 	else
 		throw gcnew System::ArgumentException( gcnew System::String( "Property type: [" )
