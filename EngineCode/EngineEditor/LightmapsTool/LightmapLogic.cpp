@@ -138,7 +138,7 @@ void LightmapLogic::ProceedGameLogic			( float time )
 				auto vertexBuff = m_engine->Assets.Buffers.CreateVertexBufferSync( fullName, chunk, chunk.GetMemorySize() / sizeof( CoordColor ) );
 
 				RenderPass* renderPass = new RenderPass;
-				StaticActor* dynamicMesh = new StaticActor( vertexBuff, nullptr );
+				StaticActor* dynamicMesh = new StaticActor( vertexBuff.Ptr(), nullptr );
 				RenderTargetObject* renderTarget = m_engine->Assets.RenderTargets.CreateSync( fullName, renderTargetDesc );
 				
 				// Build mesh

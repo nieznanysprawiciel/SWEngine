@@ -7,9 +7,11 @@
 */
 
 #include "GraphicAPI/MeshResources.h"
-#include "Model3DFromFile.h"
+#include "Model3DFromFile.h"		///< @deprecated
+#include "Assets/Meshes/MeshAsset.h"
 #include "ResourceContainer.h"
 #include "DefaultAssets.h"
+#include "Assets/BufferInitData.h"
 
 class Engine;
 class ILoader;
@@ -91,6 +93,8 @@ public:
 	// Funkcje do zarz¹dzania assetami
 	ModelsManagerResult				LoadModelFromFile			( const std::wstring& file );
 	RenderTargetObject*				CreateRenderTarget			( const std::wstring& name, const RenderTargetDescriptor& renderTargetDescriptor );
+	ResourcePtr< MeshAsset >		CreateMesh					( const std::wstring& name, MeshAssetInitData&& initData );
+	ResourcePtr< MeshAsset >		CreateMesh					( const std::wstring& name, MeshAssetInitWithExistingData&& initData );
 
 	inline Model3DFromFile*			GetModel					( const std::wstring& name ) { return m_fileModel.get( name ); }	///<Zwraca model z pliku o podanej nazwie, je¿eli jest wczytany.
 	inline RenderTargetObject*		GetRenderTarget				( const std::wstring& name ) { return m_renderTarget.get( name ); }	///<Zwraca RenderTarget o podanej nazwie, je¿eli jest wczytany.
@@ -101,14 +105,18 @@ public:
 	inline BufferObject*			GetConstantBuffer			( const std::wstring& name ) { return m_constantBuffer.get( name ); }	///<Zwraca bufor sta³ych o podanej nazwie, je¿eli jest wczytany.
 	inline BufferObject*			GetIndexBuffer				( const std::wstring& name ) { return m_indexBuffer.get( name ); }	///<Zwraca bufor indeksów o podanej nazwie, je¿eli jest wczytany.
 	inline MaterialObject*			GetMaterial					( const std::wstring& name ) { return m_material.get( name ); }		///<Zwraca materia³ o podanej nazwie, je¿eli jest wczytany.
+	inline ShaderInputLayout*		GetLayout					( const std::wstring& name ) { return m_vertexLayout.get( name ); }	///<Zwraca layout o podanej nazwie.	
 
-	TextureObject*					AddTexture					( const std::wstring& file_name );
-	VertexShader*					AddVertexShader				( const std::wstring& file_name, const std::string& shader_entry );
-	VertexShader*					AddVertexShader				( const std::wstring& file_name, const std::string& shader_entry, ShaderInputLayout** layout, InputLayoutDescriptor* layout_desc );
-	PixelShader*					AddPixelShader				( const std::wstring& file_name, const std::string& shader_entry );
-	BufferObject*					AddVertexBuffer				( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
-	BufferObject*					AddIndexBuffer				( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
-	BufferObject*					AddConstantsBuffer			( const std::wstring& name, const void* buffer, unsigned int size );
+	TextureObject*					LoadTexture					( const std::wstring& file_name );
+	VertexShader*					LoadVertexShader			( const std::wstring& file_name, const std::string& shader_entry );
+	VertexShader*					LoadVertexShader			( const std::wstring& file_name, const std::string& shader_entry, ShaderInputLayout** layout, InputLayoutDescriptor* layout_desc );
+	PixelShader*					LoadPixelShader				( const std::wstring& file_name, const std::string& shader_entry );
+	ResourcePtr< BufferObject >		CreateVertexBuffer			( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
+	ResourcePtr< BufferObject >		CreateVertexBuffer			( const std::wstring& name, const VertexBufferInitData& data );
+	ResourcePtr< BufferObject >		CreateIndexBuffer			( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
+	ResourcePtr< BufferObject >		CreateIndexBuffer			( const std::wstring& name, const IndexBufferInitData& data );
+	ResourcePtr< BufferObject >		CreateConstantsBuffer		( const std::wstring& name, const void* buffer, unsigned int size );
+	ResourcePtr< BufferObject >		CreateConstantsBuffer		( const std::wstring& name, const ConstantBufferInitData& data );
 	
 	RenderTargetObject*				AddRenderTarget				( RenderTargetObject* renderTarget, const std::wstring& name );
 	MaterialObject*					AddMaterial					( MaterialObject* material, const std::wstring& material_name );

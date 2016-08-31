@@ -326,7 +326,7 @@ public:
 		/** Add the texture to this scene.
 		* \param pTexture Pointer to the texture to be added.
 		* \return \c true on successful addition. */
-		bool AddTexture(FbxTexture* pTexture);
+		bool LoadTexture(FbxTexture* pTexture);
 
 		/** Remove the texture from this scene.
 		* \param pTexture Pointer to the texture to be removed.

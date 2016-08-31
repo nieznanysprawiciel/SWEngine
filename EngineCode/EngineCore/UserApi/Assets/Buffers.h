@@ -26,7 +26,7 @@ namespace Api { namespace Assets {
 		Buffers() = default;
 		~Buffers() = default;
 
-		BufferObject*		CreateVertexBufferSync	( const std::wstring& name, MemoryChunk& data, unsigned int vertCount );
+		ResourcePtr< BufferObject >							CreateVertexBufferSync	( const std::wstring& name, MemoryChunk& data, unsigned int vertCount );
 
 		std::vector< ResourcePtr< BufferObject > >			ListVertexBuffers	();
 		std::vector< ResourcePtr< BufferObject > >			ListIndexBuffers	();

@@ -234,15 +234,15 @@ RTTR_REGISTRATION
 	.property_readonly( "VertexShader", &ModelPart::vertex_shader )
 	.property_readonly( "PixelShader", &ModelPart::pixel_shader )
 	.property_readonly( "Material", &ModelPart::vertex_shader )
-	.property_readonly( "Texture1", &ModelPart::GetTexture1 )
-	.property_readonly( "Texture2", &ModelPart::GetTexture2 )
-	.property_readonly( "Texture3", &ModelPart::GetTexture3 )
-	.property_readonly( "Texture4", &ModelPart::GetTexture4 )
-	.property_readonly( "Texture5", &ModelPart::GetTexture5 )
+	.property_readonly( "MeshPartObject", &ModelPart::mesh )
+	.property_readonly( "DiffuseTexture", &ModelPart::GetTexture1 )
+	.property_readonly( "SpecularTexture", &ModelPart::GetTexture2 )
+	.property_readonly( "AmbientTexture", &ModelPart::GetTexture3 )
+	.property_readonly( "NormalMap", &ModelPart::GetTexture4 )
+	.property_readonly( "DisplacementMap", &ModelPart::GetTexture5 )
 	.property_readonly( "Texture6", &ModelPart::GetTexture6 )
 	.property_readonly( "Texture7", &ModelPart::GetTexture7 )
-	.property_readonly( "Texture8", &ModelPart::GetTexture8 )
-	.property_readonly( "MeshPartObject", &ModelPart::mesh );
+	.property_readonly( "Texture8", &ModelPart::GetTexture8 );
 
 	
 	/**@deprecated Nadchodzi nowy model. */

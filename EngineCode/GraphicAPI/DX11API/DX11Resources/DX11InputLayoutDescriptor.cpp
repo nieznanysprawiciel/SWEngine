@@ -24,7 +24,7 @@ void DX11InputLayoutDescriptor::AddRow( const char* semanticName, ResourceFormat
 	m_inputElement.push_back( inputElement );
 }
 
-unsigned int DX11InputLayoutDescriptor::CountSemantic( const char * semanticName )
+unsigned int DX11InputLayoutDescriptor::CountSemantic( const char* semanticName )
 {
 	unsigned int numSemantic = 0;
 

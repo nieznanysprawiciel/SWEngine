@@ -37,8 +37,9 @@ EngineInterface::~EngineInterface()
 
 #include <math.h>
 #include "EngineInterface.h"
-#include "EngineCore/ModelsManager/Assets/MeshAsset.h"
-#include "EngineCore/ModelsManager/Assets/MaterialAsset.h"
+#include "EngineCore/ModelsManager/Assets/Meshes/MeshAsset.h"
+#include "EngineCore/ModelsManager/Assets/Materials/MaterialAsset.h"
+#include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
 #include "Common/System/Path.h"
 
 /**@brief */

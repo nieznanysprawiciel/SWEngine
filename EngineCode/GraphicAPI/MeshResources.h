@@ -73,35 +73,37 @@ static const std::wstring RENDER_TARGET_DEPTH_BUFFER_NAME = L"::depth";
 static const std::wstring RENDER_TARGET_STENCIL_BUFFER_NAME = L"::stencil";
 
 
-/**@brief Indeksy tekstur w tablicy ModelPart.
+/**@brief Meaning of texture indicies.
 
-S¹ to wartoœci domyœlne u¿ywane przez wbudowane shadery.
-W przypadku w³asnorêcznie pisanych shaderów nie trzeba siê trzymaæ tych sta³ych.*/
+@ingroup Textures
+
+These are values used by default shaders. You don't have to use this convention
+when you write your own shaders.*/
 enum TextureUse
 {
 #if ENGINE_MAX_TEXTURES > 0
 	TEX_DIFFUSE			///<Tekstura dla kana³u diffuse
 #endif
 #if ENGINE_MAX_TEXTURES > 1
-	, TEX_LIGHTMAP		///<Lightmapa
+	, TEX_SPECULAR		///<Lightmapa
 #endif
 #if ENGINE_MAX_TEXTURES > 2
-	, TEX_SPECULAR		///<Tekstura dla kana³u specular
+	, TEX_AMBIENT		///<Tekstura dla kana³u specular
 #endif
 #if ENGINE_MAX_TEXTURES > 3
 	, TEX_BUMP_MAP		///<Bump mapa
 #endif
 #if ENGINE_MAX_TEXTURES > 4
-	, TEX_AMBIENT		///<Tekstura dla kana³u ambient
+	, TEX_DISPLACEMENT_MAP		///<Tekstura dla kana³u ambient
 #endif
 #if ENGINE_MAX_TEXTURES > 5
-	, TEX_DISPLACEMENT_MAP	///<Tekstura przemieszczeñ wierzcho³ków, w przypadku u¿ywania teselacji wierzcho³ków
+	, TEX_OTHER1	///<Tekstura przemieszczeñ wierzcho³ków, w przypadku u¿ywania teselacji wierzcho³ków
 #endif
 #if ENGINE_MAX_TEXTURES > 6
-	, TEX_OTHER1		///<Tekstura o dowolnym znaczeniu
+	, TEX_OTHER2		///<Tekstura o dowolnym znaczeniu
 #endif
 #if ENGINE_MAX_TEXTURES > 7
-	, TEX_OTHER2		///<Tekstura o dowolnym znaczeniu
+	, TEX_LIGHTMAP		///<Tekstura o dowolnym znaczeniu
 #endif
 
 };
@@ -228,42 +230,44 @@ struct ModelPart
 //								TextureObject													//
 //----------------------------------------------------------------------------------------------//
 
+/**@defgroup Textures Textures
+@ingroup Resources
+*/
+
 /**@brief Tryby filtrowania tekstur.
 
 Poni¿sze tryby filtrowania s¹ u¿ywane przy tworzeniu mipmap.
 Istnieje jeszcze drugi etap filtrowania przy próbkowania w pixel shaderze,
 do którego odnosi siê inna enumeracja.
 
-@ingroup Resources
-@ingroup GraphicAPI
+@ingroup Textures
 */
 enum class MipMapFilter : short
 {
-	Box = 0,
-	Tent,
-	Bell,
-	bSpline,
-	Mitchell,
-	Lanczos3,
-	Blackman,
-	Lanczos4,
-	Lanczos6,
-	Lanczos12,
-	Kaiser,
-	Gaussian,
-	Catmullrom,
-	QuadraticInterpolation,
-	QuadraticAproximation,
-	QuadraticMix,
+	Box = 0,		///<
+	Tent,			///< 
+	Bell,			///<
+	bSpline,		///<
+	Mitchell,		///<
+	Lanczos3,		///<
+	Blackman,		///<
+	Lanczos4,		///<
+	Lanczos6,		///<
+	Lanczos12,		///<
+	Kaiser,			///<
+	Gaussian,		///<
+	Catmullrom,		///<
+	QuadraticInterpolation,		///<
+	QuadraticAproximation,		///<
+	QuadraticMix,				///<
 
-	Unknown
+	Unknown						///<
 };
 
 
 /**@brief Deskryptor tekstury.
 
-@ingroup Resources
-@ingroup GraphicAPI
+@ingroup Textures
 */
 struct TextureInfo
 {
@@ -319,6 +323,7 @@ private:
 };
 
 /** @brief Klasa przechowuj¹ca tekstury.
+@ingroup Textures
 @ingroup Resources
 @ingroup GraphicAPI
 
@@ -351,8 +356,12 @@ public:
 //								RenderTargetObject												//
 //----------------------------------------------------------------------------------------------//
 
+/**@defgroup RenderTargets RenderTargets
+@ingroup Resources
+*/
+
 /**@brief Struktura u¿ywana do tworzenia render targetu.
-@ingroup GraphicAPI*/
+@ingroup RenderTargets*/
 struct RenderTargetDescriptor
 {
 	uint16				TextureWidth;				///<Szerokoœæ tekstury w pikselach.
@@ -408,6 +417,7 @@ struct RenderTargetDescriptor
 };
 
 /**@brief Klasa dla render targetów.
+@ingroup RenderTargets
 @ingroup Resources
 @ingroup GraphicAPI
 
@@ -436,13 +446,18 @@ public:
 };
 
 //----------------------------------------------------------------------------------------------//
-//								ShaderInputLayout											//
+//								ShaderInputLayout												//
 //----------------------------------------------------------------------------------------------//
+
+/**@defgroup Shaders Shaders
+@ingroup Resources
+*/
 
 /**@brief Klasa przechowuje layout wierzcho³ka trafiaj¹cego do
 vertex shadera.
-@ingroup Resources
-@ingroup GraphicAPI*/
+@ingroup Shaders
+@ingroup Buffers
+@ingroup Resources*/
 class ShaderInputLayout : public IShaderInputLayout
 {
 	RTTR_ENABLE( IShaderInputLayout );
@@ -458,7 +473,9 @@ public:
 
 /**@brief Klasa przechowuje opis layoutu wierzcho³ka, na podstawie którego
 tworzony jest obiekt layoutu.
-@ingroup GraphicAPI*/
+@ingroup Buffers
+@ingroup Shaders
+@ingroup Resources*/
 class InputLayoutDescriptor
 {
 private:
@@ -475,15 +492,15 @@ public:
 
 
 /**@brief Typ shadera.
-@ingroup GraphicAPI*/
-enum class ShaderType
+@ingroup Shaders*/
+enum class ShaderType : uint8
 {
-	VertexShader,
-	PixelShader,
-	GeometryShader,
-	TesselationControlShader,
-	TesselationEvaluationShader,
-	ComputeShader
+	VertexShader				= 0x01,
+	PixelShader					= 0x02,
+	GeometryShader				= 0x04,
+	TesselationControlShader	= 0x08,
+	TesselationEvaluationShader	= 0x10,
+	ComputeShader				= 0x20
 };
 
 //----------------------------------------------------------------------------------------------//
@@ -491,6 +508,7 @@ enum class ShaderType
 //----------------------------------------------------------------------------------------------//
 
 /** @brief Klasa przechowuj¹ca vertex shader.
+@ingroup Shaders
 @ingroup Resources
 @ingroup GraphicAPI*/
 class VertexShader : public IShader
@@ -511,6 +529,7 @@ public:
 //----------------------------------------------------------------------------------------------//
 
 /**@brief Klasa przechowuj¹ca pixel shader.
+@ingroup Shaders
 @ingroup Resources
 @ingroup GraphicAPI*/
 class PixelShader : public IShader
@@ -531,6 +550,7 @@ public:
 //----------------------------------------------------------------------------------------------//
 
 /**@brief Klasa przechowuj¹ca pixel shader.
+@ingroup Shaders
 @ingroup Resources
 @ingroup GraphicAPI*/
 class GeometryShader : public IShader
@@ -551,6 +571,7 @@ public:
 //----------------------------------------------------------------------------------------------//
 
 /**@brief Klasa przechowuj¹ca pixel shader.
+@ingroup Shaders
 @ingroup Resources
 @ingroup GraphicAPI*/
 class ControlShader : public IShader
@@ -571,6 +592,7 @@ public:
 //----------------------------------------------------------------------------------------------//
 
 /**@brief Klasa przechowuj¹ca pixel shader.
+@ingroup Shaders
 @ingroup Resources
 @ingroup GraphicAPI*/
 class EvaluationShader : public IShader
@@ -591,6 +613,7 @@ public:
 //----------------------------------------------------------------------------------------------//
 
 /**@brief Klasa przechowuj¹ca compute shader
+@ingroup Shaders
 @ingroup Resources
 @ingroup GraphicAPI*/
 class ComputeShader : public IShader
@@ -611,6 +634,7 @@ public:
 //----------------------------------------------------------------------------------------------//
 
 /**@brief Obiekt opakowuj¹cy bufor.
+@ingroup Buffers
 @ingroup Resources
 @ingroup GraphicAPI
 
@@ -642,7 +666,8 @@ public:
 
 /**@brief Struktura przechowuj¹ca materia³.
 @ingroup Resources
-@ingroup GraphicAPI
+
+@deprecated New material structure is coming soon
 
 DirectX 11 nie ma w³asnych obiektów na materia³y, poniewa¿ nie ma ju¿ domyœlnego
 potoku przetwarzania na karcie graficznej. Na wszystko trzeba napisaæ shader i dostarcza

@@ -319,6 +319,24 @@ RenderTargetObject* ModelsManager::CreateRenderTarget( const std::wstring& name,
 	return newRenderTarget;
 }
 
+/**@brief */
+ResourcePtr<MeshAsset> ModelsManager::CreateMesh( const std::wstring& name, MeshAssetInitData&& initData )
+{
+	MeshAssetInitWithExistingData meshData;
+	meshData.MeshSegments = std::move( initData.MeshSegments );
+
+	assert( false );
+
+	return CreateMesh( name, std::move( meshData ) );
+}
+
+/**@brief */
+ResourcePtr<MeshAsset> ModelsManager::CreateMesh( const std::wstring& name, MeshAssetInitWithExistingData&& initData )
+{
+	assert( false );
+	return ResourcePtr<MeshAsset>();
+}
+
 
 
 /**@brief Dodaje materia³ do ModelsManagera, je¿eli jeszcze nie istnia³.
@@ -381,7 +399,7 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 @param[in] fileName Nazwa pliku, w którym znajduje siê vertex shader.
 @param[in] shaderEntry Nazwa funkcji od której ma siê zacz¹æ wykonywanie shadera.
 @return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
-VertexShader* ModelsManager::AddVertexShader( const std::wstring& fileName, const std::string& shaderEntry )
+VertexShader* ModelsManager::LoadVertexShader( const std::wstring& fileName, const std::string& shaderEntry )
 {
 	VertexShader* shader = m_vertexShader.get( fileName );
 	if ( !shader )
@@ -417,7 +435,7 @@ kasowany i nie zostaje zdublowany w ModelsManagerze, ale niepotrzebna praca zost
 do takich rzeczy dochodzi³o jak najrzadziej.
 @param[in] layoutDesc Deskryptor opisujacy tworzony layout.
 @return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
-VertexShader* ModelsManager::AddVertexShader( const std::wstring& fileName,
+VertexShader* ModelsManager::LoadVertexShader( const std::wstring& fileName,
 													const std::string& shaderEntry,
 													ShaderInputLayout** layout,
 													InputLayoutDescriptor* layoutDesc )
@@ -480,7 +498,7 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 @param[in] fileName Nazwa pliku, w którym znajduje siê pixel shader.
 @param[in] shaderEntry Nazwa funkcji od której ma siê zacz¹æ wykonywanie shadera.
 @return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
-PixelShader* ModelsManager::AddPixelShader( const std::wstring& fileName, const std::string& shaderEntry )
+PixelShader* ModelsManager::LoadPixelShader( const std::wstring& fileName, const std::string& shaderEntry )
 {
 	PixelShader* shader = m_pixelShader.get( fileName );
 	if ( !shader )
@@ -504,7 +522,7 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 @param[in] fileName Œcie¿ka do tekstury
 
 @return Zwraca wskaŸnik na dodan¹ teksturê lub nullptr, je¿eli nie da³o siê wczytaæ.*/
-TextureObject* ModelsManager::AddTexture( const std::wstring& fileName )
+TextureObject* ModelsManager::LoadTexture( const std::wstring& fileName )
 {
 	TextureObject* tex = m_texture.get( fileName );
 	if ( !tex )
@@ -538,23 +556,32 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 @param[in] elementSize Rozmiar pojedynczego elementu w buforze.
 @param[in] vertCount Liczba wierzcho³ków/indeksów w buforze.
 @return Dodany bufor wierzcho³ków. Zwraca nullptr, je¿eli nie uda³o siê stworzyæ bufora.*/
-BufferObject* ModelsManager::AddVertexBuffer( const std::wstring& name,
-												const void* buffer,
-												unsigned int elementSize,
-												unsigned int vertCount )
+ResourcePtr< BufferObject > ModelsManager::CreateVertexBuffer( const std::wstring& name, const void* buffer, unsigned int elementSize, unsigned int vertCount )
+{
+	VertexBufferInitData initData;
+	initData.Data = (const uint8*)buffer;
+	initData.ElementSize = elementSize;
+	initData.NumElements = vertCount;
+	
+	return CreateVertexBuffer( name, initData );
+}
+
+/**@brief Creates vetex buffer.
+
+@return Returns buffer or nullptr if name already exists or buffer creation failed.*/
+ResourcePtr<BufferObject>	ModelsManager::CreateVertexBuffer		( const std::wstring& name, const VertexBufferInitData& data )
 {
 	BufferObject* vertexBuff = m_vertexBuffer.get( name );
-	if ( vertexBuff )	// Je¿eli znaleŸliœmy bufor, to go zwracamy
-		return vertexBuff;
-
-	// Tworzymy obiekt bufora indeksów i go zapisujemy
-	vertexBuff = ResourcesFactory::CreateBufferFromMemory( buffer, elementSize, vertCount, ResourceBinding::BIND_RESOURCE_VERTEX_BUFFER, ResourceUsage::RESOURCE_USAGE_DEFAULT );
+	if ( vertexBuff )	// Je¿eli znaleŸliœmy bufor, to zwracamy nullptr
+		return ResourcePtr<BufferObject>();
+	
+	
+	vertexBuff = ResourcesFactory::CreateBufferFromMemory( name, data.Data, data.CreateBufferInfo() );
 	if ( !vertexBuff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 
 	m_vertexBuffer.UnsafeAdd( name, vertexBuff );	// Dodaliœmy bufor
-
-	return vertexBuff;
+	return ResourcePtr<BufferObject>( vertexBuff );
 }
 
 /**@brief Dodaje do ModelsManagera bufor indeksów.
@@ -568,23 +595,32 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 @param[in] elementSize Rozmiar pojedynczego elementu w buforze.
 @param[in] vertCount Liczba wierzcho³ków/indeksów w buforze.
 @return Dodany bufor indeksów. Zwraca nullptr, je¿eli nie uda³o siê stworzyæ bufora.*/
-BufferObject* ModelsManager::AddIndexBuffer( const std::wstring& name,
-											   const void* buffer,
-											   unsigned int elementSize,
-											   unsigned int vertCount )
+ResourcePtr< BufferObject > ModelsManager::CreateIndexBuffer( const std::wstring& name, const void* buffer, unsigned int elementSize, unsigned int vertCount )
+{
+	IndexBufferInitData initData;
+	initData.Data = (const uint8*)buffer;
+	initData.ElementSize = elementSize;
+	initData.NumElements = vertCount;
+
+	return CreateIndexBuffer( name, initData );
+}
+
+/**@brief Vreates index buffer.
+
+@return Returns buffer or nullptr if name already exists or buffer creation failed.*/
+ResourcePtr<BufferObject>	ModelsManager::CreateIndexBuffer		( const std::wstring& name, const IndexBufferInitData& data )
 {
 	BufferObject* indexBuff = m_indexBuffer.get( name );
-	if ( indexBuff )	// Je¿eli znaleŸliœmy bufor, to go zwracamy
-		return indexBuff;
-
-	// Tworzymy obiekt bufora indeksów i go zapisujemy
-	indexBuff = ResourcesFactory::CreateBufferFromMemory( buffer, elementSize, vertCount, ResourceBinding::BIND_RESOURCE_INDEX_BUFFER, ResourceUsage::RESOURCE_USAGE_DEFAULT );
+	if ( indexBuff )	// Je¿eli znaleŸliœmy bufor, to zwracamy nullptr
+		return ResourcePtr<BufferObject>();
+	
+	
+	indexBuff = ResourcesFactory::CreateBufferFromMemory( name, data.Data, data.CreateBufferInfo() );
 	if ( !indexBuff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 
 	m_indexBuffer.UnsafeAdd( name, indexBuff );	// Dodaliœmy bufor
-
-	return indexBuff;
+	return ResourcePtr<BufferObject>( indexBuff );
 }
 
 /**@brief Dodaje do ModelsManagera bufor sta³ch dla shadera.
@@ -597,18 +633,32 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 @param[in] buffer WskaŸnik na bufor z danym, które maj¹ byæ przeniesione do bufora DirectXowego.
 @param[in] size Rozmiar bufora.
 @return Dodany bufor indeksów. Zwraca nullptr, je¿eli nie uda³o siê stworzyæ bufora.*/
-BufferObject* ModelsManager::AddConstantsBuffer( const std::wstring& name, const void* buffer, unsigned int size )
+ResourcePtr< BufferObject >	ModelsManager::CreateConstantsBuffer( const std::wstring& name, const void* buffer, unsigned int size )
+{
+	ConstantBufferInitData initData;
+	initData.Data = (const uint8*)buffer;
+	initData.ElementSize = size;
+	initData.NumElements = 1;
+
+	return CreateConstantsBuffer( name, initData );
+}
+
+/**@brief Creates constant buffer.
+
+@return Returns buffer or nullptr if name already exists or buffer creation failed.*/
+ResourcePtr<BufferObject>	ModelsManager::CreateConstantsBuffer		( const std::wstring& name, const ConstantBufferInitData& data )
 {
 	BufferObject* constBuff = m_constantBuffer.get( name );
-	if ( constBuff )	// Je¿eli znaleŸliœmy bufor, to go zwracamy
-		return constBuff;
-
-	constBuff = ResourcesFactory::CreateBufferFromMemory( buffer, size, 1, ResourceBinding::BIND_RESOURCE_CONSTANT_BUFFER, ResourceUsage::RESOURCE_USAGE_DEFAULT );
+	if ( constBuff )	// Je¿eli znaleŸliœmy bufor, to zwracamy nullptr
+		return ResourcePtr<BufferObject>();
+	
+	
+	constBuff = ResourcesFactory::CreateBufferFromMemory( name, data.Data, data.CreateBufferInfo() );
 	if ( !constBuff )		// Bufor móg³ siê nie stworzyæ, a nie chcemy dodawaæ nullptra do ModelsManagera
 		return nullptr;
 
 	m_constantBuffer.UnsafeAdd( name, constBuff );	// Dodaliœmy bufor
-	return constBuff;
+	return ResourcePtr<BufferObject>( constBuff );
 }
 
 //====================================================================================//

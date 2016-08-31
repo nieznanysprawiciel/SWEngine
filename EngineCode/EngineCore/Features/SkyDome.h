@@ -114,7 +114,7 @@ protected:
 		if ( type > ENGINE_MAX_TEXTURES )
 			return;
 
-		auto tex = models_manager->AddTexture( name );
+		auto tex = models_manager->LoadTexture( name );
 		if ( !tex )
 			return;	// Zabezpieczenie przed nullptrem
 
@@ -138,7 +138,7 @@ protected:
 		if ( layout )	// Zwalniamy layout, je¿eli jakiœ by³
 			layout->DeleteObjectReference();
 
-		auto shader = models_manager->AddVertexShader( file_name, shader_entry, &layout, layout_desc );
+		auto shader = models_manager->LoadVertexShader( file_name, shader_entry, &layout, layout_desc );
 		if ( !shader )
 			return;	// Zabezpieczenie przed nullptrem
 		if ( !layout )
@@ -157,7 +157,7 @@ protected:
 	@param[in] shader_entry Nazwa funkcji shadera.*/
 	inline void set_pixel_shader( const std::wstring& file_name, const std::string& shader_entry )
 	{
-		auto shader = models_manager->AddPixelShader( file_name, shader_entry );
+		auto shader = models_manager->LoadPixelShader( file_name, shader_entry );
 		if ( !shader )
 			return;	// Zabezpieczenie przed nullptrem
 
@@ -193,7 +193,12 @@ protected:
 	@param[in] vert_count Liczba wierzcho³ków/indeksów w buforze.*/
 	inline void set_vertex_buffer( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count )
 	{
-		auto buff = models_manager->AddVertexBuffer( name, buffer, element_size, vert_count );
+		VertexBufferInitData initData;
+		initData.Data = (const uint8*)buffer;
+		initData.ElementSize = element_size;
+		initData.NumElements = vert_count;
+
+		auto buff = models_manager->CreateVertexBuffer( name, initData );
 		if ( !buff )
 			return;	// Zabezpieczenie przed nullptrem
 
@@ -201,7 +206,7 @@ protected:
 			vertex_buffer->DeleteObjectReference( );
 
 		buff->AddObjectReference( );
-		vertex_buffer = buff;
+		vertex_buffer = buff.Ptr();
 	}
 	/**@brief Funkcja tworzy, a potem ustawia w zmiennej index_buffer bufor indeksów.
 	Bufor jest pobierany z ModelsManagera, je¿eli nie istnieje jest dodawany.
@@ -212,7 +217,12 @@ protected:
 	@param[in] vert_count Liczba wierzcho³ków/indeksów w buforze.*/
 	inline void set_index_buffer( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count )
 	{
-		auto buff = models_manager->AddIndexBuffer( name, buffer, element_size, vert_count );
+		IndexBufferInitData initData;
+		initData.Data = (const uint8*)buffer;
+		initData.ElementSize = element_size;
+		initData.NumElements = vert_count;
+
+		auto buff = models_manager->CreateIndexBuffer( name, initData );
 		if ( !buff )
 			return;	// Zabezpieczenie przed nullptrem
 
@@ -220,7 +230,7 @@ protected:
 			index_buffer->DeleteObjectReference( );
 
 		buff->AddObjectReference( );
-		index_buffer = buff;
+		index_buffer = buff.Ptr();
 	}
 
 	/**@brief Funkcja tworzy, a potem ustawia w zmiennej constant_buffer bufor sta³ych.
@@ -231,7 +241,12 @@ protected:
 	@param[in] element_size Rozmiar pojedynczego elementu w buforze..*/
 	inline void set_constants_buffer( const std::wstring& name, const void* buffer, unsigned int element_size )
 	{
-		auto buff = models_manager->AddConstantsBuffer( name, buffer, element_size );
+		ConstantBufferInitData initData;
+		initData.Data = (const uint8*)buffer;
+		initData.ElementSize = element_size;
+		initData.NumElements = 1;
+
+		auto buff = models_manager->CreateConstantsBuffer( name, initData );
 		if ( !buff )
 			return;	// Zabezpieczenie przed nullptrem
 
@@ -239,6 +254,6 @@ protected:
 			index_buffer->DeleteObjectReference( );
 
 		buff->AddObjectReference( );
-		index_buffer = buff;
+		index_buffer = buff.Ptr();
 	}
 };

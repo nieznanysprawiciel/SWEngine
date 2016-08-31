@@ -135,6 +135,12 @@
     <Filter Include="EngineCore\ModelsManagment\Loaders\Texture\Resampler">
       <UniqueIdentifier>{1d09ea1a-cc84-48b2-99e6-d99201bd9d2b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\ModelsManagment\Assets\Materials">
+      <UniqueIdentifier>{02c96954-b96f-40f2-98ca-5f7c5acd504a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\ModelsManagment\Assets\Meshes">
+      <UniqueIdentifier>{6e42c9e4-6d88-482b-b844-023bf02166bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -500,12 +506,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorPointer.h">
       <Filter>EngineCore\Actors</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MaterialAsset.h">
-      <Filter>EngineCore\ModelsManagment\Assets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MeshAsset.h">
-      <Filter>EngineCore\ModelsManagment\Assets</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\System\Path.h">
       <Filter>Common\System</Filter>
     </ClInclude>
@@ -574,6 +574,27 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcePtr.h">
       <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Meshes\MeshAsset.h">
+      <Filter>EngineCore\ModelsManagment\Assets\Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialAsset.h">
+      <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\ShadingModelData.h">
+      <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\PhongMaterialData.h">
+      <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Meshes\MeshAssetInitData.h">
+      <Filter>EngineCore\ModelsManagment\Assets\Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Meshes\MeshPart.h">
+      <Filter>EngineCore\ModelsManagment\Assets\Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\BufferInitData.h">
+      <Filter>EngineCore\ModelsManagment\Assets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -790,12 +811,6 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\EngineHelpers\ActorsCommonFunctions.cpp">
       <Filter>EngineCore\EngineHelpers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MaterialAsset.cpp">
-      <Filter>EngineCore\ModelsManagment\Assets</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\MeshAsset.cpp">
-      <Filter>EngineCore\ModelsManagment\Assets</Filter>
-    </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
       <Filter>EngineCore\ModelsManagment\Loaders\Mesh</Filter>
     </ClCompile>
@@ -819,6 +834,12 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\MipMapGenerator.cpp">
       <Filter>EngineCore\ModelsManagment\Loaders\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Meshes\MeshAsset.cpp">
+      <Filter>EngineCore\ModelsManagment\Assets\Meshes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialAsset.cpp">
+      <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

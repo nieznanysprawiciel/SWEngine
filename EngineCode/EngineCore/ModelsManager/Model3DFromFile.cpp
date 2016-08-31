@@ -196,7 +196,7 @@ unsigned int Model3DFromFile::add_texture( const std::wstring& file_name, Textur
 	if ( type > ENGINE_MAX_TEXTURES )
 		return WRONG_ID;
 
-	TextureObject* texture = models_manager->AddTexture( file_name );
+	TextureObject* texture = models_manager->LoadTexture( file_name );
 	if( !texture )
 		return WRONG_ID;
 
@@ -254,7 +254,7 @@ i okreœla j¹ makro DEFAULT_VERTEX_SHADER_ENTRY.
 @return Indentyfikator obiektu.*/
 unsigned int Model3DFromFile::add_vertex_shader( const std::wstring& file_name )
 {
-	VertexShader* vertex_shader = models_manager->AddVertexShader( file_name, DEFAULT_VERTEX_SHADER_ENTRY );
+	VertexShader* vertex_shader = models_manager->LoadVertexShader( file_name, DEFAULT_VERTEX_SHADER_ENTRY );
 	if ( !vertex_shader )
 		return WRONG_ID;
 
@@ -277,7 +277,7 @@ i okreœla j¹ makro DEFAULT_PIXEL_SHADER_ENTRY.
 @return Indentyfikator obiektu.*/
 unsigned int Model3DFromFile::add_pixel_shader( const std::wstring& file_name )
 {
-	PixelShader* pixel_shader = models_manager->AddPixelShader( file_name, DEFAULT_PIXEL_SHADER_ENTRY );
+	PixelShader* pixel_shader = models_manager->LoadPixelShader( file_name, DEFAULT_PIXEL_SHADER_ENTRY );
 	if ( !pixel_shader )
 		return WRONG_ID;
 
@@ -430,7 +430,7 @@ void Model3DFromFile::EndEdit_vertex_buffer_processing( )
 		delete[] tmp_data->table[i]->vertices_tab;		// Tablica alokowana w add_vertex_buffer()
 	}
 	// Tworzymy obiekt bufora wierzcho³ków i go zapisujemy
-	vertex_buffer = models_manager->AddVertexBuffer( m_filePath, verticies, sizeof( VertexNormalTexCord1 ), vertex_buffer_length );
+	vertex_buffer = models_manager->CreateVertexBuffer( m_filePath, verticies, sizeof( VertexNormalTexCord1 ), vertex_buffer_length ).Ptr();
 	vertex_buffer->AddAssetReference( );		// Zaznaczamy, ¿e siê do niego odwo³ujemy
 	
 	
@@ -474,7 +474,7 @@ void Model3DFromFile::EndEdit_index_buffer_processing( )
 		// UWAGA!! Nie przypisujemy nullptra, bo chcemy wiedzieæ, ¿e jest bufor indeksów !!!!
 	}
 	// Tworzymy obiekt bufora indeksów i go zapisujemy
-	index_buffer = models_manager->AddIndexBuffer( m_filePath, indicies, sizeof( VERT_INDEX ), index_buffer_length );
+	index_buffer = models_manager->CreateIndexBuffer( m_filePath, indicies, sizeof( VERT_INDEX ), index_buffer_length ).Ptr();
 	index_buffer->AddAssetReference( );		// Zaznaczamy, ¿e siê do niego odwo³ujemy
 
 	delete[] indicies;							// Bufor by³ tylko tymczasowy
@@ -555,14 +555,21 @@ std::string Model3DFromFile::GetResourceName() const
 //			Serializacja	
 //====================================================================================//
 
-/**@brief Domyœlna serializacja.
+/**@brief Serializacja meshy.
 
-@todo W zasadzie domyœlny tryb serializacji powinna implementowaæ klasa EngineObject.*/
+Meshe s¹ serializowane jedynie przez aktorów, którzy ich u¿ywaj¹.
+Funkcja zapisuje jedynie nazwê pliku z którego powsta³ mesh, poniewa¿ wiêcej nie potrzeba.
+@todo Zastanowiæ siê co zrobiæ z meshami, które s¹ tworzone w kodzie. Czy w ogóle dawaæ tak¹
+mo¿liwoœæ, a je¿eli tak, to jak zapisywaæ dane.*/
 void Model3DFromFile::Serialize( ISerializer* ser ) const
 {
-	Serialization::DefaultSerialize( ser, this );
+	//Serialization::DefaultSerialize( ser, this );
+	Serialization::SerializeStringTypes( ser, this, GetType().get_property( "FileName" ) );
 }
 
+/**@brief Deserializcja mesha. Funkcja nic nie deserializuje.
+Meshe s¹ obs³ugiwane w inny sposób, poniewa¿ trzeba je wczytaæ
+z pliku przez @ref ModelsManager.*/
 void Model3DFromFile::Deserialize( IDeserializer* deser )
 { }
 

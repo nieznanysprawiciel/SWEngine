@@ -93,21 +93,16 @@ ComputeShader*		ResourcesFactory::CreateComputeShaderFromFile		( const std::wstr
 	return ComputeShaderObject::CreateFromFile( fileName, shaderName, shaderModel );
 }
 
+
 /**@brief Tworzy bufor na podstawie sanych w pamiêci.
 
-@param[in] buffer WskaŸnik na bufor z danymi.
-@param[in] elementSize Rozmiar pojedynczego elementu w buforze.
-@param[in] vertCount Liczba wierzcho³ków w buforze.
-@param[in] bindFlag Sposób wykorzystania bufora (bufor wierzcho³ków, sta³ych, indeksów itp).
-@param[in] usage Sposób korzystania z bufora.
+@param[in] name Buffer name or file path.
+@param[in] data Pointer to initialization data. Memory can be released after call.
+@param[in] bufferInfo Buffer descriptor.
 @return Zwraca wskaŸnik na obiekt bufora lub nullptr w przypadku niepowodzenia.*/
-BufferObject*			ResourcesFactory::CreateBufferFromMemory( const void* buffer,
-																  unsigned int elementSize,
-																  unsigned int vertCount,
-																  ResourceBinding binding,
-																  ResourceUsage usage/* = ResourceUsage::RESOURCE_USAGE_STATIC*/ )
+BufferObject*			ResourcesFactory::CreateBufferFromMemory		( const std::wstring& name, const uint8* data, const BufferInfo& bufferInfo )
 {
-	return Buffer::CreateFromMemory( buffer, elementSize, vertCount, binding, usage );
+	return Buffer::CreateFromMemory( name, data, bufferInfo );
 }
 
 /**Tworzy object RenderTargetObject z bufora tylnego ekranu.
@@ -129,7 +124,7 @@ IGraphicAPIInitializer* ResourcesFactory::CreateAPIInitializer()
 }
 
 /**Tworzy obiekt deskryptora layoutu.*/
-InputLayoutDescriptor* ResourcesFactory::CreateInputLayoutDescritor( const std::wstring& layoutName )
+InputLayoutDescriptor* ResourcesFactory::CreateInputLayoutDescriptor( const std::wstring& layoutName )
 {
 	return new DX11InputLayoutDescriptor( layoutName );
 }

@@ -13,9 +13,9 @@ namespace Api { namespace Assets
 @param[in] data MemoryChunk zawieraj¹cy obszar pamiêci do przekopiowania do bufora.
 @param[in] vertCount Liczba wierzcho³ków w buforze. Rozmiar pojedynczego wierzcho³ka zostanie wydedukowany z pozosta³ych danyhch.
 @return Zwraca bufor wierzcho³ków lub nullptr.*/
-BufferObject*		Buffers::CreateVertexBufferSync		( const std::wstring& name, MemoryChunk& data, unsigned int vertCount )
+ResourcePtr< BufferObject >						Buffers::CreateVertexBufferSync		( const std::wstring& name, MemoryChunk& data, unsigned int vertCount )
 {
-	return Context->modelsManager->AddVertexBuffer( name, data.GetMemory<void>(), data.GetMemorySize() / vertCount, vertCount );
+	return Context->modelsManager->CreateVertexBuffer( name, data.GetMemory<void>(), data.GetMemorySize() / vertCount, vertCount );
 }
 
 /**@copydoc ModelsManager::ListVertexBuffers.*/

@@ -27,11 +27,8 @@ private:
 	static VertexShader*			CreateVertexShaderFromFile		( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel = "vs_4_0" );
 	static PixelShader*				CreatePixelShaderFromFile		( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel = "ps_4_0" );
 	static ComputeShader*			CreateComputeShaderFromFile		( const std::wstring& fileName, const std::string& shaderName, const char* shaderModel = "cs_4_0" );
-	static BufferObject*			CreateBufferFromMemory			( const void* buffer,
-																	unsigned int elementSize,
-																	unsigned int vertCount,
-																	ResourceBinding bindFlag,
-																	ResourceUsage usage = ResourceUsage::RESOURCE_USAGE_STATIC );
+
+	static BufferObject*			CreateBufferFromMemory			( const std::wstring& name, const uint8* data, const BufferInfo& bufferInfo );
 
 	static VertexShader*			CreateVertexShaderFromFile		( const std::wstring& fileName,
 																	const std::string& shaderName,
@@ -42,7 +39,7 @@ public:
 	static IGraphicAPIInitializer*	CreateAPIInitializer			();
 	static RenderTargetObject*		CreateScreenRenderTarget		();
 	static SwapChain*				CreateScreenSwapChain			( RenderTargetObject* screenRT );
-	static InputLayoutDescriptor*	CreateInputLayoutDescritor		( const std::wstring& layoutName );
+	static InputLayoutDescriptor*	CreateInputLayoutDescriptor		( const std::wstring& layoutName );
 	static RenderTargetObject*		CreateRenderTarget				( const std::wstring& name, const RenderTargetDescriptor& renderTargetDescriptor );
 };
 

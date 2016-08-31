@@ -80,13 +80,10 @@ void DisplayEngine::InitRenderer( IRenderer* renderer )
 void DisplayEngine::InitDisplayer( ModelsManager* assetsManager )
 {
 	modelsManager = assetsManager;
-	m_constantsPerFrame	= modelsManager->AddConstantsBuffer( CONSTANT_PER_FRAME_BUFFER_NAME, nullptr, sizeof( ConstantPerFrame ) );
-	m_constantsPerMesh	= modelsManager->AddConstantsBuffer( CONSTANT_PER_MESH_BUFFER_NAME, nullptr, sizeof( ConstantPerMesh ) );
+	m_constantsPerFrame	= modelsManager->CreateConstantsBuffer( CONSTANT_PER_FRAME_BUFFER_NAME, nullptr, sizeof( ConstantPerFrame ) );
+	m_constantsPerMesh	= modelsManager->CreateConstantsBuffer( CONSTANT_PER_MESH_BUFFER_NAME, nullptr, sizeof( ConstantPerMesh ) );
 	assert( m_constantsPerFrame );
 	assert( m_constantsPerMesh );
-
-	m_constantsPerFrame->AddAssetReference();		/// Uniemo¿liwiamy zwolnienie bufora przez u¿ytkownika.
-	m_constantsPerMesh->AddAssetReference();		/// Uniemo¿liwiamy zwolnienie bufora przez u¿ytkownika.
 
 	m_mainRenderTarget = modelsManager->GetRenderTarget( SCREEN_RENDERTARGET_STRING );
 	m_mainRenderTarget->AddAssetReference();		/// Uniemo¿liwiamy zwolnienie render targetu przez u¿ytkownika.
@@ -169,9 +166,9 @@ void DisplayEngine::DisplayScene( float timeInterval, float timeLag )
 	// D3D11_PRIMITIVE_TOPOLOGY_LINELIST
 	renderer->IASetPrimitiveTopology( PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 
-	renderer->UpdateSubresource( m_constantsPerFrame, &shader_data_per_frame );
-	renderer->VSSetConstantBuffers( 0, m_constantsPerFrame );
-	renderer->PSSetConstantBuffers( 0, m_constantsPerFrame );
+	renderer->UpdateSubresource( m_constantsPerFrame.Ptr(), &shader_data_per_frame );
+	renderer->VSSetConstantBuffers( 0, m_constantsPerFrame.Ptr() );
+	renderer->PSSetConstantBuffers( 0, m_constantsPerFrame.Ptr() );
 
 	// Ustawiamy sampler
 	renderer->SetDefaultSampler();
@@ -266,9 +263,9 @@ void DisplayEngine::DisplayDynamicObjects( float time_interval, float time_lag )
 			renderer->SetShaders( model );
 
 			// Aktualizujemy bufor sta³ych
-			renderer->UpdateSubresource( m_constantsPerMesh, &shaderDataPerMesh );
-			renderer->VSSetConstantBuffers( 1, m_constantsPerMesh );
-			renderer->PSSetConstantBuffers( 1, m_constantsPerMesh );
+			renderer->UpdateSubresource( m_constantsPerMesh.Ptr(), &shaderDataPerMesh );
+			renderer->VSSetConstantBuffers( 1, m_constantsPerMesh.Ptr() );
+			renderer->PSSetConstantBuffers( 1, m_constantsPerMesh.Ptr() );
 
 			// Ustawiamy tekstury
 			renderer->SetTextures( model );
@@ -373,9 +370,9 @@ void DisplayEngine::DisplaySkyBox( float time_interval, float time_lag )
 	renderer->SetShaders( *model );
 
 	// Aktualizujemy bufor sta³ych
-	renderer->UpdateSubresource( m_constantsPerMesh, &shader_data_per_mesh );
-	renderer->VSSetConstantBuffers( 1, m_constantsPerMesh );
-	renderer->PSSetConstantBuffers( 1, m_constantsPerMesh );
+	renderer->UpdateSubresource( m_constantsPerMesh.Ptr(), &shader_data_per_mesh );
+	renderer->VSSetConstantBuffers( 1, m_constantsPerMesh.Ptr() );
+	renderer->PSSetConstantBuffers( 1, m_constantsPerMesh.Ptr() );
 
 	BufferObject* const_buffer = sky_dome->get_constant_buffer();
 	if( const_buffer )
@@ -494,9 +491,9 @@ void DisplayEngine::RenderFromQueue( float time_interval, float time_lag )
 					renderer->SetShaders( model );
 
 					// Aktualizujemy bufor sta³ych
-					renderer->UpdateSubresource( m_constantsPerMesh, &shaderDataPerMesh );
-					renderer->VSSetConstantBuffers( 1, m_constantsPerMesh );
-					renderer->PSSetConstantBuffers( 1, m_constantsPerMesh );
+					renderer->UpdateSubresource( m_constantsPerMesh.Ptr(), &shaderDataPerMesh );
+					renderer->VSSetConstantBuffers( 1, m_constantsPerMesh.Ptr() );
+					renderer->PSSetConstantBuffers( 1, m_constantsPerMesh.Ptr() );
 
 					// Ustawiamy tekstury
 					renderer->SetTextures( model );

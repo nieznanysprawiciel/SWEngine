@@ -49,8 +49,8 @@ private:
 	std::vector<IRenderer*>					m_renderers;				///< Zawiera wszystkie renderery. Ka¿dy odpowiada za jeden w¹tek renderuj¹cy.
 
 	ConstantPerFrame						shader_data_per_frame;		///<Bufor sta³ych zmiennych co ramkê animacji.
-	BufferObject*							m_constantsPerFrame;		///<Bufor sta³ych zmiennych co ramkê animacji.
-	BufferObject*							m_constantsPerMesh;			///<Bufor sta³ych zmiennych dla ka¿dego fragmentu mesha.
+	ResourcePtr< BufferObject >				m_constantsPerFrame;		///<Bufor sta³ych zmiennych co ramkê animacji.
+	ResourcePtr< BufferObject >				m_constantsPerMesh;			///<Bufor sta³ych zmiennych dla ka¿dego fragmentu mesha.
 
 	CameraActor*							m_currentCamera;			///<Akutalnie aktywna kamera
 	SkyDome*								sky_dome;					///<Klasa odpowiedzialna za kopu³ê nieba

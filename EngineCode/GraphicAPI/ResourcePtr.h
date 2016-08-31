@@ -6,8 +6,12 @@
 class ResourceObject;
 
 
-/**@brief Wrapper na wskaŸnik na zasoby silnika (assety i resourcy).
-Automatycznie inkrementuje i dekrementuje liczbê referencji.
+/**@brief Wrapper for low level resources and high level assets.
+
+This class automatically increments and decrements resources and assets reference counter.
+Notice that it's not equivalent of std::shared_ptr. When references counter reaches 0, resource won't be released.
+@ref ModelsManager is the only one owner of resource and it's responsibility is, to destroy resource
+when it's needed. Even when there's no Actor in engine that uses it, resource can still remain for future use.
 
 @ingroup Resources*/
 template< typename ResourceType >
@@ -36,8 +40,8 @@ public:
 
 	ResourcePtr( const ResourcePtr& other )
 	{
-		m_resource = other.m_resource;
-		m_resource->AddObjectReference();
+		m_resource = nullptr;
+		AssignPointer( other.m_resource );
 	}
 
 	ResourcePtr( ResourcePtr&& other )
@@ -52,14 +56,18 @@ public:
 	void operator=( ResourceType* ptr )
 	{
 		ReleaseResource();
-
-		m_resource = ptr;
-		m_resource->AddObjectReference();
+		AssignPointer( ptr );
 	}
 
-	void operator=( const ResourcePtr& ptr )
+	void operator=( const ResourcePtr< ResourceType >& ptr )
 	{
-		this = ptr.m_resource;	
+		ReleaseResource();
+		AssignPointer( ptr.m_resource );
+	}
+
+	operator void*() const
+	{
+		return m_resource;
 	}
 
 	ResourceType* operator*()
@@ -86,6 +94,16 @@ public:
 	{
 		if( m_resource )
 			m_resource->DeleteObjectReference();
+		m_resource = nullptr;
+	}
+
+	void AssignPointer( ResourceType* ptr )
+	{
+		if( ptr )
+		{
+			m_resource = ptr;
+			m_resource->AddObjectReference();
+		}
 	}
 
 	ResourceType*	Ptr	() const

@@ -78,16 +78,12 @@
 
 /**@page BaseActorsObjects Klasy bazowe Aktorów
 <ul>
-	<li>AnimationActor
 	<li>BaseAIController
 	<li>BaseInputController
 	<li>CameraActor
-	<li>CollisionActor
 	<li>ComplexActor
-	<li>DynamicMeshActor
 	<li>DynamicActor
 	<li>EngineObject
-	<li>PhysicalActor
 	<li>StaticActor
 	<li>TriggerActor
 	<li>PointLight
