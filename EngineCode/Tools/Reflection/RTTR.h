@@ -8,4 +8,5 @@
 #include "rttr/property.h"
 #include "rttr/enumeration.h"
 #include "rttr/registration.h"
+#include "rttr/wrapper_mapper.h"
 

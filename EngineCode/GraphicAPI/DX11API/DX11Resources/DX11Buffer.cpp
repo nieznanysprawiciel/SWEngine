@@ -11,10 +11,12 @@ RTTR_REGISTRATION
 
 
 
-DX11Buffer::DX11Buffer( const BufferInfo& descriptor, ID3D11Buffer* buff )
+DX11Buffer::DX11Buffer( const std::wstring& name, const BufferInfo& descriptor, ID3D11Buffer* buff )
 	:	BufferObject( descriptor.ElementSize, descriptor.NumElements ), m_buffer( buff )
 	,	m_descriptor( descriptor )
-{}
+{
+	m_descriptor.Name = name;
+}
 
 DX11Buffer::~DX11Buffer()
 {
@@ -63,7 +65,7 @@ DX11Buffer*		DX11Buffer::CreateFromMemory	( const std::wstring& name, const uint
 	if( FAILED( result ) )
 		return nullptr;
 
-	DX11Buffer* newBufferObject = new DX11Buffer( bufferInfo, newBuffer );
+	DX11Buffer* newBufferObject = new DX11Buffer( name, bufferInfo, newBuffer );
 	return newBufferObject;
 }
 

@@ -114,6 +114,10 @@ RTTR_INLINE type instance::get_type() const { return m_data_container.m_type; }
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+RTTR_INLINE void* instance::get_wrapped_ptr() const	{ return m_data_container.m_data_address_wrapped_type; }
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
 } // end namespace rttr
 
 #endif // RTTR_INSTANCE_IMPL_H_

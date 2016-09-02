@@ -6,7 +6,8 @@ RTTR_REGISTRATION
 {
 	rttr::registration::class_< DerivedClass >( "DerivedClass" )
 		.property( "PhysicalProperty", &DerivedClass::PhysicalProperty )
-		.property( "PhysicalPropertyPrev", &DerivedClass::PhysicalPropertyPrev );
+		.property( "PhysicalPropertyPrev", &DerivedClass::PhysicalPropertyPrev )
+		.property( "Texture", &DerivedClass::Texture );
 }
 
 

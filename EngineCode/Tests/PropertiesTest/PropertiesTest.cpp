@@ -149,6 +149,12 @@ int main()
 	if( MomentPropertyWrongType.IsValid() )
 		std::cout << "Mass casted to double shouldn't be valid" << std::endl;
 
+	SEPARATOR
+
+	auto texProp = derived.get_type().get_property( "Texture" );
+	auto texVal = texProp.get_value( derived );
+
+	TextureObject* tex = texVal.get_value< TextureObject* >();
 
 	SEPARATOR
 

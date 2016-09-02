@@ -111,3 +111,30 @@ public:
 
 };
 
+
+
+namespace rttr
+{
+
+// This part of code enables ResourcePtr as wrapper for rttr system.
+
+
+template< typename T >
+struct wrapper_mapper< ResourcePtr< T > >
+{
+    using wrapped_type  = decltype( std::declval< ResourcePtr< T > >().Ptr() );
+    using type          = ResourcePtr< T >;
+
+    inline static wrapped_type	get		( const type& obj )
+    {
+       return obj.Ptr();
+    }
+
+    inline static type			create	( const wrapped_type& value )
+    {
+       return ResourcePtr< T >( value );
+    } 
+};
+
+
+} // end namespace rttr

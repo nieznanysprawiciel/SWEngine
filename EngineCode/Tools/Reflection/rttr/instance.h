@@ -73,6 +73,8 @@ public:
 
     RTTR_INLINE type get_type() const;
 
+	RTTR_INLINE void* get_wrapped_ptr() const;
+
 private:
     instance& operator=(const instance& other);
 

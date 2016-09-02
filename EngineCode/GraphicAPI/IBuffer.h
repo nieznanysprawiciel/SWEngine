@@ -9,6 +9,7 @@
 #include "GraphicAPI/GraphicAPIConstants.h"
 #include "ResourcePtr.h"
 #include "Common/MemoryChunk.h"
+#include "Common/System/Path.h"
 
 /**@defgroup Buffers
 @ingroup Resources
@@ -31,11 +32,12 @@ enum class BufferType : uint8
 @ingroup Buffers*/
 struct BufferInfo
 {
-	uint32			NumElements;	///< Number of elements of type BufferDescriptor::DataType.
-	uint32			ElementSize;	///< Size of single element in buffer.
-	rttr::type		DataType;		///< [Optional] Type of single element in buffer.
-	ResourceUsage	Usage;			///< Usage of resource by graphic card.
-	BufferType		BufferType;		///< Vertex, index or constant buffer.
+	uint32				NumElements;	///< Number of elements of type BufferDescriptor::DataType.
+	uint32				ElementSize;	///< Size of single element in buffer.
+	rttr::type			DataType;		///< [Optional] Type of single element in buffer.
+	ResourceUsage		Usage;			///< Usage of resource by graphic card.
+	BufferType			BufferType;		///< Vertex, index or constant buffer.
+	filesystem::Path	Name;			///< Buffer name or file path.
 
 	///@name Only for vertex or index buffer.
 	///@{
@@ -56,6 +58,8 @@ struct BufferInfo
 	BufferInfo()
 		:	DataType( rttr::type::get( "" ) )	// Set invalid type.
 	{}
+
+	std::string		GetName	() const		{ return Name.String(); }
 };
 
 
@@ -71,7 +75,7 @@ protected:
 	IBuffer() : ResourceObject( 0 ) {}
 	virtual ~IBuffer() = default;
 public:
-	virtual MemoryChunk			CopyData		() = 0;		///<Kopiuje dane z bufora i umieszcza je w zwracanym MemoryChunku.
-	virtual const BufferInfo&	GetDescriptor	() = 0;		///<Returns buffer descriptor.
+	virtual MemoryChunk			CopyData		() = 0;				///<Kopiuje dane z bufora i umieszcza je w zwracanym MemoryChunku.
+	virtual const BufferInfo&	GetDescriptor	() const = 0;		///<Returns buffer descriptor.
 };
 

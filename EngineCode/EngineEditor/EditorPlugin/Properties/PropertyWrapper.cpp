@@ -213,6 +213,10 @@ void CategoryPropertyWrapper::BuildHierarchy( void* parentPtr, rttr::type classT
 PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( void* parent, rttr::property property )
 {
 	auto propertyType = property.get_type();
+
+	if( propertyType.is_wrapper() )
+		propertyType = propertyType.get_wrapped_type();
+
 	if( propertyType.is_arithmetic() )
 	{
 		if( propertyType == rttr::type::get< int >() )
@@ -285,7 +289,7 @@ PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( void* parent, rttr::pro
 	}
 	else
 		throw gcnew System::ArgumentException( gcnew System::String( "Property type: [" )
-											   + gcnew System::String( property.get_name().c_str() )
+											   + gcnew System::String( property.get_type().get_name().c_str() )
 											   + gcnew System::String( "] is not supported" ),
 											   gcnew System::String( "property" ) );
 }
@@ -329,9 +333,20 @@ void CategoryLessPropertyWrapper::BuildHierarchy()
 	// Trzeba pobraæ realny type w³aœciwoœci. Mo¿e byæ tak, ¿e w³aœciwoœæ jest klas¹ bazow¹,
 	// a tak my chcemy zbudowaæ hierarchiê dla klasy pochodnej.
 	auto realContent = property.get_value( declaringObject );
+	
+	void* realPtr = realContent.get_value< void* >();
+	rttr::type realType = realContent.get_type();
+	
+	// Obs³ugujemy type owrappowane.
+	if( realContent.get_type().is_wrapper() && realPtr != nullptr )
+	{
+		rttr::instance realInstance( realContent );
+		realPtr = realInstance.get_wrapped_ptr();
+		realType = realContent.get_type().get_wrapped_type();
+	}
 
-	if( realContent.get_value< void* >() != nullptr )
-		BuildHierarchy( realContent.get_value< void* >(), realContent.get_type() );
+	if( realPtr != nullptr )
+		BuildHierarchy( realPtr, realType );
 }
 
 

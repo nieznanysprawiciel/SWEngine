@@ -2,6 +2,7 @@
 
 #include "BaseClass.h"
 #include "InnerStruct.h"
+#include "GraphicAPI/MeshResources.h"
 
 class DerivedClass	:	public BaseClass
 {
@@ -12,6 +13,8 @@ private:
 
 	InnerStruct			PhysicalProperty;
 	InnerStruct*		PhysicalPropertyPrev;
+	
+	ResourcePtr< TextureObject >	Texture;
 
 public:
 	DerivedClass();

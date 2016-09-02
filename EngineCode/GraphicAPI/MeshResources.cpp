@@ -180,28 +180,28 @@ RTTR_REGISTRATION
 	);
 
 //====================================================================================//
-//			Rasources	
+//			Resources	
 //====================================================================================//
 
 	rttr::registration::class_< ResourceObject >( "ResourceObject" )
-	.property_readonly( "ID", &ResourceObject::m_uniqueId )
-	.property_readonly( "References", &ResourceObject::m_objectReferences );
+		.property_readonly( "ID", &ResourceObject::m_uniqueId )
+		.property_readonly( "References", &ResourceObject::m_objectReferences );
 
 	rttr::registration::class_< TextureInfo >( "TextureInfo" )
-	.property_readonly( "Width", &TextureInfo::GetWidth )
-	.property_readonly( "Height", &TextureInfo::GetHeight )
-	.property_readonly( "ArraySize", &TextureInfo::GetArraySize )
-	.property_readonly( "CPUReadable", &TextureInfo::IsCPUReadable )
-	.property_readonly( "CPUWritable", &TextureInfo::IsCPUWriteable )
-	.property_readonly( "SharedResource", &TextureInfo::IsSharedResource )
-	.property_readonly( "CubeMap", &TextureInfo::IsCubeMapTex )
-	.property_readonly( "GeneratedMipMaps", &TextureInfo::GenMipMaps )
-	.property_readonly( "TextureType", &TextureInfo::TextureType )
-	.property_readonly( "Usage", &TextureInfo::Usage )
-	.property_readonly( "Format", &TextureInfo::Format )
-	.property_readonly( "MipMapFilter", &TextureInfo::MipMapFilter )
-	.property_readonly( "MipMapsLevels", &TextureInfo::GetMipLevels )
-	.property_readonly( "FilePath", &TextureInfo::GetPath );
+		.property_readonly( "Width", &TextureInfo::GetWidth )
+		.property_readonly( "Height", &TextureInfo::GetHeight )
+		.property_readonly( "ArraySize", &TextureInfo::GetArraySize )
+		.property_readonly( "CPUReadable", &TextureInfo::IsCPUReadable )
+		.property_readonly( "CPUWritable", &TextureInfo::IsCPUWriteable )
+		.property_readonly( "SharedResource", &TextureInfo::IsSharedResource )
+		.property_readonly( "CubeMap", &TextureInfo::IsCubeMapTex )
+		.property_readonly( "GeneratedMipMaps", &TextureInfo::GenMipMaps )
+		.property_readonly( "TextureType", &TextureInfo::TextureType )
+		.property_readonly( "Usage", &TextureInfo::Usage )
+		.property_readonly( "Format", &TextureInfo::Format )
+		.property_readonly( "MipMapFilter", &TextureInfo::MipMapFilter )
+		.property_readonly( "MipMapsLevels", &TextureInfo::GetMipLevels )
+		.property_readonly( "FilePath", &TextureInfo::GetPath );
 
 	rttr::registration::class_< TextureObject >( "TextureObject" )
 	.property_readonly( "Descriptor", &TextureObject::GetDescriptor )
@@ -212,37 +212,58 @@ RTTR_REGISTRATION
 
 	rttr::registration::class_< SwapChain >( "SwapChain" );
 
-	rttr::registration::class_< BufferObject >( "BufferObject" );
-	rttr::registration::class_< RenderTargetObject >( "RenderTargetObject" );
+	// Buffer
+	rttr::registration::class_< BufferObject >( "BufferObject" )
+		.property_readonly( "Descriptor", &BufferObject::GetDescriptor ) BIND_AS_PTR;
+
+	rttr::registration::class_< BufferType >( "BufferType" )
+	(
+		rttr::value( "VertexBuffer", BufferType::VertexBuffer ),
+		rttr::value( "IndexBuffer", BufferType::IndexBuffer ),
+		rttr::value( "ConstantBuffer", BufferType::ConstantBuffer )
+	);
+
+	rttr::registration::class_< BufferInfo >( "BufferInfo" )
+		.property_readonly( "BufferName", &BufferInfo::GetName )
+		.property_readonly( "NumberElements", &BufferInfo::NumElements )
+		.property_readonly( "ElementSize", &BufferInfo::ElementSize )
+		.property_readonly( "Usage", &BufferInfo::Usage )
+		.property_readonly( "BufferType", &BufferInfo::BufferType )
+		.property_readonly( "Topology", &BufferInfo::Topology )
+		.property_readonly( "4 Bytes Index Size", &BufferInfo::Use4BytesIndex )
+		.property_readonly( "VertexLayout", &BufferInfo::VertexLayout );
+
+
+	rttr::registration::class_< ShaderInputLayout >( "ShaderInputLayout" );
 	rttr::registration::class_< PixelShader >( "PixelShader" );
 	rttr::registration::class_< VertexShader >( "VertexShader" );
 
 	rttr::registration::class_< RenderTargetObject >( "RenderTargetObject" )
-	.property( "ColorBuffer", &RenderTargetObject::m_colorBuffer )
-	.property( "DepthBuffer", &RenderTargetObject::m_depthBuffer )
-	.property( "StencilBuffer", &RenderTargetObject::m_stencilBuffer );
+		.property( "ColorBuffer", &RenderTargetObject::m_colorBuffer )
+		.property( "DepthBuffer", &RenderTargetObject::m_depthBuffer )
+		.property( "StencilBuffer", &RenderTargetObject::m_stencilBuffer );
 
 	rttr::registration::class_< MaterialObject >( "MaterialObject" )
-	.property( "Diffuse", &MaterialObject::Diffuse ) BIND_AS_PTR
-	.property( "Specular", &MaterialObject::Specular ) BIND_AS_PTR
-	.property( "Ambient", &MaterialObject::Ambient ) BIND_AS_PTR
-	.property( "Emissive", &MaterialObject::Emissive ) BIND_AS_PTR
-	.property( "SpecularPower", &MaterialObject::Power );
+		.property( "Diffuse", &MaterialObject::Diffuse ) BIND_AS_PTR
+		.property( "Specular", &MaterialObject::Specular ) BIND_AS_PTR
+		.property( "Ambient", &MaterialObject::Ambient ) BIND_AS_PTR
+		.property( "Emissive", &MaterialObject::Emissive ) BIND_AS_PTR
+		.property( "SpecularPower", &MaterialObject::Power );
 
 	/**@deprecated Nadchodzi nowy model. */
 	rttr::registration::class_< ModelPart >( "ModelPart" )
-	.property_readonly( "VertexShader", &ModelPart::vertex_shader )
-	.property_readonly( "PixelShader", &ModelPart::pixel_shader )
-	.property_readonly( "Material", &ModelPart::vertex_shader )
-	.property_readonly( "MeshPartObject", &ModelPart::mesh )
-	.property_readonly( "DiffuseTexture", &ModelPart::GetTexture1 )
-	.property_readonly( "SpecularTexture", &ModelPart::GetTexture2 )
-	.property_readonly( "AmbientTexture", &ModelPart::GetTexture3 )
-	.property_readonly( "NormalMap", &ModelPart::GetTexture4 )
-	.property_readonly( "DisplacementMap", &ModelPart::GetTexture5 )
-	.property_readonly( "Texture6", &ModelPart::GetTexture6 )
-	.property_readonly( "Texture7", &ModelPart::GetTexture7 )
-	.property_readonly( "Texture8", &ModelPart::GetTexture8 );
+		.property_readonly( "VertexShader", &ModelPart::vertex_shader )
+		.property_readonly( "PixelShader", &ModelPart::pixel_shader )
+		.property_readonly( "Material", &ModelPart::vertex_shader )
+		.property_readonly( "MeshPartObject", &ModelPart::mesh )
+		.property_readonly( "DiffuseTexture", &ModelPart::GetTexture1 )
+		.property_readonly( "SpecularTexture", &ModelPart::GetTexture2 )
+		.property_readonly( "AmbientTexture", &ModelPart::GetTexture3 )
+		.property_readonly( "NormalMap", &ModelPart::GetTexture4 )
+		.property_readonly( "DisplacementMap", &ModelPart::GetTexture5 )
+		.property_readonly( "Texture6", &ModelPart::GetTexture6 )
+		.property_readonly( "Texture7", &ModelPart::GetTexture7 )
+		.property_readonly( "Texture8", &ModelPart::GetTexture8 );
 
 	
 	/**@deprecated Nadchodzi nowy model. */
@@ -304,12 +325,12 @@ RenderTargetObject::RenderTargetObject( TextureObject* colorBuffer, TextureObjec
 	,	m_depthBuffer( depthBuffer )
 	,	m_stencilBuffer( stencilBuffer )
 {
-	if( m_colorBuffer )
-		m_colorBuffer->AddAssetReference();
-	if( m_depthBuffer )
-		m_depthBuffer->AddAssetReference();
-	if( m_stencilBuffer )
-		m_stencilBuffer->AddAssetReference();
+	//if( m_colorBuffer )
+	//	m_colorBuffer->AddAssetReference();
+	//if( m_depthBuffer )
+	//	m_depthBuffer->AddAssetReference();
+	//if( m_stencilBuffer )
+	//	m_stencilBuffer->AddAssetReference();
 }
 
 /**@brief Destruktor kasuje obiekty tekstury g³êbokoœci i bufora koloru, je¿eli nie s¹ u¿ywane.
@@ -317,24 +338,24 @@ Je¿eli istniej¹ odwo³ania do tych obiektów, to nie s¹ one kasowane, a jedynie us
 pochodz¹ce od RenderTargetObject.*/
 RenderTargetObject::~RenderTargetObject()
 {
-	if( m_colorBuffer )
-	{
-		m_colorBuffer->DeleteAssetReference();
-		//if( m_colorBuffer->CanDelete() )
-		//	ObjectDeleter<TextureObject>::delete_object( m_colorBuffer, ObjectDeleterKey<TextureObject>() );
-	}
-	if( m_depthBuffer )
-	{
-		m_depthBuffer->DeleteAssetReference();
-		//if( m_depthBuffer->CanDelete() )
-		//	ObjectDeleter<TextureObject>::delete_object( m_depthBuffer, ObjectDeleterKey<TextureObject>() );
-	}
-	if( m_stencilBuffer )
-	{
-		m_stencilBuffer->DeleteAssetReference();
-		//if( m_stencilBuffer->CanDelete() )
-		//	ObjectDeleter<TextureObject>::delete_object( m_stencilBuffer, ObjectDeleterKey<TextureObject>() );
-	}
+	//if( m_colorBuffer )
+	//{
+	//	m_colorBuffer->DeleteAssetReference();
+	//	//if( m_colorBuffer->CanDelete() )
+	//	//	ObjectDeleter<TextureObject>::delete_object( m_colorBuffer, ObjectDeleterKey<TextureObject>() );
+	//}
+	//if( m_depthBuffer )
+	//{
+	//	m_depthBuffer->DeleteAssetReference();
+	//	//if( m_depthBuffer->CanDelete() )
+	//	//	ObjectDeleter<TextureObject>::delete_object( m_depthBuffer, ObjectDeleterKey<TextureObject>() );
+	//}
+	//if( m_stencilBuffer )
+	//{
+	//	m_stencilBuffer->DeleteAssetReference();
+	//	//if( m_stencilBuffer->CanDelete() )
+	//	//	ObjectDeleter<TextureObject>::delete_object( m_stencilBuffer, ObjectDeleterKey<TextureObject>() );
+	//}
 }
 
 std::string		RenderTargetObject::GetResourceName() const
