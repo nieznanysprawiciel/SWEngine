@@ -139,11 +139,6 @@ public:
 private:
 	ILoader*						FindLoader					( const std::wstring& path );
 	
-
-#ifdef __TEST
-public:
-	void test( );
-#endif
 };
 
 

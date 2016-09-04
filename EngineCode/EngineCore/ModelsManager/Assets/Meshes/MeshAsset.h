@@ -25,7 +25,7 @@ przypisaæ ró¿ne materia³y i parametry. Gdyby nie taka struktura, to wczytanie pl
 Meshe rzadko sk³adaj¹ siê z jednego kawa³ka.
 
 Wszystkie wierzcho³ki przechowywane s¹ tylko w jednym buforze m_vertexBuffer. Na podstawie zaleceñ
-w dokumentacji DrectXa, lepiej jest mieæ jeden du¿y bufor ni¿ wiele ma³ych.
+w dokumentacji DirectXa, lepiej jest mieæ jeden du¿y bufor ni¿ wiele ma³ych.
 Poszczególne czêœci mesha zawieraj¹ albo bufor indeksów, który decyduje, które wierzcho³ki
 s¹ wyœwietlane, albo odpowiedni offset od pocz¹tku bufora i iloœæ trójk¹tów.
 Mo¿liwe jest równie¿, ¿e mesh bêdzie wyœwietlany w trybie mieszanym, u¿ywaj¹c
@@ -58,14 +58,24 @@ public:
 	const MeshPart*					GetSegment			( Size index ) const;
 	const std::vector< MeshPart >&	GetSegments			()			{ return m_segments; }
 
-	inline BufferObject*			GetVertexBuffer		()			{ return *m_vertexBuffer; }		///< Zwraca wskaŸnik na bufor wierzcho³ków.
-	inline BufferObject*			GetIndexBuffer		()			{ return *m_indexBuffer; }		///< Zwraca wskaŸnik na bufor indeksów.
-	inline ShaderInputLayout*		GetLayout			()			{ return *m_layout; }			///< Zwraca wskaŸnik na layout bufora wierzcho³ków.
+	ResourcePtr< BufferObject >		GetVertexBuffer		()			{ return m_vertexBuffer; }		///< Zwraca wskaŸnik na bufor wierzcho³ków.
+	ResourcePtr< BufferObject >		GetIndexBuffer		()			{ return m_indexBuffer; }		///< Zwraca wskaŸnik na bufor indeksów.
+	ResourcePtr< ShaderInputLayout >GetLayout			()			{ return m_layout; }			///< Zwraca wskaŸnik na layout bufora wierzcho³ków.
+
 
 	virtual std::string				GetResourceName		() const override;
 
-	virtual void				Serialize			( ISerializer* ser ) const override;
-	virtual void				Deserialize			( IDeserializer* deser ) override;
+	virtual void					Serialize			( ISerializer* ser ) const override;
+	virtual void					Deserialize			( IDeserializer* deser ) override;
+
+	///@name @ref DisplayEngine functions
+	///Functions allow DisplayEngine class aquire raw buffer pointers. Engine user should choose
+	///functions returning ResourcePtrs.
+	///@{
+	inline BufferObject*			GetVertexBufferRawPtr	()		{ return *m_vertexBuffer; }		///< Zwraca wskaŸnik na bufor wierzcho³ków.
+	inline BufferObject*			GetIndexBufferRawPtr	()		{ return *m_indexBuffer; }		///< Zwraca wskaŸnik na bufor indeksów.
+	inline ShaderInputLayout*		GetLayoutRawPtr			()		{ return *m_layout; }			///< Zwraca wskaŸnik na layout bufora wierzcho³ków.
+	///@}
 
 private:
 	~MeshAsset();

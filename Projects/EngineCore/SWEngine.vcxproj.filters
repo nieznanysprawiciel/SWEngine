@@ -141,6 +141,9 @@
     <Filter Include="EngineCore\ModelsManagment\Assets\Meshes">
       <UniqueIdentifier>{6e42c9e4-6d88-482b-b844-023bf02166bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\ModelsManagment\Loaders\Mesh\SWMesh">
+      <UniqueIdentifier>{5604a140-5fc9-42f2-a015-ca01e16356c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -596,6 +599,21 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\BufferInitData.h">
       <Filter>EngineCore\ModelsManagment\Assets</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialAssetInitData.h">
+      <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialInfo.h">
+      <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\Nullable.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Mesh\SWMesh\SWMeshLoader.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Mesh\SWMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Mesh\SWMesh\SWMeshHeader.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Mesh\SWMesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -840,6 +858,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialAsset.cpp">
       <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Mesh\SWMesh\SWMeshLoader.cpp">
+      <Filter>EngineCore\ModelsManagment\Loaders\Mesh\SWMesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

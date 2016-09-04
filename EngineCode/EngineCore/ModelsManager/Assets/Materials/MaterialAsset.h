@@ -8,48 +8,31 @@
 
 #include "GraphicAPI/MeshResources.h"
 #include "ShadingModelData.h"
+#include "MaterialAssetInitData.h"
+#include "MaterialInfo.h"
 
 #include <vector>
 
-/// Maksymalna liczba tekstur w materiale.
-#define MAX_MATERIAL_TEXTURES		5
 
-/**@defgroup Assets Assety
 
-@brief Wysokopoziomowe zasoby.
+/**@defgroup Assets Assets
+
+@brief High level engine resources.
 
 @ingroup ResourcesManagment
 */
 
 
-/**@defgroup Materials Materia³y
+/**@defgroup Materials Materials
 
-@brief Klasy opisuj¹ce materia³y.
+@brief Classes describing materials.
 
-KLasa @ref MaterialAsset przechowuje g³ówne dane materia³u.
+Class @ref MaterialAsset is main material class used by engine.
 
 @ingroup Assets
 */
 
 
-
-/**@brief Struktura opisuj¹ca dodatkowe bufory sta³ych dla shaderów.
-@ingroup Materials*/
-struct AdditionalBufferInfo
-{
-	ShaderType		Type;			///< Type shadera, do którego ma zostaæ zbindowany bufor.
-	uint32			BufferSize;		///< Rozmiar bufora w bajtach.
-};
-
-
-/**@brief Deskryptor materia³u.
-@ingroup Materials*/
-struct MaterialInfo
-{
-	std::vector< AdditionalBufferInfo >		m_additionalBuffers;	///< Opis dodatkowych buforów, jakie musi posiadaæ aktor.
-	std::string								m_materialName;			///< Nazwa materia³u. Mo¿e to byæ œcie¿ka do pliku z którego powsta³.
-	ShadingModelBase*						m_shadingData;			///< Przechowuje parametry modelu cieniowania. @see ShadingModelData
-};
 
 
 /**@brief Obiekt opisuj¹cy materia³.
@@ -76,10 +59,22 @@ private:
 	ResourcePtr< EvaluationShader >	m_evaluationShader;		///< Shader wywo³ywany po etapie tesselacji.
 	
 
-	MaterialInfo					m_descriptor;			///< Deskryptor materia³y.
+	MaterialInfo					m_descriptor;			///< Deskryptor materia³u.
 
 public:
-	MaterialAsset();
+	explicit			MaterialAsset		( const std::wstring& filePath, MaterialAssetInitData&& initData );
+
+	const ResourcePtr< BufferObject >&		GetMaterialBuffer		()		{ return m_materialBuffer;  }
+	const ResourcePtr< VertexShader >&		GetVertexShader			()		{ return m_vertexShader; }
+	const ResourcePtr< PixelShader >&		GetPixelShader			()		{ return m_pixelShader;  }
+	const ResourcePtr< GeometryShader >&	GetGeometryShader		()		{ return m_geometryShader; }
+	const ResourcePtr< ControlShader >&		GetTessControlShader	()		{ return m_controlShader;  }
+	const ResourcePtr< EvaluationShader >&	GetTessEvaluationShader	()		{ return m_evaluationShader; }
+
+	const ResourcePtr< TextureObject >&		GetTexture				( int index )	{ return m_textures[ index ]; }
+	const MaterialInfo&						GetDescriptor	()						{ return m_descriptor; }
+
+	virtual std::string						GetResourceName	() const override;
 
 private:
 	~MaterialAsset();

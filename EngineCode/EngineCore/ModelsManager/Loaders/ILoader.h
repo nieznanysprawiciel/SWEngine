@@ -6,8 +6,11 @@
 @brief Zawiera deklaracjê interfejsu dla loaderów plików z modelami.
 */
 
+#include "Common/Nullable.h"
+#include "Common/System/Path.h"
 #include "GraphicAPI/MeshResources.h"
 #include "EngineCore/ModelsManager/ModelsManager.h"
+#include "EngineCore/ModelsManager/Assets/Meshes/MeshAssetInitData.h"
 
 
 /**@defgroup MakingLoaders Pisanie loaderów
@@ -66,4 +69,7 @@ public:
 	*/
 	virtual LoaderResult load_mesh( Model3DFromFile* new_file_mesh, const std::wstring& name ) = 0;
 	//virtual void load_animation(const std::string& name) = 0;
+
+	Nullable< MeshAssetInitData >		LoadMesh	( const filesystem::Path& fileName ) {}
+	bool								CanLoad		( const filesystem::Path& fileName ) {}
 };

@@ -1,10 +1,10 @@
 #pragma once
 
-
+#include "Common/TypesDefinitions.h"
 #include "Common/MemoryChunk.h"
 #include "GraphicAPI/MeshResources.h"
 
-#include "MeshAsset.h"
+#include "MeshPart.h"
 
 #include <vector>
 
@@ -18,6 +18,11 @@ struct MeshAssetInitData
 	MemoryChunk							IndexBuffer;		///< Data used to fill index buffer.
 	ResourcePtr< ShaderInputLayout >	VertexLayout;		///< Vertex layout descriptor.
 	std::vector< MeshPart >				MeshSegments;		///< Mesh segments.
+	uint32								NumVerticies;
+	uint32								VertexSize;
+	uint32								NumIndicies;
+	PrimitiveTopology					Topology;			///< Mesh topology.
+	bool								ExtendedIndex;		///< 4 bytes index.
 };
 
 

@@ -61,7 +61,6 @@ void Engine::test()
 	Context->modelsManager->LoadModelFromFile( CHURCH );
 	//modelsManager->LoadModelFromFile( IMPERIAL_STAR_DESTROYER );
 	
-	Context->modelsManager->test();			// Tu sie odbywa wczytywanie
 
 	//dodawanie ksiê¿yca
 	StaticActor* moon = Actors.CreateActor< StaticActor >( GetTypeidName< StaticActor >(), EnableDisplay );

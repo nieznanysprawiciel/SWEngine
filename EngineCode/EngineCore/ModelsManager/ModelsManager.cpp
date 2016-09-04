@@ -1,12 +1,14 @@
 #include "EngineCore/stdafx.h"
 #include "ModelsManager.h"
-#include "EngineCore/MainEngine/Engine.h"
+
 #include "Loaders/ILoader.h"
 #include "Loaders/FBX_files_loader/FBX_loader.h"
 #include "Loaders/Texture/TextureLoader.h"
+
 #include "Common/ObjectDeleter.h"
-#include "GraphicAPI/ResourcesFactory.h"
 #include "Common/MacrosSwitches.h"
+#include "GraphicAPI/ResourcesFactory.h"
+
 #include "EngineCore/EngineHelpers/Converters.h"
 
 #include "Common/MemoryLeaks.h"
@@ -35,142 +37,6 @@ ModelsManager::~ModelsManager( )
 	for ( unsigned int i = 0; i <  m_loader.size(); ++i )
 		delete m_loader[i];
 }
-
-
-
-#ifdef __TEST
-void ModelsManager::test( )
-{
-	
-	//stworzymy sobie prosty obiekt do wyœwietlania
-	VertexNormalTexCord1 g_Vertices[] =
-	{
-	// front
-	{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT3(0.0f, 0.0f, -1.0f), XMFLOAT2(0.0f, 3.0f) },
-	{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT3(0.0f, 0.0f, -1.0f), XMFLOAT2(0.0f, 0.0f) },
-	{ XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT3(0.0f, 0.0f, -1.0f), XMFLOAT2(3.0f, 3.0f) },
-
-	{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT3(0.0f, 0.0f, -1.0f), XMFLOAT2(0.0f, 0.0f) },
-	{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT3(0.0f, 0.0f, -1.0f), XMFLOAT2(3.0f, 0.0f) },
-	{ XMFLOAT3( 1.0f, -1.0f, -1.0f ), XMFLOAT3( 0.0f, 0.0f, -1.0f ), XMFLOAT2( 3.0f, 3.0f ) },
-
-	// right
-	{ XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT2(0.0f, 1.0f) },
-	{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT2(0.0f, 0.0f) },
-	{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT2(1.0f, 1.0f) },
-
-	{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT2(0.0f, 0.0f) },
-	{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT2(1.0f, 0.0f) },
-	{ XMFLOAT3( 1.0f, -1.0f, 1.0f ), XMFLOAT3( 1.0f, 0.0f, 0.0f ), XMFLOAT2( 1.0f, 1.0f ) },
-
-	// back
-	{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT3(0.0f, 0.0f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
-	{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT3(0.0f, 0.0f, 1.0f), XMFLOAT2(0.0f, 0.0f) },
-	{ XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT3(0.0f, 0.0f, 1.0f), XMFLOAT2(1.0f, 1.0f) },
-
-	{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT3(0.0f, 0.0f, 1.0f), XMFLOAT2(0.0f, 0.0f) },
-	{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT3(0.0f, 0.0f, 1.0f), XMFLOAT2(1.0f, 0.0f) },
-	{ XMFLOAT3( -1.0f, -1.0f, 1.0f ), XMFLOAT3( 0.0f, 0.0f, 1.0f ), XMFLOAT2( 1.0f, 1.0f ) },
-
-	// left/ left
-	{ XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT3(-1.0f, 0.0f, 0.0f), XMFLOAT2(0.0f, 1.0f) },
-	{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT3(-1.0f, 0.0f, 0.0f), XMFLOAT2(0.0f, 0.0f) },
-	{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT3(-1.0f, 0.0f, 0.0f), XMFLOAT2(1.0f, 1.0f) },
-
-	{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT3(-1.0f, 0.0f, 0.0f), XMFLOAT2(0.0f, 0.0f) },
-	{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT3(-1.0f, 0.0f, 0.0f), XMFLOAT2(1.0f, 0.0f) },
-	{ XMFLOAT3( -1.0f, -1.0f, -1.0f ), XMFLOAT3( -1.0f, 0.0f, 0.0f ), XMFLOAT2( 1.0f, 1.0f ) },
-
-	// top/ top
-	{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT3(0.0f, 1.0f, 0.0f), XMFLOAT2(0.0f, 1.0f) },
-	{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT3(0.0f, 1.0f, 0.0f), XMFLOAT2(0.0f, 0.0f) },
-	{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT3(0.0f, 1.0f, 0.0f), XMFLOAT2(1.0f, 1.0f) },
-
-	{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT3(0.0f, 1.0f, 0.0f), XMFLOAT2(0.0f, 0.0f) },
-	{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT3(0.0f, 1.0f, 0.0f), XMFLOAT2(1.0f, 0.0f) },
-	{ XMFLOAT3( 1.0f, 1.0f, -1.0f ), XMFLOAT3( 0.0f, 1.0f, 0.0f ), XMFLOAT2( 1.0f, 1.0f ) },
-
-	// bootom/ bootom
-	{ XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT3(0.0f, -1.0f, 0.0f), XMFLOAT2(0.0f, 1.0f) },
-	{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT3(0.0f, -1.0f, 0.0f), XMFLOAT2(0.0f, 0.0f) },
-	{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT3(0.0f, -1.0f, 0.0f), XMFLOAT2(1.0f, 1.0f) },
-
-	{ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT3(0.0f, -1.0f, 0.0f), XMFLOAT2(0.0f, 0.0f) },
-	{ XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT3(0.0f, -1.0f, 0.0f), XMFLOAT2(1.0f, 0.0f) },
-	{ XMFLOAT3( 1.0f, -1.0f, 1.0f ), XMFLOAT3( 0.0f, -1.0f, 0.0f ), XMFLOAT2( 1.0f, 1.0f ) },
-	};
-
-	
-	MaterialObject material;
-
-//#define mat (*material)
-#define mat material
-
-	// Set the RGBA for diffuse reflection.
-	mat.Diffuse.x = 0.5f;
-	mat.Diffuse.y = 0.5f;
-	mat.Diffuse.z = 0.67f;
-	mat.Diffuse.w = 1.0f;
-
-	// Set the RGBA for ambient reflection.
-	mat.Ambient.x = 0.3f;
-	mat.Ambient.y = 0.5f;
-	mat.Ambient.z = 0.3f;
-
-	// Set the color and sharpness of specular highlights.
-	mat.Specular.x = 1.0f;
-	mat.Specular.y = 1.0f;
-	mat.Specular.z = 1.0f;
-	mat.Power = 50.0f;
-
-	// Set the RGBA for emissive color.
-	mat.Emissive.x = 0.0f;
-	mat.Emissive.y = 0.0f;
-	mat.Emissive.z = 0.0f;
-
-
-	Model3DFromFile* new_model = new Model3DFromFile(L"skrzynia");
-	new_model->BeginEdit();
-	new_model->BeginPart();
-	
-	new_model->add_vertex_buffer( g_Vertices, 36 );
-	new_model->add_material( &mat, L"::skrzynia_material" );
-	//L"..\tylko_do_testow\tex.bmp"
-	new_model->add_texture( L"tylko_do_testow/tex.bmp" );
-
-	new_model->EndPart();
-	new_model->EndEdit();
-	/*
-	new_model->vertex_buffer = BufferObject::create_from_memory( g_Vertices,
-																 sizeof(VertexNormalTexCord1),
-																 36,
-																 D3D11_BIND_VERTEX_BUFFER );
-	vertex_buffer.UnsafeAdd( L"skrzynia", new_model->vertex_buffer );
-
-
-	ModelPart part;
-	part.mesh = new MeshPartObject;
-	part.mesh->vertices_count = 36;
-	part.material = material;
-	part.m_pixelShader = m_pixelShader.get( L"default_pixel_shader" );
-	part.m_vertexShader = m_vertexShader.get( L"default_vertex_shader" );
-
-	new_model->model_parts.push_back(part);*/
-
-
-
-	m_fileModel.UnsafeAdd( L"skrzynia", new_model );
-
-
-	LoadModelFromFile( L"tylko_do_testow/ARC.FBX" );
-	LoadModelFromFile( L"tylko_do_testow/moon/moon.FBX" );
-	LoadModelFromFile( L"tylko_do_testow/Nebulon/Nebulon.FBX" );
-	LoadModelFromFile( L"tylko_do_testow/VadersTIE.FBX" );
-	LoadModelFromFile( L"tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX" );
-}
-#endif
-
-
 
 
 
@@ -322,10 +188,40 @@ RenderTargetObject* ModelsManager::CreateRenderTarget( const std::wstring& name,
 /**@brief */
 ResourcePtr<MeshAsset> ModelsManager::CreateMesh( const std::wstring& name, MeshAssetInitData&& initData )
 {
+	VertexBufferInitData vertexInit;
+	vertexInit.Data = initData.VertexBuffer.GetMemory< uint8 >();
+	vertexInit.Usage = ResourceUsage::RESOURCE_USAGE_STATIC;
+	vertexInit.ElementSize = initData.VertexSize;
+	vertexInit.NumElements = initData.NumVerticies;
+	vertexInit.VertexLayout = initData.VertexLayout;
+	vertexInit.Topology = initData.Topology;
+
+	auto vertexBuffer = CreateVertexBuffer( name, vertexInit );
+	if( !vertexBuffer )
+		return nullptr;
+
+	ResourcePtr< BufferObject > indexBuffer;
+	if( !initData.IndexBuffer.IsNull() )
+	{
+		IndexBufferInitData indexInit;
+		indexInit.Data = initData.IndexBuffer.GetMemory< uint8 >();
+		indexInit.ElementSize = 2;
+		if( initData.ExtendedIndex )
+			indexInit.ElementSize = 4;
+		indexInit.Topology = initData.Topology;
+		indexInit.NumElements = initData.NumIndicies;
+		indexInit.Usage = ResourceUsage::RESOURCE_USAGE_STATIC;
+
+		auto indexBuffer = CreateIndexBuffer( name, indexInit );
+		if( !indexBuffer )
+			return nullptr;
+	}
+
 	MeshAssetInitWithExistingData meshData;
 	meshData.MeshSegments = std::move( initData.MeshSegments );
-
-	assert( false );
+	meshData.VertexLayout = std::move( initData.VertexLayout );
+	meshData.VertexBuffer = std::move( vertexBuffer );
+	meshData.IndexBuffer = std::move( indexBuffer );
 
 	return CreateMesh( name, std::move( meshData ) );
 }
