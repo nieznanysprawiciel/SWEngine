@@ -17,6 +17,16 @@ RTTR_REGISTRATION
 {
 	rttr::registration::class_< ShadingModelBase >( "ShadingModelBase" );
 
+	rttr::registration::class_< AdditionalBufferInfo >( "AdditionalBufferInfo" )
+		.property( "ShaderType", &AdditionalBufferInfo::ShaderType )
+		.property( "BufferSize", &AdditionalBufferInfo::BufferSize )
+		.property( "BufferType", &AdditionalBufferInfo::GetBufferType, &AdditionalBufferInfo::SetBufferType );
+
+	rttr::registration::class_< MaterialInfo >( "MaterialInfo" )
+		.property( "Name", &MaterialInfo::MaterialName )
+		.property( "AdditionalBuffers", &MaterialInfo::AdditionalBuffers )
+		.property( "ShadingData", &MaterialInfo::ShadingData );
+
 	rttr::registration::class_< MaterialAsset >( "MaterialAsset" )
 		.property( "VertexShader", &MaterialAsset::m_vertexShader )
 		.property( "PixelShader", &MaterialAsset::m_pixelShader )
@@ -25,10 +35,6 @@ RTTR_REGISTRATION
 		.property( "TesselationEvaluationShader", &MaterialAsset::m_evaluationShader )
 		.property( "Descriptor", &MaterialAsset::m_descriptor );
 
-	rttr::registration::class_< MaterialInfo >( "MaterialInfo" )
-		.property( "Name", &MaterialInfo::MaterialName )
-		.property( "AdditionalBuffers", &MaterialInfo::AdditionalBuffers )
-		.property( "ShadingData", &MaterialInfo::ShadingData );
 }
 
 

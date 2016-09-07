@@ -179,6 +179,16 @@ RTTR_REGISTRATION
 		rttr::value( "No filtering", MipMapFilter::Unknown )
 	);
 
+	rttr::registration::enumeration< ShaderType >( "ShaderType" )
+	(
+		rttr::value( "VertexShader", ShaderType::VertexShader ),
+		rttr::value( "PixelShader", ShaderType::PixelShader ),
+		rttr::value( "GeometryShader", ShaderType::GeometryShader ),
+		rttr::value( "TesselationControlShader", ShaderType::TesselationControlShader ),
+		rttr::value( "TesselationEvaluationShader", ShaderType::TesselationEvaluationShader ),
+		rttr::value( "ComputeShader", ShaderType::ComputeShader )
+	);
+
 //====================================================================================//
 //			Resources	
 //====================================================================================//

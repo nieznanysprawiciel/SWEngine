@@ -31,7 +31,6 @@ const std::string		SWMaterialLoader::STRINGS_1_0::CONTROL_SHADER_STRING	= "Tesse
 const std::string		SWMaterialLoader::STRINGS_1_0::EVALUATION_SHADER_STRING = "TesselationEvaluationShader";
 
 const std::string		SWMaterialLoader::STRINGS_1_0::TEXTURES_ARRAY_STRING	= "Textures";
-const std::string		SWMaterialLoader::STRINGS_1_0::TEXTURE_STRING			= "Texture";
 
 
 
@@ -115,7 +114,7 @@ void								SWMaterialLoader::SaveMaterial	( const filesystem::Path& fileName, M
 			{
 				auto tex = mat->GetTexture( i ).Ptr();
 
-				ser.EnterObject( STRINGS_1_0::TEXTURE_STRING );
+				ser.EnterObject( rttr::type::get< TextureObject >().get_name() );
 
 				if( tex )
 					ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, tex->GetFilePath().String() );

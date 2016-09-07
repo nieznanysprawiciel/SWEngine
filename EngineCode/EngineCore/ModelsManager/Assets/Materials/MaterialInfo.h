@@ -16,6 +16,9 @@ struct AdditionalBufferInfo
 	AdditionalBufferInfo()
 		: BufferType( rttr::type::get( "" ) )
 	{}
+
+	std::string		GetBufferType		() const { return BufferType.get_name(); }
+	void			SetBufferType		( std::string name );
 };
 
 
@@ -36,4 +39,12 @@ inline MaterialInfo::MaterialInfo( const std::wstring& name, std::vector< Additi
 	AdditionalBuffers = std::move( addBuff );
 	MaterialName = name;
 	ShadingData = shadModel;
+}
+
+
+inline void			AdditionalBufferInfo::SetBufferType( std::string name )
+{
+	auto newType = rttr::type::get( name );
+	if( newType.is_valid() )
+		BufferType = newType;
 }
