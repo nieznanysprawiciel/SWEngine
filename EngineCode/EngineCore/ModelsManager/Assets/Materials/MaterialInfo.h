@@ -9,8 +9,13 @@
 @ingroup Materials*/
 struct AdditionalBufferInfo
 {
-	ShaderType		Type;			///< Type shadera, do którego ma zostaæ zbindowany bufor.
+	ShaderType		ShaderType;		///< Type shadera, do którego ma zostaæ zbindowany bufor.
+	rttr::type		BufferType;		///< Type of buffer, which must be bound to material by actor.
 	uint32			BufferSize;		///< Rozmiar bufora w bajtach.
+
+	AdditionalBufferInfo()
+		: BufferType( rttr::type::get( "" ) )
+	{}
 };
 
 

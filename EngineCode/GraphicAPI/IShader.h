@@ -20,8 +20,8 @@ protected:
 	IShader() : ResourceObject( 0 ) {}
 	virtual ~IShader() = default;
 public:
-	std::wstring&			GetShaderFile()		{ return m_shaderFile; }
-	std::string&			GetShaderEntry()	{ return m_shaderEntry; }
+	const std::wstring&		GetShaderFile			() const		{ return m_shaderFile; }
+	const std::string&		GetShaderEntry			() const		{ return m_shaderEntry; }
 
 
 	virtual bool			ReloadFromFile			() = 0;

@@ -13,6 +13,26 @@
 #include "Common/MemoryLeaks.h"
 
 
+RTTR_REGISTRATION
+{
+	rttr::registration::class_< ShadingModelBase >( "ShadingModelBase" );
+
+	rttr::registration::class_< MaterialAsset >( "MaterialAsset" )
+		.property( "VertexShader", &MaterialAsset::m_vertexShader )
+		.property( "PixelShader", &MaterialAsset::m_pixelShader )
+		.property( "GeometryShader", &MaterialAsset::m_geometryShader )
+		.property( "TesselationControlShader", &MaterialAsset::m_controlShader )
+		.property( "TesselationEvaluationShader", &MaterialAsset::m_evaluationShader )
+		.property( "Descriptor", &MaterialAsset::m_descriptor );
+
+	rttr::registration::class_< MaterialInfo >( "MaterialInfo" )
+		.property( "Name", &MaterialInfo::MaterialName )
+		.property( "AdditionalBuffers", &MaterialInfo::AdditionalBuffers )
+		.property( "ShadingData", &MaterialInfo::ShadingData );
+}
+
+
+
 MaterialAsset::MaterialAsset( const std::wstring& filePath, MaterialAssetInitData&& initData )
 	: ResourceObject( WRONG_ID )
 	, m_vertexShader( std::move( initData.VertexShader ) )
@@ -37,4 +57,7 @@ std::string MaterialAsset::GetResourceName() const
 {
 	return Converters::ToString( m_descriptor.MaterialName );
 }
+
+
+
 

@@ -95,6 +95,7 @@ public:
 	RenderTargetObject*				CreateRenderTarget			( const std::wstring& name, const RenderTargetDescriptor& renderTargetDescriptor );
 	ResourcePtr< MeshAsset >		CreateMesh					( const std::wstring& name, MeshAssetInitData&& initData );
 	ResourcePtr< MeshAsset >		CreateMesh					( const std::wstring& name, MeshAssetInitWithExistingData&& initData );
+	ResourcePtr< MaterialAsset >	CreateMaterial				( const std::wstring& name, MaterialAssetInitData&& initData );
 
 	inline Model3DFromFile*			GetModel					( const std::wstring& name ) { return m_fileModel.get( name ); }	///<Zwraca model z pliku o podanej nazwie, je¿eli jest wczytany.
 	inline RenderTargetObject*		GetRenderTarget				( const std::wstring& name ) { return m_renderTarget.get( name ); }	///<Zwraca RenderTarget o podanej nazwie, je¿eli jest wczytany.

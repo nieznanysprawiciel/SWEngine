@@ -45,5 +45,7 @@ public:
 	virtual Size		GetSize		()		{ return sizeof( ShadingModelStruct ); }
 	virtual char*		GetData		()		{ return static_cast< void* >( &Data ); }
 	virtual rttr::type	GetType		()		{ return rttr::type::get< ShadingModelStruct >(); }
+
+	ShadingModelStruct&	GetStruct	()		{ return Data; }
 };
 

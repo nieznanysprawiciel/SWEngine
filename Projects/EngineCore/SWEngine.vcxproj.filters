@@ -144,6 +144,12 @@
     <Filter Include="EngineCore\ModelsManagment\Loaders\Mesh\SWMesh">
       <UniqueIdentifier>{5604a140-5fc9-42f2-a015-ca01e16356c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\ModelsManagment\Loaders\Material">
+      <UniqueIdentifier>{2d3cb875-4168-4c4f-95e3-c21e5d5a27f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\ModelsManagment\Loaders\Material\SWMat">
+      <UniqueIdentifier>{fe42bfd2-6dde-410e-a030-6618940b0d4e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -614,6 +620,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Mesh\SWMesh\SWMeshHeader.h">
       <Filter>EngineCore\ModelsManagment\Loaders\Mesh\SWMesh</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Material\SWMat\SWMaterialLoader.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Material\SWMat</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -861,6 +870,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Mesh\SWMesh\SWMeshLoader.cpp">
       <Filter>EngineCore\ModelsManagment\Loaders\Mesh\SWMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Material\SWMat\SWMaterialLoader.cpp">
+      <Filter>EngineCore\ModelsManagment\Loaders\Material\SWMat</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

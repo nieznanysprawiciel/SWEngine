@@ -42,6 +42,9 @@ EngineInterface::~EngineInterface()
 #include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
 #include "Common/System/Path.h"
 
+void testMaterial( Engine* engine, Model3DFromFile* model );
+
+
 /**@brief */
 void Engine::test()
 {
@@ -119,12 +122,12 @@ void Engine::test()
 	cloneFighter->SetModel( Context->modelsManager->GetModel( CLONE_FIGHTER ) );
 
 
-	//dodawanie koœcio³a
-	StaticActor* church = Actors.CreateActor< StaticActor >( GetTypeidName< StaticActor >(), EnableDisplay );
-	position = XMVectorSet( -300.0, 0.0, 500.0, 0.0 );
-	church->Teleport( position );
+	////dodawanie koœcio³a
+	//StaticActor* church = Actors.CreateActor< StaticActor >( GetTypeidName< StaticActor >(), EnableDisplay );
+	//position = XMVectorSet( -300.0, 0.0, 500.0, 0.0 );
+	//church->Teleport( position );
 
-	church->SetModel( Context->modelsManager->GetModel( CHURCH ) );
+	//church->SetModel( Context->modelsManager->GetModel( CHURCH ) );
 
 
 	//for( unsigned int i = 0; i < 100; ++i )
@@ -168,6 +171,8 @@ void Engine::test()
 //	//skrzynia->SetScale( 0.1 );
 
 	SetSkydomeAndCamera();
+
+	testMaterial( this, Context->modelsManager->GetModel( CLONE_FIGHTER ) );
 
 
 	int actorInfoSize = sizeof( ActorInfo );
@@ -230,6 +235,28 @@ void Engine::SetSkydome()
 	// Ustawiamy œwiat³o pod indeksem 0
 	Context->displayEngine->SetDirectionalLight( direction, color, 0 );
 	Context->displayEngine->SetAmbientLight( DirectX::XMFLOAT4( 0.2f, 0.2f, 0.2f, 1.0f ) );
+}
+
+#include "EngineCore/ModelsManager/Assets/Materials/MaterialAsset.h"
+#include "EngineCore/ModelsManager/Assets/Materials/MaterialAssetInitData.h"
+#include "EngineCore/ModelsManager/Loaders/Material/SWMat/SWMaterialLoader.h"
+
+void testMaterial( Engine* engine, Model3DFromFile* model )
+{
+	auto part = model->get_part( 1 );
+
+	MaterialAssetInitData init;
+	init.VertexShader = part->vertex_shader;
+	init.PixelShader = part->pixel_shader;
+	init.Textures[ 0 ] = part->GetTexture1();
+
+	init.ShadingData = nullptr;
+
+	// Memory leak!!
+	MaterialAsset* newMaterial = new MaterialAsset( L"::Generated", std::move( init ) );
+
+	SWMaterialLoader loader;
+	loader.SaveMaterial( "tylko_do_testow/materialSerialize.swmat", newMaterial );
 }
 
 #endif

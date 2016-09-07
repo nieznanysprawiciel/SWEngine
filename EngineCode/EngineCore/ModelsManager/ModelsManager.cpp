@@ -233,6 +233,12 @@ ResourcePtr<MeshAsset> ModelsManager::CreateMesh( const std::wstring& name, Mesh
 	return ResourcePtr<MeshAsset>();
 }
 
+/**@brief */
+ResourcePtr< MaterialAsset >	ModelsManager::CreateMaterial( const std::wstring& name, MaterialAssetInitData&& initData )
+{
+	assert( false );
+	return ResourcePtr< MaterialAsset >();
+}
 
 
 /**@brief Dodaje materia³ do ModelsManagera, je¿eli jeszcze nie istnia³.
