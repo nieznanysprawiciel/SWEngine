@@ -28,7 +28,10 @@ private:
 		static const std::string		EVALUATION_SHADER_STRING;
 
 		static const std::string		TEXTURES_ARRAY_STRING;
-		static const std::string		TEXTURE_STRING;
+
+		static const std::string		ADD_BUFFERS_ARRAY_STRING;
+		static const std::string		ADDITIONAL_BUFFER_STRING;
+		static const std::string		SHADING_DATA_STRING;
 	};
 
 	uint32		m_versionMajor;

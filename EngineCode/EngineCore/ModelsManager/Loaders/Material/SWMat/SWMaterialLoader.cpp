@@ -32,6 +32,10 @@ const std::string		SWMaterialLoader::STRINGS_1_0::EVALUATION_SHADER_STRING = "Te
 
 const std::string		SWMaterialLoader::STRINGS_1_0::TEXTURES_ARRAY_STRING	= "Textures";
 
+const std::string		SWMaterialLoader::STRINGS_1_0::ADD_BUFFERS_ARRAY_STRING = "AdditionalBuffers";
+const std::string		SWMaterialLoader::STRINGS_1_0::ADDITIONAL_BUFFER_STRING = "BufferInfo";
+const std::string		SWMaterialLoader::STRINGS_1_0::SHADING_DATA_STRING		= "ShadingData";
+
 
 
 
@@ -123,6 +127,21 @@ void								SWMaterialLoader::SaveMaterial	( const filesystem::Path& fileName, M
 			}
 
 			ser.Exit();	// Textures
+
+			// Additional buffers
+			ser.EnterArray( STRINGS_1_0::ADD_BUFFERS_ARRAY_STRING );
+
+			auto& addBuffers = mat->GetDescriptor().AdditionalBuffers;
+			for( auto& buffer : addBuffers )
+			{
+				ser.EnterObject( STRINGS_1_0::ADDITIONAL_BUFFER_STRING );
+
+				
+
+				ser.Exit();
+			}
+
+			ser.Exit();
 
 			//auto str = Converters::ToString( mat->GetDescriptor().AdditionalBuffers[0].ShaderType );
 
