@@ -5,9 +5,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Common">
-      <UniqueIdentifier>{3428394e-015c-411c-8168-bf68a509f622}</UniqueIdentifier>
-    </Filter>
     <Filter Include="EngineCore">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
@@ -54,17 +51,11 @@
     <Filter Include="EngineCore\Actors">
       <UniqueIdentifier>{6569d299-6302-4020-9454-f49322687b3b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Common\Multithreading">
-      <UniqueIdentifier>{b3a89609-9daa-444d-b12a-8a12ea97008a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="EngineCore\MainEngine\Commands">
       <UniqueIdentifier>{0556bdca-3997-4844-9be5-b623dec5e803}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineCore\MainEngine\Initializers">
       <UniqueIdentifier>{01ad07dc-efd9-4c32-b9e1-f44bbf60d6a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Common\Properties">
-      <UniqueIdentifier>{f696d09a-ca1e-45e6-950c-2b058ec9e554}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineCore\Actors\BasicActors">
       <UniqueIdentifier>{b191242f-db02-46f7-9bea-32e16dfcc794}</UniqueIdentifier>
@@ -99,12 +90,6 @@
     <Filter Include="EngineCore\ControllersEngine\BasicControllers\Editor">
       <UniqueIdentifier>{32d2f89a-54e2-47dc-96de-fd1865a06d32}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Common\Serialization">
-      <UniqueIdentifier>{4cbc9588-af5c-436c-a81c-f2d37e7b7ef2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Common\Serialization\SW">
-      <UniqueIdentifier>{c89ee080-766a-478b-b1e0-274b255cef21}</UniqueIdentifier>
-    </Filter>
     <Filter Include="EngineCore\MainEngine\Diagnostics">
       <UniqueIdentifier>{68fcd04a-83f8-4914-b41b-aa84fc2f7147}</UniqueIdentifier>
     </Filter>
@@ -119,9 +104,6 @@
     </Filter>
     <Filter Include="EngineCore\ModelsManagment\Assets">
       <UniqueIdentifier>{7e4b9013-e940-473d-abbc-3f471b7cd163}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Common\System">
-      <UniqueIdentifier>{a1c1e982-4891-436f-8e84-983ffd4f96fb}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineCore\ModelsManagment\Loaders\Texture">
       <UniqueIdentifier>{c14f3828-3c7c-4448-afbe-59abbd1c6763}</UniqueIdentifier>
@@ -188,9 +170,6 @@
     <ClInclude Include="$(EngineCoreSourceDir)SW_engine.h">
       <Filter>EngineCore\MainEngine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\ObjectDeleter.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.h">
       <Filter>EngineCore\PhysicEngine</Filter>
     </ClInclude>
@@ -233,9 +212,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorObjects.h">
       <Filter>EngineCore\Actors</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\ILoader.h">
       <Filter>EngineCore\ModelsManagment\Loaders</Filter>
     </ClInclude>
@@ -251,14 +227,8 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\EventManager.h">
       <Filter>EngineCore\EventsManager</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\Multithreading\SpinLock.h">
-      <Filter>Common\Multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\Commands\Command.h">
       <Filter>EngineCore\MainEngine\Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\Delegate.h">
-      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\StandardAbstractionLayers.h">
       <Filter>EngineCore\UIEngine</Filter>
@@ -320,21 +290,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Textures.h">
       <Filter>EngineCore\UserApi\Assets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\MemoryLeaks.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\MacrosSwitches.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\Properties\Property.h">
-      <Filter>Common\Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\Properties\IEnableProperty.h">
-      <Filter>Common\Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\Properties\IMetaProperty.h">
-      <Filter>Common\Properties</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\CameraActor.h">
       <Filter>EngineCore\Actors\BasicActors</Filter>
     </ClInclude>
@@ -346,9 +301,6 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\StaticActor.h">
       <Filter>EngineCore\Actors\BasicActors</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\RTTR.h">
-      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\CollisionEngine.h">
       <Filter>EngineCore\PhysicEngine</Filter>
@@ -364,9 +316,6 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\Collisions\OctreeNode.h">
       <Filter>EngineCore\PhysicEngine\Collisions</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\EngineObject.h">
-      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\ActorBase.h">
       <Filter>EngineCore\Actors\BasicActors</Filter>
@@ -407,9 +356,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\Signal.h">
       <Filter>EngineCore\EventsManager</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\Multithreading\SpinLockedQueue.h">
-      <Filter>Common\Multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\Events\KeyUpEvent.h">
       <Filter>EngineCore\EventsManager\Events</Filter>
     </ClInclude>
@@ -430,21 +376,6 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\EngineHelpers\Intersections.h">
       <Filter>EngineCore\EngineHelpers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\Serialization\Deserializer.h">
-      <Filter>Common\Serialization</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\Serialization\SerializationContext.h">
-      <Filter>Common\Serialization</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\Serialization\Serializer.h">
-      <Filter>Common\Serialization</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\Serialization\SW\EngineSerializationContext.h">
-      <Filter>Common\Serialization\SW</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\Serialization\SW\Serialization.h">
-      <Filter>Common\Serialization\SW</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\InputLibrary\IInput.h">
       <Filter>InputLibrary</Filter>
@@ -514,9 +445,6 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorPointer.h">
       <Filter>EngineCore\Actors</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\System\Path.h">
-      <Filter>Common\System</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.h">
       <Filter>EngineCore\ModelsManagment\Loaders\Mesh</Filter>
@@ -610,9 +538,6 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialInfo.h">
       <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\Nullable.h">
-      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Mesh\SWMesh\SWMeshLoader.h">
       <Filter>EngineCore\ModelsManagment\Loaders\Mesh\SWMesh</Filter>
@@ -826,9 +751,6 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\EngineHelpers\Intersections.cpp">
       <Filter>EngineCore\EngineHelpers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\Common\Serialization\SW\Serialization.cpp">
-      <Filter>Common\Serialization\SW</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Level\LevelApi.cpp">
       <Filter>EngineCore\UserApi\Level</Filter>
     </ClCompile>
@@ -881,9 +803,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\EngineCode\Common\Serialization\SW\Serialization.inl">
-      <Filter>Common\Serialization\SW</Filter>
-    </None>
     <None Include="..\..\EngineCode\EngineCore\UserApi\Actors\ActorsApi.inl">
       <Filter>EngineCore\UserApi\Actors</Filter>
     </None>
