@@ -56,7 +56,7 @@ struct BufferInfo
 	///@}
 
 	BufferInfo()
-		:	DataType( rttr::type::get( "" ) )	// Set invalid type.
+		: DataType( rttr::type::get_by_name( "" ) )	// Set invalid type.
 	{}
 
 	std::string		GetName	() const		{ return Name.String(); }

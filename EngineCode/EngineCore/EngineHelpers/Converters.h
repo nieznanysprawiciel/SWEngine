@@ -2,70 +2,88 @@
 
 #include <string>
 #include <codecvt>
+#include <type_traits>
+
+#include "Common/RTTR.h"
 
 
 
 class Converters
 {
 private:
-	template< typename EnumType >
-	static const char*			EnumToConstChar		( std::pair< EnumType, const char* >* mappingArray, EnumType defaultVal );
 
-	template< typename EnumType >
-	static std::string			EnumToString		( std::pair< EnumType, const char* >* mappingArray, EnumType defaultVal );
+	template< typename SrcType >
+	static inline std::string			EnumToString		( SrcType defaultVal );
 
-	template< typename EnumType >
-	static EnumType				StringToEnum		( std::pair< EnumType, const char* >* mappingArray, const std::string& value, EnumType defaultValue );
-
-	template< typename EnumType >
-	static std::pair< EnumType, const char* >*		GetEnumMappingArray();
+	template< typename SrcType >
+	static inline SrcType				StringToEnum		( const std::string& value, SrcType defaultValue );
 
 public:
 
-	template< typename EnumType >
-	static const char*			ToConstChar		( const EnumType& value);
+	template< typename SrcType >
+	static inline typename std::enable_if< std::is_enum< SrcType >::value, std::string >::type
+										ToString			( const SrcType& val );
 
-	template< typename EnumType >
-	static std::string			ToString		( const EnumType& value );
+	template< typename SrcType >
+	static inline typename std::enable_if< std::is_enum< SrcType >::value, SrcType >::type
+										FromString			( const std::string& val, const SrcType& defaultValue );
 
-	template< typename EnumType >
-	static EnumType				FromString		( const std::string& value, EnumType defaultValue );
+	template< typename SrcType >
+	static inline typename std::enable_if< !std::is_enum< SrcType >::value, std::string >::type
+										ToString			( const SrcType& val );
 
-
+	template< typename SrcType >
+	static inline typename std::enable_if< !std::is_enum< SrcType >::value, SrcType >::type
+										FromString			( const std::string& val, const SrcType& defaultValue );
 
 
 
 	template<>
-	static std::string			ToString< std::wstring >		( const std::wstring& value );
+	static inline typename std::enable_if< !std::is_enum< std::wstring >::value, std::string >::type
+										ToString< std::wstring >	( const std::wstring& value );
 
 	template<>
-	static std::wstring			FromString< std::wstring >		( const std::string& value, std::wstring defaultValue );
+	static inline typename std::enable_if< !std::is_enum< std::wstring >::value, std::wstring >::type
+										FromString< std::wstring >	( const std::string& value, const std::wstring& defaultValue );
+
 };
 
 
-//====================================================================================//
-//			Public	
-//====================================================================================//
-
-/**@brief Konwertuje enuma do ³añcucha znaków.*/
-template<typename EnumType>
-inline const char*			Converters::ToConstChar		( const EnumType& value )
+template< typename SrcType >
+inline typename std::enable_if< !std::is_enum< SrcType >::value, std::string >::type
+							Converters::ToString		( const SrcType& val )
 {
-	return EnumToConstChar( GetEnumMappingArray< EnumType >(), value );
+	static_assert( false, "Specialize template" );
+	return std::string();
 }
 
-/**@brief Konwertuje enuma do stringa.*/
-template<typename EnumType>
-inline std::string			Converters::ToString		( const EnumType& value )
+template< typename SrcType >
+inline typename std::enable_if< !std::is_enum< SrcType >::value, SrcType >::type
+							Converters::FromString		( const std::string& val, const SrcType& defaultValue )
 {
-	return EnumToString( GetEnumMappingArray< EnumType >(), value );
+	static_assert( false, "Specialize template" );
+	return SrcType();
+}
+
+
+//====================================================================================//
+//			Public template specialization for enum types
+//====================================================================================//
+
+/**@brief Konwertuje enuma do stringa.*/
+template< typename SrcType >
+inline typename std::enable_if< std::is_enum< SrcType >::value, std::string >::type
+							Converters::ToString		( const SrcType& val )
+{
+	return EnumToString( val );
 }
 
 /**@brief Konwertuje stringa do enuma.*/
-template<typename EnumType>
-inline EnumType				Converters::FromString		( const std::string& value, EnumType defaultValue )
+template< typename SrcType >
+inline typename std::enable_if< std::is_enum< SrcType >::value, SrcType >::type
+							Converters::FromString		( const std::string& val, const SrcType& defaultValue )
 {
-	return StringToEnum( GetEnumMappingArray< EnumType >(), value, defaultValue );
+	return StringToEnum( val, defaultValue );
 }
 
 //====================================================================================//
@@ -73,7 +91,8 @@ inline EnumType				Converters::FromString		( const std::string& value, EnumType 
 //====================================================================================//
 
 template<>
-inline std::string			Converters::ToString		( const std::wstring& value )
+inline typename std::enable_if< !std::is_enum< std::wstring >::value, std::string >::type
+							Converters::ToString< std::wstring >	( const std::wstring& value )
 {
 	typedef std::codecvt_utf8<wchar_t> convert_type;
 	std::wstring_convert<convert_type, wchar_t> converter;
@@ -81,7 +100,8 @@ inline std::string			Converters::ToString		( const std::wstring& value )
 }
 
 template<>
-inline std::wstring			Converters::FromString		( const std::string& value, std::wstring defaultValue )
+inline typename std::enable_if< !std::is_enum< std::wstring >::value, std::wstring >::type
+							Converters::FromString< std::wstring >	( const std::string& value, const std::wstring& defaultValue )
 {
 	typedef std::codecvt_utf8<wchar_t> convert_type;
 	std::wstring_convert<convert_type, wchar_t> converter;
@@ -89,54 +109,45 @@ inline std::wstring			Converters::FromString		( const std::string& value, std::w
 }
 
 //====================================================================================//
-//			Private	
+//			Private	enum helpers
 //====================================================================================//
 
 
-template< typename EnumType >
-const char*				Converters::EnumToConstChar		( std::pair< EnumType, const char* >* mappingArray, EnumType value )
+template< typename SrcType >
+std::string				Converters::EnumToString		( SrcType value )
 {
-	int idx = 0;
-	while( strcmp( mappingArray[ idx ].second, "" ) )
-	{
-		if( mappingArray[ idx ].first == value )
-			return mappingArray[ idx ].second;
-		
-		idx++;
-	}
+	static_assert( std::is_enum< SrcType >::value, "Type is not enum" );
 
-	return "";
+	auto type = rttr::type::get< SrcType >();
+	
+	assert( type.is_valid() );		/// Type haven't been registered.
+	assert( type.is_enumeration() );
+	
+	rttr::enumeration enumVal = type.get_enumeration();
+
+	return enumVal.value_to_name( value );
 }
 
 
-template< typename EnumType >
-std::string				Converters::EnumToString		( std::pair< EnumType, const char* >* mappingArray, EnumType value )
+template< typename SrcType >
+SrcType				Converters::StringToEnum		( const std::string& value, SrcType defaultValue )
 {
-	return std::string( EnumToConstChar( mappingArray, value ) );
+	static_assert( std::is_enum< SrcType >::value, "Type is not enum" );
+
+	auto type = rttr::type::get< SrcType >();
+
+	assert( type.is_valid() );		/// Type haven't been registered.
+	assert( type.is_enumeration() );
+
+	rttr::enumeration enumVal = type.get_enumeration();
+
+	rttr::variant result = enumVal.value_to_name( value );
+	if( !result.is_valid() )
+		return defaultValue;
+
+	return result.get_value< SrcType >();
 }
 
 
-template< typename EnumType >
-EnumType				Converters::StringToEnum		( std::pair< EnumType, const char* >* mappingArray, const std::string& value, EnumType defaultValue )
-{
-	int idx = 0;
-	while( strcmp( mappingArray[ idx ].second, "" ) )
-	{
-		if( mappingArray[ idx ].second == value.c_str() )
-			return mappingArray[ idx ].first;
-
-		idx++;
-	}
-
-	return defaultValue;
-}
-
-
-template< typename EnumType >
-std::pair< EnumType, const char* >*		Converters::GetEnumMappingArray()
-{
-	static_assert( false, "You should implement GetEnumMappingArray template spetialization for this type." );
-	return nullptr;
-}
 
 

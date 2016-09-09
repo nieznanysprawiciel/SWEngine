@@ -14,7 +14,7 @@ struct AdditionalBufferInfo
 	uint32			BufferSize;		///< Rozmiar bufora w bajtach.
 
 	AdditionalBufferInfo()
-		: BufferType( rttr::type::get( "" ) )
+		: BufferType( rttr::type::get_by_name( "" ) )
 	{}
 
 	std::string		GetBufferType		() const { return BufferType.get_name(); }

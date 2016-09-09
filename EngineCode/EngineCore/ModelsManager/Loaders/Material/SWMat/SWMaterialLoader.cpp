@@ -124,6 +124,8 @@ void								SWMaterialLoader::SaveMaterial	( const filesystem::Path& fileName, M
 
 			ser.Exit();	// Textures
 
+			//auto str = Converters::ToString( mat->GetDescriptor().AdditionalBuffers[0].ShaderType );
+
 		ser.Exit();	// type name
 
 	ser.Exit(); // SWMaterial
