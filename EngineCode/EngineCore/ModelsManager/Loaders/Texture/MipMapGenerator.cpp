@@ -2,7 +2,7 @@
 #include "MipMapGenerator.h"
 
 #include "Resampler/resampler.h"
-#include "EngineCore/EngineHelpers/Converters.h"
+#include "Common/Converters.h"
 
 
 

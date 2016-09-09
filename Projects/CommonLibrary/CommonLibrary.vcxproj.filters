@@ -87,10 +87,16 @@
     <ClInclude Include="..\..\EngineCode\Common\Properties\Property.h">
       <Filter>Common\Properties</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\Converters.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\Common\Serialization\SW\Serialization.cpp">
       <Filter>Common\Serialization\SW</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\Common\Converters.cpp">
+      <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

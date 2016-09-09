@@ -6,7 +6,7 @@
 
 #include "EngineCore/stdafx.h"
 #include "MeshAsset.h"
-#include "EngineCore/EngineHelpers/Converters.h"
+#include "Common/Converters.h"
 #include "Common/Serialization/SW/Serialization.h"
 
 #include "Common/MemoryLeaks.h"

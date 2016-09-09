@@ -1,7 +1,7 @@
 #include "EngineCore/stdafx.h"
 #include "SWMaterialLoader.h"
 
-#include "EngineCore/EngineHelpers/Converters.h"
+#include "Common/Converters.h"
 #include "Common/Serialization/SW/Serialization.h"
 
 

@@ -1,6 +1,6 @@
 #include "EngineCore/stdafx.h"
 #include "ModelsManager.h"
-#include "EngineCore/EngineHelpers/Converters.h"
+#include "Common/Converters.h"
 
 #include "Common/Serialization/SW/Serialization.h"
 

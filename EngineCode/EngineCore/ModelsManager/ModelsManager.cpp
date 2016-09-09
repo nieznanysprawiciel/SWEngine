@@ -9,7 +9,7 @@
 #include "Common/MacrosSwitches.h"
 #include "GraphicAPI/ResourcesFactory.h"
 
-#include "EngineCore/EngineHelpers/Converters.h"
+#include "Common/Converters.h"
 
 #include "Common/MemoryLeaks.h"
 

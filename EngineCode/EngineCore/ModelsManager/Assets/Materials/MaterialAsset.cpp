@@ -8,7 +8,7 @@
 #include "EngineCore/stdafx.h"
 #include "MaterialAsset.h"
 
-#include "EngineCore/EngineHelpers/Converters.h"
+#include "Common/Converters.h"
 
 #include "Common/MemoryLeaks.h"
 
