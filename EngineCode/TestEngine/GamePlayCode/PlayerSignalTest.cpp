@@ -3,7 +3,26 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< PlayerSignalTest >( "PlayerSignalTest" );
+
+	rttr::registration::enumeration< NestedFunctionType >( "NestedFunctionType" )
+	(
+		rttr::value( "Known", NestedFunctionType::Known ),
+		rttr::value( "Unknown", NestedFunctionType::Unknown )
+	);
+
+	rttr::registration::class_< NestedStruct >( "NestedStruct" )
+		.property( "Data1", &NestedStruct::Data1 )
+		.property( "Data2", &NestedStruct::Data2 );
+
+	rttr::registration::class_< PlayerSignalTest >( "PlayerSignalTest" )
+		.property( "TestValue", &PlayerSignalTest::m_testValue )
+		( 
+			rttr::metadata( MetaDataType::AllowInSaveFile, false),
+			rttr::metadata( MetaDataType::Serialize, false )
+		)
+		.property( "FunctionType", &PlayerSignalTest::m_funType )
+		.property( "NestedStruct", &PlayerSignalTest::m_struct ) BIND_AS_PTR;
+
 }
 
 

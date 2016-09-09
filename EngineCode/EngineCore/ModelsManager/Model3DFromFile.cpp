@@ -565,7 +565,7 @@ void Model3DFromFile::Serialize( ISerializer* ser ) const
 {
 	//Serialization::DefaultSerialize( ser, this );
 	
-	ser->EnterObject( rttr::type::get< Model3DFromFile >().get_name() );
+	ser->EnterObject( GetTypeName() );
 
 	Serialization::SerializeStringTypes( ser, this, GetType().get_property( "FileName" ) );
 

@@ -195,7 +195,15 @@ RTTR_REGISTRATION
 
 	rttr::registration::class_< ResourceObject >( "ResourceObject" )
 		.property_readonly( "ID", &ResourceObject::m_uniqueId )
-		.property_readonly( "References", &ResourceObject::m_objectReferences );
+		( 
+			rttr::metadata( MetaDataType::AllowInSaveFile, false),
+			rttr::metadata( MetaDataType::Serialize, false )
+		)
+		.property_readonly( "References", &ResourceObject::m_objectReferences )
+		( 
+			rttr::metadata( MetaDataType::AllowInSaveFile, false),
+			rttr::metadata( MetaDataType::Serialize, false )
+		);
 
 	rttr::registration::class_< TextureInfo >( "TextureInfo" )
 		.property_readonly( "Width", &TextureInfo::GetWidth )

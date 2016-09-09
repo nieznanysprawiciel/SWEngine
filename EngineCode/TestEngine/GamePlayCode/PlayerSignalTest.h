@@ -17,6 +17,13 @@ struct EventData : public Event
 	}
 };
 
+enum NestedFunctionType
+{
+	Unknown,
+	Known
+};
+
+
 struct NestedStruct
 {
 	int		Data1;
@@ -27,12 +34,14 @@ struct NestedStruct
 class PlayerSignalTest	: public DynamicActor
 {
 	RTTR_ENABLE( DynamicActor );
+	RTTR_REGISTRATION_FRIEND;
 private:
 
 	ActorPtr< PlayerSignalTest >		m_otherPlayer;
 	
 	int									m_testValue;
 	NestedStruct						m_struct;
+	NestedFunctionType					m_funType;
 
 public:
 	PlayerSignalTest();
