@@ -72,7 +72,7 @@ LoaderResult FBX_loader::load_mesh( Model3DFromFile* new_file_mesh, const std::w
 	cur_model = new_file_mesh;
 
 	FbxImporter* fbx_importer = FbxImporter::Create(fbx_manager, "");
-	m_filePath = Converters::ToString( name );
+	m_filePath = Convert::ToString( name );
 
 
 	if ( !fbx_importer->Initialize( m_filePath.String().c_str(), -1, fbx_manager->GetIOSettings() ) )

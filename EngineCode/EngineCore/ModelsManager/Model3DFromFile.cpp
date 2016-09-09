@@ -547,7 +547,7 @@ Size Model3DFromFile::get_parts_count()
 /**@brief */
 std::string Model3DFromFile::GetResourceName() const
 {
-	return Converters::ToString( m_filePath );
+	return Convert::ToString( m_filePath );
 }
 
 

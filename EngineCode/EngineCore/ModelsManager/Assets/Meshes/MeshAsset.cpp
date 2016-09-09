@@ -57,7 +57,7 @@ Size		MeshAsset::GetSegmentsCount() const
 /**@brief Zwraca nazwê mesha (nazwê pliku)*/
 std::string MeshAsset::GetResourceName() const
 {
-	return Converters::ToString( m_filePath );
+	return Convert::ToString( m_filePath );
 }
 
 //====================================================================================//

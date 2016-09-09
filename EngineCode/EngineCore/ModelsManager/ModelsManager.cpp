@@ -171,15 +171,15 @@ RenderTargetObject* ModelsManager::CreateRenderTarget( const std::wstring& name,
 		
 		auto colorBuff = newRenderTarget->GetColorBuffer();
 		if( colorBuff )
-			m_texture.UnsafeAdd( Converters::FromString( colorBuff->GetFilePath().String(), std::wstring() ), colorBuff );
+			m_texture.UnsafeAdd( Convert::FromString( colorBuff->GetFilePath().String(), std::wstring() ), colorBuff );
 
 		auto depthBuffer = newRenderTarget->GetDepthBuffer();
 		if( depthBuffer )
-			m_texture.UnsafeAdd( Converters::FromString( depthBuffer->GetFilePath().String(), std::wstring() ), depthBuffer );
+			m_texture.UnsafeAdd( Convert::FromString( depthBuffer->GetFilePath().String(), std::wstring() ), depthBuffer );
 
 		auto stencilBuffer = newRenderTarget->GetStencilBuffer();
 		if( stencilBuffer )
-			m_texture.UnsafeAdd( Converters::FromString( stencilBuffer->GetFilePath().String(), std::wstring() ), stencilBuffer );
+			m_texture.UnsafeAdd( Convert::FromString( stencilBuffer->GetFilePath().String(), std::wstring() ), stencilBuffer );
 	}
 
 	return newRenderTarget;

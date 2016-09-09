@@ -70,7 +70,7 @@ void								SWMaterialLoader::SaveMaterial	( const filesystem::Path& fileName, M
 			ser.EnterObject( STRINGS_1_0::VERTEX_SHADER_STRING );
 			if( shader )
 			{
-				ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Converters::ToString( shader->GetShaderFile() ) );
+				ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Convert::ToString( shader->GetShaderFile() ) );
 				ser.SetAttribute( STRINGS_1_0::SHADER_ENTRY_STRING, shader->GetShaderEntry() );
 			}
 			ser.Exit();
@@ -79,7 +79,7 @@ void								SWMaterialLoader::SaveMaterial	( const filesystem::Path& fileName, M
 			ser.EnterObject( STRINGS_1_0::PIXEL_SHADER_STRING );
 			if( shader )
 			{
-				ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Converters::ToString( shader->GetShaderFile() ) );
+				ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Convert::ToString( shader->GetShaderFile() ) );
 				ser.SetAttribute( STRINGS_1_0::SHADER_ENTRY_STRING, shader->GetShaderEntry() );
 			}
 			ser.Exit();
@@ -88,7 +88,7 @@ void								SWMaterialLoader::SaveMaterial	( const filesystem::Path& fileName, M
 			ser.EnterObject( STRINGS_1_0::GEOMETRY_SHADER_STRING );
 			if( shader )
 			{
-				ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Converters::ToString( shader->GetShaderFile() ) );
+				ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Convert::ToString( shader->GetShaderFile() ) );
 				ser.SetAttribute( STRINGS_1_0::SHADER_ENTRY_STRING, shader->GetShaderEntry() );
 			}
 			ser.Exit();
@@ -97,7 +97,7 @@ void								SWMaterialLoader::SaveMaterial	( const filesystem::Path& fileName, M
 			ser.EnterObject( STRINGS_1_0::CONTROL_SHADER_STRING );
 			if( shader )
 			{
-				ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Converters::ToString( shader->GetShaderFile() ) );
+				ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Convert::ToString( shader->GetShaderFile() ) );
 				ser.SetAttribute( STRINGS_1_0::SHADER_ENTRY_STRING, shader->GetShaderEntry() );
 			}
 			ser.Exit();
@@ -106,7 +106,7 @@ void								SWMaterialLoader::SaveMaterial	( const filesystem::Path& fileName, M
 			ser.EnterObject( STRINGS_1_0::EVALUATION_SHADER_STRING );
 			if( shader )
 			{
-				ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Converters::ToString( shader->GetShaderFile() ) );
+				ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Convert::ToString( shader->GetShaderFile() ) );
 				ser.SetAttribute( STRINGS_1_0::SHADER_ENTRY_STRING, shader->GetShaderEntry() );
 			}
 			ser.Exit();
@@ -143,7 +143,7 @@ void								SWMaterialLoader::SaveMaterial	( const filesystem::Path& fileName, M
 
 			ser.Exit();
 
-			//auto str = Converters::ToString( mat->GetDescriptor().AdditionalBuffers[0].ShaderType );
+			//auto str = Convert::ToString( mat->GetDescriptor().AdditionalBuffers[0].ShaderType );
 
 		ser.Exit();	// type name
 

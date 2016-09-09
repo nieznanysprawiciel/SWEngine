@@ -61,7 +61,7 @@ MaterialAsset::~MaterialAsset()
 /**@brief Returns material name or file name which was used to create material.*/
 std::string MaterialAsset::GetResourceName() const
 {
-	return Converters::ToString( m_descriptor.MaterialName );
+	return Convert::ToString( m_descriptor.MaterialName );
 }
 
 
