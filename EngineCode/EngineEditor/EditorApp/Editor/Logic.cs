@@ -119,7 +119,7 @@ namespace EditorApp
 			SceneSaver saver = new SceneSaver();
 			saver.ActorsToSave( ProjectManager.ActorsLogic.Actors );
 
-			saver.SaveScene( Path.Combine( PathsManager.LevelsDir, "Test2Level.swmap" ) );
+			saver.SaveScene( Path.Combine( PathsManager.LevelsDir, "Test4Level.swmap" ) );
 		}
 
 		public void			LoadLevelClick	( object parameter )

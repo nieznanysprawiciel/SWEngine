@@ -1,10 +1,14 @@
 #include "TestEngine/stdafx.h"
 #include "EntryPointGamePlay.h"
 
+#include "Common/Serialization/SW/EngineSerializationContext.h"
+#include "Common/Serialization/Serializer.h"
 #include "Common/SWEngineInclude.h"
+
 #include "PlayerSignalTest.h"
 
 #include "EngineCore/EventsManager/Events/KeyDownEvent.h"
+
 
 
 EntryPointGamePlay::EntryPointGamePlay()
@@ -51,6 +55,16 @@ int EntryPointGamePlay::LoadLevel( )
 	layer->DemandDownEvent( STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 );
 
 	m_engine->Actors.Communication.AddListenerDelayed< KeyDownEvent, PlayerSignalTest >( actor1, &PlayerSignalTest::InitJob );
+
+	// Serialization test
+	auto context = std::make_unique< EngineSerializationContext >();
+	context->SaveWholeMap = true;
+
+	ISerializer* ser = new ISerializer( std::move( context ) );
+
+	actor1->Serialize( ser );
+
+	ser->SaveFile( "levels/SerializationTest.swmap", WritingMode::Readable );
 
 	return 0;
 }

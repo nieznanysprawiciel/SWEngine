@@ -17,6 +17,12 @@ struct EventData : public Event
 	}
 };
 
+struct NestedStruct
+{
+	int		Data1;
+	int		Data2;
+};
+
 
 class PlayerSignalTest	: public DynamicActor
 {
@@ -26,6 +32,7 @@ private:
 	ActorPtr< PlayerSignalTest >		m_otherPlayer;
 	
 	int									m_testValue;
+	NestedStruct						m_struct;
 
 public:
 	PlayerSignalTest();

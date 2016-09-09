@@ -564,7 +564,12 @@ mo¿liwoœæ, a je¿eli tak, to jak zapisywaæ dane.*/
 void Model3DFromFile::Serialize( ISerializer* ser ) const
 {
 	//Serialization::DefaultSerialize( ser, this );
+	
+	ser->EnterObject( rttr::type::get< Model3DFromFile >().get_name() );
+
 	Serialization::SerializeStringTypes( ser, this, GetType().get_property( "FileName" ) );
+
+	ser->Exit();
 }
 
 /**@brief Deserializcja mesha. Funkcja nic nie deserializuje.
