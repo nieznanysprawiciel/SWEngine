@@ -242,6 +242,9 @@ void Engine::SetSkydome()
 #include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
 #include "EngineCore/ModelsManager/Loaders/Material/SWMat/SWMaterialLoader.h"
 
+#include "Common/Serialization/Serializer.h"
+#include "Common/Serialization/SW/EngineSerializationContext.h"
+
 void testMaterial( Engine* engine, Model3DFromFile* model )
 {
 	auto part = model->get_part( 1 );
@@ -278,6 +281,11 @@ void testMaterial( Engine* engine, Model3DFromFile* model )
 
 	SWMaterialLoader loader;
 	loader.SaveMaterial( "tylko_do_testow/serialization/materialSerialize.swmat", newMaterial );
+
+
+	ISerializer ser( std::make_unique< EngineSerializationContext >() );
+	newMaterial->Serialize( &ser );
+	ser.SaveFile( "tylko_do_testow/serialization/materialBruteSerialize.swmat", WritingMode::Readable );
 }
 
 #endif

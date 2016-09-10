@@ -34,7 +34,8 @@ RTTR_REGISTRATION
 		.property( "GeometryShader", &MaterialAsset::m_geometryShader )
 		.property( "TesselationControlShader", &MaterialAsset::m_controlShader )
 		.property( "TesselationEvaluationShader", &MaterialAsset::m_evaluationShader )
-		.property( "Descriptor", &MaterialAsset::m_descriptor );
+		//.property( "Textures", &MaterialAsset::m_textures )
+		.property( "Descriptor", &MaterialAsset::m_descriptor ) BIND_AS_PTR;
 
 }
 
