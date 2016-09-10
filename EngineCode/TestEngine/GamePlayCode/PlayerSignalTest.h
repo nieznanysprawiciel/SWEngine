@@ -6,6 +6,11 @@
 
 #include "EngineCore/EventsManager/Event.h"
 
+#include <vector>
+
+
+// ================================ //
+//
 struct EventData : public Event
 {
 	int		Data;
@@ -17,10 +22,18 @@ struct EventData : public Event
 	}
 };
 
+// ================================ //
+//
 enum NestedFunctionType
 {
 	Unknown,
 	Known
+};
+
+struct NestedNestedStruct
+{
+	float		Value1;
+	double		Value2;
 };
 
 
@@ -28,7 +41,10 @@ struct NestedStruct
 {
 	int		Data1;
 	int		Data2;
+
+	NestedNestedStruct		Additional;
 };
+
 
 
 class PlayerSignalTest	: public DynamicActor
@@ -42,6 +58,8 @@ private:
 	int									m_testValue;
 	NestedStruct						m_struct;
 	NestedFunctionType					m_funType;
+
+	std::vector< NestedStruct >			m_otherData;
 
 public:
 	PlayerSignalTest();
