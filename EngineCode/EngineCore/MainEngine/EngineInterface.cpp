@@ -61,7 +61,7 @@ void Engine::test()
 	Context->modelsManager->LoadModelFromFile( NEBULON );
 	Context->modelsManager->LoadModelFromFile( VADER_TIE );
 	Context->modelsManager->LoadModelFromFile( TIE_FIGHTER );
-	Context->modelsManager->LoadModelFromFile( CHURCH );
+	//Context->modelsManager->LoadModelFromFile( CHURCH );
 	//modelsManager->LoadModelFromFile( IMPERIAL_STAR_DESTROYER );
 	
 
@@ -189,7 +189,7 @@ void Engine::test()
 	int meshAssetSize = sizeof( MeshAsset );
 	int materialObjectSize = sizeof( MaterialObject );
 	int materialAssetSize = sizeof( MaterialAsset );
-	int phongMaterialSize = sizeof( PhongMaterialData );
+	int phongMaterialSize = sizeof( PhongMaterial );
 
 	int pathSize = sizeof( filesystem::Path );
 
@@ -239,6 +239,7 @@ void Engine::SetSkydome()
 
 #include "EngineCore/ModelsManager/Assets/Materials/MaterialAsset.h"
 #include "EngineCore/ModelsManager/Assets/Materials/MaterialAssetInitData.h"
+#include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
 #include "EngineCore/ModelsManager/Loaders/Material/SWMat/SWMaterialLoader.h"
 
 void testMaterial( Engine* engine, Model3DFromFile* model )
@@ -250,13 +251,33 @@ void testMaterial( Engine* engine, Model3DFromFile* model )
 	init.PixelShader = part->pixel_shader;
 	init.Textures[ 0 ] = part->GetTexture1();
 
-	init.ShadingData = nullptr;
+	// Shading model data
+
+	PhongMaterial phongMaterial;
+	phongMaterial.Diffuse = DirectX::XMFLOAT4( 1.0f, 0.4f, 2.0f, 1.0f );
+	phongMaterial.Ambient = DirectX::XMFLOAT4( 0.0f, 0.4f, 0.0f, 0.0f );
+	phongMaterial.Specular = DirectX::XMFLOAT4( 1.0f, 1.0f, 0.5f, 0.0f );
+	phongMaterial.Emissive = DirectX::XMFLOAT3( 0.0f, 0.01f, 0.0f );
+	phongMaterial.Power = 128.0;
+
+	ShadingModelData< PhongMaterial >* shadingData = new ShadingModelData< PhongMaterial >();
+	shadingData->Data = phongMaterial;
+	init.ShadingData = shadingData;
+
+
+	// Additional buffers.
+	AdditionalBufferInfo addBuff;
+	addBuff.BufferSize = sizeof( PhongMaterial );
+	addBuff.BufferType = TypeID::get< PhongMaterial >();
+	addBuff.ShaderType = ShaderType::PixelShader;
+	
+	init.AdditionalBuffers.push_back( addBuff );
 
 	// Memory leak!!
 	MaterialAsset* newMaterial = new MaterialAsset( L"::Generated", std::move( init ) );
 
 	SWMaterialLoader loader;
-	loader.SaveMaterial( "tylko_do_testow/materialSerialize.swmat", newMaterial );
+	loader.SaveMaterial( "tylko_do_testow/serialization/materialSerialize.swmat", newMaterial );
 }
 
 #endif

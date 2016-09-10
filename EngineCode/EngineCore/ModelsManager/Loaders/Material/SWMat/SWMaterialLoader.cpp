@@ -4,6 +4,9 @@
 #include "Common/Converters.h"
 #include "Common/Serialization/SW/Serialization.h"
 
+#include "EngineCore/ModelsManager/Assets/Materials/ShadingModelData.h"
+#include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
+
 
 
 SWMaterialLoader::SWMaterialLoader()
@@ -33,8 +36,8 @@ const std::string		SWMaterialLoader::STRINGS_1_0::EVALUATION_SHADER_STRING = "Te
 const std::string		SWMaterialLoader::STRINGS_1_0::TEXTURES_ARRAY_STRING	= "Textures";
 
 const std::string		SWMaterialLoader::STRINGS_1_0::ADD_BUFFERS_ARRAY_STRING = "AdditionalBuffers";
-const std::string		SWMaterialLoader::STRINGS_1_0::ADDITIONAL_BUFFER_STRING = "BufferInfo";
-const std::string		SWMaterialLoader::STRINGS_1_0::SHADING_DATA_STRING		= "ShadingData";
+const std::string		SWMaterialLoader::STRINGS_1_0::BUFFER_SIZE_STRING		= "BufferSize";
+const std::string		SWMaterialLoader::STRINGS_1_0::SHADING_DATA_STRING		= "ShadingModel";
 
 
 
@@ -55,7 +58,7 @@ bool								SWMaterialLoader::CanLoad		( const filesystem::Path& fileName )
 
 void								SWMaterialLoader::SaveMaterial	( const filesystem::Path& fileName, MaterialAsset* mat )
 {
-	ISerializer ser( std::make_unique< SerializationContext >() );
+	ISerializer ser( std::make_unique< EngineSerializationContext >() );
 
 	ser.EnterObject( STRINGS_1_0::FILE_HEADER_STRING );
 
@@ -128,22 +131,30 @@ void								SWMaterialLoader::SaveMaterial	( const filesystem::Path& fileName, M
 
 			ser.Exit();	// Textures
 
+			
+			// Shading model data
+			auto shadingData = mat->GetDescriptor().ShadingData;
+
+			TypeID shadingModelType = shadingData->GetShadingModelType();
+			TypeID shadingModelPtrType = shadingData->GetShadingModelPtrType();
+
+			rttr::variant shadingDataPtr( (void*)shadingData->GetShadingModelData() );
+			shadingDataPtr.unsafe_convert_void( shadingModelPtrType );
+
+
+			ser.EnterObject( STRINGS_1_0::SHADING_DATA_STRING );
+
+				ser.SetAttribute( STRINGS_1_0::BUFFER_SIZE_STRING, shadingData->GetShadingModelSize() );
+				Serialization::DefaultSerializeImpl( &ser, shadingDataPtr, shadingModelType );
+
+			ser.Exit();		// SHADING_DATA_STRING
+
 			// Additional buffers
-			ser.EnterArray( STRINGS_1_0::ADD_BUFFERS_ARRAY_STRING );
+			TypeID descriptorType = TypeID::get< MaterialInfo >();
+			auto additionalBuffersProperty = descriptorType.get_property( STRINGS_1_0::ADD_BUFFERS_ARRAY_STRING.c_str() );
 
-			auto& addBuffers = mat->GetDescriptor().AdditionalBuffers;
-			for( auto& buffer : addBuffers )
-			{
-				ser.EnterObject( STRINGS_1_0::ADDITIONAL_BUFFER_STRING );
+			Serialization::SerializeArrayTypes( &ser, mat->GetDescriptor(), additionalBuffersProperty );
 
-				
-
-				ser.Exit();
-			}
-
-			ser.Exit();
-
-			//auto str = Convert::ToString( mat->GetDescriptor().AdditionalBuffers[0].ShaderType );
 
 		ser.Exit();	// type name
 

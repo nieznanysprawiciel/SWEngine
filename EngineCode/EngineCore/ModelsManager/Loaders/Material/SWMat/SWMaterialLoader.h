@@ -10,7 +10,7 @@
 /**@brief Loads .swmat files.*/
 class SWMaterialLoader
 {
-private:
+public:
 
 	struct STRINGS_1_0
 	{
@@ -30,10 +30,11 @@ private:
 		static const std::string		TEXTURES_ARRAY_STRING;
 
 		static const std::string		ADD_BUFFERS_ARRAY_STRING;
-		static const std::string		ADDITIONAL_BUFFER_STRING;
+		static const std::string		BUFFER_SIZE_STRING;
 		static const std::string		SHADING_DATA_STRING;
 	};
 
+private:
 	uint32		m_versionMajor;
 	uint32		m_versionMinor;
 

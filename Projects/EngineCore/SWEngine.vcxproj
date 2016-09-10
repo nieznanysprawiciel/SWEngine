@@ -368,6 +368,7 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\AssetsInitializer.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\DisplayerInitializer.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialAsset.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\ShadingModels.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Meshes\MeshAsset.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Material\SWMat\SWMaterialLoader.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Mesh\SWMesh\SWMeshLoader.cpp" />

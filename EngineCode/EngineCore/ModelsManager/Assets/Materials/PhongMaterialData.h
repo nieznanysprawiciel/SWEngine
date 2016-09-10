@@ -1,4 +1,11 @@
 #pragma once
+/**
+@file PhongMaterial.h
+@author nieznanysprawiciel
+@copyright File is part of graphic engine SWEngine.
+*/
+
+
 
 #include <DirectXMath.h>
 
@@ -6,7 +13,7 @@
 /**@brief Layout bufora materia³u w klasie @ref MaterialAsset.
 
 @ingroup Materials*/
-struct PhongMaterialData
+struct PhongMaterial
 {
 	DirectX::XMFLOAT4		Diffuse;		///< Kana³ rozpraszania. Komponent w wektora jest kana³em alfa dla ca³êgo materia³u.
 	DirectX::XMFLOAT4		Ambient;		///< Kana³ ambient. Komponent w niezu¿ywany.
@@ -22,7 +29,7 @@ struct PhongMaterialData
 
 Te wartoœci s¹ najbardziej neutralne, w przypadku gdy nie ma materia³u, a jest ustawiona tekstura.
 Wtedy shadery wymana¿aj¹ jasnoœæ piksela przez 1.0 i nic sie nie zmienia.*/
-inline void PhongMaterialData::SetNullMaterial()
+inline void PhongMaterial::SetNullMaterial()
 {
 	Diffuse.x = 1.0f;
 	Diffuse.y = 1.0f;

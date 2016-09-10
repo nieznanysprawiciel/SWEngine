@@ -22,6 +22,9 @@ struct AdditionalBufferInfo
 };
 
 
+
+
+
 /**@brief Deskryptor materia³u.
 @ingroup Materials*/
 struct MaterialInfo
@@ -32,8 +35,16 @@ struct MaterialInfo
 
 
 	MaterialInfo	( const std::wstring& name, std::vector< AdditionalBufferInfo >&& addBuff, ShadingModelBase* shadModel );
+	~MaterialInfo	();
 };
 
+
+
+
+
+
+// ================================ //
+//
 inline MaterialInfo::MaterialInfo( const std::wstring& name, std::vector< AdditionalBufferInfo >&& addBuff, ShadingModelBase* shadModel )
 {
 	AdditionalBuffers = std::move( addBuff );
@@ -41,7 +52,15 @@ inline MaterialInfo::MaterialInfo( const std::wstring& name, std::vector< Additi
 	ShadingData = shadModel;
 }
 
+// ================================ //
+//
+inline MaterialInfo::~MaterialInfo	()
+{
+	delete ShadingData;
+}
 
+// ================================ //
+//
 inline void			AdditionalBufferInfo::SetBufferType( std::string name )
 {
 	auto newType = rttr::type::get( name );

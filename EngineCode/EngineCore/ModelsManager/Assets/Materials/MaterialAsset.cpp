@@ -7,6 +7,7 @@
 
 #include "EngineCore/stdafx.h"
 #include "MaterialAsset.h"
+#include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
 
 #include "Common/Converters.h"
 
@@ -15,7 +16,7 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< ShadingModelBase >( "ShadingModelBase" );
+
 
 	rttr::registration::class_< AdditionalBufferInfo >( "AdditionalBufferInfo" )
 		.property( "ShaderType", &AdditionalBufferInfo::ShaderType )

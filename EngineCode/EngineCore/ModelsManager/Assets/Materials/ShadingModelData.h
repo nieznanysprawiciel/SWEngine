@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Common/EngineObject.h"
 #include "Common/TypesDefinitions.h"
 #include "Common/RTTR.h"
 
@@ -11,15 +12,20 @@ trzyma lokaln¹ kopiê tych danych na CPU. W silniku mo¿na u¿ywaæ ró¿nych modeli c
 st¹d potrzebna jest klasa bazowa.
 
 @ingroup Materials*/
-class ShadingModelBase
+class ShadingModelBase : public EngineObject
 {
-	RTTR_ENABLE()
+	RTTR_ENABLE( EngineObject )
 private:
 public:
+	ShadingModelBase();
 
-	virtual Size		GetSize		() = 0;
-	virtual char*		GetData		() = 0;
-	virtual rttr::type	GetType		() = 0;
+	virtual Size		GetShadingModelSize		() = 0;
+	virtual uint8*		GetShadingModelData		() = 0;
+	virtual TypeID		GetShadingModelType		() = 0;
+	virtual TypeID		GetShadingModelPtrType	() = 0;
+	
+
+	std::string			GetShadingModelTypeName ();
 };
 
 
@@ -42,9 +48,10 @@ public:
 
 public:
 
-	virtual Size		GetSize		()		{ return sizeof( ShadingModelStruct ); }
-	virtual char*		GetData		()		{ return static_cast< void* >( &Data ); }
-	virtual rttr::type	GetType		()		{ return rttr::type::get< ShadingModelStruct >(); }
+	virtual Size		GetShadingModelSize		() override		{ return sizeof( ShadingModelStruct ); }
+	virtual uint8*		GetShadingModelData		() override		{ return reinterpret_cast< uint8* >( &Data ); }
+	virtual TypeID		GetShadingModelType		() override		{ return rttr::type::get< ShadingModelStruct >(); }
+	virtual TypeID		GetShadingModelPtrType	() override		{ return rttr::type::get< ShadingModelStruct* >(); }
 
 	ShadingModelStruct&	GetStruct	()		{ return Data; }
 };
