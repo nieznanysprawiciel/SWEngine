@@ -1,4 +1,6 @@
 #include "PlayerSignalTest.h"
+#include "Objects/GenericActor.h"
+
 
 
 RTTR_REGISTRATION
@@ -20,6 +22,8 @@ RTTR_REGISTRATION
 		.property( "Additional", &NestedStruct::Additional ) BIND_AS_PTR;
 
 	rttr::registration::class_< std::vector< NestedStruct > >( "std::vector< NestedStruct >" );
+	rttr::registration::class_< std::vector< EngineObject* > >( "std::vector< EngineObject* >" );
+	
 
 	rttr::registration::class_< PlayerSignalTest >( "PlayerSignalTest" )
 		.property( "TestValue", &PlayerSignalTest::m_testValue )
@@ -29,7 +33,8 @@ RTTR_REGISTRATION
 		)
 		.property( "FunctionType", &PlayerSignalTest::m_funType )
 		.property( "DataData", &PlayerSignalTest::m_struct ) BIND_AS_PTR
-		.property( "OtherData", &PlayerSignalTest::m_otherData );
+		.property( "OtherData", &PlayerSignalTest::m_otherData )
+		.property( "Generics", &PlayerSignalTest::m_generics );
 
 }
 
@@ -37,6 +42,7 @@ RTTR_REGISTRATION
 PlayerSignalTest::PlayerSignalTest()
 {
 	const int arraySize = 5;
+	const int genericArraySize = 3;
 
 	m_testValue = 0;
 
@@ -47,16 +53,23 @@ PlayerSignalTest::PlayerSignalTest()
 		NestedStruct struct1;
 		struct1.Data1 = rand();
 		struct1.Data2 = rand();
-		struct1.Additional.Value1 = rand();
-		struct1.Additional.Value2 = rand();
+		struct1.Additional.Value1 = (float)rand();
+		struct1.Additional.Value2 = (double)rand();
 
 		m_otherData.push_back( struct1 );
 	}
+
+	m_generics.push_back( new GenericActor() );
+	m_generics.push_back( new GenericActor() );
+	m_generics.push_back( new GenericObject() );
 }
 
 
 PlayerSignalTest::~PlayerSignalTest()
-{ }
+{
+	for( auto ptr : m_generics )
+		delete ptr;
+}
 
 /**@brief */
 void	PlayerSignalTest::DoYourJob		( const EngineObject* sender, Event* params )

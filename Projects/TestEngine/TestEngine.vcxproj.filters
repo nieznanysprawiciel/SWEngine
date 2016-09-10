@@ -14,6 +14,9 @@
     <Filter Include="Common">
       <UniqueIdentifier>{a62a7ed5-fc36-4281-9f8b-5583ba860141}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TestEngine\GamePlayCode\Objects">
+      <UniqueIdentifier>{970e0a89-d704-4586-9360-43700f0590bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\TestEngine\EntryPoint.cpp">
@@ -27,6 +30,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\TestEngine\GamePlayCode\PlayerSignalTest.cpp">
       <Filter>TestEngine\GamePlayCode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\TestEngine\GamePlayCode\Objects\GenericActor.cpp">
+      <Filter>TestEngine\GamePlayCode\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +56,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\TestEngine\GamePlayCode\PlayerSignalTest.h">
       <Filter>TestEngine\GamePlayCode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\TestEngine\GamePlayCode\Objects\GenericActor.h">
+      <Filter>TestEngine\GamePlayCode\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

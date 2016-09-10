@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\Common\Converters.cpp" />
+    <ClCompile Include="..\..\EngineCode\Common\EngineObject.cpp" />
     <ClCompile Include="..\..\EngineCode\Common\Serialization\SW\Serialization.cpp" />
   </ItemGroup>
   <ItemGroup>

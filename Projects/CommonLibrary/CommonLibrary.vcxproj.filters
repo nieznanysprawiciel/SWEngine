@@ -98,6 +98,9 @@
     <ClCompile Include="..\..\EngineCode\Common\Converters.cpp">
       <Filter>Common</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\Common\EngineObject.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\EngineCode\Common\Serialization\SW\Serialization.inl">

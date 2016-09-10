@@ -60,6 +60,7 @@ private:
 	NestedFunctionType					m_funType;
 
 	std::vector< NestedStruct >			m_otherData;
+	std::vector< EngineObject* >		m_generics;
 
 public:
 	PlayerSignalTest();
