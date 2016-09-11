@@ -189,6 +189,28 @@ RTTR_REGISTRATION
 		rttr::value( "ComputeShader", ShaderType::ComputeShader )
 	);
 
+	
+	rttr::registration::enumeration< BufferType >( "BufferType" )
+	(
+		rttr::value( "VertexBuffer", BufferType::VertexBuffer ),
+		rttr::value( "IndexBuffer", BufferType::IndexBuffer ),
+		rttr::value( "ConstantBuffer", BufferType::ConstantBuffer )
+	);
+
+	
+	rttr::registration::enumeration< PrimitiveTopology >( "PrimitiveTopology" )
+	(
+		rttr::value( "Points", PrimitiveTopology::PRIMITIVE_TOPOLOGY_POINTLIST ),
+		rttr::value( "Lines", PrimitiveTopology::PRIMITIVE_TOPOLOGY_LINELIST ),
+		rttr::value( "LinesAdjacency", PrimitiveTopology::PRIMITIVE_TOPOLOGY_LINELIST_ADJ ),
+		rttr::value( "LineStrip", PrimitiveTopology::PRIMITIVE_TOPOLOGY_LINESTRIP ),
+		rttr::value( "LineStripAdjacency", PrimitiveTopology::PRIMITIVE_TOPOLOGY_LINESTRIP_ADJ ),
+		rttr::value( "Triangles", PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST ),
+		rttr::value( "TrianglesAdjacency", PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST_ADJ ),
+		rttr::value( "TriangleStrip", PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLESTRIP ),
+		rttr::value( "TriangleStripAdjacency", PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLESTRIP_ADJ )
+	);
+
 //====================================================================================//
 //			Resources	
 //====================================================================================//
@@ -233,13 +255,6 @@ RTTR_REGISTRATION
 	// Buffer
 	rttr::registration::class_< BufferObject >( "BufferObject" )
 		.property_readonly( "Descriptor", &BufferObject::GetDescriptor ) BIND_AS_PTR;
-
-	rttr::registration::class_< BufferType >( "BufferType" )
-	(
-		rttr::value( "VertexBuffer", BufferType::VertexBuffer ),
-		rttr::value( "IndexBuffer", BufferType::IndexBuffer ),
-		rttr::value( "ConstantBuffer", BufferType::ConstantBuffer )
-	);
 
 	rttr::registration::class_< BufferInfo >( "BufferInfo" )
 		.property_readonly( "BufferName", &BufferInfo::GetName )

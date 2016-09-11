@@ -116,6 +116,9 @@ namespace EditorApp
 
 		public void			SaveLevelClick	( object parameter )
 		{
+			if( PathsManager.ProjectDir == "" )		// No project loaded
+				return;
+
 			SceneSaver saver = new SceneSaver();
 			saver.ActorsToSave( ProjectManager.ActorsLogic.Actors );
 
@@ -124,6 +127,9 @@ namespace EditorApp
 
 		public void			LoadLevelClick	( object parameter )
 		{
+			if( PathsManager.ProjectDir == "" )		// No project loaded
+				return;
+
 			ProjectManager.ActorsLogic.UnloadScene();
 
 			SceneLoader loader = new SceneLoader();
