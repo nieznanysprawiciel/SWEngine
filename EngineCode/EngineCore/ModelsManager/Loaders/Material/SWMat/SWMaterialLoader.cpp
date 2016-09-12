@@ -255,47 +255,38 @@ Nullable< MaterialInitData >		SWMaterialLoader::LoadMaterial_Version1	( IDeseria
 		}
 
 		// Shading model data
-		//if( deser->EnterObject( STRINGS_1_0::SHADING_DATA_STRING ) )
-		//{
-		//	uint32		bufferSize = deser->GetAttribute( STRINGS_1_0::BUFFER_SIZE_STRING, (uint32)0 );
-		//	const char*	wrapperName = deser->GetAttribute( STRINGS_1_0::SHADING_MODEL_WRAPPER_TYPE_STRING, nullptr );
+		if( deser->EnterObject( STRINGS_1_0::SHADING_DATA_STRING ) )
+		{
+			uint32		bufferSize = deser->GetAttribute( STRINGS_1_0::BUFFER_SIZE_STRING, (uint32)0 );
+			const char*	wrapperName = deser->GetAttribute( STRINGS_1_0::SHADING_MODEL_WRAPPER_TYPE_STRING, nullptr );
 
-		//	if( !wrapperName )
-		//		return Nullable< MaterialInitData >( "File doesn't contain WrapperType field." );
+			if( !wrapperName )
+				return Nullable< MaterialInitData >( "File doesn't contain WrapperType field." );
 
-		//	TypeID wrapper = TypeID::get_by_name( wrapperName );
-		//	if( !wrapper.is_valid() )
-		//		return Nullable< MaterialInitData >( "WrapperType is not registered." );
-		//	
-		//	auto constructor = wrapper.get_constructor();
-		//	if( !constructor.is_valid() )
-		//		return Nullable< MaterialInitData >( "WrapperType constructor is not registered." );
+			TypeID wrapper = TypeID::get_by_name( wrapperName );
+			if( !wrapper.is_valid() )
+				return Nullable< MaterialInitData >( "WrapperType is not registered." );
+			
+			auto constructor = wrapper.get_constructor();
+			if( !constructor.is_valid() )
+				return Nullable< MaterialInitData >( "WrapperType constructor is not registered." );
 
-		//	TypeID instanType = constructor.get_instanciated_type();
-		//	TypeID declType = constructor.get_declaring_type();
-		//	rttr::variant object = wrapper.create();
-		//	if( !object.is_valid() )
-		//		return Nullable< MaterialInitData >( "WrapperType could not be created." );
+			rttr::variant object = wrapper.create();
+			if( !object.is_valid() )
+				return Nullable< MaterialInitData >( "WrapperType could not be created." );
 
-		//	TypeID typ1 = object.get_type();
-		//	TypeID typ2 = TypeID::get< ShadingModelBase* >();
-		//	TypeID typ3 = TypeID::get< ShadingModelData< PhongMaterial >* >();
-		//	TypeID typ4 = TypeID::get< ShadingModelData< PhongMaterial > >();
-		//	bool isPointer = typ1.is_pointer();
-		//	bool result = typ1.is_derived_from( typ2 );
-		//	bool canCOnvert = object.can_convert( TypeID::get< ShadingModelBase* >() );
-		//	bool convertResult = object.convert( TypeID::get< ShadingModelBase >() );
+			if( !object.can_convert( TypeID::get< ShadingModelBase* >() ) )
+				return Nullable< MaterialInitData >( "Can't convert MaterialData to ShadingModelBase*. Make sure, constructor was declared with AsRawPtr policy." );
 
-		//	//object.
-		//	init.ShadingData = object.get_value< ShadingModelBase* >();
+			init.ShadingData = object.get_value< ShadingModelBase* >();
 
-		//	if( init.ShadingData->GetShadingModelSize() != bufferSize )
-		//		return Nullable< MaterialInitData >( "Declared buffer size is other then real buffer size." );
+			if( init.ShadingData->GetShadingModelSize() != bufferSize )
+				return Nullable< MaterialInitData >( "Declared buffer size is other then real buffer size." );
 
-		//	Serialization::DefaultDeserialize( deser, init.ShadingData );
+			Serialization::DefaultDeserialize( deser, init.ShadingData );
 
-		//	deser->Exit();
-		//}
+			deser->Exit();
+		}
 
 		// Additional buffers
 

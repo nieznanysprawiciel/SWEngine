@@ -279,9 +279,9 @@ void Engine::testMaterial( Model3DFromFile* model )
 	MaterialAsset* newMaterial = new MaterialAsset( L"::Generated", std::move( init ) );
 
 	SWMaterialLoader loader( Context->modelsManager );
-	loader.SaveMaterial( "tylko_do_testow/serialization/materialSerialize.swmat", newMaterial );
+	loader.SaveMaterial( "tylko_do_testow/serialization/materials/materialSerialize.swmat", newMaterial );
 
-	auto mat = loader.LoadMaterial( "tylko_do_testow/serialization/materialDeserialize.swmat" );
+	auto mat = loader.LoadMaterial( "tylko_do_testow/serialization/materials/materialDeserialize.swmat" );
 
 
 	//ISerializer ser( std::make_unique< EngineSerializationContext >() );

@@ -67,7 +67,8 @@ inline ShadingModelData< ShadingModelStruct >::ShadingModelData()
 {
 	static_assert( std::is_default_constructible< ShadingModelStruct >::value, "Material data must be default constructible." );
 
-	// Constructor must be registered in rttr.
+	// Constructor must be registered in rttr with AsRawPtr policy.
 	assert( TypeID::get< ShadingModelData< ShadingModelStruct > >().get_constructor().is_valid() );
+	assert( TypeID::get< ShadingModelData< ShadingModelStruct > >().get_constructor().get_instanciated_type().is_pointer() );
 }
 
