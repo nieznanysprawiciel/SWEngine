@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1978EF12-C8E4-4356-A29F-993D4C80402C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ReflectionUnitTests</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\Props\PathsMacros.props" />
+    <Import Project="ReflectionUnitTestsPathsMacros.props" />
+    <Import Project="ReflectionUnitTestsConfiguration.props" />
+    <Import Project="..\..\Props\IncludeExternal.props" />
+    <Import Project="..\..\Props\LinkReflection.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\Props\PathsMacros.props" />
+    <Import Project="ReflectionUnitTestsPathsMacros.props" />
+    <Import Project="ReflectionUnitTestsConfiguration.props" />
+    <Import Project="..\..\Props\IncludeExternal.props" />
+    <Import Project="..\..\Props\LinkReflection.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\Props\PathsMacros.props" />
+    <Import Project="ReflectionUnitTestsPathsMacros.props" />
+    <Import Project="ReflectionUnitTestsConfiguration.props" />
+    <Import Project="..\..\Props\IncludeExternal.props" />
+    <Import Project="..\..\Props\LinkReflection.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\Props\PathsMacros.props" />
+    <Import Project="ReflectionUnitTestsPathsMacros.props" />
+    <Import Project="ReflectionUnitTestsConfiguration.props" />
+    <Import Project="..\..\Props\IncludeExternal.props" />
+    <Import Project="..\..\Props\LinkReflection.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\constructor\constructor_access_level_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\constructor\constructor_default_arg_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\constructor\constructor_invoke_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\constructor\constructor_misc_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\constructor\constructor_param_info_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\constructor\constructor_retrieve_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\enumeration\test_enumeration_reflection.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\main.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\method\method_access_level_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\method\method_default_arg_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\method\method_param_info_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\method\test_method_reflection.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\misc\test_misc.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\property\property_access_level_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\property\test_property_reflection.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\type\test_type.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant\variant_assign_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant\variant_cmp_equal_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant\variant_cmp_less_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant\variant_conv_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant\variant_conv_to_bool_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant\variant_ctor_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant\variant_enum_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant\variant_misc_test.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant_array_view\variant_array_view_test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\enumeration\test_enumeration_reflection.h" />
+    <ClInclude Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\method\test_method_reflection.h" />
+    <ClInclude Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\pch.h" />
+    <ClInclude Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\property\test_property_reflection.h" />
+    <ClInclude Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\test_classes.h" />
+    <ClInclude Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\type\test_type.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

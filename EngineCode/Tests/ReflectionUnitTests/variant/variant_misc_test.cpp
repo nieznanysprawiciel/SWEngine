@@ -25,46 +25,26 @@
 *                                                                                   *
 *************************************************************************************/
 
-#include "rttr/policy.h"
+#include <catch/catch.hpp>
+#include <iostream>
+#include <rttr/type>
 
-namespace rttr
+using namespace rttr;
+using namespace std;
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+TEST_CASE("variant - misc", "[variant]")
 {
+    SECTION("empty type")
+    {
+        variant var = 12;
+
+        CHECK(var.is_valid() == true);
+        var.clear();
+
+        CHECK(var.is_valid() == false);
+    }
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////
-
-const detail::bind_as_ptr policy::prop::bind_as_ptr = {};
-
-const detail::return_as_ptr policy::meth::return_ref_as_ptr = {};
-
-const detail::discard_return policy::meth::discard_return = {};
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
-const detail::as_raw_pointer policy::ctor::as_raw_ptr = {};
-
-const detail::as_std_shared_ptr policy::ctor::as_std_shared_ptr = {};
-
-const detail::as_object policy::ctor::as_object = {};
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
-
-const detail::bind_as_ptr&			policy::prop::BindAsPtr()
-{	return bind_as_ptr;		}
-
-const detail::return_as_ptr&		policy::meth::ReturnRefAsPtr()
-{	return return_ref_as_ptr;	}
-
-const detail::discard_return&		policy::meth::DiscardReturn()
-{	return discard_return;	}
-
-const detail::as_raw_pointer&		policy::ctor::AsRawPtr()
-{	return as_raw_ptr;		}
-
-const detail::as_std_shared_ptr&	policy::ctor::AsStdSharedPtr()
-{	return as_std_shared_ptr;	}
-
-const detail::as_object&			policy::ctor::AsObject()
-{	return as_object;	}
-
-} // end namespace rttr

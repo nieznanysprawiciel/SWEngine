@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="UnitTests">
+      <UniqueIdentifier>{76029571-e9a0-4dbe-8218-023c642ea037}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UnitTests\constructor">
+      <UniqueIdentifier>{9e724f9e-6fc2-41ca-8dfb-1f79670f7808}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UnitTests\enumeration">
+      <UniqueIdentifier>{c954cd22-703f-4561-8540-fb98c205d5ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UnitTests\method">
+      <UniqueIdentifier>{36db761b-beb6-4bca-83a6-3b7de300bddd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UnitTests\misc">
+      <UniqueIdentifier>{6c18a509-f7b1-4ba9-9126-8db1c9776170}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UnitTests\property">
+      <UniqueIdentifier>{eb4aa416-badf-4dd7-ac0f-52abc8bfa820}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UnitTests\type">
+      <UniqueIdentifier>{e215a21d-cb87-41b5-a6cc-2061b8ca10a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UnitTests\variant">
+      <UniqueIdentifier>{6b1bfec3-656b-4738-a326-0560231ecf81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UnitTests\variant_array_view">
+      <UniqueIdentifier>{f1544426-5235-4791-8b0f-0f1e15132a9f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\constructor\constructor_access_level_test.cpp">
+      <Filter>UnitTests\constructor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\constructor\constructor_default_arg_test.cpp">
+      <Filter>UnitTests\constructor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\constructor\constructor_invoke_test.cpp">
+      <Filter>UnitTests\constructor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\constructor\constructor_misc_test.cpp">
+      <Filter>UnitTests\constructor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\constructor\constructor_param_info_test.cpp">
+      <Filter>UnitTests\constructor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\constructor\constructor_retrieve_test.cpp">
+      <Filter>UnitTests\constructor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\enumeration\test_enumeration_reflection.cpp">
+      <Filter>UnitTests\enumeration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\method\method_access_level_test.cpp">
+      <Filter>UnitTests\method</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\method\method_default_arg_test.cpp">
+      <Filter>UnitTests\method</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\method\method_param_info_test.cpp">
+      <Filter>UnitTests\method</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\method\test_method_reflection.cpp">
+      <Filter>UnitTests\method</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\misc\test_misc.cpp">
+      <Filter>UnitTests\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant_array_view\variant_array_view_test.cpp">
+      <Filter>UnitTests\variant_array_view</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant\variant_assign_test.cpp">
+      <Filter>UnitTests\variant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant\variant_cmp_equal_test.cpp">
+      <Filter>UnitTests\variant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant\variant_cmp_less_test.cpp">
+      <Filter>UnitTests\variant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant\variant_conv_test.cpp">
+      <Filter>UnitTests\variant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant\variant_conv_to_bool_test.cpp">
+      <Filter>UnitTests\variant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant\variant_ctor_test.cpp">
+      <Filter>UnitTests\variant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant\variant_enum_test.cpp">
+      <Filter>UnitTests\variant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\variant\variant_misc_test.cpp">
+      <Filter>UnitTests\variant</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\type\test_type.cpp">
+      <Filter>UnitTests\type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\property\property_access_level_test.cpp">
+      <Filter>UnitTests\property</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\property\test_property_reflection.cpp">
+      <Filter>UnitTests\property</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\main.cpp">
+      <Filter>UnitTests</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\enumeration\test_enumeration_reflection.h">
+      <Filter>UnitTests\enumeration</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\method\test_method_reflection.h">
+      <Filter>UnitTests\method</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\type\test_type.h">
+      <Filter>UnitTests\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\property\test_property_reflection.h">
+      <Filter>UnitTests\property</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\pch.h">
+      <Filter>UnitTests</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\EngineCode\Tests\ReflectionUnitTests\test_classes.h">
+      <Filter>UnitTests</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

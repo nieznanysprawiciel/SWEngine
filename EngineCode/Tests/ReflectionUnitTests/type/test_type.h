@@ -25,46 +25,38 @@
 *                                                                                   *
 *************************************************************************************/
 
-#include "rttr/policy.h"
+#ifndef RTTR_TEST_TYPE_H_
+#define RTTR_TEST_TYPE_H_
+
+#include <rttr/type>
+
+template<typename T>
+struct custom_wrapper
+{
+    public:
+        custom_wrapper(T& obj) : m_value(std::addressof(obj)) {}
+        T& get_data() const { return *m_value; }
+    private:
+        T* m_value;
+};
 
 namespace rttr
 {
+template<typename T>
+struct wrapper_mapper<custom_wrapper<T>>
+{
+    typedef decltype(std::declval<custom_wrapper<T>>().get_data()) wrapped_type;
+    typedef custom_wrapper<T> type;
+    inline static wrapped_type get(const type& obj)
+    {
+       return obj.get_data();
+    }
+    inline static type create(const wrapped_type& value)
+    {
+       return custom_wrapper<T>(value);
+    }
+};
 
-/////////////////////////////////////////////////////////////////////////////////////////
+}
 
-const detail::bind_as_ptr policy::prop::bind_as_ptr = {};
-
-const detail::return_as_ptr policy::meth::return_ref_as_ptr = {};
-
-const detail::discard_return policy::meth::discard_return = {};
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
-const detail::as_raw_pointer policy::ctor::as_raw_ptr = {};
-
-const detail::as_std_shared_ptr policy::ctor::as_std_shared_ptr = {};
-
-const detail::as_object policy::ctor::as_object = {};
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
-
-const detail::bind_as_ptr&			policy::prop::BindAsPtr()
-{	return bind_as_ptr;		}
-
-const detail::return_as_ptr&		policy::meth::ReturnRefAsPtr()
-{	return return_ref_as_ptr;	}
-
-const detail::discard_return&		policy::meth::DiscardReturn()
-{	return discard_return;	}
-
-const detail::as_raw_pointer&		policy::ctor::AsRawPtr()
-{	return as_raw_ptr;		}
-
-const detail::as_std_shared_ptr&	policy::ctor::AsStdSharedPtr()
-{	return as_std_shared_ptr;	}
-
-const detail::as_object&			policy::ctor::AsObject()
-{	return as_object;	}
-
-} // end namespace rttr
+#endif // RTTR_TEST_TYPE_H_

@@ -25,46 +25,69 @@
 *                                                                                   *
 *************************************************************************************/
 
-#include "rttr/policy.h"
+#include <rttr/registration>
+#include <catch/catch.hpp>
 
-namespace rttr
+using namespace rttr;
+
+struct ctor_test
 {
+    ctor_test(){}
+    ctor_test(const ctor_test& other) {}
+    ctor_test(int, double) {}
+
+    static ctor_test create_object() { return ctor_test(); }
+};
+
+static ctor_test global_create_object() { return ctor_test(); }
+
+RTTR_REGISTRATION
+{
+    registration::class_<ctor_test>("ctor_test")
+        .constructor<>()
+        .constructor<const ctor_test&>()
+        .constructor<int, double>()
+        .constructor(&ctor_test::create_object)
+        .constructor(&global_create_object);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+TEST_CASE("constructor - retrieve", "[constructor]") 
+{
+    type t = type::get<ctor_test>();
+    REQUIRE(t.is_valid() == true);
+    
+    SECTION("retrieve default ctor")
+    {
+        constructor ctor = t.get_constructor();
+        CHECK(ctor.is_valid() == true);
+    }
+
+    SECTION("retrieve copy-ctor")
+    {
+        constructor ctor = t.get_constructor({type::get<ctor_test>()});
+        CHECK(ctor.is_valid() == true);
+    }
+
+    SECTION("retrieve custom ctor")
+    {
+        constructor ctor = t.get_constructor({type::get<int>(), type::get<double>()});
+        CHECK(ctor.is_valid() == true);
+    }
+
+    SECTION("retrieve all ctors")
+    {
+        std::vector<constructor> ctor_list = t.get_constructors();
+        CHECK(ctor_list.size() == 5);
+        auto ctor_name = t.get_name();
+        // check order
+        CHECK(ctor_list[0].get_signature() == ctor_name + "( )");
+        CHECK(ctor_list[1].get_signature() == ctor_name + "( ctor_test const & )");
+        CHECK(ctor_list[2].get_signature() == ctor_name + "( int, double )");
+        CHECK(ctor_list[3].get_signature() == ctor_name + "( )");
+        CHECK(ctor_list[4].get_signature() == ctor_name + "( )");
+    }
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////
-
-const detail::bind_as_ptr policy::prop::bind_as_ptr = {};
-
-const detail::return_as_ptr policy::meth::return_ref_as_ptr = {};
-
-const detail::discard_return policy::meth::discard_return = {};
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
-const detail::as_raw_pointer policy::ctor::as_raw_ptr = {};
-
-const detail::as_std_shared_ptr policy::ctor::as_std_shared_ptr = {};
-
-const detail::as_object policy::ctor::as_object = {};
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
-
-const detail::bind_as_ptr&			policy::prop::BindAsPtr()
-{	return bind_as_ptr;		}
-
-const detail::return_as_ptr&		policy::meth::ReturnRefAsPtr()
-{	return return_ref_as_ptr;	}
-
-const detail::discard_return&		policy::meth::DiscardReturn()
-{	return discard_return;	}
-
-const detail::as_raw_pointer&		policy::ctor::AsRawPtr()
-{	return as_raw_ptr;		}
-
-const detail::as_std_shared_ptr&	policy::ctor::AsStdSharedPtr()
-{	return as_std_shared_ptr;	}
-
-const detail::as_object&			policy::ctor::AsObject()
-{	return as_object;	}
-
-} // end namespace rttr

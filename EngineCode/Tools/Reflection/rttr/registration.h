@@ -380,6 +380,8 @@ public:
      * \see access_levels
      */
     static const detail::public_access      public_access;
+	typedef detail::public_access PublicAccess;
+	
 
     /*!
      * This variable can be used to specify during registration of a class member
@@ -406,6 +408,7 @@ public:
      * \see access_levels
      */
     static const detail::protected_access   protected_access;
+	typedef detail::protected_access ProtectedAccess;
 
     /*!
      * This variable can be used to specify during registration of a class member
@@ -432,6 +435,7 @@ public:
      * \see access_levels
      */
     static const detail::private_access     private_access;
+	typedef detail::private_access PrivateAccess;
 
 private:
     registration() {}

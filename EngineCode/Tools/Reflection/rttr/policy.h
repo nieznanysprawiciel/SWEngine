@@ -84,7 +84,7 @@ struct RTTR_API policy
          * \endcode
          */
         static const detail::return_as_ptr      return_ref_as_ptr;
-		static const detail::return_as_ptr&		ReturnAsPtr();		///< Use instedad of static field when link error apears.
+		static const detail::return_as_ptr&		ReturnRefAsPtr();		///< Use instedad of static field when link error apears.
 
        /*!
          * This policy should be used when the return value of a method should not be forwarded to the caller.
@@ -115,7 +115,7 @@ struct RTTR_API policy
          * \endcode
          */
         static const detail::discard_return     discard_return;
-		static const detail::discard_return&	DiscarReturn();		///< Use instedad of static field when link error apears.
+		static const detail::discard_return&	DiscardReturn();		///< Use instedad of static field when link error apears.
     };
 
     /*!

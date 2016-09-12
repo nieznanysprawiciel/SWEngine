@@ -25,46 +25,5 @@
 *                                                                                   *
 *************************************************************************************/
 
-#include "rttr/policy.h"
-
-namespace rttr
-{
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
-const detail::bind_as_ptr policy::prop::bind_as_ptr = {};
-
-const detail::return_as_ptr policy::meth::return_ref_as_ptr = {};
-
-const detail::discard_return policy::meth::discard_return = {};
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
-const detail::as_raw_pointer policy::ctor::as_raw_ptr = {};
-
-const detail::as_std_shared_ptr policy::ctor::as_std_shared_ptr = {};
-
-const detail::as_object policy::ctor::as_object = {};
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
-
-const detail::bind_as_ptr&			policy::prop::BindAsPtr()
-{	return bind_as_ptr;		}
-
-const detail::return_as_ptr&		policy::meth::ReturnRefAsPtr()
-{	return return_ref_as_ptr;	}
-
-const detail::discard_return&		policy::meth::DiscardReturn()
-{	return discard_return;	}
-
-const detail::as_raw_pointer&		policy::ctor::AsRawPtr()
-{	return as_raw_ptr;		}
-
-const detail::as_std_shared_ptr&	policy::ctor::AsStdSharedPtr()
-{	return as_std_shared_ptr;	}
-
-const detail::as_object&			policy::ctor::AsObject()
-{	return as_object;	}
-
-} // end namespace rttr
+#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
+#include "Catch/catch.hpp"

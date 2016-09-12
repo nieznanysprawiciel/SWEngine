@@ -25,46 +25,48 @@
 *                                                                                   *
 *************************************************************************************/
 
-#include "rttr/policy.h"
+#ifndef TEST_ENUMERATION_REFLECTION_H_
+#define TEST_ENUMERATION_REFLECTION_H_
 
-namespace rttr
+#include <rttr/type>
+
+
+struct enum_test
 {
+    enum E_Alignment
+    {
+        AlignLeft       = 0x0001,
+        AlignRight      = 0x0002,
+        AlignHCenter    = 0x0004,
+        AlignJustify    = 0x0008
+    };
 
-/////////////////////////////////////////////////////////////////////////////////////////
+    enum class E_Orientation
+    {
+        Horizontal      = 0,
+        Vertical        = 1
+    };
 
-const detail::bind_as_ptr policy::prop::bind_as_ptr = {};
+    enum_test() : _alignment(E_Alignment::AlignLeft), _orientation(E_Orientation::Vertical)
+    {}
 
-const detail::return_as_ptr policy::meth::return_ref_as_ptr = {};
-
-const detail::discard_return policy::meth::discard_return = {};
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
-const detail::as_raw_pointer policy::ctor::as_raw_ptr = {};
-
-const detail::as_std_shared_ptr policy::ctor::as_std_shared_ptr = {};
-
-const detail::as_object policy::ctor::as_object = {};
-
-/////////////////////////////////////////////////////////////////////////////////////////
+    enum_test(E_Alignment align, E_Orientation orient) : _alignment(align), _orientation(orient)
+    {}
 
 
-const detail::bind_as_ptr&			policy::prop::BindAsPtr()
-{	return bind_as_ptr;		}
+    E_Alignment     _alignment;
+    E_Orientation   _orientation;
+};
 
-const detail::return_as_ptr&		policy::meth::ReturnRefAsPtr()
-{	return return_ref_as_ptr;	}
+enum E_DayOfWeek
+{
+    Monday      = 0,
+    Tuesday     = 1,
+    Wednesday   = 2,
+    Thursday    = 3,
+    Friday      = 4,
+    Saturday    = 5,
+    Sunday      = 6
+};
 
-const detail::discard_return&		policy::meth::DiscardReturn()
-{	return discard_return;	}
-
-const detail::as_raw_pointer&		policy::ctor::AsRawPtr()
-{	return as_raw_ptr;		}
-
-const detail::as_std_shared_ptr&	policy::ctor::AsStdSharedPtr()
-{	return as_std_shared_ptr;	}
-
-const detail::as_object&			policy::ctor::AsObject()
-{	return as_object;	}
-
-} // end namespace rttr
+#endif // TEST_ENUMERATION_REFLECTION_H_

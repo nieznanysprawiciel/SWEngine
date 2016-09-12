@@ -25,46 +25,102 @@
 *                                                                                   *
 *************************************************************************************/
 
-#include "rttr/policy.h"
+#ifndef TEST_PROPERTY_REFLECTION_H_
+#define TEST_PROPERTY_REFLECTION_H_
 
-namespace rttr
+#include <rttr/type>
+
+struct property_test
+{
+    property_test() : _p1(0), _p2(12), _p3(true), _p4(23) 
+    {
+        _array.resize(1000); 
+        for (int i = 0; i < 100; ++i)
+            _other_array[i] = i;
+    }
+    virtual ~property_test() {}
+
+    const std::string& get_p7() const { return _p7; }
+    void set_p7(const std::string& text) { _p7 = text; }
+    int get_prop() const volatile { return 22; }
+   
+    int                 _p1;
+    short int           _p2;
+    bool                _p3;
+    const double        _p4;
+    static int          _p5;
+    static const int    _p6;
+    std::string         _p7;
+    double*             _p8;
+    std::vector<int>    _array;
+    int                 _other_array[100];
+
+    RTTR_REGISTRATION_FRIEND;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+// test derived properties
+
+namespace ns_property
+{
+struct top
+{
+    virtual ~top() {}
+    top() : _p1(12){}
+    int _p1;
+    RTTR_ENABLE()
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+struct left : virtual top
 {
 
-/////////////////////////////////////////////////////////////////////////////////////////
+    left() : _p2(true){}
+    bool _p2;
 
-const detail::bind_as_ptr policy::prop::bind_as_ptr = {};
-
-const detail::return_as_ptr policy::meth::return_ref_as_ptr = {};
-
-const detail::discard_return policy::meth::discard_return = {};
+    RTTR_ENABLE(top)
+};
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-const detail::as_raw_pointer policy::ctor::as_raw_ptr = {};
+struct right : virtual top
+{
 
-const detail::as_std_shared_ptr policy::ctor::as_std_shared_ptr = {};
+    right() : _p3(true){}
+    bool _p3;
 
-const detail::as_object policy::ctor::as_object = {};
+    RTTR_ENABLE(top)
+};
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+struct right_2
+{
+    virtual ~right_2() {}
+    right_2() : _p4(true){}
+    bool _p4;
+    RTTR_ENABLE()
+};
 
-const detail::bind_as_ptr&			policy::prop::BindAsPtr()
-{	return bind_as_ptr;		}
+/////////////////////////////////////////////////////////////////////////////////////////
+typedef void(*func_ptr)(int);
 
-const detail::return_as_ptr&		policy::meth::ReturnRefAsPtr()
-{	return return_ref_as_ptr;	}
+struct bottom : left, right, right_2
+{
+    bottom() : _p5(23.0){}
+    void set_function_cb(func_ptr cb) { m_funcPtr = cb; }
+    func_ptr get_function_cb() const { return m_funcPtr; }
 
-const detail::discard_return&		policy::meth::DiscardReturn()
-{	return discard_return;	}
+    double _p5;
+    func_ptr m_funcPtr;
 
-const detail::as_raw_pointer&		policy::ctor::AsRawPtr()
-{	return as_raw_ptr;		}
+    RTTR_ENABLE(left, right, right_2)
+};
 
-const detail::as_std_shared_ptr&	policy::ctor::AsStdSharedPtr()
-{	return as_std_shared_ptr;	}
+}
 
-const detail::as_object&			policy::ctor::AsObject()
-{	return as_object;	}
+/////////////////////////////////////////////////////////////////////////////////////////
 
-} // end namespace rttr
+#endif // TEST_PROPERTY_REFLECTION_H_
