@@ -21,7 +21,7 @@ RTTR_REGISTRATION
 
 
 /**@brief */
-MeshAsset::MeshAsset( const std::wstring& filePath, MeshAssetInitWithExistingData&& initData )
+MeshAsset::MeshAsset( const std::wstring& filePath, MeshCreateData&& initData )
 	:	ResourceObject( WRONG_ID )
 	,	m_filePath( filePath )
 	,	m_vertexBuffer( std::move( initData.VertexBuffer ) )

@@ -138,6 +138,7 @@ public:
 
 #ifdef __TEST
 	void test();
+	void testMaterial( Model3DFromFile* model );
 	void SetSkydomeAndCamera();
 	void SetSkydome();
 #endif

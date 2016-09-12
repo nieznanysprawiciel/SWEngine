@@ -42,8 +42,8 @@ bool								SWMeshLoader::CanLoad	( const filesystem::Path& fileName )
 }
 
 
-Nullable< MeshAssetInitData >		SWMeshLoader::LoadMesh	( const filesystem::Path& fileName )
+Nullable< MeshInitData >		SWMeshLoader::LoadMesh	( const filesystem::Path& fileName )
 {
 
-	return Nullable< MeshAssetInitData >();
+	return Nullable< MeshInitData >();
 }

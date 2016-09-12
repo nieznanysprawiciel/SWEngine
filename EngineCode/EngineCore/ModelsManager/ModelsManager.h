@@ -65,8 +65,12 @@ class ModelsManager
 private:
 	Engine* m_engine;			///<WskaŸnik na obiekt g³ówny silnika
 
-	ResourceContainer<VertexShader>				m_vertexShader;		///<Vertex shadery.
-	ResourceContainer<PixelShader>				m_pixelShader;		///<Pixel shadery.
+	ResourceContainer< VertexShader >			m_vertexShader;		///<Vertex shadery.
+	ResourceContainer< PixelShader >			m_pixelShader;		///<Pixel shadery.
+	ResourceContainer< GeometryShader >			m_geometryShader;	///< Geometry shaders.
+	ResourceContainer< EvaluationShader >		m_evaluationShader;	///< Tesselation evaluation shaders.
+	ResourceContainer< ControlShader >			m_controlShaders;	///< Tesselation control shaders.
+
 	ResourceContainer<TextureObject>			m_texture;			///<Tekstury.
 	ResourceContainer<BufferObject>				m_vertexBuffer;		///<Bufory wierzcho³ków.
 	ResourceContainer<BufferObject>				m_indexBuffer;		///<Bufory indeksów.
@@ -93,9 +97,9 @@ public:
 	// Funkcje do zarz¹dzania assetami
 	ModelsManagerResult				LoadModelFromFile			( const std::wstring& file );
 	RenderTargetObject*				CreateRenderTarget			( const std::wstring& name, const RenderTargetDescriptor& renderTargetDescriptor );
-	ResourcePtr< MeshAsset >		CreateMesh					( const std::wstring& name, MeshAssetInitData&& initData );
-	ResourcePtr< MeshAsset >		CreateMesh					( const std::wstring& name, MeshAssetInitWithExistingData&& initData );
-	ResourcePtr< MaterialAsset >	CreateMaterial				( const std::wstring& name, MaterialAssetInitData&& initData );
+	ResourcePtr< MeshAsset >		CreateMesh					( const std::wstring& name, MeshInitData&& initData );
+	ResourcePtr< MeshAsset >		CreateMesh					( const std::wstring& name, MeshCreateData&& initData );
+	ResourcePtr< MaterialAsset >	CreateMaterial				( const std::wstring& name, MaterialInitData&& initData );
 
 	inline Model3DFromFile*			GetModel					( const std::wstring& name ) { return m_fileModel.get( name ); }	///<Zwraca model z pliku o podanej nazwie, je¿eli jest wczytany.
 	inline RenderTargetObject*		GetRenderTarget				( const std::wstring& name ) { return m_renderTarget.get( name ); }	///<Zwraca RenderTarget o podanej nazwie, je¿eli jest wczytany.
@@ -108,10 +112,14 @@ public:
 	inline MaterialObject*			GetMaterial					( const std::wstring& name ) { return m_material.get( name ); }		///<Zwraca materia³ o podanej nazwie, je¿eli jest wczytany.
 	inline ShaderInputLayout*		GetLayout					( const std::wstring& name ) { return m_vertexLayout.get( name ); }	///<Zwraca layout o podanej nazwie.	
 
-	TextureObject*					LoadTexture					( const std::wstring& file_name );
-	VertexShader*					LoadVertexShader			( const std::wstring& file_name, const std::string& shader_entry );
-	VertexShader*					LoadVertexShader			( const std::wstring& file_name, const std::string& shader_entry, ShaderInputLayout** layout, InputLayoutDescriptor* layout_desc );
-	PixelShader*					LoadPixelShader				( const std::wstring& file_name, const std::string& shader_entry );
+	TextureObject*					LoadTexture					( const std::wstring& fileName );
+	VertexShader*					LoadVertexShader			( const std::wstring& fileName, const std::string& shaderEntry );
+	VertexShader*					LoadVertexShader			( const std::wstring& fileName, const std::string& shaderEntry, ShaderInputLayout** layout, InputLayoutDescriptor* layout_desc );
+	PixelShader*					LoadPixelShader				( const std::wstring& fileName, const std::string& shaderEntry );
+	GeometryShader*					LoadGeometryShader			( const std::wstring& fileName, const std::string& shaderEntry );
+	ControlShader*					LoadControlShader			( const std::wstring& fileName, const std::string& shaderEntry );
+	EvaluationShader*				LoadEvaluationShader		( const std::wstring& fileName, const std::string& shaderEntry );
+
 	ResourcePtr< BufferObject >		CreateVertexBuffer			( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
 	ResourcePtr< BufferObject >		CreateVertexBuffer			( const std::wstring& name, const VertexBufferInitData& data );
 	ResourcePtr< BufferObject >		CreateIndexBuffer			( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );

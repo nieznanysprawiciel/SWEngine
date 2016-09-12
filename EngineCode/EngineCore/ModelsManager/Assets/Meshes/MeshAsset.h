@@ -52,7 +52,7 @@ private:
 	///@}
 	
 public:
-	explicit						MeshAsset			( const std::wstring& filePath, MeshAssetInitWithExistingData&& initData );
+	explicit						MeshAsset			( const std::wstring& filePath, MeshCreateData&& initData );
 
 	Size							GetSegmentsCount	() const;
 	const MeshPart*					GetSegment			( Size index ) const;

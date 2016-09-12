@@ -186,7 +186,7 @@ RenderTargetObject* ModelsManager::CreateRenderTarget( const std::wstring& name,
 }
 
 /**@brief */
-ResourcePtr<MeshAsset> ModelsManager::CreateMesh( const std::wstring& name, MeshAssetInitData&& initData )
+ResourcePtr<MeshAsset> ModelsManager::CreateMesh( const std::wstring& name, MeshInitData&& initData )
 {
 	VertexBufferInitData vertexInit;
 	vertexInit.Data = initData.VertexBuffer.GetMemory< uint8 >();
@@ -217,7 +217,7 @@ ResourcePtr<MeshAsset> ModelsManager::CreateMesh( const std::wstring& name, Mesh
 			return nullptr;
 	}
 
-	MeshAssetInitWithExistingData meshData;
+	MeshCreateData meshData;
 	meshData.MeshSegments = std::move( initData.MeshSegments );
 	meshData.VertexLayout = std::move( initData.VertexLayout );
 	meshData.VertexBuffer = std::move( vertexBuffer );
@@ -227,14 +227,14 @@ ResourcePtr<MeshAsset> ModelsManager::CreateMesh( const std::wstring& name, Mesh
 }
 
 /**@brief */
-ResourcePtr<MeshAsset> ModelsManager::CreateMesh( const std::wstring& name, MeshAssetInitWithExistingData&& initData )
+ResourcePtr<MeshAsset> ModelsManager::CreateMesh( const std::wstring& name, MeshCreateData&& initData )
 {
 	assert( false );
 	return ResourcePtr<MeshAsset>();
 }
 
 /**@brief */
-ResourcePtr< MaterialAsset >	ModelsManager::CreateMaterial( const std::wstring& name, MaterialAssetInitData&& initData )
+ResourcePtr< MaterialAsset >	ModelsManager::CreateMaterial( const std::wstring& name, MaterialInitData&& initData )
 {
 	assert( false );
 	return ResourcePtr< MaterialAsset >();
@@ -400,7 +400,7 @@ skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
 @param[in] fileName Nazwa pliku, w którym znajduje siê pixel shader.
 @param[in] shaderEntry Nazwa funkcji od której ma siê zacz¹æ wykonywanie shadera.
 @return Zwraca obiekt dodanego shadera. Zwraca nullptr, je¿eli shadera nie uda³o siê skompilowaæ.*/
-PixelShader* ModelsManager::LoadPixelShader( const std::wstring& fileName, const std::string& shaderEntry )
+PixelShader* ModelsManager::LoadPixelShader				( const std::wstring& fileName, const std::string& shaderEntry )
 {
 	PixelShader* shader = m_pixelShader.get( fileName );
 	if ( !shader )
@@ -414,6 +414,36 @@ PixelShader* ModelsManager::LoadPixelShader( const std::wstring& fileName, const
 	}
 
 	return shader;
+}
+
+GeometryShader*		ModelsManager::LoadGeometryShader	( const std::wstring& fileName, const std::string& shaderEntry )
+{
+	//GeometryShader* shader = m_geometryShader.get( fileName );
+	//if ( !shader )
+	//{
+	//	// Nie by³o shadera, trzeba go stworzyæ i dodaæ
+	//	shader = ResourcesFactory::CreatePixelShaderFromFile( fileName, shaderEntry );
+	//	if ( !shader )		// shader móg³ mieæ z³y format, a nie chcemy dodawaæ nullptra do ModelsManagera
+	//		return nullptr;
+
+	//	m_geometryShader.UnsafeAdd( fileName, shader );	// Dodaliœmy teksturê
+	//}
+
+	//return shader;
+	assert( !"Implements me" );
+	return nullptr;
+}
+
+ControlShader*		ModelsManager::LoadControlShader	( const std::wstring& fileName, const std::string& shaderEntry )
+{
+	assert( !"Implements me" );
+	return nullptr;
+}
+
+EvaluationShader*	ModelsManager::LoadEvaluationShader	( const std::wstring& fileName, const std::string& shaderEntry )
+{
+	assert( !"Implements me" );
+	return nullptr;
 }
 
 /**@brief Dodaje teksturê do ModelManagera, je¿eli jeszcze nie istnia³a.

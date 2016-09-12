@@ -42,7 +42,6 @@ EngineInterface::~EngineInterface()
 #include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
 #include "Common/System/Path.h"
 
-void testMaterial( Engine* engine, Model3DFromFile* model );
 
 
 /**@brief */
@@ -172,7 +171,7 @@ void Engine::test()
 
 	SetSkydomeAndCamera();
 
-	testMaterial( this, Context->modelsManager->GetModel( CLONE_FIGHTER ) );
+	testMaterial( Context->modelsManager->GetModel( CLONE_FIGHTER ) );
 
 
 	int actorInfoSize = sizeof( ActorInfo );
@@ -245,14 +244,14 @@ void Engine::SetSkydome()
 #include "Common/Serialization/Serializer.h"
 #include "Common/Serialization/SW/EngineSerializationContext.h"
 
-void testMaterial( Engine* engine, Model3DFromFile* model )
+void Engine::testMaterial( Model3DFromFile* model )
 {
 	auto part = model->get_part( 1 );
 
-	MaterialAssetInitData init;
-	init.VertexShader = part->vertex_shader;
-	init.PixelShader = part->pixel_shader;
-	init.Textures[ 0 ] = part->GetTexture1();
+	MaterialCreateData init;
+	init.Data.VertexShader = part->vertex_shader;
+	init.Data.PixelShader = part->pixel_shader;
+	init.Data.Textures[ 0 ] = part->GetTexture1();
 
 	// Shading model data
 
@@ -265,7 +264,7 @@ void testMaterial( Engine* engine, Model3DFromFile* model )
 
 	ShadingModelData< PhongMaterial >* shadingData = new ShadingModelData< PhongMaterial >();
 	shadingData->Data = phongMaterial;
-	init.ShadingData = shadingData;
+	init.Data.ShadingData = shadingData;
 
 
 	// Additional buffers.
@@ -274,18 +273,20 @@ void testMaterial( Engine* engine, Model3DFromFile* model )
 	addBuff.BufferType = TypeID::get< PhongMaterial >();
 	addBuff.ShaderType = ShaderType::PixelShader;
 	
-	init.AdditionalBuffers.push_back( addBuff );
+	init.Data.AdditionalBuffers.push_back( addBuff );
 
 	// Memory leak!!
 	MaterialAsset* newMaterial = new MaterialAsset( L"::Generated", std::move( init ) );
 
-	SWMaterialLoader loader;
+	SWMaterialLoader loader( Context->modelsManager );
 	loader.SaveMaterial( "tylko_do_testow/serialization/materialSerialize.swmat", newMaterial );
 
+	auto mat = loader.LoadMaterial( "tylko_do_testow/serialization/materialDeserialize.swmat" );
 
-	ISerializer ser( std::make_unique< EngineSerializationContext >() );
-	newMaterial->Serialize( &ser );
-	ser.SaveFile( "tylko_do_testow/serialization/materialBruteSerialize.swmat", WritingMode::Readable );
+
+	//ISerializer ser( std::make_unique< EngineSerializationContext >() );
+	//newMaterial->Serialize( &ser );
+	//ser.SaveFile( "tylko_do_testow/serialization/materialBruteSerialize.swmat", WritingMode::Readable );
 }
 
 #endif

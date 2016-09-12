@@ -41,18 +41,19 @@ RTTR_REGISTRATION
 
 
 
-MaterialAsset::MaterialAsset( const std::wstring& filePath, MaterialAssetInitData&& initData )
+MaterialAsset::MaterialAsset( const std::wstring& filePath, MaterialCreateData&& initData )
 	: ResourceObject( WRONG_ID )
-	, m_vertexShader( std::move( initData.VertexShader ) )
-	, m_pixelShader( std::move( initData.PixelShader ) )
-	, m_geometryShader( std::move( initData.GeometryShader ) )
-	, m_evaluationShader( std::move( initData.TesselationEvaluationShader ) )
-	, m_controlShader( std::move( initData.TesselationControlShader ) )
-	, m_descriptor( filePath, std::move( initData.AdditionalBuffers ), initData.ShadingData )
+	, m_materialBuffer( std::move( initData.MaterialBuffer ) )
+	, m_vertexShader( std::move( initData.Data.VertexShader ) )
+	, m_pixelShader( std::move( initData.Data.PixelShader ) )
+	, m_geometryShader( std::move( initData.Data.GeometryShader ) )
+	, m_evaluationShader( std::move( initData.Data.TesselationEvaluationShader ) )
+	, m_controlShader( std::move( initData.Data.TesselationControlShader ) )
+	, m_descriptor( filePath, std::move( initData.Data.AdditionalBuffers ), initData.Data.ShadingData )
 {
 	for( int i = 0; i < MAX_MATERIAL_TEXTURES; ++i )
 	{
-		m_textures[ i ] = std::move( initData.Textures[ i ] );
+		m_textures[ i ] = std::move( initData.Data.Textures[ i ] );
 	}
 }
 

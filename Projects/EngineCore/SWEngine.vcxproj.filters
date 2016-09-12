@@ -803,5 +803,8 @@
     <None Include="..\..\EngineCode\EngineCore\UserApi\Actors\ActorsApi.inl">
       <Filter>EngineCore\UserApi\Actors</Filter>
     </None>
+    <None Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Material\SWMat\SWMaterialLoader.inl">
+      <Filter>EngineCore\ModelsManagment\Loaders\Material\SWMat</Filter>
+    </None>
   </ItemGroup>
 </Project>

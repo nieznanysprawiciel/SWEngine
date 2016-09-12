@@ -47,6 +47,7 @@ public:
 	ShadingModelStruct		Data;
 
 public:
+	ShadingModelData();
 
 	virtual Size		GetShadingModelSize		() override		{ return sizeof( ShadingModelStruct ); }
 	virtual uint8*		GetShadingModelData		() override		{ return reinterpret_cast< uint8* >( &Data ); }
@@ -55,4 +56,18 @@ public:
 
 	ShadingModelStruct&	GetStruct	()		{ return Data; }
 };
+
+
+//====================================================================================//
+//			Inline definitions	
+//====================================================================================//
+
+template< typename ShadingModelStruct >
+inline ShadingModelData< ShadingModelStruct >::ShadingModelData()
+{
+	static_assert( std::is_default_constructible< ShadingModelStruct >::value, "Material data must be default constructible." );
+
+	// Constructor must be registered in rttr.
+	assert( TypeID::get< ShadingModelData< ShadingModelStruct > >().get_constructor().is_valid() );
+}
 

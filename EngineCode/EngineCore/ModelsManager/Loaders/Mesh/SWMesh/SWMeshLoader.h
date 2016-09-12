@@ -13,7 +13,7 @@ public:
 	virtual bool			can_load	( const std::wstring& name );
 	virtual LoaderResult	load_mesh	( Model3DFromFile* new_file_mesh, const std::wstring& name );
 
-	Nullable< MeshAssetInitData >		LoadMesh	( const filesystem::Path& fileName );
+	Nullable< MeshInitData >		LoadMesh	( const filesystem::Path& fileName );
 	bool								CanLoad		( const filesystem::Path& fileName );
 };
 

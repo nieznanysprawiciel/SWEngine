@@ -158,6 +158,16 @@ int main()
 
 	SEPARATOR
 
+	rttr::variant newDerived = rttr::type::get< DerivedClass >().create();
+	auto derivedType = rttr::type::get< DerivedClass >();
+	auto variantType = newDerived.get_type();
+
+	bool isClass = newDerived.is_type< DerivedClass >();
+
+	rttr::type::get< DerivedClass >().destroy( newDerived );
+
+	SEPARATOR;
+
 	char end;
 	std::cout << "Press any key to end...";
 	std::cin >> end;

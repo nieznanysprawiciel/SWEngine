@@ -62,7 +62,7 @@ private:
 	MaterialInfo					m_descriptor;			///< Deskryptor materia³u.
 
 public:
-	explicit			MaterialAsset		( const std::wstring& filePath, MaterialAssetInitData&& initData );
+	explicit			MaterialAsset		( const std::wstring& filePath, MaterialCreateData&& initData );
 
 	const ResourcePtr< BufferObject >&		GetMaterialBuffer		() const		{ return m_materialBuffer;  }
 	const ResourcePtr< VertexShader >&		GetVertexShader			() const		{ return m_vertexShader; }

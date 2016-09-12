@@ -7,9 +7,9 @@
 #include <vector>
 
 
-/**@brief Struct contains data used to initialize material.
+/**@brief Struct contains data needed to initialize material.
 @ingroup Materials*/
-struct MaterialAssetInitData
+struct MaterialInitData
 {
 	ResourcePtr< VertexShader >				VertexShader;
 	ResourcePtr< PixelShader >				PixelShader;
@@ -21,3 +21,14 @@ struct MaterialAssetInitData
 	std::vector< AdditionalBufferInfo >		AdditionalBuffers;		///< Additional buffers which should be provided by actor.
 	ShadingModelBase*						ShadingData;			///< Initializes buffer with shadeing model data. @see ShadingModelData
 };
+
+/**@brief Struct contains data needed to initialize material.
+
+For internal use by @ref ModelsManager. Use MaterialInitData instead.
+@ingroup Materials*/
+struct MaterialCreateData
+{
+	MaterialInitData				Data;
+	ResourcePtr< BufferObject >		MaterialBuffer;
+};
+

@@ -32,21 +32,34 @@ public:
 		static const std::string		ADD_BUFFERS_ARRAY_STRING;
 		static const std::string		BUFFER_SIZE_STRING;
 		static const std::string		SHADING_DATA_STRING;
+		static const std::string		SHADING_MODEL_WRAPPER_TYPE_STRING;
 	};
 
 private:
-	uint32		m_versionMajor;
-	uint32		m_versionMinor;
+	uint32				m_versionMajor;
+	uint32				m_versionMinor;
+
+	ModelsManager*		m_modelsManager;
 
 public:
-	SWMaterialLoader();
+	explicit							SWMaterialLoader( ModelsManager* modelsManager );
 	~SWMaterialLoader();
 
-	Nullable< MaterialAssetInitData >	LoadMaterial	( const filesystem::Path& fileName );
+	Nullable< MaterialInitData >		LoadMaterial	( const filesystem::Path& fileName );
 	bool								CanLoad			( const filesystem::Path& fileName );
 	void								SaveMaterial	( const filesystem::Path& fileName, MaterialAsset* mat );
 
 	uint32		GetVersionMajor()		{ return m_versionMajor; }
 	uint32		GetVersionMinor()		{ return m_versionMinor; }
+
+
+private:
+	typedef std::pair< const char*, const char* > ShaderLoadInfo;
+
+	Nullable< MaterialInitData >		LoadMaterial_Version1	( IDeserializer* deser );
+	ShaderLoadInfo						DeserializeShader		( IDeserializer* deser, const std::string& shaderNameString );
+
+	template< typename ShaderType >
+	Nullable< ResourcePtr< ShaderType > >	LoadShader			( IDeserializer* deser, const std::string& shaderNameString );
 };
 

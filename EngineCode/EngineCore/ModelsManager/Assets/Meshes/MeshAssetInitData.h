@@ -12,7 +12,7 @@
 
 /**@brief Structure used to initialize class @ref MeshAsset.
 @ingroup MeshAsset*/
-struct MeshAssetInitData
+struct MeshInitData
 {
 	MemoryChunk							VertexBuffer;		///< Data used to fill vertex buffer.
 	MemoryChunk							IndexBuffer;		///< Data used to fill index buffer.
@@ -28,7 +28,7 @@ struct MeshAssetInitData
 
 /**@brief Structure initializes @ref MeshAsset with existing buffers.
 @ingroup MeshAsset*/
-struct MeshAssetInitWithExistingData
+struct MeshCreateData
 {
 	ResourcePtr< BufferObject >			VertexBuffer;
 	ResourcePtr< BufferObject >			IndexBuffer;
