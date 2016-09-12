@@ -283,6 +283,8 @@ Nullable< MaterialInitData >		SWMaterialLoader::LoadMaterial_Version1	( IDeseria
 			if( init.ShadingData->GetShadingModelSize() != bufferSize )
 				return Nullable< MaterialInitData >( "Declared buffer size is other then real buffer size." );
 
+			
+
 			Serialization::DefaultDeserialize( deser, init.ShadingData );
 
 			deser->Exit();
