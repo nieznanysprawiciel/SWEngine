@@ -203,101 +203,141 @@ void								SWMaterialLoader::SaveMaterial	( const filesystem::Path& fileName, M
 // @todo Maybe we should tell ModelsManager to release resources, if something went wrong.
 Nullable< MaterialInitData >		SWMaterialLoader::LoadMaterial_Version1	( IDeserializer* deser )
 {
-	MaterialInitData	init;
+	Nullable< MaterialInitData >	data;
+	data.IsValid = true;
 
 	if( deser->EnterObject( rttr::type::get< MaterialAsset >().get_name() ) )
 	{
-		auto vertexShader = LoadShader< VertexShader >( deser, STRINGS_1_0::VERTEX_SHADER_STRING );
-		auto pixelShader = LoadShader< PixelShader >( deser, STRINGS_1_0::PIXEL_SHADER_STRING );
-
-		// Vertex shader and pixel shader must be set.
-		if( !vertexShader.IsValid )
-			return Nullable< MaterialInitData >( std::move( vertexShader.ErrorString ) );
-
-		if( !pixelShader.IsValid )
-			return Nullable< MaterialInitData >( std::move( pixelShader.ErrorString ) );
-
-		init.VertexShader = std::move( vertexShader.Value );
-		init.PixelShader = std::move( pixelShader.Value );
-
-		auto geometryShader = LoadShader< GeometryShader >( deser, STRINGS_1_0::GEOMETRY_SHADER_STRING );
-		auto evaluationShader = LoadShader< EvaluationShader >( deser, STRINGS_1_0::EVALUATION_SHADER_STRING );
-		auto controlShader = LoadShader< ControlShader >( deser, STRINGS_1_0::CONTROL_SHADER_STRING );
-
-		// Note: We don't check if shader was created. Nullptrs are acceptable value.
-		init.GeometryShader = std::move( geometryShader.Value );
-		init.TesselationEvaluationShader = std::move( evaluationShader.Value );
-		init.TesselationControlShader = std::move( controlShader.Value );
-
-		// Textures
-		if( deser->EnterArray( STRINGS_1_0::TEXTURES_ARRAY_STRING ) )
-		{
-			if( deser->FirstElement() )
-			{
-				int texIdx = 0;
-				do
-				{
-					assert( deser->GetName() == TypeID::get< TextureObject >().get_name() );
-					
-					std::string fileName = deser->GetAttribute( STRINGS_1_0::FILE_PATH_STRING, "" );
-					if( fileName != "" )
-					{
-						auto tex = m_modelsManager->LoadTexture( Convert::FromString< std::wstring >( fileName, L"" ) );
-						init.Textures[ texIdx ] = tex;
-					}
-				
-					texIdx++;
-				} while( deser->NextElement() && texIdx < MAX_MATERIAL_TEXTURES );
-
-				//deser->Exit();
-			}
-			deser->Exit();
-		}
-
-		// Shading model data
-		if( deser->EnterObject( STRINGS_1_0::SHADING_DATA_STRING ) )
-		{
-			uint32		bufferSize = deser->GetAttribute( STRINGS_1_0::BUFFER_SIZE_STRING, (uint32)0 );
-			const char*	wrapperName = deser->GetAttribute( STRINGS_1_0::SHADING_MODEL_WRAPPER_TYPE_STRING, nullptr );
-
-			if( !wrapperName )
-				return Nullable< MaterialInitData >( "File doesn't contain WrapperType field." );
-
-			TypeID wrapper = TypeID::get_by_name( wrapperName );
-			if( !wrapper.is_valid() )
-				return Nullable< MaterialInitData >( "WrapperType is not registered." );
-			
-			auto constructor = wrapper.get_constructor();
-			if( !constructor.is_valid() )
-				return Nullable< MaterialInitData >( "WrapperType constructor is not registered." );
-
-			rttr::variant object = wrapper.create();
-			if( !object.is_valid() )
-				return Nullable< MaterialInitData >( "WrapperType could not be created." );
-
-			if( !object.can_convert( TypeID::get< ShadingModelBase* >() ) )
-				return Nullable< MaterialInitData >( "Can't convert MaterialData to ShadingModelBase*. Make sure, constructor was declared with AsRawPtr policy." );
-
-			init.ShadingData = object.get_value< ShadingModelBase* >();
-
-			if( init.ShadingData->GetShadingModelSize() != bufferSize )
-				return Nullable< MaterialInitData >( "Declared buffer size is other then real buffer size." );
-
-			
-
-			Serialization::DefaultDeserialize( deser, init.ShadingData );
-
-			deser->Exit();
-		}
-
-		// Additional buffers
-
+		data = LoadShaders( deser, data );
+		data = LoadTextures( deser, data );
+		data = LoadShadingData( deser, data );
+		data = LoadAdditionalBuffers( deser, data );
 
 		deser->Exit();
 	}
 
-	return Nullable< MaterialInitData >( std::move( init ) );
+	return Nullable< MaterialInitData >( std::move( data ) );
 }
+
+
+Nullable< MaterialInitData >		SWMaterialLoader::LoadShaders		( IDeserializer* deser, Nullable< MaterialInitData >& init )
+{
+	ReturnIfInvalid( init );
+
+	auto vertexShader = LoadShader< VertexShader >( deser, STRINGS_1_0::VERTEX_SHADER_STRING );
+	auto pixelShader = LoadShader< PixelShader >( deser, STRINGS_1_0::PIXEL_SHADER_STRING );
+
+	// Vertex shader and pixel shader must be set.
+	ReturnIfInvalid( vertexShader );
+	ReturnIfInvalid( pixelShader );
+
+	init.Value.VertexShader = std::move( vertexShader.Value );
+	init.Value.PixelShader = std::move( pixelShader.Value );
+
+	auto geometryShader = LoadShader< GeometryShader >( deser, STRINGS_1_0::GEOMETRY_SHADER_STRING );
+	auto evaluationShader = LoadShader< EvaluationShader >( deser, STRINGS_1_0::EVALUATION_SHADER_STRING );
+	auto controlShader = LoadShader< ControlShader >( deser, STRINGS_1_0::CONTROL_SHADER_STRING );
+
+	// Note: We don't check if shader was created. Nullptrs are acceptable value.
+	init.Value.GeometryShader = std::move( geometryShader.Value );
+	init.Value.TesselationEvaluationShader = std::move( evaluationShader.Value );
+	init.Value.TesselationControlShader = std::move( controlShader.Value );
+
+	return std::move( init );
+}
+
+Nullable< MaterialInitData >		SWMaterialLoader::LoadTextures		( IDeserializer* deser, Nullable< MaterialInitData >& init )
+{
+	ReturnIfInvalid( init );
+
+	// Textures
+	if( deser->EnterArray( STRINGS_1_0::TEXTURES_ARRAY_STRING ) )
+	{
+		if( deser->FirstElement() )
+		{
+			int texIdx = 0;
+			do
+			{
+				assert( deser->GetName() == TypeID::get< TextureObject >().get_name() );
+					
+				std::string fileName = deser->GetAttribute( STRINGS_1_0::FILE_PATH_STRING, "" );
+				if( fileName != "" )
+				{
+					auto tex = m_modelsManager->LoadTexture( Convert::FromString< std::wstring >( fileName, L"" ) );
+					init.Value.Textures[ texIdx ] = tex;
+				}
+				
+				texIdx++;
+			} while( deser->NextElement() && texIdx < MAX_MATERIAL_TEXTURES );
+
+		}
+		deser->Exit();
+	}
+
+	return std::move( init );
+}
+
+Nullable< MaterialInitData >		SWMaterialLoader::LoadShadingData	( IDeserializer* deser, Nullable< MaterialInitData >& init )
+{
+	ReturnIfInvalid( init );
+	auto& initData = init.Value;
+
+
+	// Shading model data
+	if( deser->EnterObject( STRINGS_1_0::SHADING_DATA_STRING ) )
+	{
+		uint32		bufferSize = deser->GetAttribute( STRINGS_1_0::BUFFER_SIZE_STRING, (uint32)0 );
+		const char*	wrapperName = deser->GetAttribute( STRINGS_1_0::SHADING_MODEL_WRAPPER_TYPE_STRING, nullptr );
+
+		if( !wrapperName )
+			return Nullable< MaterialInitData >( "File doesn't contain WrapperType field." );
+
+		TypeID wrapper = TypeID::get_by_name( wrapperName );
+		if( !wrapper.is_valid() )
+			return Nullable< MaterialInitData >( "WrapperType is not registered." );
+			
+		auto constructor = wrapper.get_constructor();
+		if( !constructor.is_valid() )
+			return Nullable< MaterialInitData >( "WrapperType constructor is not registered." );
+
+		rttr::variant object = wrapper.create();
+		if( !object.is_valid() )
+			return Nullable< MaterialInitData >( "WrapperType could not be created." );
+
+		if( !object.can_convert( TypeID::get< ShadingModelBase* >() ) )
+			return Nullable< MaterialInitData >( "Can't convert MaterialData to ShadingModelBase*. Make sure, constructor was declared with AsRawPtr policy." );
+
+		initData.ShadingData = object.get_value< ShadingModelBase* >();
+
+		if( initData.ShadingData->GetShadingModelSize() != bufferSize )
+			return Nullable< MaterialInitData >( "Declared buffer size is other then real buffer size." );
+
+
+		rttr::variant dataObject = (void*)initData.ShadingData->GetShadingModelData();
+		dataObject.unsafe_convert_void( initData.ShadingData->GetShadingModelPtrType() );
+
+
+		if( deser->EnterObject( initData.ShadingData->GetShadingModelTypeName() ) )
+		{
+			Serialization::DefaultDeserializeImpl( deser, dataObject, initData.ShadingData->GetShadingModelType() );
+
+			deser->Exit();
+		}
+		else
+			return Nullable< MaterialInitData >( initData.ShadingData->GetShadingModelTypeName() + " not found in file." );
+
+		deser->Exit();
+	}
+
+	return std::move( init );
+}
+
+Nullable< MaterialInitData >		SWMaterialLoader::LoadAdditionalBuffers	( IDeserializer* deser, Nullable< MaterialInitData >& init )
+{
+	return std::move( init );
+}
+
+
 
 // ================================ //
 //

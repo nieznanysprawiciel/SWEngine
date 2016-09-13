@@ -57,6 +57,12 @@ private:
 	typedef std::pair< const char*, const char* > ShaderLoadInfo;
 
 	Nullable< MaterialInitData >		LoadMaterial_Version1	( IDeserializer* deser );
+
+	Nullable< MaterialInitData >		LoadShaders				( IDeserializer* deser, Nullable< MaterialInitData >& init );
+	Nullable< MaterialInitData >		LoadTextures			( IDeserializer* deser, Nullable< MaterialInitData >& init );
+	Nullable< MaterialInitData >		LoadShadingData			( IDeserializer* deser, Nullable< MaterialInitData >& init );
+	Nullable< MaterialInitData >		LoadAdditionalBuffers	( IDeserializer* deser, Nullable< MaterialInitData >& init );
+
 	ShaderLoadInfo						DeserializeShader		( IDeserializer* deser, const std::string& shaderNameString );
 
 	template< typename ShaderType >

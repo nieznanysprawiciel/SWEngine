@@ -70,5 +70,6 @@ inline ShadingModelData< ShadingModelStruct >::ShadingModelData()
 	// Constructor must be registered in rttr with AsRawPtr policy.
 	assert( TypeID::get< ShadingModelData< ShadingModelStruct > >().get_constructor().is_valid() );
 	assert( TypeID::get< ShadingModelData< ShadingModelStruct > >().get_constructor().get_instanciated_type().is_pointer() );
+	assert( TypeID::get< ShadingModelData< ShadingModelStruct > >().get_property( "Data" ).is_valid() );
 }
 
