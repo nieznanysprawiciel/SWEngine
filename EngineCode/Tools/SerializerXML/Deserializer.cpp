@@ -294,6 +294,13 @@ inline const char*	Convert< const char* >			( const char* valueBegin, char** che
 }
 
 template<>
+inline std::string	Convert< std::string >			( const char* valueBegin, char** checkEndPtr )
+{
+	return Convert< const char* >( valueBegin, checkEndPtr );
+}
+
+
+template<>
 inline uint32		Convert< uint32 >				( const char* valueBegin, char** checkEndPtr )
 {	return strtoul( valueBegin, checkEndPtr, 10 );	}
 

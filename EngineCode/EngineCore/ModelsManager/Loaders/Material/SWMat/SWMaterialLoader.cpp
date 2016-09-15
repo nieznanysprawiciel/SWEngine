@@ -216,7 +216,7 @@ Nullable< MaterialInitData >		SWMaterialLoader::LoadMaterial_Version1	( IDeseria
 		deser->Exit();
 	}
 
-	return Nullable< MaterialInitData >( std::move( data ) );
+	return data;
 }
 
 
@@ -334,6 +334,36 @@ Nullable< MaterialInitData >		SWMaterialLoader::LoadShadingData	( IDeserializer*
 
 Nullable< MaterialInitData >		SWMaterialLoader::LoadAdditionalBuffers	( IDeserializer* deser, Nullable< MaterialInitData >& init )
 {
+	ReturnIfInvalid( init );
+	auto& initData = init.Value;
+
+	std::vector< AdditionalBufferInfo >& addBuffers = init.Value.AdditionalBuffers;
+
+	if( deser->EnterArray( STRINGS_1_0::ADD_BUFFERS_ARRAY_STRING ) )
+	{
+		auto arraySize = deser->GetAttribute( "ArraySize", 0 );
+		if( arraySize != 0 )
+			addBuffers.reserve( arraySize );
+
+		if( deser->FirstElement() )
+		{
+			do
+			{
+				AdditionalBufferInfo newBuffer;
+				addBuffers.push_back( newBuffer );
+				auto newBuffRealPtr = &addBuffers[ addBuffers.size() - 1 ];
+
+				rttr::variant buffVariant = newBuffRealPtr;
+
+				Serialization::DefaultDeserializeImpl( deser, buffVariant, TypeID::get< AdditionalBufferInfo >() );
+
+			} while( deser->NextElement() );
+		}
+
+		deser->Exit();
+	}
+	// else there's no buffers probably. It's not an error.
+
 	return std::move( init );
 }
 
