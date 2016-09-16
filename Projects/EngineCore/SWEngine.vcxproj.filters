@@ -548,6 +548,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\TextureBinding.h">
       <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\LightModule.h">
+      <Filter>EngineCore\DisplayEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -798,6 +801,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\TextureBinding.cpp">
       <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\LightModule.cpp">
+      <Filter>EngineCore\DisplayEngine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

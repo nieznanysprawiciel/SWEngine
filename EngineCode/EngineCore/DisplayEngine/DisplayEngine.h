@@ -14,6 +14,7 @@
 #include "EngineCore/DisplayEngine/RenderPass.h"
 
 #include "ConstantBuffersFormat.h"
+#include "LightModule.h"
 
 #include <DirectXMath.h>
 
@@ -68,6 +69,9 @@ private:
 
 	std::queue<RenderPass*>					m_renderOnceQueue;			///<Kolejka przebiegów, które maj¹ zostaæ wyrenderowane tylko raz.
 	unsigned int							m_maxQueuedPassesPerFrame;	///<Maksymalna liczba przebiegów jaka zostanie wziêta z kolejki w ka¿dej ramce.
+
+	LightModule*							m_lightModule;				///< Light module.
+
 public:
 	DisplayEngine( Engine* engine );
 	~DisplayEngine();
@@ -98,6 +102,9 @@ public:
 	// Œwiat³a
 	int				SetDirectionalLight				( const DirectX::XMFLOAT4& direction, const DirectX::XMFLOAT4& color, unsigned int index );
 	void			SetAmbientLight					( const DirectX::XMFLOAT4& color );
+
+	/// Light module is resposible for all lights manipulations.
+	LightModule*	GetLightModule					();
 
 	// camera functions
 	int				AddCamera						( CameraActor* camera );

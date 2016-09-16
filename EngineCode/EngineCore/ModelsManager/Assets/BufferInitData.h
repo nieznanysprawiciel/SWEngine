@@ -16,7 +16,7 @@ struct BufferInitData
 	ResourceUsage	Usage;
 
 	BufferInitData()
-		:	DataType( rttr::type::get( "" ) )	// Set invalid type.
+		:	DataType( rttr::type::get_by_name( "" ) )	// Set invalid type.
 	{
 		Usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
 		NumElements = 1;

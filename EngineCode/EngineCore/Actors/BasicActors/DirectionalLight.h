@@ -4,7 +4,8 @@
 #include "LightBase.h"
 
 
-/**@brief */
+/**@brief DirectionalL light.
+@ingroup Lights*/
 class DirectionalLight	: public LightBase
 {
 	RTTR_ENABLE( LightBase )

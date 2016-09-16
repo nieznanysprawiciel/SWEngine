@@ -95,7 +95,35 @@ Remaining binding points can be used by custom buffers.
 @ingroup Rendering*/
 
 
-typedef float Padding4Bytes;
+/**@brief Binding point index for camera buffer.
+@see CameraConstants
+@ingroup ConstantBuffers*/
+const uint8	CameraBufferBindingPoint = 0;
+
+
+/**@brief Binding point index for transform buffer.
+@see CameraConstants
+@ingroup ConstantBuffers*/
+const uint8 TransformBufferBindingPoint = 1;
+
+/**@brief Binding point index for lights buffer.
+
+@note This is for pixel shader only.
+
+@see CameraConstants
+@ingroup ConstantBuffers*/
+const uint8 LightsBufferBindingPoint = 1;
+
+/**@brief Binding point index for material buffer.
+@see CameraConstants
+@ingroup ConstantBuffers*/
+const uint8 MaterialBufferBindingPoint = 2;
+
+
+typedef uint32 Padding4Bytes;
+typedef uint64 Padding8Bytes;
+typedef uint16 Padding2Bytes;
+typedef uint8 Padding1Bytes;
 
 
 /**@brief Constant buffer layout with camera data.
@@ -123,26 +151,32 @@ struct TransformConstants
 };
 
 
-/**@brief Description of light parameters.*/
+/**@brief Description of light parameters.
+@ingroup Lights*/
 struct LightParams
 {
 	DirectX::XMFLOAT3		Color;
-	float					Radius;
+	float					ClampRadius;
 	DirectX::XMFLOAT3		Position;
-	float					Angle;
+	float					SpotAngle;
 	DirectX::XMFLOAT3		Direction;		// Wspó³rzêdne s¹ zanegowane, ¿eby shader mia³ mniej roboty
 	LightType				Type;
+	float					ConstAttenuation;
+	float					LinearAttenuation;
+	float					QuadraticAttenuation;
+	float					Intensity;
 };
 
 
 /**@brief Constant buffer layout with light data.
 
 @see LightParams
-@ingroup ConstantBuffers*/
+@ingroup ConstantBuffers
+@ingroup Lights*/
 struct LightConstants
 {
 	DirectX::XMFLOAT3		AmbientColor;
-	int						NumLights;
-	LightParams				LightDirection[ ENGINE_MAX_LIGHTS ];
+	uint32					NumLights;			///< Number of lights. Must be lower then ENGINE_MAX_LIGHTS.
+	LightParams				LightData[ ENGINE_MAX_LIGHTS ];
 };
 

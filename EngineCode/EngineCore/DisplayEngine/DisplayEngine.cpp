@@ -37,6 +37,8 @@ REGISTER_PERFORMANCE_CHECK( SELF_DRAWING_OBJECTS_RENDERING )
 DisplayEngine::DisplayEngine( Engine* engine )
 	: engine( engine )
 {
+	m_lightModule = new LightModule();
+
 	m_defaultCamera = nullptr;
 	m_currentCamera = nullptr;
 	sky_dome = nullptr;
@@ -63,6 +65,7 @@ DisplayEngine::~DisplayEngine()
 
 	delete m_defaultCamera;
 	delete m_mainSwapChain;
+	delete m_lightModule;
 }
 
 /**@brief Inicjuje renderer (lub kilka je¿eli renderujemy wielow¹tkowo).
@@ -103,6 +106,8 @@ void DisplayEngine::InitDisplayer( ModelsManager* assetsManager )
 
 	m_defaultCamera = new CameraActor();
 	SetCurrentCamera( m_defaultCamera );
+
+	m_lightModule->Init( assetsManager );
 }
 
 void DisplayEngine::BeginScene()
@@ -600,8 +605,8 @@ void				DisplayEngine::UpdateCameraBuffer	( IRenderer* renderer, float timeInter
 	CameraConstants data = CreateCameraData( m_currentCamera, timeInterval, timeLag );
 
 	renderer->UpdateSubresource( m_cameraConstants.Ptr(), (void*)&data );
-	renderer->VSSetConstantBuffers( 0, m_cameraConstants.Ptr() );
-	renderer->PSSetConstantBuffers( 0, m_cameraConstants.Ptr() );
+	renderer->VSSetConstantBuffers( CameraBufferBindingPoint, m_cameraConstants.Ptr() );
+	renderer->PSSetConstantBuffers( CameraBufferBindingPoint, m_cameraConstants.Ptr() );
 }
 
 /**@brief */
@@ -661,6 +666,7 @@ void DisplayEngine::RemoveActor( ActorBase* actor )
 {
 	ActorsCommonFunctions::RemoveActor( meshes, static_cast< StaticActor* >( actor ) );
 	ActorsCommonFunctions::RemoveActor( cameras, static_cast< CameraActor* >( actor ) );
+	m_lightModule->RemoveActor( actor );
 
 	if( m_currentCamera == actor )
 		SetCurrentCamera( m_defaultCamera );
@@ -671,6 +677,7 @@ void DisplayEngine::RemoveAllActors()
 {
 	meshes.clear();
 	cameras.clear();
+	m_lightModule->RemoveAllActors();
 	SetCurrentCamera( m_defaultCamera );
 }
 
@@ -827,6 +834,13 @@ int DisplayEngine::SetDirectionalLight( const DirectX::XMFLOAT4& direction,
 void DisplayEngine::SetAmbientLight( const DirectX::XMFLOAT4& color )
 {
 	shader_data_per_frame.ambient_light = color;
+}
+
+// ================================ //
+//
+LightModule* DisplayEngine::GetLightModule()
+{
+	return m_lightModule;
 }
 
 /**@brief Ustawia nowego skydome'a dla gry.

@@ -198,6 +198,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\Editor\GizmoController.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\SpectatorCameraController.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\IControllersState.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\LightModule.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\EngineHelpers\ActorsCommonFunctions.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\EngineHelpers\Intersections.h" />
@@ -335,6 +336,7 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\Editor\GizmoController.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\SpectatorCameraController.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\IControllersState.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\LightModule.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\EngineHelpers\ActorsCommonFunctions.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\EngineHelpers\Intersections.cpp" />

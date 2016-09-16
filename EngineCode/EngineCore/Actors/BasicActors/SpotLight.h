@@ -4,7 +4,8 @@
 #include "PointLight.h"
 
 
-/**@brief */
+/**@brief Spot light.
+@ingroup Lights*/
 class SpotLight	: public PointLight
 {
 	RTTR_ENABLE( PointLight )
@@ -19,5 +20,7 @@ public:
 	virtual ~SpotLight() = default;
 
 	static ActorBase*		Create()	{ return new SpotLight; }
+
+	float		GetSpotAngle	()		{ return m_angle; }
 };
 

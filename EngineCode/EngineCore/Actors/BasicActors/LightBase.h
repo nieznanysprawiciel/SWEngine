@@ -3,17 +3,16 @@
 #include "DynamicActor.h"
 
 
-enum class LightType
+enum class LightType : int32
 {
-	PointLight,
+	PointLight = 0,
 	SpotLight,
 	DirectionalLight
 };
 
 
 /**@brief Klasa bazowa dla œwiate³.
-
-Klasa dziedziczy po CollisionActor, ¿eby mo¿na by³o wyliczyæ kolizje i eliminowaæ nieprzydatne œwiat³a.*/
+@ingroup Lights*/
 class LightBase : public DynamicActor
 {
 	RTTR_ENABLE( DynamicActor )
@@ -28,6 +27,11 @@ protected:
 public:
 	explicit LightBase	( LightType type );
 	virtual ~LightBase	() = default;
+
+	LightType			GetLightType	()		{ return m_type; }
+
+	DirectX::XMFLOAT3	GetColor		()		{ return m_color; }
+	float				GetIntensity	()		{ return m_intensity; }
 };
 
 
