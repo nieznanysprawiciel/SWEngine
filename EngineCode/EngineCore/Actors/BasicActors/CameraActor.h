@@ -72,6 +72,8 @@ public:
 	float				GetFarPlane			()					{ return m_farPlane; }
 	float				GetFov				()					{ return m_fov; }
 
+	DirectX::XMFLOAT4X4		GetProjection	()					{ return m_projectionMatrix; }
+
 	CameraData			GetCameraData		();
 
 	static ActorBase*	Create				()					{ return new CameraActor; }

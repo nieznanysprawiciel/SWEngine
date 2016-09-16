@@ -10,6 +10,7 @@
 #include "ShadingModelData.h"
 #include "MaterialAssetInitData.h"
 #include "MaterialInfo.h"
+#include "TextureBinding.h"
 
 #include <vector>
 

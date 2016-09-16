@@ -1,7 +1,7 @@
 // Shadery dla kopuły nieba używającej modelu Hoseka i Wilkiego
 
 // Bufory i tak zostaną przekazane
-cbuffer ConstantPerFrame : register( b0 )
+cbuffer ConstantPerFrame : register( b2 )
 {
 	matrix View;
 	matrix Projection;

@@ -23,6 +23,7 @@ using namespace DirectX;
 
 const wchar_t CONSTANT_PER_FRAME_BUFFER_NAME[] = L"::DisplayEngine::ConstantPerFrameBuffer";
 const wchar_t CONSTANT_PER_MESH_BUFFER_NAME[] = L"::DisplayEngine::ConstantPerMeshBuffer";
+const wchar_t CAMERA_CONSTANTS[] = L"::DisplayEngine::CameraConstants";
 
 REGISTER_PERFORMANCE_CHECK( SKYBOX_RENDERING )
 REGISTER_PERFORMANCE_CHECK( INSTANCE_OBJECT_RENDERING )
@@ -80,10 +81,20 @@ void DisplayEngine::InitRenderer( IRenderer* renderer )
 void DisplayEngine::InitDisplayer( ModelsManager* assetsManager )
 {
 	modelsManager = assetsManager;
+
+	ConstantBufferInitData cameraDataInit;
+	cameraDataInit.Data = nullptr;
+	cameraDataInit.DataType = TypeID::get< CameraConstants >();
+	cameraDataInit.NumElements = 1;
+	cameraDataInit.ElementSize = sizeof( CameraConstants );
+	cameraDataInit.Usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
+
 	m_constantsPerFrame	= modelsManager->CreateConstantsBuffer( CONSTANT_PER_FRAME_BUFFER_NAME, nullptr, sizeof( ConstantPerFrame ) );
 	m_constantsPerMesh	= modelsManager->CreateConstantsBuffer( CONSTANT_PER_MESH_BUFFER_NAME, nullptr, sizeof( ConstantPerMesh ) );
+	m_cameraConstants	= modelsManager->CreateConstantsBuffer( CAMERA_CONSTANTS, cameraDataInit );
 	assert( m_constantsPerFrame );
 	assert( m_constantsPerMesh );
+	assert( m_cameraConstants );
 
 	m_mainRenderTarget = modelsManager->GetRenderTarget( SCREEN_RENDERTARGET_STRING );
 	m_mainRenderTarget->AddAssetReference();		/// Uniemo¿liwiamy zwolnienie render targetu przez u¿ytkownika.
@@ -153,9 +164,10 @@ Zakres [0,1].
 */
 void DisplayEngine::DisplayScene( float timeInterval, float timeLag )
 {
-	register IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
+	IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
 
-	SetViewMatrix( timeLag );
+	//SetViewMatrix( timeLag );
+	UpdateCameraBuffer( renderer, timeInterval, timeLag );
 
 	// Ustawiamy bufor sta³y dla wszystkich meshy
 	//shader_data_per_frame.time_lag = 
@@ -167,8 +179,8 @@ void DisplayEngine::DisplayScene( float timeInterval, float timeLag )
 	renderer->IASetPrimitiveTopology( PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 
 	renderer->UpdateSubresource( m_constantsPerFrame.Ptr(), &shader_data_per_frame );
-	renderer->VSSetConstantBuffers( 0, m_constantsPerFrame.Ptr() );
-	renderer->PSSetConstantBuffers( 0, m_constantsPerFrame.Ptr() );
+	renderer->VSSetConstantBuffers( 2, m_constantsPerFrame.Ptr() );
+	renderer->PSSetConstantBuffers( 2, m_constantsPerFrame.Ptr() );
 
 	// Ustawiamy sampler
 	renderer->SetDefaultSampler();
@@ -580,6 +592,55 @@ void DisplayEngine::SetViewMatrix( float time_lag )
 	//który zostanie przekazany do shadera.
 	view_matrix = XMMatrixTranspose( view_matrix );
 	XMStoreFloat4x4( &shader_data_per_frame.view_matrix, view_matrix );
+}
+
+/**@brief */
+void				DisplayEngine::UpdateCameraBuffer	( IRenderer* renderer, float timeInterval, float timeLag )
+{
+	CameraConstants data = CreateCameraData( m_currentCamera, timeInterval, timeLag );
+
+	renderer->UpdateSubresource( m_cameraConstants.Ptr(), (void*)&data );
+	renderer->VSSetConstantBuffers( 0, m_cameraConstants.Ptr() );
+	renderer->PSSetConstantBuffers( 0, m_cameraConstants.Ptr() );
+}
+
+/**@brief */
+CameraConstants		DisplayEngine::CreateCameraData		( CameraActor* camera, float timeInterval, float timeLag )
+{
+	CameraConstants data;
+	data.Time = timeInterval + timeLag * FIXED_MOVE_UPDATE_INTERVAL;
+	
+	XMMATRIX viewMatrix;
+	XMMATRIX viewProjMatrix;
+	if ( camera == nullptr )
+	{
+		viewMatrix = XMMatrixIdentity( );	//tymczasowe
+		viewProjMatrix = XMMatrixIdentity( );	//tymczasowe
+	}
+	else
+	{
+		XMVECTOR position = camera->GetInterpolatedPosition( timeLag );
+		XMVECTOR orientation = camera->GetInterpolatedOrientation( timeLag );
+		inverse_camera_position( position );
+		inverse_camera_orientation( orientation );
+
+		viewMatrix = XMMatrixTranslationFromVector( position );
+		XMMATRIX rotation_matrix = XMMatrixRotationQuaternion( orientation );
+		viewMatrix = viewMatrix * rotation_matrix;
+		
+		data.ProjectionMatrix = camera->GetProjection();
+		viewProjMatrix = XMMatrixMultiply( viewMatrix, XMLoadFloat4x4( &data.ProjectionMatrix ) );
+		
+		XMStoreFloat3( &data.CameraPosition, position );
+
+		viewMatrix = XMMatrixTranspose( viewMatrix );
+		viewProjMatrix = XMMatrixTranspose( viewProjMatrix );
+	}
+
+	XMStoreFloat4x4( &data.ViewMatrix, viewMatrix );
+	XMStoreFloat4x4( &data.ViewProjectionMatrix, viewProjMatrix );
+
+	return data;
 }
 
 /**@brief Dodaje obiekt, który ma zostaæ wyœwietlony.

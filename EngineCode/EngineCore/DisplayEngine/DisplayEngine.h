@@ -20,6 +20,14 @@
 #include <queue>
 
 
+
+/**@defgroup Rendering Rendering
+@brief Object pipeline.
+
+@ingroup EngineCore*/
+
+
+
 void inverse_camera_position		( DirectX::XMVECTOR& result_vector );
 void inverse_camera_orientation		( DirectX::XMVECTOR& result_vector );
 
@@ -29,17 +37,7 @@ class BufferObject;
 
 /**@brief Klasa odpowiedzialna za wyœwietlanie sceny, obs³ugê kamery oraz interpolacjê po³o¿eñ obiektów.
 @ingroup EngineCore
-
-
-Obiekty s¹ rozdzielone na kilka grup:
-- Meshe instancjonowane
-- Meshe dynamiczne
-- Meshe dynamiczne o krótkim czasie ¿ycia
-- Cz¹steczki
-- Skyboxy, sky sphere'y, sky plane'y i inne obiekty s³u¿¹ce za t³o
-Ka¿da z tych grup ma swój w³asny sposób reprezentacji i wyœwietlania ze wzglêdu na odmienny charakter
-i inne mo¿liwoœci optymalizacji.
-*/
+@ingroup Rendering*/
 class DisplayEngine
 {
 private:
@@ -51,6 +49,7 @@ private:
 	ConstantPerFrame						shader_data_per_frame;		///<Bufor sta³ych zmiennych co ramkê animacji.
 	ResourcePtr< BufferObject >				m_constantsPerFrame;		///<Bufor sta³ych zmiennych co ramkê animacji.
 	ResourcePtr< BufferObject >				m_constantsPerMesh;			///<Bufor sta³ych zmiennych dla ka¿dego fragmentu mesha.
+	ResourcePtr< BufferObject >				m_cameraConstants;			///< Camera constants buffer.
 
 	CameraActor*							m_currentCamera;			///<Akutalnie aktywna kamera
 	SkyDome*								sky_dome;					///<Klasa odpowiedzialna za kopu³ê nieba
@@ -111,7 +110,9 @@ public:
 	// SkyDome
 	SkyDome*		SetSkydome						( SkyDome* dome );
 private:
-	void SetViewMatrix						( float time_lag );
+	void			SetViewMatrix					( float time_lag );
+	void			UpdateCameraBuffer				( IRenderer* renderer, float timeInterval, float timeLag );
+	CameraConstants	CreateCameraData				( CameraActor* camera, float timeInterval, float timeLag );
 
 	void realocate_interpolation_memory		(unsigned int min = 1);
 	void interpolate_object					( float timeLag, const StaticActor* object, DirectX::XMFLOAT4X4* result_matrix );

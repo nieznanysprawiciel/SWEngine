@@ -12,6 +12,28 @@ SamplerState default_sampler : register( s0 );
 
 cbuffer ConstantPerFrame : register( b0 )
 {
+	matrix			ViewMatrix;					///< View matrix.
+	matrix			ProjectionMatrix;			///< Projection matrix.
+	matrix			ViewProjectionMatrix;	///< Multiplied view-projection matrix.
+	float3			CameraPosition;			///< Position of camera in world space.
+
+	float				Time;							///< Current animation time.
+}
+
+
+cbuffer ConstantPerMesh : register( b1 )
+{
+	matrix World;
+	float4 MeshScale;
+	float4 Diffuse;
+	float3 Ambient;
+	float3 Specular;
+	float3 Emissive;
+	float Power;
+}
+
+cbuffer ConstantPerFrame : register( b2 )
+{
 	matrix View;
 	matrix Projection;
 	float3 LightDir[2];
@@ -20,18 +42,6 @@ cbuffer ConstantPerFrame : register( b0 )
 	float time;
 	float time_lag;
 }
-
-cbuffer ConstantPerMesh : register( b1 )
-{
-	matrix World;
-	float4 mesh_scale;
-	float4 Diffuse;
-	float3 Ambient;
-	float3 Specular;
-	float3 Emissive;
-	float Power;
-}
-
 
 //--------------------------------------------------------------------------------------
 struct VS_INPUT
@@ -54,15 +64,14 @@ struct PS_INPUT
 //--------------------------------------------------------------------------------------
 PS_INPUT vertex_shader( VS_INPUT input )
 {
-    PS_INPUT output = (PS_INPUT)0;
-	output.Pos = input.Pos * mesh_scale;
-    output.Pos = mul( output.Pos, World );
-    output.Pos = mul( output.Pos, View );
-    output.Pos = mul( output.Pos, Projection );
-    output.Norm = mul( input.Norm, World );
+   PS_INPUT output = (PS_INPUT)0;
+	output.Pos = input.Pos * MeshScale;
+	output.Pos = mul( output.Pos, World );
+   output.Pos = mul( output.Pos, ViewProjectionMatrix );
+   output.Norm = mul( input.Norm, World );
 	output.Tex = input.Tex;
     
-    return output;
+   return output;
 }
 
 

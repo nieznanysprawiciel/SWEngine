@@ -187,6 +187,7 @@ void Engine::test()
 	int model3DFromFileSize = sizeof( Model3DFromFile );
 	int meshAssetSize = sizeof( MeshAsset );
 	int materialObjectSize = sizeof( MaterialObject );
+	int materialInfoSize = sizeof( MaterialInfo );
 	int materialAssetSize = sizeof( MaterialAsset );
 	int phongMaterialSize = sizeof( PhongMaterial );
 

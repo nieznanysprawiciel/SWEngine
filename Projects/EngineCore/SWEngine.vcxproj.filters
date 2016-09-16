@@ -545,6 +545,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Material\SWMat\SWMaterialLoader.h">
       <Filter>EngineCore\ModelsManagment\Loaders\Material\SWMat</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\TextureBinding.h">
+      <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -791,6 +794,9 @@
       <Filter>EngineCore\ModelsManagment\Loaders\Material\SWMat</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\ShadingModels.cpp">
+      <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\TextureBinding.cpp">
       <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
     </ClCompile>
   </ItemGroup>

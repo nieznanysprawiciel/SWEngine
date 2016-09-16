@@ -59,8 +59,7 @@ void CameraActor::SetPerspectiveProjectionMatrix		( float angle, float width, fl
 
 	float aspect = width / height;
 
-	XMMATRIX projMatrix = XMMatrixPerspectiveFovLH( DirectX::XMConvertToRadians( m_fov ), aspect, nearPlane, farPlane );
-	projMatrix = XMMatrixTranspose( projMatrix );
+	XMMATRIX projMatrix = XMMatrixPerspectiveFovRH( DirectX::XMConvertToRadians( m_fov ), aspect, nearPlane, farPlane );
 	XMStoreFloat4x4( &m_projectionMatrix, projMatrix );
 }
 
@@ -78,8 +77,7 @@ void CameraActor::SetOrthogonalProjectionMatrix			( float width, float height, f
 	m_nearPlane = nearPlane;
 	m_farPlane = farPlane;
 
-	XMMATRIX projMatrix = XMMatrixOrthographicLH( width, height, nearPlane, farPlane );
-	projMatrix = XMMatrixTranspose( projMatrix );
+	XMMATRIX projMatrix = XMMatrixOrthographicRH( width, height, nearPlane, farPlane );
 	XMStoreFloat4x4( &m_projectionMatrix, projMatrix );
 }
 

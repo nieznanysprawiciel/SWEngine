@@ -1,7 +1,7 @@
 //--------------------------------------------------------------------------------------
 // Constant Buffer Variables
 //--------------------------------------------------------------------------------------
-cbuffer ConstantPerFrame : register( b0 )
+cbuffer ConstantPerFrame : register( b2 )
 {
 	matrix View;
 	matrix Projection;
