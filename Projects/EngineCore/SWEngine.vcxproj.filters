@@ -551,6 +551,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\LightModule.h">
       <Filter>EngineCore\DisplayEngine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Rendering\LightsApi.h">
+      <Filter>EngineCore\UserApi\Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -804,6 +807,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\LightModule.cpp">
       <Filter>EngineCore\DisplayEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Rendering\LightsApi.cpp">
+      <Filter>EngineCore\UserApi\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

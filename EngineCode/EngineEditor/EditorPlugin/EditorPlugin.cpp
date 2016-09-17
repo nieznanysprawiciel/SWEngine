@@ -145,11 +145,14 @@ ActorWrapper^						EngineWrapper::CreateActor				( System::String^ actorName )
 	auto actor = m_engine->Actors.CreateActor( msclr::interop::marshal_as< std::string >( actorName ) );
 	auto actorData = m_engine->Actors.FindActor( actor );
 
-	if( rttr::type::get( *actor ).is_derived_from< StaticActor >() )
-	m_engine->Actors.AddToModules( actor, ActorInfoFlag::EnableDisplay );
+	if( TypeID::get( *actor ).is_derived_from< StaticActor >() )
+		m_engine->Actors.AddToModules( actor, ActorInfoFlag::EnableDisplay );
 
-	if( rttr::type::get( *actor ).is_derived_from< CameraActor >() )
+	if( TypeID::get( *actor ).is_derived_from< CameraActor >() )
 		m_engine->Actors.AddToModules( actor, ActorInfoFlag::AsCamera );
+
+	if( TypeID::get( *actor ).is_derived_from< LightBase >() )
+		m_engine->Actors.AddToModules( actor, ActorInfoFlag::AsLight );
 
 	if( actor && actorData )
 		return gcnew ActorWrapper( (EngineObject*)actor, &actorData->second );

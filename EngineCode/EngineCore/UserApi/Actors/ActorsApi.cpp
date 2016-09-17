@@ -105,6 +105,13 @@ void ActorsApi::AddToModules( ActorBase* newActor, ActorInfo actorModules )
 		Context->displayEngine->AddCamera( static_cast< CameraActor* >( newActor ) );
 	}
 
+	if( actorModules.IsLight() )
+	{
+		// @todo Pomyœleæ co zrobiæ w trybie release.
+		assert( rttr::rttr_cast< LightBase* >( newActor ) );
+		Context->displayEngine->GetLightModule()->AddLightActor( static_cast< LightBase* >( newActor ) );
+	}
+
 	// @todo Pomyœleæ co zrobiæ w trybie release, je¿eli actor nie przeszed³by przez asserty.
 	Context->actorsManager->UpdateActor( newActor, actorModules );
 

@@ -17,11 +17,18 @@ build/
 EngineBuildDir/
 EngineLib/
 EnginePDB/
-GameRelease/
 Install/
 External/Packages/
 OldFiles/
 GameRelease/levels/
+GameRelease/icons/
+GameRelease/logs/
+GameRelease/meshes/
+GameRelease/tylko_do_testow/
+GameRelease/libfbxsdk.dll
+GameRelease/Reflection.dll
+GameRelease/TestEngine_Release_x64_v120.exe
+
 EditorRelease/
 
 

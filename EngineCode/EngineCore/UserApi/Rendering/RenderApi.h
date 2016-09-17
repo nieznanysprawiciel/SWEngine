@@ -6,6 +6,7 @@
 @brief Deklaracja klasy RenderingApi.*/
 
 #include "EngineCore/UserApi/ApiGroup.h"
+#include "LightsApi.h"
 
 class RenderPass;
 class CameraActor;
@@ -36,6 +37,9 @@ namespace Api
 
 		int					GetWindowWidth		();
 		int					GetWindowHeight		();
+
+	public:
+		Api::LightsApi		Lights;
 	};
 
 

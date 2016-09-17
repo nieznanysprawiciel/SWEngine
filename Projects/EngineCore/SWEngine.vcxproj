@@ -271,6 +271,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Input\InputApi.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Level\LevelApi.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Level\SerializationApi.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Rendering\LightsApi.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Rendering\RenderApi.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\ILoader.h" />
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ModelsManager.h" />
@@ -431,6 +432,7 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Input\InputApi.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Level\LevelApi.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Level\SerializationApi.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Rendering\LightsApi.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Rendering\RenderApi.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputAbstractionLayer.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\StandardAbstractionLayer.cpp" />
