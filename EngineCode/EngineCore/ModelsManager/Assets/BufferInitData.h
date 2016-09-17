@@ -21,6 +21,7 @@ struct BufferInitData
 		Usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
 		NumElements = 1;
 		ElementSize = 0;
+		Data = nullptr;
 	}
 };
 

@@ -368,7 +368,6 @@ void* Engine::GetRenderTargetHandle( uint16 width, uint16 height )
 
 	RenderTargetObject* renderTarget = Context->modelsManager->CreateRenderTarget( EDITOR_RENDERTARGET_STRING, descriptor );
 	Context->displayEngine->SetMainRenderTarget( renderTarget );
-	Context->displayEngine->SetProjectionMatrix( DirectX::XMConvertToRadians( 45 ), (float)width / (float)height, 1, 100000 );
 
 	Context->windowHeight = height;
 	Context->windowWidth = width;

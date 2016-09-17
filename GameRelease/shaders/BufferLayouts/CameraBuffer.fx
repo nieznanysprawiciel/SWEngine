@@ -3,7 +3,7 @@
 //--------------------------------------------------------------------------------------
 
 
-cbuffer ConstantPerFrame : register( b0 )
+cbuffer CameraConstants : register( b0 )
 {
 	matrix			ViewMatrix;					///< View matrix.
 	matrix			ProjectionMatrix;			///< Projection matrix.

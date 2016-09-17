@@ -32,6 +32,14 @@ public:
 
 	DirectX::XMFLOAT3	GetColor		()		{ return m_color; }
 	float				GetIntensity	()		{ return m_intensity; }
+
+public:
+	///< @todo Maybe these functions should be invoked as signals??
+	void				SetLightColor		( DirectX::XMVECTOR color );
+	void				SetLightColor		( DirectX::XMFLOAT3& color );
+	void				SetLightIntensity	( float intensity );
+	void				SetLightDirection	( DirectX::XMFLOAT3& direction );
+	void				SetLightDirection	( DirectX::XMVECTOR direction );
 };
 
 

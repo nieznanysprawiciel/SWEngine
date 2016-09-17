@@ -56,7 +56,7 @@ protected:
 
 	@param[in] pos Po³o¿enie docelowe obiektu.
 	*/
-	inline void			SetPosition		( const DirectX::XMVECTOR& pos );
+	inline void			SetPosition		( const DirectX::XMVECTOR pos );
 
 	/** @brief Funkcja ustawia orientacjê obiektu. Wartoœci poœrednie s¹ interpolowane.
 	
@@ -64,7 +64,7 @@ protected:
 
 	@param[in] quaternion Orientacja docelowa obiektu.
 	*/
-	inline void			SetOrientation	( const DirectX::XMVECTOR& quaternion );
+	inline void			SetOrientation	( const DirectX::XMVECTOR quaternion );
 
 public:
 	explicit	StaticActor	();			///< Kontruktor domyœlny inicjuje obiekt w œrodku uk³adu wspó³rzêdnych.
@@ -78,7 +78,7 @@ public:
 	Wartoœci poœrednie nie bêd¹ interpolowane. Funkcjê nale¿y tak¿e wywo³aæ przy inicjacji obiektu.
 	
 	@param[in] pos Nowe po³o¿enie obiektu.*/
-	inline void			Teleport		( const DirectX::XMVECTOR& pos );
+	inline void			Teleport		( const DirectX::XMVECTOR pos );
 
 
 	/**@brief Zmienia orientacjê obiektu na podan¹.
@@ -87,7 +87,7 @@ public:
 	Wartoœci poœrednie nie bêd¹ interpolowane. Funkcjê nale¿y tak¿e wywo³aæ przy inicjacji obiektu.
 
 	@param[in] quaternion Kwaternion nowego obrotu.*/
-	inline void			TeleportOrientation			( const DirectX::XMVECTOR& quaternion );
+	inline void			TeleportOrientation			( const DirectX::XMVECTOR quaternion );
 
 
 	/**@brief Pobiera aktualn¹ pozycjê obiektu.
@@ -133,7 +133,7 @@ private:
 
 // ================================ //
 //
-inline void		StaticActor::SetPosition	( const DirectX::XMVECTOR& pos )
+inline void		StaticActor::SetPosition	( const DirectX::XMVECTOR pos )
 {
 	if ( swap_data )
 		XMStoreFloat3( &position, pos );
@@ -143,7 +143,7 @@ inline void		StaticActor::SetPosition	( const DirectX::XMVECTOR& pos )
 
 // ================================ //
 //
-inline void		StaticActor::SetOrientation	( const DirectX::XMVECTOR& quaternion )
+inline void		StaticActor::SetOrientation	( const DirectX::XMVECTOR quaternion )
 {
 	if ( swap_data )
 		XMStoreFloat4( &orientation, quaternion );
@@ -153,7 +153,7 @@ inline void		StaticActor::SetOrientation	( const DirectX::XMVECTOR& quaternion )
 
 // ================================ //
 //
-inline void		StaticActor::Teleport		( const DirectX::XMVECTOR& pos )
+inline void		StaticActor::Teleport		( const DirectX::XMVECTOR pos )
 {
 	XMStoreFloat3( &position, pos ); 
 	XMStoreFloat3( &position_back, pos );
@@ -161,7 +161,7 @@ inline void		StaticActor::Teleport		( const DirectX::XMVECTOR& pos )
 
 // ================================ //
 //
-inline void		StaticActor::TeleportOrientation	( const DirectX::XMVECTOR& quaternion )
+inline void		StaticActor::TeleportOrientation	( const DirectX::XMVECTOR quaternion )
 { 
 	XMStoreFloat4( &orientation, quaternion ); 
 	XMStoreFloat4( &orientation_back, quaternion );

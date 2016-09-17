@@ -6,8 +6,14 @@
 
 @brief Plik zawiera deklaracje buforów sta³ych dla vertex i piksel shadera.*/
 
-//#include "EngineCore/stdafx.h"
+
 #include "DirectXMath.h"
+
+
+typedef uint32 Padding4Bytes;
+typedef uint64 Padding8Bytes;
+typedef uint16 Padding2Bytes;
+typedef uint8 Padding1Bytes;
 
 
 /** \brief Bufor sta³ych dla shadera zmieniaj¹cy siê raz na klatkê.
@@ -48,6 +54,7 @@ typedef struct ConstantPerFrame
 /** \brief Bufor sta³ych dla shadera zmieniaj¹cy siê dla ka¿dej czêœci mesha.
 
 @deprecated Nadchodzi wszystko nowe!
+@deprecated Temporarily used as material buffer.
 
 Obiekt zawiera macierz przekszta³cenia œwiata dla danej czêœci obiektu oraz dane o materia³ach.
 Materia³y s¹ wektorami 4-wymiarowymi tylko ze wzglêdu na to, ¿e takie s¹ rejestry na GPU.
@@ -55,12 +62,10 @@ U¿ywane s¹ tylko pierwsze 3 elementy wektora. Jedynie w kanale Diffuse ostatnia 
 */
 typedef struct ConstantPerMesh
 {
-	DirectX::XMMATRIX		world_matrix;
-	DirectX::XMVECTOR		mesh_scale;
 	DirectX::XMFLOAT4		Diffuse;		//Sk³adowa przezroczystoœci odnosi siê do ca³ego materia³u
 	DirectX::XMFLOAT4		Ambient;
 	DirectX::XMFLOAT4		Specular;
-	DirectX::XMFLOAT4		Emissive;
+	DirectX::XMFLOAT3		Emissive;
 	float					Power;
 } ConstantPerMesh;
 
@@ -120,10 +125,7 @@ const uint8 LightsBufferBindingPoint = 1;
 const uint8 MaterialBufferBindingPoint = 2;
 
 
-typedef uint32 Padding4Bytes;
-typedef uint64 Padding8Bytes;
-typedef uint16 Padding2Bytes;
-typedef uint8 Padding1Bytes;
+
 
 
 /**@brief Constant buffer layout with camera data.
@@ -147,7 +149,7 @@ struct CameraConstants
 struct TransformConstants
 {
 	DirectX::XMFLOAT4X4		WorldMatrix;			///< Transformation to world space.
-	DirectX::XMFLOAT3		MeshScale;				///< Mesh scaling. One scale value is replicated to 3 components. Other scaling is not supported. @todo Consider applying scale to WorldMatrix.
+	DirectX::XMFLOAT4		MeshScale;				///< Mesh scaling. One scale value is replicated to 3 components. Other scaling is not supported. @todo Consider applying scale to WorldMatrix.
 };
 
 

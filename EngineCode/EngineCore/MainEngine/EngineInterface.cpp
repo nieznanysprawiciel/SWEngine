@@ -221,20 +221,21 @@ void Engine::SetSkydome()
 {
 	double albedo[3] = { 0.8, 0.8, 0.8 };
 	double turbidity = 4;
-	XMVECTOR sun_dir = XMVectorSet( -0.2f, 0.6f, 0.6f, 1.0f );
+	XMVECTOR sunDir = XMVectorSet( -0.2f, 0.6f, 0.6f, 1.0f );
 	HosekSkyDome* skyDome = new HosekSkyDome( Context->modelsManager );
-	skyDome->init_sky_dome( sun_dir, turbidity, albedo, 101, 101, 100, 5.0 );
+	skyDome->init_sky_dome( sunDir, turbidity, albedo, 101, 101, 100, 5.0 );
 	Context->displayEngine->SetSkydome( skyDome );
 
-	sun_dir = XMVectorNegate( sun_dir );
+	sunDir = XMVectorNegate( sunDir );
 
-	DirectX::XMFLOAT4 color( 0.8f, 0.8f, 0.8f, 1.0f );
-	DirectX::XMFLOAT4 direction;
-	XMStoreFloat4( &direction, sun_dir );
+	DirectX::XMFLOAT3 color( 0.8f, 0.8f, 0.8f );
 
 	// Ustawiamy œwiat³o pod indeksem 0
-	Context->displayEngine->SetDirectionalLight( direction, color, 0 );
-	Context->displayEngine->SetAmbientLight( DirectX::XMFLOAT4( 0.2f, 0.2f, 0.2f, 1.0f ) );
+	DirectionalLight* light = Actors.CreateActor< DirectionalLight >( GetTypeidName< DirectionalLight >(), AsLight );
+	light->SetLightDirection( sunDir );
+	light->SetLightColor( color );
+
+	Context->displayEngine->lightModule->SetAmbientLight( DirectX::XMFLOAT3( 0.2f, 0.2f, 0.2f ) );
 }
 
 #include "EngineCore/ModelsManager/Assets/Materials/MaterialAsset.h"

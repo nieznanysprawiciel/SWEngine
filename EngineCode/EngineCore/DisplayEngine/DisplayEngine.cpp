@@ -23,7 +23,11 @@ using namespace DirectX;
 
 const wchar_t CONSTANT_PER_FRAME_BUFFER_NAME[] = L"::DisplayEngine::ConstantPerFrameBuffer";
 const wchar_t CONSTANT_PER_MESH_BUFFER_NAME[] = L"::DisplayEngine::ConstantPerMeshBuffer";
-const wchar_t CAMERA_CONSTANTS[] = L"::DisplayEngine::CameraConstants";
+
+const wchar_t CAMERA_CONSTANTS_BUFFER_NAME[] = L"::DisplayEngine::CameraConstants";
+const wchar_t TRANSFORM_CONSTANTS_BUFFER_NAME[] = L"::DisplayEngine::TransformConstants";
+const wchar_t MATERIAL_CONSTANTS_BUFFER_NAME[] = L"::DisplayEngine::MaterialConstants";		///< @todo Temporary. Use constants from MaterialAsset.
+
 
 REGISTER_PERFORMANCE_CHECK( SKYBOX_RENDERING )
 REGISTER_PERFORMANCE_CHECK( INSTANCE_OBJECT_RENDERING )
@@ -37,7 +41,7 @@ REGISTER_PERFORMANCE_CHECK( SELF_DRAWING_OBJECTS_RENDERING )
 DisplayEngine::DisplayEngine( Engine* engine )
 	: engine( engine )
 {
-	m_lightModule = new LightModule();
+	lightModule = new LightModule();
 
 	m_defaultCamera = nullptr;
 	m_currentCamera = nullptr;
@@ -65,7 +69,7 @@ DisplayEngine::~DisplayEngine()
 
 	delete m_defaultCamera;
 	delete m_mainSwapChain;
-	delete m_lightModule;
+	delete lightModule;
 }
 
 /**@brief Inicjuje renderer (lub kilka je¿eli renderujemy wielow¹tkowo).
@@ -86,18 +90,26 @@ void DisplayEngine::InitDisplayer( ModelsManager* assetsManager )
 	modelsManager = assetsManager;
 
 	ConstantBufferInitData cameraDataInit;
-	cameraDataInit.Data = nullptr;
 	cameraDataInit.DataType = TypeID::get< CameraConstants >();
-	cameraDataInit.NumElements = 1;
 	cameraDataInit.ElementSize = sizeof( CameraConstants );
-	cameraDataInit.Usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
 
-	m_constantsPerFrame	= modelsManager->CreateConstantsBuffer( CONSTANT_PER_FRAME_BUFFER_NAME, nullptr, sizeof( ConstantPerFrame ) );
-	m_constantsPerMesh	= modelsManager->CreateConstantsBuffer( CONSTANT_PER_MESH_BUFFER_NAME, nullptr, sizeof( ConstantPerMesh ) );
-	m_cameraConstants	= modelsManager->CreateConstantsBuffer( CAMERA_CONSTANTS, cameraDataInit );
-	assert( m_constantsPerFrame );
-	assert( m_constantsPerMesh );
+	m_cameraConstants = modelsManager->CreateConstantsBuffer( CAMERA_CONSTANTS_BUFFER_NAME, cameraDataInit );
 	assert( m_cameraConstants );
+
+	ConstantBufferInitData transformInitData;
+	transformInitData.ElementSize = sizeof( TransformConstants );
+	transformInitData.DataType = TypeID::get< TransformConstants >();
+
+	m_transformConstants = modelsManager->CreateConstantsBuffer( TRANSFORM_CONSTANTS_BUFFER_NAME, transformInitData );
+	assert( m_transformConstants );
+
+	ConstantBufferInitData materialInitData;	/// @todo Replace with MaterialAsset buffer.
+	materialInitData.ElementSize = sizeof( ConstantPerMesh );
+	materialInitData.DataType = TypeID::get< ConstantPerMesh >();
+
+	m_materialConstants = modelsManager->CreateConstantsBuffer( MATERIAL_CONSTANTS_BUFFER_NAME, materialInitData );
+	assert( m_materialConstants );
+
 
 	m_mainRenderTarget = modelsManager->GetRenderTarget( SCREEN_RENDERTARGET_STRING );
 	m_mainRenderTarget->AddAssetReference();		/// Uniemo¿liwiamy zwolnienie render targetu przez u¿ytkownika.
@@ -107,7 +119,7 @@ void DisplayEngine::InitDisplayer( ModelsManager* assetsManager )
 	m_defaultCamera = new CameraActor();
 	SetCurrentCamera( m_defaultCamera );
 
-	m_lightModule->Init( assetsManager );
+	lightModule->Init( assetsManager );
 }
 
 void DisplayEngine::BeginScene()
@@ -144,7 +156,7 @@ void DisplayEngine::CopyMaterial( ConstantPerMesh* shader_data_per_mesh, const M
 	shader_data_per_mesh->Diffuse = material->Diffuse;
 	shader_data_per_mesh->Ambient = material->Ambient;
 	shader_data_per_mesh->Specular = material->Specular;
-	shader_data_per_mesh->Emissive = material->Emissive;
+	shader_data_per_mesh->Emissive = DirectX::XMFLOAT3( material->Emissive.x, material->Emissive.y, material->Emissive.z );
 	shader_data_per_mesh->Power = material->Power;
 }
 
@@ -171,8 +183,9 @@ void DisplayEngine::DisplayScene( float timeInterval, float timeLag )
 {
 	IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
 
-	//SetViewMatrix( timeLag );
+
 	UpdateCameraBuffer( renderer, timeInterval, timeLag );
+	lightModule->UpdateLightsBuffer( renderer, timeLag );
 
 	// Ustawiamy bufor sta³y dla wszystkich meshy
 	//shader_data_per_frame.time_lag = 
@@ -182,10 +195,6 @@ void DisplayEngine::DisplayScene( float timeInterval, float timeLag )
 	// D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST
 	// D3D11_PRIMITIVE_TOPOLOGY_LINELIST
 	renderer->IASetPrimitiveTopology( PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
-
-	renderer->UpdateSubresource( m_constantsPerFrame.Ptr(), &shader_data_per_frame );
-	renderer->VSSetConstantBuffers( 2, m_constantsPerFrame.Ptr() );
-	renderer->PSSetConstantBuffers( 2, m_constantsPerFrame.Ptr() );
 
 	// Ustawiamy sampler
 	renderer->SetDefaultSampler();
@@ -269,20 +278,23 @@ void DisplayEngine::DisplayDynamicObjects( float time_interval, float time_lag )
 			worldTransform = worldTransform * transformation;
 
 			// Wype³niamy bufor sta³ych
-			ConstantPerMesh shaderDataPerMesh;
-			shaderDataPerMesh.world_matrix = XMMatrixTranspose( worldTransform );	// Transformacja wierzcho³ków
-			shaderDataPerMesh.mesh_scale = XMVectorSetW( XMVectorReplicate( object->GetScale() ), 1.0f );
+			TransformConstants meshTransformData;
+			XMStoreFloat4x4( &meshTransformData.WorldMatrix, XMMatrixTranspose( worldTransform ) );
+			XMStoreFloat4( &meshTransformData.MeshScale, XMVectorSetW( XMVectorReplicate( object->GetScale() ), 1.0f ) );
 
 			// Przepisujemy materia³
-			CopyMaterial( &shaderDataPerMesh, &model );
+			ConstantPerMesh materialData;
+			CopyMaterial( &materialData, &model );
 
 			// Ustawiamy shadery
 			renderer->SetShaders( model );
 
-			// Aktualizujemy bufor sta³ych
-			renderer->UpdateSubresource( m_constantsPerMesh.Ptr(), &shaderDataPerMesh );
-			renderer->VSSetConstantBuffers( 1, m_constantsPerMesh.Ptr() );
-			renderer->PSSetConstantBuffers( 1, m_constantsPerMesh.Ptr() );
+			// Aktualizujemy bufory sta³ych
+			renderer->UpdateSubresource( m_transformConstants.Ptr(), &meshTransformData );
+			renderer->VSSetConstantBuffers( TransformBufferBindingPoint, m_transformConstants.Ptr() );
+
+			renderer->UpdateSubresource( m_materialConstants.Ptr(), &materialData );
+			renderer->PSSetConstantBuffers( MaterialBufferBindingPoint, m_materialConstants.Ptr() );
 
 			// Ustawiamy tekstury
 			renderer->SetTextures( model );
@@ -375,27 +387,35 @@ void DisplayEngine::DisplaySkyBox( float time_interval, float time_lag )
 	XMVECTOR quaternion = m_currentCamera->GetInterpolatedOrientation( time_lag );
 	inverse_camera_orientation( quaternion );
 
-	XMMATRIX rotation_matrix = XMMatrixRotationQuaternion( quaternion );
+	XMMATRIX rotationMatrix = XMMatrixRotationQuaternion( quaternion );
 
 	// Wype³niamy bufor sta³ych
-	ConstantPerMesh shader_data_per_mesh;
-	shader_data_per_mesh.world_matrix = XMMatrixTranspose( rotation_matrix );	// Transformacja wierzcho³ków
+	TransformConstants meshTransformData;
+	XMStoreFloat4x4( &meshTransformData.WorldMatrix, XMMatrixTranspose( rotationMatrix ) );
+	XMStoreFloat4( &meshTransformData.MeshScale, XMVectorReplicate( 1.0f ) );
+
+
 	// Przepisujemy materia³
-	CopyMaterial( &shader_data_per_mesh, model );
+	ConstantPerMesh materialData;
+	CopyMaterial( &materialData, model );
 
 	// Ustawiamy shadery
 	renderer->SetShaders( *model );
 
-	// Aktualizujemy bufor sta³ych
-	renderer->UpdateSubresource( m_constantsPerMesh.Ptr(), &shader_data_per_mesh );
-	renderer->VSSetConstantBuffers( 1, m_constantsPerMesh.Ptr() );
-	renderer->PSSetConstantBuffers( 1, m_constantsPerMesh.Ptr() );
+	// Aktualizujemy bufory sta³ych
+	renderer->UpdateSubresource( m_transformConstants.Ptr(), &meshTransformData );
+	renderer->VSSetConstantBuffers( TransformBufferBindingPoint, m_transformConstants.Ptr() );
+
+	renderer->UpdateSubresource( m_materialConstants.Ptr(), &materialData );
+	renderer->PSSetConstantBuffers( MaterialBufferBindingPoint, m_materialConstants.Ptr() );
+
+
 
 	BufferObject* const_buffer = sky_dome->get_constant_buffer();
 	if( const_buffer )
 	{
-		renderer->VSSetConstantBuffers( 2, const_buffer );
-		renderer->PSSetConstantBuffers( 2, const_buffer );
+		renderer->VSSetConstantBuffers( 3, const_buffer );
+		renderer->PSSetConstantBuffers( 3, const_buffer );
 	}
 
 	// Ustawiamy tekstury
@@ -497,20 +517,23 @@ void DisplayEngine::RenderFromQueue( float time_interval, float time_lag )
 					worldTransform = worldTransform * transformation;
 
 					// Wype³niamy bufor sta³ych
-					ConstantPerMesh shaderDataPerMesh;
-					shaderDataPerMesh.world_matrix = XMMatrixTranspose( worldTransform );	// Transformacja wierzcho³ków
-					shaderDataPerMesh.mesh_scale = XMVectorSetW( XMVectorReplicate( object->GetScale() ), 1.0f );
+					TransformConstants meshTransformData;
+					XMStoreFloat4x4( &meshTransformData.WorldMatrix, XMMatrixTranspose( worldTransform ) );
+					XMStoreFloat4( &meshTransformData.MeshScale, XMVectorSetW( XMVectorReplicate( object->GetScale() ), 1.0f ) );
 
 					// Przepisujemy materia³
-					CopyMaterial( &shaderDataPerMesh, &model );
+					ConstantPerMesh materialData;
+					CopyMaterial( &materialData, &model );
 
 					// Ustawiamy shadery
 					renderer->SetShaders( model );
 
-					// Aktualizujemy bufor sta³ych
-					renderer->UpdateSubresource( m_constantsPerMesh.Ptr(), &shaderDataPerMesh );
-					renderer->VSSetConstantBuffers( 1, m_constantsPerMesh.Ptr() );
-					renderer->PSSetConstantBuffers( 1, m_constantsPerMesh.Ptr() );
+					// Aktualizujemy bufory sta³ych
+					renderer->UpdateSubresource( m_transformConstants.Ptr(), &meshTransformData );
+					renderer->VSSetConstantBuffers( TransformBufferBindingPoint, m_transformConstants.Ptr() );
+
+					renderer->UpdateSubresource( m_materialConstants.Ptr(), &materialData );
+					renderer->PSSetConstantBuffers( MaterialBufferBindingPoint, m_materialConstants.Ptr() );
 
 					// Ustawiamy tekstury
 					renderer->SetTextures( model );
@@ -532,72 +555,11 @@ void DisplayEngine::RenderFromQueue( float time_interval, float time_lag )
 	}
 }
 
-/**@brief Tworzy macierz projekcji i zapamiêtuje j¹ w polu projection_matrix klasy. W ka¿dym wywo³aniu funkcji
-DisplayScene ustawiana jest macierz zapisana w tym polu.
-@param[in] angle K¹t widzenia w pionie
-@param[in] X_to_Y Stosunek Szerokoœci do wysokoœci ekranu
-@param[in] near_plane Bli¿sza p³aszczyzna obcinania
-@param[in] far_plane Dalsza p³aszczyzna obcinania
-
-@deprecated Zacz¹æ u¿ywaæ danych z kamer, a tê funkcjê zlikwidowaæ*/
-void DisplayEngine::SetProjectionMatrix( float angle, float X_to_Y, float near_plane, float far_plane )
-{
-	XMMATRIX proj_matrix = XMMatrixPerspectiveFovRH( angle, X_to_Y, near_plane, far_plane );
-	proj_matrix = XMMatrixTranspose( proj_matrix );
-	XMStoreFloat4x4( &shader_data_per_frame.projection_matrix, proj_matrix );
-}
-
 
 //=================================================================//
 //					camera functions
 //=================================================================//
 
-
-/**@brief U¿ywa aktualnie ustawionej kamery, ¿eby stworzyæ macierz widoku.
-
-Macierz widoku jest zapisywana w strukturze, która pos³u¿y do wype³nienia bufora sta³ych
-Funkcja jest prywatna, poniewa¿ jest wywo³ywana podczas renderowania sceny. Aby ingerowaæ z zewn¹trz
-w ustawienie kamery nale¿y zmieniæ aktualnie ustawion¹ kamerê na jedn¹ z innych zapisanych w silniku.
-
-@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
-Zakres [0,1].
-*/
-void DisplayEngine::SetViewMatrix( float time_lag )
-{
-	XMMATRIX view_matrix;
-	if ( m_currentCamera == nullptr )
-		view_matrix  = XMMatrixIdentity( );	//tymczasowe
-	else
-	{
-#ifndef _INTERPOLATE_POSITIONS
-		//bêdziemy mno¿yæ macierz translacji * macierz obrotu
-		view_matrix = XMMatrixTranslation(
-			-m_currentCamera->position.x,
-			-m_currentCamera->position.y,
-			-m_currentCamera->position.z);
-		XMVECTOR quaternion = XMLoadFloat4(&(m_currentCamera->orientation));
-		quaternion = XMVectorNegate( quaternion );
-		quaternion = XMVectorSetW( quaternion, -XMVectorGetW( quaternion ) );
-
-		XMMATRIX rotation_matrix = XMMatrixRotationQuaternion(quaternion);
-		view_matrix = view_matrix * rotation_matrix;
-#else
-		XMVECTOR position = m_currentCamera->GetInterpolatedPosition( time_lag );
-		XMVECTOR orientation = m_currentCamera->GetInterpolatedOrientation( time_lag );
-		inverse_camera_position( position );
-		inverse_camera_orientation( orientation );
-
-		view_matrix = XMMatrixTranslationFromVector( position );
-		XMMATRIX rotation_matrix = XMMatrixRotationQuaternion( orientation );
-		view_matrix = view_matrix * rotation_matrix;
-#endif
-	}
-
-	//Wstawiamy macierz do zmiennej, która stanie siê potem zawartoœci¹ bufora,
-	//który zostanie przekazany do shadera.
-	view_matrix = XMMatrixTranspose( view_matrix );
-	XMStoreFloat4x4( &shader_data_per_frame.view_matrix, view_matrix );
-}
 
 /**@brief */
 void				DisplayEngine::UpdateCameraBuffer	( IRenderer* renderer, float timeInterval, float timeLag )
@@ -666,7 +628,7 @@ void DisplayEngine::RemoveActor( ActorBase* actor )
 {
 	ActorsCommonFunctions::RemoveActor( meshes, static_cast< StaticActor* >( actor ) );
 	ActorsCommonFunctions::RemoveActor( cameras, static_cast< CameraActor* >( actor ) );
-	m_lightModule->RemoveActor( actor );
+	lightModule->RemoveActor( actor );
 
 	if( m_currentCamera == actor )
 		SetCurrentCamera( m_defaultCamera );
@@ -677,7 +639,7 @@ void DisplayEngine::RemoveAllActors()
 {
 	meshes.clear();
 	cameras.clear();
-	m_lightModule->RemoveAllActors();
+	lightModule->RemoveAllActors();
 	SetCurrentCamera( m_defaultCamera );
 }
 
@@ -801,46 +763,11 @@ void DisplayEngine::interpolate_object2( float time_lag, const StaticActor* obje
 //					light functions
 //=================================================================//
 
-/**@brief Ustawia œwiat³o kierunkowe
-@param[in] direction Kierunek œwiecenia œwiat³a
-@param[in] color Kolor œwiat³a
-@param[in] index Indeks œwiat³a w tablicy œwiate³. Maksymalnie wynosi @ref ENGINE_MAX_LIGHTS - 1.
-@return 0 w przypadku powodzenia, -1 je¿eli jest niepoprawny indeks.
-*/
-int DisplayEngine::SetDirectionalLight( const DirectX::XMFLOAT4& direction,
-										  const DirectX::XMFLOAT4& color,
-										  unsigned int index )
-{
-	if ( index >= ENGINE_MAX_LIGHTS )
-		return -1;
-
-	XMVECTOR light_dir = XMLoadFloat4( &direction );
-	XMVECTOR light_color = XMLoadFloat4( &color );
-
-	// Normalizujemy wektor
-	light_dir = XMVector3Normalize( light_dir );
-	light_dir = XMVectorNegate( light_dir );		// Robimy to, ¿eby shader nie musia³ odwracaæ
-	XMStoreFloat4( &shader_data_per_frame.light_direction[index], light_dir );
-	
-	// Przycinamy wektor do przedzia³u [0.0 , 1.0]
-	light_color = XMVectorSaturate( light_color );
-	XMStoreFloat4( &shader_data_per_frame.light_color[index], light_color );
-
-	return 0;
-}
-
-/**@brief Ustawia œwiat³o ambient.
-@param[in] color Kolor œwiat³a.*/
-void DisplayEngine::SetAmbientLight( const DirectX::XMFLOAT4& color )
-{
-	shader_data_per_frame.ambient_light = color;
-}
-
 // ================================ //
 //
 LightModule* DisplayEngine::GetLightModule()
 {
-	return m_lightModule;
+	return lightModule;
 }
 
 /**@brief Ustawia nowego skydome'a dla gry.

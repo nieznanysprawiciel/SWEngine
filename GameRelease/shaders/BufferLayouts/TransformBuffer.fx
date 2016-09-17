@@ -2,7 +2,7 @@
 // Default Transform buffer layout
 //--------------------------------------------------------------------------------------
 
-cbuffer ConstantPerFrame : register( b0 )
+cbuffer TransformConstants : register( b1 )
 {
 	matrix			World;
 	float3			MeshScale;

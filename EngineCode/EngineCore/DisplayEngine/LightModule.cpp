@@ -19,7 +19,7 @@
 #include "GraphicAPI/IRenderer.h"
 
 
-const wchar_t LIGHTS_CONSTANTS[] = L"::DisplayEngine::LightsConstants";
+const wchar_t LIGHTS_CONSTANTS_BUFFER_NAME[] = L"::DisplayEngine::LightsConstants";
 
 
 using namespace DirectX;
@@ -64,7 +64,7 @@ void		LightModule::Init( ModelsManager* assetsManager )
 	lightsInit.ElementSize = sizeof( LightConstants );
 	lightsInit.Usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
 
-	m_lightBuffer = m_modelsManager->CreateConstantsBuffer( LIGHTS_CONSTANTS, lightsInit );
+	m_lightBuffer = m_modelsManager->CreateConstantsBuffer( LIGHTS_CONSTANTS_BUFFER_NAME, lightsInit );
 	assert( m_lightBuffer );
 }
 
@@ -79,7 +79,7 @@ void			LightModule::SetAmbientLight( DirectX::XMFLOAT3& color )
 //
 LightConstants	LightModule::FillLightsData( float timeLag )
 {
-	int numLights = std::max( ENGINE_MAX_LIGHTS, (int)m_lights.size() );
+	int numLights = std::min( ENGINE_MAX_LIGHTS, (int)m_lights.size() );
 
 	LightConstants constants;
 	constants.NumLights = numLights;
@@ -108,7 +108,7 @@ LightParams		LightModule::FillLightParams( LightBase* light, float timeLag )
 	// Compute light direction. When no rotation is applied, direction vector is [0.0, 0.0, 1.0].
 	// This value is not used in case of point light.
 	auto lightOrient = light->GetInterpolatedOrientation( timeLag );
-	XMVECTOR defaultOrient = XMVectorSet( 0.0, 0.0, 1.0, 0.0 );
+	XMVECTOR defaultOrient = DefaultDirectionVec();
 	XMVECTOR direction = XMVector3Rotate( defaultOrient, lightOrient );
 
 	XMStoreFloat3( &params.Direction, direction );
@@ -135,8 +135,9 @@ LightParams		LightModule::FillLightParams( LightBase* light, float timeLag )
 	return params;
 }
 
-// ================================ //
-//
+/**@brief Updates lights buffer.
+
+Buffer is bound to pixel shader stage at LightsBufferBindingPoint index.*/
 BufferObject*	LightModule::UpdateLightsBuffer( IRenderer* renderer, float timeLag )
 {
 	LightConstants constants = FillLightsData( timeLag );
@@ -145,4 +146,20 @@ BufferObject*	LightModule::UpdateLightsBuffer( IRenderer* renderer, float timeLa
 	renderer->PSSetConstantBuffers( LightsBufferBindingPoint, m_lightBuffer.Ptr() );
 
 	return m_lightBuffer.Ptr();
+}
+
+/**@brief Default direction of light.
+
+Uninitialized light points in this direction. To change light direction, user rotates
+LightActor. Default rotation vector is then rotated by orientation quaternion.*/
+DirectX::XMFLOAT3	LightModule::DefaultDirection()
+{
+	return DirectX::XMFLOAT3( 0.0, 0.0, 1.0 );
+}
+
+/**@brief Function differs from LightModule::DefaultDirection only by return type.
+@see DefaultDirection*/
+DirectX::XMVECTOR LightModule::DefaultDirectionVec()
+{
+	return XMVectorSet( 0.0, 0.0, 1.0, 0.0 );
 }

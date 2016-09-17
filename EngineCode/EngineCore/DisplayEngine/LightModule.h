@@ -52,4 +52,8 @@ public:
 	LightParams		FillLightParams			( LightBase* light, float timeLag );
 	BufferObject*	UpdateLightsBuffer		( IRenderer* renderer, float timeLag );
 
+
+public:
+	static DirectX::XMFLOAT3		DefaultDirection	();
+	static DirectX::XMVECTOR		DefaultDirectionVec	();
 };

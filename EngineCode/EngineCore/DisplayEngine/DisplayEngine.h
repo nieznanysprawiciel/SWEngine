@@ -47,10 +47,9 @@ private:
 
 	std::vector<IRenderer*>					m_renderers;				///< Zawiera wszystkie renderery. Ka¿dy odpowiada za jeden w¹tek renderuj¹cy.
 
-	ConstantPerFrame						shader_data_per_frame;		///<Bufor sta³ych zmiennych co ramkê animacji.
-	ResourcePtr< BufferObject >				m_constantsPerFrame;		///<Bufor sta³ych zmiennych co ramkê animacji.
-	ResourcePtr< BufferObject >				m_constantsPerMesh;			///<Bufor sta³ych zmiennych dla ka¿dego fragmentu mesha.
 	ResourcePtr< BufferObject >				m_cameraConstants;			///< Camera constants buffer.
+	ResourcePtr< BufferObject >				m_transformConstants;		///< Transform constants buffer.
+	ResourcePtr< BufferObject >				m_materialConstants;		///< Material constants buffer. @todo Temporary.
 
 	CameraActor*							m_currentCamera;			///<Akutalnie aktywna kamera
 	SkyDome*								sky_dome;					///<Klasa odpowiedzialna za kopu³ê nieba
@@ -70,7 +69,8 @@ private:
 	std::queue<RenderPass*>					m_renderOnceQueue;			///<Kolejka przebiegów, które maj¹ zostaæ wyrenderowane tylko raz.
 	unsigned int							m_maxQueuedPassesPerFrame;	///<Maksymalna liczba przebiegów jaka zostanie wziêta z kolejki w ka¿dej ramce.
 
-	LightModule*							m_lightModule;				///< Light module.
+public:
+	LightModule*							lightModule;				///< Light module.
 
 public:
 	DisplayEngine( Engine* engine );
@@ -88,7 +88,6 @@ public:
 	void			DisplayScene					( float time_interval, float time_lag );
 	// Funkcja do interpolacji pozycji obiektów
 	void			InterpolatePositions			( float time_lag);
-	void			SetProjectionMatrix				( float angle, float X_to_Y, float near_plane, float far_plane);
 
 	// Zarz¹dzanie meshami
 	void			AddMeshObject					( StaticActor* object );
@@ -100,9 +99,6 @@ public:
 	std::vector<StaticActor*>		GetSceneObjects() { return meshes; }
 
 	// Œwiat³a
-	int				SetDirectionalLight				( const DirectX::XMFLOAT4& direction, const DirectX::XMFLOAT4& color, unsigned int index );
-	void			SetAmbientLight					( const DirectX::XMFLOAT4& color );
-
 	/// Light module is resposible for all lights manipulations.
 	LightModule*	GetLightModule					();
 
@@ -117,7 +113,6 @@ public:
 	// SkyDome
 	SkyDome*		SetSkydome						( SkyDome* dome );
 private:
-	void			SetViewMatrix					( float time_lag );
 	void			UpdateCameraBuffer				( IRenderer* renderer, float timeInterval, float timeLag );
 	CameraConstants	CreateCameraData				( CameraActor* camera, float timeInterval, float timeLag );
 

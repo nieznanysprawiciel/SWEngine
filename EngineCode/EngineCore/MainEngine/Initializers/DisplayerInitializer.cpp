@@ -23,9 +23,6 @@ bool Engine::InitDisplayer()
 	Context->displayEngine->InitRenderer( renderer );
 	Context->displayEngine->InitDisplayer( Context->modelsManager );
 
-	Context->displayEngine->SetProjectionMatrix( DirectX::XMConvertToRadians( 45 ),
-										   (float)Context->windowWidth / (float)Context->windowHeight, 1, 100000 );
-
 	return true;
 }
 
