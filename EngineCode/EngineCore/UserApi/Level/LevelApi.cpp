@@ -82,7 +82,7 @@ LevelApi::EditorLoadResult	LevelApi::LoadLevelImpl			( IDeserializer* deser )
 					if( context->EditorLoad )
 					{
 						// Dodajemy tylko do podstawowych modu³ów, za to do edytora wysy³amy pe³ne informacje.
-						ActorInfo editorModeInfo( EnableDisplay | AsCamera );
+						ActorInfo editorModeInfo( EnableDisplay | AsCamera | AsLight );
 						editorModeInfo &= info;
 						Engine->Actors.AddToModules( newActor, editorModeInfo );
 					}
