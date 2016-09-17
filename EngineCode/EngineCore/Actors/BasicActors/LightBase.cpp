@@ -69,7 +69,7 @@ void		LightBase::SetLightDirection	( DirectX::XMVECTOR direction )
 	XMVECTOR defaultOrient = LightModule::DefaultDirectionVec();
 	XMVECTOR newDirection = XMVector3Normalize( direction );
 
-	XMVECTOR rotationAxis = XMVector3Cross( defaultOrient, newDirection );
+	XMVECTOR rotationAxis = XMVector3Normalize( XMVector3Cross( defaultOrient, newDirection ) );
 	XMVECTOR angle = XMVector3AngleBetweenNormals( defaultOrient, newDirection );
 
 	XMVECTOR newOrientation = XMQuaternionRotationNormal( rotationAxis, XMVectorGetX( angle ) );

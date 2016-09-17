@@ -588,6 +588,9 @@ CameraConstants		DisplayEngine::CreateCameraData		( CameraActor* camera, float t
 	{
 		XMVECTOR position = camera->GetInterpolatedPosition( timeLag );
 		XMVECTOR orientation = camera->GetInterpolatedOrientation( timeLag );
+
+		XMStoreFloat3( &data.CameraPosition, position );
+
 		inverse_camera_position( position );
 		inverse_camera_orientation( orientation );
 
@@ -597,8 +600,6 @@ CameraConstants		DisplayEngine::CreateCameraData		( CameraActor* camera, float t
 		
 		data.ProjectionMatrix = camera->GetProjection();
 		viewProjMatrix = XMMatrixMultiply( viewMatrix, XMLoadFloat4x4( &data.ProjectionMatrix ) );
-		
-		XMStoreFloat3( &data.CameraPosition, position );
 
 		viewMatrix = XMMatrixTranspose( viewMatrix );
 		viewProjMatrix = XMMatrixTranspose( viewProjMatrix );

@@ -147,7 +147,7 @@ float		ComputeLightIntesity( uint lightIdx, float lightDistance )
 //
 float3	ComputeDiffuse( float3 normal, float3 lightDir, uint lightIdx )
 {
-	float lambertFactor = dot( normal, -lightDir );
+	float lambertFactor = max( dot( normal, -lightDir ), 0.0f );
 	return Lights[ lightIdx ].Color * lambertFactor;
 }
 
@@ -155,8 +155,8 @@ float3	ComputeDiffuse( float3 normal, float3 lightDir, uint lightIdx )
 //
 float3	ComputeSpecular( float3 normal, float3 lightDir, float3 viewDir, uint lightIdx )
 {
-	float3 reflectedLightDir = reflect( normal, -lightDir );
-	float specularCoeff = dot( reflectedLightDir, viewDir );
+	float3 reflectedLightDir = reflect( -lightDir, normal );
+	float specularCoeff = max( dot( reflectedLightDir, viewDir ), 0.0f );
 	
 	return Lights[ lightIdx ].Color * pow( specularCoeff, Power );
 }
