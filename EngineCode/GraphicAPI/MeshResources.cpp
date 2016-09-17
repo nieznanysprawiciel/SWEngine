@@ -268,6 +268,10 @@ RTTR_REGISTRATION
 
 
 	rttr::registration::class_< ShaderInputLayout >( "ShaderInputLayout" );
+	rttr::registration::class_< IShader >( "IShader" )
+		.property_readonly( "FilePath", &IShader::GetShaderFile )
+		.property_readonly( "MainFunction", &IShader::GetShaderEntry );
+
 	rttr::registration::class_< PixelShader >( "PixelShader" );
 	rttr::registration::class_< VertexShader >( "VertexShader" );
 
@@ -287,7 +291,7 @@ RTTR_REGISTRATION
 	rttr::registration::class_< ModelPart >( "ModelPart" )
 		.property_readonly( "VertexShader", &ModelPart::vertex_shader )
 		.property_readonly( "PixelShader", &ModelPart::pixel_shader )
-		.property_readonly( "Material", &ModelPart::vertex_shader )
+		.property_readonly( "Material", &ModelPart::material )
 		.property_readonly( "MeshPartObject", &ModelPart::mesh )
 		.property_readonly( "DiffuseTexture", &ModelPart::GetTexture1 )
 		.property_readonly( "SpecularTexture", &ModelPart::GetTexture2 )

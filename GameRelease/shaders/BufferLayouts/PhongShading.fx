@@ -60,11 +60,6 @@ cbuffer PhongMaterialBuffer : register( b2 )
 // Functions
 //--------------------------------------------------------------------------------------
 
-struct PhongResult
-{
-	float4	Diffuse;
-	float3	Specular;
-}
 
 //--------------------------------------------------------------------------------------
 //
@@ -105,8 +100,8 @@ PhongResult		ComputePhongColorPointLight( float3 normal, float3 viewDir, float3 
 	float lightIntens = ComputeLightIntesity( lightIdx, lightDistance );
 	
 	PhongResult resultColor;
-	resultColor.Diffuse = colorDiffuse / lightIntens;
-	resultColor.Specular = colorSpecular / lightIntens;
+	resultColor.Diffuse = colorDiffuse * lightIntens;
+	resultColor.Specular = colorSpecular * lightIntens;
 	
 	return resultColor;
 }
@@ -123,11 +118,11 @@ float 			ComputeSpotAttenuation( float angle, float3 lightDir, float3 spotDirect
 //
 PhongResult		ComputePhongSpotLight( float3 normal, float3 viewDir, float3 lightDir, float lightDistance, uint lightIdx )
 {
-	float spotAttenuation = ComputeSpotAttenuation( Lights[ lightIdx ].SpotAngle, lightDir, Lights[ LightIdx ].Direction );
+	float spotAttenuation = ComputeSpotAttenuation( Lights[ lightIdx ].SpotAngle, lightDir, Lights[ lightIdx ].Direction );
 	
 	if( spotAttenuation > 0 )
 	{
-		float4 colorDiffuse = ComputeDiffuse( normal, lightDir );
+		float3 colorDiffuse = ComputeDiffuse( normal, lightDir, lightIdx );
 		float3 colorSpecular = ComputeSpecular( normal, lightDir, viewDir, lightIdx );
 		float lightIntens = ComputeLightIntesity( lightIdx, lightDistance );
 		lightIntens = lightIntens * spotAttenuation;
@@ -135,7 +130,13 @@ PhongResult		ComputePhongSpotLight( float3 normal, float3 viewDir, float3 lightD
 		PhongResult resultColor;
 		resultColor.Diffuse = colorDiffuse / lightIntens;
 		resultColor.Specular = colorSpecular / lightIntens;
+
+		return resultColor;
 	}
+
+	PhongResult resultColor;
+	resultColor.Diffuse = float3( 0.0, 0.0, 0.0 );
+	resultColor.Specular = float3( 0.0, 0.0, 0.0 );
 	
 	return resultColor;
 }
@@ -146,7 +147,7 @@ PhongResult		ComputePhongDirectionalLight( float3 normal, float3 viewDir, uint l
 {
 	PhongResult resultColor;
 
-	resultColor.Diffuse = ComputeDiffuse( normal, Lights[ lightIdx ].Direction );
+	resultColor.Diffuse = ComputeDiffuse( normal, Lights[ lightIdx ].Direction, lightIdx );
 	resultColor.Specular = ComputeSpecular( normal, Lights[ lightIdx ].Direction, viewDir, lightIdx );
 	
 	return resultColor;
@@ -154,7 +155,70 @@ PhongResult		ComputePhongDirectionalLight( float3 normal, float3 viewDir, uint l
 
 //--------------------------------------------------------------------------------------
 //
-PhongResult		ComputeLightPhong( float3 normal, float3 viewDir )
+PhongResult		ComputePhongColorPointLight( float3 normal, float3 viewDir, float3 lightDir, float lightDistance, uint lightIdx )
+{	
+	float3 colorDiffuse = ComputeDiffuse( normal, lightDir, lightIdx );
+	float3 colorSpecular = ComputeSpecular( normal, lightDir, viewDir, lightIdx );
+	float lightIntens = ComputeLightIntesity( lightIdx, lightDistance );
+	
+	PhongResult resultColor;
+	resultColor.Diffuse = colorDiffuse * lightIntens;
+	resultColor.Specular = colorSpecular * lightIntens;
+	
+	return resultColor;
+}
+
+float 			ComputeSpotAttenuation( float angle, float3 lightDir, float3 spotDirection )
+{
+    float minCos = cos( angle );
+    float maxCos = ( minCos + 1.0f ) / 2.0f;
+    float cosAngle = dot( lightDir, spotDirection );
+    return smoothstep( minCos, maxCos, cosAngle ); 
+}
+
+//--------------------------------------------------------------------------------------
+//
+PhongResult		ComputePhongSpotLight( float3 normal, float3 viewDir, float3 lightDir, float lightDistance, uint lightIdx )
+{
+	float spotAttenuation = ComputeSpotAttenuation( Lights[ lightIdx ].SpotAngle, lightDir, Lights[ lightIdx ].Direction );
+	
+	if( spotAttenuation > 0 )
+	{
+		float3 colorDiffuse = ComputeDiffuse( normal, lightDir, lightIdx );
+		float3 colorSpecular = ComputeSpecular( normal, lightDir, viewDir, lightIdx );
+		float lightIntens = ComputeLightIntesity( lightIdx, lightDistance );
+		lightIntens = lightIntens * spotAttenuation;
+		
+		PhongResult resultColor;
+		resultColor.Diffuse = colorDiffuse * lightIntens;
+		resultColor.Specular = colorSpecular * lightIntens;
+
+		return resultColor;
+	}
+
+	PhongResult resultColor;
+	resultColor.Diffuse = float3( 0.0, 0.0, 0.0 );
+	resultColor.Specular = float3( 0.0, 0.0, 0.0 );
+	
+	return resultColor;
+}
+
+
+//--------------------------------------------------------------------------------------
+//
+PhongResult		ComputePhongDirectionalLight( float3 normal, float3 viewDir, uint lightIdx )
+{
+	PhongResult resultColor;
+
+	resultColor.Diffuse = ComputeDiffuse( normal, Lights[ lightIdx ].Direction, lightIdx );
+	resultColor.Specular = ComputeSpecular( normal, Lights[ lightIdx ].Direction, viewDir, lightIdx );
+	
+	return resultColor;
+}
+
+//--------------------------------------------------------------------------------------
+//
+PhongResult		ComputeLightPhong( float3 worldPosition, float3 normal, float3 viewDir )
 {
 	PhongResult resultColor;
 	
@@ -169,7 +233,7 @@ PhongResult		ComputeLightPhong( float3 normal, float3 viewDir )
 		else
 		{
 			// Computing lights in world space.
-			float3 lightDir = normalize( WorldPosition - Lights[ lightIdx ].Position );
+			float3 lightDir = normalize( worldPosition - Lights[ i ].Position );
 			float lightDistance = length( lightDir );
 			lightDir = lightDir / lightDistance;
 		
@@ -197,21 +261,19 @@ PhongResult		ComputeLightPhong( float3 normal, float3 viewDir )
 // Remember before calling this function.
 //	float3 normal = normalize( Normal );
 // float3 viewDir = normalize( WorldPosition - CameraPosition );
-float		ComputePhongLightResultColor( float3 normal, float3 viewDir )
+float4	ComputePhongLightResultColor( float3 worldPosition, float3 normal, float3 viewDir )
 {
 	float4 resultColor;
-	resultColor.w = 0;
+	resultColor.w = 1.0;
 	resultColor.xyz = AmbientColor * Ambient;
 	resultColor.xyz += Emissive;
 
-	PhongResult phongResult = ComputeLightPhong( normal, view );
+	PhongResult phongResult = ComputeLightPhong( worldPosition, normal, viewDir );
 	
-	resultColor += phongResult.Diffuse * Diffuse;
-	resultColor += phongResult.Specular * Specular;
+	resultColor.xyz += phongResult.Diffuse * Diffuse;
+	resultColor.xyz += phongResult.Specular * Specular;
 	
 	return resultColor;
 }
-
-
 
 

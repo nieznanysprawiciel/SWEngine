@@ -170,8 +170,8 @@ PhongResult		ComputePhongColorPointLight( float3 normal, float3 viewDir, float3 
 	float lightIntens = ComputeLightIntesity( lightIdx, lightDistance );
 	
 	PhongResult resultColor;
-	resultColor.Diffuse = colorDiffuse / lightIntens;
-	resultColor.Specular = colorSpecular / lightIntens;
+	resultColor.Diffuse = colorDiffuse * lightIntens;
+	resultColor.Specular = colorSpecular * lightIntens;
 	
 	return resultColor;
 }
@@ -198,8 +198,8 @@ PhongResult		ComputePhongSpotLight( float3 normal, float3 viewDir, float3 lightD
 		lightIntens = lightIntens * spotAttenuation;
 		
 		PhongResult resultColor;
-		resultColor.Diffuse = colorDiffuse / lightIntens;
-		resultColor.Specular = colorSpecular / lightIntens;
+		resultColor.Diffuse = colorDiffuse * lightIntens;
+		resultColor.Specular = colorSpecular * lightIntens;
 
 		return resultColor;
 	}
