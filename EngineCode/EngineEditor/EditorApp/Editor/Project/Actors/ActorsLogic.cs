@@ -164,10 +164,10 @@ namespace EditorApp.Editor.Project.Actors
 
 		public void				DeleteActor		( ActorWrapper actor )
 		{
-			m_editorLogic.Displayer.EngineWrapper.DeleteActor( actor );
+			SelectActor( null );
 			m_actors.Remove( actor );
 
-			SelectActor( null );
+			m_editorLogic.Displayer.EngineWrapper.DeleteActor( actor );
 		}
 
 		public ActorWrapper		CreateActor		( string actorTypeName, double mouseX, double mouseY )

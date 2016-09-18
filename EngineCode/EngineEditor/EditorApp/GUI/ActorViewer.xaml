@@ -44,7 +44,8 @@
 					</Style>
 				</DataGrid.ColumnHeaderStyle>
 				<DataGrid.Columns>
-					<DataGridTextColumn Header="ActorName" Binding="{Binding ActorName}" Width="*" IsReadOnly="False" />
+					<DataGridTextColumn Header="Actor Name" Binding="{Binding ActorName}" Width="2.5*" IsReadOnly="False" />
+					<DataGridTextColumn Header="Type" Binding="{Binding TypeName}" Width="1*" IsReadOnly="True" />
 				</DataGrid.Columns>
 
 				<DataGrid.ContextMenu>

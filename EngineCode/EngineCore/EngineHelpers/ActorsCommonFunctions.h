@@ -18,7 +18,7 @@ public:
 template<typename ActorType>
 static inline bool			ActorsCommonFunctions::RemoveActor( std::vector< ActorType* >& actorsVec, ActorType* actor )
 {
-	for( int i = (int)actorsVec.size() - 1; i > 0 ; --i )
+	for( int i = (int)actorsVec.size() - 1; i >= 0 ; --i )
 	{
 		if( actorsVec[ i ] == actor )
 		{
