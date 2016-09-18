@@ -258,7 +258,7 @@ PhongResult		ComputeLightPhong( float3 worldPosition, float3 normal, float3 view
 		else
 		{
 			// Computing lights in world space.
-			float3 lightDir = normalize( worldPosition - Lights[ i ].Position );
+			float3 lightDir = worldPosition - Lights[ i ].Position;
 			float lightDistance = length( lightDir );
 			lightDir = lightDir / lightDistance;
 		
