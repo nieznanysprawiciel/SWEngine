@@ -1,7 +1,17 @@
 #pragma once
 
 
+#include "EngineCore/Actors/ActorPointer.h"
 #include "DynamicActor.h"
+
+
+struct ChildActor
+{
+	ActorPtr< StaticActor >		Actor;
+	DirectX::XMFLOAT4			Rotation;
+	DirectX::XMFLOAT3			Translation;
+};
+
 
 
 /*Klasa obiektu z³o¿onego. Mo¿e zawieraæ w sobie wiele obiektów, których po³o¿enia
@@ -14,11 +24,11 @@ class ComplexActor : public DynamicActor
 	RTTR_ENABLE( DynamicActor )
 protected:
 
-	std::vector<DynamicActor*>	m_components;
+	std::vector< ChildActor >	m_components;
 
 
 public:
-	void MoveComplex( float time_interval, const DirectX::XMFLOAT3& parent_speed, const DirectX::XMFLOAT4& parent_rotation );
+	void			MoveComplex		( float time_interval, const DirectX::XMFLOAT3& parent_speed, const DirectX::XMFLOAT4& parent_rotation );
 
 
 	static ActorBase*			Create()	{ return new ComplexActor; }

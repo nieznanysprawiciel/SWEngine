@@ -54,12 +54,14 @@ void Engine::test()
 	const wchar_t TIE_FIGHTER[] = L"tylko_do_testow/TIE_Fighter/TIE_Fighter.FBX";
 	const wchar_t IMPERIAL_STAR_DESTROYER[] = L"tylko_do_testow/ImperialStarDestroyer.FBX";
 	const wchar_t CHURCH[] = L"tylko_do_testow/Church/AbandonedChurch.FBX";
+	const wchar_t GATE[] = L"meshes/Wall/Castle wall/Castle wall.FBX";
 
 	Context->modelsManager->LoadModelFromFile( CLONE_FIGHTER );
 	Context->modelsManager->LoadModelFromFile( MOON );
 	Context->modelsManager->LoadModelFromFile( NEBULON );
 	Context->modelsManager->LoadModelFromFile( VADER_TIE );
 	Context->modelsManager->LoadModelFromFile( TIE_FIGHTER );
+	Context->modelsManager->LoadModelFromFile( GATE );
 	//Context->modelsManager->LoadModelFromFile( CHURCH );
 	//modelsManager->LoadModelFromFile( IMPERIAL_STAR_DESTROYER );
 	
@@ -129,6 +131,13 @@ void Engine::test()
 	//church->SetModel( Context->modelsManager->GetModel( CHURCH ) );
 
 
+	//dodawanie koœcio³a
+	StaticActor* gate = Actors.CreateActor< StaticActor >( GetTypeidName< StaticActor >(), EnableDisplay );
+	position = XMVectorSet( -300.0, 0.0, 500.0, 0.0 );
+	gate->Teleport( position );
+
+	gate->SetModel( Context->modelsManager->GetModel( GATE ) );
+
 	//for( unsigned int i = 0; i < 100; ++i )
 	//{
 	//	DynamicActor* cloneFighter = Actors.CreateActor< DynamicActor >( "DynamicActor", EnableDisplay );
@@ -195,6 +204,9 @@ void Engine::test()
 
 	Size VadersTieSize = VaderTIE->MemorySize();
 	Size StaticActorSize = sizeof( StaticActor );
+	Size dynamicActorSize = sizeof( DynamicActor );
+	Size complexActorSize = sizeof( ComplexActor );
+	Size ChildActorSize = sizeof( ChildActor );
 }
 
 /**@brief */

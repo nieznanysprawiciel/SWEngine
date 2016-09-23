@@ -7,6 +7,16 @@
 
 using namespace DirectX;
 
+
+enum FbxShadingModel
+{
+	HardwareShader,
+	Lambert,
+	Phong
+};
+
+
+
 ///@brief Kontruktr inicjuje obiekty FBX SDK, konieczne do wczytania modelu.
 FBX_loader::FBX_loader(ModelsManager* models_manager)
 	: ILoader(models_manager)
@@ -53,7 +63,10 @@ bool FBX_loader::can_load(const std::wstring& name)
 
 
 	// Porównujemy rozszerzenie z obs³ugiwanymi formatami plików
-	if ( compare_fun( extension, L".FBX" ) )
+	if ( compare_fun( extension, L".FBX" ) ||
+		 compare_fun( extension, L".OBJ" ) ||
+		 compare_fun( extension, L".3DS" ) ||
+		 compare_fun( extension, L".DXF" ) )
 		return true;
 
 	return false;
@@ -131,16 +144,20 @@ void FBX_loader::process_node(FbxNode* node)
 	FbxAMatrix transform_matrix = node->EvaluateGlobalTransform();
 	DirectX::XMFLOAT4X4 transformation;
 	for (int i = 0; i < 4; ++i)
+	{
 		for (int j = 0; j < 4; ++j)
 			transformation(i, j) = static_cast<float>(transform_matrix.Get(i, j));
+	}
 
 	//process_materials(node);		//dodajemy nowe materia³y do listy
 
 	for (int i = 0; i < node->GetNodeAttributeCount(); i++)
+	{
 		if ((node->GetNodeAttributeByIndex(i))->GetAttributeType() == FbxNodeAttribute::eMesh)
 		{//interesuj¹ nas tylko meshe
 			process_mesh(node, (FbxMesh*)node->GetNodeAttributeByIndex(i), transformation);
 		}
+	}
 	//
 
 	//rekurencyjnie schodzimy po drzewie
@@ -244,37 +261,15 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 		//teraz wszystkie inne przypadki; iterujemy po materia³ach
 		for ( int i = 0; i < material_count; ++i )
 		{
-			cur_model->BeginPart( );		// Te funkcje maj¹ otaczaæ dodawanie ka¿dego kolejnego parta
+			cur_model->BeginPart();		// Te funkcje maj¹ otaczaæ dodawanie ka¿dego kolejnego parta
 
-			// Obiekty do konwertowania stringów
-			typedef std::codecvt_utf8<wchar_t> convert_type;
-			std::wstring_convert<convert_type, wchar_t> converter;
+			FbxSurfaceMaterial* material = static_cast<FbxSurfaceMaterial*>( node->GetMaterial( i ) );
+			ProcessMaterial( material );
 
-			// Pobieramy materia³
-			FbxSurfacePhong* material = static_cast<FbxSurfacePhong*>(node->GetMaterial( i ));
-			MaterialObject engine_material;							// Ten materia³ jest tylko tymczasowy
-			CopyMaterial( engine_material, *material );			// Konwertujemy z formatu FBX na MaterialObject
-			// Dodajemy do silnika, podajemy w drugim parametrze nazwê materia³u, która zostanie doklejona do œcie¿ki pliku
-			cur_model->add_material( &engine_material, converter.from_bytes( material->GetName( )) );
-
-			if ( material->Diffuse.GetSrcObjectCount() > 0 )
-			{
-				FbxFileTexture* texture = static_cast<FbxFileTexture*>(material->Diffuse.GetSrcObject());
-				if ( texture != nullptr )
-				{
-					filesystem::Path texPath = texture->GetRelativeFileName();
-					texPath = m_filePath.GetParent() / texPath;
-					cur_model->add_texture( converter.from_bytes( texPath.String() ), TextureUse::TEX_DIFFUSE );
-				}
-					// Je¿eli dodawanie siê nie uda, to tekstura pozostanie nullptrem
-				//else //tutaj tekstura ma byæ nullem, ale tak siê dzieje domyœlnie
-			}
-			//else //tutaj tekstura ma byæ nullem, ale tak siê dzieje domyœlnie
-
-			cur_model->add_vertex_buffer( triangles[i]->data( ), (unsigned int)triangles[i]->size( ));
+			cur_model->add_vertex_buffer( triangles[ i ]->data(), (unsigned int)triangles[ i ]->size() );
 			cur_model->add_transformation( transformation );
 
-			cur_model->EndPart( );		// Te funkcje maj¹ otaczaæ dodawanie ka¿dego kolejnego parta
+			cur_model->EndPart();		// Te funkcje maj¹ otaczaæ dodawanie ka¿dego kolejnego parta
 		}
 	}
 
@@ -283,6 +278,56 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 		delete triangles[i];
 	delete[] triangles;
 }
+
+/**@brief Extracts material info from surface.*/
+void		FBX_loader::ProcessMaterial		( FbxSurfaceMaterial* FBXmaterial )
+{
+	FbxShadingModel model;
+
+	// Get the implementation to see if it's a hardware shader.
+	const FbxImplementation* lImplementation = GetImplementation( FBXmaterial, FBXSDK_IMPLEMENTATION_HLSL );
+
+	if( lImplementation )
+	{
+		assert( !"Hardware shader currently not supported" );
+		model = FbxShadingModel::HardwareShader;
+	}
+	else if( FBXmaterial->GetClassId().Is( FbxSurfacePhong::ClassId ) )
+		model = FbxShadingModel::Phong;
+	else if( FBXmaterial->GetClassId().Is( FbxSurfaceLambert::ClassId ) )
+		model = FbxShadingModel::Lambert;
+	else
+		assert( !"Wrong shading model" );
+
+
+	MaterialObject engineMaterial;		// Ten materia³ jest tylko tymczasowy
+	FbxSurfaceLambert* surfMaterial = static_cast<FbxSurfaceLambert*>( FBXmaterial );
+
+	engineMaterial.SetNullMaterial();
+
+	if( model == FbxShadingModel::Lambert )
+		CopyMaterial( engineMaterial, *surfMaterial );
+	else
+		CopyMaterial( engineMaterial, *static_cast<FbxSurfacePhong*>( surfMaterial ) );
+
+	// Dodajemy do silnika, podajemy w drugim parametrze nazwê materia³u, która zostanie doklejona do œcie¿ki pliku
+	cur_model->add_material( &engineMaterial, Convert::FromString< std::wstring >( std::string( surfMaterial->GetName() ), std::wstring( L"" ) ) );
+
+	if( surfMaterial->Diffuse.GetSrcObjectCount() > 0 )
+	{
+		FbxFileTexture* texture = static_cast<FbxFileTexture*>( surfMaterial->Diffuse.GetSrcObject() );
+		if( texture != nullptr )
+		{
+			filesystem::Path texPath = texture->GetRelativeFileName();
+			texPath = m_filePath.GetParent() / texPath;
+			cur_model->add_texture( Convert::FromString< std::wstring >( texPath.String(), std::wstring( L"" ) ), TextureUse::TEX_DIFFUSE );
+		}
+			// Je¿eli dodawanie siê nie uda, to tekstura pozostanie nullptrem
+		//else //tutaj tekstura ma byæ nullem, ale tak siê dzieje domyœlnie
+	}
+	//else //tutaj tekstura ma byæ nullem, ale tak siê dzieje domyœlnie
+}
+
 
 
 /**@brief Dla podanego polygona odczytujemy jego indeks materia³u. Je¿eli nie ma ¿adnych materia³ów przypisanych
@@ -354,155 +399,59 @@ void FBX_loader::read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_
 	}
 }
 
-#ifndef __UNUSED
-/**@depracated Wersja dla DirectX11 nie potrzebuje ju¿ materia³ów DirectX9
-@brief Kopiujemy materia³ konwertuj¹c go z formatu u¿ywanego przez FBX SDK do formatu directX.*/
-void FBX_loader::copy_material(D3DMATERIAL9& directXmaterial, const FbxSurfacePhong& FBXmaterial)
+
+
+/**@brief Copies material from FBX Lambert suface.*/
+void		FBX_loader::CopyMaterial		( MaterialObject& engineMaterial, const FbxSurfaceLambert& FBXmaterial )
 {
-	FbxDouble3 diffuse = static_cast<FbxDouble3>(FBXmaterial.Diffuse.Get());
-	FbxDouble3 ambient = static_cast<FbxDouble3>(FBXmaterial.Ambient.Get());
-	FbxDouble3 emissive = static_cast<FbxDouble3>(FBXmaterial.Emissive.Get());
-	FbxDouble3 specular = static_cast<FbxDouble3>(FBXmaterial.Specular.Get());
-	FbxDouble diffuse_factor = static_cast<FbxDouble>(FBXmaterial.DiffuseFactor.Get());
-	FbxDouble ambient_factor = static_cast<FbxDouble>(FBXmaterial.AmbientFactor.Get());
-	FbxDouble emissive_factor = static_cast<FbxDouble>(FBXmaterial.EmissiveFactor.Get());
-	FbxDouble specular_factor = static_cast<FbxDouble>(FBXmaterial.SpecularFactor.Get());
-	FbxDouble power = static_cast<FbxDouble>(FBXmaterial.Shininess.Get());
-	FbxDouble transparent = static_cast<FbxDouble>(FBXmaterial.TransparencyFactor.Get());
+	FbxDouble3 diffuse = static_cast<FbxDouble3>( FBXmaterial.Diffuse.Get() );
+	FbxDouble3 ambient = static_cast<FbxDouble3>( FBXmaterial.Ambient.Get() );
+	FbxDouble3 emissive = static_cast<FbxDouble3>( FBXmaterial.Emissive.Get() );
+	FbxDouble transparent = static_cast<FbxDouble>( FBXmaterial.TransparencyFactor.Get() );
 
-	directXmaterial.Diffuse.a = static_cast<float>(transparent);
+	FbxDouble diffuseFactor = static_cast<FbxDouble>( FBXmaterial.DiffuseFactor.Get() );
+	FbxDouble ambientFactor = static_cast<FbxDouble>( FBXmaterial.AmbientFactor.Get() );
+	FbxDouble emissiveFactor = static_cast<FbxDouble>( FBXmaterial.EmissiveFactor.Get() );
 
-	directXmaterial.Diffuse.r = static_cast<float>(diffuse[0] * diffuse_factor);
-	directXmaterial.Diffuse.g = static_cast<float>(diffuse[1] * diffuse_factor);
-	directXmaterial.Diffuse.b = static_cast<float>(diffuse[2] * diffuse_factor);
+	engineMaterial.Diffuse.w = static_cast<float>( transparent );
 
-	directXmaterial.Ambient.r = static_cast<float>(ambient[0] * ambient_factor);
-	directXmaterial.Ambient.g = static_cast<float>(ambient[1] * ambient_factor);
-	directXmaterial.Ambient.b = static_cast<float>(ambient[2] * ambient_factor);
+	engineMaterial.Diffuse.x = static_cast<float>( diffuse[ 0 ] * diffuseFactor );
+	engineMaterial.Diffuse.y = static_cast<float>( diffuse[ 1 ] * diffuseFactor );
+	engineMaterial.Diffuse.z = static_cast<float>( diffuse[ 2 ] * diffuseFactor );
 
-	directXmaterial.Emissive.r = static_cast<float>(emissive[0] * emissive_factor);
-	directXmaterial.Emissive.g = static_cast<float>(emissive[1] * emissive_factor);
-	directXmaterial.Emissive.b = static_cast<float>(emissive[2] * emissive_factor);
+	engineMaterial.Ambient.x = static_cast<float>( ambient[ 0 ] * ambientFactor );
+	engineMaterial.Ambient.y = static_cast<float>( ambient[ 1 ] * ambientFactor );
+	engineMaterial.Ambient.z = static_cast<float>( ambient[ 2 ] * ambientFactor );
 
-	directXmaterial.Specular.r = static_cast<float>(specular[0] * specular_factor);
-	directXmaterial.Specular.g = static_cast<float>(specular[1] * specular_factor);
-	directXmaterial.Specular.b = static_cast<float>(specular[2] * specular_factor);
+	engineMaterial.Emissive.x = static_cast<float>( emissive[ 0 ] * emissiveFactor );
+	engineMaterial.Emissive.y = static_cast<float>( emissive[ 1 ] * emissiveFactor );
+	engineMaterial.Emissive.z = static_cast<float>( emissive[ 2 ] * emissiveFactor );
 
-	directXmaterial.Power = static_cast<float>(power);
+	engineMaterial.Specular.x = 0.0f;
+	engineMaterial.Specular.y = 0.0f;
+	engineMaterial.Specular.z = 0.0f;
+
+	engineMaterial.Power = 1.0f;
 }
-
-#endif
 
 /**@brief Kopiujemy materia³ konwertuj¹c go z formatu u¿ywanego przez FBX SDK do formatu u¿ywanego w silniku.*/
-void FBX_loader::CopyMaterial( MaterialObject& engine_material, const FbxSurfacePhong& FBXmaterial )
+void		FBX_loader::CopyMaterial		( MaterialObject& engineMaterial, const FbxSurfacePhong& FBXmaterial )
 {
-	FbxDouble3 diffuse = static_cast<FbxDouble3>(FBXmaterial.Diffuse.Get( ));
-	FbxDouble3 ambient = static_cast<FbxDouble3>(FBXmaterial.Ambient.Get( ));
-	FbxDouble3 emissive = static_cast<FbxDouble3>(FBXmaterial.Emissive.Get( ));
-	FbxDouble3 specular = static_cast<FbxDouble3>(FBXmaterial.Specular.Get( ));
-	FbxDouble diffuse_factor = static_cast<FbxDouble>(FBXmaterial.DiffuseFactor.Get( ));
-	FbxDouble ambient_factor = static_cast<FbxDouble>(FBXmaterial.AmbientFactor.Get( ));
-	FbxDouble emissive_factor = static_cast<FbxDouble>(FBXmaterial.EmissiveFactor.Get( ));
-	FbxDouble specular_factor = static_cast<FbxDouble>(FBXmaterial.SpecularFactor.Get( ));
-	FbxDouble power = static_cast<FbxDouble>(FBXmaterial.Shininess.Get( ));
-	FbxDouble transparent = static_cast<FbxDouble>(FBXmaterial.TransparencyFactor.Get( ));
+	CopyMaterial( engineMaterial, static_cast<const FbxSurfaceLambert&>( FBXmaterial ) );
 
-	engine_material.Diffuse.w = static_cast<float>(transparent);
+	if( !FBXmaterial.Specular.IsValid() )
+		assert( false );
 
-	engine_material.Diffuse.x = static_cast<float>(diffuse[0] * diffuse_factor);
-	engine_material.Diffuse.y = static_cast<float>(diffuse[1] * diffuse_factor);
-	engine_material.Diffuse.z = static_cast<float>(diffuse[2] * diffuse_factor);
+	FbxDouble3 specular = static_cast<FbxDouble3>( FBXmaterial.Specular.Get() );
+	FbxDouble specularFactor = static_cast<FbxDouble>( FBXmaterial.SpecularFactor.Get() );
+	FbxDouble power = static_cast<FbxDouble>( FBXmaterial.Shininess.Get() );
 
-	engine_material.Ambient.x = static_cast<float>(ambient[0] * ambient_factor);
-	engine_material.Ambient.y = static_cast<float>(ambient[1] * ambient_factor);
-	engine_material.Ambient.z = static_cast<float>(ambient[2] * ambient_factor);
+	engineMaterial.Specular.x = static_cast<float>( specular[ 0 ] * specularFactor );
+	engineMaterial.Specular.y = static_cast<float>( specular[ 1 ] * specularFactor );
+	engineMaterial.Specular.z = static_cast<float>( specular[ 2 ] * specularFactor );
 
-	engine_material.Emissive.x = static_cast<float>(emissive[0] * emissive_factor);
-	engine_material.Emissive.y = static_cast<float>(emissive[1] * emissive_factor);
-	engine_material.Emissive.z = static_cast<float>(emissive[2] * emissive_factor);
-
-	engine_material.Specular.x = static_cast<float>(specular[0] * specular_factor);
-	engine_material.Specular.y = static_cast<float>(specular[1] * specular_factor);
-	engine_material.Specular.z = static_cast<float>(specular[2] * specular_factor);
-
-	engine_material.Power = static_cast<float>(power);
+	engineMaterial.Power = static_cast<float>( power );
 }
 
 
-//--------------------------------------------------------------------------------------//
-//									juz nieu¿ywane										//
-//--------------------------------------------------------------------------------------//
 
-#ifndef __UNUSED
-
-/*Funkcja sprawdzi czy podanego mesha ju¿ wczeœniej nie przetwarzaliœmy. Je¿eli ju¿ taki by³, to wystarczy
-wzi¹æ jego wskaŸnik i powi¹zaæ z now¹ macierza transforamcji. (Macierz transformacji nie mo¿e byæ taka sama
-jak wczesniej, bo to by oznacza³o, ¿e wszystkie wierzcho³ki siê ze soba pokrywj¹, co nie ma sensu).
-
-Je¿eli znajdziemy mesha na liœcie, to zostanie on przetworzony, a funkcja wyjdzie z wartoœci¹ TRUE.
-Je¿eli nie znajdziemy mesha, to funkcja wyjdzie z wartoœci¹ FALSE, nie ruszaj¹c mesha.*/
-bool FBX_loader::process_existing_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLOAT4X4& transformation)
-{
-
-	return FALSE;
-}
-
-/*Sprawdzamy czy zarejestrowaliœmy ju¿ sobie lokalnie taki materia³.
-Podejemy wskaŸnik FbxSurfacePhong* w parametrze, a dostajemy wskaŸnik na materia³ w zmiennej directXmaterial.
-Zwraca TRUE je¿eli materia³ ju¿ istnia³.
-Je¿eli materia³ nie istnia³ w pierwszym parametrze znajdzie siê nullptr.*/
-
-bool FBX_loader::check_if_exists(MaterialObject** directXmaterial, FbxSurfacePhong* FBXmaterial)
-{
-	for (unsigned int i = 0; i < materials.size(); ++i)
-		if (materials[i].second == FBXmaterial)
-		{
-			*directXmaterial = materials[i].first;
-			return TRUE;
-		}
-	*directXmaterial = nullptr;
-	return FALSE;
-}
-
-
-/*Zapisujemy parê MaterialObject-FBXmaterial na liœcie w celu ³atwiejszego dostêpu.*/
-void FBX_loader::add_pair(MaterialObject* directXmaterial, FbxSurfacePhong* FBXmaterial)
-{
-	materials.push_back(std::make_pair(directXmaterial, FBXmaterial));
-}
-
-
-/*Pobieramy materialy przypisane do danego node'a, dodajemy do obiektu ModelsManager.
-Ponadto tworzymy listê ³¹cz¹c¹ wskaŸniki na obiekty materia³ów w ModelsManager
-z ich tymczasowymi odpowiednikami w pliku. Dziêki temu napotykaj¹c ten sam materia³
-jesteœmy w stanie od razu stwierdziæ, jaki wskaŸnik w tej sytuacji przypisaæ, bez odpytywania
-wy¿szej instancji.*/
-void FBX_loader::process_materials(FbxNode* node)
-{
-	//pobieramy materia³y przypisane do danego node'a
-	for (int i = 0; i < node->GetMaterialCount(); i++)
-	{
-		MaterialObject* directXmaterial_ptr;
-
-		//tu trzeba bêdzie potem coœ zrobiæ, bo mo¿e byæ jeszcze FbxLambertSurface
-		FbxSurfacePhong* material = (FbxSurfacePhong*)node->GetMaterial(i);
-		if (!check_if_exists(&directXmaterial_ptr, material))	//je¿eli mamy ju¿ zarejestrowany materia³, to nic nie robimy na tym etapie
-		{//materia³u nie mamy zapisanego, wiêc tworzymy
-			D3DMATERIAL9 directXmaterial;
-			unsigned int id;							//ModelsManager zwróci nam identyfikator materia³u do tej zmiennej
-			copy_material(directXmaterial, *material);	//konwertujemy materia³
-
-			//próbujemy dodaæ materia³ do ModelsManagera
-			//Mo¿e byæ sytuacja, ¿e ktoœ zrobi³ dwa takie same materia³y, wtedy dostaniemy wskaŸnik na materia³,
-			//który ju¿ wczesniej istnia³. Generalnie ta sytuacja nam nie przeszkadza. Wa¿ne ¿e i tak musimy sobie
-			//zapisac parê materia³-MaterialObject, ¿eby móc siê potem odwo³ywaæ.
-			MaterialObject* material_object = models_manager->AddMaterial(directXmaterial, id);
-
-			//dodajemy powi¹zanie materia³u z odpowiadaj¹cym mu obiektem
-			add_pair(material_object, material);
-		}
-
-	}
-}
-
-#endif

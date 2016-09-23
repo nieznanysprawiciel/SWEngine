@@ -124,7 +124,7 @@ float4 pixel_shader( PS_INPUT input) : SV_Target
 	float3 normal = normalize( input.Norm );
 	float3 viewDir = normalize( input.WorldPosition - CameraPosition );
 
-	PhongResult phongResult = ComputeLightPhong( input.WorldPosition, input.Norm, viewDir );
+	PhongResult phongResult = ComputeLightPhong( input.WorldPosition, normal, viewDir );
 	
 	float3 texSample = texDiffuse.Sample( defaultSampler, input.Tex );
 	
