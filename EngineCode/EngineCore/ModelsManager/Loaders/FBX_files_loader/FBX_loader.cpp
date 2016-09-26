@@ -1,6 +1,8 @@
 #include "EngineCore/stdafx.h"
 #include "FBX_loader.h"
 
+
+
 #include "Common/Converters.h"
 
 #include "Common/MemoryLeaks.h"
@@ -8,13 +10,16 @@
 using namespace DirectX;
 
 
-enum FbxShadingModel
-{
-	HardwareShader,
-	Lambert,
-	Phong
-};
 
+
+/**@brief Suported file extensions which can be load by loader.*/
+const char*	SupportedExtensions[] =
+{
+	".FBX",
+	".OBJ",
+	".3DS",
+	".DXF"
+};
 
 
 ///@brief Kontruktr inicjuje obiekty FBX SDK, konieczne do wczytania modelu.
@@ -71,6 +76,8 @@ bool FBX_loader::can_load(const std::wstring& name)
 
 	return false;
 }
+
+
 
 
 /*Funkcja wczytuje plik podany w parametrze, a odpowienie dane zapisuje w obiekcie podanym w pierwszym parametrze.
@@ -454,4 +461,135 @@ void		FBX_loader::CopyMaterial		( MaterialObject& engineMaterial, const FbxSurfa
 }
 
 
+//====================================================================================//
+//			New loading	
+//====================================================================================//
+
+/**@brief Loads file.*/
+Nullable< MeshInitData >	FBX_loader::LoadMesh	( const filesystem::Path& fileName )
+{
+	FbxImporter* FbxImporter = FbxImporter::Create( fbx_manager, "" );
+	m_filePath = fileName;
+
+	if( !FbxImporter->Initialize( m_filePath.String().c_str(), -1, fbx_manager->GetIOSettings() ) )
+	{
+		auto& status = FbxImporter->GetStatus();
+		return status.GetErrorString();
+	}
+
+	FbxScene* scene = FbxScene::Create( fbx_manager, "Scene" );
+	FbxImporter->Import( scene );
+	FbxImporter->Destroy();
+
+	// Triangulate scene before loading.
+	FbxGeometryConverter triangulator( fbx_manager );
+	triangulator.Triangulate( scene, true );
+
+	//FbxNode* root = scene->GetRootNode();
+	//if( root == nullptr )
+	//	return "Root node is nullptr";
+
+
+	Nullable< FbxMeshCollection > meshData;
+	for( int i = 0; i < scene->GetNodeCount(); i++ )
+		meshData = ProcessNode( scene->GetNode( i ), meshData );
+
+	ReturnIfInvalid( meshData );
+
+	FbxAssetsCollection assets;
+	FbxMaterialsCollection& materials = assets.Material;
+	FbxTexturesCollection& textures = assets.Textures;
+	materials.reserve( scene->GetMaterialCount() );
+	textures.reserve( scene->GetTextureCount() );
+
+	for( int i = 0; i < scene->GetMaterialCount(); ++i )
+		materials.push_back( scene->GetMaterial( i ) );
+
+	for( int i = 0; i < scene->GetTextureCount(); ++i )
+		textures.push_back( scene->GetTexture( i ) );
+
+
+
+	return Nullable< MeshInitData >();
+}
+
+/**@brief Returns true if loader can load specific file.
+
+This function uses file extension to determine if it can load file.*/
+bool						FBX_loader::CanLoad		( const filesystem::Path& fileName )
+{
+	std::string extension = fileName.GetExtension();
+	std::transform( extension.begin(), extension.end(), extension.begin(), toupper );
+
+	for( auto ext : SupportedExtensions )
+	{
+		if( extension == ext )
+			return true;
+	}
+	return false;
+}
+
+/**@brief Process single node.*/
+Nullable< FbxMeshCollection >		FBX_loader::ProcessNode		( FbxNode* node, Nullable< FbxMeshCollection >& meshes )
+{
+	ReturnIfInvalid( meshes );
+
+	if( node == nullptr )
+		return std::move( meshes );
+
+	// Compute transform matrix for this node.
+	FbxAMatrix transformMatrix = node->EvaluateGlobalTransform();
+	DirectX::XMFLOAT4X4 transformation;
+	for( int i = 0; i < 4; ++i )
+	{
+		for( int j = 0; j < 4; ++j )
+			transformation( i, j ) = static_cast<float>( transformMatrix.Get( i, j ) );
+	}
+
+	for( int i = 0; i < node->GetNodeAttributeCount(); i++ )
+	{
+		if( ( node->GetNodeAttributeByIndex( i ) )->GetAttributeType() == FbxNodeAttribute::eMesh )
+		{
+			// Look only for meshes. Ignore rest
+			FbxNodeMesh mesh;
+			mesh.Transformation = transformation;
+			mesh.Node = node;
+			mesh.Mesh = (FbxMesh*)node->GetNodeAttributeByIndex( i );
+
+			meshes.Value.Segments.push_back( mesh );
+		}
+	}
+
+	//for( int i = 0; i < node->GetChildCount(); i++ )
+	//	meshes = ProcessNode( node->GetChild( i ), meshes );
+
+	return std::move( meshes );
+}
+
+
+/**@brief Process single mesh.*/
+Nullable< MeshInitData >		FBX_loader::ProcessMesh		( FbxNodeMesh& nodeData, FbxAssetsCollection& assets, Nullable< MeshInitData >& mesh )
+{
+	ReturnIfInvalid( mesh );
+
+	FbxNode* fbxNode = nodeData.Node;
+	FbxMesh* fbxMesh = nodeData.Mesh;
+
+	//fbxMesh->GetCo
+
+	int materialsCount = fbxNode->GetMaterialCount();
+	std::vector< VertexNormalTexCord1 > triangles;
+	unsigned int polygonsCount = fbxMesh->GetPolygonCount();
+	unsigned int vertexCounter = 0;			// For FbxGeometryElement::eByPolygonVertex mapping type.
+	unsigned int polygonCounter = 0;		// For FbxGeometryElement::eByPolygon maping type.
+
+	FbxGeometryElementMaterial* material = fbxMesh->GetElementMaterial();
+	FbxGeometryElementNormal* normal = fbxMesh->GetElementNormal();
+	FbxGeometryElementUV* uv = fbxMesh->GetElementUV();
+
+	//fbxMesh->Get
+
+
+	return Nullable<MeshInitData>();
+}
 

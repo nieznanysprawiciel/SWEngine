@@ -18,10 +18,17 @@ drugie, ¿eby wykorzystywaæ wszystkie jego mo¿liwoœci.*/
 
 #include "EngineCore/ModelsManager/Loaders/ILoader.h"
 #include "fbxsdk.h"
+#include "FbxHelperStructs.h"
 
 #include "Common/System/Path.h"
 
+
+struct FbxMeshCollection;
+
+
 /**@brief Klasa s³u¿y do wczytywania plików w formacie Autodesk FBX.
+
+
 @ingroup MakingLoaders*/
 class FBX_loader	:	public ILoader
 {
@@ -40,6 +47,9 @@ public:
 	bool can_load( const std::wstring& name ) override;
 
 
+	Nullable< MeshInitData >		LoadMesh	( const filesystem::Path& fileName ) override;
+	bool							CanLoad		( const filesystem::Path& fileName ) override;
+
 private:
 	void		process_node( FbxNode* node );
 	void		process_mesh( FbxNode* node, FbxMesh* mesh, const DirectX::XMFLOAT4X4& transformation );
@@ -51,5 +61,10 @@ private:
 	void		CopyMaterial		( MaterialObject& engineMaterial, const FbxSurfaceLambert& FBXmaterial );
 	void		CopyMaterial		( MaterialObject& engineMaterial, const FbxSurfacePhong& FBXmaterial );
 	void		ProcessMaterial		( FbxSurfaceMaterial* FBXmaterial );
+
+private:
+
+	Nullable< FbxMeshCollection >	ProcessNode		( FbxNode* node, Nullable< FbxMeshCollection >& meshes );
+	Nullable< MeshInitData >		ProcessMesh		( FbxNodeMesh& nodeData, FbxAssetsCollection& assets, Nullable< MeshInitData >& mesh );
 };
 

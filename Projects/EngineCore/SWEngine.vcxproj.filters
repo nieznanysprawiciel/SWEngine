@@ -554,6 +554,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Rendering\LightsApi.h">
       <Filter>EngineCore\UserApi\Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\FBX_files_loader\FbxHelperStructs.h">
+      <Filter>EngineCore\ModelsManagment\Loaders\Mesh\SWMesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">

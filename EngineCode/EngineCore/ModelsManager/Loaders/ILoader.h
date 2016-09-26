@@ -70,6 +70,6 @@ public:
 	virtual LoaderResult load_mesh( Model3DFromFile* new_file_mesh, const std::wstring& name ) = 0;
 	//virtual void load_animation(const std::string& name) = 0;
 
-	Nullable< MeshInitData >		LoadMesh	( const filesystem::Path& fileName ) {}
-	bool								CanLoad		( const filesystem::Path& fileName ) {}
+	virtual Nullable< MeshInitData >		LoadMesh	( const filesystem::Path& fileName ) { return "Function should be overriden in derived class."; }
+	virtual bool							CanLoad		( const filesystem::Path& fileName ) { return false; }
 };
