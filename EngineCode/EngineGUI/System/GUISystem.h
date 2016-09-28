@@ -2,6 +2,7 @@
 
 #include "Common/EngineObject.h"
 #include "HostWindow.h"
+#include "EngineGUI/System/Windows/INativeGUI.h"
 
 
 namespace GUI
@@ -51,13 +52,14 @@ protected:
 
 	EngineObject*				m_dataContext;
 
+	INativeGUI*					m_nativeGUI;
 	std::vector< HostWindow* >	m_windows;
 
 	CommandLineArgs				m_cmdArgs;
 
 public:
 	explicit		GUISystem		( int argc, char** argv );
-					~GUISystem		() = default;
+					~GUISystem		();
 
 	int				MainLoop		();
 
@@ -69,6 +71,9 @@ public:
 	int				NumCommandLineArgs	();
 	const char*		CommandLineArg		( int num );
 	const char*		ProgramPath			();
+
+private:
+	void			Init			();
 
 public:
 	static GUISystem&	Get			();

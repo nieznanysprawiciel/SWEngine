@@ -31,6 +31,9 @@
     <Filter Include="InputLibrary">
       <UniqueIdentifier>{556b6893-e638-4372-b2c8-8810419333b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineGUI\System\Windows\WinAPI">
+      <UniqueIdentifier>{412a1947-6828-4e73-ad19-dae56ea8d593}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h">
@@ -117,6 +120,15 @@
     <ClInclude Include="..\..\EngineCode\EngineGUI\System\CommonTypes\CommonTypes.h">
       <Filter>EngineGUI\System\CommonTypes</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Windows\INativeGUI.h">
+      <Filter>EngineGUI\System\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Windows\WinAPI\Win32ApiWindow.h">
+      <Filter>EngineGUI\System\Windows\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Windows\WinAPI\WinAPIGUI.h">
+      <Filter>EngineGUI\System\Windows\WinAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineGUI\Controls\IControl.cpp">
@@ -163,6 +175,15 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\KeyEventArgs.cpp">
       <Filter>EngineGUI\System\Events\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Windows\WinAPI\Win32ApiWindow.cpp">
+      <Filter>EngineGUI\System\Windows\WinAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Windows\WinAPI\WinAPIGUI.cpp">
+      <Filter>EngineGUI\System\Windows\WinAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Initializers.cpp">
+      <Filter>EngineGUI\System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

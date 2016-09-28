@@ -8,26 +8,67 @@
 namespace GUI
 {
 
+/// @todo This should be moved domewhere else.
+INativeGUI*			CreateNativeGUI();
+
+
+
 GUISystem*			GUISystem::m_instance = nullptr;
 
 
+// ================================ //
+//
 GUISystem::GUISystem( int argc, char** argv )
 	:	m_cmdArgs( argc, argv )
 {
 	m_instance = this;
-
+	Init();
 }
 
+// ================================ //
+//
+GUISystem::~GUISystem()
+{
+	delete m_nativeGUI;
+}
+
+
+/**@brief */
+void GUISystem::Init()
+{
+	m_nativeGUI = CreateNativeGUI();
+	bool result = m_nativeGUI->Init();
+	assert( result );
+
+	NativeWindowDescriptor init( "My first window" );
+	auto window = m_nativeGUI->CreateWindow( init );
+	assert( window );
+
+	HostWindow* hostWindow = new HostWindow( window, nullptr );
+	m_windows.push_back( hostWindow );
+}
 
 /**@brief Application main loop.
 
 @see Application*/
 int					GUISystem::MainLoop()
 {
+	// Tests only
 	int size = sizeof( IControl );
 	int stringSize = sizeof( std::string );
 	int mapSize = sizeof( std::map< std::string, void* > );
 	int stateSize = sizeof( KeyState );
+
+// ================================ //
+//
+	bool end = false;
+	while( !end )
+	{
+		// Process native events.
+		end = m_nativeGUI->MainLoop( true );
+
+		// @todo Now display all objects.
+	}
 
 	return 0;
 }
@@ -72,6 +113,7 @@ const char* GUISystem::ProgramPath()
 {
 	return m_cmdArgs.ProgramName();
 }
+
 
 /**@brief */
 GUISystem&	GUISystem::Get()

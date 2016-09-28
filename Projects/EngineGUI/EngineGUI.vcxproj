@@ -169,7 +169,10 @@
     <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseEventArgs.h" />
     <ClInclude Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseWheelEventArgs.h" />
     <ClInclude Include="..\..\EngineCode\EngineGUI\System\HostWindow.h" />
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Windows\INativeGUI.h" />
     <ClInclude Include="..\..\EngineCode\EngineGUI\System\Windows\INativeWindow.h" />
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Windows\WinAPI\Win32ApiWindow.h" />
+    <ClInclude Include="..\..\EngineCode\EngineGUI\System\Windows\WinAPI\WinAPIGUI.h" />
     <ClInclude Include="..\..\EngineCode\EngineGUI\targetver.h" />
     <ClInclude Include="..\..\EngineCode\InputLibrary\Factory.h" />
     <ClInclude Include="..\..\EngineCode\InputLibrary\IInput.h" />
@@ -194,6 +197,9 @@
     <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseEventArgs.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineGUI\System\Events\Input\MouseWheelEventArgs.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineGUI\System\HostWindow.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Initializers.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Windows\WinAPI\Win32ApiWindow.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineGUI\System\Windows\WinAPI\WinAPIGUI.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

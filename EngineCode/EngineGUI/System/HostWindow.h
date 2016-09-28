@@ -26,8 +26,8 @@ private:
 	INativeWindow*				m_nativeWindow;
 	IInput*						m_input;
 
-	std::vector< IControl* >	m_mousePath;		///< Controls hierarchy that captured mouse at this moment.
-	std::vector< IControl* >	m_focusPath;		///< Controls hierarchy that have focus at this moment.
+	std::vector< IControl* >	m_mousePath;		///< Controls hierarchy that captured mouse in this frame.
+	std::vector< IControl* >	m_focusPath;		///< Controls hierarchy that have focus in this frame.
 	std::vector< IControl* >	m_invalidated;		///< Controls which needs to be redrawn in this frame.
 
 	std::vector< TopLevelControl* >		m_controlTree;	///< Top level controls.
