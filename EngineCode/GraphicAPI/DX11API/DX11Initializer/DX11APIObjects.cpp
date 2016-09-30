@@ -371,7 +371,7 @@ DX11_INIT_RESULT DX11APIObjects::init_DX11(
 	set_window_resolution( width, height );
 	_swap_chain_desc.OutputWindow = window;
 
-	result = init_devices( window, fullscreen, single_thread );	// Funkcja sama sprz¹ta po sobie
+	result = InitDevicesAndSwapChain( window, fullscreen, single_thread );	// Funkcja sama sprz¹ta po sobie
 	if ( result != DX11_INIT_OK )
 		return result;
 
@@ -432,7 +432,7 @@ DX11_INIT_RESULT DX11APIObjects::init_DX11( int width, int height, HWND window, 
 	set_window_resolution( width, height );
 	_swap_chain_desc.OutputWindow = window;
 
-	result = init_devices( window, fullscreen, singleThread );	// Funkcja sama sprz¹ta po sobie
+	result = InitDevicesAndSwapChain( window, fullscreen, singleThread );	// Funkcja sama sprz¹ta po sobie
 	if ( result != DX11_INIT_OK )
 		return result;
 
@@ -463,7 +463,7 @@ DX11_INIT_RESULT DX11APIObjects::init_DX11( int width, int height, HWND window, 
 @param[in] singleThread Ustawiæ na true, je¿eli mamy tylko jeden w¹tek, który tworzy wszystkie obiekty
 DirectXa typu bufory i shadery. Domyœlnie false.
 @return Zwraca jedn¹ z wartoœci DX11_INIT_RESULT.*/
-DX11_INIT_RESULT DX11APIObjects::init_devices( HWND window, bool fullscreen, bool single_thread )
+DX11_INIT_RESULT DX11APIObjects::InitDevicesAndSwapChain( HWND window, bool fullscreen, bool single_thread )
 {
 	if ( !this_ptr )
 		return NO_CLASS_INHERTIS_THIS_INTERFACE;
@@ -497,6 +497,7 @@ DX11_INIT_RESULT DX11APIObjects::init_devices( HWND window, bool fullscreen, boo
 
 	return DX11_INIT_OK;
 }
+
 
 /**@brief Ustawia viewport zgodny z aktualnie ustawionym deskryptorem.*/
 DX11_INIT_RESULT DX11APIObjects::init_viewport()

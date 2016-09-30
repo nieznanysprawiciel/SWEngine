@@ -23,9 +23,6 @@ private:
 	uint16			m_width;
 	uint16			m_height;
 
-	ResourcePtr< RenderTargetObject >	m_renderTarget;
-	ResourcePtr< SwapChain >			m_swapChain;
-
 public:
 	explicit			Win32ApiWindow	();
 						~Win32ApiWindow	();
@@ -33,15 +30,25 @@ public:
 
 	static Win32ApiWindow*		CreateWindowInstance	( NativeWindowDescriptor& descriptor );
 
-	// Inherited via INativeWindow
-	virtual ResourcePtr< RenderTargetObject >		GetRenderTarget		() override;
-	virtual ResourcePtr< SwapChain >				GetSwapChain		() override;
-
 private:
 	void			ShowAppWindow			();
 	void			HideAppWindow			();
 
 	bool			Initialize				( NativeWindowDescriptor& descriptor );
+
+
+	// Inherited via INativeWindow
+	virtual uint16				GetWidth		() override;
+	virtual uint16				GetHeght		() override;
+
+	virtual WindowHandler		GetHandle		() override;
+
+	virtual std::string			GetTitle		() override;
+
+	virtual void				Show			() override;
+	virtual void				Hide			() override;
+
+	virtual void				SetTitle		( const std::string & newTitle ) override;
 
 };
 

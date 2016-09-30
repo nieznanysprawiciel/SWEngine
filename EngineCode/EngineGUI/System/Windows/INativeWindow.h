@@ -73,9 +73,16 @@ public:
 	INativeWindow() = default;
 	~INativeWindow() = default;
 
+	virtual uint16				GetWidth	() = 0;
+	virtual uint16				GetHeght	() = 0;
 
-	virtual		ResourcePtr< RenderTargetObject >	GetRenderTarget		() = 0;
-	virtual		ResourcePtr< SwapChain >			GetSwapChain		() = 0;
+	virtual WindowHandler		GetHandle	() = 0;
+	virtual std::string			GetTitle	() = 0;
+
+	virtual void				Show		() = 0;
+	virtual void				Hide		() = 0;
+	
+	virtual void				SetTitle	( const std::string& newTitle ) = 0;
 };
 
 

@@ -55,5 +55,8 @@ public:
 
 
 	ResourcePtr< RenderTargetObject >		GetRenderTarget	()		{ return m_renderTarget; }
+
+	// Inherited via ResourceObject
+	virtual std::string		GetResourceName	() const override		{ return "SwapChain: " + m_renderTarget->GetResourceName(); }
 };
 

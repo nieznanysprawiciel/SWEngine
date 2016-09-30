@@ -5,6 +5,7 @@
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
+#include "Common/Nullable.h"
 
 #include "GraphicAPI/IGraphicAPIInitializer.h"
 #include "DX11APIObjects.h"
@@ -38,5 +39,8 @@ public:
 	virtual bool			InitAPI					( GraphicAPIInitData& initData ) override;
 	virtual void			ReleaseAPI				() override;
 	virtual void*			GetRenderTargetHandle	( RenderTargetObject* renderTarget ) override;
+
+private:
+	Nullable< bool >		InitDevices				( GraphicAPIInitData& initData );
 };
 

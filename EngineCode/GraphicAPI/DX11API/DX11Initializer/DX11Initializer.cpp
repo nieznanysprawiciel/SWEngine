@@ -4,6 +4,8 @@
 #include "../DX11Resources/DX11Texture.h"
 #include "DX11ConstantsMapper.h"
 
+//#include <comdef.h>
+
 #include "Common/MemoryLeaks.h"
 
 
@@ -37,14 +39,24 @@ bool DX11Initializer::InitAPI( GraphicAPIInitData& initData )
 {
 	set_depth_stencil_format( DX11ConstantsMapper::Get( initData.SwapChain.DepthStencilFormat ) );
 
-	DX11_INIT_RESULT result = init_DX11( initData.SwapChain.WindowWidth,
-										 initData.SwapChain.WindowHeight,
-										 (HWND)initData.SwapChain.WindowHandle,
-										 initData.SwapChain.FullScreen,
-										 initData.SingleThreaded );
+	DX11_INIT_RESULT result;
+	if( initData.CreateSwapChain )
+	{
+		result = init_DX11( initData.SwapChain.WindowWidth,
+							initData.SwapChain.WindowHeight,
+							(HWND)initData.SwapChain.WindowHandle,
+							initData.SwapChain.FullScreen,
+							initData.SingleThreaded );
 
-	if( result != DX11_INIT_RESULT::DX11_INIT_OK )
-		return false;
+		if( result != DX11_INIT_RESULT::DX11_INIT_OK )
+			return false;
+	}
+	else
+	{
+		auto result = InitDevices( initData );
+		if( !result.IsValid )
+			return false;
+	}
 
 	result = init_sampler();
 	if ( result != DX11_INIT_OK )
@@ -123,4 +135,32 @@ void* DX11Initializer::GetRenderTargetHandle( RenderTargetObject* renderTarget )
 		}
 	}
 	return nullptr;
+}
+
+/**@brief Creates only device and device context.*/
+Nullable< bool >	DX11Initializer::InitDevices	( GraphicAPIInitData& initData )
+{
+	UINT createDeviceFlags = 0;
+
+
+	if( initData.UseDebugLayer )
+		createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
+
+	if ( initData.SingleThreaded )
+		// Domyœlnie obiekt ID3D11Device jest synchronizowany, ale mo¿na to wy³¹czyæ
+		createDeviceFlags |= D3D11_CREATE_DEVICE_SINGLETHREADED;
+
+	auto result = D3D11CreateDevice( nullptr, D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_HARDWARE, nullptr, createDeviceFlags, _feature_levels, _num_feature_levels, D3D11_SDK_VERSION, &device, &_current_feature_level, &device_context );
+	if ( FAILED( result ) )
+		return "Creating device failed.";	//@todo Use _com_error( result ).ErrorMessage();
+
+
+	if( initData.UseDebugLayer )
+	{
+		result = device->QueryInterface( __uuidof( ID3D11Debug ), (void**)&debug_interface );
+		if ( FAILED( result ) )
+			return "Creating debug layer failed";
+	}
+
+	return true;
 }

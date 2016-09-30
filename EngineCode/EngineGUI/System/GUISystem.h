@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Common/EngineObject.h"
-#include "HostWindow.h"
+#include "GraphicAPI/IGraphicAPIInitializer.h"
 #include "EngineGUI/System/Windows/INativeGUI.h"
+
+#include "HostWindow.h"
 
 
 namespace GUI
@@ -30,17 +32,24 @@ struct CommandLineArgs
 
 Use example of GUI:
 @code
+#include "EngineGUI/System/GUISystem.h"
+#include "EngineGUI/System/Windows/WinAPI/WinAPIGUI.h"
 
-int main()
+#include "Application.h"
+
+int main( int argc, char** argv )
 {
-	YourMainApplicationClass mainClass;
-	
-	GUI::GUISystem app( argc, argv );
-	app.DataContext() = &mainClass;
+	Application app( argc, argv, GUI::WinAPIGUI::Create() );
+	app.Init();
 
 	return app.MainLoop();
 }
 @endcode
+
+You don't have to write main function. Instead use project templates for different platforms.
+To use gui implement Application class.
+
+@todo Supply project templates.
 */
 class GUISystem
 {
@@ -50,21 +59,20 @@ private:
 
 protected:
 
-	EngineObject*				m_dataContext;
+	IGraphicAPIInitializer*		m_graphicApi;	///< Contains object responsible for dealing with specifics graphic apis.
+	INativeGUI*					m_nativeGUI;	///< Native window system used to display main application window.
+	IInput*						m_input;		///< Input processor.
 
-	INativeGUI*					m_nativeGUI;
 	std::vector< HostWindow* >	m_windows;
 
 	CommandLineArgs				m_cmdArgs;
 
 public:
-	explicit		GUISystem		( int argc, char** argv );
-					~GUISystem		();
+	explicit		GUISystem		( int argc, char** argv, INativeGUI* gui );
+	virtual			~GUISystem		();
 
 	int				MainLoop		();
 
-
-	EngineObject*&	DataContext		();
 
 	Size			GetMemorySize	();
 
@@ -72,7 +80,15 @@ public:
 	const char*		CommandLineArg		( int num );
 	const char*		ProgramPath			();
 
-private:
+protected:
+	virtual	void	Initialize		();
+	virtual void	OnInitialized	() = 0;
+	virtual void	OnClosing		() = 0;
+	virtual void	OnIdle			() = 0;
+
+	void			DefaultInit		( uint16 width, uint16 height, const std::string& windowTitle );
+
+public:
 	void			Init			();
 
 public:

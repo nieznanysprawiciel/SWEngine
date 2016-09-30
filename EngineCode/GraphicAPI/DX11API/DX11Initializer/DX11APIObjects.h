@@ -63,7 +63,7 @@ Klasa daje te¿ mo¿liwoœæ kompilowania shaderów.*/
 
 class DX11APIObjects
 {
-private:
+protected:
 	static DX11APIObjects*			this_ptr;		///<Wa¿ne, ¿eby nie zainicjowac obiektu wielokrotnie.
 
 	static unsigned int				_window_width;
@@ -125,8 +125,8 @@ protected:	//public:	Inicjalizacje powinien zrobiæ obiekt, który dzidziczy po te
 
 
 	// Funkcje inicjuj¹ce
-	DX11_INIT_RESULT init_devices( HWND window, bool fullscreen, bool single_thread = true );
-	DX11_INIT_RESULT init_viewport();
+	DX11_INIT_RESULT InitDevicesAndSwapChain	( HWND window, bool fullscreen, bool single_thread = true );
+	DX11_INIT_RESULT init_viewport				();
 	DX11_INIT_RESULT init_z_buffer_and_render_target();
 	DX11_INIT_RESULT init_vertex_shader( const std::wstring& file_name, const std::string& shader_name );
 	DX11_INIT_RESULT init_pixel_shader( const std::wstring& file_name, const std::string& shader_name );

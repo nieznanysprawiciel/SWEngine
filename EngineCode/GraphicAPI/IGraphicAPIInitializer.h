@@ -33,11 +33,16 @@ struct SwapChainInitData
 {
 	uint16			WindowWidth;
 	uint16			WindowHeight;
-	uint32			WindowHandle;
+	WindowHandler	WindowHandle;
 	bool			FullScreen;
 	ResourceFormat	DepthStencilFormat;
 
-
+// ================================ //
+//
+	SwapChainInitData()
+	{
+		DefaultSettings();
+	}
 
 	void DefaultSettings()
 	{
@@ -55,11 +60,20 @@ struct GraphicAPIInitData
 {
 	SwapChainInitData	SwapChain;
 	bool				SingleThreaded;
+	bool				UseDebugLayer;
+	bool				CreateSwapChain;	// You can create SwapChain and main render target later.
 
+// ================================ //
+//
+	GraphicAPIInitData()
+	{
+		DefaultSettings();
+	}
 
 	void DefaultSettings()
 	{
 		SingleThreaded = true;
+		UseDebugLayer = false;
 	}
 };
 

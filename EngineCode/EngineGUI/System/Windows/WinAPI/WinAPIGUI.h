@@ -20,10 +20,13 @@ public:
 	// Inherited via INativeGUI
 	virtual bool				MainLoop		( bool blockingMode ) override;
 	virtual bool				Init			() override;
+	virtual IInput*				UseNativeInput	() override;
 	virtual INativeWindow*		CreateWindow	( NativeWindowDescriptor & descriptor ) override;
 
+	static WinAPIGUI*			Create			();
+
 private:
-	void			RegisterWindowClass		();
+	void					RegisterWindowClass		();
 
 public:
 	// Helpers

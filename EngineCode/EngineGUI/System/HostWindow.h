@@ -9,6 +9,7 @@
 #include <vector>
 #include <map>
 
+class IGraphicAPIInitializer;
 
 namespace GUI
 {
@@ -26,11 +27,16 @@ private:
 	INativeWindow*				m_nativeWindow;
 	IInput*						m_input;
 
+	EngineObject*				m_dataContext;
+
 	std::vector< IControl* >	m_mousePath;		///< Controls hierarchy that captured mouse in this frame.
 	std::vector< IControl* >	m_focusPath;		///< Controls hierarchy that have focus in this frame.
 	std::vector< IControl* >	m_invalidated;		///< Controls which needs to be redrawn in this frame.
 
 	std::vector< TopLevelControl* >		m_controlTree;	///< Top level controls.
+
+	ResourcePtr< RenderTargetObject >	m_renderTarget;
+	ResourcePtr< SwapChain >			m_swapChain;
 
 	///@name Controls info
 	///@{
@@ -43,17 +49,22 @@ private:
 
 protected:
 public:
-	explicit		HostWindow	( INativeWindow* nativeWindow, IInput* input );
+	explicit		HostWindow	( INativeWindow* nativeWindow, IInput* input, IGraphicAPIInitializer* graphicApi );
 					~HostWindow	() = default;
 
 
 	Size				GetMemorySize		();
 
 
+	EngineObject*&		DataContext			();
 	void				RemoveControl		( IControl* control );
 
 	void				RegisterControlName	( IControl* control, const std::string& name );
 	const std::string&	GetControlName		( IControl* control );
+
+
+	ResourcePtr< RenderTargetObject >	GetRenderTarget		();
+	ResourcePtr< SwapChain >			GetSwapChain		();
 };
 
 

@@ -1,6 +1,7 @@
 #include "GUISystem.h"
 
 #include "InputLibrary/KeyboardState.h"
+#include "GraphicAPI/ResourcesFactory.h"
 
 #include <map>
 #include <string>
@@ -18,34 +19,39 @@ GUISystem*			GUISystem::m_instance = nullptr;
 
 // ================================ //
 //
-GUISystem::GUISystem( int argc, char** argv )
+GUISystem::GUISystem( int argc, char** argv, INativeGUI* gui )
 	:	m_cmdArgs( argc, argv )
+	,	m_nativeGUI( gui )
 {
 	m_instance = this;
-	Init();
+	//DefaultInit();
 }
 
 // ================================ //
 //
 GUISystem::~GUISystem()
 {
+	m_graphicApi->ReleaseAPI();
+	delete m_graphicApi;
 	delete m_nativeGUI;
 }
 
 
-/**@brief */
+
+/**@brief Invoke this function in application entry point (main).*/
 void GUISystem::Init()
 {
-	m_nativeGUI = CreateNativeGUI();
-	bool result = m_nativeGUI->Init();
-	assert( result );
+	Initialize();		// Initialize subsystems.
+	OnInitialized();	// User initialization.
+}
 
-	NativeWindowDescriptor init( "My first window" );
-	auto window = m_nativeGUI->CreateWindow( init );
-	assert( window );
+/**@brief GUI subsystems initialization.
 
-	HostWindow* hostWindow = new HostWindow( window, nullptr );
-	m_windows.push_back( hostWindow );
+If you need specific gui initialization in your application override this function.
+You can set different GraphicApi or input api.*/
+void				GUISystem::Initialize()
+{
+	DefaultInit( 1024, 768, "Window Tittle" );
 }
 
 /**@brief Application main loop.
@@ -73,13 +79,31 @@ int					GUISystem::MainLoop()
 	return 0;
 }
 
-/**@brief Pozwala ustawiæ i pobraæ DataContext.
 
-DataContext zostanie przepropagowany do wszystkich kontrolek w hierarchii.*/
-EngineObject*&		GUISystem::DataContext()
+/**@brief */
+void				GUISystem::DefaultInit( uint16 width, uint16 height, const std::string& windowTitle )
 {
-	return m_dataContext;
+	// ResourceFactory creates api which is linked as library.
+	m_graphicApi = ResourcesFactory::CreateAPIInitializer();
+	GraphicAPIInitData graphicApiData;
+	graphicApiData.CreateSwapChain = false;		// We will create swap chain and render target later with window.
+
+	auto result = m_graphicApi->InitAPI( graphicApiData );
+	assert( result );
+
+	NativeWindowDescriptor init( windowTitle );
+	init.Height = height;
+	init.Width = width;
+
+	//m_input = m_nativeGUI->UseNativeInput();
+
+	auto nativeWindow = m_nativeGUI->CreateWindow( init );
+	assert( nativeWindow );
+
+	HostWindow* hostWindow = new HostWindow( nativeWindow, m_input, m_graphicApi );
+	m_windows.push_back( hostWindow );
 }
+
 
 /**@copydoc EngineObject::MemorySize*/
 Size				GUISystem::GetMemorySize()
@@ -113,6 +137,7 @@ const char* GUISystem::ProgramPath()
 {
 	return m_cmdArgs.ProgramName();
 }
+
 
 
 /**@brief */

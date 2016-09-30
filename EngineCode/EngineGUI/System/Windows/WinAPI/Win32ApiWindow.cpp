@@ -91,6 +91,8 @@ bool		Win32ApiWindow::Initialize	( NativeWindowDescriptor& descriptor )
 		return false;
 	}
 
+	SetWindowLongPtr( m_windowHandle, 0, (LONG_PTR)this );
+
 	if( descriptor.ShowWindow )
 		ShowAppWindow();
 
@@ -99,18 +101,51 @@ bool		Win32ApiWindow::Initialize	( NativeWindowDescriptor& descriptor )
 
 // ================================ //
 //
-ResourcePtr<RenderTargetObject> Win32ApiWindow::GetRenderTarget()
+uint16			Win32ApiWindow::GetWidth()
 {
-	return ResourcePtr<RenderTargetObject>();
+	return m_width;
 }
 
 // ================================ //
 //
-ResourcePtr<SwapChain> Win32ApiWindow::GetSwapChain()
+uint16			Win32ApiWindow::GetHeght()
 {
-	return ResourcePtr<SwapChain>();
+	return m_height;
 }
 
+// ================================ //
+//
+WindowHandler	Win32ApiWindow::GetHandle()
+{
+	return (WindowHandler)m_windowHandle;
+}
+
+// ================================ //
+//
+std::string		Win32ApiWindow::GetTitle()
+{
+	return Convert::ToString( m_title );
+}
+
+// ================================ //
+//
+void			Win32ApiWindow::Show()
+{
+	ShowAppWindow();
+}
+
+// ================================ //
+//
+void			Win32ApiWindow::Hide()
+{
+	HideAppWindow();
+}
+
+void			Win32ApiWindow::SetTitle		( const std::string& newTitle )
+{
+	m_title = Convert::FromString< std::wstring >( newTitle, L"" );
+	SetWindowText( m_windowHandle, m_title.c_str() );
+}
 
 
 

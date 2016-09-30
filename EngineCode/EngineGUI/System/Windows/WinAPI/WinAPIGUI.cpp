@@ -11,6 +11,19 @@ namespace GUI
 
 
 LRESULT CALLBACK		WindowProcedure		( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
+INativeWindow*			GetNativePointer	( HWND window );
+
+
+/**@brief Creates WinAPIGUI object.*/
+WinAPIGUI*		WinAPIGUI::Create()
+{
+	auto nativeGUI = new WinAPIGUI();
+	bool result = nativeGUI->Init();
+	assert( result );
+
+	return nativeGUI;
+}
+
 
 
 //====================================================================================//
@@ -26,6 +39,12 @@ const wchar_t*	WinAPIGUI::GetWindowClassName()
 	return WINDOW_CLASS_NAME;
 }
 
+IInput*			WinAPIGUI::UseNativeInput()
+{
+	assert( !"Implement me" );
+	return nullptr;
+}
+
 // WinAPI macros :(
 #undef CreateWindow
 
@@ -34,7 +53,6 @@ INativeWindow*	WinAPIGUI::CreateWindow		( NativeWindowDescriptor& descriptor )
 {
 	return Win32ApiWindow::CreateWindowInstance( descriptor );
 }
-
 
 
 //====================================================================================//
@@ -76,6 +94,12 @@ void		WinAPIGUI::PrintLastError()
 					(LPTSTR)&messageBuffer, 0, NULL );
 	OutputDebugString( (LPCTSTR)messageBuffer );
 	LocalFree( messageBuffer );
+}
+
+/**@brief Retrives INativeWindow pointer hidden in native window extra bytes.*/
+INativeWindow*		GetNativePointer( HWND window )
+{
+	return (INativeWindow*)GetWindowLongPtr( window, 0 );
 }
 
 

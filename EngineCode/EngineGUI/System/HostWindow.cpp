@@ -1,5 +1,6 @@
 #include "HostWindow.h"
 
+#include "GraphicAPI/IGraphicAPIInitializer.h"
 
 #include "CommonTypes/CommonTypes.h"
 
@@ -11,10 +12,12 @@ namespace GUI
 
 
 
-HostWindow::HostWindow( INativeWindow* nativeWindow, IInput* input )
+HostWindow::HostWindow( INativeWindow* nativeWindow, IInput* input, IGraphicAPIInitializer* graphicApi )
 	:	m_input( input )
 	,	m_nativeWindow( nativeWindow )
-{}
+{
+	// Create RenderTarget and SwapChain
+}
 
 
 
@@ -36,6 +39,14 @@ Size		HostWindow::GetMemorySize()
 		size += control->MemorySize();
 
 	return size;
+}
+
+/**@brief Pozwala ustawiæ i pobraæ DataContext.
+
+DataContext zostanie przepropagowany do wszystkich kontrolek w hierarchii.*/
+EngineObject*&		HostWindow::DataContext()
+{
+	return m_dataContext;
 }
 
 /**@brief Removes control from GUI system.*/
