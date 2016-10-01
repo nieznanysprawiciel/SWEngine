@@ -8,7 +8,7 @@ const char* ExtensionsList[] =
 };
 
 
-SWMeshLoader::SWMeshLoader( ModelsManager* modelsManager )
+SWMeshLoader::SWMeshLoader( AssetsManager* modelsManager )
 	: ILoader( modelsManager )
 {}
 

@@ -28,7 +28,7 @@ nie odbywa siê liniowo.*/
 template < class TYPE >
 class ResourceContainer
 {
-	friend class ModelsManager;
+	friend class AssetsManager;
 private:
 	unsigned int count;		///<Indentyfikator jaki zostanie przydzielony kolejnemy elementowi
 

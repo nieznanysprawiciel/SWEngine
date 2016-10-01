@@ -73,7 +73,7 @@ struct EngineContext
 	DisplayEngine*				displayEngine;			///<Wyœwietla obiekty na scenie
 	CollisionEngine*			collisionEngine;		///<Liczy kolizje
 	PhysicEngine*				physicEngine;			///<Liczy oddzia³ywania fizyczne
-	ModelsManager*				modelsManager;			///<Zarz¹dza modelami, teksturami i materia³ami
+	AssetsManager*				modelsManager;			///<Zarz¹dza modelami, teksturami i materia³ami
 	FableEngine*				fableEngine;			///<Zarz¹dza fabu³¹ gry, interakcjami obiektów itd. Odpowiada za treœæ
 	SoundEngine*				soundEngine;			///<Zarz¹dza muzyk¹ i dŸwiêkami
 	UI_Engine*					ui_engine;				///<Interfejs u¿ytkownika (tak¿e graficzny)

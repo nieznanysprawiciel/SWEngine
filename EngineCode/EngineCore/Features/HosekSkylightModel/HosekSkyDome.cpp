@@ -8,7 +8,7 @@ using namespace DirectX;
 
 
 
-HosekSkyDome::HosekSkyDome( ModelsManager* man )
+HosekSkyDome::HosekSkyDome( AssetsManager* man )
 : SkyDome( man )
 {
 	back_ind_buffer = nullptr;

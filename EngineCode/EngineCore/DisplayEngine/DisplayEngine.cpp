@@ -85,7 +85,7 @@ void DisplayEngine::InitRenderer( IRenderer* renderer )
 	m_renderers[0]->InitDepthStates();
 }
 
-void DisplayEngine::InitDisplayer( ModelsManager* assetsManager )
+void DisplayEngine::InitDisplayer( AssetsManager* assetsManager )
 {
 	modelsManager = assetsManager;
 

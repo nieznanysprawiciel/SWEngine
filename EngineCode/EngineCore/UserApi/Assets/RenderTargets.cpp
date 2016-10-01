@@ -12,7 +12,7 @@ RenderTargetObject*		RenderTargets::CreateSync	( const std::wstring& name, const
 	return Context->modelsManager->CreateRenderTarget( name, renderTargetDescriptor );
 }
 
-/**@copydoc ModelsManager::ListRenderTargets.*/
+/**@copydoc AssetsManager::ListRenderTargets.*/
 std::vector< ResourcePtr< RenderTargetObject > > RenderTargets::List()
 {
 	return Context->modelsManager->ListRenderTargets();

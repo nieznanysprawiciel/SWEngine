@@ -1,17 +1,16 @@
 #pragma once
-/**@file ModelsManager.h
+/**@file AssetsManager.h
 @author nieznanysprawiciel
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 
-@brief Plik zawiera deklaracjê klasy ModelsManager.
+@brief Plik zawiera deklaracjê klasy AssetsManager.
 */
 
-#include "GraphicAPI/MeshResources.h"
+#include "GraphicAPI/ResourceManager.h"
+
 #include "Model3DFromFile.h"		///< @deprecated
 #include "Assets/Meshes/MeshAsset.h"
-#include "ResourceContainer.h"
 #include "DefaultAssets.h"
-#include "Assets/BufferInitData.h"
 
 class Engine;
 class ILoader;
@@ -21,20 +20,20 @@ class ILoader;
 @ingroup EngineCore
 @brief Zarz¹dzanie zasobami jak vertex i pixel shadery, bufory, tekstury, materia³y, render targety i modele z plików.
 
-Do zarz¹dzania zasobami s³u¿y klasa @ref ModelsManager. Przechowuje ona wszystkie zasoby i jako jedyna ma prawo
+Do zarz¹dzania zasobami s³u¿y klasa @ref AssetsManager. Przechowuje ona wszystkie zasoby i jako jedyna ma prawo
 do kasowania posiadanych przez siebie obiektów. Wszystkie operacje typu wczytywanie zasobów odbywaj¹ siê
 poprzez wywo³anie odpowiednich funkcji tej klasy.
 
-@ref ModelsManager posiada tablicê loaderów (@ref ILoader), które s³u¿¹ do wczytywania plików z modelami.
+@ref AssetsManager posiada tablicê loaderów (@ref ILoader), które s³u¿¹ do wczytywania plików z modelami.
 Modele wczytane z plików umieszczane i przechowywane s¹ w klasie @ref Model3DFromFile.
 */
 
 
 //-------------------------------------------------------------------------------//
-//							ModelsManager
+//							AssetsManager
 //-------------------------------------------------------------------------------//
 
-/**@brief Zawiera wyniki mo¿liwe do zwrócenia przez ModelsManager.*/
+/**@brief Zawiera wyniki mo¿liwe do zwrócenia przez AssetsManager.*/
 typedef enum ModelsManagerResult
 {
 	MODELS_MANAGER_OK,					///<Poprawne wykonanie funkcji
@@ -59,35 +58,21 @@ do nazwy pliku doklejane s¹ dwa dwukropki :: i nazwa materia³u, jaka zosta³a mu 
 w pliku, z którego pochodzi.
 Oczywiœcie, je¿eli materia³ zosta³ stworzony rêcznie w silniku, to nie ma potrzeby
 nadawania mu takiej nazwy, wystarczy, ¿eby by³a ona unikatowa.*/
-class ModelsManager
+class AssetsManager : public ResourceManager
 {
 	friend Model3DFromFile;
 private:
 	Engine* m_engine;			///<WskaŸnik na obiekt g³ówny silnika
 
-	ResourceContainer< VertexShader >			m_vertexShader;		///<Vertex shadery.
-	ResourceContainer< PixelShader >			m_pixelShader;		///<Pixel shadery.
-	ResourceContainer< GeometryShader >			m_geometryShader;	///< Geometry shaders.
-	ResourceContainer< EvaluationShader >		m_evaluationShader;	///< Tesselation evaluation shaders.
-	ResourceContainer< ControlShader >			m_controlShaders;	///< Tesselation control shaders.
-
-	ResourceContainer<TextureObject>			m_texture;			///<Tekstury.
-	ResourceContainer<BufferObject>				m_vertexBuffer;		///<Bufory wierzcho³ków.
-	ResourceContainer<BufferObject>				m_indexBuffer;		///<Bufory indeksów.
-	ResourceContainer<BufferObject>				m_constantBuffer;	///<Bufory sta³ych dla shaderów.
 	ResourceContainer<MaterialObject>			m_material;			///<Materia³y.
-	ResourceContainer<ShaderInputLayout>		m_vertexLayout;		///<Layouty dla róznych formatów wierzcho³ków.
-	// UWAGA! m_fileModel musi byæ na koñcu. Jego destruktor kasuje odwo³ania do obiektów powy¿ej. Podobnie RenderTargetObject odwo³uje siê do tekstur.
-	// Musz¹ one w tym czasie istnieæ, a destruktory s¹ wywo³ywane w kolejnoœci odwrotnej do zadeklarowanej w klasie.
-	ResourceContainer<RenderTargetObject>		m_renderTarget;		///<Obiekty mog¹ce s³u¿yæ za render target.
 	ResourceContainer<Model3DFromFile>			m_fileModel;		///<Obiekty modeli 3D z plików
 
 	/*loadery dla ró¿nych formatów plików z modelami*/
 	std::vector<ILoader*>						m_loader;				///<Loadery do plików z modelami 3D
 
 public:
-	ModelsManager( Engine* engine );
-	~ModelsManager();
+	explicit						AssetsManager( Engine* engine );
+									~AssetsManager();
 
 	// Funkcje pomocnicze
 	VertexShader*					FindBestVertexShader		( TextureObject** textures );
@@ -96,57 +81,24 @@ public:
 
 	// Funkcje do zarz¹dzania assetami
 	ModelsManagerResult				LoadModelFromFile			( const std::wstring& file );
-	RenderTargetObject*				CreateRenderTarget			( const std::wstring& name, const RenderTargetDescriptor& renderTargetDescriptor );
 	ResourcePtr< MeshAsset >		CreateMesh					( const std::wstring& name, MeshInitData&& initData );
 	ResourcePtr< MeshAsset >		CreateMesh					( const std::wstring& name, MeshCreateData&& initData );
 	ResourcePtr< MaterialAsset >	CreateMaterial				( const std::wstring& name, MaterialInitData&& initData );
 
 	inline Model3DFromFile*			GetModel					( const std::wstring& name ) { return m_fileModel.get( name ); }	///<Zwraca model z pliku o podanej nazwie, je¿eli jest wczytany.
-	inline RenderTargetObject*		GetRenderTarget				( const std::wstring& name ) { return m_renderTarget.get( name ); }	///<Zwraca RenderTarget o podanej nazwie, je¿eli jest wczytany.
-	inline VertexShader*			GetVertexShader				( const std::wstring& name ) { return m_vertexShader.get( name ); } ///<Zwraca vertex shader o podanej nazwie, je¿eli jest wczytany.
-	inline PixelShader*				GetPixelShader				( const std::wstring& name ) { return m_pixelShader.get( name ); }	///<Zwraca pixel shader o podanej nazwie, je¿eli jest wczytany.
-	inline TextureObject*			GetTexture					( const std::wstring& name ) { return m_texture.get( name ); }		///<Zwraca teksturê o podanej nazwie, je¿eli jest wczytany.
-	inline BufferObject*			GetVertexBuffer				( const std::wstring& name ) { return m_vertexBuffer.get( name ); }	///<Zwraca bufor wierzcho³ków o podanej nazwie, je¿eli jest wczytany.
-	inline BufferObject*			GetConstantBuffer			( const std::wstring& name ) { return m_constantBuffer.get( name ); }	///<Zwraca bufor sta³ych o podanej nazwie, je¿eli jest wczytany.
-	inline BufferObject*			GetIndexBuffer				( const std::wstring& name ) { return m_indexBuffer.get( name ); }	///<Zwraca bufor indeksów o podanej nazwie, je¿eli jest wczytany.
 	inline MaterialObject*			GetMaterial					( const std::wstring& name ) { return m_material.get( name ); }		///<Zwraca materia³ o podanej nazwie, je¿eli jest wczytany.
-	inline ShaderInputLayout*		GetLayout					( const std::wstring& name ) { return m_vertexLayout.get( name ); }	///<Zwraca layout o podanej nazwie.	
 
-	TextureObject*					LoadTexture					( const std::wstring& fileName );
-	VertexShader*					LoadVertexShader			( const std::wstring& fileName, const std::string& shaderEntry );
-	VertexShader*					LoadVertexShader			( const std::wstring& fileName, const std::string& shaderEntry, ShaderInputLayout** layout, InputLayoutDescriptor* layout_desc );
-	PixelShader*					LoadPixelShader				( const std::wstring& fileName, const std::string& shaderEntry );
-	GeometryShader*					LoadGeometryShader			( const std::wstring& fileName, const std::string& shaderEntry );
-	ControlShader*					LoadControlShader			( const std::wstring& fileName, const std::string& shaderEntry );
-	EvaluationShader*				LoadEvaluationShader		( const std::wstring& fileName, const std::string& shaderEntry );
-
-	ResourcePtr< BufferObject >		CreateVertexBuffer			( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
-	ResourcePtr< BufferObject >		CreateVertexBuffer			( const std::wstring& name, const VertexBufferInitData& data );
-	ResourcePtr< BufferObject >		CreateIndexBuffer			( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
-	ResourcePtr< BufferObject >		CreateIndexBuffer			( const std::wstring& name, const IndexBufferInitData& data );
-	ResourcePtr< BufferObject >		CreateConstantsBuffer		( const std::wstring& name, const void* buffer, unsigned int size );
-	ResourcePtr< BufferObject >		CreateConstantsBuffer		( const std::wstring& name, const ConstantBufferInitData& data );
-	
-	RenderTargetObject*				AddRenderTarget				( RenderTargetObject* renderTarget, const std::wstring& name );
 	MaterialObject*					AddMaterial					( MaterialObject* material, const std::wstring& material_name );
 
 	// Funkcje do listowania assetów.
 
-	std::vector< ResourcePtr< BufferObject > >			ListVertexBuffers	();
-	std::vector< ResourcePtr< BufferObject > >			ListIndexBuffers	();
-	std::vector< ResourcePtr< BufferObject > >			ListConstantBuffers	();
-	std::vector< ResourcePtr< ShaderInputLayout > >		ListShaderLayouts	();
-
-	std::vector< ResourcePtr< TextureObject > >			ListTextures		();
-	std::vector< ResourcePtr< VertexShader > >			ListVertexShaders	();
-	std::vector< ResourcePtr< PixelShader > >			ListPixelShaders	();
-	
 	std::vector< ResourcePtr< MaterialObject > >		ListMaterials		();
-	std::vector< ResourcePtr< RenderTargetObject > >	ListRenderTargets	();
 	std::vector< ResourcePtr< Model3DFromFile > >		ListMeshes			();
 
 private:
 	ILoader*						FindLoader					( const std::wstring& path );
+
+	virtual MemoryChunk				LoadTextureImpl				( const filesystem::Path& filePath, TextureInfo& texInfo ) override;
 	
 };
 

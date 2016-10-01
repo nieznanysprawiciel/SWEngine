@@ -9,7 +9,7 @@
 #include "GraphicAPI/SwapChain.h"
 #include "GraphicAPI/IGraphicAPIInitializer.h"
 
-class ModelsManager;
+class AssetsManager;
 
 
 /**@brief Klasa ze statycznymi funkcjami do tworzenia obiektów assetów.
@@ -20,7 +20,8 @@ Ka¿de API graficzne powinno zaimplementowaæ tê klasê.
 */
 class ResourcesFactory
 {
-	friend class ModelsManager;
+	friend class ResourceManager;
+	friend class AssetsManager;
 private:
 	static TextureObject*			CreateTextureFromMemory			( const MemoryChunk& texData, TextureInfo&& texInfo );
 

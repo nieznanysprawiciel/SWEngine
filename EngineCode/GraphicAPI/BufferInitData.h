@@ -3,7 +3,8 @@
 #include "Common/MemoryChunk.h"
 #include "Common/RTTR.h"
 
-#include "GraphicAPI/MeshResources.h"
+#include "GraphicAPI/GraphicAPIConstants.h"
+#include "GraphicAPI/IBuffer.h"
 
 
 /**@brief Buffer initialization data.*/

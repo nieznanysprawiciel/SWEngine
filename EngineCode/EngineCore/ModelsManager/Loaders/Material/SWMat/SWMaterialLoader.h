@@ -39,10 +39,10 @@ private:
 	uint32				m_versionMajor;
 	uint32				m_versionMinor;
 
-	ModelsManager*		m_modelsManager;
+	AssetsManager*		m_modelsManager;
 
 public:
-	explicit							SWMaterialLoader( ModelsManager* modelsManager );
+	explicit							SWMaterialLoader( AssetsManager* modelsManager );
 	~SWMaterialLoader();
 
 	Nullable< MaterialInitData >		LoadMaterial	( const filesystem::Path& fileName );

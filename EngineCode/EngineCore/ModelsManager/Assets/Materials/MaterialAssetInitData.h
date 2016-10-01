@@ -24,7 +24,7 @@ struct MaterialInitData
 
 /**@brief Struct contains data needed to initialize material.
 
-For internal use by @ref ModelsManager. Use MaterialInitData instead.
+For internal use by @ref AssetsManager. Use MaterialInitData instead.
 @ingroup Materials*/
 struct MaterialCreateData
 {

@@ -527,9 +527,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Meshes\MeshPart.h">
       <Filter>EngineCore\ModelsManagment\Assets\Meshes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\BufferInitData.h">
-      <Filter>EngineCore\ModelsManagment\Assets</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialAssetInitData.h">
       <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
     </ClInclude>

@@ -19,7 +19,7 @@
 @ingroup Rendering*/
 
 
-class ModelsManager;
+class AssetsManager;
 
 /**@brief Engine module for lights.
 
@@ -27,7 +27,7 @@ class ModelsManager;
 class LightModule
 {
 private:
-	ModelsManager*					m_modelsManager;
+	AssetsManager*					m_modelsManager;
 
 	std::vector< LightBase* >		m_lights;			///< Lights list.
 	ResourcePtr< BufferObject >		m_lightBuffer;		///< Constant buffer containing lights data for shaders. @todo Maybe in future there should be multiple buffers.
@@ -44,7 +44,7 @@ public:
 	void			RemoveActor				( ActorBase* actor );		///< Removes light from module.
 	void			RemoveAllActors			();							///< Removes all actors from modules.
 
-	void			Init					( ModelsManager* assetsManager );
+	void			Init					( AssetsManager* assetsManager );
 
 	void			SetAmbientLight			( DirectX::XMFLOAT3& color );
 

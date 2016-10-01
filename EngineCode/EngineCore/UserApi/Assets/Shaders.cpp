@@ -58,19 +58,19 @@ PixelShader* 		Shaders::LoadPixelShaderSync( const std::wstring& name )
 	return Context->modelsManager->LoadPixelShader( name, DEFAULT_PIXEL_SHADER_ENTRY );
 }
 
-/**@copydoc ModelsManager::ListVertexShaders*/
+/**@copydoc AssetsManager::ListVertexShaders*/
 std::vector< ResourcePtr< VertexShader > > Shaders::ListVertexShaders()
 {
 	return Context->modelsManager->ListVertexShaders();
 }
 
-/**@copydoc ModelsManager::ListPixelShaders.*/
+/**@copydoc AssetsManager::ListPixelShaders.*/
 std::vector< ResourcePtr< PixelShader > > Shaders::ListPixelShaders()
 {
 	return Context->modelsManager->ListPixelShaders();
 }
 
-/**@copydoc ModelsManager::ListShaderLayouts.*/
+/**@copydoc AssetsManager::ListShaderLayouts.*/
 std::vector< ResourcePtr< ShaderInputLayout > > Shaders::ListShaderLayouts()
 {
 	return Context->modelsManager->ListShaderLayouts();

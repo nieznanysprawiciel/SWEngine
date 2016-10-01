@@ -7,7 +7,7 @@
 #include "Common/MemoryLeaks.h"
 
 
-ModelsManager* Model3DFromFile::models_manager = nullptr;
+AssetsManager* Model3DFromFile::models_manager = nullptr;
 
 
 //----------------------------------------------------------------------------------------------//
@@ -105,7 +105,7 @@ Model3DFromFile::~Model3DFromFile( )
 
 /**@brief BeginEdit przygotowuje strukturê pod wpisywanie danych.
 
-Funkcje BeginEdit i EndEdit maj¹ byæ wywo³ane przez klasê ModelsManager przed podaniem do loadera
+Funkcje BeginEdit i EndEdit maj¹ byæ wywo³ane przez klasê AssetsManager przed podaniem do loadera
 i po zakoñczeniu wpisywania danych.
 */
 void Model3DFromFile::BeginEdit()
@@ -119,7 +119,7 @@ void Model3DFromFile::BeginEdit()
 /**@brief EndEdit zatwierdza wpisane dane, tworzy w³aœciwa strukturê i wpisuje nie istniej¹ce jeszcze obiekty
 do ModelsManagera.
 
-Funkcje BeginEdit i EndEdit maj¹ byæ wywo³ane przez klasê ModelsManager przed podaniem do loadera
+Funkcje BeginEdit i EndEdit maj¹ byæ wywo³ane przez klasê AssetsManager przed podaniem do loadera
 i po zakoñczeniu wpisywania danych.
 */
 void Model3DFromFile::EndEdit()
@@ -574,7 +574,7 @@ void Model3DFromFile::Serialize( ISerializer* ser ) const
 
 /**@brief Deserializcja mesha. Funkcja nic nie deserializuje.
 Meshe s¹ obs³ugiwane w inny sposób, poniewa¿ trzeba je wczytaæ
-z pliku przez @ref ModelsManager.*/
+z pliku przez @ref AssetsManager.*/
 void Model3DFromFile::Deserialize( IDeserializer* deser )
 { }
 

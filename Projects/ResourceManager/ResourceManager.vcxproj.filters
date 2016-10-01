@@ -1,51 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ResourceManager">
+    <Filter Include="GraphicAPI">
       <UniqueIdentifier>{03fac0dd-ea83-40f7-8e23-4d016d096233}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\GraphicAPIConstants.h">
-      <Filter>ResourceManager</Filter>
+      <Filter>GraphicAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IBuffer.h">
-      <Filter>ResourceManager</Filter>
+      <Filter>GraphicAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IGraphicAPIInitializer.h">
-      <Filter>ResourceManager</Filter>
+      <Filter>GraphicAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderer.h">
-      <Filter>ResourceManager</Filter>
+      <Filter>GraphicAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderTarget.h">
-      <Filter>ResourceManager</Filter>
+      <Filter>GraphicAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IShader.h">
-      <Filter>ResourceManager</Filter>
+      <Filter>GraphicAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IShaderInputLayout.h">
-      <Filter>ResourceManager</Filter>
+      <Filter>GraphicAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\MeshResources.h">
-      <Filter>ResourceManager</Filter>
+      <Filter>GraphicAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourceObject.h">
-      <Filter>ResourceManager</Filter>
+      <Filter>GraphicAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcePtr.h">
-      <Filter>ResourceManager</Filter>
+      <Filter>GraphicAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcesFactory.h">
-      <Filter>ResourceManager</Filter>
+      <Filter>GraphicAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\SwapChain.h">
-      <Filter>ResourceManager</Filter>
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourceManager.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\BufferInitData.h">
+      <Filter>GraphicAPI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\GraphicAPI\MeshResources.cpp">
-      <Filter>ResourceManager</Filter>
+      <Filter>GraphicAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\ResourceManager.cpp">
+      <Filter>GraphicAPI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

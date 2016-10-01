@@ -231,7 +231,7 @@ void		StaticActor::AddReferences( const ModelPart* part )
 }
 
 /**
-Kasuje odwo³ania do obiektów, których w³asnoœci¹ jest ModelsManager albo Model3DFromFile
+Kasuje odwo³ania do obiektów, których w³asnoœci¹ jest AssetsManager albo Model3DFromFile
 w tablicy model_parts oraz wskaŸniku m_modelRef i vertex_buffer.
 
 ¯adne obiekty nie s¹ kasowane, poniewa¿ nie nale¿¹ one do nas.

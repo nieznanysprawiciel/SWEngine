@@ -38,7 +38,7 @@ class SkyDome
 public:
 	bool update_vertex_buffer;			///<Ustawiane w momencie zakoñczenia generowania nieba, w celu zaktualizowania bufora
 private:
-	ModelsManager* models_manager;		///<WskaŸnik na ModelsManager. Bufory s¹ zarz¹dzane przez niego.
+	AssetsManager* models_manager;		///<WskaŸnik na AssetsManager. Bufory s¹ zarz¹dzane przez niego.
 
 protected:
 	BufferObject*				vertex_buffer;			///<Bufor wierzcho³ków
@@ -48,7 +48,7 @@ protected:
 	ModelPart					display_data;			///<Shadery, tekstury itp.
 
 public:
-	SkyDome( ModelsManager* man )
+	SkyDome( AssetsManager* man )
 		: models_manager( man ),
 		vertex_buffer( nullptr ),
 		index_buffer( nullptr ),

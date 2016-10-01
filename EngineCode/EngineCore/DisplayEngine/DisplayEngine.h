@@ -33,7 +33,7 @@ void inverse_camera_position		( DirectX::XMVECTOR& result_vector );
 void inverse_camera_orientation		( DirectX::XMVECTOR& result_vector );
 
 class Engine;
-class ModelsManager;
+class AssetsManager;
 class BufferObject;
 
 /**@brief Klasa odpowiedzialna za wyœwietlanie sceny, obs³ugê kamery oraz interpolacjê po³o¿eñ obiektów.
@@ -43,7 +43,7 @@ class DisplayEngine
 {
 private:
 	Engine*					engine;
-	ModelsManager*			modelsManager;
+	AssetsManager*			modelsManager;
 
 	std::vector<IRenderer*>					m_renderers;				///< Zawiera wszystkie renderery. Ka¿dy odpowiada za jeden w¹tek renderuj¹cy.
 
@@ -77,7 +77,7 @@ public:
 	~DisplayEngine();
 
 	void InitRenderer( IRenderer* renderer );
-	void InitDisplayer( ModelsManager* assetsManager );
+	void InitDisplayer( AssetsManager* assetsManager );
 	void BeginScene();
 	void EndScene();
 

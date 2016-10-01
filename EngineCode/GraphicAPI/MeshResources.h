@@ -19,6 +19,7 @@
 #include "IShaderInputLayout.h"
 #include "GraphicAPI/GraphicAPIConstants.h"
 #include "GraphicAPI/ResourcePtr.h"
+#include "GraphicAPI/BufferInitData.h"
 
 #include <DirectXMath.h>
 
@@ -44,7 +45,7 @@ implementuje konkretne API graficzne.
 Poniewa¿ zasoby mog¹ byæ wspó³dzielone przez wiele obiektów w silniku, istnieje mechanizm zliczania
 odwo³añ do obiektów implementowany przez klasê @ref ResourceObject.*/
 
-class ModelsManager;
+class AssetsManager;
 struct ModelPart;
 class BufferObject;
 class TextureObject;
@@ -336,7 +337,7 @@ class TextureObject : public ResourceObject
 	friend ObjectDeleter<TextureObject>;
 private:
 protected:
-	/// ¯eby unikn¹æ pomy³ki, obiekt mo¿e byœ kasowany tylko przez ModelsManager. Zapewnia to ObjectDeleter.
+	/// ¯eby unikn¹æ pomy³ki, obiekt mo¿e byœ kasowany tylko przez AssetsManager. Zapewnia to ObjectDeleter.
 	virtual ~TextureObject() = default;
 public:
 	TextureObject() : ResourceObject( 0 ) {}

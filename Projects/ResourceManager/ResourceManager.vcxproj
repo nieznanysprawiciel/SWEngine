@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\BufferInitData.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\GraphicAPIConstants.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IBuffer.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IGraphicAPIInitializer.h" />
@@ -27,6 +28,7 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IShader.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IShaderInputLayout.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\MeshResources.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourceManager.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourceObject.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcePtr.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcesFactory.h" />
@@ -34,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\GraphicAPI\MeshResources.cpp" />
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\ResourceManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9F71F0DA-1D72-4E96-93B7-5AC2C9CB6EDE}</ProjectGuid>

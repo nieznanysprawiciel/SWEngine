@@ -12,7 +12,7 @@
 
 
 
-SWMaterialLoader::SWMaterialLoader( ModelsManager* modelsManager )
+SWMaterialLoader::SWMaterialLoader( AssetsManager* modelsManager )
 	:	m_modelsManager( modelsManager )
 {
 	m_versionMajor = 1;
@@ -200,7 +200,7 @@ void								SWMaterialLoader::SaveMaterial	( const filesystem::Path& fileName, M
 }
 
 // ================================ //
-// @todo Maybe we should tell ModelsManager to release resources, if something went wrong.
+// @todo Maybe we should tell AssetsManager to release resources, if something went wrong.
 Nullable< MaterialInitData >		SWMaterialLoader::LoadMaterial_Version1	( IDeserializer* deser )
 {
 	Nullable< MaterialInitData >	data;

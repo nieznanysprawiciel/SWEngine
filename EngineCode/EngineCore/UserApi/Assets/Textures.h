@@ -16,7 +16,7 @@ class TextureObject;
 namespace Api { namespace Assets {
 
 
-	/**@brief Zapewnia dostêp do tekstur w klasie ModelsManager.
+	/**@brief Zapewnia dostêp do tekstur w klasie AssetsManager.
 	@ingroup UserAPI
 	@ingroup AssetsAPI*/
 	class Textures : public ApiGroup

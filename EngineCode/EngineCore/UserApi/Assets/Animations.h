@@ -10,7 +10,7 @@
 
 namespace Api { namespace Assets {
 
-	/**@brief Zapewnia dostêp do modeli w klasie ModelsManager.
+	/**@brief Zapewnia dostêp do modeli w klasie AssetsManager.
 	@ingroup UserAPI
 	@ingroup AssetsAPI*/
 	class Animations : public ApiGroup

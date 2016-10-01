@@ -10,7 +10,7 @@ class ResourceObject;
 
 This class automatically increments and decrements resources and assets reference counter.
 Notice that it's not equivalent of std::shared_ptr. When references counter reaches 0, resource won't be released.
-@ref ModelsManager is the only one owner of resource and it's responsibility is, to destroy resource
+@ref AssetsManager is the only one owner of resource and it's responsibility is, to destroy resource
 when it's needed. Even when there's no Actor in engine that uses it, resource can still remain for future use.
 
 @ingroup Resources*/

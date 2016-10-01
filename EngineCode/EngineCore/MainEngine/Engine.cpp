@@ -61,7 +61,7 @@ Engine::Engine(HINSTANCE instance)
 	Context->displayEngine			= new DisplayEngine( this );
 	Context->collisionEngine		= new CollisionEngine( this );
 	Context->physicEngine			= new PhysicEngine( this );
-	Context->modelsManager			= new ModelsManager( this );
+	Context->modelsManager			= new AssetsManager( this );
 	Context->fableEngine			= new FableEngine( this );
 	Context->soundEngine			= new SoundEngine( this );
 	Context->ui_engine				= new UI_Engine( this );

@@ -42,9 +42,9 @@ plik, klasa tak¿e ma byæ gotowa do wczytania kolejnego.
 class ILoader
 {
 protected:
-	ModelsManager*		models_manager;
+	AssetsManager*		models_manager;
 public:
-	ILoader(ModelsManager* models_manager) : models_manager(models_manager){};
+	ILoader(AssetsManager* models_manager) : models_manager(models_manager){};
 	virtual ~ILoader(){};
 
 	/**@brief Funkcja ma za zadanie poinformowaæ czy jest w stanie wczytaæ podany plik.

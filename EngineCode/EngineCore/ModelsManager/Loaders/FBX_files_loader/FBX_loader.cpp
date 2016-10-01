@@ -23,7 +23,7 @@ const char*	SupportedExtensions[] =
 
 
 ///@brief Kontruktr inicjuje obiekty FBX SDK, konieczne do wczytania modelu.
-FBX_loader::FBX_loader(ModelsManager* models_manager)
+FBX_loader::FBX_loader(AssetsManager* models_manager)
 	: ILoader(models_manager)
 {
 	fbx_manager = FbxManager::Create();
@@ -177,7 +177,7 @@ void FBX_loader::process_node(FbxNode* node)
 
 Poniewa¿ do ró¿nych wierzcho³ków
 w tym meshu mog¹ byæ przypisane ró¿ne materia³y, to musimy na tym etapie podzieliæ mesha na kilka czêœci
-o tym samym materiale (teksturze). Potem meshe zostaj¹ dodane do klasy ModelsManager, a odpowiednie odwo³ania
+o tym samym materiale (teksturze). Potem meshe zostaj¹ dodane do klasy AssetsManager, a odpowiednie odwo³ania
 umieszczone w obiekcie Model3DFromFile, który dostalismy przy wywo³aniu funkcji wczytuj¹cej plik.
 @param[in] node Node zawieraj¹cy danego mesha
 @param[in] mesh Obiekt zawieraj¹cy mesha

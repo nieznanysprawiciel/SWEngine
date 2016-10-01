@@ -40,7 +40,7 @@ private:
 	filesystem::Path	m_filePath;
 
 public:
-	FBX_loader( ModelsManager* models_manager );
+	FBX_loader( AssetsManager* models_manager );
 	~FBX_loader();
 
 	LoaderResult load_mesh( Model3DFromFile* new_file_mesh, const std::wstring& name ) override;

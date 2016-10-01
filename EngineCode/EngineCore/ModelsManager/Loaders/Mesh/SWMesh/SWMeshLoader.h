@@ -7,7 +7,7 @@ class SWMeshLoader : public ILoader
 {
 private:
 public:
-	SWMeshLoader( ModelsManager* modelsManager );
+	SWMeshLoader( AssetsManager* modelsManager );
 	~SWMeshLoader();
 
 	virtual bool			can_load	( const std::wstring& name );

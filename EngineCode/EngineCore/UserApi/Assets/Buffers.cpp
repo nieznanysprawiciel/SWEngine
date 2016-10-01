@@ -18,19 +18,19 @@ ResourcePtr< BufferObject >						Buffers::CreateVertexBufferSync		( const std::w
 	return Context->modelsManager->CreateVertexBuffer( name, data.GetMemory<void>(), data.GetMemorySize() / vertCount, vertCount );
 }
 
-/**@copydoc ModelsManager::ListVertexBuffers.*/
+/**@copydoc AssetsManager::ListVertexBuffers.*/
 std::vector< ResourcePtr< BufferObject > >		Buffers::ListVertexBuffers()
 {
 	return Context->modelsManager->ListVertexBuffers();
 }
 
-/**@copydoc ModelsManager::ListIndexBuffers.*/
+/**@copydoc AssetsManager::ListIndexBuffers.*/
 std::vector< ResourcePtr< BufferObject > >		Buffers::ListIndexBuffers()
 {
 	return Context->modelsManager->ListIndexBuffers();
 }
 
-/**@copydoc ModelsManager::ListConstantBuffers.*/
+/**@copydoc AssetsManager::ListConstantBuffers.*/
 std::vector< ResourcePtr< BufferObject > >		Buffers::ListConstantBuffers()
 {
 	return Context->modelsManager->ListConstantBuffers();

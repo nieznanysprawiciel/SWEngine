@@ -13,7 +13,7 @@
 #include "EngineCore/Actors/BasicActors/PointLight.h"
 #include "EngineCore/EngineHelpers/ActorsCommonFunctions.h"
 
-#include "EngineCore/ModelsManager/Assets/BufferInitData.h"
+#include "GraphicAPI/BufferInitData.h"
 #include "EngineCore/ModelsManager/ModelsManager.h"
 
 #include "GraphicAPI/IRenderer.h"
@@ -52,7 +52,7 @@ void		LightModule::RemoveAllActors()
 
 // ================================ //
 //
-void		LightModule::Init( ModelsManager* assetsManager )
+void		LightModule::Init( AssetsManager* assetsManager )
 {
 	assert( assetsManager );
 	m_modelsManager = assetsManager;

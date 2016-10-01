@@ -9,7 +9,7 @@
 template< typename ShaderType >
 struct ShaderFunGetter
 {
-	typedef ShaderType* (ModelsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
+	typedef ShaderType* (AssetsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
 
 
 	static ShaderLoadFun		ShaderLoadingFunction()
@@ -19,46 +19,46 @@ struct ShaderFunGetter
 template<>
 struct ShaderFunGetter< VertexShader >
 {
-	typedef VertexShader* (ModelsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
+	typedef VertexShader* (AssetsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
 
 	static ShaderLoadFun		ShaderLoadingFunction()
-	{	return &ModelsManager::LoadVertexShader; }
+	{	return &AssetsManager::LoadVertexShader; }
 };
 
 template<>
 struct ShaderFunGetter< PixelShader >
 {
-	typedef PixelShader* (ModelsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
+	typedef PixelShader* (AssetsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
 
 	static ShaderLoadFun		ShaderLoadingFunction()
-	{	return &ModelsManager::LoadPixelShader; }
+	{	return &AssetsManager::LoadPixelShader; }
 };
 
 template<>
 struct ShaderFunGetter< GeometryShader >
 {
-	typedef GeometryShader* (ModelsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
+	typedef GeometryShader* (AssetsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
 
 	static ShaderLoadFun		ShaderLoadingFunction()
-	{	return &ModelsManager::LoadGeometryShader; }
+	{	return &AssetsManager::LoadGeometryShader; }
 };
 
 template<>
 struct ShaderFunGetter< ControlShader >
 {
-	typedef ControlShader* (ModelsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
+	typedef ControlShader* (AssetsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
 
 	static ShaderLoadFun		ShaderLoadingFunction()
-	{	return &ModelsManager::LoadControlShader; }
+	{	return &AssetsManager::LoadControlShader; }
 };
 
 template<>
 struct ShaderFunGetter< EvaluationShader >
 {
-	typedef EvaluationShader* (ModelsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
+	typedef EvaluationShader* (AssetsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
 
 	static ShaderLoadFun		ShaderLoadingFunction()
-	{	return &ModelsManager::LoadEvaluationShader; }
+	{	return &AssetsManager::LoadEvaluationShader; }
 };
 
 

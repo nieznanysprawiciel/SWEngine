@@ -82,7 +82,7 @@ DisplayEngine bêdzie próbowa³ wyœwietliæ takiego mesha o liczbie wierzcho³ków ró
 program.
 
 Je¿eli dodane tekstury s¹ zgodne z domyœlnym przeznaczeniem (zdefiniowanym enumeracj¹ TextureUse), to nie ma potrzeby
-dodawania w³asnych shaderów. Funkcja ModelsManager::FindBestVertexShader i ModelsManager::FindBestPixelShader znajd¹
+dodawania w³asnych shaderów. Funkcja AssetsManager::FindBestVertexShader i AssetsManager::FindBestPixelShader znajd¹
 najlepiej pasuj¹cy shader do podanej tablicy tekstur.
 
 Je¿eli nie zostanie podany ¿aden materia³, ModelPart dostanie domyœlny materia³, który jest ustawiany przez funkcjê
@@ -102,9 +102,9 @@ class Model3DFromFile : public ResourceObject
 	RTTR_REGISTRATION_FRIEND
 
 	friend ObjectDeleter<Model3DFromFile>;
-	friend ModelsManager;
+	friend AssetsManager;
 private:
-	static ModelsManager* models_manager;
+	static AssetsManager* models_manager;
 
 	//tekstura i materia³ odpowiadaj¹ meshowi spod danego indeksu
 	std::vector<ModelPart>			model_parts;		///<Vector zawieraj¹cy info o poszczególnych czêœciach mesha
@@ -116,7 +116,7 @@ private:
 	EditTMP*						tmp_data;			///<Dane tymczasowe u¿ywane podczas wype³niania
 
 protected:
-	//¯eby unikn¹æ pomy³ki, obiekt mo¿e byœ kasowany tylko przez ModelsManager.
+	//¯eby unikn¹æ pomy³ki, obiekt mo¿e byœ kasowany tylko przez AssetsManager.
 	~Model3DFromFile() override;
 
 	unsigned int get_buffer_offset_to_last();

@@ -37,7 +37,7 @@ private:
 
 	void generate_sphere(int vertical, int horizontal, float radius );
 public:
-	HosekSkyDome( ModelsManager* man);
+	HosekSkyDome( AssetsManager* man);
 	~HosekSkyDome();
 
 	void init_sky_dome( DirectX::XMVECTOR sun_direction,
