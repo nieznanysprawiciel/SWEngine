@@ -21,21 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IBuffer.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderTarget.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IShader.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\MeshResources.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcesFactory.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11Buffer.h">
       <Filter>DX11API\DX11Resources</Filter>
     </ClInclude>
@@ -60,9 +45,6 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11APIObjects.h">
       <Filter>DX11API\DX11Initializer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\GraphicAPIConstants.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11ConstantsMapper.h">
       <Filter>DX11API\DX11Initializer</Filter>
     </ClInclude>
@@ -75,20 +57,8 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Renderer\DX11Renderer.h">
       <Filter>DX11API\DX11Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderer.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IGraphicAPIInitializer.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11Initializer.h">
       <Filter>DX11API\DX11Initializer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourceObject.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IShaderInputLayout.h">
-      <Filter>GraphicAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h">
       <Filter>Common</Filter>
@@ -102,20 +72,47 @@
     <ClInclude Include="..\..\EngineCode\Common\EngineObject.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\SwapChain.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11SwapChain.h">
       <Filter>DX11API\DX11Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\GraphicAPIConstants.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IBuffer.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IGraphicAPIInitializer.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderer.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderTarget.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IShader.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\IShaderInputLayout.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\MeshResources.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourceObject.h">
+      <Filter>GraphicAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcePtr.h">
       <Filter>GraphicAPI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcesFactory.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\SwapChain.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\EngineCode\GraphicAPI\MeshResources.cpp">
-      <Filter>GraphicAPI</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11Buffer.cpp">
       <Filter>DX11API\DX11Resources</Filter>
     </ClCompile>

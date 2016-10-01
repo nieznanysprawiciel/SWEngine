@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <StaticLibraryName>StaticLibrary</StaticLibraryName>
+    <StaticLibraryLibDir>$(EngineLibDir)$(StaticLibraryName)\</StaticLibraryLibDir>
+    <StaticLibrarySourceDir>$(EngineSourceDir)$(StaticLibraryName)\</StaticLibrarySourceDir>
+    <StaticLibraryFileName>$(EngineShortcut)$(StaticLibraryName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</StaticLibraryFileName>
+    <StaticLibraryBuildDir>$(EngineBuildDir)$(StaticLibraryName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</StaticLibraryBuildDir>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalLibraryDirectories>$(StaticLibraryLibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(StaticLibraryFileName).lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="StaticLibraryName">
+      <Value>$(StaticLibraryName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="StaticLibraryLibDir">
+      <Value>$(StaticLibraryLibDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="StaticLibrarySourceDir">
+      <Value>$(StaticLibrarySourceDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="StaticLibraryFileName">
+      <Value>$(StaticLibraryFileName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="StaticLibraryBuildDir">
+      <Value>$(StaticLibraryBuildDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
