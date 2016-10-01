@@ -141,10 +141,32 @@ void			Win32ApiWindow::Hide()
 	HideAppWindow();
 }
 
+// ================================ //
+//
 void			Win32ApiWindow::SetTitle		( const std::string& newTitle )
 {
 	m_title = Convert::FromString< std::wstring >( newTitle, L"" );
 	SetWindowText( m_windowHandle, m_title.c_str() );
+}
+
+// ================================ //
+//
+uint16 Win32ApiWindow::GetClientWidth()
+{
+	RECT windowRect;
+	GetClientRect( m_windowHandle, &windowRect );
+
+	return static_cast< uint16 >( windowRect.right - windowRect.left );
+}
+
+// ================================ //
+//
+uint16 Win32ApiWindow::GetClientHeight()
+{
+	RECT windowRect;
+	GetClientRect( m_windowHandle, &windowRect );
+
+	return static_cast< uint16 >( windowRect.bottom - windowRect.top );
 }
 
 

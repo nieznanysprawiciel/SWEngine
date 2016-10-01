@@ -40,6 +40,9 @@ private:
 	// Inherited via INativeWindow
 	virtual uint16				GetWidth		() override;
 	virtual uint16				GetHeght		() override;
+	virtual uint16				GetClientWidth	() override;
+
+	virtual uint16				GetClientHeight	() override;
 
 	virtual WindowHandler		GetHandle		() override;
 
@@ -49,7 +52,6 @@ private:
 	virtual void				Hide			() override;
 
 	virtual void				SetTitle		( const std::string & newTitle ) override;
-
 };
 
 

@@ -167,7 +167,7 @@ bool Engine::InitGraphicAPI( int width, int height, bool fullScreen )
 	initData.SwapChain.WindowHandle			= Context->windowHandler;
 	initData.SwapChain.WindowHeight			= height;
 	initData.SwapChain.WindowWidth			= width;
-	initData.SwapChain.DepthStencilFormat	= ResourceFormat::RESOURCE_FORMAT_D24_UNORM_S8_UINT;
+	initData.SwapChain.DepthStencilFormat	= DepthStencilFormat::DEPTH_STENCIL_FORMAT_D24_UNORM_S8_UINT;
 	result = Context->graphicInitializer->InitAPI( initData );
 	assert( result != 0 );
 	if( result == 0 )

@@ -35,7 +35,11 @@ struct SwapChainInitData
 	uint16			WindowHeight;
 	WindowHandler	WindowHandle;
 	bool			FullScreen;
-	ResourceFormat	DepthStencilFormat;
+	uint8			SamplesCount;
+	uint8			SamplesQuality;
+	uint8			NumBuffers;
+	DepthStencilFormat		DepthStencilFormat;
+	ResourceFormat			BackBufferFormat;
 
 // ================================ //
 //
@@ -49,7 +53,11 @@ struct SwapChainInitData
 		WindowWidth = 1024;
 		WindowHeight = 768;
 		FullScreen = false;
-		DepthStencilFormat = ResourceFormat::RESOURCE_FORMAT_D24_UNORM_S8_UINT;
+		NumBuffers = 1;
+		SamplesCount = 1;
+		SamplesQuality = 0;
+		DepthStencilFormat = DepthStencilFormat::DEPTH_STENCIL_FORMAT_D24_UNORM_S8_UINT;
+		BackBufferFormat = ResourceFormat::RESOURCE_FORMAT_R8G8B8A8_UNORM;
 	}
 };
 

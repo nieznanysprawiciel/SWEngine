@@ -26,6 +26,7 @@ private:
 
 	INativeWindow*				m_nativeWindow;
 	IInput*						m_input;
+	ResourceManager*			m_resourceManager;
 
 	EngineObject*				m_dataContext;
 
@@ -49,8 +50,8 @@ private:
 
 protected:
 public:
-	explicit		HostWindow	( INativeWindow* nativeWindow, IInput* input, IGraphicAPIInitializer* graphicApi );
-					~HostWindow	() = default;
+	explicit		HostWindow	( INativeWindow* nativeWindow, IInput* input, ResourceManager* resourceManager, IGraphicAPIInitializer* graphicApi );
+					~HostWindow	();
 
 
 	Size				GetMemorySize		();

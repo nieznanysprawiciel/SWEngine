@@ -3,6 +3,13 @@
 
 #include "EngineGUI/System/Windows/INativeGUI.h"
 
+
+class WinApiInputProxy;
+struct tagMSG;
+typedef tagMSG MSG;
+
+
+
 namespace GUI
 {
 
@@ -11,10 +18,12 @@ namespace GUI
 class WinAPIGUI : public INativeGUI
 {
 private:
+	WinApiInputProxy*		m_input;
+
 protected:
 public:
-	WinAPIGUI() = default;
-	~WinAPIGUI() = default;
+	explicit			WinAPIGUI();
+						~WinAPIGUI() = default;
 
 
 	// Inherited via INativeGUI
@@ -27,6 +36,7 @@ public:
 
 private:
 	void					RegisterWindowClass		();
+	bool					MainLoopCore			( MSG* msg );
 
 public:
 	// Helpers

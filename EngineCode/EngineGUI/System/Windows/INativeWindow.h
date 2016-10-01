@@ -76,6 +76,9 @@ public:
 	virtual uint16				GetWidth	() = 0;
 	virtual uint16				GetHeght	() = 0;
 
+	virtual uint16				GetClientWidth	() = 0;
+	virtual uint16				GetClientHeight	() = 0;
+
 	virtual WindowHandler		GetHandle	() = 0;
 	virtual std::string			GetTitle	() = 0;
 

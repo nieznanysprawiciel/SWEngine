@@ -2,6 +2,7 @@
 
 #include "InputLibrary/KeyboardState.h"
 #include "GraphicAPI/ResourcesFactory.h"
+#include "GraphicAPI/ResourceManager.h"
 
 #include <map>
 #include <string>
@@ -22,16 +23,22 @@ GUISystem*			GUISystem::m_instance = nullptr;
 GUISystem::GUISystem( int argc, char** argv, INativeGUI* gui )
 	:	m_cmdArgs( argc, argv )
 	,	m_nativeGUI( gui )
+	,	m_focusedWindow( nullptr )
+	,	m_resourceManager( nullptr )
+	,	m_input( nullptr )
 {
 	m_instance = this;
-	//DefaultInit();
 }
 
 // ================================ //
 //
 GUISystem::~GUISystem()
 {
+	for( auto window : m_windows )
+		delete window;
+
 	m_graphicApi->ReleaseAPI();
+	delete m_resourceManager;
 	delete m_graphicApi;
 	delete m_nativeGUI;
 }
@@ -83,6 +90,8 @@ int					GUISystem::MainLoop()
 /**@brief */
 void				GUISystem::DefaultInit( uint16 width, uint16 height, const std::string& windowTitle )
 {
+	m_resourceManager = new ResourceManager();
+
 	// ResourceFactory creates api which is linked as library.
 	m_graphicApi = ResourcesFactory::CreateAPIInitializer();
 	GraphicAPIInitData graphicApiData;
@@ -95,12 +104,14 @@ void				GUISystem::DefaultInit( uint16 width, uint16 height, const std::string& 
 	init.Height = height;
 	init.Width = width;
 
-	//m_input = m_nativeGUI->UseNativeInput();
+	m_input = m_nativeGUI->UseNativeInput();
+	assert( m_input );
 
 	auto nativeWindow = m_nativeGUI->CreateWindow( init );
 	assert( nativeWindow );
 
-	HostWindow* hostWindow = new HostWindow( nativeWindow, m_input, m_graphicApi );
+	HostWindow* hostWindow = new HostWindow( nativeWindow, m_input, m_resourceManager, m_graphicApi );
+	m_focusedWindow = hostWindow;
 	m_windows.push_back( hostWindow );
 }
 

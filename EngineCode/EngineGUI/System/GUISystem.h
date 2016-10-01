@@ -6,6 +6,8 @@
 
 #include "HostWindow.h"
 
+class ResourceManager;
+
 
 namespace GUI
 {
@@ -59,11 +61,13 @@ private:
 
 protected:
 
-	IGraphicAPIInitializer*		m_graphicApi;	///< Contains object responsible for dealing with specifics graphic apis.
-	INativeGUI*					m_nativeGUI;	///< Native window system used to display main application window.
-	IInput*						m_input;		///< Input processor.
+	IGraphicAPIInitializer*		m_graphicApi;		///< Contains object responsible for dealing with specifics graphic apis.
+	INativeGUI*					m_nativeGUI;		///< Native window system used to display main application window.
+	IInput*						m_input;			///< Input processor.
+	ResourceManager*			m_resourceManager;	///< Resources.
 
 	std::vector< HostWindow* >	m_windows;
+	HostWindow*					m_focusedWindow;	///< Only one window can have focus and only this will be processed.
 
 	CommandLineArgs				m_cmdArgs;
 

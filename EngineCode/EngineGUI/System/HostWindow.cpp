@@ -1,6 +1,9 @@
 #include "HostWindow.h"
 
+#include "Common/Converters.h"
+
 #include "GraphicAPI/IGraphicAPIInitializer.h"
+#include "GraphicAPI/ResourceManager.h"
 
 #include "CommonTypes/CommonTypes.h"
 
@@ -12,11 +15,34 @@ namespace GUI
 
 
 
-HostWindow::HostWindow( INativeWindow* nativeWindow, IInput* input, IGraphicAPIInitializer* graphicApi )
+HostWindow::HostWindow( INativeWindow* nativeWindow, IInput* input, ResourceManager* resourceManager, IGraphicAPIInitializer* graphicApi )
 	:	m_input( input )
 	,	m_nativeWindow( nativeWindow )
+	,	m_resourceManager( resourceManager )
 {
 	// Create RenderTarget and SwapChain
+	SwapChainInitData init;
+	init.WindowHandle = m_nativeWindow->GetHandle();
+	init.WindowHeight = m_nativeWindow->GetClientHeight();
+	init.WindowWidth = m_nativeWindow->GetClientWidth();
+
+	m_swapChain = graphicApi->CreateSwapChain( init );
+	assert( m_swapChain.Ptr() );
+
+	m_renderTarget = m_swapChain->GetRenderTarget();
+	assert( m_renderTarget.Ptr() );
+
+	resourceManager->AddRenderTarget( m_renderTarget.Ptr(), Convert::FromString< std::wstring >( "::" + m_nativeWindow->GetTitle(), L"" ) );
+}
+
+HostWindow::~HostWindow()
+{
+	m_swapChain->DeleteObjectReference();
+	if( m_swapChain->CanDelete() )
+	{
+		delete m_swapChain.Ptr();
+		m_swapChain = nullptr;
+	}
 }
 
 

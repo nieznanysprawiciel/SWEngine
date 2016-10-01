@@ -1,7 +1,7 @@
 #include "WinAPIGUI.h"
 #include "Win32ApiWindow.h"
 
-
+#include "InputLibrary/InputWinApi/WinApiInputProxy.h"
 #include <Windows.h>
 
 
@@ -13,6 +13,10 @@ namespace GUI
 LRESULT CALLBACK		WindowProcedure		( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
 INativeWindow*			GetNativePointer	( HWND window );
 
+
+WinAPIGUI::WinAPIGUI()
+	:	m_input( nullptr )
+{}
 
 /**@brief Creates WinAPIGUI object.*/
 WinAPIGUI*		WinAPIGUI::Create()
@@ -41,8 +45,18 @@ const wchar_t*	WinAPIGUI::GetWindowClassName()
 
 IInput*			WinAPIGUI::UseNativeInput()
 {
-	assert( !"Implement me" );
-	return nullptr;
+	InputInitInfo init;
+	init.AppInstance = GetModuleHandle( nullptr );
+	init.WndHandle = nullptr;
+
+	m_input = new WinApiInputProxy();
+	if( !m_input->Init( init ) )
+	{
+		assert( !"Initialziation failed" );
+		return nullptr;
+	}
+
+	return m_input;
 }
 
 // WinAPI macros :(
@@ -84,6 +98,7 @@ void		WinAPIGUI::RegisterWindowClass()
 		PrintLastError();
 }
 
+
 /**@brief Gets last win api error and prints to debug window.*/
 void		WinAPIGUI::PrintLastError()
 {
@@ -117,6 +132,25 @@ bool		WinAPIGUI::Init()
 //			Window Message handler
 //====================================================================================//
 
+/**@brief Core functionality of main loop function.*/
+bool		WinAPIGUI::MainLoopCore( MSG* msg )
+{
+	TranslateMessage( msg );
+
+	if( m_input )
+		m_input->HandleEvent( msg->hwnd, msg->message, msg->wParam, msg->lParam );
+
+	DispatchMessage( msg );
+
+	if( msg->message == WM_QUIT )
+	{
+		return true;
+	}
+	return false;
+}
+
+
+
 
 /**@copydoc INativeGUI::MainLoop*/
 bool		WinAPIGUI::MainLoop( bool blockingMode )
@@ -125,24 +159,21 @@ bool		WinAPIGUI::MainLoop( bool blockingMode )
 
 	if( blockingMode )
 	{
-		while( GetMessage( &msg, NULL, 0, 0 ) )
+		GetMessage( &msg, NULL, 0, 0 );
+		do
 		{
-			TranslateMessage( &msg );
-			DispatchMessage( &msg );
-		}
+			bool end = MainLoopCore( &msg );
+			if( end ) return true;
+
+		} while( PeekMessage( &msg, NULL, 0, 0, PM_REMOVE ) );
 	}
 	else
 	{
 		while( PeekMessage( &msg, NULL, 0, 0, PM_REMOVE ) )
 		{
-			TranslateMessage( &msg );
-			DispatchMessage( &msg );
+			bool end = MainLoopCore( &msg );
+			if( end ) return true;
 		}
-	}
-
-	if( msg.message == WM_QUIT )
-	{
-		return true;
 	}
 
 	return false;
