@@ -8,7 +8,7 @@
 
 #include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/MainEngine/EngineContext.h"
-#include "EngineCore/ModelsManager/ModelsManager.h"
+#include "EngineCore/ModelsManager/AssetsManager.h"
 #include "EngineCore/DisplayEngine/DisplayEngine.h"
 #include "EngineCore/UserApi/Actors/ActorsApi.inl"
 #include "GraphicAPI/ResourcesFactory.h"

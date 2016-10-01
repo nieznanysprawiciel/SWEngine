@@ -1,5 +1,5 @@
 #include "EngineCore/stdafx.h"
-#include "ModelsManager.h"
+#include "AssetsManager.h"
 #include "Common/Converters.h"
 
 #include "Common/Serialization/SW/Serialization.h"

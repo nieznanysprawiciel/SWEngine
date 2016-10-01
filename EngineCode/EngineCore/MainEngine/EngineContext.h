@@ -13,7 +13,7 @@
 #include "EngineCore/ControllersEngine/ControllersEngine.h"
 #include "EngineCore/GamePlay/FableEngine.h"
 #include "EngineCore/DisplayEngine/DisplayEngine.h"
-#include "EngineCore/ModelsManager/ModelsManager.h"
+#include "EngineCore/ModelsManager/AssetsManager.h"
 #include "EngineCore/PhysicEngine/PhysicEngine.h"
 #include "EngineCore/PhysicEngine/MovementEngine.h"
 #include "EngineCore/SoundEngine/SoundEngine.h"

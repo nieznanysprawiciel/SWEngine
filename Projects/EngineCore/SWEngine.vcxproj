@@ -274,7 +274,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Rendering\LightsApi.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Rendering\RenderApi.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\ILoader.h" />
-    <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ModelsManager.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\AssetsManager.h" />
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ResourceContainer.h" />
     <ClInclude Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.h" />
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h" />
@@ -362,7 +362,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\ModelsManager.cpp">
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\AssetsManager.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
     </ClCompile>

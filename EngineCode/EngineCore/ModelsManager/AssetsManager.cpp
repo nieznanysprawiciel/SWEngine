@@ -1,5 +1,5 @@
 #include "EngineCore/stdafx.h"
-#include "ModelsManager.h"
+#include "AssetsManager.h"
 
 #include "Loaders/ILoader.h"
 #include "Loaders/FBX_files_loader/FBX_loader.h"

@@ -9,7 +9,7 @@ obiekty typu skyboxy, skydome'y i wszystkie inne twory, wyœwietlaj¹ce t³o.*/
 
 
 #include "GraphicAPI/MeshResources.h"
-#include "EngineCore/ModelsManager/ModelsManager.h"
+#include "EngineCore/ModelsManager/AssetsManager.h"
 #include "GraphicAPI/IRenderer.h"
 
 

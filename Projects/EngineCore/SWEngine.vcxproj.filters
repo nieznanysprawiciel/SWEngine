@@ -140,9 +140,6 @@
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ResourceContainer.h">
       <Filter>EngineCore\ModelsManagment</Filter>
     </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ModelsManager.h">
-      <Filter>EngineCore\ModelsManagment</Filter>
-    </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkyModel.h">
       <Filter>EngineCore\Features\HosekSkylightModel</Filter>
     </ClInclude>
@@ -554,12 +551,12 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\FBX_files_loader\FbxHelperStructs.h">
       <Filter>EngineCore\ModelsManagment\Loaders\Mesh\SWMesh</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\AssetsManager.h">
+      <Filter>EngineCore\ModelsManagment</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
-      <Filter>EngineCore\ModelsManagment</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\ModelsManager.cpp">
       <Filter>EngineCore\ModelsManagment</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.cpp">
@@ -810,6 +807,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Rendering\LightsApi.cpp">
       <Filter>EngineCore\UserApi\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\AssetsManager.cpp">
+      <Filter>EngineCore\ModelsManagment</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

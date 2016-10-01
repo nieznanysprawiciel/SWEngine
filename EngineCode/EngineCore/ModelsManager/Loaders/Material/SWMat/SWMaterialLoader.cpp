@@ -6,7 +6,7 @@
 #include "Common/Serialization/SW/Serialization.h"
 #include "Common/Serialization/Deserializer.h"
 
-#include "EngineCore/ModelsManager/ModelsManager.h"
+#include "EngineCore/ModelsManager/AssetsManager.h"
 #include "EngineCore/ModelsManager/Assets/Materials/ShadingModelData.h"
 #include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
 

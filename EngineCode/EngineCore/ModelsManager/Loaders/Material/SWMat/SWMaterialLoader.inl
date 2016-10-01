@@ -1,6 +1,6 @@
 #include "SWMaterialLoader.h"
 
-#include "EngineCore/ModelsManager/ModelsManager.h"
+#include "EngineCore/ModelsManager/AssetsManager.h"
 #include "GraphicAPI/MeshResources.h"
 
 

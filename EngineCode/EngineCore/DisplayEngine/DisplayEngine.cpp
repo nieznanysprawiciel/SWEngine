@@ -10,7 +10,7 @@
 #include "DisplayEngine.h"
 
 #include "EngineCore/MainEngine/Engine.h"
-#include "EngineCore/ModelsManager/ModelsManager.h"
+#include "EngineCore/ModelsManager/AssetsManager.h"
 #include "EngineCore/EventsManager/Events/RenderOnceEndedEvent.h"
 
 #include "EngineCore/EngineHelpers/PerformanceCheck.h"

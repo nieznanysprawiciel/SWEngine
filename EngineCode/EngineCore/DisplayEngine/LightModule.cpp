@@ -14,7 +14,7 @@
 #include "EngineCore/EngineHelpers/ActorsCommonFunctions.h"
 
 #include "GraphicAPI/BufferInitData.h"
-#include "EngineCore/ModelsManager/ModelsManager.h"
+#include "EngineCore/ModelsManager/AssetsManager.h"
 
 #include "GraphicAPI/IRenderer.h"
 

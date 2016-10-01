@@ -9,7 +9,7 @@
 #include "Common/Nullable.h"
 #include "Common/System/Path.h"
 #include "GraphicAPI/MeshResources.h"
-#include "EngineCore/ModelsManager/ModelsManager.h"
+#include "EngineCore/ModelsManager/AssetsManager.h"
 #include "EngineCore/ModelsManager/Assets/Meshes/MeshAssetInitData.h"
 
 
