@@ -52,7 +52,7 @@ lub nieobecnoœci tekstury w tablicy.
 
 @param[in] textures Tablica tekstur z obiektu ModelPart.
 @return Zwraca obiekt vertex shadera.*/
-VertexShader* AssetsManager::FindBestVertexShader( TextureObject** textures )
+VertexShader*	AssetsManager::FindBestVertexShader	( TextureObject** textures )
 {
 	// Na razie nie mamy innych domyœlnych shaderów
 	return m_vertexShader.get( DEFAULT_VERTEX_SHADER_STRING );
@@ -70,26 +70,59 @@ lub nieobecnoœci tekstury w tablicy.
 
 @param[in] textures Tablica tekstur z obiektu ModelPart.
 @return Zwraca obiekt pixel shadera.*/
-PixelShader* AssetsManager::FindBestPixelShader( TextureObject** textures )
+PixelShader*	AssetsManager::FindBestPixelShader	( TextureObject** textures )
 {
 	PixelShader* return_shader = nullptr;
 
 	// Na razie nie ma innych tekstur ni¿ diffuse, wiêc algorytm nie jest skomplikowany
-	if ( textures[TextureUse::TEX_DIFFUSE] )
+	if( textures[ TextureUse::TEX_DIFFUSE ] )
 		return_shader = m_pixelShader.get( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH );
-	
-	
-	if ( !return_shader )	// Je¿eli nadal jest nullptrem to dajemy mu domyœlny shader
+
+
+	if( !return_shader )	// Je¿eli nadal jest nullptrem to dajemy mu domyœlny shader
 		return_shader = m_pixelShader.get( DEFAULT_PIXEL_SHADER_STRING );
 
 	return return_shader;
+}
+
+/**@brief */
+GeometryShader*		AssetsManager::FindBestGeometryhader	( TextureObject** textures )
+{
+	return nullptr;
+}
+
+/**@brief */
+EvaluationShader*	AssetsManager::FindBestEvaluationShader	( TextureObject** textures )
+{
+	return nullptr;
+}
+
+/**@brief */
+ControlShader*		AssetsManager::FindBestControlShader	( TextureObject** textures )
+{
+	return nullptr;
+}
+
+
+/**@brief Fills struct with best shaders matching to textures data.*/
+void			AssetsManager::FillBestShaders		( MaterialInitData& initData )
+{
+	TextureObject* textures[ MAX_MATERIAL_TEXTURES ];
+	for( int i = 0; i < MAX_MATERIAL_TEXTURES; i++ )
+		textures[ i ] = initData.Textures[ i ].Ptr();
+
+	initData.VertexShader = FindBestVertexShader( textures );
+	initData.PixelShader = FindBestPixelShader( textures );
+	initData.GeometryShader = FindBestGeometryhader( textures );
+	initData.TesselationEvaluationShader = FindBestEvaluationShader( textures );
+	initData.TesselationControlShader = FindBestControlShader( textures );
 }
 
 
 /** @brief Znajduje Loader pasuj¹cy do pliku podanego w parametrze.
 @param[in] path Œcie¿ka do pliku, dla której szukamy loadera.
 @return WskaŸnik na odpowiedni loader lub nullptr, je¿eli nie znaleziono pasuj¹cego.*/
-ILoader* AssetsManager::FindLoader( const std::wstring& path )
+ILoader*		AssetsManager::FindLoader			( const std::wstring& path )
 {
 	for ( unsigned int i = 0; i <  m_loader.size( ); ++i )
 	if ( m_loader[i]->can_load( path ) )

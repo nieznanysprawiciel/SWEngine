@@ -168,7 +168,7 @@ void								SWMaterialLoader::SaveMaterial	( const filesystem::Path& fileName, M
 
 			
 			// Shading model data
-			auto shadingData = mat->GetDescriptor().ShadingData;
+			auto shadingData = mat->GetDescriptor().ShadingData.get();
 
 			TypeID shadingModelType = shadingData->GetShadingModelType();
 			TypeID shadingModelPtrType = shadingData->GetShadingModelPtrType();
@@ -216,7 +216,7 @@ Nullable< MaterialInitData >		SWMaterialLoader::LoadMaterial_Version1	( IDeseria
 		deser->Exit();
 	}
 
-	return data;
+	return std::move( data );
 }
 
 
@@ -307,7 +307,7 @@ Nullable< MaterialInitData >		SWMaterialLoader::LoadShadingData	( IDeserializer*
 		if( !object.can_convert( TypeID::get< ShadingModelBase* >() ) )
 			return Nullable< MaterialInitData >( "Can't convert MaterialData to ShadingModelBase*. Make sure, constructor was declared with AsRawPtr policy." );
 
-		initData.ShadingData = object.get_value< ShadingModelBase* >();
+		initData.ShadingData = UPtr< ShadingModelBase >( object.get_value< ShadingModelBase* >() );
 
 		if( initData.ShadingData->GetShadingModelSize() != bufferSize )
 			return Nullable< MaterialInitData >( "Declared buffer size is other then real buffer size." );

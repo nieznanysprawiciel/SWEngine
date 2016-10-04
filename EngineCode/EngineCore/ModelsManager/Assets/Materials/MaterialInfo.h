@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Common/TypesDefinitions.h"
+
 /// Maksymalna liczba tekstur w materiale.
 #define MAX_MATERIAL_TEXTURES		5
 
@@ -31,10 +33,10 @@ struct MaterialInfo
 {
 	std::vector< AdditionalBufferInfo >		AdditionalBuffers;		///< Opis dodatkowych buforów, jakie musi posiadaæ aktor.
 	std::wstring							MaterialName;			///< Nazwa materia³u. Mo¿e to byæ œcie¿ka do pliku z którego powsta³.
-	ShadingModelBase*						ShadingData;			///< Przechowuje parametry modelu cieniowania. @see ShadingModelData
+	UPtr< ShadingModelBase >				ShadingData;			///< Przechowuje parametry modelu cieniowania. @see ShadingModelData
 
 
-	MaterialInfo	( const std::wstring& name, std::vector< AdditionalBufferInfo >&& addBuff, ShadingModelBase* shadModel );
+	MaterialInfo	( const std::wstring& name, std::vector< AdditionalBufferInfo >&& addBuff, UPtr< ShadingModelBase >&& shadModel );
 	~MaterialInfo	();
 };
 
@@ -45,19 +47,17 @@ struct MaterialInfo
 
 // ================================ //
 //
-inline MaterialInfo::MaterialInfo( const std::wstring& name, std::vector< AdditionalBufferInfo >&& addBuff, ShadingModelBase* shadModel )
+inline MaterialInfo::MaterialInfo( const std::wstring& name, std::vector< AdditionalBufferInfo >&& addBuff, UPtr< ShadingModelBase >&& shadModel )
 {
 	AdditionalBuffers = std::move( addBuff );
 	MaterialName = name;
-	ShadingData = shadModel;
+	ShadingData = std::move( shadModel );
 }
 
 // ================================ //
 //
 inline MaterialInfo::~MaterialInfo	()
-{
-	delete ShadingData;
-}
+{}
 
 // ================================ //
 //

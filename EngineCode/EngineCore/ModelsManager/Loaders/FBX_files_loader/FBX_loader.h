@@ -20,6 +20,8 @@ drugie, ¿eby wykorzystywaæ wszystkie jego mo¿liwoœci.*/
 #include "fbxsdk.h"
 #include "FbxHelperStructs.h"
 
+#include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
+
 #include "Common/System/Path.h"
 
 
@@ -55,8 +57,8 @@ private:
 	void		process_mesh( FbxNode* node, FbxMesh* mesh, const DirectX::XMFLOAT4X4& transformation );
 	int			process_tree( FbxNode* root_node );
 
-	void		read_UVs( FbxMesh* mesh, int control_point, unsigned int vertex_counter, DirectX::XMFLOAT2& UV_cords );
-	int			read_material_index( FbxMesh* mesh, unsigned int polygon_counter );
+	DirectX::XMFLOAT2	ReadUVs				( FbxMesh* mesh, int control_point, unsigned int vertex_counter );
+	int					ReadMaterialIndex	( FbxMesh* mesh, unsigned int polygon_counter );
 
 	void		CopyMaterial		( MaterialObject& engineMaterial, const FbxSurfaceLambert& FBXmaterial );
 	void		CopyMaterial		( MaterialObject& engineMaterial, const FbxSurfacePhong& FBXmaterial );
@@ -64,7 +66,16 @@ private:
 
 private:
 
+	void		TransformVerticies	( std::vector< VertexNormalTexCoord >& verticies, uint32 offset, const DirectX::XMFLOAT4X4& matrix );
+	Index32		FindUniqueVertex	( VertexNormalTexCoord& vertex, std::vector< VertexNormalTexCoord >& verticies, Index32 startIndex );
+
 	Nullable< FbxMeshCollection >	ProcessNode		( FbxNode* node, Nullable< FbxMeshCollection >& meshes );
-	Nullable< MeshInitData >		ProcessMesh		( FbxNodeMesh& nodeData, FbxAssetsCollection& assets, Nullable< MeshInitData >& mesh );
+	Nullable< TemporaryMeshInit >	ProcessMesh		( FbxNodeMesh& nodeData, FbxAssetsCollection& assets, Nullable< TemporaryMeshInit >& mesh );	
+	ResourcePtr< MaterialAsset >	ProcessMaterial	( FbxSurfaceMaterial* FBXmaterial, FbxAssetsCollection& assets );
+	ResourcePtr< MaterialAsset >	CreateMaterial	( FbxSurfaceMaterial* FBXmaterial, FbxAssetsCollection& assets );
+	ResourcePtr< TextureObject >	ProcessTexture	( FbxFileTexture* FBXTexture, FbxAssetsCollection& assets );
+
+	PhongMaterial		CopyMaterial		( const FbxSurfaceLambert& FBXmaterial );
+	PhongMaterial		CopyMaterial		( const FbxSurfacePhong& FBXmaterial );
 };
 

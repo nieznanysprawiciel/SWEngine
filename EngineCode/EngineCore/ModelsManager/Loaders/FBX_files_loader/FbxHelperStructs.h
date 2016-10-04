@@ -60,3 +60,11 @@ struct FbxAssetsCollection
 	FbxMaterialsCollection		Material;
 	FbxTexturesCollection		Textures;
 };
+
+
+struct TemporaryMeshInit
+{
+	std::vector< VertexNormalTexCoord >		Verticies;
+	std::vector< std::vector< Index32 > >	Indicies;
+	std::vector< MeshPart >					Segments;
+};

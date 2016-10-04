@@ -278,7 +278,7 @@ void Engine::testMaterial( Model3DFromFile* model )
 
 	ShadingModelData< PhongMaterial >* shadingData = new ShadingModelData< PhongMaterial >();
 	shadingData->Data = phongMaterial;
-	init.Data.ShadingData = shadingData;
+	init.Data.ShadingData = UPtr< ShadingModelBase >( shadingData );
 
 
 	// Additional buffers.

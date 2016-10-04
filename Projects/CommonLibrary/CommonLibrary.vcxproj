@@ -41,6 +41,7 @@
     <ClInclude Include="..\..\EngineCode\Common\SWEngineInclude.h" />
     <ClInclude Include="..\..\EngineCode\Common\System\Path.h" />
     <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h" />
+    <ClInclude Include="..\..\EngineCode\Common\UPtr.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\Common\Converters.cpp" />

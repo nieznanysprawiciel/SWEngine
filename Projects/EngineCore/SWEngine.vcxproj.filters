@@ -9,12 +9,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="EngineCore\ModelsManagment">
-      <UniqueIdentifier>{1767f2b9-5500-4542-ba8b-7bae84c40423}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EngineCore\ModelsManagment\Loaders">
-      <UniqueIdentifier>{d203582c-aafd-4270-be22-a0752570022c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="EngineCore\MainEngine">
       <UniqueIdentifier>{f5108cd6-c6a5-4f66-b73f-3a93bc10eaa5}</UniqueIdentifier>
     </Filter>
@@ -102,35 +96,41 @@
     <Filter Include="EngineCore\UserApi\Level">
       <UniqueIdentifier>{187abfab-e16d-4094-84b6-2da745147460}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EngineCore\ModelsManagment\Assets">
-      <UniqueIdentifier>{7e4b9013-e940-473d-abbc-3f471b7cd163}</UniqueIdentifier>
+    <Filter Include="EngineCore\ModelsManager">
+      <UniqueIdentifier>{1767f2b9-5500-4542-ba8b-7bae84c40423}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EngineCore\ModelsManagment\Loaders\Texture">
+    <Filter Include="EngineCore\ModelsManager\Loaders">
+      <UniqueIdentifier>{d203582c-aafd-4270-be22-a0752570022c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\ModelsManager\Loaders\Texture">
       <UniqueIdentifier>{c14f3828-3c7c-4448-afbe-59abbd1c6763}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EngineCore\ModelsManagment\Loaders\Mesh">
-      <UniqueIdentifier>{84cee6ae-45f7-4b5d-9cf3-5b9655b4d44c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EngineCore\ModelsManagment\Loaders\Texture\SOIL">
+    <Filter Include="EngineCore\ModelsManager\Loaders\Texture\SOIL">
       <UniqueIdentifier>{2d188d8e-8868-4d2c-a9ae-439bd430e7b6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EngineCore\ModelsManagment\Loaders\Texture\Resampler">
+    <Filter Include="EngineCore\ModelsManager\Loaders\Texture\Resampler">
       <UniqueIdentifier>{1d09ea1a-cc84-48b2-99e6-d99201bd9d2b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EngineCore\ModelsManagment\Assets\Materials">
-      <UniqueIdentifier>{02c96954-b96f-40f2-98ca-5f7c5acd504a}</UniqueIdentifier>
+    <Filter Include="EngineCore\ModelsManager\Loaders\Mesh">
+      <UniqueIdentifier>{84cee6ae-45f7-4b5d-9cf3-5b9655b4d44c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EngineCore\ModelsManagment\Assets\Meshes">
-      <UniqueIdentifier>{6e42c9e4-6d88-482b-b844-023bf02166bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EngineCore\ModelsManagment\Loaders\Mesh\SWMesh">
+    <Filter Include="EngineCore\ModelsManager\Loaders\Mesh\SWMesh">
       <UniqueIdentifier>{5604a140-5fc9-42f2-a015-ca01e16356c3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EngineCore\ModelsManagment\Loaders\Material">
+    <Filter Include="EngineCore\ModelsManager\Loaders\Material">
       <UniqueIdentifier>{2d3cb875-4168-4c4f-95e3-c21e5d5a27f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EngineCore\ModelsManagment\Loaders\Material\SWMat">
+    <Filter Include="EngineCore\ModelsManager\Loaders\Material\SWMat">
       <UniqueIdentifier>{fe42bfd2-6dde-410e-a030-6618940b0d4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\ModelsManager\Assets">
+      <UniqueIdentifier>{7e4b9013-e940-473d-abbc-3f471b7cd163}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\ModelsManager\Assets\Materials">
+      <UniqueIdentifier>{02c96954-b96f-40f2-98ca-5f7c5acd504a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\ModelsManager\Assets\Meshes">
+      <UniqueIdentifier>{6e42c9e4-6d88-482b-b844-023bf02166bb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -138,7 +138,7 @@
       <Filter>EngineCore\SoundEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ResourceContainer.h">
-      <Filter>EngineCore\ModelsManagment</Filter>
+      <Filter>EngineCore\ModelsManager</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkyModel.h">
       <Filter>EngineCore\Features\HosekSkylightModel</Filter>
@@ -180,10 +180,10 @@
       <Filter>EngineCore\DisplayEngine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Model3DFromFile.h">
-      <Filter>EngineCore\ModelsManagment</Filter>
+      <Filter>EngineCore\ModelsManager</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.h">
-      <Filter>EngineCore\ModelsManagment</Filter>
+      <Filter>EngineCore\ModelsManager</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\stdafx.h">
       <Filter>EngineCore</Filter>
@@ -210,7 +210,7 @@
       <Filter>EngineCore\Actors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\ILoader.h">
-      <Filter>EngineCore\ModelsManagment\Loaders</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\GamePlay\IGamePlay.h">
       <Filter>EngineCore\GamePlay</Filter>
@@ -231,7 +231,7 @@
       <Filter>EngineCore\UIEngine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\ResourceHelpers.h">
-      <Filter>EngineCore\ModelsManagment</Filter>
+      <Filter>EngineCore\ModelsManager</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorPreset.h">
       <Filter>EngineCore\Actors</Filter>
@@ -444,103 +444,103 @@
       <Filter>EngineCore\Actors</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Mesh</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\TextureLoader.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\etc1_utils.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\image_DXT.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\image_helper.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\jo_jpeg.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\pkm_helper.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\pvr_helper.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stb_image.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stb_image_write.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_DDS.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_DDS_c.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_ext.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_ext_c.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_pkm.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_pkm_c.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_pvr.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\stbi_pvr_c.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\Resampler\resampler.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\Resampler</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\Resampler</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\MipMapGenerator.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcePtr.h">
       <Filter>GraphicAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Meshes\MeshAsset.h">
-      <Filter>EngineCore\ModelsManagment\Assets\Meshes</Filter>
+      <Filter>EngineCore\ModelsManager\Assets\Meshes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialAsset.h">
-      <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+      <Filter>EngineCore\ModelsManager\Assets\Materials</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\ShadingModelData.h">
-      <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+      <Filter>EngineCore\ModelsManager\Assets\Materials</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\PhongMaterialData.h">
-      <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+      <Filter>EngineCore\ModelsManager\Assets\Materials</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Meshes\MeshAssetInitData.h">
-      <Filter>EngineCore\ModelsManagment\Assets\Meshes</Filter>
+      <Filter>EngineCore\ModelsManager\Assets\Meshes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Meshes\MeshPart.h">
-      <Filter>EngineCore\ModelsManagment\Assets\Meshes</Filter>
+      <Filter>EngineCore\ModelsManager\Assets\Meshes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialAssetInitData.h">
-      <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+      <Filter>EngineCore\ModelsManager\Assets\Materials</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialInfo.h">
-      <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+      <Filter>EngineCore\ModelsManager\Assets\Materials</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Mesh\SWMesh\SWMeshLoader.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Mesh\SWMesh</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Mesh\SWMesh</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Mesh\SWMesh\SWMeshHeader.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Mesh\SWMesh</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Mesh\SWMesh</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Material\SWMat\SWMaterialLoader.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Material\SWMat</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Material\SWMat</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\TextureBinding.h">
-      <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+      <Filter>EngineCore\ModelsManager\Assets\Materials</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\LightModule.h">
       <Filter>EngineCore\DisplayEngine</Filter>
@@ -548,16 +548,16 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Rendering\LightsApi.h">
       <Filter>EngineCore\UserApi\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\FBX_files_loader\FbxHelperStructs.h">
-      <Filter>EngineCore\ModelsManagment\Loaders\Mesh\SWMesh</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\AssetsManager.h">
-      <Filter>EngineCore\ModelsManagment</Filter>
+      <Filter>EngineCore\ModelsManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\FBX_files_loader\FbxHelperStructs.h">
+      <Filter>EngineCore\ModelsManager\Loaders\Mesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
-      <Filter>EngineCore\ModelsManagment</Filter>
+      <Filter>EngineCore\ModelsManager</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.cpp">
       <Filter>EngineCore\SoundEngine</Filter>
@@ -593,7 +593,7 @@
       <Filter>EngineCore\DisplayEngine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.cpp">
-      <Filter>EngineCore\ModelsManagment</Filter>
+      <Filter>EngineCore\ModelsManager</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\EngineWindowFunctions.cpp">
       <Filter>EngineCore\MainEngine</Filter>
@@ -764,43 +764,43 @@
       <Filter>EngineCore\EngineHelpers</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
-      <Filter>EngineCore\ModelsManagment\Loaders\Mesh</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\TextureLoader.cpp">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\image_DXT.c">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\image_helper.c">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\SOIL\etc1_utils.cpp">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\SOIL</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\SOIL</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\Resampler\resampler.cpp">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture\Resampler</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture\Resampler</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\MipMapGenerator.cpp">
-      <Filter>EngineCore\ModelsManagment\Loaders\Texture</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Texture</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Meshes\MeshAsset.cpp">
-      <Filter>EngineCore\ModelsManagment\Assets\Meshes</Filter>
+      <Filter>EngineCore\ModelsManager\Assets\Meshes</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialAsset.cpp">
-      <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+      <Filter>EngineCore\ModelsManager\Assets\Materials</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Mesh\SWMesh\SWMeshLoader.cpp">
-      <Filter>EngineCore\ModelsManagment\Loaders\Mesh\SWMesh</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Mesh\SWMesh</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Material\SWMat\SWMaterialLoader.cpp">
-      <Filter>EngineCore\ModelsManagment\Loaders\Material\SWMat</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Material\SWMat</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\ShadingModels.cpp">
-      <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+      <Filter>EngineCore\ModelsManager\Assets\Materials</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\TextureBinding.cpp">
-      <Filter>EngineCore\ModelsManagment\Assets\Materials</Filter>
+      <Filter>EngineCore\ModelsManager\Assets\Materials</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\LightModule.cpp">
       <Filter>EngineCore\DisplayEngine</Filter>
@@ -809,7 +809,7 @@
       <Filter>EngineCore\UserApi\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\AssetsManager.cpp">
-      <Filter>EngineCore\ModelsManagment</Filter>
+      <Filter>EngineCore\ModelsManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -822,7 +822,7 @@
       <Filter>EngineCore\UserApi\Actors</Filter>
     </None>
     <None Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Material\SWMat\SWMaterialLoader.inl">
-      <Filter>EngineCore\ModelsManagment\Loaders\Material\SWMat</Filter>
+      <Filter>EngineCore\ModelsManager\Loaders\Material\SWMat</Filter>
     </None>
   </ItemGroup>
 </Project>

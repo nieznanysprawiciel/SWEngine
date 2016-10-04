@@ -23,7 +23,7 @@ typedef enum VERTEX_BUFFER_OFFSET
 obiektu danymi. Struktura jest kasowana po zakonczeniu edycji.*/
 struct TMP_data
 {
-	VertexNormalTexCord1*		vertices_tab	= nullptr;
+	VertexNormalTexCoord*		vertices_tab	= nullptr;
 	unsigned int				vertices_count	= 0;
 	VERT_INDEX*					indicies_tab = nullptr;
 	unsigned int				indicies_count	= 0;
@@ -139,7 +139,7 @@ public:
 	unsigned int		add_material		( const MaterialObject* material, const std::wstring& material_name );
 	unsigned int		add_vertex_shader	( const std::wstring& file_name );
 	unsigned int		add_pixel_shader	( const std::wstring& file_name );
-	unsigned int		add_vertex_buffer	( const VertexNormalTexCord1* buffer, unsigned int vert_count );
+	unsigned int		add_vertex_buffer	( const VertexNormalTexCoord* buffer, unsigned int vert_count );
 	void				add_transformation	( const DirectX::XMFLOAT4X4& transform );
 	unsigned int		add_index_buffer	( const VERT_INDEX* buffer, unsigned int ind_count, int vertex_buffer_offset );
 

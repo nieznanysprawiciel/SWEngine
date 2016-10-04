@@ -303,7 +303,7 @@ Bufory wierzcho³ków s¹ ³¹czone w jedna ca³oœæ w funkcji EndEdit.
 @param[in] buffer WskaŸnik na tablicê wierzcho³ków. Zwalnia wywo³uj¹cy.
 @param[in] vert_count Liczba wierzcho³ków w buforze.
 @return Funkcja  zwraca WRONG_ID w przypadku niepowodzenia lub 1 w przypadku powodzenia.*/
-unsigned int Model3DFromFile::add_vertex_buffer( const VertexNormalTexCord1* buffer, unsigned int vert_count )
+unsigned int Model3DFromFile::add_vertex_buffer( const VertexNormalTexCoord* buffer, unsigned int vert_count )
 {
 	if ( vert_count == 0 )
 		return WRONG_ID;		// Nie damy siê zrobiæ w balona
@@ -314,9 +314,9 @@ unsigned int Model3DFromFile::add_vertex_buffer( const VertexNormalTexCord1* buf
 		return WRONG_ID;		// Je¿eli jakaœ tablica ju¿ istania³a, to ktoœ pope³ni³ b³¹d
 
 	data->vertices_count = vert_count;							// Zapisujemy liczbê wierzcho³ków
-	data->vertices_tab = new VertexNormalTexCord1[vert_count];	// Tworzymy now¹ tablice wierzcho³ków
+	data->vertices_tab = new VertexNormalTexCoord[vert_count];	// Tworzymy now¹ tablice wierzcho³ków
 	// Tablica zwalniana w funkcji EndEdit_vertex_buffer_processing()
-	memcpy( data->vertices_tab, buffer, sizeof(VertexNormalTexCord1)*vert_count );	// Przepisujemy tablicê
+	memcpy( data->vertices_tab, buffer, sizeof(VertexNormalTexCoord)*vert_count );	// Przepisujemy tablicê
 
 	return 1;
 }
@@ -413,13 +413,13 @@ void Model3DFromFile::EndEdit_vertex_buffer_processing( )
 		return;			// Nie ma bufora wierzcho³ków. Sytuacja jest chora, ale jak ktoœ poda³ taki model, to jego sprawa.
 
 	// Przepisujemy bufor wierzcho³ków
-	VertexNormalTexCord1* verticies = new VertexNormalTexCord1[vertex_buffer_length];
+	VertexNormalTexCoord* verticies = new VertexNormalTexCoord[vertex_buffer_length];
 	PtrOffset offset = 0;
 	for ( int i = 0; i < tmp_data->current_pointer; ++i )
 	{
 		// verticies + offset - tu jest stosowana arytmetyka dla wskaŸników, a nie zwyk³e dodawanie
-		VertexNormalTexCord1* dest_ptr = verticies + offset;
-		memcpy( dest_ptr, tmp_data->table[i]->vertices_tab, sizeof(VertexNormalTexCord1)*tmp_data->table[i]->vertices_count );
+		VertexNormalTexCoord* dest_ptr = verticies + offset;
+		memcpy( dest_ptr, tmp_data->table[i]->vertices_tab, sizeof(VertexNormalTexCoord)*tmp_data->table[i]->vertices_count );
 		
 		// Je¿eli nie ma bufora indeksów to zapisujemy offset wzglêdem pocz¹tku bufora wierzcho³ków
 		if ( !tmp_data->table[i]->indicies_tab )
@@ -430,7 +430,7 @@ void Model3DFromFile::EndEdit_vertex_buffer_processing( )
 		delete[] tmp_data->table[i]->vertices_tab;		// Tablica alokowana w add_vertex_buffer()
 	}
 	// Tworzymy obiekt bufora wierzcho³ków i go zapisujemy
-	vertex_buffer = models_manager->CreateVertexBuffer( m_filePath, verticies, sizeof( VertexNormalTexCord1 ), vertex_buffer_length ).Ptr();
+	vertex_buffer = models_manager->CreateVertexBuffer( m_filePath, verticies, sizeof( VertexNormalTexCoord ), vertex_buffer_length ).Ptr();
 	vertex_buffer->AddAssetReference( );		// Zaznaczamy, ¿e siê do niego odwo³ujemy
 	
 	

@@ -1,9 +1,5 @@
 #include "ResourceManager.h"
 
-
-#include "EngineCore/stdafx.h"
-#include "ResourceManager.h"
-
 #include "Common/ObjectDeleter.h"
 #include "Common/MacrosSwitches.h"
 #include "GraphicAPI/ResourcesFactory.h"

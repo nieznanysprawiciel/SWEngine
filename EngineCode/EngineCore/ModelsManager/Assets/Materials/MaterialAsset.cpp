@@ -3,9 +3,8 @@
 @author nieznanysprawiciel
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
-
-
 #include "EngineCore/stdafx.h"
+
 #include "MaterialAsset.h"
 #include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
 
@@ -49,7 +48,7 @@ MaterialAsset::MaterialAsset( const std::wstring& filePath, MaterialCreateData&&
 	, m_geometryShader( std::move( initData.Data.GeometryShader ) )
 	, m_evaluationShader( std::move( initData.Data.TesselationEvaluationShader ) )
 	, m_controlShader( std::move( initData.Data.TesselationControlShader ) )
-	, m_descriptor( filePath, std::move( initData.Data.AdditionalBuffers ), initData.Data.ShadingData )
+	, m_descriptor( filePath, std::move( initData.Data.AdditionalBuffers ), std::move( initData.Data.ShadingData ) )
 {
 	for( int i = 0; i < MAX_MATERIAL_TEXTURES; ++i )
 	{

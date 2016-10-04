@@ -13,35 +13,39 @@ oraz inne domyœlne wartoœci zasobów.
 //-------------------------------------------------------------------------------//
 //	definicje wierzcho³ków
 
+typedef uint16 Index16;
+typedef uint32 Index32;
+typedef uint8 Index8;
+
 /// @brief Strutkura dla standardowego wierzcho³ka.
-typedef struct VertexNormalTexCord1
+struct VertexNormalTexCoord
 {
-	DirectX::XMFLOAT3	position;		///<Pozycja wierzcho³ka.
-	DirectX::XMFLOAT3	normal;			///<Wektor normalny wierzcho³ka.
-	DirectX::XMFLOAT2	tex_cords;		///<Wspó³rzêdne tekstury.
-} VertexNormalTexCord1;
+	DirectX::XMFLOAT3	Position;		///<Pozycja wierzcho³ka.
+	DirectX::XMFLOAT3	Normal;			///<Wektor normalny wierzcho³ka.
+	DirectX::XMFLOAT2	TexCoord;		///<Wspó³rzêdne tekstury.
+};
 
 
 /// @brief Struktura wierzcho³ka stworzona z myœl¹ o GUI.
-typedef struct VertexTexCord1
+struct VertexTexCoord
 {
-	DirectX::XMFLOAT3	position;		///<Pozycja wierzcho³ka.
-	DirectX::XMFLOAT2	tex_cords;		///<Wspó³rzêdne tekstury.
-} VertexTexCord1;
+	DirectX::XMFLOAT3	Position;		///<Pozycja wierzcho³ka.
+	DirectX::XMFLOAT2	TexCoord;		///<Wspó³rzêdne tekstury.
+};
 
 /// @brief Struktura wierzcho³ka dla bezteksturowych obiektów.
-typedef struct VertexColor
+struct VertexColor
 {
-	DirectX::XMFLOAT3 position;		///<Pozycja wierzcho³ka
-	DirectX::XMFLOAT3 color;		///<Kolor wierzcho³ka
-} VertexColor;
+	DirectX::XMFLOAT3	Position;		///<Pozycja wierzcho³ka
+	DirectX::XMFLOAT3	Color;			///<Kolor wierzcho³ka
+};
 
 /// @brief Struktura u¿ywana do produkowania lightmap.
-typedef struct CoordColor
+struct CoordColor
 {
-	DirectX::XMFLOAT2 texCoords;	///<Wspo³rzêdne lightmapy.
-	DirectX::XMFLOAT3 color;		///<Kolor dla danej wspó³rzêdnej.
-} CoordColor;
+	DirectX::XMFLOAT2	TexCoord;	///<Wspo³rzêdne lightmapy.
+	DirectX::XMFLOAT3	Color;		///<Kolor dla danej wspó³rzêdnej.
+};
 
 // RenderTargety
 const wchar_t SCREEN_RENDERTARGET_STRING[] = L"::Screen render target";

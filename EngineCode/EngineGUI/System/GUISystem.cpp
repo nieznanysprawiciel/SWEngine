@@ -66,22 +66,16 @@ void				GUISystem::Initialize()
 @see Application*/
 int					GUISystem::MainLoop()
 {
-	// Tests only
-	int size = sizeof( IControl );
-	int stringSize = sizeof( std::string );
-	int mapSize = sizeof( std::map< std::string, void* > );
-	int stateSize = sizeof( KeyState );
-
-// ================================ //
-//
-	bool end = false;
-	while( !end )
+	while( true )
 	{
 		// Process native events.
-		end = m_nativeGUI->MainLoop( true );
+		bool end = m_nativeGUI->MainLoop( true );
+		if( end ) break;
 
 		// @todo Now display all objects.
 	}
+
+	OnClosing();
 
 	return 0;
 }

@@ -4,12 +4,20 @@
 
 
 #include "Common/Converters.h"
-
 #include "Common/MemoryLeaks.h"
+
 
 using namespace DirectX;
 
 
+
+// ================================ //
+// Helpers declarations
+
+DirectX::XMFLOAT3	Get			( const fbxsdk::FbxVector4& vector );
+bool				operator==	( const DirectX::XMFLOAT3& vec1, const DirectX::XMFLOAT3& vec2 );
+bool				operator==	( const DirectX::XMFLOAT2& vec1, const DirectX::XMFLOAT2& vec2 );
+bool				operator==	( const fbxsdk::FbxVector4& vec1, const DirectX::XMFLOAT3& vec2 );
 
 
 /**@brief Suported file extensions which can be load by loader.*/
@@ -190,7 +198,7 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 		return;*/
 
 	int material_count = node->GetMaterialCount();
-	std::vector<VertexNormalTexCord1>** triangles;		//nasza tablica wierzcho³ków, normalnych i UVs (ta tablica bêdzie tylko tymczasowa)
+	std::vector<VertexNormalTexCoord>** triangles;		//nasza tablica wierzcho³ków, normalnych i UVs (ta tablica bêdzie tylko tymczasowa)
 	unsigned int polygon_count = mesh->GetPolygonCount();	//liczba wielok¹tów
 	unsigned int vertex_counter = 0;						//potrzebne przy trybie mapowania FbxGeometryElement::eByPolygonVertex
 	unsigned int polygon_counter = 0;						//potrzebne przy trybie mapowania materia³ów FbxGeometryElement::eByPolygon
@@ -199,9 +207,9 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 	//tworzymy tyle vectorów na wierzcho³ki, ile mamy materia³ów
 	if (material_count == 0)
 		material_count = 1;		//potrzebujemy przynajmniej jednej tablicy
-	triangles = new std::vector<VertexNormalTexCord1>*[material_count];
+	triangles = new std::vector<VertexNormalTexCoord>*[material_count];
 	for (int i = 0; i < material_count; ++i)
-		triangles[i] = new std::vector < VertexNormalTexCord1 >;
+		triangles[i] = new std::vector < VertexNormalTexCoord >;
 
 
 	/*Iterujemy po wierzcho³kach i wpisujemy je do odpowiedniej tablicy w zaleznoœci od materia³u.*/
@@ -209,27 +217,27 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 	{
 		//pobieramy index materia³u (tylko raz na ka¿dy polygon)
 		int material_index;
-		material_index = read_material_index(mesh, polygon_counter);
+		material_index = ReadMaterialIndex(mesh, polygon_counter);
 
 		/*Tu siê dzieje ma³e oszustwo. Sprawdzamy tylko 3 wierzcho³ki, jakby to by³y trójk¹ty,
 		a to moga byæ dowolne wielok¹ty. Tak naprawdê to tylko mamy nadziejê, ¿e nikomu nie przyjdzie
 		do g³owy, ¿eby u¿yæ czegoœ innego ni¿ trojk¹tów, no ale trudno.*/
 		for (int j = 0; j < 3; ++j)
 		{
-			VertexNormalTexCord1 cur_vertex;		//tutaj zapisujemy dane o wierzcho³ku
+			VertexNormalTexCoord cur_vertex;		//tutaj zapisujemy dane o wierzcho³ku
 			int ctr_point = mesh->GetPolygonVertex(i, j);
 
 			//przepisujemy pozycjê wierzcho³ka
-			cur_vertex.position.x = static_cast<float>(mesh->GetControlPointAt(ctr_point).mData[0]);
-			cur_vertex.position.y = static_cast<float>(mesh->GetControlPointAt(ctr_point).mData[1]);
-			cur_vertex.position.z = static_cast<float>(mesh->GetControlPointAt(ctr_point).mData[2]);
+			cur_vertex.Position.x = static_cast<float>(mesh->GetControlPointAt(ctr_point).mData[0]);
+			cur_vertex.Position.y = static_cast<float>(mesh->GetControlPointAt(ctr_point).mData[1]);
+			cur_vertex.Position.z = static_cast<float>(mesh->GetControlPointAt(ctr_point).mData[2]);
 		
 			//przepisujemy normaln¹
 			FbxVector4 fbx_normal;
 			mesh->GetPolygonVertexNormal(i, j, fbx_normal);
-			cur_vertex.normal.x = static_cast<float>(fbx_normal.mData[0]);
-			cur_vertex.normal.y = static_cast<float>(fbx_normal.mData[1]);
-			cur_vertex.normal.z = static_cast<float>(fbx_normal.mData[2]);
+			cur_vertex.Normal.x = static_cast<float>(fbx_normal.mData[0]);
+			cur_vertex.Normal.y = static_cast<float>(fbx_normal.mData[1]);
+			cur_vertex.Normal.z = static_cast<float>(fbx_normal.mData[2]);
 
 			//przepisujemy UVs
 			/*bool mapped;
@@ -237,7 +245,7 @@ void FBX_loader::process_mesh(FbxNode* node, FbxMesh* mesh, const DirectX::XMFLO
 			mesh->GetPolygonVertexUV(i, j, "DiffuseUV", UVs, mapped);
 			cur_vertex.tex_cords1.x = static_cast<float>(UVs.mData[0]);
 			cur_vertex.tex_cords1.y = static_cast<float>(UVs.mData[1]);*/
-			read_UVs(mesh, ctr_point, vertex_counter, cur_vertex.tex_cords);
+			cur_vertex.TexCoord = ReadUVs(mesh, ctr_point, vertex_counter );
 
 			//dodajemy wierzcho³ek do odpowiedniej tablicy
 			triangles[material_index]->push_back(cur_vertex);
@@ -340,7 +348,7 @@ void		FBX_loader::ProcessMaterial		( FbxSurfaceMaterial* FBXmaterial )
 /**@brief Dla podanego polygona odczytujemy jego indeks materia³u. Je¿eli nie ma ¿adnych materia³ów przypisanych
 to dostajemy 0. Kiedy potem bêdziemy wybieraæ, do której tablicy mesha zapisaæ wierzcho³ek, wszystko
 bêdzie dzia³a³o poprawnie nawet, jak materi¹³u nie bêdzie.*/
-int FBX_loader::read_material_index(FbxMesh* mesh, unsigned int polygon_counter)
+int FBX_loader::ReadMaterialIndex(FbxMesh* mesh, unsigned int polygon_counter)
 {
 	if (mesh->GetElementMaterialCount() < 1)
 		return 0;		//nie by³o materia³ów to mamy tylko jedn¹ tablicê do indeksowania
@@ -362,10 +370,12 @@ int FBX_loader::read_material_index(FbxMesh* mesh, unsigned int polygon_counter)
 }
 
 /**@brief Wczytuje UVs dla podanego wierzcho³ka.*/
-void FBX_loader::read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_counter, DirectX::XMFLOAT2& UV_cords)
+DirectX::XMFLOAT2		FBX_loader::ReadUVs(FbxMesh* mesh, int control_point, unsigned int vertex_counter )
 {
 	if (mesh->GetUVLayerCount() < 1)
-		return;
+		return DirectX::XMFLOAT2( 0.0, 0.0 );
+
+	DirectX::XMFLOAT2 UV_cords;
 	
 	FbxGeometryElementUV* UVs = mesh->GetElementUV();
 	int index;
@@ -404,6 +414,8 @@ void FBX_loader::read_UVs(FbxMesh* mesh, int control_point, unsigned int vertex_
 		}
 		break;
 	}
+
+	return UV_cords;
 }
 
 
@@ -529,6 +541,7 @@ bool						FBX_loader::CanLoad		( const filesystem::Path& fileName )
 	return false;
 }
 
+
 /**@brief Process single node.*/
 Nullable< FbxMeshCollection >		FBX_loader::ProcessNode		( FbxNode* node, Nullable< FbxMeshCollection >& meshes )
 {
@@ -568,28 +581,389 @@ Nullable< FbxMeshCollection >		FBX_loader::ProcessNode		( FbxNode* node, Nullabl
 
 
 /**@brief Process single mesh.*/
-Nullable< MeshInitData >		FBX_loader::ProcessMesh		( FbxNodeMesh& nodeData, FbxAssetsCollection& assets, Nullable< MeshInitData >& mesh )
+Nullable< TemporaryMeshInit >		FBX_loader::ProcessMesh		( FbxNodeMesh& nodeData, FbxAssetsCollection& assets, Nullable< TemporaryMeshInit >& mesh )
 {
 	ReturnIfInvalid( mesh );
 
 	FbxNode* fbxNode = nodeData.Node;
 	FbxMesh* fbxMesh = nodeData.Mesh;
 
-	//fbxMesh->GetCo
-
 	int materialsCount = fbxNode->GetMaterialCount();
-	std::vector< VertexNormalTexCord1 > triangles;
 	unsigned int polygonsCount = fbxMesh->GetPolygonCount();
+	
 	unsigned int vertexCounter = 0;			// For FbxGeometryElement::eByPolygonVertex mapping type.
 	unsigned int polygonCounter = 0;		// For FbxGeometryElement::eByPolygon maping type.
 
-	FbxGeometryElementMaterial* material = fbxMesh->GetElementMaterial();
-	FbxGeometryElementNormal* normal = fbxMesh->GetElementNormal();
-	FbxGeometryElementUV* uv = fbxMesh->GetElementUV();
 
-	//fbxMesh->Get
+	uint32 ctrlPointsOffset = (uint32)mesh.Value.Verticies.size();
+	auto controlPoints = fbxMesh->GetControlPoints();
+	unsigned int numControlPoints = ctrlPointsOffset + fbxMesh->GetControlPointsCount();
+
+	std::vector< VertexNormalTexCoord >& verticies = mesh.Value.Verticies;		verticies.reserve( numControlPoints );
+	std::vector< std::vector< Index32 > > indicies = mesh.Value.Indicies;		indicies.resize( materialsCount );
+
+	// Rewrite all control points to vertex buffer.
+	for( Size idx = ctrlPointsOffset; idx < numControlPoints; idx++ )
+	{
+		VertexNormalTexCoord vertex;
+		vertex.Position = Get( controlPoints[ idx ] );
+		vertex.Normal = DirectX::XMFLOAT3( 0.0, 0.0, 0.0 );
+		vertex.TexCoord = DirectX::XMFLOAT2( 0.0, 0.0 );
+
+		verticies.push_back( vertex );
+	}
+	
+	// Add polygons to index buffer.
+	while( polygonCounter < polygonsCount )
+	{
+		// Material index per polygon.
+		int materialIdx = ReadMaterialIndex( fbxMesh, polygonCounter );
+
+		// There're no aother polygons then triangles, because we triangulated mesh i LoadMesh function.
+		for( int vertexIdx = 0; vertexIdx < 3; ++vertexIdx )
+		{
+			Index32 controlPointIdx = fbxMesh->GetPolygonVertex( polygonCounter, vertexIdx );
+			VertexNormalTexCoord* curVertex = &verticies[ controlPointIdx ];
+
+			indicies[ materialIdx ].push_back( ctrlPointsOffset + controlPointIdx );
+
+			// Find vertex normal and uvs coord.
+			FbxVector4 fbxNormal;
+			fbxMesh->GetPolygonVertexNormal( polygonCounter, vertexIdx, fbxNormal );
+
+			DirectX::XMFLOAT3 normal = Get( fbxNormal );
+			DirectX::XMFLOAT2 uv = ReadUVs( fbxMesh, controlPointIdx, vertexCounter );
+
+			if( curVertex->Normal == DirectX::XMFLOAT3( 0.0, 0.0, 0.0 ) )
+			{
+				// Normal didn't exist. That means, we process this control point first time.
+				curVertex->Normal = Get( fbxNormal );
+				curVertex->TexCoord = uv;
+
+				indicies[ materialIdx ].push_back( ctrlPointsOffset + controlPointIdx );
+			}
+			else if( normal == curVertex->Normal && curVertex->TexCoord == uv )
+			{
+				// Repeated vertex. We add only index.
+				indicies[ materialIdx ].push_back( ctrlPointsOffset + controlPointIdx );
+			}
+			else
+			{
+				// Normal or uv is different. We must create new vertex or find existing equal vertex.
+				VertexNormalTexCoord newVertex;
+				newVertex.Position = curVertex->Position;
+				newVertex.Normal = normal;
+				newVertex.TexCoord = uv;
+
+				indicies[ materialIdx ].push_back( FindUniqueVertex( newVertex, verticies, numControlPoints - 1 ) );
+			}
+
+			++vertexCounter;		//zliczamy wierzcho³ki
+		}
 
 
-	return Nullable<MeshInitData>();
+		polygonCounter++;
+	}
+
+	// Verticies in FBX file have transformations which we must apply.
+	// We don't have to preserve transformation matrix for each segment with this approach.
+	TransformVerticies( verticies, ctrlPointsOffset, nodeData.Transformation );
+
+	// Rewrite index buffers.
+	for( int i = 0; i < indicies.size(); ++i )
+		mesh.Value.Indicies.push_back( std::move( indicies[ i ] ) );
+
+
+	return std::move( mesh );
 }
 
+// ================================ //
+//
+ResourcePtr< MaterialAsset >		FBX_loader::ProcessMaterial	( FbxSurfaceMaterial* FBXmaterial, FbxAssetsCollection& assets )
+{
+	for( auto& mat : assets.Material )
+	{
+		if( mat.Surface == FBXmaterial )
+		{
+			if( mat.EngineMaterial )	
+				return mat.EngineMaterial;
+			else
+			{
+				mat.EngineMaterial = CreateMaterial( FBXmaterial, assets );
+				return mat.EngineMaterial;
+			}
+		}
+	}
+
+	return ResourcePtr<MaterialAsset>();
+}
+
+// ================================ //
+//
+ResourcePtr< MaterialAsset >		FBX_loader::CreateMaterial	( FbxSurfaceMaterial* FBXmaterial, FbxAssetsCollection& assets )
+{
+	FbxShadingModel model;
+
+	// Get the implementation to see if it's a hardware shader.
+	const FbxImplementation* lImplementation = GetImplementation( FBXmaterial, FBXSDK_IMPLEMENTATION_HLSL );
+
+	if( lImplementation )
+	{
+		assert( !"Hardware shader currently not supported" );
+		model = FbxShadingModel::HardwareShader;
+	}
+	else if( FBXmaterial->GetClassId().Is( FbxSurfacePhong::ClassId ) )
+		model = FbxShadingModel::Phong;
+	else if( FBXmaterial->GetClassId().Is( FbxSurfaceLambert::ClassId ) )
+		model = FbxShadingModel::Lambert;
+	else
+		assert( !"Wrong shading model" );
+
+
+	PhongMaterial engineMaterial;		// Ten materia³ jest tylko tymczasowy
+	FbxSurfaceLambert* surfMaterial = static_cast<FbxSurfaceLambert*>( FBXmaterial );
+
+	engineMaterial.SetNullMaterial();
+
+	if( model == FbxShadingModel::Lambert )
+		engineMaterial = CopyMaterial( *surfMaterial );
+	else
+		engineMaterial = CopyMaterial( *static_cast<FbxSurfacePhong*>( surfMaterial ) );
+
+
+	MaterialInitData initData;
+
+	ResourcePtr< TextureObject > diffuseTexture = nullptr;
+	ResourcePtr< TextureObject > specularTexture = nullptr;
+	ResourcePtr< TextureObject > bumpMapTexture = nullptr;
+	ResourcePtr< TextureObject > displacementTexture = nullptr;
+	ResourcePtr< TextureObject > normalMapTexture = nullptr;
+	ResourcePtr< TextureObject > emmisiveTexture = nullptr;
+
+
+	if( surfMaterial->Diffuse.GetSrcObjectCount() > 0 )
+	{
+		FbxFileTexture* texture = static_cast<FbxFileTexture*>( surfMaterial->Diffuse.GetSrcObject() );
+		if( texture != nullptr )
+			diffuseTexture = ProcessTexture( texture, assets );
+	}
+
+	if( model == FbxShadingModel::Phong )
+	{
+		auto fbxPhongMat = static_cast< FbxSurfacePhong* >( surfMaterial );
+
+		if( fbxPhongMat->Specular.GetSrcObjectCount() > 0 )
+		{
+			FbxFileTexture* texture = static_cast<FbxFileTexture*>( fbxPhongMat->Specular.GetSrcObject() );
+			if( texture != nullptr )
+				specularTexture = ProcessTexture( texture, assets );
+		}
+
+		if( fbxPhongMat->DisplacementColor.GetSrcObjectCount() > 0 )
+		{
+			FbxFileTexture* texture = static_cast<FbxFileTexture*>( fbxPhongMat->DisplacementColor.GetSrcObject() );
+			if( texture != nullptr )
+				displacementTexture = ProcessTexture( texture, assets );
+		}
+
+		if( fbxPhongMat->Emissive.GetSrcObjectCount() > 0 )
+		{
+			FbxFileTexture* texture = static_cast<FbxFileTexture*>( fbxPhongMat->Emissive.GetSrcObject() );
+			if( texture != nullptr )
+				emmisiveTexture = ProcessTexture( texture, assets );
+		}
+
+		if( fbxPhongMat->Bump.GetSrcObjectCount() > 0 )
+		{
+			FbxFileTexture* texture = static_cast<FbxFileTexture*>( fbxPhongMat->Bump.GetSrcObject() );
+			if( texture != nullptr )
+				bumpMapTexture = ProcessTexture( texture, assets );
+		}
+
+		if( fbxPhongMat->NormalMap.GetSrcObjectCount() > 0 )
+		{
+			FbxFileTexture* texture = static_cast<FbxFileTexture*>( fbxPhongMat->NormalMap.GetSrcObject() );
+			if( texture != nullptr )
+				normalMapTexture = ProcessTexture( texture, assets );
+		}
+	}
+
+	return ResourcePtr<MaterialAsset>();
+}
+
+// ================================ //
+//
+ResourcePtr< TextureObject >		FBX_loader::ProcessTexture			( FbxFileTexture* FBXTexture, FbxAssetsCollection& assets )
+{
+	for( auto& tex : assets.Textures )
+	{
+		if( tex.FbxTex == FBXTexture )
+		{
+			if( tex.EngineTex )	
+				return tex.EngineTex;
+			else
+			{
+				filesystem::Path texPath = FBXTexture->GetRelativeFileName();
+				texPath = m_filePath.GetParent() / texPath;
+				auto newTexture = models_manager->LoadTexture( Convert::FromString< std::wstring >( texPath.String(), std::wstring( L"" ) ) );
+
+				tex.EngineTex = newTexture;
+				return newTexture;
+			}
+		}
+	}
+
+	return ResourcePtr< TextureObject >();
+}
+
+
+
+// ================================ //
+//
+void								FBX_loader::TransformVerticies		( std::vector<VertexNormalTexCoord>& verticies, uint32 offset, const DirectX::XMFLOAT4X4& matrix )
+{
+	XMMATRIX transform = XMLoadFloat4x4( &matrix );
+	XMMATRIX normalTransform = XMMatrixTranspose( XMMatrixInverse( nullptr, transform ) );
+
+	for( uint32 i = offset; i < verticies.size(); ++i )
+	{
+		auto& vertex = verticies[ i ];
+
+		XMVECTOR position = XMLoadFloat3( &vertex.Position );
+		XMVECTOR normal = XMLoadFloat3( &vertex.Normal );
+
+		position = XMVector3Transform( position, transform );
+		normal = XMVector3TransformNormal( normal, normalTransform );
+
+		XMStoreFloat3( &vertex.Position, position );
+		XMStoreFloat3( &vertex.Normal, normal );
+	}
+}
+
+// ================================ //
+// Adds vertex to array if neither of verticies was equal.
+Index32						FBX_loader::FindUniqueVertex			( VertexNormalTexCoord& vertex, std::vector< VertexNormalTexCoord >& verticies, Index32 startIndex )
+{
+	for( Index32 i = startIndex; i < verticies.size(); ++i )
+	{
+		VertexNormalTexCoord& existingVertex = verticies[ i ];
+		if( existingVertex.Position == vertex.Position &&
+			existingVertex.Normal == vertex.Normal &&
+			existingVertex.TexCoord == vertex.TexCoord )
+		{
+			return i;
+		}
+	}
+	
+	// Vertex not found.
+	verticies.push_back( vertex );
+	return (Index32)( verticies.size() - 1 );
+}
+
+// ================================ //
+//
+PhongMaterial						FBX_loader::CopyMaterial			( const FbxSurfaceLambert& FBXmaterial )
+{
+	PhongMaterial engineMaterial;
+
+	FbxDouble3 diffuse = static_cast<FbxDouble3>( FBXmaterial.Diffuse.Get() );
+	FbxDouble3 ambient = static_cast<FbxDouble3>( FBXmaterial.Ambient.Get() );
+	FbxDouble3 emissive = static_cast<FbxDouble3>( FBXmaterial.Emissive.Get() );
+	FbxDouble transparent = static_cast<FbxDouble>( FBXmaterial.TransparencyFactor.Get() );
+
+	FbxDouble diffuseFactor = static_cast<FbxDouble>( FBXmaterial.DiffuseFactor.Get() );
+	FbxDouble ambientFactor = static_cast<FbxDouble>( FBXmaterial.AmbientFactor.Get() );
+	FbxDouble emissiveFactor = static_cast<FbxDouble>( FBXmaterial.EmissiveFactor.Get() );
+
+	engineMaterial.Diffuse.w = static_cast<float>( transparent );
+
+	engineMaterial.Diffuse.x = static_cast<float>( diffuse[ 0 ] * diffuseFactor );
+	engineMaterial.Diffuse.y = static_cast<float>( diffuse[ 1 ] * diffuseFactor );
+	engineMaterial.Diffuse.z = static_cast<float>( diffuse[ 2 ] * diffuseFactor );
+
+	engineMaterial.Ambient.x = static_cast<float>( ambient[ 0 ] * ambientFactor );
+	engineMaterial.Ambient.y = static_cast<float>( ambient[ 1 ] * ambientFactor );
+	engineMaterial.Ambient.z = static_cast<float>( ambient[ 2 ] * ambientFactor );
+
+	engineMaterial.Emissive.x = static_cast<float>( emissive[ 0 ] * emissiveFactor );
+	engineMaterial.Emissive.y = static_cast<float>( emissive[ 1 ] * emissiveFactor );
+	engineMaterial.Emissive.z = static_cast<float>( emissive[ 2 ] * emissiveFactor );
+
+	engineMaterial.Specular.x = 0.0f;
+	engineMaterial.Specular.y = 0.0f;
+	engineMaterial.Specular.z = 0.0f;
+
+	engineMaterial.Power = 1.0f;
+
+	return engineMaterial;
+}
+
+// ================================ //
+//
+PhongMaterial						FBX_loader::CopyMaterial			( const FbxSurfacePhong& FBXmaterial )
+{
+	PhongMaterial engineMaterial = CopyMaterial( static_cast<const FbxSurfaceLambert&>( FBXmaterial ) );
+
+	if( !FBXmaterial.Specular.IsValid() )
+		assert( false );
+
+	FbxDouble3 specular = static_cast<FbxDouble3>( FBXmaterial.Specular.Get() );
+	FbxDouble specularFactor = static_cast<FbxDouble>( FBXmaterial.SpecularFactor.Get() );
+	FbxDouble power = static_cast<FbxDouble>( FBXmaterial.Shininess.Get() );
+
+	engineMaterial.Specular.x = static_cast<float>( specular[ 0 ] * specularFactor );
+	engineMaterial.Specular.y = static_cast<float>( specular[ 1 ] * specularFactor );
+	engineMaterial.Specular.z = static_cast<float>( specular[ 2 ] * specularFactor );
+
+	engineMaterial.Power = static_cast<float>( power );
+
+	return engineMaterial;
+}
+
+
+//====================================================================================//
+//			Helpers	
+//====================================================================================//
+
+
+// ================================ //
+//
+DirectX::XMFLOAT3	Get( const fbxsdk::FbxVector4& vector )
+{
+	DirectX::XMFLOAT3 result;
+	result.x = (float)vector.mData[ 0 ];
+	result.y = (float)vector.mData[ 1 ];
+	result.z = (float)vector.mData[ 2 ];
+	return result;
+}
+
+// ================================ //
+//
+bool				operator==	( const DirectX::XMFLOAT3& vec1, const DirectX::XMFLOAT3& vec2 )
+{
+	if( vec1.x != vec2.x )
+		return false;
+	if( vec1.y != vec2.y )
+		return false;
+	if( vec1.z != vec2.z )
+		return false;
+	return true;
+}
+
+// ================================ //
+//
+bool				operator==	( const DirectX::XMFLOAT2& vec1, const DirectX::XMFLOAT2& vec2 )
+{
+	if( vec1.x != vec2.x )
+		return false;
+	if( vec1.y != vec2.y )
+		return false;
+	return true;
+}
+
+// ================================ //
+//
+bool				operator==	( const fbxsdk::FbxVector4& vec1, const DirectX::XMFLOAT3& vec2 )
+{
+	return Get( vec1 ) == vec2;
+}

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Common/TypesDefinitions.h"
+
 #include "GraphicAPI/MeshResources.h"
 #include "ShadingModelData.h"
 #include "MaterialInfo.h"
@@ -19,7 +21,13 @@ struct MaterialInitData
 	ResourcePtr< TextureObject >			Textures[ MAX_MATERIAL_TEXTURES ];
 
 	std::vector< AdditionalBufferInfo >		AdditionalBuffers;		///< Additional buffers which should be provided by actor.
-	ShadingModelBase*						ShadingData;			///< Initializes buffer with shadeing model data. @see ShadingModelData
+	UPtr< ShadingModelBase >				ShadingData;			///< Initializes buffer with shadeing model data. @see ShadingModelData
+
+// ================================ //
+//
+	MaterialInitData	()	{}
+	MaterialInitData	( MaterialInitData&& other );
+	void operator=		( MaterialInitData&& other );
 };
 
 /**@brief Struct contains data needed to initialize material.
@@ -32,3 +40,37 @@ struct MaterialCreateData
 	ResourcePtr< BufferObject >		MaterialBuffer;
 };
 
+
+//====================================================================================//
+//			Implementation	
+//====================================================================================//
+
+#define MOVE_FIELD( param ) param = std::move( other.##param );
+
+inline MaterialInitData::MaterialInitData( MaterialInitData&& other )
+{
+	MOVE_FIELD( VertexShader );
+	MOVE_FIELD( PixelShader );
+	MOVE_FIELD( GeometryShader );
+	MOVE_FIELD( TesselationControlShader );
+	MOVE_FIELD( TesselationEvaluationShader );
+	MOVE_FIELD( AdditionalBuffers );
+	MOVE_FIELD( ShadingData );
+
+	for( int i = 0; i < MAX_MATERIAL_TEXTURES; ++i )
+		Textures[ i ] = std::move( other.Textures[ i ] );
+}
+
+inline void		MaterialInitData::operator=( MaterialInitData&& other )
+{
+	MOVE_FIELD( VertexShader );
+	MOVE_FIELD( PixelShader );
+	MOVE_FIELD( GeometryShader );
+	MOVE_FIELD( TesselationControlShader );
+	MOVE_FIELD( TesselationEvaluationShader );
+	MOVE_FIELD( AdditionalBuffers );
+	MOVE_FIELD( ShadingData );
+
+	for( int i = 0; i < MAX_MATERIAL_TEXTURES; ++i )
+		Textures[ i ] = std::move( other.Textures[ i ] );
+}

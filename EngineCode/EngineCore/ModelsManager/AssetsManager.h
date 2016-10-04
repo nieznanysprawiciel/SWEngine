@@ -77,6 +77,11 @@ public:
 	// Funkcje pomocnicze
 	VertexShader*					FindBestVertexShader		( TextureObject** textures );
 	PixelShader*					FindBestPixelShader			( TextureObject** textures );
+	GeometryShader*					FindBestGeometryhader		( TextureObject** textures );
+	EvaluationShader*				FindBestEvaluationShader	( TextureObject** textures );
+	ControlShader*					FindBestControlShader		( TextureObject** textures );
+
+	void							FillBestShaders				( MaterialInitData& initData );
 
 
 	// Funkcje do zarz¹dzania assetami

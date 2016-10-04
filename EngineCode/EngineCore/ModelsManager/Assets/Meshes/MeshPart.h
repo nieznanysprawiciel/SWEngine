@@ -19,13 +19,12 @@ enum MeshPartFlags : int
 @ingroup MeshAsset*/
 struct MeshPart
 {
-	DirectX::XMFLOAT4X4				TransformMatrix;	///< Macierz przekszta³cenia wzglêdem œrodka modelu. @deprecated Macierz zachowana tylko w ramach zgodnoœci wstecznej. W przysz³oœci wierzcho³ki powinny zostaæ przetransformowane przed wstawieniem do bufora.
+	ResourcePtr< MaterialAsset >	Material;			///< Materia³ dla danej czêœci mesha.
 	unsigned int					BufferOffset;		///< Offset wzglêdem pocz¹tku bufora indeksów albo wierzcho³ków. @see MeshAsset.
 	unsigned int					NumVertices;		///< Liczba wierzcho³ków do wyœwietlenia.
 	int								BaseVertex;			///< Wartoœæ dodawana do ka¿dego indeksu przed przeczytaniem wierzcho³ka z bufora. (Tylko wersja indeksowana).
 	int16							Flags;				///< Dodatkowe flagi @see MeshPartFlags
 	PrimitiveTopology				Topology;			///< Topologia mesha.
-	ResourcePtr< MaterialAsset >	Material;			///< Materia³ dla danej czêœci mesha.
 };
 
 
