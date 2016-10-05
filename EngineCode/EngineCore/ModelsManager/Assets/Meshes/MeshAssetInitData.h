@@ -24,7 +24,8 @@ struct MeshInitData
 	PrimitiveTopology					Topology;			///< Mesh topology.
 	bool								ExtendedIndex;		///< 4 bytes index.
 
-	/*MeshInitData( MeshInitData&& init );*/
+	MeshInitData() {}
+	MeshInitData( MeshInitData&& init );
 };
 
 
@@ -39,15 +40,15 @@ struct MeshCreateData
 };
 
 
-//
-//inline MeshInitData::MeshInitData( MeshInitData&& init )
-//	:	VertexBuffer( std::move( init.VertexBuffer ) )
-//	,	IndexBuffer( std::move( init.IndexBuffer ) )
-//	,	VertexLayout( std::move( init.VertexLayout ) )
-//	,	MeshSegments( std::move( init.MeshSegments ) )
-//	,	NumVerticies( init.NumVerticies )
-//	,	VertexSize( init.VertexSize )
-//	,	NumIndicies( init.NumIndicies )
-//	,	Topology( init.Topology )
-//	,	ExtendedIndex( init.ExtendedIndex )
-//{}
+
+inline MeshInitData::MeshInitData( MeshInitData&& init )
+	:	VertexBuffer( std::move( init.VertexBuffer ) )
+	,	IndexBuffer( std::move( init.IndexBuffer ) )
+	,	VertexLayout( std::move( init.VertexLayout ) )
+	,	MeshSegments( std::move( init.MeshSegments ) )
+	,	NumVerticies( init.NumVerticies )
+	,	VertexSize( init.VertexSize )
+	,	NumIndicies( init.NumIndicies )
+	,	Topology( init.Topology )
+	,	ExtendedIndex( init.ExtendedIndex )
+{}

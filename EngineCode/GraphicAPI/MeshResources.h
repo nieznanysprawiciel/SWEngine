@@ -86,25 +86,25 @@ enum TextureUse
 	TEX_DIFFUSE			///<Tekstura dla kana³u diffuse
 #endif
 #if ENGINE_MAX_TEXTURES > 1
-	, TEX_SPECULAR		///<Lightmapa
+	, TEX_SPECULAR		///<Tekstura dla kana³u specular
 #endif
 #if ENGINE_MAX_TEXTURES > 2
-	, TEX_AMBIENT		///<Tekstura dla kana³u specular
+	, TEX_EMISSIVE		///< Texture for emmisive channel
 #endif
 #if ENGINE_MAX_TEXTURES > 3
 	, TEX_BUMP_MAP		///<Bump mapa
 #endif
 #if ENGINE_MAX_TEXTURES > 4
-	, TEX_DISPLACEMENT_MAP		///<Tekstura dla kana³u ambient
+	, TEX_DISPLACEMENT_MAP		///<Tekstura przemieszczeñ wierzcho³ków, w przypadku u¿ywania teselacji wierzcho³ków
 #endif
 #if ENGINE_MAX_TEXTURES > 5
-	, TEX_OTHER1	///<Tekstura przemieszczeñ wierzcho³ków, w przypadku u¿ywania teselacji wierzcho³ków
+	, TEX_OTHER1		///<Tekstura o dowolnym znaczeniu
 #endif
 #if ENGINE_MAX_TEXTURES > 6
 	, TEX_OTHER2		///<Tekstura o dowolnym znaczeniu
 #endif
 #if ENGINE_MAX_TEXTURES > 7
-	, TEX_LIGHTMAP		///<Tekstura o dowolnym znaczeniu
+	, TEX_LIGHTMAP		///<Lightmapa
 #endif
 
 };

@@ -24,7 +24,7 @@ struct MaterialInitData
 	UPtr< ShadingModelBase >				ShadingData;			///< Initializes buffer with shadeing model data. @see ShadingModelData
 
 // ================================ //
-//
+// This should be generated automatically, but Visual studio 2013 can't :(
 	MaterialInitData	()	{}
 	MaterialInitData	( MaterialInitData&& other );
 	void operator=		( MaterialInitData&& other );

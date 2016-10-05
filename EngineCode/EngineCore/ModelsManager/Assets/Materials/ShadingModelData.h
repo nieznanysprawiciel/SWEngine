@@ -47,7 +47,10 @@ public:
 	ShadingModelStruct		Data;
 
 public:
-	ShadingModelData();
+	explicit			ShadingModelData		();
+	explicit			ShadingModelData		( ShadingModelStruct model );
+	void				StaticValidate			();
+
 
 	virtual Size		GetShadingModelSize		() override		{ return sizeof( ShadingModelStruct ); }
 	virtual uint8*		GetShadingModelData		() override		{ return reinterpret_cast< uint8* >( &Data ); }
@@ -63,7 +66,7 @@ public:
 //====================================================================================//
 
 template< typename ShadingModelStruct >
-inline ShadingModelData< ShadingModelStruct >::ShadingModelData()
+inline void			ShadingModelData< ShadingModelStruct >::StaticValidate		()
 {
 	static_assert( std::is_default_constructible< ShadingModelStruct >::value, "Material data must be default constructible." );
 
@@ -73,3 +76,16 @@ inline ShadingModelData< ShadingModelStruct >::ShadingModelData()
 	assert( TypeID::get< ShadingModelData< ShadingModelStruct > >().get_property( "Data" ).is_valid() );
 }
 
+template< typename ShadingModelStruct >
+inline				ShadingModelData< ShadingModelStruct >::ShadingModelData	()
+{
+	StaticValidate();
+}
+
+
+template< typename ShadingModelStruct >
+inline				ShadingModelData< ShadingModelStruct >::ShadingModelData	( ShadingModelStruct model )
+	:	Data( model )
+{
+	StaticValidate();
+}

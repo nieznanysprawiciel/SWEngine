@@ -2,9 +2,11 @@
 #include "FBX_loader.h"
 
 
-
 #include "Common/Converters.h"
 #include "Common/MemoryLeaks.h"
+
+
+#include <limits>
 
 
 using namespace DirectX;
@@ -521,8 +523,44 @@ Nullable< MeshInitData >	FBX_loader::LoadMesh	( const filesystem::Path& fileName
 		textures.push_back( scene->GetTexture( i ) );
 
 
+	Nullable< TemporaryMeshInit > tempMeshInit;
 
-	return Nullable< MeshInitData >();
+	for( auto& mesh : meshData.Value.Segments )
+	{
+		tempMeshInit = ProcessMesh( mesh, assets, tempMeshInit );
+	}
+
+	ReturnIfInvalid( tempMeshInit );
+
+
+	Size numVerticies = tempMeshInit.Value.Verticies.size();
+	Size numIndicies = 0;
+	for( Size i = 0; i < tempMeshInit.Value.Segments.size(); ++i )
+	{
+		numIndicies += tempMeshInit.Value.Indicies[ i ].size();
+	}
+
+	bool extendedIndex = numVerticies > std::numeric_limits< Index16 >::max();
+	int indexSize = extendedIndex ? sizeof( Index16 ) : sizeof( Index32 );
+
+	if( numVerticies > std::numeric_limits< Index32 >::max() )
+		return "Verticies count is out of 32 bit range.";
+
+	MemoryChunk indexChunk( (uint32)numIndicies * indexSize );
+	MemoryChunk vertexChunk( (uint32)numVerticies * sizeof( VertexNormalTexCoord ) );
+
+	MeshInitData initData;
+	initData.Topology = PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+	initData.VertexSize = sizeof( VertexNormalTexCoord );
+	initData.MeshSegments = std::move( tempMeshInit.Value.Segments );
+	initData.ExtendedIndex = extendedIndex;
+	initData.NumVerticies = (uint32)numVerticies;
+	initData.NumIndicies = (uint32)numIndicies;
+	initData.IndexBuffer = std::move( indexChunk );
+	initData.VertexBuffer = std::move( vertexChunk );
+	initData.VertexLayout = models_manager->GetLayout( DefaultAssets::LAYOUT_POSITION_NORMAL_COORD->GetName() );
+
+	return std::move( initData );
 }
 
 /**@brief Returns true if loader can load specific file.
@@ -661,7 +699,6 @@ Nullable< TemporaryMeshInit >		FBX_loader::ProcessMesh		( FbxNodeMesh& nodeData,
 			++vertexCounter;		//zliczamy wierzcho³ki
 		}
 
-
 		polygonCounter++;
 	}
 
@@ -669,9 +706,29 @@ Nullable< TemporaryMeshInit >		FBX_loader::ProcessMesh		( FbxNodeMesh& nodeData,
 	// We don't have to preserve transformation matrix for each segment with this approach.
 	TransformVerticies( verticies, ctrlPointsOffset, nodeData.Transformation );
 
-	// Rewrite index buffers.
+	Size indiciesOffset = 0;
+	for( Size i = 0; i < mesh.Value.Indicies.size(); ++i )
+		indiciesOffset += mesh.Value.Indicies[ i ].size();
+
+
+	// Rewrite index buffers. Create material. Add segment data.
 	for( int i = 0; i < indicies.size(); ++i )
+	{
+		MeshPart part;
+
+		FbxSurfaceMaterial* material = static_cast<FbxSurfaceMaterial*>( fbxNode->GetMaterial( i ) );
+		part.Material = ProcessMaterial( material, assets );
+
+		part.BufferOffset = (uint32)indiciesOffset;
+		part.BaseVertex = 0;
+		part.NumVertices = (uint32)indicies[ i ].size();
+		part.Topology = PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+
+		indiciesOffset += indicies[ i ].size();
+
 		mesh.Value.Indicies.push_back( std::move( indicies[ i ] ) );
+		mesh.Value.Segments.push_back( part );
+	}
 
 
 	return std::move( mesh );
@@ -720,7 +777,8 @@ ResourcePtr< MaterialAsset >		FBX_loader::CreateMaterial	( FbxSurfaceMaterial* F
 		assert( !"Wrong shading model" );
 
 
-	PhongMaterial engineMaterial;		// Ten materia³ jest tylko tymczasowy
+	MaterialInitData initData;
+	PhongMaterial engineMaterial;
 	FbxSurfaceLambert* surfMaterial = static_cast<FbxSurfaceLambert*>( FBXmaterial );
 
 	engineMaterial.SetNullMaterial();
@@ -731,13 +789,14 @@ ResourcePtr< MaterialAsset >		FBX_loader::CreateMaterial	( FbxSurfaceMaterial* F
 		engineMaterial = CopyMaterial( *static_cast<FbxSurfacePhong*>( surfMaterial ) );
 
 
-	MaterialInitData initData;
+	initData.ShadingData = UPtr< ShadingModelData< PhongMaterial > >( new ShadingModelData< PhongMaterial >( engineMaterial ) );
+
 
 	ResourcePtr< TextureObject > diffuseTexture = nullptr;
 	ResourcePtr< TextureObject > specularTexture = nullptr;
 	ResourcePtr< TextureObject > bumpMapTexture = nullptr;
 	ResourcePtr< TextureObject > displacementTexture = nullptr;
-	ResourcePtr< TextureObject > normalMapTexture = nullptr;
+	//ResourcePtr< TextureObject > normalMapTexture = nullptr;
 	ResourcePtr< TextureObject > emmisiveTexture = nullptr;
 
 
@@ -780,15 +839,25 @@ ResourcePtr< MaterialAsset >		FBX_loader::CreateMaterial	( FbxSurfaceMaterial* F
 				bumpMapTexture = ProcessTexture( texture, assets );
 		}
 
-		if( fbxPhongMat->NormalMap.GetSrcObjectCount() > 0 )
-		{
-			FbxFileTexture* texture = static_cast<FbxFileTexture*>( fbxPhongMat->NormalMap.GetSrcObject() );
-			if( texture != nullptr )
-				normalMapTexture = ProcessTexture( texture, assets );
-		}
+		//if( fbxPhongMat->NormalMap.GetSrcObjectCount() > 0 )
+		//{
+		//	FbxFileTexture* texture = static_cast<FbxFileTexture*>( fbxPhongMat->NormalMap.GetSrcObject() );
+		//	if( texture != nullptr )
+		//		normalMapTexture = ProcessTexture( texture, assets );
+		//}
 	}
 
-	return ResourcePtr<MaterialAsset>();
+	initData.Textures[ TextureUse::TEX_DIFFUSE ] = diffuseTexture;
+	initData.Textures[ TextureUse::TEX_SPECULAR ] = specularTexture;
+	initData.Textures[ TextureUse::TEX_EMISSIVE ] = emmisiveTexture;
+	initData.Textures[ TextureUse::TEX_BUMP_MAP ] = bumpMapTexture;
+	initData.Textures[ TextureUse::TEX_DISPLACEMENT_MAP ] = displacementTexture;
+
+	models_manager->FillBestShaders( initData );
+
+	auto path = Convert::FromString< std::wstring >( FBXmaterial->GetName(), std::wstring( L"" ) );
+
+	return models_manager->CreateMaterial( path, std::move( initData ) );
 }
 
 // ================================ //
