@@ -2,15 +2,46 @@
 
 #include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/ModelsManager/AssetsManager.h"
+#include "EngineCore/GamePlay/IGamePlay.h"
+
+#include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
 
 
 #define WINDOW_WIDTH		1280
 #define WINDOW_HEIGHT		800
 
 
+
+class EntryPointGamePlay :	public IGamePlay
+{
+private:
+
+protected:
+
+public:
+	EntryPointGamePlay() {};
+	~EntryPointGamePlay() {};
+
+	// Funkcje czysto wirtualne odziedziczone po IGamePlay
+	virtual void		ProceedGameLogic( float time_interval ) override {};
+	virtual int			LoadLevel() override { return 0; };
+	virtual int			UnloadLevel() override { return 0; };
+};
+
+
+void		TextIndexBuffer		( const ResourcePtr< BufferObject >& buffer, uint32 expNumElements, uint32 expElemSize, TypeID type );
+void		TextVertexBuffer	( const ResourcePtr< BufferObject >& buffer, uint32 expNumElements, uint32 expElemSize, TypeID type, PrimitiveTopology topology );
+void		TestBufferObject	( const ResourcePtr< BufferObject >& buffer, uint32 expNumElements, uint32 expElemSize, TypeID type );
+
+
 TEST_CASE( "Loading assets", "[FBXLoader]" )
 {
 	Engine* engine = new Engine();
+	REQUIRE( engine->InitEngine( WINDOW_WIDTH, WINDOW_HEIGHT, false, 0 ) == 1 );
+
+	EntryPointGamePlay* entryPoint = new EntryPointGamePlay();
+	engine->SetEntryPoint( entryPoint );
+
 	AssetsManager& assetsManager = *engine->GetAssetsManager();
 
 	const filesystem::Path CLONE_FIGHTER = "tylko_do_testow/ARC.FBX";
@@ -22,11 +53,123 @@ TEST_CASE( "Loading assets", "[FBXLoader]" )
 	const filesystem::Path CHURCH = "tylko_do_testow/Church/AbandonedChurch.FBX";
 	const filesystem::Path GATE = "meshes/Wall/Castle wall/Castle wall.FBX";
 
+
+//====================================================================================//
+//			Clone Fighter	
+//====================================================================================//
+
 	SECTION( "Loading Clone Fighter" )
 	{
 		auto cloneFighterMesh = assetsManager.LoadMesh( CLONE_FIGHTER );
 		REQUIRE( cloneFighterMesh != nullptr );
+
+		auto indexBuffer = cloneFighterMesh->GetIndexBuffer();
+		auto vertexBuffer = cloneFighterMesh->GetVertexBuffer();
+		
+		REQUIRE( indexBuffer != nullptr );
+		REQUIRE( vertexBuffer != nullptr );
+
+		CHECK( cloneFighterMesh->GetResourceName() == CLONE_FIGHTER.String() );
+		
+		TextIndexBuffer( indexBuffer, 155166,  sizeof( Index16 ), TypeID::get< Index16 >() );
+		TextVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+		// vertexBuffer->GetDescriptor().NumElements - I don't know how many elements should be yet. [Suppres warning]
+
+
+		auto& segments = cloneFighterMesh->GetSegments();
+		REQUIRE( segments.size() == 2 );
+
+		
+// ================================ //
+// Segment 0
+
+		auto& segment0 = segments[ 0 ];
+		CHECK( segment0.BaseVertex == 0 );
+		CHECK( segment0.BufferOffset == 0 );
+		CHECK( segment0.NumVertices == 2067 );
+		CHECK( segment0.Topology == PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+
+		auto& material0 = segment0.Material;
+		
+		CHECK( material0 != nullptr );
+		if( material0 )
+		{
+			auto& pixelShader = material0->GetPixelShader();
+			CHECK( pixelShader->GetShaderFile() == L"shaders/default_shaders.fx" );
+			CHECK( pixelShader->GetShaderEntry() == "pixel_shader" );
+
+			auto& vertexShader = material0->GetVertexShader();
+			CHECK( vertexShader->GetShaderFile() == L"shaders/default_shaders.fx" );
+			CHECK( vertexShader->GetShaderEntry() == "vertex_shader" );
+
+			CHECK( material0->GetGeometryShader() == nullptr );
+			CHECK( material0->GetTessControlShader() == nullptr );
+			CHECK( material0->GetTessEvaluationShader() == nullptr );
+
+			CHECK( material0->GetTexture( 0 ) == nullptr );
+			CHECK( material0->GetTexture( 1 ) == nullptr );
+			CHECK( material0->GetTexture( 2 ) == nullptr );
+			CHECK( material0->GetTexture( 3 ) == nullptr );
+			CHECK( material0->GetTexture( 4 ) == nullptr );
+
+			TestBufferObject( material0->GetMaterialBuffer(), 1, sizeof( PhongMaterial ), TypeID::get< PhongMaterial >() );
+			
+			auto& desc = material0->GetDescriptor();
+			CHECK( desc.AdditionalBuffers.size() == 0 );
+			CHECK( desc.ShadingData.get() != nullptr );
+		}
+
+
+// ================================ //
+// Segment 1
+
+		auto& segment1 = segments[ 1 ];
+		CHECK( segment1.BaseVertex == 0 );
+		CHECK( segment1.BufferOffset == 2067 );
+		CHECK( segment1.NumVertices == 153099 );
+		CHECK( segment1.Topology == PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+
+		auto& material1 = segment1.Material;
+
+		CHECK( material1 != nullptr );
+		if( material1 )
+		{
+			auto& pixelShader = material1->GetPixelShader();
+			CHECK( pixelShader->GetShaderFile() == L"shaders\\tex_diffuse_shader.fx" );
+			CHECK( pixelShader->GetShaderEntry() == "pixel_shader" );
+
+			auto& vertexShader = material1->GetVertexShader();
+			CHECK( vertexShader->GetShaderFile() == L"shaders/default_shaders.fx" );
+			CHECK( vertexShader->GetShaderEntry() == "vertex_shader" );
+
+			CHECK( material1->GetGeometryShader() == nullptr );
+			CHECK( material1->GetTessControlShader() == nullptr );
+			CHECK( material1->GetTessEvaluationShader() == nullptr );
+
+			CHECK( material1->GetTexture( 0 ) != nullptr );
+			if( material1->GetTexture( 0 ) )
+			{
+				auto tex = material1->GetTexture( 0 );
+				CHECK( tex->GetFilePath().String() == ( "tylko_do_testow/clone_fighter/ARC170_TXT_VERSION_4_D.jpg" ) );
+			}
+
+			CHECK( material1->GetTexture( 1 ) == nullptr );
+			CHECK( material1->GetTexture( 2 ) == nullptr );
+			CHECK( material1->GetTexture( 3 ) == nullptr );
+			CHECK( material1->GetTexture( 4 ) == nullptr );
+
+			TestBufferObject( material1->GetMaterialBuffer(), 1, sizeof( PhongMaterial ), TypeID::get< PhongMaterial >() );
+			
+			auto& desc = material1->GetDescriptor();
+			CHECK( desc.AdditionalBuffers.size() == 0 );
+			CHECK( desc.ShadingData.get() != nullptr );
+		}
+
 	}
+
+//====================================================================================//
+//			Moon	
+//====================================================================================//
 
 	SECTION( "Loading Moon")
 	{
@@ -57,6 +200,38 @@ TEST_CASE( "Loading assets", "[FBXLoader]" )
 		auto gateMesh = assetsManager.LoadMesh( MOON );
 		REQUIRE( gateMesh != nullptr );
 	}
-	
+
+
+
+
+	delete engine;
 }
 
+// ================================ //
+//
+void TextIndexBuffer( const ResourcePtr<BufferObject>& buffer, uint32 expNumElements, uint32 expElemSize, TypeID type )
+{
+	CHECK( buffer->GetDescriptor().BufferType == BufferType::IndexBuffer );
+
+	TestBufferObject( buffer, expNumElements, expElemSize, type );
+}
+
+// ================================ //
+//
+void TextVertexBuffer( const ResourcePtr<BufferObject>& buffer, uint32 expNumElements, uint32 expElemSize, TypeID type, PrimitiveTopology topology )
+{
+	CHECK( buffer->GetDescriptor().BufferType == BufferType::VertexBuffer );
+	CHECK( buffer->GetDescriptor().Topology == topology );
+
+	TestBufferObject( buffer, expNumElements, expElemSize, type );
+}
+
+// ================================ //
+//
+void TestBufferObject( const ResourcePtr<BufferObject>& buffer, uint32 expNumElements, uint32 expElemSize, TypeID type )
+{
+	if( buffer->GetDescriptor().DataType != type )
+		WARN( "Buffer content type are different. (This is only warning. Providing content type is optional)" );
+	CHECK( buffer->GetDescriptor().NumElements == expNumElements );
+	CHECK( buffer->GetDescriptor().ElementSize == expElemSize );	
+}

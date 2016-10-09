@@ -824,5 +824,8 @@
     <None Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Material\SWMat\SWMaterialLoader.inl">
       <Filter>EngineCore\ModelsManager\Loaders\Material\SWMat</Filter>
     </None>
+    <None Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\FBX_files_loader\FbxLoader.inl">
+      <Filter>EngineCore\ModelsManager\Loaders\Mesh</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -252,14 +252,14 @@ ResourcePtr< MeshAsset >		AssetsManager::CreateMesh	( const std::wstring& name, 
 	{
 		IndexBufferInitData indexInit;
 		indexInit.Data = initData.IndexBuffer.GetMemory< uint8 >();
-		indexInit.ElementSize = 2;
+		indexInit.ElementSize = sizeof( Index16 );
 		if( initData.ExtendedIndex )
-			indexInit.ElementSize = 4;
+			indexInit.ElementSize = sizeof( Index32 );
 		indexInit.Topology = initData.Topology;
 		indexInit.NumElements = initData.NumIndicies;
 		indexInit.Usage = ResourceUsage::RESOURCE_USAGE_STATIC;
 
-		auto indexBuffer = CreateIndexBuffer( name, indexInit );
+		indexBuffer = CreateIndexBuffer( name, indexInit );
 		if( !indexBuffer )
 			return nullptr;
 	}

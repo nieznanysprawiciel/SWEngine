@@ -61,10 +61,6 @@ void	Engine::InternalInit			( HINSTANCE instanceHandle )
 	Context->engineReady = false;			//jeszcze nie zainicjowaliœmy
 	Context->instanceHandler = instanceHandle;
 
-	// Initialize global strings
-	LoadString(Context->instanceHandler, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-	LoadString(Context->instanceHandler, IDC_SW_ENGINE, szWindowClass, MAX_LOADSTRING);
-
 	Context->graphicInitializer = ResourcesFactory::CreateAPIInitializer();
 
 	Context->controllersEngine		= new ControllersEngine( this );

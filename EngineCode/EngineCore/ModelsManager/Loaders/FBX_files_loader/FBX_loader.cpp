@@ -1,5 +1,6 @@
 #include "EngineCore/stdafx.h"
 #include "FBX_loader.h"
+#include "FbxLoader.inl"
 
 
 #include "Common/Converters.h"
@@ -549,6 +550,15 @@ Nullable< MeshInitData >	FBX_loader::LoadMesh	( const filesystem::Path& fileName
 	MemoryChunk indexChunk( (uint32)numIndicies * indexSize );
 	MemoryChunk vertexChunk( (uint32)numVerticies * sizeof( VertexNormalTexCoord ) );
 
+	CopyVertexBuffer( tempMeshInit.Value.Verticies, vertexChunk );
+	
+	if( indexSize == sizeof( Index16 ) )
+		CopyIndexBuffer< Index16 >( tempMeshInit.Value.Indicies, indexChunk );
+	else if( indexSize == sizeof( Index32 ) )
+		CopyIndexBuffer< Index32 >( tempMeshInit.Value.Indicies, indexChunk );
+	else
+		assert( false );
+
 	MeshInitData initData;
 	initData.Topology = PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 	initData.VertexSize = sizeof( VertexNormalTexCoord );
@@ -662,8 +672,6 @@ Nullable< TemporaryMeshInit >		FBX_loader::ProcessMesh		( FbxNodeMesh& nodeData,
 		{
 			Index32 controlPointIdx = fbxMesh->GetPolygonVertex( polygonCounter, vertexIdx );
 			VertexNormalTexCoord* curVertex = &verticies[ controlPointIdx ];
-
-			indicies[ materialIdx ].push_back( ctrlPointsOffset + controlPointIdx );
 
 			// Find vertex normal and uvs coord.
 			FbxVector4 fbxNormal;

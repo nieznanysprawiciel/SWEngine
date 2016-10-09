@@ -461,6 +461,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\FBX_files_loader\FbxLoader.inl" />
     <None Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Material\SWMat\SWMaterialLoader.inl" />
     <None Include="..\..\EngineCode\EngineCore\UserApi\Actors\ActorsApi.inl" />
   </ItemGroup>

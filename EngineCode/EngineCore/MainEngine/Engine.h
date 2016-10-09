@@ -20,9 +20,6 @@ class Event;
 class IInput;
 struct CameraData;
 
-//	window defines
-#define		MAX_LOADSTRING			100
-
 //	engines defines
 #define		NUM_OF_MODULES			9
 
@@ -31,11 +28,6 @@ struct CameraData;
 @ingroup ModulesStructure
 @brief Podstawowe funkcjonalnoœci silnika SWEngine.*/
 
-
-
-//global variables
-extern TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
-extern TCHAR szWindowClass[MAX_LOADSTRING];				// the main window class name
 
 
 /**@brief Klasa Engine jest nadrzêdnym obiektem zarz¹dzaj¹cym wszystkimi modu³ami silnika.
@@ -99,10 +91,11 @@ public:
 			~Engine();
 
 	int		InitEngine				( int width, int height, bool full_screen, int nCmdShow );
-	void	InternalInit			( HINSTANCE instanceHandle );
 private:
 	///@name Funkcje inicjuj¹ce modu³y silnika
 	///@{
+	void	InternalInit			( HINSTANCE instanceHandle );
+
 	BOOL	InitWindow				( int width, int height, BOOL full_screen, int nCmdShow );
 	bool	InitGraphicAPI			( int width, int height, bool full_screen );
 	bool	InitInputModule			();

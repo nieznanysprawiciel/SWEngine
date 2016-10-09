@@ -18,8 +18,8 @@ WinAPI oraz g³ówn¹ pêtlê programu @ref Engine::MainLoop.
 
 
 //global variables
-TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
-TCHAR szWindowClass[MAX_LOADSTRING];			// the main window class name
+LPCWSTR szTitle = L"SWEngine (DirectX 11)";					// The title bar text
+LPCWSTR szWindowClass = L"SWEnigne window";			// the main window class name
 
 void main_thread_function(Engine* engine);
 

@@ -25,6 +25,8 @@ drugie, ¿eby wykorzystywaæ wszystkie jego mo¿liwoœci.*/
 #include "Common/System/Path.h"
 
 
+
+
 struct FbxMeshCollection;
 
 
@@ -77,5 +79,11 @@ private:
 
 	PhongMaterial		CopyMaterial		( const FbxSurfaceLambert& FBXmaterial );
 	PhongMaterial		CopyMaterial		( const FbxSurfacePhong& FBXmaterial );
+
+	template< typename VertexType >
+	void				CopyVertexBuffer	( const std::vector< VertexType >& verticies, MemoryChunk& destination );
+
+	template< typename IndexType >
+	void				CopyIndexBuffer		( const std::vector< std::vector< Index32 > >& indicies, MemoryChunk& destination );
 };
 
