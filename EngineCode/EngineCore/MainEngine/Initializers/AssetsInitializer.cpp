@@ -29,7 +29,7 @@ bool Engine::InitDefaultAssets()
 
 	MaterialObject* nullMaterial = new MaterialObject();
 	nullMaterial->SetNullMaterial();
-	Context->modelsManager->AddMaterial( nullMaterial, DEFAULT_MATERIAL_STRING );
+	Context->modelsManager->AddMaterialObject( nullMaterial, DEFAULT_MATERIAL_STRING );
 
 	RenderTargetObject* mainRenderTarget = ResourcesFactory::CreateScreenRenderTarget();
 	Context->modelsManager->AddRenderTarget( mainRenderTarget, SCREEN_RENDERTARGET_STRING );

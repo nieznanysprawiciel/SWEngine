@@ -55,6 +55,9 @@ public:
 	inline BufferObject*			GetIndexBuffer				( const std::wstring& name ) { return m_indexBuffer.get( name ); }	///<Zwraca bufor indeksów o podanej nazwie, je¿eli jest wczytany.
 	inline ShaderInputLayout*		GetLayout					( const std::wstring& name ) { return m_vertexLayout.get( name ); }	///<Zwraca layout o podanej nazwie.	
 
+	///@name Resource loading
+	///@detail Load assets from specified file. Functions protect from loading assets multiple times.
+	///@{
 	TextureObject*					LoadTexture					( const std::wstring& fileName );
 	VertexShader*					LoadVertexShader			( const std::wstring& fileName, const std::string& shaderEntry );
 	VertexShader*					LoadVertexShader			( const std::wstring& fileName, const std::string& shaderEntry, ShaderInputLayout** layout, InputLayoutDescriptor* layout_desc );
@@ -62,18 +65,25 @@ public:
 	GeometryShader*					LoadGeometryShader			( const std::wstring& fileName, const std::string& shaderEntry );
 	ControlShader*					LoadControlShader			( const std::wstring& fileName, const std::string& shaderEntry );
 	EvaluationShader*				LoadEvaluationShader		( const std::wstring& fileName, const std::string& shaderEntry );
+	///@}
 
+	///@name Resource creation
+	///@detail You can create assets in code using these functions. Remember to give unique names for your assets.
+	///Engine uses convention, that all generated resources have :: before name, to distinguish them from assets loaded from files.
+	///@{
 	ResourcePtr< BufferObject >		CreateVertexBuffer			( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
 	ResourcePtr< BufferObject >		CreateVertexBuffer			( const std::wstring& name, const VertexBufferInitData& data );
 	ResourcePtr< BufferObject >		CreateIndexBuffer			( const std::wstring& name, const void* buffer, unsigned int element_size, unsigned int vert_count );
 	ResourcePtr< BufferObject >		CreateIndexBuffer			( const std::wstring& name, const IndexBufferInitData& data );
 	ResourcePtr< BufferObject >		CreateConstantsBuffer		( const std::wstring& name, const void* buffer, unsigned int size );
 	ResourcePtr< BufferObject >		CreateConstantsBuffer		( const std::wstring& name, const ConstantBufferInitData& data );
-	
+	///@}
+
 	RenderTargetObject*				AddRenderTarget				( RenderTargetObject* renderTarget, const std::wstring& name );
 
-	// Funkcje do listowania assetów.
 
+	///@name Listing resources
+	///@{
 	std::vector< ResourcePtr< BufferObject > >			ListVertexBuffers	();
 	std::vector< ResourcePtr< BufferObject > >			ListIndexBuffers	();
 	std::vector< ResourcePtr< BufferObject > >			ListConstantBuffers	();
@@ -84,6 +94,7 @@ public:
 	std::vector< ResourcePtr< PixelShader > >			ListPixelShaders	();
 	
 	std::vector< ResourcePtr< RenderTargetObject > >	ListRenderTargets	();
+	///@}
 
 private:
 	//ILoader*						FindLoader					( const std::wstring& path );

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <ImportGroup Label="PropertySheets">
+    <Import Project="..\Props\PathsMacros.props" />
+  </ImportGroup>
+  
+  <PropertyGroup Label="UserMacros">
+    <UnitTestName>UnitTest</UnitTestName>
+    <UnitTestSourceDir>$(EngineSourceDir)Tests\$(UnitTestName)\</UnitTestSourceDir>
+    <UnitTestFileName>$(UnitTestName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</UnitTestFileName>
+    <UnitTestBuildDir>$(EngineBuildDir)$(UnitTestName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</UnitTestBuildDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IntDir>$(UnitTestBuildDir)</IntDir>
+    <TargetName>$(UnitTestFileName)</TargetName>
+    <OutDir>$(UnitTestBuildDir)</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(EngineSourceDir);$(ExternalDir)\Catch\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="UnitTestName">
+      <Value>$(UnitTestName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="UnitTestLibDir">
+      <Value>$(UnitTestLibDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="UnitTestSourceDir">
+      <Value>$(UnitTestSourceDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="UnitTestFileName">
+      <Value>$(UnitTestFileName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="UnitTestBuildDir">
+      <Value>$(UnitTestBuildDir)</Value>
+    </BuildMacro>
+	</ItemGroup>
+</Project>

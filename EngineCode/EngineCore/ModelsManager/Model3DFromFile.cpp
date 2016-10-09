@@ -225,13 +225,13 @@ unsigned int Model3DFromFile::add_material( const MaterialObject* material, cons
 	name += L"::";
 	name += material_name;
 
-	MaterialObject* new_material = models_manager->m_material.get( name );
+	MaterialObject* new_material = models_manager->m_materialObject.get( name );
 	if ( !new_material )
 	{
 		// Nie by³o materia³u, trzeba j¹ stworzyæ i dodaæ
 		new_material = new MaterialObject( material );
 
-		models_manager->m_material.UnsafeAdd( name, new_material );	// Dodaliœmy teksturê
+		models_manager->m_materialObject.UnsafeAdd( name, new_material );	// Dodaliœmy teksturê
 	}
 
 	// Teraz musimy dodaæ materia³ na odpowiednie miejsce w tablicy
@@ -518,7 +518,7 @@ void Model3DFromFile::EndEdit_prepare_ModelPart( )
 			part.vertex_shader = models_manager->FindBestVertexShader( part.texture );
 		// I materia³
 		if ( part.material == nullptr )
-			part.material = models_manager->m_material.get( DEFAULT_MATERIAL_STRING );
+			part.material = models_manager->m_materialObject.get( DEFAULT_MATERIAL_STRING );
 	}
 
 }

@@ -6,6 +6,7 @@
 #include "GraphicAPI/GraphicAPIConstants.h"
 #include "GraphicAPI/IBuffer.h"
 
+#include <assert.h>
 
 /**@brief Buffer initialization data.*/
 struct BufferInitData
@@ -77,6 +78,9 @@ inline BufferInfo		ConstantBufferInitData::CreateBufferInfo() const
 	info.Topology = PrimitiveTopology::PRIMITIVE_TOPOLOGY_POINTLIST;
 	info.Usage = Usage;
 	info.Use4BytesIndex = false;
+
+	// Constant buffers must be 16 bytes aligned.
+	assert( ElementSize % 16 == 0 );
 
 	return info;
 }

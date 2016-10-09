@@ -16,7 +16,7 @@ class Engine;
 class ILoader;
 
 
-/**@defgroup ResourcesManagment Zarz¹dzenie zasobami
+/**@defgroup ResourcesManagment Resources Managment
 @ingroup EngineCore
 @brief Zarz¹dzanie zasobami jak vertex i pixel shadery, bufory, tekstury, materia³y, render targety i modele z plików.
 
@@ -33,7 +33,8 @@ Modele wczytane z plików umieszczane i przechowywane s¹ w klasie @ref Model3DFro
 //							AssetsManager
 //-------------------------------------------------------------------------------//
 
-/**@brief Zawiera wyniki mo¿liwe do zwrócenia przez AssetsManager.*/
+/**@brief Zawiera wyniki mo¿liwe do zwrócenia przez AssetsManager.
+@deprecated*/
 typedef enum ModelsManagerResult
 {
 	MODELS_MANAGER_OK,					///<Poprawne wykonanie funkcji
@@ -46,8 +47,7 @@ typedef enum ModelsManagerResult
 @ingroup ResourcesManagment
 @ingroup EngineCore
 
-@brief Klasa przechowuje wszystkie obiekty zasobów w silniku (oprócz dŸwiêków, które raczej
-zostan¹ oddelegowane w inne miejsce).
+@brief Klasa przechowuje wszystkie obiekty zasobów w silniku.
 
 Zasoby s¹ identyfikowane jednoznacznym identyfikatorem, który jest unikalny
 jedynie w danej grupie zasobów, lub te¿ nazw¹ pliku na podstawie, którego dany zasób powsta³.
@@ -64,17 +64,24 @@ class AssetsManager : public ResourceManager
 private:
 	Engine* m_engine;			///<WskaŸnik na obiekt g³ówny silnika
 
-	ResourceContainer<MaterialObject>			m_material;			///<Materia³y.
-	ResourceContainer<Model3DFromFile>			m_fileModel;		///<Obiekty modeli 3D z plików
+	ResourceContainer<MaterialObject>			m_materialObject;	///<Materia³y. @deprecated
+	ResourceContainer<Model3DFromFile>			m_fileModel;		///<Obiekty modeli 3D z plików. @deprecated
+
+	ResourceContainer< MaterialAsset >			m_material;			///< Materials.
+	ResourceContainer< MeshAsset >				m_meshes;			///< Meshes.
 
 	/*loadery dla ró¿nych formatów plików z modelami*/
-	std::vector<ILoader*>						m_loader;				///<Loadery do plików z modelami 3D
+	std::vector<ILoader*>						m_loader;				///<Loadery do plików z modelami 3D.
 
 public:
 	explicit						AssetsManager( Engine* engine );
 									~AssetsManager();
 
-	// Funkcje pomocnicze
+	///@name Shader matching
+	///@detail Functions look for best matching default shaders for texture array.
+	///Textures have same meaning as @ref TextureUse enumaration. If your textures have other meaning
+	///provide your own shaders instead.
+	///@{
 	VertexShader*					FindBestVertexShader		( TextureObject** textures );
 	PixelShader*					FindBestPixelShader			( TextureObject** textures );
 	GeometryShader*					FindBestGeometryhader		( TextureObject** textures );
@@ -82,18 +89,32 @@ public:
 	ControlShader*					FindBestControlShader		( TextureObject** textures );
 
 	void							FillBestShaders				( MaterialInitData& initData );
+	///@}
 
-
-	// Funkcje do zarz¹dzania assetami
+	///@name Assets loading
+	///@detail Load assets from specified file. Functions protect from loading assets multiple times.
+	///@{
 	ModelsManagerResult				LoadModelFromFile			( const std::wstring& file );
+
+	ResourcePtr< MeshAsset >		LoadMesh					( const filesystem::Path& file );
+	ResourcePtr< MaterialAsset >	LoadMaterial				( const filesystem::Path& file );
+	///@}
+
+
+	///@name Assets creation
+	///@detail You can create assets in code using these functions. Remember to give unique names for your assets.
+	///Engine uses convention, that all generated resources have :: before name, to distinguish them from assets loaded from files.
+	///@{
 	ResourcePtr< MeshAsset >		CreateMesh					( const std::wstring& name, MeshInitData&& initData );
 	ResourcePtr< MeshAsset >		CreateMesh					( const std::wstring& name, MeshCreateData&& initData );
 	ResourcePtr< MaterialAsset >	CreateMaterial				( const std::wstring& name, MaterialInitData&& initData );
+	ResourcePtr< MaterialAsset >	CreateMaterial				( const std::wstring& name, MaterialCreateData&& initData );
+	///@}
 
 	inline Model3DFromFile*			GetModel					( const std::wstring& name ) { return m_fileModel.get( name ); }	///<Zwraca model z pliku o podanej nazwie, je¿eli jest wczytany.
-	inline MaterialObject*			GetMaterial					( const std::wstring& name ) { return m_material.get( name ); }		///<Zwraca materia³ o podanej nazwie, je¿eli jest wczytany.
+	inline MaterialObject*			GetMaterialObject			( const std::wstring& name ) { return m_materialObject.get( name ); }		///<Zwraca materia³ o podanej nazwie, je¿eli jest wczytany.
 
-	MaterialObject*					AddMaterial					( MaterialObject* material, const std::wstring& material_name );
+	MaterialObject*					AddMaterialObject			( MaterialObject* material, const std::wstring& material_name );
 
 	// Funkcje do listowania assetów.
 

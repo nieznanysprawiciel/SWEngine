@@ -5,6 +5,7 @@
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
+#include "Common/ObjectDeleter.h"
 
 #include "GraphicAPI/MeshResources.h"
 #include "ShadingModelData.h"
@@ -48,6 +49,8 @@ class MaterialAsset : public ResourceObject
 {
 	RTTR_ENABLE( ResourceObject );
 	RTTR_REGISTRATION_FRIEND
+
+	friend ObjectDeleter< MaterialAsset >;
 private:
 	
 	ResourcePtr< BufferObject >		m_materialBuffer;						///< Bufor na karcie graficznej zawieraj¹cy dane materia³u.

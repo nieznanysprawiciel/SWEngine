@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ImportGroup Label="PropertySheets">
+    <Import Project="..\Props\PathsMacros.props" />
+    <Import Project="..\Props\LinkFBX_SDK.props" />
+    <Import Project="..\EngineCore\EngineCorePathMacros.props" />
+    <Import Project="..\DX11API\DX11APIPathsMacros.props" />
+    <Import Project="..\Props\LinkReflection.props" />
+    <Import Project="..\SerializerXML\SerializerXMLPathMacros.props" />
+    <Import Project="..\DirectInput\DirectInputPathsMacros.props" />
+    <Import Project="..\CommonLibrary\CommonLibraryPathsMacros.props" />
+  </ImportGroup>
+  
+  <PropertyGroup Label="UserMacros">
+    <FBXLoaderUnitTestName>FBXLoaderUnitTest</FBXLoaderUnitTestName>
+    <FBXLoaderUnitTestSourceDir>$(EngineSourceDir)Tests\$(FBXLoaderUnitTestName)\</FBXLoaderUnitTestSourceDir>
+    <FBXLoaderUnitTestFileName>$(FBXLoaderUnitTestName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</FBXLoaderUnitTestFileName>
+    <FBXLoaderUnitTestBuildDir>$(EngineBuildDir)$(FBXLoaderUnitTestName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</FBXLoaderUnitTestBuildDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IntDir>$(FBXLoaderUnitTestBuildDir)</IntDir>
+    <TargetName>$(FBXLoaderUnitTestFileName)</TargetName>
+    <OutDir>$(FBXLoaderUnitTestBuildDir)</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(EngineSourceDir);$(ExternalDir)\Catch\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="FBXLoaderUnitTestName">
+      <Value>$(FBXLoaderUnitTestName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FBXLoaderUnitTestLibDir">
+      <Value>$(FBXLoaderUnitTestLibDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FBXLoaderUnitTestSourceDir">
+      <Value>$(FBXLoaderUnitTestSourceDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FBXLoaderUnitTestFileName">
+      <Value>$(FBXLoaderUnitTestFileName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FBXLoaderUnitTestBuildDir">
+      <Value>$(FBXLoaderUnitTestBuildDir)</Value>
+    </BuildMacro>
+	</ItemGroup>
+</Project>

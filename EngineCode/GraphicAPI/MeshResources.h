@@ -29,7 +29,7 @@
 B³êdny identyfikator assetu w klasie @ref ResourceObject.*/
 #define WRONG_ID						0
 
-/**@defgroup Resources Zasoby
+/**@defgroup Resources Resources
 @ingroup ResourcesManagment
 @ingroup GraphicAPI
 @brief Niskopoziomowe zasoby zwi¹zane z api graficznym.

@@ -855,7 +855,7 @@ ResourcePtr< MaterialAsset >		FBX_loader::CreateMaterial	( FbxSurfaceMaterial* F
 
 	models_manager->FillBestShaders( initData );
 
-	auto path = Convert::FromString< std::wstring >( FBXmaterial->GetName(), std::wstring( L"" ) );
+	auto path = Convert::FromString< std::wstring >( m_filePath.String() + "::" + FBXmaterial->GetName(), std::wstring( L"" ) );
 
 	return models_manager->CreateMaterial( path, std::move( initData ) );
 }

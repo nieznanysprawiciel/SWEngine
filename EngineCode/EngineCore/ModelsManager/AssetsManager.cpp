@@ -4,6 +4,7 @@
 #include "Loaders/ILoader.h"
 #include "Loaders/FBX_files_loader/FBX_loader.h"
 #include "Loaders/Texture/TextureLoader.h"
+#include "Loaders/Material/SWMat/SWMaterialLoader.h"
 
 #include "Common/ObjectDeleter.h"
 #include "Common/MacrosSwitches.h"
@@ -132,7 +133,7 @@ ILoader*		AssetsManager::FindLoader			( const std::wstring& path )
 
 
 //-------------------------------------------------------------------------------//
-//							funkcje do zarzadzania assetami
+//							Loading functions
 //-------------------------------------------------------------------------------//
 
 
@@ -174,9 +175,65 @@ ModelsManagerResult AssetsManager::LoadModelFromFile( const std::wstring& file )
 	return ModelsManagerResult::MODELS_MANAGER_OK;
 }
 
+/**@brief Loads mesh from file.
+@return Returns nullptr when loader could not be found or mesh loading failed.*/
+ResourcePtr< MeshAsset >		AssetsManager::LoadMesh		( const filesystem::Path& file )
+{
+	std::wstring filePath = Convert::FromString< std::wstring >( file.String(), L"" );
 
-/**@brief */
-ResourcePtr<MeshAsset> AssetsManager::CreateMesh( const std::wstring& name, MeshInitData&& initData )
+	// Check exisitng meshes.
+	MeshAsset* newMesh = m_meshes.get( filePath );
+	if ( newMesh != nullptr )
+		return newMesh;
+
+	ILoader* loader = FindLoader( filePath );
+	if ( loader == nullptr )
+		return nullptr;
+
+	Nullable< MeshInitData > meshData = loader->LoadMesh( file );
+	if( !meshData.IsValid )
+	{
+		///@todo Use logging mechanism to log error.
+		return nullptr;
+	}
+
+	return CreateMesh( filePath, std::move( meshData.Value ) );
+}
+
+/**@brief Loads material from file.*/
+ResourcePtr< MaterialAsset >	AssetsManager::LoadMaterial	( const filesystem::Path& file )
+{
+	std::wstring filePath = Convert::FromString< std::wstring >( file.String(), L"" );
+
+	// Check exisitng materials.
+	MaterialAsset* newMaterial = m_material.get( filePath );
+	if ( newMaterial != nullptr )
+		return newMaterial;
+
+	SWMaterialLoader loader( this );
+
+	if( !loader.CanLoad( file ) )
+	{
+		/// @todo Log message.
+		return nullptr;
+	}
+
+	Nullable< MaterialInitData > materialData = loader.LoadMaterial( file );
+	if( !materialData.IsValid )
+	{
+		///@todo Use logging mechanism to log error.
+		return nullptr;
+	}
+
+	return CreateMaterial( filePath, std::move( materialData.Value ) );
+}
+
+//====================================================================================//
+//			Assets creation	
+//====================================================================================//
+
+/**@brief Creates mesh from provided data.*/
+ResourcePtr< MeshAsset >		AssetsManager::CreateMesh	( const std::wstring& name, MeshInitData&& initData )
 {
 	VertexBufferInitData vertexInit;
 	vertexInit.Data = initData.VertexBuffer.GetMemory< uint8 >();
@@ -216,22 +273,76 @@ ResourcePtr<MeshAsset> AssetsManager::CreateMesh( const std::wstring& name, Mesh
 	return CreateMesh( name, std::move( meshData ) );
 }
 
-/**@brief */
-ResourcePtr<MeshAsset> AssetsManager::CreateMesh( const std::wstring& name, MeshCreateData&& initData )
+/**@brief Creates MeshAsset.
+
+@return Returns nullptr if asset under this name existed in AssetManager before.
+@note This is difference between CreateMesh and LoadMesh. LoadMesh returns existing
+material not nullptr in this case.*/
+ResourcePtr< MeshAsset >		AssetsManager::CreateMesh		( const std::wstring& name, MeshCreateData&& initData )
 {
-	assert( false );
-	return ResourcePtr<MeshAsset>();
+	// Check exisitng materials.
+	MeshAsset* newMesh = m_meshes.get( name );
+	if ( newMesh != nullptr )
+		return nullptr;
+
+	newMesh = new MeshAsset( name, std::move( initData ) );
+	m_meshes.UnsafeAdd( name, newMesh );
+
+	return newMesh;
 }
 
-/**@brief */
-ResourcePtr< MaterialAsset >	AssetsManager::CreateMaterial( const std::wstring& name, MaterialInitData&& initData )
+/**@brief Creates MaterialAsset.
+
+@return Returns nullptr if asset under this name existed in AssetManager before.
+@note This is difference between CreateMaterial and LoadMaterial. LoadMaterial returns existing
+material not nullptr in this case.*/
+ResourcePtr< MaterialAsset >	AssetsManager::CreateMaterial	( const std::wstring& name, MaterialInitData&& initData )
 {
-	assert( false );
-	return ResourcePtr< MaterialAsset >();
+	if( !initData.ShadingData )
+		return nullptr;
+
+	ConstantBufferInitData bufferData;
+	bufferData.DataType = initData.ShadingData->GetShadingModelType();
+	bufferData.ElementSize = (uint32)initData.ShadingData->GetShadingModelSize();
+	bufferData.Data = initData.ShadingData->GetShadingModelData();
+
+	// Constant buffers must be 16 bytes aligned.
+	if( bufferData.ElementSize % 16 != 0 )
+	{
+		///@todo Logging
+		return nullptr;
+	}
+
+	auto materialBuffer = CreateConstantsBuffer( name, bufferData );
+	if( !materialBuffer )
+		return nullptr;
+
+	MaterialCreateData data;
+	data.Data = std::move( initData );
+	data.MaterialBuffer = materialBuffer;
+
+	return CreateMaterial( name, std::move( data ) );
 }
 
+/**@brief Creates MaterialAsset.
 
-/**@brief Dodaje materia³ do ModelsManagera, je¿eli jeszcze nie istnia³.
+@return Returns nullptr if asset under this name existed in AssetManager before.
+@note This is difference between CreateMaterial and LoadMaterial. LoadMaterial returns existing
+material not nullptr in this case.*/
+ResourcePtr< MaterialAsset >	AssetsManager::CreateMaterial				( const std::wstring& name, MaterialCreateData&& initData )
+{
+	// Check exisitng materials.
+	MaterialAsset* newMaterial = m_material.get( name );
+	if ( newMaterial != nullptr )
+		return nullptr;
+
+	newMaterial = new MaterialAsset( name, std::move( initData ) );
+	m_material.UnsafeAdd( name, newMaterial );
+
+	return newMaterial;
+}
+
+/**@brief Dodaje materia³ do AssetManagera, je¿eli jeszcze nie istnia³.
 @note Funkcja nie dodaje odwo³ania do obiektu, bo nie zak³ada, ¿e ktoœ go od razu u¿yje.
 W ka¿dym miejscu, gdzie zostanie przypisany zwrócony obiekt, nale¿y pamiêtaæ o dodaniu odwo³ania oraz
 skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
@@ -248,11 +359,11 @@ te¿ zmuszaæ kogoœ do zwalniania pamiêci po materiale.
 [nazwa_pliku]::[nazwa_materia³u]. Oznacza to, ¿e mog¹ istnieæ dwa takie same materia³y, poniewa¿ nie jest sprawdzana
 zawartoœæ, a jedynie nazwy.
 @return Zwraca wskaŸnik na dodany materia³.*/
-MaterialObject* AssetsManager::AddMaterial( MaterialObject* addMaterial, const std::wstring& materialName )
+MaterialObject* AssetsManager::AddMaterialObject( MaterialObject* addMaterial, const std::wstring& materialName )
 {
-	MaterialObject* newMaterial = m_material.get( materialName );
+	MaterialObject* newMaterial = m_materialObject.get( materialName );
 	if ( !newMaterial )
-		m_material.UnsafeAdd( materialName, addMaterial );	// Dodaliœmy materia³
+		m_materialObject.UnsafeAdd( materialName, addMaterial );	// Dodaliœmy materia³
 
 	return newMaterial;
 }
@@ -266,7 +377,7 @@ MaterialObject* AssetsManager::AddMaterial( MaterialObject* addMaterial, const s
 /**@brief Listowanie materia³ów.*/
 std::vector< ResourcePtr< MaterialObject > >	AssetsManager::ListMaterials()
 {
-	return m_material.List();
+	return m_materialObject.List();
 }
 
 /**@brief Listowanie meshy.*/

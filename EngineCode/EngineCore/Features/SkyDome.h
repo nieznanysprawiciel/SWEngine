@@ -174,7 +174,7 @@ protected:
 	@param[in] material_name Nazwa materia³u. Do materia³u bêdzie mo¿na siê odwo³aæ podaj¹c ci¹g znaków*/
 	inline void set_material( MaterialObject* mat, const std::wstring& name)
 	{
-		auto material = models_manager->AddMaterial( mat, name );
+		auto material = models_manager->AddMaterialObject( mat, name );
 		if ( !material )
 			return;	// Zabezpieczenie przed nullptrem
 

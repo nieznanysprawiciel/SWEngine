@@ -38,6 +38,8 @@ class MeshAsset : public ResourceObject
 {
 	RTTR_ENABLE( ResourceObject );
 	RTTR_REGISTRATION_FRIEND
+
+	friend ObjectDeleter< MeshAsset >;
 private:
 
 	ResourcePtr< BufferObject >			m_vertexBuffer;		///< Bufor wierzcho³ków.
