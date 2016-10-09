@@ -36,7 +36,18 @@ REGISTER_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
 //----------------------------------------------------------------------------------------------//
 
 
-Engine::Engine(HINSTANCE instance)
+Engine::Engine( HINSTANCE instanceHandle )
+{
+	InternalInit( instanceHandle );
+}
+
+Engine::Engine()
+{
+	InternalInit( GetModuleHandle( nullptr ) );
+}
+
+/**@brief Contructor helper. Initializes all modules/*/
+void	Engine::InternalInit			( HINSTANCE instanceHandle )
 {
 	// Dziêki tej zmiennej bêdzie mo¿na wysy³aæ eventy
 	ActorBase::SetEngine( this );
@@ -48,7 +59,7 @@ Engine::Engine(HINSTANCE instance)
 
 	Context->fullScreen = false;			//inicjalizacja jako false potrzebna w funkcji init_window
 	Context->engineReady = false;			//jeszcze nie zainicjowaliœmy
-	Context->instanceHandler = instance;
+	Context->instanceHandler = instanceHandle;
 
 	// Initialize global strings
 	LoadString(Context->instanceHandler, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -71,7 +82,6 @@ Engine::Engine(HINSTANCE instance)
 	//inicjujemy licznik klatek
 	Context->pause = false;
 }
-
 
 Engine::~Engine()
 {
@@ -442,6 +452,8 @@ int				Engine::GetWindowHeight()									{ return Context->windowHeight; }
 void			Engine::EnableInput( bool val )								{ Context->ui_engine->EnableInput( val ); }
 
 IInput*			Engine::ChangeInputModule( IInput* newModule )				{ return Context->ui_engine->ChangeInputModule( newModule ); }
+
+AssetsManager * Engine::GetAssetsManager()									{ return Context->modelsManager; }
 
 /**@brief Funkcja wczytuj¹ca startowy level do silnika. Najczêœciej na tym etapie wczytuje siê tylko menu,
 oraz wszytkie elementy, które s¹ przydatne na ka¿dym etapie gry.

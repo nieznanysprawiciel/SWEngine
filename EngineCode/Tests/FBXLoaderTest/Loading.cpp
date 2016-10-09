@@ -1,11 +1,17 @@
 #include "catch.hpp"
 
+#include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/ModelsManager/AssetsManager.h"
+
+
+#define WINDOW_WIDTH		1280
+#define WINDOW_HEIGHT		800
 
 
 TEST_CASE( "Loading assets", "[FBXLoader]" )
 {
-	AssetsManager assetsManager( nullptr );
+	Engine* engine = new Engine();
+	AssetsManager& assetsManager = *engine->GetAssetsManager();
 
 	const filesystem::Path CLONE_FIGHTER = "tylko_do_testow/ARC.FBX";
 	const filesystem::Path MOON = "tylko_do_testow/moon/moon.FBX";

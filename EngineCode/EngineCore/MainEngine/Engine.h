@@ -94,10 +94,12 @@ public:
 
 	Engine( const Engine& ) = delete;		///<Konstruktor kopiuj¹cy usuniêty.
 public:
-	Engine( HINSTANCE instance );
-	~Engine();
+	explicit Engine();
+	explicit Engine( HINSTANCE instanceHandle );
+			~Engine();
 
 	int		InitEngine				( int width, int height, bool full_screen, int nCmdShow );
+	void	InternalInit			( HINSTANCE instanceHandle );
 private:
 	///@name Funkcje inicjuj¹ce modu³y silnika
 	///@{
@@ -156,6 +158,11 @@ public:
 	///@{
 	void					EnableInput			( bool val );
 	IInput*					ChangeInputModule	( IInput* newModule );
+	///@}
+
+	///@name For unit tests
+	///@{
+	AssetsManager*			GetAssetsManager	();
 	///@}
 };
 

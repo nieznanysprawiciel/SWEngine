@@ -43,7 +43,7 @@ int APIENTRY _tWinMain( _In_ HINSTANCE hInstance,
 
 	int result;
 
-	engine = new Engine( hInstance );
+	engine = new Engine();
 	EntryPointGamePlay* entryPoint = new EntryPointGamePlay();	//UWAGA!! nie kasujemy zmiennej, robi to silnik.
 												//UWAGA2! Zmienna musi byæ alokowana na stercie, operatorem new z tego samego powodu co wy¿ej
 

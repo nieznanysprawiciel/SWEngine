@@ -504,7 +504,7 @@ Nullable< MeshInitData >	FBX_loader::LoadMesh	( const filesystem::Path& fileName
 	//	return "Root node is nullptr";
 
 
-	Nullable< FbxMeshCollection > meshData;
+	Nullable< FbxMeshCollection > meshData( NullableInit::Valid );
 	for( int i = 0; i < scene->GetNodeCount(); i++ )
 		meshData = ProcessNode( scene->GetNode( i ), meshData );
 
@@ -523,7 +523,7 @@ Nullable< MeshInitData >	FBX_loader::LoadMesh	( const filesystem::Path& fileName
 		textures.push_back( scene->GetTexture( i ) );
 
 
-	Nullable< TemporaryMeshInit > tempMeshInit;
+	Nullable< TemporaryMeshInit > tempMeshInit( NullableInit::Valid );
 
 	for( auto& mesh : meshData.Value.Segments )
 	{

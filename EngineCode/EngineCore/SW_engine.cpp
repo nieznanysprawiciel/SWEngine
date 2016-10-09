@@ -33,7 +33,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	int result;
 
-	engine = new Engine(hInstance);
+	engine = new Engine();
 
 	//creating aplication window
 	result = engine->InitEngine( WINDOW_WIDTH, WINDOW_HEIGHT, false, nCmdShow );
