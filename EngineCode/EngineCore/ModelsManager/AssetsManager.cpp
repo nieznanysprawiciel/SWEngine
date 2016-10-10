@@ -252,9 +252,15 @@ ResourcePtr< MeshAsset >		AssetsManager::CreateMesh	( const std::wstring& name, 
 	{
 		IndexBufferInitData indexInit;
 		indexInit.Data = initData.IndexBuffer.GetMemory< uint8 >();
+		
 		indexInit.ElementSize = sizeof( Index16 );
+		indexInit.DataType = TypeID::get< Index16 >();
 		if( initData.ExtendedIndex )
+		{
+			indexInit.DataType = TypeID::get< Index32 >();
 			indexInit.ElementSize = sizeof( Index32 );
+		}
+
 		indexInit.Topology = initData.Topology;
 		indexInit.NumElements = initData.NumIndicies;
 		indexInit.Usage = ResourceUsage::RESOURCE_USAGE_STATIC;

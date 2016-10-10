@@ -45,6 +45,7 @@ TEST_CASE( "Loading assets", "[FBXLoader]" )
 	AssetsManager& assetsManager = *engine->GetAssetsManager();
 
 	const filesystem::Path CLONE_FIGHTER = "tylko_do_testow/ARC.FBX";
+	const filesystem::Path SIMPLE_BOX = "tylko_do_testow/SimpleBox/SimpleBox.FBX";
 	const filesystem::Path MOON = "tylko_do_testow/moon/moon.FBX";
 	const filesystem::Path NEBULON = "tylko_do_testow/Nebulon/Nebulon.FBX";
 	const filesystem::Path VADER_TIE = "tylko_do_testow/VadersTIE.FBX";
@@ -168,6 +169,84 @@ TEST_CASE( "Loading assets", "[FBXLoader]" )
 	}
 
 //====================================================================================//
+//			SimpleBox	
+//====================================================================================//
+
+
+	SECTION( "Loading Simple Box" )
+	{
+		auto simpleBoxMesh = assetsManager.LoadMesh( SIMPLE_BOX );
+		REQUIRE( simpleBoxMesh != nullptr );
+
+		auto indexBuffer = simpleBoxMesh->GetIndexBuffer();
+		auto vertexBuffer = simpleBoxMesh->GetVertexBuffer();
+		
+		REQUIRE( indexBuffer != nullptr );
+		REQUIRE( vertexBuffer != nullptr );
+
+		CHECK( simpleBoxMesh->GetResourceName() == SIMPLE_BOX.String() );
+		
+		TextIndexBuffer( indexBuffer, 36,  sizeof( Index16 ), TypeID::get< Index16 >() );
+		TextVertexBuffer( vertexBuffer, 24,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+
+		auto& segments = simpleBoxMesh->GetSegments();
+		REQUIRE( segments.size() == 1 );
+
+// ================================ //
+// Segment 0 
+
+		auto& segment0 = segments[ 0 ];
+		CHECK( segment0.BaseVertex == 0 );
+		CHECK( segment0.BufferOffset == 0 );
+		CHECK( segment0.NumVertices == 36 );
+		CHECK( segment0.Topology == PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+
+		auto& material0 = segment0.Material;
+		
+		CHECK( material0 != nullptr );
+		if( material0 )
+		{
+			auto& pixelShader = material0->GetPixelShader();
+			CHECK( pixelShader->GetShaderFile() == L"shaders\\tex_diffuse_shader.fx" );
+			CHECK( pixelShader->GetShaderEntry() == "pixel_shader" );
+
+			auto& vertexShader = material0->GetVertexShader();
+			CHECK( vertexShader->GetShaderFile() == L"shaders/default_shaders.fx" );
+			CHECK( vertexShader->GetShaderEntry() == "vertex_shader" );
+
+			CHECK( material0->GetGeometryShader() == nullptr );
+			CHECK( material0->GetTessControlShader() == nullptr );
+			CHECK( material0->GetTessEvaluationShader() == nullptr );
+
+			CHECK( material0->GetTexture( 0 ) != nullptr );
+			if( material0->GetTexture( 0 ) )
+			{
+				auto tex = material0->GetTexture( 0 );
+				CHECK( tex->GetFilePath().String() == ( "tylko_do_testow/SimpleBox/Diffuse.jpg" ) );
+			}
+
+			CHECK( material0->GetTexture( 0 ) != nullptr );
+			if( material0->GetTexture( 1 ) )
+			{
+				auto tex = material0->GetTexture( 1 );
+				CHECK( tex->GetFilePath().String() == ( "tylko_do_testow/SimpleBox/Specular.jpg" ) );
+			}
+
+			CHECK( material0->GetTexture( 2 ) == nullptr );
+			CHECK( material0->GetTexture( 3 ) == nullptr );
+			CHECK( material0->GetTexture( 4 ) == nullptr );
+
+			TestBufferObject( material0->GetMaterialBuffer(), 1, sizeof( PhongMaterial ), TypeID::get< PhongMaterial >() );
+			
+			auto& desc = material0->GetDescriptor();
+			CHECK( desc.AdditionalBuffers.size() == 0 );
+			CHECK( desc.ShadingData.get() != nullptr );
+		}
+
+	}
+
+
+//====================================================================================//
 //			Moon	
 //====================================================================================//
 
@@ -175,30 +254,113 @@ TEST_CASE( "Loading assets", "[FBXLoader]" )
 	{
 		auto moonMesh = assetsManager.LoadMesh( MOON );
 		REQUIRE( moonMesh != nullptr );
+
+		auto indexBuffer = moonMesh->GetIndexBuffer();
+		auto vertexBuffer = moonMesh->GetVertexBuffer();
+		
+		REQUIRE( indexBuffer != nullptr );
+		REQUIRE( vertexBuffer != nullptr );
+
+		CHECK( moonMesh->GetResourceName() == MOON.String() );
+		
+		TextIndexBuffer( indexBuffer, indexBuffer->GetDescriptor().NumElements,  sizeof( Index16 ), TypeID::get< Index16 >() );
+		TextVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+		// vertexBuffer->GetDescriptor().NumElements - I don't know how many elements should be yet. [Suppres warning]
+
 	}
 
+
+//====================================================================================//
+//			Nebulon	
+//====================================================================================//
+
+	
 	SECTION( "Loading Nebulon")
 	{
-		auto nebulonMesh = assetsManager.LoadMesh( MOON );
+		auto nebulonMesh = assetsManager.LoadMesh( NEBULON );
 		REQUIRE( nebulonMesh != nullptr );
+
+		auto indexBuffer = nebulonMesh->GetIndexBuffer();
+		auto vertexBuffer = nebulonMesh->GetVertexBuffer();
+		
+		REQUIRE( indexBuffer != nullptr );
+		REQUIRE( vertexBuffer != nullptr );
+
+		CHECK( nebulonMesh->GetResourceName() == NEBULON.String() );
+		
+		TextIndexBuffer( indexBuffer, indexBuffer->GetDescriptor().NumElements,  sizeof( Index16 ), TypeID::get< Index16 >() );
+		TextVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+		// vertexBuffer->GetDescriptor().NumElements - I don't know how many elements should be yet. [Suppres warning]
+
 	}
+
+//====================================================================================//
+//			Vader TIE	
+//====================================================================================//
 
 	SECTION( "Loading vader TIE")
 	{
-		auto vaderTIEMesh = assetsManager.LoadMesh( MOON );
+		auto vaderTIEMesh = assetsManager.LoadMesh( VADER_TIE );
 		REQUIRE( vaderTIEMesh != nullptr );
+
+		auto indexBuffer = vaderTIEMesh->GetIndexBuffer();
+		auto vertexBuffer = vaderTIEMesh->GetVertexBuffer();
+		
+		REQUIRE( indexBuffer != nullptr );
+		REQUIRE( vertexBuffer != nullptr );
+
+		CHECK( vaderTIEMesh->GetResourceName() == VADER_TIE.String() );
+		
+		TextIndexBuffer( indexBuffer, indexBuffer->GetDescriptor().NumElements,  sizeof( Index32 ), TypeID::get< Index32 >() );
+		TextVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+		// vertexBuffer->GetDescriptor().NumElements - I don't know how many elements should be yet. [Suppres warning]
+
+		auto& segments = vaderTIEMesh->GetSegments();
+		REQUIRE( segments.size() == 14 );
 	}
+
+//====================================================================================//
+//			TIE Fighter	
+//====================================================================================//
 
 	SECTION( "Loading TIE Fighter")
 	{
-		auto tieMesh = assetsManager.LoadMesh( MOON );
+		auto tieMesh = assetsManager.LoadMesh( TIE_FIGHTER );
 		REQUIRE( tieMesh != nullptr );
+
+		auto indexBuffer = tieMesh->GetIndexBuffer();
+		auto vertexBuffer = tieMesh->GetVertexBuffer();
+		
+		REQUIRE( indexBuffer != nullptr );
+		REQUIRE( vertexBuffer != nullptr );
+
+		CHECK( tieMesh->GetResourceName() == TIE_FIGHTER.String() );
+		
+		TextIndexBuffer( indexBuffer, indexBuffer->GetDescriptor().NumElements,  sizeof( Index32 ), TypeID::get< Index32 >() );
+		TextVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+		// vertexBuffer->GetDescriptor().NumElements - I don't know how many elements should be yet. [Suppres warning]
 	}
+
+//====================================================================================//
+//			Gate	
+//====================================================================================//
 
 	SECTION( "Loading Gate")
 	{
-		auto gateMesh = assetsManager.LoadMesh( MOON );
+		auto gateMesh = assetsManager.LoadMesh( GATE );
 		REQUIRE( gateMesh != nullptr );
+
+		auto indexBuffer = gateMesh->GetIndexBuffer();
+		auto vertexBuffer = gateMesh->GetVertexBuffer();
+		
+		REQUIRE( indexBuffer != nullptr );
+		REQUIRE( vertexBuffer != nullptr );
+
+		CHECK( gateMesh->GetResourceName() == GATE.String() );
+		
+		TextIndexBuffer( indexBuffer, indexBuffer->GetDescriptor().NumElements,  sizeof( Index16 ), TypeID::get< Index16 >() );
+		TextVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+		// vertexBuffer->GetDescriptor().NumElements - I don't know how many elements should be yet. [Suppres warning]
 	}
 
 

@@ -30,9 +30,6 @@
     <ClInclude Include="..\..\EngineCode\Common\EngineObject.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\MacrosSwitches.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\MemoryChunk.h">
       <Filter>Common</Filter>
     </ClInclude>
@@ -93,6 +90,7 @@
     <ClInclude Include="..\..\EngineCode\Common\UPtr.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\MacrosSwitches.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\Common\Serialization\SW\Serialization.cpp">

@@ -542,7 +542,7 @@ Nullable< MeshInitData >	FBX_loader::LoadMesh	( const filesystem::Path& fileName
 	}
 
 	bool extendedIndex = numVerticies > std::numeric_limits< Index16 >::max();
-	int indexSize = extendedIndex ? sizeof( Index16 ) : sizeof( Index32 );
+	int indexSize = extendedIndex ? sizeof( Index32 ) : sizeof( Index16 );
 
 	if( numVerticies > std::numeric_limits< Index32 >::max() )
 		return "Verticies count is out of 32 bit range.";
@@ -651,7 +651,7 @@ Nullable< TemporaryMeshInit >		FBX_loader::ProcessMesh		( FbxNodeMesh& nodeData,
 	std::vector< std::vector< Index32 > > indicies = mesh.Value.Indicies;		indicies.resize( materialsCount );
 
 	// Rewrite all control points to vertex buffer.
-	for( Size idx = ctrlPointsOffset; idx < numControlPoints; idx++ )
+	for( Size idx = 0; idx < numControlPoints - ctrlPointsOffset; idx++ )
 	{
 		VertexNormalTexCoord vertex;
 		vertex.Position = Get( controlPoints[ idx ] );
