@@ -484,7 +484,7 @@ void DisplayEngine::RenderFromQueue( float time_interval, float time_lag )
 	{
 		if( !m_renderOnceQueue.empty() )
 		{
-			RenderPass* renderPass = m_renderOnceQueue.front();
+			RenderPassDepracated* renderPass = m_renderOnceQueue.front();
 			m_renderOnceQueue.pop();
 
 			renderer->BeginScene( renderPass->GetRenderTarget() );

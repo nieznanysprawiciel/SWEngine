@@ -137,7 +137,7 @@ void LightmapLogic::ProceedGameLogic			( float time )
 				std::wstring fullName = renderTargetName + std::to_wstring( counter );
 				auto vertexBuff = m_engine->Assets.Buffers.CreateVertexBufferSync( fullName, chunk, chunk.GetMemorySize() / sizeof( CoordColor ) );
 
-				RenderPass* renderPass = new RenderPass;
+				RenderPassDepracated* renderPass = new RenderPassDepracated;
 				StaticActor* dynamicMesh = new StaticActor( vertexBuff.Ptr(), nullptr );
 				RenderTargetObject* renderTarget = m_engine->Assets.RenderTargets.CreateSync( fullName, renderTargetDesc );
 				
@@ -175,7 +175,7 @@ void LightmapLogic::RenderEnded( const EngineObject* sender, Event* renderEndedE
 	if( renderEndedEvent->type == (unsigned int)EventType::RenderOnceEndedEvent )
 	{
 		RenderOnceEndedEvent* castedEvent = static_cast<RenderOnceEndedEvent*>( renderEndedEvent );
-		RenderPass* renderPass = castedEvent->renderPass;
+		RenderPassDepracated* renderPass = castedEvent->renderPass;
 
 		auto meshes = renderPass->GetMeshes();
 		StaticActor* realMesh = nullptr;

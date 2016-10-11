@@ -1,5 +1,14 @@
 #pragma once
 
+#include "Common/EngineObject.h"
+
+#include "GraphicAPI/MeshResources.h"
+#include "GraphicAPI/RasterizerState.h"
+#include "GraphicAPI/BlendingState.h"
+#include "GraphicAPI/IRenderer.h"
+
+#include "EngineCore/DisplayEngine/RenderContext.h"
+
 #include <DirectXMath.h>
 #include <vector>
 
@@ -8,7 +17,11 @@ class CameraActor;
 class StaticActor;
 class ShaderInputLayout;
 
-class RenderPass
+
+
+
+
+class RenderPassDepracated
 {
 private:
 	CameraActor*				m_camera;
@@ -20,8 +33,8 @@ private:
 	ShaderInputLayout*			m_bufferLayout;		///< @todo Jeszcze jedna tymczasowoœæ. Layout jest zwi¹zany z buforem a nie passem.
 protected:
 public:
-	RenderPass();
-	~RenderPass();
+	RenderPassDepracated();
+	~RenderPassDepracated();
 
 	inline RenderTargetObject*		GetRenderTarget()		{ return m_renderTarget; }
 	inline CameraActor*			GetCamera()				{ return m_camera; }
@@ -33,4 +46,38 @@ public:
 	void		AddMesh				( StaticActor* );
 	void		SetRenderTarget		( RenderTargetObject* );
 	void		SetLayout			( ShaderInputLayout* );
+};
+
+/**@brief Base class for render passes.*/
+class RenderPass : public EngineObject
+{
+public:
+	enum class ActorAddPolicy
+	{
+		All,
+		None,
+		Static,
+		Dynamic
+	};
+
+private:
+protected:
+
+	CameraActor*						m_camera;
+
+	ActorAddPolicy						m_addPolicy;
+
+	ResourcePtr< RenderTargetObject >	m_renderTarget;
+	ResourcePtr< BlendingState >		m_blendingState;
+	ResourcePtr< RasterizerState >		m_rasterizer;
+
+public:
+
+	void			AddActor	( StaticActor* actor, bool isDynamic );
+	void			DeleteActor	( StaticActor* actor );
+
+	void			SetCamera	( CameraActor* camera );
+	CameraActor*	GetCamera	();
+
+	virtual void	Render		( IRenderer* renderer, RenderContext& context ) = 0;
 };

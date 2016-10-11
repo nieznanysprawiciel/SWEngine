@@ -46,7 +46,7 @@ class MemoryChunk;
 class ActorBase;
 class StaticActor;
 class DynamicActor;
-class RenderPass;
+class RenderPassDepracated;
 
 /**@brief Przechowuje wszystkie zmienne, które powinny znaleŸæ siê w klasie EngineInterface.
 @ingroup EngineCore

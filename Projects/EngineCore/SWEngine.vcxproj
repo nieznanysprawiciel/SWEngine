@@ -199,6 +199,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BasicControllers\SpectatorCameraController.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\IControllersState.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\LightModule.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderContext.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\EngineHelpers\ActorsCommonFunctions.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\EngineHelpers\Intersections.h" />

@@ -8,7 +8,7 @@
 #include "EngineCore/EventsManager/Event.h"
 
 
-class RenderPass;
+class RenderPassDepracated;
 
 
 /**@brief Event wysy³any w momencie zakoñczenia zleconego renderowania.*/
@@ -21,6 +21,6 @@ public:
 	RenderOnceEndedEvent();
 	~RenderOnceEndedEvent() = default;
 public:
-	RenderPass*		renderPass;
+	RenderPassDepracated*		renderPass;
 };
 

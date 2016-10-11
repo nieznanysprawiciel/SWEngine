@@ -4,13 +4,13 @@
 #include "GraphicAPI/MeshResources.h"
 
 
-RenderPass::RenderPass()
+RenderPassDepracated::RenderPassDepracated()
 	:	m_camera( nullptr ),
 		m_renderTarget( nullptr ),
 		m_bufferLayout( nullptr )
 {}
 
-RenderPass::~RenderPass()
+RenderPassDepracated::~RenderPassDepracated()
 {
 	if( m_renderTarget )
 		m_renderTarget->DeleteObjectReference();
@@ -18,12 +18,12 @@ RenderPass::~RenderPass()
 		m_bufferLayout->DeleteObjectReference();
 }
 
-void RenderPass::AddMesh( StaticActor* mesh )
+void RenderPassDepracated::AddMesh( StaticActor* mesh )
 {
 	m_meshes.push_back( mesh );
 }
 
-void RenderPass::SetRenderTarget( RenderTargetObject* renderTarget )
+void RenderPassDepracated::SetRenderTarget( RenderTargetObject* renderTarget )
 {
 	if( m_renderTarget )
 		m_renderTarget->DeleteObjectReference();
@@ -33,7 +33,7 @@ void RenderPass::SetRenderTarget( RenderTargetObject* renderTarget )
 		m_renderTarget->AddObjectReference();
 }
 
-void RenderPass::SetLayout( ShaderInputLayout* layout )
+void RenderPassDepracated::SetLayout( ShaderInputLayout* layout )
 {
 	if( m_bufferLayout )
 		m_bufferLayout->DeleteObjectReference();

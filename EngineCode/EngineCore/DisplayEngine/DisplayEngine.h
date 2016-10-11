@@ -66,7 +66,7 @@ private:
 	RenderTargetObject*						m_mainRenderTarget;			///<Render target okna aplikacji. @todo W ostatecznej wersji powinien byæ render target ustawiany dla ka¿dego przebiegu.
 	SwapChain*								m_mainSwapChain;
 
-	std::queue<RenderPass*>					m_renderOnceQueue;			///<Kolejka przebiegów, które maj¹ zostaæ wyrenderowane tylko raz.
+	std::queue<RenderPassDepracated*>					m_renderOnceQueue;			///<Kolejka przebiegów, które maj¹ zostaæ wyrenderowane tylko raz.
 	unsigned int							m_maxQueuedPassesPerFrame;	///<Maksymalna liczba przebiegów jaka zostanie wziêta z kolejki w ka¿dej ramce.
 
 public:
@@ -108,7 +108,7 @@ public:
 	CameraActor*	GetCurrentCamera				();
 
 	// Renderowanie
-	void			RenderOnce						( RenderPass* pass )	{	m_renderOnceQueue.push( pass );	}
+	void			RenderOnce						( RenderPassDepracated* pass )	{	m_renderOnceQueue.push( pass );	}
 
 	// SkyDome
 	SkyDome*		SetSkydome						( SkyDome* dome );

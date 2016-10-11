@@ -16,11 +16,11 @@ Po wyrenderowaniu wysy³any jest event RenderOnceEndedEvent. Nie ma gwarancji, ¿e
 siê w tej samej klatce, w której zosta³o wys³ane ¿¹danie. Je¿eli pêtla renderuj¹ca bêdzie za bardzo obci¹¿ona,
 to z kolejki bêdzie wybieranych tylko kilka ¿¹dañ, a pozosta³e zostan¹ od³o¿one do kolejnych klatek.
 
-@attention W obecnej wersji event musi zostac odebrany, ¿eby zwolniæ obiekt RenderPass i wszystkie zasoby,
+@attention W obecnej wersji event musi zostac odebrany, ¿eby zwolniæ obiekt RenderPassDepracated i wszystkie zasoby,
 które zostan¹ w nim umieszczone. W przysz³oœci trzeba zrobiæ jakiœ m¹drzejszy mechanizm.
 
 @param[in] pass Dane przebiegu uzywane przy renderowaniu.*/
-void			RenderingApi::RenderOnce		( RenderPass* pass )
+void			RenderingApi::RenderOnce		( RenderPassDepracated* pass )
 {
 	Context->displayEngine->RenderOnce( pass );
 }

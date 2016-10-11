@@ -1,4 +1,6 @@
 #include "GraphicAPI/ResourcesFactory.h"
+#include "RasterizerState.h"
+#include "BlendingState.h"
 
 #include "Common/MemoryLeaks.h"
 
@@ -20,7 +22,46 @@ RTTR_REGISTRATION
 		rttr::value( "Staging", ResourceUsage::RESOURCE_USAGE_STAGING ),
 		rttr::value( "Static", ResourceUsage::RESOURCE_USAGE_STATIC )
 	);
-	
+
+	rttr::registration::enumeration< BlendOperation >( "BlendOperation" )
+	(
+		rttr::value( "Add", BlendOperation::Add ),
+		rttr::value( "Subtract", BlendOperation::Subtract ),
+		rttr::value( "ReverseSubtract", BlendOperation::ReverseSubtract ),
+		rttr::value( "Min", BlendOperation::Min ),
+		rttr::value( "Max", BlendOperation::Max )
+	);
+
+
+	rttr::registration::enumeration< BlendFactor >( "BlendFactor" )
+	(
+		rttr::value( "Zero", BlendFactor::Zero ),
+		rttr::value( "One", BlendFactor::One ),
+		rttr::value( "SrcColor", BlendFactor::SrcColor ),
+		rttr::value( "DstColor", BlendFactor::DstColor ),
+		rttr::value( "SrcAlpha", BlendFactor::SrcAlpha ),
+		rttr::value( "DstAlpha", BlendFactor::DstAlpha ),
+		rttr::value( "BlendFactor", BlendFactor::BlendFactor ),
+		rttr::value( "InverseSrcColor", BlendFactor::InverseSrcColor ),
+		rttr::value( "InverseDstColor", BlendFactor::InverseDstColor ),
+		rttr::value( "InverseSrcAlpha", BlendFactor::InverseSrcAlpha ),
+		rttr::value( "InverseDstAlpha", BlendFactor::InverseDstAlpha ),
+		rttr::value( "InverseBlendFactor", BlendFactor::InverseBlendFactor )
+	);
+
+	rttr::registration::enumeration< CullMode >( "CullMode" )
+	(
+		rttr::value( "Front", CullMode::Front ),
+		rttr::value( "Back", CullMode::Back ),
+		rttr::value( "None", CullMode::None )
+	);
+
+	rttr::registration::enumeration< FillMode >( "FillMode" )
+	(
+		rttr::value( "Solid", FillMode::Solid ),
+		rttr::value( "Wireframe", FillMode::Wireframe )
+	);
+
 
 	rttr::registration::enumeration< TextureType >( "TextureType" )
 	(
@@ -244,13 +285,42 @@ RTTR_REGISTRATION
 		.property_readonly( "FilePath", &TextureInfo::GetPath );
 
 	rttr::registration::class_< TextureObject >( "TextureObject" )
-	.property_readonly( "Descriptor", &TextureObject::GetDescriptor )
-	(
-		rttr::policy::prop::BindAsPtr()
-	);
+		.property_readonly( "Descriptor", &TextureObject::GetDescriptor ) BIND_AS_PTR;
 
 
 	rttr::registration::class_< SwapChain >( "SwapChain" );
+
+	// Blending
+	rttr::registration::class_< BlendingInfo >( "BlendingInfo" )
+		.property_readonly( "CustomBlendFactor", &BlendingInfo::CustomBlendFactor ) BIND_AS_PTR
+		.property_readonly( "EnableBlending", &BlendingInfo::EnableBlending )
+		.property_readonly( "ColorOperation", &BlendingInfo::ColorOperation )
+		.property_readonly( "AlphaOperation", &BlendingInfo::AlphaOperation )
+		.property_readonly( "SrcColorBlend", &BlendingInfo::SrcColorBlend )
+		.property_readonly( "DstColorBlend", &BlendingInfo::DstColorBlend )
+		.property_readonly( "SrcAlphaBlend", &BlendingInfo::SrcAlphaBlend )
+		.property_readonly( "DstAlphaBlend", &BlendingInfo::DstAlphaBlend );
+
+	rttr::registration::class_< BlendingState >( "BlendingState" )
+		.property_readonly( "Descriptor", &BlendingState::GetDescriptor ) BIND_AS_PTR;
+
+
+	// Rasterizer
+	rttr::registration::class_< RasterizerStateInfo >( "RasterizerStateInfo" )
+		.property_readonly( "CullMode", &RasterizerStateInfo::CullMode )
+		.property_readonly( "FillMode", &RasterizerStateInfo::FillMode )
+		.property_readonly( "IsClockwise", &RasterizerStateInfo::IsClockwise )
+		.property_readonly( "EnableScissor", &RasterizerStateInfo::EnableScissor )
+		.property_readonly( "EnableZClipping", &RasterizerStateInfo::EnableZClipping )
+		.property_readonly( "ConservativeRaserizer", &RasterizerStateInfo::ConservativeRaserizer )
+		.property_readonly( "EnableDepthTest", &RasterizerStateInfo::EnableDepthTest )
+		.property_readonly( "EnableStencilTest", &RasterizerStateInfo::EnableStencilTest )
+		.property_readonly( "DepthBias", &RasterizerStateInfo::DepthBias );
+
+
+	rttr::registration::class_< RasterizerState >( "RasterizerState" )
+		.property_readonly( "Descriptor", &RasterizerState::GetDescriptor ) BIND_AS_PTR;
+
 
 	// Buffer
 	rttr::registration::class_< BufferObject >( "BufferObject" )

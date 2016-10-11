@@ -48,6 +48,12 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\BufferInitData.h">
       <Filter>GraphicAPI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\BlendingState.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\RasterizerState.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\GraphicAPI\MeshResources.cpp">

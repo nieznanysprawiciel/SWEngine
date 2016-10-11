@@ -6,6 +6,8 @@
 */
 
 #include "GraphicAPI/MeshResources.h"
+#include "GraphicAPI/RasterizerState.h"
+#include "GraphicAPI/BlendingState.h"
 #include "GraphicAPI/SwapChain.h"
 #include "GraphicAPI/IGraphicAPIInitializer.h"
 
