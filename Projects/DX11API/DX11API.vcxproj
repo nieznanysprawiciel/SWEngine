@@ -165,6 +165,8 @@
     <ClInclude Include="..\..\EngineCode\Common\MemoryLeaks.h" />
     <ClInclude Include="..\..\EngineCode\Common\ObjectDeleter.h" />
     <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\BlendingState.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DepthStencilState.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11APIObjects.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11ConstantsMapper.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Initializer\DX11Initializer.h" />
@@ -172,6 +174,7 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11Buffer.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11ComputeShader.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11InputLayoutDescriptor.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11PipelineState.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11PixelShader.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11RenderTarget.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11SwapChain.h" />
@@ -186,6 +189,7 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IShader.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IShaderInputLayout.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\MeshResources.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\RasterizerState.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourceObject.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcePtr.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcesFactory.h" />
@@ -199,6 +203,7 @@
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11Buffer.cpp" />
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11ComputeShader.cpp" />
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11InputLayoutDescriptor.cpp" />
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11PipelineState.cpp" />
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11PixelShader.cpp" />
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11RenderTarget.cpp" />
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11SwapChain.cpp" />

@@ -13,20 +13,6 @@
 */
 
 
-/**@brief Polygon culling mode.*/
-enum class CullMode : uint8
-{
-	Front,
-	Back,
-	None
-};
-
-/**@brief Polygon fill mode.*/
-enum class FillMode : uint8
-{
-	Solid,
-	Wireframe
-};
 
 /**@brief 
 @ingroup PipelineState*/
@@ -38,11 +24,11 @@ struct RasterizerStateInfo
 	bool			IsClockwise;
 	bool			EnableScissor;
 	bool			EnableZClipping;			///< Clipping of far plane.
-	bool			ConservativeRaserizer;		///< Since in DirectX 11.2
-	bool			EnableDepthTest;
-	bool			EnableStencilTest;
+	bool			ConservativeRasterizer;		///< Since in DirectX 11.2
 
 
+// ================================ //
+//
 	RasterizerStateInfo()
 		:	CullMode( CullMode::Back )
 		,	FillMode( FillMode::Solid )
@@ -50,11 +36,28 @@ struct RasterizerStateInfo
 		,	IsClockwise( true )
 		,	EnableScissor( false )
 		,	EnableZClipping( true )
-		,	ConservativeRaserizer( false )
-		,	EnableDepthTest( true )
-		,	EnableStencilTest( false )
+		,	ConservativeRasterizer( false )
 	{}
+
+#define Compare( x ) if( x != other.x ) return false;
+
+
+	bool	operator==	( const RasterizerStateInfo& other ) const
+	{
+		Compare( CullMode );
+		Compare( FillMode );
+		Compare( DepthBias );
+		Compare( IsClockwise );
+		Compare( EnableScissor );
+		Compare( EnableZClipping );
+		Compare( ConservativeRasterizer );
+		return true;
+	}
+
+#undef Compare
 };
+
+
 
 
 /**@brief Rasterizer state and depth stencil state.
@@ -66,14 +69,12 @@ class RasterizerState : public ResourceObject
 
 private:
 protected:
-	
+	virtual			~RasterizerState() = default;
+public:
 	explicit		RasterizerState()
 		:	ResourceObject( 0 )
 	{}
 
-	virtual			~RasterizerState() = default;
-
-public:
 
 	virtual const RasterizerStateInfo&		GetDescriptor	() = 0;
 };

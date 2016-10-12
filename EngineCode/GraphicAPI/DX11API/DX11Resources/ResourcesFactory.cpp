@@ -1,3 +1,9 @@
+/**
+@file ResourcesFactory.cpp
+@author nieznanysprawiciel
+@copyright File is part of graphic engine SWEngine.
+*/
+
 #include "GraphicAPI/ResourcesFactory.h"
 #include "../DX11Initializer/DX11Initializer.h"
 
@@ -10,6 +16,7 @@
 #include "DX11InputLayoutDescriptor.h"
 #include "DX11InputLayout.h"
 #include "DX11SwapChain.h"
+#include "DX11PipelineState.h"
 
 #include "Common/MemoryLeaks.h"
 
@@ -18,6 +25,9 @@ typedef DX11VertexShader		VertexShaderObject;
 typedef DX11PixelShader			PixelShaderObject;
 typedef DX11Buffer				Buffer;
 typedef DX11ComputeShader		ComputeShaderObject;
+typedef DX11DepthStencilState	DepthStencilStateObject;
+typedef DX11RasterizerState		RasterizerStateObject;
+typedef DX11BlendingState		BlendingStateObject;
 
 /**@brief Tworzy teksturê z podanego deskryptora.*/
 TextureObject*			ResourcesFactory::CreateTextureFromMemory	( const MemoryChunk& texData, TextureInfo&& texInfo )
@@ -64,6 +74,24 @@ VertexShader*		ResourcesFactory::CreateVertexShaderFromFile	( const std::wstring
 		shader->SetShaderName( shaderName );
 	}
 	return shader;
+}
+
+/**@brief Creates BlendingState.*/
+BlendingState*		ResourcesFactory::CreateBlendingState		( const BlendingInfo& info )
+{
+	return BlendingStateObject::Create( info );
+}
+
+/**@brief Creates RasterizerState*/
+RasterizerState*	ResourcesFactory::CreateRasterizerState		( const RasterizerStateInfo& info )
+{
+	return RasterizerStateObject::Create( info );
+}
+
+/**@brief Creates DepthStencilState.*/
+DepthStencilState*	ResourcesFactory::CreateDepthStencilState	( const DepthStencilInfo& info )
+{
+	return DepthStencilStateObject::Create( info );
 }
 
 

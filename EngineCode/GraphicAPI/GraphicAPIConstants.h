@@ -7,7 +7,67 @@
 
 #include "Common/TypesDefinitions.h"
 
+/**@brief Blending operation.
+
+@attention Don't change constants order.
+@ingroup PipelineState*/
+enum class BlendOperation : uint8
+{
+	Add = 0,
+	Subtract = 1,
+	ReverseSubtract = 2,
+	Min = 3,
+	Max = 4
+};
+
+
+/**@brief Blend factor for blending equation.
+
+@attention Don't change constants order.
+@ingroup PipelineState*/
+enum class BlendFactor : uint8
+{
+	Zero = 0,
+	One = 1,
+	SrcColor,
+	DstColor,
+	SrcAlpha,
+	DstAlpha,
+	BlendFactor,			///< Custom blend factor. @see BlendingInfo.
+	InverseSrcColor,		///< One minus SrcColor
+	InverseDstColor,		///< One minus DstColor
+	InverseSrcAlpha,		///< One minus SrcAlpha
+	InverseDstAlpha,		///< One minus DstAlpha
+	InverseBlendFactor		///< One minus custom blend factor. @see BlendingInfo.
+};
+
+
+
+/**@brief Polygon culling mode.
+
+@attention Don't change constants order.
+@ingroup PipelineState*/
+enum class CullMode : uint8
+{
+	Front = 0,
+	Back = 1,
+	None = 2
+};
+
+/**@brief Polygon fill mode.
+
+@attention Don't change constants order.
+@ingroup PipelineState*/
+enum class FillMode : uint8
+{
+	Solid = 0,
+	Wireframe = 1
+};
+
+
 /**@brief Specyfikuje typ dostêpu do pamiêci danego zasobu.
+
+@attention Don't change constants order.
 @see @ref GraphicAPI*/
 enum class ResourceUsage : uint8
 {
@@ -18,6 +78,8 @@ enum class ResourceUsage : uint8
 };
 
 /**@brief Topologia wierzcho³ków.
+
+@attention Don't change constants order.
 @see @ref GraphicAPI*/
 enum class PrimitiveTopology : uint8
 {
@@ -36,6 +98,7 @@ enum class PrimitiveTopology : uint8
 
 @attention DirectX pozwala na ³¹czenie tych sta³ych jak flag, ale w silniku mo¿na wybraæ tylko
 jedn¹ opcjê.
+@attention Don't change constants order.
 @see @ref GraphicAPI*/
 enum ResourceBinding : uint8
 {
@@ -55,6 +118,7 @@ enum ResourceBinding : uint8
 
 /**@brief Definiuje typ tekstury.
 
+@attention Don't change constants order.
 @see @ref GraphicAPI*/
 enum class TextureType : uint8
 {
@@ -72,6 +136,7 @@ enum class TextureType : uint8
 
 /**@brief Typy dostêpne dla bufora g³êbokoœci.
 
+@attention Don't change constants order.
 @see @ref GraphicAPI*/
 enum class DepthStencilFormat : uint8
 {
@@ -82,6 +147,8 @@ enum class DepthStencilFormat : uint8
 };
 
 /**@brief Specyfikuje format tekstury b¹dŸ innego zasobu.
+
+@attention Don't change constants order.
 @see @ref GraphicAPI*/
 enum class ResourceFormat : uint8
 {

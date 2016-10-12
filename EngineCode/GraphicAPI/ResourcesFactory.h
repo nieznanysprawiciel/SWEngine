@@ -8,6 +8,7 @@
 #include "GraphicAPI/MeshResources.h"
 #include "GraphicAPI/RasterizerState.h"
 #include "GraphicAPI/BlendingState.h"
+#include "DepthStencilState.h"
 #include "GraphicAPI/SwapChain.h"
 #include "GraphicAPI/IGraphicAPIInitializer.h"
 
@@ -38,6 +39,11 @@ private:
 																	ShaderInputLayout** layout,
 																	InputLayoutDescriptor* layout_desc,
 																	const char* shaderModel = "vs_4_0" );
+
+	static BlendingState*			CreateBlendingState				( const BlendingInfo& info );
+	static RasterizerState*			CreateRasterizerState			( const RasterizerStateInfo& info );
+	static DepthStencilState*		CreateDepthStencilState			( const DepthStencilInfo& info );
+
 public:
 	static IGraphicAPIInitializer*	CreateAPIInitializer			();
 	static RenderTargetObject*		CreateScreenRenderTarget		();

@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\BlendingState.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\BufferInitData.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DepthStencilState.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\GraphicAPIConstants.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IBuffer.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IGraphicAPIInitializer.h" />

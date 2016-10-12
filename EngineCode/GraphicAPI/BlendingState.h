@@ -7,39 +7,10 @@
 
 
 #include "ResourceObject.h"
+#include "GraphicAPIConstants.h"
 
 #include <DirectXMath.h>
 
-
-/**@brief Blending operation.
-@ingroup PipelineState*/
-enum class BlendOperation : uint8
-{
-	Add,
-	Subtract,
-	ReverseSubtract,
-	Min,
-	Max
-};
-
-
-/**@brief Blend factor for blending equation.
-@ingroup PipelineState*/
-enum class BlendFactor : uint8
-{
-	Zero,
-	One,
-	SrcColor,
-	DstColor,
-	SrcAlpha,
-	DstAlpha,
-	BlendFactor,			///< Custom blend factor. @see BlendingInfo.
-	InverseSrcColor,		///< One minus SrcColor
-	InverseDstColor,		///< One minus DstColor
-	InverseSrcAlpha,		///< One minus SrcAlpha
-	InverseDstAlpha,		///< One minus DstAlpha
-	InverseBlendFactor		///< One minus custom blend factor. @see BlendingInfo.
-};
 
 
 /**@brief Initialization of BlendingState.
@@ -55,7 +26,43 @@ struct BlendingInfo
 	BlendFactor			DstColorBlend;
 	BlendFactor			SrcAlphaBlend;
 	BlendFactor			DstAlphaBlend;
+
+// ================================ //
+//
+	BlendingInfo()
+		:	CustomBlendFactor( DirectX::XMFLOAT4( 0.0f, 0.0f, 0.0f, 0.0f ) )
+		,	EnableBlending( false )
+		,	ColorOperation( BlendOperation::Add )
+		,	AlphaOperation( BlendOperation::Add )
+		,	SrcColorBlend( BlendFactor::One )
+		,	DstColorBlend( BlendFactor::One )
+		,	SrcAlphaBlend( BlendFactor::One )
+		,	DstAlphaBlend( BlendFactor::One )
+	{}
+
+#define Compare( x ) if( x != other.x ) return false;
+
+	bool	operator==	( const BlendingInfo& other ) const
+	{
+		Compare( CustomBlendFactor.x );
+		Compare( CustomBlendFactor.y );
+		Compare( CustomBlendFactor.z );
+		Compare( CustomBlendFactor.w );
+		Compare( EnableBlending );
+		Compare( ColorOperation );
+		Compare( EnableBlending );
+		Compare( AlphaOperation );
+		Compare( SrcColorBlend );
+		Compare( DstColorBlend );
+		Compare( SrcAlphaBlend );
+		Compare( DstAlphaBlend );
+		return true;
+	}
+
+#undef Compare
 };
+
+
 
 
 /**@brief 
@@ -67,13 +74,13 @@ class BlendingState : public ResourceObject
 private:
 protected:
 
+	virtual			~BlendingState() = default;
+
+public:
 	explicit		BlendingState()
 		:	ResourceObject( 0 )
 	{}
 
-	virtual	~BlendingState() = default;
-
-public:
 
 	virtual const BlendingInfo&		GetDescriptor	() = 0;
 };

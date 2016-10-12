@@ -1,6 +1,7 @@
 #include "GraphicAPI/ResourcesFactory.h"
 #include "RasterizerState.h"
 #include "BlendingState.h"
+#include "DepthStencilState.h"
 
 #include "Common/MemoryLeaks.h"
 
@@ -290,6 +291,7 @@ RTTR_REGISTRATION
 
 	rttr::registration::class_< SwapChain >( "SwapChain" );
 
+
 	// Blending
 	rttr::registration::class_< BlendingInfo >( "BlendingInfo" )
 		.property_readonly( "CustomBlendFactor", &BlendingInfo::CustomBlendFactor ) BIND_AS_PTR
@@ -312,13 +314,20 @@ RTTR_REGISTRATION
 		.property_readonly( "IsClockwise", &RasterizerStateInfo::IsClockwise )
 		.property_readonly( "EnableScissor", &RasterizerStateInfo::EnableScissor )
 		.property_readonly( "EnableZClipping", &RasterizerStateInfo::EnableZClipping )
-		.property_readonly( "ConservativeRaserizer", &RasterizerStateInfo::ConservativeRaserizer )
-		.property_readonly( "EnableDepthTest", &RasterizerStateInfo::EnableDepthTest )
-		.property_readonly( "EnableStencilTest", &RasterizerStateInfo::EnableStencilTest )
+		.property_readonly( "ConservativeRaserizer", &RasterizerStateInfo::ConservativeRasterizer )
 		.property_readonly( "DepthBias", &RasterizerStateInfo::DepthBias );
 
 
 	rttr::registration::class_< RasterizerState >( "RasterizerState" )
+		.property_readonly( "Descriptor", &RasterizerState::GetDescriptor ) BIND_AS_PTR;
+
+
+	// Depth/Stencil
+	rttr::registration::class_< DepthStencilInfo >( "DepthStencilInfo" )
+		.property_readonly( "EnableDepthTest", &DepthStencilInfo::EnableDepthTest )
+		.property_readonly( "EnableStencilTest", &DepthStencilInfo::EnableStencilTest );
+
+	rttr::registration::class_< DepthStencilState >( "DepthStencilState" )
 		.property_readonly( "Descriptor", &RasterizerState::GetDescriptor ) BIND_AS_PTR;
 
 
