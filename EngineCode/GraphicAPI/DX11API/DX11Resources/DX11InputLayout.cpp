@@ -1,3 +1,10 @@
+/**
+@file DX11InputLayout.cpp
+@author nieznanysprawiciel
+@copyright File is part of graphic engine SWEngine.
+*/
+#include "stdafx.h"
+
 #include "DX11InputLayout.h"
 
 #include "Common/MemoryLeaks.h"

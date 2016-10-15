@@ -1,3 +1,11 @@
+/**
+@file MeshResources.cpp
+@author nieznanysprawiciel
+@copyright File is part of graphic engine SWEngine.
+*/
+#include "stdafx.h"
+
+
 #include "GraphicAPI/ResourcesFactory.h"
 #include "RasterizerState.h"
 #include "BlendingState.h"

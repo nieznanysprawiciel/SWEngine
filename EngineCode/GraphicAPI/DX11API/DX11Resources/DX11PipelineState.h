@@ -12,6 +12,11 @@
 #include "GraphicAPI/RasterizerState.h"
 
 
+// ComPtr
+#include <wrl/client.h>
+using namespace Microsoft::WRL;
+
+
 
 /**@brief RasterizerState DirectX11.
 @ingroup DX11API*/
@@ -19,15 +24,15 @@ class DX11RasterizerState : public RasterizerState, public DX11APIObjects
 {
 	RTTR_ENABLE( RasterizerState );
 private:
-	ID3D11RasterizerState*		m_state;
-	RasterizerStateInfo			m_info;
+	ComPtr< ID3D11RasterizerState >		m_state;
+	RasterizerStateInfo					m_info;
 
 protected:
 	~DX11RasterizerState() = default;
 public:
-	explicit	DX11RasterizerState	( ID3D11RasterizerState* state, const RasterizerStateInfo& info );
+	explicit	DX11RasterizerState	( ComPtr< ID3D11RasterizerState > state, const RasterizerStateInfo& info );
 	
-	ID3D11RasterizerState*				Get	()	{ return m_state; }
+	ID3D11RasterizerState*				Get	()	{ return m_state.Get(); }
 
 	// Inherited via RasterizerState
 	virtual std::string					GetResourceName	() const override;
@@ -43,15 +48,15 @@ class DX11DepthStencilState : public DepthStencilState, public DX11APIObjects
 {
 	RTTR_ENABLE( DepthStencilState );
 private:
-	ID3D11DepthStencilState*		m_state;
-	DepthStencilInfo				m_info;
+	ComPtr< ID3D11DepthStencilState >	m_state;
+	DepthStencilInfo					m_info;
 
 protected:
 	~DX11DepthStencilState() = default;
 public:
-	explicit	DX11DepthStencilState	( ID3D11DepthStencilState* state, const DepthStencilInfo& info );
+	explicit	DX11DepthStencilState	( ComPtr< ID3D11DepthStencilState > state, const DepthStencilInfo& info );
 	
-	ID3D11DepthStencilState*			Get	()	{ return m_state; }
+	ID3D11DepthStencilState*			Get	()	{ return m_state.Get(); }
 
 	// Inherited via DepthStencilState
 	virtual std::string					GetResourceName	() const override;
@@ -67,15 +72,15 @@ class DX11BlendingState : public BlendingState, public DX11APIObjects
 {
 	RTTR_ENABLE( BlendingState );
 private:
-	ID3D11BlendState*		m_state;
-	BlendingInfo			m_info;
+	ComPtr< ID3D11BlendState >	m_state;
+	BlendingInfo				m_info;
 
 protected:
 	~DX11BlendingState() = default;
 public:
-	explicit	DX11BlendingState	( ID3D11BlendState* state, const BlendingInfo& info );
+	explicit	DX11BlendingState	( ComPtr< ID3D11BlendState > state, const BlendingInfo& info );
 	
-	ID3D11BlendState*				Get	()	{ return m_state; }
+	ID3D11BlendState*				Get	()	{ return m_state.Get(); }
 
 	// Inherited via BlendingState
 	virtual std::string				GetResourceName	() const override;

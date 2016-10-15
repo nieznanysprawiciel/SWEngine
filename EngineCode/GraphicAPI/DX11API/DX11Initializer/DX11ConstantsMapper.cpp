@@ -1,3 +1,11 @@
+/**
+@file DX11ConstantsMapper.cpp
+@author nieznanysprawiciel
+@copyright File is part of graphic engine SWEngine.
+*/
+#include "stdafx.h"
+
+
 #include "DX11ConstantsMapper.h"
 
 #include "Common/MemoryLeaks.h"
@@ -146,7 +154,7 @@ D3D11_CULL_MODE		DX11CullMode[ 3 ]
 	D3D11_CULL_NONE
 };
 
-D3D11_BLEND							DX11BlendFactor[ 12 ]
+D3D11_BLEND			DX11BlendFactor[ 12 ]
 {
 	D3D11_BLEND_ZERO,
 	D3D11_BLEND_ONE,
@@ -162,7 +170,7 @@ D3D11_BLEND							DX11BlendFactor[ 12 ]
 	D3D11_BLEND_INV_BLEND_FACTOR
 };
 
-D3D11_BLEND_OP						DX11BlendOperation[ 5 ]
+D3D11_BLEND_OP		DX11BlendOperation[ 5 ]
 {
 	D3D11_BLEND_OP_ADD,
 	D3D11_BLEND_OP_SUBTRACT,

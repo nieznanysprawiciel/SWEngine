@@ -85,8 +85,7 @@
   <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -102,8 +101,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -120,8 +118,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -141,8 +138,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -181,6 +177,7 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11Texture.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11InputLayout.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11VertexShader.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\stdafx.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\GraphicAPIConstants.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IBuffer.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IGraphicAPIInitializer.h" />
@@ -211,6 +208,12 @@
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11InputLayout.cpp" />
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11VertexShader.cpp" />
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\ResourcesFactory.cpp" />
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ResourceManager\ResourceManager.vcxproj">

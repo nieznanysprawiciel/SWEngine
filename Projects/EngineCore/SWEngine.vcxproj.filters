@@ -132,6 +132,9 @@
     <Filter Include="EngineCore\ModelsManager\Assets\Meshes">
       <UniqueIdentifier>{6e42c9e4-6d88-482b-b844-023bf02166bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PrecompiledHeader">
+      <UniqueIdentifier>{efbe35a6-cef9-471d-869b-dbcdabad4e14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -153,9 +156,6 @@
       <Filter>EngineCore\ControllersEngine</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)targetver.h">
-      <Filter>EngineCore</Filter>
-    </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)Resource.h">
       <Filter>EngineCore</Filter>
     </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)MainEngine\TimeManager.h">
@@ -184,9 +184,6 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.h">
       <Filter>EngineCore\ModelsManager</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\stdafx.h">
-      <Filter>EngineCore</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\Engine.h">
       <Filter>EngineCore\MainEngine</Filter>
@@ -557,6 +554,12 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderContext.h">
       <Filter>EngineCore\DisplayEngine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\stdafx.h">
+      <Filter>PrecompiledHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="$(EngineCoreSourceDir)Resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -573,9 +576,6 @@
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkyDome.cpp">
       <Filter>EngineCore\Features\HosekSkylightModel</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)stdafx.cpp">
-      <Filter>EngineCore</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)SW_engine.cpp">
       <Filter>EngineCore\MainEngine</Filter>
@@ -813,6 +813,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\AssetsManager.cpp">
       <Filter>EngineCore\ModelsManager</Filter>
+    </ClCompile>
+    <ClCompile Include="$(EngineCoreSourceDir)stdafx.cpp">
+      <Filter>PrecompiledHeader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

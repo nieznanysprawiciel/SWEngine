@@ -3,9 +3,10 @@
 @author nieznanysprawiciel
 @copyright File is part of graphic engine SWEngine.
 */
+#include "stdafx.h"
 
 #include "DX11PipelineState.h"
-#include "../DX11Initializer/DX11ConstantsMapper.h"
+#include "DX11Initializer/DX11ConstantsMapper.h"
 
 
 RTTR_REGISTRATION
@@ -21,7 +22,7 @@ RTTR_REGISTRATION
 //			RasterizerState	
 //====================================================================================//
 
-DX11RasterizerState::DX11RasterizerState( ID3D11RasterizerState* state, const RasterizerStateInfo& info )
+DX11RasterizerState::DX11RasterizerState( ComPtr< ID3D11RasterizerState > state, const RasterizerStateInfo& info )
 	:	m_state( state )
 	,	m_info( info )
 { }
@@ -56,8 +57,8 @@ DX11RasterizerState*			DX11RasterizerState::Create		( const RasterizerStateInfo&
 	desc.MultisampleEnable = false;
 	desc.AntialiasedLineEnable = false;
 
-	ID3D11RasterizerState* state;
-	auto result = device->CreateRasterizerState( &desc, &state );
+	ComPtr< ID3D11RasterizerState > state;
+	auto result = device->CreateRasterizerState( &desc, state.GetAddressOf() );
 	if( FAILED( result ) )
 		return nullptr;
 
@@ -70,7 +71,7 @@ DX11RasterizerState*			DX11RasterizerState::Create		( const RasterizerStateInfo&
 //			DepthStencilState	
 //====================================================================================//
 
-DX11DepthStencilState::DX11DepthStencilState( ID3D11DepthStencilState* state, const DepthStencilInfo& info )
+DX11DepthStencilState::DX11DepthStencilState( ComPtr< ID3D11DepthStencilState > state, const DepthStencilInfo& info )
 	:	m_state( state )
 	,	m_info( info )
 { }
@@ -109,8 +110,8 @@ DX11DepthStencilState*			DX11DepthStencilState::Create			( const DepthStencilInf
 	desc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 	desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
 
-	ID3D11DepthStencilState* state;
-	auto result = device->CreateDepthStencilState( &desc, &state );
+	ComPtr< ID3D11DepthStencilState > state;
+	auto result = device->CreateDepthStencilState( &desc, state.GetAddressOf() );
 	if( FAILED( result ) )
 		return nullptr;
 
@@ -123,7 +124,7 @@ DX11DepthStencilState*			DX11DepthStencilState::Create			( const DepthStencilInf
 //			BlendingState	
 //====================================================================================//
 
-DX11BlendingState::DX11BlendingState( ID3D11BlendState* state, const BlendingInfo& info )
+DX11BlendingState::DX11BlendingState( ComPtr< ID3D11BlendState > state, const BlendingInfo& info )
 	:	m_state( state )
 	,	m_info( info )
 {}
@@ -158,7 +159,10 @@ DX11BlendingState*				DX11BlendingState::Create		( const BlendingInfo & info )
 	desc.RenderTarget[ 0 ].SrcBlendAlpha = DX11ConstantsMapper::Get( info.DstAlphaBlend );
 	desc.RenderTarget[ 0 ].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 
-	assert( false );
+	ComPtr< ID3D11BlendState > state;
+	auto result = device->CreateBlendState( &desc, state.GetAddressOf() );
+	if( FAILED( result ) )
+		return nullptr;
 
-	return nullptr;
+	return new DX11BlendingState( state, info );
 }

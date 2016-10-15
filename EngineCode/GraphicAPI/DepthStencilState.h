@@ -5,7 +5,7 @@
 @copyright File is part of graphic engine SWEngine.
 */
 
-
+#include "Common/ObjectDeleter.h"
 #include "ResourceObject.h"
 
 
@@ -45,6 +45,7 @@ struct DepthStencilInfo
 class DepthStencilState : public ResourceObject
 {
 	RTTR_ENABLE( ResourceObject );
+	friend ObjectDeleter< DepthStencilState >;
 private:
 protected:
 

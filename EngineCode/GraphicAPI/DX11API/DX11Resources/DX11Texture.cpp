@@ -1,6 +1,14 @@
-#include "DX11Texture.h"
+/**
+@file DX11Texture.cpp
+@author nieznanysprawiciel
+@copyright File is part of graphic engine SWEngine.
+*/
+#include "stdafx.h"
 
-#include "../DX11Initializer/DX11ConstantsMapper.h"
+
+#include "DX11Texture.h"
+#include "DX11Initializer/DX11ConstantsMapper.h"
+
 
 #include "Common/MemoryLeaks.h"
 

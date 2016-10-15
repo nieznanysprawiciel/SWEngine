@@ -3,9 +3,10 @@
 @author nieznanysprawiciel
 @copyright File is part of graphic engine SWEngine.
 */
+#include "stdafx.h"
 
 #include "GraphicAPI/ResourcesFactory.h"
-#include "../DX11Initializer/DX11Initializer.h"
+#include "DX11Initializer/DX11Initializer.h"
 
 #include "DX11VertexShader.h"
 #include "DX11PixelShader.h"

@@ -314,9 +314,7 @@
     <ClInclude Include="..\..\EngineCode\InputLibrary\MouseState.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)DisplayEngine\DisplayEngine.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\ActorFactory.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\ActorsManager.cpp" />
@@ -347,26 +345,14 @@
     <ClCompile Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\EngineInterface.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\EngineWindowFunctions.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineCore\EventsManager\Event.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">EngineCore\stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">EngineCore\stdafx.h</PrecompiledHeaderFile>
-    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\EventsManager\Event.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\GamePlay\FableEngine.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkyDome.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkylightModel.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)MainEngine\TimeManager.cpp" />
-    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\AssetsManager.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EngineCore\stdafx.h</PrecompiledHeaderFile>
-    </ClCompile>
+    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.cpp" />
+    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\AssetsManager.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\ActorClassesInitializer.cpp" />

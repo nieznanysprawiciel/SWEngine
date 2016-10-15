@@ -5,6 +5,7 @@
 @copyright File is part of graphic engine SWEngine.
 */
 
+#include "Common/ObjectDeleter.h"
 #include "ResourceObject.h"
 
 
@@ -66,7 +67,7 @@ struct RasterizerStateInfo
 class RasterizerState : public ResourceObject
 {
 	RTTR_ENABLE( ResourceObject );
-
+	friend ObjectDeleter< RasterizerState >;
 private:
 protected:
 	virtual			~RasterizerState() = default;

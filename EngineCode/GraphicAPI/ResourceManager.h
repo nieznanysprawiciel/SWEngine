@@ -6,6 +6,9 @@
 */
 
 #include "MeshResources.h"
+#include "BlendingState.h"
+#include "RasterizerState.h"
+#include "DepthStencilState.h"
 #include "ResourceContainer.h"
 
 class ILoader;
@@ -21,20 +24,24 @@ class ResourceManager
 {
 private:
 protected:
-	ResourceContainer< VertexShader >			m_vertexShader;		///<Vertex shadery.
-	ResourceContainer< PixelShader >			m_pixelShader;		///<Pixel shadery.
+	ResourceContainer< BlendingState >			m_blendingState;	///< BlendingState objects.
+	ResourceContainer< RasterizerState >		m_rasterizerState;	///< RasterizerState objects.
+	ResourceContainer< DepthStencilState >		m_depthStencilState;///< DepthStencilState objects.
+
+	ResourceContainer< VertexShader >			m_vertexShader;		///< Vertex shaders.
+	ResourceContainer< PixelShader >			m_pixelShader;		///< Pixel shaders.
 	ResourceContainer< GeometryShader >			m_geometryShader;	///< Geometry shaders.
 	ResourceContainer< EvaluationShader >		m_evaluationShader;	///< Tesselation evaluation shaders.
 	ResourceContainer< ControlShader >			m_controlShaders;	///< Tesselation control shaders.
 
-	ResourceContainer<TextureObject>			m_texture;			///<Tekstury.
-	ResourceContainer<BufferObject>				m_vertexBuffer;		///<Bufory wierzcho³ków.
-	ResourceContainer<BufferObject>				m_indexBuffer;		///<Bufory indeksów.
-	ResourceContainer<BufferObject>				m_constantBuffer;	///<Bufory sta³ych dla shaderów.
-	ResourceContainer<ShaderInputLayout>		m_vertexLayout;		///<Layouty dla róznych formatów wierzcho³ków.
+	ResourceContainer< TextureObject >			m_texture;			///< Textures.
+	ResourceContainer< BufferObject >			m_vertexBuffer;		///< Vertex buffers.
+	ResourceContainer< BufferObject >			m_indexBuffer;		///< Index buffers.
+	ResourceContainer< BufferObject >			m_constantBuffer;	///< Shader constant buffers.
+	ResourceContainer< ShaderInputLayout >		m_vertexLayout;		///< Vertex layouts.
 	// UWAGA! m_fileModel musi byæ na koñcu. Jego destruktor kasuje odwo³ania do obiektów powy¿ej. Podobnie RenderTargetObject odwo³uje siê do tekstur.
 	// Musz¹ one w tym czasie istnieæ, a destruktory s¹ wywo³ywane w kolejnoœci odwrotnej do zadeklarowanej w klasie.
-	ResourceContainer<RenderTargetObject>		m_renderTarget;		///<Obiekty mog¹ce s³u¿yæ za render target.
+	ResourceContainer< RenderTargetObject >		m_renderTarget;		///<Obiekty mog¹ce s³u¿yæ za render target.
 
 	/*loadery dla ró¿nych formatów plików z modelami*/
 	//std::vector<ILoader*>						m_loader;				///<Loadery do plików z modelami 3D
@@ -46,6 +53,18 @@ public:
 	// Funkcje do zarz¹dzania assetami
 	RenderTargetObject*				CreateRenderTarget			( const std::wstring& name, const RenderTargetDescriptor& renderTargetDescriptor );
 
+	///@name Geting existing resource
+	///@detail Gets resource if exist otherwise returns nullptr.
+	///@{
+
+	inline BlendingState*			GetBlendingState			( const std::wstring& name )		{ return m_blendingState.get( name ); }
+	inline RasterizerState*			GetRasterizerState			( const std::wstring& name )		{ return m_rasterizerState.get( name ); }
+	inline DepthStencilState*		GetDepthStencilState		( const std::wstring& name )		{ return m_depthStencilState.get( name ); }
+
+	inline BlendingState*			GetBlendingState			( const BlendingInfo& info )		{ return m_blendingState.Find( info ); }
+	inline RasterizerState*			GetRasterizerState			( const RasterizerStateInfo& info ) { return m_rasterizerState.Find( info ); }
+	inline DepthStencilState*		GetDepthStencilState		( const DepthStencilInfo& info )	{ return m_depthStencilState.Find( info ); }
+
 	inline RenderTargetObject*		GetRenderTarget				( const std::wstring& name ) { return m_renderTarget.get( name ); }	///<Zwraca RenderTarget o podanej nazwie, je¿eli jest wczytany.
 	inline VertexShader*			GetVertexShader				( const std::wstring& name ) { return m_vertexShader.get( name ); } ///<Zwraca vertex shader o podanej nazwie, je¿eli jest wczytany.
 	inline PixelShader*				GetPixelShader				( const std::wstring& name ) { return m_pixelShader.get( name ); }	///<Zwraca pixel shader o podanej nazwie, je¿eli jest wczytany.
@@ -54,6 +73,8 @@ public:
 	inline BufferObject*			GetConstantBuffer			( const std::wstring& name ) { return m_constantBuffer.get( name ); }	///<Zwraca bufor sta³ych o podanej nazwie, je¿eli jest wczytany.
 	inline BufferObject*			GetIndexBuffer				( const std::wstring& name ) { return m_indexBuffer.get( name ); }	///<Zwraca bufor indeksów o podanej nazwie, je¿eli jest wczytany.
 	inline ShaderInputLayout*		GetLayout					( const std::wstring& name ) { return m_vertexLayout.get( name ); }	///<Zwraca layout o podanej nazwie.	
+	///@}
+
 
 	///@name Resource loading
 	///@detail Load assets from specified file. Functions protect from loading assets multiple times.
@@ -77,6 +98,11 @@ public:
 	ResourcePtr< BufferObject >		CreateIndexBuffer			( const std::wstring& name, const IndexBufferInitData& data );
 	ResourcePtr< BufferObject >		CreateConstantsBuffer		( const std::wstring& name, const void* buffer, unsigned int size );
 	ResourcePtr< BufferObject >		CreateConstantsBuffer		( const std::wstring& name, const ConstantBufferInitData& data );
+
+	ResourcePtr< BlendingState >	CreateBlendingState			( const std::wstring& name, const BlendingInfo& info );
+	ResourcePtr< RasterizerState >	CreateRasterizerState		( const std::wstring& name, const RasterizerStateInfo& info );
+	ResourcePtr< DepthStencilState >CreateDpethStencilState		( const std::wstring& name, const DepthStencilInfo& info );
+
 	///@}
 
 	RenderTargetObject*				AddRenderTarget				( RenderTargetObject* renderTarget, const std::wstring& name );

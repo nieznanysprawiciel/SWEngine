@@ -14,6 +14,7 @@
 
 #include <map>
 #include <vector>
+#include <type_traits>
 
 #include "GraphicAPI/ResourcePtr.h"
 
@@ -29,6 +30,7 @@ template < class TYPE >
 class ResourceContainer
 {
 	friend class AssetsManager;
+	friend class ResourceManager;
 private:
 	unsigned int count;		///<Indentyfikator jaki zostanie przydzielony kolejnemy elementowi
 
@@ -67,6 +69,15 @@ public:
 		return nullptr;
 	}
 
+	/**@brief Finds resource matching given descriptor.
+	
+	Resource must implement GetDescriptor function.
+	Descriptor must implement operator==.
+	
+	Function finds resource in linear time. Use only for small containers.*/
+	template< typename DescType >
+	TYPE*	Find				( const DescType& desc );
+
 	// Listowanie obiektów.
 	std::vector< ResourcePtr< TYPE > >		List();
 };
@@ -95,12 +106,28 @@ Jednak¿e porównania stringów mog¹ siê okazaæ bardziej kosztowne.
 @param[in] id Identyfikator elementu.
 @return WskaŸnik na poszukiwany element.*/
 template <class TYPE>
-TYPE* ResourceContainer<TYPE>::get( unsigned int id )
+TYPE*			ResourceContainer<TYPE>::get	( unsigned int id )
 {
 	for ( auto iter = container.begin(); iter != container.end(); iter++ )
 	{
 		if ( iter->second->GetID() == id )
 			return iter->second;
+	}
+	return nullptr;
+}
+
+// ================================ //
+//
+template< class TYPE >
+template< typename DescType >
+inline TYPE*	ResourceContainer< TYPE >::Find	( const DescType& desc )
+{
+	static_assert( std::is_member_function_pointer< decltype( &TYPE::GetDescriptor ) >::value, "TYPE must implement GetDescriptor function." );
+
+	for( auto& resource : container )
+	{
+		if( resource.second->GetDescriptor() == desc )
+			return resource.second;
 	}
 	return nullptr;
 }

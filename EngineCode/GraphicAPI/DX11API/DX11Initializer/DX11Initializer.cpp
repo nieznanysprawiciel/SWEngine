@@ -1,8 +1,16 @@
+/**
+@file DX11Initializaer.cpp
+@author nieznanysprawiciel
+@copyright File is part of graphic engine SWEngine.
+*/
+#include "stdafx.h"
+
+
 #include "DX11Initializer.h"
-#include "../DX11Renderer/DX11Renderer.h"
-#include "../DX11Resources/DX11RenderTarget.h"
-#include "../DX11Resources/DX11Texture.h"
-#include "../DX11Resources/DX11SwapChain.h"
+#include "DX11Renderer/DX11Renderer.h"
+#include "DX11Resources/DX11RenderTarget.h"
+#include "DX11Resources/DX11Texture.h"
+#include "DX11Resources/DX11SwapChain.h"
 #include "DX11ConstantsMapper.h"
 
 //#include <comdef.h>

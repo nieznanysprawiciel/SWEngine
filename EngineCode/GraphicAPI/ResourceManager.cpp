@@ -1,3 +1,10 @@
+/**
+@file ResourceManager.cpp
+@author nieznanysprawiciel
+@copyright File is part of graphic engine SWEngine.
+*/
+
+#include "stdafx.h"
 #include "ResourceManager.h"
 
 #include "Common/ObjectDeleter.h"
@@ -407,6 +414,51 @@ ResourcePtr<BufferObject>	ResourceManager::CreateConstantsBuffer		( const std::w
 
 	m_constantBuffer.UnsafeAdd( name, constBuff );	// Dodaliúmy bufor
 	return ResourcePtr<BufferObject>( constBuff );
+}
+
+/**@brief Created BlendingState object.
+
+@return If object named name exist, returns nullptr.*/
+ResourcePtr< BlendingState >	ResourceManager::CreateBlendingState	( const std::wstring& name, const BlendingInfo& info )
+{
+	auto resource = m_blendingState.get( name );
+	if ( resource )	// Jeøeli znaleüliúmy bufor, to zwracamy nullptr
+		return ResourcePtr< BlendingState >();
+
+	resource = ResourcesFactory::CreateBlendingState( info );
+	m_blendingState.UnsafeAdd( name, resource );
+
+	return ResourcePtr< BlendingState >( resource );
+}
+
+/**@brief Created RasterizerState object.
+
+@return If object named name exist, returns nullptr.*/
+ResourcePtr< RasterizerState >	ResourceManager::CreateRasterizerState	( const std::wstring& name, const RasterizerStateInfo& info )
+{
+	auto resource = m_rasterizerState.get( name );
+	if ( resource )	// Jeøeli znaleüliúmy bufor, to zwracamy nullptr
+		return ResourcePtr< RasterizerState >();
+
+	resource = ResourcesFactory::CreateRasterizerState( info );
+	m_rasterizerState.UnsafeAdd( name, resource );
+
+	return ResourcePtr< RasterizerState >( resource );
+}
+
+/**@brief Created DepthStencilState object.
+
+@return If object named name exist, returns nullptr.*/
+ResourcePtr< DepthStencilState >	ResourceManager::CreateDpethStencilState	( const std::wstring& name, const DepthStencilInfo& info )
+{
+	auto resource = m_depthStencilState.get( name );
+	if ( resource )	// Jeøeli znaleüliúmy bufor, to zwracamy nullptr
+		return ResourcePtr< DepthStencilState >();
+
+	resource = ResourcesFactory::CreateDepthStencilState( info );
+	m_depthStencilState.UnsafeAdd( name, resource );
+
+	return ResourcePtr< DepthStencilState >( resource );
 }
 
 //====================================================================================//

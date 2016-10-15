@@ -2,15 +2,14 @@
 /**
 @file DX11Renderer.h
 @author nieznanysprawiciel
-@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
-
-Deklaracja renderera u¿ywaj¹cego DirectX 11.
+@copyright File is part of graphic engine SWEngine.
 */
 
 
-#include "../../DX11API/DX11Initializer/DX11APIObjects.h"
-#include "../../MeshResources.h"
-#include "../../IRenderer.h"
+
+#include "DX11Initializer/DX11APIObjects.h"
+#include "GraphicAPI/MeshResources.h"
+#include "GraphicAPI/IRenderer.h"
 
 class DX11Renderer;
 typedef DX11Renderer Renderer;

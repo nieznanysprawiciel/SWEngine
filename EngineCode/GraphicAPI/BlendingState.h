@@ -5,6 +5,7 @@
 @copyright File is part of graphic engine SWEngine.
 */
 
+#include "Common/ObjectDeleter.h"
 
 #include "ResourceObject.h"
 #include "GraphicAPIConstants.h"
@@ -71,6 +72,7 @@ struct BlendingInfo
 class BlendingState : public ResourceObject
 {
 	RTTR_ENABLE( ResourceObject );
+	friend ObjectDeleter< BlendingState >;
 private:
 protected:
 

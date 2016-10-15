@@ -19,6 +19,9 @@
     <Filter Include="DX11API\DX11Initializer">
       <UniqueIdentifier>{b75d6c25-6aa4-49fc-a15b-0750b2dace7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PrecompiledHeader">
+      <UniqueIdentifier>{63446aa1-bb12-4d8e-af24-6396dd0933e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11Buffer.h">
@@ -123,6 +126,9 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11PipelineState.h">
       <Filter>DX11API\DX11Resources</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\DX11API\stdafx.h">
+      <Filter>PrecompiledHeader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11Buffer.cpp">
@@ -169,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\DX11Resources\DX11PipelineState.cpp">
       <Filter>DX11API\DX11Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\DX11API\stdafx.cpp">
+      <Filter>PrecompiledHeader</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

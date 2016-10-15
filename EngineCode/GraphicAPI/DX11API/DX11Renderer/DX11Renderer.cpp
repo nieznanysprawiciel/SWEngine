@@ -1,12 +1,20 @@
+/**
+@file DX11Renderer.cpp
+@author nieznanysprawiciel
+@copyright File is part of graphic engine SWEngine.
+*/
+#include "stdafx.h"
+
+
 #include "DX11Renderer.h"
 
-#include "../DX11Initializer/DX11ConstantsMapper.h"
-#include "../DX11Resources/DX11InputLayout.h"
-#include "../DX11Resources/DX11Buffer.h"
-#include "../DX11Resources/DX11VertexShader.h"
-#include "../DX11Resources/DX11PixelShader.h"
-#include "../DX11Resources/DX11Texture.h"
-#include "../DX11Resources/DX11RenderTarget.h"
+#include "DX11Initializer/DX11ConstantsMapper.h"
+#include "DX11Resources/DX11InputLayout.h"
+#include "DX11Resources/DX11Buffer.h"
+#include "DX11Resources/DX11VertexShader.h"
+#include "DX11Resources/DX11PixelShader.h"
+#include "DX11Resources/DX11Texture.h"
+#include "DX11Resources/DX11RenderTarget.h"
 
 #include "Common/MemoryLeaks.h"
 

@@ -4,6 +4,9 @@
     <Filter Include="GraphicAPI">
       <UniqueIdentifier>{03fac0dd-ea83-40f7-8e23-4d016d096233}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PrecompiledHeader">
+      <UniqueIdentifier>{543e23dc-c721-48fc-8b12-546418fd0ca1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\GraphicAPI\GraphicAPIConstants.h">
@@ -57,6 +60,9 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\DepthStencilState.h">
       <Filter>GraphicAPI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\stdafx.h">
+      <Filter>PrecompiledHeader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\GraphicAPI\MeshResources.cpp">
@@ -64,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\GraphicAPI\ResourceManager.cpp">
       <Filter>GraphicAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\GraphicAPI\stdafx.cpp">
+      <Filter>PrecompiledHeader</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,5 +1,12 @@
+/**
+@file DX11Buffer.cpp
+@author nieznanysprawiciel
+@copyright File is part of graphic engine SWEngine.
+*/
+#include "stdafx.h"
+
 #include "DX11Buffer.h"
-#include "../DX11Initializer/DX11ConstantsMapper.h"
+#include "DX11Initializer/DX11ConstantsMapper.h"
 
 #include "Common/MemoryLeaks.h"
 
