@@ -69,7 +69,7 @@ DX11Renderer::~DX11Renderer()
 @param[in] model ModelPart z którego pochodz¹ tekstury do ustawienia.
 @todo SetShaderResource mo¿na u¿yæ do ustawienia od razu ca³ej tablicy. Trzeba umo¿liwiæ ustawianie
 do VS i innych.*/
-void DX11Renderer::SetTextures( const ModelPart& model )
+void	DX11Renderer::SetTextures( const ModelPart& model )
 {
 	for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
 		if ( model.texture[i] )		// Nie ka¿da tekstura w tablicy istnieje
@@ -82,13 +82,13 @@ void DX11Renderer::SetTextures( const ModelPart& model )
 /**@brief Ustawia w kontekœcie urz¹dzenia bufor indeksów.
 
 @param[in] buffer Bufor do ustawienia.*/
-void DX11Renderer::SetIndexBuffer( BufferObject* buffer )
+void	DX11Renderer::SetIndexBuffer( BufferObject* buffer )
 {
 	// Ustawiamy bufor indeksów, je¿eli istnieje
 	ID3D11Buffer* indexBuffer = nullptr;
 	if ( buffer )
 	{
-		indexBuffer = static_cast<DX11Buffer*>( buffer )->Get();
+		indexBuffer = DX11( buffer )->Get();
 		unsigned int offset = 0;
 		m_localDeviceContext->IASetIndexBuffer( indexBuffer, INDEX_BUFFER_FORMAT, offset );
 	}
@@ -106,11 +106,16 @@ bool DX11Renderer::SetVertexBuffer( BufferObject* buffer, unsigned int offset )
 	ID3D11Buffer* vertexBuffer = nullptr;
 	if ( buffer )
 	{
-		vertexBuffer = static_cast<DX11Buffer*>( buffer )->Get();
+		vertexBuffer = DX11( buffer )->Get();
 		unsigned int stride = buffer->GetStride();
 		m_localDeviceContext->IASetVertexBuffers( 0, 1, &vertexBuffer, &stride, &offset );
 
 		return false;
+	}
+	else
+	{
+		//throw new std::runtime_error( "Vertex buffer is nullptr" );
+		assert( !"Vertex buffer is nullptr" );
 	}
 	return true;
 }
@@ -119,7 +124,7 @@ bool DX11Renderer::SetVertexBuffer( BufferObject* buffer, unsigned int offset )
 /**@brief Funkcja w³¹cza lub wy³¹cza z-bufor.
 
 @param[in] state True je¿eli z-bufor ma byæ w³¹czony, false je¿eli wy³¹czony.*/
-void DX11Renderer::DepthBufferEnable( bool state )
+void	DX11Renderer::DepthBufferEnable( bool state )
 {
 	if ( state )
 		m_localDeviceContext->OMSetDepthStencilState( depth_enabled, 1 );
@@ -130,7 +135,7 @@ void DX11Renderer::DepthBufferEnable( bool state )
 /**@brief Ustawia domyœlny layout z DX11_interfaces_container.
 
 @todo Wymyœleæ lepsz¹ implementacjê i sposób przechowywania layoutów.*/
-void DX11Renderer::SetDefaultVertexLayout()
+void	DX11Renderer::SetDefaultVertexLayout()
 {
 	m_localDeviceContext->IASetInputLayout( default_vertex_layout );
 }
@@ -138,7 +143,7 @@ void DX11Renderer::SetDefaultVertexLayout()
 /**@brief Ustawia domyœlny sampler z DX11_interfaces_container.
 
 @todo Wymyœleæ lepsz¹ implementacjê i sposób przechowywania samplerów. (W zasadzie mo¿na je definiowaæ w shaderach.)*/
-void DX11Renderer::SetDefaultSampler()
+void	DX11Renderer::SetDefaultSampler()
 {
 	m_localDeviceContext->PSSetSamplers( 0, 1, &default_sampler );
 }
@@ -147,7 +152,7 @@ void DX11Renderer::SetDefaultSampler()
 
 @todo: Ta funkcja powinna znikn¹æ. Bufory powinny byæ inicjowane w DisplayEngine, ale jako BufferObject,
 a nie bufory DirectXowe.*/
-void DX11Renderer::InitBuffers( unsigned int sizePerFrame, unsigned int sizePerMesh )
+void	DX11Renderer::InitBuffers( unsigned int sizePerFrame, unsigned int sizePerMesh )
 {
 	init_buffers( sizePerFrame, sizePerMesh );
 }
@@ -155,7 +160,7 @@ void DX11Renderer::InitBuffers( unsigned int sizePerFrame, unsigned int sizePerM
 /**@brief Inicjuje pomocnicze stany bufora g³êbokoœci (do w³¹czania i wy³¹czania depth testu)
 
 @todo To trzeba za³atwiaæ w jakiœ bardziej elegancki sposób.*/
-void DX11Renderer::InitDepthStates()
+void	DX11Renderer::InitDepthStates()
 {
 	init_depth_states();
 }
@@ -169,14 +174,14 @@ Po wiêcej informacji wysy³am do MSDNu.
 
 @todo Funkcja nie powinna przyjmowaæ w parametrze sta³ej definiowanej w DirectX.
 Nale¿y zrobiæ w³asny zestaw sta³ych, ¿eby uniezale¿niæ interfejs renderera od implementacji.*/
-void DX11Renderer::IASetPrimitiveTopology( PrimitiveTopology topology )
+void	DX11Renderer::IASetPrimitiveTopology( PrimitiveTopology topology )
 {
 	m_localDeviceContext->IASetPrimitiveTopology( DX11ConstantsMapper::Get( topology ) );
 }
 
 /**@brief Funkcja robi dok³adnie to samo, co tak samo nazywaj¹ca siê funkcja DirectXa.
 Po wiêcej informacji wysy³am do MSDNu.*/
-void DX11Renderer::IASetInputLayout( ShaderInputLayout* inputLayout )
+void	DX11Renderer::IASetInputLayout( ShaderInputLayout* inputLayout )
 {
 	m_localDeviceContext->IASetInputLayout( static_cast<DX11InputLayout*>( inputLayout )->Get() );
 }
@@ -186,7 +191,7 @@ void DX11Renderer::IASetInputLayout( ShaderInputLayout* inputLayout )
 //
 //@deprecated Powinniœmy u¿yæ bufora silnikowego, a nie DirectXowego, ¿eby ukryæ implementacjê.
 //Funkcja zniknie w póŸniejszej wersji.*/
-//void DX11Renderer::VSSetConstantBuffers( uint32 startSlot, uint32 numBuffers, ID3D11Buffer *const *ppConstantBuffers )
+//void	DX11Renderer::VSSetConstantBuffers( uint32 startSlot, uint32 numBuffers, ID3D11Buffer *const *ppConstantBuffers )
 //{
 //	m_localDeviceContext->VSSetConstantBuffers( startSlot, numBuffers, ppConstantBuffers );
 //}
@@ -196,24 +201,24 @@ void DX11Renderer::IASetInputLayout( ShaderInputLayout* inputLayout )
 //
 //@deprecated Powinniœmy u¿yæ bufora silnikowego, a nie DirectXowego, ¿eby ukryæ implementacjê.
 //Funkcja zniknie w póŸniejszej wersji.*/
-//void DX11Renderer::PSSetConstantBuffers( uint32 startSlot, uint32 numBuffers, ID3D11Buffer *const *ppConstantBuffers )
+//void	DX11Renderer::PSSetConstantBuffers( uint32 startSlot, uint32 numBuffers, ID3D11Buffer *const *ppConstantBuffers )
 //{
 //	m_localDeviceContext->PSSetConstantBuffers( startSlot, numBuffers, ppConstantBuffers );
 //}
 
 /**@brief Funkcja robi dok³adnie to samo, co tak samo nazywaj¹ca siê funkcja DirectXa.
 Po wiêcej informacji wysy³am do MSDNu.*/
-void DX11Renderer::VSSetConstantBuffers( uint32 slot, BufferObject* buffer )
+void	DX11Renderer::VSSetConstantBuffers( uint32 slot, BufferObject* buffer )
 {
-	ID3D11Buffer* directXBuffer = static_cast<DX11Buffer*>(buffer)->Get();
+	ID3D11Buffer* directXBuffer = DX11(buffer)->Get();
 	m_localDeviceContext->VSSetConstantBuffers( slot, 1, &directXBuffer );
 }
 
 /**@brief Funkcja robi dok³adnie to samo, co tak samo nazywaj¹ca siê funkcja DirectXa.
 Po wiêcej informacji wysy³am do MSDNu.*/
-void DX11Renderer::PSSetConstantBuffers( uint32 slot, BufferObject* buffer )
+void	DX11Renderer::PSSetConstantBuffers( uint32 slot, BufferObject* buffer )
 {
-	ID3D11Buffer* directXBuffer = static_cast<DX11Buffer*>(buffer)->Get();
+	ID3D11Buffer* directXBuffer = DX11(buffer)->Get();
 	m_localDeviceContext->PSSetConstantBuffers( slot, 1, &directXBuffer );
 }
 
@@ -222,12 +227,12 @@ Po wiêcej informacji wysy³am do MSDNu.
 
 @deprecated: Depracated jeszcze przed napisaniem funkcji do koñca. Myœlê, ¿e bufor powinien
 sam siê updatowaæ.*/
-void DX11Renderer::UpdateSubresource( BufferObject* pDstResource, const void *pSrcData )
+void	DX11Renderer::UpdateSubresource( BufferObject* pDstResource, const void *pSrcData )
 {
 	m_localDeviceContext->UpdateSubresource( static_cast<DX11Buffer*>( pDstResource)->Get(), 0, nullptr, pSrcData, 0, 0 );
 }
 
-void DX11Renderer::SetShaders( ModelPart& model )
+void	DX11Renderer::SetShaders( ModelPart& model )
 {
 	m_localDeviceContext->VSSetShader( static_cast<DX11VertexShader*>( model.vertex_shader )->Get(), nullptr, 0 );
 	m_localDeviceContext->PSSetShader( static_cast<DX11PixelShader*>( model.pixel_shader )->Get(), nullptr, 0 );
@@ -239,14 +244,14 @@ void DX11Renderer::SetShaders( ModelPart& model )
 
 /**@brief Funkcja robi dok³adnie to samo, co tak samo nazywaj¹ca siê funkcja DirectXa.
 Po wiêcej informacji wysy³am do MSDNu.*/
-void DX11Renderer::Draw( unsigned int vertexCount, unsigned int startVertexLocation )
+void	DX11Renderer::Draw( unsigned int vertexCount, unsigned int startVertexLocation )
 {
 	m_localDeviceContext->Draw( vertexCount, startVertexLocation );
 }
 
 /**@brief Funkcja robi dok³adnie to samo, co tak samo nazywaj¹ca siê funkcja DirectXa.
 Po wiêcej informacji wysy³am do MSDNu.*/
-void DX11Renderer::DrawIndexed( unsigned int indexCount, unsigned int startIndexLocation, int baseVertexLocation )
+void	DX11Renderer::DrawIndexed( unsigned int indexCount, unsigned int startIndexLocation, int baseVertexLocation )
 {
 	m_localDeviceContext->DrawIndexed( indexCount, startIndexLocation, baseVertexLocation );
 }
@@ -254,7 +259,7 @@ void DX11Renderer::DrawIndexed( unsigned int indexCount, unsigned int startIndex
 /**@brief Wykonywane przed rozpoczêciem renderowania.
 
 @todo Polepszyæ, poprawiæ zmieniæ.*/
-void DX11Renderer::Present()
+void	DX11Renderer::Present()
 {
 	swap_chain->Present( 0, 0 );
 }
@@ -262,9 +267,9 @@ void DX11Renderer::Present()
 /**@brief Wyœwietla renderowan¹ scenê.
 
 @todo Polepszyæ, poprawiæ zmieniæ. Powinno obs³ugiwaæ renderowanie natychmiastowe i synchronizacjê poziom¹ w parametrze.*/
-void DX11Renderer::BeginScene( RenderTargetObject* mainRenderTarget )
+void	DX11Renderer::BeginScene( RenderTargetObject* mainRenderTarget )
 {
-	DX11RenderTarget* renderTarget = static_cast<DX11RenderTarget*>( mainRenderTarget );
+	DX11RenderTarget* renderTarget = DX11( mainRenderTarget );
 	auto renderTargetView = renderTarget->GetRenderTarget();
 	auto depthStencilView = renderTarget->GetDepthStencil();
 
@@ -281,5 +286,257 @@ void DX11Renderer::BeginScene( RenderTargetObject* mainRenderTarget )
 	viewport.Width = renderTarget->GetWidth();
 	viewport.Height = renderTarget->GetHeight();
 	device_context->RSSetViewports( 1, &viewport );
+}
+
+//====================================================================================//
+//			Drawing commands
+//====================================================================================//
+
+// ================================ //
+//
+void	DX11Renderer::Draw				( const DrawCommand& command )
+{
+	auto indexBuffer = DX11( command.IndexBufer )->Get();
+	auto layout = DX11( command.Layout )->Get();
+
+	m_localDeviceContext->IASetPrimitiveTopology( DX11ConstantsMapper::Get( command.Topology ) );
+	m_localDeviceContext->IASetInputLayout( layout );
+
+	DX11Renderer::SetVertexBuffer( command.VertexBuffer, 0 );
+	SetIndexBuffer( command.IndexBufer, 0, command.ExtendedIndex );
+
+	if( indexBuffer )
+		m_localDeviceContext->DrawIndexed( command.NumVertices, command.BufferOffset, command.BaseVertex );
+	else
+		m_localDeviceContext->Draw( command.NumVertices, command.BufferOffset );
+}
+
+// ================================ //
+//
+void	DX11Renderer::DrawInstanced		( const DrawInstancedCommand& command )
+{
+	auto indexBuffer = DX11( command.IndexBufer )->Get();
+	auto layout = DX11( command.Layout )->Get();
+
+	m_localDeviceContext->IASetPrimitiveTopology( DX11ConstantsMapper::Get( command.Topology ) );
+	m_localDeviceContext->IASetInputLayout( layout );
+
+	SetIndexBuffer( command.IndexBufer, 0, command.ExtendedIndex );
+
+	ID3D11Buffer* inputBuffer[ 2 ];
+	inputBuffer[ 0 ] = DX11( command.VertexBuffer )->Get();
+	inputBuffer[ 1 ] = DX11( command.PerInstanceBuffer )->Get();
+
+	uint32 strides[ 2 ] = { command.VertexBuffer->GetStride(), command.PerInstanceBuffer->GetStride() };
+	uint32 offsets[ 2 ] = { 0, 0 };
+
+	m_localDeviceContext->IASetVertexBuffers( 0, 2, inputBuffer, strides, offsets );
+
+	if( indexBuffer )
+		m_localDeviceContext->DrawIndexedInstanced( command.NumVertices, command.NumInstances, command.BufferOffset, command.BaseVertex, 0 );
+	else
+		m_localDeviceContext->DrawInstanced( command.NumVertices, command.NumInstances, command.BufferOffset, 0 );
+}
+
+//====================================================================================//
+//			Render target commands	
+//====================================================================================//
+
+// ================================ //
+//
+void	DX11Renderer::SetRenderTarget	( const SetRenderTargetCommand& command )
+{
+	SetRenderTarget( command.RenderTargets, command.DepthStencil );
+
+	assert( command.RenderTargets[ 0 ] );
+	assert( !"implement me" );
+
+	DX11RenderTarget* renderTarget = DX11( command.RenderTargets[ 0 ] );
+
+	D3D11_VIEWPORT viewport;
+	viewport.Width = renderTarget->GetWidth();
+	viewport.Height = renderTarget->GetHeight();
+	viewport.MinDepth = 0.0f;
+	viewport.MaxDepth = 1.0f;
+	viewport.TopLeftX = 0;
+	viewport.TopLeftY = 0;
+
+	device_context->RSSetViewports( 1, &viewport );
+	device_context->RSSetScissorRects( 0, nullptr );
+
+	float blendFactor[ 4 ] = { 0, 0, 0, 0 };
+
+	device_context->RSSetState( DX11( command.RasterizerState )->Get() );
+	device_context->OMSetBlendState( DX11( command.BlendingState )->Get(), blendFactor, 0xffffffff );
+	device_context->OMSetDepthStencilState( DX11( command.DepthStencilState )->Get(), 0 );
+
+	auto cameraBuffer = DX11( command.CameraBuffer );
+	auto lightBuffer = DX11( command.LightBuffer );
+
+	if( cameraBuffer )
+	{
+		ID3D11Buffer* directXBuffer = cameraBuffer->Get();
+		m_localDeviceContext->VSSetConstantBuffers( CAMERA_BUFFER_BINDING_POINT, 1, &directXBuffer );
+		m_localDeviceContext->PSGetConstantBuffers( CAMERA_BUFFER_BINDING_POINT, 1, &directXBuffer );
+	}
+
+	if( lightBuffer )
+	{
+		ID3D11Buffer* directXBuffer = lightBuffer->Get();
+		m_localDeviceContext->PSGetConstantBuffers( CAMERA_BUFFER_BINDING_POINT, 1, &directXBuffer );
+	}
+}
+
+// ================================ //
+//
+void	DX11Renderer::SetRenderTarget	( const SetRenderTargetExCommand& command )
+{
+	assert( !"implement me" );
+
+	SetRenderTarget( command.RenderTargets, command.DepthStencil );
+
+	if( command.NumViews > MAX_BOUND_RENDER_TARGETS )
+	{
+		assert( false );
+		//throw new std::runtime_error( "Trying bind to many viewports or scissor rectangles." );
+	}
+
+	D3D11_VIEWPORT viewport[ MAX_BOUND_RENDER_TARGETS ];
+	D3D11_RECT scissors[ MAX_BOUND_RENDER_TARGETS ];
+
+	for( int i = 0; i < command.NumViews; ++i )
+	{
+		viewport[ i ].Width = command.Viewports[ i ].Width;
+		viewport[ i ].Height = command.Viewports[ i ].Height;
+		viewport[ i ].MinDepth = command.Viewports[ i ].MinDepth;
+		viewport[ i ].MaxDepth = command.Viewports[ i ].MaxDepth;
+		viewport[ i ].TopLeftX = command.Viewports[ i ].TopLeftX;
+		viewport[ i ].TopLeftY = command.Viewports[ i ].TopLeftY;
+
+		scissors[ i ].top = command.Scissors[ i ].Top;
+		scissors[ i ].bottom = command.Scissors[ i ].Bottom;
+		scissors[ i ].left = command.Scissors[ i ].Left;
+		scissors[ i ].right = command.Scissors[ i ].Right;
+	}
+
+	device_context->RSSetViewports( command.NumViews, viewport );
+	device_context->RSSetScissorRects( command.NumViews, scissors );
+
+	float blendFactor[ 4 ] = { command.BlendFactor.x, command.BlendFactor.y, command.BlendFactor.z, command.BlendFactor.w };
+
+	device_context->RSSetState( DX11( command.RasterizerState )->Get() );
+	device_context->OMSetBlendState( DX11( command.BlendingState )->Get(), blendFactor, command.StencilMask );
+	device_context->OMSetDepthStencilState( DX11( command.DepthStencilState )->Get(), 0 );
+
+	auto cameraBuffer = DX11( command.CameraBuffer );
+	auto lightBuffer = DX11( command.LightBuffer );
+
+	if( cameraBuffer )
+	{
+		ID3D11Buffer* directXBuffer = cameraBuffer->Get();
+		m_localDeviceContext->VSSetConstantBuffers( CAMERA_BUFFER_BINDING_POINT, 1, &directXBuffer );
+		m_localDeviceContext->PSGetConstantBuffers( CAMERA_BUFFER_BINDING_POINT, 1, &directXBuffer );
+	}
+
+	if( lightBuffer )
+	{
+		ID3D11Buffer* directXBuffer = lightBuffer->Get();
+		m_localDeviceContext->PSGetConstantBuffers( CAMERA_BUFFER_BINDING_POINT, 1, &directXBuffer );
+	}
+}
+
+// ================================ //
+//
+void	DX11Renderer::ClearRenderTarget	( const ClearRenderTargetCommand& command )
+{ }
+
+// ================================ //
+//
+void	DX11Renderer::UpdateBuffer		( const UpdateBufferCommand& command )
+{ }
+
+// ================================ //
+//
+void	DX11Renderer::BindBuffer		( const BindBufferCommand& command )
+{ }
+
+// ================================ //
+//
+void	DX11Renderer::UpdateAndBindBuffer	( const UpdateBindBuffer& command )
+{ }
+
+// ================================ //
+//
+void	DX11Renderer::SetDefaultBuffers	( const SetDefaultBuffersCommand& command )
+{ }
+
+// ================================ //
+//
+void	DX11Renderer::SetShaderState	( const SetShaderStateCommand& command )
+{ }
+
+// ================================ //
+//
+void	DX11Renderer::SetShaderState	( const SetShaderStateExCommand& command )
+{ }
+
+// ================================ //
+//
+void	DX11Renderer::SetShaderState	( const SetRenderStateCommand& command )
+{ }
+
+// ================================ //
+//
+void	DX11Renderer::SetShaderState	( const SetRenderStateExCommand& command )
+{ }
+
+// ================================ //
+//
+void	DX11Renderer::CopyTexture		( const CopyTextureCommand& command )
+{ }
+
+
+//====================================================================================//
+//			Internal Helpers	
+//====================================================================================//
+
+// ================================ //
+// Buffer can be nullptr.
+void	DX11Renderer::SetIndexBuffer	( BufferObject* buffer, unsigned int offset, bool extendedIndex )
+{
+	if ( buffer )
+	{
+		auto indexBuffer = DX11( buffer )->Get();
+		assert( indexBuffer );
+
+		unsigned int offset = 0;
+		auto indexFormat = extendedIndex ? DXGI_FORMAT_R32_UINT : DXGI_FORMAT_R16_UINT;
+
+		m_localDeviceContext->IASetIndexBuffer( indexBuffer, indexFormat, offset );
+	}
+}
+
+// ================================ //
+//
+void	DX11Renderer::SetRenderTarget	( RenderTargetObject* const targets[ MAX_BOUND_RENDER_TARGETS ], RenderTargetObject* depthStencil )
+{
+	ID3D11RenderTargetView* DX11Targets[ MAX_BOUND_RENDER_TARGETS ];
+	for( int i = 0; i < MAX_BOUND_RENDER_TARGETS; ++i )
+	{
+		auto renderTargetObj = DX11( targets[ i ] );
+		if( renderTargetObj )
+			DX11Targets[ i ] = DX11( targets[ i ] )->GetRenderTarget();
+		else
+			DX11Targets[ i ] = nullptr;
+	}
+
+	auto depthStencilBuffer = DX11( depthStencil );
+	ID3D11DepthStencilView* depthStencilView = nullptr;
+	if( depthStencilBuffer )
+		depthStencilView = depthStencilBuffer->GetDepthStencil();
+
+	assert( !"implement me" );
+
+	device_context->OMSetRenderTargets( MAX_BOUND_RENDER_TARGETS, DX11Targets, depthStencilView );
 }
 

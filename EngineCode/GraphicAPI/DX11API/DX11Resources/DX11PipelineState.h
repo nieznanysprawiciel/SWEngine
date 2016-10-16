@@ -5,7 +5,7 @@
 @copyright File is part of graphic engine SWEngine.
 */
 
-#include "../DX11Initializer/DX11APIObjects.h"
+#include "DX11Initializer/DX11APIObjects.h"
 
 #include "GraphicAPI/BlendingState.h"
 #include "GraphicAPI/DepthStencilState.h"
@@ -20,7 +20,7 @@ using namespace Microsoft::WRL;
 
 /**@brief RasterizerState DirectX11.
 @ingroup DX11API*/
-class DX11RasterizerState : public RasterizerState, public DX11APIObjects
+class DX11RasterizerState : public RasterizerState, protected DX11APIObjects
 {
 	RTTR_ENABLE( RasterizerState );
 private:

@@ -31,6 +31,7 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\IShaderInputLayout.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\MeshResources.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\RasterizerState.h" />
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\RenderCommands.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourceManager.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourceObject.h" />
     <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcePtr.h" />

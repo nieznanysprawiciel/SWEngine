@@ -5,7 +5,7 @@
 #include "DX11RenderTarget.h"
 
 
-class DX11SwapChain	: public SwapChain, public DX11APIObjects
+class DX11SwapChain	: public SwapChain, protected DX11APIObjects
 {
 	RTTR_ENABLE( SwapChain )
 private:

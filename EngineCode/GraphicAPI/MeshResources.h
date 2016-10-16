@@ -74,6 +74,11 @@ static const std::wstring RENDER_TARGET_DEPTH_BUFFER_NAME = L"::depth";
 static const std::wstring RENDER_TARGET_STENCIL_BUFFER_NAME = L"::stencil";
 
 
+typedef uint16 Index16;
+typedef uint32 Index32;
+typedef uint8 Index8;
+
+
 /**@brief Meaning of texture indicies.
 
 @ingroup Textures

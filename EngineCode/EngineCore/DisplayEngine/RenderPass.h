@@ -5,6 +5,7 @@
 #include "GraphicAPI/MeshResources.h"
 #include "GraphicAPI/RasterizerState.h"
 #include "GraphicAPI/BlendingState.h"
+#include "GraphicAPI/DepthStencilState.h"
 #include "GraphicAPI/IRenderer.h"
 
 #include "EngineCore/DisplayEngine/RenderContext.h"

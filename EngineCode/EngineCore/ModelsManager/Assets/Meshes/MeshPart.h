@@ -20,9 +20,9 @@ enum MeshPartFlags : int
 struct MeshPart
 {
 	ResourcePtr< MaterialAsset >	Material;			///< Materia³ dla danej czêœci mesha.
-	unsigned int					BufferOffset;		///< Offset wzglêdem pocz¹tku bufora indeksów albo wierzcho³ków. @see MeshAsset.
-	unsigned int					NumVertices;		///< Liczba wierzcho³ków do wyœwietlenia.
-	int								BaseVertex;			///< Wartoœæ dodawana do ka¿dego indeksu przed przeczytaniem wierzcho³ka z bufora. (Tylko wersja indeksowana).
+	uint32							BufferOffset;		///< Offset wzglêdem pocz¹tku bufora indeksów albo wierzcho³ków. @see MeshAsset.
+	uint32							NumVertices;		///< Liczba wierzcho³ków do wyœwietlenia.
+	int32							BaseVertex;			///< Wartoœæ dodawana do ka¿dego indeksu przed przeczytaniem wierzcho³ka z bufora. (Tylko wersja indeksowana).
 	int16							Flags;				///< Dodatkowe flagi @see MeshPartFlags
 	PrimitiveTopology				Topology;			///< Topologia mesha.
 };

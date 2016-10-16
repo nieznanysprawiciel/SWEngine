@@ -13,9 +13,6 @@ oraz inne domyœlne wartoœci zasobów.
 //-------------------------------------------------------------------------------//
 //	definicje wierzcho³ków
 
-typedef uint16 Index16;
-typedef uint32 Index32;
-typedef uint8 Index8;
 
 /// @brief Strutkura dla standardowego wierzcho³ka.
 struct VertexNormalTexCoord

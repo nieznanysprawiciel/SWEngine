@@ -7,6 +7,8 @@
 
 
 #include "GraphicAPI/MeshResources.h"
+#include "RenderCommands.h"
+
 
 /**@brief Sposób u¿ycia renderera.
 
@@ -22,7 +24,8 @@ enum RendererUsage
 
 
 /**@brief Klasa interfejsu renderera.
-@ingroup GraphicAPI*/
+@ingroup GraphicAPI
+@ingroup RenderingCommands*/
 class IRenderer
 {
 private:
@@ -34,7 +37,9 @@ public:
 	virtual bool SupportsDefferedContextRendering() = 0;		///< Informuje czy Renderer nadaje siê do renderowania w wielu w¹tkach do opóŸnionego contextu.
 	virtual bool IsValid() = 0;
 
-
+///@name DepracatedAPI
+///@deprecated Use commands
+///@{
 	virtual void SetTextures						( const ModelPart& model ) = 0;
 	virtual void SetIndexBuffer						( BufferObject* buffer ) = 0;
 	virtual bool SetVertexBuffer					( BufferObject* buffer, unsigned int offset = 0 ) = 0;
@@ -65,6 +70,28 @@ public:
 
 	virtual void Present							() = 0;
 	virtual void BeginScene							( RenderTargetObject* mainRenderTarget ) = 0;
+///}@
+
+
+	virtual void		Draw					( const DrawCommand& command )						= 0;
+	virtual void		DrawInstanced			( const DrawInstancedCommand& command )				= 0;
+
+	virtual void		SetRenderTarget			( const SetRenderTargetCommand& command )			= 0;
+	virtual void		SetRenderTarget			( const SetRenderTargetExCommand& command )			= 0;
+	virtual void		ClearRenderTarget		( const ClearRenderTargetCommand& command )			= 0;
+
+	virtual void		UpdateBuffer			( const UpdateBufferCommand& command )				= 0;
+	virtual void		BindBuffer				( const BindBufferCommand& command )				= 0;
+	virtual void		UpdateAndBindBuffer		( const UpdateBindBuffer& command )					= 0;
+
+	virtual void		SetDefaultBuffers		( const SetDefaultBuffersCommand& command )			= 0;
+	
+	virtual void		SetShaderState			( const SetShaderStateCommand& command )			= 0;
+	virtual void		SetShaderState			( const SetShaderStateExCommand& command )			= 0;
+	virtual void		SetShaderState			( const SetRenderStateCommand& command )			= 0;
+	virtual void		SetShaderState			( const SetRenderStateExCommand& command )			= 0;
+
+	virtual void		CopyTexture				( const CopyTextureCommand& command )				= 0;
 };
 
 

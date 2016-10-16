@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../DX11Initializer/DX11APIObjects.h"
-#include "../../MeshResources.h"
+#include "DX11Initializer/DX11APIObjects.h"
+#include "GraphicAPI/MeshResources.h"
 
 #include <vector>
 

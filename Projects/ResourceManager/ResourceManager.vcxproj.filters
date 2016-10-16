@@ -63,6 +63,9 @@
     <ClInclude Include="..\..\EngineCode\GraphicAPI\stdafx.h">
       <Filter>PrecompiledHeader</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\GraphicAPI\RenderCommands.h">
+      <Filter>GraphicAPI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\GraphicAPI\MeshResources.cpp">
