@@ -38,6 +38,7 @@ inline DX11InputLayout*			DX11	( ShaderInputLayout* res )	{ return static_cast< 
 #define CAMERA_BUFFER_BINDING_POINT 0
 #define LIGHTS_BUFFER_BINDING_POINT 1
 #define TRANSFORM_BUFFER_BINDING_POINT 1
+#define BONES_BUFFER_BINDING_POINT 2
 #define MATERIAL_BUFFER_BINDING_POINT 2
 
 
@@ -119,6 +120,7 @@ private:
 
 	void				SetIndexBuffer			( BufferObject* buffer, unsigned int offset, bool extendedIndex );
 	void				SetRenderTarget			( RenderTargetObject* const targets[ MAX_BOUND_RENDER_TARGETS ], RenderTargetObject* depthStencil );
+	void				SetTextures				( TextureObject* const texturesArray[ MAX_BOUND_RENDER_TARGETS ], const uint8 shaderTypes[ MAX_BOUND_RENDER_TARGETS ] );
 };
 
 

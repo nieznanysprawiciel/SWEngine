@@ -28,6 +28,14 @@
 #endif // INDEX_BUFFER_UINT32
 
 
+#define ThrowIfNull( ptr, message )				\
+if( !ptr )										\
+{												\
+	assert( false );							\
+	return;										\
+}
+//throw new std::runtime_error( message );
+
 
 /**@brief Klasa bêdzie renderowaæ w trybie immediate albo deferred.
 
@@ -383,7 +391,7 @@ void	DX11Renderer::SetRenderTarget	( const SetRenderTargetCommand& command )
 	if( lightBuffer )
 	{
 		ID3D11Buffer* directXBuffer = lightBuffer->Get();
-		m_localDeviceContext->PSGetConstantBuffers( CAMERA_BUFFER_BINDING_POINT, 1, &directXBuffer );
+		m_localDeviceContext->PSGetConstantBuffers( LIGHTS_BUFFER_BINDING_POINT, 1, &directXBuffer );
 	}
 }
 
@@ -399,6 +407,7 @@ void	DX11Renderer::SetRenderTarget	( const SetRenderTargetExCommand& command )
 	{
 		assert( false );
 		//throw new std::runtime_error( "Trying bind to many viewports or scissor rectangles." );
+		return;
 	}
 
 	D3D11_VIEWPORT viewport[ MAX_BOUND_RENDER_TARGETS ];
@@ -441,59 +450,192 @@ void	DX11Renderer::SetRenderTarget	( const SetRenderTargetExCommand& command )
 	if( lightBuffer )
 	{
 		ID3D11Buffer* directXBuffer = lightBuffer->Get();
-		m_localDeviceContext->PSGetConstantBuffers( CAMERA_BUFFER_BINDING_POINT, 1, &directXBuffer );
+		m_localDeviceContext->PSGetConstantBuffers( LIGHTS_BUFFER_BINDING_POINT, 1, &directXBuffer );
 	}
 }
 
 // ================================ //
 //
 void	DX11Renderer::ClearRenderTarget	( const ClearRenderTargetCommand& command )
-{ }
+{
+	auto renderTarget = DX11( command.RenderTarget );
+
+	if( command.ClearRenderTarget )
+	{
+		float clearColor[ 4 ] = { command.ClearColor.x, command.ClearColor.y, command.ClearColor.z, command.ClearColor.w };
+		device_context->ClearRenderTargetView( renderTarget->GetRenderTarget(), clearColor );
+	}
+	
+	uint32 clearFlags = 0;
+	if( command.ClearDepth )
+		clearFlags = clearFlags | D3D11_CLEAR_DEPTH;
+	if( command.ClearStencil )
+		clearFlags = clearFlags | D3D11_CLEAR_STENCIL;
+
+	if( clearFlags )
+	{
+		device_context->ClearDepthStencilView( renderTarget->GetDepthStencil(), clearFlags, command.DepthValue, command.StencilValue );
+	}
+}
 
 // ================================ //
 //
 void	DX11Renderer::UpdateBuffer		( const UpdateBufferCommand& command )
-{ }
+{
+	auto buffer = DX11( command.Buffer );
+	ThrowIfNull( buffer, "[UpdateBufferCommand] Binding nullptr buffer" );
+
+	m_localDeviceContext->UpdateSubresource( buffer->Get(), 0, nullptr, command.FillData, 0, 0 );
+}
 
 // ================================ //
 //
 void	DX11Renderer::BindBuffer		( const BindBufferCommand& command )
-{ }
+{
+	auto buffer = DX11( command.Buffer );
+	ThrowIfNull( buffer, "[BindBufferCommand] Binding nullptr buffer" );
+
+	auto bufferDX = buffer->Get();
+
+	if( command.BindToShader & (uint8)ShaderType::VertexShader )
+		m_localDeviceContext->VSSetConstantBuffers( command.BufferSlot, 1, &bufferDX );
+	if( command.BindToShader & (uint8)ShaderType::PixelShader )
+		m_localDeviceContext->PSSetConstantBuffers( command.BufferSlot, 1, &bufferDX );
+	if( command.BindToShader & (uint8)ShaderType::GeometryShader )
+		m_localDeviceContext->GSSetConstantBuffers( command.BufferSlot, 1, &bufferDX );
+	if( command.BindToShader & (uint8)ShaderType::TesselationControlShader )
+		m_localDeviceContext->HSSetConstantBuffers( command.BufferSlot, 1, &bufferDX );
+	if( command.BindToShader & (uint8)ShaderType::TesselationEvaluationShader )
+		m_localDeviceContext->DSGetConstantBuffers( command.BufferSlot, 1, &bufferDX );
+}
 
 // ================================ //
 //
 void	DX11Renderer::UpdateAndBindBuffer	( const UpdateBindBuffer& command )
-{ }
+{
+	auto buffer = DX11( command.Buffer );
+	ThrowIfNull( buffer, "[UpdateBindBuffer] Updating nullptr buffer" );
+
+	m_localDeviceContext->UpdateSubresource( buffer->Get(), 0, nullptr, command.FillData, 0, 0 );
+	DX11Renderer::BindBuffer( command );
+}
 
 // ================================ //
 //
 void	DX11Renderer::SetDefaultBuffers	( const SetDefaultBuffersCommand& command )
-{ }
+{
+	auto transform = DX11( command.TransformBuffer );
+	auto material = DX11( command.MaterialBuffer );
+	auto bones = DX11( command.BonesTransforms );
+
+	if( transform )
+	{
+		auto dxBuffer = transform->Get();
+		m_localDeviceContext->VSSetConstantBuffers( TRANSFORM_BUFFER_BINDING_POINT, 1, &dxBuffer );
+	}
+	else
+	{
+		// If buffer doesn't exist, set to nullptr.
+		ID3D11Buffer* dxBuffer = nullptr;
+		m_localDeviceContext->VSSetConstantBuffers( TRANSFORM_BUFFER_BINDING_POINT, 1, &dxBuffer );
+	}
+
+	if( material )
+	{
+		auto dxBuffer = material->Get();
+		m_localDeviceContext->PSSetConstantBuffers( MATERIAL_BUFFER_BINDING_POINT, 1, &dxBuffer );
+	}
+	else
+	{
+		// If buffer doesn't exist, set to nullptr.
+		ID3D11Buffer* dxBuffer = nullptr;
+		m_localDeviceContext->VSSetConstantBuffers( MATERIAL_BUFFER_BINDING_POINT, 1, &dxBuffer );
+	}
+
+	if( bones )
+	{
+		auto dxBuffer = bones->Get();
+		m_localDeviceContext->VSSetConstantBuffers( BONES_BUFFER_BINDING_POINT, 1, &dxBuffer );
+	}
+	else
+	{
+		// If buffer doesn't exist, set to nullptr.
+		ID3D11Buffer* dxBuffer = nullptr;
+		m_localDeviceContext->VSSetConstantBuffers( BONES_BUFFER_BINDING_POINT, 1, &dxBuffer );
+	}
+}
 
 // ================================ //
 //
 void	DX11Renderer::SetShaderState	( const SetShaderStateCommand& command )
-{ }
+{
+	auto vertexShader = DX11( command.VertexShader );
+	auto pixelShader = DX11( command.PixelShader );
+
+	ThrowIfNull( vertexShader, "[SetShaderStateCommand] Vertex shader is nullptr" );
+	ThrowIfNull( pixelShader, "[SetShaderStateCommand] Pixel shader is nullptr" );
+
+	device_context->VSSetShader( vertexShader->Get(), nullptr, 0 );
+	device_context->PSSetShader( pixelShader->Get(), nullptr, 0 );
+	device_context->GSSetShader( nullptr, nullptr, 0 );
+	device_context->HSSetShader( nullptr, nullptr, 0 );
+	device_context->DSSetShader( nullptr, nullptr, 0 );
+
+	SetTextures( command.Textures, command.BindToShader );
+}
 
 // ================================ //
 //
 void	DX11Renderer::SetShaderState	( const SetShaderStateExCommand& command )
-{ }
+{
+	assert( false );
+	// Implement geometry, hull and domain shader first.
+
+	auto vertexShader = DX11( command.VertexShader );
+	auto pixelShader = DX11( command.PixelShader );
+	//auto geometryShader = DX11( command.GeometryShader );
+	//auto 
+
+	ThrowIfNull( vertexShader, "[SetShaderStateExCommand] Vertex shader is nullptr" );
+	ThrowIfNull( pixelShader, "[SetShaderStateExCommand] Pixel shader is nullptr" );
+
+	device_context->VSSetShader( vertexShader->Get(), nullptr, 0 );
+	device_context->PSSetShader( pixelShader->Get(), nullptr, 0 );
+	device_context->GSSetShader( nullptr, nullptr, 0 );
+	device_context->HSSetShader( nullptr, nullptr, 0 );
+	device_context->DSSetShader( nullptr, nullptr, 0 );
+
+	SetTextures( command.Textures, command.BindToShader );
+}
 
 // ================================ //
 //
 void	DX11Renderer::SetShaderState	( const SetRenderStateCommand& command )
-{ }
+{
+	DX11Renderer::SetShaderState( static_cast< const SetShaderStateCommand& >( command ) );
+	DX11Renderer::SetDefaultBuffers( static_cast< const SetDefaultBuffersCommand& >( command ) );
+}
 
 // ================================ //
 //
 void	DX11Renderer::SetShaderState	( const SetRenderStateExCommand& command )
-{ }
+{
+	DX11Renderer::SetShaderState( static_cast< const SetShaderStateExCommand& >( command ) );
+	DX11Renderer::SetDefaultBuffers( static_cast< const SetDefaultBuffersCommand& >( command ) );
+}
 
 // ================================ //
 //
 void	DX11Renderer::CopyTexture		( const CopyTextureCommand& command )
-{ }
+{
+	auto source = DX11( command.SourceTexture );
+	auto destination = DX11( command.DestinationTexture );
+
+	ThrowIfNull( source, "[CopyTextureCommand] Vertex shader is nullptr" );
+	ThrowIfNull( source, "[CopyTextureCommand] Pixel shader is nullptr" );
+
+	device_context->CopyResource( destination->GetTex(), source->GetTex() );
+}
 
 
 //====================================================================================//
@@ -538,5 +680,48 @@ void	DX11Renderer::SetRenderTarget	( RenderTargetObject* const targets[ MAX_BOUN
 	assert( !"implement me" );
 
 	device_context->OMSetRenderTargets( MAX_BOUND_RENDER_TARGETS, DX11Targets, depthStencilView );
+}
+
+// ================================ //
+//
+void	DX11Renderer::SetTextures		( TextureObject* const texturesArray[ MAX_BOUND_RENDER_TARGETS ], const uint8 shaderTypes[ MAX_BOUND_RENDER_TARGETS ] )
+{
+	ID3D11ShaderResourceView* texturesVert[ ENGINE_MAX_TEXTURES ];
+	ID3D11ShaderResourceView* texturesPix[ ENGINE_MAX_TEXTURES ];
+	ID3D11ShaderResourceView* texturesGeom[ ENGINE_MAX_TEXTURES ];
+	ID3D11ShaderResourceView* texturesEval[ ENGINE_MAX_TEXTURES ];
+	ID3D11ShaderResourceView* texturesDomain[ ENGINE_MAX_TEXTURES ];
+
+	for( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
+	{
+		if( texturesArray[ i ] )
+		{
+			auto texView = DX11( texturesArray[ i ] )->Get();
+			if( shaderTypes[ i ] & (uint8)ShaderType::VertexShader )
+				texturesVert[ i ] = texView;
+			if( shaderTypes[ i ] & (uint8)ShaderType::PixelShader )
+				texturesPix[ i ] = texView;
+			if( shaderTypes[ i ] & (uint8)ShaderType::GeometryShader )
+				texturesGeom[ i ] = texView;
+			if( shaderTypes[ i ] & (uint8)ShaderType::TesselationControlShader )
+				texturesEval[ i ] = texView;
+			if( shaderTypes[ i ] & (uint8)ShaderType::TesselationEvaluationShader )
+				texturesDomain[ i ] = texView;
+		}
+		else
+		{
+			texturesVert[ i ] = nullptr;
+			texturesPix[ i ] = nullptr;
+			texturesGeom[ i ] = nullptr;
+			texturesEval[ i ] = nullptr;
+			texturesDomain[ i ] = nullptr;
+		}
+	}
+
+	device_context->VSSetShaderResources( 0, ENGINE_MAX_TEXTURES, texturesVert );
+	device_context->PSSetShaderResources( 0, ENGINE_MAX_TEXTURES, texturesPix );
+	device_context->GSSetShaderResources( 0, ENGINE_MAX_TEXTURES, texturesGeom );
+	device_context->HSSetShaderResources( 0, ENGINE_MAX_TEXTURES, texturesEval );
+	device_context->DSSetShaderResources( 0, ENGINE_MAX_TEXTURES, texturesDomain );
 }
 
