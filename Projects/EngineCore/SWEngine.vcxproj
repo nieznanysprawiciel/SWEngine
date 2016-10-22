@@ -224,6 +224,11 @@
     <ClInclude Include="$(EngineCoreSourceDir)MainEngine\TimeManager.h" />
     <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\Loaders\FBX_files_loader\FBX_loader.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\EngineContext.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Animations\Key.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Animations\KeySet.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Animations\Skeletal\AnimationAsset.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Animations\Skeletal\Bone.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Animations\Skeletal\SkeletonAsset.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialAsset.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialAssetInitData.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialInfo.h" />
@@ -363,6 +368,8 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\ActorClassesInitializer.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\AssetsInitializer.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\DisplayerInitializer.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Animations\Skeletal\AnimationAsset.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Animations\Skeletal\SkeletonAsset.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialAsset.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\ShadingModels.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\TextureBinding.cpp" />
