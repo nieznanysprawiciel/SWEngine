@@ -135,6 +135,12 @@
     <Filter Include="PrecompiledHeader">
       <UniqueIdentifier>{efbe35a6-cef9-471d-869b-dbcdabad4e14}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\DisplayEngine\RenderPasses">
+      <UniqueIdentifier>{594a6f7d-01cf-4c77-bc1d-e5158d50867d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\DisplayEngine\RenderPasses\MainPass">
+      <UniqueIdentifier>{8032f393-d623-4fbd-adc7-4639818421cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -560,6 +566,18 @@
     <ClInclude Include="$(EngineCoreSourceDir)Resource.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\IRenderPass.h">
+      <Filter>EngineCore\DisplayEngine\RenderPasses</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\IMainPass.h">
+      <Filter>EngineCore\DisplayEngine\RenderPasses</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\MainPass\DefaultLogicPass.h">
+      <Filter>EngineCore\DisplayEngine\RenderPasses\MainPass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\IPostProcessingPass.h">
+      <Filter>EngineCore\DisplayEngine\RenderPasses</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -816,6 +834,9 @@
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)stdafx.cpp">
       <Filter>PrecompiledHeader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\MainPass\DefaultLogicPass.cpp">
+      <Filter>EngineCore\DisplayEngine\RenderPasses\MainPass</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

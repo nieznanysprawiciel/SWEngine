@@ -357,7 +357,6 @@ void	DX11Renderer::SetRenderTarget	( const SetRenderTargetCommand& command )
 	SetRenderTarget( command.RenderTargets, command.DepthStencil );
 
 	assert( command.RenderTargets[ 0 ] );
-	assert( !"implement me" );
 
 	DX11RenderTarget* renderTarget = DX11( command.RenderTargets[ 0 ] );
 
@@ -399,8 +398,6 @@ void	DX11Renderer::SetRenderTarget	( const SetRenderTargetCommand& command )
 //
 void	DX11Renderer::SetRenderTarget	( const SetRenderTargetExCommand& command )
 {
-	assert( !"implement me" );
-
 	SetRenderTarget( command.RenderTargets, command.DepthStencil );
 
 	if( command.NumViews > MAX_BOUND_RENDER_TARGETS )
@@ -676,8 +673,6 @@ void	DX11Renderer::SetRenderTarget	( RenderTargetObject* const targets[ MAX_BOUN
 	ID3D11DepthStencilView* depthStencilView = nullptr;
 	if( depthStencilBuffer )
 		depthStencilView = depthStencilBuffer->GetDepthStencil();
-
-	assert( !"implement me" );
 
 	device_context->OMSetRenderTargets( MAX_BOUND_RENDER_TARGETS, DX11Targets, depthStencilView );
 }

@@ -49,36 +49,3 @@ public:
 	void		SetLayout			( ShaderInputLayout* );
 };
 
-/**@brief Base class for render passes.*/
-class RenderPass : public EngineObject
-{
-public:
-	enum class ActorAddPolicy
-	{
-		All,
-		None,
-		Static,
-		Dynamic
-	};
-
-private:
-protected:
-
-	CameraActor*						m_camera;
-
-	ActorAddPolicy						m_addPolicy;
-
-	ResourcePtr< RenderTargetObject >	m_renderTarget;
-	ResourcePtr< BlendingState >		m_blendingState;
-	ResourcePtr< RasterizerState >		m_rasterizer;
-
-public:
-
-	void			AddActor	( StaticActor* actor, bool isDynamic );
-	void			DeleteActor	( StaticActor* actor );
-
-	void			SetCamera	( CameraActor* camera );
-	CameraActor*	GetCamera	();
-
-	virtual void	Render		( IRenderer* renderer, RenderContext& context ) = 0;
-};
