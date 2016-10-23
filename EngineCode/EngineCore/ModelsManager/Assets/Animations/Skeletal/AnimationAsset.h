@@ -18,7 +18,7 @@
 @ingroup Assets*/
 
 
-typedef DirectX::XMFLOAT3X3 BoneTransform;
+typedef DirectX::XMFLOAT4X4 BoneTransform;
 
 /**@brief 
 @ingroup AnimationAsset*/

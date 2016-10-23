@@ -8,7 +8,9 @@
 #include "EngineCore/DisplayEngine/RenderPasses/IRenderPass.h"
 
 
-/**@brief */
+/**@brief Base class for shadow passes.
+
+@ingroup RenderPasses*/
 class IShadowPass : public IRenderPass
 {
 private:

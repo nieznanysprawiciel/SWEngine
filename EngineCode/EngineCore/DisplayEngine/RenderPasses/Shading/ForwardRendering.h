@@ -8,17 +8,34 @@
 #include "EngineCore/DisplayEngine/RenderPasses/IShadingPass.h"
 
 
-/**@brief Implements forward rendering.*/
+/**@brief Implements forward rendering.
+
+@ingroup RenderPasses*/
 class ForwardRendering : public IShadingPass
 {
 private:
 protected:
 
-
+	CameraActor*						m_mainCamera;
+	ResourcePtr< RenderTargetObject >	m_mainTarget;
 
 public:
 	explicit		ForwardRendering() = default;
 					~ForwardRendering() = default;
+
+
+	// Inherited via IShadingPass
+	virtual bool	PreRender		( IRenderer* renderer, RenderContext& context ) override;
+	virtual void	Render			( IRenderer* renderer, RenderContext& context, Size rangeStart, Size rangeEnd ) override;
+	virtual void	PostRender		( IRenderer* renderer, RenderContext& context ) override;
+	virtual void	NestedPasses	( std::vector< Ptr< IRenderPass > >& passes ) override;
+
+	virtual void			SetMainCamera		( CameraActor* camera ) override;
+	virtual CameraActor*	GetMainCamera		() override;
+
+	virtual void			SetMainRenderTarget	( const ResourcePtr< RenderTargetObject >& target ) override;
+
+	virtual ResourcePtr< RenderTargetObject >	GetMainRenderTarget() override;
 
 };
 

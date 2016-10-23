@@ -1,3 +1,4 @@
+#include "EngineCore/stdafx.h"
 /**@file DisplayEngine.cpp
 @author nieznanysprawiciel
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
@@ -5,8 +6,6 @@
 @brief Plik zawiera definicje metod klasy DispalyEngine.
 */
 
-
-#include "EngineCore/stdafx.h"
 #include "DisplayEngine.h"
 
 #include "EngineCore/MainEngine/Engine.h"
@@ -17,7 +16,13 @@
 #include "EngineCore/EngineHelpers/ActorsCommonFunctions.h"
 #include "GraphicAPI/ResourcesFactory.h"
 
+#include "EngineCore/DisplayEngine/RenderPasses/RenderingHelpers.h"
+
 #include "Common/MemoryLeaks.h"
+
+
+
+
 
 using namespace DirectX;
 
@@ -49,9 +54,6 @@ DisplayEngine::DisplayEngine( Engine* engine )
 	m_mainRenderTarget = nullptr;
 	m_mainSwapChain = nullptr;
 
-	interpol_matrixes_count = 16;
-	interpolated_matrixes = new XMFLOAT4X4[interpol_matrixes_count];
-
 	m_maxQueuedPassesPerFrame = 5;
 }
 
@@ -60,9 +62,6 @@ DisplayEngine::~DisplayEngine()
 {
 	for ( IRenderer* renderer : m_renderers )
 		if ( renderer )		delete renderer;
-
-	//kasujemy tablicê interpolowanych macierzy
-	delete[] interpolated_matrixes;
 
 	if ( sky_dome )
 		delete sky_dome;
@@ -112,9 +111,7 @@ void DisplayEngine::InitDisplayer( AssetsManager* assetsManager )
 
 
 	m_mainRenderTarget = modelsManager->GetRenderTarget( SCREEN_RENDERTARGET_STRING );
-	m_mainRenderTarget->AddAssetReference();		/// Uniemo¿liwiamy zwolnienie render targetu przez u¿ytkownika.
-
-	m_mainSwapChain = ResourcesFactory::CreateScreenSwapChain( m_mainRenderTarget );
+	m_mainSwapChain = ResourcesFactory::CreateScreenSwapChain( m_mainRenderTarget.Ptr() );
 
 	m_defaultCamera = new CameraActor();
 	SetCurrentCamera( m_defaultCamera );
@@ -135,9 +132,7 @@ void DisplayEngine::EndScene()
 
 void DisplayEngine::SetMainRenderTarget( RenderTargetObject* renderTarget )
 {
-	m_mainRenderTarget->DeleteAssetReference();
 	m_mainRenderTarget = renderTarget;
-	m_mainRenderTarget->AddAssetReference();
 }
 
 
@@ -201,7 +196,7 @@ void DisplayEngine::DisplayScene( float timeInterval, float timeLag )
 
 	RenderFromQueue( timeInterval, timeLag );
 
-	renderer->BeginScene( m_mainRenderTarget );
+	renderer->BeginScene( m_mainRenderTarget.Ptr() );
 	// Zaczynamy wyswietlanie
 	DisplaySkyBox( timeInterval, timeLag );
 
@@ -259,7 +254,7 @@ void DisplayEngine::DisplayDynamicObjects( float time_interval, float time_lag )
 
 
 #ifdef _INTERPOLATE_POSITIONS
-		XMMATRIX transformation = XMLoadFloat4x4( &(interpolated_matrixes[i]) );
+		XMMATRIX transformation = XMLoadFloat4x4( &(m_interpolatedMatricies[i]) );
 #else
 		XMVECTOR translation = XMLoadFloat3( &(object->position) );
 		XMVECTOR orientation = XMLoadFloat4( &(object->orientation) );
@@ -564,52 +559,13 @@ void DisplayEngine::RenderFromQueue( float time_interval, float time_lag )
 /**@brief */
 void				DisplayEngine::UpdateCameraBuffer	( IRenderer* renderer, float timeInterval, float timeLag )
 {
-	CameraConstants data = CreateCameraData( m_currentCamera, timeInterval, timeLag );
+	CameraConstants data = RenderingHelper::CreateCameraData( m_currentCamera, timeInterval, timeLag );
 
 	renderer->UpdateSubresource( m_cameraConstants.Ptr(), (void*)&data );
 	renderer->VSSetConstantBuffers( CameraBufferBindingPoint, m_cameraConstants.Ptr() );
 	renderer->PSSetConstantBuffers( CameraBufferBindingPoint, m_cameraConstants.Ptr() );
 }
 
-/**@brief */
-CameraConstants		DisplayEngine::CreateCameraData		( CameraActor* camera, float timeInterval, float timeLag )
-{
-	CameraConstants data;
-	data.Time = timeInterval + timeLag * FIXED_MOVE_UPDATE_INTERVAL;
-	
-	XMMATRIX viewMatrix;
-	XMMATRIX viewProjMatrix;
-	if ( camera == nullptr )
-	{
-		viewMatrix = XMMatrixIdentity( );	//tymczasowe
-		viewProjMatrix = XMMatrixIdentity( );	//tymczasowe
-	}
-	else
-	{
-		XMVECTOR position = camera->GetInterpolatedPosition( timeLag );
-		XMVECTOR orientation = camera->GetInterpolatedOrientation( timeLag );
-
-		XMStoreFloat3( &data.CameraPosition, position );
-
-		inverse_camera_position( position );
-		inverse_camera_orientation( orientation );
-
-		viewMatrix = XMMatrixTranslationFromVector( position );
-		XMMATRIX rotation_matrix = XMMatrixRotationQuaternion( orientation );
-		viewMatrix = viewMatrix * rotation_matrix;
-		
-		data.ProjectionMatrix = camera->GetProjection();
-		viewProjMatrix = XMMatrixMultiply( viewMatrix, XMLoadFloat4x4( &data.ProjectionMatrix ) );
-
-		viewMatrix = XMMatrixTranspose( viewMatrix );
-		viewProjMatrix = XMMatrixTranspose( viewProjMatrix );
-	}
-
-	XMStoreFloat4x4( &data.ViewMatrix, viewMatrix );
-	XMStoreFloat4x4( &data.ViewProjectionMatrix, viewProjMatrix );
-
-	return data;
-}
 
 /**@brief Dodaje obiekt, który ma zostaæ wyœwietlony.
 
@@ -705,13 +661,10 @@ w silniku nie mo¿e siê zwiêkszyæ miêdzy interpolacj¹, a wyœwietleniem.
 @param[in] min Minimalna liczba macierzy o jak¹ nale¿y zwiekszyæ tablicê.*/
 void DisplayEngine::realocate_interpolation_memory( unsigned int min )
 {
-	if ( interpol_matrixes_count < min + meshes.size() )
+	if ( m_interpolatedMatricies.size() < min + meshes.size() )
 	{
-		while ( interpol_matrixes_count < min + meshes.size() )
-			interpol_matrixes_count <<= 1;	//wielkoœæ tablicy roœnie wyk³adniczo
-
-		delete[] interpolated_matrixes;
-		interpolated_matrixes = new DirectX::XMFLOAT4X4[interpol_matrixes_count];
+		while ( m_interpolatedMatricies.size() < min + meshes.size() )
+			m_interpolatedMatricies.resize( 2 * ( m_interpolatedMatricies.size() + 1 ) );	//wielkoœæ tablicy roœnie wyk³adniczo
 	}
 }
 
@@ -724,7 +677,7 @@ przeliczenia klatki.
 
 Pozycjê z ostatniego wyliczenia klatki znajduj¹ siê w zmiennych position
 i orientation obiektów dynamicznych. Docelowe macierze przekszta³ceñ obiektów
-zostan¹ umieszczone w tablicy interpolated_matrixes, w których indeks elementu
+zostan¹ umieszczone w tablicy m_interpolatedMatricies, w których indeks elementu
 odpowiada indeksom w tablicy meshes.
 
 @todo [docelowo do wykonania wielow¹tkowego]
@@ -736,7 +689,7 @@ void DisplayEngine::InterpolatePositions( float time_lag )
 	for ( unsigned int i = 0; i < meshes.size(); ++i )
 	{
 		StaticActor* object = meshes[i];
-		interpolate_object2( time_lag, object, &(interpolated_matrixes[i]) );
+		interpolate_object2( time_lag, object, &(m_interpolatedMatricies[i]) );
 	}
 }
 

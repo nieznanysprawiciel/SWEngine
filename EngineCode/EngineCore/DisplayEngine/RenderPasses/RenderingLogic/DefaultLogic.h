@@ -15,7 +15,9 @@
 
 
 
-/**@brief */
+/**@brief 
+
+@ingroup RenderPasses*/
 class DefaultLogic : public IRenderingLogicPass
 {
 private:
@@ -24,9 +26,14 @@ protected:
 	std::vector< Ptr< IShadowPass > >		m_shadowPass;
 	std::vector< Ptr< IRenderPass > >		m_environmentalPass;
 	std::vector< Ptr< IRenderPass > >		m_customPass;
-	std::vector< Ptr< IShadingPass > >		m_shadingPass;
+
+	Ptr< IShadingPass >						m_shadingPass;
 
 	std::vector< Ptr< IPostprocessingPass > >	m_postProcessing;
+
+
+	//CameraActor*						m_mainCamera;
+	//ResourcePtr< RenderTargetObject >	m_mainTarget;
 
 public:
 	explicit			DefaultLogic() = default;
@@ -35,8 +42,25 @@ public:
 
 
 	// Inherited via IRenderingLogicPass
-	virtual void		PreRender		( IRenderer* renderer, RenderContext& context ) override;
+	virtual bool		PreRender		( IRenderer* renderer, RenderContext& context ) override;
 	virtual void		Render			( IRenderer* renderer, RenderContext& context, Size rangeStart, Size rangeEnd ) override;
 	virtual void		PostRender		( IRenderer* renderer, RenderContext& context ) override;
+	virtual void		NestedPasses	( std::vector< Ptr< IRenderPass > >& passes ) override;
+
+
+	virtual void			SetMainCamera			( CameraActor* camera ) override;
+	virtual CameraActor*	GetMainCamera			() override;
+	virtual void			SetMainRenderTarget		( const ResourcePtr< RenderTargetObject >& target ) override;
+
+	virtual ResourcePtr< RenderTargetObject >	GetMainRenderTarget	() override;
+
+	// Nested passes
+	virtual const std::vector< Ptr< IShadowPass > >&		GetShadowPasses			() override;
+	virtual const std::vector< Ptr< IRenderPass > >&		GetEnvironmentalPasses	() override;
+	virtual const std::vector< Ptr< IRenderPass > >&		GetCustomPasses			() override;
+
+	virtual const Ptr< IShadingPass >&						GetShadingPass			() override;
+
+	virtual const std::vector< Ptr< IPostprocessingPass > >&	GetPostProcessing	() override;
 
 };

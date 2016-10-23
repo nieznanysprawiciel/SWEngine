@@ -55,18 +55,17 @@ private:
 	SkyDome*								sky_dome;					///<Klasa odpowiedzialna za kopu³ê nieba
 
 	std::vector< StaticActor* >				meshes;						///<Modele nieanimowane
-	DirectX::XMFLOAT4X4*					interpolated_matrixes;		///<Tablica macierzy interpolowanych po³o¿eñ obiektów
-	unsigned int							interpol_matrixes_count;	///<Liczba macierzy interpolowanych
+	std::vector< DirectX::XMFLOAT4X4 >		m_interpolatedMatricies;		///<Tablica macierzy interpolowanych po³o¿eñ obiektów
 
 	std::vector<CameraActor*>				cameras;					///<Kontener zawieraj¹cy kamery
 
 	ShaderInputLayout*						defaultLayout;				///<@todo Hack. Zlikwidowaæ. Silnik powinien obs³ugiwaæ dowolne layouty, a przynajmniej jakiœ ustalony zbiór.
 	CameraActor*							m_defaultCamera;			///< Domyœlna kamera u¿ywana tylko, jezeli uzytkownik nie ustawi w³asnej.
 
-	RenderTargetObject*						m_mainRenderTarget;			///<Render target okna aplikacji. @todo W ostatecznej wersji powinien byæ render target ustawiany dla ka¿dego przebiegu.
+	ResourcePtr< RenderTargetObject >		m_mainRenderTarget;			///<Render target okna aplikacji. @todo W ostatecznej wersji powinien byæ render target ustawiany dla ka¿dego przebiegu.
 	SwapChain*								m_mainSwapChain;
 
-	std::queue<RenderPassDepracated*>					m_renderOnceQueue;			///<Kolejka przebiegów, które maj¹ zostaæ wyrenderowane tylko raz.
+	std::queue<RenderPassDepracated*>		m_renderOnceQueue;			///<Kolejka przebiegów, które maj¹ zostaæ wyrenderowane tylko raz.
 	unsigned int							m_maxQueuedPassesPerFrame;	///<Maksymalna liczba przebiegów jaka zostanie wziêta z kolejki w ka¿dej ramce.
 
 public:
@@ -96,7 +95,8 @@ public:
 	void			DeleteAllMeshes					();
 	
 	/// @todo Pobieranie meshy z DisplayEngine jest tymczasowe. Trzeba wymyœleæ docelowy mechanizm.
-	std::vector<StaticActor*>		GetSceneObjects() { return meshes; }
+	std::vector<StaticActor*>			GetSceneObjects	() { return meshes; }
+	const std::vector<StaticActor*>&	GetMeshes		() { return meshes; }
 
 	// Œwiat³a
 	/// Light module is resposible for all lights manipulations.
@@ -114,7 +114,6 @@ public:
 	SkyDome*		SetSkydome						( SkyDome* dome );
 private:
 	void			UpdateCameraBuffer				( IRenderer* renderer, float timeInterval, float timeLag );
-	CameraConstants	CreateCameraData				( CameraActor* camera, float timeInterval, float timeLag );
 
 	void realocate_interpolation_memory		(unsigned int min = 1);
 	void interpolate_object					( float timeLag, const StaticActor* object, DirectX::XMFLOAT4X4* result_matrix );
@@ -135,8 +134,9 @@ private:
 	void SetTextures						( const ModelPart& model );
 	void SetIndexBuffer						( BufferObject* buffer );
 	bool SetVertexBuffer					( BufferObject* buffer );
-	void CopyMaterial						( ConstantPerMesh* shader_data_per_mesh, const ModelPart* model );
 	void DepthBufferEnable					( bool state );
+public:
+	void CopyMaterial						( ConstantPerMesh* shader_data_per_mesh, const ModelPart* model );
 };
 
 

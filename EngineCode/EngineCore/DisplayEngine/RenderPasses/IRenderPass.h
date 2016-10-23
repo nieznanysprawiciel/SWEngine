@@ -25,8 +25,17 @@ class StaticActor;
 class ShaderInputLayout;
 
 
+/**@defgroup RenderPasses Render Passes
+@brief Rendering pipeline.
 
-/**@brief Base class for render passes.*/
+@ingroup Rendering*/
+
+
+
+
+/**@brief Base class for render passes.
+
+@ingroup RenderPasses*/
 class IRenderPass : public EngineObject
 {
 public:
@@ -51,7 +60,16 @@ public:
 	void			AddActor	( StaticActor* actor, bool isDynamic );
 	void			DeleteActor	( StaticActor* actor );
 
-	virtual void	PreRender	( IRenderer* renderer, RenderContext& context ) = 0;
+	/**@brief Prepares for rendering. This function should make all initialization.
+	@return If this function returns false, functions Render and PostRender won't be called.*/
+	virtual bool	PreRender	( IRenderer* renderer, RenderContext& context ) = 0;
+
+	/**@brief Object rendering function.*/
 	virtual void	Render		( IRenderer* renderer, RenderContext& context, Size rangeStart, Size rangeEnd ) = 0;
+
+	/**@brief Function will be called after rendering will be completed.*/
 	virtual void	PostRender	( IRenderer* renderer, RenderContext& context ) = 0;
+
+
+	virtual void	NestedPasses( std::vector< Ptr< IRenderPass > >& passes ) = 0;
 };

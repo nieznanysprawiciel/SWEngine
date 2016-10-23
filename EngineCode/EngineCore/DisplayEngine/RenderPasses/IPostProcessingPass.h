@@ -9,7 +9,9 @@
 
 
 
-/**@brief Interface for post processing passes.*/
+/**@brief Interface for post processing passes.
+
+@ingroup RenderPasses*/
 class IPostprocessingPass : public IRenderPass
 {
 private:

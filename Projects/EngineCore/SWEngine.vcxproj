@@ -206,6 +206,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\IRenderPass.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\IShadingPass.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\IShadowPass.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\RenderingHelpers.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\RenderingLogic\DefaultLogic.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\Shading\ForwardRendering.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\EngineHelpers\ActorsCommonFunctions.h" />
@@ -350,6 +351,7 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\IControllersState.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\LightModule.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPass.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\RenderingHelpers.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\RenderingLogic\DefaultLogic.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\Shading\ForwardRendering.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\EngineHelpers\ActorsCommonFunctions.cpp" />

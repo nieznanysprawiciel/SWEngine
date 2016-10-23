@@ -7,21 +7,37 @@
 
 
 #include "EngineCore/DisplayEngine/RenderPasses/IRenderPass.h"
+#include "EngineCore/DisplayEngine/RenderPasses/IShadowPass.h"
+#include "EngineCore/DisplayEngine/RenderPasses/IShadingPass.h"
+#include "EngineCore/DisplayEngine/RenderPasses/IPostProcessingPass.h"
 
-/**@brief */
+/**@brief Interface for rendering logic.
+
+Rendering logic groups all passes invoked during rendering process.
+
+@ingroup RenderPasses*/
 class IRenderingLogicPass : public IRenderPass
 {
 private:
 protected:
-
-	CameraActor*						m_mainCamera;
-	ResourcePtr< RenderTargetObject >	m_mainTarget;
-
 public:
 	explicit		IRenderingLogicPass() = default;
 					~IRenderingLogicPass() = default;
 
-	void			SetMainCamera	( CameraActor* camera );
-	CameraActor*	GetMainCamera	();
 
+	virtual void			SetMainCamera	( CameraActor* camera )		= 0;
+	virtual CameraActor*	GetMainCamera	()							= 0;
+
+	virtual void			SetMainRenderTarget	( const ResourcePtr< RenderTargetObject >& target )	= 0;
+
+	virtual ResourcePtr< RenderTargetObject >		GetMainRenderTarget	() = 0;
+
+	// Nested passes
+	virtual const std::vector< Ptr< IShadowPass > >&		GetShadowPasses			() = 0;
+	virtual const std::vector< Ptr< IRenderPass > >&		GetEnvironmentalPasses	() = 0;
+	virtual const std::vector< Ptr< IRenderPass > >&		GetCustomPasses			() = 0;
+
+	virtual const Ptr< IShadingPass >&						GetShadingPass			() = 0;
+
+	virtual const std::vector< Ptr< IPostprocessingPass > >&	GetPostProcessing	() = 0;
 };
