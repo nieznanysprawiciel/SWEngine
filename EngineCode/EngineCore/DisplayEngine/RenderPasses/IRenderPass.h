@@ -7,6 +7,7 @@
 
 #include "Common/EngineObject.h"
 
+
 #include "GraphicAPI/MeshResources.h"
 #include "GraphicAPI/RasterizerState.h"
 #include "GraphicAPI/BlendingState.h"
@@ -50,5 +51,7 @@ public:
 	void			AddActor	( StaticActor* actor, bool isDynamic );
 	void			DeleteActor	( StaticActor* actor );
 
-	virtual void	Render		( IRenderer* renderer, RenderContext& context ) = 0;
+	virtual void	PreRender	( IRenderer* renderer, RenderContext& context ) = 0;
+	virtual void	Render		( IRenderer* renderer, RenderContext& context, Size rangeStart, Size rangeEnd ) = 0;
+	virtual void	PostRender	( IRenderer* renderer, RenderContext& context ) = 0;
 };

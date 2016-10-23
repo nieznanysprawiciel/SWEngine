@@ -138,14 +138,17 @@
     <Filter Include="EngineCore\DisplayEngine\RenderPasses">
       <UniqueIdentifier>{594a6f7d-01cf-4c77-bc1d-e5158d50867d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EngineCore\DisplayEngine\RenderPasses\MainPass">
-      <UniqueIdentifier>{8032f393-d623-4fbd-adc7-4639818421cb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="EngineCore\ModelsManager\Assets\Animations">
       <UniqueIdentifier>{a8e16bd8-754e-4cd4-b5bf-6d92576b7e77}</UniqueIdentifier>
     </Filter>
     <Filter Include="EngineCore\ModelsManager\Assets\Animations\SkeletalAnimation">
       <UniqueIdentifier>{5d7b0d4b-2473-475e-94e9-f86c051f9ef5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\DisplayEngine\RenderPasses\RenderingLogic">
+      <UniqueIdentifier>{8032f393-d623-4fbd-adc7-4639818421cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineCore\DisplayEngine\RenderPasses\Shading">
+      <UniqueIdentifier>{1a3dea75-5751-4905-9ada-cdb09196a1eb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -575,12 +578,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\IRenderPass.h">
       <Filter>EngineCore\DisplayEngine\RenderPasses</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\IMainPass.h">
-      <Filter>EngineCore\DisplayEngine\RenderPasses</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\MainPass\DefaultLogicPass.h">
-      <Filter>EngineCore\DisplayEngine\RenderPasses\MainPass</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\IPostProcessingPass.h">
       <Filter>EngineCore\DisplayEngine\RenderPasses</Filter>
     </ClInclude>
@@ -598,6 +595,21 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Animations\KeySet.h">
       <Filter>EngineCore\ModelsManager\Assets\Animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\IRenderingLogicPass.h">
+      <Filter>EngineCore\DisplayEngine\RenderPasses</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\IShadowPass.h">
+      <Filter>EngineCore\DisplayEngine\RenderPasses</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\IShadingPass.h">
+      <Filter>EngineCore\DisplayEngine\RenderPasses</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\Shading\ForwardRendering.h">
+      <Filter>EngineCore\DisplayEngine\RenderPasses\Shading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\RenderingLogic\DefaultLogic.h">
+      <Filter>EngineCore\DisplayEngine\RenderPasses\RenderingLogic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -856,14 +868,17 @@
     <ClCompile Include="$(EngineCoreSourceDir)stdafx.cpp">
       <Filter>PrecompiledHeader</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\MainPass\DefaultLogicPass.cpp">
-      <Filter>EngineCore\DisplayEngine\RenderPasses\MainPass</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Animations\Skeletal\AnimationAsset.cpp">
       <Filter>EngineCore\ModelsManager\Assets\Animations\SkeletalAnimation</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Animations\Skeletal\SkeletonAsset.cpp">
       <Filter>EngineCore\ModelsManager\Assets\Animations\SkeletalAnimation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\Shading\ForwardRendering.cpp">
+      <Filter>EngineCore\DisplayEngine\RenderPasses\Shading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\RenderingLogic\DefaultLogic.cpp">
+      <Filter>EngineCore\DisplayEngine\RenderPasses\RenderingLogic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
