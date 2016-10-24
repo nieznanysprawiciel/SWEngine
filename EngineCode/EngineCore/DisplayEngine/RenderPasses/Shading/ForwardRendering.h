@@ -19,9 +19,13 @@ protected:
 	CameraActor*						m_mainCamera;
 	ResourcePtr< RenderTargetObject >	m_mainTarget;
 
+	ResourcePtr< BlendingState >		m_blendingState;
+	ResourcePtr< RasterizerState >		m_rasterizer;
+	ResourcePtr< DepthStencilState >	m_depthState;
+
 public:
-	explicit		ForwardRendering() = default;
-					~ForwardRendering() = default;
+	explicit		ForwardRendering	();
+	virtual			~ForwardRendering	();
 
 
 	// Inherited via IShadingPass

@@ -40,9 +40,9 @@ int LightmapLogic::LoadLevel					()
 	layer->DemandDownEvent( STANDARD_LAYERS::PROTOTYPE_BUTTONS::LOAD_LIGHTMAP_SCENE );
 
 	// Wczytujemy shadery na przysz³oœæ.
-	m_engine->Assets.Shaders.LoadVertexShaderSync( DEFAULT_COORD_COLOR_VERTEX_SHADER_PATH, &m_layout, DefaultAssets::LAYOUT_COORD_COLOR );
-	m_engine->Assets.Shaders.LoadPixelShaderSync( DEFAULT_COORD_COLOR_PIXEL_SHADER_PATH );
-	m_engine->Assets.Shaders.LoadPixelShaderSync( DEFAULT_LIGHTMAP_PIXEL_SHADER_PATH );
+	m_engine->Assets.Shaders.LoadVertexShaderSync( DefaultAssets::DEFAULT_COORD_COLOR_VERTEX_SHADER_PATH, &m_layout, DefaultAssets::LAYOUT_COORD_COLOR );
+	m_engine->Assets.Shaders.LoadPixelShaderSync( DefaultAssets::DEFAULT_COORD_COLOR_PIXEL_SHADER_PATH );
+	m_engine->Assets.Shaders.LoadPixelShaderSync( DefaultAssets::DEFAULT_LIGHTMAP_PIXEL_SHADER_PATH );
 	m_layout->AddObjectReference();
 
 
@@ -119,8 +119,8 @@ void LightmapLogic::ProceedGameLogic			( float time )
 			delete sceneData;		// Nie bêdzie ju¿ wiêcej potrzebne.
 
 			// Przygotowujemy dane takie same dla wszyskich obiektów.
-			VertexShader* vertexShader = m_engine->Assets.Shaders.GetVertexShaderSync( DEFAULT_COORD_COLOR_VERTEX_SHADER_PATH );
-			PixelShader* pixelShader = m_engine->Assets.Shaders.GetPixelShaderSync( DEFAULT_COORD_COLOR_PIXEL_SHADER_PATH );
+			VertexShader* vertexShader = m_engine->Assets.Shaders.GetVertexShaderSync( DefaultAssets::DEFAULT_COORD_COLOR_VERTEX_SHADER_PATH );
+			PixelShader* pixelShader = m_engine->Assets.Shaders.GetPixelShaderSync( DefaultAssets::DEFAULT_COORD_COLOR_PIXEL_SHADER_PATH );
 			RenderTargetDescriptor renderTargetDesc;
 			renderTargetDesc.TextureHeight = 1024;
 			renderTargetDesc.TextureWidth = 1024;
@@ -143,7 +143,7 @@ void LightmapLogic::ProceedGameLogic			( float time )
 				
 				// Build mesh
 				ModelPart part;
-				part.material = m_engine->Assets.Materials.GetSync( DEFAULT_MATERIAL_STRING );
+				part.material = m_engine->Assets.Materials.GetSync( DefaultAssets::DEFAULT_MATERIAL_STRING );
 				part.pixel_shader = pixelShader;
 				part.vertex_shader = vertexShader;
 				part.mesh = new MeshPartObject;
@@ -193,7 +193,7 @@ void LightmapLogic::RenderEnded( const EngineObject* sender, Event* renderEndedE
 
 		if( realMesh )
 		{
-			PixelShader* pixelShader = m_engine->Assets.Shaders.GetPixelShaderSync( DEFAULT_LIGHTMAP_PIXEL_SHADER_PATH );
+			PixelShader* pixelShader = m_engine->Assets.Shaders.GetPixelShaderSync( DefaultAssets::DEFAULT_LIGHTMAP_PIXEL_SHADER_PATH );
 			TextureObject* lightmap = renderPass->GetRenderTarget()->GetColorBuffer();
 			m_engine->Actors.Assets.ChangeTextures( realMesh, lightmap, 0, std::numeric_limits<uint16>::max(), TextureUse::TEX_DIFFUSE );	// W przysz³oœci TEX_LIGHTMAP
 			m_engine->Actors.Assets.ChangePixelShaders( realMesh, pixelShader, 0, std::numeric_limits<uint16>::max() );

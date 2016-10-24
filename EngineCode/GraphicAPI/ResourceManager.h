@@ -101,7 +101,7 @@ public:
 
 	ResourcePtr< BlendingState >	CreateBlendingState			( const std::wstring& name, const BlendingInfo& info );
 	ResourcePtr< RasterizerState >	CreateRasterizerState		( const std::wstring& name, const RasterizerStateInfo& info );
-	ResourcePtr< DepthStencilState >CreateDpethStencilState		( const std::wstring& name, const DepthStencilInfo& info );
+	ResourcePtr< DepthStencilState >CreateDepthStencilState		( const std::wstring& name, const DepthStencilInfo& info );
 
 	///@}
 

@@ -23,6 +23,7 @@ class RenderTargetObject;
 class CameraActor;
 class StaticActor;
 class ShaderInputLayout;
+class AssetsManager;
 
 
 /**@defgroup RenderPasses Render Passes
@@ -38,6 +39,10 @@ class ShaderInputLayout;
 @ingroup RenderPasses*/
 class IRenderPass : public EngineObject
 {
+	friend void		SetAssetManager		( AssetsManager* manager );
+protected:
+	static AssetsManager*		m_assetsManager;
+
 public:
 	enum class ActorAddPolicy
 	{
@@ -52,10 +57,10 @@ protected:
 
 	ActorAddPolicy						m_addPolicy;
 
-	ResourcePtr< BlendingState >		m_blendingState;
-	ResourcePtr< RasterizerState >		m_rasterizer;
-
 public:
+
+	explicit		IRenderPass	() = default;
+	virtual			~IRenderPass() {}
 
 	void			AddActor	( StaticActor* actor, bool isDynamic );
 	void			DeleteActor	( StaticActor* actor );

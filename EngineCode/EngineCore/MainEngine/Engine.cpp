@@ -372,7 +372,7 @@ void* Engine::GetRenderTargetHandle( uint16 width, uint16 height )
 	descriptor.DepthStencilFormat = DepthStencilFormat::DEPTH_STENCIL_FORMAT_D24_UNORM_S8_UINT;
 	descriptor.Usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
 
-	RenderTargetObject* renderTarget = Context->modelsManager->CreateRenderTarget( EDITOR_RENDERTARGET_STRING, descriptor );
+	RenderTargetObject* renderTarget = Context->modelsManager->CreateRenderTarget( DefaultAssets::EDITOR_RENDERTARGET_STRING, descriptor );
 	Context->displayEngine->SetMainRenderTarget( renderTarget );
 
 	Context->windowHeight = height;

@@ -29,6 +29,9 @@ public:
 	/**@brief Updates light buffer with data from LightModule.*/
 	static void					UpdateLightBuffer			( IRenderer* renderer, RenderContext& context );
 
+	/**@brief Default clear command.*/
+	static void					ClearRenderTargetAndDepth	( IRenderer* renderer, RenderTargetObject* target, DirectX::XMFLOAT4 color, float depth );
+
 	/**@brief Updates buffer with data.*/
 	template< typename BufferDataType >
 	static inline void			UpdateBuffer				( IRenderer* renderer, BufferObject* buffer, BufferDataType& data );

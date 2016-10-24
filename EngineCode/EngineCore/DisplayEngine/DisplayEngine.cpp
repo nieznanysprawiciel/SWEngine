@@ -10,6 +10,7 @@
 
 #include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/ModelsManager/AssetsManager.h"
+#include "EngineCore/ModelsManager/DefaultAssets.h"
 #include "EngineCore/EventsManager/Events/RenderOnceEndedEvent.h"
 
 #include "EngineCore/EngineHelpers/PerformanceCheck.h"
@@ -110,7 +111,7 @@ void DisplayEngine::InitDisplayer( AssetsManager* assetsManager )
 	assert( m_materialConstants );
 
 
-	m_mainRenderTarget = modelsManager->GetRenderTarget( SCREEN_RENDERTARGET_STRING );
+	m_mainRenderTarget = modelsManager->GetRenderTarget(DefaultAssets:: SCREEN_RENDERTARGET_STRING );
 	m_mainSwapChain = ResourcesFactory::CreateScreenSwapChain( m_mainRenderTarget.Ptr() );
 
 	m_defaultCamera = new CameraActor();

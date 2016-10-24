@@ -72,13 +72,13 @@ void HosekSkyDome::init_sky_dome( XMVECTOR sun_direction,
 	display_data.mesh->vertices_count = ind_buff_elements;
 
 	// Kompilujemy shadery, jednoczeœnie dodaje siê layout
-	set_vertex_shader( L"shaders\\HosekSkyDome\\HosekSkyDome.fx", DEFAULT_VERTEX_SHADER_ENTRY, DefaultAssets::LAYOUT_POSITION_COLOR );
-	set_pixel_shader( L"shaders\\HosekSkyDome\\HosekSkyDome.fx", DEFAULT_PIXEL_SHADER_ENTRY );
+	set_vertex_shader( L"shaders\\HosekSkyDome\\HosekSkyDome.fx", DefaultAssets::DEFAULT_VERTEX_SHADER_ENTRY, DefaultAssets::LAYOUT_POSITION_COLOR );
+	set_pixel_shader( L"shaders\\HosekSkyDome\\HosekSkyDome.fx", DefaultAssets::DEFAULT_PIXEL_SHADER_ENTRY );
 
 	// Materia³ jest niepotrzebny, ale nie mo¿e go nie byæ
 	MaterialObject material;
 	material.SetNullMaterial();
-	set_material( &material, DEFAULT_MATERIAL_STRING );
+	set_material( &material, DefaultAssets::DEFAULT_MATERIAL_STRING );
 
 	// Tutaj wype³niamy kopu³ê kolorem
 	update_sky_dome( sun_direction, turbidity, albedo, sky_intensity, sun_intensity );

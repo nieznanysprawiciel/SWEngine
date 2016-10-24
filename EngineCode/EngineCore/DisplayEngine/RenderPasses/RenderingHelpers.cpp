@@ -80,3 +80,18 @@ void					RenderingHelper::UpdateLightBuffer		( IRenderer* renderer, RenderContex
 
 	renderer->UpdateBuffer( updateCommand );
 }
+
+// ================================ //
+//
+void					RenderingHelper::ClearRenderTargetAndDepth	( IRenderer* renderer, RenderTargetObject* target, DirectX::XMFLOAT4 color, float depth )
+{
+	ClearRenderTargetCommand clearCommand;
+	clearCommand.ClearDepth = true;
+	clearCommand.ClearRenderTarget = true;
+	clearCommand.ClearStencil = false;
+	clearCommand.RenderTarget = target;
+	clearCommand.DepthValue = depth;
+	clearCommand.ClearColor = color;
+
+	renderer->ClearRenderTarget( clearCommand );
+}

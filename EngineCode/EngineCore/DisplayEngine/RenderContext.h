@@ -23,6 +23,8 @@ struct RenderContext
 	BufferObject*		TransformBuffer;
 	BufferObject*		MaterialConstants;		///< @Deprecated Use buffers from MaterialAsset.
 
+	ShaderInputLayout*	Layout;					///< @Deprecated Each object have it's own layout.
+
 	/// @todo In future replace with one time variable.
 	float				TimeInterval;
 	float				TimeLag;

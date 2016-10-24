@@ -254,7 +254,7 @@ i okreœla j¹ makro DEFAULT_VERTEX_SHADER_ENTRY.
 @return Indentyfikator obiektu.*/
 unsigned int Model3DFromFile::add_vertex_shader( const std::wstring& file_name )
 {
-	VertexShader* vertex_shader = models_manager->LoadVertexShader( file_name, DEFAULT_VERTEX_SHADER_ENTRY );
+	VertexShader* vertex_shader = models_manager->LoadVertexShader( file_name, DefaultAssets::DEFAULT_VERTEX_SHADER_ENTRY );
 	if ( !vertex_shader )
 		return WRONG_ID;
 
@@ -277,7 +277,7 @@ i okreœla j¹ makro DEFAULT_PIXEL_SHADER_ENTRY.
 @return Indentyfikator obiektu.*/
 unsigned int Model3DFromFile::add_pixel_shader( const std::wstring& file_name )
 {
-	PixelShader* pixel_shader = models_manager->LoadPixelShader( file_name, DEFAULT_PIXEL_SHADER_ENTRY );
+	PixelShader* pixel_shader = models_manager->LoadPixelShader( file_name, DefaultAssets::DEFAULT_PIXEL_SHADER_ENTRY );
 	if ( !pixel_shader )
 		return WRONG_ID;
 
@@ -518,7 +518,7 @@ void Model3DFromFile::EndEdit_prepare_ModelPart( )
 			part.vertex_shader = models_manager->FindBestVertexShader( part.texture );
 		// I materia³
 		if ( part.material == nullptr )
-			part.material = models_manager->m_materialObject.get( DEFAULT_MATERIAL_STRING );
+			part.material = models_manager->m_materialObject.get( DefaultAssets::DEFAULT_MATERIAL_STRING );
 	}
 
 }

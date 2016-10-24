@@ -449,7 +449,7 @@ ResourcePtr< RasterizerState >	ResourceManager::CreateRasterizerState	( const st
 /**@brief Created DepthStencilState object.
 
 @return If object named name exist, returns nullptr.*/
-ResourcePtr< DepthStencilState >	ResourceManager::CreateDpethStencilState	( const std::wstring& name, const DepthStencilInfo& info )
+ResourcePtr< DepthStencilState >	ResourceManager::CreateDepthStencilState	( const std::wstring& name, const DepthStencilInfo& info )
 {
 	auto resource = m_depthStencilState.get( name );
 	if ( resource )	// Jeøeli znaleüliúmy bufor, to zwracamy nullptr

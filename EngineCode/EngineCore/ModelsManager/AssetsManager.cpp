@@ -56,7 +56,7 @@ lub nieobecnoœci tekstury w tablicy.
 VertexShader*	AssetsManager::FindBestVertexShader	( TextureObject** textures )
 {
 	// Na razie nie mamy innych domyœlnych shaderów
-	return m_vertexShader.get( DEFAULT_VERTEX_SHADER_STRING );
+	return m_vertexShader.get( DefaultAssets::DEFAULT_VERTEX_SHADER_STRING );
 }
 
 
@@ -77,11 +77,11 @@ PixelShader*	AssetsManager::FindBestPixelShader	( TextureObject** textures )
 
 	// Na razie nie ma innych tekstur ni¿ diffuse, wiêc algorytm nie jest skomplikowany
 	if( textures[ TextureUse::TEX_DIFFUSE ] )
-		return_shader = m_pixelShader.get( DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH );
+		return_shader = m_pixelShader.get( DefaultAssets::DEFAULT_TEX_DIFFUSE_PIXEL_SHADER_PATH );
 
 
 	if( !return_shader )	// Je¿eli nadal jest nullptrem to dajemy mu domyœlny shader
-		return_shader = m_pixelShader.get( DEFAULT_PIXEL_SHADER_STRING );
+		return_shader = m_pixelShader.get( DefaultAssets::DEFAULT_PIXEL_SHADER_STRING );
 
 	return return_shader;
 }

@@ -8,8 +8,34 @@
 #include "ForwardRendering.h"
 #include "EngineCore/DisplayEngine/RenderPasses/RenderingHelpers.h"
 
+#include "EngineCore/ModelsManager/AssetsManager.h"
+
+#include <algorithm>
+
 
 using namespace DirectX;
+
+
+// ================================ //
+//
+ForwardRendering::ForwardRendering()
+{
+	m_blendingState = m_assetsManager->GetBlendingState( DefaultAssets::DEFAULT_BLENDING_STATE_STRING );
+	m_rasterizer = m_assetsManager->GetRasterizerState( DefaultAssets::DEFAULT_RASTERIZER_STATE_STRING );
+	m_depthState = m_assetsManager->GetDepthStencilState( DefaultAssets::DEFAULT_DEPTH_STATE_STRING );
+
+	// If someone removed states from AssetsManager, these asserts will fail.
+	assert( m_blendingState );
+	assert( m_rasterizer );
+	assert( m_rasterizer );
+}
+
+// ================================ //
+//
+ForwardRendering::~ForwardRendering()
+{
+	// Release resources in future.
+}
 
 
 // ================================ //
@@ -19,7 +45,20 @@ bool		ForwardRendering::PreRender		( IRenderer* renderer, RenderContext& context
 	RenderingHelper::UpdateCameraBuffer( m_mainCamera, renderer, context );
 	RenderingHelper::UpdateLightBuffer( renderer, context );
 
+	RenderingHelper::ClearRenderTargetAndDepth( renderer, m_mainTarget.Ptr(), DirectX::XMFLOAT4( 0.0f, 0.0f, 0.0f, 0.0f ), 1.0f );
 
+	SetRenderTargetCommand renderTargetCommand;
+	renderTargetCommand.CameraBuffer = context.CameraBuffer;
+	renderTargetCommand.LightBuffer = context.LightBuffer;
+	renderTargetCommand.DepthStencil = m_mainTarget.Ptr();
+	renderTargetCommand.RenderTargets[ 0 ] = m_mainTarget.Ptr();
+	std::fill( renderTargetCommand.RenderTargets + 1, renderTargetCommand.RenderTargets + MAX_BOUND_RENDER_TARGETS - 1, nullptr );
+
+	renderTargetCommand.BlendingState = m_blendingState.Ptr();
+	renderTargetCommand.DepthStencilState = m_depthState.Ptr();
+	renderTargetCommand.RasterizerState = m_rasterizer.Ptr();
+
+	renderer->SetRenderTarget( renderTargetCommand );
 
 	return true;
 }
@@ -34,14 +73,6 @@ void		ForwardRendering::Render		( IRenderer* renderer, RenderContext& context, S
 	for ( auto i = rangeStart; i < std::min( meshes.size(), rangeEnd ); ++i )
 	{
 		StaticActor* object = meshes[i];
-
-
-		// Ustawiamy bufor wierzcho³ków
-		if ( renderer->SetVertexBuffer( object->GetVertexBuffer() ) )
-			continue;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
-
-		// Ustawiamy bufor indeksów, je¿eli istnieje
-		renderer->SetIndexBuffer( object->GetIndexBuffer() );
 
 
 #ifdef _INTERPOLATE_POSITIONS
@@ -77,27 +108,33 @@ void		ForwardRendering::Render		( IRenderer* renderer, RenderContext& context, S
 			RenderingHelper::UpdateBuffer( renderer, context.MaterialConstants, materialData );
 
 
-
 			SetRenderStateCommand renderCommand;
 			renderCommand.TransformBuffer = context.TransformBuffer;
 			renderCommand.MaterialBuffer = context.MaterialConstants;
 			renderCommand.BonesTransforms = nullptr;
-			//renderCommand.VertexShader
+			renderCommand.VertexShader = model.vertex_shader;
+			renderCommand.PixelShader = model.pixel_shader;
 
+			for( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
+			{
+				renderCommand.Textures[ i ] = model.texture[ i ];
+				renderCommand.BindToShader[ i ] = (uint8)ShaderType::PixelShader;
+			}
 
-			// Ustawiamy shadery
-			renderer->SetShaders( model );
+			renderer->SetShaderState( renderCommand );
 
+			// Send draw command.
+			DrawCommand drawCommand;
+			drawCommand.BaseVertex = model.mesh->base_vertex;
+			drawCommand.BufferOffset = model.mesh->buffer_offset;
+			drawCommand.NumVertices = model.mesh->vertices_count;
+			drawCommand.Topology = PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+			drawCommand.VertexBuffer = object->GetVertexBuffer();
+			drawCommand.IndexBufer = model.mesh->use_index_buf ? object->GetIndexBuffer() : nullptr;
+			drawCommand.ExtendedIndex = true;
+			drawCommand.Layout = context.Layout;
 
-			// Ustawiamy tekstury
-			renderer->SetTextures( model );
-
-			// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
-			MeshPartObject* part = model.mesh;
-			if ( part->use_index_buf )
-				renderer->DrawIndexed( part->vertices_count, part->buffer_offset, part->base_vertex );
-			else // Tryb bezpoœredni
-				renderer->Draw( part->vertices_count, part->buffer_offset );
+			renderer->Draw( drawCommand );
 		}
 
 	}
