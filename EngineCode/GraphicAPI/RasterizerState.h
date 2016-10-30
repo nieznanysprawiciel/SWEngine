@@ -34,7 +34,7 @@ struct RasterizerStateInfo
 		:	CullMode( CullMode::Back )
 		,	FillMode( FillMode::Solid )
 		,	DepthBias( 0 )
-		,	IsClockwise( true )
+		,	IsClockwise( false )
 		,	EnableScissor( false )
 		,	EnableZClipping( true )
 		,	ConservativeRasterizer( false )

@@ -24,6 +24,7 @@ class CameraActor;
 class StaticActor;
 class ShaderInputLayout;
 class AssetsManager;
+class RenderPassFactory;
 
 
 /**@defgroup RenderPasses Render Passes
@@ -40,8 +41,10 @@ class AssetsManager;
 class IRenderPass : public EngineObject
 {
 	friend void		SetAssetManager		( AssetsManager* manager );
+	friend void		SetFactory			( RenderPassFactory* manager );
 protected:
-	static AssetsManager*		m_assetsManager;
+	static AssetsManager*		s_assetsManager;		///< Definition in RenderPassFactory.cpp file.
+	static RenderPassFactory*	s_renderPassFactory;	///< Definition in RenderPassFactory.cpp file.
 
 public:
 	enum class ActorAddPolicy
@@ -77,4 +80,22 @@ public:
 
 
 	virtual void	NestedPasses( std::vector< Ptr< IRenderPass > >& passes ) = 0;
+
+protected:
+	template< typename PassType >
+	void			FillWithNestedPasses	( std::vector< Ptr< IRenderPass > >& dest,  std::vector< Ptr< PassType > >& passes );
 };
+
+//====================================================================================//
+//			Implementation	
+//====================================================================================//
+
+template< typename PassType >
+inline void			IRenderPass::FillWithNestedPasses	( std::vector< Ptr< IRenderPass > >& dest, std::vector< Ptr< PassType > >& passes )
+{
+	for( auto& pass : passes )
+	{
+		dest.push_back( pass );
+		pass->NestedPasses( dest );
+	}
+}

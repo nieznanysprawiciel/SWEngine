@@ -20,9 +20,9 @@ using namespace DirectX;
 //
 ForwardRendering::ForwardRendering()
 {
-	m_blendingState = m_assetsManager->GetBlendingState( DefaultAssets::DEFAULT_BLENDING_STATE_STRING );
-	m_rasterizer = m_assetsManager->GetRasterizerState( DefaultAssets::DEFAULT_RASTERIZER_STATE_STRING );
-	m_depthState = m_assetsManager->GetDepthStencilState( DefaultAssets::DEFAULT_DEPTH_STATE_STRING );
+	m_blendingState = s_assetsManager->GetBlendingState( DefaultAssets::DEFAULT_BLENDING_STATE_STRING );
+	m_rasterizer = s_assetsManager->GetRasterizerState( DefaultAssets::DEFAULT_RASTERIZER_STATE_STRING );
+	m_depthState = s_assetsManager->GetDepthStencilState( DefaultAssets::DEFAULT_DEPTH_STATE_STRING );
 
 	// If someone removed states from AssetsManager, these asserts will fail.
 	assert( m_blendingState );
@@ -52,7 +52,7 @@ bool		ForwardRendering::PreRender		( IRenderer* renderer, RenderContext& context
 	renderTargetCommand.LightBuffer = context.LightBuffer;
 	renderTargetCommand.DepthStencil = m_mainTarget.Ptr();
 	renderTargetCommand.RenderTargets[ 0 ] = m_mainTarget.Ptr();
-	std::fill( renderTargetCommand.RenderTargets + 1, renderTargetCommand.RenderTargets + MAX_BOUND_RENDER_TARGETS - 1, nullptr );
+	std::fill( renderTargetCommand.RenderTargets + 1, renderTargetCommand.RenderTargets + MAX_BOUND_RENDER_TARGETS, nullptr );
 
 	renderTargetCommand.BlendingState = m_blendingState.Ptr();
 	renderTargetCommand.DepthStencilState = m_depthState.Ptr();
@@ -144,9 +144,7 @@ void		ForwardRendering::Render		( IRenderer* renderer, RenderContext& context, S
 // ================================ //
 //
 void		ForwardRendering::PostRender	( IRenderer* renderer, RenderContext& context )
-{
-
-}
+{}
 
 /**@brief This function does nothing. No nested passes.*/
 void		ForwardRendering::NestedPasses	( std::vector< Ptr< IRenderPass > >& passes )

@@ -11,7 +11,10 @@
 
 #include "EngineCore/Actors/ActorObjects.h"
 #include "EngineCore/Features/SkyDome.h"
-#include "EngineCore/DisplayEngine/RenderPass.h"
+#include "EngineCore/DisplayEngine/RenderPass.h"		///@deprecated
+#include "EngineCore/DisplayEngine/RenderPasses/RenderPassFactory.h"
+
+#include "EngineCore/DisplayEngine/RenderPasses/IRenderingLogicPass.h"
 
 #include "ConstantBuffersFormat.h"
 #include "LightModule.h"
@@ -68,6 +71,9 @@ private:
 	std::queue<RenderPassDepracated*>		m_renderOnceQueue;			///<Kolejka przebiegów, które maj¹ zostaæ wyrenderowane tylko raz.
 	unsigned int							m_maxQueuedPassesPerFrame;	///<Maksymalna liczba przebiegów jaka zostanie wziêta z kolejki w ka¿dej ramce.
 
+	Ptr< IRenderingLogicPass >				m_mainPass;					///< Collection of rendering passes.
+	RenderPassFactory						m_passFactory;				///< Factory for creating render passes.
+
 public:
 	LightModule*							lightModule;				///< Light module.
 
@@ -115,26 +121,24 @@ public:
 private:
 	void			UpdateCameraBuffer				( IRenderer* renderer, float timeInterval, float timeLag );
 
-	void realocate_interpolation_memory		(unsigned int min = 1);
+	void realocate_interpolation_memory		( unsigned int min = 1 );
 	void interpolate_object					( float timeLag, const StaticActor* object, DirectX::XMFLOAT4X4* result_matrix );
 	void interpolate_object2				( float timeLag, const StaticActor* object, DirectX::XMFLOAT4X4* result_matrix );
 
-	// Wyœwietlanie (funkcje wewnêtrzne)
-	void DisplayInstancedMeshes				( float timeInterval, float timeLag );
-	void DisplayDynamicObjects				( float timeInterval, float timeLag );
-	void DisplayParticles					( float timeInterval, float timeLag );
-	void DisplayShortLiveObjects			( float timeInterval, float timeLag );
-	void DisplaySkyBox						( float timeInterval, float timeLag );
-	void DisplaySkeletons					( float timeInterval, float timeLag );
-	void DisplaySelfDrawingObjects			( float timeInterval, float timeLag );
+	// Display functions
+	void			DisplaySceneOld			( float timeInterval, float timeLag );
+	void			DisplayDynamicObjects	( float timeInterval, float timeLag );
+	void			DisplaySkyBox			( float timeInterval, float timeLag );
+	void			ProcessMainPass			( float timeInterval, float timeLag );
 
-	void RenderFromQueue					( float timeInterval, float timeLag );
+	void			RenderFromQueue			( float timeInterval, float timeLag );
 
 	// Funkcje pomocnicze do renderingu
-	void SetTextures						( const ModelPart& model );
-	void SetIndexBuffer						( BufferObject* buffer );
-	bool SetVertexBuffer					( BufferObject* buffer );
-	void DepthBufferEnable					( bool state );
+	void			SetTextures				( const ModelPart& model );
+	void			SetIndexBuffer			( BufferObject* buffer );
+	bool			SetVertexBuffer			( BufferObject* buffer );
+	void			DepthBufferEnable		( bool state );
+	RenderContext	CreateRenderContext		( float timeInterval, float timeLag );
 public:
 	void CopyMaterial						( ConstantPerMesh* shader_data_per_mesh, const ModelPart* model );
 };

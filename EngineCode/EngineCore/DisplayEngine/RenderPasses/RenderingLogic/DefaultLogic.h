@@ -28,6 +28,7 @@ protected:
 	std::vector< Ptr< IRenderPass > >		m_customPass;
 
 	Ptr< IShadingPass >						m_shadingPass;
+	Ptr< IRenderPass >						m_skyDome;
 
 	std::vector< Ptr< IPostprocessingPass > >	m_postProcessing;
 
@@ -36,8 +37,8 @@ protected:
 	//ResourcePtr< RenderTargetObject >	m_mainTarget;
 
 public:
-	explicit			DefaultLogic() = default;
-						~DefaultLogic() = default;
+	explicit			DefaultLogic	();
+	virtual 			~DefaultLogic	() = default;
 
 
 

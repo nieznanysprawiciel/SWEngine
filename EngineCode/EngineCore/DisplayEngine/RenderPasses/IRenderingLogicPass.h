@@ -29,6 +29,7 @@ public:
 	virtual CameraActor*	GetMainCamera	()							= 0;
 
 	virtual void			SetMainRenderTarget	( const ResourcePtr< RenderTargetObject >& target )	= 0;
+	//virtual void			SetSkyDome			( SkyDome* skyDome ) = 0;
 
 	virtual ResourcePtr< RenderTargetObject >		GetMainRenderTarget	() = 0;
 
@@ -38,6 +39,7 @@ public:
 	virtual const std::vector< Ptr< IRenderPass > >&		GetCustomPasses			() = 0;
 
 	virtual const Ptr< IShadingPass >&						GetShadingPass			() = 0;
+	//virtual const Ptr< IRenderPass >&						GetSkyDomePass			() = 0;
 
 	virtual const std::vector< Ptr< IPostprocessingPass > >&	GetPostProcessing	() = 0;
 };

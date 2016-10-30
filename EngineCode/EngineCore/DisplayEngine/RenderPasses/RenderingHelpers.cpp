@@ -75,7 +75,7 @@ void					RenderingHelper::UpdateLightBuffer		( IRenderer* renderer, RenderContex
 
 	UpdateBufferCommand updateCommand;
 	updateCommand.FillData = (uint8*)&lightData;
-	updateCommand.Buffer = context.CameraBuffer;
+	updateCommand.Buffer = context.LightBuffer;
 	updateCommand.Size = sizeof( LightConstants );
 
 	renderer->UpdateBuffer( updateCommand );

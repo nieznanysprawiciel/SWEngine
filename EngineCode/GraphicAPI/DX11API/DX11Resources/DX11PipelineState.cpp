@@ -49,7 +49,7 @@ DX11RasterizerState*			DX11RasterizerState::Create		( const RasterizerStateInfo&
 	desc.CullMode = DX11ConstantsMapper::Get( info.CullMode );
 	desc.FillMode = DX11ConstantsMapper::Get( info.FillMode );
 	desc.DepthBias = info.DepthBias;
-	desc.FrontCounterClockwise = !info.IsClockwise;
+	desc.FrontCounterClockwise = info.IsClockwise ? FALSE : TRUE;
 	desc.ScissorEnable = info.EnableScissor;
 	desc.DepthClipEnable = info.EnableZClipping;
 	desc.SlopeScaledDepthBias = 0.0f;

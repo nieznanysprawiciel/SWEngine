@@ -304,7 +304,10 @@ void	DX11Renderer::BeginScene( RenderTargetObject* mainRenderTarget )
 //
 void	DX11Renderer::Draw				( const DrawCommand& command )
 {
-	auto indexBuffer = DX11( command.IndexBufer )->Get();
+	ID3D11Buffer* indexBuffer = nullptr;
+	if( command.IndexBufer )
+		indexBuffer = DX11( command.IndexBufer )->Get();
+
 	auto layout = DX11( command.Layout )->Get();
 
 	m_localDeviceContext->IASetPrimitiveTopology( DX11ConstantsMapper::Get( command.Topology ) );
@@ -384,13 +387,13 @@ void	DX11Renderer::SetRenderTarget	( const SetRenderTargetCommand& command )
 	{
 		ID3D11Buffer* directXBuffer = cameraBuffer->Get();
 		m_localDeviceContext->VSSetConstantBuffers( CAMERA_BUFFER_BINDING_POINT, 1, &directXBuffer );
-		m_localDeviceContext->PSGetConstantBuffers( CAMERA_BUFFER_BINDING_POINT, 1, &directXBuffer );
+		m_localDeviceContext->PSSetConstantBuffers( CAMERA_BUFFER_BINDING_POINT, 1, &directXBuffer );
 	}
 
 	if( lightBuffer )
 	{
 		ID3D11Buffer* directXBuffer = lightBuffer->Get();
-		m_localDeviceContext->PSGetConstantBuffers( LIGHTS_BUFFER_BINDING_POINT, 1, &directXBuffer );
+		m_localDeviceContext->PSSetConstantBuffers( LIGHTS_BUFFER_BINDING_POINT, 1, &directXBuffer );
 	}
 }
 
@@ -424,6 +427,10 @@ void	DX11Renderer::SetRenderTarget	( const SetRenderTargetExCommand& command )
 		scissors[ i ].left = command.Scissors[ i ].Left;
 		scissors[ i ].right = command.Scissors[ i ].Right;
 	}
+
+	ThrowIfNull( command.RasterizerState, "RasterizerState set to nullptr." );
+	ThrowIfNull( command.BlendingState, "BlendingState set to nullptr." );
+	ThrowIfNull( command.DepthStencilState, "DepthStencilState set to nullptr." );
 
 	device_context->RSSetViewports( command.NumViews, viewport );
 	device_context->RSSetScissorRects( command.NumViews, scissors );
@@ -692,16 +699,11 @@ void	DX11Renderer::SetTextures		( TextureObject* const texturesArray[ MAX_BOUND_
 		if( texturesArray[ i ] )
 		{
 			auto texView = DX11( texturesArray[ i ] )->Get();
-			if( shaderTypes[ i ] & (uint8)ShaderType::VertexShader )
-				texturesVert[ i ] = texView;
-			if( shaderTypes[ i ] & (uint8)ShaderType::PixelShader )
-				texturesPix[ i ] = texView;
-			if( shaderTypes[ i ] & (uint8)ShaderType::GeometryShader )
-				texturesGeom[ i ] = texView;
-			if( shaderTypes[ i ] & (uint8)ShaderType::TesselationControlShader )
-				texturesEval[ i ] = texView;
-			if( shaderTypes[ i ] & (uint8)ShaderType::TesselationEvaluationShader )
-				texturesDomain[ i ] = texView;
+			texturesVert[ i ] = shaderTypes[ i ] & (uint8)ShaderType::VertexShader ? texView : nullptr;
+			texturesPix[ i ] = shaderTypes[ i ] & (uint8)ShaderType::PixelShader ? texView : nullptr;
+			texturesGeom[ i ] = shaderTypes[ i ] & (uint8)ShaderType::GeometryShader ? texView : nullptr;
+			texturesEval[ i ] = shaderTypes[ i ] & (uint8)ShaderType::TesselationControlShader ? texView : nullptr;
+			texturesDomain[ i ] = shaderTypes[ i ] & (uint8)ShaderType::TesselationEvaluationShader ? texView : nullptr;
 		}
 		else
 		{

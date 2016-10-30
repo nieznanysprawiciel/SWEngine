@@ -36,14 +36,25 @@ const wchar_t MATERIAL_CONSTANTS_BUFFER_NAME[] = L"::DisplayEngine::MaterialCons
 
 
 REGISTER_PERFORMANCE_CHECK( SKYBOX_RENDERING )
-REGISTER_PERFORMANCE_CHECK( INSTANCE_OBJECT_RENDERING )
 REGISTER_PERFORMANCE_CHECK( DYNAMIC_OBJECT_RENDERING )
-REGISTER_PERFORMANCE_CHECK( PARTICLES_RENDERING )
-REGISTER_PERFORMANCE_CHECK( SHORT_LIVE_OBJECTS_RENDERING )
-REGISTER_PERFORMANCE_CHECK( SKELETNS_RENDERING )
-REGISTER_PERFORMANCE_CHECK( SELF_DRAWING_OBJECTS_RENDERING )
+REGISTER_PERFORMANCE_CHECK( SHADOW_PASSES )
+REGISTER_PERFORMANCE_CHECK( SHADING_PASSES )
+REGISTER_PERFORMANCE_CHECK( POSTPROCESSING_PASSES )
+REGISTER_PERFORMANCE_CHECK( CUSTOM_PASSES )
+REGISTER_PERFORMANCE_CHECK( ENVIRONMENT_PASSES )
 
 
+
+/**@brief Sets AssetManager for IRenderPass class.*/
+void		SetAssetManager		( AssetsManager* manager )
+{	IRenderPass::s_assetsManager = manager;		}
+
+void		SetFactory			( RenderPassFactory* factory )
+{	IRenderPass::s_renderPassFactory = factory;		}
+
+
+// ================================ //
+//
 DisplayEngine::DisplayEngine( Engine* engine )
 	: engine( engine )
 {
@@ -85,10 +96,20 @@ void DisplayEngine::InitRenderer( IRenderer* renderer )
 	m_renderers[0]->InitDepthStates();
 }
 
+/**@brief Inits submodules (LightModule, main render pass), creates default engine buffers,
+sets default camera and render target.*/
 void DisplayEngine::InitDisplayer( AssetsManager* assetsManager )
 {
 	modelsManager = assetsManager;
+	SetAssetManager( assetsManager );
+	SetFactory( &m_passFactory );
 
+	// Init submodules
+	m_mainPass = m_passFactory.CreateDefaultLogic();
+	lightModule->Init( assetsManager );
+
+
+	// Init constant buffers
 	ConstantBufferInitData cameraDataInit;
 	cameraDataInit.DataType = TypeID::get< CameraConstants >();
 	cameraDataInit.ElementSize = sizeof( CameraConstants );
@@ -111,29 +132,34 @@ void DisplayEngine::InitDisplayer( AssetsManager* assetsManager )
 	assert( m_materialConstants );
 
 
-	m_mainRenderTarget = modelsManager->GetRenderTarget(DefaultAssets:: SCREEN_RENDERTARGET_STRING );
+	SetMainRenderTarget( modelsManager->GetRenderTarget( DefaultAssets::SCREEN_RENDERTARGET_STRING ) );
 	m_mainSwapChain = ResourcesFactory::CreateScreenSwapChain( m_mainRenderTarget.Ptr() );
 
 	m_defaultCamera = new CameraActor();
 	SetCurrentCamera( m_defaultCamera );
-
-	lightModule->Init( assetsManager );
 }
 
+// ================================ //
+//
 void DisplayEngine::BeginScene()
 {
 	//m_renderers[ 0 ]->BeginScene( m_mainRenderTarget );
 }
 
+// ================================ //
+//
 void DisplayEngine::EndScene()
 {
 	//m_renderers[ 0 ]->Present();
 	m_mainSwapChain->Present( 0 );
 }
 
+// ================================ //
+//
 void DisplayEngine::SetMainRenderTarget( RenderTargetObject* renderTarget )
 {
 	m_mainRenderTarget = renderTarget;
+	m_mainPass->SetMainRenderTarget( renderTarget );
 }
 
 
@@ -141,6 +167,23 @@ void DisplayEngine::SetMainRenderTarget( RenderTargetObject* renderTarget )
 //							Funkcje pomocnicze do renderingu
 //-------------------------------------------------------------------------------//
 
+// ================================ //
+//
+RenderContext		DisplayEngine::CreateRenderContext	( float timeInterval, float timeLag )
+{
+	RenderContext context( meshes, m_interpolatedMatricies );
+	context.DisplayEngine = this;
+	context.CameraBuffer = m_cameraConstants.Ptr();
+	context.TransformBuffer = m_transformConstants.Ptr();
+	context.LightBuffer = lightModule->GetLightBuffer();
+	context.MaterialConstants = m_materialConstants.Ptr();
+	context.Layout = defaultLayout;
+	context.LightModule = lightModule;
+	context.TimeInterval = timeInterval;
+	context.TimeLag = timeLag;
+
+	return context;
+}
 
 /**@brief kopiuje materia³ do struktury, która pos³u¿y do zaktualizowania bufora sta³ych.
 
@@ -179,6 +222,43 @@ void DisplayEngine::DisplayScene( float timeInterval, float timeLag )
 {
 	IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
 
+	//DisplaySceneOld( timeInterval, timeLag );
+	ProcessMainPass( timeInterval, timeLag );
+}
+
+/**@brief Renders scene using @ref m_mainPass.*/
+void			DisplayEngine::ProcessMainPass			( float timeInterval, float timeLag )
+{
+	IRenderer* renderer = m_renderers[0];
+	RenderContext context = CreateRenderContext( timeInterval, timeLag );
+
+	std::vector< Ptr< IRenderPass > > orderedPasses;
+	m_mainPass->NestedPasses( orderedPasses );
+
+	START_PERFORMANCE_CHECK( SHADING_PASSES );		///< @todo It's temporary. We should separate rendering of shadow, environment, custom passes, shading and postprocesisng.
+	
+	for( int i = 0; i < orderedPasses.size(); ++i )
+	{
+		auto& pass = orderedPasses[ i ];
+		
+		if( pass->PreRender( renderer, context ) )
+		{
+			pass->Render( renderer, context, 0, meshes.size() );
+			pass->PostRender( renderer, context );
+		}
+	}
+
+	END_PERFORMANCE_CHECK( SHADING_PASSES );
+
+	DisplaySkyBox( timeInterval, timeLag );
+}
+
+// ================================ //
+//
+void			DisplayEngine::DisplaySceneOld			( float timeInterval, float timeLag )
+{
+	IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
+
 
 	UpdateCameraBuffer( renderer, timeInterval, timeLag );
 	lightModule->UpdateLightsBuffer( renderer, timeLag );
@@ -204,29 +284,9 @@ void DisplayEngine::DisplayScene( float timeInterval, float timeLag )
 	// Ustawiamy format wierzcho³ków
 	renderer->IASetInputLayout( defaultLayout );
 
-	DisplayInstancedMeshes( timeInterval, timeLag );
 	DisplayDynamicObjects( timeInterval, timeLag );
-	DisplayParticles( timeInterval, timeLag );
-	DisplayShortLiveObjects( timeInterval, timeLag );
-	DisplaySkeletons( timeInterval, timeLag );
-	DisplaySelfDrawingObjects( timeInterval, timeLag );
 }
 
-/**@brief Funkcja s³u¿y do wyœwietlania meshy instancjonowanych, które s¹ jednoczeœniej obiektami statycznymi
-w scenie.
-
-
-@param[in] time_interval Czas od ostatniej klatki.
-@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
-Zakres [0,1].
-*/
-void DisplayEngine::DisplayInstancedMeshes( float time_interval, float time_lag )
-{
-	START_PERFORMANCE_CHECK( INSTANCE_OBJECT_RENDERING )
-
-
-	END_PERFORMANCE_CHECK( INSTANCE_OBJECT_RENDERING )
-}
 
 /**@brief Funkcja s³u¿y do wyœwietlania obiektów dynamicznych, które s¹ rzadko niszczone.
 
@@ -308,33 +368,7 @@ void DisplayEngine::DisplayDynamicObjects( float time_interval, float time_lag )
 	END_PERFORMANCE_CHECK( DYNAMIC_OBJECT_RENDERING )
 }
 
-/**@brief Funkcja s³u¿y do wyœwietlania systemów cz¹stek.
 
-
-@param[in] time_interval Czas od ostatniej klatki.
-@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
-Zakres [0,1].
-*/
-void DisplayEngine::DisplayParticles( float time_interval, float time_lag )
-{
-	START_PERFORMANCE_CHECK( PARTICLES_RENDERING )
-
-	END_PERFORMANCE_CHECK( PARTICLES_RENDERING )
-}
-
-/**@brief Funkcja s³u¿y do wyœwietlania obiektów dynamicznych o krótkim czasie ¿ycia
-jak np. pociski.
-
-@param[in] time_interval Czas od ostatniej klatki.
-@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
-Zakres [0,1].
-*/
-void DisplayEngine::DisplayShortLiveObjects( float time_interval, float time_lag )
-{
-	START_PERFORMANCE_CHECK( SHORT_LIVE_OBJECTS_RENDERING )
-
-	END_PERFORMANCE_CHECK( SHORT_LIVE_OBJECTS_RENDERING )
-}
 
 /**@brief Funkcja s³u¿y do wyœwietlania skyboxa lub te¿ ka¿dej innej formy, która s³u¿y za t³o.
 
@@ -388,7 +422,7 @@ void DisplayEngine::DisplaySkyBox( float time_interval, float time_lag )
 	// Wype³niamy bufor sta³ych
 	TransformConstants meshTransformData;
 	XMStoreFloat4x4( &meshTransformData.WorldMatrix, XMMatrixTranspose( rotationMatrix ) );
-	XMStoreFloat4( &meshTransformData.MeshScale, XMVectorReplicate( 1.0f ) );
+	XMStoreFloat4( &meshTransformData.MeshScale, XMVectorSetW( XMVectorReplicate( m_currentCamera->GetFarPlane() ), 1.0f ) );
 
 
 	// Przepisujemy materia³
@@ -417,7 +451,7 @@ void DisplayEngine::DisplaySkyBox( float time_interval, float time_lag )
 	// Ustawiamy tekstury
 	renderer->SetTextures( *model );
 
-	renderer->DepthBufferEnable( false );		///< Wy³¹czamy z-bufor. @todo To musi robiæ renderer.
+	//renderer->DepthBufferEnable( false );		///< Wy³¹czamy z-bufor. @todo To musi robiæ renderer.
 
 	// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
 	const MeshPartObject* part = model->mesh;
@@ -426,41 +460,11 @@ void DisplayEngine::DisplaySkyBox( float time_interval, float time_lag )
 	else // Tryb bezpoœredni
 		renderer->Draw( part->vertices_count, part->buffer_offset );
 
-	renderer->DepthBufferEnable( true );		///< W³¹czamy z-bufor spowrotem. @todo To musi robiæ renderer.
+	//renderer->DepthBufferEnable( true );		///< W³¹czamy z-bufor spowrotem. @todo To musi robiæ renderer.
 
 	END_PERFORMANCE_CHECK( SKYBOX_RENDERING )
 }
 
-/**@brief Funkcja s³u¿y do wyœwietlania obiektów z animacj¹ szkieletow¹, czyli g³ównie postaci
-
-
-@param[in] time_interval Czas od ostatniej klatki.
-@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
-Zakres [0,1].
-*/
-void DisplayEngine::DisplaySkeletons( float time_interval, float time_lag )
-{
-	START_PERFORMANCE_CHECK( SKELETNS_RENDERING )
-
-
-	END_PERFORMANCE_CHECK( SKELETNS_RENDERING )
-}
-
-/**@brief Funkcja wyœwietla obiekty, które maj¹ zaimplementowany inny
-ni¿ domyœlny algorytm wyswietlania.
-
-@see @ref self_drawing_objects
-
-@param[in] time_interval Czas od ostatniej klatki.
-@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
-Zakres [0,1].
-*/
-void DisplayEngine::DisplaySelfDrawingObjects( float time_interval, float time_lag )
-{
-	START_PERFORMANCE_CHECK( SELF_DRAWING_OBJECTS_RENDERING )
-
-	END_PERFORMANCE_CHECK( SELF_DRAWING_OBJECTS_RENDERING )
-}
 
 /**@brief Wybiera z kolejki przebiegi do wyrenderowania i renderuje je.
 
@@ -637,6 +641,8 @@ int DisplayEngine::SetCurrentCamera( CameraActor* camera )
 		return 1;
 	
 	m_currentCamera = camera;
+	m_mainPass->SetMainCamera( camera );
+
 	return 0;
 }
 

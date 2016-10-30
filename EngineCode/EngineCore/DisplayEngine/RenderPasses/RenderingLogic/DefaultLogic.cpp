@@ -7,7 +7,16 @@
 
 
 #include "DefaultLogic.h"
+#include "EngineCore/DisplayEngine/RenderPasses/RenderPassFactory.h"
 
+
+
+// ================================ //
+//
+DefaultLogic::DefaultLogic()
+{
+	m_shadingPass = s_renderPassFactory->CreateDefaultShadingPass();
+}
 
 // ================================ //
 //
@@ -28,45 +37,42 @@ void		DefaultLogic::PostRender	( IRenderer* renderer, RenderContext& context )
 //
 void		DefaultLogic::NestedPasses( std::vector< Ptr< IRenderPass > >& passes )
 {
-	for( auto& pass : m_shadowPass )
-		passes.push_back( pass );
-
-	for( auto& pass : m_environmentalPass )
-		passes.push_back( pass );
-
-	for( auto& pass : m_customPass )
-		passes.push_back( pass );
+	FillWithNestedPasses( passes, m_shadowPass );
+	FillWithNestedPasses( passes, m_environmentalPass );
+	FillWithNestedPasses( passes, m_customPass );
 
 	passes.push_back( m_shadingPass );
+	m_shadingPass->NestedPasses( passes );
 
-	for( auto& pass : m_postProcessing )
-		passes.push_back( pass );
+	FillWithNestedPasses( passes, m_postProcessing );
 }
 
 // ================================ //
 //
 void		DefaultLogic::SetMainCamera	( CameraActor* camera )
 {
-	//m_shadingPass->
+	m_shadingPass->SetMainCamera( camera );
 }
 
 // ================================ //
 //
 CameraActor*	DefaultLogic::GetMainCamera()
 {
-	return nullptr;
+	return m_shadingPass->GetMainCamera();
 }
 
 // ================================ //
 //
 void		DefaultLogic::SetMainRenderTarget	( const ResourcePtr< RenderTargetObject >& target )
-{ }
+{
+	m_shadingPass->SetMainRenderTarget( target );
+}
 
 // ================================ //
 //
 ResourcePtr< RenderTargetObject >			DefaultLogic::GetMainRenderTarget()
 {
-	return ResourcePtr<RenderTargetObject>();
+	return m_shadingPass->GetMainRenderTarget();
 }
 
 // ================================ //
