@@ -82,6 +82,7 @@ struct GraphicAPIInitData
 	{
 		SingleThreaded = true;
 		UseDebugLayer = false;
+		CreateSwapChain = true;
 	}
 };
 
