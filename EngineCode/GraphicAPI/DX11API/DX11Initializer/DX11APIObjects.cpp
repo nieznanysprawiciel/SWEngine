@@ -939,7 +939,9 @@ void  DX11AuxiliaryObjects::init_depth_states()
 	dsDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
 
 	// Create depth stencil state
-	device->CreateDepthStencilState( &dsDesc, &depth_enabled );
+	HRESULT result = device->CreateDepthStencilState( &dsDesc, &depth_enabled );
+	if( FAILED( result ) )
+		throw new std::runtime_error( "Could not create DepthStencilState" );
 
 	device_context->OMSetDepthStencilState( depth_enabled, 1 );
 
