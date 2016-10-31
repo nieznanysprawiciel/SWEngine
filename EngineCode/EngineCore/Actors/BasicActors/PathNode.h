@@ -7,7 +7,9 @@
 
 /**@brief Punkt kontrolny dla grafów œcie¿ek dla AI.
 
-Koncepcja jest podobna jak PathNody z Unreal Engine 3.*/
+Koncepcja jest podobna jak PathNody z Unreal Engine 3.
+
+@ingroup Actors*/
 class PathNode : public StaticActor
 {
 	RTTR_ENABLE( StaticActor )

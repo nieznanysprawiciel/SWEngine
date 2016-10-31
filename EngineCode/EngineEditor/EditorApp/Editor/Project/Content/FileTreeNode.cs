@@ -65,7 +65,8 @@ namespace EditorApp.Editor.Project.Content
 		FileTreeNodeType		GetFileTypeByExtension	( string fileName )
 		{
 			string extension = Path.GetExtension( fileName ).ToLower();
-			if( extension == ".fbx" )
+			if( extension == ".fbx"
+				|| extension == ".obj" )
 				return FileTreeNodeType.Model3D;
 			else if( extension == ".bmp"
 				|| extension == ".jpg"

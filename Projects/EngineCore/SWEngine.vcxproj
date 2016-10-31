@@ -192,6 +192,8 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\SpotLight.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\StaticActor.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\TriggerActor.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\Components\TransformComponent.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\Components\VisibleComponent.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\BaseAIController.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\BaseInputController.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\IController.h" />
@@ -345,6 +347,8 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\SpotLight.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\StaticActor.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\BasicActors\TriggerActor.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\Components\TransformComponents.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\Components\VisibleComponent.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\BaseAIController.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\BaseInputController.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\IController.cpp" />

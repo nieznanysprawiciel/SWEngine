@@ -153,6 +153,9 @@
     <Filter Include="EngineCore\DisplayEngine\RenderPasses\SkyDome">
       <UniqueIdentifier>{68cef2f3-ab47-4b76-9658-a7f967f17d5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\Actors\Components">
+      <UniqueIdentifier>{468ac9aa-c852-4a0e-a5fa-8e3b8251f0f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -623,6 +626,12 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\SkyDome\HosekSkyDomePass.h">
       <Filter>EngineCore\DisplayEngine\RenderPasses\SkyDome</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\Components\TransformComponent.h">
+      <Filter>EngineCore\Actors\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\Components\VisibleComponent.h">
+      <Filter>EngineCore\Actors\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -900,6 +909,12 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\SkyDome\HosekSkyDomePass.cpp">
       <Filter>EngineCore\DisplayEngine\RenderPasses\SkyDome</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\Components\TransformComponents.cpp">
+      <Filter>EngineCore\Actors\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\Components\VisibleComponent.cpp">
+      <Filter>EngineCore\Actors\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

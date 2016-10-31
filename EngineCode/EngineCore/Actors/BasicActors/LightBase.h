@@ -12,6 +12,8 @@ enum class LightType : int32
 
 
 /**@brief Klasa bazowa dla œwiate³.
+
+@ingroup Actors
 @ingroup Lights*/
 class LightBase : public DynamicActor
 {

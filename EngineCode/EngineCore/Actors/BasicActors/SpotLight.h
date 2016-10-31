@@ -5,6 +5,8 @@
 
 
 /**@brief Spot light.
+
+@ingroup Actors
 @ingroup Lights*/
 class SpotLight	: public PointLight
 {

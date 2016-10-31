@@ -18,7 +18,9 @@ struct ChildActor
 s¹ liczone wzglêdem danego obiektu. do tego celu zamiast funkcji Move u¿ywa siê complex_move,
 której dodatkowymi paramterami s¹ przesuniêcie i obrót rodzica. Objekty z³o¿one mog¹ siê zagnie¿d¿aæ.
 Trzeba jednak uwa¿aæ, aby do klasy MovementEngine podaæ tylko obiekt nadrzêdny, w innym wypadku przesuniêcia
-bêd¹ siê wlicza³y wielokrotnie. Obiekty bêd¹ce sk³adowymi Complex_obiekt tak¿e mog¹ wykonywaæ w³asne ruchy.*/
+bêd¹ siê wlicza³y wielokrotnie. Obiekty bêd¹ce sk³adowymi Complex_obiekt tak¿e mog¹ wykonywaæ w³asne ruchy.
+
+@ingroup Actors*/
 class ComplexActor : public DynamicActor
 {
 	RTTR_ENABLE( DynamicActor )

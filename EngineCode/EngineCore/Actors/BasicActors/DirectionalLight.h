@@ -5,6 +5,8 @@
 
 
 /**@brief DirectionalL light.
+
+@ingroup Actors
 @ingroup Lights*/
 class DirectionalLight	: public LightBase
 {

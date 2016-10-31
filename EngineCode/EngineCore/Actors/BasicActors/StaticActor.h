@@ -21,7 +21,8 @@ w czasie o jedn¹ klatkê, ¿eby interpolacja nie musia³a wyprzedzaæ faktycznych po
 Swapowanie nastêpujê w funkcji @ref DynamicActor::Move. @todo Trzeba zbadaæ czy nie ma przypadków,
 w których nie bêdzie zachodziæ swapowanie, a powinno (wydaje mi siê ¿e przy niektórych kontrolerach)
 i jakoœ rozwi¹zaæ tê sytuacjê.
-*/
+
+@ingroup Actors*/
 class StaticActor : public ActorBase
 {
 	RTTR_ENABLE( ActorBase )

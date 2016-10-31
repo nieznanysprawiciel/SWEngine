@@ -4,6 +4,11 @@
 #include "Common/EngineObject.h"
 
 
+/**@defgroup Actors Actors
+@ingroup EngineCore
+@brief Information about engine actors.*/
+
+
 class EngineInterface;
 class Engine;
 class ControllersEngine;
@@ -15,8 +20,9 @@ class Model3DFromFile;
 
 
 
-/**@brief Klasa bazowa dla wszystkich obiektów w grze (aktorów).
-*/
+/**@brief Base class for all engine actors.
+
+@ingroup Actors*/
 class ActorBase	:	public EngineObject
 {
 	RTTR_ENABLE( EngineObject )

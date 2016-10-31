@@ -6,6 +6,7 @@
 
 /**@brief Point light class.
 
+@ingroup Actors
 @ingroup Lights*/
 class PointLight : public LightBase
 {

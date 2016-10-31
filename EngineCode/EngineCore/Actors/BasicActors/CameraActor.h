@@ -11,7 +11,9 @@ Celem powstania tej struktury jest przechowywanie stanu kamery zarejestrowanego 
 wywo³aniem kontrolerów.
 
 @todo Prawdopodobnie jakiœ mechanizm odpytywania siê wzajemnie aktorów o swoje dane bêdzie potrzebny.
-W momencie jak siê on pojawi trzeba siê pozbyæ tej struktury i zrobiæ to nowym mechanizmem.*/
+W momencie jak siê on pojawi trzeba siê pozbyæ tej struktury i zrobiæ to nowym mechanizmem.
+
+@ingroup Actors*/
 struct CameraData
 {
 	DirectX::XMFLOAT3	Position;

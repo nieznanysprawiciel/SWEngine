@@ -3,7 +3,9 @@
 #include "StaticActor.h"
 
 
-/**@brief */
+/**@brief 
+
+@ingroup Actors*/
 class TriggerActor : public StaticActor
 {
 	RTTR_ENABLE( StaticActor )

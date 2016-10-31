@@ -16,7 +16,9 @@ kwaternionem w przeciwnym razie jest to wektor, w którym sk³adowa w jest k¹tem o
 W docelowej wersji bêdzie najprawdopodobniej wybrana opcja z wetorem a nie kwaternionem.
 
 @note Niezaleznie od tego jak jest wyra¿ona prêdkoœæ, orientacja zawsze jest kwaternionem.
-@todo Zastanowiæ siê czy controller nie powinien byæ unique_ptrem.*/
+@todo Zastanowiæ siê czy controller nie powinien byæ unique_ptrem.
+
+@ingroup Actors*/
 class DynamicActor : public StaticActor
 {
 	RTTR_REGISTRATION_FRIEND
