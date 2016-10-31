@@ -28,7 +28,7 @@ namespace EditorApp.Editor.Project.Actors
 
 		private ActorClassMetaInfo              m_selectedActorMeta;
 		private ActorWrapper                    m_selectedActor;
-		private ActorWrapper                    m_gizmoActor;
+		private GizmoActorWrapper				m_gizmoActor;
 
 		private Logic							m_editorLogic;      ///< Referencja na główny obiekt edytora.
 

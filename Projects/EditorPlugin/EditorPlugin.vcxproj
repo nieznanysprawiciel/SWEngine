@@ -22,6 +22,7 @@
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorClassMetaInfo.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EditorActorsFactory.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EditorClasses\GizmoActorWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EngineObjectMetaInfo.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EngineObjectWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceMetaInfo.cpp" />
@@ -48,6 +49,7 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorClassMetaInfo.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EditorActorsFactory.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EditorClasses\GizmoActorWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EngineObjectMetaInfo.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EngineObjectWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceMetaInfo.h" />

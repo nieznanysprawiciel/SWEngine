@@ -15,7 +15,7 @@ namespace EditorPlugin
 {
 
 /**@brief */
-ActorWrapper^		EditorActorsFactory::CreateGizmoActor( System::String^ meshPath )
+GizmoActorWrapper^	EditorActorsFactory::CreateGizmoActor( System::String^ meshPath )
 {
 	auto engine = EnginePointerProvider::GetEngine();
 
@@ -34,7 +34,7 @@ ActorWrapper^		EditorActorsFactory::CreateGizmoActor( System::String^ meshPath )
 	// Tworzenie wrappera edytorowego dla aktora
 	auto actorInfo = engine->Actors.FindActor( actor );
 	assert( actorInfo );
-	return gcnew ActorWrapper( actor, &actorInfo->second );
+	return gcnew GizmoActorWrapper( actor, &actorInfo->second );
 }
 
 /**@brief */

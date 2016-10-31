@@ -25,6 +25,9 @@
     <Filter Include="EditorPlugin\Actors\Resources">
       <UniqueIdentifier>{65ba392a-7f1e-422d-96f5-93d723a86c2f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EditorPlugin\Actors\EditorClasses">
+      <UniqueIdentifier>{30d9ca0e-3b04-4be0-8573-6e5eadee854d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\dllmain.cpp">
@@ -77,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ArrayElementPropertyWrapper.cpp">
       <Filter>EditorPlugin\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EditorClasses\GizmoActorWrapper.cpp">
+      <Filter>EditorPlugin\Actors\EditorClasses</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +145,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ArrayElementPropertyWrapper.h">
       <Filter>EditorPlugin\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EditorClasses\GizmoActorWrapper.h">
+      <Filter>EditorPlugin\Actors\EditorClasses</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

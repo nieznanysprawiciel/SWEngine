@@ -6,6 +6,7 @@
 */
 
 #include "EngineEditor/EditorPlugin/Actors/ActorWrapper.h"
+#include "EngineEditor/EditorPlugin/Actors/EditorClasses/GizmoActorWrapper.h"
 
 
 
@@ -17,7 +18,7 @@ public ref class EditorActorsFactory
 {
 private:
 public:
-	static ActorWrapper^			CreateGizmoActor		( System::String^ meshPath );
+	static GizmoActorWrapper^		CreateGizmoActor		( System::String^ meshPath );
 	static ActorWrapper^			CreateDefaultCamera		( bool setAsCurrent );
 };
 

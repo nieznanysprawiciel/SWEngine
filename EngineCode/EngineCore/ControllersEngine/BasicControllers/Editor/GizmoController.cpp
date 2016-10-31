@@ -91,6 +91,48 @@ void GizmoController::ControlObjectPost		( DynamicActor* actor, IControllersStat
 	}
 }
 
+// ================================ //
+//
+void							GizmoController::ChangeOperation( Operation op )
+{
+	m_operation = op;
+}
+
+// ================================ //
+//
+GizmoController::Operation		GizmoController::CheckOperation()
+{
+	return m_operation;
+}
+
+// ================================ //
+//
+void							GizmoController::SetStepSize( float value )
+{
+	m_rotationOp.StepSize = value;
+}
+
+// ================================ //
+//
+float							GizmoController::GetStepSize()
+{
+	return m_rotationOp.StepSize;
+}
+
+// ================================ //
+//
+void							GizmoController::UseStepRotation( bool value )
+{
+	m_rotationOp.UseStep = value;
+}
+
+// ================================ //
+//
+bool							GizmoController::GetUseStepRotation()
+{
+	return m_rotationOp.UseStep;
+}
+
 /**@brief Wylicza wektor kierunku promienia wyznaczanego przez klikniêcie mysz¹.
 
 Wektor jest we wspó³rzêdnych lokalnych kamery, tzn przy za³o¿eniu, ¿e kamera jest skierowana w kierunku

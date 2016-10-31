@@ -27,9 +27,23 @@ PROTOTYPE_BUTTONS::LEFT_CLICK
 class GizmoController :	public BaseInputController
 {
 	RTTR_ENABLE( BaseInputController )
+public:
+
+	enum class Operation { Translate, Rotate, Scale };
+
+	struct RotationOp
+	{
+		float		StartAngle;
+		float		StepSize;
+		bool		Started;
+		bool		UseStep;
+	};
+
 private:
 
 	StaticActor*		m_followedActor;
+	Operation			m_operation;
+	RotationOp			m_rotationOp;
 
 public:
 	explicit			GizmoController			( InputAbstractionLayerBase* layer );
@@ -40,6 +54,15 @@ public:
 
 	void				SetFollowedActor		( StaticActor* actor )		{ m_followedActor = actor; }
 	StaticActor*		GetFollowedActor		()							{ return m_followedActor; }
+
+	void				ChangeOperation			( Operation op );
+	Operation			CheckOperation			();
+
+	void				SetStepSize				( float value );
+	float				GetStepSize				();
+
+	void				UseStepRotation			( bool value );
+	bool				GetUseStepRotation		();
 
 private:
 
