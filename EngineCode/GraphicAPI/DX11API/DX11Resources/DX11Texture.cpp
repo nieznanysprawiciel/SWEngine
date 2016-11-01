@@ -20,25 +20,47 @@ RTTR_REGISTRATION
 }
 
 
+
+
+// ================================ //
+//
+void DX11Texture::Construct()
+{
+	if( IsDebugLayerEnabled() )
+	{	
+		SetDebugName( m_texture.Get(), m_descriptor.FilePath.String() );
+		SetDebugName( m_textureView.Get(), m_descriptor.FilePath.String() );
+	}
+}
+
+
+
+/**@brief Remember to release tex and texView (Call com interface Release method)*/
 DX11Texture::DX11Texture( TextureInfo&& texInfo, ID3D11Texture2D* tex, ID3D11ShaderResourceView* texView )
 	:	m_texture( tex )
 	,	m_textureView( texView )
 	,	m_descriptor( std::move( texInfo ) )
 {
-	if( IsDebugLayerEnabled() )
-	{	
-		SetDebugName( m_texture, m_descriptor.FilePath.String() );
-		SetDebugName( m_textureView, m_descriptor.FilePath.String() );
-	}
+	Construct();
 }
 
+
+// ================================ //
+//
+DX11Texture::DX11Texture( TextureInfo&& texInfo, ComPtr< ID3D11Texture2D > tex, ComPtr< ID3D11ShaderResourceView > texView )
+	:	m_texture( tex )
+	,	m_textureView( texView )
+	,	m_descriptor( std::move( texInfo ) )
+{
+	Construct();
+}
+
+// ================================ //
+//
 DX11Texture::~DX11Texture()
 {
-	if( m_texture )
-		m_texture->Release();
-	if( m_textureView )
-		m_textureView->Release();
 	m_texture = nullptr;
+	m_textureView = nullptr;
 }
 
 
@@ -68,8 +90,8 @@ DX11Texture*	DX11Texture::CreateFromMemory( const MemoryChunk& texData, TextureI
 	if( texInfo.TextureType != TextureType::TEXTURE_TYPE_TEXTURE2D )
 		return nullptr;
 
-	ID3D11Texture2D* texture = nullptr;
-	ID3D11ShaderResourceView* texView = nullptr;
+	ComPtr< ID3D11Texture2D > texture = nullptr;
+	ComPtr< ID3D11ShaderResourceView > texView = nullptr;
 	D3D11_TEXTURE2D_DESC texDesc = FillDesc( texInfo );
 
 	std::unique_ptr< D3D11_SUBRESOURCE_DATA[] > initData( new D3D11_SUBRESOURCE_DATA[ texInfo.MipMapLevels /** texInfo.ArraySize*/ ] );
@@ -102,7 +124,7 @@ DX11Texture*	DX11Texture::CreateFromMemory( const MemoryChunk& texData, TextureI
 			viewDesc.Texture2D.MostDetailedMip = 0;
 			viewDesc.Texture2D.MipLevels = texInfo.MipMapLevels;
 
-			result = device->CreateShaderResourceView( texture, &viewDesc, &texView );
+			result = device->CreateShaderResourceView( texture.Get(), &viewDesc, &texView );
 			if( result == S_OK )
 				return new DX11Texture( std::move( texInfo ), texture, texView );
 			else 
@@ -134,7 +156,7 @@ MemoryChunk					DX11Texture::CopyData() const
 
 
 	// Kopiowanie zawartoœci miêdzy buforami
-	device_context->CopyResource( newTex, m_texture );
+	device_context->CopyResource( newTex, m_texture.Get() );
 
 	assert( m_descriptor.MemorySize != 0 );
 

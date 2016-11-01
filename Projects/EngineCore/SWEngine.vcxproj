@@ -293,7 +293,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Rendering\RenderApi.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\ILoader.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\AssetsManager.h" />
-    <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ResourceContainer.h" />
     <ClInclude Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.h" />
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\ResourceHelpers.h" />

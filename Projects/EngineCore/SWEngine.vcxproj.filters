@@ -161,9 +161,6 @@
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
       <Filter>EngineCore\SoundEngine</Filter>
     </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)ModelsManager\ResourceContainer.h">
-      <Filter>EngineCore\ModelsManager</Filter>
-    </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkyModel.h">
       <Filter>EngineCore\Features\HosekSkylightModel</Filter>
     </ClInclude>

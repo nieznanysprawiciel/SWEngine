@@ -110,7 +110,7 @@ SwapChain* DX11Initializer::CreateSwapChain( SwapChainInitData& swapChainData )
 	if ( FAILED( result ) )	return nullptr;
 
 
-	DX11RenderTarget* renderTargetObject = new DX11RenderTarget( renderTargetView.Detach(), zBufferView.Detach(), nullptr, nullptr, nullptr );
+	DX11RenderTarget* renderTargetObject = new DX11RenderTarget( renderTargetView, zBufferView, nullptr, nullptr, nullptr );
 	renderTargetObject->SetHeight( static_cast<uint16>( swapChainData.WindowHeight ) );
 	renderTargetObject->SetWidth( static_cast<uint16>( swapChainData.WindowWidth ) );
 
@@ -211,16 +211,14 @@ void* DX11Initializer::GetRenderTargetHandle( RenderTargetObject* renderTarget )
 
 	if( renderTargetDX11 )
 	{
-		auto colorBufferTex = static_cast<DX11Texture*>( renderTargetDX11->GetColorBuffer() );
+		auto colorBufferTex = static_cast< DX11Texture* >( renderTargetDX11->GetColorBuffer() );
 		if( colorBufferTex )
 		{
-			ID3D11Resource* renderTargetTexture;
+			ComPtr< ID3D11Resource > renderTargetTexture;
 			auto colorBufferView = colorBufferTex->Get();
 			colorBufferView->GetResource( &renderTargetTexture );
-			// Uwaga! GetResource zwiêksza liczbê referencji do tekstury. Dlatego tutaj j¹ zmniejszamy.
-			// Tekstura i tak nie zostanie zwolniona, bo ResourceView trzymaj¹ na ni¹ referencjê.
-			renderTargetTexture->Release();
-			return renderTargetTexture;
+
+			return renderTargetTexture.Get();
 		}
 	}
 	return nullptr;

@@ -3,6 +3,7 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
+	<FBXVisualDir></FBXVisualDir>
     <FBXLibsDirectory>$(ExternalDir)FBX_SDK\lib\vs2013\$(PlatformShortName)\$(ConfigTypeSmallString)\</FBXLibsDirectory>
   </PropertyGroup>
   <ItemDefinitionGroup>
