@@ -3,8 +3,9 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-	<FBXVisualDir></FBXVisualDir>
-    <FBXLibsDirectory>$(ExternalDir)FBX_SDK\lib\vs2013\$(PlatformShortName)\$(ConfigTypeSmallString)\</FBXLibsDirectory>
+	<FBXVisualToolsetDir Condition="'$(PlatformToolSet)'=='v120'">vs2013</FBXVisualToolsetDir>
+	<FBXVisualToolsetDir Condition="'$(PlatformToolSet)'=='v140'">vs2015</FBXVisualToolsetDir>
+    <FBXLibsDirectory>$(ExternalDir)FBX_SDK\lib\$(FBXVisualToolsetDir)\$(PlatformShortName)\$(ConfigTypeSmallString)\</FBXLibsDirectory>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
