@@ -8,6 +8,8 @@
 #include "DX11Buffer.h"
 #include "DX11Initializer/DX11ConstantsMapper.h"
 
+#include "Common/Converters.h"
+
 #include "Common/MemoryLeaks.h"
 
 
@@ -23,6 +25,12 @@ DX11Buffer::DX11Buffer( const std::wstring& name, const BufferInfo& descriptor, 
 	,	m_descriptor( descriptor )
 {
 	m_descriptor.Name = name;
+
+	if( IsDebugLayerEnabled() )
+	{	
+		std::string nameStr = Convert::ToString< std::wstring >( name );
+		SetDebugName( m_buffer, nameStr );
+	}
 }
 
 DX11Buffer::~DX11Buffer()

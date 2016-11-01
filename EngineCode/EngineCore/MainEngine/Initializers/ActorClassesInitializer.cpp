@@ -10,6 +10,8 @@
 #include "EngineCore/Actors/ActorsManager.h"
 
 
+#include "Common/MemoryLeaks.h"
+
 
 RTTR_REGISTRATION
 {

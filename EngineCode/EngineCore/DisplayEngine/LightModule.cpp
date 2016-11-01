@@ -18,6 +18,9 @@
 
 #include "GraphicAPI/IRenderer.h"
 
+#include "Common/MemoryLeaks.h"
+
+
 
 const wchar_t LIGHTS_CONSTANTS_BUFFER_NAME[] = L"::DisplayEngine::LightsConstants";
 

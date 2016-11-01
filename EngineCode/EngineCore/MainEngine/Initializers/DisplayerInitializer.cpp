@@ -12,6 +12,8 @@
 #include "EngineCore/DisplayEngine/DisplayEngine.h"
 #include "GraphicAPI/ResourcesFactory.h"
 
+#include "Common/MemoryLeaks.h"
+
 
 /**@brief Inicjalizuje DisplayEngine.
 

@@ -66,6 +66,8 @@ class DX11APIObjects
 protected:
 	static DX11APIObjects*			this_ptr;		///<Wa¿ne, ¿eby nie zainicjowac obiektu wielokrotnie.
 
+	static bool						m_useDebugLayer;
+
 	static unsigned int				_window_width;
 	static unsigned int				_window_height;
 	static std::string				_pixel_shader_model;
@@ -147,6 +149,11 @@ protected:
 
 	void begin_scene();
 	inline void end_scene_and_present() { swap_chain->Present( 0, 0 ); }	///<Wywo³uje funkcjê swap_chain->Present w celu wyœwietlenia narysowanej sceny na monitorze
+
+protected:
+
+	void			SetDebugName		( ID3D11DeviceChild* child, const std::string& name );
+	bool			IsDebugLayerEnabled	();
 };
 
 

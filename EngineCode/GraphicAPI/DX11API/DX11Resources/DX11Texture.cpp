@@ -24,12 +24,20 @@ DX11Texture::DX11Texture( TextureInfo&& texInfo, ID3D11Texture2D* tex, ID3D11Sha
 	:	m_texture( tex )
 	,	m_textureView( texView )
 	,	m_descriptor( std::move( texInfo ) )
-{}
+{
+	if( IsDebugLayerEnabled() )
+	{	
+		SetDebugName( m_texture, m_descriptor.FilePath.String() );
+		SetDebugName( m_textureView, m_descriptor.FilePath.String() );
+	}
+}
 
 DX11Texture::~DX11Texture()
 {
 	if( m_texture )
 		m_texture->Release();
+	if( m_textureView )
+		m_textureView->Release();
 	m_texture = nullptr;
 }
 

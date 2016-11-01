@@ -11,6 +11,8 @@
 
 #include "EngineCore/ModelsManager/AssetsManager.h"
 
+#include "Common/MemoryLeaks.h"
+
 
 AssetsManager*		IRenderPass::s_assetsManager = nullptr;
 RenderPassFactory*	IRenderPass::s_renderPassFactory = nullptr;

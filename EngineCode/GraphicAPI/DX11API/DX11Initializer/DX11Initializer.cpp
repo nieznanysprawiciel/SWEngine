@@ -126,6 +126,8 @@ bool DX11Initializer::InitAPI( GraphicAPIInitData& initData )
 {
 	set_depth_stencil_format( DX11ConstantsMapper::Get( initData.SwapChain.DepthStencilFormat ) );
 
+	m_useDebugLayer = initData.UseDebugLayer;
+
 	DX11_INIT_RESULT result;
 	if( initData.CreateSwapChain )
 	{

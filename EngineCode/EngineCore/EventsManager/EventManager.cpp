@@ -5,6 +5,8 @@
 #include "EngineCore/Actors/BasicActors/ActorBase.h"		// Potrzebne przy usuwaniu aktorów.
 
 
+#include "Common/MemoryLeaks.h"
+
 
 /**@brief */
 EventManager::EventManager( Engine* engine )

@@ -3,6 +3,8 @@
 
 #include "GraphicAPI/MeshResources.h"
 
+#include "Common/MemoryLeaks.h"
+
 
 RenderPassDepracated::RenderPassDepracated()
 	:	m_camera( nullptr ),

@@ -21,6 +21,8 @@ Ta klasa nie zawiera ¿adnych zmiennych niestatycznych, ale chcemy wiedzieæ czy z
 obiekt. Dziêki temu mo¿emy zainicjowaæ deskryptory domyœlnymi wartoœciami w wygodny sposób w konstruktorze.*/
 DX11APIObjects*						DX11APIObjects::this_ptr = nullptr;
 
+bool								DX11APIObjects::m_useDebugLayer = false;
+
 //Zmienne globalne dla funkcji
 D3D11_VIEWPORT						DX11APIObjects::_view_port_desc;			//Domyœlny viewport. Je¿eli uzytkownik poda w³asny to zostanie on nadpisany.
 DXGI_SWAP_CHAIN_DESC				DX11APIObjects::_swap_chain_desc;
@@ -222,15 +224,14 @@ void DX11APIObjects::release_DirectX()
 		z_buffer->Release(), z_buffer = nullptr;
 	if ( device_context )
 		device_context->Release(), device_context = nullptr;
+	if ( device )
+		device->Release(), device = nullptr;
 
-//#ifdef _DEBUG
-//	debug_interface->ReportLiveDeviceObjects( D3D11_RLDO_SUMMARY | D3D11_RLDO_DETAIL );
-//#endif
+	if( IsDebugLayerEnabled() )
+		debug_interface->ReportLiveDeviceObjects( D3D11_RLDO_DETAIL );
 
 	if( debug_interface )
 		debug_interface->Release(), debug_interface = nullptr;
-	if ( device )
-		device->Release(), device = nullptr;
 }
 
 
@@ -479,9 +480,11 @@ DX11_INIT_RESULT DX11APIObjects::InitDevicesAndSwapChain( HWND window, bool full
 	HRESULT result = S_OK;
 	UINT createDeviceFlags = 0;
 
-#ifdef _DEBUG
-	createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
-#endif
+	if( m_useDebugLayer )
+	{
+		createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
+	}
+
 	if ( single_thread )
 		// Domyœlnie obiekt ID3D11Device jest synchronizowany, ale mo¿na to wy³¹czyæ
 		createDeviceFlags |= D3D11_CREATE_DEVICE_SINGLETHREADED;
@@ -497,11 +500,11 @@ DX11_INIT_RESULT DX11APIObjects::InitDevicesAndSwapChain( HWND window, bool full
 	if ( fullscreen )
 		swap_chain->SetFullscreenState( TRUE, nullptr );
 
-#ifdef _DEBUG
-	//debug_interface
-	device->QueryInterface( __uuidof( ID3D11Debug ), (void**)&debug_interface );
-
-#endif
+	if( m_useDebugLayer )
+	{
+		//debug_interface
+		device->QueryInterface( __uuidof( ID3D11Debug ), (void**)&debug_interface );
+	}
 
 	return DX11_INIT_OK;
 }
@@ -860,6 +863,23 @@ void DX11APIObjects::begin_scene()
 
 	//Z-bufor
 	device_context->ClearDepthStencilView( z_buffer_view, D3D11_CLEAR_DEPTH, 1.0f, 0 );
+}
+
+// ================================ //
+//
+void		DX11APIObjects::SetDebugName	( ID3D11DeviceChild* child, const std::string& name )
+{
+	if( child != nullptr )
+	{
+		child->SetPrivateData( WKPDID_D3DDebugObjectName, (uint32)name.size(), name.c_str() );
+	}
+}
+
+// ================================ //
+//
+bool		DX11APIObjects::IsDebugLayerEnabled()
+{
+	return m_useDebugLayer;
 }
 
 

@@ -180,7 +180,7 @@ void Engine::test()
 
 	SetSkydomeAndCamera();
 
-	testMaterial( Context->modelsManager->GetModel( CLONE_FIGHTER ) );
+	//testMaterial( Context->modelsManager->GetModel( CLONE_FIGHTER ) );
 
 
 	int actorInfoSize = sizeof( ActorInfo );

@@ -85,6 +85,7 @@ Engine::~Engine()
 	for ( unsigned int i = 0; i < Context->objectList.size(); ++i )
 		delete Context->objectList[i];
 
+	delete Context->eventsManager;
 	delete Context->controllersEngine;
 	delete Context->movementEngine;
 	delete Context->displayEngine;
@@ -170,6 +171,11 @@ bool Engine::InitGraphicAPI( int width, int height, bool fullScreen )
 	GraphicAPIInitData initData;
 	initData.SwapChain.FullScreen			= fullScreen;
 	initData.SingleThreaded					= false;
+
+#ifdef _DEBUG
+	initData.UseDebugLayer = true;
+#endif // _DEBUG
+
 	initData.SwapChain.WindowHandle			= Context->windowHandler;
 	initData.SwapChain.WindowHeight			= height;
 	initData.SwapChain.WindowWidth			= width;

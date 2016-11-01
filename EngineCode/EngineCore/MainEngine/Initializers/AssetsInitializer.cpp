@@ -14,6 +14,7 @@
 
 #include "GraphicAPI/ResourcesFactory.h"
 
+#include "Common/MemoryLeaks.h"
 
 
 /**@brief Inicjuje domyœlne assety silnika.*/
