@@ -7,9 +7,17 @@
 			 xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+	
 	<UserControl.Resources>
-		<ResourceDictionary Source="/Styles/BlueStyle/BaseStyles.xaml"/>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/Controls/TextBoxes.xaml"/>
+				<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/BaseStyles.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
 	</UserControl.Resources>
+	
+	
 	<Grid Margin="20, 10, 20, 20" DataContext="{Binding ProjectSettings}">
 		
 		<Grid.RowDefinitions>

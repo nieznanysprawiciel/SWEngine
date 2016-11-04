@@ -13,7 +13,7 @@
 	<UserControl.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="/Styles/BlueStyle/BaseStyles.xaml"/>
+				<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/BaseStyles.xaml"/>
 				<ResourceDictionary>
 					<ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="PropertyTypeEnumProvider">
 						<ObjectDataProvider.MethodParameters>

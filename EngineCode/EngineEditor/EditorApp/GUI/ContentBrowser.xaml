@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 	<UserControl.Resources>
-		<ResourceDictionary Source="/Styles/BlueStyle/ContentStyle.xaml"/>
+		<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/ContentStyle.xaml"/>
 	</UserControl.Resources>
 	
 	<TreeView Name="ContentTree" Style="{StaticResource ContentTreeViewStyle}" ItemsSource="{Binding Path=FileTreeRoot.DirectoryContent}">

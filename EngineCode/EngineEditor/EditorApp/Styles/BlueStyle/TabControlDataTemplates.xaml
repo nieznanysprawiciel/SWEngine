@@ -20,7 +20,7 @@
 		<gui:ActorsCreator />
 	</DataTemplate>
 	
-	<DataTemplate DataType="{x:Type engine:Displayer}" >
+	<DataTemplate DataType="{x:Type engine:MainDisplayView}" >
 		<gui:RendererPreview />
 	</DataTemplate>
 

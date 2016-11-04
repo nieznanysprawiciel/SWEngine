@@ -9,7 +9,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
 	<UserControl.Resources>
-		<ResourceDictionary Source="/Styles/BlueStyle/BaseStyles.xaml"/>
+		<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/BaseStyles.xaml"/>
 	</UserControl.Resources>
 
 	<Grid Height="Auto" >

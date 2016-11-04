@@ -14,7 +14,7 @@ using EditorApp.GUI;
 
 namespace EditorApp.Editor.Project.Actors
 {
-	public class ActorsLogic : UpdatableViewBase, EditorApp.GUI.IDeletableItem
+	public class ActorsLogic : UpdatableViewBase, IDeletableItem
 	{
 		private List< ActorClassMetaInfo >						m_actorsTypesList;
 		private ObservableCollection< ActorWrapper >			m_actors;
@@ -46,7 +46,7 @@ namespace EditorApp.Editor.Project.Actors
 
 			SelectedActor = null;
 			SelectedActorMeta = null;
-			m_gizmoActor = null;
+			GizmoActor = null;
 
 			LoadAssetCommand = new RelayCommand( LoadAsset, CanLoadAsset );
 			ActorSelectionChangedCommand = new RelayCommand( ActorSelectionChanged );
@@ -68,7 +68,7 @@ namespace EditorApp.Editor.Project.Actors
 
 			SelectedActor = null;
 			SelectedActorMeta = null;
-			m_gizmoActor = null;
+			GizmoActor = null;
 		}
 
 		public void				UnloadScene()
@@ -83,8 +83,8 @@ namespace EditorApp.Editor.Project.Actors
 			m_actorsTypesList = engine.CreateActorsMetadata();
 
 			// Tworzymy aktorów pomocniczych.
-			m_gizmoActor = EditorActorsFactory.CreateGizmoActor( Path.Combine( m_editorLogic.PathsManager.DefaultMeshesDir, m_editorLogic.GlobalSettings.GizmoAssetFile ) );
-			m_editorActors.Add( m_gizmoActor );
+			GizmoActor = EditorActorsFactory.CreateGizmoActor( Path.Combine( m_editorLogic.PathsManager.DefaultMeshesDir, m_editorLogic.GlobalSettings.GizmoAssetFile ) );
+			m_editorActors.Add( GizmoActor );
 
 			var camera = EditorActorsFactory.CreateDefaultCamera( true );
 			m_editorActors.Add( camera );
@@ -126,7 +126,7 @@ namespace EditorApp.Editor.Project.Actors
 			if( parameter != null )
 			{
 				var actor = parameter as ActorWrapper;
-				m_editorLogic.Displayer.EngineWrapper.SelectActor( m_gizmoActor, actor );
+				m_editorLogic.Displayer.EngineWrapper.SelectActor( GizmoActor, actor );
 
 				SelectedActorMeta = new ActorClassMetaInfo( actor );
 				OnPropertyChanged( "SelectedActorMeta" );
@@ -334,6 +334,20 @@ namespace EditorApp.Editor.Project.Actors
 			internal set
 			{
 				m_actorsCreatorView = value;
+			}
+		}
+
+		public GizmoActorWrapper GizmoActor
+		{
+			get
+			{
+				return m_gizmoActor;
+			}
+
+			set
+			{
+				m_gizmoActor = value;
+				OnPropertyChanged( "GizmoActor" );
 			}
 		}
 

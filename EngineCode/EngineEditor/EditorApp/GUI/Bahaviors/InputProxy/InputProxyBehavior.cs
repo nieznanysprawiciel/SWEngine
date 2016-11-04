@@ -11,7 +11,7 @@ namespace EditorApp.GUI
 {
 	class InputProxyBehavior : Behavior<FrameworkElement>
 	{
-		Engine.Displayer		DisplayerRef;
+		Engine.MainDisplayer		DisplayerRef;
 
 		protected override void OnAttached()
 		{
@@ -37,7 +37,7 @@ namespace EditorApp.GUI
 		void MouseButtonStateChanged			( object sender, MouseButtonEventArgs e )
 		{
 			if( DisplayerRef == null )
-				DisplayerRef = this.AssociatedObject.DataContext as Engine.Displayer;
+				DisplayerRef = this.AssociatedObject.DataContext as Engine.MainDisplayer;
 
 			DisplayerRef.EngineWrapper.MouseButtonChange( e.ChangedButton, e.ButtonState == MouseButtonState.Pressed );
 
@@ -50,7 +50,7 @@ namespace EditorApp.GUI
 		void KeyStateChanged					( object sender, KeyEventArgs e )
 		{
 			if( DisplayerRef == null )
-				DisplayerRef = this.AssociatedObject.DataContext as Engine.Displayer;
+				DisplayerRef = this.AssociatedObject.DataContext as Engine.MainDisplayer;
 
 			DisplayerRef.EngineWrapper.KeyboardChange( e.Key, e.IsDown );
 			e.Handled = true;
@@ -59,7 +59,7 @@ namespace EditorApp.GUI
 		void GotFocus							( object sender, RoutedEventArgs e )
 		{
 			if( DisplayerRef == null )
-				DisplayerRef = this.AssociatedObject.DataContext as Engine.Displayer;
+				DisplayerRef = this.AssociatedObject.DataContext as Engine.MainDisplayer;
 
 			DisplayerRef.GotFocus();
 			e.Handled = true;
@@ -68,7 +68,7 @@ namespace EditorApp.GUI
 		void LostFocus							( object sender, RoutedEventArgs e )
 		{
 			if( DisplayerRef == null )
-				DisplayerRef = this.AssociatedObject.DataContext as Engine.Displayer;
+				DisplayerRef = this.AssociatedObject.DataContext as Engine.MainDisplayer;
 
 			DisplayerRef.LostFocus();
 			e.Handled = true;
@@ -91,7 +91,7 @@ namespace EditorApp.GUI
 		void MouseMoved( object sender, MouseEventArgs e )
 		{
 			if( DisplayerRef == null )
-				DisplayerRef = this.AssociatedObject.DataContext as Engine.Displayer;
+				DisplayerRef = this.AssociatedObject.DataContext as Engine.MainDisplayer;
 
 			var position = e.GetPosition( this.AssociatedObject );
 			DisplayerRef.EngineWrapper.MousePositionChange( position.X, position.Y );
@@ -102,7 +102,7 @@ namespace EditorApp.GUI
 		void MouseWheelMoved( object sender, MouseWheelEventArgs e )
 		{
 			if( DisplayerRef == null )
-				DisplayerRef = this.AssociatedObject.DataContext as Engine.Displayer;
+				DisplayerRef = this.AssociatedObject.DataContext as Engine.MainDisplayer;
 
 			DisplayerRef.EngineWrapper.MouseWheelChange( (double)e.Delta );
 			e.Handled = true;

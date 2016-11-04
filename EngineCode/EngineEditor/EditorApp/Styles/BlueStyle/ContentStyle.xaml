@@ -8,7 +8,8 @@
 
 
 	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="/Styles/BlueStyle/BaseStyles.xaml"/>
+		<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/Controls/TextBoxes.xaml"/>
+		<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/BaseStyles.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
 
 	<gui:FileIconConverter x:Key="FileTypeIconConverter" />

@@ -164,6 +164,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Editor\Engine\Displayer.cs" />
+    <Compile Include="Editor\Engine\MainDisplayView.cs" />
     <Compile Include="Editor\Helpers\Serialization.cs" />
     <Compile Include="Editor\Project\Actors\ActorView.cs" />
     <Compile Include="Editor\Project\Content\LoadedAssets.cs" />
@@ -180,6 +182,9 @@
     <Compile Include="GUI\Bahaviors\InputProxy\InputProxyBehavior.cs" />
     <Compile Include="GUI\Bahaviors\KeyboardShortcut\DeleteItemBehavior.cs" />
     <Compile Include="GUI\Bahaviors\KeyboardShortcut\IDeletableItem.cs" />
+    <Compile Include="GUI\Components\DisplayerPanel.xaml.cs">
+      <DependentUpon>DisplayerPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Converters\DatabindingDebugConverter .cs" />
     <Compile Include="GUI\Converters\FileIconConverter.cs" />
     <Compile Include="GUI\LoadedAssetsViewer.xaml.cs">
@@ -202,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\ActorViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Components\DisplayerPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -233,7 +242,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Editor\Engine\Displayer.cs" />
+    <Compile Include="Editor\Engine\MainDisplayer.cs" />
     <Compile Include="Editor\Logic.cs" />
     <Compile Include="Editor\GlobalSettings.cs" />
     <Compile Include="Editor\Project\Actors\ActorsCreatorView.cs" />
@@ -265,6 +274,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+    <Page Include="Styles\BlueStyle\ColorsBrushes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\BlueStyle\Controls\Buttons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\BlueStyle\Controls\Comboboxes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\BlueStyle\Controls\SpinBoxes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\BlueStyle\Controls\TextBoxes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\BlueStyle\Resources.xaml">
       <SubType>Designer</SubType>
@@ -367,6 +396,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Styles\GreyStyle\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\BlueStyle\Images\RotateIcon.png" />
+    <Resource Include="Styles\BlueStyle\Images\TranslateIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

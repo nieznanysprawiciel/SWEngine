@@ -10,4 +10,7 @@
 	<BitmapImage x:Key="FindAssetIcon" UriSource="pack://application:,,,/Styles/BlueStyle/Images/SearchIcon.ico" />
 	<BitmapImage x:Key="LoadAssetIcon" UriSource="pack://application:,,,/Styles/BlueStyle/Images/LoadAssetIcon.ico" />
 
+	<BitmapImage x:Key="TranslateIcon" UriSource="pack://application:,,,/Styles/BlueStyle/Images/TranslateIcon.png" />
+	<BitmapImage x:Key="RotateIcon" UriSource="pack://application:,,,/Styles/BlueStyle/Images/RotateIcon.png" />
+
 </ResourceDictionary>

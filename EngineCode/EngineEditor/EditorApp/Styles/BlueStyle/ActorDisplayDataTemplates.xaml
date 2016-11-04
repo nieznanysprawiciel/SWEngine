@@ -6,8 +6,11 @@
 
 
 	<ResourceDictionary.MergedDictionaries>
-		<ResourceDictionary Source="/Styles/BlueStyle/BaseStyles.xaml"/>
-		<ResourceDictionary Source="/Styles/BlueStyle/Resources.xaml"/>
+		<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/Controls/SpinBoxes.xaml"/>
+		<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/Controls/TextBoxes.xaml"/>
+		<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/Controls/Buttons.xaml"/>
+		<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/Controls/Comboboxes.xaml"/>
+		<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/Resources.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
 
 	<Style x:Key="PropertyLabelTextBlockStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextBlockBaseStyle}">

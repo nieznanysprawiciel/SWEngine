@@ -29,7 +29,7 @@ namespace EditorApp
         public PathsManager             PathsManager { get; internal set; }
         public GlobalSettings           GlobalSettings { get; internal set; }
         public Project.ProjectManager   ProjectManager { get; internal set; }
-        public Engine.Displayer         Displayer { get; internal set; }
+        public Engine.MainDisplayer		Displayer { get; internal set; }
 
 		private ObservableCollection< UpdatableViewBase >        m_leftPanelView;
 		private ObservableCollection< UpdatableViewBase >        m_rightPanelView;
@@ -51,13 +51,13 @@ namespace EditorApp
 			PathsManager = new PathsManager();
 			GlobalSettings = new GlobalSettings();
 			ProjectManager = new Project.ProjectManager( this );
-			Displayer = new Engine.Displayer( this );
+			Displayer = new Engine.MainDisplayer( this );
 
 			LeftPanelView.Insert( 0, ProjectManager.ActorsLogic.ActorsCreatorView );
 			LeftPanelView.Insert( 0, ProjectManager.ContentManager );
 			RightPanelView.Add( ProjectManager.ActorsLogic );
 			RightPanelView.Add( ProjectManager.ProjectView );
-			MainPanelView.Add( Displayer );
+			MainPanelView.Add( new Engine.MainDisplayView( Displayer, ProjectManager.ActorsLogic ) );
 
 			LoadCommand = new RelayCommand( LoadClick );
 			SaveCommand = new RelayCommand( SaveClick );
@@ -82,6 +82,7 @@ namespace EditorApp
 
 			return true;
 		}
+
 
 		public bool			LoadProject		( string projectFile )
 		{
