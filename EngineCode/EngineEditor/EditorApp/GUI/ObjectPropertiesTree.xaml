@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="EditorApp.GUI.ObjectPropertiesTree"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EditorApp.GUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="500">
+
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/Controls/PropertiesTree.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</UserControl.Resources>
+
+	<TreeView Style="{StaticResource PropertiesTree}" ItemsSource="{Binding Properties}">
+		<!--<TreeView.Items>
+			<TreeViewItem Header="Actor Mesh" IsExpanded="True">
+				<TreeViewItem Header="MeshAsset" IsExpanded="True" >
+					<TreeViewItem Header="MeshAsset" IsExpanded="True" >
+						<TreeViewItem Header="Vertex Buffer" />
+						<TreeViewItem Header="Index Buffer" />
+						<TreeViewItem Header="Material" />
+					</TreeViewItem>
+				</TreeViewItem>
+			</TreeViewItem>
+			<TreeViewItem Header="Transformation" IsExpanded="True">
+				<TreeViewItem Header="Position" IsExpanded="True" >
+					<TreeViewItem Header="X" />
+					<TreeViewItem Header="Y" />
+					<TreeViewItem Header="Z" />
+				</TreeViewItem>
+				<TreeViewItem Header="Rotation" IsExpanded="True" >
+					<TreeViewItem Header="X" />
+					<TreeViewItem Header="Y" />
+					<TreeViewItem Header="Z" />
+					<TreeViewItem Header="W" />
+				</TreeViewItem>
+			</TreeViewItem>
+		</TreeView.Items>-->
+	</TreeView>
+</UserControl>

@@ -11,8 +11,12 @@
              d:DesignHeight="300" d:DesignWidth="300">
 	
 	<UserControl.Resources>
-		<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/BaseStyles.xaml"/>
-		<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/Controls/TextBoxes.xaml"/>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/BaseStyles.xaml"/>
+				<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/Controls/TextBoxes.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
 	</UserControl.Resources>
 
 	<ListView Style="{StaticResource UnselectableListViewStyle}" Height="Auto" Width="Auto" DataContext="{Binding}" ItemsSource="{Binding ActorsMetaData}" SelectionMode="Single">

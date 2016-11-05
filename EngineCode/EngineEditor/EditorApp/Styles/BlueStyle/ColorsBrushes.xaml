@@ -18,5 +18,21 @@
 	<Color x:Key="RedGradientFirstColor" >#AAEA9595</Color>
 	<Color x:Key="RedGradientSecondColor" >#AAF54B4B</Color>
 
+	<LinearGradientBrush x:Key="RedSelectionBrush" StartPoint="0.5,0" EndPoint="0.5,1.0">
+		<LinearGradientBrush.GradientStops>
+			<GradientStop Color="{StaticResource RedGradientFirstColor}" Offset="0" />
+			<GradientStop Color="{StaticResource RedGradientSecondColor}" Offset="1" />
+		</LinearGradientBrush.GradientStops>
+	</LinearGradientBrush>
+	
+
+	<Color x:Key="PanelBackgroundColor" >#FF5A6297</Color>
+	<SolidColorBrush x:Key="PanelBackgroundBrush" Color="{StaticResource PanelBackgroundColor}"/>
+
+
+
+	<Color x:Key="SelectedBackgroundColor">#FFC5CBF9</Color>
+	<Color x:Key="SelectedUnfocusedColor">#FFDDDDDD</Color>
+
 
 </ResourceDictionary>

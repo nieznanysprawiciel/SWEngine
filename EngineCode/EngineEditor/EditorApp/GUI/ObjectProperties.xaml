@@ -12,6 +12,7 @@
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/BaseStyles.xaml"/>
 				<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/Controls/TextBoxes.xaml"/>
+				<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/Controls/PropertiesTree.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</UserControl.Resources>
@@ -63,8 +64,15 @@
 			</StackPanel>
 
 			<!--Properties-->
-			<ListView Height="Auto" Width="Auto" Style="{StaticResource ActorListViewStyle}" ItemsSource="{Binding Properties}" />
-		
+			<!--<ListView Height="Auto" Width="Auto" Style="{StaticResource ActorListViewStyle}" ItemsSource="{Binding Properties}" />-->
+
+			<TreeView Style="{StaticResource PropertiesTree}" ItemsSource="{Binding Properties}" ItemContainerStyle="{StaticResource PropertiesTreeItem}">
+				<TreeView.Resources>
+					<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/PropertiesTemplates.xaml"/>
+				</TreeView.Resources>
+			</TreeView>
+
+
 		</StackPanel>
 	</ScrollViewer>
 

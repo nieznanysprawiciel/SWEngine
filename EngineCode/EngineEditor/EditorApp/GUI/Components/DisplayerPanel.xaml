@@ -15,14 +15,16 @@
 		</ResourceDictionary>
 	</UserControl.Resources>
 
-	<StackPanel DataContext="{Binding GizmoActor}" Width="Auto" Height="48" Orientation="Horizontal">
-		<RadioButton IsChecked="{Binding TranslationMode}" Style="{StaticResource ImageRadioButton}" >
-			<Image Source="{StaticResource TranslateIcon}" />
-		</RadioButton>
+	<Border CornerRadius="3" Background="{StaticResource PanelBackgroundBrush}" BorderBrush="{StaticResource ControlsBorderColorBrush}" BorderThickness="1">
+		<StackPanel DataContext="{Binding GizmoActor}" Width="Auto" Height="48" Orientation="Horizontal">
+			<RadioButton IsChecked="{Binding TranslationMode}" Style="{StaticResource ImageRadioButton}" >
+				<Image Source="{StaticResource TranslateIcon}" />
+			</RadioButton>
 
-		<RadioButton IsChecked="{Binding RotationMode}" Style="{StaticResource ImageRadioButton}" >
-			<Image Source="{StaticResource RotateIcon}" />
-		</RadioButton>
-	</StackPanel>
-	
+			<RadioButton IsChecked="{Binding RotationMode}" Style="{StaticResource ImageRadioButton}" >
+				<Image Source="{StaticResource RotateIcon}" />
+			</RadioButton>
+		</StackPanel>
+	</Border>
+
 </UserControl>

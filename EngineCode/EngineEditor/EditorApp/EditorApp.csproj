@@ -193,6 +193,9 @@
     <Compile Include="GUI\ObjectProperties.xaml.cs">
       <DependentUpon>ObjectProperties.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\ObjectPropertiesTree.xaml.cs">
+      <DependentUpon>ObjectPropertiesTree.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\ProjectBrowser.xaml.cs">
       <DependentUpon>ProjectBrowser.xaml</DependentUpon>
     </Compile>
@@ -223,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\ObjectProperties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\ObjectPropertiesTree.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -287,11 +294,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\BlueStyle\Controls\ExpanderButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\BlueStyle\Controls\PropertiesTree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\BlueStyle\Controls\SpinBoxes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\BlueStyle\Controls\TextBoxes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\BlueStyle\PropertiesTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

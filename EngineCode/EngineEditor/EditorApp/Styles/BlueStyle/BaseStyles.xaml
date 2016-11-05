@@ -201,12 +201,9 @@
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="MouseOver" >
 									<Storyboard>
-										<ColorAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
-											<EasingColorKeyFrame KeyTime="0" Value="{StaticResource RedGradientFirstColor}" />
-										</ColorAnimationUsingKeyFrames>
-										<ColorAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
-											<EasingColorKeyFrame KeyTime="0" Value="{StaticResource RedGradientSecondColor}" />
-										</ColorAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background">
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RedSelectionBrush}" />
+										</ObjectAnimationUsingKeyFrames>
 									</Storyboard>
 								</VisualState>
 								<VisualState x:Name="Disabled" />
@@ -232,8 +229,8 @@
 		<Style.Resources>
 			<!--This style should be avaible for alla controlls-->
 			<Style TargetType="GridViewColumnHeader">
-				<Setter Property="Background" Value="CornflowerBlue" />
-				<Setter Property="BorderBrush" Value="CornflowerBlue" />
+				<Setter Property="Background" Value="{StaticResource PanelBackgroundBrush}" />
+				<Setter Property="BorderBrush" Value="{StaticResource PanelBackgroundBrush}" />
 			</Style>
 		</Style.Resources>
 	</Style>
@@ -257,12 +254,9 @@
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="MouseOver">
 									<Storyboard>
-										<ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Grid" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
-											<EasingColorKeyFrame KeyTime="0" Value="{StaticResource RedGradientFirstColor}" />
-										</ColorAnimationUsingKeyFrames>
-										<ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Grid" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
-											<EasingColorKeyFrame KeyTime="0" Value="{StaticResource RedGradientSecondColor}" />
-										</ColorAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="DGR_Grid" Storyboard.TargetProperty="Background">
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RedSelectionBrush}" />
+										</ObjectAnimationUsingKeyFrames>
 									</Storyboard>
 								</VisualState>
 							</VisualStateGroup>
@@ -305,14 +299,7 @@
 
 	<!--Radio button-->
 	<Style x:Key="ImageRadioButton" TargetType="RadioButton">
-		<Setter Property="Background">
-			<Setter.Value>
-				<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-					<GradientStop Offset="0" Color="Transparent" />
-					<GradientStop Offset="1" Color="Transparent" />
-				</LinearGradientBrush>
-			</Setter.Value>
-		</Setter>
+		<Setter Property="Background" Value="Transparent" />
 		<Setter Property="Foreground" Value="#FF000000"/>
 		<Setter Property="HorizontalContentAlignment" Value="Left"/>
 		<Setter Property="VerticalContentAlignment" Value="Top"/>
@@ -328,31 +315,25 @@
 								<VisualState x:Name="Normal"/>
 								<VisualState x:Name="MouseOver">
 									<Storyboard>
-										<ColorAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
-											<EasingColorKeyFrame KeyTime="0" Value="{StaticResource RedGradientFirstColor}" />
-										</ColorAnimationUsingKeyFrames>
-										<ColorAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
-											<EasingColorKeyFrame KeyTime="0" Value="{StaticResource RedGradientSecondColor}" />
-										</ColorAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="Background">
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RedSelectionBrush}" />
+										</ObjectAnimationUsingKeyFrames>
 									</Storyboard>
 								</VisualState>
 							</VisualStateGroup>
 							<VisualStateGroup x:Name="CheckStates">
 								<VisualState x:Name="Checked">
 									<Storyboard>
-										<ColorAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
-											<EasingColorKeyFrame KeyTime="0" Value="{StaticResource RedGradientSecondColor}" />
-										</ColorAnimationUsingKeyFrames>
-										<ColorAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
-											<EasingColorKeyFrame KeyTime="0" Value="{StaticResource RedGradientFirstColor}" />
-										</ColorAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="BorderBrush">
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ControlsBorderColorBrush}" />
+										</ObjectAnimationUsingKeyFrames>
 									</Storyboard>
 								</VisualState>
 								<VisualState x:Name="Unchecked"/>
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
 
-						<Border Name="Border" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+						<Border Name="Border" BorderThickness="1" BorderBrush="Transparent" Background="{TemplateBinding Background}">
 							<ContentPresenter
                               x:Name="contentPresenter"
                               Content="{TemplateBinding Content}"
@@ -366,6 +347,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+
 
 
 </ResourceDictionary>
