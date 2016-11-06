@@ -15,16 +15,18 @@ namespace EditorApp
 		public string		LevelMapFileExt { get; set; }
 
 		// Default assets file names
-		public string		GizmoAssetFile { get; set; }
-
+		public string		TranslateGizmoAssetFile { get; set; }
+		public string		RotateGizmoAssetFile { get; set; }
+		public string		ScaleGizmoAssetFile { get; set; }
 
 
 		public GlobalSettings()
         {
 			LevelMapFileExt = ".swmap";
 			ProjectFileExt = ".swproj";
-			GizmoAssetFile = "Gizmo.FBX";
-
+			TranslateGizmoAssetFile = "TranslateGizmo.FBX";
+			RotateGizmoAssetFile = "RotateGizmo.FBX";
+			ScaleGizmoAssetFile = "ScaleGizmo.FBX";
 		}
 
 

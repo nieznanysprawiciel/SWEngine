@@ -15,21 +15,27 @@ namespace EditorPlugin
 {
 
 /**@brief */
-GizmoActorWrapper^	EditorActorsFactory::CreateGizmoActor( System::String^ meshPath )
+GizmoActorWrapper^	EditorActorsFactory::CreateGizmoActor( System::String^ translateMesh, System::String^ rotateMesh, System::String^ scaleMesh )
 {
 	auto engine = EnginePointerProvider::GetEngine();
 
 	DynamicActor* actor = static_cast< DynamicActor* >( engine->Actors.CreateActor( rttr::type::get< DynamicActor >() ) );
 	engine->Actors.AddToModules( actor, ActorInfoFlag::EnablePreController | ActorInfoFlag::EnablePostController | ActorInfoFlag::EnableDisplay );
 
-	// Ustawienie kontrolera
-	auto gizmoController = new GizmoController( engine->Input.GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ) );
-	actor->SetController( gizmoController );
+	// Loading meshes
+	auto translationGizmoMesh = engine->Assets.Models.LoadSync( msclr::interop::marshal_as< std::wstring >( translateMesh ) );
+	assert( translationGizmoMesh );
 
-	// Ustawienie odpowiedniego mesha
-	auto gizmoModel = engine->Assets.Models.LoadSync( msclr::interop::marshal_as< std::wstring >( meshPath ) );
-	assert( gizmoModel );
-	actor->SetModel( gizmoModel );
+	auto rotationGizmoMesh = engine->Assets.Models.LoadSync( msclr::interop::marshal_as< std::wstring >( rotateMesh ) );
+	assert( rotationGizmoMesh );
+
+	auto scaleGimzoMesh = engine->Assets.Models.LoadSync( msclr::interop::marshal_as< std::wstring >( scaleMesh ) );
+	//assert( scaleGimzoMesh );
+
+
+	// Ustawienie kontrolera
+	auto gizmoController = new GizmoController( engine->Input.GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ), translationGizmoMesh, rotationGizmoMesh, scaleGimzoMesh );
+	actor->SetController( gizmoController );
 
 	// Tworzenie wrappera edytorowego dla aktora
 	auto actorInfo = engine->Actors.FindActor( actor );

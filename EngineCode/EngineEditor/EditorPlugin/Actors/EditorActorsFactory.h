@@ -18,7 +18,7 @@ public ref class EditorActorsFactory
 {
 private:
 public:
-	static GizmoActorWrapper^		CreateGizmoActor		( System::String^ meshPath );
+	static GizmoActorWrapper^		CreateGizmoActor		( System::String^ translateMesh, System::String^ rotateMesh, System::String^ scaleMesh );
 	static ActorWrapper^			CreateDefaultCamera		( bool setAsCurrent );
 };
 

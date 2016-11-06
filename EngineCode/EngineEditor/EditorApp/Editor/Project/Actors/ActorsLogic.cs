@@ -82,8 +82,14 @@ namespace EditorApp.Editor.Project.Actors
 			EngineWrapper engine = m_editorLogic.Displayer.EngineWrapper;
 			m_actorsTypesList = engine.CreateActorsMetadata();
 
+
 			// Tworzymy aktorów pomocniczych.
-			GizmoActor = EditorActorsFactory.CreateGizmoActor( Path.Combine( m_editorLogic.PathsManager.DefaultMeshesDir, m_editorLogic.GlobalSettings.GizmoAssetFile ) );
+			var translateGizmoPath = Path.Combine( m_editorLogic.PathsManager.DefaultMeshesDir, m_editorLogic.GlobalSettings.TranslateGizmoAssetFile );
+			var rotateGizmoPath = Path.Combine( m_editorLogic.PathsManager.DefaultMeshesDir, m_editorLogic.GlobalSettings.RotateGizmoAssetFile );
+			var scaleGizmoPath = Path.Combine( m_editorLogic.PathsManager.DefaultMeshesDir, m_editorLogic.GlobalSettings.ScaleGizmoAssetFile );
+
+
+			GizmoActor = EditorActorsFactory.CreateGizmoActor( translateGizmoPath, rotateGizmoPath, scaleGizmoPath );
 			m_editorActors.Add( GizmoActor );
 
 			var camera = EditorActorsFactory.CreateDefaultCamera( true );

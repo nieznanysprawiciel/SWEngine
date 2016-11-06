@@ -19,6 +19,8 @@ public:
 
 	virtual void		ControlObjectPre		( DynamicActor* actor, IControllersState* globalState ) = 0;	///< Funkcja wywo³ywana przed 
 	virtual void		ControlObjectPost		( DynamicActor* actor, IControllersState* globalState ) = 0;
+
+	virtual void		Initialize				( DynamicActor* actor ) = 0;
 };
 
 

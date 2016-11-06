@@ -8,6 +8,8 @@
 #include "EngineCore/Actors/BasicActors/StaticActor.h"
 #include "EngineCore/ControllersEngine/BaseClasses/BaseInputController.h"
 
+#include "EngineCore/ModelsManager/Model3DFromFile.h"
+
 
 /**@brief Kontroler u¿ywany przez edytor do przesuwania obiektów.
 
@@ -30,27 +32,41 @@ class GizmoController :	public BaseInputController
 public:
 
 	enum class Operation { Translate, Rotate, Scale };
+	enum class RotationAxis { X, Y, Z };
 
 	struct RotationOp
 	{
-		float		StartAngle;
-		float		StepSize;
-		bool		Started;
-		bool		UseStep;
+		float			StepSize;
+		bool			Started;
+		bool			UseStep;
+		RotationAxis	RotAxis;
+
+		DirectX::XMFLOAT3	StartDir;
+		DirectX::XMFLOAT4	StartOrientation;
 	};
 
 private:
 
+	DynamicActor*		m_controlledActor;
 	StaticActor*		m_followedActor;
 	Operation			m_operation;
 	RotationOp			m_rotationOp;
 
+	ResourcePtr< Model3DFromFile >	m_translateGizmo;
+	ResourcePtr< Model3DFromFile >	m_rotateGizmo;
+	ResourcePtr< Model3DFromFile >	m_scaleGizmo;
+
 public:
-	explicit			GizmoController			( InputAbstractionLayerBase* layer );
+	explicit			GizmoController			( InputAbstractionLayerBase* layer,
+												  ResourcePtr< Model3DFromFile > translateGizmo,
+												  ResourcePtr< Model3DFromFile > rotateGizmo,
+												  ResourcePtr< Model3DFromFile > scaleGizmo );
 						~GizmoController		();
 
-	virtual void		ControlObjectPre		( DynamicActor* actor, IControllersState* globalState );
-	virtual void		ControlObjectPost		( DynamicActor* actor, IControllersState* globalState );
+	virtual void		ControlObjectPre		( DynamicActor* actor, IControllersState* globalState ) override;
+	virtual void		ControlObjectPost		( DynamicActor* actor, IControllersState* globalState ) override;
+	
+	virtual void		Initialize				( DynamicActor* actor ) override;
 
 	void				SetFollowedActor		( StaticActor* actor )		{ m_followedActor = actor; }
 	StaticActor*		GetFollowedActor		()							{ return m_followedActor; }
@@ -66,6 +82,23 @@ public:
 
 private:
 
-	DirectX::XMVECTOR	ComputeMouseRayDirection( IControllersState* globalState );
+	DirectX::XMVECTOR			ComputeMouseRayDirection( IControllersState* globalState );
+
+	static DirectX::XMVECTOR	ComputeRotationDir		( RotationAxis axis, DirectX::XMVECTOR actorPos, DirectX::XMVECTOR rayDir, DirectX::XMVECTOR rayPoint );
+	static DirectX::XMVECTOR	ComputeRotationQuat		( RotationAxis axis, float angle );
+	static DirectX::XMVECTOR	ComputePlaneNormal		( RotationAxis axis );
+
+	void				Rotation				( DynamicActor* actor, IControllersState* globalState );
+	void				Translation				( DynamicActor* actor, IControllersState* globalState );
+	void				Scaling					( DynamicActor* actor, IControllersState* globalState );
+
+	void		BeginOpRotation		();
+	void		EndOpRotation		();
+	void		BeginOpTranslation	();
+	void		EndOpTranslation	();
+	void		BeginOpScaling		();
+	void		EndOpScaling		();
+
+
 };
 

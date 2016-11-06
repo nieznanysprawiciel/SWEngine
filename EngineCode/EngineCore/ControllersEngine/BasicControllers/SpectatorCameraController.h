@@ -40,5 +40,7 @@ public:
 
 	virtual void		ControlObjectPre		( DynamicActor* actor, IControllersState* globalState );
 	virtual void		ControlObjectPost		( DynamicActor* actor, IControllersState* globalState );
+
+	virtual void		Initialize				( DynamicActor* actor ) override;
 };
 

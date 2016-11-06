@@ -178,3 +178,8 @@ void SpectatorCameraController::ControlObjectPost( DynamicActor* actor, IControl
 {
 	assert( !"This is only pre controlled class." );
 }
+
+// ================================ //
+//
+void	SpectatorCameraController::Initialize		( DynamicActor* actor )
+{}

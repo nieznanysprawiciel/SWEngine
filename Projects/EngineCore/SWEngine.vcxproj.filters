@@ -629,6 +629,9 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\Components\VisibleComponent.h">
       <Filter>EngineCore\Actors\Components</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\EngineHelpers\Math.h">
+      <Filter>EngineCore\EngineHelpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -912,6 +915,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\Components\VisibleComponent.cpp">
       <Filter>EngineCore\Actors\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\EngineHelpers\Math.cpp">
+      <Filter>EngineCore\EngineHelpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

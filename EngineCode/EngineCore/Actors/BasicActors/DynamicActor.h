@@ -3,6 +3,8 @@
 #include "StaticActor.h"
 
 
+class IController;
+
 /**@brief Klasa bazowa dla obiektów dynamicznych.
 
 Klasa zawiera nastêpuj¹ce komponenty obs³uguj¹ce:
@@ -93,17 +95,5 @@ inline DirectX::XMVECTOR	DynamicActor::GetRotationSpeed	() const
 	return XMLoadFloat4( &m_rotationSpeed );
 }
 
-// ================================ //
-//
-inline void					DynamicActor::SetController		( IController* ctrl )
-{
-	m_controller = ctrl;
-}
 
-// ================================ //
-//
-inline IController*			DynamicActor::GetController		()
-{
-	return m_controller;
-}
 

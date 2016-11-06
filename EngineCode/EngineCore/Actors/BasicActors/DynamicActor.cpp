@@ -161,3 +161,18 @@ void DynamicActor::MoveComplex(float time_interval, const XMFLOAT3& parent_speed
 }
 
 
+// ================================ //
+//
+void				DynamicActor::SetController		( IController* ctrl )
+{
+	m_controller = ctrl;
+	m_controller->Initialize( this );
+}
+
+// ================================ //
+//
+IController*		DynamicActor::GetController		()
+{
+	return m_controller;
+}
+
