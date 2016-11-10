@@ -23,3 +23,17 @@ float				Math::OrientedAngle		( DirectX::XMVECTOR first, DirectX::XMVECTOR secon
 
 	return angle;
 }
+
+// ================================ //
+//
+float				Math::ToDegrees			( float value )
+{
+	return XMConvertToDegrees( value );
+}
+
+// ================================ //
+//
+float				Math::ToRadians			( float value )
+{
+	return XMConvertToRadians( value );
+}

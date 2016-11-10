@@ -158,14 +158,14 @@ GizmoController::Operation		GizmoController::CheckOperation()
 //
 void							GizmoController::SetStepSize( float value )
 {
-	m_rotationOp.StepSize = value;
+	m_rotationOp.StepSize = Math::ToRadians( value );
 }
 
 // ================================ //
 //
 float							GizmoController::GetStepSize()
 {
-	return m_rotationOp.StepSize;
+	return Math::ToDegrees( m_rotationOp.StepSize );
 }
 
 // ================================ //
@@ -206,18 +206,19 @@ void				GizmoController::Rotation		( DynamicActor* actor, IControllersState* glo
 		auto actorPosition = actor->GetPosition();
 		auto rotVec = ComputeRotationDir( m_rotationOp.RotAxis, actorPosition, rayDir, rayPoint );
 
-		if( !m_rotationOp.UseStep )
-		{
-			float angle = Math::OrientedAngle( XMLoadFloat3( &m_rotationOp.StartDir ), rotVec, ComputePlaneNormal( m_rotationOp.RotAxis ) );
-			XMVECTOR rotation = ComputeRotationQuat( m_rotationOp.RotAxis, angle );
+		float angle = Math::OrientedAngle( XMLoadFloat3( &m_rotationOp.StartDir ), rotVec, ComputePlaneNormal( m_rotationOp.RotAxis ) );
 
-			XMVECTOR newOrientation = XMQuaternionMultiply( XMLoadFloat4( &m_rotationOp.StartOrientation ), rotation );
-			m_followedActor->TeleportOrientation( newOrientation );
-		}
-		else
+		if( m_rotationOp.UseStep )
 		{
-		
+			float rotRealAngle = m_rotationOp.StepSize * roundf( angle / m_rotationOp.StepSize );
+			angle = rotRealAngle;
 		}
+
+		XMVECTOR rotation = ComputeRotationQuat( m_rotationOp.RotAxis, angle );
+
+		XMVECTOR newOrientation = XMQuaternionMultiply( XMLoadFloat4( &m_rotationOp.StartOrientation ), rotation );
+		m_followedActor->TeleportOrientation( newOrientation );
+
 
 		// End of rotation
 		if( buttons[ STANDARD_LAYERS::PROTOTYPE_BUTTONS::LEFT_CLICK ].IsKeyUpEvent() ||

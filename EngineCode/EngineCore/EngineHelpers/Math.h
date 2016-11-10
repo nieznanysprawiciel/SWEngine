@@ -22,4 +22,8 @@ public:
 	@return Angle in radians.*/
 	static float FASTCALL			OrientedAngle		( DirectX::XMVECTOR first, DirectX::XMVECTOR second, DirectX::XMVECTOR planeNormal );
 
+
+
+	static float					ToDegrees			( float value );
+	static float					ToRadians			( float value );
 };

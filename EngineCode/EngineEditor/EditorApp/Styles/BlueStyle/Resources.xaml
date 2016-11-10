@@ -12,5 +12,6 @@
 
 	<BitmapImage x:Key="TranslateIcon" UriSource="pack://application:,,,/Styles/BlueStyle/Images/TranslateIcon.png" />
 	<BitmapImage x:Key="RotateIcon" UriSource="pack://application:,,,/Styles/BlueStyle/Images/RotateIcon.png" />
+	<BitmapImage x:Key="ScaleIcon" UriSource="pack://application:,,,/Styles/BlueStyle/Images/ScaleIcon.png" />
 
 </ResourceDictionary>

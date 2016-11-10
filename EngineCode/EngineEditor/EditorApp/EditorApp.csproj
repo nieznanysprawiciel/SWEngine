@@ -187,6 +187,7 @@
     </Compile>
     <Compile Include="GUI\Converters\DatabindingDebugConverter .cs" />
     <Compile Include="GUI\Converters\FileIconConverter.cs" />
+    <Compile Include="GUI\Converters\EnumToBoolConverter.cs" />
     <Compile Include="GUI\LoadedAssetsViewer.xaml.cs">
       <DependentUpon>LoadedAssetsViewer.xaml</DependentUpon>
     </Compile>
@@ -419,6 +420,9 @@
   <ItemGroup>
     <Resource Include="Styles\BlueStyle\Images\RotateIcon.png" />
     <Resource Include="Styles\BlueStyle\Images\TranslateIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Styles\BlueStyle\Images\ScaleIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

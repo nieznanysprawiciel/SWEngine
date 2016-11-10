@@ -1,10 +1,18 @@
 #pragma once
 
 #include "EngineEditor/EditorPlugin/Actors/ActorWrapper.h"
+#include "EngineCore/ControllersEngine/BasicControllers/Editor/GizmoController.h"
 
 
 namespace EditorPlugin
 {
+
+public enum class TransformType
+{
+	Translation,
+	Rotation,
+	Scale
+};
 
 
 
@@ -19,24 +27,11 @@ public:
 	// Properties
 
 
-	property bool		TranslationMode
+	property TransformType	TransformMode
 	{
-		bool	get();
-		void	set( bool value );
+		TransformType	get();
+		void			set( TransformType value );
 	}
-
-	property bool		RotationMode
-	{
-		bool	get();
-		void	set( bool value );
-	}
-
-	property bool		ScaleMode
-	{
-		bool	get();
-		void	set( bool value );
-	}
-
 
 
 	property bool		UseRotationStep
@@ -50,6 +45,11 @@ public:
 		float	get();
 		void	set( float value );
 	}
+
+
+protected:
+	TransformType					Translate	( GizmoController::Operation op );
+	GizmoController::Operation		Translate	( TransformType op );
 
 };
 

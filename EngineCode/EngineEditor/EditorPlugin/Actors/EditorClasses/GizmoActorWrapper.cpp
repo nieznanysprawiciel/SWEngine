@@ -25,69 +25,66 @@ GizmoActorWrapper::GizmoActorWrapper( EngineObject* actor, const ActorInfo* acto
 	:	ActorWrapper( actor, actorInfo )
 {}
 
-
 // ================================ //
 //
-void		GizmoActorWrapper::TranslationMode::set( bool value )
+TransformType				GizmoActorWrapper::Translate( GizmoController::Operation op )
 {
-	if( value )
+	switch( op )
 	{
-		auto gizmoCtrl = GetController( Ptr() );
-		gizmoCtrl->ChangeOperation( GizmoController::Operation::Translate );
+	case GizmoController::Operation::Translate:
+		return TransformType::Translation;
+		break;
+	case GizmoController::Operation::Rotate:
+		return TransformType::Rotation;
+		break;
+	case GizmoController::Operation::Scale:
+		return TransformType::Scale;
+		break;
+	default:
+		return TransformType::Translation;
+		break;
 	}
 }
 
 // ================================ //
 //
-void		GizmoActorWrapper::RotationMode::set( bool value )
+GizmoController::Operation	GizmoActorWrapper::Translate( TransformType op )
 {
-	if( value )
+	switch( op )
 	{
-		auto gizmoCtrl = GetController( Ptr() );
-		gizmoCtrl->ChangeOperation( GizmoController::Operation::Rotate );
+	case EditorPlugin::TransformType::Translation:
+		return GizmoController::Operation::Translate;
+		break;
+	case EditorPlugin::TransformType::Rotation:
+		return GizmoController::Operation::Rotate;
+		break;
+	case EditorPlugin::TransformType::Scale:
+		return GizmoController::Operation::Scale;
+		break;
+	default:
+		return GizmoController::Operation::Translate;
+		break;
 	}
 }
 
+
 // ================================ //
 //
-void		GizmoActorWrapper::ScaleMode::set( bool value )
+void				GizmoActorWrapper::TransformMode::set( TransformType value )
 {
-	if( value )
-	{
-		auto gizmoCtrl = GetController( Ptr() );
-		gizmoCtrl->ChangeOperation( GizmoController::Operation::Scale );
-	}
+	auto gizmoCtrl = GetController( Ptr() );
+	gizmoCtrl->ChangeOperation( Translate( value ) );
 }
 
 // ================================ //
 //
-bool		GizmoActorWrapper::TranslationMode::get()
+TransformType		GizmoActorWrapper::TransformMode::get()
 {
 	auto gizmoCtrl = GetController( Ptr() );
-	if( gizmoCtrl->CheckOperation() == GizmoController::Operation::Translate )
-		return true;
-	return false;
+	return Translate( gizmoCtrl->CheckOperation() );
 }
 
-// ================================ //
-//
-bool		GizmoActorWrapper::RotationMode::get()
-{
-	auto gizmoCtrl = GetController( Ptr() );
-	if( gizmoCtrl->CheckOperation() == GizmoController::Operation::Rotate )
-		return true;
-	return false;
-}
 
-// ================================ //
-//
-bool		GizmoActorWrapper::ScaleMode::get()
-{
-	auto gizmoCtrl = GetController( Ptr() );
-	if( gizmoCtrl->CheckOperation() == GizmoController::Operation::Scale )
-		return true;
-	return false;
-}
 
 // ================================ //
 //

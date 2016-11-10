@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EditorApp.GUI"
+			 xmlns:gui="clr-namespace:EditorApp.GUI"
              mc:Ignorable="d" 
              d:DesignHeight="48" d:DesignWidth="1000">
 	<UserControl.Resources>
@@ -11,18 +12,31 @@
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/Resources.xaml"/>
 				<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/BaseStyles.xaml"/>
+				<ResourceDictionary>
+					<gui:EnumToBoolConverter x:Key="TransformationTypeConverter" />
+				</ResourceDictionary>
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</UserControl.Resources>
 
 	<Border CornerRadius="3" Background="{StaticResource PanelBackgroundBrush}" BorderBrush="{StaticResource ControlsBorderColorBrush}" BorderThickness="1">
 		<StackPanel DataContext="{Binding GizmoActor}" Width="Auto" Height="48" Orientation="Horizontal">
-			<RadioButton IsChecked="{Binding TranslationMode}" Style="{StaticResource ImageRadioButton}" >
+			<RadioButton GroupName="Transformation"
+						 IsChecked="{Binding TransformMode, Mode=TwoWay, Converter={StaticResource TransformationTypeConverter}, ConverterParameter=Translation}"
+						 Style="{StaticResource ImageRadioButton}" >
 				<Image Source="{StaticResource TranslateIcon}" />
 			</RadioButton>
 
-			<RadioButton IsChecked="{Binding RotationMode}" Style="{StaticResource ImageRadioButton}" >
+			<RadioButton GroupName="Transformation"
+						 IsChecked="{Binding TransformMode, Mode=TwoWay, Converter={StaticResource TransformationTypeConverter}, ConverterParameter=Rotation}"
+						 Style="{StaticResource ImageRadioButton}" >
 				<Image Source="{StaticResource RotateIcon}" />
+			</RadioButton>
+
+			<RadioButton GroupName="Transformation"
+						 IsChecked="{Binding TransformMode, Mode=TwoWay, Converter={StaticResource TransformationTypeConverter}, ConverterParameter=Scale}"
+						 Style="{StaticResource ImageRadioButton}" >
+				<Image Source="{StaticResource ScaleIcon}" />
 			</RadioButton>
 		</StackPanel>
 	</Border>
