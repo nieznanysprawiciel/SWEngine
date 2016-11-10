@@ -208,7 +208,7 @@ void				GizmoController::Rotation		( DynamicActor* actor, IControllersState* glo
 
 		if( !m_rotationOp.UseStep )
 		{
-			float angle = Math::OrientedAngle( XMLoadFloat3( &m_rotationOp.StartDir ), rotVec );
+			float angle = Math::OrientedAngle( XMLoadFloat3( &m_rotationOp.StartDir ), rotVec, ComputePlaneNormal( m_rotationOp.RotAxis ) );
 			XMVECTOR rotation = ComputeRotationQuat( m_rotationOp.RotAxis, angle );
 
 			XMVECTOR newOrientation = XMQuaternionMultiply( XMLoadFloat4( &m_rotationOp.StartOrientation ), rotation );
@@ -346,17 +346,22 @@ DirectX::XMVECTOR	GizmoController::ComputeRotationQuat	( RotationAxis axis, floa
 //
 DirectX::XMVECTOR	GizmoController::ComputePlaneNormal( RotationAxis axis )
 {
-	XMVECTOR planeNormal;
-	if( axis == RotationAxis::X )
-		planeNormal = XMVectorSet( 1.0, 0.0, 0.0, 0.0 );
-	else if( axis == RotationAxis::Y )
-		planeNormal = XMVectorSet( 0.0, 1.0, 0.0, 0.0 );
-	else if( axis == RotationAxis::Z )
-		planeNormal = XMVectorSet( 0.0, 0.0, 1.0, 0.0 );
-	else
-		assert( false );
+	switch( axis )
+	{
+		case RotationAxis::X:
+		return XMVectorSet( 1.0, 0.0, 0.0, 0.0 );
+		
+		case RotationAxis::Y:
+		return XMVectorSet( 0.0, 1.0, 0.0, 0.0 );
 
-	return planeNormal;
+		case RotationAxis::Z:
+		return XMVectorSet( 0.0, 0.0, 1.0, 0.0 );
+
+		default:
+		assert( false );
+	}
+
+	return XMVectorSet( 1.0, 0.0, 0.0, 0.0 );
 }
 
 

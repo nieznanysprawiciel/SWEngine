@@ -7,6 +7,10 @@
 
 #include <DirectXMath.h>
 
+
+#define FASTCALL __vectorcall
+
+
 /**@brief */
 class Math
 {
@@ -16,6 +20,6 @@ public:
 
 	/**@brief Computes oriented (right handed) angle beteween vectors. Parameters are normalized in function.
 	@return Angle in radians.*/
-	static float			OrientedAngle		( DirectX::XMVECTOR first, DirectX::XMVECTOR second );
+	static float FASTCALL			OrientedAngle		( DirectX::XMVECTOR first, DirectX::XMVECTOR second, DirectX::XMVECTOR planeNormal );
 
 };

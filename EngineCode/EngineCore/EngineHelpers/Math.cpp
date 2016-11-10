@@ -10,12 +10,11 @@ using namespace DirectX;
 
 // ================================ //
 //
-float				Math::OrientedAngle		( DirectX::XMVECTOR first, DirectX::XMVECTOR second )
+float				Math::OrientedAngle		( DirectX::XMVECTOR first, DirectX::XMVECTOR second, DirectX::XMVECTOR planeNormal )
 {
 	float angle = XMVectorGetX( XMVector3AngleBetweenVectors( first, second ) );
 	XMVECTOR cross = XMVector3Cross( first, second );
 
-	XMVECTOR planeNormal = XMPlaneFromPoints( XMVectorSet( 0.0, 0.0, 0.0, 0.0 ), first, second );
 	auto dot = XMVectorGetX( XMVector3Dot( cross, planeNormal ) );
 	if( dot < 0.0 )
 	{
