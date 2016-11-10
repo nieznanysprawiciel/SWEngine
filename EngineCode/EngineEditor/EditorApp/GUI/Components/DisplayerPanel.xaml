@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EditorApp.GUI"
 			 xmlns:gui="clr-namespace:EditorApp.GUI"
+			 xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="48" d:DesignWidth="1000">
 	<UserControl.Resources>
@@ -12,6 +13,7 @@
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/Resources.xaml"/>
 				<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/BaseStyles.xaml"/>
+				<ResourceDictionary Source="/EditorApp;component/Styles/BlueStyle/Controls/SpinBoxes.xaml"/>
 				<ResourceDictionary>
 					<gui:EnumToBoolConverter x:Key="TransformationTypeConverter" />
 				</ResourceDictionary>
@@ -38,6 +40,19 @@
 						 Style="{StaticResource ImageRadioButton}" >
 				<Image Source="{StaticResource ScaleIcon}" />
 			</RadioButton>
+
+			<StackPanel Orientation="Vertical" Margin="5">
+				<CheckBox IsChecked="{Binding UseRotationStep}" 
+						  Background="Transparent" 
+						  Foreground="{StaticResource BasicTextColorBrush}" >Step rotation</CheckBox>
+				<xctk:DoubleUpDown Height="20"
+								   Maximum="360" Minimum="0.001"
+								   HorizontalAlignment="Stretch"
+								   Margin="0, 1, 0, 0"
+								   DefaultValue="5" Increment="1"
+								   Style="{StaticResource DoubleSpinBoxStyle}"
+								   Value="{Binding RotationStepSize}"/>
+			</StackPanel>
 		</StackPanel>
 	</Border>
 

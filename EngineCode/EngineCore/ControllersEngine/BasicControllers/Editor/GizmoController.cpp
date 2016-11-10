@@ -158,14 +158,14 @@ GizmoController::Operation		GizmoController::CheckOperation()
 //
 void							GizmoController::SetStepSize( float value )
 {
-	m_rotationOp.StepSize = Math::ToRadians( value );
+	m_rotationOp.StepSize = value;
 }
 
 // ================================ //
 //
 float							GizmoController::GetStepSize()
 {
-	return Math::ToDegrees( m_rotationOp.StepSize );
+	return m_rotationOp.StepSize;
 }
 
 // ================================ //
@@ -210,7 +210,8 @@ void				GizmoController::Rotation		( DynamicActor* actor, IControllersState* glo
 
 		if( m_rotationOp.UseStep )
 		{
-			float rotRealAngle = m_rotationOp.StepSize * roundf( angle / m_rotationOp.StepSize );
+			float stepSize = Math::ToRadians( m_rotationOp.StepSize );
+			float rotRealAngle = stepSize * roundf( angle / stepSize );
 			angle = rotRealAngle;
 		}
 

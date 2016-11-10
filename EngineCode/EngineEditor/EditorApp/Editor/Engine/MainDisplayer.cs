@@ -40,6 +40,7 @@ namespace EditorApp.Engine
 
 			m_logicRef = appLogic;
 			//Gizmo = m_logicRef.ProjectManager.ActorsLogic.
+			Gizmo = null;
 
 			m_dropableTypes = new List<Type>();
 			m_dropableTypes.Add( typeof( ActorClassMetaInfo ) );
