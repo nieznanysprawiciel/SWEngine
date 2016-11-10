@@ -249,7 +249,7 @@ void				GizmoController::Rotation		( DynamicActor* actor, IControllersState* glo
 
 		// Remember start orientation.
 		XMStoreFloat3( &m_rotationOp.StartDir, rotVec );
-		XMStoreFloat4( &m_rotationOp.StartOrientation, actor->GetOrientation() );
+		XMStoreFloat4( &m_rotationOp.StartOrientation, m_followedActor->GetOrientation() );
 	}
 
 }
