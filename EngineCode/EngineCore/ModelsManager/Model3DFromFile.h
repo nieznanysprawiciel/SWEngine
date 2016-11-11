@@ -12,7 +12,7 @@
 
 
 /// @brief Definiuje offset bufora indeksów wzglêdem bufora wierzcho³ków. (Dla funkcji Model3DFromFile::add_index_buffer)
-typedef enum VERTEX_BUFFER_OFFSET
+enum VERTEX_BUFFER_OFFSET
 {
 	LAST = -1,
 	BEGIN = 0,

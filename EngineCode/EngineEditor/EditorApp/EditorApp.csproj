@@ -430,10 +430,22 @@
   <Target Name="BeforeBuild">
   </Target>
   -->
+  <PropertyGroup>
+	<!-- <VisualVersionDir>vs2013</VisualVersionDir> -->
+	<VisualVersionDir>vs2015</VisualVersionDir>
+    <FBXLibsDirectory>$(ExternalDir)FBX_SDK\lib\$(VisualVersionDir)\$(PlatformTarget)\$(ConfigTypeSmallString)\</FBXLibsDirectory>
+	
+	<ToolsetNativeProjects>v140</ToolsetNativeProjects>
+	<!-- <ToolsetNativeProjects>v120</ToolsetNativeProjects> -->
+	<ReflectionDLLDir>$(EngineLibDir)Reflection\$(ToolsetNativeProjects)\$(PlatformTarget)\$(ConfigTypeSmallString)</ReflectionDLLDir>
+	
+  </PropertyGroup>
+  
+  
   <Target Name="AfterBuild">
     <Message Text="Copy Reflection.dll and libfbxsdk.dll to $(OutputPath)" />
-    <Copy SourceFiles="$(ExternalDir)FBX_SDK\lib\vs2013\$(PlatformTarget)\$(ConfigTypeSmallString)\libfbxsdk.dll" DestinationFolder="$(OutputPath)" ContinueOnError="false" />
-    <Copy SourceFiles="$(EngineLibDir)Reflection\v120\$(PlatformTarget)\$(ConfigTypeSmallString)\Reflection.dll" DestinationFolder="$(OutputPath)" ContinueOnError="false" />
+    <Copy SourceFiles="$(FBXLibsDirectory)\libfbxsdk.dll" DestinationFolder="$(OutputPath)" ContinueOnError="false" />
+    <Copy SourceFiles="$(ReflectionDLLDir)\Reflection.dll" DestinationFolder="$(OutputPath)" ContinueOnError="false" />
     <ItemGroup>
       <PDBFilesToMove Include="$(OutputPath)*.pdb" />
       <XMLToDelete Include="$(OutputPath)*.xml" />

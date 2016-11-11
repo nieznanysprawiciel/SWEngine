@@ -15,6 +15,14 @@
       <ProgramDatabaseFile>$(TestEngineBuildDir)$(TargetName).pdb</ProgramDatabaseFile>
       <Version>$(Version)</Version>
     </Link>
+	
+    <PostBuildEvent>
+      <Command>move $(OutDir)$(TestEngineFileName).ipdb $(IntDir)$(TestEngineFileName).ipdb
+	  move $(OutDir)$(TestEngineFileName).iobj $(IntDir)$(TestEngineFileName).iobj
+	  %(Command)</Command>
+      <Message>Copy Reflection.dll to output directory.</Message>
+    </PostBuildEvent>
+	
   </ItemDefinitionGroup>
   <ItemGroup />
 </Project>

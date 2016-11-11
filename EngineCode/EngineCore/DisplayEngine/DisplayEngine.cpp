@@ -222,8 +222,8 @@ void DisplayEngine::DisplayScene( float timeInterval, float timeLag )
 {
 	IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
 
-	DisplaySceneOld( timeInterval, timeLag );
-	//ProcessMainPass( timeInterval, timeLag );
+	//DisplaySceneOld( timeInterval, timeLag );
+	ProcessMainPass( timeInterval, timeLag );
 }
 
 /**@brief Renders scene using @ref m_mainPass.*/
