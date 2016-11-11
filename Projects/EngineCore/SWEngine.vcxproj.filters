@@ -554,9 +554,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Material\SWMat\SWMaterialLoader.h">
       <Filter>EngineCore\ModelsManager\Loaders\Material\SWMat</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\TextureBinding.h">
-      <Filter>EngineCore\ModelsManager\Assets\Materials</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\LightModule.h">
       <Filter>EngineCore\DisplayEngine</Filter>
     </ClInclude>
@@ -631,6 +628,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\EngineHelpers\Math.h">
       <Filter>EngineCore\EngineHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\PipelineBinding.h">
+      <Filter>EngineCore\ModelsManager\Assets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -874,9 +874,6 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\ShadingModels.cpp">
       <Filter>EngineCore\ModelsManager\Assets\Materials</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\TextureBinding.cpp">
-      <Filter>EngineCore\ModelsManager\Assets\Materials</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\LightModule.cpp">
       <Filter>EngineCore\DisplayEngine</Filter>
     </ClCompile>
@@ -910,14 +907,17 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\SkyDome\HosekSkyDomePass.cpp">
       <Filter>EngineCore\DisplayEngine\RenderPasses\SkyDome</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\Components\TransformComponents.cpp">
-      <Filter>EngineCore\Actors\Components</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\Actors\Components\VisibleComponent.cpp">
       <Filter>EngineCore\Actors\Components</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\EngineHelpers\Math.cpp">
       <Filter>EngineCore\EngineHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\Actors\Components\TransformComponent.cpp">
+      <Filter>EngineCore\Actors\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\PipelineBinding.cpp">
+      <Filter>EngineCore\ModelsManager\Assets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
