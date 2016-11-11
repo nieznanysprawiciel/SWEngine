@@ -7,13 +7,13 @@ namespace Api { namespace Assets
 {
 
 /**@brief Pobiera materia³ o podanej nazwie.*/
-MaterialObject*		Materials::GetSync		( const std::wstring& name )
+ResourcePtr< MaterialAsset >		Materials::GetSync		( const std::wstring& name )
 {
-	return Context->modelsManager->GetMaterialObject( name );
+	return Context->modelsManager->GetMaterial( name );
 }
 
 /**@copydoc AssetsManager::ListMaterials.*/
-std::vector< ResourcePtr< MaterialObject > > Materials::List()
+std::vector< ResourcePtr< MaterialAsset > > Materials::List()
 {
 	return Context->modelsManager->ListMaterials();
 }

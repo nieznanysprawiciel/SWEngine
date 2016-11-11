@@ -238,6 +238,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Animations\Skeletal\AnimationAsset.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Animations\Skeletal\Bone.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Animations\Skeletal\SkeletonAsset.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\BufferUpdaterBase.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialAsset.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialAssetInitData.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Materials\MaterialInfo.h" />

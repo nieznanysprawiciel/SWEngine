@@ -26,10 +26,10 @@ namespace Api { namespace Assets {
 		Models() = default;
 		~Models() = default;
 
-		Model3DFromFile*		GetSync		( const std::wstring& name );
-		Model3DFromFile*		LoadSync	( const std::wstring& name );
+		ResourcePtr< MeshAsset >		GetSync		( const std::wstring& name );
+		ResourcePtr< MeshAsset >		LoadSync	( const std::wstring& name );
 
-		std::vector< ResourcePtr< Model3DFromFile > >		List	();
+		std::vector< ResourcePtr< MeshAsset > >		List	();
 	};
 
 

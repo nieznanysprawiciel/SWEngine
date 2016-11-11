@@ -72,7 +72,7 @@ void		ForwardRendering::Render		( IRenderer* renderer, RenderContext& context, S
 	//na razie pêtla bez optymalizacji
 	for ( auto i = rangeStart; i < std::min( meshes.size(), rangeEnd ); ++i )
 	{
-		StaticActor* object = meshes[i];
+		StaticActor* object = meshes[ i ];
 
 
 #ifdef _INTERPOLATE_POSITIONS
@@ -84,40 +84,33 @@ void		ForwardRendering::Render		( IRenderer* renderer, RenderContext& context, S
 		transformation = transformation * XMMatrixTranslationFromVector( translation );
 #endif
 
+		auto meshAsset = object->GetModel().Ptr();
 
-		for ( unsigned int j = 0; j < object->GetModelParts().size( ); ++j )
+		for ( unsigned int j = 0; j < meshAsset->GetSegmentsCount(); ++j )
 		{
-			ModelPart& model = object->GetModelParts()[j];
+			const MeshPart* model = meshAsset->GetSegment( j );
 
-			// Compute transformation matrix for segment.
-			XMMATRIX worldTransform;
-			worldTransform = XMLoadFloat4x4( &(model.mesh->transform_matrix) );
-			worldTransform = worldTransform * transformation;
 
 			// Fill transform constants buffer.
 			TransformConstants meshTransformData;
-			XMStoreFloat4x4( &meshTransformData.WorldMatrix, XMMatrixTranspose( worldTransform ) );
+			XMStoreFloat4x4( &meshTransformData.WorldMatrix, XMMatrixTranspose( transformation ) );
 			XMStoreFloat4( &meshTransformData.MeshScale, XMVectorSetW( XMVectorReplicate( object->GetScale() ), 1.0f ) );
 
 			RenderingHelper::UpdateBuffer( renderer, context.TransformBuffer, meshTransformData );
 
-			// Update material data.
-			ConstantPerMesh materialData;
-			context.DisplayEngine->CopyMaterial( &materialData, &model );
 
-			RenderingHelper::UpdateBuffer( renderer, context.MaterialConstants, materialData );
-
+			auto material = model->Material.Ptr();
 
 			SetRenderStateCommand renderCommand;
 			renderCommand.TransformBuffer = context.TransformBuffer;
-			renderCommand.MaterialBuffer = context.MaterialConstants;
+			renderCommand.MaterialBuffer = material->GetMaterialBuffer().Ptr();
 			renderCommand.BonesTransforms = nullptr;
-			renderCommand.VertexShader = model.vertex_shader;
-			renderCommand.PixelShader = model.pixel_shader;
+			renderCommand.VertexShader = material->GetVertexShader().Ptr();
+			renderCommand.PixelShader = material->GetPixelShader().Ptr();
 
 			for( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
 			{
-				renderCommand.Textures[ i ] = model.texture[ i ];
+				renderCommand.Textures[ i ] = material->GetTexture( i ).Ptr();
 				renderCommand.BindToShader[ i ] = (uint8)ShaderType::PixelShader;
 			}
 
@@ -125,14 +118,14 @@ void		ForwardRendering::Render		( IRenderer* renderer, RenderContext& context, S
 
 			// Send draw command.
 			DrawCommand drawCommand;
-			drawCommand.BaseVertex = model.mesh->base_vertex;
-			drawCommand.BufferOffset = model.mesh->buffer_offset;
-			drawCommand.NumVertices = model.mesh->vertices_count;
-			drawCommand.Topology = PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST;
-			drawCommand.VertexBuffer = object->GetVertexBuffer();
-			drawCommand.IndexBufer = model.mesh->use_index_buf ? object->GetIndexBuffer() : nullptr;
-			drawCommand.ExtendedIndex = true;
-			drawCommand.Layout = context.Layout;
+			drawCommand.BaseVertex = model->BaseVertex;
+			drawCommand.BufferOffset = model->BufferOffset;
+			drawCommand.NumVertices = model->NumVertices;
+			drawCommand.Topology = model->Topology;
+			drawCommand.VertexBuffer = meshAsset->GetVertexBufferRawPtr();
+			drawCommand.IndexBufer = meshAsset->GetIndexBufferRawPtr();
+			drawCommand.ExtendedIndex = model->Flags & MeshPartFlags::Use4BytesIndex ? true : false;
+			drawCommand.Layout = meshAsset->GetLayoutRawPtr();
 
 			renderer->Draw( drawCommand );
 		}

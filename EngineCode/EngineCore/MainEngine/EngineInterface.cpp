@@ -56,12 +56,12 @@ void Engine::test()
 	const wchar_t CHURCH[] = L"tylko_do_testow/Church/AbandonedChurch.FBX";
 	const wchar_t GATE[] = L"meshes/Wall/Castle wall/Castle wall.FBX";
 
-	Context->modelsManager->LoadModelFromFile( CLONE_FIGHTER );
-	Context->modelsManager->LoadModelFromFile( MOON );
-	Context->modelsManager->LoadModelFromFile( NEBULON );
-	Context->modelsManager->LoadModelFromFile( VADER_TIE );
-	Context->modelsManager->LoadModelFromFile( TIE_FIGHTER );
-	Context->modelsManager->LoadModelFromFile( GATE );
+	Context->modelsManager->LoadMesh( CLONE_FIGHTER );
+	Context->modelsManager->LoadMesh( MOON );
+	Context->modelsManager->LoadMesh( NEBULON );
+	Context->modelsManager->LoadMesh( VADER_TIE );
+	Context->modelsManager->LoadMesh( TIE_FIGHTER );
+	Context->modelsManager->LoadMesh( GATE );
 	//Context->modelsManager->LoadModelFromFile( CHURCH );
 	//modelsManager->LoadModelFromFile( IMPERIAL_STAR_DESTROYER );
 	
@@ -71,7 +71,7 @@ void Engine::test()
 	XMVECTOR position = XMVectorSet( 4000.0, 0.0, 8000.0, 0.0 );
 	moon->Teleport( position );
 
-	moon->SetModel( Context->modelsManager->GetModel( MOON ) );
+	moon->SetModel( Context->modelsManager->GetMesh( MOON ) );
 	moon->SetScale( 30.0 );
 
 
@@ -80,7 +80,7 @@ void Engine::test()
 	position = XMVectorSet( 400.0, 0.0, -6000.0, 0.0 );
 	nebulon->Teleport( position );
 
-	nebulon->SetModel( Context->modelsManager->GetModel( NEBULON ) );
+	nebulon->SetModel( Context->modelsManager->GetMesh( NEBULON ) );
 	nebulon->SetScale( 1 );	//Nebulon ma Ÿle ustawiony pivot, wiêc jak siê przeskaluje to odleci gdzieœ w kosmos i go nie widaæ.
 
 
@@ -89,7 +89,7 @@ void Engine::test()
 	position = XMVectorSet( -400.0, 0.0, 800.0, 0.0 );
 	TIE->Teleport( position );
 
-	TIE->SetModel( Context->modelsManager->GetModel( TIE_FIGHTER ) );
+	TIE->SetModel( Context->modelsManager->GetMesh( TIE_FIGHTER ) );
 	TIE->SetScale( 10 );
 
 
@@ -98,7 +98,7 @@ void Engine::test()
 	position = XMVectorSet( -400.0, 0.0, -3000.0, 0.0 );
 	VaderTIE->Teleport( position );
 
-	VaderTIE->SetModel( Context->modelsManager->GetModel( VADER_TIE ) );
+	VaderTIE->SetModel( Context->modelsManager->GetMesh( VADER_TIE ) );
 	//VaderTIE->SetScale( 1.0 );
 
 
@@ -120,7 +120,7 @@ void Engine::test()
 #endif
 	cloneFighter->SetRotationSpeed( axis_angle );
 
-	cloneFighter->SetModel( Context->modelsManager->GetModel( CLONE_FIGHTER ) );
+	cloneFighter->SetModel( Context->modelsManager->GetMesh( CLONE_FIGHTER ) );
 
 
 	////dodawanie koœcio³a
@@ -128,7 +128,7 @@ void Engine::test()
 	//position = XMVectorSet( -300.0, 0.0, 500.0, 0.0 );
 	//church->Teleport( position );
 
-	//church->SetModel( Context->modelsManager->GetModel( CHURCH ) );
+	//church->SetModel( Context->modelsManager->GetMesh( CHURCH ) );
 
 
 	//dodawanie koœcio³a
@@ -136,14 +136,14 @@ void Engine::test()
 	position = XMVectorSet( -300.0, 0.0, 500.0, 0.0 );
 	gate->Teleport( position );
 
-	gate->SetModel( Context->modelsManager->GetModel( GATE ) );
+	gate->SetModel( Context->modelsManager->GetMesh( GATE ) );
 
 	//for( unsigned int i = 0; i < 100; ++i )
 	//{
 	//	DynamicActor* cloneFighter = Actors.CreateActor< DynamicActor >( "DynamicActor", EnableDisplay );
 	//	position = XMVectorSet( 15000.0 * cos( ( 2*i*XM_PI ) / 100 ), 0.0, 15000.0 * sin( ( 2*i*XM_PI ) / 100 ), 0.0 );
 	//	
-	//	cloneFighter->set_model( Context->modelsManager->GetModel( CLONE_FIGHTER ) );
+	//	cloneFighter->set_model( Context->modelsManager->GetMesh( CLONE_FIGHTER ) );
 	//	cloneFighter->teleport( position );
 	//}
 
@@ -153,7 +153,7 @@ void Engine::test()
 	position = XMVectorSet( -4000.0, 0.0, -3000.0, 0.0 );
 	Imperial->set_position( position );
 
-	Imperial->set_model( modelsManager->GetModel( IMPERIAL_STAR_DESTROYER ) );
+	Imperial->set_model( modelsManager->GetMesh( IMPERIAL_STAR_DESTROYER ) );
 	*/
 
 	
@@ -174,13 +174,13 @@ void Engine::test()
 //#endif
 //	skrzynia->SetRotationSpeed( axis_angle2 );
 //
-//	Model3DFromFile* new_model = Context->modelsManager->GetModel( L"skrzynia" );
+//	Model3DFromFile* new_model = Context->modelsManager->GetMesh( L"skrzynia" );
 //	skrzynia->SetModel( new_model );
 //	//skrzynia->SetScale( 0.1 );
 
 	SetSkydomeAndCamera();
 
-	//testMaterial( Context->modelsManager->GetModel( CLONE_FIGHTER ) );
+	//testMaterial( Context->modelsManager->GetMesh( CLONE_FIGHTER ) );
 
 
 	int actorInfoSize = sizeof( ActorInfo );

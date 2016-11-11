@@ -26,9 +26,9 @@ namespace Api { namespace Assets {
 		Materials() = default;
 		~Materials() = default;
 
-		MaterialObject*			GetSync	( const std::wstring& name );
+		ResourcePtr< MaterialAsset >			GetSync	( const std::wstring& name );
 
-		std::vector< ResourcePtr< MaterialObject > >		List	();
+		std::vector< ResourcePtr< MaterialAsset > >		List	();
 	};
 
 

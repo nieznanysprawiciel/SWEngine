@@ -44,7 +44,8 @@ void SerializationApi::DefaultDeserialize( IDeserializer* deser, EngineObject* o
 		bool deserialized = Serialization::DeserializeBasicTypes( deser, object, property ) ||
 							Serialization::DeserializeVectorTypes( deser, object, property ) ||
 							Serialization::DeserializeStringTypes( deser, object, property ) ||
-							DeserializeSingleGeneric( deser, property, object );
+							DeserializeResource( deser, property, object ) ||
+							Serialization::DeserializeObjectTypes( deser, object, property );
 	}
 }
 
@@ -59,24 +60,59 @@ przez ni¹ typów. W przeciwnym razie nie robi nic.
 @return Funkcja zwraca true, je¿eli uda³o jej siê obs³u¿yæ podany typ.*/
 bool SerializationApi::DeserializeSingleGeneric( IDeserializer* deser, rttr::property prop, const EngineObject* object )
 {
-	auto propertyType = prop.get_type();
+	auto propertyType = prop.get_type().get_wrapped_type().get_raw_type();
 	assert( propertyType.is_derived_from< EngineObject >() );
 
-	if( propertyType == rttr::type::get< Model3DFromFile* >() )
+	if( propertyType == rttr::type::get< MeshAsset >() )
 	{
-		// Przenieœæ do innej funkcji. Pewnie trzeba wydzieliæ z Model3DFromFile jakiœ deskryptor, który by siê deserializowa³.
+		// Przenieœæ do innej funkcji. Pewnie trzeba wydzieliæ z MeshAsset jakiœ deskryptor, który by siê deserializowa³.
 		if( deser->EnterObject( prop.get_name() ) )
 		{
-			if( deser->EnterObject( rttr::type::get< Model3DFromFile >().get_name() ) )
+			if( deser->EnterObject( rttr::type::get< MeshAsset >().get_name() ) )
 			{
 				std::wstring filePath = Serialization::UTFToWstring( deser->GetAttribute( "FileName", "" ) );
 		
-				auto result = Context->modelsManager->LoadModelFromFile( filePath );
-				if( result != MODELS_MANAGER_OK )
+				auto result = Context->modelsManager->LoadMesh( filePath );
+				if( result.Ptr() == nullptr )
 					return false;
 
-				auto mesh = Context->modelsManager->GetModel( filePath );
-				Serialization::SetPropertyValue< Model3DFromFile* >( prop, object, mesh );
+				auto mesh = Context->modelsManager->GetMesh( filePath );
+				Serialization::SetPropertyValue< ResourcePtr< MeshAsset > >( prop, object, mesh );
+
+				deser->Exit();	// Model3DFromFile
+			}
+			deser->Exit();	// prop.get_name()
+
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**@brief Deserializes resources.
+
+@return Returns true if deserialized property was resource.*/
+bool SerializationApi::DeserializeResource( IDeserializer* deser, rttr::property prop, const EngineObject* object )
+{
+	auto propertyType = prop.get_type().get_wrapped_type();
+	assert( propertyType.is_derived_from< EngineObject >() );
+
+	if( propertyType == rttr::type::get< MeshAsset >() )
+	{
+		// Przenieœæ do innej funkcji. Pewnie trzeba wydzieliæ z MeshAsset jakiœ deskryptor, który by siê deserializowa³.
+		if( deser->EnterObject( prop.get_name() ) )
+		{
+			if( deser->EnterObject( rttr::type::get< MeshAsset >().get_name() ) )
+			{
+				std::wstring filePath = Serialization::UTFToWstring( deser->GetAttribute( "FileName", "" ) );
+		
+				auto result = Context->modelsManager->LoadMesh( filePath );
+				if( result.Ptr() == nullptr )
+					return false;
+
+				auto mesh = Context->modelsManager->GetMesh( filePath );
+				Serialization::SetPropertyValue< ResourcePtr< MeshAsset > >( prop, object, mesh );
 
 				deser->Exit();	// Model3DFromFile
 			}

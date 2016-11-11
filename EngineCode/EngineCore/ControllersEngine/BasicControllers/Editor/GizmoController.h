@@ -52,15 +52,15 @@ private:
 	Operation			m_operation;
 	RotationOp			m_rotationOp;
 
-	ResourcePtr< Model3DFromFile >	m_translateGizmo;
-	ResourcePtr< Model3DFromFile >	m_rotateGizmo;
-	ResourcePtr< Model3DFromFile >	m_scaleGizmo;
+	ResourcePtr< MeshAsset >	m_translateGizmo;
+	ResourcePtr< MeshAsset >	m_rotateGizmo;
+	ResourcePtr< MeshAsset >	m_scaleGizmo;
 
 public:
 	explicit			GizmoController			( InputAbstractionLayerBase* layer,
-												  ResourcePtr< Model3DFromFile > translateGizmo,
-												  ResourcePtr< Model3DFromFile > rotateGizmo,
-												  ResourcePtr< Model3DFromFile > scaleGizmo );
+												  ResourcePtr< MeshAsset > translateGizmo,
+												  ResourcePtr< MeshAsset > rotateGizmo,
+												  ResourcePtr< MeshAsset > scaleGizmo );
 						~GizmoController		();
 
 	virtual void		ControlObjectPre		( DynamicActor* actor, IControllersState* globalState ) override;

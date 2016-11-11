@@ -25,7 +25,48 @@ struct MeshPart
 	int32							BaseVertex;			///< Wartoœæ dodawana do ka¿dego indeksu przed przeczytaniem wierzcho³ka z bufora. (Tylko wersja indeksowana).
 	int16							Flags;				///< Dodatkowe flagi @see MeshPartFlags
 	PrimitiveTopology				Topology;			///< Topologia mesha.
+
+// ================================ //
+//
+	bool	GetUseAdditionalBuffer	();
+	void	SetUseAdditionalBuffer	( bool value );
+
+	bool	GetUseExtendedIndex		();
+	void	SetUseExtendedIndex		( bool value );
+
 };
 
 
+//====================================================================================//
+//			Implementation	
+//====================================================================================//
+
+// ================================ //
+//
+inline bool		MeshPart::GetUseAdditionalBuffer()
+{
+	return Flags & UseAdditionalBuffer ? true : false;
+}
+
+// ================================ //
+//
+inline void		MeshPart::SetUseAdditionalBuffer( bool value )
+{
+	//if( value )
+	//	Flags = Flags | UseAdditionalBuffer;
+	//else
+	//	Flags = Flags & ( UseAdditionalBuffer ^  )
+}
+
+// ================================ //
+//
+inline bool		MeshPart::GetUseExtendedIndex()
+{
+	return Flags & Use4BytesIndex ? true : false;
+}
+
+// ================================ //
+//
+inline void		MeshPart::SetUseExtendedIndex( bool value )
+{ }
 

@@ -111,15 +111,16 @@ public:
 	ResourcePtr< MaterialAsset >	CreateMaterial				( const std::wstring& name, MaterialCreateData&& initData );
 	///@}
 
-	inline Model3DFromFile*			GetModel					( const std::wstring& name ) { return m_fileModel.get( name ); }	///<Zwraca model z pliku o podanej nazwie, je¿eli jest wczytany.
-	inline MaterialObject*			GetMaterialObject			( const std::wstring& name ) { return m_materialObject.get( name ); }		///<Zwraca materia³ o podanej nazwie, je¿eli jest wczytany.
+	inline ResourcePtr< MeshAsset >		GetMesh					( const std::wstring& name )	{ return m_meshes.get( name ); }
+	inline ResourcePtr< MaterialAsset >	GetMaterial				( const std::wstring& name )	{ return m_material.get( name ); }
+
 
 	MaterialObject*					AddMaterialObject			( MaterialObject* material, const std::wstring& material_name );
 
 	// Funkcje do listowania assetów.
 
-	std::vector< ResourcePtr< MaterialObject > >		ListMaterials		();
-	std::vector< ResourcePtr< Model3DFromFile > >		ListMeshes			();
+	std::vector< ResourcePtr< MaterialAsset > >		ListMaterials		();
+	std::vector< ResourcePtr< MeshAsset > >			ListMeshes			();
 
 private:
 	ILoader*						FindLoader					( const std::wstring& path );

@@ -21,9 +21,9 @@ using namespace DirectX;
 
 /**@brief */
 GizmoController::GizmoController(	InputAbstractionLayerBase* layer,
-									ResourcePtr< Model3DFromFile > translateGizmo,
-									ResourcePtr< Model3DFromFile > rotateGizmo,
-									ResourcePtr< Model3DFromFile > scaleGizmo )
+									ResourcePtr< MeshAsset > translateGizmo,
+									ResourcePtr< MeshAsset > rotateGizmo,
+									ResourcePtr< MeshAsset > scaleGizmo )
 	:	BaseInputController( layer )
 	,	m_followedActor( nullptr )
 	,	m_controlledActor( nullptr )

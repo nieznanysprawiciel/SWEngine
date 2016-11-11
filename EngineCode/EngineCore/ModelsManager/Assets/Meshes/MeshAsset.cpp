@@ -14,8 +14,21 @@
 
 RTTR_REGISTRATION
 {
+	rttr::registration::class_< MeshPart >( "MeshPart" )
+		.property( "Material", &MeshPart::Material )
+		.property_readonly( "Topology", &MeshPart::Topology )
+		.property_readonly( "NumVerticies", &MeshPart::NumVertices )
+		.property_readonly( "BufferOffset", &MeshPart::BufferOffset )
+		.property_readonly( "BaseVertex", &MeshPart::BaseVertex )
+		.property_readonly( "Layout", &MeshPart::GetUseAdditionalBuffer )
+		.property_readonly( "Layout", &MeshPart::GetUseExtendedIndex );
+
 	rttr::registration::class_< MeshAsset >( "MeshAsset" )
-	.property( "FileName", &MeshAsset::m_filePath );
+		.property_readonly( "FileName", &MeshAsset::m_filePath )
+		.property_readonly( "Segments", &MeshAsset::m_segments )
+		.property( "IndexBuffer", &MeshAsset::m_indexBuffer )
+		.property( "VertexBuffer", &MeshAsset::m_vertexBuffer )
+		.property( "Layout", &MeshAsset::m_layout );
 }
 
 
@@ -43,8 +56,8 @@ MeshAsset::~MeshAsset()
 @return Wskaünik na ModelPart lub nullptr, jeøeli indeks by≥ nieprawid≥owy.*/
 const MeshPart*	MeshAsset::GetSegment( Size index ) const
 {
-	if ( index < m_segments.size( ) )
-		return &m_segments[index];
+	if( index < m_segments.size() )
+		return &m_segments[ index ];
 	return nullptr;
 }
 
@@ -69,7 +82,13 @@ std::string MeshAsset::GetResourceName() const
 @todo W zasadzie domyúlny tryb serializacji powinna implementowaÊ klasa EngineObject.*/
 void		MeshAsset::Serialize( ISerializer* ser ) const
 {
-	Serialization::DefaultSerialize( ser, this );
+	//Serialization::DefaultSerialize( ser, this );
+
+	ser->EnterObject( GetTypeName() );
+
+	Serialization::SerializeStringTypes( ser, this, GetType().get_property( "FileName" ) );
+
+	ser->Exit();
 }
 
 void		MeshAsset::Deserialize( IDeserializer* deser )

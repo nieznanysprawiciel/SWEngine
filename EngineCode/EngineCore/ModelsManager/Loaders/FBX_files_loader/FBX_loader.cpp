@@ -648,7 +648,7 @@ Nullable< TemporaryMeshInit >		FBX_loader::ProcessMesh		( FbxNodeMesh& nodeData,
 	unsigned int numControlPoints = ctrlPointsOffset + fbxMesh->GetControlPointsCount();
 
 	std::vector< VertexNormalTexCoord >& verticies = mesh.Value.Verticies;		verticies.reserve( numControlPoints );
-	std::vector< std::vector< Index32 > > indicies = mesh.Value.Indicies;		indicies.resize( materialsCount );
+	std::vector< std::vector< Index32 > > indicies;								indicies.resize( materialsCount );
 
 	// Rewrite all control points to vertex buffer.
 	for( Size idx = 0; idx < numControlPoints - ctrlPointsOffset; idx++ )
@@ -671,7 +671,7 @@ Nullable< TemporaryMeshInit >		FBX_loader::ProcessMesh		( FbxNodeMesh& nodeData,
 		for( int vertexIdx = 0; vertexIdx < 3; ++vertexIdx )
 		{
 			Index32 controlPointIdx = fbxMesh->GetPolygonVertex( polygonCounter, vertexIdx );
-			VertexNormalTexCoord* curVertex = &verticies[ controlPointIdx ];
+			VertexNormalTexCoord* curVertex = &verticies[ ctrlPointsOffset + controlPointIdx ];
 
 			// Find vertex normal and uvs coord.
 			FbxVector4 fbxNormal;
@@ -701,7 +701,7 @@ Nullable< TemporaryMeshInit >		FBX_loader::ProcessMesh		( FbxNodeMesh& nodeData,
 				newVertex.Normal = normal;
 				newVertex.TexCoord = uv;
 
-				indicies[ materialIdx ].push_back( FindUniqueVertex( newVertex, verticies, numControlPoints - 1 ) );
+				indicies[ materialIdx ].push_back( FindUniqueVertex( newVertex, verticies, numControlPoints ) );
 			}
 
 			++vertexCounter;		//zliczamy wierzcho³ki

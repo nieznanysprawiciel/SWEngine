@@ -51,6 +51,7 @@ namespace Api { namespace Level
 	
 		void		DefaultDeserialize			( IDeserializer* deser, EngineObject* object );
 		bool		DeserializeSingleGeneric	( IDeserializer* deser, rttr::property prop, const EngineObject* object );
+		bool		DeserializeResource			( IDeserializer* deser, rttr::property prop, const EngineObject* object );
 		
 
 		void		SerializeActorInfo			( ISerializer* ser, ActorInfo info );

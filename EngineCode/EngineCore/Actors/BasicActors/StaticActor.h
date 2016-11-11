@@ -2,6 +2,7 @@
 
 #include "ActorBase.h"
 #include "GraphicAPI/MeshResources.h"
+#include "EngineCore/Actors/Components/VisibleComponent.h"
 
 #include <DirectXMath.h>
 
@@ -37,18 +38,15 @@ private:
 
 #ifdef _SCALEABLE_OBJECTS
 private:
-	float							scale;		///<Skalowanie wzglêdem wszystkich osi.
+	float						scale;		///<Skalowanie wzglêdem wszystkich osi.
 public:
 	void				SetScale		( float sc )	{ scale = sc; };
 	float				GetScale		()				{ return scale; }
 #endif
 protected:
-	Model3DFromFile*				m_modelRef;							//zapisujemy odwo³anie, ¿ebyœmy wiedzieli, ¿e nie mo¿emy kasowaæ tego obiektu
-	BufferObject*					vertex_buffer;						//ca³y bufor przechowujemy w jednym obiekcie
-	BufferObject*					index_buffer;						//tak samo bufor indeksów
-	std::vector<ModelPart>			model_parts;
+	
+	VisibleComponent		m_visibleComponent;
 
-	bool							model_changed;
 protected:
 
 	/** @brief Funkcja przemieszcza obiekt w podane miejsce.
@@ -111,23 +109,10 @@ public:
 	static ActorBase*			Create()	{ return new StaticActor; }
 
 public:
-	bool						SetModel		( Model3DFromFile* model );
-	Model3DFromFile*			GetModel		()		{ return m_modelRef; }
 
-	/// @todo Przemyœleæ czy te funkcje s¹ konieczne.
-	BufferObject*				GetVertexBuffer	()	{ return vertex_buffer; }
-	BufferObject*				GetIndexBuffer	()	{ return index_buffer; }
-	std::vector<ModelPart>&		GetModelParts	()	{ return model_parts; }
+	bool							SetModel		( const ResourcePtr< MeshAsset >& model );
+	const ResourcePtr< MeshAsset >&	GetModel		()		{ return m_visibleComponent.GetAsset(); }
 
-	void						AddModelPart	( ModelPart& modelPart );
-	///
-
-
-private:
-	void	AddReferences			( const ModelPart* part );
-	void	DeleteAllReferences		();
-
-	void	InitNullVisibleComponent();
 };
 
 

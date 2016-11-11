@@ -25,10 +25,10 @@ namespace Api { namespace Actors {
 		Assets() = default;
 		~Assets() = default;
 
-		void		ChangeTextures		( StaticActor* mesh, TextureObject* newTex, uint16 beginPart, uint16 endPart, uint8 texIndex );
+		//void		ChangeTextures		( StaticActor* mesh, TextureObject* newTex, uint16 beginPart, uint16 endPart, uint8 texIndex );
 
-		void		ChangePixelShaders	( StaticActor* mesh, PixelShader* newShader, uint16 beginPart, uint16 endPart );
-		void		ChangeVertexShaders	( StaticActor* mesh, VertexShader* newShader, uint16 beginPart, uint16 endPart );
+		//void		ChangePixelShaders	( StaticActor* mesh, PixelShader* newShader, uint16 beginPart, uint16 endPart );
+		//void		ChangeVertexShaders	( StaticActor* mesh, VertexShader* newShader, uint16 beginPart, uint16 endPart );
 	};
 
 

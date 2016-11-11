@@ -381,15 +381,15 @@ MaterialObject* AssetsManager::AddMaterialObject( MaterialObject* addMaterial, c
 
 
 /**@brief Listowanie materia³ów.*/
-std::vector< ResourcePtr< MaterialObject > >	AssetsManager::ListMaterials()
+std::vector< ResourcePtr< MaterialAsset > >		AssetsManager::ListMaterials()
 {
-	return m_materialObject.List();
+	return m_material.List();
 }
 
 /**@brief Listowanie meshy.*/
-std::vector< ResourcePtr< Model3DFromFile > >	AssetsManager::ListMeshes()
+std::vector< ResourcePtr< MeshAsset > >			AssetsManager::ListMeshes()
 {
-	return m_fileModel.List();
+	return m_meshes.List();
 }
 
 /**@brief Implementation of texture loading.

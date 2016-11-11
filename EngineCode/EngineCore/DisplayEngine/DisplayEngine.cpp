@@ -299,71 +299,71 @@ void DisplayEngine::DisplayDynamicObjects( float time_interval, float time_lag )
 {
 	START_PERFORMANCE_CHECK( DYNAMIC_OBJECT_RENDERING )
 
-	register IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
-
-	//na razie pêtla bez optymalizacji
-	for ( unsigned int i = 0; i < meshes.size( ); ++i )
-	{
-		register StaticActor* object = meshes[i];
-
-		// Ustawiamy bufor wierzcho³ków
-		if ( renderer->SetVertexBuffer( object->GetVertexBuffer() ) )
-			continue;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
-
-		// Ustawiamy bufor indeksów, je¿eli istnieje
-		renderer->SetIndexBuffer( object->GetIndexBuffer() );
-
-
-#ifdef _INTERPOLATE_POSITIONS
-		XMMATRIX transformation = XMLoadFloat4x4( &(m_interpolatedMatricies[i]) );
-#else
-		XMVECTOR translation = XMLoadFloat3( &(object->position) );
-		XMVECTOR orientation = XMLoadFloat4( &(object->orientation) );
-		XMMATRIX transformation = XMMatrixRotationQuaternion( orientation );
-		transformation = transformation * XMMatrixTranslationFromVector( translation );
-#endif
-
-
-		for ( unsigned int j = 0; j < object->GetModelParts().size( ); ++j )
-		{
-			ModelPart& model = object->GetModelParts()[j];
-
-			// Wyliczamy macierz transformacji
-			XMMATRIX worldTransform;
-			worldTransform = XMLoadFloat4x4( &(model.mesh->transform_matrix) );
-			worldTransform = worldTransform * transformation;
-
-			// Wype³niamy bufor sta³ych
-			TransformConstants meshTransformData;
-			XMStoreFloat4x4( &meshTransformData.WorldMatrix, XMMatrixTranspose( worldTransform ) );
-			XMStoreFloat4( &meshTransformData.MeshScale, XMVectorSetW( XMVectorReplicate( object->GetScale() ), 1.0f ) );
-
-			// Przepisujemy materia³
-			ConstantPerMesh materialData;
-			CopyMaterial( &materialData, &model );
-
-			// Ustawiamy shadery
-			renderer->SetShaders( model );
-
-			// Aktualizujemy bufory sta³ych
-			renderer->UpdateSubresource( m_transformConstants.Ptr(), &meshTransformData );
-			renderer->VSSetConstantBuffers( TransformBufferBindingPoint, m_transformConstants.Ptr() );
-
-			renderer->UpdateSubresource( m_materialConstants.Ptr(), &materialData );
-			renderer->PSSetConstantBuffers( MaterialBufferBindingPoint, m_materialConstants.Ptr() );
-
-			// Ustawiamy tekstury
-			renderer->SetTextures( model );
-
-			// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
-			MeshPartObject* part = model.mesh;
-			if ( part->use_index_buf )
-				renderer->DrawIndexed( part->vertices_count, part->buffer_offset, part->base_vertex );
-			else // Tryb bezpoœredni
-				renderer->Draw( part->vertices_count, part->buffer_offset );
-		}
-
-	}
+//	register IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
+//
+//	//na razie pêtla bez optymalizacji
+//	for ( unsigned int i = 0; i < meshes.size( ); ++i )
+//	{
+//		register StaticActor* object = meshes[i];
+//
+//		// Ustawiamy bufor wierzcho³ków
+//		if ( renderer->SetVertexBuffer( object->GetVertexBuffer() ) )
+//			continue;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
+//
+//		// Ustawiamy bufor indeksów, je¿eli istnieje
+//		renderer->SetIndexBuffer( object->GetIndexBuffer() );
+//
+//
+//#ifdef _INTERPOLATE_POSITIONS
+//		XMMATRIX transformation = XMLoadFloat4x4( &(m_interpolatedMatricies[i]) );
+//#else
+//		XMVECTOR translation = XMLoadFloat3( &(object->position) );
+//		XMVECTOR orientation = XMLoadFloat4( &(object->orientation) );
+//		XMMATRIX transformation = XMMatrixRotationQuaternion( orientation );
+//		transformation = transformation * XMMatrixTranslationFromVector( translation );
+//#endif
+//
+//
+//		for ( unsigned int j = 0; j < object->GetModelParts().size( ); ++j )
+//		{
+//			ModelPart& model = object->GetModelParts()[j];
+//
+//			// Wyliczamy macierz transformacji
+//			XMMATRIX worldTransform;
+//			worldTransform = XMLoadFloat4x4( &(model.mesh->transform_matrix) );
+//			worldTransform = worldTransform * transformation;
+//
+//			// Wype³niamy bufor sta³ych
+//			TransformConstants meshTransformData;
+//			XMStoreFloat4x4( &meshTransformData.WorldMatrix, XMMatrixTranspose( worldTransform ) );
+//			XMStoreFloat4( &meshTransformData.MeshScale, XMVectorSetW( XMVectorReplicate( object->GetScale() ), 1.0f ) );
+//
+//			// Przepisujemy materia³
+//			ConstantPerMesh materialData;
+//			CopyMaterial( &materialData, &model );
+//
+//			// Ustawiamy shadery
+//			renderer->SetShaders( model );
+//
+//			// Aktualizujemy bufory sta³ych
+//			renderer->UpdateSubresource( m_transformConstants.Ptr(), &meshTransformData );
+//			renderer->VSSetConstantBuffers( TransformBufferBindingPoint, m_transformConstants.Ptr() );
+//
+//			renderer->UpdateSubresource( m_materialConstants.Ptr(), &materialData );
+//			renderer->PSSetConstantBuffers( MaterialBufferBindingPoint, m_materialConstants.Ptr() );
+//
+//			// Ustawiamy tekstury
+//			renderer->SetTextures( model );
+//
+//			// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
+//			MeshPartObject* part = model.mesh;
+//			if ( part->use_index_buf )
+//				renderer->DrawIndexed( part->vertices_count, part->buffer_offset, part->base_vertex );
+//			else // Tryb bezpoœredni
+//				renderer->Draw( part->vertices_count, part->buffer_offset );
+//		}
+//
+//	}
 
 	END_PERFORMANCE_CHECK( DYNAMIC_OBJECT_RENDERING )
 }
@@ -478,81 +478,81 @@ lightmap. Trzeba to napisaæ bardzo porz¹dnie.
 @param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.*/
 void DisplayEngine::RenderFromQueue( float time_interval, float time_lag )
 {
-	register IRenderer* renderer = m_renderers[0];
+	//register IRenderer* renderer = m_renderers[0];
 
-	for( unsigned int i = 0; i < m_maxQueuedPassesPerFrame; ++i )
-	{
-		if( !m_renderOnceQueue.empty() )
-		{
-			RenderPassDepracated* renderPass = m_renderOnceQueue.front();
-			m_renderOnceQueue.pop();
+	//for( unsigned int i = 0; i < m_maxQueuedPassesPerFrame; ++i )
+	//{
+	//	if( !m_renderOnceQueue.empty() )
+	//	{
+	//		RenderPassDepracated* renderPass = m_renderOnceQueue.front();
+	//		m_renderOnceQueue.pop();
 
-			renderer->BeginScene( renderPass->GetRenderTarget() );
-			renderer->IASetInputLayout( renderPass->GetLayout() );
+	//		renderer->BeginScene( renderPass->GetRenderTarget() );
+	//		renderer->IASetInputLayout( renderPass->GetLayout() );
 
-			auto meshCollection = renderPass->GetMeshes();
+	//		auto meshCollection = renderPass->GetMeshes();
 
-			//na razie pêtla bez optymalizacji
-			for ( unsigned int i = 0; i < meshCollection.size( ); ++i )
-			{
-				register StaticActor* object = meshCollection[i];
+	//		//na razie pêtla bez optymalizacji
+	//		for ( unsigned int i = 0; i < meshCollection.size( ); ++i )
+	//		{
+	//			register StaticActor* object = meshCollection[i];
 
-				// Ustawiamy bufor wierzcho³ków
-				if ( renderer->SetVertexBuffer( object->GetVertexBuffer() ) )
-					continue;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
+	//			// Ustawiamy bufor wierzcho³ków
+	//			if ( renderer->SetVertexBuffer( object->GetVertexBuffer() ) )
+	//				continue;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
 
 
-				XMVECTOR translation = object->GetPosition();
-				XMVECTOR orientation = object->GetOrientation();
-				XMMATRIX transformation = XMMatrixRotationQuaternion( orientation );
-				transformation = transformation * XMMatrixTranslationFromVector( translation );
+	//			XMVECTOR translation = object->GetPosition();
+	//			XMVECTOR orientation = object->GetOrientation();
+	//			XMMATRIX transformation = XMMatrixRotationQuaternion( orientation );
+	//			transformation = transformation * XMMatrixTranslationFromVector( translation );
 
-				for ( unsigned int j = 0; j < object->GetModelParts().size( ); ++j )
-				{
-					ModelPart& model = object->GetModelParts()[j];
+	//			for ( unsigned int j = 0; j < object->GetModelParts().size( ); ++j )
+	//			{
+	//				ModelPart& model = object->GetModelParts()[j];
 
-					// Wyliczamy macierz transformacji
-					XMMATRIX worldTransform;
-					worldTransform = XMLoadFloat4x4( &(model.mesh->transform_matrix) );
-					worldTransform = worldTransform * transformation;
+	//				// Wyliczamy macierz transformacji
+	//				XMMATRIX worldTransform;
+	//				worldTransform = XMLoadFloat4x4( &(model.mesh->transform_matrix) );
+	//				worldTransform = worldTransform * transformation;
 
-					// Wype³niamy bufor sta³ych
-					TransformConstants meshTransformData;
-					XMStoreFloat4x4( &meshTransformData.WorldMatrix, XMMatrixTranspose( worldTransform ) );
-					XMStoreFloat4( &meshTransformData.MeshScale, XMVectorSetW( XMVectorReplicate( object->GetScale() ), 1.0f ) );
+	//				// Wype³niamy bufor sta³ych
+	//				TransformConstants meshTransformData;
+	//				XMStoreFloat4x4( &meshTransformData.WorldMatrix, XMMatrixTranspose( worldTransform ) );
+	//				XMStoreFloat4( &meshTransformData.MeshScale, XMVectorSetW( XMVectorReplicate( object->GetScale() ), 1.0f ) );
 
-					// Przepisujemy materia³
-					ConstantPerMesh materialData;
-					CopyMaterial( &materialData, &model );
+	//				// Przepisujemy materia³
+	//				ConstantPerMesh materialData;
+	//				CopyMaterial( &materialData, &model );
 
-					// Ustawiamy shadery
-					renderer->SetShaders( model );
+	//				// Ustawiamy shadery
+	//				renderer->SetShaders( model );
 
-					// Aktualizujemy bufory sta³ych
-					renderer->UpdateSubresource( m_transformConstants.Ptr(), &meshTransformData );
-					renderer->VSSetConstantBuffers( TransformBufferBindingPoint, m_transformConstants.Ptr() );
+	//				// Aktualizujemy bufory sta³ych
+	//				renderer->UpdateSubresource( m_transformConstants.Ptr(), &meshTransformData );
+	//				renderer->VSSetConstantBuffers( TransformBufferBindingPoint, m_transformConstants.Ptr() );
 
-					renderer->UpdateSubresource( m_materialConstants.Ptr(), &materialData );
-					renderer->PSSetConstantBuffers( MaterialBufferBindingPoint, m_materialConstants.Ptr() );
+	//				renderer->UpdateSubresource( m_materialConstants.Ptr(), &materialData );
+	//				renderer->PSSetConstantBuffers( MaterialBufferBindingPoint, m_materialConstants.Ptr() );
 
-					// Ustawiamy tekstury
-					renderer->SetTextures( model );
+	//				// Ustawiamy tekstury
+	//				renderer->SetTextures( model );
 
-					// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
-					MeshPartObject* part = model.mesh;
-					if ( part->use_index_buf )
-						renderer->DrawIndexed( part->vertices_count, part->buffer_offset, part->base_vertex );
-					else // Tryb bezpoœredni
-						renderer->Draw( part->vertices_count, part->buffer_offset );
-				}
+	//				// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
+	//				MeshPartObject* part = model.mesh;
+	//				if ( part->use_index_buf )
+	//					renderer->DrawIndexed( part->vertices_count, part->buffer_offset, part->base_vertex );
+	//				else // Tryb bezpoœredni
+	//					renderer->Draw( part->vertices_count, part->buffer_offset );
+	//			}
 
-			}
+	//		}
 
-			RenderOnceEndedEvent*  renderedEvent = new RenderOnceEndedEvent;
-			renderedEvent->renderPass = renderPass;
-			engine->SendEvent( renderedEvent );
-		}
-	}
+	//		RenderOnceEndedEvent*  renderedEvent = new RenderOnceEndedEvent;
+	//		renderedEvent->renderPass = renderPass;
+	//		engine->SendEvent( renderedEvent );
+	//	}
+	//}
 }
 
 
