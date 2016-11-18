@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="..\..\Props\PathsMacros.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <GeometricUnitTestName>GeometricUnitTest</GeometricUnitTestName>
+    <GeometricUnitTestSourceDir>$(EngineSourceDir)Tests\$(GeometricUnitTestName)\</GeometricUnitTestSourceDir>
+    <GeometricUnitTestFileName>$(GeometricUnitTestName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</GeometricUnitTestFileName>
+    <GeometricUnitTestBuildDir>$(EngineBuildDir)$(GeometricUnitTestName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</GeometricUnitTestBuildDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IntDir>$(GeometricUnitTestBuildDir)</IntDir>
+    <TargetName>$(GeometricUnitTestFileName)</TargetName>
+    <OutDir>$(GeometricUnitTestBuildDir)</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(EngineSourceDir);$(ExternalDir)\Catch\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="GeometricUnitTestName">
+      <Value>$(GeometricUnitTestName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GeometricUnitTestLibDir">
+      <Value>$(GeometricUnitTestLibDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GeometricUnitTestSourceDir">
+      <Value>$(GeometricUnitTestSourceDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GeometricUnitTestFileName">
+      <Value>$(GeometricUnitTestFileName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GeometricUnitTestBuildDir">
+      <Value>$(GeometricUnitTestBuildDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

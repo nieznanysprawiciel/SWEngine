@@ -22,6 +22,11 @@
       <PreprocessorDefinitions>__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
+  
+	<Link>
+	  <SubSystem>Console</SubSystem>
+	</Link>
+  
   <ItemGroup>
     <BuildMacro Include="UnitTestName">
       <Value>$(UnitTestName)</Value>
