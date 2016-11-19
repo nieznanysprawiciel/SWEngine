@@ -9,6 +9,8 @@
 #include <algorithm>
 #include <numeric>
 
+#include <assert.h>
+
 
 
 namespace Geometric
@@ -38,10 +40,24 @@ public:
 // ================================ //
 //
 template< typename VertexType, typename IndexType >
-inline typename Converter< VertexType, IndexType >::ResultGeometry			Converter< VertexType, IndexType >::MakeIndexed	( const std::vector< VertexType >& srcVerticies )
+inline typename IndexedGeometry< VertexType, IndexType >		Converter::MakeIndexed( const std::vector< VertexType >& srcVerticies )
 {
-	ResultGeometry result;
-	result.Indicies.resize( srcVerticies.size() );	// Sincve we have triangle list topology, new index buffer will have the same size as srcVerticies.
+	IndexedGeometry< VertexType, IndexType > result;
+	result.Indicies = std::move( MakeIndexed< VertexType, IndexType >( srcVerticies, result.Verticies ) );
+
+	return result;
+}
+
+// ================================ //
+//
+template< typename VertexType, typename IndexType >
+inline std::vector< IndexType >								Converter::MakeIndexed( const std::vector< VertexType >& srcVerticies, std::vector< VertexType >& dstVerticies )
+{
+	std::vector< IndexType > indicies;
+	indicies.resize( srcVerticies.size() );	// Sincve we have triangle list topology, new index buffer will have the same size as srcVerticies.
+
+	assert( dstVerticies.size() < std::numeric_limits< IndexType >::max() );
+	IndexType vertexOffset = static_cast< IndexType >( dstVerticies.size() );
 
 	std::vector< IndexType > tmpIndicies;
 	tmpIndicies.resize( srcVerticies.size() );
@@ -52,6 +68,13 @@ inline typename Converter< VertexType, IndexType >::ResultGeometry			Converter< 
 	VertexComparator< VertexType, IndexType > comparator( srcVerticies );
 	std::sort( tmpIndicies.begin(), tmpIndicies.end(), comparator );
 
+	std::vector< VertexType > checkVertes;
+	for( int i = 0 ; i < tmpIndicies.size(); ++i )
+	{
+		checkVertes.push_back( srcVerticies[ tmpIndicies[ i ] ] );
+	}
+
+
 	// Iterate through verticies. Equal verticies are placed near each other.
 	// Merge these verticies and compute new indiecies.
 	IndexType tmpIdx = 0;
@@ -59,14 +82,14 @@ inline typename Converter< VertexType, IndexType >::ResultGeometry			Converter< 
 	while( tmpIdx < tmpIndicies.size() )
 	{
 		// Rewrite srcVerticies( tmpIdx ) to new buffer.
-		result.Verticies.push_back( srcVerticies[ tmpIndicies[ tmpIdx ] ] );
-		result.Indicies[ tmpIndicies[ tmpIdx ] ] = uniqueVertIdx;
+		dstVerticies.push_back( srcVerticies[ tmpIndicies[ tmpIdx ] ] );
+		indicies[ tmpIndicies[ tmpIdx ] ] = uniqueVertIdx + vertexOffset;
 
 
 		// Verticies are in increasing order, so this comparision checks if we are still in group of equal verticies.
 		while( tmpIdx + 1 < tmpIndicies.size() && !( comparator( tmpIndicies[ tmpIdx ], tmpIndicies[ tmpIdx + 1 ] ) ) )
 		{
-			result.Indicies[ tmpIndicies[ tmpIdx + 1 ] ] = uniqueVertIdx;
+			indicies[ tmpIndicies[ tmpIdx + 1 ] ] = uniqueVertIdx + vertexOffset;
 			tmpIdx++;
 		}
 
@@ -74,9 +97,8 @@ inline typename Converter< VertexType, IndexType >::ResultGeometry			Converter< 
 		tmpIdx++;
 	}
 
-	return result;
+	return indicies;
 }
-
 
 }
 

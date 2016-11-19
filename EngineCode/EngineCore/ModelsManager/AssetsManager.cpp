@@ -179,7 +179,7 @@ ModelsManagerResult AssetsManager::LoadModelFromFile( const std::wstring& file )
 @return Returns nullptr when loader could not be found or mesh loading failed.*/
 ResourcePtr< MeshAsset >		AssetsManager::LoadMesh		( const filesystem::Path& file )
 {
-	std::wstring filePath = Convert::FromString< std::wstring >( file.String(), L"" );
+	std::wstring filePath = file.WString();
 
 	// Check exisitng meshes.
 	MeshAsset* newMesh = m_meshes.get( filePath );

@@ -111,8 +111,8 @@ public:
 	ResourcePtr< MaterialAsset >	CreateMaterial				( const std::wstring& name, MaterialCreateData&& initData );
 	///@}
 
-	inline ResourcePtr< MeshAsset >		GetMesh					( const std::wstring& name )	{ return m_meshes.get( name ); }
-	inline ResourcePtr< MaterialAsset >	GetMaterial				( const std::wstring& name )	{ return m_material.get( name ); }
+	inline ResourcePtr< MeshAsset >		GetMesh					( const std::wstring& name )	{ return m_meshes.get( filesystem::Path( name ).WString() ); }
+	inline ResourcePtr< MaterialAsset >	GetMaterial				( const std::wstring& name )	{ return m_material.get( filesystem::Path( name ).WString() ); }
 
 
 	MaterialObject*					AddMaterialObject			( MaterialObject* material, const std::wstring& material_name );

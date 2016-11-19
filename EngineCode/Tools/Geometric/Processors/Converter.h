@@ -19,12 +19,8 @@ namespace Geometric
 
 
 /**@brief Converts different types of geoemtry.*/
-template< typename VertexType, typename IndexType >
 class Converter
 {
-public:
-	typedef IndexedGeometry< VertexType, IndexType > ResultGeometry;
-
 private:
 protected:
 public:
@@ -37,8 +33,14 @@ public:
 
 	@param[in] srcVerticies Vector of triangles.
 	@return Indexed geometry.*/
-	static ResultGeometry		MakeIndexed		( const std::vector< VertexType >& srcVerticies );
+	template< typename VertexType, typename IndexType >
+	static IndexedGeometry< VertexType, IndexType >		MakeIndexed		( const std::vector< VertexType >& srcVerticies );
 
+	/**@copydoc Converter::MakeIndexed
+	
+	Fills dstVerticies with unique verticies.*/
+	template< typename VertexType, typename IndexType >
+	static std::vector< IndexType >						MakeIndexed		( const std::vector< VertexType >& srcVerticies, std::vector< VertexType >& dstVerticies );
 };
 
 

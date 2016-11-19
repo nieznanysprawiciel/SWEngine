@@ -22,6 +22,12 @@ struct VertexNormalTexCoord
 	DirectX::XMFLOAT2	TexCoord;		///<Wspó³rzêdne tekstury.
 };
 
+bool		operator==( const DirectX::XMFLOAT2& vertex1, const DirectX::XMFLOAT2& vertex2 );
+bool		operator==( const DirectX::XMFLOAT3& vertex1, const DirectX::XMFLOAT3& vertex2 );
+bool		operator<( const DirectX::XMFLOAT2& vertex1, const DirectX::XMFLOAT2& vertex2 );
+bool		operator<( const DirectX::XMFLOAT3& vertex1, const DirectX::XMFLOAT3& vertex2 );
+bool		operator<( const VertexNormalTexCoord& vertex1, const VertexNormalTexCoord& vertex2 );
+
 
 /// @brief Struktura wierzcho³ka stworzona z myœl¹ o GUI.
 struct VertexTexCoord

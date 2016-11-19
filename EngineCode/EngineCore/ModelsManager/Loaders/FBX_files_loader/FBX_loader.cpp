@@ -2,6 +2,8 @@
 #include "FBX_loader.h"
 #include "FbxLoader.inl"
 
+#include "Tools/Geometric/Processors/Converter.h"
+
 
 #include "Common/Converters.h"
 #include "Common/MemoryLeaks.h"
@@ -18,8 +20,6 @@ using namespace DirectX;
 // Helpers declarations
 
 DirectX::XMFLOAT3	Get			( const fbxsdk::FbxVector4& vector );
-bool				operator==	( const DirectX::XMFLOAT3& vec1, const DirectX::XMFLOAT3& vec2 );
-bool				operator==	( const DirectX::XMFLOAT2& vec1, const DirectX::XMFLOAT2& vec2 );
 bool				operator==	( const fbxsdk::FbxVector4& vec1, const DirectX::XMFLOAT3& vec2 );
 
 
@@ -635,6 +635,7 @@ Nullable< TemporaryMeshInit >		FBX_loader::ProcessMesh		( FbxNodeMesh& nodeData,
 
 	FbxNode* fbxNode = nodeData.Node;
 	FbxMesh* fbxMesh = nodeData.Mesh;
+	uint32 ctrlPointsOffset = (uint32)mesh.Value.Verticies.size();
 
 	int materialsCount = fbxNode->GetMaterialCount();
 	unsigned int polygonsCount = fbxMesh->GetPolygonCount();
@@ -643,66 +644,30 @@ Nullable< TemporaryMeshInit >		FBX_loader::ProcessMesh		( FbxNodeMesh& nodeData,
 	unsigned int polygonCounter = 0;		// For FbxGeometryElement::eByPolygon maping type.
 
 
-	uint32 ctrlPointsOffset = (uint32)mesh.Value.Verticies.size();
+	std::vector< std::vector< Index32 > >		indicies;		indicies.resize( materialsCount );
+	std::vector< VertexNormalTexCoord >			verticies;		verticies.reserve( 3 * polygonsCount );
+
+
 	auto controlPoints = fbxMesh->GetControlPoints();
-	unsigned int numControlPoints = ctrlPointsOffset + fbxMesh->GetControlPointsCount();
 
-	std::vector< VertexNormalTexCoord >& verticies = mesh.Value.Verticies;		verticies.reserve( numControlPoints );
-	std::vector< std::vector< Index32 > > indicies;								indicies.resize( materialsCount );
 
-	// Rewrite all control points to vertex buffer.
-	for( Size idx = 0; idx < numControlPoints - ctrlPointsOffset; idx++ )
-	{
-		VertexNormalTexCoord vertex;
-		vertex.Position = Get( controlPoints[ idx ] );
-		vertex.Normal = DirectX::XMFLOAT3( 0.0, 0.0, 0.0 );
-		vertex.TexCoord = DirectX::XMFLOAT2( 0.0, 0.0 );
-
-		verticies.push_back( vertex );
-	}
-	
-	// Add polygons to index buffer.
+	// Create vertex buffer.
 	while( polygonCounter < polygonsCount )
 	{
-		// Material index per polygon.
-		int materialIdx = ReadMaterialIndex( fbxMesh, polygonCounter );
-
-		// There're no aother polygons then triangles, because we triangulated mesh i LoadMesh function.
 		for( int vertexIdx = 0; vertexIdx < 3; ++vertexIdx )
 		{
 			Index32 controlPointIdx = fbxMesh->GetPolygonVertex( polygonCounter, vertexIdx );
-			VertexNormalTexCoord* curVertex = &verticies[ ctrlPointsOffset + controlPointIdx ];
+			VertexNormalTexCoord curVertex;
 
 			// Find vertex normal and uvs coord.
 			FbxVector4 fbxNormal;
 			fbxMesh->GetPolygonVertexNormal( polygonCounter, vertexIdx, fbxNormal );
 
-			DirectX::XMFLOAT3 normal = Get( fbxNormal );
-			DirectX::XMFLOAT2 uv = ReadUVs( fbxMesh, controlPointIdx, vertexCounter );
+			curVertex.Position = Get( controlPoints[ controlPointIdx ] );
+			curVertex.Normal = Get( fbxNormal );
+			curVertex.TexCoord = ReadUVs( fbxMesh, controlPointIdx, vertexCounter );
 
-			if( curVertex->Normal == DirectX::XMFLOAT3( 0.0, 0.0, 0.0 ) )
-			{
-				// Normal didn't exist. That means, we process this control point first time.
-				curVertex->Normal = Get( fbxNormal );
-				curVertex->TexCoord = uv;
-
-				indicies[ materialIdx ].push_back( ctrlPointsOffset + controlPointIdx );
-			}
-			else if( normal == curVertex->Normal && curVertex->TexCoord == uv )
-			{
-				// Repeated vertex. We add only index.
-				indicies[ materialIdx ].push_back( ctrlPointsOffset + controlPointIdx );
-			}
-			else
-			{
-				// Normal or uv is different. We must create new vertex or find existing equal vertex.
-				VertexNormalTexCoord newVertex;
-				newVertex.Position = curVertex->Position;
-				newVertex.Normal = normal;
-				newVertex.TexCoord = uv;
-
-				indicies[ materialIdx ].push_back( FindUniqueVertex( newVertex, verticies, numControlPoints ) );
-			}
+			verticies.push_back( curVertex );
 
 			++vertexCounter;		//zliczamy wierzcho³ki
 		}
@@ -710,9 +675,25 @@ Nullable< TemporaryMeshInit >		FBX_loader::ProcessMesh		( FbxNodeMesh& nodeData,
 		polygonCounter++;
 	}
 
+	auto newIndicies = Geometric::Converter::MakeIndexed< VertexNormalTexCoord, Index32 >( verticies, mesh.Value.Verticies );
+
+	if( materialsCount > 1 )
+	{
+		for( int idx = 0; idx < newIndicies.size(); idx += 3 )
+		{
+			int materialIdx = ReadMaterialIndex( fbxMesh, idx / 3 );
+			indicies[ materialIdx ].push_back( newIndicies[ idx ] );
+			indicies[ materialIdx ].push_back( newIndicies[ idx + 1 ] );
+			indicies[ materialIdx ].push_back( newIndicies[ idx + 2 ] );
+		}
+	}
+	else
+		indicies[ 0 ] = std::move( newIndicies );
+	
+
 	// Verticies in FBX file have transformations which we must apply.
 	// We don't have to preserve transformation matrix for each segment with this approach.
-	TransformVerticies( verticies, ctrlPointsOffset, nodeData.Transformation );
+	TransformVerticies( mesh.Value.Verticies, ctrlPointsOffset, nodeData.Transformation );
 
 	Size indiciesOffset = 0;
 	for( Size i = 0; i < mesh.Value.Indicies.size(); ++i )
@@ -882,7 +863,7 @@ ResourcePtr< TextureObject >		FBX_loader::ProcessTexture			( FbxFileTexture* FBX
 			{
 				filesystem::Path texPath = FBXTexture->GetRelativeFileName();
 				texPath = m_filePath.GetParent() / texPath;
-				auto newTexture = models_manager->LoadTexture( Convert::FromString< std::wstring >( texPath.String(), std::wstring( L"" ) ) );
+				auto newTexture = models_manager->LoadTexture( texPath.WString() );
 
 				tex.EngineTex = newTexture;
 				return newTexture;
@@ -1014,29 +995,6 @@ DirectX::XMFLOAT3	Get( const fbxsdk::FbxVector4& vector )
 	return result;
 }
 
-// ================================ //
-//
-bool				operator==	( const DirectX::XMFLOAT3& vec1, const DirectX::XMFLOAT3& vec2 )
-{
-	if( vec1.x != vec2.x )
-		return false;
-	if( vec1.y != vec2.y )
-		return false;
-	if( vec1.z != vec2.z )
-		return false;
-	return true;
-}
-
-// ================================ //
-//
-bool				operator==	( const DirectX::XMFLOAT2& vec1, const DirectX::XMFLOAT2& vec2 )
-{
-	if( vec1.x != vec2.x )
-		return false;
-	if( vec1.y != vec2.y )
-		return false;
-	return true;
-}
 
 // ================================ //
 //

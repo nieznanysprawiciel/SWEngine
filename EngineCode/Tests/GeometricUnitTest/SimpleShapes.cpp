@@ -105,7 +105,7 @@ TEST_CASE( "Indexing geometry", "[Geometric]" )
 			VertexStruct( 1.0f,-1.0f, 1.0f )
 		};
 
-		auto result = Geometric::Converter< VertexStruct, IndexType >::MakeIndexed( verticies );
+		auto result = Geometric::Converter::MakeIndexed< VertexStruct, IndexType >( verticies );
 
 		CHECK( result.Indicies.size() == 36 );
 		CHECK( result.Verticies.size() == 8 );

@@ -45,6 +45,7 @@ public:
 	friend Path				operator/		( const Path& path1, const Path& path2 );
 
 	std::string				String			() const;
+	std::wstring			WString			() const;
 
 
 	std::string				GetFileName		() const;
@@ -67,26 +68,26 @@ public:
 
 /**@brief */
 template< class Source >
-inline Path::Path( const Source& source )
+inline			Path::Path( const Source& source )
 	:	m_path( experimental::path( source ) )
 {}
 
 /**@brief */
-inline Path::Path()
+inline			Path::Path()
 {}
 
 /**@brief */
-inline Path::Path( const Path& path )
+inline			Path::Path( const Path& path )
 	:	m_path( path.m_path )
 {}
 
 /**@brief */
-inline Path::Path( Path&& path )
+inline			Path::Path( Path&& path )
 	:	m_path( std::move( path.m_path ) )
 {}
 
 /**@brief */
-inline Path::Path( const std::wstring& path )
+inline			Path::Path( const std::wstring& path )
 {
 	typedef std::codecvt_utf8< wchar_t > ConvertType;
 	std::wstring_convert< ConvertType, wchar_t > converter;
@@ -96,34 +97,34 @@ inline Path::Path( const std::wstring& path )
 }
 
 /**@brief */
-inline Path& Path::operator=( const Path& other )
+inline Path&	Path::operator=( const Path& other )
 {
 	m_path = other.m_path;
 	return *this;
 }
 
 /**@brief */
-inline Path& Path::operator=( Path&& other )
+inline Path&	Path::operator=( Path&& other )
 {
 	m_path = std::move( other.m_path );
 	return *this;
 }
 
 /**@brief */
-inline Path& Path::operator/=( const Path& other )
+inline Path&	Path::operator/=( const Path& other )
 {
 	m_path /= other.m_path;
 	return *this;
 }
 
 /**@brief */
-inline bool Path::operator==( const Path& other ) const
+inline bool		Path::operator==( const Path& other ) const
 {
 	return m_path == other.m_path;
 }
 
 /**@brief Porównuje œcie¿ki. Przed porównaniem œcie¿ki s¹ normalizowane.*/
-inline bool Path::Compare( const Path& path1, const Path& path2 )
+inline bool		Path::Compare( const Path& path1, const Path& path2 )
 {
 	Path firstPath( path1 );
 	Path secondPath( path2 );
@@ -135,19 +136,26 @@ inline bool Path::Compare( const Path& path1, const Path& path2 )
 }
 
 /**@brief */
-inline std::string Path::String() const
+inline std::string	Path::String() const
 {
 	return m_path.string();
 }
 
 /**@brief */
-inline std::string Path::GetFileName() const
+inline std::wstring	Path::WString() const
+{
+	return m_path.wstring();
+}
+
+
+/**@brief */
+inline std::string	Path::GetFileName() const
 {
 	return m_path.filename().string();
 }
 
 /**@brief */
-inline std::string Path::GetExtension() const
+inline std::string	Path::GetExtension() const
 {
 	return m_path.extension().string();
 }

@@ -84,3 +84,81 @@ void DefaultAssets::Release()
 	delete LAYOUT_POSITION_COLOR;
 	delete LAYOUT_COORD_COLOR;
 }
+
+//====================================================================================//
+//			Comparision operators	
+//====================================================================================//
+
+// ================================ //
+//
+bool		operator==( const DirectX::XMFLOAT2& vertex1, const DirectX::XMFLOAT2& vertex2 )
+{
+	if( vertex1.x == vertex2.x &&
+		vertex1.y == vertex2.y )
+		return true;
+	return false;
+}
+
+// ================================ //
+//
+bool		operator==( const DirectX::XMFLOAT3& vertex1, const DirectX::XMFLOAT3& vertex2 )
+{
+	if( vertex1.x == vertex2.x &&
+		vertex1.y == vertex2.y &&
+		vertex1.z == vertex2.z )
+		return true;
+	return false;
+}
+
+// ================================ //
+//
+bool		operator<( const DirectX::XMFLOAT2& vertex1, const DirectX::XMFLOAT2& vertex2 )
+{
+	if( vertex1.x < vertex2.x )
+		return true;
+	if( vertex1.x > vertex2.x )
+		return false;
+
+	if( vertex1.y < vertex2.y )
+		return true;
+	return false;
+}
+
+// ================================ //
+//
+bool		operator<( const DirectX::XMFLOAT3& vertex1, const DirectX::XMFLOAT3& vertex2 )
+{
+	if( vertex1.x < vertex2.x )
+		return true;
+	if( vertex1.x > vertex2.x )
+		return false;
+
+	if( vertex1.y < vertex2.y )
+		return true;
+	if( vertex1.y > vertex2.y )
+		return false;
+
+	if( vertex1.z < vertex2.z )
+		return true;
+	return false;
+}
+
+// ================================ //
+//
+bool		operator<( const VertexNormalTexCoord& vertex1, const VertexNormalTexCoord& vertex2 )
+{
+	if( vertex1.Position < vertex2.Position )
+		return true;
+	if( vertex1.Position == vertex2.Position )
+	{
+		if( vertex1.Normal < vertex2.Normal )
+			return true;
+		if( vertex1.Normal == vertex2.Normal )
+		{
+			if( vertex1.TexCoord < vertex2.TexCoord )
+				return true;
+		}
+	}
+
+	return false;
+}

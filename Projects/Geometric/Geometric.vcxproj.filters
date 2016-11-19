@@ -18,9 +18,6 @@
     <ClCompile Include="..\..\EngineCode\Tools\Geometric\stdafx.cpp">
       <Filter>PrecompiledHeader</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\Tools\Geometric\Processors\Converter.inl">
-      <Filter>Geometric\Processors</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\Tools\Geometric\stdafx.h">
@@ -34,6 +31,9 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\Tools\Geometric\Types\IndexedGeometry.h">
       <Filter>Geometric\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Tools\Geometric\Processors\Converter.inl">
+      <Filter>Geometric\Processors</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

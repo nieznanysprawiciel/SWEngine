@@ -29,8 +29,8 @@ public:
 };
 
 
-void		TextIndexBuffer		( const ResourcePtr< BufferObject >& buffer, uint32 expNumElements, uint32 expElemSize, TypeID type );
-void		TextVertexBuffer	( const ResourcePtr< BufferObject >& buffer, uint32 expNumElements, uint32 expElemSize, TypeID type, PrimitiveTopology topology );
+void		TestIndexBuffer		( const ResourcePtr< BufferObject >& buffer, uint32 expNumElements, uint32 expElemSize, TypeID type );
+void		TestVertexBuffer	( const ResourcePtr< BufferObject >& buffer, uint32 expNumElements, uint32 expElemSize, TypeID type, PrimitiveTopology topology );
 void		TestBufferObject	( const ResourcePtr< BufferObject >& buffer, uint32 expNumElements, uint32 expElemSize, TypeID type );
 
 
@@ -72,8 +72,8 @@ TEST_CASE( "Loading assets", "[FBXLoader]" )
 
 		CHECK( cloneFighterMesh->GetResourceName() == CLONE_FIGHTER.String() );
 		
-		TextIndexBuffer( indexBuffer, 155166,  sizeof( Index16 ), TypeID::get< Index16 >() );
-		TextVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+		TestIndexBuffer( indexBuffer, 155166,  sizeof( Index16 ), TypeID::get< Index16 >() );
+		TestVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 		// vertexBuffer->GetDescriptor().NumElements - I don't know how many elements should be yet. [Suppres warning]
 
 
@@ -151,7 +151,7 @@ TEST_CASE( "Loading assets", "[FBXLoader]" )
 			if( material1->GetTexture( 0 ) )
 			{
 				auto tex = material1->GetTexture( 0 );
-				CHECK( tex->GetFilePath().String() == ( "tylko_do_testow/clone_fighter/ARC170_TXT_VERSION_4_D.jpg" ) );
+				CHECK( tex->GetFilePath().String() == filesystem::Path( "tylko_do_testow/clone_fighter/ARC170_TXT_VERSION_4_D.jpg" ).String() );
 			}
 
 			CHECK( material1->GetTexture( 1 ) == nullptr );
@@ -186,8 +186,8 @@ TEST_CASE( "Loading assets", "[FBXLoader]" )
 
 		CHECK( simpleBoxMesh->GetResourceName() == SIMPLE_BOX.String() );
 		
-		TextIndexBuffer( indexBuffer, 36,  sizeof( Index16 ), TypeID::get< Index16 >() );
-		TextVertexBuffer( vertexBuffer, 24,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+		TestIndexBuffer( indexBuffer, 36,  sizeof( Index16 ), TypeID::get< Index16 >() );
+		TestVertexBuffer( vertexBuffer, 24,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 
 		auto& segments = simpleBoxMesh->GetSegments();
 		REQUIRE( segments.size() == 1 );
@@ -222,14 +222,14 @@ TEST_CASE( "Loading assets", "[FBXLoader]" )
 			if( material0->GetTexture( 0 ) )
 			{
 				auto tex = material0->GetTexture( 0 );
-				CHECK( tex->GetFilePath().String() == ( "tylko_do_testow/SimpleBox/Diffuse.jpg" ) );
+				CHECK( tex->GetFilePath().String() == filesystem::Path( "tylko_do_testow/SimpleBox/Diffuse.jpg" ).String() );
 			}
 
 			CHECK( material0->GetTexture( 0 ) != nullptr );
 			if( material0->GetTexture( 1 ) )
 			{
 				auto tex = material0->GetTexture( 1 );
-				CHECK( tex->GetFilePath().String() == ( "tylko_do_testow/SimpleBox/Specular.jpg" ) );
+				CHECK( tex->GetFilePath().String() == filesystem::Path( "tylko_do_testow/SimpleBox/Specular.jpg" ).String() );
 			}
 
 			CHECK( material0->GetTexture( 2 ) == nullptr );
@@ -263,8 +263,8 @@ TEST_CASE( "Loading assets", "[FBXLoader]" )
 
 		CHECK( moonMesh->GetResourceName() == MOON.String() );
 		
-		TextIndexBuffer( indexBuffer, indexBuffer->GetDescriptor().NumElements,  sizeof( Index16 ), TypeID::get< Index16 >() );
-		TextVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+		TestIndexBuffer( indexBuffer, indexBuffer->GetDescriptor().NumElements,  sizeof( Index16 ), TypeID::get< Index16 >() );
+		TestVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 		// vertexBuffer->GetDescriptor().NumElements - I don't know how many elements should be yet. [Suppres warning]
 
 	}
@@ -288,8 +288,8 @@ TEST_CASE( "Loading assets", "[FBXLoader]" )
 
 		CHECK( nebulonMesh->GetResourceName() == NEBULON.String() );
 		
-		TextIndexBuffer( indexBuffer, indexBuffer->GetDescriptor().NumElements,  sizeof( Index16 ), TypeID::get< Index16 >() );
-		TextVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+		TestIndexBuffer( indexBuffer, indexBuffer->GetDescriptor().NumElements,  sizeof( Index16 ), TypeID::get< Index16 >() );
+		TestVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 		// vertexBuffer->GetDescriptor().NumElements - I don't know how many elements should be yet. [Suppres warning]
 
 	}
@@ -311,8 +311,8 @@ TEST_CASE( "Loading assets", "[FBXLoader]" )
 
 		CHECK( vaderTIEMesh->GetResourceName() == VADER_TIE.String() );
 		
-		TextIndexBuffer( indexBuffer, indexBuffer->GetDescriptor().NumElements,  sizeof( Index32 ), TypeID::get< Index32 >() );
-		TextVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+		TestIndexBuffer( indexBuffer, indexBuffer->GetDescriptor().NumElements,  sizeof( Index32 ), TypeID::get< Index32 >() );
+		TestVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 		// vertexBuffer->GetDescriptor().NumElements - I don't know how many elements should be yet. [Suppres warning]
 
 		auto& segments = vaderTIEMesh->GetSegments();
@@ -336,8 +336,8 @@ TEST_CASE( "Loading assets", "[FBXLoader]" )
 
 		CHECK( tieMesh->GetResourceName() == TIE_FIGHTER.String() );
 		
-		TextIndexBuffer( indexBuffer, indexBuffer->GetDescriptor().NumElements,  sizeof( Index32 ), TypeID::get< Index32 >() );
-		TextVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+		TestIndexBuffer( indexBuffer, indexBuffer->GetDescriptor().NumElements,  sizeof( Index32 ), TypeID::get< Index32 >() );
+		TestVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 		// vertexBuffer->GetDescriptor().NumElements - I don't know how many elements should be yet. [Suppres warning]
 	}
 
@@ -358,8 +358,8 @@ TEST_CASE( "Loading assets", "[FBXLoader]" )
 
 		CHECK( gateMesh->GetResourceName() == GATE.String() );
 		
-		TextIndexBuffer( indexBuffer, indexBuffer->GetDescriptor().NumElements,  sizeof( Index16 ), TypeID::get< Index16 >() );
-		TextVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+		TestIndexBuffer( indexBuffer, indexBuffer->GetDescriptor().NumElements,  sizeof( Index16 ), TypeID::get< Index16 >() );
+		TestVertexBuffer( vertexBuffer, vertexBuffer->GetDescriptor().NumElements,  sizeof( VertexNormalTexCoord ), TypeID::get< VertexNormalTexCoord >(), PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
 		// vertexBuffer->GetDescriptor().NumElements - I don't know how many elements should be yet. [Suppres warning]
 	}
 
@@ -371,7 +371,7 @@ TEST_CASE( "Loading assets", "[FBXLoader]" )
 
 // ================================ //
 //
-void TextIndexBuffer( const ResourcePtr<BufferObject>& buffer, uint32 expNumElements, uint32 expElemSize, TypeID type )
+void TestIndexBuffer( const ResourcePtr<BufferObject>& buffer, uint32 expNumElements, uint32 expElemSize, TypeID type )
 {
 	CHECK( buffer->GetDescriptor().BufferType == BufferType::IndexBuffer );
 
@@ -380,7 +380,7 @@ void TextIndexBuffer( const ResourcePtr<BufferObject>& buffer, uint32 expNumElem
 
 // ================================ //
 //
-void TextVertexBuffer( const ResourcePtr<BufferObject>& buffer, uint32 expNumElements, uint32 expElemSize, TypeID type, PrimitiveTopology topology )
+void TestVertexBuffer( const ResourcePtr<BufferObject>& buffer, uint32 expNumElements, uint32 expElemSize, TypeID type, PrimitiveTopology topology )
 {
 	CHECK( buffer->GetDescriptor().BufferType == BufferType::VertexBuffer );
 	CHECK( buffer->GetDescriptor().Topology == topology );
