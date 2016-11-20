@@ -253,12 +253,15 @@ ResourcePtr< MeshAsset >		AssetsManager::CreateMesh	( const std::wstring& name, 
 		IndexBufferInitData indexInit;
 		indexInit.Data = initData.IndexBuffer.GetMemory< uint8 >();
 		
-		indexInit.ElementSize = sizeof( Index16 );
-		indexInit.DataType = TypeID::get< Index16 >();
 		if( initData.ExtendedIndex )
 		{
 			indexInit.DataType = TypeID::get< Index32 >();
 			indexInit.ElementSize = sizeof( Index32 );
+		}
+		else
+		{
+			indexInit.ElementSize = sizeof( Index16 );
+			indexInit.DataType = TypeID::get< Index16 >();
 		}
 
 		indexInit.Topology = initData.Topology;
@@ -268,6 +271,19 @@ ResourcePtr< MeshAsset >		AssetsManager::CreateMesh	( const std::wstring& name, 
 		indexBuffer = CreateIndexBuffer( name, indexInit );
 		if( !indexBuffer )
 			return nullptr;
+	}
+
+	// Validate segments data
+	for( auto& segment : initData.MeshSegments )
+	{
+		uint16 flags = 0;
+		if( initData.ExtendedIndex )
+			flags = flags | MeshPartFlags::Use4BytesIndex;
+
+		if( segment.Material->GetDescriptor().AdditionalBuffers.size() != 0 )
+			flags = flags | MeshPartFlags::UseAdditionalBuffer;
+
+		segment.Flags = flags;
 	}
 
 	MeshCreateData meshData;

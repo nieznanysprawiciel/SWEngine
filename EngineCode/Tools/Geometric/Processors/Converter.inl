@@ -59,37 +59,31 @@ inline std::vector< IndexType >								Converter::MakeIndexed( const std::vector
 	assert( dstVerticies.size() < std::numeric_limits< IndexType >::max() );
 	IndexType vertexOffset = static_cast< IndexType >( dstVerticies.size() );
 
-	std::vector< IndexType > tmpIndicies;
-	tmpIndicies.resize( srcVerticies.size() );
+	std::vector< IndexType > sortedIndicies;
+	sortedIndicies.resize( srcVerticies.size() );
 
 	// Fill temporary index vector with increasing numbers. Note that this vector is index buffer for our source array.
-	std::iota( tmpIndicies.begin(), tmpIndicies.end(), 0 );
+	std::iota( sortedIndicies.begin(), sortedIndicies.end(), 0 );
 
 	VertexComparator< VertexType, IndexType > comparator( srcVerticies );
-	std::sort( tmpIndicies.begin(), tmpIndicies.end(), comparator );
-
-	std::vector< VertexType > checkVertes;
-	for( int i = 0 ; i < tmpIndicies.size(); ++i )
-	{
-		checkVertes.push_back( srcVerticies[ tmpIndicies[ i ] ] );
-	}
+	std::sort( sortedIndicies.begin(), sortedIndicies.end(), comparator );
 
 
 	// Iterate through verticies. Equal verticies are placed near each other.
 	// Merge these verticies and compute new indiecies.
 	IndexType tmpIdx = 0;
 	IndexType uniqueVertIdx = 0;
-	while( tmpIdx < tmpIndicies.size() )
+	while( tmpIdx < sortedIndicies.size() )
 	{
 		// Rewrite srcVerticies( tmpIdx ) to new buffer.
-		dstVerticies.push_back( srcVerticies[ tmpIndicies[ tmpIdx ] ] );
-		indicies[ tmpIndicies[ tmpIdx ] ] = uniqueVertIdx + vertexOffset;
+		dstVerticies.push_back( srcVerticies[ sortedIndicies[ tmpIdx ] ] );
+		indicies[ sortedIndicies[ tmpIdx ] ] = uniqueVertIdx + vertexOffset;
 
 
 		// Verticies are in increasing order, so this comparision checks if we are still in group of equal verticies.
-		while( tmpIdx + 1 < tmpIndicies.size() && !( comparator( tmpIndicies[ tmpIdx ], tmpIndicies[ tmpIdx + 1 ] ) ) )
+		while( tmpIdx + 1 < sortedIndicies.size() && !( comparator( sortedIndicies[ tmpIdx ], sortedIndicies[ tmpIdx + 1 ] ) ) )
 		{
-			indicies[ tmpIndicies[ tmpIdx + 1 ] ] = uniqueVertIdx + vertexOffset;
+			indicies[ sortedIndicies[ tmpIdx + 1 ] ] = uniqueVertIdx + vertexOffset;
 			tmpIdx++;
 		}
 

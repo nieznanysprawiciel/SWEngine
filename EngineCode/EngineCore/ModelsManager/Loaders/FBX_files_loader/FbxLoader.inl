@@ -29,7 +29,7 @@ inline void		FBX_loader::CopyIndexBuffer		( const std::vector< std::vector< Inde
 	{
 		for( int indexIdx = 0; indexIdx < indicies[ i ].size(); indexIdx++ )
 		{
-			*dest = indicies[ i ][ indexIdx ];
+			*dest = (IndexType)indicies[ i ][ indexIdx ];
 			dest++;
 		}
 	}

@@ -667,6 +667,7 @@ Nullable< TemporaryMeshInit >		FBX_loader::ProcessMesh		( FbxNodeMesh& nodeData,
 			curVertex.Normal = Get( fbxNormal );
 			curVertex.TexCoord = ReadUVs( fbxMesh, controlPointIdx, vertexCounter );
 
+			//mesh.Value.Verticies.push_back( curVertex );
 			verticies.push_back( curVertex );
 
 			++vertexCounter;		//zliczamy wierzcho³ki
@@ -676,6 +677,10 @@ Nullable< TemporaryMeshInit >		FBX_loader::ProcessMesh		( FbxNodeMesh& nodeData,
 	}
 
 	auto newIndicies = Geometric::Converter::MakeIndexed< VertexNormalTexCoord, Index32 >( verticies, mesh.Value.Verticies );
+	//std::vector< Index32 > newIndicies;
+	//newIndicies.resize( 3 * polygonsCount );
+	//std::iota( newIndicies.begin(), newIndicies.end(), ctrlPointsOffset );
+
 
 	if( materialsCount > 1 )
 	{
@@ -878,7 +883,7 @@ ResourcePtr< TextureObject >		FBX_loader::ProcessTexture			( FbxFileTexture* FBX
 
 // ================================ //
 //
-void								FBX_loader::TransformVerticies		( std::vector<VertexNormalTexCoord>& verticies, uint32 offset, const DirectX::XMFLOAT4X4& matrix )
+void								FBX_loader::TransformVerticies		( std::vector< VertexNormalTexCoord >& verticies, uint32 offset, const DirectX::XMFLOAT4X4& matrix )
 {
 	XMMATRIX transform = XMLoadFloat4x4( &matrix );
 	XMMATRIX normalTransform = XMMatrixTranspose( XMMatrixInverse( nullptr, transform ) );
