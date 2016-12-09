@@ -92,6 +92,11 @@ void UI_Engine::ProceedInput( float timeInterval )
 			PRINT_STATISTICS( PERFORMANCE_STATISTICS_FILE_PATH );
 		}
 
+		if( keyboardState[ KeyboardState::PHYSICAL_KEYS::KEY_F2 ].IsKeyDownEvent() )
+		{
+			PERFORMACE_CHECK_CLEAR_SAMPLES;
+		}
+
 		UpdateAbstractionLayer( keyboards, mouses, joysticks );
 	}
 

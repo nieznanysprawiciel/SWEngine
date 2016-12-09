@@ -1,8 +1,18 @@
+/**
+@file PerformanceCheck.cpp
+@author nieznanysprawiciel
+@copyright File is part of graphic engine SWEngine.
+*/
+
 #include "EngineCore/stdafx.h"
 #include "PerformanceCheck.h"
+
 #include <future>
 #include <fstream>
 #include <iomanip>
+#include <limits>
+
+///<@todo Don't use windows.h here. Build platform specific libraries.
 #include <Windows.h>
 
 #include "Common/MemoryLeaks.h"
@@ -23,37 +33,37 @@ const int floatPrintPrecision = 8;		///< Liczba miejsc po przecinku jakie bêd¹ w
 /**@brief Funkcja wywo³ywana na poczatku wykonywania zadania. Zapisuje
 aktualny czas.
 
-@param[in] index Indeks zadania w tablicy performance_datas.*/
-void PerformanceCheck::startPerformanceCheck( unsigned int index )
+@param[in] index Indeks zadania w tablicy m_samples.*/
+void			PerformanceCheck::StartPerformanceCheck( unsigned int index )
 {
-	if ( index < performance_datas.size() )
+	if ( index < m_samples.size() )
 	{
 		_LARGE_INTEGER currentTime;
 		QueryPerformanceCounter( &currentTime );
-		performance_datas[ index ].last_start_performance_value = currentTime.QuadPart;
+		m_samples[ index ].LastStartTime = currentTime.QuadPart;
 	}
 }
 
 /**@brief Funkcja wywo³ywana pod koniec wykonywania zadania.
 Aktualizuje wszystkie statystyki.
 
-@param[in] index Indeks zadania w tablicy performance_datas.*/
-void PerformanceCheck::endPerformanceCheck( unsigned int index )
+@param[in] index Indeks zadania w tablicy m_samples.*/
+void			PerformanceCheck::EndPerformanceCheck( unsigned int index )
 {
-	if ( index < performance_datas.size() )
+	if( index < m_samples.size() )
 	{
 		_LARGE_INTEGER currentTime;
 		QueryPerformanceCounter( &currentTime );
 
-		int64 timeSpent = currentTime.QuadPart - performance_datas[ index ].last_start_performance_value;
-		performance_datas[ index ].hole_time_spent += timeSpent;
+		uint64 timeSpent = currentTime.QuadPart - m_samples[ index ].LastStartTime;
+		m_samples[ index ].WholeTime += timeSpent;
 
-		if ( timeSpent > performance_datas[index].max_time_spent )
-			performance_datas[index].max_time_spent = timeSpent;
-		else if ( timeSpent < performance_datas[index].min_time_spent )
-			performance_datas[index].min_time_spent = timeSpent;
+		if( timeSpent > m_samples[ index ].MaxTime )
+			m_samples[ index ].MaxTime = timeSpent;
+		else if( timeSpent < m_samples[ index ].MinTime )
+			m_samples[ index ].MinTime = timeSpent;
 
-		performance_datas[index].task_executions++;
+		m_samples[ index ].NumExecutions++;
 	}
 }
 
@@ -61,17 +71,17 @@ void PerformanceCheck::endPerformanceCheck( unsigned int index )
 
 @param[in] taskName Nazwa zadania
 @return Zwraca identyfikator zadania, którym mo¿na siê odwo³ywaæ potem do funkcji mierz¹cych czas.*/
-unsigned int PerformanceCheck::registerTaskName( const char* taskName )
+unsigned int	PerformanceCheck::RegisterTaskName( const char* taskName )
 {
-	_performance_data newTask;
-	newTask.task_name = taskName;
-	newTask.max_time_spent = 0;
-	newTask.min_time_spent = UINT32_MAX;
-	newTask.task_executions = 0;
-	newTask.hole_time_spent = 0;
+	_PerformanceData newTask;
+	newTask.TaskName = taskName;
+	newTask.MaxTime = 0;
+	newTask.MinTime = std::numeric_limits< uint32 >::max();
+	newTask.NumExecutions = 0;
+	newTask.WholeTime = 0;
 
-	performance_datas.push_back( newTask );
-	return (unsigned int)( performance_datas.size() - 1 );
+	m_samples.push_back( newTask );
+	return (unsigned int)( m_samples.size() - 1 );
 }
 
 /**@brief Asynchronicznie drukuje statystyki do podanego pliku.
@@ -80,13 +90,13 @@ Poniewa¿ statystyki s¹ zapisywane w oddzielnym w¹tku, to zbyt szybkie wywo³ania 
 mog¹ spowodowaæ, ¿e na³o¿¹ siê one na siebie.
 
 @param[in] outputFile Plik, do którego maj¹ trafiæ statystyki.*/
-void PerformanceCheck::printPerformanceStatisticsAsync( const std::string& outputFile )
+void			PerformanceCheck::PrintPerformanceStatisticsAsync( const std::string& outputFile )
 {
-	std::future<void> printAsync = std::async( print, outputFile, performance_datas );
+	std::future<void> printAsync = std::async( Print, outputFile, m_samples );
 }
 
 /**@brief Faktyczna funkcja drukuj¹ca.*/
-void PerformanceCheck::print( const std::string& outputFile, std::vector<_performance_data> data_copy )
+void			PerformanceCheck::Print( const std::string& outputFile, std::vector<_PerformanceData> data_copy )
 {
 	LARGE_INTEGER counterFreq;
 	QueryPerformanceFrequency( &counterFreq );
@@ -102,20 +112,28 @@ void PerformanceCheck::print( const std::string& outputFile, std::vector<_perfor
 	{
 		output.width( 32 );
 		output << std::left;
-		output << taskData.task_name;
+		output << taskData.TaskName;
 		output.width( 0 );
 		output << std::fixed;
-		output << std::setprecision( floatPrintPrecision ) << 1000 * taskData.hole_time_spent / double( taskData.task_executions * counterFreq.QuadPart ) << " ms	";
-		output << std::setprecision( floatPrintPrecision ) << 1000 * taskData.min_time_spent / double( counterFreq.QuadPart ) << " ms	";
-		output << std::setprecision( floatPrintPrecision ) << 1000 * taskData.max_time_spent / double( counterFreq.QuadPart ) << " ms" << std::endl;
+		output << std::setprecision( floatPrintPrecision ) << 1000 * taskData.WholeTime / double( taskData.NumExecutions * counterFreq.QuadPart ) << " ms	";
+		output << std::setprecision( floatPrintPrecision ) << 1000 * taskData.MinTime / double( counterFreq.QuadPart ) << " ms	";
+		output << std::setprecision( floatPrintPrecision ) << 1000 * taskData.MaxTime / double( counterFreq.QuadPart ) << " ms" << std::endl;
 	}
 	output << std::endl;
 
 	output.close();
 }
 
-
-void PerformanceCheck::clear()
+// ================================ //
+//
+void			PerformanceCheck::ClearSamples()
 {
-	performance_datas.clear();
+	for( auto& sample : m_samples )
+	{
+		sample.MaxTime = 0;
+		sample.MinTime = std::numeric_limits< uint32 >::max();
+		sample.WholeTime = 0;
+		sample.NumExecutions = 0;
+	}
+	
 }

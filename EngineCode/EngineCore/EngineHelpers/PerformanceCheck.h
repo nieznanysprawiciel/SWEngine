@@ -13,14 +13,14 @@ czasu zu¿ywanego na wykonanie wybranych zadañ.*/
 
 
 /**@brief Struktura przechowuje dane na temat wydajnoœci jednej badanej rzeczy.*/
-struct _performance_data
+struct _PerformanceData
 {
-	std::string			task_name;						///<Nazwa zadania jaka zostanie wyœwietlona w statystykach.
-	int64				last_start_performance_value;	///<Ostatni zarejestrowany czas dla badanej zadania.
-	int64				hole_time_spent;				///<Zlicza ca³y czas jaki zosta³ spêdzony na wykonywaniu zadania.
-	int64				min_time_spent;					///<Minimalny czas wyknywania zadania.
-	int64				max_time_spent;					///<Maksymalny czas wykonywania zadania.
-	int32				task_executions;				///<Ile razy zosta³o wykonane zadanie - iloœæ parzystych wywo³añ startPerformanceCheck i EndPerformanceCheck.
+	uint64				LastStartTime;				///<Ostatni zarejestrowany czas dla badanej zadania.
+	uint64				WholeTime;					///<Zlicza ca³y czas jaki zosta³ spêdzony na wykonywaniu zadania.
+	uint64				MinTime;					///<Minimalny czas wyknywania zadania.
+	uint64				MaxTime;					///<Maksymalny czas wykonywania zadania.
+	uint32				NumExecutions;				///<Ile razy zosta³o wykonane zadanie - iloœæ parzystych wywo³añ StartPerformanceCheck i EndPerformanceCheck.
+	std::string			TaskName;					///<Nazwa zadania jaka zostanie wyœwietlona w statystykach.
 };
 
 /**@brief Klasa s³u¿y do pomiaru wydajnoœci poszczególnych fragmentów kodu.
@@ -32,10 +32,10 @@ za³¹czany jedynie w przypadku zdefiniowania makra PERFORMANCE_CHECK. W innym prz
 rozwija³y siê do pustych instrukcji.
 
 1. Normalne u¿ywanie klasy.
-Aby u¿yæ klasy nale¿y zarejestrowaæ nazwy wybranych zadañ. Robi siê to funkcj¹ registerTaskName.
+Aby u¿yæ klasy nale¿y zarejestrowaæ nazwy wybranych zadañ. Robi siê to funkcj¹ RegisterTaskName.
 Funkcja zwraca identyfikator, który potem pos³u¿y do wywo³ywania pomiarów dla tego zadania.
 
-Ka¿de zadanie musi byæ otoczone wywo³aniami funkcji startPerformanceCheck i endPerformanceCheck z podaniem indeksu zadania.
+Ka¿de zadanie musi byæ otoczone wywo³aniami funkcji StartPerformanceCheck i EndPerformanceCheck z podaniem indeksu zadania.
 
 Aby wypisaæ wyniki, nale¿y wywo³aæ funkcjê printPerformanceStatisticsAsync podaj¹c nazwê pliku, do którego statystyki zostan¹ wys³ane.
 Funkcja dzia³a asynchronicznie, wiêc nie czeka siê a¿ plik zostanie zapisany, tylko wykonuje kod silnika dalej.
@@ -48,16 +48,16 @@ PerformanceCheck stats;
 
 myClass::myClass()
 {
-	taskID = stats.registerTaskName("task_name");
+	taskID = stats.RegisterTaskName("TaskName");
 }
 
 void timer()
 {
-	stats.startPerformanceCheck( taskID );
+	stats.StartPerformanceCheck( taskID );
 
 	// Tutaj kod, którego wydajnoœæ mierzymy
 
-	stats.endPerformanceCheck( taskID );
+	stats.EndPerformanceCheck( taskID );
 }
 
 \endcode
@@ -99,20 +99,22 @@ void FunctionToProfile()
 class PerformanceCheck
 {
 private:
-	std::vector<_performance_data> performance_datas;		///<Zapisane dane na temat poszczególnych zadañ, dla których mierzymy wydajnoœæ.
+	std::vector<_PerformanceData>		m_samples;		///<Zapisane dane na temat poszczególnych zadañ, dla których mierzymy wydajnoœæ.
 
-	static void print( const std::string& outputFile, std::vector<_performance_data> data_copy );
 public:
 	PerformanceCheck() = default;
 	~PerformanceCheck() = default;
 
-	void startPerformanceCheck( unsigned int index );
-	void endPerformanceCheck( unsigned int index );
-	void clear();
+	void				StartPerformanceCheck	( unsigned int index );
+	void				EndPerformanceCheck		( unsigned int index );
+	void				ClearSamples			();
 
-	unsigned int registerTaskName( const char* taskName );
+	unsigned int		RegisterTaskName		( const char* taskName );
 
-	void printPerformanceStatisticsAsync( const std::string& outputFile );
+	void				PrintPerformanceStatisticsAsync	( const std::string& outputFile );
+
+private:
+	static void			Print					( const std::string& outputFile, std::vector<_PerformanceData> data_copy );
 };
 
 
@@ -120,12 +122,12 @@ public:
 
 PerformanceCheck&		GetPerformanceCheck();
 
-#define REGISTER_PERFORMANCE_CHECK( name ) static unsigned int __performance_task_id ## name = GetPerformanceCheck().registerTaskName( # name );
+#define REGISTER_PERFORMANCE_CHECK( name ) static unsigned int __performance_task_id ## name = GetPerformanceCheck().RegisterTaskName( # name );
 
-#define START_PERFORMANCE_CHECK( x )	GetPerformanceCheck().startPerformanceCheck( __performance_task_id ## x );
-#define END_PERFORMANCE_CHECK( x )		GetPerformanceCheck().endPerformanceCheck( __performance_task_id ## x );
-#define PRINT_STATISTICS( s )			GetPerformanceCheck().printPerformanceStatisticsAsync( s );
-#define PERFORMACE_CHECK_CLEAR			GetPerformanceCheck().clear();
+#define START_PERFORMANCE_CHECK( x )	GetPerformanceCheck().StartPerformanceCheck( __performance_task_id ## x );
+#define END_PERFORMANCE_CHECK( x )		GetPerformanceCheck().EndPerformanceCheck( __performance_task_id ## x );
+#define PRINT_STATISTICS( s )			GetPerformanceCheck().PrintPerformanceStatisticsAsync( s );
+#define PERFORMACE_CHECK_CLEAR_SAMPLES	GetPerformanceCheck().ClearSamples();
 
 #else
 
