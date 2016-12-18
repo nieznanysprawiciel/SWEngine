@@ -33,6 +33,14 @@ RTTR_REGISTRATION
 		.property( "GeometryShader", &MaterialAsset::m_geometryShader )
 		.property( "TesselationControlShader", &MaterialAsset::m_controlShader )
 		.property( "TesselationEvaluationShader", &MaterialAsset::m_evaluationShader )
+		.property_readonly( "DiffuseTexture", &MaterialAsset::GetTexture1 )
+		.property_readonly( "SpecularTexture", &MaterialAsset::GetTexture2 )
+		.property_readonly( "AmbientTexture", &MaterialAsset::GetTexture3 )
+		.property_readonly( "NormalMap", &MaterialAsset::GetTexture4 )
+		.property_readonly( "DisplacementMap", &MaterialAsset::GetTexture5 )
+		.property_readonly( "Texture6", &MaterialAsset::GetTexture6 )
+		.property_readonly( "Texture7", &MaterialAsset::GetTexture7 )
+		.property_readonly( "Texture8", &MaterialAsset::GetTexture8 )
 		//.property( "Textures", &MaterialAsset::m_textures )
 		.property( "Descriptor", &MaterialAsset::m_descriptor ) BIND_AS_PTR;
 

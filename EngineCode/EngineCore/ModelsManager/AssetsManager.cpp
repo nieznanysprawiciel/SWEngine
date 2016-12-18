@@ -280,7 +280,7 @@ ResourcePtr< MeshAsset >		AssetsManager::CreateMesh	( const std::wstring& name, 
 		if( initData.ExtendedIndex )
 			flags = flags | MeshPartFlags::Use4BytesIndex;
 
-		if( segment.Material->GetDescriptor().AdditionalBuffers.size() != 0 )
+		if( segment.Material && segment.Material->GetDescriptor().AdditionalBuffers.size() != 0 )
 			flags = flags | MeshPartFlags::UseAdditionalBuffer;
 
 		segment.Flags = flags;

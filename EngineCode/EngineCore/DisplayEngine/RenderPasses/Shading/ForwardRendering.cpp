@@ -101,34 +101,36 @@ void		ForwardRendering::Render		( IRenderer* renderer, RenderContext& context, S
 
 
 				auto material = model->Material.Ptr();
-
-				SetRenderStateCommand renderCommand;
-				renderCommand.TransformBuffer = context.TransformBuffer;
-				renderCommand.MaterialBuffer = material->GetMaterialBuffer().Ptr();
-				renderCommand.BonesTransforms = nullptr;
-				renderCommand.VertexShader = material->GetVertexShader().Ptr();
-				renderCommand.PixelShader = material->GetPixelShader().Ptr();
-
-				for( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
+				if( material )
 				{
-					renderCommand.Textures[ i ] = material->GetTexture( i ).Ptr();
-					renderCommand.BindToShader[ i ] = (uint8)ShaderType::PixelShader;
+					SetRenderStateCommand renderCommand;
+					renderCommand.TransformBuffer = context.TransformBuffer;
+					renderCommand.MaterialBuffer = material->GetMaterialBuffer().Ptr();
+					renderCommand.BonesTransforms = nullptr;
+					renderCommand.VertexShader = material->GetVertexShader().Ptr();
+					renderCommand.PixelShader = material->GetPixelShader().Ptr();
+
+					for( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
+					{
+						renderCommand.Textures[ i ] = material->GetTexture( i ).Ptr();
+						renderCommand.BindToShader[ i ] = (uint8)ShaderType::PixelShader;
+					}
+
+					renderer->SetShaderState( renderCommand );
+
+					// Send draw command.
+					DrawCommand drawCommand;
+					drawCommand.BaseVertex = model->BaseVertex;
+					drawCommand.BufferOffset = model->BufferOffset;
+					drawCommand.NumVertices = model->NumVertices;
+					drawCommand.Topology = model->Topology;
+					drawCommand.VertexBuffer = meshAsset->GetVertexBufferRawPtr();
+					drawCommand.IndexBufer = meshAsset->GetIndexBufferRawPtr();
+					drawCommand.ExtendedIndex = model->Flags & MeshPartFlags::Use4BytesIndex ? true : false;
+					drawCommand.Layout = meshAsset->GetLayoutRawPtr();
+
+					renderer->Draw( drawCommand );
 				}
-
-				renderer->SetShaderState( renderCommand );
-
-				// Send draw command.
-				DrawCommand drawCommand;
-				drawCommand.BaseVertex = model->BaseVertex;
-				drawCommand.BufferOffset = model->BufferOffset;
-				drawCommand.NumVertices = model->NumVertices;
-				drawCommand.Topology = model->Topology;
-				drawCommand.VertexBuffer = meshAsset->GetVertexBufferRawPtr();
-				drawCommand.IndexBufer = meshAsset->GetIndexBufferRawPtr();
-				drawCommand.ExtendedIndex = model->Flags & MeshPartFlags::Use4BytesIndex ? true : false;
-				drawCommand.Layout = meshAsset->GetLayoutRawPtr();
-
-				renderer->Draw( drawCommand );
 			}
 		}
 	}

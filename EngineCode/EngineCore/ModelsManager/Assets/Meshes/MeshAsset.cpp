@@ -15,17 +15,19 @@
 RTTR_REGISTRATION
 {
 	rttr::registration::class_< MeshPart >( "MeshPart" )
-		.property( "Material", &MeshPart::Material )
 		.property_readonly( "Topology", &MeshPart::Topology )
 		.property_readonly( "NumVerticies", &MeshPart::NumVertices )
 		.property_readonly( "BufferOffset", &MeshPart::BufferOffset )
 		.property_readonly( "BaseVertex", &MeshPart::BaseVertex )
-		.property_readonly( "Layout", &MeshPart::GetUseAdditionalBuffer )
-		.property_readonly( "Layout", &MeshPart::GetUseExtendedIndex );
+		.property_readonly( "UseAdditionalBuffers", &MeshPart::GetUseAdditionalBuffer )
+		.property_readonly( "UseExtendedIndex", &MeshPart::GetUseExtendedIndex )
+		.property( "Material", &MeshPart::Material );
+
+	rttr::registration::class_< std::vector< MeshPart > >( "Vector< MeshPart >" );
 
 	rttr::registration::class_< MeshAsset >( "MeshAsset" )
 		.property_readonly( "FileName", &MeshAsset::m_filePath )
-		.property_readonly( "Segments", &MeshAsset::m_segments )
+		.property( "Segments", &MeshAsset::m_segments )
 		.property( "IndexBuffer", &MeshAsset::m_indexBuffer )
 		.property( "VertexBuffer", &MeshAsset::m_vertexBuffer )
 		.property( "Layout", &MeshAsset::m_layout );

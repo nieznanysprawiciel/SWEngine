@@ -52,6 +52,7 @@ inline bool		MeshPart::GetUseAdditionalBuffer()
 //
 inline void		MeshPart::SetUseAdditionalBuffer( bool value )
 {
+	assert( false );
 	//if( value )
 	//	Flags = Flags | UseAdditionalBuffer;
 	//else
@@ -68,5 +69,5 @@ inline bool		MeshPart::GetUseExtendedIndex()
 // ================================ //
 //
 inline void		MeshPart::SetUseExtendedIndex( bool value )
-{ }
+{ assert( false ); }
 

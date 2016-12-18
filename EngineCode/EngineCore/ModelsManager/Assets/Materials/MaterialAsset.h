@@ -82,5 +82,15 @@ public:
 
 private:
 	~MaterialAsset();
+
+	// Temporary textures getters for properties.
+	TextureObject*		GetTexture1() const { return m_textures[ 0 ].Ptr(); }
+	TextureObject*		GetTexture2() const { return m_textures[ 1 ].Ptr(); }
+	TextureObject*		GetTexture3() const { return m_textures[ 2 ].Ptr(); }
+	TextureObject*		GetTexture4() const { return m_textures[ 3 ].Ptr(); }
+	TextureObject*		GetTexture5() const { return m_textures[ 4 ].Ptr(); }
+	TextureObject*		GetTexture6() const { return m_textures[ 5 ].Ptr(); }
+	TextureObject*		GetTexture7() const { return m_textures[ 6 ].Ptr(); }
+	TextureObject*		GetTexture8() const { return m_textures[ 7 ].Ptr(); }
 };
 

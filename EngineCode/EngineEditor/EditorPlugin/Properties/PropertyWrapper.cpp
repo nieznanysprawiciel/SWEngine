@@ -40,7 +40,7 @@ void		IntPropertyWrapper::SetValue( void* refObject, int newValue )
 /**@brief */
 uint32		UIntPropertyWrapper::GetValue( void* refObject )
 {
-	auto value = GetPropertyValue< int >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< uint32 >( m_metaProperty, System::IntPtr( refObject ) );
 	return value;
 }
 
@@ -219,11 +219,17 @@ PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( void* parent, rttr::pro
 
 	if( propertyType.is_arithmetic() )
 	{
-		if( propertyType == rttr::type::get< int >() )
+		if( propertyType == rttr::type::get< int >() ||
+			propertyType == rttr::type::get< int32 >() ||
+			propertyType == rttr::type::get< int16 >() ||
+			propertyType == rttr::type::get< int8 >() )
 		{
 			return gcnew IntPropertyWrapper( parent, property );
 		}
-		if( propertyType == rttr::type::get< uint32 >() )
+		if( propertyType == rttr::type::get< uint32 >() ||
+			propertyType == rttr::type::get< unsigned int >() ||
+			propertyType == rttr::type::get< uint16 >() ||
+			propertyType == rttr::type::get< uint8 >() )
 		{
 			return gcnew UIntPropertyWrapper( parent, property );
 		}
