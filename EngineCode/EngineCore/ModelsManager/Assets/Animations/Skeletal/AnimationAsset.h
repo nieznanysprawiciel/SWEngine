@@ -7,7 +7,7 @@
 
 #include "GraphicAPI/ResourceObject.h"
 
-#include "EngineCore/ModelsManager/Assets/Animations/KeySet.h"
+#include "Common/ParameterAnimation/KeySet.h"
 #include "Bone.h"
 
 #include <vector>

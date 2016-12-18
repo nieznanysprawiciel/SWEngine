@@ -5,6 +5,8 @@
 @copyright File is part of graphic engine SWEngine.
 */
 
+#include "Common/TypesDefinitions.h"
+#include "Interpolators/IInterpolator.h"
 
 /**@defgroup Animation Animation
 @ingroup EngineCore*/
@@ -17,11 +19,10 @@ Consist of key parameter value for and other key parameters like interpolator.
 template< typename ValueType >
 struct KeyParam
 {
-	ValueType		Value;
-	//Interpolator
+	ValueType							Value;
+	UPtr< IInterpolator< ValueType > >	Interpolator;
 };
 
-typedef float KeyTime;
 
 
 /**@brief Animation key.
@@ -29,6 +30,6 @@ typedef float KeyTime;
 template< typename ValueType >
 struct Key
 {
+	TimeType				Time;
 	KeyParam< ValueType >	Value;
-	KeyTime					Time;
 };

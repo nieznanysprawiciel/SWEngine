@@ -22,6 +22,21 @@
     <Filter Include="Common\Properties\Containers">
       <UniqueIdentifier>{d17437eb-55c8-4f8d-a0be-b1bb3d9a87d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Common\ParameterAnimation">
+      <UniqueIdentifier>{9225ba28-15f1-4bf5-ae06-5c3cd1ca43c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\ParameterAnimation\Timelines">
+      <UniqueIdentifier>{4788610c-61e6-48cb-a105-91ef38831020}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\ParameterAnimation\Animation">
+      <UniqueIdentifier>{fa1b8b69-3bfe-4d51-9875-d4858b7f8dfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\ParameterAnimation\Parameters">
+      <UniqueIdentifier>{e5e42273-3884-45e1-88ab-e3225f68cf5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\ParameterAnimation\Interpolators">
+      <UniqueIdentifier>{dfcca67b-69a0-4cf9-89c2-ae98e162c583}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\Common\Delegate.h">
@@ -93,6 +108,48 @@
     <ClInclude Include="..\..\EngineCode\Common\MacrosSwitches.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Timelines\TimelineBase.h">
+      <Filter>Common\ParameterAnimation\Timelines</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Timelines\TimelineTypes.h">
+      <Filter>Common\ParameterAnimation\Timelines</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Parameters\ParamAddress.h">
+      <Filter>Common\ParameterAnimation\Parameters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Parameters\PropertyPath.h">
+      <Filter>Common\ParameterAnimation\Parameters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Parameters\DirectPropertyh.h">
+      <Filter>Common\ParameterAnimation\Parameters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Key.h">
+      <Filter>Common\ParameterAnimation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\KeySet.h">
+      <Filter>Common\ParameterAnimation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\IInterpolator.h">
+      <Filter>Common\ParameterAnimation\Interpolators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Animation\AnimEvaluator.h">
+      <Filter>Common\ParameterAnimation\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\LinearInterpolator.h">
+      <Filter>Common\ParameterAnimation\Interpolators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\PointInterpolator.h">
+      <Filter>Common\ParameterAnimation\Interpolators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Animation\Animation.h">
+      <Filter>Common\ParameterAnimation\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Animation\AnimationSet.h">
+      <Filter>Common\ParameterAnimation\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Parameters\StringPropertyPath.h">
+      <Filter>Common\ParameterAnimation\Parameters</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\Common\Serialization\SW\Serialization.cpp">
@@ -103,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\Common\EngineObject.cpp">
       <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\Common\ParameterAnimation\Timelines\TimelineBase.cpp">
+      <Filter>Common\ParameterAnimation\Timelines</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

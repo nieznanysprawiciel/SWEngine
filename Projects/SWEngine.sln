@@ -107,6 +107,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ResourceManager", "Resource
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FBXLoaderUnitTest", "FBXLoaderUnitTest\FBXLoaderUnitTest.vcxproj", "{B7F97C7C-9F14-4434-BA41-7A02A38363FE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PropertyAnimationTest", "Tests\PropertyAnimationTest\PropertyAnimationTest.vcxproj", "{926F0091-5BE8-4E14-883C-219DE24FEE1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -488,6 +490,22 @@ Global
 		{B7F97C7C-9F14-4434-BA41-7A02A38363FE}.Release|Win32.Build.0 = Release|Win32
 		{B7F97C7C-9F14-4434-BA41-7A02A38363FE}.Release|x64.ActiveCfg = Release|x64
 		{B7F97C7C-9F14-4434-BA41-7A02A38363FE}.Release|x64.Build.0 = Release|x64
+		{926F0091-5BE8-4E14-883C-219DE24FEE1E}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{926F0091-5BE8-4E14-883C-219DE24FEE1E}.Debug|ARM.ActiveCfg = Debug|Win32
+		{926F0091-5BE8-4E14-883C-219DE24FEE1E}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{926F0091-5BE8-4E14-883C-219DE24FEE1E}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{926F0091-5BE8-4E14-883C-219DE24FEE1E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{926F0091-5BE8-4E14-883C-219DE24FEE1E}.Debug|Win32.Build.0 = Debug|Win32
+		{926F0091-5BE8-4E14-883C-219DE24FEE1E}.Debug|x64.ActiveCfg = Debug|x64
+		{926F0091-5BE8-4E14-883C-219DE24FEE1E}.Debug|x64.Build.0 = Debug|x64
+		{926F0091-5BE8-4E14-883C-219DE24FEE1E}.Release|Any CPU.ActiveCfg = Release|Win32
+		{926F0091-5BE8-4E14-883C-219DE24FEE1E}.Release|ARM.ActiveCfg = Release|Win32
+		{926F0091-5BE8-4E14-883C-219DE24FEE1E}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{926F0091-5BE8-4E14-883C-219DE24FEE1E}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{926F0091-5BE8-4E14-883C-219DE24FEE1E}.Release|Win32.ActiveCfg = Release|Win32
+		{926F0091-5BE8-4E14-883C-219DE24FEE1E}.Release|Win32.Build.0 = Release|Win32
+		{926F0091-5BE8-4E14-883C-219DE24FEE1E}.Release|x64.ActiveCfg = Release|x64
+		{926F0091-5BE8-4E14-883C-219DE24FEE1E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -512,5 +530,6 @@ Global
 		{1978EF12-C8E4-4356-A29F-993D4C80402C} = {415F8C84-7E86-4306-9173-7A5AEE6A5A67}
 		{9F71F0DA-1D72-4E96-93B7-5AC2C9CB6EDE} = {9634F687-32C9-4597-9A29-FD49A2B9BB5F}
 		{B7F97C7C-9F14-4434-BA41-7A02A38363FE} = {415F8C84-7E86-4306-9173-7A5AEE6A5A67}
+		{926F0091-5BE8-4E14-883C-219DE24FEE1E} = {415F8C84-7E86-4306-9173-7A5AEE6A5A67}
 	EndGlobalSection
 EndGlobal

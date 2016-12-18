@@ -590,12 +590,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Animations\Skeletal\SkeletonAsset.h">
       <Filter>EngineCore\ModelsManager\Assets\Animations\SkeletalAnimation</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Animations\Key.h">
-      <Filter>EngineCore\ModelsManager\Assets\Animations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Animations\KeySet.h">
-      <Filter>EngineCore\ModelsManager\Assets\Animations</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\DisplayEngine\RenderPasses\IRenderingLogicPass.h">
       <Filter>EngineCore\DisplayEngine\RenderPasses</Filter>
     </ClInclude>
