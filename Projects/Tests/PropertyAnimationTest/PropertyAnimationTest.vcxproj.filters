@@ -12,5 +12,8 @@
     <ClCompile Include="TimelinesTest.cpp">
       <Filter>PropertyAnimationTest</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\AnimationClassTest.cpp">
+      <Filter>PropertyAnimationTest</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

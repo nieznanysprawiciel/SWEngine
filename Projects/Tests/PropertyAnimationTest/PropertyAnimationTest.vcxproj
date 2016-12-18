@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\AnimationClassTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TimelinesTest.cpp" />
   </ItemGroup>
