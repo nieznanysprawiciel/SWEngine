@@ -150,6 +150,9 @@
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Parameters\StringPropertyPath.h">
       <Filter>Common\ParameterAnimation\Parameters</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\Properties\Properties.h">
+      <Filter>Common\Properties</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\Common\Serialization\SW\Serialization.cpp">
@@ -164,10 +167,16 @@
     <ClCompile Include="..\..\EngineCode\Common\ParameterAnimation\Timelines\TimelineBase.cpp">
       <Filter>Common\ParameterAnimation\Timelines</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\Common\Properties\Properties.cpp">
+      <Filter>Common\Properties</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\EngineCode\Common\Serialization\SW\Serialization.inl">
       <Filter>Common\Serialization\SW</Filter>
+    </None>
+    <None Include="..\..\EngineCode\Common\ParameterAnimation\Animation\Animation.inl">
+      <Filter>Common\ParameterAnimation\Animation</Filter>
     </None>
   </ItemGroup>
 </Project>

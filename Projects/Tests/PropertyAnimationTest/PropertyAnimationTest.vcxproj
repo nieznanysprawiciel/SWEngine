@@ -59,18 +59,22 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="PropertyAnimationTest.props" />
+    <Import Project="..\..\Props\LinkReflection.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="PropertyAnimationTest.props" />
+    <Import Project="..\..\Props\LinkReflection.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="PropertyAnimationTest.props" />
+    <Import Project="..\..\Props\LinkReflection.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="PropertyAnimationTest.props" />
+    <Import Project="..\..\Props\LinkReflection.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -147,8 +151,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\AnimationClassTest.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\PropertyHelpersTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TimelinesTest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\TestClasses.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonLibrary\CommonLibrary.vcxproj">
+      <Project>{051603e2-ef32-4a07-9cd4-65b3b1c8b182}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Reflection\Reflection.vcxproj">
+      <Project>{59fa8028-2346-4246-854f-14dcfab6ab56}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SerializerXML\SerializerXML.vcxproj">
+      <Project>{49cf5d13-cf9b-4653-9586-05cb12b9a4ca}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

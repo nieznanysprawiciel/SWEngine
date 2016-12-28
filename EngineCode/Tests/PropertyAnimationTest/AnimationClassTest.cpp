@@ -6,50 +6,10 @@
 #include "Common/ParameterAnimation/Parameters/PropertyPath.h"
 #include "Common/ParameterAnimation/Parameters/StringPropertyPath.h"
 
+#include "TestClasses.h"
 
 #include <string>
 
-
-
-struct Nested2
-{
-	float			SomeValue;
-	int				IntValue;
-	std::string		Name;
-};
-
-struct Nested
-{
-	float			SomeValue;
-	int				IntValue;
-	std::string		Name;
-	Nested2			Additional;
-};
-
-
-/**@brief */
-class TestAnim
-{
-	RTTR_REGISTRATION_FRIEND;
-private:
-	float			m_energy;
-	float			m_mass;
-	float			m_power;
-	float			m_shit;
-
-	Nested			m_otherData;
-
-protected:
-public:
-	Ptr< FloatAnimation< StringPropertyPath > >		FloatAnimString;
-	Ptr< FloatAnimation< PropertyPath > >			FloatAnimProperty;
-	Ptr< FloatAnimation< DirectProperty > >			FloatAnimDirect;
-
-public:
-	explicit		TestAnim();
-	~TestAnim() = default;
-
-};
 
 
 RTTR_REGISTRATION
@@ -74,43 +34,39 @@ RTTR_REGISTRATION
 }
 
 
-// ================================ //
-//
-TestAnim::TestAnim()
-{}
-
 
 TEST_CASE( "Animations", "[AnimationClassTest]" )
 {
 	TestAnim		AnimClass;
 
 	std::string someValueNestedPath = "OtherData/Additional/SomeValue";
-	std::string someValuePath = "OtherData/SomeValue";
-	std::string energyPropName = "Energy";
 
-	AnimClass.FloatAnimString = MakePtr< FloatAnimation< StringPropertyPath > >( someValueNestedPath );
+
+	AnimClass.FloatAnimString = MakePtr< FloatAnimation< StringPropertyPath > >( &AnimClass, someValueNestedPath );
 
 	// Testing FloatAnimation< StringPropertyPath >
 	// =========================================================== //
 
 	// First key is added automatically.
-	CHECK( AnimClass.FloatAnimString->GetKey( 0.0 )->Time == 0.0 );
-	CHECK( AnimClass.FloatAnimString->GetKey( 0.0 )->Value.Value == 0.0 );
+	//CHECK( AnimClass.FloatAnimString->GetKey( 0.0 )->Time == 0.0 );
+	//CHECK( AnimClass.FloatAnimString->GetKey( 0.0 )->Value.Value == 0.0 );
 
 
 
 
 	// Testing FloatAnimation< PropertyPath >
 	// =========================================================== //
-
+	std::string someValuePath = "OtherData/SomeValue";
+	
 
 	AnimClass.FloatAnimProperty = MakePtr< FloatAnimation< PropertyPath > >( &AnimClass, someValuePath );
 
 
 	// Testing FloatAnimation< DirectProperty >
 	// =========================================================== //
+	std::string energyPropName = "Energy";
 
-	AnimClass.FloatAnimProperty = MakePtr< FloatAnimation< DirectProperty > >( &AnimClass, energyPropName );
+	AnimClass.FloatAnimDirect = MakePtr< FloatAnimation< DirectProperty > >( &AnimClass, energyPropName );
 }
 
 

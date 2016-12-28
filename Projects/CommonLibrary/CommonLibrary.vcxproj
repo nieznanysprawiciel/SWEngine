@@ -37,6 +37,7 @@
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\PointInterpolator.h" />
     <ClInclude Include="..\..\EngineCode\Common\Properties\Containers\ICollection.h" />
     <ClInclude Include="..\..\EngineCode\Common\Properties\IEnableProperty.h" />
+    <ClInclude Include="..\..\EngineCode\Common\Properties\Properties.h" />
     <ClInclude Include="..\..\EngineCode\Common\Properties\Property.h" />
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Key.h" />
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\KeySet.h" />
@@ -61,9 +62,11 @@
     <ClCompile Include="..\..\EngineCode\Common\Converters.cpp" />
     <ClCompile Include="..\..\EngineCode\Common\EngineObject.cpp" />
     <ClCompile Include="..\..\EngineCode\Common\ParameterAnimation\Timelines\TimelineBase.cpp" />
+    <ClCompile Include="..\..\EngineCode\Common\Properties\Properties.cpp" />
     <ClCompile Include="..\..\EngineCode\Common\Serialization\SW\Serialization.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\EngineCode\Common\ParameterAnimation\Animation\Animation.inl" />
     <None Include="..\..\EngineCode\Common\Serialization\SW\Serialization.inl" />
   </ItemGroup>
   <ItemGroup>
