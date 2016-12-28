@@ -42,7 +42,6 @@
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Key.h" />
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\KeySet.h" />
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Parameters\DirectPropertyh.h" />
-    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Parameters\ParamAddress.h" />
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Parameters\PropertyPath.h" />
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Parameters\StringPropertyPath.h" />
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Timelines\TimelineBase.h" />

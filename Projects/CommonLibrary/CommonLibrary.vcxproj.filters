@@ -114,9 +114,6 @@
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Timelines\TimelineTypes.h">
       <Filter>Common\ParameterAnimation\Timelines</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Parameters\ParamAddress.h">
-      <Filter>Common\ParameterAnimation\Parameters</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Parameters\PropertyPath.h">
       <Filter>Common\ParameterAnimation\Parameters</Filter>
     </ClInclude>
