@@ -75,6 +75,26 @@ TEST_CASE( "Animations", "[AnimationClassTest]" )
 	CHECK( AnimClass.FloatAnimString->GetKey( 3.5 )->Value == 2.0f );
 	CHECK( AnimClass.FloatAnimString->GetKey( 4.5 )->Value == -1.0f );
 
+// Remove keys
+	CHECK( AnimClass.FloatAnimString->RemoveKey( 1.5 ) );
+	CHECK( AnimClass.FloatAnimString->RemoveKey( 3.5 ) );
+	CHECK( AnimClass.FloatAnimString->RemoveKey( 4.5 ) );
+
+	CHECK( AnimClass.FloatAnimString->GetKey( 1.5 ) == nullptr );
+	CHECK( AnimClass.FloatAnimString->GetKey( 3.5 ) == nullptr );
+	CHECK( AnimClass.FloatAnimString->GetKey( 4.5 ) == nullptr );
+
+// Update keys
+	CHECK( AnimClass.FloatAnimString->UpdateKey( 2.0, 4.0f ) );
+	CHECK( AnimClass.FloatAnimString->UpdateKey( 3.0, 1.0f ) );
+	CHECK( AnimClass.FloatAnimString->UpdateKey( 4.0, -3.0f ) );
+	CHECK( AnimClass.FloatAnimString->UpdateKey( 5.0, 2.0f ) );
+
+	CHECK( AnimClass.FloatAnimString->GetKey( 2.0 )->Value == 4.0f );
+	CHECK( AnimClass.FloatAnimString->GetKey( 3.0 )->Value == 1.0f );
+	CHECK( AnimClass.FloatAnimString->GetKey( 4.0 )->Value == -3.0f );
+	CHECK( AnimClass.FloatAnimString->GetKey( 5.0 )->Value == 2.0f );
+
 
 	// Testing FloatAnimation< PropertyPath >
 	// =========================================================== //
