@@ -40,8 +40,6 @@ TEST_CASE( "Animations", "[AnimationClassTest]" )
 	TestAnim		AnimClass;
 
 	std::string someValueNestedPath = "OtherData/Additional/SomeValue";
-
-
 	AnimClass.FloatAnimString = MakePtr< FloatAnimation< StringPropertyPath > >( &AnimClass, someValueNestedPath );
 
 	// Testing FloatAnimation< StringPropertyPath >
@@ -51,22 +49,57 @@ TEST_CASE( "Animations", "[AnimationClassTest]" )
 	CHECK( AnimClass.FloatAnimString->GetKey( 0.0 )->Time == 0.0 );
 	CHECK( AnimClass.FloatAnimString->GetKey( 0.0 )->Value == 7.0f );
 
+// Add new keys.
+	CHECK( AnimClass.FloatAnimString->AddKey( 2.0, 3.0f ) );
+	CHECK( AnimClass.FloatAnimString->AddKey( 3.0, 0.0f ) );
+	CHECK( AnimClass.FloatAnimString->AddKey( 4.0, 1.0f ) );
+	CHECK( AnimClass.FloatAnimString->AddKey( 5.0, 0.0f ) );
 
+	// Check new added keys.
+	CHECK( AnimClass.FloatAnimString->GetKey( 0.0 )->Value == 7.0f );
+	CHECK( AnimClass.FloatAnimString->GetKey( 2.0 )->Value == 3.0f );
+	CHECK( AnimClass.FloatAnimString->GetKey( 3.0 )->Value == 0.0f );
+	CHECK( AnimClass.FloatAnimString->GetKey( 4.0 )->Value == 1.0f );
+	CHECK( AnimClass.FloatAnimString->GetKey( 5.0 )->Value == 0.0f );
+
+// Add key in existing keyframe.
+	CHECK( !AnimClass.FloatAnimString->AddKey( 4.0, 2.0f ) );
+	CHECK( AnimClass.FloatAnimString->GetKey( 4.0 )->Value == 2.0f );
+
+// Add key between existing keys.
+	CHECK( AnimClass.FloatAnimString->AddKey( 1.5, 6.0f ) );
+	CHECK( AnimClass.FloatAnimString->AddKey( 3.5, 2.0f ) );
+	CHECK( AnimClass.FloatAnimString->AddKey( 4.5, -1.0f ) );
+
+	CHECK( AnimClass.FloatAnimString->GetKey( 1.5 )->Value == 6.0f );
+	CHECK( AnimClass.FloatAnimString->GetKey( 3.5 )->Value == 2.0f );
+	CHECK( AnimClass.FloatAnimString->GetKey( 4.5 )->Value == -1.0f );
 
 
 	// Testing FloatAnimation< PropertyPath >
 	// =========================================================== //
 	std::string someValuePath = "OtherData/SomeValue";
-	
-
 	AnimClass.FloatAnimProperty = MakePtr< FloatAnimation< PropertyPath > >( &AnimClass, someValuePath );
+
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 0.0 )->Time == 0.0 );
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 0.0 )->Value == 5.0f );
+
+
+
 
 
 	// Testing FloatAnimation< DirectProperty >
 	// =========================================================== //
 	std::string energyPropName = "Energy";
-
 	AnimClass.FloatAnimDirect = MakePtr< FloatAnimation< DirectProperty > >( &AnimClass, energyPropName );
+
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 0.0 )->Time == 0.0 );
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 0.0 )->Value == 1.0f );
+
+
+
+
+
 }
 
 
