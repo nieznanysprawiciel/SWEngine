@@ -49,7 +49,7 @@ TEST_CASE( "Animations", "[AnimationClassTest]" )
 
 	// First key is added automatically.
 	CHECK( AnimClass.FloatAnimString->GetKey( 0.0 )->Time == 0.0 );
-	CHECK( AnimClass.FloatAnimString->GetKey( 0.0 )->Param.Value == 7.0f );
+	CHECK( AnimClass.FloatAnimString->GetKey( 0.0 )->Value == 7.0f );
 
 
 
