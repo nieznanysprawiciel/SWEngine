@@ -150,6 +150,9 @@
     <ClInclude Include="..\..\EngineCode\Common\Properties\Properties.h">
       <Filter>Common\Properties</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Animation\IAnimation.h">
+      <Filter>Common\ParameterAnimation\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\Common\Serialization\SW\Serialization.cpp">

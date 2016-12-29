@@ -32,6 +32,7 @@
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Animation\Animation.h" />
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Animation\AnimationSet.h" />
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Animation\AnimEvaluator.h" />
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Animation\IAnimation.h" />
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\IInterpolator.h" />
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\LinearInterpolator.h" />
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\PointInterpolator.h" />

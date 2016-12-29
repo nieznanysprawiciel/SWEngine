@@ -48,9 +48,21 @@ public:
 	Ptr< FloatAnimation< DirectProperty > >			FloatAnimDirect;
 
 public:
-	explicit		TestAnim() { };
+	explicit		TestAnim();
 	~TestAnim() { };
 
 };
 
-
+inline TestAnim::TestAnim()
+{
+	m_energy = 1.0f;
+	m_mass = 2.0f;
+	m_power = 3.0f;
+	m_shit = 4.0f;
+	m_otherData.SomeValue = 5.0f;
+	m_otherData.IntValue = 6;
+	m_otherData.Name = "Nested other data";
+	m_otherData.Additional.SomeValue = 7.0f;
+	m_otherData.Additional.Name = "Nested2 additional data";
+	m_otherData.Additional.IntValue = 8;
+}
