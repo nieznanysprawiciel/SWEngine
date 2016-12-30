@@ -104,7 +104,51 @@ TEST_CASE( "Animations", "[AnimationClassTest]" )
 	CHECK( AnimClass.FloatAnimProperty->GetKey( 0.0 )->Time == 0.0 );
 	CHECK( AnimClass.FloatAnimProperty->GetKey( 0.0 )->Value == 5.0f );
 
+// Add new keys.
+	CHECK( AnimClass.FloatAnimProperty->AddKey( 2.0, 3.0f ) );
+	CHECK( AnimClass.FloatAnimProperty->AddKey( 3.0, 0.0f ) );
+	CHECK( AnimClass.FloatAnimProperty->AddKey( 4.0, 1.0f ) );
+	CHECK( AnimClass.FloatAnimProperty->AddKey( 5.0, 0.0f ) );
 
+	// Check new added keys.
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 0.0 )->Value == 5.0f );
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 2.0 )->Value == 3.0f );
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 3.0 )->Value == 0.0f );
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 4.0 )->Value == 1.0f );
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 5.0 )->Value == 0.0f );
+
+// Add key in existing keyframe.
+	CHECK( !AnimClass.FloatAnimProperty->AddKey( 4.0, 2.0f ) );
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 4.0 )->Value == 2.0f );
+
+// Add key between existing keys.
+	CHECK( AnimClass.FloatAnimProperty->AddKey( 1.5, 6.0f ) );
+	CHECK( AnimClass.FloatAnimProperty->AddKey( 3.5, 2.0f ) );
+	CHECK( AnimClass.FloatAnimProperty->AddKey( 4.5, -1.0f ) );
+
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 1.5 )->Value == 6.0f );
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 3.5 )->Value == 2.0f );
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 4.5 )->Value == -1.0f );
+
+// Remove keys
+	CHECK( AnimClass.FloatAnimProperty->RemoveKey( 1.5 ) );
+	CHECK( AnimClass.FloatAnimProperty->RemoveKey( 3.5 ) );
+	CHECK( AnimClass.FloatAnimProperty->RemoveKey( 4.5 ) );
+
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 1.5 ) == nullptr );
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 3.5 ) == nullptr );
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 4.5 ) == nullptr );
+
+// Update keys
+	CHECK( AnimClass.FloatAnimProperty->UpdateKey( 2.0, 4.0f ) );
+	CHECK( AnimClass.FloatAnimProperty->UpdateKey( 3.0, 1.0f ) );
+	CHECK( AnimClass.FloatAnimProperty->UpdateKey( 4.0, -3.0f ) );
+	CHECK( AnimClass.FloatAnimProperty->UpdateKey( 5.0, 2.0f ) );
+
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 2.0 )->Value == 4.0f );
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 3.0 )->Value == 1.0f );
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 4.0 )->Value == -3.0f );
+	CHECK( AnimClass.FloatAnimProperty->GetKey( 5.0 )->Value == 2.0f );
 
 
 
