@@ -153,6 +153,9 @@
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Animation\IAnimation.h">
       <Filter>Common\ParameterAnimation\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\DefaultInterpolators.h">
+      <Filter>Common\ParameterAnimation\Interpolators</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\Common\Serialization\SW\Serialization.cpp">
@@ -170,6 +173,9 @@
     <ClCompile Include="..\..\EngineCode\Common\Properties\Properties.cpp">
       <Filter>Common\Properties</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\DefaultInterpolators.cpp">
+      <Filter>Common\ParameterAnimation\Interpolators</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\EngineCode\Common\Serialization\SW\Serialization.inl">
@@ -177,6 +183,9 @@
     </None>
     <None Include="..\..\EngineCode\Common\ParameterAnimation\Animation\Animation.inl">
       <Filter>Common\ParameterAnimation\Animation</Filter>
+    </None>
+    <None Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\DefaultInterpolators.inl">
+      <Filter>Common\ParameterAnimation\Interpolators</Filter>
     </None>
   </ItemGroup>
 </Project>
