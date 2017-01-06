@@ -62,9 +62,19 @@ TEST_CASE( "Animations", "[AnimationClassTest]" )
 	CHECK( AnimClass.FloatAnimString->GetKey( 4.0 )->Value == 1.0f );
 	CHECK( AnimClass.FloatAnimString->GetKey( 5.0 )->Value == 0.0f );
 
+	// Check interpolators.
+	CHECK( AnimClass.FloatAnimString->GetKeySet().Keys.size() == AnimClass.FloatAnimString->GetKeySet().Interpolators.size() + 1 );
+	CHECK( AnimClass.FloatAnimString->GetKeySet().Keys.size() == 5 );
+	CHECK( AnimClass.FloatAnimString->GetKeySet().Interpolators.size() == 4 );
+
 // Add key in existing keyframe.
 	CHECK( !AnimClass.FloatAnimString->AddKey( 4.0, 2.0f ) );
 	CHECK( AnimClass.FloatAnimString->GetKey( 4.0 )->Value == 2.0f );
+
+	// Check interpolators.
+	CHECK( AnimClass.FloatAnimString->GetKeySet().Keys.size() == AnimClass.FloatAnimString->GetKeySet().Interpolators.size() + 1 );
+	CHECK( AnimClass.FloatAnimString->GetKeySet().Keys.size() == 5 );
+	CHECK( AnimClass.FloatAnimString->GetKeySet().Interpolators.size() == 4 );
 
 // Add key between existing keys.
 	CHECK( AnimClass.FloatAnimString->AddKey( 1.5, 6.0f ) );
@@ -75,6 +85,12 @@ TEST_CASE( "Animations", "[AnimationClassTest]" )
 	CHECK( AnimClass.FloatAnimString->GetKey( 3.5 )->Value == 2.0f );
 	CHECK( AnimClass.FloatAnimString->GetKey( 4.5 )->Value == -1.0f );
 
+	// Check interpolators.
+	CHECK( AnimClass.FloatAnimString->GetKeySet().Keys.size() == AnimClass.FloatAnimString->GetKeySet().Interpolators.size() + 1 );
+	CHECK( AnimClass.FloatAnimString->GetKeySet().Keys.size() == 8 );
+	CHECK( AnimClass.FloatAnimString->GetKeySet().Interpolators.size() == 7 );
+
+
 // Remove keys
 	CHECK( AnimClass.FloatAnimString->RemoveKey( 1.5 ) );
 	CHECK( AnimClass.FloatAnimString->RemoveKey( 3.5 ) );
@@ -83,6 +99,11 @@ TEST_CASE( "Animations", "[AnimationClassTest]" )
 	CHECK( AnimClass.FloatAnimString->GetKey( 1.5 ) == nullptr );
 	CHECK( AnimClass.FloatAnimString->GetKey( 3.5 ) == nullptr );
 	CHECK( AnimClass.FloatAnimString->GetKey( 4.5 ) == nullptr );
+
+	// Check interpolators.
+	CHECK( AnimClass.FloatAnimString->GetKeySet().Keys.size() == AnimClass.FloatAnimString->GetKeySet().Interpolators.size() + 1 );
+	CHECK( AnimClass.FloatAnimString->GetKeySet().Keys.size() == 5 );
+	CHECK( AnimClass.FloatAnimString->GetKeySet().Interpolators.size() == 4 );
 
 // Update keys
 	CHECK( AnimClass.FloatAnimString->UpdateKey( 2.0, 4.0f ) );
@@ -95,6 +116,10 @@ TEST_CASE( "Animations", "[AnimationClassTest]" )
 	CHECK( AnimClass.FloatAnimString->GetKey( 4.0 )->Value == -3.0f );
 	CHECK( AnimClass.FloatAnimString->GetKey( 5.0 )->Value == 2.0f );
 
+	// Check interpolators.
+	CHECK( AnimClass.FloatAnimString->GetKeySet().Keys.size() == AnimClass.FloatAnimString->GetKeySet().Interpolators.size() + 1 );
+	CHECK( AnimClass.FloatAnimString->GetKeySet().Keys.size() == 5 );
+	CHECK( AnimClass.FloatAnimString->GetKeySet().Interpolators.size() == 4 );
 
 	// Testing FloatAnimation< PropertyPath >
 	// =========================================================== //
@@ -117,9 +142,19 @@ TEST_CASE( "Animations", "[AnimationClassTest]" )
 	CHECK( AnimClass.FloatAnimProperty->GetKey( 4.0 )->Value == 1.0f );
 	CHECK( AnimClass.FloatAnimProperty->GetKey( 5.0 )->Value == 0.0f );
 
+	// Check interpolators.
+	CHECK( AnimClass.FloatAnimProperty->GetKeySet().Keys.size() == AnimClass.FloatAnimProperty->GetKeySet().Interpolators.size() + 1 );
+	CHECK( AnimClass.FloatAnimProperty->GetKeySet().Keys.size() == 5 );
+	CHECK( AnimClass.FloatAnimProperty->GetKeySet().Interpolators.size() == 4 );
+
 // Add key in existing keyframe.
 	CHECK( !AnimClass.FloatAnimProperty->AddKey( 4.0, 2.0f ) );
 	CHECK( AnimClass.FloatAnimProperty->GetKey( 4.0 )->Value == 2.0f );
+
+	// Check interpolators.
+	CHECK( AnimClass.FloatAnimProperty->GetKeySet().Keys.size() == AnimClass.FloatAnimProperty->GetKeySet().Interpolators.size() + 1 );
+	CHECK( AnimClass.FloatAnimProperty->GetKeySet().Keys.size() == 5 );
+	CHECK( AnimClass.FloatAnimProperty->GetKeySet().Interpolators.size() == 4 );
 
 // Add key between existing keys.
 	CHECK( AnimClass.FloatAnimProperty->AddKey( 1.5, 6.0f ) );
@@ -130,6 +165,11 @@ TEST_CASE( "Animations", "[AnimationClassTest]" )
 	CHECK( AnimClass.FloatAnimProperty->GetKey( 3.5 )->Value == 2.0f );
 	CHECK( AnimClass.FloatAnimProperty->GetKey( 4.5 )->Value == -1.0f );
 
+	// Check interpolators.
+	CHECK( AnimClass.FloatAnimProperty->GetKeySet().Keys.size() == AnimClass.FloatAnimProperty->GetKeySet().Interpolators.size() + 1 );
+	CHECK( AnimClass.FloatAnimProperty->GetKeySet().Keys.size() == 8 );
+	CHECK( AnimClass.FloatAnimProperty->GetKeySet().Interpolators.size() == 7 );
+
 // Remove keys
 	CHECK( AnimClass.FloatAnimProperty->RemoveKey( 1.5 ) );
 	CHECK( AnimClass.FloatAnimProperty->RemoveKey( 3.5 ) );
@@ -138,6 +178,11 @@ TEST_CASE( "Animations", "[AnimationClassTest]" )
 	CHECK( AnimClass.FloatAnimProperty->GetKey( 1.5 ) == nullptr );
 	CHECK( AnimClass.FloatAnimProperty->GetKey( 3.5 ) == nullptr );
 	CHECK( AnimClass.FloatAnimProperty->GetKey( 4.5 ) == nullptr );
+
+	// Check interpolators.
+	CHECK( AnimClass.FloatAnimProperty->GetKeySet().Keys.size() == AnimClass.FloatAnimProperty->GetKeySet().Interpolators.size() + 1 );
+	CHECK( AnimClass.FloatAnimProperty->GetKeySet().Keys.size() == 5 );
+	CHECK( AnimClass.FloatAnimProperty->GetKeySet().Interpolators.size() == 4 );
 
 // Update keys
 	CHECK( AnimClass.FloatAnimProperty->UpdateKey( 2.0, 4.0f ) );
@@ -150,6 +195,10 @@ TEST_CASE( "Animations", "[AnimationClassTest]" )
 	CHECK( AnimClass.FloatAnimProperty->GetKey( 4.0 )->Value == -3.0f );
 	CHECK( AnimClass.FloatAnimProperty->GetKey( 5.0 )->Value == 2.0f );
 
+	// Check interpolators.
+	CHECK( AnimClass.FloatAnimProperty->GetKeySet().Keys.size() == AnimClass.FloatAnimProperty->GetKeySet().Interpolators.size() + 1 );
+	CHECK( AnimClass.FloatAnimProperty->GetKeySet().Keys.size() == 5 );
+	CHECK( AnimClass.FloatAnimProperty->GetKeySet().Interpolators.size() == 4 );
 
 
 	// Testing FloatAnimation< DirectProperty >
@@ -160,8 +209,76 @@ TEST_CASE( "Animations", "[AnimationClassTest]" )
 	CHECK( AnimClass.FloatAnimDirect->GetKey( 0.0 )->Time == 0.0 );
 	CHECK( AnimClass.FloatAnimDirect->GetKey( 0.0 )->Value == 1.0f );
 
+// Add new keys.
+	CHECK( AnimClass.FloatAnimDirect->AddKey( 2.0, 3.0f ) );
+	CHECK( AnimClass.FloatAnimDirect->AddKey( 3.0, 0.0f ) );
+	CHECK( AnimClass.FloatAnimDirect->AddKey( 4.0, 1.0f ) );
+	CHECK( AnimClass.FloatAnimDirect->AddKey( 5.0, 0.0f ) );
 
+	// Check new added keys.
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 0.0 )->Value == 1.0f );
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 2.0 )->Value == 3.0f );
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 3.0 )->Value == 0.0f );
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 4.0 )->Value == 1.0f );
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 5.0 )->Value == 0.0f );
 
+	// Check interpolators.
+	CHECK( AnimClass.FloatAnimDirect->GetKeySet().Keys.size() == AnimClass.FloatAnimDirect->GetKeySet().Interpolators.size() + 1 );
+	CHECK( AnimClass.FloatAnimDirect->GetKeySet().Keys.size() == 5 );
+	CHECK( AnimClass.FloatAnimDirect->GetKeySet().Interpolators.size() == 4 );
+
+// Add key in existing keyframe.
+	CHECK( !AnimClass.FloatAnimDirect->AddKey( 4.0, 2.0f ) );
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 4.0 )->Value == 2.0f );
+
+	// Check interpolators.
+	CHECK( AnimClass.FloatAnimDirect->GetKeySet().Keys.size() == AnimClass.FloatAnimDirect->GetKeySet().Interpolators.size() + 1 );
+	CHECK( AnimClass.FloatAnimDirect->GetKeySet().Keys.size() == 5 );
+	CHECK( AnimClass.FloatAnimDirect->GetKeySet().Interpolators.size() == 4 );
+
+// Add key between existing keys.
+	CHECK( AnimClass.FloatAnimDirect->AddKey( 1.5, 6.0f ) );
+	CHECK( AnimClass.FloatAnimDirect->AddKey( 3.5, 2.0f ) );
+	CHECK( AnimClass.FloatAnimDirect->AddKey( 4.5, -1.0f ) );
+
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 1.5 )->Value == 6.0f );
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 3.5 )->Value == 2.0f );
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 4.5 )->Value == -1.0f );
+
+	// Check interpolators.
+	CHECK( AnimClass.FloatAnimDirect->GetKeySet().Keys.size() == AnimClass.FloatAnimDirect->GetKeySet().Interpolators.size() + 1 );
+	CHECK( AnimClass.FloatAnimDirect->GetKeySet().Keys.size() == 8 );
+	CHECK( AnimClass.FloatAnimDirect->GetKeySet().Interpolators.size() == 7 );
+
+// Remove keys
+	CHECK( AnimClass.FloatAnimDirect->RemoveKey( 1.5 ) );
+	CHECK( AnimClass.FloatAnimDirect->RemoveKey( 3.5 ) );
+	CHECK( AnimClass.FloatAnimDirect->RemoveKey( 4.5 ) );
+
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 1.5 ) == nullptr );
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 3.5 ) == nullptr );
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 4.5 ) == nullptr );
+
+	// Check interpolators.
+	CHECK( AnimClass.FloatAnimDirect->GetKeySet().Keys.size() == AnimClass.FloatAnimDirect->GetKeySet().Interpolators.size() + 1 );
+	CHECK( AnimClass.FloatAnimDirect->GetKeySet().Keys.size() == 5 );
+	CHECK( AnimClass.FloatAnimDirect->GetKeySet().Interpolators.size() == 4 );
+
+// Update keys
+	CHECK( AnimClass.FloatAnimDirect->UpdateKey( 2.0, 4.0f ) );
+	CHECK( AnimClass.FloatAnimDirect->UpdateKey( 3.0, 1.0f ) );
+	CHECK( AnimClass.FloatAnimDirect->UpdateKey( 4.0, -3.0f ) );
+	CHECK( AnimClass.FloatAnimDirect->UpdateKey( 5.0, 2.0f ) );
+
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 2.0 )->Value == 4.0f );
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 3.0 )->Value == 1.0f );
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 4.0 )->Value == -3.0f );
+	CHECK( AnimClass.FloatAnimDirect->GetKey( 5.0 )->Value == 2.0f );
+
+	// Check interpolators.
+	CHECK( AnimClass.FloatAnimDirect->GetKeySet().Keys.size() == AnimClass.FloatAnimDirect->GetKeySet().Interpolators.size() + 1 );
+	CHECK( AnimClass.FloatAnimDirect->GetKeySet().Keys.size() == 5 );
+	CHECK( AnimClass.FloatAnimDirect->GetKeySet().Interpolators.size() == 4 );
 
 
 }
