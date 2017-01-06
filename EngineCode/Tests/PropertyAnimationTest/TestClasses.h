@@ -33,7 +33,7 @@ class TestAnim : public EngineObject
 {
 	RTTR_ENABLE( EngineObject );
 	RTTR_REGISTRATION_FRIEND;
-private:
+public:
 	float			m_energy;
 	float			m_mass;
 	float			m_power;

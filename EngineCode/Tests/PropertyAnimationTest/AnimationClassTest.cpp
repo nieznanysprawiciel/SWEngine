@@ -281,6 +281,235 @@ TEST_CASE( "Animations", "[AnimationClassTest]" )
 	CHECK( AnimClass.FloatAnimDirect->GetKeySet().Interpolators.size() == 4 );
 
 
+// Animation
+	float epsilon = 0.00001f;
+	
+	float time = 0.0f;
+	float value = 7.0f;
+
+	//
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - 7.0f ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - 5.0f ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - 1.0f ) < epsilon );
+
+
+	//
+	time = 0.2f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - 6.7f ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - 4.9f ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - 1.3f ) < epsilon );
+
+
+	//
+	time = 0.7f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - 5.95f ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - 4.65 ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - 2.05f ) < epsilon );
+
+	//
+	time = 1.4f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - 4.9 ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - 4.3f ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - 3.1f ) < epsilon );
+
+	//
+	time = 2.0f;
+	value = 4.0f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - value ) < epsilon );
+
+	//
+	time = 2.2f;
+	value = 3.4f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - value ) < epsilon );
+
+	//
+	time = 2.3f;
+	value = 3.1f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - value ) < epsilon );
+
+	//
+	time = 2.8f;
+	value = 1.6f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - value ) < epsilon );
+
+	//
+	time = 3.1f;
+	value = 0.6f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - value ) < epsilon );
+
+	//
+	time = 3.3f;
+	value = -0.2f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - value ) < epsilon );
+
+	//
+	time = 3.5f;
+	value = -1.0f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - value ) < epsilon );
+
+	//
+	time = 3.9f;
+	value = -2.6f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - value ) < epsilon );
+
+	//
+	time = 4.05f;
+	value = -2.75f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - value ) < epsilon );
+
+	//
+	time = 4.17f;
+	value = -2.15f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - value ) < epsilon );
+
+	//
+	time = 4.73f;
+	value = 0.65f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - value ) < epsilon );
+
+	//
+	time = 5.0f;
+	value = 2.0f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - value ) < epsilon );
+
+	//
+	time = 7.0f;
+	value = 2.0f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - value ) < epsilon );
+
+	//
+	time = 12222222.0f;
+	value = 2.0f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - value ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - value ) < epsilon );
+
+	//
+	time = -1.0f;
+
+	AnimClass.FloatAnimString->Animate( &AnimClass, time );
+	AnimClass.FloatAnimProperty->Animate( &AnimClass, time );
+	AnimClass.FloatAnimDirect->Animate( &AnimClass, time );
+
+	CHECK( abs( AnimClass.m_otherData.Additional.SomeValue - 7.0 ) < epsilon );
+	CHECK( abs( AnimClass.m_otherData.SomeValue - 5.0 ) < epsilon );
+	CHECK( abs( AnimClass.m_energy - 1.0 ) < epsilon );
+
 }
 
 
