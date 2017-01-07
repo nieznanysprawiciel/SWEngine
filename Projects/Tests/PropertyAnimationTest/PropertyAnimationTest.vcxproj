@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\AnimationClassTest.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\InterpolatorsTest.cpp" />
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\PropertyHelpersTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TimelinesTest.cpp" />

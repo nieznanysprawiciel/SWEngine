@@ -18,6 +18,9 @@
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\PropertyHelpersTest.cpp">
       <Filter>PropertyAnimationTest</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\InterpolatorsTest.cpp">
+      <Filter>PropertyAnimationTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\TestClasses.h">

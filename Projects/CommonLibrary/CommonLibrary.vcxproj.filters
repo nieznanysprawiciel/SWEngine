@@ -135,9 +135,6 @@
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\LinearInterpolator.h">
       <Filter>Common\ParameterAnimation\Interpolators</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\PointInterpolator.h">
-      <Filter>Common\ParameterAnimation\Interpolators</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Animation\Animation.h">
       <Filter>Common\ParameterAnimation\Animation</Filter>
     </ClInclude>
@@ -154,6 +151,9 @@
       <Filter>Common\ParameterAnimation\Animation</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\DefaultInterpolators.h">
+      <Filter>Common\ParameterAnimation\Interpolators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\DiscreteInterpolator.h">
       <Filter>Common\ParameterAnimation\Interpolators</Filter>
     </ClInclude>
   </ItemGroup>

@@ -36,7 +36,7 @@
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\DefaultInterpolators.h" />
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\IInterpolator.h" />
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\LinearInterpolator.h" />
-    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\PointInterpolator.h" />
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\DiscreteInterpolator.h" />
     <ClInclude Include="..\..\EngineCode\Common\Properties\Containers\ICollection.h" />
     <ClInclude Include="..\..\EngineCode\Common\Properties\IEnableProperty.h" />
     <ClInclude Include="..\..\EngineCode\Common\Properties\Properties.h" />
