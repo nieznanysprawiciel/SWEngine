@@ -56,6 +56,7 @@
     <ClInclude Include="..\..\EngineCode\Common\Serialization\SW\Serialization.h" />
     <ClInclude Include="..\..\EngineCode\Common\SWEngineInclude.h" />
     <ClInclude Include="..\..\EngineCode\Common\System\Path.h" />
+    <ClInclude Include="..\..\EngineCode\Common\Traits.h" />
     <ClInclude Include="..\..\EngineCode\Common\TypesDefinitions.h" />
     <ClInclude Include="..\..\EngineCode\Common\UPtr.h" />
   </ItemGroup>

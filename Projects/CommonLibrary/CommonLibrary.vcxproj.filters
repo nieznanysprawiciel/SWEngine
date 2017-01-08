@@ -156,6 +156,9 @@
     <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\DiscreteInterpolator.h">
       <Filter>Common\ParameterAnimation\Interpolators</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\Traits.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\Common\Serialization\SW\Serialization.cpp">

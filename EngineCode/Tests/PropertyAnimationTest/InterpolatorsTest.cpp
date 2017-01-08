@@ -148,6 +148,18 @@ void			TestPropertyDiscrete	( TestInterpolators& animClass, const std::string& p
 			}
 		}
 
+		// Check what happens after last key
+		TimeType timeInterval = 104.1f;
+		for( int i = 0; i < 20; ++i )
+		{
+			TimeType curTime = timeList[ ListSize - 1 ] + i * timeInterval;
+
+			INFO( "Checking animation, time: " << curTime );
+
+			animator->Animate( &animClass, curTime );
+			CHECK( animClass.GetField< PropType >() == valuesList[ ListSize - 1 ] );
+		}
+
 	}
 }
 
@@ -170,7 +182,21 @@ TEST_CASE( "Interpolators", "[Interpolators Types]" )
 		std::string valuesArray[] = { "Value 1", "Something important", "Something not important", "Interesting message", "Not interesting message" };
 		TimeType timeArray[] ={ 0.0f, 3.0f, 5.0f, 6.1f, 11.0f };
 
-		TestPropertyDiscrete< std::string >( AnimClass, "StringField", valuesArray, timeArray );
+		TestPropertyDiscrete( AnimClass, "StringField", valuesArray, timeArray );
+	}
+
+	{
+		std::wstring valuesArray[] = { L"Value 1", L"Something important", L"Something not important", L"Interesting message", L"Not interesting message" };
+		TimeType timeArray[] ={ 0.0f, 3.0f, 5.0f, 6.1f, 11.0f };
+
+		TestPropertyDiscrete( AnimClass, "WStringField", valuesArray, timeArray );
+	}
+
+	{
+		bool valuesArray[] = { true, false, true, false, true };
+		TimeType timeArray[] ={ 0.0f, 3.0f, 5.0f, 6.1f, 11.0f };
+
+		TestPropertyDiscrete( AnimClass, "BoolField", valuesArray, timeArray );
 	}
 }
 
