@@ -38,6 +38,8 @@ RTTR_REGISTRATION
 		.property( "EnumField", &TestInterpolators::EnumField );
 }
 
+#include "Common/ParameterAnimation/Interpolators/DefaultInterpolators.inl"
+
 
 // ================================ //
 //
@@ -197,6 +199,13 @@ TEST_CASE( "Interpolators", "[Interpolators Types]" )
 		TimeType timeArray[] ={ 0.0f, 3.0f, 5.0f, 6.1f, 11.0f };
 
 		TestPropertyDiscrete( AnimClass, "BoolField", valuesArray, timeArray );
+	}
+
+	{
+		Methods valuesArray[] = { Methods::Discrete, Methods::Linear, Methods::Integral, Methods::Discrete, Methods::Integral };
+		TimeType timeArray[] ={ 0.0f, 3.0f, 5.0f, 6.1f, 11.0f };
+
+		TestPropertyDiscrete( AnimClass, "EnumField", valuesArray, timeArray );
 	}
 }
 

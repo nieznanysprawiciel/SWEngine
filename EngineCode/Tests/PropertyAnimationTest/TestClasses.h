@@ -8,6 +8,7 @@
 #include "Common/ParameterAnimation/Parameters/StringPropertyPath.h"
 
 
+#include <DirectXMath.h>
 #include <string>
 
 
