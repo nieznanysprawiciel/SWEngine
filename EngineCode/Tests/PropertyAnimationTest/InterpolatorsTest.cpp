@@ -13,6 +13,28 @@
 
 RTTR_REGISTRATION
 {
+
+	RTTR_REGISTRATION_STANDARD_TYPE_VARIANTS( DirectX::XMFLOAT2 )
+	RTTR_REGISTRATION_STANDARD_TYPE_VARIANTS( DirectX::XMFLOAT3 )
+	RTTR_REGISTRATION_STANDARD_TYPE_VARIANTS( DirectX::XMFLOAT4 )
+
+	rttr::registration::class_< DirectX::XMFLOAT4 >( "DirectX::XMFLOAT4" )
+		.property( "X", &DirectX::XMFLOAT4::x )
+		.property( "Y", &DirectX::XMFLOAT4::y )
+		.property( "Z", &DirectX::XMFLOAT4::z )
+		.property( "W", &DirectX::XMFLOAT4::w );
+
+	rttr::registration::class_< DirectX::XMFLOAT3 >( "DirectX::XMFLOAT3" )
+		.property( "X", &DirectX::XMFLOAT3::x )
+		.property( "Y", &DirectX::XMFLOAT3::y )
+		.property( "Z", &DirectX::XMFLOAT3::z );
+
+	rttr::registration::class_< DirectX::XMFLOAT2 >( "DirectX::XMFLOAT2" )
+		.property( "X", &DirectX::XMFLOAT2::x )
+		.property( "Y", &DirectX::XMFLOAT2::y );
+
+
+
 	rttr::registration::enumeration< Methods >( "Methods" )
 	(
 		rttr::value( "Discrete", Methods::Discrete ),
@@ -35,10 +57,86 @@ RTTR_REGISTRATION
 		.property( "BoolField", &TestInterpolators::BoolField )
 		.property( "StringField", &TestInterpolators::StringField )
 		.property( "WStringField", &TestInterpolators::WStringField )
-		.property( "EnumField", &TestInterpolators::EnumField );
+		.property( "EnumField", &TestInterpolators::EnumField )
+		.property( "Color4F", &TestInterpolators::Color4F )
+		.property( "Position3F", &TestInterpolators::Position3F ) BIND_AS_PTR;
 }
 
 #include "Common/ParameterAnimation/Interpolators/DefaultInterpolators.inl"
+
+
+namespace
+{
+
+// ================================ //
+//
+bool				operator==	( const DirectX::XMFLOAT3& vec1, const DirectX::XMFLOAT3& vec2 )
+{
+	if( vec1.x != vec2.x )
+		return false;
+	if( vec1.y != vec2.y )
+		return false;
+	if( vec1.z != vec2.z )
+		return false;
+	return true;
+}
+
+// ================================ //
+//
+bool				operator==	( const DirectX::XMFLOAT4& vec1, const DirectX::XMFLOAT4& vec2 )
+{
+	if( vec1.x != vec2.x )
+		return false;
+	if( vec1.y != vec2.y )
+		return false;
+	if( vec1.z != vec2.z )
+		return false;
+	if( vec1.w != vec2.w )
+		return false;
+	return true;
+}
+
+// ================================ //
+//
+DirectX::XMFLOAT4	operator*	( TimeType scalar, DirectX::XMFLOAT4 vec2 )
+{
+	vec2.x = float( scalar * vec2.x );
+	vec2.y = float( scalar * vec2.y );
+	vec2.z = float( scalar * vec2.z );
+	vec2.w = float( scalar * vec2.w );
+
+	return vec2;
+}
+
+// ================================ //
+//
+DirectX::XMFLOAT4	operator+	( const DirectX::XMFLOAT4& vec1, const DirectX::XMFLOAT4& vec2 )
+{
+	DirectX::XMFLOAT4 result;
+	result.x = vec1.x + vec2.x;
+	result.y = vec1.y + vec2.y;
+	result.z = vec1.z + vec2.z;
+	result.w = vec1.w + vec2.w;
+
+	return result;
+}
+
+// ================================ //
+//
+DirectX::XMFLOAT4	operator-	( const DirectX::XMFLOAT4& vec1, const DirectX::XMFLOAT4& vec2 )
+{
+	DirectX::XMFLOAT4 result;
+	result.x = vec1.x - vec2.x;
+	result.y = vec1.y - vec2.y;
+	result.z = vec1.z - vec2.z;
+	result.w = vec1.w - vec2.w;
+
+	return result;
+}
+
+}
+
+ENABLE_PARAMETER_ANIMATION( DirectX::XMFLOAT4 );
 
 
 // ================================ //
@@ -206,6 +304,20 @@ TEST_CASE( "Interpolators", "[Interpolators Types]" )
 		TimeType timeArray[] ={ 0.0f, 3.0f, 5.0f, 6.1f, 11.0f };
 
 		TestPropertyDiscrete( AnimClass, "EnumField", valuesArray, timeArray );
+	}
+
+	{
+		DirectX::XMFLOAT4 valuesArray[] =
+		{
+			DirectX::XMFLOAT4( 1.0f, 0.2f, 0.0f, 1.0f ),
+			DirectX::XMFLOAT4( 0.2f, 0.6f, 0.0f, 1.0f ),
+			DirectX::XMFLOAT4( 1.0f, 0.2f, 5.0f, 1.0f ),
+			DirectX::XMFLOAT4( 0.0f, 0.2f, 3.0f, 1.0f ), 
+			DirectX::XMFLOAT4( 1.0f, 0.9f, 3.0f, 1.0f )
+		};
+		TimeType timeArray[] ={ 0.0f, 3.0f, 5.0f, 6.1f, 11.0f };
+
+		TestPropertyDiscrete( AnimClass, "Color4F", valuesArray, timeArray );
 	}
 }
 

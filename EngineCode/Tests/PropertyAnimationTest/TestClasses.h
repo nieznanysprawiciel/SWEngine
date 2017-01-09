@@ -9,6 +9,7 @@
 
 
 #include <DirectXMath.h>
+#include <DirectXPackedVector.h>
 #include <string>
 
 
@@ -90,6 +91,10 @@ public:
 
 	Methods			EnumField;
 
+	DirectX::XMFLOAT4					Color4F;
+	DirectX::XMFLOAT3					Position3F;
+	DirectX::PackedVector::XMCOLOR		Color;
+
 public:
 	explicit		TestInterpolators();
 	~TestInterpolators() { };
@@ -118,6 +123,10 @@ type&		GetField< type >() { return name;  }
 	DEFINE_GET_FIELD( double, DoubleField );
 	DEFINE_GET_FIELD( float, FloatField );
 	DEFINE_GET_FIELD( Methods, EnumField );
+
+	DEFINE_GET_FIELD( DirectX::XMFLOAT4, Color4F );
+	DEFINE_GET_FIELD( DirectX::XMFLOAT3, Position3F );
+	DEFINE_GET_FIELD( DirectX::PackedVector::XMCOLOR, Color );
 
 #undef DEFINE_GET_FIELD
 };
