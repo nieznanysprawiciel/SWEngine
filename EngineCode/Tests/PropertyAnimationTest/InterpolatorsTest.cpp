@@ -317,7 +317,7 @@ TEST_CASE( "Interpolators", "[Interpolators Types]" )
 		};
 		TimeType timeArray[] ={ 0.0f, 3.0f, 5.0f, 6.1f, 11.0f };
 
-		TestPropertyDiscrete( AnimClass, "Color4F", valuesArray, timeArray );
+		//TestPropertyDiscrete( AnimClass, "Color4F", valuesArray, timeArray );
 	}
 }
 
