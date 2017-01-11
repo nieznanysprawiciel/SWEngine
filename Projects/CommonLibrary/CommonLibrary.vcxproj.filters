@@ -159,6 +159,9 @@
     <ClInclude Include="..\..\EngineCode\Common\Traits.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\Common\ParameterAnimation\Timelines\RelativeTimeline.h">
+      <Filter>Common\ParameterAnimation\Timelines</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\Common\Serialization\SW\Serialization.cpp">
@@ -178,6 +181,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\Common\ParameterAnimation\Interpolators\DefaultInterpolators.cpp">
       <Filter>Common\ParameterAnimation\Interpolators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\Common\ParameterAnimation\Timelines\RelativeTimeline.cpp">
+      <Filter>Common\ParameterAnimation\Timelines</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

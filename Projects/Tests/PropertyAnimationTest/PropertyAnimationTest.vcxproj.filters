@@ -4,14 +4,11 @@
     <Filter Include="PropertyAnimationTest">
       <UniqueIdentifier>{dd2de4ae-fb2b-4c75-b341-e7afcc9c89ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PropertyAnimationTest\TestClasses">
+      <UniqueIdentifier>{665697b6-ceca-4385-b3bd-7355b4556bd2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>PropertyAnimationTest</Filter>
-    </ClCompile>
-    <ClCompile Include="TimelinesTest.cpp">
-      <Filter>PropertyAnimationTest</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\AnimationClassTest.cpp">
       <Filter>PropertyAnimationTest</Filter>
     </ClCompile>
@@ -21,10 +18,22 @@
     <ClCompile Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\InterpolatorsTest.cpp">
       <Filter>PropertyAnimationTest</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\FakeTimeline.cpp">
+      <Filter>PropertyAnimationTest\TestClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\main.cpp">
+      <Filter>PropertyAnimationTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\TimelinesTest.cpp">
+      <Filter>PropertyAnimationTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\TestClasses.h">
-      <Filter>PropertyAnimationTest</Filter>
+      <Filter>PropertyAnimationTest\TestClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\EngineCode\Tests\PropertyAnimationTest\FakeTimeline.h">
+      <Filter>PropertyAnimationTest\TestClasses</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
