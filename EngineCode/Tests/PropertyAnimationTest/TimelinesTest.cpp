@@ -116,7 +116,7 @@ TEST_CASE( "Timelines", "[RelativeTimeline]" )
 		}
 
 		// Check post clamp, after 2 * duration. (Pre clamp should be used)
-		globalStartT = 3.0;
+		globalStartT += 3.0;
 		for( int i = 0; i < 30; ++i )
 		{
 			TimeType time = i * timeStep;
@@ -124,6 +124,18 @@ TEST_CASE( "Timelines", "[RelativeTimeline]" )
 			timeline->Update();
 
 			INFO( "Pre clamp Time: " << globalStartT + time );
+			CHECK( abs( timeline->GetTime() - 0.0 ) < epsilon );
+		}
+
+		// Check inside timeline duration after first period.
+		globalStartT += 3.0;
+		for( int i = 0; i < 30; ++i )
+		{
+			TimeType time = i * timeStep;
+			global->SetCurrentTIme( globalStartT + time );
+			timeline->Update();
+
+			INFO( "Time evaluation: " << globalStartT + time );
 			CHECK( abs( timeline->GetTime() - 0.0 ) < epsilon );
 		}
 
@@ -205,9 +217,90 @@ TEST_CASE( "Timelines", "[RelativeTimeline]" )
 		}
 	}
 
+
 // ================================ //
 //
 
+	SECTION( "WrapModes: Mirror, Mirror" )
+	{
+		WrapMode preMode = WrapMode::Mirror;
+		WrapMode postMode = WrapMode::Mirror;
+		TimeType duration = 3.0;
+
+		timeline->SetDuration( duration );
+		timeline->SetPreWrap( preMode );
+		timeline->SetPostWrap( postMode );
+
+		REQUIRE( timeline->GetDuration() == duration );
+		REQUIRE( timeline->GetPostWrap() == postMode );
+		REQUIRE( timeline->GetPreWrap() == preMode );
+
+		TimeType globalStartT = 1.0;
+		TimeType timeStep = 0.1;
+
+		global->SetCurrentTIme( globalStartT );
+		timeline->Start();
+
+		// Check inside timeline duration.
+		for( int i = 0; i < 30; ++i )
+		{
+			TimeType time = i * timeStep;
+			global->SetCurrentTIme( globalStartT + time );
+			timeline->Update();
+
+			INFO( "Time evaluation: " << globalStartT + time );
+			CHECK( abs( timeline->GetTime() - time ) < epsilon );
+		}
+
+		// Check post clamp.
+		globalStartT += 3.0;
+		for( int i = 0; i < 30; ++i )
+		{
+			TimeType time = i * timeStep;
+			global->SetCurrentTIme( globalStartT + time );
+			timeline->Update();
+
+			INFO( "Post clamp Time: " << globalStartT + time );
+			CHECK( abs( timeline->GetTime() - ( 3.0 - time ) ) < epsilon );
+		}
+
+		// Check post clamp, after 2 * duration. (Pre clamp should be used)
+		globalStartT += 3.0;
+		for( int i = 0; i < 30; ++i )
+		{
+			TimeType time = i * timeStep;
+			global->SetCurrentTIme( globalStartT + time );
+			timeline->Update();
+
+			INFO( "Pre clamp Time: " << globalStartT + time );
+			CHECK( abs( timeline->GetTime() - time ) < epsilon );
+		}
+
+		// Check inside timeline duration after first period.
+		globalStartT += 3.0;
+		for( int i = 0; i < 30; ++i )
+		{
+			TimeType time = i * timeStep;
+			global->SetCurrentTIme( globalStartT + time );
+			timeline->Update();
+
+			INFO( "Time evaluation: " << globalStartT + time );
+			CHECK( abs( timeline->GetTime() - ( 3.0 - time ) ) < epsilon );
+		}
+
+		// Check pre clamp
+		globalStartT = -2.0;
+		for( int i = 0; i < 30; ++i )
+		{
+			TimeType time = i * timeStep;
+			global->SetCurrentTIme( globalStartT + time );
+			timeline->Update();
+
+			INFO( "Pre clamp Time: " << globalStartT + time );
+			CHECK( abs( timeline->GetTime() - ( 3.0 - time ) ) < epsilon );
+		}
+
+	}
 
 
 }
