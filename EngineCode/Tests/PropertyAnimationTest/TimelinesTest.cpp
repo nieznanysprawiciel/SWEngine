@@ -10,7 +10,7 @@
 const double epsilon = 0.000001;
 
 
-TEST_CASE( "Timelines", "[RelativeTimeline]" )
+TEST_CASE( "Timelines - RelativeTimeline - WrapModes", "[RelativeTimeline - WrapModes]" )
 {
 	FakeTimelinePtr global = MakePtr< FakeTimeline >();
 
@@ -303,5 +303,62 @@ TEST_CASE( "Timelines", "[RelativeTimeline]" )
 	}
 
 
+}
+
+
+TEST_CASE( "Timelines - RelativeTimeline - StartPauseStop", "[RelativeTimeline - StartPauseStop]" )
+{
+	FakeTimelinePtr global = MakePtr< FakeTimeline >();
+	RelativeTimelinePtr timeline = MakePtr< RelativeTimeline >( global );
+
+	SECTION( "Start - Pause - Start" )
+	{
+		TimeType globalStartT = 0.0;
+
+		global->SetCurrentTIme( globalStartT );
+		timeline->Start();
+
+		global->SetCurrentTIme( 1.0 );
+		timeline->Update();
+
+		timeline->Pause();
+
+		global->SetCurrentTIme( 2.0 );
+		timeline->Update();
+
+		REQUIRE( abs( timeline->GetTime() - 1.0 ) < epsilon );
+
+		timeline->Start();
+
+		global->SetCurrentTIme( 3.0 );
+		timeline->Update();
+
+		REQUIRE( abs( timeline->GetTime() - 2.0 ) < epsilon );
+	}
+
+	SECTION( "Start - Stop - Start" )
+	{
+		TimeType globalStartT = 0.0;
+
+		global->SetCurrentTIme( globalStartT );
+		timeline->Start();
+
+		global->SetCurrentTIme( 1.0 );
+		timeline->Update();
+
+		timeline->Stop();
+
+		global->SetCurrentTIme( 2.0 );
+		timeline->Update();
+
+		REQUIRE( abs( timeline->GetTime() - 0.0 ) < epsilon );
+
+		timeline->Start();
+
+		global->SetCurrentTIme( 3.0 );
+		timeline->Update();
+
+		REQUIRE( abs( timeline->GetTime() - 1.0 ) < epsilon );
+	}
 }
 
