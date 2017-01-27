@@ -60,7 +60,7 @@ void			PerformanceCheck::EndPerformanceCheck( unsigned int index )
 
 		if( timeSpent > m_samples[ index ].MaxTime )
 			m_samples[ index ].MaxTime = timeSpent;
-		else if( timeSpent < m_samples[ index ].MinTime )
+		if( timeSpent < m_samples[ index ].MinTime )
 			m_samples[ index ].MinTime = timeSpent;
 
 		m_samples[ index ].NumExecutions++;
