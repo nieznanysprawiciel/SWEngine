@@ -24,13 +24,6 @@ oraz g³ówne funkcje do renderingu.
 
 
 
-REGISTER_PERFORMANCE_CHECK( RENDERING_TIME )
-REGISTER_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
-#ifdef _INTERPOLATE_POSITIONS
-	REGISTER_PERFORMANCE_CHECK( INTERPOLATION_TIME )
-#endif
-
-
 //----------------------------------------------------------------------------------------------//
 //								konstruktor i destruktor										//
 //----------------------------------------------------------------------------------------------//

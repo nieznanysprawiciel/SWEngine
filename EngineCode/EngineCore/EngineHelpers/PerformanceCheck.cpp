@@ -106,7 +106,7 @@ void			PerformanceCheck::Print( const std::string& outputFile, std::vector<_Perf
 	if ( !output.good() )
 		return;
 
-	output << "Performance test:				Average			Minimum			Maximum" << std::endl;
+	output << "Performance test:				Average			Minimum			Maximum				Whole Time		Num executions" << std::endl;
 
 	for ( auto taskData : data_copy )
 	{
@@ -117,7 +117,9 @@ void			PerformanceCheck::Print( const std::string& outputFile, std::vector<_Perf
 		output << std::fixed;
 		output << std::setprecision( floatPrintPrecision ) << 1000 * taskData.WholeTime / double( taskData.NumExecutions * counterFreq.QuadPart ) << " ms	";
 		output << std::setprecision( floatPrintPrecision ) << 1000 * taskData.MinTime / double( counterFreq.QuadPart ) << " ms	";
-		output << std::setprecision( floatPrintPrecision ) << 1000 * taskData.MaxTime / double( counterFreq.QuadPart ) << " ms" << std::endl;
+		output << std::setprecision( floatPrintPrecision ) << 1000 * taskData.MaxTime / double( counterFreq.QuadPart ) << " ms		";
+		output << std::setprecision( floatPrintPrecision ) << 1000 * taskData.WholeTime / double( counterFreq.QuadPart ) << " ms	";
+		output << taskData.NumExecutions << std::endl;
 	}
 	output << std::endl;
 

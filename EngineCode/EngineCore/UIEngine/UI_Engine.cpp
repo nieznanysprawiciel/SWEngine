@@ -8,7 +8,7 @@
 
 #include "Common/MemoryLeaks.h"
 
-REGISTER_PERFORMANCE_CHECK( INPUT_PROCESSING );
+
 
 
 /**@brief */
