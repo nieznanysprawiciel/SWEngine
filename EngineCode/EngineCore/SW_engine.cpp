@@ -36,7 +36,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 	engine = new Engine();
 
 	//creating aplication window
-	result = engine->InitEngine( WINDOW_WIDTH, WINDOW_HEIGHT, false, nCmdShow );
+	result = engine->InitEngine( nCmdShow );
 	if (!result)
 	{
 		delete engine;

@@ -50,7 +50,7 @@ int APIENTRY _tWinMain( _In_ HINSTANCE hInstance,
 	// Tworzymy g³ówne okno aplikacji, inicjalizujemy DirectX, Directinput i DirectSound.
 	//Dla trybu pe³noekranowego nale¿y podaæ w trzecim parametrze wartoœæ TRUE. Wysokoœæ i szerokoœæ
 	//okna s¹ w takim przypadku ignorowane.
-	result = engine->InitEngine( WINDOW_WIDTH, WINDOW_HEIGHT, false, nCmdShow );
+	result = engine->InitEngine( nCmdShow );
 	if ( !result )
 	{
 		delete engine;

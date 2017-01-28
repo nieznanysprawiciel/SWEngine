@@ -10,6 +10,8 @@
 #include "EngineCore/MainEngine/Engine.h"
 #include "GraphicAPI/ResourcesFactory.h"
 
+#include "Initializers/Config.h"
+
 #include <mutex>
 
 #include "Common/MemoryLeaks.h"
@@ -45,7 +47,123 @@ EngineInterface::~EngineInterface()
 
 
 /**@brief */
-void Engine::test()
+void		Engine::test()
+{
+	SetSkydomeAndCamera();
+
+	//testMaterial( Context->modelsManager->GetMesh( CLONE_FIGHTER ) );
+	
+	auto& startLevelPath = Context->config->StartLevelPath();
+	if( !Level.LoadLevelSync( startLevelPath ) )
+		CreateDefaultScene();
+}
+
+void		Engine::SetCamera			()
+{
+	// Ustawienie aktywnej kamery
+	CameraActor* camera = Actors.CreateActor< CameraActor >( GetTypeidName< CameraActor >(), AsCamera | EnablePreController | EnableMovement );
+	XMVECTOR cameraPos = XMVectorSet( 0.0, 0.0, 0.0, 0.0 );
+	camera->Teleport( cameraPos );
+	camera->SetPerspectiveProjectionMatrix( 45.0f, (float)Context->windowWidth, (float)Context->windowHeight, 1.0f, 100000.0f );
+
+	// Przypisujemy kontroler ( dla kontrolerów trzeba zrobiæ jakiœ mechanizm przechowywania i zwalniania)
+	SpectatorCameraController* controller = new SpectatorCameraController(
+	Context->ui_engine->GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ) );
+	camera->SetController( controller );
+
+	// Wstawiamy kamerê do odpowiednich modu³ów
+	Context->displayEngine->SetCurrentCamera( camera );
+}
+
+/**@brief */
+void		Engine::SetSkydomeAndCamera()
+{
+	SetCamera();
+	SetSkydome();
+}
+
+/**@brief */
+void		Engine::SetSkydome()
+{
+	double albedo[3] = { 0.8, 0.8, 0.8 };
+	double turbidity = 4;
+	XMVECTOR sunDir = XMVectorSet( -0.2f, 0.6f, 0.6f, 1.0f );
+	HosekSkyDome* skyDome = new HosekSkyDome( Context->modelsManager );
+	skyDome->init_sky_dome( sunDir, turbidity, albedo, 101, 101, 100, 5.0 );
+	Context->displayEngine->SetSkydome( skyDome );
+
+	sunDir = XMVectorNegate( sunDir );
+
+	DirectX::XMFLOAT3 color( 0.8f, 0.8f, 0.8f );
+
+	// Ustawiamy œwiat³o pod indeksem 0
+	DirectionalLight* light = Actors.CreateActor< DirectionalLight >( GetTypeidName< DirectionalLight >(), AsLight );
+	light->SetLightDirection( sunDir );
+	light->SetLightColor( color );
+
+	Context->displayEngine->lightModule->SetAmbientLight( DirectX::XMFLOAT3( 0.2f, 0.2f, 0.2f ) );
+}
+
+
+
+
+
+#include "EngineCore/ModelsManager/Assets/Materials/MaterialAsset.h"
+#include "EngineCore/ModelsManager/Assets/Materials/MaterialAssetInitData.h"
+#include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
+#include "EngineCore/ModelsManager/Loaders/Material/SWMat/SWMaterialLoader.h"
+
+#include "Common/Serialization/Serializer.h"
+#include "Common/Serialization/SW/EngineSerializationContext.h"
+
+void Engine::testMaterial( Model3DFromFile* model )
+{
+	auto part = model->get_part( 1 );
+
+	MaterialCreateData init;
+	init.Data.VertexShader = part->vertex_shader;
+	init.Data.PixelShader = part->pixel_shader;
+	init.Data.Textures[ 0 ] = part->GetTexture1();
+
+	// Shading model data
+
+	PhongMaterial phongMaterial;
+	phongMaterial.Diffuse = DirectX::XMFLOAT4( 1.0f, 0.4f, 2.0f, 1.0f );
+	phongMaterial.Ambient = DirectX::XMFLOAT4( 0.0f, 0.4f, 0.0f, 0.0f );
+	phongMaterial.Specular = DirectX::XMFLOAT4( 1.0f, 1.0f, 0.5f, 0.0f );
+	phongMaterial.Emissive = DirectX::XMFLOAT3( 0.0f, 0.01f, 0.0f );
+	phongMaterial.Power = 128.0;
+
+	ShadingModelData< PhongMaterial >* shadingData = new ShadingModelData< PhongMaterial >();
+	shadingData->Data = phongMaterial;
+	init.Data.ShadingData = UPtr< ShadingModelBase >( shadingData );
+
+
+	// Additional buffers.
+	AdditionalBufferInfo addBuff;
+	addBuff.BufferSize = sizeof( PhongMaterial );
+	addBuff.BufferType = TypeID::get< PhongMaterial >();
+	addBuff.ShaderType = ShaderType::PixelShader;
+	
+	init.Data.AdditionalBuffers.push_back( addBuff );
+
+	// Memory leak!!
+	MaterialAsset* newMaterial = new MaterialAsset( L"::Generated", std::move( init ) );
+
+	SWMaterialLoader loader( Context->modelsManager );
+	loader.SaveMaterial( "tylko_do_testow/serialization/materials/materialSerialize.swmat", newMaterial );
+
+	auto mat = loader.LoadMaterial( "tylko_do_testow/serialization/materials/materialDeserialize.swmat" );
+
+
+	//ISerializer ser( std::make_unique< EngineSerializationContext >() );
+	//newMaterial->Serialize( &ser );
+	//ser.SaveFile( "tylko_do_testow/serialization/materialBruteSerialize.swmat", WritingMode::Readable );
+}
+
+
+/**@brief */
+void		Engine::CreateDefaultScene()
 {
 	const wchar_t CLONE_FIGHTER[] = L"tylko_do_testow/ARC.FBX";
 	const wchar_t MOON[] = L"tylko_do_testow/moon/moon.FBX";
@@ -178,11 +296,6 @@ void Engine::test()
 //	skrzynia->SetModel( new_model );
 //	//skrzynia->SetScale( 0.1 );
 
-	SetSkydomeAndCamera();
-
-	//testMaterial( Context->modelsManager->GetMesh( CLONE_FIGHTER ) );
-
-
 	int actorInfoSize = sizeof( ActorInfo );
 	int actorDataSize = sizeof( ActorData );
 	int engineInterfaceSize = sizeof( EngineInterface );
@@ -209,99 +322,6 @@ void Engine::test()
 	Size ChildActorSize = sizeof( ChildActor );
 }
 
-/**@brief */
-void Engine::SetSkydomeAndCamera()
-{
-	// Ustawienie aktywnej kamery
-	CameraActor* camera = Actors.CreateActor< CameraActor >( GetTypeidName< CameraActor >(), AsCamera | EnablePreController | EnableMovement );
-	XMVECTOR cameraPos = XMVectorSet( 0.0, 0.0, 0.0, 0.0 );
-	camera->Teleport( cameraPos );
-
-	// Przypisujemy kontroler ( dla kontrolerów trzeba zrobiæ jakiœ mechanizm przechowywania i zwalniania)
-	SpectatorCameraController* controller = new SpectatorCameraController(
-	Context->ui_engine->GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ) );
-	camera->SetController( controller );
-
-	// Wstawiamy kamerê do odpowiednich modu³ów
-	Context->displayEngine->SetCurrentCamera( camera );
-
-	SetSkydome();
-}
-
-/**@brief */
-void Engine::SetSkydome()
-{
-	double albedo[3] = { 0.8, 0.8, 0.8 };
-	double turbidity = 4;
-	XMVECTOR sunDir = XMVectorSet( -0.2f, 0.6f, 0.6f, 1.0f );
-	HosekSkyDome* skyDome = new HosekSkyDome( Context->modelsManager );
-	skyDome->init_sky_dome( sunDir, turbidity, albedo, 101, 101, 100, 5.0 );
-	Context->displayEngine->SetSkydome( skyDome );
-
-	sunDir = XMVectorNegate( sunDir );
-
-	DirectX::XMFLOAT3 color( 0.8f, 0.8f, 0.8f );
-
-	// Ustawiamy œwiat³o pod indeksem 0
-	DirectionalLight* light = Actors.CreateActor< DirectionalLight >( GetTypeidName< DirectionalLight >(), AsLight );
-	light->SetLightDirection( sunDir );
-	light->SetLightColor( color );
-
-	Context->displayEngine->lightModule->SetAmbientLight( DirectX::XMFLOAT3( 0.2f, 0.2f, 0.2f ) );
-}
-
-#include "EngineCore/ModelsManager/Assets/Materials/MaterialAsset.h"
-#include "EngineCore/ModelsManager/Assets/Materials/MaterialAssetInitData.h"
-#include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
-#include "EngineCore/ModelsManager/Loaders/Material/SWMat/SWMaterialLoader.h"
-
-#include "Common/Serialization/Serializer.h"
-#include "Common/Serialization/SW/EngineSerializationContext.h"
-
-void Engine::testMaterial( Model3DFromFile* model )
-{
-	auto part = model->get_part( 1 );
-
-	MaterialCreateData init;
-	init.Data.VertexShader = part->vertex_shader;
-	init.Data.PixelShader = part->pixel_shader;
-	init.Data.Textures[ 0 ] = part->GetTexture1();
-
-	// Shading model data
-
-	PhongMaterial phongMaterial;
-	phongMaterial.Diffuse = DirectX::XMFLOAT4( 1.0f, 0.4f, 2.0f, 1.0f );
-	phongMaterial.Ambient = DirectX::XMFLOAT4( 0.0f, 0.4f, 0.0f, 0.0f );
-	phongMaterial.Specular = DirectX::XMFLOAT4( 1.0f, 1.0f, 0.5f, 0.0f );
-	phongMaterial.Emissive = DirectX::XMFLOAT3( 0.0f, 0.01f, 0.0f );
-	phongMaterial.Power = 128.0;
-
-	ShadingModelData< PhongMaterial >* shadingData = new ShadingModelData< PhongMaterial >();
-	shadingData->Data = phongMaterial;
-	init.Data.ShadingData = UPtr< ShadingModelBase >( shadingData );
-
-
-	// Additional buffers.
-	AdditionalBufferInfo addBuff;
-	addBuff.BufferSize = sizeof( PhongMaterial );
-	addBuff.BufferType = TypeID::get< PhongMaterial >();
-	addBuff.ShaderType = ShaderType::PixelShader;
-	
-	init.Data.AdditionalBuffers.push_back( addBuff );
-
-	// Memory leak!!
-	MaterialAsset* newMaterial = new MaterialAsset( L"::Generated", std::move( init ) );
-
-	SWMaterialLoader loader( Context->modelsManager );
-	loader.SaveMaterial( "tylko_do_testow/serialization/materials/materialSerialize.swmat", newMaterial );
-
-	auto mat = loader.LoadMaterial( "tylko_do_testow/serialization/materials/materialDeserialize.swmat" );
-
-
-	//ISerializer ser( std::make_unique< EngineSerializationContext >() );
-	//newMaterial->Serialize( &ser );
-	//ser.SaveFile( "tylko_do_testow/serialization/materialBruteSerialize.swmat", WritingMode::Readable );
-}
 
 #endif
 

@@ -26,6 +26,8 @@
 class Event;
 class Command;
 
+class Config;
+
 class IGraphicAPIInitializer;
 
 class Model3DFromFile;
@@ -64,6 +66,8 @@ struct EngineContext
 	HINSTANCE					instanceHandler;		///<Uchwyt instancji procesu
 	int							windowWidth;			///<Szerokoœæ okna/ekranu
 	int							windowHeight;			///<Wysokoœæ okna/ekranu
+
+	Config*						config;					///< Engine start configuration.
 
 	IGraphicAPIInitializer*		graphicInitializer;		///<Obs³uguje u¿ywane API graficzne.
 

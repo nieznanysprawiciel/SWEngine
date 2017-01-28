@@ -16,6 +16,8 @@ oraz g³ówne funkcje do renderingu.
 
 #include "InputLibrary/Factory.h"
 
+#include "Initializers/Config.h"
+
 #include "Common/Serialization/Serializer.h"
 #include "Common/Serialization/SW/EngineSerializationContext.h"
 
@@ -54,7 +56,9 @@ void	Engine::InternalInit			( HINSTANCE instanceHandle )
 	Context->engineReady = false;			//jeszcze nie zainicjowaliœmy
 	Context->instanceHandler = instanceHandle;
 
-	Context->graphicInitializer = ResourcesFactory::CreateAPIInitializer();
+	Context->config					= new Config( "configs/StartConfig.config" );
+
+	Context->graphicInitializer		= ResourcesFactory::CreateAPIInitializer();
 
 	Context->controllersEngine		= new ControllersEngine( this );
 	Context->movementEngine			= new MovementEngine( this );
@@ -93,12 +97,26 @@ Engine::~Engine()
 	DefaultAssets::Release();
 	Context->graphicInitializer->ReleaseAPI();
 	delete Context->graphicInitializer;
+
+	delete Context->config;
 }
 
 
 //----------------------------------------------------------------------------------------------//
 //								inicjalizacja okna i modu³ów zewnêtrznych						//
 //----------------------------------------------------------------------------------------------//
+
+/**@brief Initializes engine.
+
+Uses config to initialize window.*/
+bool		Engine::InitEngine				( int nCmdShow )
+{
+	auto width = Context->config->ScreenWidth();
+	auto height = Context->config->ScreenHeight();
+	bool fullscreen = Context->config->Fullscreen();
+
+	return TRUE == InitEngine( width, height, fullscreen, nCmdShow );
+}
 
 ///@brief Inicjuje dzia³anie silnika.
 ///W trybie fullscreen szerokoœæ i wysokoœæ okna jest ignorowana, a dane s¹ pobierane z systemu.

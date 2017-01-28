@@ -96,7 +96,7 @@ bool SerializationApi::DeserializeSingleGeneric( IDeserializer* deser, rttr::pro
 bool SerializationApi::DeserializeResource( IDeserializer* deser, rttr::property prop, const EngineObject* object )
 {
 	auto propertyType = prop.get_type().get_wrapped_type();
-	assert( propertyType.is_derived_from< EngineObject >() );
+	//assert( propertyType.is_derived_from< EngineObject >() );
 
 	if( propertyType == rttr::type::get< MeshAsset >() )
 	{

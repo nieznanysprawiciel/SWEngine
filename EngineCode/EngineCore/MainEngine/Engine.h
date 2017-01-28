@@ -90,7 +90,8 @@ public:
 	explicit Engine( HINSTANCE instanceHandle );
 			~Engine();
 
-	int		InitEngine				( int width, int height, bool full_screen, int nCmdShow );
+	bool	InitEngine				( int nCmdShow );
+	int		InitEngine				( int width, int height, bool fullscreen, int nCmdShow );
 private:
 	///@name Funkcje inicjuj¹ce modu³y silnika
 	///@{
@@ -132,10 +133,12 @@ public:
 	///@}
 
 #ifdef __TEST
-	void test();
-	void testMaterial( Model3DFromFile* model );
-	void SetSkydomeAndCamera();
-	void SetSkydome();
+	void		test				();
+	void		testMaterial		( Model3DFromFile* model );
+	void		SetSkydomeAndCamera	();
+	void		SetSkydome			();
+	void		SetCamera			();
+	void		CreateDefaultScene	();
 #endif
 
 	///@name Parametry okna
