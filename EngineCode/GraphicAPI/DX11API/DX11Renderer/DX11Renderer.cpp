@@ -684,41 +684,23 @@ void	DX11Renderer::SetRenderTarget	( RenderTargetObject* const targets[ MAX_BOUN
 	device_context->OMSetRenderTargets( MAX_BOUND_RENDER_TARGETS, DX11Targets, depthStencilView );
 }
 
+
+
 // ================================ //
 //
 void	DX11Renderer::SetTextures		( TextureObject* const texturesArray[ MAX_BOUND_RENDER_TARGETS ], const uint8 shaderTypes[ MAX_BOUND_RENDER_TARGETS ] )
 {
-	ID3D11ShaderResourceView* texturesVert[ ENGINE_MAX_TEXTURES ];
-	ID3D11ShaderResourceView* texturesPix[ ENGINE_MAX_TEXTURES ];
-	ID3D11ShaderResourceView* texturesGeom[ ENGINE_MAX_TEXTURES ];
-	ID3D11ShaderResourceView* texturesEval[ ENGINE_MAX_TEXTURES ];
-	ID3D11ShaderResourceView* texturesDomain[ ENGINE_MAX_TEXTURES ];
-
 	for( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
 	{
 		if( texturesArray[ i ] )
 		{
 			auto texView = DX11( texturesArray[ i ] )->Get();
-			texturesVert[ i ] = shaderTypes[ i ] & (uint8)ShaderType::VertexShader ? texView : nullptr;
-			texturesPix[ i ] = shaderTypes[ i ] & (uint8)ShaderType::PixelShader ? texView : nullptr;
-			texturesGeom[ i ] = shaderTypes[ i ] & (uint8)ShaderType::GeometryShader ? texView : nullptr;
-			texturesEval[ i ] = shaderTypes[ i ] & (uint8)ShaderType::TesselationControlShader ? texView : nullptr;
-			texturesDomain[ i ] = shaderTypes[ i ] & (uint8)ShaderType::TesselationEvaluationShader ? texView : nullptr;
+			if( shaderTypes[ i ] & (uint8)ShaderType::VertexShader ) device_context->VSSetShaderResources( i, 1, &texView );
+			if( shaderTypes[ i ] & (uint8)ShaderType::PixelShader ) device_context->PSSetShaderResources( i, 1, &texView );
+			if( shaderTypes[ i ] & (uint8)ShaderType::GeometryShader ) device_context->GSSetShaderResources( i, 1, &texView );
+			if( shaderTypes[ i ] & (uint8)ShaderType::TesselationControlShader ) device_context->HSSetShaderResources( i, 1, &texView );
+			if( shaderTypes[ i ] & (uint8)ShaderType::TesselationEvaluationShader ) device_context->DSSetShaderResources( i, 1, &texView );
 		}
-		else
-		{
-			texturesVert[ i ] = nullptr;
-			texturesPix[ i ] = nullptr;
-			texturesGeom[ i ] = nullptr;
-			texturesEval[ i ] = nullptr;
-			texturesDomain[ i ] = nullptr;
-		}
+
 	}
-
-	device_context->VSSetShaderResources( 0, ENGINE_MAX_TEXTURES, texturesVert );
-	device_context->PSSetShaderResources( 0, ENGINE_MAX_TEXTURES, texturesPix );
-	device_context->GSSetShaderResources( 0, ENGINE_MAX_TEXTURES, texturesGeom );
-	device_context->HSSetShaderResources( 0, ENGINE_MAX_TEXTURES, texturesEval );
-	device_context->DSSetShaderResources( 0, ENGINE_MAX_TEXTURES, texturesDomain );
 }
-
