@@ -147,26 +147,8 @@
     <ClCompile Include="..\..\EngineCode\Tests\FBXLoaderTest\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DirectInput\DirectInput.vcxproj">
-      <Project>{d1075b79-925a-436f-8c53-09bd4d5787e4}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\DX11API\DX11API.vcxproj">
-      <Project>{44643d7f-1c71-41c1-b452-b2dc5e088a58}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\EngineCore\SWEngine.vcxproj">
       <Project>{08f5ad41-2020-48ab-8ac3-7fe0039ed65f}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Reflection\Reflection.vcxproj">
-      <Project>{59fa8028-2346-4246-854f-14dcfab6ab56}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\ResourceManager\ResourceManager.vcxproj">
-      <Project>{9f71f0da-1d72-4e96-93b7-5ac2c9cb6ede}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\SerializerXML\SerializerXML.vcxproj">
-      <Project>{49cf5d13-cf9b-4653-9586-05cb12b9a4ca}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\WPFInputProxy\WPFInputProxy.vcxproj">
-      <Project>{364e3cfb-ccaa-4aaf-aa03-d6e2d9749228}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

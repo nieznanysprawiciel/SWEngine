@@ -87,12 +87,6 @@
     <Filter Include="EngineCore\MainEngine\Diagnostics">
       <UniqueIdentifier>{68fcd04a-83f8-4914-b41b-aa84fc2f7147}</UniqueIdentifier>
     </Filter>
-    <Filter Include="InputLibrary">
-      <UniqueIdentifier>{248639e6-686e-495f-82c3-ead51ccff49b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GraphicAPI">
-      <UniqueIdentifier>{e7335025-5a29-428f-bfc9-7ca876de2cf8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="EngineCore\UserApi\Level">
       <UniqueIdentifier>{187abfab-e16d-4094-84b6-2da745147460}</UniqueIdentifier>
     </Filter>
@@ -389,63 +383,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\EngineHelpers\Intersections.h">
       <Filter>EngineCore\EngineHelpers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\InputLibrary\IInput.h">
-      <Filter>InputLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\InputLibrary\InputDeviceInfo.h">
-      <Filter>InputLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\InputLibrary\JoystickState.h">
-      <Filter>InputLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\InputLibrary\KeyboardState.h">
-      <Filter>InputLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\InputLibrary\MouseState.h">
-      <Filter>InputLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\GraphicAPIConstants.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IBuffer.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IGraphicAPIInitializer.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderer.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderTarget.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IShader.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IShaderInputLayout.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\ITexture.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\MeshResources.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourceObject.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcesFactory.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\InputLibrary\Factory.h">
-      <Filter>InputLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\InputLibrary\KeyState.h">
-      <Filter>InputLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\SwapChain.h">
-      <Filter>GraphicAPI</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Level\LevelApi.h">
       <Filter>EngineCore\UserApi\Level</Filter>
     </ClInclude>
@@ -517,9 +454,6 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Loaders\Texture\MipMapGenerator.h">
       <Filter>EngineCore\ModelsManager\Loaders\Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcePtr.h">
-      <Filter>GraphicAPI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Assets\Meshes\MeshAsset.h">
       <Filter>EngineCore\ModelsManager\Assets\Meshes</Filter>

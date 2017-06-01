@@ -81,14 +81,6 @@
     <Reference Include="System" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Reflection\Reflection.vcxproj">
-      <Project>{59fa8028-2346-4246-854f-14dcfab6ab56}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\ResourceManager\ResourceManager.vcxproj">
-      <Project>{9f71f0da-1d72-4e96-93b7-5ac2c9cb6ede}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D6D5F6EF-4B74-4EBE-8D8D-E76C7C423D05}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

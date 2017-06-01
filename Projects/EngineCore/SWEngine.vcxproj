@@ -311,26 +311,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Model3DFromFile.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\PhysicEngine\MovementEngine.h" />
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\GraphicAPIConstants.h" />
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IBuffer.h" />
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IGraphicAPIInitializer.h" />
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderer.h" />
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IRenderTarget.h" />
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IShader.h" />
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\IShaderInputLayout.h" />
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\ITexture.h" />
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\MeshResources.h" />
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourceObject.h" />
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcePtr.h" />
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\ResourcesFactory.h" />
-    <ClInclude Include="..\..\EngineCode\GraphicAPI\SwapChain.h" />
-    <ClInclude Include="..\..\EngineCode\InputLibrary\Factory.h" />
-    <ClInclude Include="..\..\EngineCode\InputLibrary\IInput.h" />
-    <ClInclude Include="..\..\EngineCode\InputLibrary\InputDeviceInfo.h" />
-    <ClInclude Include="..\..\EngineCode\InputLibrary\JoystickState.h" />
-    <ClInclude Include="..\..\EngineCode\InputLibrary\KeyboardState.h" />
-    <ClInclude Include="..\..\EngineCode\InputLibrary\KeyState.h" />
-    <ClInclude Include="..\..\EngineCode\InputLibrary\MouseState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ControllersEngine\ControllersEngine.cpp" />
@@ -473,14 +453,8 @@
     <ResourceCompile Include="$(EngineCoreSourceDir)SW_engine.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DX11API\DX11API.vcxproj">
-      <Project>{44643d7f-1c71-41c1-b452-b2dc5e088a58}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\Geometric\Geometric.vcxproj">
       <Project>{5476cbf5-f7f9-488f-b55c-b6331b82c54a}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\ResourceManager\ResourceManager.vcxproj">
-      <Project>{9f71f0da-1d72-4e96-93b7-5ac2c9cb6ede}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
