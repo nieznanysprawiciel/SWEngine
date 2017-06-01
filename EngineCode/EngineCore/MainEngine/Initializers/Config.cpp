@@ -13,7 +13,7 @@
 
 // ================================ //
 //
-Config::Config	( const std::string filePath )
+Config::Config	( const std::string& filePath )
 	:	m_screenWidth( 1024 )
 	,	m_screenHeight( 768 )
 	,	m_fullscreen( false )
@@ -80,7 +80,7 @@ const std::string		Config::StartLevelPath() const
 
 // ================================ //
 //
-bool			Config::SaveConfig	( const std::string filePath ) const
+bool			Config::SaveConfig	( const std::string& filePath ) const
 {
 	ISerializer ser( nullptr );
 	

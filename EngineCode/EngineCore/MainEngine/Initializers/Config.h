@@ -23,7 +23,7 @@ private:
 
 protected:
 public:
-	explicit		Config	( const std::string filePath );
+	explicit		Config	( const std::string& filePath );
 					~Config	() = default;
 
 
@@ -33,7 +33,7 @@ public:
 
 	const std::string		StartLevelPath	() const;
 
-	bool			SaveConfig		( const std::string filePath ) const;
+	bool			SaveConfig		( const std::string& filePath ) const;
 };
 
 

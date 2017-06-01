@@ -256,14 +256,14 @@ void		Engine::CreateDefaultScene()
 
 	gate->SetModel( Context->modelsManager->GetMesh( GATE ) );
 
-	//for( unsigned int i = 0; i < 100; ++i )
-	//{
-	//	DynamicActor* cloneFighter = Actors.CreateActor< DynamicActor >( "DynamicActor", EnableDisplay );
-	//	position = XMVectorSet( 15000.0 * cos( ( 2*i*XM_PI ) / 100 ), 0.0, 15000.0 * sin( ( 2*i*XM_PI ) / 100 ), 0.0 );
-	//	
-	//	cloneFighter->set_model( Context->modelsManager->GetMesh( CLONE_FIGHTER ) );
-	//	cloneFighter->teleport( position );
-	//}
+	for( unsigned int i = 0; i < 100; ++i )
+	{
+		DynamicActor* cloneFighter = Actors.CreateActor< DynamicActor >( "DynamicActor", EnableDisplay );
+		position = XMVectorSet( 15000.0 * cos( ( 2*i*XM_PI ) / 100 ), 0.0, 15000.0 * sin( ( 2*i*XM_PI ) / 100 ), 0.0 );
+		
+		cloneFighter->SetModel( Context->modelsManager->GetMesh( CLONE_FIGHTER ) );
+		cloneFighter->Teleport( position );
+	}
 
 
 	// Dodawanie gwiezdnego niszczyciela Imperial
