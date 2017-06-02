@@ -88,8 +88,8 @@ void		Engine::SetSkydome()
 	double albedo[3] = { 0.8, 0.8, 0.8 };
 	double turbidity = 4;
 	XMVECTOR sunDir = XMVectorSet( -0.2f, 0.6f, 0.6f, 1.0f );
-	HosekSkyDome* skyDome = new HosekSkyDome( Context->modelsManager );
-	skyDome->init_sky_dome( sunDir, turbidity, albedo, 101, 101, 100, 5.0 );
+	HosekSkyDome* skyDome = new HosekSkyDome();
+	skyDome->InitSkyDome( sunDir, turbidity, albedo, 101, 101, 100, 5.0 );
 	Context->displayEngine->SetSkydome( skyDome );
 
 	sunDir = XMVectorNegate( sunDir );

@@ -194,6 +194,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\TriggerActor.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\Components\TransformComponent.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\Components\VisibleComponent.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\Extended\SkyDome.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\BaseAIController.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\BaseInputController.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\ControllersEngine\BaseClasses\IController.h" />
@@ -285,7 +286,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\AssetsApi.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Buffers.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Materials.h" />
-    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Models.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Meshes.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\RenderTargets.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Shaders.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Textures.h" />
@@ -442,7 +443,7 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Buffers.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Materials.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Models.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Meshes.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\RenderTargets.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Shaders.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Textures.cpp" />

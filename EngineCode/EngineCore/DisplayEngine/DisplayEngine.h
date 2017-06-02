@@ -10,7 +10,7 @@
 #include "GraphicAPI/SwapChain.h"
 
 #include "EngineCore/Actors/ActorObjects.h"
-#include "EngineCore/Features/SkyDome.h"
+#include "EngineCore/Actors/Extended/SkyDome.h"
 #include "EngineCore/DisplayEngine/RenderPass.h"		///@deprecated
 #include "EngineCore/DisplayEngine/RenderPasses/RenderPassFactory.h"
 

@@ -26,7 +26,13 @@ namespace Api { namespace Assets {
 		Materials() = default;
 		~Materials() = default;
 
-		ResourcePtr< MaterialAsset >			GetSync	( const std::wstring& name );
+		/**@brief Returns material only if it was previously loaded.*/
+		ResourcePtr< MaterialAsset >			GetSync					( const std::wstring& name );
+
+		/**@brief Creates completely new material.*/
+		ResourcePtr< MaterialAsset >			CreateMaterialSync		( const std::wstring& name, MaterialInitData&& initData );
+		/**@brief Creates completely new material.*/
+		ResourcePtr< MaterialAsset >			CreateMaterialSync		( const std::wstring& name, MaterialCreateData&& initData );
 
 		std::vector< ResourcePtr< MaterialAsset > >		List	();
 	};

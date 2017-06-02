@@ -156,6 +156,9 @@
     <Filter Include="EngineCore\Actors\Components">
       <UniqueIdentifier>{468ac9aa-c852-4a0e-a5fa-8e3b8251f0f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\Actors\Extended">
+      <UniqueIdentifier>{c31dda04-50c1-4bf8-b83c-119a415a220b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -288,9 +291,6 @@
       <Filter>EngineCore\UserApi\Assets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Materials.h">
-      <Filter>EngineCore\UserApi\Assets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Models.h">
       <Filter>EngineCore\UserApi\Assets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\RenderTargets.h">
@@ -638,6 +638,12 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\Config.h">
       <Filter>EngineCore\MainEngine\Initializers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\Extended\SkyDome.h">
+      <Filter>EngineCore\Actors\Extended</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Meshes.h">
+      <Filter>EngineCore\UserApi\Assets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
@@ -749,9 +755,6 @@
       <Filter>EngineCore\UserApi\Assets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Materials.cpp">
-      <Filter>EngineCore\UserApi\Assets</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Models.cpp">
       <Filter>EngineCore\UserApi\Assets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\RenderTargets.cpp">
@@ -927,6 +930,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Initializers\Config.cpp">
       <Filter>EngineCore\MainEngine\Initializers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Meshes.cpp">
+      <Filter>EngineCore\UserApi\Assets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

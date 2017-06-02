@@ -15,7 +15,27 @@ namespace Api { namespace Assets
 @return Zwraca bufor wierzcho³ków lub nullptr.*/
 ResourcePtr< BufferObject >						Buffers::CreateVertexBufferSync		( const std::wstring& name, MemoryChunk& data, unsigned int vertCount )
 {
-	return Context->modelsManager->CreateVertexBuffer( name, data.GetMemory<void>(), data.GetMemorySize() / vertCount, vertCount );
+	return Context->modelsManager->CreateVertexBuffer( name, data.GetMemory< void >(), data.GetMemorySize() / vertCount, vertCount );
+}
+
+/**@brief Creates vertex buffer.*/
+ResourcePtr< BufferObject >						Buffers::CreateVertexBufferSync		( const std::wstring& name, uint8* data, uint32 vertCount, uint32 vertexSize )
+{
+	return Context->modelsManager->CreateVertexBuffer( name, data, vertexSize, vertCount );
+}
+
+// ================================ //
+//
+ResourcePtr< BufferObject >						Buffers::CreateIndexBufferSync		( const std::wstring& name, MemoryChunk& data, unsigned int vertCount )
+{
+	return Context->modelsManager->CreateIndexBuffer( name, data.GetMemory< void >(), data.GetMemorySize() / vertCount, vertCount );
+}
+
+// ================================ //
+//
+ResourcePtr< BufferObject >						Buffers::CreateIndexBufferSync		( const std::wstring& name, uint8* data, uint32 vertCount, uint32 vertexSize )
+{
+	return Context->modelsManager->CreateIndexBuffer( name, data, vertexSize, vertCount );
 }
 
 /**@copydoc AssetsManager::ListVertexBuffers.*/

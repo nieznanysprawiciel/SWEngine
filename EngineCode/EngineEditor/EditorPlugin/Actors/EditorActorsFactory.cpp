@@ -23,13 +23,13 @@ GizmoActorWrapper^	EditorActorsFactory::CreateGizmoActor( System::String^ transl
 	engine->Actors.AddToModules( actor, ActorInfoFlag::EnablePreController | ActorInfoFlag::EnablePostController | ActorInfoFlag::EnableDisplay );
 
 	// Loading meshes
-	auto translationGizmoMesh = engine->Assets.Models.LoadSync( msclr::interop::marshal_as< std::wstring >( translateMesh ) );
+	auto translationGizmoMesh = engine->Assets.Meshes.LoadSync( msclr::interop::marshal_as< std::wstring >( translateMesh ) );
 	assert( translationGizmoMesh );
 
-	auto rotationGizmoMesh = engine->Assets.Models.LoadSync( msclr::interop::marshal_as< std::wstring >( rotateMesh ) );
+	auto rotationGizmoMesh = engine->Assets.Meshes.LoadSync( msclr::interop::marshal_as< std::wstring >( rotateMesh ) );
 	assert( rotationGizmoMesh );
 
-	auto scaleGimzoMesh = engine->Assets.Models.LoadSync( msclr::interop::marshal_as< std::wstring >( scaleMesh ) );
+	auto scaleGimzoMesh = engine->Assets.Meshes.LoadSync( msclr::interop::marshal_as< std::wstring >( scaleMesh ) );
 	//assert( scaleGimzoMesh );
 
 

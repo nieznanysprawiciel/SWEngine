@@ -4,14 +4,14 @@
 @brief Plik zawiera deklaracjê klasy HosekSkyDome, do wyœwietlania nieba
 u¿ywaj¹c modelu Hodeka i Wilkiego.*/
 
-#include "EngineCore/Features/SkyDome.h"
+#include "EngineCore/Actors/Extended/SkyDome.h"
 #include "HosekSkyModel.h"
 
 
 /**@brief Struktura wierzcho³ka u¿ywana przez klasê HosekSkyDome.
 
 Kolor wierzcho³ka jest ustalany jest przypisaywany na sta³e do wierzcho³ków
-i mo¿e byæ zmieniony po wywo³aniu funkcji update_sky_dome. Kopu³a nieba
+i mo¿e byæ zmieniony po wywo³aniu funkcji UpdateSkyDome. Kopu³a nieba
 nie jest w ¿aden sposób oœwietlona wiêc nie przechowujemy normalnych.
 Nie u¿ywamy te¿ tekstur, wiêc nie potrzeba ¿adnych UVsów.*/
 struct SkyDomeVertex
@@ -28,19 +28,24 @@ w innym w¹tku, a potem w jednym momencie go przepisaæ.
 Generowanie nieba jest zasadniczo procesem d³ugim i nie mo¿na go wykonywac w czasie rzeczywistym.*/
 class HosekSkyDome : public SkyDome
 {
+	RTTR_ENABLE( SkyDome );
 private:
-	VERT_INDEX* back_ind_buffer;		///<Tylny bufor indeksów. 
-	SkyDomeVertex* back_vert_buffer;	///<Tylny bufor wierzcho³ków.
-	unsigned int vert_count;			///<Liczba wierzcho³ków w buforze wierzcho³ków
+	VERT_INDEX*					m_backIdxBuffer;		///< Backbuffer index buffer.
+	SkyDomeVertex*				m_backVertexBuffer;		///< Backbuffer vertex buffer.
+	unsigned int				m_verticiesCount;		///< Number of vertcies in buffer.
 
-	HosekSkylightModel skylight_model;	///<Obiekt, który bêdzie podawa³ informacje o kolorach
+	HosekSkylightModel			m_skylightModel;		///< Hosek model for computing light.
 
-	void generate_sphere(int vertical, int horizontal, float radius );
+private:
+
+	void				GenerateSphere		( int vertical, int horizontal, float radius );
+
 public:
-	HosekSkyDome( AssetsManager* man);
-	~HosekSkyDome();
 
-	void init_sky_dome( DirectX::XMVECTOR sun_direction,
+	explicit		HosekSkyDome	();
+	virtual			~HosekSkyDome	();
+
+	void InitSkyDome( DirectX::XMVECTOR sun_direction,
 						const double turbidity,
 						const double* albedo,
 						int vertical,
@@ -48,11 +53,11 @@ public:
 						float radius,
 						float sky_intensity = 1.0f,
 						float sun_intensity = 1.0f );
-	void update_sky_dome( DirectX::XMVECTOR sun_direction,
+	void UpdateSkyDome( DirectX::XMVECTOR sun_direction,
 						  const double turbidity,
 						  const double* albedo,
 						  float sky_intensity = 1.0f,
 						  float sun_intensity = 1.0f );
-	void update_buffers( IRenderer* renderer ) override;
+	void UpdateBuffers( IRenderer* renderer ) override;
 };
 

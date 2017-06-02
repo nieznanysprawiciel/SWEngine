@@ -696,7 +696,7 @@ public:
       */
     enum EFocusDistanceSource
     {
-        eFocusSrcCameraInterest,	/*!<	Base the depth of field on the camera interest. Models at the camera interest are in focus. 
+        eFocusSrcCameraInterest,	/*!<	Base the depth of field on the camera interest. Meshes at the camera interest are in focus. 
 											As you move toward or away from the camera interest, models become increasingly blurred. */
         eFocusSpecificDistance		//!<	Base the depth of field on a point defined by a specific distance from the camera interest.
     };

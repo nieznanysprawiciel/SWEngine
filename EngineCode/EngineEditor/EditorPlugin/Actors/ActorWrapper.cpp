@@ -37,7 +37,7 @@ bool				ActorWrapper::LoadMesh	( System::String^ meshPath )
 {
 	auto engine = EnginePointerProvider::GetEngine();
 
-	auto model = engine->Assets.Models.LoadSync( msclr::interop::marshal_as< std::wstring >( meshPath ) );
+	auto model = engine->Assets.Meshes.LoadSync( msclr::interop::marshal_as< std::wstring >( meshPath ) );
 	auto meshActor = rttr::rttr_cast< StaticActor* >( m_actorPtr );
 
 	return meshActor->SetModel( model );
