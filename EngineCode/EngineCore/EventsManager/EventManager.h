@@ -33,7 +33,7 @@ Inni aktorzy mog¹ rejestrowaæ funkcje obs³ugi konkretnych eventów.
 */
 
 #include "EngineCore/EventsManager/Signal.h"
-#include "Common/Multithreading/SpinLockedQueue.h"
+#include "swCommonLib/Common/Multithreading/SpinLockedQueue.h"
 
 #include <vector>
 #include <unordered_map>

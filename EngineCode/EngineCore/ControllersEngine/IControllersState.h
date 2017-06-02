@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Common/EngineObject.h"
+#include "swCommonLib/Common/EngineObject.h"
 #include "EngineCore/Actors/BasicActors/CameraActor.h"
 
 class EngineInterface;

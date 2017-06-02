@@ -8,9 +8,9 @@
 //#include "EngineCore/stdafx.h"
 
 #include "EngineCore/Actors/ActorObjects.h"
-#include "Common/RTTR.h"
+#include "swCommonLib/Common/RTTR.h"
 
-#include "FastDelegate.h"
+#include "swCommonLib/External/FastDelegate/FastDelegate.h"
 
 #include <unordered_map>
 #include <map>

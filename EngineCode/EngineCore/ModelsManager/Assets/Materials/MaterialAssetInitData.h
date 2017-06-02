@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Common/TypesDefinitions.h"
+#include "swCommonLib/Common/TypesDefinitions.h"
 
-#include "GraphicAPI/MeshResources.h"
+#include "swGraphicAPI/Resources/MeshResources.h"
 #include "ShadingModelData.h"
 #include "MaterialInfo.h"
 

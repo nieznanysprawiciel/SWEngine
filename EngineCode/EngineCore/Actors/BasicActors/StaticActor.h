@@ -1,7 +1,14 @@
 #pragma once
+/**
+@file StaticActor.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 
 #include "ActorBase.h"
-#include "GraphicAPI/MeshResources.h"
+#include "swGraphicAPI/Resources/MeshResources.h"
 #include "EngineCore/Actors/Components/VisibleComponent.h"
 
 #include <DirectXMath.h>

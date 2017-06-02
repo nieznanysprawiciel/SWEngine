@@ -5,7 +5,7 @@
 
 @brief Klasa bazowa dla kontrolerów.*/
 
-#include "Common/EngineObject.h"
+#include "swCommonLib/Common/EngineObject.h"
 #include "EngineCore/ControllersEngine/IControllersState.h"
 
 class DynamicActor;

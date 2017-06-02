@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Common/EngineObject.h"
-#include "Common/TypesDefinitions.h"
-#include "Common/RTTR.h"
+#include "swCommonLib/Common/EngineObject.h"
+#include "swCommonLib/Common/TypesDefinitions.h"
+#include "swCommonLib/Common/RTTR.h"
 
 
 /**@brief Klasa bazowa dla obiektów przechowuj¹cych dane materia³u.

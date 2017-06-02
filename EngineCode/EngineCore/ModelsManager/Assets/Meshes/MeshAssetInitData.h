@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Common/TypesDefinitions.h"
-#include "Common/MemoryChunk.h"
-#include "GraphicAPI/MeshResources.h"
+#include "swCommonLib/Common/TypesDefinitions.h"
+#include "swCommonLib/Common/MemoryChunk.h"
+#include "swGraphicAPI/Resources/MeshResources.h"
 
 #include "MeshPart.h"
 

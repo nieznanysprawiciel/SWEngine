@@ -6,8 +6,8 @@
 @brief Plik zawiera deklaracjê klasy DisplayEngine i funkcje pomocnicze.
 */
 
-#include "GraphicAPI/IRenderer.h"
-#include "GraphicAPI/SwapChain.h"
+#include "swGraphicAPI/Rendering/IRenderer.h"
+#include "swGraphicAPI/Resources/SwapChain.h"
 
 #include "EngineCore/Actors/ActorObjects.h"
 #include "EngineCore/Features/SkyDome.h"

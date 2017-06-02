@@ -4,7 +4,7 @@
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
-#include "Common/RTTR.h"
+#include "swCommonLib/Common/RTTR.h"
 
 
 

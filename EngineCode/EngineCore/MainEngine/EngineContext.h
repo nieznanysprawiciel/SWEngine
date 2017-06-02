@@ -1,7 +1,7 @@
 #pragma once
 
 #include "EngineCore/MainEngine/TimeManager.h"
-#include "Common/Multithreading/SpinLock.h"
+#include "swCommonLib/Common/Multithreading/SpinLock.h"
 #include "EngineCore/UIEngine/StandardAbstractionLayers.h"
 
 #define WIN32_LEAN_AND_MEAN

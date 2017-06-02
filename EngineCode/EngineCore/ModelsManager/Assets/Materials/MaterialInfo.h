@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Common/TypesDefinitions.h"
+#include "swCommonLib/Common/TypesDefinitions.h"
 
 /// Maksymalna liczba tekstur w materiale.
 #define MAX_MATERIAL_TEXTURES		5
@@ -19,7 +19,7 @@ struct AdditionalBufferInfo
 		: BufferType( rttr::type::get_by_name( "" ) )
 	{}
 
-	std::string		GetBufferType		() const { return BufferType.get_name(); }
+	std::string		GetBufferType		() const { return BufferType.get_name().to_string(); }
 	void			SetBufferType		( std::string name );
 };
 

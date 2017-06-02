@@ -1,17 +1,19 @@
 #pragma once
 
-#include "Common/EngineObject.h"
+#include "swCommonLib/Common/EngineObject.h"
 
-#include "GraphicAPI/MeshResources.h"
-#include "GraphicAPI/RasterizerState.h"
-#include "GraphicAPI/BlendingState.h"
-#include "GraphicAPI/DepthStencilState.h"
-#include "GraphicAPI/IRenderer.h"
+#include "swGraphicAPI/Resources/MeshResources.h"
+#include "swGraphicAPI/Resources/RasterizerState.h"
+#include "swGraphicAPI/Resources/BlendingState.h"
+#include "swGraphicAPI/Resources/DepthStencilState.h"
+#include "swGraphicAPI/Rendering/IRenderer.h"
 
 #include "EngineCore/DisplayEngine/RenderContext.h"
 
 #include <DirectXMath.h>
 #include <vector>
+
+
 
 class RenderTargetObject;
 class CameraActor;

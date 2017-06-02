@@ -7,7 +7,7 @@
 
 
 #include "EngineCore/UserApi/ApiGroup.h"
-#include "Common/EngineObject.h"
+#include "swCommonLib/Common/EngineObject.h"
 #include "EngineCore/EventsManager/Signal.h"
 
 #include <assert.h>

@@ -8,9 +8,9 @@
 obiekty typu skyboxy, skydome'y i wszystkie inne twory, wyœwietlaj¹ce t³o.*/
 
 
-#include "GraphicAPI/MeshResources.h"
+#include "swGraphicAPI/Resources/MeshResources.h"
 #include "EngineCore/ModelsManager/AssetsManager.h"
-#include "GraphicAPI/IRenderer.h"
+#include "swGraphicAPI/Rendering/IRenderer.h"
 
 
 /**@brief Klasa jest interfejsem dla wszystkich klas, które maj¹ wyœwietlaæ jakieœ t³o.
@@ -44,7 +44,7 @@ protected:
 	BufferObject*				vertex_buffer;			///<Bufor wierzcho³ków
 	BufferObject*				index_buffer;			///<Bufor indeksów
 	BufferObject*				constant_buffer;		///<Bufor sta³ych dla shaderów
-	ShaderInputLayout*	layout;					///<Layout wierzcho³ków u¿ywanych przez klasê
+	ShaderInputLayout*			layout;					///<Layout wierzcho³ków u¿ywanych przez klasê
 	ModelPart					display_data;			///<Shadery, tekstury itp.
 
 public:

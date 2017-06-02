@@ -6,7 +6,7 @@
 */
 
 
-#include "GraphicAPI/MeshResources.h"
+#include "swGraphicAPI/Resources/MeshResources.h"
 
 /**@brief Resource binding to shader stages (alias for uint8).
 @see ShaderType*/

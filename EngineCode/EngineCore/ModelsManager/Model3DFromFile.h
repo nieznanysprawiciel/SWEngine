@@ -5,7 +5,7 @@
 
 @brief Plik zawiera deklaracjê klasy Model3DFromFile i klas pomocniczych do tworzenia obiektu.*/
 
-#include "GraphicAPI/MeshResources.h"
+#include "swGraphicAPI/Resources/MeshResources.h"
 #include "DefaultAssets.h"
 
 #include <vector>

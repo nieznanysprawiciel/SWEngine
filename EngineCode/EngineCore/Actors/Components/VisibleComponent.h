@@ -5,7 +5,7 @@
 @copyright File is part of graphic engine SWEngine.
 */
 
-#include "Common/RTTR.h"
+#include "swCommonLib/Common/RTTR.h"
 #include "EngineCore/ModelsManager/Assets/Meshes/MeshAsset.h"
 #include "EngineCore/ModelsManager/Assets/PipelineBinding.h"
 

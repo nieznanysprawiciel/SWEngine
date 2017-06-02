@@ -7,7 +7,7 @@
 
 #include "EngineCore/Actors/ActorInfo.h"
 #include "EngineCore/UserApi/ApiGroup.h"
-#include "Common/EngineObject.h"
+#include "swCommonLib/Common/EngineObject.h"
 
 class IDeserializer;
 

@@ -5,9 +5,9 @@
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
-#include "Common/ObjectDeleter.h"
+#include "swCommonLib/Common/ObjectDeleter.h"
 
-#include "GraphicAPI/MeshResources.h"
+#include "swGraphicAPI/Resources/MeshResources.h"
 #include "ShadingModelData.h"
 #include "MaterialAssetInitData.h"
 #include "MaterialInfo.h"

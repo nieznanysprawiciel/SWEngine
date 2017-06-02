@@ -6,7 +6,7 @@
 @brief Plik zawiera deklaracjê klasy AssetsManager.
 */
 
-#include "GraphicAPI/ResourceManager.h"
+#include "swGraphicAPI/ResourceManager/ResourceManager.h"
 
 #include "Model3DFromFile.h"		///< @deprecated
 #include "Assets/Meshes/MeshAsset.h"

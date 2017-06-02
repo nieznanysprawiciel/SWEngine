@@ -1,3 +1,10 @@
+/**
+@file CameraActor.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
 #include "CameraActor.h"
 

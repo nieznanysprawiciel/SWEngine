@@ -5,7 +5,7 @@
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
-#include "GraphicAPI/MeshResources.h"
+#include "swGraphicAPI/Resources/MeshResources.h"
 #include "EngineCore/ModelsManager/Assets/Materials/MaterialAsset.h"
 #include "MeshPart.h"
 #include "MeshAssetInitData.h"

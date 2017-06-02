@@ -1,11 +1,17 @@
-	#include "EngineCore/stdafx.h"
+/**
+@file ActorBase.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+#include "EngineCore/stdafx.h"
 
 #include "ActorBase.h"
 #include "EngineCore/MainEngine/Engine.h"
 
-#include "Common/Serialization/SW/Serialization.h"
+#include "swCommonLib/Serialization/PropertySerialization/Serialization.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 RTTR_REGISTRATION

@@ -6,7 +6,7 @@
 */
 
 
-#include "InputLibrary/IInput.h"
+#include "swInputLibrary/InputCore/IInput.h"
 #include "InputAbstractionLayer.h"
 
 
@@ -23,7 +23,7 @@ class UI_Engine
 private:
 	Engine* engine;
 
-	IInput*						m_inputModule;
+	sw::input::IInput*						m_inputModule;
 
 // Abstraction layers
 	InputAbstractionLayer*					m_currentAbstractionLayer;
@@ -33,12 +33,12 @@ private:
 	bool						m_enableInput;
 
 public:
-				UI_Engine						(Engine* engine);
+				UI_Engine						( Engine* engine );
 				~UI_Engine						();
 
 
-	IInput*		ChangeInputModule				( IInput* module );
-	IInput*		GetInputModule					();
+	sw::input::IInput*		ChangeInputModule				( sw::input::IInput* module );
+	sw::input::IInput*		GetInputModule					();
 
 	//called by Engine in main loop
 	void		ProceedInput					( float time_interval );
@@ -62,9 +62,9 @@ public:
 
 private:
 	//abstraction layers
-	void		UpdateAbstractionLayer			( const std::vector< KeyboardState* >& keyboards,
-												  const std::vector< MouseState* >& mouses,
-												  const std::vector< JoystickState* >& jousticks );
+	void		UpdateAbstractionLayer			( const std::vector< sw::input::KeyboardState* >& keyboards,
+												  const std::vector< sw::input::MouseState* >& mouses,
+												  const std::vector< sw::input::JoystickState* >& jousticks );
 	void		InitAbstractionLayers();
 };
 

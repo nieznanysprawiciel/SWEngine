@@ -8,7 +8,7 @@
 oraz inne domyœlne wartoœci zasobów.
 */
 
-#include "GraphicAPI/MeshResources.h"
+#include "swGraphicAPI/Resources/MeshResources.h"
 
 //-------------------------------------------------------------------------------//
 //	definicje wierzcho³ków

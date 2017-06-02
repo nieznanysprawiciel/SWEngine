@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Common/TypesDefinitions.h"
+#include "swCommonLib/Common/TypesDefinitions.h"
 
 class Engine;
 struct EngineContext;

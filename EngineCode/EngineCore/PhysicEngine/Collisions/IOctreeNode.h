@@ -4,7 +4,9 @@
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 
 @brief Klasa bazowa node'a.*/
-#include "Common/TypesDefinitions.h"
+
+
+#include "swCommonLib/Common/TypesDefinitions.h"
 
 
 enum OctreeNodeType : uint8

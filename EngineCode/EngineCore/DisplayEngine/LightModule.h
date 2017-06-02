@@ -7,7 +7,7 @@
 
 
 #include "EngineCore/Actors/BasicActors/LightBase.h"
-#include "GraphicAPI/MeshResources.h"
+#include "swGraphicAPI/Resources/MeshResources.h"
 #include "EngineCore/DisplayEngine/ConstantBuffersFormat.h"
 
 #include <vector>

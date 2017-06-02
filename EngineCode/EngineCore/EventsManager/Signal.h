@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Common/EngineObject.h"
-#include "FastDelegate.h"
+#include "swCommonLib/Common/EngineObject.h"
+#include "swCommonLib/External/FastDelegate/FastDelegate.h"
 
 class Event;
 

@@ -8,7 +8,7 @@
 class Model3DFromFile;
 
 #include "EngineCore/UserApi/ApiGroup.h"
-#include "GraphicAPI/ResourcePtr.h"
+#include "swGraphicAPI/Resources/ResourcePtr.h"
 
 #include <string>
 

@@ -4,12 +4,12 @@
 @brief Plik zawiera deklaracjê klas InputAbstractionLayerBase, InputAbstractionLayer
 struktur InputMapping i EventMapping oraz definicje standardowych warstw abstrakcji. */
 
-#include "Common/EngineObject.h"
+#include "swCommonLib/Common/EngineObject.h"
 #include "EngineCore/UIEngine/StandardAbstractionLayers.h"
 
-#include "InputLibrary/KeyboardState.h"
-#include "InputLibrary/MouseState.h"
-#include "InputLibrary/JoystickState.h"
+#include "swInputLibrary/InputCore/KeyboardState.h"
+#include "swInputLibrary/InputCore/MouseState.h"
+#include "swInputLibrary/InputCore/JoystickState.h"
 
 class Engine;
 
@@ -63,8 +63,8 @@ protected:
 	short	mouseX;			///<Po³o¿enie myszki w X
 	short	mouseY;			///<Po³o¿enie myszi w Y
 
-	std::vector< KeyState >	m_virtualButtons;		///<Tablica wirtualnych przycisków
-	std::vector< float >	m_virtualAxis;			///<Tablica dla kontrolerów osiowych
+	std::vector< sw::input::KeyState >		m_virtualButtons;		///<Tablica wirtualnych przycisków
+	std::vector< float >					m_virtualAxis;			///<Tablica dla kontrolerów osiowych
 
 	bool	active;			///<Stwierdza czy dana wartstwa abstrakcji jest aktualnie aktywna
 
@@ -78,8 +78,8 @@ public:
 	inline unsigned short	GetNumAxis()			{ return (unsigned short)m_virtualAxis.size(); }		///<Zwraca liczbe osi
 	inline unsigned short	GetNumButtons()			{ return (unsigned short)m_virtualButtons.size(); }		///<Zwraca liczbe przycisków
 
-	inline const std::vector< KeyState >&	GetButtonsTable()		{ return m_virtualButtons; }	///<Zwraca tablicê wirtualnych przycisków
-	inline const std::vector< float >&		GetAxisTable()			{ return m_virtualAxis; }	///<Zwraca tablicê wirtualnych osi
+	inline const std::vector< sw::input::KeyState >&	GetButtonsTable()		{ return m_virtualButtons; }	///<Zwraca tablicê wirtualnych przycisków
+	inline const std::vector< float >&					GetAxisTable()			{ return m_virtualAxis; }		///<Zwraca tablicê wirtualnych osi
 };
 
 /**@brief Klasa stanowi interfejs umo¿liwiaj¹cy definiowanie i modyfikowanie wastwy abstrakcji.
@@ -115,9 +115,9 @@ public:
 	void	BeginEventCollection		();
 	void	SendEvents					( Engine* );
 
-	void	UpdateKeyboardDevice		( DeviceNumber DeviceNr, KeyboardState* keyboardState );
-	void	UpdateMouseDevice			( DeviceNumber DeviceNr, MouseState* mouseState, int windowWidth, int windowHeight);
-	void	UpdateJoystickDevice		( DeviceNumber DeviceNr, JoystickState* joystickState );
+	void	UpdateKeyboardDevice		( DeviceNumber DeviceNr, sw::input::KeyboardState* keyboardState );
+	void	UpdateMouseDevice			( DeviceNumber DeviceNr, sw::input::MouseState* mouseState, int windowWidth, int windowHeight);
+	void	UpdateJoystickDevice		( DeviceNumber DeviceNr, sw::input::JoystickState* joystickState );
 
 	void	DemandDownEvent				( VirtualKeyIndex virtualIdx );
 	void	DemandUpEvent				( VirtualKeyIndex virtualIdx );

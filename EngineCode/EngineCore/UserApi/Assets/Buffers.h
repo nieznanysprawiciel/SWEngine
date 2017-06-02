@@ -8,8 +8,8 @@
 class BufferObject;
 
 #include "EngineCore/UserApi/ApiGroup.h"
-#include "GraphicAPI/ResourcePtr.h"
-#include "Common/MemoryChunk.h"
+#include "swGraphicAPI/Resources/ResourcePtr.h"
+#include "swCommonLib/Common/MemoryChunk.h"
 
 #include <string>
 

@@ -5,9 +5,9 @@
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
-#include "Common/EngineObject.h"
+#include "swCommonLib/Common/EngineObject.h"
 #include "EngineCore/MainEngine/EngineInterface.h"
-#include "FastDelegate.h"
+#include "swCommonLib/External/FastDelegate/FastDelegate.h"
 
 
 class IGamePlay;
