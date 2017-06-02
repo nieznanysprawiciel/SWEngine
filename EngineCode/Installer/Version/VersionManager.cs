@@ -13,7 +13,7 @@ namespace Installer.Version
 		List< EngineVersionData >       m_versionData;
 
 
-		const string		m_engineKeyName			= "Software\\SchopenhauersWeltschmerz";
+		const string		m_engineKeyName			= "Software\\SleepingWombat";
 		const string        m_engineRootPathName    = "EngineRootPath";
 		const string        m_solutionRelToRoot     = "Projects/SWEngine.sln";
 

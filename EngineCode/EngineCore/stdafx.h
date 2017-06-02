@@ -39,9 +39,9 @@
 
 #include <DirectXMath.h>
 
-#include "Common/MacrosSwitches.h"
+#include "MainEngine/MacrosSwitches.h"
 #include "EngineCore/EventsManager/Event.h"
-#include "Common/RTTR.h"
+#include "swCommonLib/Common/RTTR.h"
 
 #include "EngineCore/Actors/ActorsManager.h"
 #include "EngineCore/ControllersEngine/ControllersEngine.h"

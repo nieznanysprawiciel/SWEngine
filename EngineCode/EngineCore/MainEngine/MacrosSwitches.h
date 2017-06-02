@@ -8,9 +8,9 @@
 Wiêkszoœæ z tych makrodefinicji pozwala na wybór jednej z opcji tylko tymczasowo,
 w docelowej wersji silnika trzeba bêdzie siê zdecydowaæ na któr¹œ z nich.*/
 
-#include "Common/TypesDefinitions.h"
+#include "swCommonLib/Common/TypesDefinitions.h"
 
-#include "Common/RTTR.h"
+#include "swCommonLib/Common/RTTR.h"
 
 
 ///Co tyle sekund aktualizujemy m_framesPerSec.

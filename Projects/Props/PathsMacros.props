@@ -32,12 +32,12 @@
     <EngineLibDir>$(RootDir)EngineLib\</EngineLibDir>
     <EngineBuildDir>$(RootDir)EngineBuildDir\</EngineBuildDir>
     <EngineSourceDir>$(RootDir)EngineCode\</EngineSourceDir>
-	<EnginePDBDir>$(RootDir)EnginePDB\</EnginePDBDir>
+	 <EnginePDBDir>$(RootDir)EnginePDB\</EnginePDBDir>
     <EngineLibName>SWEngine_$(Configuration)_$(PlatformShortName)</EngineLibName>
     <CommonDir>$(EngineSourceDir)Common\</CommonDir>
     <BuildFolder>$(EngineShortcut)_$(Configuration)_$(PlatformShortName)</BuildFolder>
     <EditorReleaseDir>$(RootDir)EditorRelease\</EditorReleaseDir>
-	<InstallerReleaseDir>$(RootDir)Install\</InstallerReleaseDir>
+	 <InstallerReleaseDir>$(RootDir)Install\</InstallerReleaseDir>
 	
     <ConfigTypeString Condition="'$(Configuration)'=='Debug'" >Debug</ConfigTypeString>
     <ConfigTypeSmallString Condition="'$(Configuration)'=='Debug'" >debug</ConfigTypeSmallString>
@@ -47,6 +47,9 @@
     <DebugSuffix Condition="'$(Configuration)'!='Debug'" />
 	
   </PropertyGroup>
+  
+  <Import Project="$(EngineSourceDir)/swGUI/ProjectDir/Visual2015/LinkSleepingWombatGUI.props" />
+  
   <PropertyGroup>
     <_PropertySheetDisplayName>PathsMacros</_PropertySheetDisplayName>
   </PropertyGroup>
