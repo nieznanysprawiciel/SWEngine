@@ -16,7 +16,7 @@
   
   <PropertyGroup Label="UserMacros">
     <ReflectionName>Reflection</ReflectionName>
-    <ReflectionLibDir>$(SourceInclude)swCommonLib\ReleaseDir\LibDir\$(ReflectionName)\$(PlatformToolset)\$(PlatformShortName)\$(Configuration)\</ReflectionLibDir>
+    <ReflectionLibDir>$(SourceInclude)swCommonLib\Projects\ReleaseDir\LibDir\$(ReflectionName)\$(PlatformToolset)\$(PlatformShortName)\$(Configuration)\</ReflectionLibDir>
 	<ReflectionFileName>$(ReflectionName)</ReflectionFileName>
   </PropertyGroup>
   
