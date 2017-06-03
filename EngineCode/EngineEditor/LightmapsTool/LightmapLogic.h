@@ -7,7 +7,9 @@
 #include <set>
 #include <thread>
 
-class KeyDownEvent;
+namespace sw {
+	class KeyDownEvent;
+}
 
 /**Klasa obs³uguj¹ca generowanie lightmap.
 

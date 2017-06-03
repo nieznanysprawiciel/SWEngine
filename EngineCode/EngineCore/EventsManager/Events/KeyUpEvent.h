@@ -9,9 +9,11 @@
 #include "EngineCore/EventsManager/Event.h"
 #include "EngineCore/UIEngine/InputAbstractionLayer.h"
 
+namespace sw
+{
 
 /**@brief Event wysy³any w momencie puszczenia przycisku.*/
-class KeyUpEvent	:	public Event
+class KeyUpEvent : public Event
 {
 	RTTR_ENABLE( Event )
 public:
@@ -24,3 +26,4 @@ public:
 	~KeyUpEvent() = default;
 };
 
+}	// sw

@@ -1,8 +1,10 @@
 #pragma once
+/**
+@file InputAbstractionLayer.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
 
-/**@file InputabstractionLayer.h
-@brief Plik zawiera deklaracjê klas InputAbstractionLayerBase, InputAbstractionLayer
-struktur InputMapping i EventMapping oraz definicje standardowych warstw abstrakcji. */
 
 #include "swCommonLib/Common/EngineObject.h"
 #include "EngineCore/UIEngine/StandardAbstractionLayers.h"
@@ -14,6 +16,11 @@ struktur InputMapping i EventMapping oraz definicje standardowych warstw abstrak
 class Engine;
 
 
+namespace sw
+{
+
+
+
 /**@brief Klasa reprezentuj¹ca warstwê abstrakcji miêdzy wartoœciami zwracanymi z directInputa, a wejœciem aplikacji.
 
 W grze mo¿e istnieæ wiele wartstw abstrakcji, z których w danym momencie aktywna jest tylko jedna.
@@ -23,7 +30,7 @@ byæ mapowanych na jeden przycisk wirtualny.
 
 InputAbstractionLayerBase odpowiada za interakcjê z kontrolerami i zapewnia ograniczony dostêp do zasobów
 klasy, a co najwa¿niejsze, nie pozwala na edycjê danych.
-Klasa InputAbstractionLayer s³u¿y jako interfejs do komunikacji dla obiektu UI_Engine.
+Klasa InputAbstractionLayer s³u¿y jako interfejs do komunikacji dla obiektu UIEngine.
 Umo¿liwia modyfikowanie zawartoœci tej klasy. Zostaje w ka¿dej klatce uzupe³niona danymi,
 które bêd¹ potem widziane przez kontrolery.
 
@@ -63,7 +70,7 @@ protected:
 	short	mouseX;			///<Po³o¿enie myszki w X
 	short	mouseY;			///<Po³o¿enie myszi w Y
 
-	std::vector< sw::input::KeyState >		m_virtualButtons;		///<Tablica wirtualnych przycisków
+	std::vector< input::KeyState >			m_virtualButtons;		///<Tablica wirtualnych przycisków
 	std::vector< float >					m_virtualAxis;			///<Tablica dla kontrolerów osiowych
 
 	bool	active;			///<Stwierdza czy dana wartstwa abstrakcji jest aktualnie aktywna
@@ -72,14 +79,14 @@ protected:
 public:
 	~InputAbstractionLayerBase();
 
-	inline bool				IsActive()				{ return active; }						///<Informuje czy warstwa jest aktywna
-	inline short			GetMouseX()				{ return mouseX; }						///<Zwraca po³o¿enie myszy w X
-	inline short			GetMouseY()				{ return mouseY; }						///<Zwraca po³o¿enie myszy w Y
-	inline unsigned short	GetNumAxis()			{ return (unsigned short)m_virtualAxis.size(); }		///<Zwraca liczbe osi
-	inline unsigned short	GetNumButtons()			{ return (unsigned short)m_virtualButtons.size(); }		///<Zwraca liczbe przycisków
+	inline bool				IsActive() { return active; }						///<Informuje czy warstwa jest aktywna
+	inline short			GetMouseX() { return mouseX; }						///<Zwraca po³o¿enie myszy w X
+	inline short			GetMouseY() { return mouseY; }						///<Zwraca po³o¿enie myszy w Y
+	inline unsigned short	GetNumAxis() { return (unsigned short)m_virtualAxis.size(); }		///<Zwraca liczbe osi
+	inline unsigned short	GetNumButtons() { return (unsigned short)m_virtualButtons.size(); }		///<Zwraca liczbe przycisków
 
-	inline const std::vector< sw::input::KeyState >&	GetButtonsTable()		{ return m_virtualButtons; }	///<Zwraca tablicê wirtualnych przycisków
-	inline const std::vector< float >&					GetAxisTable()			{ return m_virtualAxis; }		///<Zwraca tablicê wirtualnych osi
+	inline const std::vector< input::KeyState >&		GetButtonsTable() { return m_virtualButtons; }	///<Zwraca tablicê wirtualnych przycisków
+	inline const std::vector< float >&					GetAxisTable() { return m_virtualAxis; }		///<Zwraca tablicê wirtualnych osi
 };
 
 /**@brief Klasa stanowi interfejs umo¿liwiaj¹cy definiowanie i modyfikowanie wastwy abstrakcji.
@@ -115,9 +122,9 @@ public:
 	void	BeginEventCollection		();
 	void	SendEvents					( Engine* );
 
-	void	UpdateKeyboardDevice		( DeviceNumber DeviceNr, sw::input::KeyboardState* keyboardState );
-	void	UpdateMouseDevice			( DeviceNumber DeviceNr, sw::input::MouseState* mouseState, int windowWidth, int windowHeight);
-	void	UpdateJoystickDevice		( DeviceNumber DeviceNr, sw::input::JoystickState* joystickState );
+	void	UpdateKeyboardDevice		( DeviceNumber DeviceNr, const input::KeyboardState* keyboardState );
+	void	UpdateMouseDevice			( DeviceNumber DeviceNr, const input::MouseState* mouseState, int windowWidth, int windowHeight );
+	void	UpdateJoystickDevice		( DeviceNumber DeviceNr, const input::JoystickState* joystickState );
 
 	void	DemandDownEvent				( VirtualKeyIndex virtualIdx );
 	void	DemandUpEvent				( VirtualKeyIndex virtualIdx );
@@ -129,3 +136,4 @@ public:
 	int		SetupLayerFromFile			( const std::string& fileName );
 };
 
+}	// sw

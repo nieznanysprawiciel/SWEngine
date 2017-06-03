@@ -218,7 +218,7 @@ void LightmapLogic::RenderEnded( const EngineObject* sender, Event* renderEndedE
 int LightmapLogic::UnloadLevel					()
 {	
 	m_layout->DeleteObjectReference();
-	m_engine->Actors.Communication.RemoveListenerDelayed< KeyDownEvent >( this );
+	m_engine->Actors.Communication.RemoveListenerDelayed< sw::KeyDownEvent >( this );
 	m_engine->Actors.Communication.RemoveListenerDelayed< RenderOnceEndedEvent >( this );
 
 	return 0;
@@ -240,7 +240,7 @@ void LightmapLogic::GenerateLightmaps			( const EngineObject* sender, Event* key
 
 	if( keyEvent->type == (unsigned int)EventType::KeyDownEvent )
 	{
-		KeyDownEvent* genLightmapEvent = static_cast<KeyDownEvent*>( keyEvent );
+		sw::KeyDownEvent* genLightmapEvent = static_cast< sw::KeyDownEvent* >( keyEvent );
 		if( genLightmapEvent->VirtualIndex == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 ||
 			genLightmapEvent->VirtualIndex == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS2 ||
 			genLightmapEvent->VirtualIndex == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS3 ||

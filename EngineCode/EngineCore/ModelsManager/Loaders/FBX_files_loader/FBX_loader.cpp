@@ -40,8 +40,6 @@ FBX_loader::FBX_loader(AssetsManager* models_manager)
 	fbx_manager = FbxManager::Create();
 	fbx_IOsettings = FbxIOSettings::Create(fbx_manager, IOSROOT);
 	fbx_manager->SetIOSettings(fbx_IOsettings);
-
-	cur_model = nullptr;
 }
 
 

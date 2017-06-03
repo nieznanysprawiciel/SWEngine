@@ -53,7 +53,7 @@
 #include "EngineCore/MainEngine/EngineContext.h"
 #include "EngineCore/ModelsManager/AssetsManager.h"
 #include "EngineCore/SoundEngine/SoundEngine.h"
-#include "EngineCore/UIEngine/UI_Engine.h"
+#include "EngineCore/UIEngine/UIEngine.h"
 
 #undef min
 #undef max

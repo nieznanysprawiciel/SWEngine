@@ -16,7 +16,7 @@
 #include "EngineCore/PhysicEngine/PhysicEngine.h"
 #include "EngineCore/PhysicEngine/MovementEngine.h"
 #include "EngineCore/SoundEngine/SoundEngine.h"
-#include "EngineCore/UIEngine/UI_Engine.h"
+#include "EngineCore/UIEngine/UIEngine.h"
 #include "EngineCore/Actors/ActorsManager.h"
 #include "EngineCore/EventsManager/EventManager.h"
 
@@ -82,7 +82,7 @@ struct EngineContext
 	AssetsManager*				modelsManager;			///<Zarz¹dza modelami, teksturami i materia³ami
 	FableEngine*				fableEngine;			///<Zarz¹dza fabu³¹ gry, interakcjami obiektów itd. Odpowiada za treœæ
 	SoundEngine*				soundEngine;			///<Zarz¹dza muzyk¹ i dŸwiêkami
-	UI_Engine*					ui_engine;				///<Interfejs u¿ytkownika (tak¿e graficzny)
+	sw::UIEngine*				ui_engine;				///<Interfejs u¿ytkownika (tak¿e graficzny)
 	ActorsManager*				actorsManager;			///<Zarz¹dzanie aktorami.
 	EventManager*				eventsManager;			///<Zarz¹dzanie eventami.
 

@@ -11,9 +11,11 @@
 
 class InputAbstractionLayer;
 
+namespace sw
+{
 
 /**@brief Event wysy³any w momencie wciœniêcia przycisku.*/
-class KeyDownEvent	:	public Event
+class KeyDownEvent : public Event
 {
 	RTTR_ENABLE( Event )
 public:
@@ -26,4 +28,5 @@ public:
 	~KeyDownEvent() = default;
 };
 
+}	// sw
 

@@ -68,7 +68,7 @@ void	Engine::InternalInit			( HINSTANCE instanceHandle )
 	Context->modelsManager			= new AssetsManager( this );
 	Context->fableEngine			= new FableEngine( this );
 	Context->soundEngine			= new SoundEngine( this );
-	Context->ui_engine				= new UI_Engine( this );
+	Context->ui_engine				= new UIEngine( this );
 	Context->actorsManager			= new ActorsManager( this );
 	Context->eventsManager			= new EventManager( this );
 

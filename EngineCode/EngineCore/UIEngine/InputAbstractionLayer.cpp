@@ -12,16 +12,23 @@ oraz definicje standardowych warstw abstrakcji.
 #include "swCommonLib/Common/MemoryLeaks.h"
 
 
+
+namespace sw
+{
+
 //=================================================================//
 //					InputAbstractionLayerBase
 //=================================================================//
 
+// ================================ //
+//
 InputAbstractionLayerBase::InputAbstractionLayerBase()
 {
 	active = false;
 }
 
-
+// ================================ //
+//
 InputAbstractionLayerBase::~InputAbstractionLayerBase()
 {}
 
@@ -30,18 +37,22 @@ InputAbstractionLayerBase::~InputAbstractionLayerBase()
 //						InputAbstractionLayer
 //=================================================================//
 
+
+// ================================ //
+//
 InputAbstractionLayer::InputAbstractionLayer()
 {
 	m_activeChanged = false;
 }
 
-
+// ================================ //
+//
 InputAbstractionLayer::~InputAbstractionLayer()
 {}
 
 
 /**@brief Funkcja podtrzymuje stan przycisków, ale kasuje z nich informacje o eventach.*/
-void InputAbstractionLayer::BeginEventCollection()
+void				InputAbstractionLayer::BeginEventCollection			()
 {
 	for( Size i = 0; i < m_virtualButtons.size(); ++i )
 		m_virtualButtons[ i ].HoldState();
@@ -52,15 +63,15 @@ Aby tak się stało, musi znajdować się odpowiedni wpis z żądaniem w tablicy
 
 @param[in] engine Wskaźnik na silnik jest potrzebny, aby móc wysłać event.
 */
-void InputAbstractionLayer::SendEvents(Engine* engine)
+void				InputAbstractionLayer::SendEvents					( Engine* engine )
 {
 	for( unsigned int i = 0; i < m_requestedEvents.size(); ++i )
 	{
-		KeyState state = m_virtualButtons[ m_requestedEvents[ i ].VirtualIndex ];
+		input::KeyState state = m_virtualButtons[ m_requestedEvents[ i ].VirtualIndex ];
 
 		if( state.IsKeyDownEvent() && !m_activeChanged )
 		{
-			KeyDownEvent* event = new KeyDownEvent( m_requestedEvents[i].VirtualIndex );
+			KeyDownEvent* event = new KeyDownEvent( m_requestedEvents[ i ].VirtualIndex );
 			event->MouseX = mouseX;
 			event->MouseY = mouseY;
 			event->Layer = this;
@@ -69,15 +80,15 @@ void InputAbstractionLayer::SendEvents(Engine* engine)
 		}
 		else if( state.IsKeyUpEvent() && !m_activeChanged )
 		{
-			KeyUpEvent* event = new KeyUpEvent( m_requestedEvents[i].VirtualIndex );
+			KeyUpEvent* event = new KeyUpEvent( m_requestedEvents[ i ].VirtualIndex );
 			event->MouseX = mouseX;
 			event->MouseY = mouseY;
 			event->Layer = this;
 
-			engine->SendEvent(event);
+			engine->SendEvent( event );
 		}
 	}
-		
+
 	m_activeChanged = false;
 }
 
@@ -95,7 +106,7 @@ wejścia o intefejsie klawiatury. Zazwyczaj wywłuje się ją dla klawiatury, al
 @todo Rozwiązać problemy z przypadkami, gdy kilka przycisków mapuje sie na jeden wirtualny.
 Problematyczna sekwencja Press1 -> Press2 -> UnPress1 -> Problem -> UnPress2.
 Być może wirtualny przycisk powinien byś w tym miejscu nadal wciśnięty.*/
-void InputAbstractionLayer::UpdateKeyboardDevice( DeviceNumber DeviceNr, KeyboardState* keyboardState )
+void				InputAbstractionLayer::UpdateKeyboardDevice				( DeviceNumber DeviceNr, const input::KeyboardState* keyboardState )
 {
 	auto state = keyboardState->GetKeyboardState();
 
@@ -113,7 +124,7 @@ void InputAbstractionLayer::UpdateKeyboardDevice( DeviceNumber DeviceNr, Keyboar
 			else if( state[ devIndex ].IsKeyUpEvent() )
 			{
 				short virtualIndex = m_buttonsMapping[ i ].VirtualIndex;
-				m_virtualButtons[ virtualIndex ].UnPress();				
+				m_virtualButtons[ virtualIndex ].UnPress();
 			}
 		}
 	}
@@ -130,7 +141,7 @@ wejœcia o intefejsie myszy. Zazwyczaj wywołuje się ją dla myszy, ale może b
 @todo Zastanowić się czy wysokość i szerokość okna jest wogóle potrzebna (i dlaczego nie).
 @todo Uzupełnić implementację dla pozostałych osi myszy.
 */
-void InputAbstractionLayer::UpdateMouseDevice( DeviceNumber DeviceNr, MouseState* mouseState, int windowWidth, int windowHeight)
+void				InputAbstractionLayer::UpdateMouseDevice				( DeviceNumber DeviceNr, const input::MouseState* mouseState, int windowWidth, int windowHeight )
 {
 	auto buttons = mouseState->GetButtonsState();
 
@@ -147,7 +158,7 @@ void InputAbstractionLayer::UpdateMouseDevice( DeviceNumber DeviceNr, MouseState
 			else if( buttons[ devIndex ].IsKeyUpEvent() )
 			{
 				short virtualIndex = m_buttonsMapping[ i ].VirtualIndex;
-				m_virtualButtons[ virtualIndex ].UnPress();				
+				m_virtualButtons[ virtualIndex ].UnPress();
 			}
 		}
 	}
@@ -165,29 +176,29 @@ void InputAbstractionLayer::UpdateMouseDevice( DeviceNumber DeviceNr, MouseState
 
 			switch( devIndex )
 			{
-			case MouseState::PHYSICAL_AXES::X_AXIS:
-			{
-				short v_x_index = m_axisMapping[ i ].VirtualIndex;
-				float virtual_x_axis_value = axes[ MouseState::PHYSICAL_AXES::X_AXIS ] / (float)windowWidth;
-				virtual_x_axis_value = ( virtual_x_axis_value > 1.0f ? 1.0f : virtual_x_axis_value );
-				m_virtualAxis[ v_x_index ] = virtual_x_axis_value;
-				break;
-			}
-			case MouseState::PHYSICAL_AXES::Y_AXIS:
-			{
-				short v_y_index = m_axisMapping[ i ].VirtualIndex;
-				float virtual_y_axis_value = axes[ MouseState::PHYSICAL_AXES::Y_AXIS ] / (float)windowWidth;
-				virtual_y_axis_value = ( virtual_y_axis_value > 1.0f ? 1.0f : virtual_y_axis_value );
-				m_virtualAxis[ v_y_index ] = virtual_y_axis_value;
-				break;
-			}
-			case MouseState::PHYSICAL_AXES::WHEEL:
-			case MouseState::PHYSICAL_AXES::W_AXIS:
-			{
-				short virtualIdx = m_axisMapping[ i ].VirtualIndex;
-				m_virtualAxis[ virtualIdx ] = axes[ devIndex ];
-				break;
-			}
+				case input::Mouse::PhysicalAxes::X_AXIS:
+				{
+					short v_x_index = m_axisMapping[ i ].VirtualIndex;
+					float virtual_x_axis_value = axes[ input::Mouse::PhysicalAxes::X_AXIS ] / (float)windowWidth;
+					virtual_x_axis_value = ( virtual_x_axis_value > 1.0f ? 1.0f : virtual_x_axis_value );
+					m_virtualAxis[ v_x_index ] = virtual_x_axis_value;
+					break;
+				}
+				case input::Mouse::PhysicalAxes::Y_AXIS:
+				{
+					short v_y_index = m_axisMapping[ i ].VirtualIndex;
+					float virtual_y_axis_value = axes[ input::Mouse::PhysicalAxes::Y_AXIS ] / (float)windowWidth;
+					virtual_y_axis_value = ( virtual_y_axis_value > 1.0f ? 1.0f : virtual_y_axis_value );
+					m_virtualAxis[ v_y_index ] = virtual_y_axis_value;
+					break;
+				}
+				case input::Mouse::PhysicalAxes::WHEEL:
+				case input::Mouse::PhysicalAxes::W_AXIS:
+				{
+					short virtualIdx = m_axisMapping[ i ].VirtualIndex;
+					m_virtualAxis[ virtualIdx ] = axes[ devIndex ];
+					break;
+				}
 			}
 		}
 
@@ -204,7 +215,7 @@ inne urz¹dzenie takim samym interfejsem.
 
 @param[in] DeviceNr Identyfikator urz¹dzenia, które aktualizujemy, jedna z wartoœci @ref DEVICE_IDs.
 @param[in] joystick_state Struktura opisuj¹ca stan urz¹dzenia, które da siê opisaæ takim interfejsem.*/
-void InputAbstractionLayer::UpdateJoystickDevice( DeviceNumber DeviceNr, JoystickState* joystickState )
+void				InputAbstractionLayer::UpdateJoystickDevice			( DeviceNumber DeviceNr, const input::JoystickState* joystickState )
 {
 
 }
@@ -213,7 +224,7 @@ void InputAbstractionLayer::UpdateJoystickDevice( DeviceNumber DeviceNr, Joystic
 //	włączanie i wyłączanie eventów
 //=================================================================//
 
-/**@brief Żąda wysyłania eventów o wciśnięciu wirtualnego przycisku 
+/**@brief Żąda wysyłania eventów o wciśnięciu wirtualnego przycisku
 o podanym indeksie.
 
 @todo Po napisaniu porządnego sposobu obsługi eventów należy umożliwić tutaj
@@ -222,15 +233,15 @@ Obecnie mechanizm jest bardzo niewygodny. W funkcji obsługi eventu trzeba spraw
 jaki przycisk został wciśnięty faktycznie.
 
 @param[in] virtualIdx Indeks wirtualnego przycisku w tablicy.*/
-void InputAbstractionLayer::DemandDownEvent( VirtualKeyIndex virtualIdx )
+void				InputAbstractionLayer::DemandDownEvent				( VirtualKeyIndex virtualIdx )
 {
 	unsigned int i = 0;
 	for( ; i < m_requestedEvents.size(); ++i )
-		if( m_requestedEvents[i].VirtualIndex == virtualIdx )
+		if( m_requestedEvents[ i ].VirtualIndex == virtualIdx )
 			break;
 
 	if( i < m_requestedEvents.size() )
-		m_requestedEvents[i].DownEvent = 1;
+		m_requestedEvents[ i ].DownEvent = 1;
 	else
 	{
 		EventMapping event;
@@ -244,15 +255,15 @@ void InputAbstractionLayer::DemandDownEvent( VirtualKeyIndex virtualIdx )
 /**@brief ¯¹da wysy³ania eventów o puszczeniu wirtualnego przycisku
 o podanym indeksie.
 @param[in] virtualIdx Indeks wirtualnego przycisku w tablicy.*/
-void InputAbstractionLayer::DemandUpEvent( VirtualKeyIndex virtualIdx )
+void				InputAbstractionLayer::DemandUpEvent				( VirtualKeyIndex virtualIdx )
 {
 	unsigned int i = 0;
-	for( ; i < m_requestedEvents.size( ); ++i )
-		if( m_requestedEvents[i].VirtualIndex == virtualIdx )
+	for( ; i < m_requestedEvents.size(); ++i )
+		if( m_requestedEvents[ i ].VirtualIndex == virtualIdx )
 			break;
 
-	if( i < m_requestedEvents.size( ) )
-		m_requestedEvents[i].UpEvent = 1;
+	if( i < m_requestedEvents.size() )
+		m_requestedEvents[ i ].UpEvent = 1;
 	else
 	{
 		EventMapping event;
@@ -266,14 +277,14 @@ void InputAbstractionLayer::DemandUpEvent( VirtualKeyIndex virtualIdx )
 /**@brief ¯¹da zaprzestania wysy³ania eventów o wciœniêciu wirtualnego przycisku
 o podanym indeksie.
 @param[in] virtualIdx Indeks wirtualnego przycisku w tablicy.*/
-void InputAbstractionLayer::DeleteUpEvent( VirtualKeyIndex virtualIdx )
+void				InputAbstractionLayer::DeleteUpEvent				( VirtualKeyIndex virtualIdx )
 {
 	for( unsigned int i = 0; i < m_requestedEvents.size(); ++i )
 	{
-		if( m_requestedEvents[i].VirtualIndex == virtualIdx )
+		if( m_requestedEvents[ i ].VirtualIndex == virtualIdx )
 		{
-			m_requestedEvents[i].UpEvent = 0;
-			if( m_requestedEvents[i].DownEvent == 0 )	//nikt nie ¿¹da ¿adnego z eventów, kasujemy wpis
+			m_requestedEvents[ i ].UpEvent = 0;
+			if( m_requestedEvents[ i ].DownEvent == 0 )	//nikt nie ¿¹da ¿adnego z eventów, kasujemy wpis
 				m_requestedEvents.erase( m_requestedEvents.begin() + i );
 			break;		//znalexliœmy element, wiêc przerywamy pêtlê
 		}
@@ -283,15 +294,15 @@ void InputAbstractionLayer::DeleteUpEvent( VirtualKeyIndex virtualIdx )
 /**@brief ¯¹da zaprzestania wysy³ania eventów o puszczeniu wirtualnego przycisku
 o podanym indeksie.
 @param[in] virtualIdx Indeks wirtualnego przycisku w tablicy.*/
-void InputAbstractionLayer::DeleteDownEvent( VirtualKeyIndex virtualIdx )
+void				InputAbstractionLayer::DeleteDownEvent				( VirtualKeyIndex virtualIdx )
 {
-	for( unsigned int i = 0; i < m_requestedEvents.size( ); ++i )
+	for( unsigned int i = 0; i < m_requestedEvents.size(); ++i )
 	{
-		if( m_requestedEvents[i].VirtualIndex == virtualIdx )
+		if( m_requestedEvents[ i ].VirtualIndex == virtualIdx )
 		{
-			m_requestedEvents[i].DownEvent = 0;
-			if( m_requestedEvents[i].UpEvent == 0 )	//nikt nie ¿¹da ¿adnego z eventów, kasujemy wpis
-				m_requestedEvents.erase( m_requestedEvents.begin( ) + i );
+			m_requestedEvents[ i ].DownEvent = 0;
+			if( m_requestedEvents[ i ].UpEvent == 0 )	//nikt nie ¿¹da ¿adnego z eventów, kasujemy wpis
+				m_requestedEvents.erase( m_requestedEvents.begin() + i );
 			break;		//znaleŸliœmy element, wiêc przerywamy pêtlê
 		}
 	}
@@ -307,14 +318,14 @@ void InputAbstractionLayer::DeleteDownEvent( VirtualKeyIndex virtualIdx )
 @param[in] mapping Tablica struktur, która mapuj¹ przyciski fizyczne na przyciski wirtualne.
 @param[in] length D³ugoœæ podanej w pierwszym parametrze tablicy
 */
-void InputAbstractionLayer::SetupButtonsLayer( std::vector< InputMapping >&& mapping )
+void				InputAbstractionLayer::SetupButtonsLayer			( std::vector< InputMapping >&& mapping )
 {
 	unsigned int max = 0;
-	for ( unsigned int i = 0; i < mapping.size(); ++i )
+	for( unsigned int i = 0; i < mapping.size(); ++i )
 	{
 		// Szukamy maksymalnego indexu virtualnego przycisku, żeby wiedzieć ile miejsca potrzeba w tablicy m_virtualButtons.
-		if ( mapping[i].VirtualIndex > max )
-			max = mapping[i].VirtualIndex;
+		if( mapping[ i ].VirtualIndex > max )
+			max = mapping[ i ].VirtualIndex;
 	}
 
 	m_buttonsMapping = mapping;
@@ -327,14 +338,14 @@ void InputAbstractionLayer::SetupButtonsLayer( std::vector< InputMapping >&& map
 @param[in] mapping Tablica struktur, która mapuj¹ osie fizyczne na osie wirtualne.
 @param[in] length D³ugoœæ podanej w pierwszym parametrze tablicy
 */
-void InputAbstractionLayer::SetupAxisLayer( std::vector< InputMapping >&& mapping )
+void				InputAbstractionLayer::SetupAxisLayer				( std::vector< InputMapping >&& mapping )
 {
 	unsigned int max = 0;
-	for ( unsigned int i = 0; i < mapping.size(); ++i )
+	for( unsigned int i = 0; i < mapping.size(); ++i )
 	{
 		// Szukamy maksymalnego indexu virtualnego przycisku, żeby wiedzieć ile miejsca potrzeba w tablicy m_virtualAxis.
-		if ( mapping[i].VirtualIndex > max )
-			max = mapping[i].VirtualIndex;
+		if( mapping[ i ].VirtualIndex > max )
+			max = mapping[ i ].VirtualIndex;
 	}
 
 	m_axisMapping = mapping;
@@ -347,9 +358,10 @@ void InputAbstractionLayer::SetupAxisLayer( std::vector< InputMapping >&& mappin
 @param[in] file_name Nazwa pliku do wczytania.
 @return Zwraca 0 w przypadku poprawnego wczytania.
 */
-int InputAbstractionLayer::SetupLayerFromFile( const std::string& file_name )
+int					InputAbstractionLayer::SetupLayerFromFile			( const std::string& file_name )
 {
 	return 0;
 }
 
+}	// sw
 

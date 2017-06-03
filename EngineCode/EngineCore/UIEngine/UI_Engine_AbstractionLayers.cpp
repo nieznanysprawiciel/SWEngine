@@ -1,5 +1,12 @@
+/**
+@file UIEngineAbstractionLayers.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
-#include "UI_Engine.h"
+#include "UIEngine.h"
 #include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/Actors/ActorObjects.h"
 
@@ -7,8 +14,11 @@
 #include "swCommonLib/Common/MemoryLeaks.h"
 
 
+namespace sw
+{
+
 /**@brief Funkcja ustawia domyœlne warstwy abstrakcji w klasie UI_engine.*/
-void UI_Engine::InitAbstractionLayers( )
+void				UIEngine::InitAbstractionLayers			()
 {
 	//kolejnoœæ dodawania powinna byæ zgodna z enumem STANDARD_ABSTRACTION_LAYER,
 	//poniewa¿ s³u¿y on potem jako indeks do odwo³ywania siê do tablicy
@@ -22,8 +32,10 @@ void UI_Engine::InitAbstractionLayers( )
 	m_currentAbstractionLayer->SetActive( true );
 }
 
+
+
 /**@brief Zmienia aktualnie ustawion¹ warstwê abstrakcji na podan¹ w argumencie.
-Warstwa nie musi byæ wczeœniej dodana do UI_Engine, ale zaleca siê, aby dodawaæ
+Warstwa nie musi byæ wczeœniej dodana do UIEngine, ale zaleca siê, aby dodawaæ
 wszystkie obiekty w celu pilnowania pamiêci.
 
 @param[in] nextLayer warstwa abstrakcji, która ma byæ aktywna.
@@ -35,11 +47,11 @@ by³ nieprawid³owy:
 
 Zasadniczo nie ma potrzeby sprawdzania wartoœci zwracanej, w przypadkach innych
 ni¿ debugowanie programu.*/
-int UI_Engine::ChangeAbstractionLayer( InputAbstractionLayer* nextLayer )
+int					UIEngine::ChangeAbstractionLayer		( InputAbstractionLayer* nextLayer )
 {
-	if ( nextLayer == nullptr )
+	if( nextLayer == nullptr )
 		return 2;
-	if ( nextLayer == m_currentAbstractionLayer )
+	if( nextLayer == m_currentAbstractionLayer )
 		return 1;
 
 	m_currentAbstractionLayer->SetActive( false );
@@ -49,17 +61,17 @@ int UI_Engine::ChangeAbstractionLayer( InputAbstractionLayer* nextLayer )
 	return 0;
 }
 
-/**@brief Dodaje do wewnêtrznych tablic UI_Engine now¹ warstwê abstrakcji.
+/**@brief Dodaje do wewnêtrznych tablic UIEngine now¹ warstwê abstrakcji.
 Nie jest to do niczego konieczne, ale warto to robiæ, aby silnik zarz¹dza³
 pamiêci¹ zajmowan¹ przez warstwê.
 @param[in] newLayer Warstwa do dodania.*/
-void UI_Engine::AddAbstractionLayer( InputAbstractionLayer* new_layer )
+void				UIEngine::AddAbstractionLayer			( InputAbstractionLayer* new_layer )
 {
-	if ( new_layer != nullptr )
+	if( new_layer != nullptr )
 		m_abstractionLayers.push_back( new_layer );
 }
 
-/**@brief Kasuje z tablic UI_Engine wartwê abstrakcji podan¹ w argumencie.
+/**@brief Kasuje z tablic UIEngine wartwê abstrakcji podan¹ w argumencie.
 Wartwa nie mo¿e byæ w tym czasie aktywna.
 @attention Warstwa zostanie usuniêta, a pamiêæ zwolniona. Do wskaŸnika podanego
 w argumencie nie wolno siê wiêcej odwo³ywaæ.
@@ -69,15 +81,15 @@ w argumencie nie wolno siê wiêcej odwo³ywaæ.
 Funkcja zwraca 0 je¿eli wszystko jest w porz¹dku. W innym wypadku:
 - 1	-	nie by³o takiej wartwy w tablicach,
 - 2	-	wartwa jest obecnie aktywna*/
-int UI_Engine::DeleteAbstractionLayer( InputAbstractionLayer* layer )
+int					UIEngine::DeleteAbstractionLayer		( InputAbstractionLayer* layer )
 {
-	if ( layer == m_currentAbstractionLayer )
+	if( layer == m_currentAbstractionLayer )
 		return 2;
-	
-	for ( unsigned int i = STANDARD_ABSTRACTION_LAYER_COUNT; i < m_abstractionLayers.size(); ++i )
-		if ( m_abstractionLayers[i] == layer )
+
+	for( unsigned int i = STANDARD_ABSTRACTION_LAYER_COUNT; i < m_abstractionLayers.size(); ++i )
+		if( m_abstractionLayers[ i ] == layer )
 		{
-			delete m_abstractionLayers[i];
+			delete m_abstractionLayers[ i ];
 			m_abstractionLayers.erase( m_abstractionLayers.begin() + i );
 			return 0;
 		}
@@ -90,12 +102,12 @@ int UI_Engine::DeleteAbstractionLayer( InputAbstractionLayer* layer )
 @return
 Zwraca 0 w przypadku powodzenia.
 Je¿eli podano liczbê wykraczaj¹c¹ poza zakres funkcja zwraca 1.*/
-int UI_Engine::SetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER layer )
+int					UIEngine::SetStandardAbstractionLayer	( STANDARD_ABSTRACTION_LAYER layer )
 {
-	if ( layer >= STANDARD_ABSTRACTION_LAYER_COUNT )
+	if( layer >= STANDARD_ABSTRACTION_LAYER_COUNT )
 		return 1;
 
-	ChangeAbstractionLayer( m_abstractionLayers[layer] );
+	ChangeAbstractionLayer( m_abstractionLayers[ layer ] );
 
 	return 0;
 }
@@ -103,17 +115,26 @@ int UI_Engine::SetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER layer )
 /**@brief Kasuje i zwalnia pamiêæ po wszystkich dodanych do silnika przez u¿ytkownika
 warstwach abstrakcji. Je¿eli jedna z tych warstw abstrakcji bêdzie aktywna
 zostanie równie¿ usuniêta, a na jej miejsce zostanie ustawiona jedna z wartstw wbudowanych.*/
-void UI_Engine::ClearAbstractionLayers( )
+void				UIEngine::ClearAbstractionLayers()
 {
 
-	for ( unsigned int i = STANDARD_ABSTRACTION_LAYER_COUNT; i < m_abstractionLayers.size(); ++i )
+	for( unsigned int i = STANDARD_ABSTRACTION_LAYER_COUNT; i < m_abstractionLayers.size(); ++i )
 	{
-		if ( m_currentAbstractionLayer == m_abstractionLayers[i] )
+		if( m_currentAbstractionLayer == m_abstractionLayers[ i ] )
 			SetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS );
-		delete m_abstractionLayers[i];
+		delete m_abstractionLayers[ i ];
 	}
 	m_abstractionLayers.erase( m_abstractionLayers.begin() + STANDARD_ABSTRACTION_LAYER_COUNT,
-		m_abstractionLayers.end() );
+							   m_abstractionLayers.end() );
+}
+
+// ================================ //
+//
+inline InputAbstractionLayer*		UIEngine::GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER layer )
+{
+	if( layer >= STANDARD_ABSTRACTION_LAYER_COUNT )
+		return nullptr;
+	return m_abstractionLayers[ layer ];
 }
 
 /**@brief Funkcja aktualizuje tablice w aktualnie aktywnej warstwie abstrakcji.
@@ -122,18 +143,20 @@ Funkcja jest wywo³ywana przez UI_engine, dlatego jest prywatna. W ka¿dej klatce 
 aktualizacja danych w aktualnie aktywnej warstwie abstrakcji.
 
 @todo Zastanowiæ siê jak obs³ugiwaæ wiele urz¹dzeñ tego samego typu na raz.*/
-void UI_Engine::UpdateAbstractionLayer( const std::vector< KeyboardState* >& keyboards,
-										const std::vector< MouseState* >& mouses,
-										const std::vector< JoystickState* >& joysticks )
+void				 UIEngine::UpdateAbstractionLayer	( const std::vector< input::KeyboardDeviceOPtr >& keyboards,
+														  const std::vector< input::MouseDeviceOPtr >& mouses,
+														  const std::vector< input::JoystickDeviceOPtr >& joysticks )
 {
 	if( m_enableInput )
 	{
 		m_currentAbstractionLayer->BeginEventCollection();
 
-		m_currentAbstractionLayer->UpdateKeyboardDevice( DEVICE_IDs::KEYBOARD, keyboards[ 0 ] );
-		m_currentAbstractionLayer->UpdateMouseDevice( DEVICE_IDs::MOUSE, mouses[ 0 ], engine->GetWindowWidth(), engine->GetWindowHeight());
-		m_currentAbstractionLayer->UpdateJoystickDevice( DEVICE_IDs::JOYSTICK, joysticks[ 0 ] );
+		m_currentAbstractionLayer->UpdateKeyboardDevice( DEVICE_IDs::KEYBOARD, &keyboards[ 0 ]->GetState() );
+		m_currentAbstractionLayer->UpdateMouseDevice( DEVICE_IDs::MOUSE, &mouses[ 0 ]->GetState(), engine->GetWindowWidth(), engine->GetWindowHeight() );
+		m_currentAbstractionLayer->UpdateJoystickDevice( DEVICE_IDs::JOYSTICK, &joysticks[ 0 ]->GetState() );
 
 		m_currentAbstractionLayer->SendEvents( engine );
 	}
 }
+
+}	// sw

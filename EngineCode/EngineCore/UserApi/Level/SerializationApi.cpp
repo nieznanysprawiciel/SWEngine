@@ -66,9 +66,9 @@ bool SerializationApi::DeserializeSingleGeneric( IDeserializer* deser, rttr::pro
 	if( propertyType == rttr::type::get< MeshAsset >() )
 	{
 		// Przenieœæ do innej funkcji. Pewnie trzeba wydzieliæ z MeshAsset jakiœ deskryptor, który by siê deserializowa³.
-		if( deser->EnterObject( prop.get_name() ) )
+		if( deser->EnterObject( prop.get_name().to_string() ) )
 		{
-			if( deser->EnterObject( rttr::type::get< MeshAsset >().get_name() ) )
+			if( deser->EnterObject( rttr::type::get< MeshAsset >().get_name().to_string() ) )
 			{
 				std::wstring filePath = Serialization::UTFToWstring( deser->GetAttribute( "FileName", "" ) );
 		
@@ -101,9 +101,9 @@ bool SerializationApi::DeserializeResource( IDeserializer* deser, rttr::property
 	if( propertyType == rttr::type::get< MeshAsset >() )
 	{
 		// Przenieœæ do innej funkcji. Pewnie trzeba wydzieliæ z MeshAsset jakiœ deskryptor, który by siê deserializowa³.
-		if( deser->EnterObject( prop.get_name() ) )
+		if( deser->EnterObject( prop.get_name().to_string() ) )
 		{
-			if( deser->EnterObject( rttr::type::get< MeshAsset >().get_name() ) )
+			if( deser->EnterObject( rttr::type::get< MeshAsset >().get_name().to_string() ) )
 			{
 				std::wstring filePath = Serialization::UTFToWstring( deser->GetAttribute( "FileName", "" ) );
 		
