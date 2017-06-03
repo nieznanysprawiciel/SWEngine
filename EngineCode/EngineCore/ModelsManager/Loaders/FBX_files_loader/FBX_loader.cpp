@@ -5,8 +5,8 @@
 #include "Tools/Geometric/Processors/Converter.h"
 
 
-#include "Common/Converters.h"
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/Converters.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 #include <limits>

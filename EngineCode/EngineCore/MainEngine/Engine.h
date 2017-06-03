@@ -17,6 +17,7 @@
 
 #include "EngineCore/SW_engine.h"
 #include "EngineCore/MainEngine/EngineInterface.h"
+#include "swInputLibrary/InputCore/IInput.h"
 
 #include <queue>
 

@@ -55,7 +55,7 @@ private:
 	ResourcePtr< BufferObject >				m_materialConstants;		///< Material constants buffer. @todo Temporary.
 
 	CameraActor*							m_currentCamera;			///<Akutalnie aktywna kamera
-	SkyDome*								sky_dome;					///<Klasa odpowiedzialna za kopu³ê nieba
+	SkyDome*								m_skyDome;					///< SkyDome actor.
 
 	std::vector< StaticActor* >				meshes;						///<Modele nieanimowane
 	std::vector< DirectX::XMFLOAT4X4 >		m_interpolatedMatricies;		///<Tablica macierzy interpolowanych po³o¿eñ obiektów
@@ -126,9 +126,7 @@ private:
 	void interpolate_object2				( float timeLag, const StaticActor* object, DirectX::XMFLOAT4X4* result_matrix );
 
 	// Display functions
-	void			DisplaySceneOld			( float timeInterval, float timeLag );
-	void			DisplayDynamicObjects	( float timeInterval, float timeLag );
-	void			DisplaySkyBox			( float timeInterval, float timeLag );
+	void			DisplaySkyBox			( float timeInterval, float timeLag, const RenderContext& ctx );
 	void			ProcessMainPass			( float timeInterval, float timeLag );
 
 	void			RenderFromQueue			( float timeInterval, float timeLag );

@@ -54,7 +54,7 @@ DisplayEngine::DisplayEngine( Engine* engine )
 
 	m_defaultCamera = nullptr;
 	m_currentCamera = nullptr;
-	sky_dome = nullptr;
+	m_skyDome = nullptr;
 	m_mainRenderTarget = nullptr;
 	m_mainSwapChain = nullptr;
 
@@ -67,8 +67,8 @@ DisplayEngine::~DisplayEngine()
 	for ( IRenderer* renderer : m_renderers )
 		if ( renderer )		delete renderer;
 
-	if ( sky_dome )
-		delete sky_dome;
+	if ( m_skyDome )
+		delete m_skyDome;
 
 	delete m_defaultCamera;
 	delete m_mainSwapChain;
@@ -81,16 +81,14 @@ w³¹czania i wy³¹czania algorytmu.
 
 @todo Zrobiæ inicjacjê wielow¹tkow¹. Gdzieœ musi zostaæ podjêta decyzja o liczbie w¹tków.
 Trzeba pomyœleæ gdzie.*/
-void DisplayEngine::InitRenderer( IRenderer* renderer )
+void			DisplayEngine::InitRenderer( IRenderer* renderer )
 {
 	m_renderers.push_back( renderer );		// Na razie nie robimy deferred renderingu.
-
-	m_renderers[0]->InitDepthStates();
 }
 
 /**@brief Inits submodules (LightModule, main render pass), creates default engine buffers,
 sets default camera and render target.*/
-void DisplayEngine::InitDisplayer( AssetsManager* assetsManager )
+void			DisplayEngine::InitDisplayer( AssetsManager* assetsManager )
 {
 	modelsManager = assetsManager;
 	SetAssetManager( assetsManager );
@@ -201,7 +199,6 @@ void DisplayEngine::DisplayScene( float timeInterval, float timeLag )
 {
 	IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
 
-	//DisplaySceneOld( timeInterval, timeLag );
 	ProcessMainPass( timeInterval, timeLag );
 }
 
@@ -229,122 +226,7 @@ void			DisplayEngine::ProcessMainPass			( float timeInterval, float timeLag )
 
 	END_PERFORMANCE_CHECK( SHADING_PASSES );
 
-	DisplaySkyBox( timeInterval, timeLag );
-}
-
-// ================================ //
-//
-void			DisplayEngine::DisplaySceneOld			( float timeInterval, float timeLag )
-{
-	IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
-
-
-	UpdateCameraBuffer( renderer, timeInterval, timeLag );
-	lightModule->UpdateLightsBuffer( renderer, timeLag );
-
-	// Ustawiamy bufor sta³y dla wszystkich meshy
-	//shader_data_per_frame.time_lag = 
-
-	// Ustawiamy topologiê
-	// D3D11_PRIMITIVE_TOPOLOGY_POINTLIST
-	// D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST
-	// D3D11_PRIMITIVE_TOPOLOGY_LINELIST
-	renderer->IASetPrimitiveTopology( PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST );
-
-	// Ustawiamy sampler
-	renderer->SetDefaultSampler();
-
-	RenderFromQueue( timeInterval, timeLag );
-
-	renderer->BeginScene( m_mainRenderTarget.Ptr() );
-	// Zaczynamy wyswietlanie
-	DisplaySkyBox( timeInterval, timeLag );
-
-	// Ustawiamy format wierzcho³ków
-	renderer->IASetInputLayout( defaultLayout );
-
-	DisplayDynamicObjects( timeInterval, timeLag );
-}
-
-
-/**@brief Funkcja s³u¿y do wyœwietlania obiektów dynamicznych, które s¹ rzadko niszczone.
-
-
-@param[in] time_interval Czas od ostatniej klatki.
-@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
-Zakres [0,1].
-*/
-void DisplayEngine::DisplayDynamicObjects( float time_interval, float time_lag )
-{
-	START_PERFORMANCE_CHECK( DYNAMIC_OBJECT_RENDERING )
-
-//	register IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
-//
-//	//na razie pêtla bez optymalizacji
-//	for ( unsigned int i = 0; i < meshes.size( ); ++i )
-//	{
-//		register StaticActor* object = meshes[i];
-//
-//		// Ustawiamy bufor wierzcho³ków
-//		if ( renderer->SetVertexBuffer( object->GetVertexBuffer() ) )
-//			continue;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
-//
-//		// Ustawiamy bufor indeksów, je¿eli istnieje
-//		renderer->SetIndexBuffer( object->GetIndexBuffer() );
-//
-//
-//#ifdef _INTERPOLATE_POSITIONS
-//		XMMATRIX transformation = XMLoadFloat4x4( &(m_interpolatedMatricies[i]) );
-//#else
-//		XMVECTOR translation = XMLoadFloat3( &(object->position) );
-//		XMVECTOR orientation = XMLoadFloat4( &(object->orientation) );
-//		XMMATRIX transformation = XMMatrixRotationQuaternion( orientation );
-//		transformation = transformation * XMMatrixTranslationFromVector( translation );
-//#endif
-//
-//
-//		for ( unsigned int j = 0; j < object->GetModelParts().size( ); ++j )
-//		{
-//			ModelPart& model = object->GetModelParts()[j];
-//
-//			// Wyliczamy macierz transformacji
-//			XMMATRIX worldTransform;
-//			worldTransform = XMLoadFloat4x4( &(model.mesh->transform_matrix) );
-//			worldTransform = worldTransform * transformation;
-//
-//			// Wype³niamy bufor sta³ych
-//			TransformConstants meshTransformData;
-//			XMStoreFloat4x4( &meshTransformData.WorldMatrix, XMMatrixTranspose( worldTransform ) );
-//			XMStoreFloat4( &meshTransformData.MeshScale, XMVectorSetW( XMVectorReplicate( object->GetScale() ), 1.0f ) );
-//
-//			// Przepisujemy materia³
-//			ConstantPerMesh materialData;
-//			CopyMaterial( &materialData, &model );
-//
-//			// Ustawiamy shadery
-//			renderer->SetShaders( model );
-//
-//			// Aktualizujemy bufory sta³ych
-//			renderer->UpdateSubresource( m_transformConstants.Ptr(), &meshTransformData );
-//			renderer->VSSetConstantBuffers( TransformBufferBindingPoint, m_transformConstants.Ptr() );
-//
-//			renderer->UpdateSubresource( m_materialConstants.Ptr(), &materialData );
-//			renderer->PSSetConstantBuffers( MaterialBufferBindingPoint, m_materialConstants.Ptr() );
-//
-//			// Ustawiamy tekstury
-//			renderer->SetTextures( model );
-//
-//			// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
-//			MeshPartObject* part = model.mesh;
-//			if ( part->use_index_buf )
-//				renderer->DrawIndexed( part->vertices_count, part->buffer_offset, part->base_vertex );
-//			else // Tryb bezpoœredni
-//				renderer->Draw( part->vertices_count, part->buffer_offset );
-//		}
-//
-//	}
-
-	END_PERFORMANCE_CHECK( DYNAMIC_OBJECT_RENDERING )
+	DisplaySkyBox( timeInterval, timeLag, context );
 }
 
 
@@ -365,189 +247,82 @@ dziêki temu kopu³a nie musi obejmowaæ ca³ej sceny.
 @param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
 Zakres [0,1].
 */
-void DisplayEngine::DisplaySkyBox( float time_interval, float time_lag )
+void DisplayEngine::DisplaySkyBox( float timeInterval, float timeLag, const RenderContext& ctx )
 {
 	START_PERFORMANCE_CHECK( SKYBOX_RENDERING )
 
-	if ( !sky_dome )
+	if ( !m_skyDome )
 		return;
 
 	register IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
 
 
-	auto mesh = sky_dome->GetModel();
-
-	assert( mesh->GetSegmentsCount() > 0 );
-	auto segment = mesh->GetSegment( 0 );
-
-	// Ustawiamy format wierzcho³ków
-	renderer->IASetInputLayout( mesh->GetLayoutRawPtr() );
-
 	// Aktualizuje bufor wierzcho³ków. Wstawiane s¹ nowe kolory.
 	// Powinna byæ to raczej rzadka czynnoœæ, poniewa¿ aktualizacja jest kosztowna czasowo
-	if( sky_dome->NeedsBufferUpdate() )
-		sky_dome->UpdateBuffers( renderer );
+	if( m_skyDome->NeedsBufferUpdate() )
+		m_skyDome->UpdateBuffers( renderer );
 
-	// Ustawiamy bufor wierzcho³ków
-	if ( renderer->SetVertexBuffer( mesh->GetVertexBufferRawPtr() ) )
-		return;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
-	// Ustawiamy bufor indeksów, je¿eli istnieje
-	renderer->SetIndexBuffer( mesh->GetIndexBufferRawPtr() );
-
-
-	//ModelPart* model = sky_dome->get_model_part();
 
 	// Wyliczamy macierz transformacji
-	XMVECTOR quaternion = m_currentCamera->GetInterpolatedOrientation( time_lag );
+	XMVECTOR quaternion = m_currentCamera->GetInterpolatedOrientation( timeLag );
 	inverse_camera_orientation( quaternion );
 
 	XMMATRIX rotationMatrix = XMMatrixRotationQuaternion( quaternion );
 
-	// Wype³niamy bufor sta³ych
+	// Fill transform constants buffer.
 	TransformConstants meshTransformData;
 	XMStoreFloat4x4( &meshTransformData.WorldMatrix, XMMatrixTranspose( rotationMatrix ) );
 	XMStoreFloat4( &meshTransformData.MeshScale, XMVectorSetW( XMVectorReplicate( m_currentCamera->GetFarPlane() ), 1.0f ) );
 
+	// Update only. Buffer is set by default.
+	RenderingHelper::UpdateBuffer( renderer, ctx.TransformBuffer, meshTransformData );
 
-	//// Przepisujemy materia³
-	//ConstantPerMesh materialData;
-	//CopyMaterial( &materialData, model );
-
-	// Ustawiamy shadery
-	//renderer->SetShaders( *model );
 	
-	SetShaderStateCommand cmd;
-	cmd.VertexShader = segment->Material->GetVertexShader().Ptr();
-	cmd.PixelShader = segment->Material->GetPixelShader().Ptr();
+	auto mesh = m_skyDome->GetModel();
+
+	assert( mesh->GetSegmentsCount() > 0 );
+	auto segment = mesh->GetSegment( 0 );
+
+
+	SetRenderStateCommand renderCommand;
+	renderCommand.TransformBuffer = ctx.TransformBuffer;
+	renderCommand.MaterialBuffer = segment->Material->GetMaterialBuffer().Ptr();
+	renderCommand.BonesTransforms = nullptr;
+	renderCommand.VertexShader = segment->Material->GetVertexShader().Ptr();
+	renderCommand.PixelShader = segment->Material->GetPixelShader().Ptr();
 
 	for( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
 	{
-		cmd.Textures[ i ] = nullptr;
-		cmd.BindToShader[ i ] = 0;
+		renderCommand.Textures[ i ] = segment->Material->GetTexture( i ).Ptr();
+		renderCommand.BindToShader[ i ] = (uint8)ShaderType::PixelShader;
 	}
 
-	renderer->SetShaderState( cmd );
+	renderer->SetShaderState( renderCommand );
 
-	// Aktualizujemy bufory sta³ych
-	renderer->UpdateSubresource( m_transformConstants.Ptr(), &meshTransformData );
-	renderer->VSSetConstantBuffers( TransformBufferBindingPoint, m_transformConstants.Ptr() );
+	// Send draw command.
+	DrawCommand drawCommand;
+	drawCommand.BaseVertex = segment->BaseVertex;
+	drawCommand.BufferOffset = segment->BufferOffset;
+	drawCommand.NumVertices = segment->NumVertices;
+	drawCommand.Topology = segment->Topology;
+	drawCommand.VertexBuffer = mesh->GetVertexBufferRawPtr();
+	drawCommand.IndexBufer = mesh->GetIndexBufferRawPtr();
+	drawCommand.ExtendedIndex = segment->Flags & MeshPartFlags::Use4BytesIndex ? true : false;
+	drawCommand.Layout = mesh->GetLayoutRawPtr();
 
-	//renderer->UpdateSubresource( m_materialConstants.Ptr(), &materialData );
-	//renderer->PSSetConstantBuffers( MaterialBufferBindingPoint, m_materialConstants.Ptr() );
+	renderer->Draw( drawCommand );
 
-
-
-	//BufferObject* const_buffer = sky_dome->get_constant_buffer();
-	//if( const_buffer )
-	//{
-	//	renderer->VSSetConstantBuffers( 3, const_buffer );
-	//	renderer->PSSetConstantBuffers( 3, const_buffer );
-	//}
-
-	// Ustawiamy tekstury
-	//renderer->SetTextures( *model );
-
-	//renderer->DepthBufferEnable( false );		///< Wy³¹czamy z-bufor. @todo To musi robiæ renderer.
-
-	// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
-	if ( mesh->GetIndexBufferRawPtr() )
-		renderer->DrawIndexed( segment->NumVertices, segment->BufferOffset, segment->BaseVertex );
-	else // Tryb bezpoœredni
-		renderer->Draw( segment->NumVertices, segment->BufferOffset );
-
-	//renderer->DepthBufferEnable( true );		///< W³¹czamy z-bufor spowrotem. @todo To musi robiæ renderer.
 
 	END_PERFORMANCE_CHECK( SKYBOX_RENDERING )
 }
 
 
-/**@brief Wybiera z kolejki przebiegi do wyrenderowania i renderuje je.
+/**@brief Takes one RenderPass from queue and renders it.
 
-Kolejka zawiera tylko przebiegi, które maj¹ byæ wyrenderowane raz.
-Po wyrenderowaniu wysy³any jest event RenderOnceEndedEvent.
-
-@todo To jest tak straszliwie tymczasowa funkcja, ¿e w³aœciwie siê nadaje tylko do renderowania
-lightmap. Trzeba to napisaæ bardzo porz¹dnie.
-
-@param[in] time_interval Czas od ostatniej klatki.
-@param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.*/
-void DisplayEngine::RenderFromQueue( float time_interval, float time_lag )
+Pass is rendered only once and removed.*/
+void				DisplayEngine::RenderFromQueue		( float time_interval, float time_lag )
 {
-	//register IRenderer* renderer = m_renderers[0];
 
-	//for( unsigned int i = 0; i < m_maxQueuedPassesPerFrame; ++i )
-	//{
-	//	if( !m_renderOnceQueue.empty() )
-	//	{
-	//		RenderPassDepracated* renderPass = m_renderOnceQueue.front();
-	//		m_renderOnceQueue.pop();
-
-	//		renderer->BeginScene( renderPass->GetRenderTarget() );
-	//		renderer->IASetInputLayout( renderPass->GetLayout() );
-
-	//		auto meshCollection = renderPass->GetMeshes();
-
-	//		//na razie pêtla bez optymalizacji
-	//		for ( unsigned int i = 0; i < meshCollection.size( ); ++i )
-	//		{
-	//			register StaticActor* object = meshCollection[i];
-
-	//			// Ustawiamy bufor wierzcho³ków
-	//			if ( renderer->SetVertexBuffer( object->GetVertexBuffer() ) )
-	//				continue;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
-
-
-	//			XMVECTOR translation = object->GetPosition();
-	//			XMVECTOR orientation = object->GetOrientation();
-	//			XMMATRIX transformation = XMMatrixRotationQuaternion( orientation );
-	//			transformation = transformation * XMMatrixTranslationFromVector( translation );
-
-	//			for ( unsigned int j = 0; j < object->GetModelParts().size( ); ++j )
-	//			{
-	//				ModelPart& model = object->GetModelParts()[j];
-
-	//				// Wyliczamy macierz transformacji
-	//				XMMATRIX worldTransform;
-	//				worldTransform = XMLoadFloat4x4( &(model.mesh->transform_matrix) );
-	//				worldTransform = worldTransform * transformation;
-
-	//				// Wype³niamy bufor sta³ych
-	//				TransformConstants meshTransformData;
-	//				XMStoreFloat4x4( &meshTransformData.WorldMatrix, XMMatrixTranspose( worldTransform ) );
-	//				XMStoreFloat4( &meshTransformData.MeshScale, XMVectorSetW( XMVectorReplicate( object->GetScale() ), 1.0f ) );
-
-	//				// Przepisujemy materia³
-	//				ConstantPerMesh materialData;
-	//				CopyMaterial( &materialData, &model );
-
-	//				// Ustawiamy shadery
-	//				renderer->SetShaders( model );
-
-	//				// Aktualizujemy bufory sta³ych
-	//				renderer->UpdateSubresource( m_transformConstants.Ptr(), &meshTransformData );
-	//				renderer->VSSetConstantBuffers( TransformBufferBindingPoint, m_transformConstants.Ptr() );
-
-	//				renderer->UpdateSubresource( m_materialConstants.Ptr(), &materialData );
-	//				renderer->PSSetConstantBuffers( MaterialBufferBindingPoint, m_materialConstants.Ptr() );
-
-	//				// Ustawiamy tekstury
-	//				renderer->SetTextures( model );
-
-	//				// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
-	//				MeshPartObject* part = model.mesh;
-	//				if ( part->use_index_buf )
-	//					renderer->DrawIndexed( part->vertices_count, part->buffer_offset, part->base_vertex );
-	//				else // Tryb bezpoœredni
-	//					renderer->Draw( part->vertices_count, part->buffer_offset );
-	//			}
-
-	//		}
-
-	//		RenderOnceEndedEvent*  renderedEvent = new RenderOnceEndedEvent;
-	//		renderedEvent->renderPass = renderPass;
-	//		engine->SendEvent( renderedEvent );
-	//	}
-	//}
 }
 
 
@@ -556,21 +331,10 @@ void DisplayEngine::RenderFromQueue( float time_interval, float time_lag )
 //=================================================================//
 
 
-/**@brief */
-void				DisplayEngine::UpdateCameraBuffer	( IRenderer* renderer, float timeInterval, float timeLag )
-{
-	CameraConstants data = RenderingHelper::CreateCameraData( m_currentCamera, timeInterval, timeLag );
-
-	renderer->UpdateSubresource( m_cameraConstants.Ptr(), (void*)&data );
-	renderer->VSSetConstantBuffers( CameraBufferBindingPoint, m_cameraConstants.Ptr() );
-	renderer->PSSetConstantBuffers( CameraBufferBindingPoint, m_cameraConstants.Ptr() );
-}
-
-
 /**@brief Dodaje obiekt, który ma zostaæ wyœwietlony.
 
 @param[in] object ActorBase, który ma zostaæ dopisany do tablic wyœwietlania.*/
-void DisplayEngine::AddMeshObject( StaticActor* object )
+void				DisplayEngine::AddMeshObject( StaticActor* object )
 {
 	realocate_interpolation_memory( );		//powiêkszamy tablicê macierzy interpolacji
 							//wykona siê tylko je¿eli jest konieczne
@@ -581,7 +345,7 @@ void DisplayEngine::AddMeshObject( StaticActor* object )
 
 Funkcja przegl¹da aktorów od ty³u, poniewa¿ bardziej prawdopodobne jest,
 ¿e usuwamy aktora stworzonego niedawno.*/
-void DisplayEngine::RemoveActor( ActorBase* actor )
+void				DisplayEngine::RemoveActor			( ActorBase* actor )
 {
 	ActorsCommonFunctions::RemoveActor( meshes, static_cast< StaticActor* >( actor ) );
 	ActorsCommonFunctions::RemoveActor( cameras, static_cast< CameraActor* >( actor ) );
@@ -592,7 +356,7 @@ void DisplayEngine::RemoveActor( ActorBase* actor )
 }
 
 /**@brief Kasuje wszystkich aktorów.*/
-void DisplayEngine::RemoveAllActors()
+void				DisplayEngine::RemoveAllActors		()
 {
 	meshes.clear();
 	cameras.clear();
@@ -601,7 +365,7 @@ void DisplayEngine::RemoveAllActors()
 }
 
 /**@brief Kasuje wszystkie meshe. Pomijane s¹ kamery.*/
-void DisplayEngine::DeleteAllMeshes()
+void				DisplayEngine::DeleteAllMeshes		()
 {
 	meshes.clear();
 }
@@ -614,7 +378,7 @@ void DisplayEngine::DeleteAllMeshes()
 Funkcja zwraca 0 w przypadku powodzenia.
 Je¿eli kamera ju¿ istnia³a wczesniej, to zwracan¹ wartoœci¹ jest 1.
 Je¿eli podano wskaŸnik nullptr, zwrócona zostanie wartoœæ 2.*/
-int DisplayEngine::AddCamera( CameraActor* camera )
+int					DisplayEngine::AddCamera			( CameraActor* camera )
 {
 	if ( camera == nullptr )
 		return 2;
@@ -630,7 +394,7 @@ int DisplayEngine::AddCamera( CameraActor* camera )
 @param[in] camera Kamera do ustawienia
 @return 0 w przypadku powodzenia, 1 je¿eli kamera by³a nullptrem.
 Zasadniczo nie ma po co sprawdzaæ wartoœci zwracanej.*/
-int DisplayEngine::SetCurrentCamera( CameraActor* camera )
+int					DisplayEngine::SetCurrentCamera		( CameraActor* camera )
 {
 	if ( camera == nullptr )
 		return 1;
@@ -642,7 +406,7 @@ int DisplayEngine::SetCurrentCamera( CameraActor* camera )
 }
 
 /**@brief Zwraca aktualnie ustawion¹ kamerê g³ówn¹.*/
-CameraActor* DisplayEngine::GetCurrentCamera()
+CameraActor*		DisplayEngine::GetCurrentCamera		()
 {
 	return m_currentCamera;
 }
@@ -661,7 +425,7 @@ Nie ma potrzeby przepisywania danych ze starej tablicy nowoutworzonej.
 Wyniki s¹ niepotrzebne po ka¿dym wyœwietleniu klatki, a iloœæ obiektów
 w silniku nie mo¿e siê zwiêkszyæ miêdzy interpolacj¹, a wyœwietleniem.
 @param[in] min Minimalna liczba macierzy o jak¹ nale¿y zwiekszyæ tablicê.*/
-void DisplayEngine::realocate_interpolation_memory( unsigned int min )
+void				DisplayEngine::realocate_interpolation_memory	( unsigned int min )
 {
 	if ( m_interpolatedMatricies.size() < min + meshes.size() )
 	{
@@ -686,7 +450,7 @@ odpowiada indeksom w tablicy meshes.
 
 @param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
 Zakres [0,1].*/
-void DisplayEngine::InterpolatePositions( float time_lag )
+void				DisplayEngine::InterpolatePositions				( float time_lag )
 {
 	for ( unsigned int i = 0; i < meshes.size(); ++i )
 	{
@@ -704,7 +468,7 @@ Zakres [0,1].
 @param[in] object Objekt, dla którego liczymy macierz przekszta³cenia.
 @param[out] transform_matrix Zmienna, w której zostanie umieszczona interpolowana macierz przekszta³cenia.
 */
-void DisplayEngine::interpolate_object2( float time_lag, const StaticActor* object, DirectX::XMFLOAT4X4* result_matrix )
+void				DisplayEngine::interpolate_object2				( float time_lag, const StaticActor* object, DirectX::XMFLOAT4X4* result_matrix )
 {
 	XMVECTOR position = object->GetInterpolatedPosition( time_lag );
 	XMVECTOR orientation = object->GetInterpolatedOrientation( time_lag );
@@ -721,7 +485,7 @@ void DisplayEngine::interpolate_object2( float time_lag, const StaticActor* obje
 
 // ================================ //
 //
-LightModule* DisplayEngine::GetLightModule()
+LightModule*		DisplayEngine::GetLightModule					()
 {
 	return lightModule;
 }
@@ -736,10 +500,10 @@ Aktualnie ustawiony SkyDome jest pod koniec programu zwalniany w destruktorze.
 
 @param[in] dome Nowy SkyDome, który ma zostaæ ustawiony.
 @return Zwraca poprzedniego SkyDome'a.*/
-SkyDome* DisplayEngine::SetSkydome( SkyDome* dome )
+SkyDome*			DisplayEngine::SetSkydome						( SkyDome* dome )
 {
-	SkyDome* old = sky_dome;
-	sky_dome = dome;
+	SkyDome* old = m_skyDome;
+	m_skyDome = dome;
 	return old;
 }
 

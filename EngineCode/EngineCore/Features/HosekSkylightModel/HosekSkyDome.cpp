@@ -250,12 +250,18 @@ Aby zaktualizowaæ niebo trzeba wywo³aæ funkcje UpdateSkyDome (w jakimœ oddzielny
 Funkcja ustawi zmienn¹ update_vertex_buffer po zakoñczeniu aktualizacji tylnego bufora.
 Nastêpnie DisplayEngine odczyta zmienn¹ update_vertex_buffer i wywo³a funkcjê UpdateBuffers.
 
-Funkcja wirtualna, przeczytaj opis funkcji SkyDome::UpdateBuffers.*/
+Funkcja wirtualna, przeczytaj opis funkcji SkyDome::UpdateBuffers.
+@todo Maybe this should happen outside of this class.*/
 void HosekSkyDome::UpdateBuffers( IRenderer* renderer )
 {
 	auto mesh = GetModel();
 
-	renderer->UpdateSubresource( mesh->GetVertexBufferRawPtr(), m_backVertexBuffer );
+	UpdateBufferCommand cmd;
+	cmd.Buffer = mesh->GetVertexBufferRawPtr();
+	cmd.FillData = (uint8*)m_backVertexBuffer;
+	cmd.Size = mesh->GetVertexBufferRawPtr()->GetElementCount() * mesh->GetVertexBufferRawPtr()->GetElementSize();
+
+	renderer->UpdateBuffer( cmd );
 
 	Updated();
 }

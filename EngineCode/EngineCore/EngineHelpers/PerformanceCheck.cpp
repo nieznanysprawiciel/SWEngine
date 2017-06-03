@@ -15,6 +15,9 @@
 ///<@todo Don't use windows.h here. Build platform specific libraries.
 #include <Windows.h>
 
+#undef min
+#undef max
+
 #include "swCommonLib/Common/MemoryLeaks.h"
 
 

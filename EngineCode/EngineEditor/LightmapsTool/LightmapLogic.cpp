@@ -13,7 +13,7 @@
 #include <limits>
 #undef max
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 template<typename Type>
 bool FindInVector( std::vector<Type>& vector, Type value, size_t& index )
