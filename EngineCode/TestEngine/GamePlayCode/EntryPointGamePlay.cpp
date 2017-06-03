@@ -1,9 +1,9 @@
 #include "TestEngine/stdafx.h"
 #include "EntryPointGamePlay.h"
 
-#include "Common/Serialization/SW/EngineSerializationContext.h"
-#include "Common/Serialization/Serializer.h"
-#include "Common/SWEngineInclude.h"
+#include "swCommonLib/Serialization/PropertySerialization/EngineSerializationContext.h"
+#include "swCommonLib/Serialization/Serializer.h"
+#include "EngineCore/MainEngine/SWEngineInclude.h"
 
 #include "PlayerSignalTest.h"
 

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "PropertyHelper.h"
-#include "Common/EngineObject.h"
-#include "GraphicAPI/ResourceObject.h"
+#include "swCommonLib/Common/EngineObject.h"
+#include "swGraphicAPI/Resources/ResourceObject.h"
 
 
 #include <memory>
@@ -96,7 +96,7 @@ using namespace System::Collections::Generic;
 	{
 	public:
 		IntPropertyWrapper( void* parent, rttr::property prop )
-			: PropertyWrapper( parent, PropertyType::PropertyInt, prop, prop.get_name().c_str() )
+			: PropertyWrapper( parent, PropertyType::PropertyInt, prop, prop.get_name().to_string().c_str() )
 		{}
 
 
@@ -126,7 +126,7 @@ using namespace System::Collections::Generic;
 	{
 	public:
 		UIntPropertyWrapper( void* parent, rttr::property prop )
-			: PropertyWrapper( parent, PropertyType::PropertyUInt, prop, prop.get_name().c_str() )
+			: PropertyWrapper( parent, PropertyType::PropertyUInt, prop, prop.get_name().to_string().c_str() )
 		{}
 
 
@@ -156,7 +156,7 @@ using namespace System::Collections::Generic;
 	{
 	public:
 		BoolPropertyWrapper( void* parent, rttr::property prop )
-			: PropertyWrapper( parent, PropertyType::PropertyBool, prop, prop.get_name().c_str() )
+			: PropertyWrapper( parent, PropertyType::PropertyBool, prop, prop.get_name().to_string().c_str() )
 		{}
 
 		property bool		Value
@@ -185,7 +185,7 @@ using namespace System::Collections::Generic;
 	{
 	public:
 		FloatPropertyWrapper( void* parent, rttr::property prop )
-			: PropertyWrapper( parent, PropertyType::PropertyFloat, prop, prop.get_name().c_str() )
+			: PropertyWrapper( parent, PropertyType::PropertyFloat, prop, prop.get_name().to_string().c_str() )
 		{}
 
 		property float		Value
@@ -214,7 +214,7 @@ using namespace System::Collections::Generic;
 	{
 	public:
 		DoublePropertyWrapper( void* parent, rttr::property prop )
-			: PropertyWrapper( parent, PropertyType::PropertyDouble, prop, prop.get_name().c_str() )
+			: PropertyWrapper( parent, PropertyType::PropertyDouble, prop, prop.get_name().to_string().c_str() )
 		{}
 
 	public:
@@ -244,7 +244,7 @@ using namespace System::Collections::Generic;
 	{
 	public:
 		StringPropertyWrapper( void* parent, rttr::property prop )
-			: PropertyWrapper( parent, PropertyType::PropertyString, prop, prop.get_name().c_str() )
+			: PropertyWrapper( parent, PropertyType::PropertyString, prop, prop.get_name().to_string().c_str() )
 		{}
 
 	public:
@@ -274,7 +274,7 @@ using namespace System::Collections::Generic;
 	{
 	public:
 		WStringPropertyWrapper( void* parent, rttr::property prop )
-			: PropertyWrapper( parent, PropertyType::PropertyWString, prop, prop.get_name().c_str() )
+			: PropertyWrapper( parent, PropertyType::PropertyWString, prop, prop.get_name().to_string().c_str() )
 		{}
 
 	public:
@@ -407,7 +407,7 @@ using namespace System::Collections::Generic;
 	private:
 	public:
 		ObjectPropertyWrapper( void* parent, rttr::property prop )
-			: CategoryLessPropertyWrapper( parent, PropertyType::PropertyActor, prop, prop.get_name().c_str() )
+			: CategoryLessPropertyWrapper( parent, PropertyType::PropertyActor, prop, prop.get_name().to_string().c_str() )
 		{}
 	};
 
@@ -418,7 +418,7 @@ using namespace System::Collections::Generic;
 	private:
 	public:
 		XMFloatPropertyWrapper( void* parent, rttr::property prop )
-			: CategoryLessPropertyWrapper( parent, GetPropertyType( prop ), prop, prop.get_name().c_str() )
+			: CategoryLessPropertyWrapper( parent, GetPropertyType( prop ), prop, prop.get_name().to_string().c_str() )
 		{}
 	};
 

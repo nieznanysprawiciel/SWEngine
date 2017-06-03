@@ -21,7 +21,7 @@ RTTR_REGISTRATION
 		.property( "Power", &PhongMaterial::Power );
 
 	rttr::registration::class_< ShadingModelData< PhongMaterial > >( "ShadingModelData< PhongMaterial >" )
-		.constructor<>()( rttr::policy::ctor::AsRawPtr() )
+		.constructor<>()( rttr::policy::ctor::as_raw_ptr )
 		.property( "Data", &ShadingModelData< PhongMaterial >::Data ) BIND_AS_PTR;
 }
 

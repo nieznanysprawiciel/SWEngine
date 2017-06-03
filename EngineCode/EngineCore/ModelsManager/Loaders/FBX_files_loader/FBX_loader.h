@@ -28,7 +28,7 @@ drugie, ¿eby wykorzystywaæ wszystkie jego mo¿liwoœci.*/
 
 
 struct FbxMeshCollection;
-
+class Model3DFromFile;		///< @deprecated
 
 /**@brief Klasa s³u¿y do wczytywania plików w formacie Autodesk FBX.
 
@@ -39,7 +39,6 @@ class FBX_loader	:	public ILoader
 private:
 	FbxManager*			fbx_manager;
 	FbxIOSettings*		fbx_IOsettings;
-	Model3DFromFile*	cur_model;		///<Na czas wczytywania zapisujemy sobie obiekt, do którego wczytujemy dane
 
 	filesystem::Path	m_filePath;
 
@@ -75,8 +74,8 @@ private:
 	template< typename IndexType >
 	void				CopyIndexBuffer		( const std::vector< std::vector< Index32 > >& indicies, MemoryChunk& destination );
 
-	// Inherited via ILoader
-	virtual bool can_load( const std::wstring & name ) override;
-	virtual LoaderResult load_mesh( Model3DFromFile * new_file_mesh, const std::wstring & name ) override;
+	// Inherited via ILoader @deprecated
+	virtual bool			can_load( const std::wstring & name ) override;
+	virtual LoaderResult	load_mesh( Model3DFromFile * new_file_mesh, const std::wstring & name ) override;
 };
 

@@ -7,7 +7,7 @@
 // Trzeba oddefiniowaæ, je¿eli chce siê korzystaæ z numeric_limits
 #undef max
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 using namespace DirectX;
 

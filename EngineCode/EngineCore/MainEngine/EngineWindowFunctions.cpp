@@ -39,8 +39,8 @@ ATOM Engine::EngineRegisterClass()
 	wcex.lpfnWndProc = WndProc;
 	wcex.cbClsExtra = 0;
 	wcex.cbWndExtra = 0;
-	wcex.hInstance = Context->instanceHandler;
-	wcex.hIcon = LoadIcon( Context->instanceHandler, MAKEINTRESOURCE( IDI_SW_ENGINE ) );
+	wcex.hInstance = (HINSTANCE)Context->instanceHandler;
+	wcex.hIcon = LoadIcon( (HINSTANCE)Context->instanceHandler, MAKEINTRESOURCE( IDI_SW_ENGINE ) );
 	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 	wcex.lpszMenuName = nullptr;
@@ -65,11 +65,11 @@ BOOL Engine::InitInstance( int nCmdShow )
 	if ( Context->fullScreen )
 		Context->windowHandler = CreateWindowEx(NULL, szWindowClass, szTitle, WS_EX_TOPMOST | WS_POPUP,
 										0, 0, Context->windowWidth, Context->windowHeight,
-										NULL, NULL, Context->instanceHandler, NULL);
+										NULL, NULL, (HINSTANCE)Context->instanceHandler, NULL);
 	else
 		Context->windowHandler = CreateWindowEx( NULL, szWindowClass, szTitle, WS_OVERLAPPEDWINDOW^WS_THICKFRAME,
 										CW_USEDEFAULT, CW_USEDEFAULT, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top,
-										NULL, NULL, Context->instanceHandler, NULL);
+										NULL, NULL, (HINSTANCE)Context->instanceHandler, NULL);
 
 	if (!Context->windowHandler)
 	{
@@ -92,13 +92,13 @@ BOOL Engine::InitInstance( int nCmdShow )
 
 void Engine::ShowAppWindow( int showFlags )
 {
-	ShowWindow( Context->windowHandler, showFlags );
-	UpdateWindow( Context->windowHandler );
+	ShowWindow( (HWND)Context->windowHandler, showFlags );
+	UpdateWindow( (HWND)Context->windowHandler );
 }
 
 void Engine::HideAppWindow()
 {
-	ShowWindow( Context->windowHandler, SW_HIDE );
+	ShowWindow( (HWND)Context->windowHandler, SW_HIDE );
 }
 
 //void Engine::HideWindow()

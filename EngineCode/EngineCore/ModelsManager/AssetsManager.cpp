@@ -1,3 +1,10 @@
+/**
+@file AssetsManager.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
 #include "AssetsManager.h"
 
@@ -6,13 +13,13 @@
 #include "Loaders/Texture/TextureLoader.h"
 #include "Loaders/Material/SWMat/SWMaterialLoader.h"
 
-#include "Common/ObjectDeleter.h"
-#include "Common/MacrosSwitches.h"
-#include "GraphicAPI/ResourcesFactory.h"
+#include "swCommonLib/Common/ObjectDeleter.h"
+#include "EngineCore/MainEngine/MacrosSwitches.h"
+#include "swGraphicAPI/Resources/ResourcesFactory.h"
 
-#include "Common/Converters.h"
+#include "swCommonLib/Common/Converters.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 using namespace DirectX;
 

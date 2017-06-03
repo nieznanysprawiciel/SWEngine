@@ -7,8 +7,8 @@
 
 #include "Config.h"
 
-#include "Common/Serialization/Deserializer.h"
-#include "Common/Serialization/Serializer.h"
+#include "swCommonLib/Serialization/Deserializer.h"
+#include "swCommonLib/Serialization/Serializer.h"
 
 
 // ================================ //

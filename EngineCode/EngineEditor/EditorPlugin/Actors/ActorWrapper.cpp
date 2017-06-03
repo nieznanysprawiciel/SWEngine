@@ -1,10 +1,10 @@
 #pragma warning(disable : 4561)	// DirectXMath converting fastcall to stdcall
 #include "ActorWrapper.h"
-#include "Common/RTTR.h"
+#include "swCommonLib/Common/RTTR.h"
 
 #include "EngineCore/MainEngine/EngineInterface.h"
 #include "EngineCore/Actors/ActorObjects.h"
-#include "Common/EngineObject.h"
+#include "swCommonLib/Common/EngineObject.h"
 
 #include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/Actors/BasicActors/StaticActor.h"

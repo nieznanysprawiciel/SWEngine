@@ -201,7 +201,7 @@ bool Engine::InitGraphicAPI( int width, int height, bool fullScreen )
 /**@brief Inicjuje urz¹dzenie wejœcia. Domyœlnie u¿ywany jest @ref DirectInputModule.*/
 bool Engine::InitInputModule		()
 {
-	sw::input::IInput* newModule = sw::InputFactory::CreateDirectInput();
+	sw::input::IInput* newModule = sw::input::InputFactory::CreateDirectInput();
 
 	sw::input::InputInitInfo info;
 	info.AppInstance = Context->instanceHandler;
@@ -457,16 +457,16 @@ void			Engine::SendEvent( Event* newEvent )
 }
 
 
-HINSTANCE		Engine::GetInstanceHandler()								{ return Context->instanceHandler; }
-HWND			Engine::GetWindowHandler()									{ return Context->windowHandler; }
+AppInstanceHandle		Engine::GetInstanceHandler()								{ return Context->instanceHandler; }
+WindowHandle			Engine::GetWindowHandler()									{ return Context->windowHandler; }
 
-int				Engine::GetWindowWidth()									{ return Context->windowWidth; }
-int				Engine::GetWindowHeight()									{ return Context->windowHeight; }
-void			Engine::EnableInput( bool val )								{ Context->ui_engine->EnableInput( val ); }
+int						Engine::GetWindowWidth()									{ return Context->windowWidth; }
+int						Engine::GetWindowHeight()									{ return Context->windowHeight; }
+void					Engine::EnableInput( bool val )								{ Context->ui_engine->EnableInput( val ); }
 
-IInput*			Engine::ChangeInputModule( IInput* newModule )				{ return Context->ui_engine->ChangeInputModule( newModule ); }
+IInput*					Engine::ChangeInputModule( IInput* newModule )				{ return Context->ui_engine->ChangeInputModule( newModule ); }
 
-AssetsManager * Engine::GetAssetsManager()									{ return Context->modelsManager; }
+AssetsManager *			Engine::GetAssetsManager()									{ return Context->modelsManager; }
 
 /**@brief Funkcja wczytuj¹ca startowy level do silnika. Najczêœciej na tym etapie wczytuje siê tylko menu,
 oraz wszytkie elementy, które s¹ przydatne na ka¿dym etapie gry.

@@ -1,10 +1,10 @@
-#include "EngineCore/stdafx.h"
 /**@file DisplayEngine.cpp
 @author nieznanysprawiciel
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 
 @brief Plik zawiera definicje metod klasy DispalyEngine.
 */
+#include "EngineCore/stdafx.h"
 
 #include "DisplayEngine.h"
 
@@ -15,11 +15,11 @@
 
 #include "EngineCore/EngineHelpers/PerformanceCheck.h"
 #include "EngineCore/EngineHelpers/ActorsCommonFunctions.h"
-#include "GraphicAPI/ResourcesFactory.h"
+#include "swGraphicAPI/Resources/ResourcesFactory.h"
 
 #include "EngineCore/DisplayEngine/RenderPasses/RenderingHelpers.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 

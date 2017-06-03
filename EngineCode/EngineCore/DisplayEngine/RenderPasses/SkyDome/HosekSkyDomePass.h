@@ -6,7 +6,7 @@
 */
 
 #include "EngineCore/DisplayEngine/RenderPasses/IRenderPass.h"
-#include "EngineCore/Features/SkyDome.h"
+#include "EngineCore/Actors/Extended/SkyDome.h"
 
 
 /**@brief */

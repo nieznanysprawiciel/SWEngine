@@ -149,8 +149,8 @@ public:
 
 	///@name Parametry okna
 	///@{
-	HINSTANCE				GetInstanceHandler();
-	HWND					GetWindowHandler();
+	AppInstanceHandle		GetInstanceHandler();
+	WindowHandle			GetWindowHandler();
 
 	int						GetWindowWidth();
 	int						GetWindowHeight();

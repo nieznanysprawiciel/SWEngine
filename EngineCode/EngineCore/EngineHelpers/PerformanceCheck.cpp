@@ -15,7 +15,7 @@
 ///<@todo Don't use windows.h here. Build platform specific libraries.
 #include <Windows.h>
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 #ifdef PERFORMANCE_CHECK

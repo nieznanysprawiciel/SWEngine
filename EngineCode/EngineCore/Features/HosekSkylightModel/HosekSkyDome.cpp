@@ -65,26 +65,6 @@ void HosekSkyDome::InitSkyDome( XMVECTOR sun_direction,
 	int vert_buff_elements = (vertical_vert - 2) * horizontal_vert + 2;		// W pionie bêdzie vertical-2 pasów wierzcho³ków + musimy dopisaæ dwa wierzcho³ki skrajne
 	int ind_buff_elements = 2 * 3 * (vertical_vert - 2) * horizontal_vert;	// Liczba pasów czworok¹tów, razy dwa (¿eby zrobiæ trój¹ty) razy 3, ¿eby przeliczyæ na liczbê wierzcho³ków
 
-	//set_index_buffer( L"HosekWilkieModel_index_buffer", m_backIdxBuffer, sizeof(VERT_INDEX), ind_buff_elements );
-	//set_vertex_buffer( L"HosekWilkieModel_vertex_buffer", m_backVertexBuffer, sizeof(SkyDomeVertex), vert_buff_elements );
-	//display_data.mesh->use_index_buf = true;
-	//display_data.mesh->buffer_offset = 0;
-	//display_data.mesh->base_vertex = 0;
-	//display_data.mesh->vertices_count = ind_buff_elements;
-
-	//// Kompilujemy shadery, jednoczeœnie dodaje siê layout
-	//set_vertex_shader( L"shaders\\HosekSkyDome\\HosekSkyDome.fx", DefaultAssets::DEFAULT_VERTEX_SHADER_ENTRY, DefaultAssets::LAYOUT_POSITION_COLOR );
-	//set_pixel_shader( L"shaders\\HosekSkyDome\\HosekSkyDome.fx", DefaultAssets::DEFAULT_PIXEL_SHADER_ENTRY );
-
-	//// Materia³ jest niepotrzebny, ale nie mo¿e go nie byæ
-	//MaterialObject material;
-	//material.SetNullMaterial();
-	//set_material( &material, DefaultAssets::DEFAULT_MATERIAL_STRING );
-
-	//// Tutaj wype³niamy kopu³ê kolorem
-	//UpdateSkyDome( sun_direction, turbidity, albedo, sky_intensity, sun_intensity );
-
-
 	auto engine = GetEngineInterface();
 
 	ShaderInputLayout* layout;
@@ -95,7 +75,7 @@ void HosekSkyDome::InitSkyDome( XMVECTOR sun_direction,
 
 	MeshCreateData meshInfo;
 	meshInfo.VertexBuffer = engine->Assets.Buffers.CreateVertexBufferSync( L"::HosekWilkieModel_VertexBuffer", (uint8*)m_backVertexBuffer, vert_buff_elements, sizeof( SkyDomeVertex ) );
-	meshInfo.IndexBuffer = engine->Assets.Buffers.CreateVertexBufferSync( L"::HosekWilkieModel_IndexBuffer", (uint8*)m_backIdxBuffer, ind_buff_elements, sizeof( VERT_INDEX ) );
+	meshInfo.IndexBuffer = engine->Assets.Buffers.CreateVertexBufferSync( L"::HosekWilkieModel_IndexBuffer", (uint8*)m_backIdxBuffer, ind_buff_elements, sizeof( Index32 ) );
 	meshInfo.VertexLayout = layout;
 
 	meshInfo.MeshSegments.resize( 1 );
@@ -175,28 +155,28 @@ Jest to sfera z punktami wyró¿nionymi na górze i dole. (nie jest to geosfera)
 void HosekSkyDome::GenerateSphere( int vertical, int horizontal, float radius )
 {
 	// Zak³adamy, ¿e tablice jeszcze nie istania³y. Obliczamy ile potrzeba zaalokowaæ
-	int vert_buff_elements = (vertical - 2) * horizontal + 2;	// W pionie bêdzie vertical-2 pasów wierzcho³ków + musimy dopisaæ dwa wierzcho³ki skrajne
-	int ind_buff_elements = 2 * 3 * (vertical - 2) * horizontal;	// Liczba pasów czworok¹tów, razy dwa (¿eby zrobiæ trój¹ty) razy 3, ¿eby przeliczyæ na liczbê wierzcho³ków
+	int vert_buff_elements = ( vertical - 2 ) * horizontal + 2;	// W pionie bêdzie vertical-2 pasów wierzcho³ków + musimy dopisaæ dwa wierzcho³ki skrajne
+	int ind_buff_elements = 2 * 3 * ( vertical - 2 ) * horizontal;	// Liczba pasów czworok¹tów, razy dwa (¿eby zrobiæ trój¹ty) razy 3, ¿eby przeliczyæ na liczbê wierzcho³ków
 	m_verticiesCount = vert_buff_elements;		// Zapisujemy wartoœæ na sta³ê
-	
-	m_backVertexBuffer = new SkyDomeVertex[vert_buff_elements];
-	m_backIdxBuffer = new VERT_INDEX[ind_buff_elements];
+
+	m_backVertexBuffer = new SkyDomeVertex[ vert_buff_elements ];
+	m_backIdxBuffer = new Index32[ ind_buff_elements ];
 
 	float vert_angle = DirectX::XM_PI / (float)horizontal;	// Obliczamy przesuniêcie k¹towe w pionie
 	float hor_angle = DirectX::XM_2PI / (float)vertical;	// Obliczamy przesuniêcie k¹towe w poziomie
 
 
 	// Zaczynamy od wierzcho³ka górnego i idziemy w dó³
-	m_backVertexBuffer[0] = { XMFLOAT3( 0.0, radius, 0.0 ), XMFLOAT3( 0.0, 0.0, 0.0 ) };
+	m_backVertexBuffer[ 0 ] ={ XMFLOAT3( 0.0, radius, 0.0 ), XMFLOAT3( 0.0, 0.0, 0.0 ) };
 
 	unsigned int cur_ptr = 1;
-	for ( int i = 1; i < vertical - 1; ++i )
+	for( int i = 1; i < vertical - 1; ++i )
 	{
 		float beta = vert_angle * i;		// K¹t w p³aszczyŸnie poziomej
 		float r = radius * sin( beta );		// Promieñ zrzutowany na p³aszczyznê poziom¹
 		float y = radius * cos( beta );		// Wspó³rzêdna y wektora
 
-		for ( int j = 0; j < horizontal; ++j )
+		for( int j = 0; j < horizontal; ++j )
 		{
 			float alfa = hor_angle * j;		// K¹t w p³aszczyŸnie pionowej
 

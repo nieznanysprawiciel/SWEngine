@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GraphicAPI/MeshResources.h"
+#include "swGraphicAPI/Resources/MeshResources.h"
 #include "EngineCore/ModelsManager/Assets/Materials/MaterialAsset.h"
 
 #include "fbxsdk.h"

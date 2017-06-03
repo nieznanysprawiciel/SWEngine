@@ -5,7 +5,7 @@
 #include "EngineEditor/EditorPlugin/EnginePointerProvider.h"
 #include "EngineCore/Actors/ActorsManager.h"
 
-#include "Common/Serialization/Serializer.h"
+#include "swCommonLib/Serialization/Serializer.h"
 
 
 #include <msclr/marshal_cppstd.h>

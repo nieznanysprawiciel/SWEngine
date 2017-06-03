@@ -12,6 +12,8 @@
 
 #include "swCommonLib/Common/MemoryLeaks.h"
 
+/// @todo Delete this in future and all references to windows.h too
+#undef RegisterClass
 
 RTTR_REGISTRATION
 {

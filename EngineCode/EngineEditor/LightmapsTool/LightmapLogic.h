@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Common/SWEngineInclude.h"
+#include "EngineCOre/MainEngine/SWEngineInclude.h"
 #include "EngineEditor/LightmapsTool/ExchangeDataStructs.h"
 #include "EngineEditor/LightmapsTool/LightmapWorker.h"
 
