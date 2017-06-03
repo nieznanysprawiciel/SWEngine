@@ -385,83 +385,88 @@ void DisplayEngine::DisplaySkyBox( float time_interval, float time_lag )
 	if ( !sky_dome )
 		return;
 
-	//register IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
+	register IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
 
 
-	//auto mesh = sky_dome->GetModel();
+	auto mesh = sky_dome->GetModel();
 
-	//assert( mesh->GetSegmentsCount() > 0 );
-	//auto segment = mesh->GetSegment( 0 );
+	assert( mesh->GetSegmentsCount() > 0 );
+	auto segment = mesh->GetSegment( 0 );
 
-	//// Ustawiamy format wierzcho³ków
-	//renderer->IASetInputLayout( mesh->GetLayoutRawPtr() );
+	// Ustawiamy format wierzcho³ków
+	renderer->IASetInputLayout( mesh->GetLayoutRawPtr() );
 
-	//// Aktualizuje bufor wierzcho³ków. Wstawiane s¹ nowe kolory.
-	//// Powinna byæ to raczej rzadka czynnoœæ, poniewa¿ aktualizacja jest kosztowna czasowo
-	////if ( sky_dome->update_vertex_buffer )
-	////	sky_dome->UpdateBuffers( renderer );
+	// Aktualizuje bufor wierzcho³ków. Wstawiane s¹ nowe kolory.
+	// Powinna byæ to raczej rzadka czynnoœæ, poniewa¿ aktualizacja jest kosztowna czasowo
+	if( sky_dome->NeedsBufferUpdate() )
+		sky_dome->UpdateBuffers( renderer );
 
-	//// Ustawiamy bufor wierzcho³ków
-	//if ( renderer->SetVertexBuffer( mesh->GetVertexBufferRawPtr() ) )
-	//	return;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
-	//// Ustawiamy bufor indeksów, je¿eli istnieje
-	//renderer->SetIndexBuffer( mesh->GetIndexBufferRawPtr() );
-
-
-	////ModelPart* model = sky_dome->get_model_part();
-
-	//// Wyliczamy macierz transformacji
-	//XMVECTOR quaternion = m_currentCamera->GetInterpolatedOrientation( time_lag );
-	//inverse_camera_orientation( quaternion );
-
-	//XMMATRIX rotationMatrix = XMMatrixRotationQuaternion( quaternion );
-
-	//// Wype³niamy bufor sta³ych
-	//TransformConstants meshTransformData;
-	//XMStoreFloat4x4( &meshTransformData.WorldMatrix, XMMatrixTranspose( rotationMatrix ) );
-	//XMStoreFloat4( &meshTransformData.MeshScale, XMVectorSetW( XMVectorReplicate( m_currentCamera->GetFarPlane() ), 1.0f ) );
+	// Ustawiamy bufor wierzcho³ków
+	if ( renderer->SetVertexBuffer( mesh->GetVertexBufferRawPtr() ) )
+		return;	// Je¿eli nie ma bufora wierzcho³ków, to idziemy do nastêpnego mesha
+	// Ustawiamy bufor indeksów, je¿eli istnieje
+	renderer->SetIndexBuffer( mesh->GetIndexBufferRawPtr() );
 
 
-	////// Przepisujemy materia³
-	////ConstantPerMesh materialData;
-	////CopyMaterial( &materialData, model );
+	//ModelPart* model = sky_dome->get_model_part();
 
-	//// Ustawiamy shadery
-	////renderer->SetShaders( *model );
-	//
-	//SetShaderStateCommand cmd;
-	//cmd.VertexShader = segment->Material->GetVertexShader().Ptr();
-	//cmd.PixelShader = segment->Material->GetPixelShader().Ptr();
+	// Wyliczamy macierz transformacji
+	XMVECTOR quaternion = m_currentCamera->GetInterpolatedOrientation( time_lag );
+	inverse_camera_orientation( quaternion );
 
-	////renderer->
+	XMMATRIX rotationMatrix = XMMatrixRotationQuaternion( quaternion );
 
-	//// Aktualizujemy bufory sta³ych
-	//renderer->UpdateSubresource( m_transformConstants.Ptr(), &meshTransformData );
-	//renderer->VSSetConstantBuffers( TransformBufferBindingPoint, m_transformConstants.Ptr() );
+	// Wype³niamy bufor sta³ych
+	TransformConstants meshTransformData;
+	XMStoreFloat4x4( &meshTransformData.WorldMatrix, XMMatrixTranspose( rotationMatrix ) );
+	XMStoreFloat4( &meshTransformData.MeshScale, XMVectorSetW( XMVectorReplicate( m_currentCamera->GetFarPlane() ), 1.0f ) );
+
+
+	//// Przepisujemy materia³
+	//ConstantPerMesh materialData;
+	//CopyMaterial( &materialData, model );
+
+	// Ustawiamy shadery
+	//renderer->SetShaders( *model );
+	
+	SetShaderStateCommand cmd;
+	cmd.VertexShader = segment->Material->GetVertexShader().Ptr();
+	cmd.PixelShader = segment->Material->GetPixelShader().Ptr();
+
+	for( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
+	{
+		cmd.Textures[ i ] = nullptr;
+		cmd.BindToShader[ i ] = 0;
+	}
+
+	renderer->SetShaderState( cmd );
+
+	// Aktualizujemy bufory sta³ych
+	renderer->UpdateSubresource( m_transformConstants.Ptr(), &meshTransformData );
+	renderer->VSSetConstantBuffers( TransformBufferBindingPoint, m_transformConstants.Ptr() );
 
 	//renderer->UpdateSubresource( m_materialConstants.Ptr(), &materialData );
 	//renderer->PSSetConstantBuffers( MaterialBufferBindingPoint, m_materialConstants.Ptr() );
 
 
 
-	////BufferObject* const_buffer = sky_dome->get_constant_buffer();
-	////if( const_buffer )
-	////{
-	////	renderer->VSSetConstantBuffers( 3, const_buffer );
-	////	renderer->PSSetConstantBuffers( 3, const_buffer );
-	////}
+	//BufferObject* const_buffer = sky_dome->get_constant_buffer();
+	//if( const_buffer )
+	//{
+	//	renderer->VSSetConstantBuffers( 3, const_buffer );
+	//	renderer->PSSetConstantBuffers( 3, const_buffer );
+	//}
 
-	//// Ustawiamy tekstury
-	////renderer->SetTextures( *model );
+	// Ustawiamy tekstury
+	//renderer->SetTextures( *model );
 
-	////renderer->DepthBufferEnable( false );		///< Wy³¹czamy z-bufor. @todo To musi robiæ renderer.
+	//renderer->DepthBufferEnable( false );		///< Wy³¹czamy z-bufor. @todo To musi robiæ renderer.
 
-	//// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
-	//const MeshPartObject* part = model->mesh;
-	//if ( part->use_index_buf )
-	//	renderer->DrawIndexed( part->vertices_count, part->buffer_offset, part->base_vertex );
-	//else // Tryb bezpoœredni
-	//	renderer->Draw( part->vertices_count, part->buffer_offset );
+	// Teraz renderujemy. Wybieramy albo tryb indeksowany, albo bezpoœredni.
+	if ( mesh->GetIndexBufferRawPtr() )
+		renderer->DrawIndexed( segment->NumVertices, segment->BufferOffset, segment->BaseVertex );
+	else // Tryb bezpoœredni
+		renderer->Draw( segment->NumVertices, segment->BufferOffset );
 
 	//renderer->DepthBufferEnable( true );		///< W³¹czamy z-bufor spowrotem. @todo To musi robiæ renderer.
 

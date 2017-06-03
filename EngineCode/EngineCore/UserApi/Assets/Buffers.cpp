@@ -18,7 +18,8 @@ ResourcePtr< BufferObject >						Buffers::CreateVertexBufferSync		( const std::w
 	return Context->modelsManager->CreateVertexBuffer( name, data.GetMemory< void >(), data.GetMemorySize() / vertCount, vertCount );
 }
 
-/**@brief Creates vertex buffer.*/
+/**@brief Creates vertex buffer.
+@todo Log warning when vertexSize is to big. In many cases it's mean that someone changed vertCount and vertexSize.*/
 ResourcePtr< BufferObject >						Buffers::CreateVertexBufferSync		( const std::wstring& name, uint8* data, uint32 vertCount, uint32 vertexSize )
 {
 	return Context->modelsManager->CreateVertexBuffer( name, data, vertexSize, vertCount );

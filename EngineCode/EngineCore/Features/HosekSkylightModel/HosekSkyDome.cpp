@@ -94,8 +94,8 @@ void HosekSkyDome::InitSkyDome( XMVECTOR sun_direction,
 	materialInfo.PixelShader = engine->Assets.Shaders.LoadPixelShaderSync( L"shaders\\HosekSkyDome\\HosekSkyDome.fx" );
 
 	MeshCreateData meshInfo;
-	meshInfo.VertexBuffer = engine->Assets.Buffers.CreateVertexBufferSync( L"::HosekWilkieModel_VertexBuffer", (uint8*)m_backVertexBuffer, sizeof( SkyDomeVertex ), vert_buff_elements );
-	meshInfo.IndexBuffer = engine->Assets.Buffers.CreateVertexBufferSync( L"::HosekWilkieModel_IndexBuffer", (uint8*)m_backIdxBuffer, sizeof( VERT_INDEX ), ind_buff_elements );
+	meshInfo.VertexBuffer = engine->Assets.Buffers.CreateVertexBufferSync( L"::HosekWilkieModel_VertexBuffer", (uint8*)m_backVertexBuffer, vert_buff_elements, sizeof( SkyDomeVertex ) );
+	meshInfo.IndexBuffer = engine->Assets.Buffers.CreateVertexBufferSync( L"::HosekWilkieModel_IndexBuffer", (uint8*)m_backIdxBuffer, ind_buff_elements, sizeof( VERT_INDEX ) );
 	meshInfo.VertexLayout = layout;
 
 	meshInfo.MeshSegments.resize( 1 );
@@ -163,7 +163,7 @@ void HosekSkyDome::UpdateSkyDome( XMVECTOR sun_direction,
 		//m_backVertexBuffer[i].color = XMFLOAT3( 1.0f, 0.0f, 0.0f );	// Test
 	}
 
-	//update_vertex_buffer = true;		// DisplayEngine zaktualizuje bufor
+	RequestUpdate();		// DisplayEngine zaktualizuje bufor
 }
 
 /**@brief Funkcja generuje w m_backVertexBuffer i m_backIdxBuffer sferê dla kpu³y nieba.
@@ -273,6 +273,9 @@ Nastêpnie DisplayEngine odczyta zmienn¹ update_vertex_buffer i wywo³a funkcjê Up
 Funkcja wirtualna, przeczytaj opis funkcji SkyDome::UpdateBuffers.*/
 void HosekSkyDome::UpdateBuffers( IRenderer* renderer )
 {
-	//renderer->UpdateSubresource( vertex_buffer, m_backVertexBuffer );
-	//update_vertex_buffer = false;
+	auto mesh = GetModel();
+
+	renderer->UpdateSubresource( mesh->GetVertexBufferRawPtr(), m_backVertexBuffer );
+
+	Updated();
 }

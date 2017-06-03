@@ -320,24 +320,27 @@ ResourcePtr< MeshAsset >		AssetsManager::CreateMesh		( const std::wstring& name,
 material not nullptr in this case.*/
 ResourcePtr< MaterialAsset >	AssetsManager::CreateMaterial	( const std::wstring& name, MaterialInitData&& initData )
 {
-	if( !initData.ShadingData )
-		return nullptr;
+	ResourcePtr< BufferObject > materialBuffer;
 
-	ConstantBufferInitData bufferData;
-	bufferData.DataType = initData.ShadingData->GetShadingModelType();
-	bufferData.ElementSize = (uint32)initData.ShadingData->GetShadingModelSize();
-	bufferData.Data = initData.ShadingData->GetShadingModelData();
-
-	// Constant buffers must be 16 bytes aligned.
-	if( bufferData.ElementSize % 16 != 0 )
+	if( initData.ShadingData )
 	{
-		///@todo Logging
-		return nullptr;
-	}
 
-	auto materialBuffer = CreateConstantsBuffer( name, bufferData );
-	if( !materialBuffer )
-		return nullptr;
+		ConstantBufferInitData bufferData;
+		bufferData.DataType = initData.ShadingData->GetShadingModelType();
+		bufferData.ElementSize = (uint32)initData.ShadingData->GetShadingModelSize();
+		bufferData.Data = initData.ShadingData->GetShadingModelData();
+
+		// Constant buffers must be 16 bytes aligned.
+		if( bufferData.ElementSize % 16 != 0 )
+		{
+			///@todo Logging
+			return nullptr;
+		}
+
+		materialBuffer = CreateConstantsBuffer( name, bufferData );
+		if( !materialBuffer )
+			return nullptr;
+	}
 
 	MaterialCreateData data;
 	data.Data = std::move( initData );
