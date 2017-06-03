@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Common/SWEngineInclude.h"
+#include "EngineCore/MainEngine/SWEngineInclude.h"
 
 /**@defgroup TestEngine
 @ingroup ModulesStructure

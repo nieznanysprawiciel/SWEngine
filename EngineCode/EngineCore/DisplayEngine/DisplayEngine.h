@@ -10,7 +10,7 @@
 #include "swGraphicAPI/Resources/SwapChain.h"
 
 #include "EngineCore/Actors/ActorObjects.h"
-#include "EngineCore/Features/SkyDome.h"
+#include "EngineCore/Actors/Extended/SkyDome.h"
 #include "EngineCore/DisplayEngine/RenderPass.h"		///@deprecated
 #include "EngineCore/DisplayEngine/RenderPasses/RenderPassFactory.h"
 
@@ -132,15 +132,8 @@ private:
 	void			ProcessMainPass			( float timeInterval, float timeLag );
 
 	void			RenderFromQueue			( float timeInterval, float timeLag );
-
-	// Funkcje pomocnicze do renderingu
-	void			SetTextures				( const ModelPart& model );
-	void			SetIndexBuffer			( BufferObject* buffer );
-	bool			SetVertexBuffer			( BufferObject* buffer );
-	void			DepthBufferEnable		( bool state );
 	RenderContext	CreateRenderContext		( float timeInterval, float timeLag );
-public:
-	void CopyMaterial						( ConstantPerMesh* shader_data_per_mesh, const ModelPart* model );
+
 };
 
 

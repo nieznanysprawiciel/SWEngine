@@ -7,7 +7,7 @@
 
 
 #include "EngineCore/UserApi/ApiGroup.h"
-#include "EngineCore/UserApi/Assets/Models.h"
+#include "EngineCore/UserApi/Assets/Meshes.h"
 #include "EngineCore/UserApi/Assets/Animations.h"
 #include "EngineCore/UserApi/Assets/Shaders.h"
 #include "EngineCore/UserApi/Assets/Textures.h"
@@ -35,7 +35,7 @@ namespace Api
 		AssetsApi() = default;
 		~AssetsApi() = default;
 	public:
-		Assets::Models			Models;
+		Assets::Meshes			Meshes;
 		Assets::Animations		Animations;
 		Assets::Shaders			Shaders;
 		Assets::Textures		Textures;

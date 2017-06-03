@@ -13,7 +13,6 @@
 #include "EngineCore/MainEngine/Engine.h"
 #include "Common/MacrosSwitches.h"
 #include "EngineCore/Actors/ActorObjects.h"
-#include "EngineCore/ModelsManager/Model3DFromFile.h"
 
 #include "EngineCore/ControllersEngine/BaseClasses/IController.h"
 #include "EngineCore/ControllersEngine/BasicControllers/Editor/GizmoController.h"
@@ -290,7 +289,7 @@ ObservableCollection< ResourceWrapper^ >^			EngineWrapper::CreateMaterialsList()
 /**@brief */
 ObservableCollection< ResourceWrapper^ >^			EngineWrapper::CreateMeshesList()
 {
-	auto resourcesList = m_engine->Assets.Models.List();
+	auto resourcesList = m_engine->Assets.Meshes.List();
 	return CopyResourceList( resourcesList );
 }
 

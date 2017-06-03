@@ -57,8 +57,8 @@ int LightmapLogic::LoadLevel					()
 	//// Przygotowanie sceny
 	//const wchar_t room1ModelString[] = L"levels/Room1/Room1.FBX";
 	//const wchar_t markerModelString[] = L"levels/Room1/Marker.FBX";
-	//Model3DFromFile* room1Model = m_engine->Assets.Models.LoadSync( room1ModelString );
-	//Model3DFromFile* markerModel = m_engine->Assets.Models.LoadSync( markerModelString );
+	//Model3DFromFile* room1Model = m_engine->Assets.Meshes.LoadSync( room1ModelString );
+	//Model3DFromFile* markerModel = m_engine->Assets.Meshes.LoadSync( markerModelString );
 
 	//StaticActor* room1Object = new StaticActor;
 	//room1Object->Teleport( DirectX::XMVectorSet( 0.0, -300.0, -2000.0, 0.0 ) );

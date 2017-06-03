@@ -8,8 +8,6 @@
 #include "EngineCore/Actors/BasicActors/StaticActor.h"
 #include "EngineCore/ControllersEngine/BaseClasses/BaseInputController.h"
 
-#include "EngineCore/ModelsManager/Model3DFromFile.h"
-
 
 /**@brief Kontroler u¿ywany przez edytor do przesuwania obiektów.
 

@@ -55,11 +55,12 @@ struct PS_INPUT
 //--------------------------------------------------------------------------------------
 PS_INPUT vertex_shader( VS_INPUT input )
 {
-    PS_INPUT output = (PS_INPUT)0;
+	PS_INPUT output = (PS_INPUT)0;
 	output.Pos = input.Pos * MeshScale;
-    output.Pos = mul( output.Pos, World );
-    output.Pos = mul( output.Pos, ProjectionMatrix );
-    output.Color = input.Color;
+	output.Pos = mul( output.Pos, World );
+	output.Pos = mul( output.Pos, ProjectionMatrix );
+	//output.Pos.z = 1.0;//output.Pos.w;		// After division by w this should be 1.0f.
+	output.Color = input.Color;
 	
     return output;
 }

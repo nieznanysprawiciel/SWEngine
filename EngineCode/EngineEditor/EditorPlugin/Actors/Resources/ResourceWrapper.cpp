@@ -2,7 +2,8 @@
 
 
 #include "GraphicAPI/MeshResources.h"
-#include "EngineCore/ModelsManager/Model3DFromFile.h"
+#include "EngineCore/ModelsManager/Assets/Meshes/MeshAsset.h"
+#include "EngineCore/ModelsManager/Assets/Materials/MaterialAsset.h"
 
 namespace EditorPlugin
 {
@@ -15,13 +16,13 @@ ResourceWrapper::ResourceWrapper( ResourceObject* resource )
 {
 	auto type = resource->GetType();
 
-	if( type.is_derived_from< Model3DFromFile >() )
+	if( type.is_derived_from< MeshAsset >() )
 		m_resourceType = ResourcePropertyType::Mesh;
 	else if( type.is_derived_from< BufferObject >() )
 		m_resourceType = ResourcePropertyType::Buffer;
 	else if( type.is_derived_from< TextureObject >() )
 		m_resourceType = ResourcePropertyType::Texture;
-	else if( type.is_derived_from< MaterialObject >() )
+	else if( type.is_derived_from< MaterialAsset >() )
 		m_resourceType = ResourcePropertyType::Material;
 	else if( type.is_derived_from< IShader >() )
 		m_resourceType = ResourcePropertyType::Shader;

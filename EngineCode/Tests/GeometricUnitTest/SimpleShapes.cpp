@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "swCommonLib/External/Catch/catch.hpp"
 
 #include "Tools/Geometric/Processors/Converter.h"
 

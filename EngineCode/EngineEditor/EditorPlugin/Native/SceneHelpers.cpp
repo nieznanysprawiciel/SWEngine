@@ -4,7 +4,7 @@
 #include "SceneHelpers.h"
 
 
-#include "Common/MacrosSwitches.h"
+#include "EngineCore/MainEngine/MacrosSwitches.h"
 
 #include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/Actors/ActorObjects.h"

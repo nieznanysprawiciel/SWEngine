@@ -8,13 +8,13 @@
 
 #include "EngineContext.h"
 #include "EngineCore/MainEngine/Engine.h"
-#include "GraphicAPI/ResourcesFactory.h"
+#include "swGraphicAPI/Resources/ResourcesFactory.h"
 
 #include "Initializers/Config.h"
 
 #include <mutex>
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 using namespace DirectX;
 
@@ -42,7 +42,7 @@ EngineInterface::~EngineInterface()
 #include "EngineCore/ModelsManager/Assets/Meshes/MeshAsset.h"
 #include "EngineCore/ModelsManager/Assets/Materials/MaterialAsset.h"
 #include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
-#include "Common/System/Path.h"
+#include "swCommonLib/System/Path.h"
 
 
 
@@ -88,8 +88,8 @@ void		Engine::SetSkydome()
 	double albedo[3] = { 0.8, 0.8, 0.8 };
 	double turbidity = 4;
 	XMVECTOR sunDir = XMVectorSet( -0.2f, 0.6f, 0.6f, 1.0f );
-	HosekSkyDome* skyDome = new HosekSkyDome( Context->modelsManager );
-	skyDome->init_sky_dome( sunDir, turbidity, albedo, 101, 101, 100, 5.0 );
+	HosekSkyDome* skyDome = new HosekSkyDome();
+	skyDome->InitSkyDome( sunDir, turbidity, albedo, 101, 101, 100, 5.0 );
 	Context->displayEngine->SetSkydome( skyDome );
 
 	sunDir = XMVectorNegate( sunDir );
@@ -113,53 +113,53 @@ void		Engine::SetSkydome()
 #include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
 #include "EngineCore/ModelsManager/Loaders/Material/SWMat/SWMaterialLoader.h"
 
-#include "Common/Serialization/Serializer.h"
-#include "Common/Serialization/SW/EngineSerializationContext.h"
+#include "swCommonLib/Serialization/Serializer.h"
+#include "swCommonLib/Serialization/PropertySerialization/EngineSerializationContext.h"
 
-void Engine::testMaterial( Model3DFromFile* model )
-{
-	auto part = model->get_part( 1 );
-
-	MaterialCreateData init;
-	init.Data.VertexShader = part->vertex_shader;
-	init.Data.PixelShader = part->pixel_shader;
-	init.Data.Textures[ 0 ] = part->GetTexture1();
-
-	// Shading model data
-
-	PhongMaterial phongMaterial;
-	phongMaterial.Diffuse = DirectX::XMFLOAT4( 1.0f, 0.4f, 2.0f, 1.0f );
-	phongMaterial.Ambient = DirectX::XMFLOAT4( 0.0f, 0.4f, 0.0f, 0.0f );
-	phongMaterial.Specular = DirectX::XMFLOAT4( 1.0f, 1.0f, 0.5f, 0.0f );
-	phongMaterial.Emissive = DirectX::XMFLOAT3( 0.0f, 0.01f, 0.0f );
-	phongMaterial.Power = 128.0;
-
-	ShadingModelData< PhongMaterial >* shadingData = new ShadingModelData< PhongMaterial >();
-	shadingData->Data = phongMaterial;
-	init.Data.ShadingData = UPtr< ShadingModelBase >( shadingData );
-
-
-	// Additional buffers.
-	AdditionalBufferInfo addBuff;
-	addBuff.BufferSize = sizeof( PhongMaterial );
-	addBuff.BufferType = TypeID::get< PhongMaterial >();
-	addBuff.ShaderType = ShaderType::PixelShader;
-	
-	init.Data.AdditionalBuffers.push_back( addBuff );
-
-	// Memory leak!!
-	MaterialAsset* newMaterial = new MaterialAsset( L"::Generated", std::move( init ) );
-
-	SWMaterialLoader loader( Context->modelsManager );
-	loader.SaveMaterial( "tylko_do_testow/serialization/materials/materialSerialize.swmat", newMaterial );
-
-	auto mat = loader.LoadMaterial( "tylko_do_testow/serialization/materials/materialDeserialize.swmat" );
-
-
-	//ISerializer ser( std::make_unique< EngineSerializationContext >() );
-	//newMaterial->Serialize( &ser );
-	//ser.SaveFile( "tylko_do_testow/serialization/materialBruteSerialize.swmat", WritingMode::Readable );
-}
+//void Engine::testMaterial( Model3DFromFile* model )
+//{
+//	auto part = model->get_part( 1 );
+//
+//	MaterialCreateData init;
+//	init.Data.VertexShader = part->vertex_shader;
+//	init.Data.PixelShader = part->pixel_shader;
+//	init.Data.Textures[ 0 ] = part->GetTexture1();
+//
+//	// Shading model data
+//
+//	PhongMaterial phongMaterial;
+//	phongMaterial.Diffuse = DirectX::XMFLOAT4( 1.0f, 0.4f, 2.0f, 1.0f );
+//	phongMaterial.Ambient = DirectX::XMFLOAT4( 0.0f, 0.4f, 0.0f, 0.0f );
+//	phongMaterial.Specular = DirectX::XMFLOAT4( 1.0f, 1.0f, 0.5f, 0.0f );
+//	phongMaterial.Emissive = DirectX::XMFLOAT3( 0.0f, 0.01f, 0.0f );
+//	phongMaterial.Power = 128.0;
+//
+//	ShadingModelData< PhongMaterial >* shadingData = new ShadingModelData< PhongMaterial >();
+//	shadingData->Data = phongMaterial;
+//	init.Data.ShadingData = UPtr< ShadingModelBase >( shadingData );
+//
+//
+//	// Additional buffers.
+//	AdditionalBufferInfo addBuff;
+//	addBuff.BufferSize = sizeof( PhongMaterial );
+//	addBuff.BufferType = TypeID::get< PhongMaterial >();
+//	addBuff.ShaderType = ShaderType::PixelShader;
+//	
+//	init.Data.AdditionalBuffers.push_back( addBuff );
+//
+//	// Memory leak!!
+//	MaterialAsset* newMaterial = new MaterialAsset( L"::Generated", std::move( init ) );
+//
+//	SWMaterialLoader loader( Context->modelsManager );
+//	loader.SaveMaterial( "tylko_do_testow/serialization/materials/materialSerialize.swmat", newMaterial );
+//
+//	auto mat = loader.LoadMaterial( "tylko_do_testow/serialization/materials/materialDeserialize.swmat" );
+//
+//
+//	//ISerializer ser( std::make_unique< EngineSerializationContext >() );
+//	//newMaterial->Serialize( &ser );
+//	//ser.SaveFile( "tylko_do_testow/serialization/materialBruteSerialize.swmat", WritingMode::Readable );
+//}
 
 
 /**@brief */
@@ -250,20 +250,20 @@ void		Engine::CreateDefaultScene()
 
 
 	//dodawanie koœcio³a
-	StaticActor* gate = Actors.CreateActor< StaticActor >( GetTypeidName< StaticActor >(), EnableDisplay );
-	position = XMVectorSet( -300.0, 0.0, 500.0, 0.0 );
-	gate->Teleport( position );
+	//StaticActor* gate = Actors.CreateActor< StaticActor >( GetTypeidName< StaticActor >(), EnableDisplay );
+	//position = XMVectorSet( -300.0, 0.0, 500.0, 0.0 );
+	//gate->Teleport( position );
 
-	gate->SetModel( Context->modelsManager->GetMesh( GATE ) );
+	//gate->SetModel( Context->modelsManager->GetMesh( GATE ) );
 
-	for( unsigned int i = 0; i < 100; ++i )
-	{
-		DynamicActor* cloneFighter = Actors.CreateActor< DynamicActor >( "DynamicActor", EnableDisplay );
-		position = XMVectorSet( 15000.0 * cos( ( 2*i*XM_PI ) / 100 ), 0.0, 15000.0 * sin( ( 2*i*XM_PI ) / 100 ), 0.0 );
-		
-		cloneFighter->SetModel( Context->modelsManager->GetMesh( CLONE_FIGHTER ) );
-		cloneFighter->Teleport( position );
-	}
+	//for( unsigned int i = 0; i < 100; ++i )
+	//{
+	//	DynamicActor* cloneFighter = Actors.CreateActor< DynamicActor >( "DynamicActor", EnableDisplay );
+	//	position = XMVectorSet( 15000.0 * cos( ( 2*i*XM_PI ) / 100 ), 0.0, 15000.0 * sin( ( 2*i*XM_PI ) / 100 ), 0.0 );
+	//	
+	//	cloneFighter->SetModel( Context->modelsManager->GetMesh( CLONE_FIGHTER ) );
+	//	cloneFighter->Teleport( position );
+	//}
 
 
 	// Dodawanie gwiezdnego niszczyciela Imperial
@@ -306,9 +306,7 @@ void		Engine::CreateDefaultScene()
 	int mapSize = sizeof( std::map< int, int > );
 	int hashMapSize = sizeof( std::unordered_map< int, int > );
 
-	int model3DFromFileSize = sizeof( Model3DFromFile );
 	int meshAssetSize = sizeof( MeshAsset );
-	int materialObjectSize = sizeof( MaterialObject );
 	int materialInfoSize = sizeof( MaterialInfo );
 	int materialAssetSize = sizeof( MaterialAsset );
 	int phongMaterialSize = sizeof( PhongMaterial );

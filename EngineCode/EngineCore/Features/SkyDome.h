@@ -44,7 +44,7 @@ protected:
 	BufferObject*				vertex_buffer;			///<Bufor wierzcho³ków
 	BufferObject*				index_buffer;			///<Bufor indeksów
 	BufferObject*				constant_buffer;		///<Bufor sta³ych dla shaderów
-	ShaderInputLayout*			layout;					///<Layout wierzcho³ków u¿ywanych przez klasê
+	ShaderInputLayout*	layout;					///<Layout wierzcho³ków u¿ywanych przez klasê
 	ModelPart					display_data;			///<Shadery, tekstury itp.
 
 public:

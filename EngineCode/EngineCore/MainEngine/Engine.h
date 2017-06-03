@@ -7,7 +7,11 @@
 
 #include <Windows.h>		///< @todo Delete in future
 
-#include "Common/MacrosSwitches.h"
+#undef min
+#undef max
+#undef CreateWindow
+
+#include "EngineCore/MainEngine/MacrosSwitches.h"
 
 #include "EngineCore/SW_engine.h"
 #include "EngineCore/MainEngine/EngineInterface.h"

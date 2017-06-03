@@ -31,7 +31,7 @@ Zakoñczona poprawnie powinna zwróciæ wartoœæ 0, w innych wypadkach inn¹.*/
 int EntryPointGamePlay::LoadLevel( )
 {
 	const wchar_t CLONE_FIGHTER[] = L"tylko_do_testow/ARC.FBX";
-	m_engine->Assets.Models.LoadSync( CLONE_FIGHTER );
+	m_engine->Assets.Meshes.LoadSync( CLONE_FIGHTER );
 	
 	m_engine->Actors.RegisterClass< PlayerSignalTest >( GetTypeidName< PlayerSignalTest >(), PlayerSignalTest::Create );
 
@@ -44,11 +44,11 @@ int EntryPointGamePlay::LoadLevel( )
 
 	DirectX::XMVECTOR position1 = DirectX::XMVectorSet( 4000.0, 0.0, 8000.0, 0.0 );
 	actor1->Teleport( position1 );
-	actor1->SetModel( m_engine->Assets.Models.GetSync( CLONE_FIGHTER ) );
+	actor1->SetModel( m_engine->Assets.Meshes.GetSync( CLONE_FIGHTER ) );
 
 	DirectX::XMVECTOR position2 = DirectX::XMVectorSet( 8000.0f, 0.0, 4000.0, 0.0 );
 	actor2->Teleport( position2 );
-	actor2->SetModel( m_engine->Assets.Models.GetSync( CLONE_FIGHTER ) );
+	actor2->SetModel( m_engine->Assets.Meshes.GetSync( CLONE_FIGHTER ) );
 
 	// Events
 	auto layer = m_engine->Input.GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS );

@@ -1,7 +1,7 @@
 #include "EngineObjectWrapper.h"
-#include "Common/RTTR.h"
+#include "swCommonLib/Common/RTTR.h"
 
-#include "Common/EngineObject.h"
+#include "swCommonLib/Common/EngineObject.h"
 
 
 namespace EditorPlugin

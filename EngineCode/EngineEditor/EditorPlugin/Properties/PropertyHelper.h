@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Common/RTTR.h"
-#include "Common/TypesDefinitions.h"
+#include "swCommonLib/Common/RTTR.h"
+#include "swCommonLib/Common/TypesDefinitions.h"
 #include <DirectXMath.h>
 
 class EngineObject;

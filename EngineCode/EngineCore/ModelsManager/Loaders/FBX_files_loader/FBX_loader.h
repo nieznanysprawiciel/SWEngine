@@ -47,24 +47,13 @@ public:
 	FBX_loader( AssetsManager* models_manager );
 	~FBX_loader();
 
-	LoaderResult load_mesh( Model3DFromFile* new_file_mesh, const std::wstring& name ) override;
-	bool can_load( const std::wstring& name ) override;
-
-
 	Nullable< MeshInitData >		LoadMesh	( const filesystem::Path& fileName ) override;
 	bool							CanLoad		( const filesystem::Path& fileName ) override;
 
 private:
-	void		process_node( FbxNode* node );
-	void		process_mesh( FbxNode* node, FbxMesh* mesh, const DirectX::XMFLOAT4X4& transformation );
-	int			process_tree( FbxNode* root_node );
 
 	DirectX::XMFLOAT2	ReadUVs				( FbxMesh* mesh, int control_point, unsigned int vertex_counter );
 	int					ReadMaterialIndex	( FbxMesh* mesh, unsigned int polygon_counter );
-
-	void		CopyMaterial		( MaterialObject& engineMaterial, const FbxSurfaceLambert& FBXmaterial );
-	void		CopyMaterial		( MaterialObject& engineMaterial, const FbxSurfacePhong& FBXmaterial );
-	void		ProcessMaterial		( FbxSurfaceMaterial* FBXmaterial );
 
 private:
 
@@ -85,5 +74,9 @@ private:
 
 	template< typename IndexType >
 	void				CopyIndexBuffer		( const std::vector< std::vector< Index32 > >& indicies, MemoryChunk& destination );
+
+	// Inherited via ILoader
+	virtual bool can_load( const std::wstring & name ) override;
+	virtual LoaderResult load_mesh( Model3DFromFile * new_file_mesh, const std::wstring & name ) override;
 };
 

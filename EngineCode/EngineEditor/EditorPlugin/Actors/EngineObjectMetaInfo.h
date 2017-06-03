@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Common/RTTR.h"
+#include "swCommonLib/Common/RTTR.h"
 
 #include "EngineEditor/EditorPlugin/Properties/PropertyWrapper.h"
 #include "EngineEditor/EditorPlugin/Actors/EngineObjectWrapper.h"
