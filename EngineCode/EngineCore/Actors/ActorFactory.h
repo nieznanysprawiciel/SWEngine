@@ -1,11 +1,10 @@
 #pragma once
-/**@file ActorFactory.h
+/**
+@file ActorFactory.h
 @author nieznanysprawiciel
-@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+@copyright File is part of Sleeping Wombat Libraries.
+*/
 
-@brief Fabryka aktorów.*/
-
-//#include "EngineCore/stdafx.h"
 
 #include "EngineCore/Actors/ActorObjects.h"
 #include "swCommonLib/Common/RTTR.h"
@@ -17,6 +16,11 @@
 
 
 #undef RegisterClass
+
+
+namespace sw
+{
+
 
 class ActorInitializer;
 
@@ -74,14 +78,14 @@ template< typename Type >
 ActorType ActorFactory::RegisterClass( const std::string& name, CreateActorFunction function )
 {
 	auto element = m_classNames.find( name );
-	if ( element != m_classNames.end() )
+	if( element != m_classNames.end() )
 	{
 		assert( false );
 		return element->second;
 	}
 
 	assert( rttr::type::get< Type >().is_derived_from< ActorBase >() );
-	
+
 	auto inserted = m_createFunctions.insert( std::make_pair( rttr::type::get< Type >(), function ) );
 
 	ActorType newActorId = inserted.first->first;
@@ -101,14 +105,14 @@ template< typename Type >
 Type* ActorFactory::CreateActor( const std::string& name )
 {
 	auto index = m_classNames.find( name );
-	if ( index == m_classNames.end() )
+	if( index == m_classNames.end() )
 	{
 		assert( false );
 		return nullptr;
 	}
 
 	ActorBase* newActor = CreateActor< Type >( index->second );
-	return static_cast< Type* >( newActor );
+	return static_cast<Type*>( newActor );
 }
 
 /**@brief Tworzy obiekt aktora o podanym identyfikatorze. Identyfikator mo¿na pobraæ
@@ -124,13 +128,14 @@ Type* ActorFactory::CreateActor( ActorType id )
 {
 	auto function = m_createFunctions.find( id );
 
-	if ( function != m_createFunctions.end() )
+	if( function != m_createFunctions.end() )
 	{
 		ActorBase* newActor = function->second();
-		
-		assert( rttr::rttr_cast< Type* >( newActor ) );
-		return static_cast< Type* >( newActor );
+
+		assert( rttr::rttr_cast<Type*>( newActor ) );
+		return static_cast<Type*>( newActor );
 	}
 	return nullptr;
 }
 
+}	// sw

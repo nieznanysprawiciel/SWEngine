@@ -13,30 +13,33 @@ struct MaterialObject;
 #include <string>
 
 
-namespace Api { namespace Assets {
+namespace sw {
+namespace Api {
+namespace Assets {
 
-	/**@brief Zapewnia dostêp do materia³ów w klasie AssetsManager.
-	@ingroup UserAPI
-	@ingroup AssetsAPI*/
-	class Materials : public ApiGroup
-	{
-	private:
-	protected:
-	public:
-		Materials() = default;
-		~Materials() = default;
+/**@brief Zapewnia dostêp do materia³ów w klasie AssetsManager.
+@ingroup UserAPI
+@ingroup AssetsAPI*/
+class Materials : public ApiGroup
+{
+private:
+protected:
+public:
+	Materials() = default;
+	~Materials() = default;
 
-		/**@brief Returns material only if it was previously loaded.*/
-		ResourcePtr< MaterialAsset >			GetSync					( const std::wstring& name );
+	/**@brief Returns material only if it was previously loaded.*/
+	ResourcePtr< MaterialAsset >			GetSync					( const std::wstring& name );
 
-		/**@brief Creates completely new material.*/
-		ResourcePtr< MaterialAsset >			CreateMaterialSync		( const std::wstring& name, MaterialInitData&& initData );
-		/**@brief Creates completely new material.*/
-		ResourcePtr< MaterialAsset >			CreateMaterialSync		( const std::wstring& name, MaterialCreateData&& initData );
+	/**@brief Creates completely new material.*/
+	ResourcePtr< MaterialAsset >			CreateMaterialSync		( const std::wstring& name, MaterialInitData&& initData );
+	/**@brief Creates completely new material.*/
+	ResourcePtr< MaterialAsset >			CreateMaterialSync		( const std::wstring& name, MaterialCreateData&& initData );
 
-		std::vector< ResourcePtr< MaterialAsset > >		List	();
-	};
+	std::vector< ResourcePtr< MaterialAsset > >		List	();
+};
 
 
 }	// Assets
 }	// Api
+}	// sw

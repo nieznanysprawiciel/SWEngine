@@ -1,7 +1,20 @@
 #pragma once
+/**
+@file ControllerEngine.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
 #include "EngineCore/Actors/ActorObjects.h"
 #include "BaseClasses/IController.h"
+
+
+namespace sw
+{
+
+
 
 class Engine;
 struct IControllersState;
@@ -20,11 +33,11 @@ private:
 
 public:
 	explicit	ControllersEngine				( Engine* parent );
-				~ControllersEngine				();
+	~ControllersEngine				();
 
 	void		ProceedControllersPre			( float timeInterval );
 	void		ProceedControllersPost			( float timeInterval );
-	
+
 	void		SingleThreadedUpdatePhase		( float timeInterval );
 
 	bool		AddPreControlled				( DynamicActor* actor );
@@ -42,3 +55,4 @@ private:
 	void		UpdateGlobalState				( float timeInterval );
 };
 
+}	// sw

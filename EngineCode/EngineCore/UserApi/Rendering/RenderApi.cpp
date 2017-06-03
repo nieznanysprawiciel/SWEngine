@@ -5,6 +5,7 @@
 
 
 
+namespace sw {
 namespace Api
 {
 
@@ -52,3 +53,4 @@ int				RenderingApi::GetWindowHeight()
 
 
 }	// Api
+}	// sw

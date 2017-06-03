@@ -11,6 +11,11 @@
 #include "Assets/Meshes/MeshAsset.h"
 #include "DefaultAssets.h"
 
+
+namespace sw
+{
+
+
 class Engine;
 class ILoader;
 
@@ -71,13 +76,13 @@ private:
 
 public:
 	explicit						AssetsManager( Engine* engine );
-									~AssetsManager();
+	~AssetsManager();
 
-	///@name Shader matching
-	///@detail Functions look for best matching default shaders for texture array.
-	///Textures have same meaning as @ref TextureUse enumaration. If your textures have other meaning
-	///provide your own shaders instead.
-	///@{
+///@name Shader matching
+///@detail Functions look for best matching default shaders for texture array.
+///Textures have same meaning as @ref TextureUse enumaration. If your textures have other meaning
+///provide your own shaders instead.
+///@{
 	VertexShader*					FindBestVertexShader		( TextureObject** textures );
 	PixelShader*					FindBestPixelShader			( TextureObject** textures );
 	GeometryShader*					FindBestGeometryhader		( TextureObject** textures );
@@ -105,8 +110,8 @@ public:
 	ResourcePtr< MaterialAsset >	CreateMaterial				( const std::wstring& name, MaterialCreateData&& initData );
 	///@}
 
-	inline ResourcePtr< MeshAsset >		GetMesh					( const std::wstring& name )	{ return m_meshes.get( filesystem::Path( name ).WString() ); }
-	inline ResourcePtr< MaterialAsset >	GetMaterial				( const std::wstring& name )	{ return m_material.get( filesystem::Path( name ).WString() ); }
+	inline ResourcePtr< MeshAsset >		GetMesh					( const std::wstring& name ) { return m_meshes.get( filesystem::Path( name ).WString() ); }
+	inline ResourcePtr< MaterialAsset >	GetMaterial				( const std::wstring& name ) { return m_material.get( filesystem::Path( name ).WString() ); }
 
 
 	// Funkcje do listowania assetów.
@@ -118,7 +123,8 @@ private:
 	ILoader*						FindLoader					( const std::wstring& path );
 
 	virtual MemoryChunk				LoadTextureImpl				( const filesystem::Path& filePath, TextureInfo& texInfo ) override;
-	
+
 };
 
 
+}	// sw

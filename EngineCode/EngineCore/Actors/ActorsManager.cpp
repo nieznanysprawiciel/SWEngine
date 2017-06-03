@@ -14,6 +14,11 @@
 #include "EngineCore/EngineHelpers/ActorsCommonFunctions.h"
 
 
+namespace sw
+{
+
+
+
 /**@brief */
 ActorsManager::ActorsManager( Engine* engine )
 {}
@@ -143,3 +148,4 @@ ActorBase* ActorsManager::GetActorByName( const std::string& name )
 }
 
 
+}	// sw

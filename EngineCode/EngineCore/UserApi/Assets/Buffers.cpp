@@ -3,7 +3,11 @@
 
 #include "EngineCore/MainEngine/EngineContext.h"
 
-namespace Api { namespace Assets
+
+
+namespace sw {
+namespace Api {
+namespace Assets
 {
 
 
@@ -60,3 +64,4 @@ std::vector< ResourcePtr< BufferObject > >		Buffers::ListConstantBuffers()
 
 }	// Assets
 }	// Api
+}	// sw

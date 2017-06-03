@@ -5,6 +5,8 @@
 
 #include "swCommonLib/Common/MemoryLeaks.h"
 
+namespace sw
+{
 
 
 /**@brief Kontruktor inicjuje wartoœci m_frames i m_framesPerSec na 0.*/
@@ -51,7 +53,7 @@ float TimeManager::onStartRenderFrame()
 
 	//zliczanie FPSów
 	m_elapsedTime += timeDiff;
-	if ( m_elapsedTime >= FRAMES_PER_SEC_UPDATE * m_timerFrequency )	//aktualizujemy co 10 sekund
+	if( m_elapsedTime >= FRAMES_PER_SEC_UPDATE * m_timerFrequency )	//aktualizujemy co 10 sekund
 	{
 		m_framesPerSec = (float)m_frames / FRAMES_PER_SEC_UPDATE;	//FRAMES_PER_SEC_UPDATE w sekundach
 		m_elapsedTime = m_elapsedTime % ( FRAMES_PER_SEC_UPDATE * m_timerFrequency );
@@ -94,10 +96,12 @@ double TimeManager::QueryTimeFromBegin()
 float TimeManager::GetCurrentLag()
 {
 	int64 timeCurrent = QueryCurrentTime();
-	
+
 	int64 timeDiff;
 	timeDiff = timeCurrent - m_timePrevious;
 	float timeInterval = (float)timeDiff / m_timerFrequency;
 
 	return m_lag + timeInterval;
 }
+
+}	// sw

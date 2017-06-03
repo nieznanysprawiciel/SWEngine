@@ -13,13 +13,22 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< ComplexActor >( "ComplexActor" );
+	rttr::registration::class_< sw::ComplexActor >( "ComplexActor" );
 }
 
 using namespace DirectX;
 
 
-void ComplexActor::MoveComplex(float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation)
+
+namespace sw
+{
+
+// ================================ //
+//
+void			ComplexActor::MoveComplex( float time_interval, const XMFLOAT3& parent_speed, const XMFLOAT4& parent_rotation )
 {
 
 }
+
+}	// sw
+

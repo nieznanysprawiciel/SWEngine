@@ -17,37 +17,42 @@ RTTR_REGISTRATION
 {
 
 
-	rttr::registration::class_< AdditionalBufferInfo >( "AdditionalBufferInfo" )
-		.property( "ShaderType", &AdditionalBufferInfo::ShaderType )
-		.property( "BufferSize", &AdditionalBufferInfo::BufferSize )
-		.property( "BufferType", &AdditionalBufferInfo::GetBufferType, &AdditionalBufferInfo::SetBufferType );
+	rttr::registration::class_< sw::AdditionalBufferInfo >( "AdditionalBufferInfo" )
+		.property( "ShaderType", &sw::AdditionalBufferInfo::ShaderType )
+		.property( "BufferSize", &sw::AdditionalBufferInfo::BufferSize )
+		.property( "BufferType", &sw::AdditionalBufferInfo::GetBufferType, &sw::AdditionalBufferInfo::SetBufferType );
 
-	rttr::registration::class_< MaterialInfo >( "MaterialInfo" )
-		.property( "Name", &MaterialInfo::MaterialName )
-		.property( "AdditionalBuffers", &MaterialInfo::AdditionalBuffers )
-		.property( "ShadingData", &MaterialInfo::ShadingData );
+	rttr::registration::class_< sw::MaterialInfo >( "MaterialInfo" )
+		.property( "Name", &sw::MaterialInfo::MaterialName )
+		.property( "AdditionalBuffers", &sw::MaterialInfo::AdditionalBuffers )
+		.property( "ShadingData", &sw::MaterialInfo::ShadingData );
 
-	rttr::registration::class_< MaterialAsset >( "MaterialAsset" )
-		.property( "VertexShader", &MaterialAsset::m_vertexShader )
-		.property( "PixelShader", &MaterialAsset::m_pixelShader )
-		.property( "GeometryShader", &MaterialAsset::m_geometryShader )
-		.property( "TesselationControlShader", &MaterialAsset::m_controlShader )
-		.property( "TesselationEvaluationShader", &MaterialAsset::m_evaluationShader )
-		.property_readonly( "DiffuseTexture", &MaterialAsset::GetTexture1 )
-		.property_readonly( "SpecularTexture", &MaterialAsset::GetTexture2 )
-		.property_readonly( "AmbientTexture", &MaterialAsset::GetTexture3 )
-		.property_readonly( "NormalMap", &MaterialAsset::GetTexture4 )
-		.property_readonly( "DisplacementMap", &MaterialAsset::GetTexture5 )
-		.property_readonly( "Texture6", &MaterialAsset::GetTexture6 )
-		.property_readonly( "Texture7", &MaterialAsset::GetTexture7 )
-		.property_readonly( "Texture8", &MaterialAsset::GetTexture8 )
+	rttr::registration::class_< sw::MaterialAsset >( "MaterialAsset" )
+		.property( "VertexShader", &sw::MaterialAsset::m_vertexShader )
+		.property( "PixelShader", &sw::MaterialAsset::m_pixelShader )
+		.property( "GeometryShader", &sw::MaterialAsset::m_geometryShader )
+		.property( "TesselationControlShader", &sw::MaterialAsset::m_controlShader )
+		.property( "TesselationEvaluationShader", &sw::MaterialAsset::m_evaluationShader )
+		.property_readonly( "DiffuseTexture", &sw::MaterialAsset::GetTexture1 )
+		.property_readonly( "SpecularTexture", &sw::MaterialAsset::GetTexture2 )
+		.property_readonly( "AmbientTexture", &sw::MaterialAsset::GetTexture3 )
+		.property_readonly( "NormalMap", &sw::MaterialAsset::GetTexture4 )
+		.property_readonly( "DisplacementMap", &sw::MaterialAsset::GetTexture5 )
+		.property_readonly( "Texture6", &sw::MaterialAsset::GetTexture6 )
+		.property_readonly( "Texture7", &sw::MaterialAsset::GetTexture7 )
+		.property_readonly( "Texture8", &sw::MaterialAsset::GetTexture8 )
 		//.property( "Textures", &MaterialAsset::m_textures )
-		.property( "Descriptor", &MaterialAsset::m_descriptor ) BIND_AS_PTR;
+		.property( "Descriptor", &sw::MaterialAsset::m_descriptor ) BIND_AS_PTR;
 
 }
 
 
+namespace sw
+{
 
+
+// ================================ //
+//
 MaterialAsset::MaterialAsset( const std::wstring& filePath, MaterialCreateData&& initData )
 	: ResourceObject( WRONG_ID )
 	, m_materialBuffer( std::move( initData.MaterialBuffer ) )
@@ -64,9 +69,10 @@ MaterialAsset::MaterialAsset( const std::wstring& filePath, MaterialCreateData&&
 	}
 }
 
-
+// ================================ //
+//
 MaterialAsset::~MaterialAsset()
-{ }
+{}
 
 /**@brief Returns material name or file name which was used to create material.*/
 std::string MaterialAsset::GetResourceName() const
@@ -76,4 +82,5 @@ std::string MaterialAsset::GetResourceName() const
 
 
 
+}	// sw
 

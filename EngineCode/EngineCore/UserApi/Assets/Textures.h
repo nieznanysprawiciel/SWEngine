@@ -13,25 +13,28 @@ class TextureObject;
 #include <string>
 
 
-namespace Api { namespace Assets {
+namespace sw {
+namespace Api {
+namespace Assets {
 
 
-	/**@brief Zapewnia dostêp do tekstur w klasie AssetsManager.
-	@ingroup UserAPI
-	@ingroup AssetsAPI*/
-	class Textures : public ApiGroup
-	{
-	private:
-	protected:
-	public:
-		Textures() = default;
-		~Textures() = default;
+/**@brief Zapewnia dostêp do tekstur w klasie AssetsManager.
+@ingroup UserAPI
+@ingroup AssetsAPI*/
+class Textures : public ApiGroup
+{
+private:
+protected:
+public:
+	Textures() = default;
+	~Textures() = default;
 
-		TextureObject*		GetTexture	( const std::wstring& name );
+	TextureObject*		GetTexture	( const std::wstring& name );
 
-		std::vector< ResourcePtr< TextureObject > >			List	();
-	};
+	std::vector< ResourcePtr< TextureObject > >			List	();
+};
 
 
 }	// Assets
 }	// Api
+}	// sw

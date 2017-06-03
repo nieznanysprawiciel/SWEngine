@@ -1,4 +1,10 @@
 #pragma once
+/**
+@file MeshAssetInitData.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
 
 #include "swCommonLib/Common/TypesDefinitions.h"
 #include "swCommonLib/Common/MemoryChunk.h"
@@ -8,6 +14,11 @@
 
 #include <vector>
 
+
+
+
+namespace sw
+{
 
 
 /**@brief Structure used to initialize class @ref MeshAsset.
@@ -42,13 +53,16 @@ struct MeshCreateData
 
 
 inline MeshInitData::MeshInitData( MeshInitData&& init )
-	:	VertexBuffer( std::move( init.VertexBuffer ) )
-	,	IndexBuffer( std::move( init.IndexBuffer ) )
-	,	VertexLayout( std::move( init.VertexLayout ) )
-	,	MeshSegments( std::move( init.MeshSegments ) )
-	,	NumVerticies( init.NumVerticies )
-	,	VertexSize( init.VertexSize )
-	,	NumIndicies( init.NumIndicies )
-	,	Topology( init.Topology )
-	,	ExtendedIndex( init.ExtendedIndex )
+	: VertexBuffer( std::move( init.VertexBuffer ) )
+	, IndexBuffer( std::move( init.IndexBuffer ) )
+	, VertexLayout( std::move( init.VertexLayout ) )
+	, MeshSegments( std::move( init.MeshSegments ) )
+	, NumVerticies( init.NumVerticies )
+	, VertexSize( init.VertexSize )
+	, NumIndicies( init.NumIndicies )
+	, Topology( init.Topology )
+	, ExtendedIndex( init.ExtendedIndex )
 {}
+
+}	// sw
+

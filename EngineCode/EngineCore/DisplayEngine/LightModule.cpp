@@ -22,6 +22,10 @@
 
 
 
+namespace sw
+{
+
+
 const wchar_t LIGHTS_CONSTANTS_BUFFER_NAME[] = L"::DisplayEngine::LightsConstants";
 
 
@@ -29,7 +33,7 @@ using namespace DirectX;
 
 
 LightModule::LightModule()
-	:	m_modelsManager( nullptr )
+	: m_modelsManager( nullptr )
 {}
 
 // ================================ //
@@ -43,7 +47,7 @@ void		LightModule::AddLightActor( LightBase* light )
 //
 void		LightModule::RemoveActor( ActorBase* actor )
 {
-	ActorsCommonFunctions::RemoveActor( m_lights, static_cast< LightBase* >( actor ) );
+	ActorsCommonFunctions::RemoveActor( m_lights, static_cast<LightBase*>( actor ) );
 }
 
 // ================================ //
@@ -120,8 +124,8 @@ LightParams		LightModule::FillLightParams( LightBase* light, float timeLag )
 	switch( type )
 	{
 		case LightType::PointLight:
-		{	
-			PointLight* pointLight = static_cast< PointLight* >( light );
+		{
+			PointLight* pointLight = static_cast<PointLight*>( light );
 			params.ClampRadius = pointLight->GetClampRadius();
 			params.Intensity = pointLight->GetIntensity();
 			params.ConstAttenuation = pointLight->GetConstantAttenuation();
@@ -130,7 +134,7 @@ LightParams		LightModule::FillLightParams( LightBase* light, float timeLag )
 		}
 		case LightType::SpotLight:
 		{
-			SpotLight* spotLight = static_cast< SpotLight* >( light );
+			SpotLight* spotLight = static_cast<SpotLight*>( light );
 			params.SpotAngle = spotLight->GetSpotAngle();
 		}
 	}
@@ -166,3 +170,6 @@ DirectX::XMVECTOR LightModule::DefaultDirectionVec()
 {
 	return XMVectorSet( 0.0, 0.0, 1.0, 0.0 );
 }
+
+
+}	// sw

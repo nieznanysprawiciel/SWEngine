@@ -12,6 +12,11 @@
 
 #include <vector>
 
+
+namespace sw
+{
+
+
 /**@defgroup MeshAsset Meshe
 @ingroup Assets*/
 
@@ -39,7 +44,7 @@ class MeshAsset : public ResourceObject
 	RTTR_ENABLE( ResourceObject );
 	RTTR_REGISTRATION_FRIEND
 
-	friend ObjectDeleter< MeshAsset >;
+		friend ObjectDeleter< MeshAsset >;
 private:
 
 	ResourcePtr< BufferObject >			m_vertexBuffer;		///< Bufor wierzcho³ków.
@@ -52,17 +57,17 @@ private:
 	std::wstring				m_filePath;			///< Plik, z którego powsta³ obiekt.
 
 	///@}
-	
+
 public:
 	explicit						MeshAsset			( const std::wstring& filePath, MeshCreateData&& initData );
 
 	Size							GetSegmentsCount	() const;
 	const MeshPart*					GetSegment			( Size index ) const;
-	const std::vector< MeshPart >&	GetSegments			()			{ return m_segments; }
+	const std::vector< MeshPart >&	GetSegments			() { return m_segments; }
 
-	ResourcePtr< BufferObject >		GetVertexBuffer		()			{ return m_vertexBuffer; }		///< Zwraca wskaŸnik na bufor wierzcho³ków.
-	ResourcePtr< BufferObject >		GetIndexBuffer		()			{ return m_indexBuffer; }		///< Zwraca wskaŸnik na bufor indeksów.
-	ResourcePtr< ShaderInputLayout >GetLayout			()			{ return m_layout; }			///< Zwraca wskaŸnik na layout bufora wierzcho³ków.
+	ResourcePtr< BufferObject >		GetVertexBuffer		() { return m_vertexBuffer; }		///< Zwraca wskaŸnik na bufor wierzcho³ków.
+	ResourcePtr< BufferObject >		GetIndexBuffer		() { return m_indexBuffer; }		///< Zwraca wskaŸnik na bufor indeksów.
+	ResourcePtr< ShaderInputLayout >GetLayout			() { return m_layout; }			///< Zwraca wskaŸnik na layout bufora wierzcho³ków.
 
 
 	virtual std::string				GetResourceName		() const override;
@@ -74,11 +79,15 @@ public:
 	///Functions allow DisplayEngine class aquire raw buffer pointers. Engine user should choose
 	///functions returning ResourcePtrs.
 	///@{
-	inline BufferObject*			GetVertexBufferRawPtr	()		{ return *m_vertexBuffer; }		///< Zwraca wskaŸnik na bufor wierzcho³ków.
-	inline BufferObject*			GetIndexBufferRawPtr	()		{ return *m_indexBuffer; }		///< Zwraca wskaŸnik na bufor indeksów.
-	inline ShaderInputLayout*		GetLayoutRawPtr			()		{ return *m_layout; }			///< Zwraca wskaŸnik na layout bufora wierzcho³ków.
+	inline BufferObject*			GetVertexBufferRawPtr	() { return *m_vertexBuffer; }		///< Zwraca wskaŸnik na bufor wierzcho³ków.
+	inline BufferObject*			GetIndexBufferRawPtr	() { return *m_indexBuffer; }		///< Zwraca wskaŸnik na bufor indeksów.
+	inline ShaderInputLayout*		GetLayoutRawPtr			() { return *m_layout; }			///< Zwraca wskaŸnik na layout bufora wierzcho³ków.
 	///@}
 
 private:
 	~MeshAsset();
 };
+
+}	// sw
+
+

@@ -1,6 +1,18 @@
 #pragma once
+/**
+@file SWMeshLoader.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 
 #include "EngineCore/ModelsManager/Loaders/ILoader.h"
+
+
+namespace sw
+{
+
 
 /**Loads .swmesh files.*/
 class SWMeshLoader : public ILoader
@@ -16,4 +28,7 @@ public:
 	Nullable< MeshInitData >		LoadMesh	( const filesystem::Path& fileName );
 	bool								CanLoad		( const filesystem::Path& fileName );
 };
+
+
+}	// sw
 

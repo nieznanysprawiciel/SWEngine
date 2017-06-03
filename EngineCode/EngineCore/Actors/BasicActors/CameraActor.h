@@ -1,6 +1,17 @@
 #pragma once
+/**
+@file CameraActor.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 
 #include "DynamicActor.h"
+
+
+namespace sw
+{
 
 
 /**@brief Struktura do wymieniania informacji o danych kamery.
@@ -28,10 +39,10 @@ struct CameraData
 	float				FarPlane;
 	bool				IsPerspective;
 
-	DirectX::XMVECTOR	GetDirection()		{	return DirectX::XMLoadFloat3( &Direction );		}
-	DirectX::XMVECTOR	GetUpVector()		{	return DirectX::XMLoadFloat3( &UpVector );		}
-	DirectX::XMVECTOR	GetRightVector()	{	return DirectX::XMLoadFloat3( &RightVector );	}
-	DirectX::XMVECTOR	GetOrientation()	{	return DirectX::XMLoadFloat4( &OrientationQuat );	}
+	DirectX::XMVECTOR	GetDirection() { return DirectX::XMLoadFloat3( &Direction ); }
+	DirectX::XMVECTOR	GetUpVector() { return DirectX::XMLoadFloat3( &UpVector ); }
+	DirectX::XMVECTOR	GetRightVector() { return DirectX::XMLoadFloat3( &RightVector ); }
+	DirectX::XMVECTOR	GetOrientation() { return DirectX::XMLoadFloat4( &OrientationQuat ); }
 };
 
 
@@ -42,7 +53,7 @@ class CameraActor : public DynamicActor
 	friend class DisplayEngine;
 
 	RTTR_ENABLE( DynamicActor )
-	RTTR_REGISTRATION_FRIEND
+		RTTR_REGISTRATION_FRIEND
 protected:
 
 	float					m_fov;
@@ -67,20 +78,22 @@ public:
 	void				SetFarPlane			( float plane );
 	void				SetFov				( float fov );
 
-	bool				GetIsPerspective	()					{ return m_isPerspective; }
-	float				GetWidth			()					{ return m_width; }
-	float				GetHeight			()					{ return m_height; }
-	float				GetNearPlane		()					{ return m_nearPlane; }
-	float				GetFarPlane			()					{ return m_farPlane; }
-	float				GetFov				()					{ return m_fov; }
+	bool				GetIsPerspective	() { return m_isPerspective; }
+	float				GetWidth			() { return m_width; }
+	float				GetHeight			() { return m_height; }
+	float				GetNearPlane		() { return m_nearPlane; }
+	float				GetFarPlane			() { return m_farPlane; }
+	float				GetFov				() { return m_fov; }
 
-	DirectX::XMFLOAT4X4		GetProjection	()					{ return m_projectionMatrix; }
+	DirectX::XMFLOAT4X4		GetProjection	() { return m_projectionMatrix; }
 
 	CameraData			GetCameraData		();
 
-	static ActorBase*	Create				()					{ return new CameraActor; }
+	static ActorBase*	Create				() { return new CameraActor; }
 
 private:
 	void				UpdateMatrix		();
 };
 
+
+}	// sw

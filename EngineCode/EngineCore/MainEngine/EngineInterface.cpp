@@ -19,11 +19,16 @@
 using namespace DirectX;
 
 
+
+namespace sw
+{
+
+
 EngineInterface::EngineInterface()
 {
 	Context = new EngineContext;
 
-	Api::ApiGroup::Engine = static_cast< Engine* >( this );		// EngineInterface jest tak na prawdê klas¹ Engine, wiêc takie rzutowanie jest legalne.
+	Api::ApiGroup::Engine = static_cast<Engine*>( this );		// EngineInterface jest tak na prawdê klas¹ Engine, wiêc takie rzutowanie jest legalne.
 	Api::ApiGroup::Context = Context;
 }
 
@@ -52,7 +57,7 @@ void		Engine::test()
 	SetSkydomeAndCamera();
 
 	//testMaterial( Context->modelsManager->GetMesh( CLONE_FIGHTER ) );
-	
+
 	auto& startLevelPath = Context->config->StartLevelPath();
 	if( !Level.LoadLevelSync( startLevelPath ) )
 		CreateDefaultScene();
@@ -68,7 +73,7 @@ void		Engine::SetCamera			()
 
 	// Przypisujemy kontroler ( dla kontrolerów trzeba zrobiæ jakiœ mechanizm przechowywania i zwalniania)
 	SpectatorCameraController* controller = new SpectatorCameraController(
-	Context->ui_engine->GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ) );
+		Context->ui_engine->GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ) );
 	camera->SetController( controller );
 
 	// Wstawiamy kamerê do odpowiednich modu³ów
@@ -85,7 +90,7 @@ void		Engine::SetSkydomeAndCamera()
 /**@brief */
 void		Engine::SetSkydome()
 {
-	double albedo[3] = { 0.8, 0.8, 0.8 };
+	double albedo[ 3 ] ={ 0.8, 0.8, 0.8 };
 	double turbidity = 4;
 	XMVECTOR sunDir = XMVectorSet( -0.2f, 0.6f, 0.6f, 1.0f );
 	HosekSkyDome* skyDome = new HosekSkyDome();
@@ -182,7 +187,7 @@ void		Engine::CreateDefaultScene()
 	Context->modelsManager->LoadMesh( GATE );
 	//Context->modelsManager->LoadModelFromFile( CHURCH );
 	//modelsManager->LoadModelFromFile( IMPERIAL_STAR_DESTROYER );
-	
+
 
 	//dodawanie ksiê¿yca
 	StaticActor* moon = Actors.CreateActor< StaticActor >( GetTypeidName< StaticActor >(), EnableDisplay );
@@ -223,18 +228,18 @@ void		Engine::CreateDefaultScene()
 	//dodawanie myœliwca
 	DynamicActor* cloneFighter = Actors.CreateActor< DynamicActor >( GetTypeidName< DynamicActor >(), EnableDisplay | EnableMovement );
 
-	position = XMVectorSet(0.0, 0.0, 6000.0, 0.0);
+	position = XMVectorSet( 0.0, 0.0, 6000.0, 0.0 );
 	cloneFighter->Teleport( position );
 
 #ifdef _QUATERNION_SPEED
-	XMVECTOR rot_vector = { 1.0f, 0.0f, 0.0f, 0.0f };
-	XMVECTOR axis_angle = XMQuaternionRotationAxis(rot_vector, XMConvertToRadians(30));
+	XMVECTOR rot_vector ={ 1.0f, 0.0f, 0.0f, 0.0f };
+	XMVECTOR axis_angle = XMQuaternionRotationAxis( rot_vector, XMConvertToRadians( 30 ) );
 #else
 	XMFLOAT4 axis_angle;
 	axis_angle.x = 1.0;
 	axis_angle.y = 0.0;
 	axis_angle.z = 0.0;
-	axis_angle.w = XMConvertToRadians(30);
+	axis_angle.w = XMConvertToRadians( 30 );
 #endif
 	cloneFighter->SetRotationSpeed( axis_angle );
 
@@ -274,7 +279,7 @@ void		Engine::CreateDefaultScene()
 	Imperial->set_model( modelsManager->GetMesh( IMPERIAL_STAR_DESTROYER ) );
 	*/
 
-	
+
 	//dodawanie skrzyni
 //	StaticActor* skrzynia = Actors.CreateActor< StaticActor >( "StaticActor", EnableDisplay | EnableMovement );
 //	position = XMVectorSet( 0.0, 0.0, 2.0, 0.0 );
@@ -323,3 +328,4 @@ void		Engine::CreateDefaultScene()
 
 #endif
 
+}	// sw

@@ -1,10 +1,21 @@
 #pragma once
+/**
+@file SWMaterialLoader.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 
 #include "swCommonLib/Common/Nullable.h"
 #include "swCommonLib/System/Path.h"
 
 #include "EngineCore/ModelsManager/Assets/Materials/MaterialAssetInitData.h"
 #include "EngineCore/ModelsManager/Assets/Materials/MaterialAsset.h"
+
+
+namespace sw
+{
 
 
 /**@brief Loads .swmat files.*/
@@ -49,8 +60,8 @@ public:
 	bool								CanLoad			( const filesystem::Path& fileName );
 	void								SaveMaterial	( const filesystem::Path& fileName, MaterialAsset* mat );
 
-	uint32		GetVersionMajor()		{ return m_versionMajor; }
-	uint32		GetVersionMinor()		{ return m_versionMinor; }
+	uint32		GetVersionMajor() { return m_versionMajor; }
+	uint32		GetVersionMinor() { return m_versionMinor; }
 
 
 private:
@@ -69,3 +80,5 @@ private:
 	Nullable< ResourcePtr< ShaderType > >	LoadShader			( IDeserializer* deser, const std::string& shaderNameString );
 };
 
+
+}	// sw

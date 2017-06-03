@@ -17,6 +17,7 @@
 
 
 
+namespace sw {
 namespace Api
 {
 
@@ -27,21 +28,22 @@ namespace Api
 	/**@brief Zawiera funkcje do zarz¹dzania assetami.
 	@ingroup UserAPI
 	@ingroup AssetsAPI*/
-	class AssetsApi : public ApiGroup
-	{
-	private:
-	protected:
-	public:
-		AssetsApi() = default;
-		~AssetsApi() = default;
-	public:
-		Assets::Meshes			Meshes;
-		Assets::Animations		Animations;
-		Assets::Shaders			Shaders;
-		Assets::Textures		Textures;
-		Assets::Buffers			Buffers;
-		Assets::RenderTargets	RenderTargets;
-		Assets::Materials		Materials;
-	};
-	
+class AssetsApi : public ApiGroup
+{
+private:
+protected:
+public:
+	AssetsApi() = default;
+	~AssetsApi() = default;
+public:
+	Assets::Meshes			Meshes;
+	Assets::Animations		Animations;
+	Assets::Shaders			Shaders;
+	Assets::Textures		Textures;
+	Assets::Buffers			Buffers;
+	Assets::RenderTargets	RenderTargets;
+	Assets::Materials		Materials;
+};
+
 }	// Api
+}	// sw

@@ -49,11 +49,15 @@ RTTR_REGISTRATION
 }
 
 
+namespace sw
+{
+
+
 /**@brief Rejestruje podstawowe klasy aktorów.*/
-bool Engine::InitDefaultActorsClasses()
+bool			Engine::InitDefaultActorsClasses()
 {
 	auto& actorsFactory = Context->actorsManager->GetActorFactory();
-	
+
 	actorsFactory.RegisterClass< ComplexActor >( GetTypeidName< ComplexActor >(), ComplexActor::Create );
 	actorsFactory.RegisterClass< StaticActor >( GetTypeidName< StaticActor >(), StaticActor::Create );
 	actorsFactory.RegisterClass< DynamicActor >( GetTypeidName< DynamicActor >(), DynamicActor::Create );
@@ -69,4 +73,7 @@ bool Engine::InitDefaultActorsClasses()
 	return true;
 }
 
+
+
+}	// sw
 

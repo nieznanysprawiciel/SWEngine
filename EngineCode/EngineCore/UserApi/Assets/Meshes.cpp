@@ -10,7 +10,11 @@
 
 #include "EngineCore/MainEngine/EngineContext.h"
 
-namespace Api { namespace Assets
+
+
+namespace sw {
+namespace Api {
+namespace Assets
 {
 
 /**@brief Pobiera model o podanej nazwie.
@@ -56,3 +60,4 @@ std::vector< ResourcePtr< MeshAsset > >		Meshes::List()
 
 }	// Assets
 }	// Api
+}	// sw

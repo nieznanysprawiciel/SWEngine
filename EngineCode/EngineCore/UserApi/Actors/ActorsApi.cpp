@@ -4,6 +4,7 @@
 #include "EngineCore/MainEngine/EngineContext.h"
 #include "EngineCore/Actors/ActorInfo.h"
 
+namespace sw {
 namespace Api
 {
 
@@ -11,10 +12,12 @@ namespace Api
 @deprecated Pozostawione dla zgodnoœci z LightmapTools. Zamiast tego nale¿y u¿ywaæ funkcji
 @ref ActorsApi::GetAllActors, która zwaraca wszystkicj aktorów w silniku.*/
 std::vector<StaticActor*> ActorsApi::GetSceneObjects()
-{ return Context->displayEngine->GetSceneObjects(); }
+{
+	return Context->displayEngine->GetSceneObjects();
+}
 
 
-/**@brief 
+/**@brief
 @deprecated Pozostawione dla zgodnoœci z LightmapTools. Zamiast tego nale¿y u¿ywaæ funkcji
 @ref ActorsApi::AddToModules*/
 void ActorsApi::AddDynamicMesh( StaticActor* object )
@@ -25,7 +28,9 @@ void ActorsApi::AddDynamicMesh( StaticActor* object )
 
 /**@brief */
 void ActorsApi::CleanScene()
-{	Context->displayEngine->DeleteAllMeshes();	}
+{
+	Context->displayEngine->DeleteAllMeshes();
+}
 
 
 /**@brief Zwraca mapê nazw i ich typów.*/
@@ -73,43 +78,43 @@ void ActorsApi::AddToModules( ActorBase* newActor, ActorInfo actorModules )
 	if( actorModules.EnableDisplay() )
 	{
 		// @todo Pomyœleæ co zrobiæ w trybie release.
-		assert( rttr::rttr_cast< StaticActor* >( newActor ) );
-		Context->displayEngine->AddMeshObject( static_cast< StaticActor* >( newActor ) );
+		assert( rttr::rttr_cast<StaticActor*>( newActor ) );
+		Context->displayEngine->AddMeshObject( static_cast<StaticActor*>( newActor ) );
 	}
 
 	if( actorModules.EnableMovement() )
 	{
 		// @todo Pomyœleæ co zrobiæ w trybie release.
-		assert( rttr::rttr_cast< DynamicActor* >( newActor ) );
-		Context->movementEngine->AddMoveableObject( static_cast< DynamicActor* >( newActor ) );
+		assert( rttr::rttr_cast<DynamicActor*>( newActor ) );
+		Context->movementEngine->AddMoveableObject( static_cast<DynamicActor*>( newActor ) );
 	}
 
 	if( actorModules.EnablePreController() )
 	{
 		// @todo Pomyœleæ co zrobiæ w trybie release.
-		assert( rttr::rttr_cast< DynamicActor* >( newActor ) );
-		Context->controllersEngine->AddPreControlled( static_cast< DynamicActor* >( newActor ) );
+		assert( rttr::rttr_cast<DynamicActor*>( newActor ) );
+		Context->controllersEngine->AddPreControlled( static_cast<DynamicActor*>( newActor ) );
 	}
 
 	if( actorModules.EnablePostController() )
 	{
 		// @todo Pomyœleæ co zrobiæ w trybie release.
-		assert( rttr::rttr_cast< DynamicActor* >( newActor ) );
-		Context->controllersEngine->AddPostControlled( static_cast< DynamicActor* >( newActor ) );
+		assert( rttr::rttr_cast<DynamicActor*>( newActor ) );
+		Context->controllersEngine->AddPostControlled( static_cast<DynamicActor*>( newActor ) );
 	}
 
 	if( actorModules.IsCamera() )
 	{
 		// @todo Pomyœleæ co zrobiæ w trybie release.
-		assert( rttr::rttr_cast< CameraActor* >( newActor ) );
-		Context->displayEngine->AddCamera( static_cast< CameraActor* >( newActor ) );
+		assert( rttr::rttr_cast<CameraActor*>( newActor ) );
+		Context->displayEngine->AddCamera( static_cast<CameraActor*>( newActor ) );
 	}
 
 	if( actorModules.IsLight() )
 	{
 		// @todo Pomyœleæ co zrobiæ w trybie release.
-		assert( rttr::rttr_cast< LightBase* >( newActor ) );
-		Context->displayEngine->GetLightModule()->AddLightActor( static_cast< LightBase* >( newActor ) );
+		assert( rttr::rttr_cast<LightBase*>( newActor ) );
+		Context->displayEngine->GetLightModule()->AddLightActor( static_cast<LightBase*>( newActor ) );
 	}
 
 	// @todo Pomyœleæ co zrobiæ w trybie release, je¿eli actor nie przeszed³by przez asserty.
@@ -177,3 +182,4 @@ ActorBase*							ActorsApi::CreateActor< ActorBase >		( ActorType id )
 }
 
 }	// Api
+}	// sw

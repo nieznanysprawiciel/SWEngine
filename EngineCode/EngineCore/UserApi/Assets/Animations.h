@@ -8,20 +8,23 @@
 
 #include "EngineCore/UserApi/ApiGroup.h"
 
-namespace Api { namespace Assets {
+namespace sw {
+namespace Api {
+namespace Assets {
 
-	/**@brief Zapewnia dostêp do modeli w klasie AssetsManager.
-	@ingroup UserAPI
-	@ingroup AssetsAPI*/
-	class Animations : public ApiGroup
-	{
-	private:
-	protected:
-	public:
-		Animations() = default;
-		~Animations() = default;
-	};
+/**@brief Zapewnia dostêp do modeli w klasie AssetsManager.
+@ingroup UserAPI
+@ingroup AssetsAPI*/
+class Animations : public ApiGroup
+{
+private:
+protected:
+public:
+	Animations() = default;
+	~Animations() = default;
+};
 
 
 }	// Assets
 }	// Api
+}	// sw

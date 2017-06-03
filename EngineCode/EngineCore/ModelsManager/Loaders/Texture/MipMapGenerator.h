@@ -10,6 +10,10 @@
 #include "swGraphicAPI/Resources//MeshResources.h"
 
 
+
+namespace sw
+{
+
 /**@brief */
 class MipMapGenerator
 {
@@ -33,4 +37,5 @@ private:
 	static PtrOffset		ComputeMipLevelOffset	( unsigned int initWidth, unsigned int initHeight, int bytesPerPixel, int level );
 };
 
+}	// sw
 

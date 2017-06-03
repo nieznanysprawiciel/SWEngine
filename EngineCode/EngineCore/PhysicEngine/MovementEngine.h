@@ -1,8 +1,20 @@
 #pragma once
+/**
+@file MovementEngine.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
 #include "EngineCore/Actors/ActorObjects.h"
 
 class Engine;
+
+
+
+namespace sw
+{
 
 
 /**@brief Modu³ do obs³ugi obiektów dynamicznych.
@@ -26,3 +38,4 @@ public:
 };
 
 
+}	// sw

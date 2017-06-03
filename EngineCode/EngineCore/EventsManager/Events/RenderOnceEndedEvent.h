@@ -8,11 +8,15 @@
 #include "EngineCore/EventsManager/Event.h"
 
 
+
+namespace sw
+{
+
 class RenderPassDepracated;
 
 
 /**@brief Event wysy³any w momencie zakoñczenia zleconego renderowania.*/
-class RenderOnceEndedEvent	:	public Event
+class RenderOnceEndedEvent : public Event
 {
 	RTTR_ENABLE( Event )
 private:
@@ -24,3 +28,5 @@ public:
 	RenderPassDepracated*		renderPass;
 };
 
+
+}	// sw

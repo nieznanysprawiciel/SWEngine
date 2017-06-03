@@ -15,6 +15,11 @@
 #include "swCommonLib/Common/MemoryLeaks.h"
 
 
+namespace sw
+{
+
+
+
 /**@brief */
 EventManager::EventManager( Engine* engine )
 	: engine( engine )
@@ -83,7 +88,7 @@ obs³ugi do danego eventu. W trybie release taka funkcja zostanie zarejestrowana 
 wielokrotnie.
 
 @attention Funkcja nie synchronizuje dostêpu do tablicy handlerów.
-Zak³adam, ¿e w silniku bêdzie moment w potoku przetwarzania, w któym zadania bêd¹ wykonywane szeregowo 
+Zak³adam, ¿e w silniku bêdzie moment w potoku przetwarzania, w któym zadania bêd¹ wykonywane szeregowo
 zamiast wspó³bie¿nie. Modyfikacje tablicy handlerów nale¿y opóŸniæ do takiego momentu.
 
 @param[in] handlerOwner Obiekt, który jest w³aœcicielem handlera. Potrzebne do zidentyfikowania
@@ -103,7 +108,7 @@ obs³ugi do danego eventu. W trybie release taka funkcja zostanie zarejestrowana 
 wielokrotnie.
 
 @attention Funkcja nie synchronizuje dostêpu do tablicy handlerów.
-Zak³adam, ¿e w silniku bêdzie moment w potoku przetwarzania, w któym zadania bêd¹ wykonywane szeregowo 
+Zak³adam, ¿e w silniku bêdzie moment w potoku przetwarzania, w któym zadania bêd¹ wykonywane szeregowo
 zamiast wspó³bie¿nie. Modyfikacje tablicy handlerów nale¿y opóŸniæ do takiego momentu.
 */
 void			EventManager::AddListener	( rttr::type eventType, const EventListener& listener )
@@ -198,3 +203,7 @@ bool			EventManager::CheckListener	( rttr::type eventType, const EngineObject* h
 
 	return false;
 }
+
+}	// sw
+
+

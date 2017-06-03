@@ -18,6 +18,10 @@
 #include "swCommonLib/Common/MemoryLeaks.h"
 
 
+namespace sw
+{
+
+
 // ================================ //
 //
 ControllersEngine::ControllersEngine( Engine* parent )
@@ -45,9 +49,9 @@ Funkcja wywo³ywana przed MovementEngine::ProceedMovement.
 void ControllersEngine::ProceedControllersPre( float timeInterval )
 {
 	//todo:	przerobiæ na wersjê wielow¹tkow¹
-	for ( unsigned int i = 0; i < m_preControlledObjects.size(); ++i )
-		if ( m_preControlledObjects[i]->GetController() != nullptr )
-			m_preControlledObjects[i]->GetController()->ControlObjectPre( m_preControlledObjects[i], m_globalState );
+	for( unsigned int i = 0; i < m_preControlledObjects.size(); ++i )
+		if( m_preControlledObjects[ i ]->GetController() != nullptr )
+			m_preControlledObjects[ i ]->GetController()->ControlObjectPre( m_preControlledObjects[ i ], m_globalState );
 }
 
 /**@brief Wywo³uje kontrolery na obs³ugiwanych obiektach.
@@ -57,9 +61,9 @@ Funkcja wywo³ywana po MovementEngine::ProceedMovement.
 void ControllersEngine::ProceedControllersPost( float timeInterval )
 {
 	//todo:	przerobiæ na wersjê wielow¹tkow¹
-	for ( unsigned int i = 0; i < m_postControlledObjects.size( ); ++i )
-		if ( m_postControlledObjects[i]->GetController( ) != nullptr )
-			m_postControlledObjects[i]->GetController( )->ControlObjectPost( m_postControlledObjects[i], m_globalState );
+	for( unsigned int i = 0; i < m_postControlledObjects.size(); ++i )
+		if( m_postControlledObjects[ i ]->GetController() != nullptr )
+			m_postControlledObjects[ i ]->GetController()->ControlObjectPost( m_postControlledObjects[ i ], m_globalState );
 }
 
 /**@brief Aktualizuje stan m_globalState.*/
@@ -72,7 +76,7 @@ void ControllersEngine::SingleThreadedUpdatePhase( float timeInterval )
 /**@brief Dodaje podany obiekt do kontrolerów wywo³ywanych przed przesuniêciem obiektów.*/
 bool ControllersEngine::AddPreControlled( DynamicActor* actor )
 {
-	if ( actor == nullptr )
+	if( actor == nullptr )
 		return false;
 
 	m_preControlledObjects.push_back( actor );
@@ -82,7 +86,7 @@ bool ControllersEngine::AddPreControlled( DynamicActor* actor )
 /**@brief Dodaje podany obiekt do kontrolerów wywo³ywanych po przesuniêciu obiektów.*/
 bool ControllersEngine::AddPostControlled( DynamicActor* actor )
 {
-	if ( actor == nullptr )
+	if( actor == nullptr )
 		return false;
 
 	m_postControlledObjects.push_back( actor );
@@ -92,13 +96,13 @@ bool ControllersEngine::AddPostControlled( DynamicActor* actor )
 /**@brief Usuwa aktora z tablicy obiektów pre kontrolowanych.*/
 void ControllersEngine::RemovePreCtrlActor( ActorBase* actor )
 {
-	ActorsCommonFunctions::RemoveActor( m_preControlledObjects, static_cast< DynamicActor* >( actor ) );
+	ActorsCommonFunctions::RemoveActor( m_preControlledObjects, static_cast<DynamicActor*>( actor ) );
 }
 
 /**@brief Usuwa aktora z tablicy obiektów post kontrolowanych.*/
 void ControllersEngine::RemovePostCtrlActor( ActorBase* actor )
 {
-	ActorsCommonFunctions::RemoveActor( m_postControlledObjects, static_cast< DynamicActor* >( actor ) );
+	ActorsCommonFunctions::RemoveActor( m_postControlledObjects, static_cast<DynamicActor*>( actor ) );
 }
 
 /**@brief Usuwa aktora z modu³u.*/
@@ -130,3 +134,4 @@ void		ControllersEngine::UpdateGlobalState				( float timeInterval )
 	m_globalState->Camera = engine->Rendering.GetCurrentCamera()->GetCameraData();
 }
 
+}	// sw

@@ -13,28 +13,31 @@ class Model3DFromFile;
 #include <string>
 
 
-namespace Api { namespace Assets {
+namespace sw {
+namespace Api {
+namespace Assets {
 
-	/**@brief Zapewnia dostêp do modeli w klasie AssetsManager.
-	@ingroup UserAPI
-	@ingroup AssetsAPI*/
-	class Meshes : public ApiGroup
-	{
-	private:
-	protected:
-	public:
-		Meshes() = default;
-		~Meshes() = default;
+/**@brief Zapewnia dostêp do modeli w klasie AssetsManager.
+@ingroup UserAPI
+@ingroup AssetsAPI*/
+class Meshes : public ApiGroup
+{
+private:
+protected:
+public:
+	Meshes() = default;
+	~Meshes() = default;
 
-		ResourcePtr< MeshAsset >		GetSync			( const std::wstring& name );
-		ResourcePtr< MeshAsset >		LoadSync		( const std::wstring& name );
+	ResourcePtr< MeshAsset >		GetSync			( const std::wstring& name );
+	ResourcePtr< MeshAsset >		LoadSync		( const std::wstring& name );
 
-		ResourcePtr< MeshAsset >		CreateMeshSync	( const std::wstring& name, MeshInitData&& initData );
-		ResourcePtr< MeshAsset >		CreateMeshSync	( const std::wstring& name, MeshCreateData&& initData );
+	ResourcePtr< MeshAsset >		CreateMeshSync	( const std::wstring& name, MeshInitData&& initData );
+	ResourcePtr< MeshAsset >		CreateMeshSync	( const std::wstring& name, MeshCreateData&& initData );
 
-		std::vector< ResourcePtr< MeshAsset > >		List	();
-	};
+	std::vector< ResourcePtr< MeshAsset > >		List	();
+};
 
 
 }	// Assets
 }	// Api
+}	// sw

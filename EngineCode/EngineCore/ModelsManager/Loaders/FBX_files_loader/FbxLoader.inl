@@ -9,6 +9,12 @@
 #include "FBX_loader.h"
 #include <string.h>		// memcpy
 
+
+namespace sw
+{
+
+
+
 // ================================ //
 //
 template< typename VertexType >
@@ -34,4 +40,7 @@ inline void		FBX_loader::CopyIndexBuffer		( const std::vector< std::vector< Inde
 		}
 	}
 }
+
+
+}	// sw
 

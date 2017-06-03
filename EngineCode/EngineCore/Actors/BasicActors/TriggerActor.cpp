@@ -13,9 +13,13 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< TriggerActor >( "TriggerActor" );
+	rttr::registration::class_< sw::TriggerActor >( "TriggerActor" );
 }
 
+
+
+namespace sw
+{
 
 // ================================ //
 //
@@ -26,3 +30,6 @@ TriggerActor::TriggerActor()
 //
 TriggerActor::~TriggerActor()
 {}
+
+}	// sw
+

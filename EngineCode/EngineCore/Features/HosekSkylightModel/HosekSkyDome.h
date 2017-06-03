@@ -8,6 +8,11 @@ u¿ywaj¹c modelu Hodeka i Wilkiego.*/
 #include "HosekSkyModel.h"
 
 
+
+namespace sw
+{
+
+
 /**@brief Struktura wierzcho³ka u¿ywana przez klasê HosekSkyDome.
 
 Kolor wierzcho³ka jest ustalany jest przypisaywany na sta³e do wierzcho³ków
@@ -46,18 +51,21 @@ public:
 	virtual			~HosekSkyDome	();
 
 	void InitSkyDome( DirectX::XMVECTOR sun_direction,
+					  const double turbidity,
+					  const double* albedo,
+					  int vertical,
+					  int horizontal,
+					  float radius,
+					  float sky_intensity = 1.0f,
+					  float sun_intensity = 1.0f );
+	void UpdateSkyDome( DirectX::XMVECTOR sun_direction,
 						const double turbidity,
 						const double* albedo,
-						int vertical,
-						int horizontal,
-						float radius,
 						float sky_intensity = 1.0f,
 						float sun_intensity = 1.0f );
-	void UpdateSkyDome( DirectX::XMVECTOR sun_direction,
-						  const double turbidity,
-						  const double* albedo,
-						  float sky_intensity = 1.0f,
-						  float sun_intensity = 1.0f );
 	void UpdateBuffers( IRenderer* renderer ) override;
 };
+
+
+}	// sw
 

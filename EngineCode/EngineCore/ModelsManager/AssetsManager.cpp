@@ -23,10 +23,13 @@
 
 using namespace DirectX;
 
-//-------------------------------------------------------------------------------//
-//							wersja DirectX11
-//-------------------------------------------------------------------------------//
 
+namespace sw
+{
+
+
+// ================================ //
+//
 AssetsManager::AssetsManager( Engine* engine )
 	: m_engine( engine )
 {
@@ -36,12 +39,13 @@ AssetsManager::AssetsManager( Engine* engine )
 }
 
 
-
-AssetsManager::~AssetsManager( )
+// ================================ //
+//
+AssetsManager::~AssetsManager()
 {
 	// Kasujemy obiekty do wczytywania danych
-	for ( unsigned int i = 0; i <  m_loader.size(); ++i )
-		delete m_loader[i];
+	for( unsigned int i = 0; i < m_loader.size(); ++i )
+		delete m_loader[ i ];
 }
 
 
@@ -50,7 +54,7 @@ AssetsManager::~AssetsManager( )
 /**@brief Dopasowuje najlepszy z domyœlnych shaderów, który pasuje do podanej tablicy
 tekstur. Tablica ma tyle elementów ile zmienna @ref ENGINE_MAX_TEXTURES.
 
-Ka¿da pozycja w tablicy ma przypisane domyœlne znaczenie zgodnie z enumeracj¹ 
+Ka¿da pozycja w tablicy ma przypisane domyœlne znaczenie zgodnie z enumeracj¹
 @ref TextureUse. Najlepszy shader jest wybierany na podstawie obecnoœci
 lub nieobecnoœci tekstury w tablicy.
 
@@ -130,9 +134,9 @@ void			AssetsManager::FillBestShaders		( MaterialInitData& initData )
 @return WskaŸnik na odpowiedni loader lub nullptr, je¿eli nie znaleziono pasuj¹cego.*/
 ILoader*		AssetsManager::FindLoader			( const std::wstring& path )
 {
-	for ( unsigned int i = 0; i <  m_loader.size( ); ++i )
-	if ( m_loader[i]->can_load( path ) )
-		return m_loader[i];
+	for( unsigned int i = 0; i < m_loader.size(); ++i )
+		if( m_loader[ i ]->can_load( path ) )
+			return m_loader[ i ];
 	return nullptr;
 }
 
@@ -151,11 +155,11 @@ ResourcePtr< MeshAsset >		AssetsManager::LoadMesh		( const filesystem::Path& fil
 
 	// Check exisitng meshes.
 	MeshAsset* newMesh = m_meshes.get( filePath );
-	if ( newMesh != nullptr )
+	if( newMesh != nullptr )
 		return newMesh;
 
 	ILoader* loader = FindLoader( filePath );
-	if ( loader == nullptr )
+	if( loader == nullptr )
 		return nullptr;
 
 	Nullable< MeshInitData > meshData = loader->LoadMesh( file );
@@ -175,7 +179,7 @@ ResourcePtr< MaterialAsset >	AssetsManager::LoadMaterial	( const filesystem::Pat
 
 	// Check exisitng materials.
 	MaterialAsset* newMaterial = m_material.get( filePath );
-	if ( newMaterial != nullptr )
+	if( newMaterial != nullptr )
 		return newMaterial;
 
 	SWMaterialLoader loader( this );
@@ -220,7 +224,7 @@ ResourcePtr< MeshAsset >		AssetsManager::CreateMesh	( const std::wstring& name, 
 	{
 		IndexBufferInitData indexInit;
 		indexInit.Data = initData.IndexBuffer.GetMemory< uint8 >();
-		
+
 		if( initData.ExtendedIndex )
 		{
 			indexInit.DataType = TypeID::get< Index32 >();
@@ -272,7 +276,7 @@ ResourcePtr< MeshAsset >		AssetsManager::CreateMesh		( const std::wstring& name,
 {
 	// Check exisitng materials.
 	MeshAsset* newMesh = m_meshes.get( name );
-	if ( newMesh != nullptr )
+	if( newMesh != nullptr )
 		return nullptr;
 
 	newMesh = new MeshAsset( name, std::move( initData ) );
@@ -326,7 +330,7 @@ ResourcePtr< MaterialAsset >	AssetsManager::CreateMaterial				( const std::wstri
 {
 	// Check exisitng materials.
 	MaterialAsset* newMaterial = m_material.get( name );
-	if ( newMaterial != nullptr )
+	if( newMaterial != nullptr )
 		return nullptr;
 
 	newMaterial = new MaterialAsset( name, std::move( initData ) );
@@ -356,10 +360,11 @@ std::vector< ResourcePtr< MeshAsset > >			AssetsManager::ListMeshes()
 
 This is hack function. Resource manager have no texture loading function beacause
 it needs separate library for this. Derived classes will implement it, but in future
-this must change. ResourceManager must be fully operational class. Otherwise GUI 
+this must change. ResourceManager must be fully operational class. Otherwise GUI
 won't load textures.*/
 MemoryChunk										AssetsManager::LoadTextureImpl	( const filesystem::Path& filePath, TextureInfo& texInfo )
 {
 	return TextureLoader::LoadTexture( texInfo.FilePath, texInfo );
 }
 
+}	// sw

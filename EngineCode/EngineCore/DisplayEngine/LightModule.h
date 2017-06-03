@@ -13,6 +13,11 @@
 #include <vector>
 
 
+
+namespace sw
+{
+
+
 /**@defgroup Lights Lights
 @brief Lights
 
@@ -37,7 +42,7 @@ private:
 protected:
 public:
 	explicit		LightModule();
-					~LightModule() = default;
+	~LightModule() = default;
 
 
 	void			AddLightActor			( LightBase* object );		///< Adds light to module.
@@ -52,9 +57,13 @@ public:
 	LightParams		FillLightParams			( LightBase* light, float timeLag );
 	BufferObject*	UpdateLightsBuffer		( IRenderer* renderer, float timeLag );
 
-	BufferObject*	GetLightBuffer			()				{ return m_lightBuffer.Ptr(); }
+	BufferObject*	GetLightBuffer			() { return m_lightBuffer.Ptr(); }
 
 public:
 	static DirectX::XMFLOAT3		DefaultDirection	();
 	static DirectX::XMVECTOR		DefaultDirectionVec	();
 };
+
+
+}	// sw
+

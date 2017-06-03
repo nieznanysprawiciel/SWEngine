@@ -14,41 +14,43 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< MeshPart >( "MeshPart" )
-		.property_readonly( "Topology", &MeshPart::Topology )
-		.property_readonly( "NumVerticies", &MeshPart::NumVertices )
-		.property_readonly( "BufferOffset", &MeshPart::BufferOffset )
-		.property_readonly( "BaseVertex", &MeshPart::BaseVertex )
-		.property_readonly( "UseAdditionalBuffers", &MeshPart::GetUseAdditionalBuffer )
-		.property_readonly( "UseExtendedIndex", &MeshPart::GetUseExtendedIndex )
-		.property( "Material", &MeshPart::Material );
+	rttr::registration::class_< sw::MeshPart >( "MeshPart" )
+		.property_readonly( "Topology", &sw::MeshPart::Topology )
+		.property_readonly( "NumVerticies", &sw::MeshPart::NumVertices )
+		.property_readonly( "BufferOffset", &sw::MeshPart::BufferOffset )
+		.property_readonly( "BaseVertex", &sw::MeshPart::BaseVertex )
+		.property_readonly( "UseAdditionalBuffers", &sw::MeshPart::GetUseAdditionalBuffer )
+		.property_readonly( "UseExtendedIndex", &sw::MeshPart::GetUseExtendedIndex )
+		.property( "Material", &sw::MeshPart::Material );
 
-	rttr::registration::class_< std::vector< MeshPart > >( "Vector< MeshPart >" );
+	rttr::registration::class_< std::vector< sw::MeshPart > >( "Vector< MeshPart >" );
 
-	rttr::registration::class_< MeshAsset >( "MeshAsset" )
-		.property_readonly( "FileName", &MeshAsset::m_filePath )
-		.property( "Segments", &MeshAsset::m_segments )
-		.property( "IndexBuffer", &MeshAsset::m_indexBuffer )
-		.property( "VertexBuffer", &MeshAsset::m_vertexBuffer )
-		.property( "Layout", &MeshAsset::m_layout );
+	rttr::registration::class_< sw::MeshAsset >( "MeshAsset" )
+		.property_readonly( "FileName", &sw::MeshAsset::m_filePath )
+		.property( "Segments", &sw::MeshAsset::m_segments )
+		.property( "IndexBuffer", &sw::MeshAsset::m_indexBuffer )
+		.property( "VertexBuffer", &sw::MeshAsset::m_vertexBuffer )
+		.property( "Layout", &sw::MeshAsset::m_layout );
 }
 
 
+namespace sw
+{
 
 /**@brief */
 MeshAsset::MeshAsset( const std::wstring& filePath, MeshCreateData&& initData )
-	:	ResourceObject( WRONG_ID )
-	,	m_filePath( filePath )
-	,	m_vertexBuffer( std::move( initData.VertexBuffer ) )
-	,	m_indexBuffer( std::move( initData.IndexBuffer ) )
-	,	m_layout( std::move( initData.VertexLayout ) )
-	,	m_segments( std::move( initData.MeshSegments ) )
+	: ResourceObject( WRONG_ID )
+	, m_filePath( filePath )
+	, m_vertexBuffer( std::move( initData.VertexBuffer ) )
+	, m_indexBuffer( std::move( initData.IndexBuffer ) )
+	, m_layout( std::move( initData.VertexLayout ) )
+	, m_segments( std::move( initData.MeshSegments ) )
 {}
 
 /**@brief */
 MeshAsset::~MeshAsset()
 {
-	m_segments.clear( );
+	m_segments.clear();
 }
 
 
@@ -93,5 +95,10 @@ void		MeshAsset::Serialize( ISerializer* ser ) const
 	ser->Exit();
 }
 
+// ================================ //
+//
 void		MeshAsset::Deserialize( IDeserializer* deser )
-{ }
+{}
+
+}	// sw
+

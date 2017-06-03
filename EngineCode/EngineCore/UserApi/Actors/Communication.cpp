@@ -4,7 +4,9 @@
 #include "EngineCore/MainEngine/EngineContext.h"
 
 
-namespace Api { namespace Actors
+namespace sw {
+namespace Api {
+namespace Actors
 {
 
 
@@ -41,3 +43,4 @@ void Communication::SendSignal( const Signal& signal )
 
 }	// Actors
 }	// Api
+}	// sw

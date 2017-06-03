@@ -1,10 +1,21 @@
+/**
+@file OctreeNode.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
 #include "EngineCore/stdafx.h"
 #include "OctreeNode.h"
 
 #include "OctreeLeaf.h"
 
 
+namespace sw
+{
 
+
+// ================================ //
+//
 OctreeNode::OctreeNode()
 	: IOctreeNode( OctreeNodeType::RegularNode )
 {
@@ -14,7 +25,8 @@ OctreeNode::OctreeNode()
 	}
 }
 
-
+// ================================ //
+//
 OctreeNode::~OctreeNode()
 {
 	for( auto& child : m_children )
@@ -22,9 +34,12 @@ OctreeNode::~OctreeNode()
 		if( child )
 		{
 			if( child->GetType() == OctreeNodeType::RegularNode )
-				delete static_cast< OctreeNode* >( child );
+				delete static_cast<OctreeNode*>( child );
 			else
-				delete static_cast< OctreeLeaf* >( child );
+				delete static_cast<OctreeLeaf*>( child );
 		}
 	}
 }
+
+
+}	// sw

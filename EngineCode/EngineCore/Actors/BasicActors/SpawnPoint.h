@@ -1,8 +1,18 @@
 #pragma once
+/**
+@file SpawnPoint.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
 
 #include "swCommonLib/Common/TypesDefinitions.h"
 #include "PathNode.h"
 
+
+
+namespace sw
+{
 
 /**@brief Punkt startowy dla gracza lub bota.
 
@@ -15,16 +25,19 @@ Mo¿e to byæ przydatne, je¿eli chce siê np. zrobiæ punkty startowe dla wielu dru¿
 class SpawnPoint : public PathNode
 {
 	RTTR_ENABLE( PathNode )
-	RTTR_REGISTRATION_FRIEND
+		RTTR_REGISTRATION_FRIEND
 private:
 protected:
 	int32		m_spawnGroup;
-	
+
 public:
 	explicit SpawnPoint();
 	virtual ~SpawnPoint();
 
 
-	static ActorBase*		Create()	{ return new SpawnPoint; }
+	static ActorBase*		Create() { return new SpawnPoint; }
 };
+
+
+}	// sw
 

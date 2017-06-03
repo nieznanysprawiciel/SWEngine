@@ -9,6 +9,11 @@
 #include "EngineCore/ControllersEngine/BaseClasses/BaseInputController.h"
 
 
+namespace sw {
+namespace editor
+{
+
+
 /**@brief Kontroler u¿ywany przez edytor do przesuwania obiektów.
 
 Nale¿y stworzyæ specjalny obiekt, który bêdzie wyœwietla³ gizmo i przypisaæ mu ten kontroler.
@@ -24,7 +29,7 @@ Obiekt przesuwa siê tylko w wybranych osiach. Do wyboru osi s³u¿¹ przyciski:
 Przesuwa siê klikaj¹c mysz¹ w obpowiednim miejscu przyciskiem:
 PROTOTYPE_BUTTONS::LEFT_CLICK
 */
-class GizmoController :	public BaseInputController
+class GizmoController : public BaseInputController
 {
 	RTTR_ENABLE( BaseInputController )
 public:
@@ -59,15 +64,15 @@ public:
 												  ResourcePtr< MeshAsset > translateGizmo,
 												  ResourcePtr< MeshAsset > rotateGizmo,
 												  ResourcePtr< MeshAsset > scaleGizmo );
-						~GizmoController		();
+	~GizmoController		();
 
 	virtual void		ControlObjectPre		( DynamicActor* actor, IControllersState* globalState ) override;
 	virtual void		ControlObjectPost		( DynamicActor* actor, IControllersState* globalState ) override;
-	
+
 	virtual void		Initialize				( DynamicActor* actor ) override;
 
-	void				SetFollowedActor		( StaticActor* actor )		{ m_followedActor = actor; }
-	StaticActor*		GetFollowedActor		()							{ return m_followedActor; }
+	void				SetFollowedActor		( StaticActor* actor ) { m_followedActor = actor; }
+	StaticActor*		GetFollowedActor		() { return m_followedActor; }
 
 	void				ChangeOperation			( Operation op );
 	Operation			CheckOperation			();
@@ -100,3 +105,5 @@ private:
 
 };
 
+}	// editor
+}	// sw

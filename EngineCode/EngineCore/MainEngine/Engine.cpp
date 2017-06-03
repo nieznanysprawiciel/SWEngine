@@ -25,6 +25,8 @@ oraz g³ówne funkcje do renderingu.
 
 
 
+namespace sw
+{
 
 //----------------------------------------------------------------------------------------------//
 //								konstruktor i destruktor										//
@@ -79,8 +81,8 @@ void	Engine::InternalInit			( HINSTANCE instanceHandle )
 Engine::~Engine()
 {
 	//obiekty trzeba pokasowaæ, zanim siê skasuje to, do czego siê odwo³uj¹
-	for ( unsigned int i = 0; i < Context->objectList.size(); ++i )
-		delete Context->objectList[i];
+	for( unsigned int i = 0; i < Context->objectList.size(); ++i )
+		delete Context->objectList[ i ];
 
 	delete Context->eventsManager;
 	delete Context->controllersEngine;
@@ -130,7 +132,7 @@ int Engine::InitEngine( int width, int height, bool fullScreen, int nCmdShow )
 
 	//Tworzenie okna aplikacji
 	result = InitWindow( width, height, fullScreen, nCmdShow );
-	if ( !result )
+	if( !result )
 		return FALSE;
 
 	//Inicjalizowanie API graficznego
@@ -242,11 +244,11 @@ void Engine::RenderFrame()
 	float lag = Context->timeManager.GetFrameLag();
 
 
-	while ( lag >= FIXED_MOVE_UPDATE_INTERVAL )
+	while( lag >= FIXED_MOVE_UPDATE_INTERVAL )
 	{
-		START_PERFORMANCE_CHECK(FRAME_COMPUTING_TIME)
+		START_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
 
-		Context->ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
+			Context->ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->physicEngine->ProceedPhysic( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->controllersEngine->ProceedControllersPre( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->movementEngine->ProceedMovement( FIXED_MOVE_UPDATE_INTERVAL );
@@ -271,22 +273,22 @@ void Engine::RenderFrame()
 #ifdef _INTERPOLATE_POSITIONS
 	START_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 
-	Context->displayEngine->InterpolatePositions( lag / FIXED_MOVE_UPDATE_INTERVAL );
+		Context->displayEngine->InterpolatePositions( lag / FIXED_MOVE_UPDATE_INTERVAL );
 
 	END_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 #endif
 
-	START_PERFORMANCE_CHECK( RENDERING_TIME )
+		START_PERFORMANCE_CHECK( RENDERING_TIME )
 
-	//Renderujemy scenê oraz interfejs u¿ytkownika
-	Context->displayEngine->BeginScene();
+		//Renderujemy scenê oraz interfejs u¿ytkownika
+		Context->displayEngine->BeginScene();
 
 	Context->displayEngine->DisplayScene( timeInterval, lag / FIXED_MOVE_UPDATE_INTERVAL );
 	Context->ui_engine->DrawGUI( timeInterval, lag / FIXED_MOVE_UPDATE_INTERVAL );
 
 	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
 
-	Context->displayEngine->EndScene();
+		Context->displayEngine->EndScene();
 }
 
 /**@brief W tej funkcji wywo³ywane s¹ wszystkie funkcje, które aktualizuj¹ stan silnika
@@ -313,11 +315,11 @@ Zmienna okreœla, ile up³yne³o czasu od ostatniego przeliczenia po³o¿eñ.
 */
 void Engine::UpdateScene( float& lag, float timeInterval )
 {
-	while ( lag >= FIXED_MOVE_UPDATE_INTERVAL )
+	while( lag >= FIXED_MOVE_UPDATE_INTERVAL )
 	{
-		START_PERFORMANCE_CHECK(FRAME_COMPUTING_TIME)
+		START_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
 
-		Context->ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
+			Context->ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->physicEngine->ProceedPhysic( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->controllersEngine->ProceedControllersPre( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->movementEngine->ProceedMovement( FIXED_MOVE_UPDATE_INTERVAL );
@@ -351,22 +353,22 @@ void Engine::RenderScene( float lag, float timeInterval )
 #ifdef _INTERPOLATE_POSITIONS
 	START_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 
-	Context->displayEngine->InterpolatePositions( framePercent );
+		Context->displayEngine->InterpolatePositions( framePercent );
 
 	END_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 #endif
 
-	START_PERFORMANCE_CHECK( RENDERING_TIME )
+		START_PERFORMANCE_CHECK( RENDERING_TIME )
 
-	//Renderujemy scenê oraz interfejs u¿ytkownika
-	Context->displayEngine->BeginScene();
+		//Renderujemy scenê oraz interfejs u¿ytkownika
+		Context->displayEngine->BeginScene();
 
 	Context->displayEngine->DisplayScene( timeInterval, framePercent );
 	Context->ui_engine->DrawGUI( timeInterval, framePercent );
 
 	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
 
-	Context->displayEngine->EndScene();
+		Context->displayEngine->EndScene();
 }
 
 
@@ -411,13 +413,13 @@ CameraData& Engine::GetMainCamera()
 /**@brief Funkcja oblicza interwa³ czasowy jaki up³yn¹³ od ostatniej ramki.
  *Poza tym s¹ tu generowane eventy dotycz¹ce czasu, opóŸnieñ itp.
  @param[out] time_interval Zwraca interwa³ jaki up³yn¹³ od ostatniego wywo³ania.*/
-void Engine::time_controller(float& time_interval)
+void Engine::time_controller( float& time_interval )
 {
 	__int64 time_current;
 	LARGE_INTEGER time_temp;
 	QueryPerformanceCounter( &time_temp );
 	time_current = time_temp.QuadPart;
-	
+
 	__int64 time_diff;
 	time_diff = time_current - time_previous;
 	time_interval = (float)time_diff / timer_frequency;
@@ -426,7 +428,7 @@ void Engine::time_controller(float& time_interval)
 
 	//zliczanie FPSów
 	elapsed_time += time_diff;
-	if ( elapsed_time >= FRAMES_PER_SEC_UPDATE * timer_frequency )	//aktualizujemy co 10 sekund
+	if( elapsed_time >= FRAMES_PER_SEC_UPDATE * timer_frequency )	//aktualizujemy co 10 sekund
 	{
 		frames_per_sec = (float)frames / FRAMES_PER_SEC_UPDATE;	//FRAMES_PER_SEC_UPDATE w sekundach
 		elapsed_time = elapsed_time % FRAMES_PER_SEC_UPDATE * timer_frequency;
@@ -434,7 +436,7 @@ void Engine::time_controller(float& time_interval)
 	}
 
 	//todo:	generujemy eventy czasowe
-	
+
 	//zapisujemy obecny czas i wychodzimy z funkcji
 	time_previous = time_current;
 	++frames;		//inkrementujemy licznik klatek
@@ -457,16 +459,16 @@ void			Engine::SendEvent( Event* newEvent )
 }
 
 
-AppInstanceHandle		Engine::GetInstanceHandler()								{ return Context->instanceHandler; }
-WindowHandle			Engine::GetWindowHandler()									{ return Context->windowHandler; }
+AppInstanceHandle		Engine::GetInstanceHandler() { return Context->instanceHandler; }
+WindowHandle			Engine::GetWindowHandler() { return Context->windowHandler; }
 
-int						Engine::GetWindowWidth()									{ return Context->windowWidth; }
-int						Engine::GetWindowHeight()									{ return Context->windowHeight; }
-void					Engine::EnableInput( bool val )								{ Context->ui_engine->EnableInput( val ); }
+int						Engine::GetWindowWidth() { return Context->windowWidth; }
+int						Engine::GetWindowHeight() { return Context->windowHeight; }
+void					Engine::EnableInput( bool val ) { Context->ui_engine->EnableInput( val ); }
 
-IInput*					Engine::ChangeInputModule( IInput* newModule )				{ return Context->ui_engine->ChangeInputModule( newModule ); }
+IInput*					Engine::ChangeInputModule( IInput* newModule ) { return Context->ui_engine->ChangeInputModule( newModule ); }
 
-AssetsManager *			Engine::GetAssetsManager()									{ return Context->modelsManager; }
+AssetsManager *			Engine::GetAssetsManager() { return Context->modelsManager; }
 
 /**@brief Funkcja wczytuj¹ca startowy level do silnika. Najczêœciej na tym etapie wczytuje siê tylko menu,
 oraz wszytkie elementy, które s¹ przydatne na ka¿dym etapie gry.
@@ -479,20 +481,20 @@ Funkcja nie jest dostêpna w EngineInterface. S³u¿y do wczytania tylko pierwszej 
 jaka istnieje, na póŸniejszych etapach gry robi siê to innymi funkcjami.
 
 Level siê nie wczyta, je¿eli nie zainicjowano DirectXa. Funkcje tworz¹ce bufory, textury
-i tym podobne rzeczy wymagaj¹ zainicjowanego kontekstu urz¹dzenia DirectX, dlatego 
+i tym podobne rzeczy wymagaj¹ zainicjowanego kontekstu urz¹dzenia DirectX, dlatego
 na wszelki wypadek zawsze inicjalizacja powinna byæ wczeœniej.
 
 @param[in] game_play Obiekt do wczytania, jako pocz¹tek gry.
 @see IGamePlay*/
 void Engine::SetEntryPoint( IGamePlay* game_play )
 {
-	if ( Context->engineReady )
+	if( Context->engineReady )
 	{
 		game_play->SetEngineReference( this, Context->fableEngine );
 		Context->fableEngine->SetGamePlay( game_play );
-		
+
 		int result = game_play->LoadLevel();
-		if ( result )
+		if( result )
 		{//Tutaj mo¿e siê znaleŸæ obs³uga b³êdów
 
 		}
@@ -507,16 +509,19 @@ void Engine::SetEntryPoint( const std::wstring dll_name )
 	HINSTANCE dll_entry_point;
 	dll_entry_point = LoadLibrary( dll_name.c_str() );
 
-	if ( dll_entry_point != NULL )
+	if( dll_entry_point != NULL )
 	{
 		IGamePlay* game_play;
 
 
-		if ( directX_ready )
+		if( directX_ready )
 		{
 			fableEngine->set_game_play( game_play );
-			game_play->LoadLevel( );
+			game_play->LoadLevel();
 		}
-	}
+}
 }
 #endif
+
+}	// sw
+

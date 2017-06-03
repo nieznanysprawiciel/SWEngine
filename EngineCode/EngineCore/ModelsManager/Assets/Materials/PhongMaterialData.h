@@ -10,6 +10,10 @@
 #include <DirectXMath.h>
 
 
+
+namespace sw
+{
+
 /**@brief Layout bufora materia³u w klasie @ref MaterialAsset.
 
 @ingroup Materials*/
@@ -52,4 +56,7 @@ inline void PhongMaterial::SetNullMaterial()
 
 	Power = 1.0f;
 }
+
+
+}	// sw
 

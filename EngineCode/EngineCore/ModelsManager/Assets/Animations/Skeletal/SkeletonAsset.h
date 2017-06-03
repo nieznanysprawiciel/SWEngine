@@ -14,6 +14,10 @@
 #include <string>
 
 
+
+namespace sw
+{
+
 /**@brief Skeleton descriptor.
 @ingroup AnimationAsset*/
 struct SkeletonInfo
@@ -29,7 +33,7 @@ class SkeletonAsset : public ResourceObject
 	RTTR_ENABLE( ResourceObject );
 	RTTR_REGISTRATION_FRIEND
 
-	friend ObjectDeleter< SkeletonAsset >;
+		friend ObjectDeleter< SkeletonAsset >;
 private:
 
 	std::vector< Bone >		Bones;
@@ -38,6 +42,9 @@ private:
 protected:
 public:
 	explicit		SkeletonAsset() = default;
-					~SkeletonAsset() = default;
+	~SkeletonAsset() = default;
 
 };
+
+}	// sw
+

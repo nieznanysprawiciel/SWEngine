@@ -21,6 +21,12 @@
 
 #include <queue>
 
+
+
+namespace sw
+{
+
+
 class IGamePlay;
 class ActorBase;
 class Event;
@@ -95,7 +101,7 @@ public:
 public:
 	explicit Engine();
 	explicit Engine( HINSTANCE instanceHandle );
-			~Engine();
+	~Engine();
 
 	bool	InitEngine				( int nCmdShow );
 	int		InitEngine				( int width, int height, bool fullscreen, int nCmdShow );
@@ -124,7 +130,7 @@ public:
 
 	//Engine functions
 #ifndef __UNUSED
-	void time_controller(float& time_interval);
+	void time_controller( float& time_interval );
 #endif
 
 
@@ -170,3 +176,4 @@ public:
 };
 
 
+}	// sw

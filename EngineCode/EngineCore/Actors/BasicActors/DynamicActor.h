@@ -1,6 +1,17 @@
 #pragma once
+/**
+@file DynamicActor.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 
 #include "StaticActor.h"
+
+
+namespace sw
+{
 
 
 class IController;
@@ -24,7 +35,7 @@ W docelowej wersji bêdzie najprawdopodobniej wybrana opcja z wetorem a nie kwate
 class DynamicActor : public StaticActor
 {
 	RTTR_REGISTRATION_FRIEND
-	RTTR_ENABLE( StaticActor )
+		RTTR_ENABLE( StaticActor )
 protected:
 
 	DirectX::XMFLOAT3		m_speed;				///< Prêdkoœæ postepowa obiektu.
@@ -51,7 +62,7 @@ public:
 	void				Move					( float time_interval );
 	virtual void		MoveComplex				( float time_interval, const DirectX::XMFLOAT3& parent_speed, const DirectX::XMFLOAT4& parent_rotation );
 
-	static ActorBase*	Create()	{ return new DynamicActor; }
+	static ActorBase*	Create() { return new DynamicActor; }
 };
 
 
@@ -63,29 +74,29 @@ public:
 // ================================ //
 //
 inline void			DynamicActor::SetSpeed			( const DirectX::XMVECTOR& vector )
-{ 
+{
 	XMStoreFloat3( &m_speed, vector );
 }
 
 // ================================ //
 //
 inline void			DynamicActor::SetRotationSpeed	( const DirectX::XMVECTOR& quaternion )
-{ 
+{
 	XMStoreFloat4( &m_rotationSpeed, quaternion );
 }
 
 // ================================ //
 //
 inline void			DynamicActor::SetRotationSpeed	( const DirectX::XMFLOAT4 axisAngle )
-{ 
+{
 	m_rotationSpeed = axisAngle;
 }
 
 // ================================ //
 //
-inline DirectX::XMVECTOR	DynamicActor::GetSpeed	() const 
-{ 
-	return XMLoadFloat3( &m_speed ); 
+inline DirectX::XMVECTOR	DynamicActor::GetSpeed	() const
+{
+	return XMLoadFloat3( &m_speed );
 }
 
 // ================================ //
@@ -96,4 +107,5 @@ inline DirectX::XMVECTOR	DynamicActor::GetRotationSpeed	() const
 }
 
 
+}	// sw
 

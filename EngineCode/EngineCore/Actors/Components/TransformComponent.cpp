@@ -10,22 +10,26 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< TransformComponent >( "TransformComponent" )
-		.property( "Position", &TransformComponent::m_position ) BIND_AS_PTR
-		.property( "Orientation", &TransformComponent::m_orientation ) BIND_AS_PTR
-		.property( "Scale", &TransformComponent::m_scale );
+	rttr::registration::class_< sw::TransformComponent >( "TransformComponent" )
+		.property( "Position", &sw::TransformComponent::m_position ) BIND_AS_PTR
+		.property( "Orientation", &sw::TransformComponent::m_orientation ) BIND_AS_PTR
+		.property( "Scale", &sw::TransformComponent::m_scale );
 }
 
 using namespace DirectX;
+
+
+namespace sw
+{
 
 
 
 // ================================ //
 //
 TransformComponent::TransformComponent()
-	:	m_position( XMFLOAT3( 0.0f, 0.0f, 0.0f ) )
-	,	m_orientation( XMFLOAT4( 0.0f, 0.0f, 0.0f, 1.0f ) )
-	,	m_scale( 1.0f )
+	: m_position( XMFLOAT3( 0.0f, 0.0f, 0.0f ) )
+	, m_orientation( XMFLOAT4( 0.0f, 0.0f, 0.0f, 1.0f ) )
+	, m_scale( 1.0f )
 {}
 
 // ================================ //
@@ -44,7 +48,9 @@ void		TransformComponent::SetPositionXM		( DirectX::XMVECTOR position )
 // ================================ //
 //
 void		TransformComponent::SetPosition			( const DirectX::XMFLOAT3& position )
-{	m_position = position;	}
+{
+	m_position = position;
+}
 
 /**@brief Sets orientation.
 If you need to load XMVECTOR from XMFLOAT4, better use normal SetOrientation function.*/
@@ -56,7 +62,9 @@ void		TransformComponent::SetOrientationXM	( DirectX::XMVECTOR orientation )
 // ================================ //
 //
 void		TransformComponent::SetOrientation		( const DirectX::XMFLOAT4& orientation )
-{	m_orientation = orientation;	}
+{
+	m_orientation = orientation;
+}
 
 
 // ================================ //
@@ -143,19 +151,21 @@ float		TransformComponent::GetRoll() const
 //
 void		TransformComponent::SetYaw( float angle )
 {
-assert( false );
+	assert( false );
 }
 
 // ================================ //
 //
 void		TransformComponent::SetPitch( float angle )
 {
-assert( false );
+	assert( false );
 }
 
 // ================================ //
 //
 void		TransformComponent::SetRoll( float angle )
 {
-assert( false );
+	assert( false );
 }
+
+}	// sw

@@ -1,4 +1,10 @@
 #pragma once
+/**
+@file ActorsManager.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
 
 #include "ActorFactory.h"
 #include "ActorInfo.h"
@@ -6,6 +12,10 @@
 #include <map>
 #include <vector>
 #include <string>
+
+
+namespace sw
+{
 
 
 class Engine;
@@ -28,7 +38,7 @@ public:
 	ActorsManager( Engine* engine );
 	~ActorsManager();
 
-	inline ActorFactory&									GetActorFactory	()	{ return m_actorFactory; }
+	inline ActorFactory&									GetActorFactory	() { return m_actorFactory; }
 
 	template< typename Type = ActorBase >	Type*			CreateActor		( const std::string& name );
 	template< typename Type = ActorBase >	Type*			CreateActor		( ActorType id );
@@ -48,7 +58,7 @@ public:
 private:
 
 	void													AddActor		( ActorBase* newActor );
-	
+
 };
 
 
@@ -81,4 +91,7 @@ inline Type* ActorsManager::CreateActor( ActorType id )
 
 	return newActor;
 }
+
+
+}	// sw
 

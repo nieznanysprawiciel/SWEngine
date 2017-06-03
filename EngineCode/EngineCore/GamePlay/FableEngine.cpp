@@ -12,7 +12,13 @@
 
 #include "swCommonLib/Common/MemoryLeaks.h"
 
-// ================================ //
+
+
+namespace sw
+{
+
+
+ // ================================ //
 //
 FableEngine::FableEngine( Engine* engine )
 	: m_engine( engine )
@@ -44,3 +50,7 @@ void FableEngine::ProceedFable( float timeInterval )
 //
 void FableEngine::ProceedEvents( float timeInterval )
 {}
+
+}	// sw
+
+

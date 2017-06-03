@@ -10,6 +10,10 @@
 #include <string>
 
 
+
+namespace sw
+{
+
 /**@brief Engine start configuration.*/
 class Config
 {
@@ -24,7 +28,7 @@ private:
 protected:
 public:
 	explicit		Config	( const std::string& filePath );
-					~Config	() = default;
+	~Config	() = default;
 
 
 	uint16			ScreenWidth		() const;
@@ -37,6 +41,7 @@ public:
 };
 
 
+}	// sw
 
 
 

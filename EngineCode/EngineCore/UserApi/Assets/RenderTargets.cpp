@@ -3,7 +3,10 @@
 
 #include "EngineCore/MainEngine/EngineContext.h"
 
-namespace Api { namespace Assets
+
+namespace sw {
+namespace Api {
+namespace Assets
 {
 
 
@@ -21,3 +24,4 @@ std::vector< ResourcePtr< RenderTargetObject > > RenderTargets::List()
 
 }	// Assets
 }	// Api
+}	// sw

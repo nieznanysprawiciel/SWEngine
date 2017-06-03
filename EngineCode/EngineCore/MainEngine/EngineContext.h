@@ -24,6 +24,8 @@
 #include "swInputLibrary/InputCore/IInput.h"
 
 
+namespace sw
+{
 
 class Event;
 class Command;
@@ -105,4 +107,5 @@ struct EngineContext
 	std::vector<ActorBase*>		objectList;
 };
 
+}	// sw
 

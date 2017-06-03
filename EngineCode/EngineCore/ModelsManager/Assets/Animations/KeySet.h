@@ -10,6 +10,8 @@
 
 #include <vector>
 
+namespace sw
+{
 
 /**@brief Set of animation keys.
 @ingroup Animation*/
@@ -19,3 +21,5 @@ struct KeySet
 	std::vector< Key< ValueType > >		Keys;
 };
 
+
+}	// sw

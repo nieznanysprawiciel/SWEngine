@@ -17,8 +17,12 @@
 #include "swCommonLib/Common/MemoryLeaks.h"
 
 
+namespace sw
+{
+
+
 /**@brief Inicjuje domyœlne assety silnika.*/
-bool Engine::InitDefaultAssets()
+bool			Engine::InitDefaultAssets()
 {
 	DefaultAssets::Init();
 
@@ -44,3 +48,4 @@ bool Engine::InitDefaultAssets()
 
 
 
+}	// sw

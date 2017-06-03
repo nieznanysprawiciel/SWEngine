@@ -11,6 +11,12 @@
 #include "EngineCore/UserApi/Assets/AssetsApi.h"
 #include "EngineCore/UserApi/Level/LevelApi.h"
 
+
+
+namespace sw
+{
+
+
 struct EngineContext;
 class Engine;
 
@@ -60,3 +66,4 @@ public:
 };
 
 
+}	// sw

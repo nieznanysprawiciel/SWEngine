@@ -15,6 +15,10 @@
 #include "swCommonLib/Common/MemoryLeaks.h"
 
 
+
+namespace sw
+{
+
 AssetsManager*		IRenderPass::s_assetsManager = nullptr;
 RenderPassFactory*	IRenderPass::s_renderPassFactory = nullptr;
 
@@ -51,3 +55,6 @@ Ptr< IShadingPass >				RenderPassFactory::CreateDefaultDeferredShading()
 {
 	return Ptr< IShadingPass >();
 }
+
+}	// sw
+

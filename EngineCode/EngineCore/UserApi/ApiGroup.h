@@ -6,6 +6,8 @@ class Engine;
 struct EngineContext;
 class EngineInterface;
 
+
+namespace sw {
 namespace Api
 {
 
@@ -15,16 +17,17 @@ namespace Api
 	Klasa posiada statyczny wskaŸnik na Engine i EngineContext. Dziêki temu nie trzeba go przekazywaæ
 	do ka¿dej klasy z osobna. Dodatkowo mo¿na w tej klasie umieszczaæ wskaŸniki na inne
 	obiekty, które wymagaj¹ bezpoœredniego dostêpu.*/
-	class ApiGroup
-	{
-		friend class EngineInterface;
-	private:
-	protected:
-		static Engine*			Engine;
-		static EngineContext*	Context;
-	public:
-		ApiGroup() = default;
-		~ApiGroup() = default;
-	};
+class ApiGroup
+{
+	friend class EngineInterface;
+private:
+protected:
+	static Engine*			Engine;
+	static EngineContext*	Context;
+public:
+	ApiGroup() = default;
+	~ApiGroup() = default;
+};
 
 }	// Api
+}	// sw

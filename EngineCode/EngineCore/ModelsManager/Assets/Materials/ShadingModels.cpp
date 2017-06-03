@@ -1,3 +1,10 @@
+/**
+@file ShadingModels.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
 
 #include "swCommonLib/Common/RTTR.h"
@@ -10,21 +17,26 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< ShadingModelBase >( "ShadingModelBase" )
-		.property_readonly( "TypeName", &ShadingModelBase::GetShadingModelTypeName );
+	rttr::registration::class_< sw::ShadingModelBase >( "ShadingModelBase" )
+		.property_readonly( "TypeName", &sw::ShadingModelBase::GetShadingModelTypeName );
 
-	rttr::registration::class_< PhongMaterial >( "PhongMaterial" )
-		.property( "Diffuse", &PhongMaterial::Diffuse ) BIND_AS_PTR
-		.property( "Specular", &PhongMaterial::Specular ) BIND_AS_PTR
-		.property( "Emissive", &PhongMaterial::Emissive ) BIND_AS_PTR
-		.property( "Ambient", &PhongMaterial::Ambient ) BIND_AS_PTR
-		.property( "Power", &PhongMaterial::Power );
+	rttr::registration::class_< sw::PhongMaterial >( "PhongMaterial" )
+		.property( "Diffuse", &sw::PhongMaterial::Diffuse ) BIND_AS_PTR
+		.property( "Specular", &sw::PhongMaterial::Specular ) BIND_AS_PTR
+		.property( "Emissive", &sw::PhongMaterial::Emissive ) BIND_AS_PTR
+		.property( "Ambient", &sw::PhongMaterial::Ambient ) BIND_AS_PTR
+		.property( "Power", &sw::PhongMaterial::Power );
 
-	rttr::registration::class_< ShadingModelData< PhongMaterial > >( "ShadingModelData< PhongMaterial >" )
+	rttr::registration::class_< sw::ShadingModelData< sw::PhongMaterial > >( "ShadingModelData< PhongMaterial >" )
 		.constructor<>()( rttr::policy::ctor::as_raw_ptr )
-		.property( "Data", &ShadingModelData< PhongMaterial >::Data ) BIND_AS_PTR;
+		.property( "Data", &sw::ShadingModelData< sw::PhongMaterial >::Data ) BIND_AS_PTR;
 }
 
+
+
+
+namespace sw
+{
 
 // Note: There should be at least one function (or constructor) in this file. Otherwise compiler
 //doesn't want to compile RTTR type registrations.
@@ -40,3 +52,4 @@ std::string			ShadingModelBase::GetShadingModelTypeName ()
 	return GetShadingModelType().get_name();
 }
 
+}	// sw

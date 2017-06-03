@@ -8,6 +8,10 @@
 #include "SOIL/stb_image.h"
 
 
+namespace sw
+{
+
+
 /**@brief Wczytuje teksturê z pliku.
 
 Funkcja uzupe³nia w strukturze @ref TextureInfo pola:
@@ -40,7 +44,7 @@ MemoryChunk			TextureLoader::LoadTexture( const filesystem::Path& filePath, Text
 	//else if( channels == 2 )
 	//	texInfo.format = ResourceFormat::RESOURCE_FORMAT_R8G8_UNORM;
 	//else if( channels == 3 )
-		texInfo.Format = ResourceFormat::RESOURCE_FORMAT_R8G8B8A8_UNORM;
+	texInfo.Format = ResourceFormat::RESOURCE_FORMAT_R8G8B8A8_UNORM;
 
 	uint32 size = width * height;
 	size *= 4;//channels;
@@ -70,3 +74,6 @@ MemoryChunk TextureLoader::GenerateMipMaps( MemoryChunk& source, TextureInfo& te
 
 	return mipmaper.Generate( source, texInfo );
 }
+
+}	// sw
+

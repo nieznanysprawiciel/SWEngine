@@ -1,10 +1,22 @@
 #pragma once
+/**
+@file StandatdAbstractionLayers.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 
 #include "swCommonLib/Common/TypesDefinitions.h"
 #include "EngineCore/EventsManager/Signal.h"
 
 
 #include <vector>
+
+namespace sw
+{
+
+
 
 typedef int16 DeviceNumber;
 typedef uint16 VirtualKeyIndex;
@@ -69,53 +81,56 @@ enum DEVICE_IDs
 namespace STANDARD_LAYERS
 {
 //STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS
-	typedef enum
-	{
-		FORWARD = 0,
-		BACKWARD,
-		LEFT,
-		RIGHT,
-		UP,
-		DOWN,
-		TURN_LEFT,
-		TURN_RIGHT,
-		TURN_UP,
-		TURN_DOWN,
-		SHOT1,
-		SHOT2,
-		SHOT3,
-		MENU,
-		PAUSE,
-		ESCAPE,
-		RIGHT_CLICK,
-		LEFT_CLICK,
-		GENERATE_LIGHTMAPS1,
-		GENERATE_LIGHTMAPS2,
-		GENERATE_LIGHTMAPS3,
-		GENERATE_LIGHTMAPS4,
-		GENERATE_LIGHTMAPS5,
-		LOAD_LIGHTMAP_SCENE,
-		ENABLE_MOVE_X,
-		ENABLE_MOVE_Y,
-		ENABLE_MOVE_Z,
+typedef enum
+{
+	FORWARD = 0,
+	BACKWARD,
+	LEFT,
+	RIGHT,
+	UP,
+	DOWN,
+	TURN_LEFT,
+	TURN_RIGHT,
+	TURN_UP,
+	TURN_DOWN,
+	SHOT1,
+	SHOT2,
+	SHOT3,
+	MENU,
+	PAUSE,
+	ESCAPE,
+	RIGHT_CLICK,
+	LEFT_CLICK,
+	GENERATE_LIGHTMAPS1,
+	GENERATE_LIGHTMAPS2,
+	GENERATE_LIGHTMAPS3,
+	GENERATE_LIGHTMAPS4,
+	GENERATE_LIGHTMAPS5,
+	LOAD_LIGHTMAP_SCENE,
+	ENABLE_MOVE_X,
+	ENABLE_MOVE_Y,
+	ENABLE_MOVE_Z,
 
-		PROTOTYPE_BUTTONS_MAPPING_COUNT
-	} PROTOTYPE_BUTTONS;
+	PROTOTYPE_BUTTONS_MAPPING_COUNT
+} PROTOTYPE_BUTTONS;
 
-	//#define PROTOTYPE_BUTTONS_MAPPING_COUNT		11
-	extern std::vector< InputMapping > PROTOTYPE_BUTTONS_mapping;
+//#define PROTOTYPE_BUTTONS_MAPPING_COUNT		11
+extern std::vector< InputMapping > PROTOTYPE_BUTTONS_mapping;
 
-	typedef enum
-	{
-		X_AXIS = 0,
-		Y_AXIS,
-		ZOOM,
+typedef enum
+{
+	X_AXIS = 0,
+	Y_AXIS,
+	ZOOM,
 
-		PROTOTYPE_AXES_MAPPING_COUNT
-	} PROTOTYPE_AXES;
+	PROTOTYPE_AXES_MAPPING_COUNT
+} PROTOTYPE_AXES;
 
-	//#define PROTOTYPE_AXES_MAPPING_COUNT		3
-	extern std::vector< InputMapping > PROTOTYPE_AXES_mapping;
+//#define PROTOTYPE_AXES_MAPPING_COUNT		3
+extern std::vector< InputMapping > PROTOTYPE_AXES_mapping;
 
 }
+
+
+}	// sw
 

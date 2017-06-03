@@ -15,6 +15,7 @@
 #include "swCommonLib/Serialization/PropertySerialization/EngineSerializationContext.h"
 
 
+namespace sw {
 namespace Api
 {
 
@@ -78,7 +79,7 @@ LevelApi::EditorLoadResult	LevelApi::LoadLevelImpl			( IDeserializer* deser )
 				if( deser->EnterObject( Level::SerializationApi::ACTOR_INFO_STRING ) )
 				{
 					ActorInfo info = Serialization.DeserializeActorInfo( deser );
-					
+
 					// Przecohdzimy do kolejnego obiektu, którm powinien byæ aktor.
 					bool actorObjectExists = deser->NextElement();
 					assert( actorObjectExists );
@@ -122,3 +123,4 @@ LevelApi::EditorLoadResult	LevelApi::LoadLevelImpl			( IDeserializer* deser )
 }
 
 }	// Api
+}	// sw

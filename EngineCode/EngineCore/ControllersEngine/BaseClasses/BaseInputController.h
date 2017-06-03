@@ -9,6 +9,10 @@
 #include "EngineCore/ControllersEngine/BaseClasses/IController.h"
 
 
+namespace sw
+{
+
+
 class InputAbstractionLayerBase;
 
 
@@ -25,3 +29,6 @@ public:
 
 	void				SetAbstractionLayer	( InputAbstractionLayerBase* layer ) { m_abstractionLayer = layer; };
 };
+
+}	// sw
+

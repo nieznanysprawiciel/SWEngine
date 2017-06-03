@@ -16,6 +16,11 @@
 using namespace DirectX;
 
 
+namespace sw
+{
+
+
+
 // ================================ //
 //
 ForwardRendering::ForwardRendering()
@@ -70,7 +75,7 @@ void		ForwardRendering::Render		( IRenderer* renderer, RenderContext& context, S
 	auto& meshes = context.DisplayEngine->GetMeshes();
 
 	//na razie pêtla bez optymalizacji
-	for ( auto i = rangeStart; i < std::min( meshes.size(), rangeEnd ); ++i )
+	for( auto i = rangeStart; i < std::min( meshes.size(), rangeEnd ); ++i )
 	{
 		StaticActor* object = meshes[ i ];
 
@@ -78,8 +83,8 @@ void		ForwardRendering::Render		( IRenderer* renderer, RenderContext& context, S
 #ifdef _INTERPOLATE_POSITIONS
 		XMMATRIX transformation = XMLoadFloat4x4( &( context.Transforms[ i ] ) );
 #else
-		XMVECTOR translation = XMLoadFloat3( &(object->position) );
-		XMVECTOR orientation = XMLoadFloat4( &(object->orientation) );
+		XMVECTOR translation = XMLoadFloat3( &( object->position ) );
+		XMVECTOR orientation = XMLoadFloat4( &( object->orientation ) );
 		XMMATRIX transformation = XMMatrixRotationQuaternion( orientation );
 		transformation = transformation * XMMatrixTranslationFromVector( translation );
 #endif
@@ -87,7 +92,7 @@ void		ForwardRendering::Render		( IRenderer* renderer, RenderContext& context, S
 		auto meshAsset = object->GetModel().Ptr();
 		if( meshAsset )
 		{
-			for ( unsigned int j = 0; j < meshAsset->GetSegmentsCount(); ++j )
+			for( unsigned int j = 0; j < meshAsset->GetSegmentsCount(); ++j )
 			{
 				const MeshPart* model = meshAsset->GetSegment( j );
 
@@ -173,3 +178,6 @@ ResourcePtr< RenderTargetObject >	ForwardRendering::GetMainRenderTarget()
 {
 	return m_mainTarget;
 }
+
+}	// sw
+

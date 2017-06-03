@@ -15,6 +15,11 @@ class IRenderer;
 struct RenderContext;
 
 
+
+namespace sw
+{
+
+
 /**@brief Rendering helper functions for @ref DisplayEngine and render passes.*/
 struct RenderingHelper
 {
@@ -51,3 +56,6 @@ inline void			RenderingHelper::UpdateBuffer			( IRenderer* renderer, BufferObjec
 
 	renderer->UpdateBuffer( updateCommand );
 }
+
+}	// sw
+

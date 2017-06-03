@@ -8,6 +8,10 @@
 
 
 
+namespace sw
+{
+
+
 
 /**@brief @deprecated Zamiast tego u¿yj rttr::type.*/
 typedef enum class EventType
@@ -30,3 +34,4 @@ public:
 	virtual ~Event() = default;
 };
 
+}	// sw

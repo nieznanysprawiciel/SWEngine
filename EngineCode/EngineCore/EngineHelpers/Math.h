@@ -11,6 +11,10 @@
 #define FASTCALL __vectorcall
 
 
+namespace sw
+{
+
+
 /**@brief */
 class Math
 {
@@ -27,3 +31,6 @@ public:
 	static float					ToDegrees			( float value );
 	static float					ToRadians			( float value );
 };
+
+}	// sw
+

@@ -22,6 +22,8 @@
 #include "swCommonLib/Common/MemoryLeaks.h"
 
 
+namespace sw
+{
 
 
 
@@ -39,10 +41,14 @@ const wchar_t MATERIAL_CONSTANTS_BUFFER_NAME[] = L"::DisplayEngine::MaterialCons
 
 /**@brief Sets AssetManager for IRenderPass class.*/
 void		SetAssetManager		( AssetsManager* manager )
-{	IRenderPass::s_assetsManager = manager;		}
+{
+	IRenderPass::s_assetsManager = manager;
+}
 
 void		SetFactory			( RenderPassFactory* factory )
-{	IRenderPass::s_renderPassFactory = factory;		}
+{
+	IRenderPass::s_renderPassFactory = factory;
+}
 
 
 // ================================ //
@@ -64,10 +70,10 @@ DisplayEngine::DisplayEngine( Engine* engine )
 
 DisplayEngine::~DisplayEngine()
 {
-	for ( IRenderer* renderer : m_renderers )
-		if ( renderer )		delete renderer;
+	for( IRenderer* renderer : m_renderers )
+		if( renderer )		delete renderer;
 
-	if ( m_skyDome )
+	if( m_skyDome )
 		delete m_skyDome;
 
 	delete m_defaultCamera;
@@ -197,7 +203,7 @@ Zakres [0,1].
 */
 void DisplayEngine::DisplayScene( float timeInterval, float timeLag )
 {
-	IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
+	IRenderer* renderer = m_renderers[ 0 ];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
 
 	ProcessMainPass( timeInterval, timeLag );
 }
@@ -205,18 +211,18 @@ void DisplayEngine::DisplayScene( float timeInterval, float timeLag )
 /**@brief Renders scene using @ref m_mainPass.*/
 void			DisplayEngine::ProcessMainPass			( float timeInterval, float timeLag )
 {
-	IRenderer* renderer = m_renderers[0];
+	IRenderer* renderer = m_renderers[ 0 ];
 	RenderContext context = CreateRenderContext( timeInterval, timeLag );
 
 	std::vector< Ptr< IRenderPass > > orderedPasses;
 	m_mainPass->NestedPasses( orderedPasses );
 
 	START_PERFORMANCE_CHECK( SHADING_PASSES );		///< @todo It's temporary. We should separate rendering of shadow, environment, custom passes, shading and postprocesisng.
-	
+
 	for( int i = 0; i < orderedPasses.size(); ++i )
 	{
 		auto& pass = orderedPasses[ i ];
-		
+
 		if( pass->PreRender( renderer, context ) )
 		{
 			pass->Render( renderer, context, 0, meshes.size() );
@@ -251,10 +257,10 @@ void DisplayEngine::DisplaySkyBox( float timeInterval, float timeLag, const Rend
 {
 	START_PERFORMANCE_CHECK( SKYBOX_RENDERING )
 
-	if ( !m_skyDome )
-		return;
+		if( !m_skyDome )
+			return;
 
-	register IRenderer* renderer = m_renderers[0];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
+	register IRenderer* renderer = m_renderers[ 0 ];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
 
 
 	// Aktualizuje bufor wierzcho³ków. Wstawiane s¹ nowe kolory.
@@ -277,7 +283,7 @@ void DisplayEngine::DisplaySkyBox( float timeInterval, float timeLag, const Rend
 	// Update only. Buffer is set by default.
 	RenderingHelper::UpdateBuffer( renderer, ctx.TransformBuffer, meshTransformData );
 
-	
+
 	auto mesh = m_skyDome->GetModel();
 
 	assert( mesh->GetSegmentsCount() > 0 );
@@ -336,7 +342,7 @@ void				DisplayEngine::RenderFromQueue		( float time_interval, float time_lag )
 @param[in] object ActorBase, który ma zostaæ dopisany do tablic wyœwietlania.*/
 void				DisplayEngine::AddMeshObject( StaticActor* object )
 {
-	realocate_interpolation_memory( );		//powiêkszamy tablicê macierzy interpolacji
+	realocate_interpolation_memory();		//powiêkszamy tablicê macierzy interpolacji
 							//wykona siê tylko je¿eli jest konieczne
 	meshes.push_back( object );
 }
@@ -347,8 +353,8 @@ Funkcja przegl¹da aktorów od ty³u, poniewa¿ bardziej prawdopodobne jest,
 ¿e usuwamy aktora stworzonego niedawno.*/
 void				DisplayEngine::RemoveActor			( ActorBase* actor )
 {
-	ActorsCommonFunctions::RemoveActor( meshes, static_cast< StaticActor* >( actor ) );
-	ActorsCommonFunctions::RemoveActor( cameras, static_cast< CameraActor* >( actor ) );
+	ActorsCommonFunctions::RemoveActor( meshes, static_cast<StaticActor*>( actor ) );
+	ActorsCommonFunctions::RemoveActor( cameras, static_cast<CameraActor*>( actor ) );
 	lightModule->RemoveActor( actor );
 
 	if( m_currentCamera == actor )
@@ -380,10 +386,10 @@ Je¿eli kamera ju¿ istnia³a wczesniej, to zwracan¹ wartoœci¹ jest 1.
 Je¿eli podano wskaŸnik nullptr, zwrócona zostanie wartoœæ 2.*/
 int					DisplayEngine::AddCamera			( CameraActor* camera )
 {
-	if ( camera == nullptr )
+	if( camera == nullptr )
 		return 2;
-	for ( unsigned int i = 0; i < cameras.size( ); ++i )
-		if ( cameras[i] == camera )
+	for( unsigned int i = 0; i < cameras.size(); ++i )
+		if( cameras[ i ] == camera )
 			return 1;	//kamera ju¿ istnieje
 
 	cameras.push_back( camera );
@@ -396,9 +402,9 @@ int					DisplayEngine::AddCamera			( CameraActor* camera )
 Zasadniczo nie ma po co sprawdzaæ wartoœci zwracanej.*/
 int					DisplayEngine::SetCurrentCamera		( CameraActor* camera )
 {
-	if ( camera == nullptr )
+	if( camera == nullptr )
 		return 1;
-	
+
 	m_currentCamera = camera;
 	m_mainPass->SetMainCamera( camera );
 
@@ -427,9 +433,9 @@ w silniku nie mo¿e siê zwiêkszyæ miêdzy interpolacj¹, a wyœwietleniem.
 @param[in] min Minimalna liczba macierzy o jak¹ nale¿y zwiekszyæ tablicê.*/
 void				DisplayEngine::realocate_interpolation_memory	( unsigned int min )
 {
-	if ( m_interpolatedMatricies.size() < min + meshes.size() )
+	if( m_interpolatedMatricies.size() < min + meshes.size() )
 	{
-		while ( m_interpolatedMatricies.size() < min + meshes.size() )
+		while( m_interpolatedMatricies.size() < min + meshes.size() )
 			m_interpolatedMatricies.resize( 2 * ( m_interpolatedMatricies.size() + 1 ) );	//wielkoœæ tablicy roœnie wyk³adniczo
 	}
 }
@@ -452,10 +458,10 @@ odpowiada indeksom w tablicy meshes.
 Zakres [0,1].*/
 void				DisplayEngine::InterpolatePositions				( float time_lag )
 {
-	for ( unsigned int i = 0; i < meshes.size(); ++i )
+	for( unsigned int i = 0; i < meshes.size(); ++i )
 	{
-		StaticActor* object = meshes[i];
-		interpolate_object2( time_lag, object, &(m_interpolatedMatricies[i]) );
+		StaticActor* object = meshes[ i ];
+		interpolate_object2( time_lag, object, &( m_interpolatedMatricies[ i ] ) );
 	}
 }
 
@@ -506,4 +512,7 @@ SkyDome*			DisplayEngine::SetSkydome						( SkyDome* dome )
 	m_skyDome = dome;
 	return old;
 }
+
+
+}	// sw
 

@@ -9,6 +9,10 @@
 
 
 
+namespace sw
+{
+
+
 /**@brief Base class for shading passes.
 
 @ingroup RenderPasses*/
@@ -18,7 +22,7 @@ private:
 protected:
 public:
 	explicit		IShadingPass() = default;
-					~IShadingPass() = default;
+	~IShadingPass() = default;
 
 
 
@@ -29,3 +33,7 @@ public:
 
 	virtual ResourcePtr< RenderTargetObject >		GetMainRenderTarget	() = 0;
 };
+
+}	// sw
+
+

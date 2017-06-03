@@ -10,14 +10,18 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< VisibleComponent >( "VisibleComponent" )
-		.property( "Asset", &VisibleComponent::m_mesh )
-		.property_readonly( "ActorTextures", &VisibleComponent::m_textures )
-		.property_readonly( "AdditionalBuffers", &VisibleComponent::m_addititonalBuffers );
+	rttr::registration::class_< sw::VisibleComponent >( "VisibleComponent" )
+		.property( "Asset", &sw::VisibleComponent::m_mesh )
+		.property_readonly( "ActorTextures", &sw::VisibleComponent::m_textures )
+		.property_readonly( "AdditionalBuffers", &sw::VisibleComponent::m_addititonalBuffers );
 }
 
 
-// ================================ //
+namespace sw
+{
+
+
+ // ================================ //
 //
 void									VisibleComponent::SetAsset	( const ResourcePtr< MeshAsset >& mesh )
 {
@@ -44,3 +48,6 @@ const std::vector< BufferBinding >&		VisibleComponent::GetAdditionalBuffers() co
 {
 	return m_addititonalBuffers;
 }
+
+}	// sw
+

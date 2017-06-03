@@ -10,6 +10,12 @@
 class Engine;
 class ActorBase;
 
+
+
+namespace sw
+{
+
+
 /**@brief Modu³ obs³uguj¹cy kolizje.
 @ingroup EngineCore*/
 class CollisionEngine
@@ -37,3 +43,4 @@ public:
 
 };
 
+}	// sw

@@ -4,7 +4,10 @@
 #include "EngineCore/MainEngine/EngineContext.h"
 #include "EngineCore/ModelsManager/ResourceHelpers.h"
 
-namespace Api { namespace Actors
+
+namespace sw {
+namespace Api {
+namespace Actors
 {
 
 //template< typename Resource >
@@ -70,3 +73,4 @@ namespace Api { namespace Actors
 
 }	// Actors
 }	// Api
+}	// sw

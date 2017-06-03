@@ -8,6 +8,11 @@
 #include "EngineCore/DisplayEngine/RenderPasses/IShadingPass.h"
 
 
+
+namespace sw
+{
+
+
 /**@brief Implements forward rendering.
 
 @ingroup RenderPasses*/
@@ -44,4 +49,5 @@ public:
 };
 
 
+}	// sw
 

@@ -3,6 +3,12 @@
 #include "swCommonLib/Common/EngineObject.h"
 #include "swCommonLib/External/FastDelegate/FastDelegate.h"
 
+
+
+namespace sw
+{
+
+
 class Event;
 
 
@@ -11,7 +17,7 @@ typedef fastdelegate::FastDelegate2< const EngineObject*, Event* >		EventDelegat
 
 
 
-
+/**@brief */
 struct Signal
 {
 	const EngineObject*		Sender;
@@ -22,9 +28,11 @@ struct Signal
 };
 
 
+/**@brief */
 struct EventListener
 {
 	const EngineObject*		Receiver;
 	EventDelegate			EventHandler;
 };
 
+}	// sw

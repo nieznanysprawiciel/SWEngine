@@ -2,9 +2,14 @@
 #include "CollisionOctree.h"
 
 
+
+
+namespace sw
+{
+
 /**@brief */
 CollisionOctree::CollisionOctree()
-{ 
+{
 	//RecreateOctree( 16384.0f, 6 );
 }
 
@@ -16,3 +21,6 @@ void CollisionOctree::RecreateOctree( const std::vector< CollisionActor* >& stat
 
 
 }
+
+}	// sw
+

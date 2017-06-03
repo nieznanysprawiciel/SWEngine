@@ -11,6 +11,12 @@
 #include "EngineCore/DisplayEngine/RenderPasses/IShadingPass.h"
 #include "EngineCore/DisplayEngine/RenderPasses/IPostProcessingPass.h"
 
+
+namespace sw
+{
+
+
+
 /**@brief Interface for rendering logic.
 
 Rendering logic groups all passes invoked during rendering process.
@@ -22,7 +28,7 @@ private:
 protected:
 public:
 	explicit		IRenderingLogicPass() = default;
-					~IRenderingLogicPass() = default;
+	~IRenderingLogicPass() = default;
 
 
 	virtual void			SetMainCamera	( CameraActor* camera )		= 0;
@@ -43,3 +49,6 @@ public:
 
 	virtual const std::vector< Ptr< IPostprocessingPass > >&	GetPostProcessing	() = 0;
 };
+
+}	// sw
+

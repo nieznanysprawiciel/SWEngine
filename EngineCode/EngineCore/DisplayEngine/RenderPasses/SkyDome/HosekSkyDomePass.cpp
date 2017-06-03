@@ -3,10 +3,12 @@
 
 
 
+namespace sw
+{
 
 
 HosekSkyDomePass::HosekSkyDomePass	( SkyDome* dome )
-	:	m_skyDome( dome )
+	: m_skyDome( dome )
 {}
 
 
@@ -23,8 +25,11 @@ void	HosekSkyDomePass::Render		( IRenderer* renderer, RenderContext& context, Si
 
 /**@brief Empty*/
 void HosekSkyDomePass::PostRender( IRenderer * renderer, RenderContext & context )
-{ }
+{}
 
 /**@brief Empty*/
 void HosekSkyDomePass::NestedPasses( std::vector<Ptr<IRenderPass>>& passes )
-{ }
+{}
+
+}	// sw
+

@@ -10,6 +10,7 @@ class InputAbstractionLayer;
 #include "EngineCore/UserApi/ApiGroup.h"
 #include "EngineCore/UIEngine/StandardAbstractionLayers.h"
 
+namespace sw {
 namespace Api
 {
 
@@ -20,19 +21,20 @@ namespace Api
 	/**@brief Zawiera funkcje do obs³ugi wejœcia u¿ytkownika.
 	@ingroup UserAPI
 	@ingroup InputAPI*/
-	class InputApi : public ApiGroup
-	{
-	private:
-	protected:
-	public:
-		InputApi() = default;
-		~InputApi() = default;
-	public:
-		InputAbstractionLayer*		GetStandardAbstractionLayer		( STANDARD_ABSTRACTION_LAYER layer );
-		void						SetAbstractionLayer				( InputAbstractionLayer* layer );
-		void						SetStandardAbstractionLayer		( STANDARD_ABSTRACTION_LAYER layer );
-	};
+class InputApi : public ApiGroup
+{
+private:
+protected:
+public:
+	InputApi() = default;
+	~InputApi() = default;
+public:
+	InputAbstractionLayer*		GetStandardAbstractionLayer		( STANDARD_ABSTRACTION_LAYER layer );
+	void						SetAbstractionLayer				( InputAbstractionLayer* layer );
+	void						SetStandardAbstractionLayer		( STANDARD_ABSTRACTION_LAYER layer );
+};
 
 
 
 }	// Api
+}	// sw

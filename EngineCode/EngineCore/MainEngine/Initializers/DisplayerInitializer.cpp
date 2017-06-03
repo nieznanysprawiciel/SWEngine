@@ -15,6 +15,10 @@
 #include "swCommonLib/Common/MemoryLeaks.h"
 
 
+
+namespace sw
+{
+
 /**@brief Inicjalizuje DisplayEngine.
 
 Funkcja tworzy renderery, domyœlne bufory sta³ych oraz ustawia macierz projekcji.
@@ -27,4 +31,8 @@ bool Engine::InitDisplayer()
 
 	return true;
 }
+
+
+}	// sw
+
 

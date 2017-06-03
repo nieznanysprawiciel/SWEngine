@@ -10,6 +10,10 @@
 #include "DirectXMath.h"
 
 
+namespace sw
+{
+
+
 typedef uint32 Padding4Bytes;
 typedef uint64 Padding8Bytes;
 typedef uint16 Padding2Bytes;
@@ -22,7 +26,7 @@ typedef uint8 Padding1Bytes;
 
 Bufory sta³ych dla shaderów musz¹ mieæ wielkoœæ bêd¹c¹ wielokrotnoœci¹ 16.
 Wszystkie dane w GPU s¹ przechowywane w postaci wektorów 4-wymiarowych.
-Dlatego lepiej nie wysy³aæ danych o innej liczbie wymiarów, bo na pewno coœ 
+Dlatego lepiej nie wysy³aæ danych o innej liczbie wymiarów, bo na pewno coœ
 siê zepsuje.
 
 Ewentualnie je¿eli chcemy usprawniæ dostêp do danych po strnie CPU i podawaæ
@@ -31,8 +35,8 @@ typedef struct ConstantPerFrame
 {
 	DirectX::XMFLOAT4X4		view_matrix;
 	DirectX::XMFLOAT4X4		projection_matrix;
-	DirectX::XMFLOAT4		light_direction[ENGINE_MAX_LIGHTS];		// Wspó³rzêdne s¹ zanegowane, ¿eby shader mia³ mniej roboty
-	DirectX::XMFLOAT4		light_color[ENGINE_MAX_LIGHTS];
+	DirectX::XMFLOAT4		light_direction[ ENGINE_MAX_LIGHTS ];		// Wspó³rzêdne s¹ zanegowane, ¿eby shader mia³ mniej roboty
+	DirectX::XMFLOAT4		light_color[ ENGINE_MAX_LIGHTS ];
 	DirectX::XMFLOAT4		ambient_light;
 	DirectX::XMFLOAT4		time;				///< Czas. Wartoœæ jest powielona do wszystkich komponentów.
 	DirectX::XMFLOAT4		time_lag;			///< Czas wzglêdem ostatniej klatki. Wartoœæ jest powielona do wszystkich komponentów.
@@ -41,10 +45,10 @@ typedef struct ConstantPerFrame
 	{
 		DirectX::XMStoreFloat4x4( &view_matrix, DirectX::XMMatrixIdentity() );
 		DirectX::XMStoreFloat4x4( &projection_matrix, DirectX::XMMatrixIdentity() );
-		light_direction[0] = DirectX::XMFLOAT4( 0, 0, 0, 0 );
-		light_direction[1] = DirectX::XMFLOAT4( 0, 0, 0, 0 );
-		light_color[0] = DirectX::XMFLOAT4( 0, 0, 0, 0 );
-		light_color[1] = DirectX::XMFLOAT4( 0, 0, 0, 0 );
+		light_direction[ 0 ] = DirectX::XMFLOAT4( 0, 0, 0, 0 );
+		light_direction[ 1 ] = DirectX::XMFLOAT4( 0, 0, 0, 0 );
+		light_color[ 0 ] = DirectX::XMFLOAT4( 0, 0, 0, 0 );
+		light_color[ 1 ] = DirectX::XMFLOAT4( 0, 0, 0, 0 );
 		ambient_light = DirectX::XMFLOAT4( 0, 0, 0, 0 );
 	}
 
@@ -130,7 +134,7 @@ const uint8 MaterialBufferBindingPoint = 2;
 
 /**@brief Constant buffer layout with camera data.
 
-Buffer contains not only camera data but also other rarely changing 
+Buffer contains not only camera data but also other rarely changing
 
 @ingroup ConstantBuffers*/
 struct CameraConstants
@@ -182,3 +186,5 @@ struct LightConstants
 	LightParams				LightData[ ENGINE_MAX_LIGHTS ];
 };
 
+
+}	// sw

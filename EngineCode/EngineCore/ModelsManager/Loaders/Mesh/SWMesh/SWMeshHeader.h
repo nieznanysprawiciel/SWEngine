@@ -1,7 +1,18 @@
 #pragma once
+/**
+@file SWMeshHeader.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
 
-#include "Common/TypesDefinitions.h"
 
+
+#include "swCommonLib/Common/TypesDefinitions.h"
+
+
+
+namespace sw
+{
 
 struct SWMeshHeader
 {
@@ -10,3 +21,4 @@ struct SWMeshHeader
 
 };
 
+}	// sw

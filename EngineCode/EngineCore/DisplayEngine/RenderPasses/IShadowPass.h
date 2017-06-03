@@ -8,6 +8,10 @@
 #include "EngineCore/DisplayEngine/RenderPasses/IRenderPass.h"
 
 
+
+namespace sw
+{
+
 /**@brief Base class for shadow passes.
 
 @ingroup RenderPasses*/
@@ -17,8 +21,11 @@ private:
 protected:
 public:
 	explicit		IShadowPass() = default;
-					~IShadowPass() = default;
-	
+	~IShadowPass() = default;
+
 
 };
+
+
+}	// sw
 

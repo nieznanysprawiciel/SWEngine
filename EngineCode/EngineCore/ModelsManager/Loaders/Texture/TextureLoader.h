@@ -14,6 +14,11 @@
 #include "swGraphicAPI/Resources/MeshResources.h"
 
 
+
+namespace sw
+{
+
+
 class TextureLoader
 {
 public:
@@ -22,3 +27,4 @@ public:
 	static		MemoryChunk		GenerateMipMaps	( MemoryChunk& source, TextureInfo& texInfo );
 };
 
+}	// sw

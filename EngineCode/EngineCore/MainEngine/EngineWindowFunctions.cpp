@@ -21,7 +21,13 @@ WinAPI oraz g³ówn¹ pêtlê programu @ref Engine::MainLoop.
 LPCWSTR szTitle = L"SWEngine (DirectX 11)";					// The title bar text
 LPCWSTR szWindowClass = L"SWEnigne window";			// the main window class name
 
-void main_thread_function(Engine* engine);
+
+namespace sw
+{
+
+
+
+void main_thread_function( Engine* engine );
 
 
 //----------------------------------------------------------------------------------------------//
@@ -33,7 +39,7 @@ ATOM Engine::EngineRegisterClass()
 {
 	WNDCLASSEX wcex;
 
-	wcex.cbSize = sizeof(WNDCLASSEX);
+	wcex.cbSize = sizeof( WNDCLASSEX );
 
 	wcex.style = CS_HREDRAW | CS_VREDRAW;
 	wcex.lpfnWndProc = WndProc;
@@ -41,13 +47,13 @@ ATOM Engine::EngineRegisterClass()
 	wcex.cbWndExtra = 0;
 	wcex.hInstance = (HINSTANCE)Context->instanceHandler;
 	wcex.hIcon = LoadIcon( (HINSTANCE)Context->instanceHandler, MAKEINTRESOURCE( IDI_SW_ENGINE ) );
-	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
-	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+	wcex.hCursor = LoadCursor( NULL, IDC_ARROW );
+	wcex.hbrBackground = (HBRUSH)( COLOR_WINDOW + 1 );
 	wcex.lpszMenuName = nullptr;
 	wcex.lpszClassName = szWindowClass;
 	wcex.hIconSm = LoadIcon( wcex.hInstance, MAKEINTRESOURCE( IDI_SW_ENGINE ) );
 
-	return RegisterClassEx(&wcex);
+	return RegisterClassEx( &wcex );
 }
 
 
@@ -59,26 +65,26 @@ Okno nie jest pokazywane na ekranie. Do tego trzeba u¿yæ funkcji Engine::ShowApp
 @return Zwraca TRUE, je¿eli inicjowanie okna powiod³o siê.*/
 BOOL Engine::InitInstance( int nCmdShow )
 {
-    RECT windowRect = { 0, 0, Context->windowWidth, Context->windowHeight };
-    AdjustWindowRect( &windowRect, WS_OVERLAPPEDWINDOW^WS_THICKFRAME, FALSE );
+	RECT windowRect ={ 0, 0, Context->windowWidth, Context->windowHeight };
+	AdjustWindowRect( &windowRect, WS_OVERLAPPEDWINDOW^WS_THICKFRAME, FALSE );
 
-	if ( Context->fullScreen )
-		Context->windowHandler = CreateWindowEx(NULL, szWindowClass, szTitle, WS_EX_TOPMOST | WS_POPUP,
-										0, 0, Context->windowWidth, Context->windowHeight,
-										NULL, NULL, (HINSTANCE)Context->instanceHandler, NULL);
+	if( Context->fullScreen )
+		Context->windowHandler = CreateWindowEx( NULL, szWindowClass, szTitle, WS_EX_TOPMOST | WS_POPUP,
+												 0, 0, Context->windowWidth, Context->windowHeight,
+												 NULL, NULL, (HINSTANCE)Context->instanceHandler, NULL );
 	else
 		Context->windowHandler = CreateWindowEx( NULL, szWindowClass, szTitle, WS_OVERLAPPEDWINDOW^WS_THICKFRAME,
-										CW_USEDEFAULT, CW_USEDEFAULT, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top,
-										NULL, NULL, (HINSTANCE)Context->instanceHandler, NULL);
+												 CW_USEDEFAULT, CW_USEDEFAULT, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top,
+												 NULL, NULL, (HINSTANCE)Context->instanceHandler, NULL );
 
-	if (!Context->windowHandler)
+	if( !Context->windowHandler )
 	{
 #ifdef _DEBUG
 		LPVOID messageBuffer;
 		DWORD error = GetLastError();
-		FormatMessage(	FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-						NULL, error, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-						(LPTSTR)&messageBuffer, 0, NULL );
+		FormatMessage( FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+					   NULL, error, MAKELANGID( LANG_NEUTRAL, SUBLANG_DEFAULT ),
+					   (LPTSTR)&messageBuffer, 0, NULL );
 		OutputDebugString( (LPCTSTR)messageBuffer );
 		LocalFree( messageBuffer );
 #endif
@@ -112,19 +118,19 @@ void Engine::HideAppWindow()
 ///@param[in] height Wysokoœæ okna
 ///@param[in] fullscreen Pe³ny ekran lub renderowanie w oknie
 ///@param[in] nCmdShow Czwarty parametr funkcji WinMain
-BOOL Engine::InitWindow(int width, int height, BOOL fullscreen, int nCmdShow)
+BOOL Engine::InitWindow( int width, int height, BOOL fullscreen, int nCmdShow )
 {
 	Context->windowHeight = height;
 	Context->windowWidth = width;
-	if (fullscreen)
+	if( fullscreen )
 		Context->fullScreen = true;		//zostal zainicjonwany w konstruktorze jako false
 
-	if (Context->fullScreen)
+	if( Context->fullScreen )
 	{
-		Context->windowHeight = GetSystemMetrics(SM_CYSCREEN);
-		Context->windowWidth = GetSystemMetrics(SM_CXSCREEN);
+		Context->windowHeight = GetSystemMetrics( SM_CYSCREEN );
+		Context->windowWidth = GetSystemMetrics( SM_CXSCREEN );
 	}
-	
+
 	EngineRegisterClass();
 
 	return InitInstance( nCmdShow );
@@ -153,43 +159,43 @@ void Engine::EndAplication()
 //								window procedure												//
 //----------------------------------------------------------------------------------------------//
 
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
 {
 	PAINTSTRUCT ps;
 	HDC hdc;
 
-	switch (message)
+	switch( message )
 	{
-	case WM_PAINT:
-		hdc = BeginPaint(hWnd, &ps);
-		// TODO: Add any drawing code here...
-		EndPaint(hWnd, &ps);
-		break;
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		break;
-	default:
-		return DefWindowProc(hWnd, message, wParam, lParam);
+		case WM_PAINT:
+			hdc = BeginPaint( hWnd, &ps );
+			// TODO: Add any drawing code here...
+			EndPaint( hWnd, &ps );
+			break;
+		case WM_DESTROY:
+			PostQuitMessage( 0 );
+			break;
+		default:
+			return DefWindowProc( hWnd, message, wParam, lParam );
 	}
 	return 0;
 }
 
 // Message handler for about box.
-INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK About( HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam )
 {
-	UNREFERENCED_PARAMETER(lParam);
-	switch (message)
+	UNREFERENCED_PARAMETER( lParam );
+	switch( message )
 	{
-	case WM_INITDIALOG:
-		return (INT_PTR)TRUE;
-
-	case WM_COMMAND:
-		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
-		{
-			EndDialog(hDlg, LOWORD(wParam));
+		case WM_INITDIALOG:
 			return (INT_PTR)TRUE;
-		}
-		break;
+
+		case WM_COMMAND:
+			if( LOWORD( wParam ) == IDOK || LOWORD( wParam ) == IDCANCEL )
+			{
+				EndDialog( hDlg, LOWORD( wParam ) );
+				return (INT_PTR)TRUE;
+			}
+			break;
 	}
 	return (INT_PTR)FALSE;
 }
@@ -247,7 +253,7 @@ int Engine::MainLoop()
 Pêtla g³ówna silnika zastêpuje Windowsowsk¹ pêtlê komunikatów, wywo³uj¹c jednoczeœnie pêtlê g³ówn¹ silnika (zobacz temat: Potok przetwarzania obiektów).
 Musimy obs³ugiwaæ komunikaty windowsa, poniewa¿ w przeciwnym razie móg³by on uznaæ, ¿e nasz program siê zawiesi³, i spróbowaæ zabiæ nasz proces.
 Dlatego pobieramy wiadomoœci z kolejki komunikatów i przekazujemy do dalszego przetwarzania.
-Do pobierania komunikatów u¿ywamy nieblokuj¹cej funkcji PeekMessage (nie GetMessage). 
+Do pobierania komunikatów u¿ywamy nieblokuj¹cej funkcji PeekMessage (nie GetMessage).
 
 Jako pêtla g³ówna silnika s³u¿y funkcja render_frame. Jest ona wywo³ywana tylko pod warunkiem, ¿e wczeœniejsza inicjalizacja
 directXa w pe³ni powiod³a siê. Wa¿nym punktem jest inicjacja zmiennej time_previous. Niezainicjowanie tej zmiennej, mog³oby
@@ -266,23 +272,23 @@ int Engine::MainLoop()
 
 #ifndef __UNUSED
 	//w³¹czamy g³ówny w¹tek do renderingu
-	std::thread main_thread(main_thread_function, this);
+	std::thread main_thread( main_thread_function, this );
 #endif
 
 	// Main message loop:
-	while (TRUE)
+	while( TRUE )
 	{
-		if ( Context->engineReady )
+		if( Context->engineReady )
 			RenderFrame();
 
-		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		while( PeekMessage( &msg, NULL, 0, 0, PM_REMOVE ) )
 		//while (GetMessage(&msg, NULL, 0, 0))
 		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
+			TranslateMessage( &msg );
+			DispatchMessage( &msg );
 		}
 
-		if (msg.message == WM_QUIT)
+		if( msg.message == WM_QUIT )
 		{
 #ifndef __UNUSED
 			join_render_thread = true;	//to jest jedyne miejsce, w którym ta zmienna mo¿e zostac ustawiona
@@ -290,8 +296,8 @@ int Engine::MainLoop()
 			main_thread.join();
 #endif
 			break;
-		}
 	}
+}
 
 	return (int)msg.wParam;
 }
@@ -311,17 +317,17 @@ void Engine::render_thread()
 	int threads_num = get_efficient_threads_count();
 
 
-	while (TRUE)
+	while( TRUE )
 	{
 		//Jedynie funkcja Engine::MainLoop ma prawo modyfikowaæ tê zmienn¹.
 		//Nie jest potrzebna synchronizacja. Najwy¿ej zakoñczenie w¹tku opóŸni siê o jedna ramkê.
-		if (join_render_thread)
+		if( join_render_thread )
 		{
 			wait_for_threads();		//koñczymy inne w¹tki
 			return;
 		}
 
-		if (directX_ready)
+		if( directX_ready )
 			RenderFrame();
 	}
 }
@@ -334,7 +340,7 @@ wbudowane funkcje obs³ugi komunikatów powodowa³y, ¿e procesor wiêkszoœæ czasu st
 
 Ta funkcja istnieje tylko po to, ¿eby j¹ mo¿na by³o podaæ jako wskaŸnik przy tworzeniu
 nowego w¹tku. Nie nale¿y tutaj dodawaæ ju¿ niczego.*/
-void main_thread_function(Engine* engine)
+void main_thread_function( Engine* engine )
 {
 	engine->render_thread();
 }
@@ -367,3 +373,5 @@ void Engine::wait_for_threads()
 
 #endif
 
+
+	 }	// sw

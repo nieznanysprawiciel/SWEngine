@@ -1,8 +1,19 @@
 #pragma once
+/**
+@file ShadingModelData.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
 
 #include "swCommonLib/Common/EngineObject.h"
 #include "swCommonLib/Common/TypesDefinitions.h"
 #include "swCommonLib/Common/RTTR.h"
+
+
+
+namespace sw
+{
 
 
 /**@brief Klasa bazowa dla obiektów przechowuj¹cych dane materia³u.
@@ -23,7 +34,7 @@ public:
 	virtual uint8*		GetShadingModelData		() = 0;
 	virtual TypeID		GetShadingModelType		() = 0;
 	virtual TypeID		GetShadingModelPtrType	() = 0;
-	
+
 
 	std::string			GetShadingModelTypeName ();
 };
@@ -52,12 +63,12 @@ public:
 	void				StaticValidate			();
 
 
-	virtual Size		GetShadingModelSize		() override		{ return sizeof( ShadingModelStruct ); }
-	virtual uint8*		GetShadingModelData		() override		{ return reinterpret_cast< uint8* >( &Data ); }
-	virtual TypeID		GetShadingModelType		() override		{ return rttr::type::get< ShadingModelStruct >(); }
-	virtual TypeID		GetShadingModelPtrType	() override		{ return rttr::type::get< ShadingModelStruct* >(); }
+	virtual Size		GetShadingModelSize		() override { return sizeof( ShadingModelStruct ); }
+	virtual uint8*		GetShadingModelData		() override { return reinterpret_cast<uint8*>( &Data ); }
+	virtual TypeID		GetShadingModelType		() override { return rttr::type::get< ShadingModelStruct >(); }
+	virtual TypeID		GetShadingModelPtrType	() override { return rttr::type::get< ShadingModelStruct* >(); }
 
-	ShadingModelStruct&	GetStruct	()		{ return Data; }
+	ShadingModelStruct&	GetStruct	() { return Data; }
 };
 
 
@@ -85,7 +96,10 @@ inline				ShadingModelData< ShadingModelStruct >::ShadingModelData	()
 
 template< typename ShadingModelStruct >
 inline				ShadingModelData< ShadingModelStruct >::ShadingModelData	( ShadingModelStruct model )
-	:	Data( model )
+	: Data( model )
 {
 	StaticValidate();
 }
+
+}	// sw
+

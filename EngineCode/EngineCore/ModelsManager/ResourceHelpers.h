@@ -4,6 +4,13 @@
 
 #include <cassert>
 
+
+
+namespace sw
+{
+
+
+
 ///**@brief Zwraca referencjê na modyfikowany zasób.
 //
 //@param[in] modelPart Fragment mesha, który zmieniamy
@@ -24,3 +31,6 @@
 //template<>
 //inline TextureObject*&			Get( ModelPart& modelPart, uint8 index )
 //{	return modelPart.texture[ index ];	}
+
+}	// sw
+

@@ -3,7 +3,9 @@
 
 #include "EngineCore/MainEngine/EngineContext.h"
 
-namespace Api { namespace Assets
+namespace sw {
+namespace Api {
+namespace Assets
 {
 
 /**@brief Pobiera materia³ o podanej nazwie.*/
@@ -36,3 +38,4 @@ std::vector< ResourcePtr< MaterialAsset > > Materials::List()
 
 }	// Assets
 }	// Api
+}	// sw

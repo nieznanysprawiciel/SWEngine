@@ -25,6 +25,8 @@ drugie, ¿eby wykorzystywaæ wszystkie jego mo¿liwoœci.*/
 #include "swCommonLib/System/Path.h"
 
 
+namespace sw
+{
 
 
 struct FbxMeshCollection;
@@ -34,7 +36,7 @@ class Model3DFromFile;		///< @deprecated
 
 
 @ingroup MakingLoaders*/
-class FBX_loader	:	public ILoader
+class FBX_loader : public ILoader
 {
 private:
 	FbxManager*			fbx_manager;
@@ -60,7 +62,7 @@ private:
 	Index32		FindUniqueVertex	( VertexNormalTexCoord& vertex, std::vector< VertexNormalTexCoord >& verticies, Index32 startIndex );
 
 	Nullable< FbxMeshCollection >	ProcessNode		( FbxNode* node, Nullable< FbxMeshCollection >& meshes );
-	Nullable< TemporaryMeshInit >	ProcessMesh		( FbxNodeMesh& nodeData, FbxAssetsCollection& assets, Nullable< TemporaryMeshInit >& mesh );	
+	Nullable< TemporaryMeshInit >	ProcessMesh		( FbxNodeMesh& nodeData, FbxAssetsCollection& assets, Nullable< TemporaryMeshInit >& mesh );
 	ResourcePtr< MaterialAsset >	ProcessMaterial	( FbxSurfaceMaterial* FBXmaterial, FbxAssetsCollection& assets );
 	ResourcePtr< MaterialAsset >	CreateMaterial	( FbxSurfaceMaterial* FBXmaterial, FbxAssetsCollection& assets );
 	ResourcePtr< TextureObject >	ProcessTexture	( FbxFileTexture* FBXTexture, FbxAssetsCollection& assets );
@@ -78,4 +80,7 @@ private:
 	virtual bool			can_load( const std::wstring & name ) override;
 	virtual LoaderResult	load_mesh( Model3DFromFile * new_file_mesh, const std::wstring & name ) override;
 };
+
+
+}	// sw
 

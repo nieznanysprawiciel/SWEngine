@@ -3,8 +3,10 @@
 
 #include "EngineCore/MainEngine/EngineContext.h"
 
+namespace sw {
 namespace Api
 {
-	
-	
+
+
 }	// Api
+}	// sw

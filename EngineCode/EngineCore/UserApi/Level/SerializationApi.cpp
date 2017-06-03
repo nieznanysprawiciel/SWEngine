@@ -9,7 +9,9 @@
 #include "swCommonLib/Serialization/PropertySerialization/Serialization.h"
 
 
-namespace Api { namespace Level
+namespace sw {
+namespace Api {
+namespace Level
 {
 
 const char*		SerializationApi::ACTOR_INFO_STRING						= "ActorInfo";
@@ -40,12 +42,12 @@ void SerializationApi::DefaultDeserialize( IDeserializer* deser, EngineObject* o
 	for( auto& property : properties )
 	{
 		auto propertyType = property.get_type();
-		
+
 		bool deserialized = Serialization::DeserializeBasicTypes( deser, object, property ) ||
-							Serialization::DeserializeVectorTypes( deser, object, property ) ||
-							Serialization::DeserializeStringTypes( deser, object, property ) ||
-							DeserializeResource( deser, property, object ) ||
-							Serialization::DeserializeObjectTypes( deser, object, property );
+			Serialization::DeserializeVectorTypes( deser, object, property ) ||
+			Serialization::DeserializeStringTypes( deser, object, property ) ||
+			DeserializeResource( deser, property, object ) ||
+			Serialization::DeserializeObjectTypes( deser, object, property );
 	}
 }
 
@@ -71,7 +73,7 @@ bool SerializationApi::DeserializeSingleGeneric( IDeserializer* deser, rttr::pro
 			if( deser->EnterObject( rttr::type::get< MeshAsset >().get_name().to_string() ) )
 			{
 				std::wstring filePath = Serialization::UTFToWstring( deser->GetAttribute( "FileName", "" ) );
-		
+
 				auto result = Context->modelsManager->LoadMesh( filePath );
 				if( result.Ptr() == nullptr )
 					return false;
@@ -106,7 +108,7 @@ bool SerializationApi::DeserializeResource( IDeserializer* deser, rttr::property
 			if( deser->EnterObject( rttr::type::get< MeshAsset >().get_name().to_string() ) )
 			{
 				std::wstring filePath = Serialization::UTFToWstring( deser->GetAttribute( "FileName", "" ) );
-		
+
 				auto result = Context->modelsManager->LoadMesh( filePath );
 				if( result.Ptr() == nullptr )
 					return false;
@@ -163,3 +165,4 @@ ActorInfo SerializationApi::DeserializeActorInfo( IDeserializer* deser )
 
 }	// Level
 }	// Api
+}	// sw

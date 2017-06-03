@@ -13,16 +13,23 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< SpawnPoint >( "SpawnPoint" )
-		.property( "SpawnGroup", &SpawnPoint::m_spawnGroup );
+	rttr::registration::class_< sw::SpawnPoint >( "SpawnPoint" )
+		.property( "SpawnGroup", &sw::SpawnPoint::m_spawnGroup );
 }
 
 
 
-/**@brief */
+namespace sw
+{
+
+
+ /**@brief */
 SpawnPoint::SpawnPoint()
-{ }
+{}
 
 /**@brief */
 SpawnPoint::~SpawnPoint()
-{ }
+{}
+
+}	// sw
+

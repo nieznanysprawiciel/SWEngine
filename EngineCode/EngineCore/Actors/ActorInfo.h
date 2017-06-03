@@ -1,13 +1,24 @@
 #pragma once
+/**
+@file ActorInfo.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
 
 #include <utility>
+
+
+namespace sw
+{
+
 
 class ActorBase;
 
 
 
 /**@brief Flagi do ustawiania wartoœci struktury ActorInfo.*/
-enum ActorInfoFlag	: unsigned short
+enum ActorInfoFlag : unsigned short
 {
 	DisableAll				= 0,			///< £¹czenie z innymi flagami powoduje, ¿e DisableAll zostanie zignorowane.
 	EnableDisplay			= 1,			///< Obiekt znajduje siê w module DisplayEngine.
@@ -28,26 +39,26 @@ struct ActorInfo
 {
 	unsigned short	actorFlags;
 
-					ActorInfo	();
-					ActorInfo	( unsigned short actorInfoFlag );
+	ActorInfo	();
+	ActorInfo	( unsigned short actorInfoFlag );
 	inline void		InitZero	();
 	void			operator|=	( ActorInfo second );
 	void			operator&=	( ActorInfo second );
 	void			operator-=	( ActorInfo second );
 	void			operator+=	( ActorInfo second );
 
-	bool EnableDisplay			() const		{ return ( actorFlags & ActorInfoFlag::EnableDisplay ) != 0; }
-	bool EnableMovement			() const		{ return ( actorFlags & ActorInfoFlag::EnableMovement ) != 0; }
-	bool EnablePhysic			() const		{ return ( actorFlags & ActorInfoFlag::EnablePhysic ) != 0; }
-	bool EnableCollisions		() const		{ return ( actorFlags & ActorInfoFlag::EnableCollisions ) != 0; }
-	bool EnableShadow			() const		{ return ( actorFlags & ActorInfoFlag::EnableShadow ) != 0; }
-	bool EnablePreController	() const		{ return ( actorFlags & ActorInfoFlag::EnablePreController ) != 0; }
-	bool EnablePostController	() const		{ return ( actorFlags & ActorInfoFlag::EnablePostController ) != 0; }
-	bool IsLight				() const		{ return ( actorFlags & ActorInfoFlag::AsLight ) != 0; }
-	bool IsCamera				() const		{ return ( actorFlags & ActorInfoFlag::AsCamera ) != 0; }
-	bool EnableSavingToFile		() const		{ return ( actorFlags & ActorInfoFlag::EnableSavingToFile ) != 0; }
+	bool EnableDisplay			() const { return ( actorFlags & ActorInfoFlag::EnableDisplay ) != 0; }
+	bool EnableMovement			() const { return ( actorFlags & ActorInfoFlag::EnableMovement ) != 0; }
+	bool EnablePhysic			() const { return ( actorFlags & ActorInfoFlag::EnablePhysic ) != 0; }
+	bool EnableCollisions		() const { return ( actorFlags & ActorInfoFlag::EnableCollisions ) != 0; }
+	bool EnableShadow			() const { return ( actorFlags & ActorInfoFlag::EnableShadow ) != 0; }
+	bool EnablePreController	() const { return ( actorFlags & ActorInfoFlag::EnablePreController ) != 0; }
+	bool EnablePostController	() const { return ( actorFlags & ActorInfoFlag::EnablePostController ) != 0; }
+	bool IsLight				() const { return ( actorFlags & ActorInfoFlag::AsLight ) != 0; }
+	bool IsCamera				() const { return ( actorFlags & ActorInfoFlag::AsCamera ) != 0; }
+	bool EnableSavingToFile		() const { return ( actorFlags & ActorInfoFlag::EnableSavingToFile ) != 0; }
 
-	unsigned short	GetRawInfo	() const		{ return actorFlags; }
+	unsigned short	GetRawInfo	() const { return actorFlags; }
 };
 
 typedef std::pair< ActorBase*, ActorInfo > ActorData;
@@ -96,3 +107,4 @@ inline void ActorInfo::operator-=( ActorInfo second )
 }
 
 
+}	// sw

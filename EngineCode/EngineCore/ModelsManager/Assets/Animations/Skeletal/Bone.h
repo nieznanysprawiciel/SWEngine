@@ -12,6 +12,11 @@
 
 #include <DirectXMath.h>
 
+
+
+namespace sw
+{
+
 struct Bone;
 
 
@@ -35,4 +40,7 @@ struct Bone
 	BoneRef					Parent;
 	UPtr< BoneInfo >		Info;
 };
+
+
+}	// sw
 

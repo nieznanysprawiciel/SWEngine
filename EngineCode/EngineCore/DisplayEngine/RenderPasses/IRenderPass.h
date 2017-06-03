@@ -19,6 +19,11 @@
 #include <DirectXMath.h>
 #include <vector>
 
+
+namespace sw
+{
+
+
 class RenderTargetObject;
 class CameraActor;
 class StaticActor;
@@ -83,7 +88,7 @@ public:
 
 protected:
 	template< typename PassType >
-	void			FillWithNestedPasses	( std::vector< Ptr< IRenderPass > >& dest,  std::vector< Ptr< PassType > >& passes );
+	void			FillWithNestedPasses	( std::vector< Ptr< IRenderPass > >& dest, std::vector< Ptr< PassType > >& passes );
 };
 
 //====================================================================================//
@@ -99,3 +104,5 @@ inline void			IRenderPass::FillWithNestedPasses	( std::vector< Ptr< IRenderPass 
 		pass->NestedPasses( dest );
 	}
 }
+
+}	// sw

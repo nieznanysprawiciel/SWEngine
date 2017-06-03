@@ -11,6 +11,8 @@
 using namespace DirectX;
 
 
+namespace sw
+{
 
 // ================================ //
 //
@@ -18,13 +20,13 @@ CameraConstants			RenderingHelper::CreateCameraData	( CameraActor* camera, float
 {
 	CameraConstants data;
 	data.Time = timeInterval + timeLag * FIXED_MOVE_UPDATE_INTERVAL;
-	
+
 	XMMATRIX viewMatrix;
 	XMMATRIX viewProjMatrix;
-	if ( camera == nullptr )
+	if( camera == nullptr )
 	{
-		viewMatrix = XMMatrixIdentity( );	//tymczasowe
-		viewProjMatrix = XMMatrixIdentity( );	//tymczasowe
+		viewMatrix = XMMatrixIdentity();	//tymczasowe
+		viewProjMatrix = XMMatrixIdentity();	//tymczasowe
 	}
 	else
 	{
@@ -39,7 +41,7 @@ CameraConstants			RenderingHelper::CreateCameraData	( CameraActor* camera, float
 		viewMatrix = XMMatrixTranslationFromVector( position );
 		XMMATRIX rotation_matrix = XMMatrixRotationQuaternion( orientation );
 		viewMatrix = viewMatrix * rotation_matrix;
-		
+
 		data.ProjectionMatrix = camera->GetProjection();
 		viewProjMatrix = XMMatrixMultiply( viewMatrix, XMLoadFloat4x4( &data.ProjectionMatrix ) );
 
@@ -95,3 +97,6 @@ void					RenderingHelper::ClearRenderTargetAndDepth	( IRenderer* renderer, Rende
 
 	renderer->ClearRenderTarget( clearCommand );
 }
+
+}	// sw
+

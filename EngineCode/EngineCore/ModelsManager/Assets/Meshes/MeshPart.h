@@ -1,9 +1,16 @@
 #pragma once
+/**
+@file MeshPart.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
 
 
 #include "swGraphicAPI/Resources/MeshResources.h"
 #include "EngineCore/ModelsManager/Assets/Materials/MaterialAsset.h"
 
+namespace sw
+{
 
 
 /**@brief Flagi pola Flags w strukturze @ref MeshPart.
@@ -69,5 +76,9 @@ inline bool		MeshPart::GetUseExtendedIndex()
 // ================================ //
 //
 inline void		MeshPart::SetUseExtendedIndex( bool value )
-{ assert( false ); }
+{
+	assert( false );
+}
 
+
+}	// sw

@@ -1,6 +1,17 @@
 #pragma once
+/**
+@file Intersections.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
 
 #include <DirectXMath.h>
+
+
+namespace sw
+{
+
 
 struct CameraData;
 class EngineInterface;
@@ -15,3 +26,4 @@ public:
 	static DirectX::XMVECTOR		PlaneXZIntersection			( DirectX::XMVECTOR rayDir, DirectX::XMVECTOR rayPoint, float zCoord );
 };
 
+}	// sw

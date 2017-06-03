@@ -12,23 +12,28 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< CameraActor >( "CameraActor" )
-		.property( "IsPerspective", &CameraActor::GetIsPerspective, &CameraActor::SetPerspective )
+	rttr::registration::class_< sw::CameraActor >( "CameraActor" )
+		.property( "IsPerspective", &sw::CameraActor::GetIsPerspective, &sw::CameraActor::SetPerspective )
 			(	rttr::metadata( MetaDataType::Category, "Camera View" )		)
-		.property( "Width", &CameraActor::GetWidth, &CameraActor::SetWidth )
+		.property( "Width", &sw::CameraActor::GetWidth, &sw::CameraActor::SetWidth )
 			(	rttr::metadata( MetaDataType::Category, "Camera View" )		)
-		.property( "Height", &CameraActor::GetHeight, &CameraActor::SetHeight )
+		.property( "Height", &sw::CameraActor::GetHeight, &sw::CameraActor::SetHeight )
 			(	rttr::metadata( MetaDataType::Category, "Camera View" )		)
-		.property( "NearPlane", &CameraActor::GetNearPlane, &CameraActor::SetNearPlane )
+		.property( "NearPlane", &sw::CameraActor::GetNearPlane, &sw::CameraActor::SetNearPlane )
 			(	rttr::metadata( MetaDataType::Category, "Camera View" )		)
-		.property( "FarPlane", &CameraActor::GetFarPlane, &CameraActor::SetFarPlane )
+		.property( "FarPlane", &sw::CameraActor::GetFarPlane, &sw::CameraActor::SetFarPlane )
 			(	rttr::metadata( MetaDataType::Category, "Camera View" )		)
-		.property( "FOV", &CameraActor::GetFov, &CameraActor::SetFov )
+		.property( "FOV", &sw::CameraActor::GetFov, &sw::CameraActor::SetFov )
 			(	rttr::metadata( MetaDataType::Category, "Camera View" )		);
 }
 
 
 using namespace DirectX;
+
+
+namespace sw
+{
+
 
 /**@brief Tworzy domyœln¹ kamerê perspektywiczn¹ o parametrach:
 m_width:		1920
@@ -167,3 +172,7 @@ void				CameraActor::UpdateMatrix		()
 	else
 		SetOrthogonalProjectionMatrix( m_width, m_height, m_nearPlane, m_farPlane );
 }
+
+
+}	// sw
+

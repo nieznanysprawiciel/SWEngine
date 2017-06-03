@@ -9,7 +9,10 @@
 
 
 
+namespace sw
+{
 
+/**@brief */
 class OctreeNode : public IOctreeNode
 {
 private:
@@ -20,4 +23,7 @@ public:
 	OctreeNode();
 	~OctreeNode();
 };
+
+
+}	// sw
 

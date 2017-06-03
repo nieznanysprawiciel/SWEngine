@@ -6,11 +6,15 @@
 */
 
 
-#include "Common/EngineObject.h"
-#include "Common/TypesDefinitions.h"
-#include "Common/RTTR.h"
+#include "swCommonLib/Common/EngineObject.h"
+#include "swCommonLib/Common/TypesDefinitions.h"
+#include "swCommonLib/Common/RTTR.h"
 
-#include "GraphicAPI/MeshResources.h"
+#include "swGraphicAPI/Resources/MeshResources.h"
+
+
+namespace sw
+{
 
 
 class BufferUpdaterBase : public EngineObject
@@ -28,7 +32,7 @@ public:
 	virtual uint8*		GetBufferData		() = 0;
 	virtual TypeID		GetBufferType		() = 0;
 	virtual TypeID		GetBufferPtrType	() = 0;
-	
+
 	std::string			GetBufferTypeName	();
 };
 
@@ -44,12 +48,12 @@ public:
 	void				StaticValidate		();
 
 
-	virtual Size		GetBufferSize		() override		{ return sizeof( BufferType ); }
-	virtual uint8*		GetBufferData		() override		{ return reinterpret_cast< uint8* >( static_cast< BufferType* >( this ) ); }
-	virtual TypeID		GetBufferType		() override		{ return rttr::type::get< BufferType >(); }
-	virtual TypeID		GetBufferPtrType	() override		{ return rttr::type::get< BufferType* >(); }
+	virtual Size		GetBufferSize		() override { return sizeof( BufferType ); }
+	virtual uint8*		GetBufferData		() override { return reinterpret_cast<uint8*>( static_cast<BufferType*>( this ) ); }
+	virtual TypeID		GetBufferType		() override { return rttr::type::get< BufferType >(); }
+	virtual TypeID		GetBufferPtrType	() override { return rttr::type::get< BufferType* >(); }
 
-	BufferType&			GetBufferData		()		{ return static_cast< BufferType& >( *this ); }
+	BufferType&			GetBufferData		() { return static_cast<BufferType&>( *this ); }
 };
 
 
@@ -75,3 +79,4 @@ inline				BufferUpdater< BufferType >::BufferUpdater	()
 }
 
 
+}	// sw

@@ -5,6 +5,10 @@
 #include <queue>
 
 
+
+namespace sw
+{
+
 class Engine;
 class Event;
 
@@ -19,7 +23,7 @@ private:
 	IGamePlay*					m_gamePlay;
 
 public:
-	FableEngine(Engine* engine);
+	FableEngine( Engine* engine );
 	~FableEngine();
 
 protected:		//u¿ytkownik nie mo¿e dotykaæ
@@ -29,3 +33,4 @@ protected:		//u¿ytkownik nie mo¿e dotykaæ
 	inline void SetGamePlay( IGamePlay* gameplay ) { m_gamePlay = gameplay; }	//tylko dla Engine
 };
 
+}	// sw

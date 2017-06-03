@@ -1,4 +1,10 @@
 #pragma once
+/**
+@file MaterialAssetInitData.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
 
 #include "swCommonLib/Common/TypesDefinitions.h"
 
@@ -7,6 +13,11 @@
 #include "MaterialInfo.h"
 
 #include <vector>
+
+
+namespace sw
+{
+
 
 
 /**@brief Struct contains data needed to initialize material.
@@ -25,7 +36,7 @@ struct MaterialInitData
 
 // ================================ //
 // This should be generated automatically, but Visual studio 2013 can't :(
-	MaterialInitData	()	{}
+	MaterialInitData	() {}
 	MaterialInitData	( MaterialInitData&& other );
 	void operator=		( MaterialInitData&& other );
 };
@@ -78,3 +89,6 @@ inline void		MaterialInitData::operator=( MaterialInitData&& other )
 	for( int i = 0; i < MAX_MATERIAL_TEXTURES; ++i )
 		Textures[ i ] = std::move( other.Textures[ i ] );
 }
+
+}	// sw
+

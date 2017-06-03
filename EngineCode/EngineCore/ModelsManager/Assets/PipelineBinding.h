@@ -8,6 +8,11 @@
 
 #include "swGraphicAPI/Resources/MeshResources.h"
 
+
+namespace sw
+{
+
+
 /**@brief Resource binding to shader stages (alias for uint8).
 @see ShaderType*/
 typedef uint8 BindingFlag;
@@ -64,31 +69,31 @@ public:
 
 template< typename ResourceType >
 Binding< ResourceType >::Binding()
-	:	m_flags( (uint8)ShaderType::PixelShader )
-{ }
+	: m_flags( (uint8)ShaderType::PixelShader )
+{}
 
 template< typename ResourceType >
 Binding< ResourceType >::Binding( BindingFlag flags )
-	:	m_flags( flags )
-{ }
+	: m_flags( flags )
+{}
 
 template< typename ResourceType >
 Binding< ResourceType >::Binding( ResourceType* tex )
-	:	m_texture( tex )
-	,	m_flags( (uint8)ShaderType::PixelShader )
-{ }
+	: m_texture( tex )
+	, m_flags( (uint8)ShaderType::PixelShader )
+{}
 
 template< typename ResourceType >
 Binding< ResourceType >::Binding( const ResourcePtr< ResourceType >& tex )
-	:	m_texture( tex )
-	,	m_flags( (uint8)ShaderType::PixelShader )
-{ }
+	: m_texture( tex )
+	, m_flags( (uint8)ShaderType::PixelShader )
+{}
 
 template< typename ResourceType >
 Binding< ResourceType >::Binding( ResourcePtr< ResourceType >&& tex )
-	:	m_texture( std::move( tex ) )
-	,	m_flags( (uint8)ShaderType::PixelShader )
-{ }
+	: m_texture( std::move( tex ) )
+	, m_flags( (uint8)ShaderType::PixelShader )
+{}
 
 
 //====================================================================================//
@@ -183,4 +188,7 @@ inline void		Binding< ResourceType >::BindTesselationEvaluationShader( bool valu
 {
 	Bind( ShaderType::TesselationEvaluationShader, value );
 }
+
+
+}	// sw
 

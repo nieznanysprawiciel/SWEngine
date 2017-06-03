@@ -9,19 +9,25 @@ using namespace DirectX;
 #include "EngineCore/ModelsManager/Assets/Meshes/MeshAssetInitData.h"
 
 
+namespace sw
+{
 
-HosekSkyDome::HosekSkyDome( )
-	:	SkyDome()
-	,	m_backIdxBuffer( nullptr )
-	,	m_backVertexBuffer( nullptr )
+
+// ================================ //
+//
+HosekSkyDome::HosekSkyDome()
+	: SkyDome()
+	, m_backIdxBuffer( nullptr )
+	, m_backVertexBuffer( nullptr )
 {}
 
-
+// ================================ //
+//
 HosekSkyDome::~HosekSkyDome()
 {
-	if ( m_backIdxBuffer )
+	if( m_backIdxBuffer )
 		delete[] m_backIdxBuffer;
-	if ( m_backVertexBuffer )
+	if( m_backVertexBuffer )
 		delete[] m_backVertexBuffer;
 }
 
@@ -50,20 +56,20 @@ wywo³ana tylko raz na pocz¹tku, potem nale¿y wywo³ywaæ funkcjê UpdateSkyDome.
 @param[in] sun_intensity Mno¿nik jasnoœci tarczy s³onecznej. Domyœlnie jest ustawiane na 1.0.
 */
 void HosekSkyDome::InitSkyDome( XMVECTOR sun_direction,
-								  double turbidity,
-								  const double* albedo,
-								  int vertical_vert,
-								  int horizontal_vert,
-								  float radius,
-								  float sky_intensity,
-								  float sun_intensity )
+								double turbidity,
+								const double* albedo,
+								int vertical_vert,
+								int horizontal_vert,
+								float radius,
+								float sky_intensity,
+								float sun_intensity )
 {
 	// Generujemy kopu³ê
 	GenerateSphere( vertical_vert, horizontal_vert, radius );
 
 	// Zak³adamy, ¿e tablice jeszcze nie istania³y. Obliczamy rozmiary tablic ( w liczbie elementów )
-	int vert_buff_elements = (vertical_vert - 2) * horizontal_vert + 2;		// W pionie bêdzie vertical-2 pasów wierzcho³ków + musimy dopisaæ dwa wierzcho³ki skrajne
-	int ind_buff_elements = 2 * 3 * (vertical_vert - 2) * horizontal_vert;	// Liczba pasów czworok¹tów, razy dwa (¿eby zrobiæ trój¹ty) razy 3, ¿eby przeliczyæ na liczbê wierzcho³ków
+	int vert_buff_elements = ( vertical_vert - 2 ) * horizontal_vert + 2;		// W pionie bêdzie vertical-2 pasów wierzcho³ków + musimy dopisaæ dwa wierzcho³ki skrajne
+	int ind_buff_elements = 2 * 3 * ( vertical_vert - 2 ) * horizontal_vert;	// Liczba pasów czworok¹tów, razy dwa (¿eby zrobiæ trój¹ty) razy 3, ¿eby przeliczyæ na liczbê wierzcho³ków
 
 	auto engine = GetEngineInterface();
 
@@ -94,7 +100,7 @@ void HosekSkyDome::InitSkyDome( XMVECTOR sun_direction,
 
 Kolory s¹ przeliczane i zapisywane do bufora tylnego, a nastêpnie po zakoñczeniu generowania
 uaktualniany jest bufor wierzcho³ków i indeksów. Funkcja jest jest przygotowana do wykonywania
-w innym watku, ale nie powinno siê wykonywaæ wielu instancji tej funkcji jednoczeœnie, bo nie jest to 
+w innym watku, ale nie powinno siê wykonywaæ wielu instancji tej funkcji jednoczeœnie, bo nie jest to
 bezpieczne.
 
 @note Funkcja nie modyfikuje ¿adnych danych klasy SkyDome, jedynie aktualizuje bufor kolorów
@@ -106,10 +112,10 @@ nowymi wartoœciami. W szczególnoœci nie jest modyfimkowana struktura wierzcho³kó
 @param[in] sky_intensity Mno¿nik jasnoœci nieba, je¿eli nie pda siê nic, wartoœæ domyœlna wynosi 1.0.
 @param[in] sun_intensity Mno¿nik jasnoœci tarczy s³onecznej. Domyœlnie jest ustawiane na 1.0.*/
 void HosekSkyDome::UpdateSkyDome( XMVECTOR sun_direction,
-									double turbidity,
-									const double* albedo,
-									float sky_intensity,
-									float sun_intensity)
+								  double turbidity,
+								  const double* albedo,
+								  float sky_intensity,
+								  float sun_intensity )
 {
 	// Obliczamy wysokoœæ s³oñca
 	XMVECTOR zenith = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
@@ -119,17 +125,17 @@ void HosekSkyDome::UpdateSkyDome( XMVECTOR sun_direction,
 
 	m_skylightModel.init( turbidity, albedo, elevation, sky_intensity, sun_intensity );
 
-	for ( unsigned int i = 0; i < m_verticiesCount; ++i )
+	for( unsigned int i = 0; i < m_verticiesCount; ++i )
 	{
 		// Iterujemy po wszyskich wierzcho³kach w buforze
-		XMVECTOR view_direction = XMLoadFloat3( &m_backVertexBuffer[i].position );
+		XMVECTOR view_direction = XMLoadFloat3( &m_backVertexBuffer[ i ].position );
 		view_direction = XMVector3Normalize( view_direction );
 		XMVECTOR angle = XMVector3AngleBetweenNormals( zenith, view_direction );
 		float theta = XMVectorGetX( angle );
-		
-		if ( theta > XM_PIDIV2 )
+
+		if( theta > XM_PIDIV2 )
 		{	// Je¿eli jestesmy poni¿ej horyzontu to na razie malujemy na czerwono
-			m_backVertexBuffer[i].color = m_backVertexBuffer[m_verticiesCount/2 - 2].color;
+			m_backVertexBuffer[ i ].color = m_backVertexBuffer[ m_verticiesCount / 2 - 2 ].color;
 			continue;
 		}
 
@@ -138,7 +144,7 @@ void HosekSkyDome::UpdateSkyDome( XMVECTOR sun_direction,
 		// Pobieramy kolor dla danego wierzcho³ka
 		XMVECTOR color = m_skylightModel.sky_radiance( theta, gamma );
 		// Zapisujemy kolor
-		XMStoreFloat3( &m_backVertexBuffer[i].color, color );
+		XMStoreFloat3( &m_backVertexBuffer[ i ].color, color );
 
 		//m_backVertexBuffer[i].color = XMFLOAT3( 1.0f, 0.0f, 0.0f );	// Test
 	}
@@ -183,64 +189,64 @@ void HosekSkyDome::GenerateSphere( int vertical, int horizontal, float radius )
 			float x = r * cos( alfa );
 			float z = r * sin( alfa );
 
-			m_backVertexBuffer[cur_ptr++] = { XMFLOAT3(x, y, z), XMFLOAT3( 0.0, 0.0, 0.0 ) };
+			m_backVertexBuffer[ cur_ptr++ ] ={ XMFLOAT3( x, y, z ), XMFLOAT3( 0.0, 0.0, 0.0 ) };
 		}
 	}
 	// Dolny wierzcho³ek
-	m_backVertexBuffer[vert_buff_elements - 1] = { XMFLOAT3( 0.0, -radius, 0.0 ), XMFLOAT3( 0.0, 0.0, 0.0 ) };
+	m_backVertexBuffer[ vert_buff_elements - 1 ] ={ XMFLOAT3( 0.0, -radius, 0.0 ), XMFLOAT3( 0.0, 0.0, 0.0 ) };
 
 	// Mamy ju¿ wszystkie wierzcho³ki, teraz musimy je po³¹czyæ. Wype³niamy bufor indeksów.
 	cur_ptr = 0;		// Wskazuje na miejsce w buforze indeksów do wype³nienia
 	int i = 1;			// Wskazuje na wierzcho³ek z ni¿szej warstwy
-	for ( ; i < horizontal; ++i )	// Odliczamy horizontal wierzcho³ków od nr 1
+	for( ; i < horizontal; ++i )	// Odliczamy horizontal wierzcho³ków od nr 1
 	{
 		// Na razie wype³niamy tylko górn¹ wartwê z punktem centralnym
-		m_backIdxBuffer[cur_ptr++] = 0;
-		m_backIdxBuffer[cur_ptr++] = i;
-		m_backIdxBuffer[cur_ptr++] = i + 1 ;
+		m_backIdxBuffer[ cur_ptr++ ] = 0;
+		m_backIdxBuffer[ cur_ptr++ ] = i;
+		m_backIdxBuffer[ cur_ptr++ ] = i + 1;
 	}
 	// Niestety trzeba rozwa¿yæ osobno
-	m_backIdxBuffer[cur_ptr++] = 0;
-	m_backIdxBuffer[cur_ptr++] = horizontal;
-	m_backIdxBuffer[cur_ptr++] = 1;
+	m_backIdxBuffer[ cur_ptr++ ] = 0;
+	m_backIdxBuffer[ cur_ptr++ ] = horizontal;
+	m_backIdxBuffer[ cur_ptr++ ] = 1;
 
-	for ( int k = 1; k < vertical - 2; ++k )
+	for( int k = 1; k < vertical - 2; ++k )
 	{
-		for ( int h = 0; h < horizontal - 1; ++h )
+		for( int h = 0; h < horizontal - 1; ++h )
 		{
-			int j = (k - 1) * horizontal + h + 1;	// Wskazuje na wierzcho³ek z wy¿szej warstwy
+			int j = ( k - 1 ) * horizontal + h + 1;	// Wskazuje na wierzcho³ek z wy¿szej warstwy
 			i = j + horizontal;						// Wskazuje na wierzcho³ek z ni¿szej warstwy
 
 			// Wype³niamy po dwa trójk¹ty
-			m_backIdxBuffer[cur_ptr++] = j;
-			m_backIdxBuffer[cur_ptr++] = i;
-			m_backIdxBuffer[cur_ptr++] = i + 1;
+			m_backIdxBuffer[ cur_ptr++ ] = j;
+			m_backIdxBuffer[ cur_ptr++ ] = i;
+			m_backIdxBuffer[ cur_ptr++ ] = i + 1;
 
-			m_backIdxBuffer[cur_ptr++] = j;
-			m_backIdxBuffer[cur_ptr++] = i + 1;
-			m_backIdxBuffer[cur_ptr++] = j + 1;
+			m_backIdxBuffer[ cur_ptr++ ] = j;
+			m_backIdxBuffer[ cur_ptr++ ] = i + 1;
+			m_backIdxBuffer[ cur_ptr++ ] = j + 1;
 		}
 		// Ostatnie wierzcho³ki z ka¿dego pasa musimy rozwa¿yæ osobno
 		int j = k  * horizontal;	// Wskazuje na wierzcho³ek z wy¿szej warstwy
 
 		// To jest miejsce, w którym ostatni wierzcho³ek z pasa ³¹czy siê z pierwszym, który zosta³ ju¿ rozwa¿ony.
 		// Wierzcho³ki s¹ roz³o¿one w pamiêci ci¹g³ej, wiêc za ostatnim wierzcho³kiem z górnego rzêdu jest pierwszy z dolnego.
-		m_backIdxBuffer[cur_ptr++] = j;
-		m_backIdxBuffer[cur_ptr++] = j + horizontal;
-		m_backIdxBuffer[cur_ptr++] = j + 1;
+		m_backIdxBuffer[ cur_ptr++ ] = j;
+		m_backIdxBuffer[ cur_ptr++ ] = j + horizontal;
+		m_backIdxBuffer[ cur_ptr++ ] = j + 1;
 
-		m_backIdxBuffer[cur_ptr++] = j;
-		m_backIdxBuffer[cur_ptr++] = j + 1;
-		m_backIdxBuffer[cur_ptr++] = (k-1)*horizontal + 1;
+		m_backIdxBuffer[ cur_ptr++ ] = j;
+		m_backIdxBuffer[ cur_ptr++ ] = j + 1;
+		m_backIdxBuffer[ cur_ptr++ ] = ( k - 1 )*horizontal + 1;
 	}
 
 	// Teraz musimy pod³¹czyæ ten pojedynczy wierzcho³ek na dole, do wszystkich z ostatniego pasa
 	// Dla odmiany idziemy od ty³u
-	for ( int k = vert_buff_elements - 2; k > vert_buff_elements - horizontal - 2; --k )
+	for( int k = vert_buff_elements - 2; k > vert_buff_elements - horizontal - 2; --k )
 	{
-		m_backIdxBuffer[cur_ptr++] = vert_buff_elements - 1;
-		m_backIdxBuffer[cur_ptr++] = k;
-		m_backIdxBuffer[cur_ptr++] = k - 1;
+		m_backIdxBuffer[ cur_ptr++ ] = vert_buff_elements - 1;
+		m_backIdxBuffer[ cur_ptr++ ] = k;
+		m_backIdxBuffer[ cur_ptr++ ] = k - 1;
 	}
 }
 
@@ -265,3 +271,7 @@ void HosekSkyDome::UpdateBuffers( IRenderer* renderer )
 
 	Updated();
 }
+
+}	// sw
+
+

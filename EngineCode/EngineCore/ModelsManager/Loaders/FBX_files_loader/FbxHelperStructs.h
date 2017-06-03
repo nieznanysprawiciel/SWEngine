@@ -8,6 +8,8 @@
 #include <DirectXMath.h>
 #include <vector>
 
+namespace sw
+{
 
 
 enum FbxShadingModel
@@ -38,7 +40,9 @@ struct FbxMaterialMap
 	ResourcePtr< MaterialAsset >	EngineMaterial;
 
 	FbxMaterialMap( FbxSurfaceMaterial* surface )
-	{ Surface = surface; }
+	{
+		Surface = surface;
+	}
 };
 
 
@@ -48,7 +52,9 @@ struct FbxTextureMap
 	ResourcePtr< TextureObject >	EngineTex;
 
 	FbxTextureMap( FbxTexture* texture )
-	{ FbxTex = texture; }
+	{
+		FbxTex = texture;
+	}
 };
 
 typedef std::vector< FbxMaterialMap > FbxMaterialsCollection;
@@ -68,3 +74,6 @@ struct TemporaryMeshInit
 	std::vector< std::vector< Index32 > >	Indicies;
 	std::vector< MeshPart >					Segments;
 };
+
+}	// sw
+

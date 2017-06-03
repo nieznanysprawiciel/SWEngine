@@ -1,12 +1,24 @@
 #pragma once
+/**
+@file ActorBase.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
 
 
 #include "swCommonLib/Common/EngineObject.h"
 
 
+
+namespace sw
+{
+
+
 /**@defgroup Actors Actors
 @ingroup EngineCore
 @brief Information about engine actors.*/
+
+
 
 
 class EngineInterface;
@@ -23,7 +35,7 @@ class Model3DFromFile;
 /**@brief Base class for all engine actors.
 
 @ingroup Actors*/
-class ActorBase	:	public EngineObject
+class ActorBase : public EngineObject
 {
 	RTTR_ENABLE( EngineObject )
 private:
@@ -34,22 +46,25 @@ protected:
 
 public:
 	virtual ~ActorBase() = default;
-	virtual void		Init(){};
+	virtual void		Init() {};
 
 	/**@brief Zwraca wskaŸnik na interfejs silnika, który nadaje siê do u¿ywania przez
 	programistê gry.
 	@attention Nie wolno rzutowaæ obiektu na Engine.
 	*/
-	static EngineInterface*			GetEngineInterface()	{ return reinterpret_cast< EngineInterface* >( engine ); }
+	static EngineInterface*			GetEngineInterface() { return reinterpret_cast<EngineInterface*>( engine ); }
 
 	/**@brief Funkcja ustawia wskaŸnik na g³ówny obiekt silnika.
 	@attention Wolno u¿ywaæ tylko klasie Engine w konstruktorze.
 	@param[in] engine_ptr WskaŸnik na g³ówny obiekt silnika.
 	*/
-	static void			SetEngine		( Engine* enginePtr )	{ if( !engine ) engine = enginePtr; }
+	static void			SetEngine		( Engine* enginePtr ) { if( !engine ) engine = enginePtr; }
 
-	static ActorBase*	Create			()						{ return new ActorBase; }
+	static ActorBase*	Create			() { return new ActorBase; }
 
 	virtual void		Serialize		( ISerializer* ser ) const override;
 	virtual void		Deserialize		( IDeserializer* deser ) override;
 };
+
+}	// sw
+

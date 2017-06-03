@@ -11,6 +11,10 @@
 
 
 
+namespace sw
+{
+
+
 // ================================ //
 //
 DefaultLogic::DefaultLogic()
@@ -21,17 +25,19 @@ DefaultLogic::DefaultLogic()
 // ================================ //
 //
 bool		DefaultLogic::PreRender		( IRenderer* renderer, RenderContext& context )
-{ return false; }
+{
+	return false;
+}
 
 // ================================ //
 //
 void		DefaultLogic::Render		( IRenderer* renderer, RenderContext& context, Size rangeStart, Size rangeEnd )
-{ }
+{}
 
 // ================================ //
 //
 void		DefaultLogic::PostRender	( IRenderer* renderer, RenderContext& context )
-{ }
+{}
 
 // ================================ //
 //
@@ -109,3 +115,6 @@ const std::vector< Ptr< IPostprocessingPass > >&	DefaultLogic::GetPostProcessing
 {
 	return m_postProcessing;
 }
+
+}	// sw
+

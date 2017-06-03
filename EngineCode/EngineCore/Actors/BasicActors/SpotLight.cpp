@@ -12,15 +12,22 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< SpotLight >( "SpotLight" )
-		.property( "Angle", &SpotLight::m_angle )
+	rttr::registration::class_< sw::SpotLight >( "SpotLight" )
+		.property( "Angle", &sw::SpotLight::m_angle )
 			(	rttr::metadata( MetaDataType::Category, "Light" )	);
 }
 
 
+
+namespace sw
+{
+
 /**@brief */
 SpotLight::SpotLight()
-	:	PointLight( LightType::SpotLight )
-	,	m_angle( 30.0f )
+	: PointLight( LightType::SpotLight )
+	, m_angle( 30.0f )
 {}
+
+
+}	// sw
 

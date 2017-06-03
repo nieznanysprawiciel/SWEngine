@@ -9,6 +9,10 @@
 #include "OctreeLeaf.h"
 
 
+namespace sw
+{
+
+
 /**@brief */
 class CollisionOctree
 {
@@ -25,9 +29,10 @@ public:
 	CollisionOctree();
 	~CollisionOctree() = default;
 
-	float			GetDimension	()		{ return m_dimension; }
-	uint16			GetNumDivisions	()		{ return m_maxDivisions; }
+	float			GetDimension	() { return m_dimension; }
+	uint16			GetNumDivisions	() { return m_maxDivisions; }
 
 	void			RecreateOctree	( const std::vector< CollisionActor* >& staticMap, float dim, uint16 maxSpaceDivisions );
 };
 
+}	// sw

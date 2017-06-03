@@ -14,20 +14,25 @@
 #include <DirectXMath.h>
 
 
+
+
+namespace sw
+{
+
 /**@defgroup AnimationAsset Animation Asset
 @ingroup Assets*/
 
 
 typedef DirectX::XMFLOAT4X4 BoneTransform;
 
-/**@brief 
+/**@brief
 @ingroup AnimationAsset*/
 class AnimationAsset : public ResourceObject
 {
 	RTTR_ENABLE( ResourceObject );
 	RTTR_REGISTRATION_FRIEND
 
-	friend ObjectDeleter< AnimationAsset >;
+		friend ObjectDeleter< AnimationAsset >;
 private:
 
 	std::vector< BoneRef >						m_boneIdx;
@@ -38,8 +43,9 @@ private:
 protected:
 public:
 	explicit		AnimationAsset() = default;
-					~AnimationAsset() = default;
+	~AnimationAsset() = default;
 
 };
 
 
+}	// sw

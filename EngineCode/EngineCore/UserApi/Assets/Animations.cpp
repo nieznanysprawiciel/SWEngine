@@ -3,10 +3,14 @@
 
 #include "EngineCore/MainEngine/EngineContext.h"
 
-namespace Api { namespace Assets
+
+namespace sw {
+namespace Api {
+namespace Assets
 {
 
 
 
 }	// Assets
 }	// Api
+}	// sw

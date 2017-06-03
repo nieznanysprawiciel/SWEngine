@@ -1,8 +1,17 @@
 #pragma once
+/**
+@file ComplexActor.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
 
 
 #include "EngineCore/Actors/ActorPointer.h"
 #include "DynamicActor.h"
+
+
+namespace sw
+{
 
 
 struct ChildActor
@@ -33,8 +42,9 @@ public:
 	void			MoveComplex		( float time_interval, const DirectX::XMFLOAT3& parent_speed, const DirectX::XMFLOAT4& parent_rotation );
 
 
-	static ActorBase*			Create()	{ return new ComplexActor; }
+	static ActorBase*			Create() { return new ComplexActor; }
 };
 
 
+}	// sw
 

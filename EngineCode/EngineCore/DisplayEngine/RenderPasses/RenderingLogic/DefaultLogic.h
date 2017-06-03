@@ -15,7 +15,11 @@
 
 
 
-/**@brief 
+namespace sw
+{
+
+
+/**@brief
 
 @ingroup RenderPasses*/
 class DefaultLogic : public IRenderingLogicPass
@@ -65,3 +69,6 @@ public:
 	virtual const std::vector< Ptr< IPostprocessingPass > >&	GetPostProcessing	() override;
 
 };
+
+}	// sw
+

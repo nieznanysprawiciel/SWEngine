@@ -5,6 +5,11 @@
 @copyright File is part of graphic engine SWEngine.
 */
 
+
+namespace sw
+{
+
+
 class DisplayEngine;
 class LightModule;
 
@@ -32,8 +37,9 @@ struct RenderContext
 
 
 	RenderContext( std::vector< StaticActor* >& meshes, std::vector< DirectX::XMFLOAT4X4 >& transforms )
-		:	Meshes( meshes )
-		,	Transforms( transforms )
+		: Meshes( meshes )
+		, Transforms( transforms )
 	{}
 };
 
+}	// sw

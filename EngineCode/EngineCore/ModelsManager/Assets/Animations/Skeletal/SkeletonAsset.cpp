@@ -7,3 +7,8 @@
 #include "SkeletonAsset.h"
 
 
+namespace sw
+{
+
+}	// sw
+

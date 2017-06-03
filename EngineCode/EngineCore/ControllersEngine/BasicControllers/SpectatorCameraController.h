@@ -7,6 +7,10 @@ PROTOTYPE.*/
 #include "EngineCore/ControllersEngine/BaseClasses/BaseInputController.h"
 
 
+
+namespace sw
+{
+
 /**@brief Kontroler kamery zgodny z wartw¹ abstrakcji PROTOTYPE.
 
 Kontroler implementuje podstawowe operacje
@@ -26,7 +30,7 @@ Sterowanie:
 - PROTOTYPE_BUTTONS::DOWN Przesuniêcie w dó³ po osi Y
 - PROTOTYPE_AXES::ZOOM Przybli¿anie i oddalanie (ruch wzd³u¿ kierunku patrzenia)
 */
-class SpectatorCameraController	:	public BaseInputController
+class SpectatorCameraController : public BaseInputController
 {
 	RTTR_ENABLE( BaseInputController )
 private:
@@ -43,4 +47,7 @@ public:
 
 	virtual void		Initialize				( DynamicActor* actor ) override;
 };
+
+
+}	// sw
 

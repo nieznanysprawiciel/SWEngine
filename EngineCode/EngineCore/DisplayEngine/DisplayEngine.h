@@ -24,6 +24,10 @@
 #include <queue>
 
 
+namespace sw
+{
+
+
 
 /**@defgroup Rendering Rendering
 @brief Object pipeline.
@@ -92,14 +96,14 @@ public:
 	// G³ówna funkcja do wyœwietlania sceny
 	void			DisplayScene					( float time_interval, float time_lag );
 	// Funkcja do interpolacji pozycji obiektów
-	void			InterpolatePositions			( float time_lag);
+	void			InterpolatePositions			( float time_lag );
 
 	// Zarz¹dzanie meshami
 	void			AddMeshObject					( StaticActor* object );
 	void			RemoveActor						( ActorBase* actor );
 	void			RemoveAllActors					();
 	void			DeleteAllMeshes					();
-	
+
 	/// @todo Pobieranie meshy z DisplayEngine jest tymczasowe. Trzeba wymyœleæ docelowy mechanizm.
 	std::vector<StaticActor*>			GetSceneObjects	() { return meshes; }
 	const std::vector<StaticActor*>&	GetMeshes		() { return meshes; }
@@ -114,7 +118,7 @@ public:
 	CameraActor*	GetCurrentCamera				();
 
 	// Renderowanie
-	void			RenderOnce						( RenderPassDepracated* pass )	{	m_renderOnceQueue.push( pass );	}
+	void			RenderOnce						( RenderPassDepracated* pass ) { m_renderOnceQueue.push( pass ); }
 
 	// SkyDome
 	SkyDome*		SetSkydome						( SkyDome* dome );
@@ -158,3 +162,4 @@ inline void inverse_camera_orientation( DirectX::XMVECTOR& result_vector )
 	result_vector = DirectX::XMVectorSetW( result_vector, -DirectX::XMVectorGetW( result_vector ) );
 }
 
+}	// sw

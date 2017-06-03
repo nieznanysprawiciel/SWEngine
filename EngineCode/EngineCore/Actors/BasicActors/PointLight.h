@@ -1,7 +1,17 @@
 #pragma once
+/**
+@file PointLight.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
 
 
 #include "LightBase.h"
+
+
+
+namespace sw
+{
 
 
 /**@brief Point light class.
@@ -11,10 +21,10 @@
 class PointLight : public LightBase
 {
 	RTTR_ENABLE( LightBase )
-	RTTR_REGISTRATION_FRIEND
+		RTTR_REGISTRATION_FRIEND
 private:
 protected:
-	
+
 	float			m_clampRadius;
 	float			m_constAttenuation;
 	float			m_linearAttenuation;
@@ -24,15 +34,16 @@ public:
 	explicit PointLight();
 	virtual ~PointLight() = default;
 
-	static ActorBase*		Create()	{ return new PointLight; }
+	static ActorBase*		Create() { return new PointLight; }
 
 protected:
 	explicit PointLight	( LightType type );
 
 public:
-	float		GetClampRadius			()		{ return m_clampRadius; }
-	float		GetConstantAttenuation	()		{ return m_constAttenuation; }
-	float		GetLinearAttenuation	()		{ return m_linearAttenuation; }
-	float		GetQuadraticAttenuation	()		{ return m_quadraticAttentuation; }
+	float		GetClampRadius			() { return m_clampRadius; }
+	float		GetConstantAttenuation	() { return m_constAttenuation; }
+	float		GetLinearAttenuation	() { return m_linearAttenuation; }
+	float		GetQuadraticAttenuation	() { return m_quadraticAttentuation; }
 };
 
+}	// sw

@@ -13,24 +13,24 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< StaticActor >( "StaticActor" )
-		.property( "Position", &StaticActor::position )
+	rttr::registration::class_< sw::StaticActor >( "StaticActor" )
+		.property( "Position", &sw::StaticActor::position )
 		(
 			rttr::metadata( MetaDataType::Category, "Transformation" ),
 			rttr::policy::prop::bind_as_ptr
 		)
-		.property( "Orientation", &StaticActor::orientation )
+		.property( "Orientation", &sw::StaticActor::orientation )
 		(
 			rttr::metadata( MetaDataType::Category, "Transformation" ),
 			rttr::policy::prop::bind_as_ptr
 		)
 #ifdef _SCALEABLE_OBJECTS
-		.property( "Scale", &StaticActor::scale )
+		.property( "Scale", &sw::StaticActor::scale )
 		(
 			rttr::metadata( MetaDataType::Category, "Transformation" )
 		)
 #endif
-		.property( "VisibleComponent", &StaticActor::m_visibleComponent )
+		.property( "VisibleComponent", &sw::StaticActor::m_visibleComponent )
 		(
 			rttr::metadata( MetaDataType::Category, "VisibleComponent" ),
 			rttr::policy::prop::bind_as_ptr
@@ -38,6 +38,11 @@ RTTR_REGISTRATION
 }
 
 using namespace DirectX;
+
+
+namespace sw
+{
+
 
 // ================================ //
 //
@@ -50,7 +55,7 @@ StaticActor::StaticActor()
 	position_back = position;
 
 	XMVECTOR quaternion = XMQuaternionIdentity();
-	XMStoreFloat4(&orientation,quaternion);
+	XMStoreFloat4( &orientation, quaternion );
 
 	orientation_back = orientation;
 
@@ -88,7 +93,7 @@ StaticActor::StaticActor	( BufferObject* vertexBuffer, BufferObject* indexBuffer
 	position_back = position;
 
 	XMVECTOR quaternion = XMQuaternionIdentity();
-	XMStoreFloat4(&orientation,quaternion);
+	XMStoreFloat4( &orientation, quaternion );
 
 	orientation_back = orientation;
 
@@ -113,10 +118,10 @@ XMVECTOR StaticActor::GetInterpolatedPosition( float time_lag ) const
 {
 	XMVECTOR pos2 = XMLoadFloat3( &position );
 	XMVECTOR pos1 = XMLoadFloat3( &position_back );
-	if ( XMVector3Equal( pos1, pos2 ) )
+	if( XMVector3Equal( pos1, pos2 ) )
 		return pos1;
 
-	if ( swap_data )
+	if( swap_data )
 		pos1 = XMVectorLerp( pos2, pos1, time_lag );
 	else
 		pos1 = XMVectorLerp( pos1, pos2, time_lag );
@@ -133,10 +138,10 @@ XMVECTOR StaticActor::GetInterpolatedOrientation( float time_lag ) const
 {
 	XMVECTOR orient2 = XMLoadFloat4( &orientation );
 	XMVECTOR orient1 = XMLoadFloat4( &orientation_back );
-	if ( XMVector3Equal( orient1, orient2 ) )	// Wa¿ne! Oblcizenia na floatach s¹ niedok³adne i troszkê wszystko lata.
+	if( XMVector3Equal( orient1, orient2 ) )	// Wa¿ne! Oblcizenia na floatach s¹ niedok³adne i troszkê wszystko lata.
 		return orient1;
 
-	if ( swap_data )
+	if( swap_data )
 		return XMQuaternionSlerp( orient2, orient1, time_lag );
 	else
 		return XMQuaternionSlerp( orient1, orient2, time_lag );
@@ -156,3 +161,4 @@ bool		StaticActor::SetModel		( const ResourcePtr< MeshAsset >& model )
 	return true;
 }
 
+}	// sw

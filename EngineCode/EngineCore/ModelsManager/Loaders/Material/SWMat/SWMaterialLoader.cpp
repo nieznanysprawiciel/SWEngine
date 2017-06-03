@@ -1,24 +1,38 @@
+/**
+@file SWMaterialLoader.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
 #include "SWMaterialLoader.h"
 #include "SWMaterialLoader.inl"
 
-#include "Common/Converters.h"
-#include "Common/Serialization/SW/Serialization.h"
-#include "Common/Serialization/Deserializer.h"
+#include "swCommonLib/Common/Converters.h"
+#include "swCommonLib/Serialization/PropertySerialization/Serialization.h"
+#include "swCommonLib/Serialization/Deserializer.h"
 
 #include "EngineCore/ModelsManager/AssetsManager.h"
 #include "EngineCore/ModelsManager/Assets/Materials/ShadingModelData.h"
 #include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
 
 
+namespace sw
+{
 
+
+// ================================ //
+//
 SWMaterialLoader::SWMaterialLoader( AssetsManager* modelsManager )
-	:	m_modelsManager( modelsManager )
+	: m_modelsManager( modelsManager )
 {
 	m_versionMajor = 1;
 	m_versionMinor = 0;
 }
 
+// ================================ //
+//
 SWMaterialLoader::~SWMaterialLoader()
 {}
 
@@ -97,102 +111,102 @@ void								SWMaterialLoader::SaveMaterial	( const filesystem::Path& fileName, M
 
 	ser.EnterObject( STRINGS_1_0::FILE_HEADER_STRING );
 
-		ser.SetAttribute( STRINGS_1_0::VERSION_MAJOR_STRING, m_versionMajor );
-		ser.SetAttribute( STRINGS_1_0::VERSION_MINOR_STRING, m_versionMinor );
+	ser.SetAttribute( STRINGS_1_0::VERSION_MAJOR_STRING, m_versionMajor );
+	ser.SetAttribute( STRINGS_1_0::VERSION_MINOR_STRING, m_versionMinor );
 
-		ser.EnterObject( rttr::type::get< MaterialAsset >().get_name() );
+	ser.EnterObject( rttr::type::get< MaterialAsset >().get_name() );
 
-			// Shaders
+		// Shaders
 
-			IShader* shader = mat->GetVertexShader().Ptr();
-			ser.EnterObject( STRINGS_1_0::VERTEX_SHADER_STRING );
-			if( shader )
-			{
-				ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Convert::ToString( shader->GetShaderFile() ) );
-				ser.SetAttribute( STRINGS_1_0::SHADER_ENTRY_STRING, shader->GetShaderEntry() );
-			}
-			ser.Exit();
+	IShader* shader = mat->GetVertexShader().Ptr();
+	ser.EnterObject( STRINGS_1_0::VERTEX_SHADER_STRING );
+	if( shader )
+	{
+		ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Convert::ToString( shader->GetShaderFile() ) );
+		ser.SetAttribute( STRINGS_1_0::SHADER_ENTRY_STRING, shader->GetShaderEntry() );
+	}
+	ser.Exit();
 
-			shader = mat->GetPixelShader().Ptr();
-			ser.EnterObject( STRINGS_1_0::PIXEL_SHADER_STRING );
-			if( shader )
-			{
-				ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Convert::ToString( shader->GetShaderFile() ) );
-				ser.SetAttribute( STRINGS_1_0::SHADER_ENTRY_STRING, shader->GetShaderEntry() );
-			}
-			ser.Exit();
+	shader = mat->GetPixelShader().Ptr();
+	ser.EnterObject( STRINGS_1_0::PIXEL_SHADER_STRING );
+	if( shader )
+	{
+		ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Convert::ToString( shader->GetShaderFile() ) );
+		ser.SetAttribute( STRINGS_1_0::SHADER_ENTRY_STRING, shader->GetShaderEntry() );
+	}
+	ser.Exit();
 
-			shader = mat->GetGeometryShader().Ptr();
-			ser.EnterObject( STRINGS_1_0::GEOMETRY_SHADER_STRING );
-			if( shader )
-			{
-				ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Convert::ToString( shader->GetShaderFile() ) );
-				ser.SetAttribute( STRINGS_1_0::SHADER_ENTRY_STRING, shader->GetShaderEntry() );
-			}
-			ser.Exit();
+	shader = mat->GetGeometryShader().Ptr();
+	ser.EnterObject( STRINGS_1_0::GEOMETRY_SHADER_STRING );
+	if( shader )
+	{
+		ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Convert::ToString( shader->GetShaderFile() ) );
+		ser.SetAttribute( STRINGS_1_0::SHADER_ENTRY_STRING, shader->GetShaderEntry() );
+	}
+	ser.Exit();
 
-			shader = mat->GetTessControlShader().Ptr();
-			ser.EnterObject( STRINGS_1_0::CONTROL_SHADER_STRING );
-			if( shader )
-			{
-				ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Convert::ToString( shader->GetShaderFile() ) );
-				ser.SetAttribute( STRINGS_1_0::SHADER_ENTRY_STRING, shader->GetShaderEntry() );
-			}
-			ser.Exit();
+	shader = mat->GetTessControlShader().Ptr();
+	ser.EnterObject( STRINGS_1_0::CONTROL_SHADER_STRING );
+	if( shader )
+	{
+		ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Convert::ToString( shader->GetShaderFile() ) );
+		ser.SetAttribute( STRINGS_1_0::SHADER_ENTRY_STRING, shader->GetShaderEntry() );
+	}
+	ser.Exit();
 
-			shader = mat->GetTessEvaluationShader().Ptr();
-			ser.EnterObject( STRINGS_1_0::EVALUATION_SHADER_STRING );
-			if( shader )
-			{
-				ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Convert::ToString( shader->GetShaderFile() ) );
-				ser.SetAttribute( STRINGS_1_0::SHADER_ENTRY_STRING, shader->GetShaderEntry() );
-			}
-			ser.Exit();
+	shader = mat->GetTessEvaluationShader().Ptr();
+	ser.EnterObject( STRINGS_1_0::EVALUATION_SHADER_STRING );
+	if( shader )
+	{
+		ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, Convert::ToString( shader->GetShaderFile() ) );
+		ser.SetAttribute( STRINGS_1_0::SHADER_ENTRY_STRING, shader->GetShaderEntry() );
+	}
+	ser.Exit();
 
-			// Textures
-			ser.EnterArray( STRINGS_1_0::TEXTURES_ARRAY_STRING );
+	// Textures
+	ser.EnterArray( STRINGS_1_0::TEXTURES_ARRAY_STRING );
 
-			for( int i = 0; i < MAX_MATERIAL_TEXTURES; ++i )
-			{
-				auto tex = mat->GetTexture( i ).Ptr();
+	for( int i = 0; i < MAX_MATERIAL_TEXTURES; ++i )
+	{
+		auto tex = mat->GetTexture( i ).Ptr();
 
-				ser.EnterObject( rttr::type::get< TextureObject >().get_name() );
+		ser.EnterObject( rttr::type::get< TextureObject >().get_name() );
 
-				if( tex )
-					ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, tex->GetFilePath().String() );
+		if( tex )
+			ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, tex->GetFilePath().String() );
 
-				ser.Exit();
-			}
+		ser.Exit();
+	}
 
-			ser.Exit();	// Textures
-
-			
-			// Shading model data
-			auto shadingData = mat->GetDescriptor().ShadingData.get();
-
-			TypeID shadingModelType = shadingData->GetShadingModelType();
-			TypeID shadingModelPtrType = shadingData->GetShadingModelPtrType();
-
-			rttr::variant shadingDataPtr( (void*)shadingData->GetShadingModelData() );
-			shadingDataPtr.unsafe_convert_void( shadingModelPtrType );
+	ser.Exit();	// Textures
 
 
-			ser.EnterObject( STRINGS_1_0::SHADING_DATA_STRING );
+	// Shading model data
+	auto shadingData = mat->GetDescriptor().ShadingData.get();
 
-				ser.SetAttribute( STRINGS_1_0::SHADING_MODEL_WRAPPER_TYPE_STRING, shadingData->GetTypeName() );
-				ser.SetAttribute( STRINGS_1_0::BUFFER_SIZE_STRING, shadingData->GetShadingModelSize() );
-				Serialization::DefaultSerializeImpl( &ser, shadingDataPtr, shadingModelType );
+	TypeID shadingModelType = shadingData->GetShadingModelType();
+	TypeID shadingModelPtrType = shadingData->GetShadingModelPtrType();
 
-			ser.Exit();		// SHADING_DATA_STRING
-
-			// Additional buffers
-			TypeID descriptorType = TypeID::get< MaterialInfo >();
-			auto additionalBuffersProperty = descriptorType.get_property( STRINGS_1_0::ADD_BUFFERS_ARRAY_STRING.c_str() );
-
-			Serialization::SerializeArrayTypes( &ser, mat->GetDescriptor(), additionalBuffersProperty );
+	rttr::variant shadingDataPtr( (void*)shadingData->GetShadingModelData() );
+	shadingDataPtr.unsafe_convert_void( shadingModelPtrType );
 
 
-		ser.Exit();	// type name
+	ser.EnterObject( STRINGS_1_0::SHADING_DATA_STRING );
+
+	ser.SetAttribute( STRINGS_1_0::SHADING_MODEL_WRAPPER_TYPE_STRING, shadingData->GetTypeName() );
+	ser.SetAttribute( STRINGS_1_0::BUFFER_SIZE_STRING, shadingData->GetShadingModelSize() );
+	Serialization::DefaultSerializeImpl( &ser, shadingDataPtr, shadingModelType );
+
+	ser.Exit();		// SHADING_DATA_STRING
+
+	// Additional buffers
+	TypeID descriptorType = TypeID::get< MaterialInfo >();
+	auto additionalBuffersProperty = descriptorType.get_property( STRINGS_1_0::ADD_BUFFERS_ARRAY_STRING.c_str() );
+
+	Serialization::SerializeArrayTypes( &ser, mat->GetDescriptor(), additionalBuffersProperty );
+
+
+	ser.Exit();	// type name
 
 	ser.Exit(); // SWMaterial
 
@@ -259,14 +273,14 @@ Nullable< MaterialInitData >		SWMaterialLoader::LoadTextures		( IDeserializer* d
 			do
 			{
 				assert( deser->GetName() == TypeID::get< TextureObject >().get_name() );
-					
+
 				std::string fileName = deser->GetAttribute( STRINGS_1_0::FILE_PATH_STRING, "" );
 				if( fileName != "" )
 				{
 					auto tex = m_modelsManager->LoadTexture( Convert::FromString< std::wstring >( fileName, L"" ) );
 					init.Value.Textures[ texIdx ] = tex;
 				}
-				
+
 				texIdx++;
 			} while( deser->NextElement() && texIdx < MAX_MATERIAL_TEXTURES );
 
@@ -295,7 +309,7 @@ Nullable< MaterialInitData >		SWMaterialLoader::LoadShadingData	( IDeserializer*
 		TypeID wrapper = TypeID::get_by_name( wrapperName );
 		if( !wrapper.is_valid() )
 			return Nullable< MaterialInitData >( "WrapperType is not registered." );
-			
+
 		auto constructor = wrapper.get_constructor();
 		if( !constructor.is_valid() )
 			return Nullable< MaterialInitData >( "WrapperType constructor is not registered." );
@@ -378,8 +392,8 @@ SWMaterialLoader::ShaderLoadInfo	SWMaterialLoader::DeserializeShader	( IDeserial
 
 	if( deser->EnterObject( shaderNameString ) )
 	{
-		shaderEntry = deser->GetAttribute( STRINGS_1_0::SHADER_ENTRY_STRING, (const char*)nullptr );
-		shaderFile = deser->GetAttribute( STRINGS_1_0::FILE_PATH_STRING, (const char*)nullptr );
+		shaderEntry = deser->GetAttribute( STRINGS_1_0::SHADER_ENTRY_STRING, ( const char* )nullptr );
+		shaderFile = deser->GetAttribute( STRINGS_1_0::FILE_PATH_STRING, ( const char* )nullptr );
 
 		deser->Exit();
 	}
@@ -387,3 +401,5 @@ SWMaterialLoader::ShaderLoadInfo	SWMaterialLoader::DeserializeShader	( IDeserial
 	return ShaderLoadInfo( shaderFile, shaderEntry );
 }
 
+
+}	// sw

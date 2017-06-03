@@ -9,6 +9,10 @@
 #include "swCommonLib/Common/TypesDefinitions.h"
 
 
+
+namespace sw
+{
+
 enum OctreeNodeType : uint8
 {
 	LeafNode,
@@ -26,5 +30,8 @@ public:
 	IOctreeNode( OctreeNodeType type ) : m_type( type ) {};
 	~IOctreeNode() = default;
 
-	OctreeNodeType		GetType()		{ return m_type; }
+	OctreeNodeType		GetType() { return m_type; }
 };
+
+}	// sw
+

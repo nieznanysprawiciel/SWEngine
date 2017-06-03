@@ -10,6 +10,9 @@
 #include <msclr/marshal_cppstd.h>
 
 
+using namespace sw;
+
+
 namespace EditorPlugin
 {
 

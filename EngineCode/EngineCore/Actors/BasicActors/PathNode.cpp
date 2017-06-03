@@ -13,9 +13,11 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< PathNode >( "PathNode" );
+	rttr::registration::class_< sw::PathNode >( "PathNode" );
 }
 
+namespace sw
+{
 
 
 /**@brief */
@@ -27,3 +29,6 @@ PathNode::PathNode()
 /**@brief */
 PathNode::~PathNode()
 {}
+
+}	// sw
+

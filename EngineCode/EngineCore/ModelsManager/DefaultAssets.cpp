@@ -10,6 +10,8 @@
 
 #include "swCommonLib/Common/MemoryLeaks.h"
 
+namespace sw
+{
 
 
 
@@ -84,6 +86,9 @@ void DefaultAssets::Release()
 	delete LAYOUT_POSITION_COLOR;
 	delete LAYOUT_COORD_COLOR;
 }
+
+
+}	// sw
 
 //====================================================================================//
 //			Comparision operators	
@@ -162,3 +167,5 @@ bool		operator<( const VertexNormalTexCoord& vertex1, const VertexNormalTexCoord
 
 	return false;
 }
+
+

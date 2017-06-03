@@ -20,6 +20,8 @@ napisania w³asnej komendy dziedzicz¹c po klasie Command.
 */
 
 
+namespace sw
+{
 
 /**@brief Klasa bazowa dla komend wewn¹trz silnika.
 
@@ -37,3 +39,4 @@ public:
 	virtual bool		Execute( EngineContext& engine ) = 0;
 };
 
+}	// sw

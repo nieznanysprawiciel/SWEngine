@@ -13,6 +13,8 @@
 #include <vector>
 
 
+namespace sw
+{
 
 typedef Binding< TextureObject > TextureBinding;
 typedef Binding< BufferObject > BufferBinding;
@@ -38,7 +40,7 @@ private:
 protected:
 public:
 	explicit		VisibleComponent	() = default;
-					~VisibleComponent	() = default;
+	~VisibleComponent	() = default;
 
 	void									SetAsset			( const ResourcePtr< MeshAsset >& mesh );
 	const ResourcePtr< MeshAsset >&			GetAsset			() const;
@@ -46,3 +48,6 @@ public:
 	const std::vector< TextureBinding >&	GetActorTextures	() const;
 	const std::vector< BufferBinding >&		GetAdditionalBuffers() const;
 };
+
+}	// sw
+

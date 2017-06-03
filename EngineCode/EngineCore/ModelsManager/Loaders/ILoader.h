@@ -13,6 +13,11 @@
 #include "EngineCore/ModelsManager/Assets/Meshes/MeshAssetInitData.h"
 
 
+namespace sw
+{
+
+
+
 /**@defgroup MakingLoaders Pisanie loaderów
 @brief Instrukcje jak napisaæ loader do wczytywania w³asnego formatu plików z modelami 3D.
 @ingroup ResourcesManagment
@@ -44,8 +49,8 @@ class ILoader
 protected:
 	AssetsManager*		models_manager;
 public:
-	ILoader(AssetsManager* models_manager) : models_manager(models_manager){};
-	virtual ~ILoader(){};
+	ILoader( AssetsManager* models_manager ) : models_manager( models_manager ) {};
+	virtual ~ILoader() {};
 
 	/**@brief Funkcja ma za zadanie poinformowaæ czy jest w stanie wczytaæ podany plik.
 
@@ -56,7 +61,7 @@ public:
 	@param[in] name Nazwa pliku do przetestowania.
 	@return True je¿eli plik nadaje siê do otworzenia, false w przeciwnym razie.
 	*/
-	virtual bool can_load(const std::wstring& name) = 0;
+	virtual bool can_load( const std::wstring& name ) = 0;
 
 	/**@brief Funkcja ma za zadanie wczytaæ podany plik.
 
@@ -73,3 +78,7 @@ public:
 	virtual Nullable< MeshInitData >		LoadMesh	( const filesystem::Path& fileName ) { return "Function should be overriden in derived class."; }
 	virtual bool							CanLoad		( const filesystem::Path& fileName ) { return false; }
 };
+
+
+}	// sw
+

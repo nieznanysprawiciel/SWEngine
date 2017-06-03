@@ -11,6 +11,7 @@
 class RenderPassDepracated;
 class CameraActor;
 
+namespace sw {
 namespace Api
 {
 
@@ -22,25 +23,26 @@ namespace Api
 	/**@brief Zawiera funkcje do obs³ugi wejœcia u¿ytkownika.
 	@ingroup UserAPI
 	@ingroup RenderingAPI*/
-	class RenderingApi : public ApiGroup
-	{
-	private:
-	protected:
-	public:
-		RenderingApi() = default;
-		~RenderingApi() = default;
-	public:
+class RenderingApi : public ApiGroup
+{
+private:
+protected:
+public:
+	RenderingApi() = default;
+	~RenderingApi() = default;
+public:
 
-		void				RenderOnce			( RenderPassDepracated* );
-		CameraActor*		GetCurrentCamera	();
-		void				SetCurrentCamera	( CameraActor* camera );
+	void				RenderOnce			( RenderPassDepracated* );
+	CameraActor*		GetCurrentCamera	();
+	void				SetCurrentCamera	( CameraActor* camera );
 
-		int					GetWindowWidth		();
-		int					GetWindowHeight		();
+	int					GetWindowWidth		();
+	int					GetWindowHeight		();
 
-	public:
-		Api::LightsApi		Lights;
-	};
+public:
+	Api::LightsApi		Lights;
+};
 
 
 }	// Api
+}	// sw

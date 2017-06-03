@@ -16,6 +16,9 @@
 #include <vector>
 
 
+namespace sw
+{
+
 
 /**@defgroup Assets Assets
 
@@ -50,33 +53,33 @@ class MaterialAsset : public ResourceObject
 	RTTR_ENABLE( ResourceObject );
 	RTTR_REGISTRATION_FRIEND
 
-	friend ObjectDeleter< MaterialAsset >;
+		friend ObjectDeleter< MaterialAsset >;
 private:
-	
+
 	ResourcePtr< BufferObject >		m_materialBuffer;						///< Bufor na karcie graficznej zawieraj¹cy dane materia³u.
 	ResourcePtr< VertexShader >		m_vertexShader;							///< Vertex shader.
 	ResourcePtr< PixelShader >		m_pixelShader;							///< Pixel shader.
 	ResourcePtr< TextureObject >	m_textures[ MAX_MATERIAL_TEXTURES ];	///< Zbiór tekstur per materia³.
-	
+
 	ResourcePtr< GeometryShader >	m_geometryShader;		///< Geometry shader.
 	ResourcePtr< ControlShader >	m_controlShader;		///< Shader wywo³ywany przed etapem tesselacji.
 	ResourcePtr< EvaluationShader >	m_evaluationShader;		///< Shader wywo³ywany po etapie tesselacji.
-	
+
 
 	MaterialInfo					m_descriptor;			///< Deskryptor materia³u.
 
 public:
 	explicit			MaterialAsset		( const std::wstring& filePath, MaterialCreateData&& initData );
 
-	const ResourcePtr< BufferObject >&		GetMaterialBuffer		() const		{ return m_materialBuffer;  }
-	const ResourcePtr< VertexShader >&		GetVertexShader			() const		{ return m_vertexShader; }
-	const ResourcePtr< PixelShader >&		GetPixelShader			() const		{ return m_pixelShader; }
-	const ResourcePtr< GeometryShader >&	GetGeometryShader		() const		{ return m_geometryShader; }
-	const ResourcePtr< ControlShader >&		GetTessControlShader	() const		{ return m_controlShader; }
-	const ResourcePtr< EvaluationShader >&	GetTessEvaluationShader	() const		{ return m_evaluationShader; }
+	const ResourcePtr< BufferObject >&		GetMaterialBuffer		() const { return m_materialBuffer; }
+	const ResourcePtr< VertexShader >&		GetVertexShader			() const { return m_vertexShader; }
+	const ResourcePtr< PixelShader >&		GetPixelShader			() const { return m_pixelShader; }
+	const ResourcePtr< GeometryShader >&	GetGeometryShader		() const { return m_geometryShader; }
+	const ResourcePtr< ControlShader >&		GetTessControlShader	() const { return m_controlShader; }
+	const ResourcePtr< EvaluationShader >&	GetTessEvaluationShader	() const { return m_evaluationShader; }
 
-	const ResourcePtr< TextureObject >&		GetTexture		( int index ) const		{ return m_textures[index]; }
-	const MaterialInfo&						GetDescriptor	() const				{ return m_descriptor; }
+	const ResourcePtr< TextureObject >&		GetTexture		( int index ) const { return m_textures[ index ]; }
+	const MaterialInfo&						GetDescriptor	() const { return m_descriptor; }
 
 	virtual std::string						GetResourceName	() const override;
 
@@ -94,3 +97,4 @@ private:
 	TextureObject*		GetTexture8() const { return m_textures[ 7 ].Ptr(); }
 };
 
+}	// sw

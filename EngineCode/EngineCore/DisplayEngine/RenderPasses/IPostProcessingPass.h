@@ -8,6 +8,8 @@
 #include "EngineCore/DisplayEngine/RenderPasses/IRenderPass.h"
 
 
+namespace sw
+{
 
 /**@brief Interface for post processing passes.
 
@@ -32,3 +34,4 @@ public:
 	virtual ResourcePtr< RenderTargetObject >		GetInputTarget		()							= 0;
 };
 
+}	// sw

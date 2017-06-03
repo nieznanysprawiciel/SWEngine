@@ -1,7 +1,19 @@
 #pragma once
+/**
+@file IControllerState.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 
 #include "swCommonLib/Common/EngineObject.h"
 #include "EngineCore/Actors/BasicActors/CameraActor.h"
+
+
+namespace sw
+{
+
 
 class EngineInterface;
 
@@ -23,3 +35,5 @@ public:
 	virtual ~IControllersState();
 };
 
+
+}	// sw

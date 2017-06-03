@@ -7,6 +7,12 @@
 
 #include "swCommonLib/Common/TypesDefinitions.h"
 
+
+
+namespace sw
+{
+
+
 /**@brief Klasa obs³uguje wszystko co zwi¹zane z czasem.
 
 Do zadañ klasy nale¿y:
@@ -39,10 +45,11 @@ public:
 	int64			QueryCurrentTime();
 	double			QueryTimeFromBegin();
 	float			GetCurrentLag();
-	inline int64	GetBeginTime()					{ return m_beginTime; }				///<Zwraca czas jaki zosta³ zarejestrowany przy inicjacji silnika.
-	inline int64	GetTimerFrequency()				{ return m_timerFrequency; }		///<Zwraca czêstotliwoœæ taktowania uzywanego timera.
-	inline float	GetFrameLag()					{ return m_lag; }					///<Zwraca zmienn¹ m_lag.
-	inline int64	GetTime()						{ return m_timePrevious; }			///<Zwraca czas, jaki zosta³ ostatnio zarejestrowany przy wywo³aniu onStartRenderFrame.
-	inline void		UpdateTimeLag( float timeLag )	{ m_lag = timeLag; }				///<Aktualizuje zmienn¹ m_lag.
+	inline int64	GetBeginTime() { return m_beginTime; }				///<Zwraca czas jaki zosta³ zarejestrowany przy inicjacji silnika.
+	inline int64	GetTimerFrequency() { return m_timerFrequency; }		///<Zwraca czêstotliwoœæ taktowania uzywanego timera.
+	inline float	GetFrameLag() { return m_lag; }					///<Zwraca zmienn¹ m_lag.
+	inline int64	GetTime() { return m_timePrevious; }			///<Zwraca czas, jaki zosta³ ostatnio zarejestrowany przy wywo³aniu onStartRenderFrame.
+	inline void		UpdateTimeLag( float timeLag ) { m_lag = timeLag; }				///<Aktualizuje zmienn¹ m_lag.
 };
 
+}	// sw

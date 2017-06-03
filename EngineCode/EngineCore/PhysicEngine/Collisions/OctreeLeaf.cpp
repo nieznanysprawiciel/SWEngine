@@ -2,11 +2,16 @@
 #include "OctreeLeaf.h"
 
 
+namespace sw
+{
+
+
+
 /**@brief Domyœlny konstruktor.*/
 OctreeLeaf::OctreeLeaf()
-	:	IOctreeNode( OctreeNodeType::LeafNode )
-	,	m_staticActorsCount( 0 )
-{ }
+	: IOctreeNode( OctreeNodeType::LeafNode )
+	, m_staticActorsCount( 0 )
+{}
 
 /**@brief Kasuje wszystkich aktorów.*/
 void		OctreeLeaf::ClearAllActors()
@@ -69,7 +74,7 @@ bool		OctreeLeaf::RemoveStaticActor	( CollisionActor* actor )
 		if( m_actors[ index ] == actor )
 		{
 			m_actors.erase( m_actors.begin() + index );
-			
+
 			--m_staticActorsCount;
 			return true;
 		}
@@ -89,3 +94,5 @@ bool		OctreeLeaf::RemoveActor			( CollisionActor* actor )
 }
 
 
+
+}	// sw

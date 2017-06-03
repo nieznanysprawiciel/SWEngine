@@ -38,6 +38,11 @@ Inni aktorzy mog¹ rejestrowaæ funkcje obs³ugi konkretnych eventów.
 #include <vector>
 #include <unordered_map>
 
+
+namespace sw
+{
+
+
 class Engine;
 class Event;
 
@@ -75,8 +80,8 @@ private:
 
 protected:
 public:
-					EventManager	( Engine* engine );
-					~EventManager	() = default;
+	EventManager	( Engine* engine );
+	~EventManager	() = default;
 
 	void			ProcessEvents	( float timeInterval );
 
@@ -95,3 +100,4 @@ public:
 };
 
 
+}	// sw

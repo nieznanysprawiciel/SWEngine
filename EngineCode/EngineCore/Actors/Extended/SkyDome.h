@@ -8,6 +8,10 @@
 #include "EngineCore/Actors/BasicActors/DynamicActor.h"
 
 
+namespace sw
+{
+
+
 /**@brief Base class for sky domes, sky boxes and so on.*/
 class SkyDome : public DynamicActor
 {
@@ -18,8 +22,8 @@ private:
 
 protected:
 
-	void			RequestUpdate			()								{ m_needsBufferUpdate = true; }
-	void			Updated					()								{ m_needsBufferUpdate = false; }
+	void			RequestUpdate			() { m_needsBufferUpdate = true; }
+	void			Updated					() { m_needsBufferUpdate = false; }
 
 public:
 	explicit		SkyDome		() = default;
@@ -27,7 +31,8 @@ public:
 
 
 	virtual void		UpdateBuffers		( IRenderer* renderer ) = 0;
-	bool				NeedsBufferUpdate	()								{ return m_needsBufferUpdate;  }
+	bool				NeedsBufferUpdate	() { return m_needsBufferUpdate; }
 };
 
 
+}	// sw

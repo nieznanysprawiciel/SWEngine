@@ -8,6 +8,10 @@
 #include "IController.h"
 
 
+
+namespace sw
+{
+
 /**@brief Klasa bazowa dla wszystkich kontrolerów sztucznej inteligencji.*/
 class BaseAIController : public IController
 {
@@ -16,3 +20,6 @@ private:
 protected:
 public:
 };
+
+}	// sw
+

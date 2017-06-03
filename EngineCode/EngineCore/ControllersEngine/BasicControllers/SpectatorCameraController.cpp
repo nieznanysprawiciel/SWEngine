@@ -9,15 +9,20 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< SpectatorCameraController >( "SpectatorCameraController" );
+	rttr::registration::class_< sw::SpectatorCameraController >( "SpectatorCameraController" );
 }
 
 
 using namespace DirectX;
 
+namespace sw
+{
+
+
+
 /**@brief */
 SpectatorCameraController::SpectatorCameraController( InputAbstractionLayerBase* layer )
-	:	BaseInputController(layer)
+	: BaseInputController( layer )
 {
 	m_moveSpeed = 1000.0;
 	m_buttonRotSpeed = 1.0;
@@ -168,7 +173,7 @@ void SpectatorCameraController::ControlObjectPre( DynamicActor* actor, IControll
 
 	actor->SetRotationSpeed( downRotate );
 
-	
+
 }
 
 /**@brief Funkcja nic nie robi.
@@ -183,3 +188,5 @@ void SpectatorCameraController::ControlObjectPost( DynamicActor* actor, IControl
 //
 void	SpectatorCameraController::Initialize		( DynamicActor* actor )
 {}
+
+}	// sw

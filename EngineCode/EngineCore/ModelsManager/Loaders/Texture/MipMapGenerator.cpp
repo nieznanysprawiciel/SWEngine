@@ -1,16 +1,27 @@
+/**
+@file MipMapGenerator.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
 #include "MipMapGenerator.h"
 
 #include "Resampler/resampler.h"
-#include "Common/Converters.h"
+#include "swCommonLib/Common/Converters.h"
 
+
+namespace sw
+{
 
 
 const int sMaxChannels = 4;
 
-
+// ================================ //
+//
 MipMapGenerator::MipMapGenerator()
-	:	NumChannels( 4 )
+	: NumChannels( 4 )
 {}
 
 /**@brief Generuje mipmapy.
@@ -53,7 +64,7 @@ MemoryChunk		MipMapGenerator::Generate	( MemoryChunk& source, TextureInfo& texIn
 	// Aktualizujemy informacje o teksturze.
 	texInfo.TextureWidth = newWidth;
 	texInfo.TextureHeight = newHeight;
-	
+
 	PtrOffset offset = 0;
 	PtrOffset prevOffset = 0;
 	uint16 prevWidth = newWidth;
@@ -88,7 +99,7 @@ void			MipMapGenerator::Resample	( uint32 srcWidth, uint32 srcHeight, uint32 dst
 
 	// ============================================== //
 	// Initialization.
-	
+
 	Resampler* resamplers[ sMaxChannels ];
 	std::vector< float > samples[ sMaxChannels ];
 
@@ -125,7 +136,7 @@ void			MipMapGenerator::Resample	( uint32 srcWidth, uint32 srcHeight, uint32 dst
 		linearToSrgb[ i ] = (unsigned char)k;
 	}
 
-   	// ============================================== //
+	// ============================================== //
 	// Resampling.
 
 	const int srcPitch = srcWidth * NumChannels;
@@ -152,9 +163,9 @@ void			MipMapGenerator::Resample	( uint32 srcWidth, uint32 srcHeight, uint32 dst
 			if( !resamplers[ c ]->put_line( &samples[ c ][ 0 ] ) )
 			{
 				for( int channel = 0; channel < NumChannels; channel++ )
-				  delete resamplers[ channel ];
+					delete resamplers[ channel ];
 
-				// Out of memory.
+				  // Out of memory.
 				return;
 			}
 		}
@@ -200,7 +211,7 @@ void			MipMapGenerator::Resample	( uint32 srcWidth, uint32 srcHeight, uint32 dst
 
 	// Zwalnianie zasobów
 	for( int channel = 0; channel < NumChannels; channel++ )
-      delete resamplers[ channel ];
+		delete resamplers[ channel ];
 }
 
 /**@brief Znajduje najbli¿sz¹ potêgê dwójki.*/
@@ -272,3 +283,6 @@ PtrOffset		MipMapGenerator::ComputeMipLevelOffset( unsigned int initWidth, unsig
 
 	return offset;
 }
+
+}	// sw
+

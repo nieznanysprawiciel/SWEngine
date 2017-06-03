@@ -13,7 +13,9 @@ class IDeserializer;
 
 
 
-namespace Api { namespace Level
+namespace sw {
+namespace Api {
+namespace Level
 {
 
 /**@defgroup SerializationApi Serializacja levelu
@@ -26,39 +28,40 @@ namespace Api { namespace Level
 
 	@ingroup UserAPI
 	@ingroup SerializationApi*/
-	class SerializationApi : public ApiGroup
-	{
-	public:
-		static const char*	ACTOR_INFO_STRING;
+class SerializationApi : public ApiGroup
+{
+public:
+	static const char*	ACTOR_INFO_STRING;
 
-		static const char*	ACTOR_INFO_ENABLE_DISPLAY;
-		static const char*	ACTOR_INFO_ENABLE_MOVEMENT;
-		static const char*	ACTOR_INFO_ENABLE_PRE_CONTROLLERS;
-		static const char*	ACTOR_INFO_ENABLE_POST_CONTROLLERS;
-		static const char*	ACTOR_INFO_ENABLE_PHYSIC;
-		static const char*	ACTOR_INFO_ENABLE_SHADOW;
-		static const char*	ACTOR_INFO_ENABLE_COLLISION;
-		static const char*	ACTOR_INFO_IS_LIGHT;
-		static const char*	ACTOR_INFO_IS_CAMERA;
-		static const char*	ACTOR_INFO_ENABLE_SAVING_TO_FILE;
+	static const char*	ACTOR_INFO_ENABLE_DISPLAY;
+	static const char*	ACTOR_INFO_ENABLE_MOVEMENT;
+	static const char*	ACTOR_INFO_ENABLE_PRE_CONTROLLERS;
+	static const char*	ACTOR_INFO_ENABLE_POST_CONTROLLERS;
+	static const char*	ACTOR_INFO_ENABLE_PHYSIC;
+	static const char*	ACTOR_INFO_ENABLE_SHADOW;
+	static const char*	ACTOR_INFO_ENABLE_COLLISION;
+	static const char*	ACTOR_INFO_IS_LIGHT;
+	static const char*	ACTOR_INFO_IS_CAMERA;
+	static const char*	ACTOR_INFO_ENABLE_SAVING_TO_FILE;
 
-	private:
-	protected:
-	public:
-		SerializationApi() = default;
-		~SerializationApi() = default;
-	public:
-	
-		void		DefaultDeserialize			( IDeserializer* deser, EngineObject* object );
-		bool		DeserializeSingleGeneric	( IDeserializer* deser, rttr::property prop, const EngineObject* object );
-		bool		DeserializeResource			( IDeserializer* deser, rttr::property prop, const EngineObject* object );
-		
+private:
+protected:
+public:
+	SerializationApi() = default;
+	~SerializationApi() = default;
+public:
 
-		void		SerializeActorInfo			( ISerializer* ser, ActorInfo info );
-		ActorInfo	DeserializeActorInfo		( IDeserializer* deser );
-	};
+	void		DefaultDeserialize			( IDeserializer* deser, EngineObject* object );
+	bool		DeserializeSingleGeneric	( IDeserializer* deser, rttr::property prop, const EngineObject* object );
+	bool		DeserializeResource			( IDeserializer* deser, rttr::property prop, const EngineObject* object );
+
+
+	void		SerializeActorInfo			( ISerializer* ser, ActorInfo info );
+	ActorInfo	DeserializeActorInfo		( IDeserializer* deser );
+};
 
 
 
 }	// Level
 }	// Api
+}	// sw

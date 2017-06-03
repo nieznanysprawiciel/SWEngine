@@ -21,6 +21,11 @@
 #include "swCommonLib/Common/MemoryLeaks.h"
 
 
+namespace sw
+{
+
+
+
 #ifdef PERFORMANCE_CHECK
 
 PerformanceCheck&		GetPerformanceCheck()
@@ -39,7 +44,7 @@ aktualny czas.
 @param[in] index Indeks zadania w tablicy m_samples.*/
 void			PerformanceCheck::StartPerformanceCheck( unsigned int index )
 {
-	if ( index < m_samples.size() )
+	if( index < m_samples.size() )
 	{
 		_LARGE_INTEGER currentTime;
 		QueryPerformanceCounter( &currentTime );
@@ -106,12 +111,12 @@ void			PerformanceCheck::Print( const std::string& outputFile, std::vector<_Perf
 
 	std::fstream output;
 	output.open( outputFile.c_str(), std::fstream::out | std::fstream::app );
-	if ( !output.good() )
+	if( !output.good() )
 		return;
 
 	output << "Performance test:				Average			Minimum			Maximum				Whole Time		Num executions" << std::endl;
 
-	for ( auto taskData : data_copy )
+	for( auto taskData : data_copy )
 	{
 		output.width( 32 );
 		output << std::left;
@@ -140,5 +145,9 @@ void			PerformanceCheck::ClearSamples()
 		sample.WholeTime = 0;
 		sample.NumExecutions = 0;
 	}
-	
+
 }
+
+}	// sw
+
+

@@ -14,6 +14,8 @@
 
 using namespace DirectX;
 
+namespace sw
+{
 
 
 // ================================ //
@@ -34,12 +36,12 @@ const char*	SupportedExtensions[] =
 
 
 ///@brief Kontruktr inicjuje obiekty FBX SDK, konieczne do wczytania modelu.
-FBX_loader::FBX_loader(AssetsManager* models_manager)
-	: ILoader(models_manager)
+FBX_loader::FBX_loader( AssetsManager* models_manager )
+	: ILoader( models_manager )
 {
 	fbx_manager = FbxManager::Create();
-	fbx_IOsettings = FbxIOSettings::Create(fbx_manager, IOSROOT);
-	fbx_manager->SetIOSettings(fbx_IOsettings);
+	fbx_IOsettings = FbxIOSettings::Create( fbx_manager, IOSROOT );
+	fbx_manager->SetIOSettings( fbx_IOsettings );
 }
 
 
@@ -54,71 +56,71 @@ FBX_loader::~FBX_loader()
 /**@brief Dla podanego polygona odczytujemy jego indeks materia³u. Je¿eli nie ma ¿adnych materia³ów przypisanych
 to dostajemy 0. Kiedy potem bêdziemy wybieraæ, do której tablicy mesha zapisaæ wierzcho³ek, wszystko
 bêdzie dzia³a³o poprawnie nawet, jak materi¹³u nie bêdzie.*/
-int FBX_loader::ReadMaterialIndex(FbxMesh* mesh, unsigned int polygon_counter)
+int FBX_loader::ReadMaterialIndex( FbxMesh* mesh, unsigned int polygon_counter )
 {
-	if (mesh->GetElementMaterialCount() < 1)
+	if( mesh->GetElementMaterialCount() < 1 )
 		return 0;		//nie by³o materia³ów to mamy tylko jedn¹ tablicê do indeksowania
 
 	FbxGeometryElementMaterial* material = mesh->GetElementMaterial();
 	int index;
 
-	switch (material->GetMappingMode())
+	switch( material->GetMappingMode() )
 	{
-	case FbxGeometryElement::eAllSame:
-		index = material->GetIndexArray()[0];		//mamy tylko jeden materia³ dla ca³ego mesha
-		break;
+		case FbxGeometryElement::eAllSame:
+			index = material->GetIndexArray()[ 0 ];		//mamy tylko jeden materia³ dla ca³ego mesha
+			break;
 
-	case FbxGeometryElement::eByPolygon:
-		index = material->GetIndexArray()[polygon_counter];
-		break;
+		case FbxGeometryElement::eByPolygon:
+			index = material->GetIndexArray()[ polygon_counter ];
+			break;
 	}
 	return index;
 }
 
 /**@brief Wczytuje UVs dla podanego wierzcho³ka.*/
-DirectX::XMFLOAT2		FBX_loader::ReadUVs(FbxMesh* mesh, int control_point, unsigned int vertex_counter )
+DirectX::XMFLOAT2		FBX_loader::ReadUVs( FbxMesh* mesh, int control_point, unsigned int vertex_counter )
 {
-	if (mesh->GetUVLayerCount() < 1)
+	if( mesh->GetUVLayerCount() < 1 )
 		return DirectX::XMFLOAT2( 0.0, 0.0 );
 
 	DirectX::XMFLOAT2 UV_cords;
-	
+
 	FbxGeometryElementUV* UVs = mesh->GetElementUV();
 	int index;
 
-	switch (UVs->GetMappingMode())
+	switch( UVs->GetMappingMode() )
 	{
-	case FbxGeometryElement::eByControlPoint:
-		switch (UVs->GetReferenceMode())
-		{
-		case FbxGeometryElement::eDirect:
-			UV_cords.x = static_cast<float>(UVs->GetDirectArray().GetAt(control_point).mData[0]);
-			UV_cords.y = 1 - static_cast<float>(UVs->GetDirectArray().GetAt(control_point).mData[1]);
+		case FbxGeometryElement::eByControlPoint:
+			switch( UVs->GetReferenceMode() )
+			{
+				case FbxGeometryElement::eDirect:
+					UV_cords.x = static_cast<float>( UVs->GetDirectArray().GetAt( control_point ).mData[ 0 ] );
+					UV_cords.y = 1 - static_cast<float>( UVs->GetDirectArray().GetAt( control_point ).mData[ 1 ] );
+					break;
+
+				case FbxGeometryElement::eIndexToDirect:
+					index = UVs->GetIndexArray().GetAt( control_point );
+					UV_cords.x = static_cast<float>( UVs->GetDirectArray().GetAt( index ).mData[ 0 ] );
+					UV_cords.y = 1 - static_cast<float>( UVs->GetDirectArray().GetAt( index ).mData[ 1 ] );
+					break;
+			}
 			break;
 
-		case FbxGeometryElement::eIndexToDirect:
-			index = UVs->GetIndexArray().GetAt(control_point);
-			UV_cords.x = static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[0]);
-			UV_cords.y = 1 - static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[1]);
-			break;
-		}
-		break;
+		case FbxGeometryElement::eByPolygonVertex:
+			switch( UVs->GetReferenceMode() )
+			{
+				case FbxGeometryElement::eDirect:
+					UV_cords.x = static_cast<float>( UVs->GetDirectArray().GetAt( vertex_counter ).mData[ 0 ] );
+					UV_cords.y = 1 - static_cast<float>( UVs->GetDirectArray().GetAt( vertex_counter ).mData[ 1 ] );
+					break;
 
-	case FbxGeometryElement::eByPolygonVertex:
-		switch (UVs->GetReferenceMode())
-		{
-		case FbxGeometryElement::eDirect:
-			UV_cords.x = static_cast<float>(UVs->GetDirectArray().GetAt(vertex_counter).mData[0]);
-			UV_cords.y = 1 - static_cast<float>(UVs->GetDirectArray().GetAt(vertex_counter).mData[1]);
+				case FbxGeometryElement::eIndexToDirect:
+					index = UVs->GetIndexArray().GetAt( vertex_counter );
+					UV_cords.x = static_cast<float>( UVs->GetDirectArray().GetAt( index ).mData[ 0 ] );
+					UV_cords.y = 1 - static_cast<float>( UVs->GetDirectArray().GetAt( index ).mData[ 1 ] );
+					break;
+			}
 			break;
-
-		case FbxGeometryElement::eIndexToDirect:
-			index = UVs->GetIndexArray().GetAt(vertex_counter);
-			UV_cords.x = static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[0]);
-			UV_cords.y = 1 - static_cast<float>(UVs->GetDirectArray().GetAt(index).mData[1]);
-			break;
-		}
-		break;
 	}
 
 	return UV_cords;
@@ -201,7 +203,7 @@ Nullable< MeshInitData >	FBX_loader::LoadMesh	( const filesystem::Path& fileName
 	MemoryChunk vertexChunk( (uint32)numVerticies * sizeof( VertexNormalTexCoord ) );
 
 	CopyVertexBuffer( tempMeshInit.Value.Verticies, vertexChunk );
-	
+
 	if( indexSize == sizeof( Index16 ) )
 		CopyIndexBuffer< Index16 >( tempMeshInit.Value.Indicies, indexChunk );
 	else if( indexSize == sizeof( Index32 ) )
@@ -289,7 +291,7 @@ Nullable< TemporaryMeshInit >		FBX_loader::ProcessMesh		( FbxNodeMesh& nodeData,
 
 	int materialsCount = fbxNode->GetMaterialCount();
 	unsigned int polygonsCount = fbxMesh->GetPolygonCount();
-	
+
 	unsigned int vertexCounter = 0;			// For FbxGeometryElement::eByPolygonVertex mapping type.
 	unsigned int polygonCounter = 0;		// For FbxGeometryElement::eByPolygon maping type.
 
@@ -344,7 +346,7 @@ Nullable< TemporaryMeshInit >		FBX_loader::ProcessMesh		( FbxNodeMesh& nodeData,
 	}
 	else
 		indicies[ 0 ] = std::move( newIndicies );
-	
+
 
 	// Verticies in FBX file have transformations which we must apply.
 	// We don't have to preserve transformation matrix for each segment with this approach.
@@ -386,7 +388,7 @@ ResourcePtr< MaterialAsset >		FBX_loader::ProcessMaterial	( FbxSurfaceMaterial* 
 	{
 		if( mat.Surface == FBXmaterial )
 		{
-			if( mat.EngineMaterial )	
+			if( mat.EngineMaterial )
 				return mat.EngineMaterial;
 			else
 			{
@@ -453,7 +455,7 @@ ResourcePtr< MaterialAsset >		FBX_loader::CreateMaterial	( FbxSurfaceMaterial* F
 
 	if( model == FbxShadingModel::Phong )
 	{
-		auto fbxPhongMat = static_cast< FbxSurfacePhong* >( surfMaterial );
+		auto fbxPhongMat = static_cast<FbxSurfacePhong*>( surfMaterial );
 
 		if( fbxPhongMat->Specular.GetSrcObjectCount() > 0 )
 		{
@@ -512,7 +514,7 @@ ResourcePtr< TextureObject >		FBX_loader::ProcessTexture			( FbxFileTexture* FBX
 	{
 		if( tex.FbxTex == FBXTexture )
 		{
-			if( tex.EngineTex )	
+			if( tex.EngineTex )
 				return tex.EngineTex;
 			else
 			{
@@ -567,7 +569,7 @@ Index32						FBX_loader::FindUniqueVertex			( VertexNormalTexCoord& vertex, std:
 			return i;
 		}
 	}
-	
+
 	// Vertex not found.
 	verticies.push_back( vertex );
 	return (Index32)( verticies.size() - 1 );
@@ -674,3 +676,6 @@ LoaderResult FBX_loader::load_mesh( Model3DFromFile * new_file_mesh, const std::
 {
 	return LoaderResult();
 }
+
+}	// sw
+

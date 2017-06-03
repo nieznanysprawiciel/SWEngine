@@ -1,12 +1,18 @@
-#include "EngineCore/stdafx.h"
 /**
 @file Math.cpp
 @author nieznanysprawiciel
 @copyright File is part of graphic engine SWEngine.
 */
+#include "EngineCore/stdafx.h"
+
 #include "Math.h"
 
 using namespace DirectX;
+
+
+namespace sw
+{
+
 
 // ================================ //
 //
@@ -37,3 +43,8 @@ float				Math::ToRadians			( float value )
 {
 	return XMConvertToRadians( value );
 }
+
+
+
+}	// sw
+

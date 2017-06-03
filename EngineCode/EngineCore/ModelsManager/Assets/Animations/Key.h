@@ -5,6 +5,8 @@
 @copyright File is part of graphic engine SWEngine.
 */
 
+namespace sw
+{
 
 /**@defgroup Animation Animation
 @ingroup EngineCore*/
@@ -32,3 +34,6 @@ struct Key
 	KeyParam< ValueType >	Value;
 	KeyTime					Time;
 };
+
+}	// sw
+

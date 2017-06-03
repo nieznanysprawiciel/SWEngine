@@ -6,8 +6,14 @@
 */
 
 #include "swCommonLib/Common/EngineObject.h"
-#include "EngineCore/MainEngine/EngineInterface.h"
 #include "swCommonLib/External/FastDelegate/FastDelegate.h"
+
+
+#include "EngineCore/MainEngine/EngineInterface.h"
+
+
+namespace sw
+{
 
 
 class IGamePlay;
@@ -25,7 +31,7 @@ podchodz¹ce pod gameplay.
 Klasa komunikuje siê z silnikiem za pomoc¹ interfejsu EngineInterface.
 
 W ka¿dym obiegu g³ównej pêtli silnika wywo³ywane s¹ funkcje dla poszczególnych modu³ów.
-Obiekt IGamePlay nalezy do klasy FableEngine. Klasa ta najpierw wywo³uje funkcje obs³ugi dla 
+Obiekt IGamePlay nalezy do klasy FableEngine. Klasa ta najpierw wywo³uje funkcje obs³ugi dla
 poszczególnych eventów, które znajduj¹ siê w kolejce. Funkcja ProceedGameLogic() jest wywo³ywana
 gdy wszystkie komunikaty zostan¹ juz obs³u¿one (je¿eli nie istnieje funkcja obs³ugi, zostaj¹ skasowane).
 Nale¿y pamiêtaæ, ¿eby nie wykonywaæ zbyt wielu kosztownych czasowo operacji w tej funkcji, aby nie spowolniæ
@@ -33,8 +39,7 @@ dzia³ania silnika.
 
 W momencie przetwarzania funkcji GamePlaya po³o¿enia wszystkich obiektów s¹ ju¿ policzone, podobnie jak kolizje,
 oddzia³ywania fizyczne, zachowania AI oraz dane z wejœcia.*/
-
-class IGamePlay	: public EngineObject
+class IGamePlay : public EngineObject
 {
 private:
 
@@ -46,9 +51,14 @@ public:
 	virtual ~IGamePlay() = default;
 
 	virtual void		SetEngineReference			( EngineInterface* game_engine, FableEngine* fable )
-													{ m_engine = game_engine; m_fableEngine = fable; }
+	{
+		m_engine = game_engine; m_fableEngine = fable;
+	}
 
 	virtual void		ProceedGameLogic			( float time ) = 0;
 	virtual int			LoadLevel					() = 0;
 	virtual int			UnloadLevel					() = 0;
 };
+
+
+}	// sw

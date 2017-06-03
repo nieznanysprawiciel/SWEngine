@@ -12,6 +12,10 @@
 
 
 
+namespace sw
+{
+
+
 /**@brief */
 ActorFactory::ActorFactory()
 {}
@@ -28,7 +32,7 @@ tworzenia stringów.*/
 ActorType ActorFactory::GetClassId( const std::string& name )
 {
 	auto element = m_classNames.find( name );
-	if ( element == m_classNames.end() )
+	if( element == m_classNames.end() )
 	{
 		assert( false );
 		return rttr::type::get( nullptr );
@@ -45,3 +49,7 @@ const ActorFactory::StringTypeMapping&	ActorFactory::GetRegisteredClasses	()
 {
 	return m_classNames;
 }
+
+
+}	// sw
+

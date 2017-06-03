@@ -1,12 +1,20 @@
 #pragma once
-/**@file IController.h
+/**
+@file IController.h
 @author nieznanysprawiciel
-@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+@copyright File is part of Sleeping Wombat Libraries.
+*/
 
-@brief Klasa bazowa dla kontrolerów.*/
 
 #include "swCommonLib/Common/EngineObject.h"
 #include "EngineCore/ControllersEngine/IControllersState.h"
+
+
+
+namespace sw
+{
+
+
 
 class DynamicActor;
 
@@ -51,3 +59,5 @@ Do kontrolerów post zaliczamy kotrolery œledz¹ce jakis obiekt, do kotrolerów pre
 steruj¹ce ruchem na podstawie klawiatury czy myszy.
 
 */
+
+}	// sw

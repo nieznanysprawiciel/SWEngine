@@ -1,8 +1,22 @@
 #pragma once
+/**
+@file ActorPreset.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 
 #include "ActorInfo.h"
 
 #include <string>
+
+
+
+
+namespace sw
+{
+
 
 /**@brief Struktura przechowuj¹ca informacje o presetach aktorów.
 
@@ -18,4 +32,5 @@ struct ActorPreset
 	ActorInfo		addToModules;
 };
 
+}	// sw
 

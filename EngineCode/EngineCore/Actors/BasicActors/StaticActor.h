@@ -14,6 +14,11 @@
 #include <DirectXMath.h>
 
 
+
+namespace sw
+{
+
+
 class Model3DFromFile;
 class BufferObject;
 
@@ -34,7 +39,7 @@ i jakoœ rozwi¹zaæ tê sytuacjê.
 class StaticActor : public ActorBase
 {
 	RTTR_ENABLE( ActorBase )
-	RTTR_REGISTRATION_FRIEND
+		RTTR_REGISTRATION_FRIEND
 private:
 	DirectX::XMFLOAT3		position;				///< Pozycja obiektu (lub bufor tylny)
 	DirectX::XMFLOAT4		orientation;			///< Orientacja obiektu wyra¿ona kwaternionem (lub bufor tylny)
@@ -47,11 +52,11 @@ private:
 private:
 	float						scale;		///<Skalowanie wzglêdem wszystkich osi.
 public:
-	void				SetScale		( float sc )	{ scale = sc; };
-	float				GetScale		()				{ return scale; }
+	void				SetScale		( float sc ) { scale = sc; };
+	float				GetScale		() { return scale; }
 #endif
 protected:
-	
+
 	VisibleComponent		m_visibleComponent;
 
 protected:
@@ -65,7 +70,7 @@ protected:
 	inline void			SetPosition		( const DirectX::XMVECTOR pos );
 
 	/** @brief Funkcja ustawia orientacjê obiektu. Wartoœci poœrednie s¹ interpolowane.
-	
+
 	Nowa wartoœæ jest wpisywana do bufora tylnego orientacji.
 
 	@param[in] quaternion Orientacja docelowa obiektu.
@@ -79,10 +84,10 @@ public:
 	virtual		~StaticActor();
 
 	/**@brief Przemieszcza obiekt w podane miejsce.
-	
+
 	Funkcja powinna zostaæ u¿yta, je¿eli obiekt ma zostaæ przemiszczony skokowo w jakieœ miejsce.
 	Wartoœci poœrednie nie bêd¹ interpolowane. Funkcjê nale¿y tak¿e wywo³aæ przy inicjacji obiektu.
-	
+
 	@param[in] pos Nowe po³o¿enie obiektu.*/
 	inline void			Teleport		( const DirectX::XMVECTOR pos );
 
@@ -97,7 +102,7 @@ public:
 
 
 	/**@brief Pobiera aktualn¹ pozycjê obiektu.
-	
+
 	@return Wektor zawieraj¹cy pozycjê obiektu.*/
 	inline DirectX::XMVECTOR	GetPosition			() const;
 
@@ -113,12 +118,12 @@ public:
 	DirectX::XMVECTOR			GetInterpolatedPosition		( float frame_percent ) const;
 	DirectX::XMVECTOR			GetInterpolatedOrientation	( float frame_percent ) const;
 
-	static ActorBase*			Create()	{ return new StaticActor; }
+	static ActorBase*			Create() { return new StaticActor; }
 
 public:
 
 	bool							SetModel		( const ResourcePtr< MeshAsset >& model );
-	const ResourcePtr< MeshAsset >&	GetModel		()		{ return m_visibleComponent.GetAsset(); }
+	const ResourcePtr< MeshAsset >&	GetModel		() { return m_visibleComponent.GetAsset(); }
 
 };
 
@@ -128,7 +133,7 @@ public:
 //
 inline void		StaticActor::SetPosition	( const DirectX::XMVECTOR pos )
 {
-	if ( swap_data )
+	if( swap_data )
 		XMStoreFloat3( &position, pos );
 	else
 		XMStoreFloat3( &position_back, pos );
@@ -138,7 +143,7 @@ inline void		StaticActor::SetPosition	( const DirectX::XMVECTOR pos )
 //
 inline void		StaticActor::SetOrientation	( const DirectX::XMVECTOR quaternion )
 {
-	if ( swap_data )
+	if( swap_data )
 		XMStoreFloat4( &orientation, quaternion );
 	else
 		XMStoreFloat4( &orientation_back, quaternion );
@@ -148,15 +153,15 @@ inline void		StaticActor::SetOrientation	( const DirectX::XMVECTOR quaternion )
 //
 inline void		StaticActor::Teleport		( const DirectX::XMVECTOR pos )
 {
-	XMStoreFloat3( &position, pos ); 
+	XMStoreFloat3( &position, pos );
 	XMStoreFloat3( &position_back, pos );
 }
 
 // ================================ //
 //
 inline void		StaticActor::TeleportOrientation	( const DirectX::XMVECTOR quaternion )
-{ 
-	XMStoreFloat4( &orientation, quaternion ); 
+{
+	XMStoreFloat4( &orientation, quaternion );
 	XMStoreFloat4( &orientation_back, quaternion );
 }
 
@@ -164,7 +169,7 @@ inline void		StaticActor::TeleportOrientation	( const DirectX::XMVECTOR quaterni
 //
 DirectX::XMVECTOR StaticActor::GetPosition() const
 {
-	if ( swap_data )
+	if( swap_data )
 		return XMLoadFloat3( &position_back );
 	else
 		return XMLoadFloat3( &position );
@@ -174,7 +179,7 @@ DirectX::XMVECTOR StaticActor::GetPosition() const
 //
 inline DirectX::XMVECTOR	StaticActor::GetOrientation		() const
 {
-	if ( swap_data )
+	if( swap_data )
 		return XMLoadFloat4( &orientation_back );
 	else
 		return XMLoadFloat4( &orientation );
@@ -183,8 +188,11 @@ inline DirectX::XMVECTOR	StaticActor::GetOrientation		() const
 // ================================ //
 //
 inline void		StaticActor::Swap		()
-{ 
-	if ( swap_data )
+{
+	if( swap_data )
 		swap_data = false;
-	else swap_data = true; 
+	else swap_data = true;
 }
+
+}	// sw
+

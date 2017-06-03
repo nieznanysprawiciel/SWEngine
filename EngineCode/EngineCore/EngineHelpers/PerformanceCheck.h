@@ -12,6 +12,11 @@ czasu zu¿ywanego na wykonanie wybranych zadañ.*/
 
 
 
+
+namespace sw
+{
+
+
 /**@brief Struktura przechowuje dane na temat wydajnoœci jednej badanej rzeczy.*/
 struct _PerformanceData
 {
@@ -132,3 +137,6 @@ GetPerformanceCheck().StartPerformanceCheck( __performance_task_id ## name );
 #define PERFORMACE_CHECK_CLEAR 
 
 #endif
+
+
+}	// sw

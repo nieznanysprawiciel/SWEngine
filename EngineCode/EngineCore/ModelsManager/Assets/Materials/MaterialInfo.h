@@ -1,10 +1,20 @@
 #pragma once
+/**
+@file MaterialInfo.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
 
 #include "swCommonLib/Common/TypesDefinitions.h"
 
 /// Maksymalna liczba tekstur w materiale.
 #define MAX_MATERIAL_TEXTURES		5
 
+
+
+namespace sw
+{
 
 
 /**@brief Struktura opisuj¹ca dodatkowe bufory sta³ych dla shaderów.
@@ -67,3 +77,6 @@ inline void			AdditionalBufferInfo::SetBufferType( std::string name )
 	if( newType.is_valid() )
 		BufferType = newType;
 }
+
+}	// sw
+

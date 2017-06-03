@@ -1,64 +1,85 @@
+/**
+@file SWMaterialLaoder.inl
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "SWMaterialLoader.h"
 
 #include "EngineCore/ModelsManager/AssetsManager.h"
 #include "GraphicAPI/MeshResources.h"
 
 
+namespace sw
+{
 
 
 template< typename ShaderType >
 struct ShaderFunGetter
 {
-	typedef ShaderType* (AssetsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
+	typedef ShaderType* ( AssetsManager::*ShaderLoadFun )( const std::wstring&, const std::string& );
 
 
 	static ShaderLoadFun		ShaderLoadingFunction()
-	{	static_assert( false, "Specialize struct" ); };
+	{
+		static_assert( false, "Specialize struct" );
+	};
 };
 
 template<>
 struct ShaderFunGetter< VertexShader >
 {
-	typedef VertexShader* (AssetsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
+	typedef VertexShader* ( AssetsManager::*ShaderLoadFun )( const std::wstring&, const std::string& );
 
 	static ShaderLoadFun		ShaderLoadingFunction()
-	{	return &AssetsManager::LoadVertexShader; }
+	{
+		return &AssetsManager::LoadVertexShader;
+	}
 };
 
 template<>
 struct ShaderFunGetter< PixelShader >
 {
-	typedef PixelShader* (AssetsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
+	typedef PixelShader* ( AssetsManager::*ShaderLoadFun )( const std::wstring&, const std::string& );
 
 	static ShaderLoadFun		ShaderLoadingFunction()
-	{	return &AssetsManager::LoadPixelShader; }
+	{
+		return &AssetsManager::LoadPixelShader;
+	}
 };
 
 template<>
 struct ShaderFunGetter< GeometryShader >
 {
-	typedef GeometryShader* (AssetsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
+	typedef GeometryShader* ( AssetsManager::*ShaderLoadFun )( const std::wstring&, const std::string& );
 
 	static ShaderLoadFun		ShaderLoadingFunction()
-	{	return &AssetsManager::LoadGeometryShader; }
+	{
+		return &AssetsManager::LoadGeometryShader;
+	}
 };
 
 template<>
 struct ShaderFunGetter< ControlShader >
 {
-	typedef ControlShader* (AssetsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
+	typedef ControlShader* ( AssetsManager::*ShaderLoadFun )( const std::wstring&, const std::string& );
 
 	static ShaderLoadFun		ShaderLoadingFunction()
-	{	return &AssetsManager::LoadControlShader; }
+	{
+		return &AssetsManager::LoadControlShader;
+	}
 };
 
 template<>
 struct ShaderFunGetter< EvaluationShader >
 {
-	typedef EvaluationShader* (AssetsManager::*ShaderLoadFun)( const std::wstring&, const std::string& );
+	typedef EvaluationShader* ( AssetsManager::*ShaderLoadFun )( const std::wstring&, const std::string& );
 
 	static ShaderLoadFun		ShaderLoadingFunction()
-	{	return &AssetsManager::LoadEvaluationShader; }
+	{
+		return &AssetsManager::LoadEvaluationShader;
+	}
 };
 
 
@@ -81,7 +102,7 @@ inline Nullable< ResourcePtr< ShaderType > >	SWMaterialLoader::LoadShader	( IDes
 	std::wstring filePath = Convert::FromString< std::wstring >( std::string( shader.first ), std::wstring() );
 	std::string entryFunction = std::string( shader.second );
 
-	ShaderType* shaderObject = (m_modelsManager->*LoadShaderFunPtr)( filePath, entryFunction );
+	ShaderType* shaderObject = ( m_modelsManager->*LoadShaderFunPtr )( filePath, entryFunction );
 	if( !shaderObject )
 		return Nullable< ResourcePtr< ShaderType > >( shaderNameString + " file could not be loaded." );
 
@@ -89,3 +110,4 @@ inline Nullable< ResourcePtr< ShaderType > >	SWMaterialLoader::LoadShader	( IDes
 }
 
 
+}	// sw

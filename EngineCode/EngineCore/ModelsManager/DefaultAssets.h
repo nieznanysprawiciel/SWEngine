@@ -10,8 +10,21 @@ oraz inne domyœlne wartoœci zasobów.
 
 #include "swGraphicAPI/Resources/MeshResources.h"
 
+
+bool		operator==( const DirectX::XMFLOAT2& vertex1, const DirectX::XMFLOAT2& vertex2 );
+bool		operator==( const DirectX::XMFLOAT3& vertex1, const DirectX::XMFLOAT3& vertex2 );
+bool		operator<( const DirectX::XMFLOAT2& vertex1, const DirectX::XMFLOAT2& vertex2 );
+bool		operator<( const DirectX::XMFLOAT3& vertex1, const DirectX::XMFLOAT3& vertex2 );
+bool		operator<( const VertexNormalTexCoord& vertex1, const VertexNormalTexCoord& vertex2 );
+
+
+
 //-------------------------------------------------------------------------------//
 //	definicje wierzcho³ków
+
+
+namespace sw
+{
 
 
 /// @brief Strutkura dla standardowego wierzcho³ka.
@@ -21,12 +34,6 @@ struct VertexNormalTexCoord
 	DirectX::XMFLOAT3	Normal;			///<Wektor normalny wierzcho³ka.
 	DirectX::XMFLOAT2	TexCoord;		///<Wspó³rzêdne tekstury.
 };
-
-bool		operator==( const DirectX::XMFLOAT2& vertex1, const DirectX::XMFLOAT2& vertex2 );
-bool		operator==( const DirectX::XMFLOAT3& vertex1, const DirectX::XMFLOAT3& vertex2 );
-bool		operator<( const DirectX::XMFLOAT2& vertex1, const DirectX::XMFLOAT2& vertex2 );
-bool		operator<( const DirectX::XMFLOAT3& vertex1, const DirectX::XMFLOAT3& vertex2 );
-bool		operator<( const VertexNormalTexCoord& vertex1, const VertexNormalTexCoord& vertex2 );
 
 
 /// @brief Struktura wierzcho³ka stworzona z myœl¹ o GUI.
@@ -98,4 +105,7 @@ public:
 	static void Init();
 	static void Release();
 };
+
+
+}	// sw
 

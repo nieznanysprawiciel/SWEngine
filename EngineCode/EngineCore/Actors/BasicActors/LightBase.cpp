@@ -15,24 +15,29 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< LightBase >( "LightBase" )
-		.property( "Color", &LightBase::m_color )
+	rttr::registration::class_< sw::LightBase >( "LightBase" )
+		.property( "Color", &sw::LightBase::m_color )
 			(	
 				rttr::metadata( MetaDataType::Category, "Light" ),
 				rttr::policy::prop::bind_as_ptr
 			)
-		.property( "Intensity", &LightBase::m_intensity )
+		.property( "Intensity", &sw::LightBase::m_intensity )
 			(	rttr::metadata( MetaDataType::Category, "Light" )	);
 }
 
 
 using namespace DirectX;
 
+
+namespace sw
+{
+
+
 /**@brief */
 LightBase::LightBase( LightType type )
-	:	m_type( type )
-	,	m_intensity( 1.0f )
-	,	m_color( 1.0f, 1.0f, 1.0f )
+	: m_type( type )
+	, m_intensity( 1.0f )
+	, m_color( 1.0f, 1.0f, 1.0f )
 {}
 
 
@@ -84,3 +89,6 @@ void		LightBase::SetLightDirection	( DirectX::XMVECTOR direction )
 	/// @todo Maybe this should be done by signal ??
 	TeleportOrientation( newOrientation );
 }
+
+}	// sw
+

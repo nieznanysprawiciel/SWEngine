@@ -9,6 +9,10 @@
 #include "EngineCore/Actors/Extended/SkyDome.h"
 
 
+
+namespace sw
+{
+
 /**@brief */
 class HosekSkyDomePass : public IRenderPass
 {
@@ -18,11 +22,11 @@ protected:
 
 public:
 	explicit		HosekSkyDomePass	( SkyDome* dome );
-					~HosekSkyDomePass	() = default;
+	~HosekSkyDomePass	() = default;
 
 
 
-	// Inherited via IRenderPass
+// Inherited via IRenderPass
 	virtual bool	PreRender		( IRenderer* renderer, RenderContext& context ) override;
 	virtual void	Render			( IRenderer* renderer, RenderContext& context, Size rangeStart, Size rangeEnd ) override;
 	virtual void	PostRender		( IRenderer* renderer, RenderContext& context ) override;
@@ -31,3 +35,4 @@ public:
 
 };
 
+}	// sw

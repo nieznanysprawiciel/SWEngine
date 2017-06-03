@@ -3,7 +3,11 @@
 
 #include "EngineCore/MainEngine/EngineContext.h"
 
-namespace Api { namespace Assets
+
+
+namespace sw {
+namespace Api {
+namespace Assets
 {
 
 /**@brief Pobiera teksturê o podanej nazwie.
@@ -24,3 +28,4 @@ std::vector< ResourcePtr< TextureObject > >		Textures::List()
 
 }	// Assets
 }	// Api
+}	// sw

@@ -1,7 +1,18 @@
 #pragma once
+/**
+@file PhysicEngine.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
 
 class Engine;
 class ActorBase;
+
+
+namespace sw
+{
+
 
 /**@brief Modu³ fizyki.
 @ingroup EngineCore*/
@@ -18,4 +29,7 @@ public:
 	void		RemoveActor				( ActorBase* actor );
 	void		RemoveAllActors			();
 };
+
+
+}	// sw
 

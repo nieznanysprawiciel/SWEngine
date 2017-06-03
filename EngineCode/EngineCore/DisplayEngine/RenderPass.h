@@ -15,6 +15,10 @@
 
 
 
+namespace sw
+{
+
+
 class RenderTargetObject;
 class CameraActor;
 class StaticActor;
@@ -39,15 +43,16 @@ public:
 	RenderPassDepracated();
 	~RenderPassDepracated();
 
-	inline RenderTargetObject*		GetRenderTarget()		{ return m_renderTarget; }
-	inline CameraActor*			GetCamera()				{ return m_camera; }
-	inline DirectX::XMMATRIX		GetProjectionMatrix()	{ return DirectX::XMLoadFloat4x4( &m_projectionMatrix ); }
-	inline ShaderInputLayout*	GetLayout()				{ return m_bufferLayout; }
+	inline RenderTargetObject*		GetRenderTarget() { return m_renderTarget; }
+	inline CameraActor*			GetCamera() { return m_camera; }
+	inline DirectX::XMMATRIX		GetProjectionMatrix() { return DirectX::XMLoadFloat4x4( &m_projectionMatrix ); }
+	inline ShaderInputLayout*	GetLayout() { return m_bufferLayout; }
 
-	inline std::vector< StaticActor* >&		GetMeshes()	{ return m_meshes; }
+	inline std::vector< StaticActor* >&		GetMeshes() { return m_meshes; }
 
 	void		AddMesh				( StaticActor* );
 	void		SetRenderTarget		( RenderTargetObject* );
 	void		SetLayout			( ShaderInputLayout* );
 };
 
+}	// sw

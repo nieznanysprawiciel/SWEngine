@@ -10,6 +10,8 @@
 
 #include "swCommonLib/Common/RTTR.h"
 
+namespace sw
+{
 
 
 /**@defgroup Components Components
@@ -33,12 +35,12 @@ private:
 
 public:
 	explicit		TransformComponent	();
-					~TransformComponent	();
+	~TransformComponent	();
 
-	/**@brief Sets scale components.*/
-	inline void			SetScale		( float scale )			{ m_scale = scale; };
+/**@brief Sets scale components.*/
+	inline void			SetScale		( float scale ) { m_scale = scale; };
 	/**@brief Gets scale component.*/
-	inline float		GetScale		() const				{ return m_scale; }
+	inline float		GetScale		() const { return m_scale; }
 
 
 	void				SetPositionXM		( DirectX::XMVECTOR position );
@@ -64,4 +66,7 @@ public:
 	void				SetPitch	( float angle );
 	void				SetRoll		( float angle );
 };
+
+
+}	// sw
 

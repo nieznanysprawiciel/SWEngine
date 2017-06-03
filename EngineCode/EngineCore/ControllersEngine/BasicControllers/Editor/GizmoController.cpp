@@ -14,10 +14,16 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< GizmoController >( "GizmoController" );
+	rttr::registration::class_< sw::editor::GizmoController >( "GizmoController" );
 }
 
 using namespace DirectX;
+
+
+namespace sw {
+namespace editor
+{
+
 
 /**@brief */
 GizmoController::GizmoController(	InputAbstractionLayerBase* layer,
@@ -366,4 +372,6 @@ DirectX::XMVECTOR	GizmoController::ComputePlaneNormal( RotationAxis axis )
 	return XMVectorSet( 1.0, 0.0, 0.0, 0.0 );
 }
 
+}	// editor
+}	// sw
 

@@ -11,13 +11,17 @@
 #include "swCommonLib/Serialization/Serializer.h"
 
 
+
+namespace sw
+{
+
 // ================================ //
 //
 Config::Config	( const std::string& filePath )
-	:	m_screenWidth( 1024 )
-	,	m_screenHeight( 768 )
-	,	m_fullscreen( false )
-	,	m_startLevelPath( "" )
+	: m_screenWidth( 1024 )
+	, m_screenHeight( 768 )
+	, m_fullscreen( false )
+	, m_startLevelPath( "" )
 {
 	IDeserializer deser;
 	if( deser.LoadFromFile( filePath, ParsingMode::ParseInsitu ) )
@@ -83,22 +87,26 @@ const std::string		Config::StartLevelPath() const
 bool			Config::SaveConfig	( const std::string& filePath ) const
 {
 	ISerializer ser( nullptr );
-	
+
 	ser.EnterObject( "Config" );
 
-		ser.EnterObject( "Screen" );
-			ser.SetAttribute( "Height", m_screenHeight );
-			ser.SetAttribute( "Width", m_screenWidth );
-			ser.SetAttribute( "Fullscreen", m_fullscreen );
-		ser.Exit();
+	ser.EnterObject( "Screen" );
+	ser.SetAttribute( "Height", m_screenHeight );
+	ser.SetAttribute( "Width", m_screenWidth );
+	ser.SetAttribute( "Fullscreen", m_fullscreen );
+	ser.Exit();
 
-		ser.EnterObject( "Game" );
-			ser.EnterObject( "StartLevel" );
-				ser.SetAttribute( "Path", m_startLevelPath );
-			ser.Exit();
-		ser.Exit();
+	ser.EnterObject( "Game" );
+	ser.EnterObject( "StartLevel" );
+	ser.SetAttribute( "Path", m_startLevelPath );
+	ser.Exit();
+	ser.Exit();
 
 	ser.Exit();
 
 	return ser.SaveFile( filePath, WritingMode::Readable );
 }
+
+}	// sw
+
+

@@ -16,9 +16,12 @@
 
 RTTR_REGISTRATION
 {
-	rttr::registration::class_< ActorBase >( "ActorBase" );
+	rttr::registration::class_< sw::ActorBase >( "ActorBase" );
 }
 
+
+namespace sw
+{
 
 Engine* ActorBase::engine = nullptr;		//po stworzeniu obiektu klasy Engine, zmienna ta jest uzupe³niana wskaŸnikiem this
 
@@ -36,9 +39,9 @@ która jest potem wywo³ywana przez silnik i wywo³aæ tê funkjê.
 
 Za zwolnienie pamiêci po klasie Event odpowiada klasa FabelEngine (jest to robione automatycznie po wywo³aniu funkcji obs³ugi,
 u¿ytkownik nie musi siê tym przejmowac).*/
-void inline ActorBase::event(Event* new_event)
+void inline				ActorBase::event			( Event* new_event )
 {
-	engine->SendEvent(new_event);
+	engine->SendEvent( new_event );
 }
 
 
@@ -48,14 +51,17 @@ void inline ActorBase::event(Event* new_event)
 Serializuje wszystkie propertiesy oznaczone w metadanych flag¹ Serialize lub AllowInSaveFile.
 Serialize oznacza w³aœciwoœci, które zostan¹ zapisane do pliku z map¹. AllowInSaveFile to w³aœciwoœci,
 które zostan¹ zapisane w przypadku zapisywania stanu gry.*/
-void ActorBase::Serialize( ISerializer* ser ) const
+void					ActorBase::Serialize		( ISerializer* ser ) const
 {
 	Serialization::DefaultSerialize( ser, this );
 }
 
 /**@brief Domyœlna implementacja deserializacji.*/
-void ActorBase::Deserialize( IDeserializer* deser )
+void					ActorBase::Deserialize		( IDeserializer* deser )
 {
 	GetEngineInterface()->Level.Serialization.DefaultDeserialize( deser, this );
 }
+
+
+}	// sw
 

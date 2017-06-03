@@ -1,8 +1,19 @@
 #pragma once
+/**
+@file ActorPointer.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 
 #include "EngineCore/EventsManager/Signal.h"
 #include "EngineCore/Actors/BasicActors/ActorBase.h"
 #include "EngineCore/MainEngine/EngineInterface.h"
+
+
+namespace sw
+{
 
 
 /**@brief Klucz dostêpu do klasy ActorPtr.
@@ -46,13 +57,13 @@ public:
 
 	///@name Funkcje ogólnie dostêpne
 	///@{
-	template< void (Type::*signalPtr)( const EngineObject* sender, Event* params ) >
+	template< void ( Type::*signalPtr )( const EngineObject* sender, Event* params ) >
 	bool					SendSignal	( const EngineObject* sender, Event* parameters );
 
-	template< void (Type::*signalPtr)( const EngineObject* sender, Event* params ) >
+	template< void ( Type::*signalPtr )( const EngineObject* sender, Event* params ) >
 	bool					SendSignal	( const EngineObject* sender, Event* parameters, SignalDelegate onExecuted );
 
-	bool					IsValid		()	{ return m_actorPointer != nullptr; }
+	bool					IsValid		() { return m_actorPointer != nullptr; }
 
 	template< typename CastType >
 	ActorPtr< CastType >		StaticCast	();
@@ -77,42 +88,52 @@ public:
 /**@brief Tworzy aktora ze wskaŸnikiem na nullptr.,*/
 template< typename Type >
 inline					ActorPtr< Type >::ActorPtr()
-	:	m_actorPointer( nullptr )
-{ }
+	: m_actorPointer( nullptr )
+{}
 
 /**@brief */
 template< typename Type >
 inline					ActorPtr< Type >::ActorPtr	( Type* ptr )
-	:	m_actorPointer( ptr )
-{ }
+	: m_actorPointer( ptr )
+{}
 
 /**@brief */
 template< typename Type >
 inline					ActorPtr< Type >::ActorPtr	( const ActorPtr< Type >& other )
-	:	m_actorPointer( other.m_actorPointer )
-{ }
+	: m_actorPointer( other.m_actorPointer )
+{}
 
 
 
 template< typename Type >
 inline void				ActorPtr< Type >::operator=( Type* ptr )
-{	m_actorPointer = ptr;	}
+{
+	m_actorPointer = ptr;
+}
 
 template< typename Type >
 inline void				ActorPtr< Type >::operator=( ActorPtr< Type >& ptr )
-{	m_actorPointer = ptr.m_actorPointer; }
+{
+	m_actorPointer = ptr.m_actorPointer;
+}
 
 template< typename Type >
 inline bool				ActorPtr< Type >::operator==( const Type* ptr ) const
-{	return m_actorPointer == ptr;	}
+{
+	return m_actorPointer == ptr;
+}
 
 template< typename Type >
 inline bool				ActorPtr< Type >::operator==( const ActorPtr< Type >& ptr ) const
-{	return m_actorPointer == ptr.m_actorPointer;	}
+{
+	return m_actorPointer == ptr.m_actorPointer;
+}
 
 template<typename Type>
 inline bool				ActorPtr< Type >::operator<( const ActorPtr< Type >& ptr ) const
-{	return m_actorPointer < ptr.m_actorPointer;		}
+{
+	return m_actorPointer < ptr.m_actorPointer;
+}
 
 
 /**@brief Pobiera wskaŸnik na aktora.
@@ -121,7 +142,7 @@ Dostêp ograniczony.*/
 template< typename Type >
 inline Type*		ActorPtr< Type >::Get		( const ActorPtrKey )
 {
-	return m_actorPointer; 
+	return m_actorPointer;
 }
 
 /**@brief Wysy³a sygna³ do aktora.
@@ -140,7 +161,7 @@ inline bool				ActorPtr< Type >::SendSignal	( const EngineObject* sender, Event*
 	return SendSignal< signalPtr >( sender, parameters, SignalDelegate() );
 }
 
-/**@brief Wysy³a sygna³ do aktora. 
+/**@brief Wysy³a sygna³ do aktora.
 
 W parametrze szablonu trzeba podaæ wskaŸnik na funkcjê, która ma zostaæ wywo³ana.
 Funkcja ta musi byæ oznaczona jako sygna³.
@@ -162,7 +183,7 @@ inline bool				ActorPtr< Type >::SendSignal	( const EngineObject* sender, Event*
 		auto engine = ActorBase::GetEngineInterface();
 
 		EventDelegate delegate;
-		delegate.bind( m_actorPointer, static_cast< void (EngineObject::*)( const EngineObject*, Event* ) >( signalPtr ) );
+		delegate.bind( m_actorPointer, static_cast<void ( EngineObject::* )( const EngineObject*, Event* )>( signalPtr ) );
 
 		Signal sigParams;
 		sigParams.Sender = sender;
@@ -178,32 +199,43 @@ inline bool				ActorPtr< Type >::SendSignal	( const EngineObject* sender, Event*
 	return false;
 }
 
+// ================================ //
+//
 template< typename Type >
 template< typename CastType >
 inline ActorPtr< CastType >			ActorPtr< Type >::StaticCast()
 {
-	return ActorPtr< CastType >( static_cast< CastType* >( m_actorPointer ) );
+	return ActorPtr< CastType >( static_cast<CastType*>( m_actorPointer ) );
 }
 
+// ================================ //
+//
 template< typename Type >
 template< typename CastType >
 inline const ActorPtr< CastType >	ActorPtr< Type >::StaticCast() const
 {
 	static_assert( std::is_const< CastType >::value, "You are casting constant object. Add const keyword in template parameter." );
-	return ActorPtr< CastType >( static_cast< CastType* >( m_actorPointer ) );
+	return ActorPtr< CastType >( static_cast<CastType*>( m_actorPointer ) );
 }
 
+// ================================ //
+//
 template< typename Type >
 template< typename CastType >
 inline ActorPtr< CastType >			ActorPtr< Type >::DynamicCast()
 {
-	return ActorPtr< CastType >( rttr::rttr_cast< CastType* >( m_actorPointer ) );
+	return ActorPtr< CastType >( rttr::rttr_cast<CastType*>( m_actorPointer ) );
 }
 
+// ================================ //
+//
 template<typename Type>
 template<typename CastType>
-inline const ActorPtr<CastType> ActorPtr<Type>::DynamicCast() const
+inline const ActorPtr<CastType>		ActorPtr<Type>::DynamicCast() const
 {
 	static_assert( std::is_const< CastType >::value, "You are casting constant object. Add const keyword in template parameter." );
-	return ActorPtr< CastType >( rttr::rttr_cast< CastType* >( m_actorPointer ) );
+	return ActorPtr< CastType >( rttr::rttr_cast<CastType*>( m_actorPointer ) );
 }
+
+}	// sw
+

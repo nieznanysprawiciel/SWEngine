@@ -9,6 +9,12 @@
 
 #include <vector>
 
+
+
+namespace sw
+{
+
+
 class CollisionActor;
 
 typedef uint16 LeafElementsNum;
@@ -39,4 +45,8 @@ public:
 	bool		RemoveDynamicActor	( CollisionActor* actor );
 	bool		RemoveStaticActor	( CollisionActor* actor );
 };
+
+
+}	// sw
+
 
