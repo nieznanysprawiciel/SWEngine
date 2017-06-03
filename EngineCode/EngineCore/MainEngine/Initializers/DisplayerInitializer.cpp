@@ -10,9 +10,9 @@
 #include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/MainEngine/EngineContext.h"
 #include "EngineCore/DisplayEngine/DisplayEngine.h"
-#include "GraphicAPI/ResourcesFactory.h"
+#include "swGraphicAPI/Resources/ResourcesFactory.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 /**@brief Inicjalizuje DisplayEngine.

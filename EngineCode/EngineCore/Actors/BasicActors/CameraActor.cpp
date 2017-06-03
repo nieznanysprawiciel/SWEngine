@@ -8,7 +8,7 @@
 #include "EngineCore/stdafx.h"
 #include "CameraActor.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 RTTR_REGISTRATION
 {

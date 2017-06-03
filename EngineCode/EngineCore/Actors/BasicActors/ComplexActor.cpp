@@ -1,7 +1,14 @@
+/**
+@file ComplexActor.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
 #include "ComplexActor.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 RTTR_REGISTRATION

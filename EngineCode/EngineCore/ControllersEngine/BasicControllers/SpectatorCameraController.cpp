@@ -4,7 +4,7 @@
 #include "EngineCore/UIEngine/InputAbstractionLayer.h"
 #include "EngineCore/Actors/BasicActors/DynamicActor.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 RTTR_REGISTRATION

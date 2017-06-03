@@ -1,11 +1,11 @@
 #include "EngineCore/stdafx.h"
 
-#include "Common/RTTR.h"
+#include "swCommonLib/Common/RTTR.h"
 
 #include "ShadingModelData.h"
 #include "PhongMaterialData.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 RTTR_REGISTRATION

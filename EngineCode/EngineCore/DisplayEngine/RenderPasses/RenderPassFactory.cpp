@@ -1,9 +1,10 @@
-#include "EngineCore/stdafx.h"
 /**
 @file RenderPassFactory.cpp
 @author nieznanysprawiciel
 @copyright File is part of graphic engine SWEngine.
 */
+#include "EngineCore/stdafx.h"
+
 #include "RenderPassFactory.h"
 
 #include "RenderingLogic/DefaultLogic.h"
@@ -11,7 +12,7 @@
 
 #include "EngineCore/ModelsManager/AssetsManager.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 AssetsManager*		IRenderPass::s_assetsManager = nullptr;

@@ -7,7 +7,7 @@
 #include "StaticActor.h"
 
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 
@@ -17,12 +17,12 @@ RTTR_REGISTRATION
 		.property( "Position", &StaticActor::position )
 		(
 			rttr::metadata( MetaDataType::Category, "Transformation" ),
-			rttr::policy::prop::BindAsPtr()
+			rttr::policy::prop::bind_as_ptr
 		)
 		.property( "Orientation", &StaticActor::orientation )
 		(
 			rttr::metadata( MetaDataType::Category, "Transformation" ),
-			rttr::policy::prop::BindAsPtr()
+			rttr::policy::prop::bind_as_ptr
 		)
 #ifdef _SCALEABLE_OBJECTS
 		.property( "Scale", &StaticActor::scale )
@@ -33,7 +33,7 @@ RTTR_REGISTRATION
 		.property( "VisibleComponent", &StaticActor::m_visibleComponent )
 		(
 			rttr::metadata( MetaDataType::Category, "VisibleComponent" ),
-			rttr::policy::prop::BindAsPtr()
+			rttr::policy::prop::bind_as_ptr
 		);
 }
 

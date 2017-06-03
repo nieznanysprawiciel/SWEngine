@@ -1,11 +1,17 @@
 #pragma once
+/**
+@file TextureLoader.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
 
 
-#include "Common/TypesDefinitions.h"
-#include "Common/MemoryChunk.h"
-#include "Common/System/Path.h"
 
-#include "GraphicAPI/MeshResources.h"
+#include "swCommonLib/Common/TypesDefinitions.h"
+#include "swCommonLib/Common/MemoryChunk.h"
+#include "swCommonLib/System/Path.h"
+
+#include "swGraphicAPI/Resources/MeshResources.h"
 
 
 class TextureLoader

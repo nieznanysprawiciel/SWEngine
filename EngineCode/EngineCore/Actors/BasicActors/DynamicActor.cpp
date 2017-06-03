@@ -1,8 +1,15 @@
+/**
+@file DynamicActor.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
 #include "DynamicActor.h"
 #include "EngineCore/ControllersEngine/BaseClasses/IController.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 RTTR_REGISTRATION
@@ -11,12 +18,12 @@ RTTR_REGISTRATION
 		.property( "Speed", &DynamicActor::m_speed )
 		(
 			rttr::metadata( MetaDataType::Category, "Movement" ),
-			rttr::policy::prop::BindAsPtr()
+			rttr::policy::prop::bind_as_ptr
 		)
 		.property( "RotationSpeed", &DynamicActor::m_rotationSpeed )
 		(
 			rttr::metadata( MetaDataType::Category, "Movement" ),
-			rttr::policy::prop::BindAsPtr()
+			rttr::policy::prop::bind_as_ptr
 		)
 		.property( "Mass", &DynamicActor::m_mass )
 		(
@@ -28,6 +35,9 @@ RTTR_REGISTRATION
 using namespace DirectX;
 
 
+
+// ================================ //
+//
 DynamicActor::DynamicActor()
 	: m_controller( nullptr )
 {
@@ -48,6 +58,8 @@ DynamicActor::DynamicActor()
 	m_mass = 1.0f;
 }
 
+// ================================ //
+//
 DynamicActor::DynamicActor( const XMFLOAT3& move_speed, const XMFLOAT4& rot_speed )
 	: m_controller( nullptr )
 {

@@ -222,7 +222,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\Events\KeyUpEvent.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\Events\RenderOnceEndedEvent.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\EventsManager\Signal.h" />
-    <ClInclude Include="..\..\EngineCode\EngineCore\Features\SkyDome.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\Commands\Command.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\MainEngine\Engine.h" />
     <ClInclude Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.h" />

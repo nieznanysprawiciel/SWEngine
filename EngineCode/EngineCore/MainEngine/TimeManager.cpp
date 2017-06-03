@@ -3,7 +3,9 @@
 
 #include <Windows.h>
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
+
+
 
 /**@brief Kontruktor inicjuje wartoœci m_frames i m_framesPerSec na 0.*/
 TimeManager::TimeManager()

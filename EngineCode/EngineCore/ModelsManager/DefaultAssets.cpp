@@ -6,9 +6,9 @@
 */
 
 #include "DefaultAssets.h"
-#include "GraphicAPI/ResourcesFactory.h"
+#include "swGraphicAPI/Resources/ResourcesFactory.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 

@@ -1,9 +1,16 @@
+/**
+@file LightBase.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
 #include "LightBase.h"
 
 #include "EngineCore/DisplayEngine/LightModule.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 RTTR_REGISTRATION
@@ -12,7 +19,7 @@ RTTR_REGISTRATION
 		.property( "Color", &LightBase::m_color )
 			(	
 				rttr::metadata( MetaDataType::Category, "Light" ),
-				rttr::policy::prop::BindAsPtr()
+				rttr::policy::prop::bind_as_ptr
 			)
 		.property( "Intensity", &LightBase::m_intensity )
 			(	rttr::metadata( MetaDataType::Category, "Light" )	);

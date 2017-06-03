@@ -1,8 +1,15 @@
+/**
+@file ActorsManager.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
 #include "ActorsManager.h"
 
-#include "Common/Serialization/Deserializer.h"
-#include "Common/Serialization/Serializer.h"
+#include "swCommonLib/Serialization/Deserializer.h"
+#include "swCommonLib/Serialization/Serializer.h"
 
 #include "EngineCore/EngineHelpers/ActorsCommonFunctions.h"
 

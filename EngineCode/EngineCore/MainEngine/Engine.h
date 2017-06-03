@@ -5,6 +5,8 @@
 
 @brief Plik zawiera deklaracjê g³ównego obiektu silnika.*/
 
+
+#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>		///< @todo Delete in future
 
 #undef min

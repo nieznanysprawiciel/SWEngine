@@ -5,7 +5,7 @@
 @copyright File is part of graphic engine SWEngine.
 */
 
-#include "GraphicAPI/ResourceObject.h"
+#include "swGraphicAPI/Resources/ResourceObject.h"
 
 #include "EngineCore/ModelsManager/Assets/Animations/KeySet.h"
 #include "Bone.h"

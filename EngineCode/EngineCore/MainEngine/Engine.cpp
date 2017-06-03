@@ -10,18 +10,18 @@ oraz g³ówne funkcje do renderingu.
 
 #include "EngineContext.h"
 
-#include "GraphicAPI/ResourcesFactory.h"
+#include "swGraphicAPI/Resources/ResourcesFactory.h"
 #include "EngineCore/GamePlay/IGamePlay.h"
 #include "EngineCore/EngineHelpers/PerformanceCheck.h"
 
-#include "InputLibrary/Factory.h"
+#include "swInputLibrary/InputCore/Factory.h"
 
 #include "Initializers/Config.h"
 
-#include "Common/Serialization/Serializer.h"
-#include "Common/Serialization/SW/EngineSerializationContext.h"
+#include "swCommonLib/Serialization/Serializer.h"
+#include "swCommonLib/Serialization/PropertySerialization/EngineSerializationContext.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 
@@ -201,9 +201,9 @@ bool Engine::InitGraphicAPI( int width, int height, bool fullScreen )
 /**@brief Inicjuje urz¹dzenie wejœcia. Domyœlnie u¿ywany jest @ref DirectInputModule.*/
 bool Engine::InitInputModule		()
 {
-	IInput* newModule = InputFactory::CreateDirectInput();
+	sw::input::IInput* newModule = sw::InputFactory::CreateDirectInput();
 
-	InputInitInfo info;
+	sw::input::InputInitInfo info;
 	info.AppInstance = Context->instanceHandler;
 	info.WndHandle = Context->windowHandler;
 

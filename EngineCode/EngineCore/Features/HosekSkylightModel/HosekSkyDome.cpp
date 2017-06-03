@@ -3,7 +3,7 @@
 
 using namespace DirectX;
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 #include "EngineCore/ModelsManager/DefaultAssets.h"
 
 #include "EngineCore/ModelsManager/Assets/Meshes/MeshAssetInitData.h"

@@ -5,7 +5,7 @@
 @copyright File is part of graphic engine SWEngine.
 */
 
-#include "Common/TypesDefinitions.h"
+#include "swCommonLib/Common/TypesDefinitions.h"
 
 #include <string>
 

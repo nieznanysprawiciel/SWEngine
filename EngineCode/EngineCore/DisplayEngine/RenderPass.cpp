@@ -1,17 +1,22 @@
 #include "EngineCore/stdafx.h"
 #include "EngineCore/DisplayEngine/RenderPass.h"
 
-#include "GraphicAPI/MeshResources.h"
+#include "swGraphicAPI//Resources/MeshResources.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
+// ================================ //
+//
 RenderPassDepracated::RenderPassDepracated()
 	:	m_camera( nullptr ),
 		m_renderTarget( nullptr ),
 		m_bufferLayout( nullptr )
 {}
 
+
+// ================================ //
+//
 RenderPassDepracated::~RenderPassDepracated()
 {
 	if( m_renderTarget )
@@ -20,11 +25,15 @@ RenderPassDepracated::~RenderPassDepracated()
 		m_bufferLayout->DeleteObjectReference();
 }
 
+// ================================ //
+//
 void RenderPassDepracated::AddMesh( StaticActor* mesh )
 {
 	m_meshes.push_back( mesh );
 }
 
+// ================================ //
+//
 void RenderPassDepracated::SetRenderTarget( RenderTargetObject* renderTarget )
 {
 	if( m_renderTarget )
@@ -35,6 +44,8 @@ void RenderPassDepracated::SetRenderTarget( RenderTargetObject* renderTarget )
 		m_renderTarget->AddObjectReference();
 }
 
+// ================================ //
+//
 void RenderPassDepracated::SetLayout( ShaderInputLayout* layout )
 {
 	if( m_bufferLayout )

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Common/Nullable.h"
-#include "Common/System/Path.h"
+#include "swCommonLib/Common/Nullable.h"
+#include "swCommonLib/System/Path.h"
 
 #include "EngineCore/ModelsManager/Assets/Materials/MaterialAssetInitData.h"
 #include "EngineCore/ModelsManager/Assets/Materials/MaterialAsset.h"

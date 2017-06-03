@@ -6,10 +6,10 @@
 
 #include "EngineCore/stdafx.h"
 #include "MeshAsset.h"
-#include "Common/Converters.h"
-#include "Common/Serialization/SW/Serialization.h"
+#include "swCommonLib/Common/Converters.h"
+#include "swCommonLib/Serialization/PropertySerialization/Serialization.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 RTTR_REGISTRATION

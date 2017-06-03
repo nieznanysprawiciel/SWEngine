@@ -10,7 +10,7 @@
 #include "EngineCore/Actors/ActorsManager.h"
 
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 RTTR_REGISTRATION

@@ -8,9 +8,9 @@
 #include "MaterialAsset.h"
 #include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
 
-#include "Common/Converters.h"
+#include "swCommonLib/Common/Converters.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 RTTR_REGISTRATION

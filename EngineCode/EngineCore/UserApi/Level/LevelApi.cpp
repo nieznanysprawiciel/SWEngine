@@ -1,11 +1,18 @@
+/**
+@file LevelApi.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
 #include "LevelApi.h"
 
 #include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/MainEngine/EngineContext.h"
 
-#include "Common/Serialization/Deserializer.h"
-#include "Common/Serialization/SW/EngineSerializationContext.h"
+#include "swCommonLib/Serialization/Deserializer.h"
+#include "swCommonLib/Serialization/PropertySerialization/EngineSerializationContext.h"
 
 
 namespace Api

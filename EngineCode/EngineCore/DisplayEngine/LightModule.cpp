@@ -13,12 +13,12 @@
 #include "EngineCore/Actors/BasicActors/PointLight.h"
 #include "EngineCore/EngineHelpers/ActorsCommonFunctions.h"
 
-#include "GraphicAPI/BufferInitData.h"
+#include "swGraphicAPI/Resources/BufferInitData.h"
 #include "EngineCore/ModelsManager/AssetsManager.h"
 
-#include "GraphicAPI/IRenderer.h"
+#include "swGraphicAPI/Rendering/IRenderer.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 

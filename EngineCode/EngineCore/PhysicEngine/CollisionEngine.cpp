@@ -1,9 +1,16 @@
+/**
+@file CollisionEngine.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
 #include "CollisionEngine.h"
 
 #include "EngineCore/Actors/ActorObjects.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 CollisionEngine::CollisionEngine(Engine* engine)

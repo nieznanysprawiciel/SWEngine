@@ -6,9 +6,9 @@
 @brief Zawiera deklaracjê interfejsu dla loaderów plików z modelami.
 */
 
-#include "Common/Nullable.h"
-#include "Common/System/Path.h"
-#include "GraphicAPI/MeshResources.h"
+#include "swCommonLib/Common/Nullable.h"
+#include "swCommonLib/System/Path.h"
+#include "swGraphicAPI/Resources/MeshResources.h"
 #include "EngineCore/ModelsManager/AssetsManager.h"
 #include "EngineCore/ModelsManager/Assets/Meshes/MeshAssetInitData.h"
 

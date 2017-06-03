@@ -5,9 +5,9 @@
 @copyright Plik jest czêœci¹ silnika graficznego SWEngine.
 */
 
-#include "Common/MemoryChunk.h"
+#include "swCommonLib/Common/MemoryChunk.h"
 
-#include "GraphicAPI/MeshResources.h"
+#include "swGraphicAPI/Resources//MeshResources.h"
 
 
 /**@brief */

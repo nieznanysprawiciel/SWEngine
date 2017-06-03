@@ -8,7 +8,7 @@ czasu zu¿ywanego na wykonanie wybranych zadañ.*/
 
 #include <string>
 #include <vector>
-#include "Common/TypesDefinitions.h"
+#include "swCommonLib/Common/TypesDefinitions.h"
 
 
 

@@ -6,8 +6,8 @@
 */
 
 
-#include "Common/System/Path.h"
-#include "GraphicAPI/ResourceObject.h"
+#include "swCommonLib/System/Path.h"
+#include "swGraphicAPI/Resources/ResourceObject.h"
 #include "Bone.h"
 
 #include <vector>

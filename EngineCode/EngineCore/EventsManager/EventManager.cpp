@@ -1,3 +1,10 @@
+/**
+@file EventManager.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
 #include "EngineCore/EventsManager/EventManager.h"
 
@@ -5,7 +12,7 @@
 #include "EngineCore/Actors/BasicActors/ActorBase.h"		// Potrzebne przy usuwaniu aktorów.
 
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 /**@brief */

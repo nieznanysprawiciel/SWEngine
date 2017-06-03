@@ -16,7 +16,7 @@ Ponadto zawiera dokumentacjê uruchamiania, struktury projektu i innych elementów
 
 #include <DirectXMath.h>
 
-#include "Common/RTTR.h"
+#include "swCommonLib/Common/RTTR.h"
 
 /**@defgroup ModulesStructure Modu³y silnika
 @brief Modu³y silnika*/

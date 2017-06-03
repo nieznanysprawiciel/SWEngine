@@ -12,9 +12,9 @@
 #include "EngineCore/DisplayEngine/DisplayEngine.h"
 #include "EngineCore/UserApi/Actors/ActorsApi.inl"
 
-#include "GraphicAPI/ResourcesFactory.h"
+#include "swGraphicAPI/Resources/ResourcesFactory.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 /**@brief Inicjuje domyœlne assety silnika.*/

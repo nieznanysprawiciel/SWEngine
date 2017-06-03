@@ -30,7 +30,7 @@ class HosekSkyDome : public SkyDome
 {
 	RTTR_ENABLE( SkyDome );
 private:
-	VERT_INDEX*					m_backIdxBuffer;		///< Backbuffer index buffer.
+	Index32*					m_backIdxBuffer;		///< Backbuffer index buffer.
 	SkyDomeVertex*				m_backVertexBuffer;		///< Backbuffer vertex buffer.
 	unsigned int				m_verticiesCount;		///< Number of vertcies in buffer.
 

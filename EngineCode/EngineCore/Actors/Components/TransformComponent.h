@@ -8,7 +8,7 @@
 
 #include <DirectXMath.h>
 
-#include "Common/RTTR.h"
+#include "swCommonLib/Common/RTTR.h"
 
 
 

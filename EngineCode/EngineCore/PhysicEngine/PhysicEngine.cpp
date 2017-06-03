@@ -1,8 +1,14 @@
+/**
+@file PhysicEngine.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
 #include "EngineCore/stdafx.h"
 #include "PhysicEngine.h"
 
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 PhysicEngine::PhysicEngine(Engine* engine)

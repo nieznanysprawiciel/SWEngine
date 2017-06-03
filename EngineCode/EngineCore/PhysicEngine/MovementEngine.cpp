@@ -1,9 +1,16 @@
+/**
+@file MovementEngine.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
 #include "MovementEngine.h"
 
 #include "EngineCore/EngineHelpers/ActorsCommonFunctions.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 MovementEngine::MovementEngine(Engine* engine)

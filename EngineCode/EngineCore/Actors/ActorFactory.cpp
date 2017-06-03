@@ -1,14 +1,16 @@
-/**@file ActorFactory.cpp
+/**
+@file HosekSykDome.h
 @author nieznanysprawiciel
-@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+@copyright File is part of Sleeping Wombat Libraries.
+*/
 
-@brief Implementacja fabryki aktorów.*/
+
 #include "EngineCore/stdafx.h"
 #include "ActorFactory.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
-#undef RegisterClass
+
 
 /**@brief */
 ActorFactory::ActorFactory()

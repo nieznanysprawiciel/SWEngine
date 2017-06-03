@@ -1,7 +1,14 @@
+/**
+@file TriggerActor.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
 #include "TriggerActor.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 RTTR_REGISTRATION
@@ -10,9 +17,12 @@ RTTR_REGISTRATION
 }
 
 
-
+// ================================ //
+//
 TriggerActor::TriggerActor()
 {}
 
+// ================================ //
+//
 TriggerActor::~TriggerActor()
 {}

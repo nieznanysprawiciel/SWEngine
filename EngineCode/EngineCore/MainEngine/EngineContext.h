@@ -4,8 +4,7 @@
 #include "swCommonLib/Common/Multithreading/SpinLock.h"
 #include "EngineCore/UIEngine/StandardAbstractionLayers.h"
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
+
 #include <queue>
 #include <string>
 
@@ -20,6 +19,9 @@
 #include "EngineCore/UIEngine/UI_Engine.h"
 #include "EngineCore/Actors/ActorsManager.h"
 #include "EngineCore/EventsManager/EventManager.h"
+
+
+#include "swInputLibrary/InputCore/IInput.h"
 
 
 
@@ -62,8 +64,8 @@ struct EngineContext
 	bool						engineReady;			///<Je¿eli zmienna jest niepoprawna, nie renderujemy
 
 	bool						fullScreen;				///<Pe³ny ekran lub renderowanie w oknie
-	HWND						windowHandler;			///<Uchwyt okna aplikacji
-	HINSTANCE					instanceHandler;		///<Uchwyt instancji procesu
+	WindowHandle				windowHandler;			///<Uchwyt okna aplikacji
+	AppInstanceHandle			instanceHandler;		///<Uchwyt instancji procesu
 	int							windowWidth;			///<Szerokoœæ okna/ekranu
 	int							windowHeight;			///<Wysokoœæ okna/ekranu
 

@@ -4,7 +4,7 @@
 #include "EngineCore/Actors/ActorObjects.h"
 
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 /**@brief Funkcja ustawia domyœlne warstwy abstrakcji w klasie UI_engine.*/

@@ -9,7 +9,7 @@ oraz definicje standardowych warstw abstrakcji.
 #include "EngineCore/EventsManager/Events/KeyUpEvent.h"
 #include "EngineCore/EventsManager/Events/KeyDownEvent.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
 //=================================================================//

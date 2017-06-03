@@ -1,3 +1,10 @@
+/**
+@file ControllersEngine.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "EngineCore/stdafx.h"
 #include "ControllersEngine.h"
 
@@ -8,9 +15,11 @@
 
 #include "EngineCore/EngineHelpers/ActorsCommonFunctions.h"
 
-#include "Common/MemoryLeaks.h"
+#include "swCommonLib/Common/MemoryLeaks.h"
 
 
+// ================================ //
+//
 ControllersEngine::ControllersEngine( Engine* parent )
 {
 	engine = parent;
@@ -19,6 +28,9 @@ ControllersEngine::ControllersEngine( Engine* parent )
 }
 
 
+
+// ================================ //
+//
 ControllersEngine::~ControllersEngine()
 {
 	delete m_globalState;

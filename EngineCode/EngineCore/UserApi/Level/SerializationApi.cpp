@@ -3,10 +3,10 @@
 
 #include "EngineCore/MainEngine/EngineContext.h"
 
-#include "Common/Serialization/Deserializer.h"
-#include "Common/Serialization/Serializer.h"
-#include "Common/Serialization/SW/EngineSerializationContext.h"
-#include "Common/Serialization/SW/Serialization.h"
+#include "swCommonLib/Serialization/Deserializer.h"
+#include "swCommonLib/Serialization/Serializer.h"
+#include "swCommonLib/Serialization/PropertySerialization/EngineSerializationContext.h"
+#include "swCommonLib/Serialization/PropertySerialization/Serialization.h"
 
 
 namespace Api { namespace Level

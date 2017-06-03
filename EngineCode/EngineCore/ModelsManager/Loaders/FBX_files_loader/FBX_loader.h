@@ -22,7 +22,7 @@ drugie, ¿eby wykorzystywaæ wszystkie jego mo¿liwoœci.*/
 
 #include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
 
-#include "Common/System/Path.h"
+#include "swCommonLib/System/Path.h"
 
 
 

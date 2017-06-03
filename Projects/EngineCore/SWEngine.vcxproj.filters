@@ -212,9 +212,6 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\GamePlay\FableEngine.h">
       <Filter>EngineCore\GamePlay</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\Features\SkyDome.h">
-      <Filter>EngineCore\Features</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorObjects.h">
       <Filter>EngineCore\Actors</Filter>
     </ClInclude>
