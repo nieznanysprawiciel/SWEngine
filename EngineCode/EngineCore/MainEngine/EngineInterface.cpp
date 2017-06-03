@@ -116,50 +116,50 @@ void		Engine::SetSkydome()
 #include "Common/Serialization/Serializer.h"
 #include "Common/Serialization/SW/EngineSerializationContext.h"
 
-void Engine::testMaterial( Model3DFromFile* model )
-{
-	auto part = model->get_part( 1 );
-
-	MaterialCreateData init;
-	init.Data.VertexShader = part->vertex_shader;
-	init.Data.PixelShader = part->pixel_shader;
-	init.Data.Textures[ 0 ] = part->GetTexture1();
-
-	// Shading model data
-
-	PhongMaterial phongMaterial;
-	phongMaterial.Diffuse = DirectX::XMFLOAT4( 1.0f, 0.4f, 2.0f, 1.0f );
-	phongMaterial.Ambient = DirectX::XMFLOAT4( 0.0f, 0.4f, 0.0f, 0.0f );
-	phongMaterial.Specular = DirectX::XMFLOAT4( 1.0f, 1.0f, 0.5f, 0.0f );
-	phongMaterial.Emissive = DirectX::XMFLOAT3( 0.0f, 0.01f, 0.0f );
-	phongMaterial.Power = 128.0;
-
-	ShadingModelData< PhongMaterial >* shadingData = new ShadingModelData< PhongMaterial >();
-	shadingData->Data = phongMaterial;
-	init.Data.ShadingData = UPtr< ShadingModelBase >( shadingData );
-
-
-	// Additional buffers.
-	AdditionalBufferInfo addBuff;
-	addBuff.BufferSize = sizeof( PhongMaterial );
-	addBuff.BufferType = TypeID::get< PhongMaterial >();
-	addBuff.ShaderType = ShaderType::PixelShader;
-	
-	init.Data.AdditionalBuffers.push_back( addBuff );
-
-	// Memory leak!!
-	MaterialAsset* newMaterial = new MaterialAsset( L"::Generated", std::move( init ) );
-
-	SWMaterialLoader loader( Context->modelsManager );
-	loader.SaveMaterial( "tylko_do_testow/serialization/materials/materialSerialize.swmat", newMaterial );
-
-	auto mat = loader.LoadMaterial( "tylko_do_testow/serialization/materials/materialDeserialize.swmat" );
-
-
-	//ISerializer ser( std::make_unique< EngineSerializationContext >() );
-	//newMaterial->Serialize( &ser );
-	//ser.SaveFile( "tylko_do_testow/serialization/materialBruteSerialize.swmat", WritingMode::Readable );
-}
+//void Engine::testMaterial( Model3DFromFile* model )
+//{
+//	auto part = model->get_part( 1 );
+//
+//	MaterialCreateData init;
+//	init.Data.VertexShader = part->vertex_shader;
+//	init.Data.PixelShader = part->pixel_shader;
+//	init.Data.Textures[ 0 ] = part->GetTexture1();
+//
+//	// Shading model data
+//
+//	PhongMaterial phongMaterial;
+//	phongMaterial.Diffuse = DirectX::XMFLOAT4( 1.0f, 0.4f, 2.0f, 1.0f );
+//	phongMaterial.Ambient = DirectX::XMFLOAT4( 0.0f, 0.4f, 0.0f, 0.0f );
+//	phongMaterial.Specular = DirectX::XMFLOAT4( 1.0f, 1.0f, 0.5f, 0.0f );
+//	phongMaterial.Emissive = DirectX::XMFLOAT3( 0.0f, 0.01f, 0.0f );
+//	phongMaterial.Power = 128.0;
+//
+//	ShadingModelData< PhongMaterial >* shadingData = new ShadingModelData< PhongMaterial >();
+//	shadingData->Data = phongMaterial;
+//	init.Data.ShadingData = UPtr< ShadingModelBase >( shadingData );
+//
+//
+//	// Additional buffers.
+//	AdditionalBufferInfo addBuff;
+//	addBuff.BufferSize = sizeof( PhongMaterial );
+//	addBuff.BufferType = TypeID::get< PhongMaterial >();
+//	addBuff.ShaderType = ShaderType::PixelShader;
+//	
+//	init.Data.AdditionalBuffers.push_back( addBuff );
+//
+//	// Memory leak!!
+//	MaterialAsset* newMaterial = new MaterialAsset( L"::Generated", std::move( init ) );
+//
+//	SWMaterialLoader loader( Context->modelsManager );
+//	loader.SaveMaterial( "tylko_do_testow/serialization/materials/materialSerialize.swmat", newMaterial );
+//
+//	auto mat = loader.LoadMaterial( "tylko_do_testow/serialization/materials/materialDeserialize.swmat" );
+//
+//
+//	//ISerializer ser( std::make_unique< EngineSerializationContext >() );
+//	//newMaterial->Serialize( &ser );
+//	//ser.SaveFile( "tylko_do_testow/serialization/materialBruteSerialize.swmat", WritingMode::Readable );
+//}
 
 
 /**@brief */
@@ -306,9 +306,7 @@ void		Engine::CreateDefaultScene()
 	int mapSize = sizeof( std::map< int, int > );
 	int hashMapSize = sizeof( std::unordered_map< int, int > );
 
-	int model3DFromFileSize = sizeof( Model3DFromFile );
 	int meshAssetSize = sizeof( MeshAsset );
-	int materialObjectSize = sizeof( MaterialObject );
 	int materialInfoSize = sizeof( MaterialInfo );
 	int materialAssetSize = sizeof( MaterialAsset );
 	int phongMaterialSize = sizeof( PhongMaterial );

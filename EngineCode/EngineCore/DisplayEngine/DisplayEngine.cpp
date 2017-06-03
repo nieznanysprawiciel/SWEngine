@@ -177,19 +177,6 @@ RenderContext		DisplayEngine::CreateRenderContext	( float timeInterval, float ti
 	return context;
 }
 
-/**@brief kopiuje materia³ do struktury, która pos³u¿y do zaktualizowania bufora sta³ych.
-
-@param[in] shaderDataPerMesh Struktura docelowa.
-@param[in] model ModelPart z którego pobieramy dane.*/
-void DisplayEngine::CopyMaterial( ConstantPerMesh* shader_data_per_mesh, const ModelPart* model )
-{
-	MaterialObject* material = model->material;
-	shader_data_per_mesh->Diffuse = material->Diffuse;
-	shader_data_per_mesh->Ambient = material->Ambient;
-	shader_data_per_mesh->Specular = material->Specular;
-	shader_data_per_mesh->Emissive = DirectX::XMFLOAT3( material->Emissive.x, material->Emissive.y, material->Emissive.z );
-	shader_data_per_mesh->Power = material->Power;
-}
 
 //-------------------------------------------------------------------------------//
 //							W³aœciwe funkcje do renderingu

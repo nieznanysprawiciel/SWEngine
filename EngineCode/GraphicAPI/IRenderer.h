@@ -40,7 +40,6 @@ public:
 ///@name DepracatedAPI
 ///@deprecated Use commands
 ///@{
-	virtual void SetTextures						( const ModelPart& model ) = 0;
 	virtual void SetIndexBuffer						( BufferObject* buffer ) = 0;
 	virtual bool SetVertexBuffer					( BufferObject* buffer, unsigned int offset = 0 ) = 0;
 	virtual void DepthBufferEnable					( bool state ) = 0;
@@ -61,8 +60,6 @@ public:
 	virtual void PSSetConstantBuffers				( uint32 slot, BufferObject* buffer ) = 0;
 
 	virtual void UpdateSubresource					( BufferObject* pDstResource, const void *pSrcData ) = 0;
-
-	virtual void SetShaders							( ModelPart& model ) = 0;
 
 	// Rendering
 	virtual void Draw								( unsigned int vertexCount, unsigned int startVertexLocation ) = 0;

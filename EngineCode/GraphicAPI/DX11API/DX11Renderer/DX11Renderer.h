@@ -65,7 +65,6 @@ public:
 ///@name DepracatedAPI
 ///@deprecated Use commands
 ///@{
-	void SetTextures								( const ModelPart& model )																override;
 	void SetIndexBuffer								( BufferObject* buffer )																override;
 	bool SetVertexBuffer							( BufferObject* buffer, unsigned int offset = 0 )										override;
 	void DepthBufferEnable							( bool state )																			override;
@@ -83,8 +82,6 @@ public:
 	void PSSetConstantBuffers						( uint32 slot, BufferObject* buffer )													override;
 
 	void UpdateSubresource							( BufferObject* pDstResource, const void *pSrcData )									override;
-
-	void SetShaders									( ModelPart& model )																	override;
 
 	// Rendering
 	void Draw										( unsigned int vertexCount, unsigned int startVertexLocation )							override;

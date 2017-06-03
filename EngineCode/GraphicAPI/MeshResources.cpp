@@ -367,35 +367,7 @@ RTTR_REGISTRATION
 		.property( "DepthBuffer", &RenderTargetObject::m_depthBuffer )
 		.property( "StencilBuffer", &RenderTargetObject::m_stencilBuffer );
 
-	rttr::registration::class_< MaterialObject >( "MaterialObject" )
-		.property( "Diffuse", &MaterialObject::Diffuse ) BIND_AS_PTR
-		.property( "Specular", &MaterialObject::Specular ) BIND_AS_PTR
-		.property( "Ambient", &MaterialObject::Ambient ) BIND_AS_PTR
-		.property( "Emissive", &MaterialObject::Emissive ) BIND_AS_PTR
-		.property( "SpecularPower", &MaterialObject::Power );
 
-	/**@deprecated Nadchodzi nowy model. */
-	rttr::registration::class_< ModelPart >( "ModelPart" )
-		.property_readonly( "VertexShader", &ModelPart::vertex_shader )
-		.property_readonly( "PixelShader", &ModelPart::pixel_shader )
-		.property_readonly( "Material", &ModelPart::material )
-		.property_readonly( "MeshPartObject", &ModelPart::mesh )
-		.property_readonly( "DiffuseTexture", &ModelPart::GetTexture1 )
-		.property_readonly( "SpecularTexture", &ModelPart::GetTexture2 )
-		.property_readonly( "AmbientTexture", &ModelPart::GetTexture3 )
-		.property_readonly( "NormalMap", &ModelPart::GetTexture4 )
-		.property_readonly( "DisplacementMap", &ModelPart::GetTexture5 )
-		.property_readonly( "Texture6", &ModelPart::GetTexture6 )
-		.property_readonly( "Texture7", &ModelPart::GetTexture7 )
-		.property_readonly( "Texture8", &ModelPart::GetTexture8 );
-
-	
-	/**@deprecated Nadchodzi nowy model. */
-	rttr::registration::class_< MeshPartObject >( "MeshPartObject" )
-	.property_readonly( "BufferOffset", &MeshPartObject::buffer_offset )
-	.property_readonly( "VerticiesCount", &MeshPartObject::vertices_count )
-	.property_readonly( "BaseVertex", &MeshPartObject::base_vertex )
-	.property_readonly( "UseIndexBuffer", &MeshPartObject::use_index_buf );
 }
 
 
@@ -502,45 +474,4 @@ BufferObject::BufferObject( unsigned int elementSize, unsigned int elementCount 
 		m_elementCount( elementCount )
 {
 }
-
-
-//----------------------------------------------------------------------------------------------//
-//								MaterialObject													//
-//----------------------------------------------------------------------------------------------//
-
-MaterialObject::MaterialObject( const MaterialObject* material )
-: ResourceObject(WRONG_ID)
-{
-	memcpy( this, material, sizeof(MaterialObject) );
-}
-
-/**@brief Ustawia materia³ na wartoœci domyœlne dla silnika.
-
-Te wartoœci s¹ najbardziej neutralne, w przypadku gdy nie ma materia³u, a jest ustawiona tekstura.
-Wtedy shadery wymana¿aj¹ jasnoœæ piksela przez 1.0 i nic sie nie zmienia.*/
-void MaterialObject::SetNullMaterial( )
-{
-	Diffuse.x = 1.0f;
-	Diffuse.y = 1.0f;
-	Diffuse.z = 1.0f;
-	Diffuse.w = 1.0f;
-
-	Ambient.x = 1.0f;
-	Ambient.y = 1.0f;
-	Ambient.z = 1.0f;
-	Ambient.w = 1.0f;
-
-	Specular.x = 1.0f;
-	Specular.y = 1.0f;
-	Specular.z = 1.0f;
-	Specular.w = 1.0f;
-
-	Emissive.x = 0.0f;
-	Emissive.y = 0.0f;
-	Emissive.z = 0.0f;
-	Emissive.w = 0.0f;
-
-	Power = 1.0f;
-}
-
 

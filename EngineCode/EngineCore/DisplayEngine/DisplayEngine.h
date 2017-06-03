@@ -132,15 +132,8 @@ private:
 	void			ProcessMainPass			( float timeInterval, float timeLag );
 
 	void			RenderFromQueue			( float timeInterval, float timeLag );
-
-	// Funkcje pomocnicze do renderingu
-	void			SetTextures				( const ModelPart& model );
-	void			SetIndexBuffer			( BufferObject* buffer );
-	bool			SetVertexBuffer			( BufferObject* buffer );
-	void			DepthBufferEnable		( bool state );
 	RenderContext	CreateRenderContext		( float timeInterval, float timeLag );
-public:
-	void CopyMaterial						( ConstantPerMesh* shader_data_per_mesh, const ModelPart* model );
+
 };
 
 

@@ -72,21 +72,6 @@ DX11Renderer::~DX11Renderer()
 }
 
 
-/**@brief Funkcja ustawia tesktury z danego ModelParta w DirectXie.
-
-@param[in] model ModelPart z którego pochodz¹ tekstury do ustawienia.
-@todo SetShaderResource mo¿na u¿yæ do ustawienia od razu ca³ej tablicy. Trzeba umo¿liwiæ ustawianie
-do VS i innych.*/
-void	DX11Renderer::SetTextures( const ModelPart& model )
-{
-	for ( int i = 0; i < ENGINE_MAX_TEXTURES; ++i )
-		if ( model.texture[i] )		// Nie ka¿da tekstura w tablicy istnieje
-		{
-			ID3D11ShaderResourceView* tex = static_cast<DX11Texture*>( model.texture[i] )->Get();
-			m_localDeviceContext->PSSetShaderResources( i, 1, &tex );
-		}
-}
-
 /**@brief Ustawia w kontekœcie urz¹dzenia bufor indeksów.
 
 @param[in] buffer Bufor do ustawienia.*/
@@ -238,12 +223,6 @@ sam siê updatowaæ.*/
 void	DX11Renderer::UpdateSubresource( BufferObject* pDstResource, const void *pSrcData )
 {
 	m_localDeviceContext->UpdateSubresource( static_cast<DX11Buffer*>( pDstResource)->Get(), 0, nullptr, pSrcData, 0, 0 );
-}
-
-void	DX11Renderer::SetShaders( ModelPart& model )
-{
-	m_localDeviceContext->VSSetShader( static_cast<DX11VertexShader*>( model.vertex_shader )->Get(), nullptr, 0 );
-	m_localDeviceContext->PSSetShader( static_cast<DX11PixelShader*>( model.pixel_shader )->Get(), nullptr, 0 );
 }
 
 //----------------------------------------------------------------------------------------------//

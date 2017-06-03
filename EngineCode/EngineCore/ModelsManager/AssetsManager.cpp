@@ -21,10 +21,8 @@ using namespace DirectX;
 //-------------------------------------------------------------------------------//
 
 AssetsManager::AssetsManager( Engine* engine )
-: m_engine( engine )
+	: m_engine( engine )
 {
-	Model3DFromFile::models_manager = this;
-
 	//Loader plików FBX jest domyœlnym narzêdziem do wczytywania
 	FBX_loader* fbx_loader = new FBX_loader( this );
 	m_loader.push_back( fbx_loader );
@@ -137,43 +135,6 @@ ILoader*		AssetsManager::FindLoader			( const std::wstring& path )
 //-------------------------------------------------------------------------------//
 
 
-
-/**@brief Wczytuje model z podanego pliku.
-@param[in] file Plik do wczytania
-@return Jedna z wartoœci @ref ModelsManagerResult. Funkcja mo¿e zwróciæ @ref ModelsManagerResult::MODELS_MANAGER_OK,
-@ref ModelsManagerResult::MODELS_MANAGER_LOADER_NOT_FOUND lub @ref ModelsManagerResult::MODELS_MANAGER_CANNOT_LOAD.*/
-ModelsManagerResult AssetsManager::LoadModelFromFile( const std::wstring& file )
-{
-	// Sprawdzamy czy plik nie zosta³ ju¿ wczytany
-	Model3DFromFile* new_model = m_fileModel.get( file );
-	if ( new_model != nullptr )
-		return ModelsManagerResult::MODELS_MANAGER_OK;	// Udajemy, ¿e wszystko posz³o dobrze
-
-	// Sprawdzamy, który loader potrafi otworzyæ plik
-	ILoader* loader = FindLoader( file );
-	if ( loader == nullptr )
-		return ModelsManagerResult::MODELS_MANAGER_LOADER_NOT_FOUND;		// ¯aden nie potrafi
-
-	// Tworzymy obiekt Model3DFromFile, do którego loader wpisze zawartoœæ pliku
-	new_model = new Model3DFromFile( file );
-
-	// Wszystkie operacje wpisywania musz¹ byæ zamkniête tymi wywo³aniami
-	new_model->BeginEdit();
-	LoaderResult result = loader->load_mesh( new_model, file );
-	new_model->EndEdit();
-
-	if ( result != LoaderResult::MESH_LOADING_OK )
-	{	// load_mesh powinno zwróciæ 0
-		// Destruktor jest prywatny, wiêc nie mo¿emy kasowaæ obiektu bezpoœrednio.
-		ObjectDeleter< Model3DFromFile>::delete_object( new_model, ObjectDeleterKey< Model3DFromFile>() );
-		return ModelsManagerResult::MODELS_MANAGER_CANNOT_LOAD;
-	}
-
-	// Dodajemy model do tablic
-	m_fileModel.UnsafeAdd( file, new_model );
-
-	return ModelsManagerResult::MODELS_MANAGER_OK;
-}
 
 /**@brief Loads mesh from file.
 @return Returns nullptr when loader could not be found or mesh loading failed.*/
@@ -366,33 +327,6 @@ ResourcePtr< MaterialAsset >	AssetsManager::CreateMaterial				( const std::wstri
 
 	return newMaterial;
 }
-
-/**@brief Dodaje materia³ do AssetManagera, je¿eli jeszcze nie istnia³.
-@note Funkcja nie dodaje odwo³ania do obiektu, bo nie zak³ada, ¿e ktoœ go od razu u¿yje.
-W ka¿dym miejscu, gdzie zostanie przypisany zwrócony obiekt, nale¿y pamiêtaæ o dodaniu odwo³ania oraz
-skasowaniu go, gdy obiekt przestanie byæ u¿ywany.
-
-@note Je¿eli materia³ ju¿ istnia³ (jego nazwa), to ten podany w parametrze nie zostanie dodany.
-Oznacza to, ¿e za jego zwolnienie odpowiada ten, kto go stworzy³. Trzeba zawsze sprawdziæ czy
-zwrócona wartoœæ jest tym samym co podaliœmy.
-
-@todo Nie mo¿e tak zostaæ, ¿e ktoœ dodaje materia³ i musi sprawdziæ czy nie dosta³ innego. Nie mo¿na
-te¿ zmuszaæ kogoœ do zwalniania pamiêci po materiale.
-
-@param[in] material Materia³, który ma zostaæ dodany
-@param[in] materialName Nazwa materia³u. Do materia³u bêdzie mo¿na siê odwo³aæ podaj¹c ci¹g znaków
-[nazwa_pliku]::[nazwa_materia³u]. Oznacza to, ¿e mog¹ istnieæ dwa takie same materia³y, poniewa¿ nie jest sprawdzana
-zawartoœæ, a jedynie nazwy.
-@return Zwraca wskaŸnik na dodany materia³.*/
-MaterialObject* AssetsManager::AddMaterialObject( MaterialObject* addMaterial, const std::wstring& materialName )
-{
-	MaterialObject* newMaterial = m_materialObject.get( materialName );
-	if ( !newMaterial )
-		m_materialObject.UnsafeAdd( materialName, addMaterial );	// Dodaliœmy materia³
-
-	return newMaterial;
-}
-
 
 //====================================================================================//
 //			Listowanie assetów

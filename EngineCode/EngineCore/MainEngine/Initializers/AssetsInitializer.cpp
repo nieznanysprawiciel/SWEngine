@@ -29,10 +29,6 @@ bool Engine::InitDefaultAssets()
 
 	Context->displayEngine->SetLayout( layout );		///@todo Hack. Layout powinien byæ ustawialny dla ka¿dego mesha z osobna. Zlikwidowaæ.
 
-	MaterialObject* nullMaterial = new MaterialObject();
-	nullMaterial->SetNullMaterial();
-	Context->modelsManager->AddMaterialObject( nullMaterial, DefaultAssets::DEFAULT_MATERIAL_STRING );
-
 	RenderTargetObject* mainRenderTarget = ResourcesFactory::CreateScreenRenderTarget();
 	Context->modelsManager->AddRenderTarget( mainRenderTarget, DefaultAssets::SCREEN_RENDERTARGET_STRING );
 

@@ -200,9 +200,6 @@
     <ClInclude Include="$(EngineCoreSourceDir)DisplayEngine\ConstantBuffersFormat.h">
       <Filter>EngineCore\DisplayEngine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\Model3DFromFile.h">
-      <Filter>EngineCore\ModelsManager</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.h">
       <Filter>EngineCore\ModelsManager</Filter>
     </ClInclude>
@@ -646,9 +643,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(EngineCoreSourceDir)ModelsManager\Model3DFromFile.cpp">
-      <Filter>EngineCore\ModelsManager</Filter>
-    </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.cpp">
       <Filter>EngineCore\SoundEngine</Filter>
     </ClCompile>

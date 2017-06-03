@@ -8,7 +8,6 @@
 
 #include "GraphicAPI/ResourceManager.h"
 
-#include "Model3DFromFile.h"		///< @deprecated
 #include "Assets/Meshes/MeshAsset.h"
 #include "DefaultAssets.h"
 
@@ -64,9 +63,6 @@ class AssetsManager : public ResourceManager
 private:
 	Engine* m_engine;			///<WskaŸnik na obiekt g³ówny silnika
 
-	ResourceContainer<MaterialObject>			m_materialObject;	///<Materia³y. @deprecated
-	ResourceContainer<Model3DFromFile>			m_fileModel;		///<Obiekty modeli 3D z plików. @deprecated
-
 	ResourceContainer< MaterialAsset >			m_material;			///< Materials.
 	ResourceContainer< MeshAsset >				m_meshes;			///< Meshes.
 
@@ -94,8 +90,6 @@ public:
 	///@name Assets loading
 	///@detail Load assets from specified file. Functions protect from loading assets multiple times.
 	///@{
-	ModelsManagerResult				LoadModelFromFile			( const std::wstring& file );
-
 	ResourcePtr< MeshAsset >		LoadMesh					( const filesystem::Path& file );
 	ResourcePtr< MaterialAsset >	LoadMaterial				( const filesystem::Path& file );
 	///@}
@@ -114,8 +108,6 @@ public:
 	inline ResourcePtr< MeshAsset >		GetMesh					( const std::wstring& name )	{ return m_meshes.get( filesystem::Path( name ).WString() ); }
 	inline ResourcePtr< MaterialAsset >	GetMaterial				( const std::wstring& name )	{ return m_material.get( filesystem::Path( name ).WString() ); }
 
-
-	MaterialObject*					AddMaterialObject			( MaterialObject* material, const std::wstring& material_name );
 
 	// Funkcje do listowania assetów.
 
