@@ -5,54 +5,25 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="PropertiesTest\ClassMetaInfo">
-      <UniqueIdentifier>{d77479dc-277d-4ec4-a3ca-48db2a49d47d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Common">
       <UniqueIdentifier>{26ac2392-0c5a-41e0-a946-92226952d2be}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\PropertiesTest.cpp">
-      <Filter>PropertiesTest</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\BaseClass.cpp">
-      <Filter>PropertiesTest</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\DerivedClass.cpp">
-      <Filter>PropertiesTest</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\ClassMetaInfo\EnablePropertyBase.cpp">
-      <Filter>PropertiesTest\ClassMetaInfo</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\InnerStruct.cpp">
-      <Filter>PropertiesTest</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\ClassMetaInfo\RegisterTypes.cpp">
-      <Filter>PropertiesTest</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\BaseClass.h">
-      <Filter>PropertiesTest</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\DerivedClass.h">
-      <Filter>PropertiesTest</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\ClassMetaInfo\EnablePropertyBase.h">
-      <Filter>PropertiesTest\ClassMetaInfo</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\InnerStruct.h">
-      <Filter>PropertiesTest</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\EngineCode\Common\Properties\IEnableProperty.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\EngineCode\Common\Properties\Property.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\EngineCode\Tests\PropertiesTest\ClassMetaInfo\CSharpProperty.h">
-      <Filter>PropertiesTest\ClassMetaInfo</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\RegisterTypes.cpp">
+      <Filter>PropertiesTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\main.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\PropertiesTest\TestPointersArray.cpp">
+      <Filter>PropertiesTest</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

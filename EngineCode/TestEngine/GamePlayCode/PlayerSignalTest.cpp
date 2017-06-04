@@ -33,8 +33,8 @@ RTTR_REGISTRATION
 		)
 		.property( "FunctionType", &PlayerSignalTest::m_funType )
 		.property( "DataData", &PlayerSignalTest::m_struct ) BIND_AS_PTR
-		.property( "OtherData", &PlayerSignalTest::m_otherData )
-		.property( "Generics", &PlayerSignalTest::m_generics );
+		.property( "OtherData", &PlayerSignalTest::m_otherData ) BIND_AS_REF
+		.property( "Generics", &PlayerSignalTest::m_generics ) BIND_AS_REF;
 
 }
 

@@ -147,6 +147,9 @@
     <ClCompile Include="..\..\EngineCode\Tests\FBXLoaderTest\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\EngineCode\swGraphicAPI\ProjectsDir\Visual2015\MockAPI\MockAPI.vcxproj">
+      <Project>{eeefab61-f404-4957-ac24-a3bf81c5e4ed}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\EngineCore\SWEngine.vcxproj">
       <Project>{08f5ad41-2020-48ab-8ac3-7fe0039ed65f}</Project>
     </ProjectReference>

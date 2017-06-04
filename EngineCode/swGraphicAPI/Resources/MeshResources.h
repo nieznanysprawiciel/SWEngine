@@ -47,14 +47,12 @@ implementuje konkretne API graficzne.
 Poniewa¿ zasoby mog¹ byæ wspó³dzielone przez wiele obiektów w silniku, istnieje mechanizm zliczania
 odwo³añ do obiektów implementowany przez klasê @ref ResourceObject.*/
 
-class AssetsManager;
-struct ModelPart;
+
 class BufferObject;
 class TextureObject;
 class VertexShader;
 class PixelShader;
-struct MeshPartObject;
-struct MaterialObject;
+
 
 /*
 // W buforze wierzcho³ków znajduj¹ siê elementy typu VERT_INDEX.

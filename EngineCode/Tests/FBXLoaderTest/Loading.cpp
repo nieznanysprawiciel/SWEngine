@@ -10,7 +10,7 @@
 #define WINDOW_WIDTH		1280
 #define WINDOW_HEIGHT		800
 
-
+using namespace sw;
 
 class EntryPointGamePlay :	public IGamePlay
 {
@@ -36,13 +36,13 @@ void		TestBufferObject	( const ResourcePtr< BufferObject >& buffer, uint32 expNu
 
 TEST_CASE( "Loading assets", "[FBXLoader]" )
 {
-	Engine* engine = new Engine();
+	sw::Engine* engine = new sw::Engine();
 	REQUIRE( engine->InitEngine( WINDOW_WIDTH, WINDOW_HEIGHT, false, 0 ) == 1 );
 
 	EntryPointGamePlay* entryPoint = new EntryPointGamePlay();
 	engine->SetEntryPoint( entryPoint );
 
-	AssetsManager& assetsManager = *engine->GetAssetsManager();
+	sw::AssetsManager& assetsManager = *engine->GetAssetsManager();
 
 	const filesystem::Path CLONE_FIGHTER = "tylko_do_testow/ARC.FBX";
 	const filesystem::Path SIMPLE_BOX = "tylko_do_testow/SimpleBox/SimpleBox.FBX";

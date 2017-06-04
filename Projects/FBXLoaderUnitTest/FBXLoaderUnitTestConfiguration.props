@@ -5,11 +5,6 @@
     <Import Project="..\Props\PathsMacros.props" />
     <Import Project="..\Props\LinkFBX_SDK.props" />
     <Import Project="..\EngineCore\EngineCorePathMacros.props" />
-    <Import Project="..\DX11API\DX11APIPathsMacros.props" />
-    <Import Project="..\Props\LinkReflection.props" />
-    <Import Project="..\SerializerXML\SerializerXMLPathMacros.props" />
-    <Import Project="..\DirectInput\DirectInputPathsMacros.props" />
-    <Import Project="..\CommonLibrary\CommonLibraryPathsMacros.props" />
   </ImportGroup>
   
   <PropertyGroup Label="UserMacros">
