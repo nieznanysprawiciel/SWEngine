@@ -114,7 +114,7 @@ void								SWMaterialLoader::SaveMaterial	( const filesystem::Path& fileName, M
 	ser.SetAttribute( STRINGS_1_0::VERSION_MAJOR_STRING, m_versionMajor );
 	ser.SetAttribute( STRINGS_1_0::VERSION_MINOR_STRING, m_versionMinor );
 
-	ser.EnterObject( rttr::type::get< MaterialAsset >().get_name() );
+	ser.EnterObject( TypeID::get< MaterialAsset >().get_name().to_string() );
 
 		// Shaders
 
@@ -170,7 +170,7 @@ void								SWMaterialLoader::SaveMaterial	( const filesystem::Path& fileName, M
 	{
 		auto tex = mat->GetTexture( i ).Ptr();
 
-		ser.EnterObject( rttr::type::get< TextureObject >().get_name() );
+		ser.EnterObject( rttr::type::get< TextureObject >().get_name().to_string() );
 
 		if( tex )
 			ser.SetAttribute( STRINGS_1_0::FILE_PATH_STRING, tex->GetFilePath().String() );
@@ -220,7 +220,7 @@ Nullable< MaterialInitData >		SWMaterialLoader::LoadMaterial_Version1	( IDeseria
 	Nullable< MaterialInitData >	data;
 	data.IsValid = true;
 
-	if( deser->EnterObject( rttr::type::get< MaterialAsset >().get_name() ) )
+	if( deser->EnterObject( TypeID::get< MaterialAsset >().get_name().to_string() ) )
 	{
 		data = LoadShaders( deser, data );
 		data = LoadTextures( deser, data );

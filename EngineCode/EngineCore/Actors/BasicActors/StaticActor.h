@@ -38,8 +38,8 @@ i jakoœ rozwi¹zaæ tê sytuacjê.
 @ingroup Actors*/
 class StaticActor : public ActorBase
 {
-	RTTR_ENABLE( ActorBase )
-		RTTR_REGISTRATION_FRIEND
+	RTTR_ENABLE( ActorBase );
+	RTTR_REGISTRATION_FRIEND;
 private:
 	DirectX::XMFLOAT3		position;				///< Pozycja obiektu (lub bufor tylny)
 	DirectX::XMFLOAT4		orientation;			///< Orientacja obiektu wyra¿ona kwaternionem (lub bufor tylny)

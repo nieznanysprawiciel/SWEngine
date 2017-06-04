@@ -46,7 +46,7 @@ public:
 	~UIEngine						();
 
 
-	input::IInput*		ChangeInputModule				( sw::input::IInput* module );
+	input::IInput*		ChangeInputModule				( input::IInput* module );
 	input::IInput*		GetInputModule					();
 
 	//called by Engine in main loop

@@ -26,11 +26,13 @@ class ActorInitializer;
 
 typedef fastdelegate::FastDelegate0< ActorBase* > CreateActorFunction;
 
+
+
 /**@brief Zwraca nazwê klasy zapisan¹ w RTTI z pominiêciem s³ówka class.*/
 template< typename ClassType >
 std::string			GetTypeidName()
 {
-	return rttr::type::get< ClassType >().get_name();
+	return rttr::type::get< ClassType >().get_name().to_string();
 }
 
 

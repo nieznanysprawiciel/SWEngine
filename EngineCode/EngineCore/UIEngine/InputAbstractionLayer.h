@@ -13,12 +13,12 @@
 #include "swInputLibrary/InputCore/MouseState.h"
 #include "swInputLibrary/InputCore/JoystickState.h"
 
-class Engine;
 
 
 namespace sw
 {
 
+class Engine;
 
 
 /**@brief Klasa reprezentuj¹ca warstwê abstrakcji miêdzy wartoœciami zwracanymi z directInputa, a wejœciem aplikacji.

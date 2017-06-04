@@ -23,7 +23,8 @@ using namespace DirectX;
 namespace sw
 {
 
-
+// ================================ //
+//
 EngineInterface::EngineInterface()
 {
 	Context = new EngineContext;
@@ -32,10 +33,14 @@ EngineInterface::EngineInterface()
 	Api::ApiGroup::Context = Context;
 }
 
+// ================================ //
+//
 EngineInterface::~EngineInterface()
 {
 	delete Context;
 }
+
+}	// sw
 
 #ifdef __TEST
 
@@ -48,6 +53,8 @@ EngineInterface::~EngineInterface()
 #include "EngineCore/ModelsManager/Assets/Materials/MaterialAsset.h"
 #include "EngineCore/ModelsManager/Assets/Materials/PhongMaterialData.h"
 #include "swCommonLib/System/Path.h"
+namespace sw
+{
 
 
 
@@ -110,6 +117,7 @@ void		Engine::SetSkydome()
 }
 
 
+}	// sw
 
 
 
@@ -120,6 +128,11 @@ void		Engine::SetSkydome()
 
 #include "swCommonLib/Serialization/Serializer.h"
 #include "swCommonLib/Serialization/PropertySerialization/EngineSerializationContext.h"
+
+
+namespace sw
+{
+
 
 //void Engine::testMaterial( Model3DFromFile* model )
 //{
@@ -325,7 +338,6 @@ void		Engine::CreateDefaultScene()
 	Size ChildActorSize = sizeof( ChildActor );
 }
 
+}	// sw
 
 #endif
-
-}	// sw

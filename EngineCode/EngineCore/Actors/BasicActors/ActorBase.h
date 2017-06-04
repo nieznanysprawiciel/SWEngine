@@ -36,7 +36,7 @@ class InputAbstractionLayerBase;
 @ingroup Actors*/
 class ActorBase : public EngineObject
 {
-	RTTR_ENABLE( EngineObject )
+	RTTR_ENABLE( EngineObject );
 private:
 	static Engine*	engine;		///< WskaŸnik na g³ówny obiekt silnika.
 protected:

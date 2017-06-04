@@ -49,7 +49,7 @@ ShadingModelBase::ShadingModelBase()
 //
 std::string			ShadingModelBase::GetShadingModelTypeName ()
 {
-	return GetShadingModelType().get_name();
+	return GetShadingModelType().get_name().to_string();
 }
 
 }	// sw

@@ -91,7 +91,7 @@ struct EngineContext
 	AssetsManager*				modelsManager;			///<Zarz¹dza modelami, teksturami i materia³ami
 	FableEngine*				fableEngine;			///<Zarz¹dza fabu³¹ gry, interakcjami obiektów itd. Odpowiada za treœæ
 	SoundEngine*				soundEngine;			///<Zarz¹dza muzyk¹ i dŸwiêkami
-	sw::UIEngine*				ui_engine;				///<Interfejs u¿ytkownika (tak¿e graficzny)
+	UIEngine*					ui_engine;				///<Interfejs u¿ytkownika (tak¿e graficzny)
 	ActorsManager*				actorsManager;			///<Zarz¹dzanie aktorami.
 	EventManager*				eventsManager;			///<Zarz¹dzanie eventami.
 

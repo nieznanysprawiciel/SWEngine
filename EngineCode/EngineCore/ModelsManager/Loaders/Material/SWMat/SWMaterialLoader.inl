@@ -8,7 +8,7 @@
 #include "SWMaterialLoader.h"
 
 #include "EngineCore/ModelsManager/AssetsManager.h"
-#include "GraphicAPI/MeshResources.h"
+#include "swGraphicAPI/Resources/MeshResources.h"
 
 
 namespace sw

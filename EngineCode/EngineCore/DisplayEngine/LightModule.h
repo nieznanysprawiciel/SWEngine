@@ -55,7 +55,6 @@ public:
 
 	LightConstants	FillLightsData			( float timeLag );
 	LightParams		FillLightParams			( LightBase* light, float timeLag );
-	BufferObject*	UpdateLightsBuffer		( IRenderer* renderer, float timeLag );
 
 	BufferObject*	GetLightBuffer			() { return m_lightBuffer.Ptr(); }
 

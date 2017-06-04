@@ -72,18 +72,18 @@ PlayerSignalTest::~PlayerSignalTest()
 }
 
 /**@brief */
-void	PlayerSignalTest::DoYourJob		( const EngineObject* sender, Event* params )
+void	PlayerSignalTest::DoYourJob		( const EngineObject* sender, sw::Event* params )
 {
 	m_testValue += static_cast< EventData* >( params )->Data;
 }
 
-void	PlayerSignalTest::InitJob		( const EngineObject* sender, Event* keyEvent )
+void	PlayerSignalTest::InitJob		( const EngineObject* sender, sw::Event* keyEvent )
 {
 	m_otherPlayer.SendSignal< &PlayerSignalTest::DoYourJob >( this, new EventData );
 
-	const ActorPtr< ActorBase > actor = m_otherPlayer.DynamicCast< ActorBase >();
-	m_otherPlayer.StaticCast< ActorBase >();
+	const sw::ActorPtr< sw::ActorBase > actor = m_otherPlayer.DynamicCast< sw::ActorBase >();
+	m_otherPlayer.StaticCast< sw::ActorBase >();
 
-	actor.StaticCast< const StaticActor >();
-	actor.DynamicCast< const StaticActor >();
+	actor.StaticCast< const sw::StaticActor >();
+	actor.DynamicCast< const sw::StaticActor >();
 }

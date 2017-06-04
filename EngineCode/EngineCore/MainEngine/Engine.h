@@ -168,7 +168,7 @@ public:
 	///@name Input
 	///@{
 	void					EnableInput			( bool val );
-	IInput*					ChangeInputModule	( IInput* newModule );
+	input::IInput*			ChangeInputModule	( input::IInput* newModule );
 	///@}
 
 	///@name For unit tests

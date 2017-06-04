@@ -142,18 +142,6 @@ LightParams		LightModule::FillLightParams( LightBase* light, float timeLag )
 	return params;
 }
 
-/**@brief Updates lights buffer.
-
-Buffer is bound to pixel shader stage at LightsBufferBindingPoint index.*/
-BufferObject*	LightModule::UpdateLightsBuffer( IRenderer* renderer, float timeLag )
-{
-	LightConstants constants = FillLightsData( timeLag );
-	renderer->UpdateSubresource( m_lightBuffer.Ptr(), (void*)&constants );
-
-	renderer->PSSetConstantBuffers( LightsBufferBindingPoint, m_lightBuffer.Ptr() );
-
-	return m_lightBuffer.Ptr();
-}
 
 /**@brief Default direction of light.
 

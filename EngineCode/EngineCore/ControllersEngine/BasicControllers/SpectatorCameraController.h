@@ -1,8 +1,9 @@
 #pragma once
-
-/**@file camera_controller_PROTOTYPE
-@brief Plik zawiera deklaracjê kontrolera przeznaczonego do kamery zgodnego z wartstw¹ abstrakcji
-PROTOTYPE.*/
+/**
+@file SpectatorCameraController.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
 
 #include "EngineCore/ControllersEngine/BaseClasses/BaseInputController.h"
 

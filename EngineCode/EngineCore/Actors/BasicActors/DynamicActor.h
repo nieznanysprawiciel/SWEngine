@@ -35,7 +35,7 @@ W docelowej wersji bêdzie najprawdopodobniej wybrana opcja z wetorem a nie kwate
 class DynamicActor : public StaticActor
 {
 	RTTR_REGISTRATION_FRIEND
-		RTTR_ENABLE( StaticActor )
+	RTTR_ENABLE( StaticActor )
 protected:
 
 	DirectX::XMFLOAT3		m_speed;				///< Prêdkoœæ postepowa obiektu.
