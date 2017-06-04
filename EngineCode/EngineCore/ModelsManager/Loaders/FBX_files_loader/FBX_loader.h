@@ -75,10 +75,6 @@ private:
 
 	template< typename IndexType >
 	void				CopyIndexBuffer		( const std::vector< std::vector< Index32 > >& indicies, MemoryChunk& destination );
-
-	// Inherited via ILoader @deprecated
-	virtual bool			can_load( const std::wstring & name ) override;
-	virtual LoaderResult	load_mesh( Model3DFromFile * new_file_mesh, const std::wstring & name ) override;
 };
 
 

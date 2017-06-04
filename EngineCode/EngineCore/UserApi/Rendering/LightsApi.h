@@ -7,10 +7,14 @@
 
 #include "EngineCore/UserApi/ApiGroup.h"
 
+
+
+namespace sw
+{
+
 class ActorBase;
 class LightBase;
 
-namespace sw {
 namespace Api
 {
 

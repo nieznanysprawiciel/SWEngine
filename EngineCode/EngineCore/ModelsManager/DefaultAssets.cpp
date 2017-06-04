@@ -94,6 +94,10 @@ void DefaultAssets::Release()
 //			Comparision operators	
 //====================================================================================//
 
+namespace DirectX
+{
+
+
 // ================================ //
 //
 bool		operator==( const DirectX::XMFLOAT2& vertex1, const DirectX::XMFLOAT2& vertex2 )
@@ -147,6 +151,8 @@ bool		operator<( const DirectX::XMFLOAT3& vertex1, const DirectX::XMFLOAT3& vert
 		return true;
 	return false;
 }
+
+}	// DirectX
 
 // ================================ //
 //

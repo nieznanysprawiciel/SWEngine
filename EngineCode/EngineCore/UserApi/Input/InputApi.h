@@ -5,12 +5,17 @@
 
 @brief Deklaracja klasy InputApi.*/
 
-class InputAbstractionLayer;
+
 
 #include "EngineCore/UserApi/ApiGroup.h"
 #include "EngineCore/UIEngine/StandardAbstractionLayers.h"
 
-namespace sw {
+
+namespace sw
+{
+
+class InputAbstractionLayer;
+
 namespace Api
 {
 

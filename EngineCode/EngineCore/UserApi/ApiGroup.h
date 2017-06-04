@@ -1,4 +1,11 @@
 #pragma once
+/**
+@file ApiGroup.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 
 #include "swCommonLib/Common/TypesDefinitions.h"
 
@@ -7,7 +14,13 @@ struct EngineContext;
 class EngineInterface;
 
 
-namespace sw {
+namespace sw
+{
+
+class Engine;
+struct EngineContext;
+class EngineInterface;
+
 namespace Api
 {
 

@@ -8,10 +8,14 @@
 #include "EngineCore/UserApi/ApiGroup.h"
 #include "LightsApi.h"
 
+
+
+namespace sw
+{
+
 class RenderPassDepracated;
 class CameraActor;
 
-namespace sw {
 namespace Api
 {
 

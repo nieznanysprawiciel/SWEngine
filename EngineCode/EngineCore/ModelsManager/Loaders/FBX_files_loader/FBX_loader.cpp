@@ -662,21 +662,5 @@ bool				operator==	( const fbxsdk::FbxVector4& vec1, const DirectX::XMFLOAT3& ve
 }
 
 
-//====================================================================================//
-//			@deprecated Compatibility	
-//====================================================================================//
-
-/**@deprecated*/
-bool FBX_loader::can_load( const std::wstring & name )
-{
-	return CanLoad( filesystem::Path( name ) );;
-}
-
-/**@deprecated*/
-LoaderResult FBX_loader::load_mesh( Model3DFromFile * new_file_mesh, const std::wstring & name )
-{
-	return LoaderResult();
-}
-
 }	// sw
 

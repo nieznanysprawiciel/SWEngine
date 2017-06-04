@@ -24,6 +24,8 @@
 #include <queue>
 
 
+class BufferObject;
+
 namespace sw
 {
 
@@ -41,7 +43,7 @@ void inverse_camera_orientation		( DirectX::XMVECTOR& result_vector );
 
 class Engine;
 class AssetsManager;
-class BufferObject;
+
 
 /**@brief Klasa odpowiedzialna za wyœwietlanie sceny, obs³ugê kamery oraz interpolacjê po³o¿eñ obiektów.
 @ingroup EngineCore

@@ -135,7 +135,7 @@ void			AssetsManager::FillBestShaders		( MaterialInitData& initData )
 ILoader*		AssetsManager::FindLoader			( const std::wstring& path )
 {
 	for( unsigned int i = 0; i < m_loader.size(); ++i )
-		if( m_loader[ i ]->can_load( path ) )
+		if( m_loader[ i ]->CanLoad( path ) )
 			return m_loader[ i ];
 	return nullptr;
 }

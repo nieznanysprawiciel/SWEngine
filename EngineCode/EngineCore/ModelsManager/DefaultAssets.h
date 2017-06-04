@@ -103,11 +103,15 @@ public:
 
 }	// sw
 
+namespace DirectX
+{
+
 bool		operator==( const DirectX::XMFLOAT2& vertex1, const DirectX::XMFLOAT2& vertex2 );
 bool		operator==( const DirectX::XMFLOAT3& vertex1, const DirectX::XMFLOAT3& vertex2 );
 bool		operator<( const DirectX::XMFLOAT2& vertex1, const DirectX::XMFLOAT2& vertex2 );
 bool		operator<( const DirectX::XMFLOAT3& vertex1, const DirectX::XMFLOAT3& vertex2 );
+
+
+}	// DirectX
+
 bool		operator<( const sw::VertexNormalTexCoord& vertex1, const sw::VertexNormalTexCoord& vertex2 );
-
-
-

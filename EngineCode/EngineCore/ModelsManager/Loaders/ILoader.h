@@ -52,30 +52,11 @@ public:
 	ILoader( AssetsManager* models_manager ) : models_manager( models_manager ) {};
 	virtual ~ILoader() {};
 
-	/**@brief Funkcja ma za zadanie poinformowaæ czy jest w stanie wczytaæ podany plik.
-
-	Implementacja powinna opieraæ siê co najwy¿ej na sprawdzeniu rozszerzenia pliku, bez zagl¹dania
-	do œrodka. Dla ka¿dego pliku zostanie wywo³ana ta funkcja, aby znaleŸæ pasuj¹cy Loader.
-	Zagl¹danie do pliku mo¿e znacznie spowolniæ ten proces.
-
-	@param[in] name Nazwa pliku do przetestowania.
-	@return True je¿eli plik nadaje siê do otworzenia, false w przeciwnym razie.
-	*/
-	virtual bool can_load( const std::wstring& name ) = 0;
-
-	/**@brief Funkcja ma za zadanie wczytaæ podany plik.
-
-	Wczytany plik ma zostaæ umieszczony w zmiennej new_file_mesh. Klasa pod podanym wskaŸnikiem
-	istnieje w momencie wywo³ania funkcji i trzeba j¹ wype³niaæ tylko za pomoc¹ funkcji udustêpnianych
-	przez klasê Model3DFromFile.
-	@param[inout] new_file_mesh Funkcja dostaje zaalokowany obiekt, który ma zostaæ wype³niony danymi.
-	@param[in] name Nazwa pliku, który ma zostaæ wczytany
-	@return Zwraca wynik wczytywania.
-	*/
-	virtual LoaderResult load_mesh( Model3DFromFile* new_file_mesh, const std::wstring& name ) = 0;
-	//virtual void load_animation(const std::string& name) = 0;
 
 	virtual Nullable< MeshInitData >		LoadMesh	( const filesystem::Path& fileName ) { return "Function should be overriden in derived class."; }
+
+	/**@brief Checks if laoder can load file.
+	This function should chack fileName's extension and determine if it can load file.*/
 	virtual bool							CanLoad		( const filesystem::Path& fileName ) { return false; }
 };
 
