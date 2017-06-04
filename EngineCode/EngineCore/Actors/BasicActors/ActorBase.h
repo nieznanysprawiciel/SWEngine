@@ -10,6 +10,7 @@
 
 
 
+
 namespace sw
 {
 
@@ -27,8 +28,6 @@ class ControllersEngine;
 class IController;
 class Event;
 class InputAbstractionLayerBase;
-class IRenderer;
-class Model3DFromFile;
 
 
 

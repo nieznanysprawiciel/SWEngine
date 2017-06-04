@@ -18,6 +18,8 @@ class DynamicActor;
 #include <vector>
 #include <map>
 
+#undef RegisterClass
+
 
 // Predefinitions which allow not to include ActorsFactory.
 namespace sw

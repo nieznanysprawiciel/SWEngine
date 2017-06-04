@@ -150,7 +150,7 @@ bool		operator<( const DirectX::XMFLOAT3& vertex1, const DirectX::XMFLOAT3& vert
 
 // ================================ //
 //
-bool		operator<( const VertexNormalTexCoord& vertex1, const VertexNormalTexCoord& vertex2 )
+bool		operator<( const sw::VertexNormalTexCoord& vertex1, const sw::VertexNormalTexCoord& vertex2 )
 {
 	if( vertex1.Position < vertex2.Position )
 		return true;

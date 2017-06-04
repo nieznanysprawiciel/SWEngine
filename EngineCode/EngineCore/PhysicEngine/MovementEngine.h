@@ -9,12 +9,15 @@
 #include "EngineCore/stdafx.h"
 #include "EngineCore/Actors/ActorObjects.h"
 
-class Engine;
+
 
 
 
 namespace sw
 {
+
+
+class Engine;
 
 
 /**@brief Modu³ do obs³ugi obiektów dynamicznych.

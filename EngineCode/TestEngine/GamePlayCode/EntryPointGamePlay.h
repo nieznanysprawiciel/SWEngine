@@ -10,7 +10,7 @@ Modu³ linkuje @ref EngineCore oraz wszystkie inne potrzebne biblioteki i wywo³uj
 */
 
 
-class EntryPointGamePlay :	public IGamePlay
+class EntryPointGamePlay :	public sw::IGamePlay
 {
 private:
 

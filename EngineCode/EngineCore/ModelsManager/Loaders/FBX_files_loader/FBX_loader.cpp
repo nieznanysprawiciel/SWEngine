@@ -4,6 +4,7 @@
 
 #include "Tools/Geometric/Processors/Converter.h"
 
+#include "EngineCore/ModelsManager/DefaultAssets.h"
 
 #include "swCommonLib/Common/Converters.h"
 #include "swCommonLib/Common/MemoryLeaks.h"

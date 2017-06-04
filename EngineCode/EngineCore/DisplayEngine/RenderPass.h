@@ -14,17 +14,17 @@
 #include <vector>
 
 
+class ShaderInputLayout;
+class RenderTargetObject;
+
 
 namespace sw
 {
 
 
-class RenderTargetObject;
+
 class CameraActor;
 class StaticActor;
-class ShaderInputLayout;
-
-
 
 
 

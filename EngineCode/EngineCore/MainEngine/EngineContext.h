@@ -1,4 +1,10 @@
 #pragma once
+/**
+@file EngineContext.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
 
 #include "EngineCore/MainEngine/TimeManager.h"
 #include "swCommonLib/Common/Multithreading/SpinLock.h"

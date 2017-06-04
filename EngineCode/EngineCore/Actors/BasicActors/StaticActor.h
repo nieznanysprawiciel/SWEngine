@@ -14,13 +14,13 @@
 #include <DirectXMath.h>
 
 
+class BufferObject;
+
+
 
 namespace sw
 {
 
-
-class Model3DFromFile;
-class BufferObject;
 
 /**@brief Klasa bazowa dla wszystkich obiektów statycznych w silniku.
 

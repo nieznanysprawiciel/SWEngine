@@ -26,7 +26,7 @@ pe³noekranowym, wartoœæ tych parametrów mo¿e pozostaæ dowolna.*/
 
 
 // WskaŸnik na g³ówny obiekt silnika
-Engine* engine;
+sw::Engine* engine;
 
 
 int APIENTRY _tWinMain( _In_ HINSTANCE hInstance,
@@ -43,7 +43,7 @@ int APIENTRY _tWinMain( _In_ HINSTANCE hInstance,
 
 	int result;
 
-	engine = new Engine();
+	engine = new sw::Engine();
 	EntryPointGamePlay* entryPoint = new EntryPointGamePlay();	//UWAGA!! nie kasujemy zmiennej, robi to silnik.
 												//UWAGA2! Zmienna musi byæ alokowana na stercie, operatorem new z tego samego powodu co wy¿ej
 

@@ -17,3 +17,5 @@
 #undef CreateWindow
 #undef XBUTTON1
 #undef XBUTTON2
+#undef RegisterClass
+

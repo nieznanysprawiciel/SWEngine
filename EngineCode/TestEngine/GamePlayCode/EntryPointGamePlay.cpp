@@ -33,10 +33,10 @@ int EntryPointGamePlay::LoadLevel( )
 	const wchar_t CLONE_FIGHTER[] = L"tylko_do_testow/ARC.FBX";
 	m_engine->Assets.Meshes.LoadSync( CLONE_FIGHTER );
 	
-	m_engine->Actors.RegisterClass< PlayerSignalTest >( GetTypeidName< PlayerSignalTest >(), PlayerSignalTest::Create );
+	m_engine->Actors.RegisterClass< PlayerSignalTest >( sw::GetTypeidName< PlayerSignalTest >(), PlayerSignalTest::Create );
 
-	auto actor1 = m_engine->Actors.CreateActor< PlayerSignalTest >( GetTypeidName< PlayerSignalTest >(), EnableDisplay );
-	auto actor2 = m_engine->Actors.CreateActor< PlayerSignalTest >( GetTypeidName< PlayerSignalTest >(), EnableDisplay );
+	auto actor1 = m_engine->Actors.CreateActor< PlayerSignalTest >( sw::GetTypeidName< PlayerSignalTest >(), sw::EnableDisplay );
+	auto actor2 = m_engine->Actors.CreateActor< PlayerSignalTest >( sw::GetTypeidName< PlayerSignalTest >(), sw::EnableDisplay );
 
 	actor1->SetOtherPlayer( actor2 );
 	actor2->SetOtherPlayer( actor1 );
@@ -51,10 +51,10 @@ int EntryPointGamePlay::LoadLevel( )
 	actor2->SetModel( m_engine->Assets.Meshes.GetSync( CLONE_FIGHTER ) );
 
 	// Events
-	auto layer = m_engine->Input.GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS );
-	layer->DemandDownEvent( STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 );
+	auto layer = m_engine->Input.GetStandardAbstractionLayer( sw::STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS );
+	layer->DemandDownEvent( sw::STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 );
 
-	m_engine->Actors.Communication.AddListenerDelayed< KeyDownEvent, PlayerSignalTest >( actor1, &PlayerSignalTest::InitJob );
+	m_engine->Actors.Communication.AddListenerDelayed< sw::KeyDownEvent, PlayerSignalTest >( actor1, &PlayerSignalTest::InitJob );
 
 	// Serialization test
 	auto context = std::make_unique< EngineSerializationContext >();

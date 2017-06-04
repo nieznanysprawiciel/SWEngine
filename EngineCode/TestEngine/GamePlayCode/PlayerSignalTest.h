@@ -11,7 +11,7 @@
 
 // ================================ //
 //
-struct EventData : public Event
+struct EventData : public sw::Event
 {
 	int		Data;
 
@@ -47,13 +47,13 @@ struct NestedStruct
 
 
 
-class PlayerSignalTest	: public DynamicActor
+class PlayerSignalTest	: public sw::DynamicActor
 {
-	RTTR_ENABLE( DynamicActor );
+	RTTR_ENABLE( sw::DynamicActor );
 	RTTR_REGISTRATION_FRIEND;
 private:
 
-	ActorPtr< PlayerSignalTest >		m_otherPlayer;
+	sw::ActorPtr< PlayerSignalTest >		m_otherPlayer;
 	
 	int									m_testValue;
 	NestedStruct						m_struct;
@@ -71,8 +71,8 @@ public:
 		m_otherPlayer = other;
 	}
 
-	void		DoYourJob			( const EngineObject* sender, Event* params );
-	void		InitJob				( const EngineObject* sender, Event* keyEvent );
+	void		DoYourJob			( const EngineObject* sender, sw::Event* params );
+	void		InitJob				( const EngineObject* sender, sw::Event* keyEvent );
 
 	static ActorBase*			Create			()	{ return new PlayerSignalTest; }
 };
