@@ -5,6 +5,9 @@
 // ale interfejs nie bêdzie widoczny poza dllk¹.
 #include "EngineEditor/EditorPlugin/EditorApp/IDragable.h"
 
+
+
+namespace sw {
 namespace EditorPlugin
 {
 
@@ -42,7 +45,7 @@ void		ActorClassMetaInfo::BuildHierarchy	( ActorWrapper^ objectPtr, rttr::type c
 {
 	// Tworzymy obiekt, kradniemy od niego pole Properties i o nim zapominamy, ¿eby zosta³ zwolniony.
 	CategoryPropertyWrapper^ actorClassMetaData = gcnew CategoryPropertyWrapper( objectPtr->Ptr(), "" );
-	
+
 	actorClassMetaData->BuildHierarchy( objectPtr->Ptr(), classType );
 	m_properties = actorClassMetaData->Properties;
 }
@@ -50,3 +53,4 @@ void		ActorClassMetaInfo::BuildHierarchy	( ActorWrapper^ objectPtr, rttr::type c
 
 
 }	//	EditorPlugin
+}	// sw

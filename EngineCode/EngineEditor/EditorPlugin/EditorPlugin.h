@@ -27,15 +27,20 @@ napisanego w C#.
 
 //========================================//
 // windows include
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
+#include "IncludeWindows.h"
+
 
 #include "EngineEditor/EditorPlugin/Actors/ActorClassMetaInfo.h"
 #include "EngineEditor/EditorPlugin/EnginePointerProvider.h"
-#include "InputLibrary/InputWPF/WPFInputProxy.h"
+#include "swInputLibrary/InputWPF/WPFInputProxy.h"
 
 #include "Actors/ActorWrapper.h"
 #include "Actors/Resources/ResourceWrapper.h"
+
+
+namespace sw
+{
+
 
 class Engine;
 ref class ActorClassMetaInfo;
@@ -49,54 +54,56 @@ using namespace System::Collections::ObjectModel;
 
 	/**@brief Klasa wrapera do inicjowania silnika i renderowania po stronie kodu zarz¹dzanego.
 	@ingroup EditorPlugin*/
-	public ref class EngineWrapper
-	{
-	private:
-		Engine*				m_engine;
-		WPFInputProxy*		m_inputWPF;		///< Modu³ wejœcia u¿ywany domyœlnie przez edytor.
-		IInput*				m_directInput;	///< Modu³ u¿ywany w trybie grania w osobnym oknie.
+public ref class EngineWrapper
+{
+private:
+	Engine*						m_engine;
+	input::WPFInputProxy*		m_inputWPF;		///< Modu³ wejœcia u¿ywany domyœlnie przez edytor.
+	input::IInput*				m_directInput;	///< Modu³ u¿ywany w trybie grania w osobnym oknie.
 
-	protected:
-	public:
-		bool				InitializeEngine			( System::IntPtr moduleHandle );
-		void				ReleaseEngine				();
-		System::IntPtr		GetRenderTarget				( System::UInt16 width, System::UInt16 height );
+protected:
+public:
+	bool				InitializeEngine			( System::IntPtr moduleHandle );
+	void				ReleaseEngine				();
+	System::IntPtr		GetRenderTarget				( System::UInt16 width, System::UInt16 height );
 
-		void				UpdateScene					();
-		void				RenderScene					();
+	void				UpdateScene					();
+	void				RenderScene					();
 
-		void				ShowWindow					();
+	void				ShowWindow					();
 
-		void				TestScene					();
-		void				BasicScene					();
-		void				EnableInput					( bool val );
+	void				TestScene					();
+	void				BasicScene					();
+	void				EnableInput					( bool val );
 
-		// Actors
-		ActorWrapper^		CreateActor					( System::String^ actorName, double mouseX, double mouseY );
-		ActorWrapper^		CreateActor					( System::String^ actorName );
-		void				SelectActor					( ActorWrapper^ gizmo, ActorWrapper^ selection );
-		void				ClearActors					();
-		void				DeleteActor					( ActorWrapper^ actor );
+	// Actors
+	ActorWrapper^		CreateActor					( System::String^ actorName, double mouseX, double mouseY );
+	ActorWrapper^		CreateActor					( System::String^ actorName );
+	void				SelectActor					( ActorWrapper^ gizmo, ActorWrapper^ selection );
+	void				ClearActors					();
+	void				DeleteActor					( ActorWrapper^ actor );
 
-		List< ActorClassMetaInfo^ >^						CreateActorsMetadata		();
-		ObservableCollection< ActorWrapper^ >^				CreateActorsList			();
-		
-		ObservableCollection< ResourceWrapper^ >^			CreateTexturesList			();
-		ObservableCollection< ResourceWrapper^ >^			CreateShadersList			();
-		ObservableCollection< ResourceWrapper^ >^			CreateLayoutsList			();
-		ObservableCollection< ResourceWrapper^ >^			CreateBuffersList			();
-		ObservableCollection< ResourceWrapper^ >^			CreateRenderTargetsList		();
-		ObservableCollection< ResourceWrapper^ >^			CreateMaterialsList			();
-		ObservableCollection< ResourceWrapper^ >^			CreateMeshesList			();
+	List< ActorClassMetaInfo^ >^						CreateActorsMetadata		();
+	ObservableCollection< ActorWrapper^ >^				CreateActorsList			();
 
-		// Input
-		void				KeyboardChange				( System::Windows::Input::Key keyId, bool pressed );
-		void				MouseButtonChange			( System::Windows::Input::MouseButton button, bool pressed );
-		void				MousePositionChange			( double X, double Y );
-		void				MouseWheelChange			( double delta );
+	ObservableCollection< ResourceWrapper^ >^			CreateTexturesList			();
+	ObservableCollection< ResourceWrapper^ >^			CreateShadersList			();
+	ObservableCollection< ResourceWrapper^ >^			CreateLayoutsList			();
+	ObservableCollection< ResourceWrapper^ >^			CreateBuffersList			();
+	ObservableCollection< ResourceWrapper^ >^			CreateRenderTargetsList		();
+	ObservableCollection< ResourceWrapper^ >^			CreateMaterialsList			();
+	ObservableCollection< ResourceWrapper^ >^			CreateMeshesList			();
 
-	public:
-		EngineWrapper();
-	};
+	// Input
+	void				KeyboardChange				( System::Windows::Input::Key keyId, bool pressed );
+	void				MouseButtonChange			( System::Windows::Input::MouseButton button, bool pressed );
+	void				MousePositionChange			( double X, double Y );
+	void				MouseWheelChange			( double delta );
+
+public:
+	EngineWrapper();
+};
 
 }
+}	// sw
+

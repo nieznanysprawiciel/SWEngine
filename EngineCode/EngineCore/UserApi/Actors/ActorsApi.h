@@ -18,10 +18,15 @@ class DynamicActor;
 #include <vector>
 #include <map>
 
-// Predefinicje pozwalaj¹ce nie includowaæ ActorsFactory
+
+// Predefinitions which allow not to include ActorsFactory.
+namespace sw
+{
+
 class ActorBase;
 typedef fastdelegate::FastDelegate0< ActorBase* > CreateActorFunction;
-#undef RegisterClass
+
+}	// sw
 
 
 namespace sw {

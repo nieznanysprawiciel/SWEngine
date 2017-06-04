@@ -10,6 +10,7 @@
 #include "swCommonLib/Common/MemoryLeaks.h"
 
 using namespace DirectX;
+using namespace sw;
 
 LightmapWorkerCPU::LightmapWorkerCPU( SceneData* sceneData )
 	: LightmapWorker( sceneData )

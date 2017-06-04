@@ -4,9 +4,12 @@
 
 
 
+namespace sw {
 namespace EditorPlugin
 {
 
+// ================================ //
+//
 EngineObjectMetaInfo::EngineObjectMetaInfo( EngineObjectWrapper^ objectPtr )
 {
 	rttr::type classType = objectPtr->GetPtr()->GetType();
@@ -30,7 +33,7 @@ void		EngineObjectMetaInfo::BuildHierarchy	( EngineObjectWrapper^ objectPtr, rtt
 {
 	// Tworzymy obiekt, kradniemy od niego pole Properties i o nim zapominamy, ¿eby zosta³ zwolniony.
 	CategoryLessPropertyWrapper^ actorClassMetaData = gcnew CategoryLessPropertyWrapper( objectPtr->GetPtr(), "" );
-	
+
 	actorClassMetaData->BuildHierarchy( objectPtr->GetPtr(), classType );
 	m_properties = actorClassMetaData->Properties;
 }
@@ -76,3 +79,5 @@ uint32						EngineObjectMetaInfo::MemorySize::get()
 }
 
 }	// EditorPlugin
+}	// sw
+

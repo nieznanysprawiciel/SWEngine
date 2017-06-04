@@ -4,15 +4,18 @@
 
 
 
+namespace sw {
 namespace EditorPlugin
 {
 
-
+// ================================ //
+//
 ResourceMetaInfo::ResourceMetaInfo( ResourceWrapper^ resource )
-	:	EngineObjectMetaInfo( resource )
+	: EngineObjectMetaInfo( resource )
 {}
 
 
 }	// EditorPlugin
+}	// sw
 
 

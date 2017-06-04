@@ -10,6 +10,7 @@
 
 
 
+namespace sw {
 namespace EditorPlugin
 {
 
@@ -23,3 +24,4 @@ public:
 };
 
 }	// EditorPlugin
+}	// sw

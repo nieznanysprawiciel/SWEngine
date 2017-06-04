@@ -14,19 +14,21 @@
 
 
 
+namespace sw {
 namespace EditorPlugin
 {
 
-
+// ================================ //
+//
 ActorWrapper::ActorWrapper( EngineObject* actor, const ActorInfo* actorInfo )
-	:	EngineObjectWrapper( actor )
-	,	m_actorInfo( actorInfo->GetRawInfo() )
+	: EngineObjectWrapper( actor )
+	, m_actorInfo( actorInfo->GetRawInfo() )
 {
 	m_name = gcnew System::String( "" );
 }
 
 /**@brief */
-ActorBase* ActorWrapper::Ptr()
+ActorBase*			ActorWrapper::Ptr()
 {
 	return static_cast< ActorBase* >( m_actorPtr );
 }
@@ -38,9 +40,11 @@ bool				ActorWrapper::LoadMesh	( System::String^ meshPath )
 	auto engine = EnginePointerProvider::GetEngine();
 
 	auto model = engine->Assets.Meshes.LoadSync( msclr::interop::marshal_as< std::wstring >( meshPath ) );
-	auto meshActor = rttr::rttr_cast< StaticActor* >( m_actorPtr );
+	auto meshActor = rttr::rttr_cast<StaticActor*>( m_actorPtr );
 
 	return meshActor->SetModel( model );
 }
 
 }	// EditorPlugin
+}	// sw
+

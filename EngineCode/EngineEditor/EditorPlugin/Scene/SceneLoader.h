@@ -1,8 +1,20 @@
 #pragma once
+/**
+@file SceneLoader.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 
 #include "EngineEditor/EditorPlugin/Actors/ActorWrapper.h"
 
 class IDeserializer;
+
+
+namespace sw
+{
+
 
 namespace Api
 {
@@ -11,6 +23,8 @@ namespace Api
 
 namespace EditorPlugin
 {
+
+
 using namespace System::Collections::Generic;
 using namespace System::Collections::ObjectModel;
 
@@ -37,3 +51,4 @@ private:
 
 
 }	//	EditorPlugin
+}	// sw

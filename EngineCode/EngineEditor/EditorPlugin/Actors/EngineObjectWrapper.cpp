@@ -4,13 +4,14 @@
 #include "swCommonLib/Common/EngineObject.h"
 
 
+namespace sw {
 namespace EditorPlugin
 {
 
 
 
 EngineObjectWrapper::EngineObjectWrapper( EngineObject* actor )
-	:	m_actorPtr( actor )
+	: m_actorPtr( actor )
 {}
 
 /**@brief Zwraca nazwê typu pobran¹ przez rttr::type.*/
@@ -41,3 +42,4 @@ int					EngineObjectWrapper::Type::get()
 
 
 }	// EditorPlugin
+}	// sw

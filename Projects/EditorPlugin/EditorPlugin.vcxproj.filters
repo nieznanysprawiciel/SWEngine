@@ -149,6 +149,9 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EditorClasses\GizmoActorWrapper.h">
       <Filter>EditorPlugin\Actors\EditorClasses</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\IncludeWindows.h">
+      <Filter>EditorPlugin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\EngineCode\EngineEditor\EditorPlugin\SW_engine.aps">

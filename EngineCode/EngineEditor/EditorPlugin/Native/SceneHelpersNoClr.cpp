@@ -1,14 +1,25 @@
 #pragma unmanaged
+/**
+@file SceneHelpersNoClr.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
 
 
 #include "SceneHelpers.h"
 
-#include "Common/Serialization/Serializer.h"
-#include "Common/Serialization/SW/EngineSerializationContext.h"
+#include "swCommonLib/Serialization/Serializer.h"
+#include "swCommonLib/Serialization/PropertySerialization/EngineSerializationContext.h"
 
 
 
-ISerializer* SceneHelpers::CreateSerializerWithContext()
+namespace sw
+{
+
+// ================================ //
+//
+ISerializer*		SceneHelpers::CreateSerializerWithContext()
 {
 	auto context = std::make_unique< EngineSerializationContext >();
 	context->SaveWholeMap = true;
@@ -17,3 +28,4 @@ ISerializer* SceneHelpers::CreateSerializerWithContext()
 	return ser;
 }
 
+}	// sw

@@ -170,9 +170,9 @@ void LightmapLogic::ProceedGameLogic			( float time )
 
 Funkcja zbiera kolejne lightmapy i wstawia do odpowiednich obiektów.
 Ponadto kasuje obiekty stworzone do jednorazowego renderowania.*/
-void LightmapLogic::RenderEnded( const EngineObject* sender, Event* renderEndedEvent )
+void LightmapLogic::RenderEnded( const EngineObject* sender, sw::Event* renderEndedEvent )
 {
-	if( renderEndedEvent->type == (unsigned int)EventType::RenderOnceEndedEvent )
+	if( renderEndedEvent->type == (unsigned int)sw::EventType::RenderOnceEndedEvent )
 	{
 		//RenderOnceEndedEvent* castedEvent = static_cast<RenderOnceEndedEvent*>( renderEndedEvent );
 		//RenderPassDepracated* renderPass = castedEvent->renderPass;
@@ -219,7 +219,7 @@ int LightmapLogic::UnloadLevel					()
 {	
 	m_layout->DeleteObjectReference();
 	m_engine->Actors.Communication.RemoveListenerDelayed< sw::KeyDownEvent >( this );
-	m_engine->Actors.Communication.RemoveListenerDelayed< RenderOnceEndedEvent >( this );
+	m_engine->Actors.Communication.RemoveListenerDelayed< sw::RenderOnceEndedEvent >( this );
 
 	return 0;
 }
@@ -233,24 +233,24 @@ obs³ugi pod jeden event, to wywo³ywana jest te¿ funkcja LoadScene, je¿eli wciœni
 
 @param[in] genLightmapEvent Event generowany po wciœniêciu odpowiedniego przycisku.
 */
-void LightmapLogic::GenerateLightmaps			( const EngineObject* sender, Event* keyEvent )
+void LightmapLogic::GenerateLightmaps			( const EngineObject* sender, sw::Event* keyEvent )
 {
 	if( m_lightmapState != LightmapState::ReadyToGenerate )
 		return;
 
-	if( keyEvent->type == (unsigned int)EventType::KeyDownEvent )
+	if( keyEvent->type == (unsigned int)sw::EventType::KeyDownEvent )
 	{
 		sw::KeyDownEvent* genLightmapEvent = static_cast< sw::KeyDownEvent* >( keyEvent );
-		if( genLightmapEvent->VirtualIndex == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 ||
-			genLightmapEvent->VirtualIndex == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS2 ||
-			genLightmapEvent->VirtualIndex == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS3 ||
-			genLightmapEvent->VirtualIndex == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS4 ||
-			genLightmapEvent->VirtualIndex == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS5 )
+		if( genLightmapEvent->VirtualIndex == sw::STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 ||
+			genLightmapEvent->VirtualIndex == sw::STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS2 ||
+			genLightmapEvent->VirtualIndex == sw::STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS3 ||
+			genLightmapEvent->VirtualIndex == sw::STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS4 ||
+			genLightmapEvent->VirtualIndex == sw::STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS5 )
 		{
 			SceneData* sceneData = PrepareSceneData();
 
 			// Tutaj wysy³amy dane do innych w¹tków, ¿eby liczy³y wszystko w tle.
-			if( genLightmapEvent->VirtualIndex == STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 )
+			if( genLightmapEvent->VirtualIndex == sw::STANDARD_LAYERS::PROTOTYPE_BUTTONS::GENERATE_LIGHTMAPS1 )
 			{
 				LightmapWorkerCPU* worker = new LightmapWorkerCPU( sceneData );
 				m_lightmapWorker = worker;
@@ -259,7 +259,7 @@ void LightmapLogic::GenerateLightmaps			( const EngineObject* sender, Event* key
 
 			m_lightmapState = LightmapState::Generating;
 		}
-		else if( genLightmapEvent->VirtualIndex == STANDARD_LAYERS::PROTOTYPE_BUTTONS::LOAD_LIGHTMAP_SCENE )
+		else if( genLightmapEvent->VirtualIndex == sw::STANDARD_LAYERS::PROTOTYPE_BUTTONS::LOAD_LIGHTMAP_SCENE )
 			LoadScene( genLightmapEvent );
 	}
 }
@@ -321,7 +321,7 @@ SceneData* LightmapLogic::PrepareSceneData			()
 @todo Tutaj póŸniej znajdzie siê kod do ³adowania jakiejœ sceny, albo nawet kilku.
 Byæ mo¿e trzeba bêdzie zrobiæ jakis plik konfiguracyjny do wczytywania, ale
 w wersji pocz¹tkowej mo¿e byæ wszystko tworzone z kodu.*/
-void LightmapLogic::LoadScene					( Event* keyEvent )
+void LightmapLogic::LoadScene					( sw::Event* keyEvent )
 {
 
 }

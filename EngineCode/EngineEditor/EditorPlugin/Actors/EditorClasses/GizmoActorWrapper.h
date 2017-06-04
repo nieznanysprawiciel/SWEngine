@@ -1,9 +1,17 @@
 #pragma once
+/**
+@file GizmoActorWrapper.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 
 #include "EngineEditor/EditorPlugin/Actors/ActorWrapper.h"
 #include "EngineCore/ControllersEngine/BasicControllers/Editor/GizmoController.h"
 
 
+namespace sw {
 namespace EditorPlugin
 {
 
@@ -15,7 +23,7 @@ public enum class TransformType
 };
 
 
-
+/**@brief */
 public ref class GizmoActorWrapper : public ActorWrapper
 {
 private:
@@ -55,3 +63,4 @@ protected:
 
 
 }	// EditorPlugin
+}	// sw

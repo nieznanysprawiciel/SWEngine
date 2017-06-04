@@ -1,11 +1,23 @@
 #pragma once
+/**
+@file SceneSaver.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
 
 #include "EngineEditor/EditorPlugin/Actors/ActorWrapper.h"
 
 class ISerializer;
 
+
+
+
+namespace sw {
 namespace EditorPlugin
 {
+
+
 using namespace System::Collections::Generic;
 using namespace System::Collections::ObjectModel;
 
@@ -28,3 +40,4 @@ private:
 
 
 }	//	EditorPlugin
+}	// sw

@@ -12,12 +12,15 @@
 
 
 
-class Engine;
 
 
 
 namespace sw
 {
+
+
+class Engine;
+
 
 /**@brief Modu³ do obs³ugi wejœcia wyjœcia.
 @ingroup EngineCore

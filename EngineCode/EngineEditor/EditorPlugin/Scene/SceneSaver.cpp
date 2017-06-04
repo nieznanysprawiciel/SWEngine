@@ -11,23 +11,26 @@
 #include <msclr/marshal_cppstd.h>
 
 
+
+
+namespace sw {
 namespace EditorPlugin
 {
 
 /**@brief */
-void SceneSaver::ActorsToSave( ObservableCollection<ActorWrapper^>^ actors )
+void		SceneSaver::ActorsToSave( ObservableCollection<ActorWrapper^>^ actors )
 {
 	m_actors = actors;
 }
 
 
 /**@brief */
-bool SceneSaver::SaveScene( System::String^ fileName )
+bool		SceneSaver::SaveScene( System::String^ fileName )
 {
 	auto engine = EnginePointerProvider::GetEngine();
 	std::string filePath = msclr::interop::marshal_as< std::string >( fileName );
 
-	auto ser = SceneHelpers::CreateSerializerWithContext();	
+	auto ser = SceneHelpers::CreateSerializerWithContext();
 	SerializeActors( ser );
 
 	bool result = ser->SaveFile( filePath, WritingMode::Readable );
@@ -38,7 +41,7 @@ bool SceneSaver::SaveScene( System::String^ fileName )
 
 
 /**@brief */
-void SceneSaver::SerializeActors( ISerializer* ser )
+void		SceneSaver::SerializeActors( ISerializer* ser )
 {
 	auto engine = EnginePointerProvider::GetEngine();
 
@@ -60,3 +63,6 @@ void SceneSaver::SerializeActors( ISerializer* ser )
 }
 
 }	//	EditorPlugin
+}	// sw
+
+

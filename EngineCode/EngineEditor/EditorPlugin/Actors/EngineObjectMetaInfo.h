@@ -1,4 +1,11 @@
 #pragma once
+/**
+@file EngineObjectMetaInfo.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 
 #include "swCommonLib/Common/RTTR.h"
 
@@ -6,6 +13,10 @@
 #include "EngineEditor/EditorPlugin/Actors/EngineObjectWrapper.h"
 #include "EngineEditor/EditorPlugin/EditorApp/IDragable.h"
 
+
+
+namespace sw
+{
 
 class EngineObject;
 
@@ -40,13 +51,13 @@ public:
 	/**@brief Zwraca typ obiektu, którym jest @ref rttr::type zwracany przez bibliotekê rttr.*/
 	property int						Type
 	{
-		int								get()	{ return (int)m_type; }
+		int								get() { return (int)m_type; }
 	}
 
 	/**@brief Nazwa klasy.*/
 	property System::String^			TypeName
 	{
-		System::String^					get()	{ return m_actorClassName; }
+		System::String^					get() { return m_actorClassName; }
 	}
 
 	/**@brief Rozmiar klasy (operator sizeof).*/
@@ -64,12 +75,12 @@ public:
 	/**@brief Lista wszystkich Property danej klasy.*/
 	property List< PropertyWrapper^ >^	Properties
 	{
-		List< PropertyWrapper^ >^		get()	{ return m_properties; }
+		List< PropertyWrapper^ >^		get() { return m_properties; }
 	}
 
 	property EngineObjectWrapper^		Actor
 	{
-		EngineObjectWrapper^			get ()	{ return m_actorPtr; }
+		EngineObjectWrapper^			get () { return m_actorPtr; }
 	}
 
 	property List< System::String^ >^	BaseClasses
@@ -99,3 +110,4 @@ protected:
 
 
 }	// EditorPlugin
+}	// sw

@@ -24,6 +24,22 @@
 #include "swInputLibrary/InputCore/IInput.h"
 
 
+class MemoryChunk;
+
+class PixelShader;
+class VertexShader;
+class TextureObject;
+class BufferObject;
+class RenderTargetObject;
+
+class ShaderInputLayout;
+class InputLayoutDescriptor;
+struct RenderTargetDescriptor;
+
+class IGraphicAPIInitializer;
+
+
+
 namespace sw
 {
 
@@ -32,22 +48,7 @@ class Command;
 
 class Config;
 
-class IGraphicAPIInitializer;
-
-class Model3DFromFile;
-struct MaterialObject;
-class PixelShader;
-class VertexShader;
-class TextureObject;
-class BufferObject;
-class RenderTargetObject;
 class InputAbstractionLayer;
-class ShaderInputLayout;
-class InputLayoutDescriptor;
-struct RenderTargetDescriptor;
-struct MaterialObject;
-
-class MemoryChunk;
 
 class ActorBase;
 class StaticActor;

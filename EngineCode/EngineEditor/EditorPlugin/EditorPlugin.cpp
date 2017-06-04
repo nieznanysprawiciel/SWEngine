@@ -11,7 +11,7 @@
 
 
 #include "EngineCore/MainEngine/Engine.h"
-#include "Common/MacrosSwitches.h"
+#include "EngineCore/MainEngine/MacrosSwitches.h"
 #include "EngineCore/Actors/ActorObjects.h"
 
 #include "EngineCore/ControllersEngine/BaseClasses/IController.h"
@@ -20,6 +20,10 @@
 #include "EngineEditor/EditorPlugin/Native/SceneHelpers.h"
 
 #include <msclr/marshal_cppstd.h>
+
+
+namespace sw
+{
 
 
 Engine*		EnginePointerProvider::engine = nullptr;
@@ -37,9 +41,9 @@ const int window_height = 1300;
 
 
 EngineWrapper::EngineWrapper()
-	:	m_engine( nullptr )
-	,	m_inputWPF( nullptr )
-	,	m_directInput( nullptr )
+	: m_engine( nullptr )
+	, m_inputWPF( nullptr )
+	, m_directInput( nullptr )
 {}
 
 
@@ -64,7 +68,7 @@ bool EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
 
 	// Zmieniamy modu³ wejœcia (klawiatury) na proxy WPFowe
 	WPFInputProxy* proxyInput = new WPFInputProxy();
-	
+
 	InputInitInfo initInfo;
 	initInfo.AppInstance = handle;
 	initInfo.WndHandle = nullptr;
@@ -169,7 +173,7 @@ ActorWrapper^						EngineWrapper::CreateActor				( System::String^ actorName, do
 	if( newActor == nullptr )
 		return nullptr;
 
-	StaticActor* actor = static_cast< StaticActor* >( newActor->GetActorPtr().ToPointer() );
+	StaticActor* actor = static_cast<StaticActor*>( newActor->GetActorPtr().ToPointer() );
 	SceneHelpers::SetActorInitialPosition( actor, mouseX, mouseY );
 
 	return newActor;
@@ -178,13 +182,13 @@ ActorWrapper^						EngineWrapper::CreateActor				( System::String^ actorName, do
 /**@brief Przyczepia do wybranego aktora (selection) kontroler gizma.*/
 void								EngineWrapper::SelectActor				( ActorWrapper^ gizmo, ActorWrapper^ selection )
 {
-	auto gizmoPtr = static_cast< DynamicActor* >( gizmo->GetActorPtr().ToPointer() );
-	auto selectionPtr = static_cast< StaticActor* >( selection->GetActorPtr().ToPointer() );
+	auto gizmoPtr = static_cast<DynamicActor*>( gizmo->GetActorPtr().ToPointer() );
+	auto selectionPtr = static_cast<StaticActor*>( selection->GetActorPtr().ToPointer() );
 
-	assert( rttr::rttr_cast< DynamicActor* >( gizmoPtr ) );
+	assert( rttr::rttr_cast<DynamicActor*>( gizmoPtr ) );
 
-	auto gizmoController = static_cast< GizmoController* >( gizmoPtr->GetController() );
-	assert( rttr::rttr_cast< GizmoController* >( gizmoController ) );
+	auto gizmoController = static_cast<GizmoController*>( gizmoPtr->GetController() );
+	assert( rttr::rttr_cast<GizmoController*>( gizmoController ) );
 
 	gizmoController->SetFollowedActor( selectionPtr );
 }
@@ -341,7 +345,7 @@ ObservableCollection< ResourceWrapper^ >^			EngineWrapper::CreateBuffersList()
 /**@brief */
 void		EngineWrapper::KeyboardChange		( System::Windows::Input::Key keyId, bool pressed )
 {
-	m_inputWPF->KeyboardChange( (int) keyId, pressed );
+	m_inputWPF->KeyboardChange( (int)keyId, pressed );
 }
 
 /**@brief */
@@ -367,3 +371,4 @@ void EngineWrapper::MouseWheelChange( double delta )
 
 //#pragma managed(pop)
 
+}	// sw

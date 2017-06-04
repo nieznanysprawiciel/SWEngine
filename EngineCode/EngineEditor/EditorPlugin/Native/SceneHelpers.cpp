@@ -1,3 +1,10 @@
+/**
+@file SceneHelpers.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #pragma unmanaged
 #pragma warning(disable : 4561)	// DirectXMath converting fastcall to stdcall
 
@@ -15,6 +22,13 @@
 #include "EngineEditor/EditorPlugin/EnginePointerProvider.h"
 
 
+
+namespace sw
+{
+
+
+ // ================================ //
+//
 void		SceneHelpers::SetActorInitialPosition		( StaticActor* actor, double mouseX, double mouseY )
 {
 	auto engine = EnginePointerProvider::GetEngine();
@@ -28,6 +42,7 @@ void		SceneHelpers::SetActorInitialPosition		( StaticActor* actor, double mouseX
 	actor->Teleport( intersection );
 }
 
+}	// sw
 
 
 

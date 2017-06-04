@@ -12,11 +12,13 @@
 
 #include <assert.h>
 
-class Event;
-
 
 
 namespace sw {
+
+
+class Event;
+
 namespace Api {
 namespace Actors {
 

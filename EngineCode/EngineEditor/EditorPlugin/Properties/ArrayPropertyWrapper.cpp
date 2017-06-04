@@ -1,13 +1,22 @@
+/**
+@file ArrayPropertyWrapper.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "ArrayPropertyWrapper.h"
 #include "ArrayElementPropertyWrapper.h"
 
 
+namespace sw {
 namespace EditorPlugin
 {
 
-
+// ================================ //
+//
 ArrayPropertyWrapper::ArrayPropertyWrapper( void* parent, rttr::property prop )
-	:	CategoryLessPropertyWrapper( parent, PropertyType::PropertyArray, prop, prop.get_name().c_str() )
+	: CategoryLessPropertyWrapper( parent, PropertyType::PropertyArray, prop, prop.get_name().c_str() )
 {
 	assert( prop.is_array() );
 
@@ -81,4 +90,5 @@ uint32		ArrayPropertyWrapper::ArraySize::get()
 
 
 }	// EditorPlugin
+}	// sw
 

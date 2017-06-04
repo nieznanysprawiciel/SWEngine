@@ -11,6 +11,11 @@
 
 #include <msclr/marshal_cppstd.h>
 
+
+
+
+
+namespace sw {
 namespace EditorPlugin
 {
 
@@ -19,7 +24,7 @@ GizmoActorWrapper^	EditorActorsFactory::CreateGizmoActor( System::String^ transl
 {
 	auto engine = EnginePointerProvider::GetEngine();
 
-	DynamicActor* actor = static_cast< DynamicActor* >( engine->Actors.CreateActor( rttr::type::get< DynamicActor >() ) );
+	DynamicActor* actor = static_cast<DynamicActor*>( engine->Actors.CreateActor( rttr::type::get< DynamicActor >() ) );
 	engine->Actors.AddToModules( actor, ActorInfoFlag::EnablePreController | ActorInfoFlag::EnablePostController | ActorInfoFlag::EnableDisplay );
 
 	// Loading meshes
@@ -48,7 +53,7 @@ ActorWrapper^		EditorActorsFactory::CreateDefaultCamera( bool setAsCurrent )
 {
 	auto engine = EnginePointerProvider::GetEngine();
 
-	CameraActor* camera = static_cast< CameraActor* >( engine->Actors.CreateActor( rttr::type::get< CameraActor >() ) );
+	CameraActor* camera = static_cast<CameraActor*>( engine->Actors.CreateActor( rttr::type::get< CameraActor >() ) );
 	engine->Actors.AddToModules( camera, ActorInfoFlag::EnableMovement | ActorInfoFlag::EnablePreController | ActorInfoFlag::AsCamera );
 
 
@@ -57,7 +62,7 @@ ActorWrapper^		EditorActorsFactory::CreateDefaultCamera( bool setAsCurrent )
 
 	// Przypisujemy kontroler ( dla kontrolerów trzeba zrobiæ jakiœ mechanizm przechowywania i zwalniania)
 	SpectatorCameraController* controller = new SpectatorCameraController(
-	engine->Input.GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ) );
+		engine->Input.GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ) );
 	camera->SetController( controller );
 
 	// Wstawiamy kamerê do odpowiednich modu³ów
@@ -72,3 +77,4 @@ ActorWrapper^		EditorActorsFactory::CreateDefaultCamera( bool setAsCurrent )
 }
 
 }	// EditorPlugin
+}	// sw

@@ -1,8 +1,20 @@
 #pragma once
+/**
+@file ActorWrapper.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 
 #include "EngineEditor/EditorPlugin/EnginePointerProvider.h"
 #include "EngineEditor/EditorPlugin/Actors/EngineObjectWrapper.h"
 #include "EngineCore/Actors/ActorInfo.h"
+
+
+
+namespace sw
+{
 
 
 class Engine;
@@ -26,76 +38,76 @@ public:
 	ActorWrapper		( EngineObject* actor, const ActorInfo* actorInfo );
 
 	ActorBase*			Ptr			();
-	unsigned short		GetActorInfo()		{ return m_actorInfo; }
-	
+	unsigned short		GetActorInfo() { return m_actorInfo; }
+
 	bool				LoadMesh	( System::String^ meshPath );
 
 public:
 	property System::String^	ActorName
 	{
-		System::String^		get		()							{ return m_name; }
-		void				set		( System::String^ name )	{ m_name = name; }
+		System::String^		get		() { return m_name; }
+		void				set		( System::String^ name ) { m_name = name; }
 	}
 
 
 	property bool	EnableDisplay
 	{
-		bool		get	()				{ return ActorInfo( m_actorInfo ).EnableDisplay(); }
-		void		set ( bool value )	{ SetActorInfo( value, ActorInfoFlag::EnableDisplay ); }
+		bool		get	() { return ActorInfo( m_actorInfo ).EnableDisplay(); }
+		void		set ( bool value ) { SetActorInfo( value, ActorInfoFlag::EnableDisplay ); }
 	}
 
 	property bool	EnableMovement
 	{
-		bool		get ()				{ return ActorInfo( m_actorInfo ).EnableMovement(); }
-		void		set ( bool value )	{ SetActorInfo( value, ActorInfoFlag::EnableMovement ); }
+		bool		get () { return ActorInfo( m_actorInfo ).EnableMovement(); }
+		void		set ( bool value ) { SetActorInfo( value, ActorInfoFlag::EnableMovement ); }
 	}
 
 	property bool	EnablePhysic
 	{
-		bool		get ()				{ return ActorInfo( m_actorInfo ).EnablePhysic(); }
-		void		set ( bool value )	{ SetActorInfo( value, ActorInfoFlag::EnablePhysic ); }
+		bool		get () { return ActorInfo( m_actorInfo ).EnablePhysic(); }
+		void		set ( bool value ) { SetActorInfo( value, ActorInfoFlag::EnablePhysic ); }
 	}
 
 	property bool	EnableCollisions
 	{
-		bool		get ()				{ return ActorInfo( m_actorInfo ).EnableCollisions(); }
-		void		set ( bool value )	{ SetActorInfo( value, ActorInfoFlag::EnableCollisions ); }
+		bool		get () { return ActorInfo( m_actorInfo ).EnableCollisions(); }
+		void		set ( bool value ) { SetActorInfo( value, ActorInfoFlag::EnableCollisions ); }
 	}
 
 	property bool	EnableShadow
 	{
-		bool		get ()				{ return ActorInfo( m_actorInfo ).EnableShadow(); }
-		void		set ( bool value )	{ SetActorInfo( value, ActorInfoFlag::EnableShadow ); }
+		bool		get () { return ActorInfo( m_actorInfo ).EnableShadow(); }
+		void		set ( bool value ) { SetActorInfo( value, ActorInfoFlag::EnableShadow ); }
 	}
 
 	property bool	EnablePreController
 	{
-		bool		get ()				{ return ActorInfo( m_actorInfo ).EnablePreController(); }
-		void		set ( bool value )	{ SetActorInfo( value, ActorInfoFlag::EnablePreController ); }
+		bool		get () { return ActorInfo( m_actorInfo ).EnablePreController(); }
+		void		set ( bool value ) { SetActorInfo( value, ActorInfoFlag::EnablePreController ); }
 	}
 
 	property bool	EnablePostController
 	{
-		bool		get ()				{ return ActorInfo( m_actorInfo ).EnablePostController(); }
-		void		set ( bool value )	{ SetActorInfo( value, ActorInfoFlag::EnablePostController ); }
+		bool		get () { return ActorInfo( m_actorInfo ).EnablePostController(); }
+		void		set ( bool value ) { SetActorInfo( value, ActorInfoFlag::EnablePostController ); }
 	}
 
 	property bool	IsLight
 	{
-		bool		get ()				{ return ActorInfo( m_actorInfo ).IsLight(); }
-		void		set ( bool value )	{ SetActorInfo( value, ActorInfoFlag::AsLight ); }
+		bool		get () { return ActorInfo( m_actorInfo ).IsLight(); }
+		void		set ( bool value ) { SetActorInfo( value, ActorInfoFlag::AsLight ); }
 	}
 
 	property bool	IsCamera
 	{
-		bool		get ()				{ return ActorInfo( m_actorInfo ).IsCamera(); }
-		void		set ( bool value )	{ SetActorInfo( value, ActorInfoFlag::AsCamera ); }
+		bool		get () { return ActorInfo( m_actorInfo ).IsCamera(); }
+		void		set ( bool value ) { SetActorInfo( value, ActorInfoFlag::AsCamera ); }
 	}
 
 	property bool	EnableSavingToFile
 	{
-		bool		get ()				{ return ActorInfo( m_actorInfo ).EnableSavingToFile(); }
-		void		set ( bool value )	{ SetActorInfo( value, ActorInfoFlag::EnableSavingToFile ); }
+		bool		get () { return ActorInfo( m_actorInfo ).EnableSavingToFile(); }
+		void		set ( bool value ) { SetActorInfo( value, ActorInfoFlag::EnableSavingToFile ); }
 	}
 
 private:
@@ -108,3 +120,5 @@ private:
 };
 
 }	//	EditorPlugin
+}	// sw
+

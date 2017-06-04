@@ -1,5 +1,14 @@
 #pragma once
+/**
+@file EngineObjectWrapper.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
 
+
+
+namespace sw
+{
 
 class EngineObject;
 
@@ -29,11 +38,11 @@ public:
 
 	property System::String^	TypeName
 	{
-		System::String^		get ()		{ return GetTypeName(); }
+		System::String^		get () { return GetTypeName(); }
 	}
 };
 
 
 
 }	// EditorPlugin
-
+}	// sw

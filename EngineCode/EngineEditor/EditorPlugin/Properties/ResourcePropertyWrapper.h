@@ -1,7 +1,14 @@
 #pragma once
+/**
+@file ResourcePropertyWrapper.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
 
 #include "PropertyWrapper.h"
 
+namespace sw {
 namespace EditorPlugin
 {
 
@@ -47,3 +54,4 @@ public:
 
 
 }	// EditorPlugin
+}	// sw

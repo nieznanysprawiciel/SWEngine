@@ -15,7 +15,7 @@ namespace sw {
 
 Aby w³¹czyæ generowanie nale¿y wcisn¹æ przycisk 1, 2, 3, 4 lub 5.
 Wybierana jest jedna z funkcji do generowania.*/
-class LightmapLogic : public IGamePlay
+class LightmapLogic : public sw::IGamePlay
 {
 private:
 protected:
@@ -42,9 +42,9 @@ public:
 private:
 	///@name Funkcje obs³ugi eventów.
 	///@{
-	void			GenerateLightmaps			( const EngineObject* sender, Event* );
-	void			RenderEnded					( const EngineObject* sender, Event* );
-	void			LoadScene					( Event* );
+	void			GenerateLightmaps			( const EngineObject* sender, sw::Event* );
+	void			RenderEnded					( const EngineObject* sender, sw::Event* );
+	void			LoadScene					( sw::Event* );
 	///@}
 private:
 	SceneData*		PrepareSceneData			();

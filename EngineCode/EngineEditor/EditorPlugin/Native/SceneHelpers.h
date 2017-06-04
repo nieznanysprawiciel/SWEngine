@@ -1,9 +1,21 @@
 #pragma once
+/**
+@file SceneHelpers.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
 
-
-class StaticActor;
 class ISerializer;
 
+
+namespace sw
+{
+
+class StaticActor;
+
+
+
+/**@brief */
 class SceneHelpers
 {
 public:
@@ -12,3 +24,4 @@ public:
 	static ISerializer*	CreateSerializerWithContext	();
 };
 
+}	// sw

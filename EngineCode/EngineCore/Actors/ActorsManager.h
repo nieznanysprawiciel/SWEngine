@@ -14,13 +14,15 @@
 #include <string>
 
 
+class ISerializer;
+class IDeserializer;
+
+
 namespace sw
 {
 
 
 class Engine;
-class ISerializer;
-class IDeserializer;
 
 
 /**@brief Modu³ do zarz¹dzania aktorami.

@@ -1,6 +1,8 @@
 #pragma warning(disable : 4561)
+
+
 #include "PropertyWrapper.h"
-#include "Common/RTTR.h"
+#include "swCommonLib/Common/RTTR.h"
 
 #include <msclr/marshal_cppstd.h>
 
@@ -9,6 +11,7 @@
 
 
 
+namespace sw {
 namespace EditorPlugin
 {
 
@@ -123,7 +126,7 @@ void				WStringPropertyWrapper::SetValue( void* refObject, System::String^ newVa
 
 /**@brief */
 EnumPropertyWrapper::EnumPropertyWrapper( void* parent, rttr::property prop )
-	:	PropertyWrapper( parent, PropertyType::PropertyEnum, prop, prop.get_name().c_str() )
+	: PropertyWrapper( parent, PropertyType::PropertyEnum, prop, prop.get_name().c_str() )
 {
 	auto enumeration = prop.get_enumeration();
 	auto enumStrings = enumeration.get_names();
@@ -143,7 +146,7 @@ System::String^		EnumPropertyWrapper::GetValue( void* refObject )
 	// Create variant with void* type and convert it to proper type.
 	rttr::variant declaringObject( refObject );
 	bool success = declaringObject.unsafe_convert_void( prop.get_declaring_type_ptr() );
-		
+
 	assert( success );
 
 	rttr::variant enumValue = prop.get_value( declaringObject );
@@ -160,7 +163,7 @@ void				EnumPropertyWrapper::SetValue( void* refObject, System::String^ newValue
 	// Create variant with void* type and convert it to proper type.
 	rttr::variant declaringObject( refObject );
 	bool success = declaringObject.unsafe_convert_void( prop.get_declaring_type_ptr() );
-		
+
 	assert( success );
 
 	auto enumeration = prop.get_enumeration();
@@ -202,7 +205,7 @@ void CategoryPropertyWrapper::BuildHierarchy( void* parentPtr, rttr::type classT
 				categories[ "Other" ] = gcnew CategoryPropertyWrapper( parentPtr, "Other" );
 
 			categories[ "Other" ]->Properties->Add( BuildProperty( parentPtr, prop ) );
-		}	
+		}
 	}
 
 	for each ( auto var in categories )
@@ -247,9 +250,9 @@ PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( void* parent, rttr::pro
 		}
 		else
 			throw gcnew System::ArgumentException( gcnew System::String( "Property type: [" )
-												+ gcnew System::String( property.get_name().c_str() )
-												+ gcnew System::String( "] is not supported" ),
-												gcnew System::String( "property" ) );
+												   + gcnew System::String( property.get_name().c_str() )
+												   + gcnew System::String( "] is not supported" ),
+												   gcnew System::String( "property" ) );
 	}
 	else if( propertyType == rttr::type::get< std::string >() )
 	{
@@ -260,7 +263,7 @@ PropertyWrapper^ CategoryPropertyWrapper::BuildProperty( void* parent, rttr::pro
 		return gcnew WStringPropertyWrapper( parent, property );
 	}
 	else if( propertyType == rttr::type::get< DirectX::XMFLOAT2* >()
-			 || propertyType == rttr::type::get< DirectX::XMFLOAT3* >() 
+			 || propertyType == rttr::type::get< DirectX::XMFLOAT3* >()
 			 || propertyType == rttr::type::get< DirectX::XMFLOAT4* >() )
 	{
 		auto propertyWrapper = gcnew XMFloatPropertyWrapper( parent, property );
@@ -324,7 +327,7 @@ void CategoryLessPropertyWrapper::BuildHierarchy( void* parent, rttr::type class
 }
 
 
-void* VoidMove( void* obj )	{ return obj; }
+void* VoidMove( void* obj ) { return obj; }
 
 /**@brief Zbuduj hierarchiê metadanych z podanego obiektu.*/
 void CategoryLessPropertyWrapper::BuildHierarchy()
@@ -339,10 +342,10 @@ void CategoryLessPropertyWrapper::BuildHierarchy()
 	// Trzeba pobraæ realny type w³aœciwoœci. Mo¿e byæ tak, ¿e w³aœciwoœæ jest klas¹ bazow¹,
 	// a tak my chcemy zbudowaæ hierarchiê dla klasy pochodnej.
 	auto realContent = property.get_value( declaringObject );
-	
+
 	void* realPtr = realContent.get_value< void* >();
 	rttr::type realType = realContent.get_type();
-	
+
 	// Obs³ugujemy type owrappowane.
 	if( realContent.get_type().is_wrapper() && realPtr != nullptr )
 	{
@@ -358,3 +361,5 @@ void CategoryLessPropertyWrapper::BuildHierarchy()
 
 
 }
+}	// sw
+

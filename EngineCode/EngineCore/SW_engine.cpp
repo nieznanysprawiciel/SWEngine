@@ -15,7 +15,7 @@ const unsigned int WINDOW_HEIGHT = 800;		///<Wysokoœæ okna aplikacji.
 // Global Variables:
 
 // engine variables
-Engine* engine;
+sw::Engine* engine;
 
 
 int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
@@ -33,7 +33,7 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	int result;
 
-	engine = new Engine();
+	engine = new sw::Engine();
 
 	//creating aplication window
 	result = engine->InitEngine( nCmdShow );

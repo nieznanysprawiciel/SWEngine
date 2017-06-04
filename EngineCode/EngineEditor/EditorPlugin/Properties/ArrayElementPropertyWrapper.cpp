@@ -1,7 +1,15 @@
+/**
+@file ArrayElementPropertyWrapper.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "ArrayElementPropertyWrapper.h"
 
 
 
+namespace sw {
 namespace EditorPlugin
 {
 
@@ -10,7 +18,7 @@ namespace EditorPlugin
 // ================================ //
 //
 ArrayElementPropertyWrapper::ArrayElementPropertyWrapper( void* parent, const std::string& name )
-	:	CategoryLessPropertyWrapper( parent, PropertyType::PropertyUnknown, RTTRPropertyRapist::MakeProperty( nullptr ), name.c_str() )
+	: CategoryLessPropertyWrapper( parent, PropertyType::PropertyUnknown, RTTRPropertyRapist::MakeProperty( nullptr ), name.c_str() )
 {
 	m_expandProperty = false;
 }
@@ -24,4 +32,5 @@ void		ArrayElementPropertyWrapper::BuildHierarchy		( rttr::type elementType )
 }
 
 }	// EditorPlugin
+}	// sw
 

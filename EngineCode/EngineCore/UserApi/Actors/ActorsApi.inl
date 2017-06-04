@@ -8,7 +8,7 @@ namespace Api
 {
 
 
-	/**@brief Rejestruje klasê o odanym typie.*/
+/**@brief Rejestruje klasê o odanym typie.*/
 template< typename Type >
 inline ActorType ActorsApi::RegisterClass( const std::string& name, CreateActorFunction function )
 {

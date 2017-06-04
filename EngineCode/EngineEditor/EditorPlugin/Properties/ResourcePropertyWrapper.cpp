@@ -1,17 +1,18 @@
 #pragma warning(disable : 4561)	// DirectXMath converting fastcall to stdcall
 #include "ResourcePropertyWrapper.h"
 
-#include "GraphicAPI/MeshResources.h"
+#include "swGraphicAPI/Resources/MeshResources.h"
 #include "EngineCore/ModelsManager/Assets/Meshes/MeshAsset.h"
 #include "EngineCore/ModelsManager/Assets/Materials/MaterialAsset.h"
 
 
 
+namespace sw {
 namespace EditorPlugin
 {
 
 /**@brief */
-	ResourcePropertyWrapper::ResourcePropertyWrapper( void* parent, rttr::property prop )
+ResourcePropertyWrapper::ResourcePropertyWrapper( void* parent, rttr::property prop )
 	: CategoryLessPropertyWrapper( parent, PropertyType::PropertyResource, prop, prop.get_name().c_str() )
 {
 	auto type = rttr::type::get( prop );
@@ -34,3 +35,4 @@ namespace EditorPlugin
 
 
 }	// EditorPlugin
+}	// sw

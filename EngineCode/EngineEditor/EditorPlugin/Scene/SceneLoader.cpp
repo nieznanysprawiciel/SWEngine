@@ -13,10 +13,12 @@
 using namespace sw;
 
 
+namespace sw {
 namespace EditorPlugin
 {
 
-
+// ================================ //
+//
 SceneLoader::SceneLoader()
 	: m_actors( nullptr )
 {}
@@ -68,3 +70,5 @@ ObservableCollection<ActorWrapper^>^ SceneLoader::GetLoadedActors()
 
 
 }	//	EditorPlugin
+}	// sw
+

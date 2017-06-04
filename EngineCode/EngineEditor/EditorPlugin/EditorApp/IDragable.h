@@ -1,9 +1,14 @@
 #pragma once
+/**
+@file IDragable.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
 
 //========================================//
 // windows include
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
+#include "EngineEditor/EditorPlugin/IncludeWindows.h"
 
 
 

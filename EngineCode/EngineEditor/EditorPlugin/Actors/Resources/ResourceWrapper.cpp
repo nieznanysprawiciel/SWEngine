@@ -1,18 +1,30 @@
+/**
+@file ResourceWrapper.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
 #include "ResourceWrapper.h"
 
 
-#include "GraphicAPI/MeshResources.h"
+#include "swGraphicAPI/Resources/MeshResources.h"
 #include "EngineCore/ModelsManager/Assets/Meshes/MeshAsset.h"
 #include "EngineCore/ModelsManager/Assets/Materials/MaterialAsset.h"
 
+
+
+
+namespace sw {
 namespace EditorPlugin
 {
 
 
 
-
+// ================================ //
+//
 ResourceWrapper::ResourceWrapper( ResourceObject* resource )
-	:	EngineObjectWrapper( resource )
+	: EngineObjectWrapper( resource )
 {
 	auto type = resource->GetType();
 
@@ -37,7 +49,7 @@ ResourceWrapper::ResourceWrapper( ResourceObject* resource )
 int					ResourceWrapper::ID::get()
 {
 	if( m_actorPtr )
-		return static_cast< ResourceObject* >( m_actorPtr )->GetID();
+		return static_cast<ResourceObject*>( m_actorPtr )->GetID();
 	return std::numeric_limits< uint32 >::max();
 }
 
@@ -45,8 +57,9 @@ int					ResourceWrapper::ID::get()
 System::String^		ResourceWrapper::ResourceName::get()
 {
 	if( m_actorPtr )
-		return gcnew System::String( static_cast< ResourceObject* >( m_actorPtr )->GetResourceName().c_str() );
+		return gcnew System::String( static_cast<ResourceObject*>( m_actorPtr )->GetResourceName().c_str() );
 	return gcnew System::String( "" );
 }
 
 }	// EditorPlugin
+}	// sw

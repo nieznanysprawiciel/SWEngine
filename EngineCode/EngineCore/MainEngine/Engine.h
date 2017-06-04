@@ -12,6 +12,8 @@
 #undef min
 #undef max
 #undef CreateWindow
+#undef XBUTTON1
+#undef XBUTTON2
 
 #include "EngineCore/MainEngine/MacrosSwitches.h"
 

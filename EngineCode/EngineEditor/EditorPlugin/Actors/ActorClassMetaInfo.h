@@ -7,6 +7,10 @@
 #include "EngineEditor/EditorPlugin/EditorApp/IDragable.h"
 
 
+namespace sw
+{
+
+
 class EngineObject;
 
 namespace EditorPlugin
@@ -47,24 +51,24 @@ public:
 	/**@brief Zwraca typ obiektu, którym jest @ref rttr::type zwracany przez bibliotekê rttr.*/
 	property int	Type
 	{
-		int get()	{ return (int)m_type; }
+		int get() { return (int)m_type; }
 	}
 
 	/**@brief Nazwa klasy.*/
 	property System::String^			TypeName
 	{
-		System::String^					get()	{ return m_actorClassName; }
+		System::String^					get() { return m_actorClassName; }
 	}
 
 	/**@brief Lista wszystkich Property danej klasy.*/
 	property List< PropertyWrapper^ >^	Properties
 	{
-		List< PropertyWrapper^ >^		get()	{ return m_properties; }
+		List< PropertyWrapper^ >^		get() { return m_properties; }
 	}
 
 	property ActorWrapper^				Actor
 	{
-		ActorWrapper^					get ()	{ return m_actorPtr; }
+		ActorWrapper^					get () { return m_actorPtr; }
 	}
 
 
@@ -84,3 +88,5 @@ public:
 };
 
 }	//	EditorPlugin
+
+}	// sw
