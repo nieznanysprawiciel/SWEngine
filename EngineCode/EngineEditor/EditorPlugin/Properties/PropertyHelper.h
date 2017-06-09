@@ -100,15 +100,8 @@ public class RTTRPropertyRapist
 	friend std::wstring 		GetPropertyValue< std::wstring >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
 	friend void					SetPropertyValue< std::wstring >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, std::wstring newValue );
 
-	inline static rttr::property									MakeProperty		( const rttr::detail::property_wrapper_base* wrapper )
-	{
-		return rttr::property( wrapper );
-	}
-
-	inline static const rttr::detail::property_wrapper_base*		GetWrapperBase	( rttr::property prop )
-	{
-		return prop.m_wrapper;
-	}
+	static rttr::property									MakeProperty		( const rttr::detail::property_wrapper_base* wrapper );
+	static const rttr::detail::property_wrapper_base*		GetWrapperBase	( rttr::property prop );
 };
 
 /**@brief */

@@ -56,8 +56,8 @@ public:
 
 
 protected:
-	TransformType					Translate	( GizmoController::Operation op );
-	GizmoController::Operation		Translate	( TransformType op );
+	TransformType								Translate	( sw::editor::GizmoController::Operation op );
+	sw::editor::GizmoController::Operation		Translate	( TransformType op );
 
 };
 

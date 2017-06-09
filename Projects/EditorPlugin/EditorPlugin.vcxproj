@@ -40,6 +40,7 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ArrayElementPropertyWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ArrayPropertyWrapper.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyHelper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourcePropertyWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneLoader.cpp" />
@@ -61,6 +62,7 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EnginePointerProvider.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\IncludeWindows.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Native\SceneHelpers.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\AccessPrivateIdiom.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ArrayElementPropertyWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ArrayPropertyWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyHelper.h" />

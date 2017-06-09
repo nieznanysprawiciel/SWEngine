@@ -11,6 +11,9 @@ namespace sw {
 namespace EditorPlugin
 {
 
+using namespace sw::editor;
+
+
 /**@brief Helper for getting typed GizmoController from actor.*/
 GizmoController*		GetController	( ActorBase* actor )
 {
