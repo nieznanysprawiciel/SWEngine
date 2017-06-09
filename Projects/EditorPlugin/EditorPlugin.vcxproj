@@ -82,6 +82,17 @@
     <Reference Include="System" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\EngineCode\swGraphicAPI\ProjectsDir\Visual2015\DX11API\DX11API.vcxproj">
+      <Project>{44643d7f-1c71-41c1-b452-b2dc5e088a58}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EngineCode\swInputLibrary\ProjectsDir\Visual2015\DirectInput\DirectInput.vcxproj">
+      <Project>{d1075b79-925a-436f-8c53-09bd4d5787e4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\EngineCore\SWEngine.vcxproj">
+      <Project>{08f5ad41-2020-48ab-8ac3-7fe0039ed65f}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D6D5F6EF-4B74-4EBE-8D8D-E76C7C423D05}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

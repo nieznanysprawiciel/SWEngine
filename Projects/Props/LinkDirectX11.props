@@ -7,7 +7,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
-      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\$(PlatformTarget)\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXSDK_DIR)\Lib\$(PlatformTarget)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>d3d11.lib;d3dx11.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
