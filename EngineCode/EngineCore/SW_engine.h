@@ -3,6 +3,9 @@
 #include "resource.h"
 //#include <d3d9.h>
 
+#include <Windows.h>
+
+
 // Forward declarations of functions included in this code module:
 // window procedure
 LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);

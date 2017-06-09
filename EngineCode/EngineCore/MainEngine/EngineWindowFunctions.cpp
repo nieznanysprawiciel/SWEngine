@@ -9,6 +9,10 @@ WinAPI oraz g³ówn¹ pêtlê programu @ref Engine::MainLoop.
 #include "EngineCore/stdafx.h"
 #include "Engine.h"
 #include "EngineCore/MainEngine/EngineContext.h"
+
+#include "EngineCore/SW_engine.h"
+
+
 #include <thread>
 
 
@@ -20,6 +24,9 @@ WinAPI oraz g³ówn¹ pêtlê programu @ref Engine::MainLoop.
 //global variables
 LPCWSTR szTitle = L"SWEngine (DirectX 11)";					// The title bar text
 LPCWSTR szWindowClass = L"SWEnigne window";			// the main window class name
+
+LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
+
 
 
 namespace sw
@@ -143,62 +150,6 @@ void Engine::EndAplication()
 	PostQuitMessage( 0 );
 }
 
-
-//
-//  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
-//
-//  PURPOSE:  Processes messages for the main window.
-//
-//  WM_COMMAND	- process the application menu
-//  WM_PAINT	- Paint the main window
-//  WM_DESTROY	- post a quit message and return
-//
-//
-
-//----------------------------------------------------------------------------------------------//
-//								window procedure												//
-//----------------------------------------------------------------------------------------------//
-
-LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
-{
-	PAINTSTRUCT ps;
-	HDC hdc;
-
-	switch( message )
-	{
-		case WM_PAINT:
-			hdc = BeginPaint( hWnd, &ps );
-			// TODO: Add any drawing code here...
-			EndPaint( hWnd, &ps );
-			break;
-		case WM_DESTROY:
-			PostQuitMessage( 0 );
-			break;
-		default:
-			return DefWindowProc( hWnd, message, wParam, lParam );
-	}
-	return 0;
-}
-
-// Message handler for about box.
-INT_PTR CALLBACK About( HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam )
-{
-	UNREFERENCED_PARAMETER( lParam );
-	switch( message )
-	{
-		case WM_INITDIALOG:
-			return (INT_PTR)TRUE;
-
-		case WM_COMMAND:
-			if( LOWORD( wParam ) == IDOK || LOWORD( wParam ) == IDCANCEL )
-			{
-				EndDialog( hDlg, LOWORD( wParam ) );
-				return (INT_PTR)TRUE;
-			}
-			break;
-	}
-	return (INT_PTR)FALSE;
-}
 
 //----------------------------------------------------------------------------------------------//
 //								main program loop												//
@@ -374,4 +325,64 @@ void Engine::wait_for_threads()
 #endif
 
 
-	 }	// sw
+}	// sw
+
+
+//
+//  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
+//
+//  PURPOSE:  Processes messages for the main window.
+//
+//  WM_COMMAND	- process the application menu
+//  WM_PAINT	- Paint the main window
+//  WM_DESTROY	- post a quit message and return
+//
+//
+
+//----------------------------------------------------------------------------------------------//
+//								window procedure												//
+//----------------------------------------------------------------------------------------------//
+
+LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
+{
+	PAINTSTRUCT ps;
+	HDC hdc;
+
+	switch( message )
+	{
+		case WM_PAINT:
+			hdc = BeginPaint( hWnd, &ps );
+			// TODO: Add any drawing code here...
+			EndPaint( hWnd, &ps );
+			break;
+		case WM_DESTROY:
+			PostQuitMessage( 0 );
+			break;
+		default:
+			return DefWindowProc( hWnd, message, wParam, lParam );
+	}
+	return 0;
+}
+
+// Message handler for about box.
+INT_PTR CALLBACK About( HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam )
+{
+	UNREFERENCED_PARAMETER( lParam );
+	switch( message )
+	{
+		case WM_INITDIALOG:
+			return (INT_PTR)TRUE;
+
+		case WM_COMMAND:
+			if( LOWORD( wParam ) == IDOK || LOWORD( wParam ) == IDCANCEL )
+			{
+				EndDialog( hDlg, LOWORD( wParam ) );
+				return (INT_PTR)TRUE;
+			}
+			break;
+	}
+	return (INT_PTR)FALSE;
+}
+
+
+

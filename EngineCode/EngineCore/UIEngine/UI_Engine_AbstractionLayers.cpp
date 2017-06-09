@@ -130,7 +130,7 @@ void				UIEngine::ClearAbstractionLayers()
 
 // ================================ //
 //
-inline InputAbstractionLayer*		UIEngine::GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER layer )
+InputAbstractionLayer*		UIEngine::GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER layer )
 {
 	if( layer >= STANDARD_ABSTRACTION_LAYER_COUNT )
 		return nullptr;

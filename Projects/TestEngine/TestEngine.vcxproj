@@ -61,6 +61,7 @@
     <Import Project="TestEngineConfiguration.props" />
     <Import Project="..\EngineCore\EngineCorePathMacros.props" />
     <Import Project="..\LightmapsTool\LightmapsToolPathMacros.props" />
+    <Import Project="..\Props\LinkDirectInput.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -70,6 +71,7 @@
     <Import Project="TestEngineConfiguration.props" />
     <Import Project="..\EngineCore\EngineCorePathMacros.props" />
     <Import Project="..\LightmapsTool\LightmapsToolPathMacros.props" />
+    <Import Project="..\Props\LinkDirectInput.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -79,6 +81,7 @@
     <Import Project="TestEngineConfiguration.props" />
     <Import Project="..\EngineCore\EngineCorePathMacros.props" />
     <Import Project="..\LightmapsTool\LightmapsToolPathMacros.props" />
+    <Import Project="..\Props\LinkDirectInput.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -88,6 +91,7 @@
     <Import Project="TestEngineConfiguration.props" />
     <Import Project="..\EngineCore\EngineCorePathMacros.props" />
     <Import Project="..\LightmapsTool\LightmapsToolPathMacros.props" />
+    <Import Project="..\Props\LinkDirectInput.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -190,6 +194,12 @@
     <ClInclude Include="..\..\EngineCode\TestEngine\targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\EngineCode\swGraphicAPI\ProjectsDir\Visual2015\DX11API\DX11API.vcxproj">
+      <Project>{44643d7f-1c71-41c1-b452-b2dc5e088a58}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EngineCode\swInputLibrary\ProjectsDir\Visual2015\DirectInput\DirectInput.vcxproj">
+      <Project>{d1075b79-925a-436f-8c53-09bd4d5787e4}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\EngineCore\SWEngine.vcxproj">
       <Project>{08f5ad41-2020-48ab-8ac3-7fe0039ed65f}</Project>
     </ProjectReference>

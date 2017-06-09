@@ -60,7 +60,7 @@ public:
 	int			SetStandardAbstractionLayer		( STANDARD_ABSTRACTION_LAYER layer );
 	void		ClearAbstractionLayers			();
 
-	inline InputAbstractionLayer*	GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER layer );;
+	InputAbstractionLayer*		GetStandardAbstractionLayer	( STANDARD_ABSTRACTION_LAYER layer );;
 
 	void		EnableInput						( bool val );
 
