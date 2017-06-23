@@ -1,5 +1,5 @@
 #pragma warning(disable : 4561)
-
+#include "EngineEditor/PropertyWrapperRTTR/stdafx.h"
 
 #include "PropertyWrapper.h"
 #include "swCommonLib/Common/RTTR.h"
@@ -350,7 +350,7 @@ void CategoryLessPropertyWrapper::BuildHierarchy()
 	if( realContent.get_type().is_wrapper() && realPtr != nullptr )
 	{
 		rttr::instance realInstance( realContent );
-		realPtr = realInstance.get_wrapped_ptr();
+		realPtr = realInstance.get_wrapped_instance();
 		realType = realContent.get_type().get_wrapped_type();
 	}
 

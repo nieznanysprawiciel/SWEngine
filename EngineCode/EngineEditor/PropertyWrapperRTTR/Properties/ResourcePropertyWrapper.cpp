@@ -1,4 +1,7 @@
 #pragma warning(disable : 4561)	// DirectXMath converting fastcall to stdcall
+#include "EngineEditor/PropertyWrapperRTTR/stdafx.h"
+
+
 #include "ResourcePropertyWrapper.h"
 
 #include "swGraphicAPI/Resources/MeshResources.h"

@@ -121,5 +121,4 @@
       <Value>$(DebugSuffix)</Value>
     </BuildMacro>
   </ItemGroup>
-  <Import Project="IncludeReflection.props" />
 </Project>

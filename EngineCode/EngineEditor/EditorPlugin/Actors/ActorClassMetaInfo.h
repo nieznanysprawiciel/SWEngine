@@ -7,12 +7,11 @@
 #include "EngineEditor/EditorPlugin/EditorApp/IDragable.h"
 
 
-namespace sw
-{
-
 
 class EngineObject;
 
+
+namespace sw {
 namespace EditorPlugin
 {
 using namespace System::Collections::Generic;

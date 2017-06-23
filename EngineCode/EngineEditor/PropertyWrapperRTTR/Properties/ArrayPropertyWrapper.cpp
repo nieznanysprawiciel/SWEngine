@@ -3,7 +3,7 @@
 @author nieznanysprawiciel
 @copyright File is part of Sleeping Wombat Libraries.
 */
-
+#include "EngineEditor/PropertyWrapperRTTR/stdafx.h"
 
 #include "ArrayPropertyWrapper.h"
 #include "ArrayElementPropertyWrapper.h"

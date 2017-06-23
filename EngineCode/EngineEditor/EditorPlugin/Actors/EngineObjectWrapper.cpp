@@ -18,7 +18,7 @@ EngineObjectWrapper::EngineObjectWrapper( EngineObject* actor )
 System::String^		EngineObjectWrapper::GetTypeName()
 {
 	auto typeInfo = rttr::type::get( *m_actorPtr );
-	return gcnew System::String( typeInfo.get_name().c_str() );
+	return gcnew System::String( typeInfo.get_name().to_string().c_str() );
 }
 
 /**@brief Zwraca Wskaünik na aktora przekonwertowany na IntPtr.*/

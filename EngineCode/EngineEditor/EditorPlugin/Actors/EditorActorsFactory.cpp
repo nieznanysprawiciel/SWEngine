@@ -39,7 +39,7 @@ GizmoActorWrapper^	EditorActorsFactory::CreateGizmoActor( System::String^ transl
 
 
 	// Ustawienie kontrolera
-	auto gizmoController = new GizmoController( engine->Input.GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ), translationGizmoMesh, rotationGizmoMesh, scaleGimzoMesh );
+	auto gizmoController = new editor::GizmoController( engine->Input.GetStandardAbstractionLayer( STANDARD_ABSTRACTION_LAYER::PROTOTYPE_BUTTONS ), translationGizmoMesh, rotationGizmoMesh, scaleGimzoMesh );
 	actor->SetController( gizmoController );
 
 	// Tworzenie wrappera edytorowego dla aktora

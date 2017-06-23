@@ -18,7 +18,7 @@ Aby wype³niæ klasê metadanymi nale¿y wywo³ac funkcjê BuildHierarchy.*/
 ActorClassMetaInfo::ActorClassMetaInfo			( rttr::type classType )
 {
 	m_type = classType.get_id();
-	m_actorClassName = gcnew System::String( classType.get_name().c_str() );
+	m_actorClassName = gcnew System::String( classType.get_name().to_string().c_str() );
 }
 
 /**@brief Tworzy obiekt i wype³nia go metadanymi.*/
@@ -28,7 +28,7 @@ ActorClassMetaInfo::ActorClassMetaInfo			( ActorWrapper^ actor )
 
 	m_type = classType.get_id();
 	m_actorPtr = actor;
-	m_actorClassName = gcnew System::String( classType.get_name().c_str() );
+	m_actorClassName = gcnew System::String( classType.get_name().to_string().c_str() );
 
 	BuildHierarchy( actor, classType );
 }

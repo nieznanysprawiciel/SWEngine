@@ -5,14 +5,11 @@
 @copyright File is part of Sleeping Wombat Libraries.
 */
 
-
-
-namespace sw
-{
-
 class EngineObject;
 
 
+
+namespace sw {
 namespace EditorPlugin
 {
 

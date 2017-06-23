@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="PropertyWrapperRTTR">
+      <UniqueIdentifier>{cc34abb0-98a8-43eb-8cf0-6513b6eb9cf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PropertyWrapperRTTR\Properties">
+      <UniqueIdentifier>{a826b9da-a6be-4e22-9d6d-dc0fa7802550}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PrecompiledHeader">
+      <UniqueIdentifier>{c48caa3c-6fc0-4f29-b16e-30e3220a0ca0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\AccessPrivateIdiom.h">
+      <Filter>PropertyWrapperRTTR\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ArrayElementPropertyWrapper.h">
+      <Filter>PropertyWrapperRTTR\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ArrayPropertyWrapper.h">
+      <Filter>PropertyWrapperRTTR\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\PropertyHelper.h">
+      <Filter>PropertyWrapperRTTR\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\PropertyWrapper.h">
+      <Filter>PropertyWrapperRTTR\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ResourcePropertyWrapper.h">
+      <Filter>PropertyWrapperRTTR\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\stdafx.h">
+      <Filter>PrecompiledHeader</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ArrayElementPropertyWrapper.cpp">
+      <Filter>PropertyWrapperRTTR\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ArrayPropertyWrapper.cpp">
+      <Filter>PropertyWrapperRTTR\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\PropertyHelper.cpp">
+      <Filter>PropertyWrapperRTTR\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\PropertyWrapper.cpp">
+      <Filter>PropertyWrapperRTTR\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ResourcePropertyWrapper.cpp">
+      <Filter>PropertyWrapperRTTR\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\stdafx.cpp">
+      <Filter>PrecompiledHeader</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

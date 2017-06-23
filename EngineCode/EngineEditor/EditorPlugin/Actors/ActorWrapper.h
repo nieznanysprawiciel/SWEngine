@@ -12,13 +12,15 @@
 #include "EngineCore/Actors/ActorInfo.h"
 
 
+class EngineObject;
+
+
 
 namespace sw
 {
 
 
 class Engine;
-class EngineObject;
 class ActorBase;
 
 

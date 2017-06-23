@@ -16,7 +16,7 @@ EngineObjectMetaInfo::EngineObjectMetaInfo( EngineObjectWrapper^ objectPtr )
 
 	m_type = classType.get_id();
 	m_actorPtr = objectPtr;
-	m_actorClassName = gcnew System::String( classType.get_name().c_str() );
+	m_actorClassName = gcnew System::String( classType.get_name().to_string().c_str() );
 
 	BuildHierarchy( objectPtr, classType );
 }
@@ -48,7 +48,7 @@ List< System::String^ >^	EngineObjectMetaInfo::BaseClasses::get()
 		auto baseClassesVec = m_actorPtr->GetPtr()->GetType().get_base_classes();
 		for each( auto baseClass in baseClassesVec )
 		{
-			System::String^ className = gcnew System::String( baseClass.get_name().c_str() );
+			System::String^ className = gcnew System::String( baseClass.get_name().to_string().c_str() );
 			classesList->Add( className );
 		}
 

@@ -67,9 +67,9 @@ bool EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
 	EnginePointerProvider::engine = m_engine;
 
 	// Zmieniamy modu³ wejœcia (klawiatury) na proxy WPFowe
-	WPFInputProxy* proxyInput = new WPFInputProxy();
+	input::WPFInputProxy* proxyInput = new input::WPFInputProxy();
 
-	InputInitInfo initInfo;
+	input::InputInitInfo initInfo;
 	initInfo.AppInstance = handle;
 	initInfo.WndHandle = nullptr;
 
@@ -182,13 +182,13 @@ ActorWrapper^						EngineWrapper::CreateActor				( System::String^ actorName, do
 /**@brief Przyczepia do wybranego aktora (selection) kontroler gizma.*/
 void								EngineWrapper::SelectActor				( ActorWrapper^ gizmo, ActorWrapper^ selection )
 {
-	auto gizmoPtr = static_cast<DynamicActor*>( gizmo->GetActorPtr().ToPointer() );
-	auto selectionPtr = static_cast<StaticActor*>( selection->GetActorPtr().ToPointer() );
+	auto gizmoPtr = static_cast< DynamicActor* >( gizmo->GetActorPtr().ToPointer() );
+	auto selectionPtr = static_cast< StaticActor* >( selection->GetActorPtr().ToPointer() );
 
 	assert( rttr::rttr_cast<DynamicActor*>( gizmoPtr ) );
 
-	auto gizmoController = static_cast<GizmoController*>( gizmoPtr->GetController() );
-	assert( rttr::rttr_cast<GizmoController*>( gizmoController ) );
+	auto gizmoController = static_cast< editor::GizmoController* >( gizmoPtr->GetController() );
+	assert( rttr::rttr_cast< editor::GizmoController* >( gizmoController ) );
 
 	gizmoController->SetFollowedActor( selectionPtr );
 }
