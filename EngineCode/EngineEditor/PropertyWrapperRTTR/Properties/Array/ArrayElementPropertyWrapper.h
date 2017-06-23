@@ -6,9 +6,7 @@
 */
 
 
-
-#include "EngineEditor/PropertyWrapperRTTR/Properties/Base/PropertyWrapper.h"
-
+#include "EngineEditor/PropertyWrapperRTTR/Properties/Complex/HierarchicalPropertyWrapper.h"
 
 
 namespace sw {
@@ -17,7 +15,7 @@ namespace EditorPlugin
 
 
 
-public ref class ArrayElementPropertyWrapper : CategoryLessPropertyWrapper
+public ref class ArrayElementPropertyWrapper : HierarchicalPropertyWrapper
 {
 private:
 protected:

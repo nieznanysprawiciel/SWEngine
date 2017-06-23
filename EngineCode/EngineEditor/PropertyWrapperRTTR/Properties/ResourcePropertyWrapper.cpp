@@ -14,9 +14,10 @@ namespace sw {
 namespace EditorPlugin
 {
 
-/**@brief */
+// ================================ //
+//
 ResourcePropertyWrapper::ResourcePropertyWrapper( void* parent, rttr::property prop )
-	: CategoryLessPropertyWrapper( parent, PropertyType::PropertyResource, prop, prop.get_name().to_string().c_str() )
+	: HierarchicalPropertyWrapper( parent, PropertyType::PropertyResource, prop, prop.get_name().to_string().c_str() )
 {
 	auto type = rttr::type::get( prop );
 

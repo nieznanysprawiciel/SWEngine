@@ -7,7 +7,7 @@
 
 
 
-#include "EngineEditor/PropertyWrapperRTTR/Properties/Base/PropertyWrapper.h"
+#include "EngineEditor/PropertyWrapperRTTR/Properties/Complex/HierarchicalPropertyWrapper.h"
 
 
 
@@ -17,13 +17,15 @@ namespace EditorPlugin
 
 
 
-
-public ref class ArrayPropertyWrapper : CategoryLessPropertyWrapper
+/**@brief Wrappes array types like std::vector or raw c++ arrays.*/
+public ref class ArrayPropertyWrapper : HierarchicalPropertyWrapper
 {
 private:
 protected:
+
 	bool		m_isDynamic;
 	uint32		m_arraySize;
+
 public:
 	ArrayPropertyWrapper		( void* parent, rttr::property prop );
 

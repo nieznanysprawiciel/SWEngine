@@ -102,57 +102,6 @@ public:
 };
 
 
-//====================================================================================//
-//			Generic object wrapper	
-//====================================================================================//
-
-
-
-
-/**@brief Property dla typów, które nie grupuj¹ swoich w³aœciwoœci w podkategorie
-tylko wyœwietlaj¹ je bezpoœrednio.*/
-public ref class CategoryLessPropertyWrapper : CategoryWrapper
-{
-private:
-protected:
-	CategoryLessPropertyWrapper( void* parent, PropertyType type, rttr::property prop, const char* name )
-		: CategoryWrapper( parent, type, prop, name )
-	{}
-
-public:
-	CategoryLessPropertyWrapper( void* parent, const char* name )
-		: CategoryWrapper( parent, name )
-	{}
-
-	void			BuildHierarchy	( void* parent, rttr::type classType ) override;
-	void			BuildHierarchy	();
-
-};
-
-
-
-/**@brief Property dla obiektów z³o¿onych dziedzicz¹cych po EngineObject.*/
-public ref class ObjectPropertyWrapper : CategoryLessPropertyWrapper
-{
-private:
-public:
-	ObjectPropertyWrapper( void* parent, rttr::property prop )
-		: CategoryLessPropertyWrapper( parent, PropertyType::PropertyActor, prop, prop.get_name().to_string().c_str() )
-	{}
-};
-
-
-/**@brief Property typu DirectX::XMFLOAT2, XMFLOAT3, XMFLOAT4.*/
-public ref class XMFloatPropertyWrapper : CategoryLessPropertyWrapper
-{
-private:
-public:
-	XMFloatPropertyWrapper( void* parent, rttr::property prop )
-		: CategoryLessPropertyWrapper( parent, GetPropertyType( prop ), prop, prop.get_name().to_string().c_str() )
-	{}
-};
-
-
 
 }
 }	// sw

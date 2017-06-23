@@ -61,7 +61,7 @@ public class RTTRPropertyRapist
 	friend ref class CategoryWrapper;
 	friend ref class ObjectPropertyWrapper;
 	friend ref class XMFloatPropertyWrapper;
-	friend ref class CategoryLessPropertyWrapper;
+	friend ref class HierarchicalPropertyWrapper;
 	friend ref class StringPropertyWrapper;
 	friend ref class WStringPropertyWrapper;
 	friend ref class TexturePropertyWrapper;

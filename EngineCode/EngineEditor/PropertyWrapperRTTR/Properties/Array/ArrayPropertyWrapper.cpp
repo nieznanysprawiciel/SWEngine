@@ -16,7 +16,7 @@ namespace EditorPlugin
 // ================================ //
 //
 ArrayPropertyWrapper::ArrayPropertyWrapper( void* parent, rttr::property prop )
-	: CategoryLessPropertyWrapper( parent, PropertyType::PropertyArray, prop, prop.get_name().to_string().c_str() )
+	: HierarchicalPropertyWrapper( parent, PropertyType::PropertyArray, prop, prop.get_name().to_string().c_str() )
 {
 	assert( prop.is_array() );
 
@@ -38,7 +38,7 @@ ArrayPropertyWrapper::ArrayPropertyWrapper( void* parent, rttr::property prop )
 
 // ================================ //
 //
-void ArrayPropertyWrapper::BuildHierarchy( void* parent, rttr::type classType )
+void				ArrayPropertyWrapper::BuildHierarchy( void* parent, rttr::type classType )
 {
 	m_actorPtr = parent;
 	rttr::property prop = RTTRPropertyRapist::MakeProperty( m_metaProperty );
@@ -61,13 +61,13 @@ void ArrayPropertyWrapper::BuildHierarchy( void* parent, rttr::type classType )
 
 		ArrayElementPropertyWrapper^ arrayElement = gcnew ArrayElementPropertyWrapper( valuePtr.get_value< void* >(), prop.get_name().to_string() + "[ " + std::to_string( i ) + " ]" );
 		arrayElement->BuildHierarchy( valuePtr.get_type() );
-		Properties->Add( arrayElement );
+		AddPropertyChild( arrayElement );
 	}
 }
 
 // ================================ //
 //
-void ArrayPropertyWrapper::BuildHierarchy()
+void				ArrayPropertyWrapper::BuildHierarchy()
 {
 	auto type = RTTRPropertyRapist::MakeProperty( m_metaProperty ).get_type();
 	BuildHierarchy( m_actorPtr, type );
@@ -76,7 +76,7 @@ void ArrayPropertyWrapper::BuildHierarchy()
 
 // ================================ //
 //
-bool		ArrayPropertyWrapper::IsDynamic::get()
+bool				ArrayPropertyWrapper::IsDynamic::get()
 {
 	return m_isDynamic;
 }

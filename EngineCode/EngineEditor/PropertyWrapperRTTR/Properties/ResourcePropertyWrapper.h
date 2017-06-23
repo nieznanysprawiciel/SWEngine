@@ -6,7 +6,7 @@
 */
 
 
-#include "PropertyWrapper.h"
+#include "EngineEditor/PropertyWrapperRTTR/Properties/Complex/HierarchicalPropertyWrapper.h"
 
 namespace sw {
 namespace EditorPlugin
@@ -28,7 +28,7 @@ public enum class ResourcePropertyType
 };
 
 /**@brief Property dla obiektów zaPropertyAnimationsobów: Model3DFromFile, BufferObject, MaterialObject, TextureObject*/
-public ref class ResourcePropertyWrapper : CategoryLessPropertyWrapper
+public ref class ResourcePropertyWrapper : HierarchicalPropertyWrapper
 {
 protected:
 
