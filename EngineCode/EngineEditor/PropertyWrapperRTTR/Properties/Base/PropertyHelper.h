@@ -58,7 +58,7 @@ public class RTTRPropertyRapist
 	friend ref class UIntPropertyWrapper;
 	friend ref class BoolPropertyWrapper;
 	friend ref class ActorClassMetaInfo;
-	friend ref class CategoryPropertyWrapper;
+	friend ref class CategoryWrapper;
 	friend ref class ObjectPropertyWrapper;
 	friend ref class XMFloatPropertyWrapper;
 	friend ref class CategoryLessPropertyWrapper;

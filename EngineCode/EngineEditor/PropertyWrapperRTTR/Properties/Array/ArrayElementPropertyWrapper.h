@@ -7,7 +7,9 @@
 
 
 
-#include "PropertyWrapper.h"
+#include "EngineEditor/PropertyWrapperRTTR/Properties/Base/PropertyWrapper.h"
+
+
 
 namespace sw {
 namespace EditorPlugin
