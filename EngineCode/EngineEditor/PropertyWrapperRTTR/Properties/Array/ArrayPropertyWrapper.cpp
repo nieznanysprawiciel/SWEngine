@@ -15,7 +15,7 @@ namespace EditorPlugin
 
 // ================================ //
 //
-ArrayPropertyWrapper::ArrayPropertyWrapper( void* parent, rttr::property prop )
+ArrayPropertyWrapper::ArrayPropertyWrapper( PropertyWrapper^ parent, rttr::property prop )
 	: HierarchicalPropertyWrapper( parent, PropertyType::PropertyArray, prop, prop.get_name().to_string().c_str() )
 {
 	assert( prop.is_array() );
@@ -38,7 +38,7 @@ ArrayPropertyWrapper::ArrayPropertyWrapper( void* parent, rttr::property prop )
 
 // ================================ //
 //
-void				ArrayPropertyWrapper::BuildHierarchy( void* parent, rttr::type classType )
+void				ArrayPropertyWrapper::BuildHierarchy( rttr::variant& parent, rttr::type classType )
 {
 	m_actorPtr = parent;
 	rttr::property prop = RTTRPropertyRapist::MakeProperty( m_metaProperty );

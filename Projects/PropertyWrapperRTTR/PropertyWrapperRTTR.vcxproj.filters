@@ -10,60 +10,96 @@
     <Filter Include="PrecompiledHeader">
       <UniqueIdentifier>{c48caa3c-6fc0-4f29-b16e-30e3220a0ca0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PropertyWrapperRTTR\Properties\Base">
+      <UniqueIdentifier>{9520794c-907a-43ca-baa3-fe0a4d9cc50a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PropertyWrapperRTTR\Properties\Array">
+      <UniqueIdentifier>{f919aa09-c1f1-4af0-9df2-711a61246954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PropertyWrapperRTTR\Properties\Complex">
+      <UniqueIdentifier>{3b0e86c1-f9be-438b-bb49-faa30c28e503}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PropertyWrapperRTTR\Properties\Basic">
+      <UniqueIdentifier>{0858777a-963e-46bf-8339-28168ff0c1c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\AccessPrivateIdiom.h">
-      <Filter>PropertyWrapperRTTR\Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ArrayElementPropertyWrapper.h">
-      <Filter>PropertyWrapperRTTR\Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ArrayPropertyWrapper.h">
-      <Filter>PropertyWrapperRTTR\Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\PropertyHelper.h">
-      <Filter>PropertyWrapperRTTR\Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\PropertyWrapper.h">
-      <Filter>PropertyWrapperRTTR\Properties</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ResourcePropertyWrapper.h">
       <Filter>PropertyWrapperRTTR\Properties</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\stdafx.h">
       <Filter>PrecompiledHeader</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\BasicTypesWrappers.h">
-      <Filter>PropertyWrapperRTTR\Properties</Filter>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Base\AccessPrivateIdiom.h">
+      <Filter>PropertyWrapperRTTR\Properties\Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\StringPropertyWrapper.h">
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Base\PropertyHelper.h">
+      <Filter>PropertyWrapperRTTR\Properties\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Base\PropertyWrapper.h">
+      <Filter>PropertyWrapperRTTR\Properties\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayElementPropertyWrapper.h">
+      <Filter>PropertyWrapperRTTR\Properties\Array</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayPropertyWrapper.h">
+      <Filter>PropertyWrapperRTTR\Properties\Array</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Basic\BasicTypesWrappers.h">
+      <Filter>PropertyWrapperRTTR\Properties\Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Basic\EnumPropertyWrapper.h">
+      <Filter>PropertyWrapperRTTR\Properties\Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Basic\StringPropertyWrapper.h">
+      <Filter>PropertyWrapperRTTR\Properties\Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Complex\CategoryWrapper.h">
+      <Filter>PropertyWrapperRTTR\Properties\Complex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Complex\HierarchicalPropertyWrapper.h">
+      <Filter>PropertyWrapperRTTR\Properties\Complex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Complex\ObjectPropertyWrapper.h">
+      <Filter>PropertyWrapperRTTR\Properties\Complex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\XMFloatPropertyWrapper.h">
       <Filter>PropertyWrapperRTTR\Properties</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ArrayElementPropertyWrapper.cpp">
-      <Filter>PropertyWrapperRTTR\Properties</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ArrayPropertyWrapper.cpp">
-      <Filter>PropertyWrapperRTTR\Properties</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\PropertyHelper.cpp">
-      <Filter>PropertyWrapperRTTR\Properties</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\PropertyWrapper.cpp">
-      <Filter>PropertyWrapperRTTR\Properties</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ResourcePropertyWrapper.cpp">
       <Filter>PropertyWrapperRTTR\Properties</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\stdafx.cpp">
       <Filter>PrecompiledHeader</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\BasicTypesWrappers.cpp">
-      <Filter>PropertyWrapperRTTR\Properties</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Base\PropertyHelper.cpp">
+      <Filter>PropertyWrapperRTTR\Properties\Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\StringPropertyWrapper.cpp">
-      <Filter>PropertyWrapperRTTR\Properties</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Base\PropertyWrapper.cpp">
+      <Filter>PropertyWrapperRTTR\Properties\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayElementPropertyWrapper.cpp">
+      <Filter>PropertyWrapperRTTR\Properties\Array</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayPropertyWrapper.cpp">
+      <Filter>PropertyWrapperRTTR\Properties\Array</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Basic\BasicTypesWrappers.cpp">
+      <Filter>PropertyWrapperRTTR\Properties\Basic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Basic\EnumPropertyWrapper.cpp">
+      <Filter>PropertyWrapperRTTR\Properties\Basic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Basic\StringPropertyWrapper.cpp">
+      <Filter>PropertyWrapperRTTR\Properties\Basic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Complex\CategoryWrapper.cpp">
+      <Filter>PropertyWrapperRTTR\Properties\Complex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Complex\HierarchicalPropertyWrapper.cpp">
+      <Filter>PropertyWrapperRTTR\Properties\Complex</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

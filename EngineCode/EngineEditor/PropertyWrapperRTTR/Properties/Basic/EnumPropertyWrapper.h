@@ -24,7 +24,7 @@ protected:
 	List< System::String^ >^		m_enumStrings;
 
 public:
-	EnumPropertyWrapper( void* parent, rttr::property prop );
+	EnumPropertyWrapper( PropertyWrapper^ parent, rttr::property prop );
 
 public:
 	property System::String^		Value

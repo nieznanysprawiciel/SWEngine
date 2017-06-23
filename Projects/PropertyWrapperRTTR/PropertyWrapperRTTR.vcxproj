@@ -144,24 +144,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\AccessPrivateIdiom.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ArrayElementPropertyWrapper.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ArrayPropertyWrapper.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\BasicTypesWrappers.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\PropertyHelper.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\PropertyWrapper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayElementPropertyWrapper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayPropertyWrapper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Base\AccessPrivateIdiom.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Base\PropertyHelper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Base\PropertyWrapper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Basic\BasicTypesWrappers.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Basic\EnumPropertyWrapper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Basic\StringPropertyWrapper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Complex\CategoryWrapper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Complex\HierarchicalPropertyWrapper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Complex\ObjectPropertyWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ResourcePropertyWrapper.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\StringPropertyWrapper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\XMFloatPropertyWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ArrayElementPropertyWrapper.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ArrayPropertyWrapper.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\BasicTypesWrappers.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\PropertyHelper.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\PropertyWrapper.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayElementPropertyWrapper.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayPropertyWrapper.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Base\PropertyHelper.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Base\PropertyWrapper.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Basic\BasicTypesWrappers.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Basic\EnumPropertyWrapper.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Basic\StringPropertyWrapper.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Complex\CategoryWrapper.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Complex\HierarchicalPropertyWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ResourcePropertyWrapper.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\StringPropertyWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

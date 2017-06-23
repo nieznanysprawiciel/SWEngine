@@ -23,7 +23,7 @@ namespace EditorPlugin
 public ref class IntPropertyWrapper : PropertyWrapper
 {
 public:
-	IntPropertyWrapper( void* parent, rttr::property prop )
+	IntPropertyWrapper( PropertyWrapper^ parent, rttr::property prop )
 		: PropertyWrapper( parent, PropertyType::PropertyInt, prop, prop.get_name().to_string().c_str() )
 	{}
 
@@ -59,7 +59,7 @@ private:
 public ref class UIntPropertyWrapper : PropertyWrapper
 {
 public:
-	UIntPropertyWrapper( void* parent, rttr::property prop )
+	UIntPropertyWrapper( PropertyWrapper^ parent, rttr::property prop )
 		: PropertyWrapper( parent, PropertyType::PropertyUInt, prop, prop.get_name().to_string().c_str() )
 	{}
 
@@ -96,7 +96,7 @@ private:
 public ref class BoolPropertyWrapper : PropertyWrapper
 {
 public:
-	BoolPropertyWrapper( void* parent, rttr::property prop )
+	BoolPropertyWrapper( PropertyWrapper^ parent, rttr::property prop )
 		: PropertyWrapper( parent, PropertyType::PropertyBool, prop, prop.get_name().to_string().c_str() )
 	{}
 
@@ -130,7 +130,7 @@ private:
 public ref class FloatPropertyWrapper : PropertyWrapper
 {
 public:
-	FloatPropertyWrapper( void* parent, rttr::property prop )
+	FloatPropertyWrapper( PropertyWrapper^ parent, rttr::property prop )
 		: PropertyWrapper( parent, PropertyType::PropertyFloat, prop, prop.get_name().to_string().c_str() )
 	{}
 
@@ -165,7 +165,7 @@ private:
 public ref class DoublePropertyWrapper : PropertyWrapper
 {
 public:
-	DoublePropertyWrapper( void* parent, rttr::property prop )
+	DoublePropertyWrapper( PropertyWrapper^ parent, rttr::property prop )
 		: PropertyWrapper( parent, PropertyType::PropertyDouble, prop, prop.get_name().to_string().c_str() )
 	{}
 

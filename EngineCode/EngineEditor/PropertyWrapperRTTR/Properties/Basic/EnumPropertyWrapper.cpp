@@ -17,7 +17,7 @@ namespace EditorPlugin
 
 
 /**@brief */
-EnumPropertyWrapper::EnumPropertyWrapper( void* parent, rttr::property prop )
+EnumPropertyWrapper::EnumPropertyWrapper( PropertyWrapper^ parent, rttr::property prop )
 	: PropertyWrapper( parent, PropertyType::PropertyEnum, prop, prop.get_name().to_string().c_str() )
 {
 	auto enumeration = prop.get_enumeration();

@@ -44,9 +44,9 @@ protected:
 	const rttr::detail::property_wrapper_base*			m_metaProperty;
 
 public:
-	PropertyWrapper( void* parent, PropertyType type, rttr::property prop, const char* name )
+	PropertyWrapper( PropertyWrapper^ parent, PropertyType type, rttr::property prop, const char* name )
 		: m_type( type )
-		, m_actorPtr( parent )
+		, m_parent( parent )
 		, m_expandProperty( true )
 	{
 		m_metaProperty = RTTRPropertyRapist::GetWrapperBase( prop );
@@ -81,6 +81,11 @@ public:
 			return PropertyType::PropertyWString;
 		else
 			return PropertyType::PropertyUnknown;
+	}
+
+	PropertyWrapper^		GetParent	()
+	{
+		return m_parent;
 	}
 
 public:

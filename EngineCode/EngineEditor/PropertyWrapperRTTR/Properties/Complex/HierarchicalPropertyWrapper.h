@@ -7,6 +7,8 @@
 
 #include "EngineEditor/PropertyWrapperRTTR/Properties/Base/PropertyWrapper.h"
 
+#include "swCommonLib/Common/RTTR.h"
+
 
 namespace sw {
 namespace EditorPlugin
@@ -22,33 +24,41 @@ public ref class HierarchicalPropertyWrapper : PropertyWrapper
 {
 private:
 
-	List< PropertyWrapper^ >^			m_properties;
+	List< PropertyWrapper^ >^		m_properties;
+	rttr::variant*					m_ownerPtr;
 
 protected:
 
-	HierarchicalPropertyWrapper( void* parent, PropertyType type, rttr::property prop, const char* name )
-		: PropertyWrapper( parent, type, prop, name )
+	HierarchicalPropertyWrapper( PropertyWrapper^ parent, PropertyType type, rttr::property prop, const char* name )
+		:	PropertyWrapper( parent, type, prop, name )
+		,	m_ownerPtr( new rttr::variant() )
 	{
 		m_properties = gcnew List< PropertyWrapper^ >();
 	}
 
 public:
 
-	HierarchicalPropertyWrapper( void* parent, const char* name )
-		: PropertyWrapper( parent, PropertyType::PropertyCategory, RTTRPropertyRapist::MakeProperty( nullptr ), name )
+	HierarchicalPropertyWrapper( PropertyWrapper^ parent, const char* name )
+		:	PropertyWrapper( parent, PropertyType::PropertyCategory, RTTRPropertyRapist::MakeProperty( nullptr ), name )
+		,	m_ownerPtr( new rttr::variant() )
 	{
 		m_properties = gcnew List< PropertyWrapper^ >();
 	}
 
+	~HierarchicalPropertyWrapper();
 
 
-	virtual void			BuildHierarchy	( void* objectPtr, rttr::type classType );
+	virtual void			BuildHierarchy	( rttr::variant& objectPtr, rttr::type classType );
 	void					BuildHierarchy	();
+
+	rttr::variant			GetOwner		() { return *m_ownerPtr; }
 
 protected:
 
-	PropertyWrapper^		BuildProperty		( void* parent, rttr::property property );
+	PropertyWrapper^		BuildProperty		( PropertyWrapper^ parent, rttr::property property );
 	void					AddPropertyChild	( PropertyWrapper^ child );
+
+	void					SetOwner			( rttr::variant& owner );
 
 public:
 

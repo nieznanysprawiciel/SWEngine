@@ -27,18 +27,27 @@ namespace sw {
 namespace EditorPlugin
 {
 
+
 // ================================ //
 //
-void			HierarchicalPropertyWrapper::BuildHierarchy( void* parent, rttr::type classType )
+HierarchicalPropertyWrapper::~HierarchicalPropertyWrapper()
 {
-	m_actorPtr = parent;
+	delete m_ownerPtr;
+}
+
+
+// ================================ //
+//
+void			HierarchicalPropertyWrapper::BuildHierarchy( rttr::variant& parent, rttr::type classType )
+{
+	SetOwner( parent );
 
 	classType = classType.get_raw_type();
 	auto properties = classType.get_properties();
 
 	for( auto& prop : properties )
 	{
-		Properties->Add( BuildProperty( parent, prop ) );
+		Properties->Add( BuildProperty( this, prop ) );
 	}
 }
 
@@ -57,7 +66,7 @@ void			HierarchicalPropertyWrapper::BuildHierarchy()
 
 	// Trzeba pobraæ realny type w³aœciwoœci. Mo¿e byæ tak, ¿e w³aœciwoœæ jest klas¹ bazow¹,
 	// a tak my chcemy zbudowaæ hierarchiê dla klasy pochodnej.
-	auto realContent = property.get_value( declaringObject );
+	auto realContent = property.get_value( GetOwner() );
 
 	void* realPtr = realContent.get_value< void* >();
 	rttr::type realType = realContent.get_type();
@@ -74,44 +83,10 @@ void			HierarchicalPropertyWrapper::BuildHierarchy()
 		BuildHierarchy( realPtr, realType );
 }
 
-// ================================ //
-//
-void				HierarchicalPropertyWrapper::BuildHierarchy( void* parentPtr, rttr::type classType )
-{
-	m_actorPtr = parentPtr;
-
-	classType = classType.get_raw_type();
-	auto properties = classType.get_properties();
-	Dictionary< System::String^, CategoryWrapper^ >  categories;
-
-	for( auto& prop : properties )
-	{
-		auto categoryNameMeta = prop.get_metadata( MetaDataType::Category );
-		if( categoryNameMeta.is_valid() && categoryNameMeta.is_type< std::string >() )
-		{
-			const std::string& categoryNameStdStr = categoryNameMeta.get_value< std::string >();
-			System::String^ categoryNameStr = gcnew System::String( categoryNameStdStr.c_str() );
-			if( !categories.ContainsKey( categoryNameStr ) )
-				categories[ categoryNameStr ] = gcnew CategoryWrapper( parentPtr, categoryNameStdStr.c_str() );
-
-			categories[ categoryNameStr ]->Properties->Add( BuildProperty( parentPtr, prop ) );
-		}
-		else
-		{
-			if( !categories.ContainsKey( "Other" ) )
-				categories[ "Other" ] = gcnew CategoryWrapper( parentPtr, "Other" );
-
-			categories[ "Other" ]->Properties->Add( BuildProperty( parentPtr, prop ) );
-		}
-	}
-
-	for each ( auto var in categories )
-		AddPropertyChild( var.Value );
-}
 
 // ================================ //
 //
-PropertyWrapper^	HierarchicalPropertyWrapper::BuildProperty( void* parent, rttr::property property )
+PropertyWrapper^	HierarchicalPropertyWrapper::BuildProperty( PropertyWrapper^ parent, rttr::property property )
 {
 	auto propertyType = property.get_type();
 
@@ -206,6 +181,16 @@ PropertyWrapper^	HierarchicalPropertyWrapper::BuildProperty( void* parent, rttr:
 void				HierarchicalPropertyWrapper::AddPropertyChild		( PropertyWrapper^ child )
 {
 	m_properties->Add( child );
+}
+
+// ================================ //
+//
+void				HierarchicalPropertyWrapper::SetOwner				( rttr::variant& owner )
+{
+	if( m_ownerPtr )
+		delete m_ownerPtr;
+
+	m_ownerPtr = new rttr::variant( owner );
 }
 
 

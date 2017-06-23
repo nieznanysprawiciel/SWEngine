@@ -19,7 +19,7 @@ public ref class ObjectPropertyWrapper : HierarchicalPropertyWrapper
 {
 private:
 public:
-	ObjectPropertyWrapper( void* parent, rttr::property prop )
+	ObjectPropertyWrapper( PropertyWrapper^ parent, rttr::property prop )
 		: HierarchicalPropertyWrapper( parent, PropertyType::PropertyActor, prop, prop.get_name().to_string().c_str() )
 	{}
 };

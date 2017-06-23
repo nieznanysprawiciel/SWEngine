@@ -23,7 +23,7 @@ namespace EditorPlugin
 public ref class StringPropertyWrapper : PropertyWrapper
 {
 public:
-	StringPropertyWrapper( void* parent, rttr::property prop )
+	StringPropertyWrapper( PropertyWrapper^ parent, rttr::property prop )
 		: PropertyWrapper( parent, PropertyType::PropertyString, prop, prop.get_name().to_string().c_str() )
 	{}
 
@@ -60,7 +60,7 @@ private:
 public ref class WStringPropertyWrapper : PropertyWrapper
 {
 public:
-	WStringPropertyWrapper( void* parent, rttr::property prop )
+	WStringPropertyWrapper( PropertyWrapper^ parent, rttr::property prop )
 		: PropertyWrapper( parent, PropertyType::PropertyWString, prop, prop.get_name().to_string().c_str() )
 	{}
 

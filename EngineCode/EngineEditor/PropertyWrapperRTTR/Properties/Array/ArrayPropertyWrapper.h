@@ -27,7 +27,7 @@ protected:
 	uint32		m_arraySize;
 
 public:
-	ArrayPropertyWrapper		( void* parent, rttr::property prop );
+	ArrayPropertyWrapper		( PropertyWrapper^ parent, rttr::property prop );
 
 
 	property bool			IsDynamic
@@ -40,7 +40,7 @@ public:
 		uint32				get();
 	}
 
-	void					BuildHierarchy	( void* parent, rttr::type classType ) override;
+	void					BuildHierarchy	( rttr::variant& parent, rttr::type classType ) override;
 	void					BuildHierarchy	();
 };
 

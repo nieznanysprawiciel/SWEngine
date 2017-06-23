@@ -24,7 +24,7 @@ namespace EditorPlugin
 
 // ================================ //
 //
-void				CategoryWrapper::BuildHierarchy( void* parentPtr, rttr::type classType )
+void				CategoryWrapper::BuildHierarchy( rttr::variant& parentPtr, rttr::type classType )
 {
 	m_actorPtr = parentPtr;
 
