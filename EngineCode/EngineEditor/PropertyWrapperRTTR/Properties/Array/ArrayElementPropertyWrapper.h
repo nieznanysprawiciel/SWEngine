@@ -20,7 +20,7 @@ public ref class ArrayElementPropertyWrapper : HierarchicalPropertyWrapper
 private:
 protected:
 public:
-	ArrayElementPropertyWrapper		( PropertyWrapper^ parent, const std::string& name );
+	ArrayElementPropertyWrapper		( HierarchicalPropertyWrapper^ parent, const std::string& name );
 
 	void		BuildHierarchy		( rttr::type elementType );
 };

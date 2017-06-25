@@ -24,9 +24,10 @@ namespace EditorPlugin
 
 // ================================ //
 //
-void				CategoryWrapper::BuildHierarchy( rttr::variant& parentPtr, rttr::type classType )
+void				CategoryWrapper::BuildHierarchy			( const rttr::instance& parentPtr, rttr::type classType )
 {
-	m_actorPtr = parentPtr;
+	// Note: We don't wrapp any real object here so we can set WrappedObject to parent pointer.
+	SetWrappedObject( parentPtr );
 
 	classType = classType.get_raw_type();
 	auto properties = classType.get_properties();

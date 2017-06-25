@@ -32,16 +32,14 @@ namespace EditorPlugin
 //
 HierarchicalPropertyWrapper::~HierarchicalPropertyWrapper()
 {
-	delete m_ownerPtr;
+	delete m_wrappedObject;
 }
 
 
 // ================================ //
 //
-void			HierarchicalPropertyWrapper::BuildHierarchy( rttr::variant& parent, rttr::type classType )
+void					HierarchicalPropertyWrapper::BuildHierarchy		( const rttr::instance& parent, rttr::type classType )
 {
-	SetOwner( parent );
-
 	classType = classType.get_raw_type();
 	auto properties = classType.get_properties();
 
@@ -55,38 +53,28 @@ void			HierarchicalPropertyWrapper::BuildHierarchy( rttr::variant& parent, rttr:
 void* VoidMove( void* obj ) { return obj; }
 
 /**@brief Zbuduj hierarchiê metadanych z podanego obiektu.*/
-void			HierarchicalPropertyWrapper::BuildHierarchy()
+void					HierarchicalPropertyWrapper::BuildHierarchy		()
 {
 	auto property = RTTRPropertyRapist::MakeProperty( m_metaProperty );
 
-	rttr::variant declaringObject( VoidMove( m_actorPtr ) );
-	bool success = declaringObject.unsafe_convert_void( property.get_declaring_type_ptr() );
+	rttr::instance parent = m_parent->GetWrappedObject();
+    rttr::instance parentInst = parent.get_type().get_raw_type().is_wrapper() ? parent.get_wrapped_instance() : parent;
 
-	assert( success );
+	rttr::instance thisWrappedObj = property.get_value( parentInst );
 
-	// Trzeba pobraæ realny type w³aœciwoœci. Mo¿e byæ tak, ¿e w³aœciwoœæ jest klas¹ bazow¹,
-	// a tak my chcemy zbudowaæ hierarchiê dla klasy pochodnej.
-	auto realContent = property.get_value( GetOwner() );
-
-	void* realPtr = realContent.get_value< void* >();
-	rttr::type realType = realContent.get_type();
-
-	// Obs³ugujemy type owrappowane.
-	if( realContent.get_type().is_wrapper() && realPtr != nullptr )
+	if( thisWrappedObj.is_valid() )
 	{
-		rttr::instance realInstance( realContent );
-		realPtr = realInstance.get_wrapped_instance();
-		realType = realContent.get_type().get_wrapped_type();
+		rttr::type realType = thisWrappedObj.get_derived_type();
+		
+		SetWrappedObject( thisWrappedObj );
+		BuildHierarchy( thisWrappedObj, realType );
 	}
-
-	if( realPtr != nullptr )
-		BuildHierarchy( realPtr, realType );
 }
 
 
 // ================================ //
 //
-PropertyWrapper^	HierarchicalPropertyWrapper::BuildProperty( PropertyWrapper^ parent, rttr::property property )
+PropertyWrapper^		HierarchicalPropertyWrapper::BuildProperty		( HierarchicalPropertyWrapper^ parent, rttr::property property )
 {
 	auto propertyType = property.get_type();
 
@@ -185,12 +173,12 @@ void				HierarchicalPropertyWrapper::AddPropertyChild		( PropertyWrapper^ child 
 
 // ================================ //
 //
-void				HierarchicalPropertyWrapper::SetOwner				( rttr::variant& owner )
+void				HierarchicalPropertyWrapper::SetWrappedObject		( const rttr::instance& owner )
 {
-	if( m_ownerPtr )
-		delete m_ownerPtr;
+	if( m_wrappedObject )
+		delete m_wrappedObject;
 
-	m_ownerPtr = new rttr::variant( owner );
+	m_wrappedObject = new rttr::instance( owner );
 }
 
 

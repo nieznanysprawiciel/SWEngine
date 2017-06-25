@@ -24,6 +24,7 @@ namespace EditorPlugin
 using namespace System::Collections::Generic;
 
 ref class PropertyWrapper;
+ref class HierarchicalPropertyWrapper;
 
 
 
@@ -36,15 +37,14 @@ protected:
 	PropertyType			m_type;
 	bool					m_expandProperty;
 
-	void*					m_actorPtr;		///< WskaŸnik u¿ywany do pobierania parametrów obiektu klasy.
-	PropertyWrapper^		m_parent;
+	HierarchicalPropertyWrapper^	m_parent;
 
 protected:
 
 	const rttr::detail::property_wrapper_base*			m_metaProperty;
 
 public:
-	PropertyWrapper( PropertyWrapper^ parent, PropertyType type, rttr::property prop, const char* name )
+	PropertyWrapper( HierarchicalPropertyWrapper^ parent, PropertyType type, rttr::property prop, const char* name )
 		: m_type( type )
 		, m_parent( parent )
 		, m_expandProperty( true )
@@ -83,7 +83,7 @@ public:
 			return PropertyType::PropertyUnknown;
 	}
 
-	PropertyWrapper^		GetParent	()
+	HierarchicalPropertyWrapper^		GetParent	()
 	{
 		return m_parent;
 	}

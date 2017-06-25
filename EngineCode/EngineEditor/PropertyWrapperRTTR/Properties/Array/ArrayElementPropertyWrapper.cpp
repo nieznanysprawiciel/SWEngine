@@ -17,7 +17,7 @@ namespace EditorPlugin
 
 // ================================ //
 //
-ArrayElementPropertyWrapper::ArrayElementPropertyWrapper( PropertyWrapper^ parent, const std::string& name )
+ArrayElementPropertyWrapper::ArrayElementPropertyWrapper( HierarchicalPropertyWrapper^ parent, const std::string& name )
 	:	HierarchicalPropertyWrapper( parent, PropertyType::PropertyUnknown, RTTRPropertyRapist::MakeProperty( nullptr ), name.c_str() )
 {
 	m_expandProperty = false;
@@ -28,7 +28,7 @@ ArrayElementPropertyWrapper::ArrayElementPropertyWrapper( PropertyWrapper^ paren
 //
 void		ArrayElementPropertyWrapper::BuildHierarchy		( rttr::type elementType )
 {
-	BuildHierarchy( GetOwner(), elementType );
+	BuildHierarchy( GetWrappedObject(), elementType );
 }
 
 }	// EditorPlugin

@@ -25,40 +25,49 @@ public ref class HierarchicalPropertyWrapper : PropertyWrapper
 private:
 
 	List< PropertyWrapper^ >^		m_properties;
-	rttr::variant*					m_ownerPtr;
+	rttr::instance*					m_wrappedObject;
 
 protected:
 
-	HierarchicalPropertyWrapper( PropertyWrapper^ parent, PropertyType type, rttr::property prop, const char* name )
+	HierarchicalPropertyWrapper( HierarchicalPropertyWrapper^ parent, PropertyType type, rttr::property prop, const char* name )
 		:	PropertyWrapper( parent, type, prop, name )
-		,	m_ownerPtr( new rttr::variant() )
+		,	m_wrappedObject( nullptr )
 	{
 		m_properties = gcnew List< PropertyWrapper^ >();
 	}
 
 public:
 
-	HierarchicalPropertyWrapper( PropertyWrapper^ parent, const char* name )
-		:	PropertyWrapper( parent, PropertyType::PropertyCategory, RTTRPropertyRapist::MakeProperty( nullptr ), name )
-		,	m_ownerPtr( new rttr::variant() )
+	HierarchicalPropertyWrapper( HierarchicalPropertyWrapper^ parent, const char* name )
+		:	PropertyWrapper( parent, PropertyType::PropertyActor, RTTRPropertyRapist::MakeProperty( nullptr ), name )
+		,	m_wrappedObject( nullptr )
 	{
 		m_properties = gcnew List< PropertyWrapper^ >();
+	}
+
+	/**@brief Initialize property without parent (on top level hierarchy)*/
+	HierarchicalPropertyWrapper( const rttr::instance& objectPtr, const char* name )
+		:	PropertyWrapper( nullptr, PropertyType::PropertyActor, RTTRPropertyRapist::MakeProperty( nullptr ), name )
+		,	m_wrappedObject( nullptr )
+	{
+		m_properties = gcnew List< PropertyWrapper^ >();
+		SetWrappedObject( objectPtr );
 	}
 
 	~HierarchicalPropertyWrapper();
 
 
-	virtual void			BuildHierarchy	( rttr::variant& objectPtr, rttr::type classType );
-	void					BuildHierarchy	();
+	virtual void			BuildHierarchy		( const rttr::instance& objectPtr, rttr::type classType );
+	void					BuildHierarchy		();
 
-	rttr::variant			GetOwner		() { return *m_ownerPtr; }
+	const rttr::instance&	GetWrappedObject	() { return *m_wrappedObject; }
 
 protected:
 
-	PropertyWrapper^		BuildProperty		( PropertyWrapper^ parent, rttr::property property );
+	PropertyWrapper^		BuildProperty		( HierarchicalPropertyWrapper^ parent, rttr::property property );
 	void					AddPropertyChild	( PropertyWrapper^ child );
 
-	void					SetOwner			( rttr::variant& owner );
+	void					SetWrappedObject	( const rttr::instance& owner );
 
 public:
 

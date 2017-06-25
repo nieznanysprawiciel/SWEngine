@@ -19,7 +19,7 @@ public ref class XMFloatPropertyWrapper : HierarchicalPropertyWrapper
 {
 private:
 public:
-	XMFloatPropertyWrapper( PropertyWrapper^ parent, rttr::property prop )
+	XMFloatPropertyWrapper( HierarchicalPropertyWrapper^ parent, rttr::property prop )
 		: HierarchicalPropertyWrapper( parent, GetPropertyType( prop ), prop, prop.get_name().to_string().c_str() )
 	{}
 };

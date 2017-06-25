@@ -26,19 +26,19 @@ public ref class CategoryWrapper : HierarchicalPropertyWrapper
 private:
 protected:
 
-	CategoryWrapper( PropertyWrapper^ parent, PropertyType type, rttr::property prop, const char* name )
+	CategoryWrapper( HierarchicalPropertyWrapper^ parent, PropertyType type, rttr::property prop, const char* name )
 		: HierarchicalPropertyWrapper( parent, type, prop, name )
 	{}
 
 public:
 
-	CategoryWrapper( PropertyWrapper^ parent, const char* name )
+	CategoryWrapper( HierarchicalPropertyWrapper^ parent, const char* name )
 		: HierarchicalPropertyWrapper( parent, PropertyType::PropertyCategory, RTTRPropertyRapist::MakeProperty( nullptr ), name )
 	{}
 
 
 
-	virtual void			BuildHierarchy	( rttr::variant& objectPtr, rttr::type classType ) override;
+	virtual void			BuildHierarchy	( const rttr::instance& objectPtr, rttr::type classType ) override;
 
 };
 
