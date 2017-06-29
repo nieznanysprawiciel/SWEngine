@@ -30,23 +30,10 @@ public:
 public:
 	property System::String^		Value
 	{
-		System::String^		get	()
-		{
-			if( m_actorPtr )
-				return GetValue( m_actorPtr );
-			return gcnew System::String( "" );
-		}
-
-		void				set	( System::String^ value )
-		{
-			if( m_actorPtr )
-				SetValue( m_actorPtr, value );
-		}
+		System::String^		get	();
+		void				set	( System::String^ value );
 	}
 
-private:
-	System::String^		GetValue( void* refObject );
-	void				SetValue( void* refObject, System::String^ newValue );
 };
 
 
@@ -67,23 +54,10 @@ public:
 public:
 	property System::String^		Value
 	{
-		System::String^		get	()
-		{
-			if( m_actorPtr )
-				return GetValue( m_actorPtr );
-			return gcnew System::String( "" );
-		}
-
-		void				set	( System::String^ value )
-		{
-			if( m_actorPtr )
-				SetValue( m_actorPtr, value );
-		}
+		System::String^		get	();
+		void				set	( System::String^ value );
 	}
 
-private:
-	System::String^		GetValue( void* refObject );
-	void				SetValue( void* refObject, System::String^ newValue );
 };
 
 

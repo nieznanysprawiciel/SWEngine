@@ -30,23 +30,10 @@ public:
 
 	property int		Value
 	{
-		int			get ()
-		{
-			if( m_actorPtr )
-				return GetValue( m_actorPtr );
-			return std::numeric_limits< int >::max();
-		}
-
-		void		set	( int value )
-		{
-			if( m_actorPtr )
-				SetValue( m_actorPtr, value );
-		}
+		int			get ();
+		void		set	( int value );
 	}
 
-private:
-	int						GetValue( void* refObject );
-	void					SetValue( void* refObject, int newValue );
 };
 
 
@@ -66,23 +53,10 @@ public:
 
 	property uint32		Value
 	{
-		uint32		get ()
-		{
-			if( m_actorPtr )
-				return GetValue( m_actorPtr );
-			return std::numeric_limits< uint32 >::max();
-		}
-
-		void		set	( uint32 value )
-		{
-			if( m_actorPtr )
-				SetValue( m_actorPtr, value );
-		}
+		uint32		get ();
+		void		set	( uint32 value );
 	}
 
-private:
-	uint32					GetValue( void* refObject );
-	void					SetValue( void* refObject, uint32 newValue );
 };
 
 
@@ -102,23 +76,10 @@ public:
 
 	property bool		Value
 	{
-		bool		get ()
-		{
-			if( m_actorPtr )
-				return GetValue( m_actorPtr );
-			return std::numeric_limits< bool >::max();
-		}
-
-		void		set ( bool value )
-		{
-			if( m_actorPtr )
-				SetValue( m_actorPtr, value );
-		}
+		bool		get ();
+		void		set ( bool value );
 	}
 
-private:
-	bool		GetValue( void* refObject );
-	void		SetValue( void* refObject, bool newValue );
 };
 
 //====================================================================================//
@@ -136,23 +97,10 @@ public:
 
 	property float		Value
 	{
-		float		get ()
-		{
-			if( m_actorPtr )
-				return GetValue( m_actorPtr );
-			return std::numeric_limits< float >::max();
-		}
-
-		void		set ( float value )
-		{
-			if( m_actorPtr )
-				SetValue( m_actorPtr, value );
-		}
+		float		get ();
+		void		set ( float value );
 	}
 
-private:
-	float		GetValue( void* refObject );
-	void		SetValue( void* refObject, float newValue );
 };
 
 
@@ -170,25 +118,13 @@ public:
 	{}
 
 public:
+
 	property double		Value
 	{
-		double		get	()
-		{
-			if( m_actorPtr )
-				return GetValue( m_actorPtr );
-			return std::numeric_limits< double >::max();
-		}
-
-		void		set	( double value )
-		{
-			if( m_actorPtr )
-				SetValue( m_actorPtr, value );
-		}
+		double		get	();
+		void		set	( double value );
 	}
 
-private:
-	double		GetValue( void* refObject );
-	void		SetValue( void* refObject, double newValue );
 };
 
 

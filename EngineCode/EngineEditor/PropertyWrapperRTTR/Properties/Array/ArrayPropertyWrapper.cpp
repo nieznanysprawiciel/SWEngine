@@ -20,12 +20,8 @@ ArrayPropertyWrapper::ArrayPropertyWrapper( HierarchicalPropertyWrapper^ parent,
 {
 	assert( prop.is_array() );
 
-	rttr::variant declaringObject( parent );
-	bool success = declaringObject.unsafe_convert_void( prop.get_declaring_type_ptr() );
-
-	assert( success );
-
-	rttr::variant arrayVariant = prop.get_value( declaringObject );
+	auto parentInstance = parent->GetWrappedObject();
+	rttr::variant arrayVariant = prop.get_value( parentInstance );
 
 	auto array = arrayVariant.create_array_view();
 	m_arraySize = (uint32)array.get_size();
@@ -38,39 +34,25 @@ ArrayPropertyWrapper::ArrayPropertyWrapper( HierarchicalPropertyWrapper^ parent,
 
 // ================================ //
 //
-void				ArrayPropertyWrapper::BuildHierarchy( const rttr::instance& parent, rttr::type classType )
+void				ArrayPropertyWrapper::BuildHierarchy		( const rttr::instance& parent, rttr::type classType, BuildContext& context )
 {
-	m_actorPtr = parent;
 	rttr::property prop = RTTRPropertyRapist::MakeProperty( m_metaProperty );
+	rttr::variant arrayVariant = prop.get_value( parent );
 
-	rttr::variant declaringObject( parent );
-	bool success = declaringObject.unsafe_convert_void( prop.get_declaring_type_ptr() );
-
-	assert( success );
-
-	rttr::variant arrayVariant = prop.get_value( declaringObject );
-
+	SetWrappedObject( arrayVariant );
 	auto array = arrayVariant.create_array_view();
 
 	assert( array.get_size() == m_arraySize );
 
 	for( uint32 i = 0; i < m_arraySize; ++i )
 	{
-		rttr::variant valuePtr = array.get_value_as_ptr( i );
-		assert( valuePtr.is_valid() );
+		rttr::variant valueRef = array.get_value_as_ref( i );
+		assert( valueRef.is_valid() );
 
-		ArrayElementPropertyWrapper^ arrayElement = gcnew ArrayElementPropertyWrapper( valuePtr.get_value< void* >(), prop.get_name().to_string() + "[ " + std::to_string( i ) + " ]" );
-		arrayElement->BuildHierarchy( valuePtr.get_type() );
+		ArrayElementPropertyWrapper^ arrayElement = gcnew ArrayElementPropertyWrapper( this, prop.get_name().to_string() + "[ " + std::to_string( i ) + " ]" );
+		arrayElement->BuildHierarchy( valueRef.get_type(), context );
 		AddPropertyChild( arrayElement );
 	}
-}
-
-// ================================ //
-//
-void				ArrayPropertyWrapper::BuildHierarchy()
-{
-	auto type = RTTRPropertyRapist::MakeProperty( m_metaProperty ).get_type();
-	BuildHierarchy( m_actorPtr, type );
 }
 
 

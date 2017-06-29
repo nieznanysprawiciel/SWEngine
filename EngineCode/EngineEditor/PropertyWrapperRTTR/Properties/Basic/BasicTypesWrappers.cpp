@@ -8,6 +8,7 @@
 #include "EngineEditor/PropertyWrapperRTTR/stdafx.h"
 
 #include "BasicTypesWrappers.h"
+#include "EngineEditor/PropertyWrapperRTTR/Properties/Complex/HierarchicalPropertyWrapper.h"
 
 
 
@@ -20,34 +21,42 @@ namespace EditorPlugin
 //				IntPropertyWrapper	
 //====================================================================================//
 
-/**@brief */
-int			IntPropertyWrapper::GetValue( void* refObject )
+// ================================ //
+//
+int			IntPropertyWrapper::Value::get		()
 {
-	auto value = GetPropertyValue< int >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< int >( m_metaProperty, m_parent->GetWrappedObject() );
 	return value;
 }
 
-/**@brief */
-void		IntPropertyWrapper::SetValue( void* refObject, int newValue )
+// ================================ //
+//
+void		IntPropertyWrapper::Value::set		( int newValue )
 {
-	SetPropertyValue< int >( m_metaProperty, System::IntPtr( refObject ), newValue );
+	auto instance = m_parent->GetWrappedObject();
+	SetPropertyValue< int >( m_metaProperty, instance, newValue );
 }
+
 
 //====================================================================================//
 //				UIntPropertyWrapper
 //====================================================================================//
 
-/**@brief */
-uint32		UIntPropertyWrapper::GetValue( void* refObject )
+
+// ================================ //
+//
+uint32		UIntPropertyWrapper::Value::get		()
 {
-	auto value = GetPropertyValue< uint32 >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< uint32 >( m_metaProperty, m_parent->GetWrappedObject() );
 	return value;
 }
 
-/**@brief */
-void		UIntPropertyWrapper::SetValue( void* refObject, uint32 newValue )
+// ================================ //
+//
+void		UIntPropertyWrapper::Value::set		( uint32 newValue )
 {
-	SetPropertyValue< uint32 >( m_metaProperty, System::IntPtr( refObject ), newValue );
+	auto instance = m_parent->GetWrappedObject();
+	SetPropertyValue< uint32 >( m_metaProperty, instance, newValue );
 }
 
 
@@ -55,17 +64,22 @@ void		UIntPropertyWrapper::SetValue( void* refObject, uint32 newValue )
 //				BoolPropertyWrapper
 //====================================================================================//
 
-/**@brief */
-bool		BoolPropertyWrapper::GetValue( void* refObject )
+
+
+// ================================ //
+//
+bool		BoolPropertyWrapper::Value::get		()
 {
-	auto value = GetPropertyValue< bool >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< bool >( m_metaProperty, m_parent->GetWrappedObject() );
 	return value;
 }
 
-/**@brief */
-void		BoolPropertyWrapper::SetValue( void* refObject, bool newValue )
+// ================================ //
+//
+void		BoolPropertyWrapper::Value::set		( bool newValue )
 {
-	SetPropertyValue< bool >( m_metaProperty, System::IntPtr( refObject ), newValue );
+	auto instance = m_parent->GetWrappedObject();
+	SetPropertyValue< bool >( m_metaProperty, instance, newValue );
 }
 
 
@@ -73,35 +87,47 @@ void		BoolPropertyWrapper::SetValue( void* refObject, bool newValue )
 //				FloatPropertyWrapper
 //====================================================================================//
 
-/**@brief */
-float		FloatPropertyWrapper::GetValue( void* refObject )
+
+
+// ================================ //
+//
+float		FloatPropertyWrapper::Value::get		()
 {
-	auto value = GetPropertyValue< float >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< float >( m_metaProperty, m_parent->GetWrappedObject() );
 	return value;
 }
 
-/**@brief */
-void		FloatPropertyWrapper::SetValue( void* refObject, float newValue )
+// ================================ //
+//
+void		FloatPropertyWrapper::Value::set		( float newValue )
 {
-	SetPropertyValue< float >( m_metaProperty, System::IntPtr( refObject ), newValue );
+	auto instance = m_parent->GetWrappedObject();
+	SetPropertyValue< float >( m_metaProperty, instance, newValue );
 }
+
 
 //====================================================================================//
 //				DoublePropertyWrapper
 //====================================================================================//
 
-/**@brief */
-double		DoublePropertyWrapper::GetValue( void* refObject )
+
+
+// ================================ //
+//
+double		DoublePropertyWrapper::Value::get		()
 {
-	auto value = GetPropertyValue< double >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< double >( m_metaProperty, m_parent->GetWrappedObject() );
 	return value;
 }
 
-/**@brief */
-void		DoublePropertyWrapper::SetValue( void* refObject, double newValue )
+// ================================ //
+//
+void		DoublePropertyWrapper::Value::set		( double newValue )
 {
-	SetPropertyValue< double >( m_metaProperty, System::IntPtr( refObject ), newValue );
+	auto instance = m_parent->GetWrappedObject();
+	SetPropertyValue< double >( m_metaProperty, instance, newValue );
 }
+
 
 
 

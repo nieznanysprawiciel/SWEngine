@@ -6,6 +6,7 @@
 */
 
 #include "EngineEditor/PropertyWrapperRTTR/Properties/Base/PropertyWrapper.h"
+#include "EngineEditor/PropertyWrapperRTTR/Properties/BuildContext.h"
 
 #include "swCommonLib/Common/RTTR.h"
 
@@ -57,17 +58,18 @@ public:
 	~HierarchicalPropertyWrapper();
 
 
-	virtual void			BuildHierarchy		( const rttr::instance& objectPtr, rttr::type classType );
-	void					BuildHierarchy		();
+	virtual void			BuildHierarchy		( const rttr::instance& objectPtr, rttr::type classType, BuildContext& context );
+	void					BuildHierarchy		( BuildContext& context );
 
 	const rttr::instance&	GetWrappedObject	() { return *m_wrappedObject; }
 
 protected:
 
-	PropertyWrapper^		BuildProperty		( HierarchicalPropertyWrapper^ parent, rttr::property property );
-	void					AddPropertyChild	( PropertyWrapper^ child );
+	PropertyWrapper^		BuildProperty				( HierarchicalPropertyWrapper^ parent, rttr::property property, BuildContext& context );
+	PropertyWrapper^		TryBuildArithmeticProperty	( HierarchicalPropertyWrapper^ parent, rttr::property property );
 
-	void					SetWrappedObject	( const rttr::instance& owner );
+	void					AddPropertyChild			( PropertyWrapper^ child );
+	void					SetWrappedObject			( const rttr::instance& owner );
 
 public:
 

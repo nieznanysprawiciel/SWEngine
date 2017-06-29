@@ -6,6 +6,7 @@
 
 #include "EngineEditor/PropertyWrapperRTTR/stdafx.h"
 #include "StringPropertyWrapper.h"
+#include "EngineEditor/PropertyWrapperRTTR/Properties/Complex/HierarchicalPropertyWrapper.h"
 
 #include <msclr/marshal_cppstd.h>
 
@@ -20,17 +21,20 @@ namespace EditorPlugin
 //====================================================================================//
 
 
-/**@brief */
-System::String^		StringPropertyWrapper::GetValue( void* refObject )
+// ================================ //
+//
+System::String^		StringPropertyWrapper::Value::get	()
 {
-	auto value = GetPropertyValue< std::string >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< std::string >( m_metaProperty, m_parent->GetWrappedObject() );
 	return gcnew System::String( value.c_str() );
 }
 
-/**@brief */
-void				StringPropertyWrapper::SetValue( void* refObject, System::String^ newValue )
+// ================================ //
+//
+void				StringPropertyWrapper::Value::set	( System::String^ value )
 {
-	SetPropertyValue< std::string >( m_metaProperty, System::IntPtr( refObject ), msclr::interop::marshal_as< std::string >( newValue ) );
+	auto instance = m_parent->GetWrappedObject();
+	SetPropertyValue< std::string >( m_metaProperty, instance, msclr::interop::marshal_as< std::string >( value ) );
 }
 
 
@@ -39,19 +43,22 @@ void				StringPropertyWrapper::SetValue( void* refObject, System::String^ newVal
 //====================================================================================//
 
 
-
-/**@brief */
-System::String^		WStringPropertyWrapper::GetValue( void* refObject )
+// ================================ //
+//
+System::String^		WStringPropertyWrapper::Value::get	()
 {
-	auto value = GetPropertyValue< std::wstring >( m_metaProperty, System::IntPtr( refObject ) );
+	auto value = GetPropertyValue< std::wstring >( m_metaProperty, m_parent->GetWrappedObject() );
 	return gcnew System::String( value.c_str() );
 }
 
-/**@brief */
-void				WStringPropertyWrapper::SetValue( void* refObject, System::String^ newValue )
+// ================================ //
+//
+void				WStringPropertyWrapper::Value::set	( System::String^ value )
 {
-	SetPropertyValue< std::wstring >( m_metaProperty, System::IntPtr( refObject ), msclr::interop::marshal_as< std::wstring >( newValue ) );
+	auto instance = m_parent->GetWrappedObject();
+	SetPropertyValue< std::wstring >( m_metaProperty, instance, msclr::interop::marshal_as< std::wstring >( value ) );
 }
+
 
 
 

@@ -38,14 +38,14 @@ HierarchicalPropertyWrapper::~HierarchicalPropertyWrapper()
 
 // ================================ //
 //
-void					HierarchicalPropertyWrapper::BuildHierarchy		( const rttr::instance& parent, rttr::type classType )
+void					HierarchicalPropertyWrapper::BuildHierarchy		( const rttr::instance& parent, rttr::type classType, BuildContext& context )
 {
 	classType = classType.get_raw_type();
 	auto properties = classType.get_properties();
 
 	for( auto& prop : properties )
 	{
-		Properties->Add( BuildProperty( this, prop ) );
+		Properties->Add( BuildProperty( this, prop, context ) );
 	}
 }
 
@@ -53,7 +53,7 @@ void					HierarchicalPropertyWrapper::BuildHierarchy		( const rttr::instance& pa
 void* VoidMove( void* obj ) { return obj; }
 
 /**@brief Zbuduj hierarchiê metadanych z podanego obiektu.*/
-void					HierarchicalPropertyWrapper::BuildHierarchy		()
+void					HierarchicalPropertyWrapper::BuildHierarchy		( BuildContext& context )
 {
 	auto property = RTTRPropertyRapist::MakeProperty( m_metaProperty );
 
@@ -67,14 +67,14 @@ void					HierarchicalPropertyWrapper::BuildHierarchy		()
 		rttr::type realType = thisWrappedObj.get_derived_type();
 		
 		SetWrappedObject( thisWrappedObj );
-		BuildHierarchy( thisWrappedObj, realType );
+		BuildHierarchy( thisWrappedObj, realType, context );
 	}
 }
 
 
 // ================================ //
 //
-PropertyWrapper^		HierarchicalPropertyWrapper::BuildProperty		( HierarchicalPropertyWrapper^ parent, rttr::property property )
+PropertyWrapper^		HierarchicalPropertyWrapper::BuildProperty		( HierarchicalPropertyWrapper^ parent, rttr::property property, BuildContext& context )
 {
 	auto propertyType = property.get_type();
 
@@ -82,39 +82,7 @@ PropertyWrapper^		HierarchicalPropertyWrapper::BuildProperty		( HierarchicalProp
 		propertyType = propertyType.get_wrapped_type();
 
 	if( propertyType.is_arithmetic() )
-	{
-		if( propertyType == rttr::type::get< int >() ||
-			propertyType == rttr::type::get< int32 >() ||
-			propertyType == rttr::type::get< int16 >() ||
-			propertyType == rttr::type::get< int8 >() )
-		{
-			return gcnew IntPropertyWrapper( parent, property );
-		}
-		if( propertyType == rttr::type::get< uint32 >() ||
-			propertyType == rttr::type::get< unsigned int >() ||
-			propertyType == rttr::type::get< uint16 >() ||
-			propertyType == rttr::type::get< uint8 >() )
-		{
-			return gcnew UIntPropertyWrapper( parent, property );
-		}
-		else if( propertyType == rttr::type::get< float >() )
-		{
-			return gcnew FloatPropertyWrapper( parent, property );
-		}
-		else if( propertyType == rttr::type::get< bool >() )
-		{
-			return gcnew BoolPropertyWrapper( parent, property );
-		}
-		else if( propertyType == rttr::type::get< double >() )
-		{
-			return gcnew DoublePropertyWrapper( parent, property );
-		}
-		else
-			throw gcnew System::ArgumentException( gcnew System::String( "Property type: [" )
-												   + gcnew System::String( property.get_name().to_string().c_str() )
-												   + gcnew System::String( "] is not supported" ),
-												   gcnew System::String( "property" ) );
-	}
+		TryBuildArithmeticProperty( parent, property );
 	else if( propertyType == rttr::type::get< std::string >() )
 	{
 		return gcnew StringPropertyWrapper( parent, property );
@@ -128,7 +96,7 @@ PropertyWrapper^		HierarchicalPropertyWrapper::BuildProperty		( HierarchicalProp
 			 || propertyType == rttr::type::get< DirectX::XMFLOAT4* >() )
 	{
 		auto propertyWrapper = gcnew XMFloatPropertyWrapper( parent, property );
-		propertyWrapper->BuildHierarchy();
+		propertyWrapper->BuildHierarchy( context );
 		return propertyWrapper;
 	}
 	else if( propertyType.is_derived_from< ResourceObject >() )
@@ -137,14 +105,14 @@ PropertyWrapper^		HierarchicalPropertyWrapper::BuildProperty		( HierarchicalProp
 		// EngineObject. Dziêki temu mo¿emy oddzieliæ zasoby od innych w³aœciowoœci
 		// i obs³u¿yæ je inaczej.
 		auto propertyWrapper = gcnew ResourcePropertyWrapper( parent, property );
-		propertyWrapper->BuildHierarchy();
+		propertyWrapper->BuildHierarchy( context );
 		return propertyWrapper;
 	}
 	else if( propertyType.is_derived_from< EngineObject >()
 			 || propertyType.is_pointer() )
 	{
 		auto propertyWrapper = gcnew ObjectPropertyWrapper( parent, property );
-		propertyWrapper->BuildHierarchy();
+		propertyWrapper->BuildHierarchy( context );
 		return propertyWrapper;
 	}
 	else if( property.is_enumeration() )
@@ -154,7 +122,7 @@ PropertyWrapper^		HierarchicalPropertyWrapper::BuildProperty		( HierarchicalProp
 	else if( property.is_array() )
 	{
 		auto propertyWrapper = gcnew ArrayPropertyWrapper( parent, property );
-		propertyWrapper->BuildHierarchy();
+		propertyWrapper->BuildHierarchy( context );
 		return propertyWrapper;
 	}
 	else
@@ -162,6 +130,46 @@ PropertyWrapper^		HierarchicalPropertyWrapper::BuildProperty		( HierarchicalProp
 											   + gcnew System::String( property.get_type().get_name().to_string().c_str() )
 											   + gcnew System::String( "] is not supported" ),
 											   gcnew System::String( "property" ) );
+}
+
+// ================================ //
+//
+PropertyWrapper^		HierarchicalPropertyWrapper::TryBuildArithmeticProperty		( HierarchicalPropertyWrapper^ parent, rttr::property property )
+{
+	auto propertyType = property.get_type();
+
+	if( propertyType == rttr::type::get< int >() ||
+		propertyType == rttr::type::get< int32 >() ||
+		propertyType == rttr::type::get< int16 >() ||
+		propertyType == rttr::type::get< int8 >() )
+	{
+		return gcnew IntPropertyWrapper( parent, property );
+	}
+	if( propertyType == rttr::type::get< uint32 >() ||
+		propertyType == rttr::type::get< unsigned int >() ||
+		propertyType == rttr::type::get< uint16 >() ||
+		propertyType == rttr::type::get< uint8 >() )
+	{
+		return gcnew UIntPropertyWrapper( parent, property );
+	}
+	else if( propertyType == rttr::type::get< float >() )
+	{
+		return gcnew FloatPropertyWrapper( parent, property );
+	}
+	else if( propertyType == rttr::type::get< bool >() )
+	{
+		return gcnew BoolPropertyWrapper( parent, property );
+	}
+	else if( propertyType == rttr::type::get< double >() )
+	{
+		return gcnew DoublePropertyWrapper( parent, property );
+	}
+	else
+		throw gcnew System::ArgumentException( gcnew System::String( "Property type: [" )
+												+ gcnew System::String( property.get_name().to_string().c_str() )
+												+ gcnew System::String( "] is not supported" ),
+												gcnew System::String( "property" ) );
+	return nullptr;
 }
 
 // ================================ //

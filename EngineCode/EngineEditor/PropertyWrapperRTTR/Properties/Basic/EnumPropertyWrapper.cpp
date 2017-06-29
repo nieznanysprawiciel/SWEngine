@@ -6,6 +6,7 @@
 
 #include "EngineEditor/PropertyWrapperRTTR/stdafx.h"
 #include "EnumPropertyWrapper.h"
+#include "EngineEditor/PropertyWrapperRTTR/Properties/Complex/HierarchicalPropertyWrapper.h"
 
 #include <msclr/marshal_cppstd.h>
 
@@ -16,7 +17,8 @@ namespace EditorPlugin
 {
 
 
-/**@brief */
+// ================================ //
+//
 EnumPropertyWrapper::EnumPropertyWrapper( HierarchicalPropertyWrapper^ parent, rttr::property prop )
 	: PropertyWrapper( parent, PropertyType::PropertyEnum, prop, prop.get_name().to_string().c_str() )
 {
@@ -30,38 +32,44 @@ EnumPropertyWrapper::EnumPropertyWrapper( HierarchicalPropertyWrapper^ parent, r
 	}
 }
 
-/**@brief */
-System::String^		EnumPropertyWrapper::GetValue( void* refObject )
+// ================================ //
+//
+System::String^		EnumPropertyWrapper::Value::get			()
+{
+	GetValue( m_parent->GetWrappedObject() );
+}
+
+
+// ================================ //
+//
+void				EnumPropertyWrapper::Value::set			( System::String^ newValue )
+{
+	auto instance = m_parent->GetWrappedObject();
+	SetValue( instance, newValue );
+}
+
+// ================================ //
+//
+System::String^		EnumPropertyWrapper::GetValue			( const rttr::instance& refObject )
 {
 	rttr::property prop = RTTRPropertyRapist::MakeProperty( m_metaProperty );
-
-	// Create variant with void* type and convert it to proper type.
-	rttr::variant declaringObject( refObject );
-	bool success = declaringObject.unsafe_convert_void( prop.get_declaring_type_ptr() );
-
-	assert( success );
-
-	rttr::variant enumValue = prop.get_value( declaringObject );
+	rttr::variant enumValue = prop.get_value( refObject );
 
 	auto enumeration = prop.get_enumeration();
 	return gcnew System::String( enumeration.value_to_name( enumValue ).to_string().c_str() );
 }
 
-/**@brief */
-void				EnumPropertyWrapper::SetValue( void* refObject, System::String^ newValue )
+
+// ================================ //
+//
+void				EnumPropertyWrapper::SetValue			( rttr::instance& refObject, System::String^ newValue )
 {
 	rttr::property prop = RTTRPropertyRapist::MakeProperty( m_metaProperty );
-
-	// Create variant with void* type and convert it to proper type.
-	rttr::variant declaringObject( refObject );
-	bool success = declaringObject.unsafe_convert_void( prop.get_declaring_type_ptr() );
-
-	assert( success );
 
 	auto enumeration = prop.get_enumeration();
 	rttr::variant enumValue = enumeration.name_to_value( msclr::interop::marshal_as< std::string >( newValue ) );
 
-	prop.set_value( declaringObject, enumValue );
+	prop.set_value( refObject, enumValue );
 }
 
 }

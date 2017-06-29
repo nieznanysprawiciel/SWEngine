@@ -7,6 +7,7 @@
 
 
 #include "EngineEditor/PropertyWrapperRTTR/Properties/Complex/HierarchicalPropertyWrapper.h"
+#include "EngineEditor/PropertyWrapperRTTR/Properties/Array/ArrayPropertyWrapper.h"
 
 
 namespace sw {
@@ -20,9 +21,9 @@ public ref class ArrayElementPropertyWrapper : HierarchicalPropertyWrapper
 private:
 protected:
 public:
-	ArrayElementPropertyWrapper		( HierarchicalPropertyWrapper^ parent, const std::string& name );
+	ArrayElementPropertyWrapper		( ArrayPropertyWrapper^ parent, const std::string& name );
 
-	void		BuildHierarchy		( rttr::type elementType );
+	void		BuildHierarchy		( const rttr::instance& element, BuildContext& context );
 };
 
 }	// EditorPlugin

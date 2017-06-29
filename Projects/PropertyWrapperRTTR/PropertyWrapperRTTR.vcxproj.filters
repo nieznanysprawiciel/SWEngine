@@ -66,6 +66,9 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\XMFloatPropertyWrapper.h">
       <Filter>PropertyWrapperRTTR\Properties</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\BuildContext.h">
+      <Filter>PropertyWrapperRTTR\Properties</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ResourcePropertyWrapper.cpp">

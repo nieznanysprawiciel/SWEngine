@@ -40,8 +40,9 @@ public:
 		uint32				get();
 	}
 
-	void					BuildHierarchy	( const rttr::instance& parent, rttr::type classType ) override;
-	void					BuildHierarchy	();
+public:
+
+	void					BuildHierarchy	( const rttr::instance& parent, rttr::type classType, BuildContext& context ) override;
 };
 
 

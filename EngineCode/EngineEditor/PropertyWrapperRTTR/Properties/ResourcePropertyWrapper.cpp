@@ -16,7 +16,7 @@ namespace EditorPlugin
 
 // ================================ //
 //
-ResourcePropertyWrapper::ResourcePropertyWrapper( PropertyWrapper^ parent, rttr::property prop )
+ResourcePropertyWrapper::ResourcePropertyWrapper( HierarchicalPropertyWrapper^ parent, rttr::property prop )
 	: HierarchicalPropertyWrapper( parent, PropertyType::PropertyResource, prop, prop.get_name().to_string().c_str() )
 {
 	auto type = rttr::type::get( prop );

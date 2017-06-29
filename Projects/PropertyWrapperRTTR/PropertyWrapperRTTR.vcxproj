@@ -152,6 +152,7 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Basic\BasicTypesWrappers.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Basic\EnumPropertyWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Basic\StringPropertyWrapper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\BuildContext.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Complex\CategoryWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Complex\HierarchicalPropertyWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Complex\ObjectPropertyWrapper.h" />

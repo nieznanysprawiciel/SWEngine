@@ -41,10 +41,10 @@ public enum PropertyType
 
 
 template< typename PropertyType >
-PropertyType		GetPropertyValue( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
+PropertyType		GetPropertyValue( const rttr::detail::property_wrapper_base* metaProperty, const rttr::instance& refObject );
 
 template< typename PropertyType >
-void				SetPropertyValue( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, PropertyType newValue );
+void				SetPropertyValue( const rttr::detail::property_wrapper_base* metaProperty, rttr::instance& refObject, PropertyType newValue );
 
 /**@brief Helper class to extract private property_wrapper_base from rttr::property.*/
 public class RTTRPropertyRapist
@@ -69,70 +69,85 @@ public class RTTRPropertyRapist
 	friend ref class ArrayPropertyWrapper;
 	friend ref class ArrayElementPropertyWrapper;
 
-	friend DirectX::XMFLOAT2	GetPropertyValue< DirectX::XMFLOAT2 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
-	friend void					SetPropertyValue< DirectX::XMFLOAT2 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, DirectX::XMFLOAT2 newValue );
+	friend DirectX::XMFLOAT2	GetPropertyValue< DirectX::XMFLOAT2 >( const rttr::detail::property_wrapper_base* metaProperty, const rttr::instance& refObject );
+	friend void					SetPropertyValue< DirectX::XMFLOAT2 >( const rttr::detail::property_wrapper_base* metaProperty, rttr::instance& refObject, DirectX::XMFLOAT2 newValue );
 
-	friend DirectX::XMFLOAT3	GetPropertyValue< DirectX::XMFLOAT3 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
-	friend void					SetPropertyValue< DirectX::XMFLOAT3 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, DirectX::XMFLOAT3 newValue );
+	friend DirectX::XMFLOAT3	GetPropertyValue< DirectX::XMFLOAT3 >( const rttr::detail::property_wrapper_base* metaProperty, const rttr::instance& refObject );
+	friend void					SetPropertyValue< DirectX::XMFLOAT3 >( const rttr::detail::property_wrapper_base* metaProperty, rttr::instance& refObject, DirectX::XMFLOAT3 newValue );
 
-	friend DirectX::XMFLOAT4	GetPropertyValue< DirectX::XMFLOAT4 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
-	friend void					SetPropertyValue< DirectX::XMFLOAT4 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, DirectX::XMFLOAT4 newValue );
+	friend DirectX::XMFLOAT4	GetPropertyValue< DirectX::XMFLOAT4 >( const rttr::detail::property_wrapper_base* metaProperty, const rttr::instance& refObject );
+	friend void					SetPropertyValue< DirectX::XMFLOAT4 >( const rttr::detail::property_wrapper_base* metaProperty, rttr::instance& refObject, DirectX::XMFLOAT4 newValue );
 
-	friend int					GetPropertyValue< int >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
-	friend void					SetPropertyValue< int >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, int newValue );
+	friend int					GetPropertyValue< int >( const rttr::detail::property_wrapper_base* metaProperty, const rttr::instance& refObject );
+	friend void					SetPropertyValue< int >( const rttr::detail::property_wrapper_base* metaProperty, rttr::instance& refObject, int newValue );
 
-	friend uint32				GetPropertyValue< uint32 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
-	friend void					SetPropertyValue< uint32 >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, uint32 newValue );
+	friend uint32				GetPropertyValue< uint32 >( const rttr::detail::property_wrapper_base* metaProperty, const rttr::instance& refObject );
+	friend void					SetPropertyValue< uint32 >( const rttr::detail::property_wrapper_base* metaProperty, rttr::instance& refObject, uint32 newValue );
 
-	friend float				GetPropertyValue< float >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
-	friend void					SetPropertyValue< float >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, float newValue );
+	friend float				GetPropertyValue< float >( const rttr::detail::property_wrapper_base* metaProperty, const rttr::instance& refObject );
+	friend void					SetPropertyValue< float >( const rttr::detail::property_wrapper_base* metaProperty, rttr::instance& refObject, float newValue );
 
-	friend double				GetPropertyValue< double >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
-	friend void					SetPropertyValue< double >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, double newValue );
+	friend double				GetPropertyValue< double >( const rttr::detail::property_wrapper_base* metaProperty, const rttr::instance& refObject );
+	friend void					SetPropertyValue< double >( const rttr::detail::property_wrapper_base* metaProperty, rttr::instance& refObject, double newValue );
 
-	friend bool					GetPropertyValue< bool >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
-	friend void					SetPropertyValue< bool >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, bool newValue );
+	friend bool					GetPropertyValue< bool >( const rttr::detail::property_wrapper_base* metaProperty, const rttr::instance& refObject );
+	friend void					SetPropertyValue< bool >( const rttr::detail::property_wrapper_base* metaProperty, rttr::instance& refObject, bool newValue );
 
-	friend std::string 			GetPropertyValue< std::string >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
-	friend void					SetPropertyValue< std::string >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, std::string newValue );
+	friend std::string 			GetPropertyValue< std::string >( const rttr::detail::property_wrapper_base* metaProperty, const rttr::instance& refObject );
+	friend void					SetPropertyValue< std::string >( const rttr::detail::property_wrapper_base* metaProperty, rttr::instance& refObject, std::string newValue );
 
-	friend std::wstring 		GetPropertyValue< std::wstring >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject );
-	friend void					SetPropertyValue< std::wstring >( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, std::wstring newValue );
+	friend std::wstring 		GetPropertyValue< std::wstring >( const rttr::detail::property_wrapper_base* metaProperty, const rttr::instance& refObject );
+	friend void					SetPropertyValue< std::wstring >( const rttr::detail::property_wrapper_base* metaProperty, rttr::instance& refObject, std::wstring newValue );
 
 	static rttr::property									MakeProperty		( const rttr::detail::property_wrapper_base* wrapper );
-	static const rttr::detail::property_wrapper_base*		GetWrapperBase	( rttr::property prop );
+	static const rttr::detail::property_wrapper_base*		GetWrapperBase		( rttr::property prop );
 };
 
-/**@brief */
+
+// ================================ //
+//
 template< typename PropertyType >
-PropertyType	GetPropertyValue( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject )
+PropertyType			InvalidValue				()
 {
-	rttr::property prop = RTTRPropertyRapist::MakeProperty( metaProperty );
-
-	// Create variant with void* type and convert it to proper type.
-	rttr::variant declaringObject( refObject.ToPointer() );
-	bool success = declaringObject.unsafe_convert_void( prop.get_declaring_type_ptr() );
-
-	assert( success );
-
-	auto value = prop.get_value( declaringObject );
-	return value.get_value< PropertyType >();
+	return std::numeric_limits< PropertyType >::max();
 }
 
-/**@brief */
+// ================================ //
+//
+template<>
+std::string				InvalidValue				() { return ""; }
+
+template<>
+std::wstring			InvalidValue				() { return L""; }
+
+
+
+// ================================ //
+//
 template< typename PropertyType >
-void		SetPropertyValue( const rttr::detail::property_wrapper_base* metaProperty, System::IntPtr refObject, PropertyType newValue )
+PropertyType	GetPropertyValue			( const rttr::detail::property_wrapper_base* metaProperty, const rttr::instance& refObject )
 {
-	rttr::property prop = RTTRPropertyRapist::MakeProperty( metaProperty );
+	if( refObject.is_valid() )
+	{
+		rttr::property prop = RTTRPropertyRapist::MakeProperty( metaProperty );
 
-	// Create variant with void* type and convert it to proper type.
-	rttr::variant declaringObject( refObject.ToPointer() );
-	//prop.get_declaring_type().
-	bool success = declaringObject.unsafe_convert_void( prop.get_declaring_type_ptr() );
+		auto value = prop.get_value( refObject );
+		return value.get_value< PropertyType >();
+	}
 
-	assert( success );
+	return InvalidValue< PropertyType >();
+}
 
-	prop.set_value( declaringObject, newValue );
+// ================================ //
+//
+template< typename PropertyType >
+void		SetPropertyValue				( const rttr::detail::property_wrapper_base* metaProperty, rttr::instance& refObject, PropertyType newValue )
+{
+	if( refObject.is_valid() )
+	{
+		rttr::property prop = RTTRPropertyRapist::MakeProperty( metaProperty );
+		prop.set_value( refObject, newValue );
+	}
 }
 
 }
