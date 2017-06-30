@@ -36,7 +36,7 @@ EnumPropertyWrapper::EnumPropertyWrapper( HierarchicalPropertyWrapper^ parent, r
 //
 System::String^		EnumPropertyWrapper::Value::get			()
 {
-	GetValue( m_parent->GetWrappedObject() );
+	return GetValue( m_parent->GetWrappedObject() );
 }
 
 

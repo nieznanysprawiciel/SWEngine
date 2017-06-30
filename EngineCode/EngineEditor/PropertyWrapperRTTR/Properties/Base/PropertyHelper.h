@@ -6,7 +6,7 @@
 */
 
 
-#include "swCommonLib/Common/RTTR.h"
+#include "EngineEditor/PropertyWrapperRTTR/Build/IncludeRTTR.h"
 #include "swCommonLib/Common/TypesDefinitions.h"
 #include <DirectXMath.h>
 
@@ -107,7 +107,7 @@ public class RTTRPropertyRapist
 // ================================ //
 //
 template< typename PropertyType >
-PropertyType			InvalidValue				()
+inline PropertyType		InvalidValue				()
 {
 	return std::numeric_limits< PropertyType >::max();
 }
@@ -115,10 +115,10 @@ PropertyType			InvalidValue				()
 // ================================ //
 //
 template<>
-std::string				InvalidValue				() { return ""; }
+inline std::string		InvalidValue				() { return ""; }
 
 template<>
-std::wstring			InvalidValue				() { return L""; }
+inline std::wstring		InvalidValue				() { return L""; }
 
 
 

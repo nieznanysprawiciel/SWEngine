@@ -6,9 +6,10 @@
 */
 
 #include "EngineEditor/PropertyWrapperRTTR/Properties/Base/PropertyWrapper.h"
-#include "EngineEditor/PropertyWrapperRTTR/Properties/BuildContext.h"
 
-#include "swCommonLib/Common/RTTR.h"
+#include "EngineEditor/PropertyWrapperRTTR/Build/BuildContext.h"
+#include "EngineEditor/PropertyWrapperRTTR/Build/IncludeRTTR.h"
+
 
 
 namespace sw {

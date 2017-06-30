@@ -22,6 +22,9 @@
     <Filter Include="PropertyWrapperRTTR\Properties\Basic">
       <UniqueIdentifier>{0858777a-963e-46bf-8339-28168ff0c1c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PropertyWrapperRTTR\Build">
+      <UniqueIdentifier>{f6c8729d-7dc5-498e-8f4b-673f215be03b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ResourcePropertyWrapper.h">
@@ -66,8 +69,11 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\XMFloatPropertyWrapper.h">
       <Filter>PropertyWrapperRTTR\Properties</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\BuildContext.h">
-      <Filter>PropertyWrapperRTTR\Properties</Filter>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Build\IncludeRTTR.h">
+      <Filter>PropertyWrapperRTTR\Build</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Build\BuildContext.h">
+      <Filter>PropertyWrapperRTTR\Build</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -20,7 +20,7 @@
 
 // Remove in future and create proper mechanism
 #include "EngineEditor/PropertyWrapperRTTR/Properties/ResourcePropertyWrapper.h"
-
+#include "swGraphicAPI/Resources/ResourceObject.h"
 
 
 namespace sw {
@@ -82,7 +82,7 @@ PropertyWrapper^		HierarchicalPropertyWrapper::BuildProperty		( HierarchicalProp
 		propertyType = propertyType.get_wrapped_type();
 
 	if( propertyType.is_arithmetic() )
-		TryBuildArithmeticProperty( parent, property );
+		return TryBuildArithmeticProperty( parent, property );
 	else if( propertyType == rttr::type::get< std::string >() )
 	{
 		return gcnew StringPropertyWrapper( parent, property );
@@ -126,10 +126,13 @@ PropertyWrapper^		HierarchicalPropertyWrapper::BuildProperty		( HierarchicalProp
 		return propertyWrapper;
 	}
 	else
+	{
 		throw gcnew System::ArgumentException( gcnew System::String( "Property type: [" )
 											   + gcnew System::String( property.get_type().get_name().to_string().c_str() )
 											   + gcnew System::String( "] is not supported" ),
 											   gcnew System::String( "property" ) );
+		return nullptr;
+	}
 }
 
 // ================================ //
