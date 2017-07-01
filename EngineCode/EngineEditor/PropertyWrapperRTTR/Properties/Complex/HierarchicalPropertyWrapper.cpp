@@ -83,6 +83,16 @@ PropertyWrapper^		HierarchicalPropertyWrapper::BuildProperty		( HierarchicalProp
 
 	if( propertyType.is_arithmetic() )
 		return TryBuildArithmeticProperty( parent, property );
+	else if( property.is_enumeration() )
+	{
+		return gcnew EnumPropertyWrapper( parent, property );
+	}
+	else if( property.is_array() )
+	{
+		auto propertyWrapper = gcnew ArrayPropertyWrapper( parent, property );
+		propertyWrapper->BuildHierarchy( context );
+		return propertyWrapper;
+	}
 	else if( propertyType == rttr::type::get< std::string >() )
 	{
 		return gcnew StringPropertyWrapper( parent, property );
@@ -112,16 +122,6 @@ PropertyWrapper^		HierarchicalPropertyWrapper::BuildProperty		( HierarchicalProp
 			 || propertyType.is_pointer() )
 	{
 		auto propertyWrapper = gcnew ObjectPropertyWrapper( parent, property );
-		propertyWrapper->BuildHierarchy( context );
-		return propertyWrapper;
-	}
-	else if( property.is_enumeration() )
-	{
-		return gcnew EnumPropertyWrapper( parent, property );
-	}
-	else if( property.is_array() )
-	{
-		auto propertyWrapper = gcnew ArrayPropertyWrapper( parent, property );
 		propertyWrapper->BuildHierarchy( context );
 		return propertyWrapper;
 	}

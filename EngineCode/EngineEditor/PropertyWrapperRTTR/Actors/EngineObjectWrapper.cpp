@@ -3,10 +3,11 @@
 @author nieznanysprawiciel
 @copyright File is part of Sleeping Wombat Libraries.
 */
+#include "EngineEditor/PropertyWrapperRTTR/stdafx.h"
 
 
 #include "EngineObjectWrapper.h"
-#include "swCommonLib/Common/RTTR.h"
+#include "EngineEditor/PropertyWrapperRTTR/Build/IncludeRTTR.h"
 
 #include "swCommonLib/Common/EngineObject.h"
 
@@ -16,7 +17,8 @@ namespace EditorPlugin
 {
 
 
-
+// ================================ //
+//
 EngineObjectWrapper::EngineObjectWrapper( EngineObject* actor )
 	: m_actorPtr( actor )
 {}
@@ -24,8 +26,8 @@ EngineObjectWrapper::EngineObjectWrapper( EngineObject* actor )
 /**@brief Zwraca nazwê typu pobran¹ przez rttr::type.*/
 System::String^		EngineObjectWrapper::GetTypeName()
 {
-	auto typeInfo = rttr::type::get( *m_actorPtr );
-	return gcnew System::String( typeInfo.get_name().to_string().c_str() );
+	auto typeName = m_actorPtr->GetTypeName();
+	return gcnew System::String( typeName.c_str() );
 }
 
 /**@brief Zwraca WskaŸnik na aktora przekonwertowany na IntPtr.*/
@@ -40,9 +42,24 @@ EngineObject*		EngineObjectWrapper::GetPtr		()
 	return m_actorPtr;
 }
 
+// ================================ //
+//
+TypeID				EngineObjectWrapper::GetTypeID	()
+{
+	return m_actorPtr->GetType();
+}
+
+// ================================ //
+//
+rttr::instance		EngineObjectWrapper::GetInstance()
+{
+	rttr::variant object = *m_actorPtr;
+	return object;
+}
+
 
 /**@brief Zwraca liczbowy identyfikator typu aktora.*/
-int					EngineObjectWrapper::Type::get()
+uint32				EngineObjectWrapper::Type::get	()
 {
 	return rttr::type::get( *m_actorPtr ).get_raw_type().get_id();
 }

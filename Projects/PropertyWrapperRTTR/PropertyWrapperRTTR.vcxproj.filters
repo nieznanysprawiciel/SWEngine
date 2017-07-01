@@ -25,6 +25,9 @@
     <Filter Include="PropertyWrapperRTTR\Build">
       <UniqueIdentifier>{f6c8729d-7dc5-498e-8f4b-673f215be03b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PropertyWrapperRTTR\Actors">
+      <UniqueIdentifier>{1750ffa1-8bef-448f-8206-cd654a985bf0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ResourcePropertyWrapper.h">
@@ -75,6 +78,15 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Build\BuildContext.h">
       <Filter>PropertyWrapperRTTR\Build</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Build\CutomPropertyEntry.h">
+      <Filter>PropertyWrapperRTTR\Build</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Actors\EngineObjectWrapper.h">
+      <Filter>PropertyWrapperRTTR\Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Actors\EngineObjectMeta.h">
+      <Filter>PropertyWrapperRTTR\Actors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ResourcePropertyWrapper.cpp">
@@ -109,6 +121,12 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Complex\HierarchicalPropertyWrapper.cpp">
       <Filter>PropertyWrapperRTTR\Properties\Complex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Actors\EngineObjectWrapper.cpp">
+      <Filter>PropertyWrapperRTTR\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Actors\EngineObjectMeta.cpp">
+      <Filter>PropertyWrapperRTTR\Actors</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
