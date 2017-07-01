@@ -28,27 +28,15 @@ template struct AccessPrivateIdiom< AccessPrivate, &rttr::property::m_wrapper >;
 
 namespace rttr {
 namespace detail {
-namespace
+
+// ================================ //
+//
+template<>
+property			create_item< property >					( const property_wrapper_base* wrapper )
 {
+	return property( wrapper );
+}
 
-//// ================================ //
-////
-//template<>
-//rttr::property		rttr::detail::create_item					( const rttr::detail::property_wrapper_base* wrapper )
-//{
-//	return property( wrapper );
-//}
-
-//// ================================ //
-////
-//template<>
-//rttr::property		rttr::detail::create_invalid_item			()
-//{
-//	static const detail::property_wrapper_base invalid_wrapper( rttr::string_view(), rttr::detail::get_invalid_type() );
-//	return property( &invalid_wrapper );
-//}
-
-}	// anonymous
 }	// detail
 }	// rttr
 
@@ -60,12 +48,14 @@ namespace EditorPlugin
 
 
 
-//// ================================ //
-////
-//rttr::property											RTTRPropertyRapist::MakeProperty		( const rttr::detail::property_wrapper_base * wrapper )
-//{
-//	return rttr::detail::create_item( wrapper );
-//}
+// ================================ //
+//
+rttr::property											RTTRPropertyRapist::MakeProperty		( const rttr::detail::property_wrapper_base* wrapper )
+{
+	return rttr::detail::create_item< rttr::property >( wrapper );
+}
+
+
 // ================================ //
 //
 const rttr::detail::property_wrapper_base*				RTTRPropertyRapist::GetWrapperBase		( rttr::property prop )
