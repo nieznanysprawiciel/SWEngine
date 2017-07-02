@@ -1,21 +1,23 @@
 #include "Actor.h"
 
 
+#pragma unmanaged
+
 
 
 RTTR_REGISTRATION
 {
 	rttr::registration::class_< MeshSegment >( "MeshSegment" )
-		.property( "Int8Prop", &MeshSegment::FloatProp )
-		.property( "Int16Prop", &MeshSegment::DoubleProp )
-		.property( "Text", &MeshSegment::Uint8Prop );
+		.property( "FloatProp", &MeshSegment::FloatProp )
+		.property( "DoubleProp", &MeshSegment::DoubleProp )
+		.property( "Uint8Prop", &MeshSegment::Uint8Prop );
 
 
 	rttr::registration::class_< ActorInfo >( "ActorInfo" )
 		.property( "ControlledActor", &ActorInfo::ControlledActor )
 		.property( "Int8Prop", &ActorInfo::Int8Prop )
 		.property( "Int16Prop", &ActorInfo::Int16Prop )
-		.property( "Text", &ActorInfo::Int32Prop );
+		.property( "Int32Prop", &ActorInfo::Int32Prop );
 	
 
 	rttr::registration::class_< Asset >( "Asset" );
@@ -54,9 +56,9 @@ RTTR_REGISTRATION
 	rttr::registration::class_< std::vector< ControllerBase* > >( "Vector[ControllerBase*]" );
 
 
-	rttr::registration::class_< ActorController >( "ActorController" )
-		.property( "Info", &ActorController::Info );
+	//rttr::registration::class_< ActorController >( "ActorController" )
+	//	.property( "Info", &ActorController::Info );
 
-	rttr::registration::class_< MultiController >( "MultiController" )
-		.property( "Controllers", &MultiController::Controllers );
+	//rttr::registration::class_< MultiController >( "MultiController" )
+	//	.property( "Controllers", &MultiController::Controllers );
 }

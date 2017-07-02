@@ -12,9 +12,14 @@ class EngineObject;
 
 
 
+
 namespace sw {
 namespace EditorPlugin
 {
+
+using namespace System;
+using namespace System::Runtime::CompilerServices;
+[ assembly:InternalsVisibleTo( "TestPropertyWrapper" ) ];
 
 
 /**@brief Class wrappes native objects derived from EngineObject.*/
@@ -22,7 +27,7 @@ public ref class EngineObjectWrapper
 {
 private:
 protected:
-	EngineObject*		m_actorPtr;		///< WskaŸnik na aktora.
+	EngineObject*		m_actorPtr;		///< Wrapped actor pointer.
 
 public:
 	EngineObjectWrapper( EngineObject* actor );

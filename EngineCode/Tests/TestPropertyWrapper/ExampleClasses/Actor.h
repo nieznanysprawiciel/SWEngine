@@ -8,6 +8,8 @@
 #include <vector>
 
 
+#pragma managed( push, off )
+
 class Actor;
 class DerivedActor;
 class ActorController;
@@ -111,4 +113,7 @@ public:
 public:
 
 };
+
+
+#pragma managed( pop )
 
