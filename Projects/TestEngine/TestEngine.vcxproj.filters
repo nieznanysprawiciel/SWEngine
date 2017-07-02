@@ -62,13 +62,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="SchopenhauerWeltschmerz.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="..\..\EngineCode\TestEngine\SWEngine.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\EngineCode\TestEngine\Wombat32x32.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -205,10 +205,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="SchopenhauerWeltschmerz.ico" />
+    <ResourceCompile Include="..\..\EngineCode\TestEngine\SWEngine.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\EngineCode\TestEngine\SWEngine.rc" />
+    <Image Include="..\..\EngineCode\TestEngine\Wombat32x32.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

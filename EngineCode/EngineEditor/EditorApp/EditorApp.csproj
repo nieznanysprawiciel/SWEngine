@@ -424,6 +424,9 @@
   <ItemGroup>
     <Resource Include="Styles\BlueStyle\Images\ScaleIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Wombat.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -431,17 +434,13 @@
   </Target>
   -->
   <PropertyGroup>
-	<!-- <VisualVersionDir>vs2013</VisualVersionDir> -->
-	<VisualVersionDir>vs2015</VisualVersionDir>
+    <!-- <VisualVersionDir>vs2013</VisualVersionDir> -->
+    <VisualVersionDir>vs2015</VisualVersionDir>
     <FBXLibsDirectory>$(ExternalDir)FBX_SDK\lib\$(VisualVersionDir)\$(PlatformTarget)\$(ConfigTypeSmallString)\</FBXLibsDirectory>
-	
-	<ToolsetNativeProjects>v140</ToolsetNativeProjects>
-	<!-- <ToolsetNativeProjects>v120</ToolsetNativeProjects> -->
-	<ReflectionDLLDir>$(EngineLibDir)Reflection\$(ToolsetNativeProjects)\$(PlatformTarget)\$(ConfigTypeSmallString)</ReflectionDLLDir>
-	
+    <ToolsetNativeProjects>v140</ToolsetNativeProjects>
+    <!-- <ToolsetNativeProjects>v120</ToolsetNativeProjects> -->
+    <ReflectionDLLDir>$(EngineLibDir)Reflection\$(ToolsetNativeProjects)\$(PlatformTarget)\$(ConfigTypeSmallString)</ReflectionDLLDir>
   </PropertyGroup>
-  
-  
   <Target Name="AfterBuild">
     <Message Text="Copy Reflection.dll and libfbxsdk.dll to $(OutputPath)" />
     <Copy SourceFiles="$(FBXLibsDirectory)\libfbxsdk.dll" DestinationFolder="$(OutputPath)" ContinueOnError="false" />
