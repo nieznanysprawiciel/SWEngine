@@ -21,7 +21,7 @@
   
   <PropertyGroup Label="UserMacros">
     <EngineShortcut>SW</EngineShortcut>
-    <EngineVersion>1.010</EngineVersion>
+    <EngineVersion>0.11</EngineVersion>
     <EngineVersionString>Version$(EngineVersion)</EngineVersionString>
   </PropertyGroup>
   

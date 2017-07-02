@@ -111,6 +111,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PropertyWrapperRTTR", "Prop
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertiesWrapperTest", "..\EngineCode\Tests\PropertiesWrapperTest\PropertiesWrapperTest.csproj", "{84384E7E-BB82-4FCF-9C56-F56AAD9E0489}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestPropertyWrapper", "Tests\TestPropertyWrapper\TestPropertyWrapper.vcxproj", "{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -909,6 +911,26 @@ Global
 		{84384E7E-BB82-4FCF-9C56-F56AAD9E0489}.Release|x64.Build.0 = Release|Any CPU
 		{84384E7E-BB82-4FCF-9C56-F56AAD9E0489}.Release|x86.ActiveCfg = Release|Any CPU
 		{84384E7E-BB82-4FCF-9C56-F56AAD9E0489}.Release|x86.Build.0 = Release|Any CPU
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Debug|ARM.ActiveCfg = Debug|Win32
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Debug|Win32.Build.0 = Debug|Win32
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Debug|x64.ActiveCfg = Debug|x64
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Debug|x64.Build.0 = Debug|x64
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Debug|x86.ActiveCfg = Debug|Win32
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Debug|x86.Build.0 = Debug|Win32
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Release|Any CPU.ActiveCfg = Release|Win32
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Release|ARM.ActiveCfg = Release|Win32
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Release|Win32.ActiveCfg = Release|Win32
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Release|Win32.Build.0 = Release|Win32
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Release|x64.ActiveCfg = Release|x64
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Release|x64.Build.0 = Release|x64
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Release|x86.ActiveCfg = Release|Win32
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -958,5 +980,6 @@ Global
 		{EBC3ABF4-E788-4242-A949-D366FC128B0E} = {13510A00-7425-417D-976B-682001D3FE52}
 		{3AA64883-8227-4F60-8839-E97223CE680B} = {0C59B1BA-0A0D-4B82-BD64-149C775C379B}
 		{84384E7E-BB82-4FCF-9C56-F56AAD9E0489} = {415F8C84-7E86-4306-9173-7A5AEE6A5A67}
+		{2A3ECC0A-08FE-4E18-8282-C3F355E0789F} = {415F8C84-7E86-4306-9173-7A5AEE6A5A67}
 	EndGlobalSection
 EndGlobal
