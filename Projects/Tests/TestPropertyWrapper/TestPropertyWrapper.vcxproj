@@ -19,7 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\EngineCode\Tests\TestPropertyWrapper\ExampleClasses\Actor.cpp" />
     <ClCompile Include="..\..\..\EngineCode\Tests\TestPropertyWrapper\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PropertyWrapperRTTR\PropertyWrapperRTTR.vcxproj">
+      <Project>{3aa64883-8227-4f60-8839-e97223ce680b}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\EngineCode\Tests\TestPropertyWrapper\ExampleClasses\Actor.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2A3ECC0A-08FE-4E18-8282-C3F355E0789F}</ProjectGuid>
@@ -46,6 +55,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
