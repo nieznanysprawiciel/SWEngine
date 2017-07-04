@@ -20,6 +20,7 @@ namespace EditorPlugin
 using namespace System;
 using namespace System::Runtime::CompilerServices;
 [ assembly:InternalsVisibleTo( "TestPropertyWrapper" ) ];
+[ assembly:InternalsVisibleTo( "TestPropertyWrapperRTTR" ) ];
 
 
 /**@brief Class wrappes native objects derived from EngineObject.*/

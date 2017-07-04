@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  
+  <ImportGroup Label="PropertySheets" >
+	<Import Project="../../Props/PathsMacros.props" />
+  </ImportGroup>
+  
+  
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(EngineSourceDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>__UNUSED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  
+  <PropertyGroup Label="UserMacros">
+    <TestPropertyWrapperNativeName>TestPropertyWrapperNative</TestPropertyWrapperNativeName>
+    <TestPropertyWrapperNativeLibDir>$(EngineLibDir)$(TestPropertyWrapperNativeName)\</TestPropertyWrapperNativeLibDir>
+    <TestPropertyWrapperNativeFileName>$(TestPropertyWrapperNativeName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)</TestPropertyWrapperNativeFileName>
+    <TestPropertyWrapperNativeBuildDir>$(EngineBuildDir)$(TestPropertyWrapperNativeName)_$(Configuration)_$(PlatformShortName)_$(PlatformToolset)\</TestPropertyWrapperNativeBuildDir>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalLibraryDirectories>$(TestPropertyWrapperNativeLibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(TestPropertyWrapperNativeFileName).lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  
+  <PropertyGroup>
+    <IntDir>$(TestPropertyWrapperNativeBuildDir)</IntDir>
+    <TargetName>$(TestPropertyWrapperNativeFileName)</TargetName>
+    <OutDir>$(TestPropertyWrapperNativeLibDir)</OutDir>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <BuildMacro Include="TestPropertyWrapperNativeName">
+      <Value>$(TestPropertyWrapperNativeName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="TestPropertyWrapperNativeLibDir">
+      <Value>$(TestPropertyWrapperNativeLibDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="TestPropertyWrapperNativeSourceDir">
+      <Value>$(TestPropertyWrapperNativeSourceDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="TestPropertyWrapperNativeFileName">
+      <Value>$(TestPropertyWrapperNativeFileName)</Value>
+    </BuildMacro>
+    <BuildMacro Include="TestPropertyWrapperNativeBuildDir">
+      <Value>$(TestPropertyWrapperNativeBuildDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

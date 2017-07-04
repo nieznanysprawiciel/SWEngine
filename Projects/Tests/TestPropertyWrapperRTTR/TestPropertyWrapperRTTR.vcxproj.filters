@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="PrecompiledHeader">
+      <UniqueIdentifier>{af58c450-9fe4-4558-83cc-1c5d878ec7d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestCases">
+      <UniqueIdentifier>{7ac42c28-8907-4641-b74f-9e8b53f1c0d7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\EngineCode\Tests\TestPropertyWrapperRTTR\stdafx.cpp">
+      <Filter>PrecompiledHeader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\TestPropertyWrapperRTTR\TestCases\TestEngineObjectWrapper.cpp">
+      <Filter>TestCases</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\EngineCode\Tests\TestPropertyWrapperRTTR\stdafx.h">
+      <Filter>PrecompiledHeader</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
