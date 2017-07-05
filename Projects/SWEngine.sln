@@ -110,6 +110,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PropertyWrapperRTTR", "PropertyWrapperRTTR\PropertyWrapperRTTR.vcxproj", "{3AA64883-8227-4F60-8839-E97223CE680B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestPropertyWrapperRTTR", "Tests\TestPropertyWrapperRTTR\TestPropertyWrapperRTTR.vcxproj", "{468AEEA2-3EAF-4716-8325-687389D6D5EF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3AA64883-8227-4F60-8839-E97223CE680B} = {3AA64883-8227-4F60-8839-E97223CE680B}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestPropertyWrapperNative", "Tests\TestPropertyWrapperRTTR\TestPropertyWrapperNative.vcxproj", "{1D37FF26-BFAC-4717-B0BF-8F1497B62147}"
 EndProject
@@ -196,6 +199,7 @@ Global
 		{D6D5F6EF-4B74-4EBE-8D8D-E76C7C423D05}.Debug|Win32.ActiveCfg = Debug|Win32
 		{D6D5F6EF-4B74-4EBE-8D8D-E76C7C423D05}.Debug|Win32.Build.0 = Debug|Win32
 		{D6D5F6EF-4B74-4EBE-8D8D-E76C7C423D05}.Debug|x64.ActiveCfg = Debug|x64
+		{D6D5F6EF-4B74-4EBE-8D8D-E76C7C423D05}.Debug|x64.Build.0 = Debug|x64
 		{D6D5F6EF-4B74-4EBE-8D8D-E76C7C423D05}.Debug|x86.ActiveCfg = Debug|Win32
 		{D6D5F6EF-4B74-4EBE-8D8D-E76C7C423D05}.Debug|x86.Build.0 = Debug|Win32
 		{D6D5F6EF-4B74-4EBE-8D8D-E76C7C423D05}.Release|Any CPU.ActiveCfg = Release|Win32
@@ -293,6 +297,7 @@ Global
 		{B7F97C7C-9F14-4434-BA41-7A02A38363FE}.Debug|Win32.ActiveCfg = Debug|Win32
 		{B7F97C7C-9F14-4434-BA41-7A02A38363FE}.Debug|Win32.Build.0 = Debug|Win32
 		{B7F97C7C-9F14-4434-BA41-7A02A38363FE}.Debug|x64.ActiveCfg = Debug|x64
+		{B7F97C7C-9F14-4434-BA41-7A02A38363FE}.Debug|x64.Build.0 = Debug|x64
 		{B7F97C7C-9F14-4434-BA41-7A02A38363FE}.Debug|x86.ActiveCfg = Debug|Win32
 		{B7F97C7C-9F14-4434-BA41-7A02A38363FE}.Debug|x86.Build.0 = Debug|Win32
 		{B7F97C7C-9F14-4434-BA41-7A02A38363FE}.Release|Any CPU.ActiveCfg = Release|Win32

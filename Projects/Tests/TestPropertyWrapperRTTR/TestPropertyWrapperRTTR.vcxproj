@@ -135,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\EngineCode\Tests\TestPropertyWrapperRTTR\stdafx.cpp" />
+    <ClCompile Include="..\..\..\EngineCode\Tests\TestPropertyWrapperRTTR\TestCases\BuildPropertyTest.cpp" />
     <ClCompile Include="..\..\..\EngineCode\Tests\TestPropertyWrapperRTTR\TestCases\TestEngineObjectWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>

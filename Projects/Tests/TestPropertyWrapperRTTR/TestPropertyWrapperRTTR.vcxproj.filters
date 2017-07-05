@@ -15,6 +15,9 @@
     <ClCompile Include="..\..\..\EngineCode\Tests\TestPropertyWrapperRTTR\TestCases\TestEngineObjectWrapper.cpp">
       <Filter>TestCases</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\EngineCode\Tests\TestPropertyWrapperRTTR\TestCases\BuildPropertyTest.cpp">
+      <Filter>TestCases</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\EngineCode\Tests\TestPropertyWrapperRTTR\stdafx.h">

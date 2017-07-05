@@ -1,5 +1,5 @@
 
-#include "Tests/TestPropertyWrapper/ExampleClasses/CreateTestActor.h"
+#include "Tests/TestPropertyWrapperRTTR/ExampleClasses/CreateTestActor.h"
 
 
 
@@ -25,11 +25,10 @@ public:
 	// ================================ //
 	// Creates EngineObjectWrapper and checks function result types.
 	[TestMethod]
-	void	CreateSimpleActor()
+	void		CreateSimpleActor()
 	//TEST_METHOD( "Create Simple Actor", "[EngineObjectWrapper]" )
 	{
 		Actor* actor = CreateSimpleNullActor();
-		//REQUIRE( actor != __nullptr );
 		Assert::IsTrue( actor != nullptr, "Shouldn't be null" );
 
 		EngineObject* object = actor;
@@ -50,15 +49,28 @@ public:
 		Assert::IsTrue( wrapper->GetTypeID() == actor->get_type() );
 		Assert::IsTrue( actor->get_type().get_id() == wrapper->Type );
 
-		auto instance = wrapper->GetInstance();
-
-		Assert::IsTrue( instance.is_valid() );
-		Assert::IsTrue( instance.get_derived_type() == actor->get_type() );
-		Assert::IsTrue( instance.get_type() == actor->get_type() );
-		Assert::IsTrue( !instance.get_wrapped_instance().is_valid() );
-	
-
 	}
+
+
+	// ================================ //
+	// Created Derived object and checks results
+	[TestMethod]
+	void		CreateDerivedActor()
+	{
+		auto actor = CreateDerivedNullActor();
+		Assert::IsTrue( actor != nullptr, "Shouldn't be null" );
+
+		EngineObjectWrapper^ wrapper = gcnew EngineObjectWrapper( actor );
+		bool result = wrapper != nullptr;
+		Assert::IsTrue( result );
+
+		System::String^ typeName = gcnew System::String( actor->get_type().get_name().to_string().c_str() );
+		Assert::IsTrue( typeName == wrapper->GetTypeName() );
+		Assert::IsTrue( typeName == wrapper->TypeName );
+
+		Assert::IsTrue( wrapper->GetTypeID() == actor->get_type() );
+	}
+
 };
 
 

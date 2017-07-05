@@ -4,6 +4,7 @@
 
 
 
-
-Actor*			CreateSimpleNullActor	();
+ControllerBase*		CreateControllerBase	();
+Actor*				CreateSimpleNullActor	();
+DerivedActor*		CreateDerivedNullActor	();
 

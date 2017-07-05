@@ -55,19 +55,26 @@ void* VoidMove( void* obj ) { return obj; }
 /**@brief Zbuduj hierarchiê metadanych z podanego obiektu.*/
 void					HierarchicalPropertyWrapper::BuildHierarchy		( BuildContext& context )
 {
-	auto property = RTTRPropertyRapist::MakeProperty( m_metaProperty );
+	rttr::variant thisVariant;
 
-	rttr::instance parent = m_parent->GetWrappedObject();
-    rttr::instance parentInst = parent.get_type().get_raw_type().is_wrapper() ? parent.get_wrapped_instance() : parent;
-
-	rttr::instance thisWrappedObj = property.get_value( parentInst );
-
-	if( thisWrappedObj.is_valid() )
+	if( m_metaProperty && m_parent )
 	{
-		rttr::type realType = thisWrappedObj.get_derived_type();
+		auto property = RTTRPropertyRapist::MakeProperty( m_metaProperty );
+
+		rttr::instance parent = m_parent->GetWrappedObject();
+		rttr::instance parentInst = parent.get_type().get_raw_type().is_wrapper() ? parent.get_wrapped_instance() : parent;
+
+		thisVariant = property.get_value( parentInst );
+	}
+
+	rttr::instance thisInstance = thisVariant.is_valid() ? rttr::instance( thisVariant ) : GetWrappedObject();
+
+	if( thisInstance.is_valid() )
+	{
+		rttr::type realType = thisInstance.get_derived_type();
 		
-		SetWrappedObject( thisWrappedObj );
-		BuildHierarchy( thisWrappedObj, realType, context );
+		SetWrappedObject( thisInstance );
+		BuildHierarchy( thisInstance, realType, context );
 	}
 }
 
