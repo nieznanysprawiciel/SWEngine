@@ -94,6 +94,11 @@
     </ClCompile>
     <Link />
     <Link />
+    <PreLinkEvent>
+      <Command>copy $(PropertyWrapperRTTRLibDir)PropertyWrapperRTTR.dll $(OutDir)PropertyWrapperRTTR.dll
+copy $(PropertyWrapperRTTRLibDir)PropertyWrapperRTTR.pdb $(OutDir)PropertyWrapperRTTR.pdb
+%(Command)</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -106,6 +111,11 @@
     </ClCompile>
     <Link />
     <Link />
+    <PreLinkEvent>
+      <Command>copy $(PropertyWrapperRTTRLibDir)PropertyWrapperRTTR.dll $(OutDir)PropertyWrapperRTTR.dll
+copy $(PropertyWrapperRTTRLibDir)PropertyWrapperRTTR.pdb $(OutDir)PropertyWrapperRTTR.pdb
+%(Command)</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -116,6 +126,11 @@
     </ClCompile>
     <Link />
     <Link />
+    <PreLinkEvent>
+      <Command>copy $(PropertyWrapperRTTRLibDir)PropertyWrapperRTTR.dll $(OutDir)PropertyWrapperRTTR.dll
+copy $(PropertyWrapperRTTRLibDir)PropertyWrapperRTTR.pdb $(OutDir)PropertyWrapperRTTR.pdb
+%(Command)</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -126,6 +141,11 @@
     </ClCompile>
     <Link />
     <Link />
+    <PreLinkEvent>
+      <Command>copy $(PropertyWrapperRTTRLibDir)PropertyWrapperRTTR.dll $(OutDir)PropertyWrapperRTTR.dll
+copy $(PropertyWrapperRTTRLibDir)PropertyWrapperRTTR.pdb $(OutDir)PropertyWrapperRTTR.pdb
+%(Command)</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />

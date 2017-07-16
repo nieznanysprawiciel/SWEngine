@@ -26,6 +26,11 @@
     <ClInclude Include="..\..\..\EngineCode\Tests\TestPropertyWrapperRTTR\ExampleClasses\Actor.h" />
     <ClInclude Include="..\..\..\EngineCode\Tests\TestPropertyWrapperRTTR\ExampleClasses\CreateTestActor.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\EngineCode\swCommonLib\Projects\Visual2015\CommonBase\CommonBase.vcxproj">
+      <Project>{9abcbab4-05b4-47c5-b5d8-f201559fd096}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1D37FF26-BFAC-4717-B0BF-8F1497B62147}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
