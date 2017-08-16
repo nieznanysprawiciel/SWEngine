@@ -1,3 +1,12 @@
+/**
+@file GizmoActorWrapper.cpp
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
+#include "EngineEditor/EditorPlugin/stdafx.h"
+
 #include "GizmoActorWrapper.h"
 
 

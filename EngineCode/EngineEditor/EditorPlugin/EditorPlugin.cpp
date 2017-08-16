@@ -3,12 +3,15 @@
 #pragma warning(disable : 4561)	// DirectXMath converting fastcall to stdcall
 
 
+#include "EngineEditor/EditorPlugin/stdafx.h"
+
 #include "EditorPlugin.h"
 
 
 //========================================//
 // Engine include
 
+#include "EngineEditor/PropertyWrapperRTTR/Build/IncludeRTTR.h"
 
 #include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/MainEngine/MacrosSwitches.h"

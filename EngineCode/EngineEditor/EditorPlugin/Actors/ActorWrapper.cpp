@@ -1,6 +1,10 @@
 #pragma warning(disable : 4561)	// DirectXMath converting fastcall to stdcall
+
+#include "EngineEditor/EditorPlugin/stdafx.h"
+
+#include "EngineEditor/PropertyWrapperRTTR/Build/IncludeRTTR.h"
+
 #include "ActorWrapper.h"
-#include "swCommonLib/Common/RTTR.h"
 
 #include "EngineCore/MainEngine/EngineInterface.h"
 #include "EngineCore/Actors/ActorObjects.h"
@@ -30,7 +34,7 @@ ActorWrapper::ActorWrapper( EngineObject* actor, const ActorInfo* actorInfo )
 /**@brief */
 ActorBase*			ActorWrapper::Ptr()
 {
-	return static_cast< ActorBase* >( m_actorPtr );
+	return static_cast< ActorBase* >( GetPtr() );
 }
 
 

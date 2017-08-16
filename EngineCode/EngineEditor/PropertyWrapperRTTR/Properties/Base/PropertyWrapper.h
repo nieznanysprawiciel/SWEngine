@@ -8,8 +8,9 @@
 
 
 
-#include "PropertyHelper.h"
 #include "EngineEditor/PropertyWrapperRTTR/Build/IncludeRTTR.h"
+#include "PropertyHelper.h"
+
 
 
 #include <memory>

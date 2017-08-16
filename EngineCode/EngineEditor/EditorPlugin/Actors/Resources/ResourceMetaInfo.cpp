@@ -1,5 +1,8 @@
 #pragma warning(disable : 4561)	// DirectXMath converting fastcall to stdcall
 
+#include "EngineEditor/EditorPlugin/stdafx.h"
+
+
 #include "ResourceMetaInfo.h"
 
 

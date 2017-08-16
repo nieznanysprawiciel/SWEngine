@@ -7,8 +7,7 @@
 
 
 
-#include "EngineEditor/EditorPlugin/EnginePointerProvider.h"
-#include "EngineEditor/EditorPlugin/Actors/EngineObjectWrapper.h"
+//#include "EngineEditor/EditorPlugin/EnginePointerProvider.h"
 #include "EngineCore/Actors/ActorInfo.h"
 
 
@@ -28,7 +27,8 @@ namespace EditorPlugin
 {
 
 
-
+// ================================ //
+//
 public ref class ActorWrapper : public EngineObjectWrapper
 {
 private:

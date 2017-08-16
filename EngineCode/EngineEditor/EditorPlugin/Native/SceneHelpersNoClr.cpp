@@ -5,7 +5,7 @@
 @copyright File is part of Sleeping Wombat Libraries.
 */
 
-
+#include "EngineEditor/EditorPlugin/stdafx.h"
 
 #include "SceneHelpers.h"
 

@@ -7,8 +7,8 @@
 
 
 
-#include "EngineEditor/EditorPlugin/Actors/EngineObjectWrapper.h"
-#include "EngineEditor/EditorPlugin/Properties/ResourcePropertyWrapper.h"
+#include "EngineEditor/PropertyWrapperRTTR/Actors/EngineObjectWrapper.h"
+#include "EngineEditor/PropertyWrapperRTTR/Properties/ResourcePropertyWrapper.h"
 #include "swGraphicAPI/Resources/ResourceObject.h"
 
 namespace sw {

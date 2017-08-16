@@ -1,4 +1,6 @@
 #pragma warning(disable : 4561)	// DirectXMath converting fastcall to stdcall
+#include "EngineEditor/EditorPlugin/stdafx.h"
+
 #include "EditorActorsFactory.h"
 
 #include "EngineEditor/EditorPlugin/EnginePointerProvider.h"

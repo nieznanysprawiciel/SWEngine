@@ -14,6 +14,12 @@
 #include "swCommonLib/Common/EngineObject.h"
 
 
+// ================================ //
+// Important include. Without it averything would compile but type wouldn't be visible
+// outside of assembly.
+#include "EngineEditor/EditorPlugin/EditorApp/IDragable.h"
+
+
 namespace sw {
 namespace EditorPlugin
 {
@@ -33,8 +39,11 @@ EngineObjectMeta::EngineObjectMeta( EngineObjectWrapper^ objectPtr )
 /**@brief */
 void						EngineObjectMeta::ResetActor		( EngineObjectWrapper^ objectPtr )
 {
-	m_actorPtr = objectPtr;
-	BuildHierarchy( m_actorPtr, m_actorPtr->GetTypeID() );
+	if( objectPtr )
+	{
+		m_actorPtr = objectPtr;
+		BuildHierarchy( m_actorPtr, m_actorPtr->GetTypeID() );
+	}
 }
 
 /**@brief */

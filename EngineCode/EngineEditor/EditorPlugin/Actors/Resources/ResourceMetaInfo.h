@@ -7,7 +7,7 @@
 
 
 
-#include "EngineEditor/EditorPlugin/Actors/EngineObjectMetaInfo.h"
+#include "EngineEditor/PropertyWrapperRTTR/Actors/EngineObjectMeta.h"
 #include "ResourceWrapper.h"
 
 
@@ -19,7 +19,7 @@ namespace EditorPlugin
 
 
 
-public ref class ResourceMetaInfo : public EngineObjectMetaInfo
+public ref class ResourceMetaInfo : public EngineObjectMeta
 {
 private:
 protected:

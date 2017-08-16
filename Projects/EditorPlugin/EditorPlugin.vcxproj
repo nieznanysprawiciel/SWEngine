@@ -23,8 +23,6 @@
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EditorActorsFactory.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EditorClasses\GizmoActorWrapper.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EngineObjectMetaInfo.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EngineObjectWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceMetaInfo.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\dllmain.cpp" />
@@ -38,21 +36,20 @@
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</CompileAsManaged>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ArrayElementPropertyWrapper.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ArrayPropertyWrapper.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyHelper.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourcePropertyWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneLoader.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneSaver.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorClassMetaInfo.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EditorActorsFactory.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EditorClasses\GizmoActorWrapper.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EngineObjectMetaInfo.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EngineObjectWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceMetaInfo.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorApp\IDragable.h">
@@ -62,15 +59,10 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EnginePointerProvider.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\IncludeWindows.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Native\SceneHelpers.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\AccessPrivateIdiom.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ArrayElementPropertyWrapper.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ArrayPropertyWrapper.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyHelper.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourcePropertyWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Resource.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneLoader.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneSaver.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\stdafx.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\targetver.h" />
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +85,9 @@
     </ProjectReference>
     <ProjectReference Include="..\EngineCore\SWEngine.vcxproj">
       <Project>{08f5ad41-2020-48ab-8ac3-7fe0039ed65f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\PropertyWrapperRTTR\PropertyWrapperRTTR.vcxproj">
+      <Project>{3aa64883-8227-4f60-8839-e97223ce680b}</Project>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">

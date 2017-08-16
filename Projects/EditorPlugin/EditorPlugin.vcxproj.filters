@@ -7,9 +7,6 @@
     <Filter Include="Resources">
       <UniqueIdentifier>{8c85da9f-c09a-46fa-a488-91a0612f8822}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EditorPlugin\Properties">
-      <UniqueIdentifier>{2be8624a-4ed5-4770-ba18-77a3ce317d08}</UniqueIdentifier>
-    </Filter>
     <Filter Include="EditorPlugin\Actors">
       <UniqueIdentifier>{71478c14-da7c-41db-9654-9d676d5f623a}</UniqueIdentifier>
     </Filter>
@@ -28,6 +25,9 @@
     <Filter Include="EditorPlugin\Actors\EditorClasses">
       <UniqueIdentifier>{30d9ca0e-3b04-4be0-8573-6e5eadee854d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PrecompiledHeader">
+      <UniqueIdentifier>{f67a4e11-d95b-4dfe-b5bf-d3c7b485bd9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\dllmain.cpp">
@@ -35,9 +35,6 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorPlugin.cpp">
       <Filter>EditorPlugin</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.cpp">
-      <Filter>EditorPlugin\Properties</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorClassMetaInfo.cpp">
       <Filter>EditorPlugin\Actors</Filter>
@@ -60,32 +57,17 @@
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneLoader.cpp">
       <Filter>EditorPlugin\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourcePropertyWrapper.cpp">
-      <Filter>EditorPlugin\Properties</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EngineObjectWrapper.cpp">
-      <Filter>EditorPlugin\Actors</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EngineObjectMetaInfo.cpp">
-      <Filter>EditorPlugin\Actors</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceMetaInfo.cpp">
       <Filter>EditorPlugin\Actors\Resources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceWrapper.cpp">
       <Filter>EditorPlugin\Actors\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ArrayPropertyWrapper.cpp">
-      <Filter>EditorPlugin\Properties</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ArrayElementPropertyWrapper.cpp">
-      <Filter>EditorPlugin\Properties</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EditorClasses\GizmoActorWrapper.cpp">
       <Filter>EditorPlugin\Actors\EditorClasses</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyHelper.cpp">
-      <Filter>EditorPlugin\Properties</Filter>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\stdafx.cpp">
+      <Filter>PrecompiledHeader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,12 +79,6 @@
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Resource.h">
       <Filter>Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyWrapper.h">
-      <Filter>EditorPlugin\Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\PropertyHelper.h">
-      <Filter>EditorPlugin\Properties</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorClassMetaInfo.h">
       <Filter>EditorPlugin\Actors</Filter>
@@ -128,26 +104,11 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Scene\SceneLoader.h">
       <Filter>EditorPlugin\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ResourcePropertyWrapper.h">
-      <Filter>EditorPlugin\Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EngineObjectWrapper.h">
-      <Filter>EditorPlugin\Actors</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EngineObjectMetaInfo.h">
-      <Filter>EditorPlugin\Actors</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceMetaInfo.h">
       <Filter>EditorPlugin\Actors\Resources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\Resources\ResourceWrapper.h">
       <Filter>EditorPlugin\Actors\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ArrayPropertyWrapper.h">
-      <Filter>EditorPlugin\Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\ArrayElementPropertyWrapper.h">
-      <Filter>EditorPlugin\Properties</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\EditorClasses\GizmoActorWrapper.h">
       <Filter>EditorPlugin\Actors\EditorClasses</Filter>
@@ -155,8 +116,8 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\IncludeWindows.h">
       <Filter>EditorPlugin</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Properties\AccessPrivateIdiom.h">
-      <Filter>EditorPlugin\Properties</Filter>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\stdafx.h">
+      <Filter>PrecompiledHeader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

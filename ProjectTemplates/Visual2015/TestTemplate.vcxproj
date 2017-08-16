@@ -53,6 +53,8 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   
+  <Import Project="..\..\Props\PathsMacros.props" />
+  
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -71,7 +73,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   
-  <Import Project="..\..\Props\PathsMacros.props" />
+  
   
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
