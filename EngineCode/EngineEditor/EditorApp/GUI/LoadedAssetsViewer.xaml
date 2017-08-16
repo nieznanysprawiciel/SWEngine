@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EditorApp.GUI"
 			 xmlns:sys="clr-namespace:System;assembly=mscorlib"
-			 xmlns:engine="clr-namespace:EditorPlugin;assembly=EditorPlugin"
+			 xmlns:engine="clr-namespace:sw.EditorPlugin;assembly=PropertyWrapperRTTR"
 			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">

@@ -5,7 +5,7 @@ using System.Windows.Interop;
 using System.Runtime.InteropServices;
 using EditorApp.Editor;
 using EditorApp.GUI;
-using EditorPlugin;
+using sw.EditorPlugin;
 
 
 

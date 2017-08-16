@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EditorPlugin;
+using sw.EditorPlugin;
 using System.Windows.Input;
 using EditorApp.GUI;
 using EditorApp.Editor.Commands;

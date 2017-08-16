@@ -8,7 +8,7 @@ using System.Windows;
 using System.IO;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using EditorPlugin;
+using sw.EditorPlugin;
 using EditorApp.Editor.Commands;
 using EditorApp.GUI;
 

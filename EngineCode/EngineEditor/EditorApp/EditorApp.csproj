@@ -365,6 +365,10 @@
       <Name>Interop.D3DImageEx</Name>
       <Private>True</Private>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Projects\PropertyWrapperRTTR\PropertyWrapperRTTR.vcxproj">
+      <Project>{3aa64883-8227-4f60-8839-e97223ce680b}</Project>
+      <Name>PropertyWrapperRTTR</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SchopenhauerWeltschmerz.ico" />

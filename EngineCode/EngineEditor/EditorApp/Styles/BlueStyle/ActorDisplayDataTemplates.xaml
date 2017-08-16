@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:EditorApp.Styles.BlueStyle"
-					xmlns:engine="clr-namespace:EditorPlugin;assembly=EditorPlugin"
+					xmlns:engine="clr-namespace:sw.EditorPlugin;assembly=PropertyWrapperRTTR"
+					xmlns:enginePlugin="clr-namespace:sw.EditorPlugin;assembly=EditorPlugin"
 					xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
 
 
@@ -32,7 +33,7 @@
 	</HierarchicalDataTemplate>
 
 	<!--CategoryPropertyWrapper-->
-	<HierarchicalDataTemplate DataType="{x:Type engine:CategoryPropertyWrapper}" ItemsSource="{Binding Properties}" >
+	<HierarchicalDataTemplate DataType="{x:Type engine:CategoryWrapper}" ItemsSource="{Binding Properties}" >
 		<Expander IsExpanded="{Binding ExpandProperty}" Margin="20, 0, 0, 0">
 			<Expander.Header>
 				<BulletDecorator>
@@ -130,7 +131,7 @@
 	</DataTemplate>
 
 	<!--ActorClassMetaInfo-->
-	<DataTemplate DataType="{x:Type engine:ActorWrapper}" >
+	<DataTemplate DataType="{x:Type enginePlugin:ActorWrapper}" >
 		<StackPanel Margin="20, 0, 0, 0">
 			<TextBlock Text="{Binding ActorName}" Style="{StaticResource TextBlockActorStyle}" />
 			<Expander IsExpanded="{Binding ExpandProperty}" Margin="0, 10, 0, 0">

@@ -87,6 +87,9 @@
     <ProjectReference Include="..\..\EngineCode\swInputLibrary\ProjectsDir\Visual2015\DirectInput\DirectInput.vcxproj">
       <Project>{d1075b79-925a-436f-8c53-09bd4d5787e4}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\EngineCode\swInputLibrary\ProjectsDir\Visual2015\WPFInputProxy\WPFInputProxy.vcxproj">
+      <Project>{364e3cfb-ccaa-4aaf-aa03-d6e2d9749228}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\EngineCore\SWEngine.vcxproj">
       <Project>{08f5ad41-2020-48ab-8ac3-7fe0039ed65f}</Project>
     </ProjectReference>
@@ -140,6 +143,7 @@
     <Import Project="..\EngineCore\EngineCorePathMacros.props" />
     <Import Project="EditorPluginPathMacros.props" />
     <Import Project="EditorPluginConfiguration.props" />
+    <Import Project="..\Props\LinkDirectInput.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -148,6 +152,7 @@
     <Import Project="..\EngineCore\EngineCorePathMacros.props" />
     <Import Project="EditorPluginPathMacros.props" />
     <Import Project="EditorPluginConfiguration.props" />
+    <Import Project="..\Props\LinkDirectInput.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -156,6 +161,7 @@
     <Import Project="..\EngineCore\EngineCorePathMacros.props" />
     <Import Project="EditorPluginPathMacros.props" />
     <Import Project="EditorPluginConfiguration.props" />
+    <Import Project="..\Props\LinkDirectInput.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -164,6 +170,7 @@
     <Import Project="..\EngineCore\EngineCorePathMacros.props" />
     <Import Project="EditorPluginPathMacros.props" />
     <Import Project="EditorPluginConfiguration.props" />
+    <Import Project="..\Props\LinkDirectInput.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

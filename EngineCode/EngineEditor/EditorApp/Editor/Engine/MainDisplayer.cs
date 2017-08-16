@@ -2,7 +2,7 @@
 using System.Windows.Media;
 using System.Windows.Interop;
 using System.Runtime.InteropServices;
-using EditorPlugin;
+using sw.EditorPlugin;
 using System.Windows;
 using System.Collections.Generic;
 using System.Windows.Input;
