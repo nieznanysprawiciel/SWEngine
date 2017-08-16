@@ -1,4 +1,3 @@
-#pragma unmanaged
 /**
 @file SceneHelpersNoClr.cpp
 @author nieznanysprawiciel
@@ -6,6 +5,9 @@
 */
 
 #include "EngineEditor/EditorPlugin/stdafx.h"
+
+
+#pragma unmanaged
 
 #include "SceneHelpers.h"
 

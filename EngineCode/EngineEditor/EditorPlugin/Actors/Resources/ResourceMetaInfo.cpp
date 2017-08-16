@@ -14,7 +14,7 @@ namespace EditorPlugin
 // ================================ //
 //
 ResourceMetaInfo::ResourceMetaInfo( ResourceWrapper^ resource )
-	: EngineObjectMetaInfo( resource )
+	: EngineObjectMeta( resource )
 {}
 
 

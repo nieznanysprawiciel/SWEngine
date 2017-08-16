@@ -7,7 +7,6 @@
 
 
 
-#include "EngineEditor/PropertyWrapperRTTR/Actors/EngineObjectMeta.h"
 #include "ResourceWrapper.h"
 
 

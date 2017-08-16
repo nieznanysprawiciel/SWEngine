@@ -6,10 +6,9 @@
 */
 
 
-
-#include "EngineEditor/PropertyWrapperRTTR/Actors/EngineObjectWrapper.h"
-#include "EngineEditor/PropertyWrapperRTTR/Properties/ResourcePropertyWrapper.h"
 #include "swGraphicAPI/Resources/ResourceObject.h"
+
+
 
 namespace sw {
 namespace EditorPlugin

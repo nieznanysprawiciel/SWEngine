@@ -9,6 +9,8 @@
 
 #include "EngineEditor/EditorPlugin/Actors/ActorWrapper.h"
 
+#include "EngineCore/UserApi/Level/LevelApi.h"
+
 class IDeserializer;
 
 
@@ -18,6 +20,7 @@ namespace sw
 
 namespace Api
 {
+	class LevelApi;
 	struct LevelApi::EditorLoadResult;
 }
 
@@ -30,6 +33,8 @@ using namespace System::Collections::ObjectModel;
 
 
 
+// ================================ //
+//
 public ref class SceneLoader
 {
 private:
