@@ -4,9 +4,6 @@
     <Filter Include="LightmapsTool">
       <UniqueIdentifier>{5d98cff4-462d-49a5-b75c-b01d1ce4e7b9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Common">
-      <UniqueIdentifier>{0d7671c5-6635-4d92-b864-d44ef72d3a4f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="LightmapsTool\LigthmapWorkers">
       <UniqueIdentifier>{7a26cb1b-124d-4889-ad5f-4d118d59cbad}</UniqueIdentifier>
     </Filter>
@@ -29,14 +26,8 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\targetver.h">
       <Filter>LightmapsTool</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\SWEngineInclude.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapLogic.h">
       <Filter>LightmapsTool</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\EngineCode\Common\MemoryChunk.h">
-      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\ExchangeDataStructs.h">
       <Filter>LightmapsTool</Filter>

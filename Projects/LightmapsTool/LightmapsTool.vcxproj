@@ -33,8 +33,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\EngineCode\Common\MemoryChunk.h" />
-    <ClInclude Include="..\..\EngineCode\Common\SWEngineInclude.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\ExchangeDataStructs.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapLogic.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\LightmapsTool\LightmapWorker.h" />
