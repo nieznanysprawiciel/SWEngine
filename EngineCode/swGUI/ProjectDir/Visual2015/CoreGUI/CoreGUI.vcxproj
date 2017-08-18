@@ -156,6 +156,7 @@
     <ClInclude Include="..\..\..\Core\System\CommonTypes\AccessKey.h" />
     <ClInclude Include="..\..\..\Core\System\CommonTypes\CommonTypes.h" />
     <ClInclude Include="..\..\..\Core\System\CommonTypes\Thickness.h" />
+    <ClInclude Include="..\..\..\Core\System\Config\GUISystemConfig.h" />
     <ClInclude Include="..\..\..\Core\System\DataBinding\DependencyObject.h" />
     <ClInclude Include="..\..\..\Core\System\Events\DelegateContainer.h" />
     <ClInclude Include="..\..\..\Core\System\Events\EventHandlers.h" />

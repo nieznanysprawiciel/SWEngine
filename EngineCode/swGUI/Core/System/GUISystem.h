@@ -5,6 +5,7 @@
 #include "swGUI/Native/INativeGUI.h"
 #include "Events/EventsSystem.h"
 #include "swGUI/Core/System/Rendering/RenderingSystem.h"
+#include "swGUI/Core/System/Config/GUISystemConfig.h"
 
 #include "HostWindow.h"
 
@@ -249,6 +250,8 @@ private:
 
 protected:
 
+	GUISystemConfig				m_guiConfig;		///< Configuration flags.
+
 	IGraphicAPIInitializer*		m_graphicApi;		///< Contains object responsible for dealing with specifics graphic apis.
 	INativeGUI*					m_nativeGUI;		///< Native window system used to display main application window.
 	input::IInput*				m_input;			///< Input processor.
@@ -319,6 +322,10 @@ public:
 	@note windowDesc can change. For instance: if you set AdjustSize to true, function will return real window size.*/
 	HostWindow*		CreateNativeHostWindow		( NativeWindowDescriptor& windowDesc );
 
+
+private:
+
+	int				GetSyncInterval				() const;
 
 public:
 	static GUISystem&	Get				();

@@ -28,6 +28,7 @@ bool		Engine::InitDisplayer()
 {
 	IRenderer* renderer = m_renderingSystem->GetRenderer();
 	
+	assert( !m_windows.empty() );
 	sw::gui::HostWindow* mainWindow = m_windows[ 0 ];
 
 	Context->displayEngine->InitRenderer( renderer );

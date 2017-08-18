@@ -47,6 +47,10 @@ GUISystem::~GUISystem()
 	delete m_nativeGUI;
 }
 
+//====================================================================================//
+//			Main loop	
+//====================================================================================//
+
 
 /**@brief Application main loop.
 
@@ -71,7 +75,7 @@ int					GUISystem::MainLoop()
 bool				GUISystem::MainLoopCore()
 {
 	// Process native events.
-	bool end = m_nativeGUI->MainLoop( true );
+	bool end = m_nativeGUI->MainLoop( m_guiConfig.UseBlockingMode );
 	if( end ) return true;;
 
 	HandleEvents();
@@ -79,7 +83,7 @@ bool				GUISystem::MainLoopCore()
 	// @todo How should it be done ??
 	OnIdle();
 	if( m_focusedWindow )
-		m_focusedWindow->GetSwapChain()->Present( 1 );
+		m_focusedWindow->GetSwapChain()->Present( GetSyncInterval() );
 
 	return false;
 }
@@ -105,6 +109,10 @@ void				GUISystem::HandleEvents()
 	}
 }
 
+
+//====================================================================================//
+//			Initialization	
+//====================================================================================//
 
 /**@brief Invoke this function in application entry point (main).*/
 bool				GUISystem::Init()
@@ -244,6 +252,10 @@ bool				GUISystem::ResourceManagerInitImpl		( ResourceManager* resourceManager )
 	return true;
 }
 
+//====================================================================================//
+//			Focus management	
+//====================================================================================//
+
 /**@brief Changes focused window.
 
 Delegate for native GUI.*/
@@ -289,6 +301,11 @@ void				GUISystem::OnFocusChanged				( INativeWindow* window, bool value )
 	}
 }
 
+//====================================================================================//
+//			Windows creation	
+//====================================================================================//
+
+
 // ================================ //
 //
 HostWindow*			GUISystem::CreateNativeHostWindow	( uint16 width, uint16 height, const std::string& windowTitle )
@@ -313,6 +330,10 @@ HostWindow*			GUISystem::CreateNativeHostWindow	( NativeWindowDescriptor& window
 
 	return hostWindow;
 }
+
+//====================================================================================//
+//				Other functions
+//====================================================================================//
 
 /**@copydoc EngineObject::MemorySize*/
 Size				GUISystem::GetMemorySize()
@@ -348,6 +369,16 @@ const char*			GUISystem::ProgramPath()
 }
 
 
+//====================================================================================//
+//			Internal implementation	
+//====================================================================================//
+
+// ================================ //
+//
+int					GUISystem::GetSyncInterval() const
+{
+	return m_guiConfig.UseVSync ? 1 : 0;
+}
 
 /**@brief */
 GUISystem&			GUISystem::Get()
