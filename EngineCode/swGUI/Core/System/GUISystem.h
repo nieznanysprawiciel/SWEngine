@@ -274,26 +274,31 @@ public:
 protected:
 	///@name User overrides
 	///@{
-	virtual	void	Initialize		();
-	virtual void	OnInitialized	() = 0;
+	virtual	bool	Initialize		();
+	virtual bool	OnInitialized	() = 0;
 	virtual void	OnClosing		() = 0;
 	virtual void	OnIdle			() = 0;
 	///@}
 
 	///@name Default initialization functions
 	///@{
-	void			DefaultInitWithoutWindow	();
-	void			DefaultInit					( uint16 width, uint16 height, const std::string& windowTitle );
+	bool			DefaultInitWithoutWindow	();
+	bool			DefaultInit					( uint16 width, uint16 height, const std::string& windowTitle );
 	bool			DefaultInitNativeGUI		();
-	bool			DefaultInitGraphicAPI		();
+	bool			DefaultInitGraphicAPI		( bool debug, bool singleThreaded );
 	bool			DefaultInitRenderingSystem	();
+	bool			DefaultInitFirstWindow		( uint16 width, uint16 height, const std::string& windowTitle, bool show );
+	bool			DefaultInitResourceManager	();
+	bool			InitResourceManager			( ResourceManager* resourceManager );
+
+	bool			ResourceManagerInitImpl		( ResourceManager* resourceManager );
 	///@}
 
 public:
 
 	///@name Main functions
 	///@{
-	void			Init			();
+	bool			Init			();
 	int				MainLoop		();
 	bool			MainLoopCore	();
 	void			HandleEvents	();

@@ -466,6 +466,9 @@
     <ProjectReference Include="..\..\EngineCode\swGraphicAPI\ProjectsDir\Visual2015\ResourceManager\ResourceManager.vcxproj">
       <Project>{9f71f0da-1d72-4e96-93b7-5ac2c9cb6ede}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\EngineCode\swGUI\ProjectDir\Visual2015\CoreGUI\CoreGUI.vcxproj">
+      <Project>{c6dab3ee-e9a7-47fc-9b33-a8f4250c219b}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\EngineCode\swInputLibrary\ProjectsDir\Visual2015\InputCore\InputCore.vcxproj">
       <Project>{ebc3abf4-e788-4242-a949-d366fc128b0e}</Project>
     </ProjectReference>

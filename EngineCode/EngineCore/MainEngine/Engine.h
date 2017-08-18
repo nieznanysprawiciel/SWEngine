@@ -1,9 +1,10 @@
 #pragma once
-/**@file Engine.h
+/**
+@file Engine.h
 @author nieznanysprawiciel
-@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+@copyright File is part of Sleeping Wombat Engine.
+*/
 
-@brief Plik zawiera deklaracjê g³ównego obiektu silnika.*/
 
 
 #define WIN32_LEAN_AND_MEAN
@@ -20,6 +21,7 @@
 #include "EngineCore/SW_engine.h"
 #include "EngineCore/MainEngine/EngineInterface.h"
 #include "swInputLibrary/InputCore/IInput.h"
+#include "swGUI/Core/System/GUISystem.h"
 
 #include <queue>
 
@@ -41,11 +43,11 @@ struct CameraData;
 
 /**@defgroup EngineCore
 @ingroup ModulesStructure
-@brief Podstawowe funkcjonalnoœci silnika SWEngine.*/
+@brief Basic SWEngine functionalities.*/
 
 
 
-/**@brief Klasa Engine jest nadrzêdnym obiektem zarz¹dzaj¹cym wszystkimi modu³ami silnika.
+/**@brief Main Engine object.
 @ingroup EngineCore
 @copybrief
 
@@ -61,10 +63,19 @@ Interfejsem dla u¿ytkownika jest klasa @ref EngineInterface i tam nale¿y umieszc
 wszystkie funkcje, które maj¹ byæ dostêpne dla logiki gry. Nie nale¿y w tej klasie umieszczaæ zmiennych,
 które mog¹ byæ przydatne klasie EngineInterface.
 */
-class Engine : public EngineInterface
+class Engine : public EngineInterface, public gui::GUISystem
 {
-private:		//zmienne, które nie maj¹ prawa zostaæ u¿yte przez EngineInterface
+private:
 
+	///@name GUISystem functions overrides.
+	///@{
+
+	virtual	bool			Initialize		() override;
+	virtual bool			OnInitialized	() override;
+	virtual void			OnClosing		() override;
+	virtual void			OnIdle			() override;
+
+	///@}
 
 private:
 	/**@name Funkcje do obs³ugi okna aplikacji*/
@@ -72,12 +83,15 @@ private:
 	ATOM		EngineRegisterClass		();						///<Rejestruje klasê okna aplikacji.
 	BOOL		InitInstance			( int nCmdShow );		///<Inicjuje okno aplikacji.
 public:
+
 	void		ShowAppWindow			( int showFlags );		///<Pokazuje okno aplikacji na ekranie.
 	void		HideAppWindow			();						///<Chowa okno aplikacji.
 	void		EndAplication			();
 	int			MainLoop				();
 	///@}
+
 public:
+
 	///@name Funkcje zwi¹zane z renderowaniem
 	///@{
 	void		RenderFrame					();
@@ -101,19 +115,23 @@ public:
 
 	Engine( const Engine& ) = delete;		///<Konstruktor kopiuj¹cy usuniêty.
 public:
-	explicit Engine();
-	explicit Engine( HINSTANCE instanceHandle );
-	~Engine();
+
+	explicit				Engine	();
+	explicit				Engine	( int argc, char** argv, sw::gui::INativeGUI* gui );
+	explicit				Engine	( HINSTANCE instanceHandle );
+							~Engine	();
 
 	bool	InitEngine				( int nCmdShow );
 	int		InitEngine				( int width, int height, bool fullscreen, int nCmdShow );
+
 private:
-	///@name Funkcje inicjuj¹ce modu³y silnika
+	///@name Engine modules initialization functions.
 	///@{
 	void	InternalInit			( HINSTANCE instanceHandle );
 
-	BOOL	InitWindow				( int width, int height, BOOL full_screen, int nCmdShow );
-	bool	InitGraphicAPI			( int width, int height, bool full_screen );
+	BOOL	InitWindow				( int width, int height, BOOL fullscreen, int nCmdShow );
+	bool	InitEngineGraphicAPI	();
+	bool	InitEngineInputModule	();
 	bool	InitInputModule			();
 	bool	InitSoundModule			();
 

@@ -104,7 +104,7 @@ public:
 	virtual			~TestFramework		() = default;
 
 
-	virtual	void				Initialize			();
+	virtual	bool				Initialize			();
 
 
 public:
@@ -127,7 +127,7 @@ private:
 	void			InitTesterDebugInput	();
 
 	// Inherited via GUISystem
-	virtual void	OnInitialized			() override {};
+	virtual bool	OnInitialized			() override { return true; };
 	virtual void	OnClosing				() override {};
 	virtual void	OnIdle					() override {};
 };

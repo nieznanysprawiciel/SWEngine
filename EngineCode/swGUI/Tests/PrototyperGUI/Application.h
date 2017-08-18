@@ -16,8 +16,8 @@ public:
 				~Application	() = default;
 
 protected:
-	virtual	void	Initialize		() override;
-	virtual void	OnInitialized	() override;
+	virtual	bool	Initialize		() override;
+	virtual bool	OnInitialized	() override;
 	virtual void	OnClosing		() override;
 	virtual void	OnIdle			() override;
 

@@ -33,17 +33,32 @@ namespace sw
 //----------------------------------------------------------------------------------------------//
 
 
+// ================================ //
+//
 Engine::Engine( HINSTANCE instanceHandle )
+	:	sw::gui::GUISystem( 0, nullptr, nullptr )
 {
 	InternalInit( instanceHandle );
 }
 
+// ================================ //
+//
 Engine::Engine()
+	:	sw::gui::GUISystem( 0, nullptr, nullptr )
 {
 	InternalInit( GetModuleHandle( nullptr ) );
 }
 
-/**@brief Contructor helper. Initializes all modules/*/
+
+// ================================ //
+//
+Engine::Engine( int argc, char** argv, sw::gui::INativeGUI* gui )
+	:	sw::gui::GUISystem( argc, argv, gui )
+{
+	InternalInit( GetModuleHandle( nullptr ) );
+}
+
+/**@brief Contructor helper. Creates all modules without initialization logic.*/
 void	Engine::InternalInit			( HINSTANCE instanceHandle )
 {
 	// Dziêki tej zmiennej bêdzie mo¿na wysy³aæ eventy
@@ -60,7 +75,7 @@ void	Engine::InternalInit			( HINSTANCE instanceHandle )
 
 	Context->config					= new Config( "configs/StartConfig.config" );
 
-	Context->graphicInitializer		= ResourcesFactory::CreateAPIInitializer();
+	Context->graphicInitializer		= nullptr;			// GUI initializes.
 
 	Context->controllersEngine		= new ControllersEngine( this );
 	Context->movementEngine			= new MovementEngine( this );
@@ -74,7 +89,7 @@ void	Engine::InternalInit			( HINSTANCE instanceHandle )
 	Context->actorsManager			= new ActorsManager( this );
 	Context->eventsManager			= new EventManager( this );
 
-	//inicjujemy licznik klatek
+	// Initialize frames counter.
 	Context->pause = false;
 }
 
@@ -92,13 +107,13 @@ Engine::~Engine()
 	delete Context->physicEngine;
 	delete Context->fableEngine;
 	delete Context->soundEngine;
-	delete Context->ui_engine;			//sprz¹ta po directinpucie
+	delete Context->ui_engine;
 	delete Context->actorsManager;
-	delete Context->modelsManager;		//musi byæ kasowany na koñcu
+	//delete Context->modelsManager;		// Will be deleted by GUI.
 
 	DefaultAssets::Release();
-	Context->graphicInitializer->ReleaseAPI();
-	delete Context->graphicInitializer;
+	//Context->graphicInitializer->ReleaseAPI();
+	//delete Context->graphicInitializer;
 
 	delete Context->config;
 }
@@ -126,19 +141,13 @@ bool		Engine::InitEngine				( int nCmdShow )
 ///@param[in] height Wysokoœæ okna
 ///@param[in] fullscreen Pe³ny ekran lub renderowanie w oknie
 ///@param[in] nCmdShow Czwarty parametr funkcji WinMain. Decyduje w jaki sposób powinno zostaæ pokazane okno aplikacji.
-int Engine::InitEngine( int width, int height, bool fullScreen, int nCmdShow )
+int			Engine::InitEngine( int width, int height, bool fullScreen, int nCmdShow )
 {
 	int result;
 
 	//Tworzenie okna aplikacji
 	result = InitWindow( width, height, fullScreen, nCmdShow );
 	if( !result )
-		return FALSE;
-
-	//Inicjalizowanie API graficznego
-	result = InitGraphicAPI( width, height, fullScreen );
-	assert( result != 0 );
-	if( result == 0 )
 		return FALSE;
 
 	result = InitInputModule();
@@ -174,29 +183,24 @@ int Engine::InitEngine( int width, int height, bool fullScreen, int nCmdShow )
 	return TRUE;
 }
 
-
-/**@brief */
-bool Engine::InitGraphicAPI( int width, int height, bool fullScreen )
+/**@brief Engine side graphicAPI initialization.
+GraphicAPI was created by GUI before. Now we only initialize engine modules with it.*/
+bool		Engine::InitEngineGraphicAPI()
 {
-	bool result;
+	Context->graphicInitializer = m_graphicApi;
 
-	//Inicjalizowanie API graficznego
-	GraphicAPIInitData initData;
-	initData.SwapChain.FullScreen			= fullScreen;
-	initData.SingleThreaded					= false;
+	// If there's something to initialize, place it here.
+	return true;
+}
 
-#ifdef _DEBUG
-	initData.UseDebugLayer = true;
-#endif // _DEBUG
+// ================================ //
+//
+bool		Engine::InitEngineInputModule()
+{
+	// Normally we must delete lastModule. In this case we know that it is nullptr.
+	auto lastModule = Context->ui_engine->ChangeInputModule( m_input );
+	assert( lastModule == nullptr );		// Check to be sure.
 
-	initData.SwapChain.WindowHandle			= Context->windowHandler;
-	initData.SwapChain.WindowHeight			= height;
-	initData.SwapChain.WindowWidth			= width;
-	initData.SwapChain.DepthStencilFormat	= DepthStencilFormat::DEPTH_STENCIL_FORMAT_D24_UNORM_S8_UINT;
-	result = Context->graphicInitializer->InitAPI( initData );
-	assert( result != 0 );
-	if( result == 0 )
-		return false;
 	return true;
 }
 
@@ -451,6 +455,7 @@ void Engine::time_controller( float& time_interval )
 
 /**@brief Funkcja pozwala wys³aæ event, który bêdzie potem przetworzony przez klase FableEngine.
 
+@deprecated Use internal api for that.
 @see Events
 @param[in] new_event Event do wys³ania.*/
 void			Engine::SendEvent( Event* newEvent )
@@ -469,6 +474,9 @@ void					Engine::EnableInput			( bool val )	{ Context->ui_engine->EnableInput( v
 input::IInput*			Engine::ChangeInputModule	( input::IInput* newModule )	{ return Context->ui_engine->ChangeInputModule( newModule ); }
 
 AssetsManager *			Engine::GetAssetsManager	()				{ return Context->modelsManager; }
+
+
+
 
 /**@brief Funkcja wczytuj¹ca startowy level do silnika. Najczêœciej na tym etapie wczytuje siê tylko menu,
 oraz wszytkie elementy, które s¹ przydatne na ka¿dym etapie gry.

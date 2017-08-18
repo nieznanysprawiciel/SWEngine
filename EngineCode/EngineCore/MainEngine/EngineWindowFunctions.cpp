@@ -9,6 +9,7 @@ WinAPI oraz g³ówn¹ pêtlê programu @ref Engine::MainLoop.
 #include "EngineCore/stdafx.h"
 #include "Engine.h"
 #include "EngineCore/MainEngine/EngineContext.h"
+#include "EngineCore/MainEngine/Initializers/Config.h"
 
 #include "EngineCore/SW_engine.h"
 
@@ -31,6 +32,62 @@ LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 
 namespace sw
 {
+
+
+// ================================ //
+//
+bool			Engine::Initialize					()
+{
+	bool result = true;
+	bool debug = false;
+
+	// In future move this as option to config or somewhere.
+#ifdef _DEBUG
+	debug = true;
+#endif
+
+	result = result && InitResourceManager( Context->modelsManager );
+	
+	result = result && DefaultInitGraphicAPI( debug, false );
+	result = result && DefaultInitNativeGUI();
+	result = result && DefaultInitRenderingSystem();
+
+	result = result && DefaultInitFirstWindow( Context->config->ScreenWidth(), Context->config->ScreenHeight(), "Sleeping Wombat Engine (DirectX 11)", true );
+
+	return result;
+}
+
+// ================================ //
+//
+bool			Engine::OnInitialized				()
+{
+	// Here goes all modules initialization.
+	bool result = true;
+
+	result = result && InitEngineGraphicAPI();
+	result = result && InitEngineInputModule();
+	result = result && InitSoundModule();
+	result = result && InitDefaultAssets();
+	result = result && InitDisplayer();
+	result = result && InitDefaultActorsClasses();
+
+	// It's better to initialize timer as late as posible.
+	Context->timeManager.InitTimer();
+
+	Context->engineReady = result;
+	return result;
+}
+
+// ================================ //
+//
+void			Engine::OnClosing					()
+{}
+
+// ================================ //
+//
+void			Engine::OnIdle						()
+{}
+
 
 
 
