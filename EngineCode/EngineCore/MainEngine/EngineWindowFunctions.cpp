@@ -64,6 +64,7 @@ bool			Engine::OnInitialized				()
 	// Here goes all modules initialization.
 	bool result = true;
 
+	result = result && InitGUIConfiguration();
 	result = result && InitEngineGraphicAPI();
 	result = result && InitEngineInputModule();
 	result = result && InitSoundModule();

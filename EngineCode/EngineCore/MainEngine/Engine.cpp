@@ -183,6 +183,16 @@ int			Engine::InitEngine( int width, int height, bool fullScreen, int nCmdShow )
 	return TRUE;
 }
 
+// ================================ //
+//
+bool		Engine::InitGUIConfiguration()
+{
+	m_guiConfig.UseBlockingMode = false;
+	m_guiConfig.UseVSync = true;
+
+	return true;
+}
+
 /**@brief Engine side graphicAPI initialization.
 GraphicAPI was created by GUI before. Now we only initialize engine modules with it.*/
 bool		Engine::InitEngineGraphicAPI()

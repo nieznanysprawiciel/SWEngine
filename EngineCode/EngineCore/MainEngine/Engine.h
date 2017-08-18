@@ -138,6 +138,7 @@ private:
 	bool	InitDefaultAssets		();
 	bool	InitDisplayer			();
 	bool	InitDefaultActorsClasses();
+	bool	InitGUIConfiguration	();
 	///@}
 public:
 #ifndef __UNUSED
