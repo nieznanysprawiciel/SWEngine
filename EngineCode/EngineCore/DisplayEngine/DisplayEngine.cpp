@@ -62,7 +62,6 @@ DisplayEngine::DisplayEngine( Engine* engine )
 	m_currentCamera = nullptr;
 	m_skyDome = nullptr;
 	m_mainRenderTarget = nullptr;
-	m_mainSwapChain = nullptr;
 
 	m_maxQueuedPassesPerFrame = 5;
 }
@@ -70,14 +69,13 @@ DisplayEngine::DisplayEngine( Engine* engine )
 
 DisplayEngine::~DisplayEngine()
 {
-	for( IRenderer* renderer : m_renderers )
-		if( renderer )		delete renderer;
+	// gui::RenderingSystem owns.
+	m_renderers.clear();
 
 	if( m_skyDome )
 		delete m_skyDome;
 
 	delete m_defaultCamera;
-	delete m_mainSwapChain;
 	delete lightModule;
 }
 
@@ -87,16 +85,15 @@ w³¹czania i wy³¹czania algorytmu.
 
 @todo Zrobiæ inicjacjê wielow¹tkow¹. Gdzieœ musi zostaæ podjêta decyzja o liczbie w¹tków.
 Trzeba pomyœleæ gdzie.*/
-void			DisplayEngine::InitRenderer( IRenderer* renderer )
+void			DisplayEngine::InitRenderer		( IRenderer* renderer )
 {
 	m_renderers.push_back( renderer );		// Na razie nie robimy deferred renderingu.
 }
 
 /**@brief Inits submodules (LightModule, main render pass), creates default engine buffers,
 sets default camera and render target.*/
-void			DisplayEngine::InitDisplayer( AssetsManager* assetsManager )
+void			DisplayEngine::InitDisplayer	( AssetsManager* assetsManager, RenderTargetObject* mainRT )
 {
-	modelsManager = assetsManager;
 	SetAssetManager( assetsManager );
 	SetFactory( &m_passFactory );
 
@@ -110,26 +107,25 @@ void			DisplayEngine::InitDisplayer( AssetsManager* assetsManager )
 	cameraDataInit.DataType = TypeID::get< CameraConstants >();
 	cameraDataInit.ElementSize = sizeof( CameraConstants );
 
-	m_cameraConstants = modelsManager->CreateConstantsBuffer( CAMERA_CONSTANTS_BUFFER_NAME, cameraDataInit );
+	m_cameraConstants = assetsManager->CreateConstantsBuffer( CAMERA_CONSTANTS_BUFFER_NAME, cameraDataInit );
 	assert( m_cameraConstants );
 
 	ConstantBufferInitData transformInitData;
 	transformInitData.ElementSize = sizeof( TransformConstants );
 	transformInitData.DataType = TypeID::get< TransformConstants >();
 
-	m_transformConstants = modelsManager->CreateConstantsBuffer( TRANSFORM_CONSTANTS_BUFFER_NAME, transformInitData );
+	m_transformConstants = assetsManager->CreateConstantsBuffer( TRANSFORM_CONSTANTS_BUFFER_NAME, transformInitData );
 	assert( m_transformConstants );
 
 	ConstantBufferInitData materialInitData;	/// @todo Replace with MaterialAsset buffer.
 	materialInitData.ElementSize = sizeof( ConstantPerMesh );
 	materialInitData.DataType = TypeID::get< ConstantPerMesh >();
 
-	m_materialConstants = modelsManager->CreateConstantsBuffer( MATERIAL_CONSTANTS_BUFFER_NAME, materialInitData );
+	m_materialConstants = assetsManager->CreateConstantsBuffer( MATERIAL_CONSTANTS_BUFFER_NAME, materialInitData );
 	assert( m_materialConstants );
 
 
-	SetMainRenderTarget( modelsManager->GetRenderTarget( DefaultAssets::SCREEN_RENDERTARGET_STRING ) );
-	m_mainSwapChain = ResourcesFactory::CreateScreenSwapChain( m_mainRenderTarget.Ptr() );
+	SetMainRenderTarget( mainRT );
 
 	m_defaultCamera = new CameraActor();
 	SetCurrentCamera( m_defaultCamera );
@@ -137,22 +133,22 @@ void			DisplayEngine::InitDisplayer( AssetsManager* assetsManager )
 
 // ================================ //
 //
-void DisplayEngine::BeginScene()
+void			DisplayEngine::BeginScene()
 {
 	//m_renderers[ 0 ]->BeginScene( m_mainRenderTarget );
 }
 
 // ================================ //
 //
-void DisplayEngine::EndScene()
+void			DisplayEngine::EndScene()
 {
 	//m_renderers[ 0 ]->Present();
-	m_mainSwapChain->Present( 0 );
+	//m_mainSwapChain->Present( 0 );
 }
 
 // ================================ //
 //
-void DisplayEngine::SetMainRenderTarget( RenderTargetObject* renderTarget )
+void			DisplayEngine::SetMainRenderTarget( RenderTargetObject* renderTarget )
 {
 	m_mainRenderTarget = renderTarget;
 	m_mainPass->SetMainRenderTarget( renderTarget );

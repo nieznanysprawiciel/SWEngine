@@ -205,7 +205,7 @@ bool		Engine::InitEngineInputModule()
 }
 
 /**@brief Inicjuje urz¹dzenie wejœcia. Domyœlnie u¿ywany jest @ref DirectInputModule.*/
-bool Engine::InitInputModule		()
+bool		Engine::InitInputModule		()
 {
 	sw::input::IInput* newModule = sw::input::InputFactory::CreateDirectInput();
 
@@ -225,74 +225,24 @@ bool Engine::InitInputModule		()
 }
 
 /**@brief */
-bool Engine::InitSoundModule		()
+bool		Engine::InitSoundModule		()
 {
 	return true;
 }
 
-//----------------------------------------------------------------------------------------------//
-//								Przygotowanie modu³ów do dzia³ania								//
-//----------------------------------------------------------------------------------------------//
-
-
-
 
 //----------------------------------------------------------------------------------------------//
-//								potok przetwarzania obiektów									//
+//								Object and rendering pipeline									//
 //----------------------------------------------------------------------------------------------//
 
-/**@brief To tutaj dziej¹ siê wszystkie rzeczy, które s¹ wywo³ywane co ka¿d¹ klatkê.*/
-void Engine::RenderFrame()
+/**@brief Main function called per frame.*/
+void		Engine::RenderFrame()
 {
 	float timeInterval = Context->timeManager.onStartRenderFrame();
 	float lag = Context->timeManager.GetFrameLag();
 
-
-	while( lag >= FIXED_MOVE_UPDATE_INTERVAL )
-	{
-		START_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
-
-			Context->ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->physicEngine->ProceedPhysic( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->controllersEngine->ProceedControllersPre( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->movementEngine->ProceedMovement( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->controllersEngine->ProceedControllersPost( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->collisionEngine->ProceedCollisions( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->fableEngine->ProceedFable( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->eventsManager->ProcessEvents( FIXED_MOVE_UPDATE_INTERVAL );
-
-		SingleThreadedUpdatePhase( lag, timeInterval );
-
-		// Aktualizacja czasu po wykonaniu kodu dla danej klatki.
-		lag -= FIXED_MOVE_UPDATE_INTERVAL;
-		Context->timeManager.UpdateTimeLag( lag );
-
-		timeInterval = Context->timeManager.onStartRenderFrame();
-		lag = Context->timeManager.GetFrameLag();
-
-		END_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
-	}
-
-
-#ifdef _INTERPOLATE_POSITIONS
-	START_PERFORMANCE_CHECK( INTERPOLATION_TIME )
-
-		Context->displayEngine->InterpolatePositions( lag / FIXED_MOVE_UPDATE_INTERVAL );
-
-	END_PERFORMANCE_CHECK( INTERPOLATION_TIME )
-#endif
-
-		START_PERFORMANCE_CHECK( RENDERING_TIME )
-
-		//Renderujemy scenê oraz interfejs u¿ytkownika
-		Context->displayEngine->BeginScene();
-
-	Context->displayEngine->DisplayScene( timeInterval, lag / FIXED_MOVE_UPDATE_INTERVAL );
-	Context->ui_engine->DrawGUI( timeInterval, lag / FIXED_MOVE_UPDATE_INTERVAL );
-
-	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
-
-		Context->displayEngine->EndScene();
+	UpdateScene( lag, timeInterval );
+	RenderScene( lag, timeInterval );
 }
 
 /**@brief W tej funkcji wywo³ywane s¹ wszystkie funkcje, które aktualizuj¹ stan silnika
@@ -302,7 +252,7 @@ Stan silnika jest w czasie trwania klatki niezmienny. Jest tak dlatego, ¿e logik
 jest (bêdzie) wykonywana wielow¹tkowo i aktorzy odpytuj¹cy o stan powinni dostaæ informacjê
 o tym co by³o w ostaniej klatce, a nie co jest w danym momencie, poniewa¿ taki tymczasowy
 stan w zasadzie niewiele mówi.*/
-void Engine::SingleThreadedUpdatePhase( float& lag, float timeInterval )
+void		Engine::SingleThreadedUpdatePhase( float& lag, float timeInterval )
 {
 	Context->controllersEngine->SingleThreadedUpdatePhase( timeInterval );
 }
@@ -317,13 +267,13 @@ Wywo³ywane s¹ funkcje odpowiadaj¹ce za fizykê, ruch, kontrolery, wejœcie od u¿yt
 Zmienna okreœla, ile up³yne³o czasu od ostatniego przeliczenia po³o¿eñ.
 @param[in] timeInterval Czas jaki up³yn¹³ od ostatniej klatki.
 */
-void Engine::UpdateScene( float& lag, float timeInterval )
+void		Engine::UpdateScene( float& lag, float timeInterval )
 {
 	while( lag >= FIXED_MOVE_UPDATE_INTERVAL )
 	{
 		START_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
 
-			Context->ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->physicEngine->ProceedPhysic( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->controllersEngine->ProceedControllersPre( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->movementEngine->ProceedMovement( FIXED_MOVE_UPDATE_INTERVAL );
@@ -335,7 +285,10 @@ void Engine::UpdateScene( float& lag, float timeInterval )
 		SingleThreadedUpdatePhase( lag, timeInterval );
 
 		lag -= FIXED_MOVE_UPDATE_INTERVAL;
-		//timeManager.UpdateTimeLag( lag );
+		Context->timeManager.UpdateTimeLag( lag );
+
+		timeInterval = Context->timeManager.onStartRenderFrame();
+		lag = Context->timeManager.GetFrameLag();
 
 		END_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
 	}
@@ -350,29 +303,29 @@ Zmienna okreœla, ile up³yne³o czasu od ostatniego przeliczenia po³o¿eñ.
 @param[in] timeInterval Czas jaki up³yn¹³ od ostatniej klatki.
 */
 
-void Engine::RenderScene( float lag, float timeInterval )
+void		Engine::RenderScene( float lag, float timeInterval )
 {
 	float framePercent = lag / FIXED_MOVE_UPDATE_INTERVAL;
 
 #ifdef _INTERPOLATE_POSITIONS
 	START_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 
-		Context->displayEngine->InterpolatePositions( framePercent );
+	Context->displayEngine->InterpolatePositions( framePercent );
 
 	END_PERFORMANCE_CHECK( INTERPOLATION_TIME )
 #endif
 
-		START_PERFORMANCE_CHECK( RENDERING_TIME )
+	START_PERFORMANCE_CHECK( RENDERING_TIME )
 
 		//Renderujemy scenê oraz interfejs u¿ytkownika
-		Context->displayEngine->BeginScene();
+	Context->displayEngine->BeginScene();
 
 	Context->displayEngine->DisplayScene( timeInterval, framePercent );
 	Context->ui_engine->DrawGUI( timeInterval, framePercent );
 
 	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
 
-		Context->displayEngine->EndScene();
+	Context->displayEngine->EndScene();
 }
 
 
@@ -384,7 +337,7 @@ U¿ywaæ rozs¹dnie.
 
 @return WskaŸnik na render target.
 */
-void* Engine::GetRenderTargetHandle( uint16 width, uint16 height )
+void*		Engine::GetRenderTargetHandle( uint16 width, uint16 height )
 {
 	RenderTargetDescriptor descriptor;
 	descriptor.AllowShareResource = 1;
@@ -406,7 +359,7 @@ void* Engine::GetRenderTargetHandle( uint16 width, uint16 height )
 
 /**@brief Zwraca strukturê EngineContext.
 @attention Dziêki temu mo¿na zrobiæ w zasadzie wszystko i to du¿o u³atwia, ale mo¿na siê skrzywdziæ.*/
-CameraData& Engine::GetMainCamera()
+CameraData&		Engine::GetMainCamera()
 {
 	return Context->controllersEngine->GetGlobalState()->Camera;;
 }

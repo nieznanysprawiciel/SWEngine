@@ -118,7 +118,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <Version>$(EngineVersion)</Version>
     </Link>
@@ -133,7 +133,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <Version>$(EngineVersion)</Version>
     </Link>
@@ -150,7 +150,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
@@ -169,7 +169,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
@@ -181,6 +181,7 @@
     <ClCompile Include="..\..\EngineCode\TestEngine\GamePlayCode\EntryPointGamePlay.cpp" />
     <ClCompile Include="..\..\EngineCode\TestEngine\GamePlayCode\Objects\GenericActor.cpp" />
     <ClCompile Include="..\..\EngineCode\TestEngine\GamePlayCode\PlayerSignalTest.cpp" />
+    <ClCompile Include="..\..\EngineCode\TestEngine\main.cpp" />
     <ClCompile Include="..\..\EngineCode\TestEngine\stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -196,8 +197,14 @@
     <ProjectReference Include="..\..\EngineCode\swGraphicAPI\ProjectsDir\Visual2015\DX11API\DX11API.vcxproj">
       <Project>{44643d7f-1c71-41c1-b452-b2dc5e088a58}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\EngineCode\swGUI\ProjectDir\Visual2015\Win32NativeGUI\Win32NativeGUI.vcxproj">
+      <Project>{267292a0-c262-43e7-afb1-1f63439fd465}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\EngineCode\swInputLibrary\ProjectsDir\Visual2015\DirectInput\DirectInput.vcxproj">
       <Project>{d1075b79-925a-436f-8c53-09bd4d5787e4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EngineCode\swInputLibrary\ProjectsDir\Visual2015\WinApiInputProxy\WinApiInputProxy.vcxproj">
+      <Project>{9351732d-b6ec-4db2-bd75-f18e880b3815}</Project>
     </ProjectReference>
     <ProjectReference Include="..\EngineCore\SWEngine.vcxproj">
       <Project>{08f5ad41-2020-48ab-8ac3-7fe0039ed65f}</Project>

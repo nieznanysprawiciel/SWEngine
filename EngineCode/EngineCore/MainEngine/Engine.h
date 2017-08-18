@@ -87,7 +87,7 @@ public:
 	void		ShowAppWindow			( int showFlags );		///<Pokazuje okno aplikacji na ekranie.
 	void		HideAppWindow			();						///<Chowa okno aplikacji.
 	void		EndAplication			();
-	int			MainLoop				();
+	//int			MainLoop				();
 	///@}
 
 public:

@@ -31,6 +31,9 @@
     <ClCompile Include="..\..\EngineCode\TestEngine\GamePlayCode\Objects\GenericActor.cpp">
       <Filter>TestEngine\GamePlayCode\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\EngineCode\TestEngine\main.cpp">
+      <Filter>TestEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\TestEngine\EntryPoint.h">

@@ -1,8 +1,9 @@
-/**@file DisplayerInitializer.cpp
+/**
+@file DisplayerInitializer.cpp
 @author nieznanysprawiciel
-@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+@copyright File is part of Sleeping Wombat Libraries.
+*/
 
-@brief Inicjalizacja modu³ów do renderowania.*/
 
 
 #include "EngineCore/stdafx.h"
@@ -19,15 +20,18 @@
 namespace sw
 {
 
-/**@brief Inicjalizuje DisplayEngine.
+/**@brief Initializes DisplayEngine.
 
-Funkcja tworzy renderery, domyœlne bufory sta³ych oraz ustawia macierz projekcji.
-@return Zwraca zawsze true.*/
-bool Engine::InitDisplayer()
+
+@return Returns always true.*/
+bool		Engine::InitDisplayer()
 {
-	IRenderer* renderer = Context->graphicInitializer->CreateRenderer( RendererUsage::USE_AS_IMMEDIATE );
+	IRenderer* renderer = m_renderingSystem->GetRenderer();
+	
+	sw::gui::HostWindow* mainWindow = m_windows[ 0 ];
+
 	Context->displayEngine->InitRenderer( renderer );
-	Context->displayEngine->InitDisplayer( Context->modelsManager );
+	Context->displayEngine->InitDisplayer( Context->modelsManager, mainWindow->GetRenderTarget().Ptr() );
 
 	return true;
 }

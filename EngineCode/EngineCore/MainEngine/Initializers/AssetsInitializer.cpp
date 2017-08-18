@@ -33,8 +33,9 @@ bool			Engine::InitDefaultAssets()
 
 	Context->displayEngine->SetLayout( layout );		///@todo Hack. Layout powinien byæ ustawialny dla ka¿dego mesha z osobna. Zlikwidowaæ.
 
-	RenderTargetObject* mainRenderTarget = ResourcesFactory::CreateScreenRenderTarget();
-	Context->modelsManager->AddRenderTarget( mainRenderTarget, DefaultAssets::SCREEN_RENDERTARGET_STRING );
+	// HostWindow will add main render target.
+	//RenderTargetObject* mainRenderTarget = ResourcesFactory::CreateScreenRenderTarget();
+	//Context->modelsManager->AddRenderTarget( mainRenderTarget, DefaultAssets::SCREEN_RENDERTARGET_STRING );
 
 	// Renderer state (blending, depth, rasterizer)
 	/// @todo In future we should specify explicitly created descriptors. They can change during development process

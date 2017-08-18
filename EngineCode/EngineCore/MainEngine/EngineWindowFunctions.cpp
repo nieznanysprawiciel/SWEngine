@@ -86,7 +86,9 @@ void			Engine::OnClosing					()
 // ================================ //
 //
 void			Engine::OnIdle						()
-{}
+{
+	RenderFrame();
+}
 
 
 
@@ -274,41 +276,41 @@ Definicja: "EngineWindowFunctions.cpp"
 
 /**@brief G³ówna pêtla programu.
 @ref MainLoop*/
-int Engine::MainLoop()
-{
-	MSG msg;
-
-#ifndef __UNUSED
-	//w³¹czamy g³ówny w¹tek do renderingu
-	std::thread main_thread( main_thread_function, this );
-#endif
-
-	// Main message loop:
-	while( TRUE )
-	{
-		if( Context->engineReady )
-			RenderFrame();
-
-		while( PeekMessage( &msg, NULL, 0, 0, PM_REMOVE ) )
-		//while (GetMessage(&msg, NULL, 0, 0))
-		{
-			TranslateMessage( &msg );
-			DispatchMessage( &msg );
-		}
-
-		if( msg.message == WM_QUIT )
-		{
-#ifndef __UNUSED
-			join_render_thread = true;	//to jest jedyne miejsce, w którym ta zmienna mo¿e zostac ustawiona
-										//dlatego mo¿emy to zrobiæ bez synchronizacji
-			main_thread.join();
-#endif
-			break;
-	}
-}
-
-	return (int)msg.wParam;
-}
+//int Engine::MainLoop()
+//{
+//	MSG msg;
+//
+//#ifndef __UNUSED
+//	//w³¹czamy g³ówny w¹tek do renderingu
+//	std::thread main_thread( main_thread_function, this );
+//#endif
+//
+//	// Main message loop:
+//	while( TRUE )
+//	{
+//		if( Context->engineReady )
+//			RenderFrame();
+//
+//		while( PeekMessage( &msg, NULL, 0, 0, PM_REMOVE ) )
+//		//while (GetMessage(&msg, NULL, 0, 0))
+//		{
+//			TranslateMessage( &msg );
+//			DispatchMessage( &msg );
+//		}
+//
+//		if( msg.message == WM_QUIT )
+//		{
+//#ifndef __UNUSED
+//			join_render_thread = true;	//to jest jedyne miejsce, w którym ta zmienna mo¿e zostac ustawiona
+//										//dlatego mo¿emy to zrobiæ bez synchronizacji
+//			main_thread.join();
+//#endif
+//			break;
+//	}
+//}
+//
+//	return (int)msg.wParam;
+//}
 
 #ifndef __UNUSED
 /*Funkcje oddzielaj¹ce w¹tek obs³ugi komunikatów od pêtli g³ównej.

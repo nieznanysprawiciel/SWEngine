@@ -51,6 +51,7 @@ class AssetsManager;
 class DisplayEngine
 {
 private:
+
 	Engine*					engine;
 	AssetsManager*			modelsManager;
 
@@ -72,7 +73,6 @@ private:
 	CameraActor*							m_defaultCamera;			///< Domyœlna kamera u¿ywana tylko, jezeli uzytkownik nie ustawi w³asnej.
 
 	ResourcePtr< RenderTargetObject >		m_mainRenderTarget;			///<Render target okna aplikacji. @todo W ostatecznej wersji powinien byæ render target ustawiany dla ka¿dego przebiegu.
-	SwapChain*								m_mainSwapChain;
 
 	std::queue<RenderPassDepracated*>		m_renderOnceQueue;			///<Kolejka przebiegów, które maj¹ zostaæ wyrenderowane tylko raz.
 	unsigned int							m_maxQueuedPassesPerFrame;	///<Maksymalna liczba przebiegów jaka zostanie wziêta z kolejki w ka¿dej ramce.
@@ -81,19 +81,20 @@ private:
 	RenderPassFactory						m_passFactory;				///< Factory for creating render passes.
 
 public:
+
 	LightModule*							lightModule;				///< Light module.
 
 public:
 	DisplayEngine( Engine* engine );
 	~DisplayEngine();
 
-	void InitRenderer( IRenderer* renderer );
-	void InitDisplayer( AssetsManager* assetsManager );
-	void BeginScene();
-	void EndScene();
+	void			InitRenderer					( IRenderer* renderer );
+	void			InitDisplayer					( AssetsManager* assetsManager, RenderTargetObject* mainRT );
+	void			BeginScene						();
+	void			EndScene						();
 
-	void SetLayout							( ShaderInputLayout* layout ) { defaultLayout = layout; }	///<@todo Hack. Zlikwidowaæ i zrobiæ docelowy sposób obs³ugi layotów.
-	void SetMainRenderTarget				( RenderTargetObject* renderTarget );					///<@todo Hack. Zrobiæ docelowy sposób ustawiania render targetów.
+	void			SetLayout						( ShaderInputLayout* layout ) { defaultLayout = layout; }	///<@todo Hack. Zlikwidowaæ i zrobiæ docelowy sposób obs³ugi layotów.
+	void			SetMainRenderTarget				( RenderTargetObject* renderTarget );					///<@todo Hack. Zrobiæ docelowy sposób ustawiania render targetów.
 
 	// G³ówna funkcja do wyœwietlania sceny
 	void			DisplayScene					( float time_interval, float time_lag );
