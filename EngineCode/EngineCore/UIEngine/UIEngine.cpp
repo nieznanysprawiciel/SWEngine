@@ -75,17 +75,13 @@ void					UIEngine::EnableInput						( bool val )
 }
 
 
-///@brief Funkcja wywo³ywana przez klasê Engine w ka¿dym obiegu g³ównej petli programu.
-///Przechwytujemy klawiaturê, wykonujemy wszytkie funkcje obs³ugi obiektów sterowanych.
-///@param[in] timeInterval Parametrem jest czas który up³yn¹³ od ostatniego wywo³ania
+/**@brief Called by engine in main loop each frame.*/
 void					UIEngine::ProceedInput						( float timeInterval )
 {
 	START_PERFORMANCE_CHECK( INPUT_PROCESSING );
 
 	if( m_inputModule )
 	{
-		m_inputModule->Update( timeInterval );
-
 		auto& keyboards = m_inputModule->GetKeyboardDevice();
 		auto& mouses = m_inputModule->GetMouseDevice();
 		auto& joysticks = m_inputModule->GetJoystickDevice();

@@ -271,22 +271,16 @@ void		Engine::SingleThreadedUpdatePhase( float& lag, float timeInterval )
 }
 
 
-/**
-@brief Aktualizuje po³o¿enia obiektów.
-
-Wywo³ywane s¹ funkcje odpowiadaj¹ce za fizykê, ruch, kontrolery, wejœcie od u¿ytkownika i fabu³ê.
-
-@param[inout] lag Przeliczanie po³o¿eñ obiektów odbywa siê ze sta³ym interwa³em czasowym.
-Zmienna okreœla, ile up³yne³o czasu od ostatniego przeliczenia po³o¿eñ.
-@param[in] timeInterval Czas jaki up³yn¹³ od ostatniej klatki.
-*/
+/**@brief Updates input, physics, AI, events and alll connected to game logic.*/
 void		Engine::UpdateScene( float& lag, float timeInterval )
 {
+	// Process input only once. Since we don't call native loop, there shouldn't be any new events to process.
+	Context->ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
+
 	while( lag >= FIXED_MOVE_UPDATE_INTERVAL )
 	{
 		START_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
 
-		Context->ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->physicEngine->ProceedPhysic( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->controllersEngine->ProceedControllersPre( FIXED_MOVE_UPDATE_INTERVAL );
 		Context->movementEngine->ProceedMovement( FIXED_MOVE_UPDATE_INTERVAL );
@@ -308,14 +302,7 @@ void		Engine::UpdateScene( float& lag, float timeInterval )
 }
 
 
-/**
-@brief Renderowanie sceny i interpolacja po³o¿eñ obiektów. Odpowiada równie¿ za prezentowanie powsta³ej sceny.
-
-@param[in] lag Przeliczanie po³o¿eñ obiektów odbywa siê ze sta³ym interwa³em czasowym.
-Zmienna okreœla, ile up³yne³o czasu od ostatniego przeliczenia po³o¿eñ.
-@param[in] timeInterval Czas jaki up³yn¹³ od ostatniej klatki.
-*/
-
+/**@brief Renders scene and interpolates objects.*/
 void		Engine::RenderScene( float lag, float timeInterval )
 {
 	float framePercent = lag / FIXED_MOVE_UPDATE_INTERVAL;

@@ -80,20 +80,20 @@ struct EngineContext
 
 	Config*						config;					///< Engine start configuration.
 
-	IGraphicAPIInitializer*		graphicInitializer;		///<Obs³uguje u¿ywane API graficzne.
+	IGraphicAPIInitializer*		graphicInitializer;
 
 	//Modules
-	ControllersEngine*			controllersEngine;		///<Kontroluje AI (klawiaturê trzeba przenieœæ)
-	MovementEngine*				movementEngine;			///<Przelicza pozycjê obiektów w nastêpnej klatce
-	DisplayEngine*				displayEngine;			///<Wyœwietla obiekty na scenie
-	CollisionEngine*			collisionEngine;		///<Liczy kolizje
-	PhysicEngine*				physicEngine;			///<Liczy oddzia³ywania fizyczne
-	AssetsManager*				modelsManager;			///<Zarz¹dza modelami, teksturami i materia³ami
-	FableEngine*				fableEngine;			///<Zarz¹dza fabu³¹ gry, interakcjami obiektów itd. Odpowiada za treœæ
-	SoundEngine*				soundEngine;			///<Zarz¹dza muzyk¹ i dŸwiêkami
-	UIEngine*					ui_engine;				///<Interfejs u¿ytkownika (tak¿e graficzny)
-	ActorsManager*				actorsManager;			///<Zarz¹dzanie aktorami.
-	EventManager*				eventsManager;			///<Zarz¹dzanie eventami.
+	ControllersEngine*			controllersEngine;
+	MovementEngine*				movementEngine;
+	DisplayEngine*				displayEngine;
+	CollisionEngine*			collisionEngine;
+	PhysicEngine*				physicEngine;
+	AssetsManager*				modelsManager;
+	FableEngine*				fableEngine;
+	SoundEngine*				soundEngine;
+	UIEngine*					ui_engine;
+	ActorsManager*				actorsManager;
+	EventManager*				eventsManager;
 
 	/**@brief SpinLock do synchronizacji komunikacji miêdzy GamePlayem a silnikiem.
 

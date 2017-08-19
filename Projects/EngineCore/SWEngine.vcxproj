@@ -432,7 +432,7 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputAbstractionLayer.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\StandardAbstractionLayer.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\UIEngine.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\UI_Engine_AbstractionLayers.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\UIEngineAbstractionLayers.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)SW_engine.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

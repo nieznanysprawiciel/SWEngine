@@ -622,9 +622,6 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\InputAbstractionLayer.cpp">
       <Filter>EngineCore\UIEngine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\UI_Engine_AbstractionLayers.cpp">
-      <Filter>EngineCore\UIEngine</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\GamePlay\FableEngine.cpp">
       <Filter>EngineCore\GamePlay</Filter>
     </ClCompile>
@@ -857,6 +854,9 @@
       <Filter>EngineCore\UserApi\Assets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\UIEngine.cpp">
+      <Filter>EngineCore\UIEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\UIEngineAbstractionLayers.cpp">
       <Filter>EngineCore\UIEngine</Filter>
     </ClCompile>
   </ItemGroup>
