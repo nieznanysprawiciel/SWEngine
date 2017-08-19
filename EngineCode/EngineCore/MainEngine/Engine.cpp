@@ -35,10 +35,10 @@ namespace sw
 
 // ================================ //
 //
-Engine::Engine( HINSTANCE instanceHandle )
+Engine::Engine( AppInstanceHandle instanceHandle )
 	:	sw::gui::GUISystem( 0, nullptr, nullptr )
 {
-	InternalInit( instanceHandle );
+	InternalInit();
 }
 
 // ================================ //
@@ -46,7 +46,7 @@ Engine::Engine( HINSTANCE instanceHandle )
 Engine::Engine()
 	:	sw::gui::GUISystem( 0, nullptr, nullptr )
 {
-	InternalInit( GetModuleHandle( nullptr ) );
+	InternalInit();
 }
 
 
@@ -55,23 +55,17 @@ Engine::Engine()
 Engine::Engine( int argc, char** argv, sw::gui::INativeGUI* gui )
 	:	sw::gui::GUISystem( argc, argv, gui )
 {
-	InternalInit( GetModuleHandle( nullptr ) );
+	InternalInit();
 }
 
 /**@brief Contructor helper. Creates all modules without initialization logic.*/
-void	Engine::InternalInit			( HINSTANCE instanceHandle )
+void	Engine::InternalInit			()
 {
 	// Dziêki tej zmiennej bêdzie mo¿na wysy³aæ eventy
 	ActorBase::SetEngine( this );
 
-#ifndef __UNUSED
-	//Zmienna decyduje o konczeniu w¹tków
-	join_render_thread = false;
-#endif
-
 	Context->fullScreen = false;			//inicjalizacja jako false potrzebna w funkcji init_window
 	Context->engineReady = false;			//jeszcze nie zainicjowaliœmy
-	Context->instanceHandler = instanceHandle;
 
 	Context->config					= new Config( "configs/StartConfig.config" );
 
@@ -93,6 +87,8 @@ void	Engine::InternalInit			( HINSTANCE instanceHandle )
 	Context->pause = false;
 }
 
+// ================================ //
+//
 Engine::~Engine()
 {
 	//obiekty trzeba pokasowaæ, zanim siê skasuje to, do czego siê odwo³uj¹
@@ -123,65 +119,6 @@ Engine::~Engine()
 //								inicjalizacja okna i modu³ów zewnêtrznych						//
 //----------------------------------------------------------------------------------------------//
 
-/**@brief Initializes engine.
-
-Uses config to initialize window.*/
-bool		Engine::InitEngine				( int nCmdShow )
-{
-	auto width = Context->config->ScreenWidth();
-	auto height = Context->config->ScreenHeight();
-	bool fullscreen = Context->config->Fullscreen();
-
-	return TRUE == InitEngine( width, height, fullscreen, nCmdShow );
-}
-
-///@brief Inicjuje dzia³anie silnika.
-///W trybie fullscreen szerokoœæ i wysokoœæ okna jest ignorowana, a dane s¹ pobierane z systemu.
-///@param[in] width Szerokoœæ okna
-///@param[in] height Wysokoœæ okna
-///@param[in] fullscreen Pe³ny ekran lub renderowanie w oknie
-///@param[in] nCmdShow Czwarty parametr funkcji WinMain. Decyduje w jaki sposób powinno zostaæ pokazane okno aplikacji.
-int			Engine::InitEngine( int width, int height, bool fullScreen, int nCmdShow )
-{
-	int result;
-
-	//Tworzenie okna aplikacji
-	result = InitWindow( width, height, fullScreen, nCmdShow );
-	if( !result )
-		return FALSE;
-
-	result = InitInputModule();
-	assert( result != 0 );
-	if( result == 0 )
-		return FALSE;
-
-	result = InitSoundModule();
-	assert( result != 0 );
-	if( result == 0 )
-		return FALSE;
-
-	result = InitDefaultAssets();
-	assert( result != 0 );
-	if( result == 0 )
-		return FALSE;
-
-	result = InitDisplayer();
-	assert( result != 0 );
-	if( result == 0 )
-		return FALSE;
-
-	result = InitDefaultActorsClasses();
-	assert( result != 0 );
-	if( result == 0 )
-		return FALSE;
-
-	// Czym póŸniej zainicjujemy tym lepiej.
-	Context->timeManager.InitTimer();
-
-	Context->engineReady = true;		//jesteœmy gotowi do renderowania
-
-	return TRUE;
-}
 
 // ================================ //
 //
@@ -216,26 +153,6 @@ bool		Engine::InitEngineInputModule()
 	assert( lastModule == nullptr );		// Check to be sure.
 
 	return true;
-}
-
-/**@brief Inicjuje urz¹dzenie wejœcia. Domyœlnie u¿ywany jest @ref DirectInputModule.*/
-bool		Engine::InitInputModule		()
-{
-	sw::input::IInput* newModule = sw::input::InputFactory::CreateDirectInput();
-
-	sw::input::InputInitInfo info;
-	info.AppInstance = Context->instanceHandler;
-	info.WndHandle = Context->windowHandler;
-
-	bool result = newModule->Init( info );
-	if( result )
-	{
-		// Normalnie trzeba skasowaæ zwracany przez tê funkcjê modu³.
-		// W tym przypadku wiemy, ¿e jest nullptrem, poniewa¿ dopiero inicjujemy aplikacjê.
-		auto lastModule = Context->ui_engine->ChangeInputModule( newModule );
-		assert( lastModule == nullptr );	// Na wypadek jakby ktoœ kiedyœ u¿y³ tej funkcji nie w inicjalizacji.
-	}
-	return result;
 }
 
 /**@brief */
@@ -366,41 +283,6 @@ CameraData&		Engine::GetMainCamera()
 }
 
 
-#ifndef __UNUSED
-
-/**@brief Funkcja oblicza interwa³ czasowy jaki up³yn¹³ od ostatniej ramki.
- *Poza tym s¹ tu generowane eventy dotycz¹ce czasu, opóŸnieñ itp.
- @param[out] time_interval Zwraca interwa³ jaki up³yn¹³ od ostatniego wywo³ania.*/
-void Engine::time_controller( float& time_interval )
-{
-	__int64 time_current;
-	LARGE_INTEGER time_temp;
-	QueryPerformanceCounter( &time_temp );
-	time_current = time_temp.QuadPart;
-
-	__int64 time_diff;
-	time_diff = time_current - time_previous;
-	time_interval = (float)time_diff / timer_frequency;
-
-	lag += time_interval;
-
-	//zliczanie FPSów
-	elapsed_time += time_diff;
-	if( elapsed_time >= FRAMES_PER_SEC_UPDATE * timer_frequency )	//aktualizujemy co 10 sekund
-	{
-		frames_per_sec = (float)frames / FRAMES_PER_SEC_UPDATE;	//FRAMES_PER_SEC_UPDATE w sekundach
-		elapsed_time = elapsed_time % FRAMES_PER_SEC_UPDATE * timer_frequency;
-		frames = 0;		//zerujemy liczbê klatek
-	}
-
-	//todo:	generujemy eventy czasowe
-
-	//zapisujemy obecny czas i wychodzimy z funkcji
-	time_previous = time_current;
-	++frames;		//inkrementujemy licznik klatek
-}
-
-#endif
 
 //----------------------------------------------------------------------------------------------//
 //								funkcje pomocnicze												//
@@ -448,7 +330,7 @@ na wszelki wypadek zawsze inicjalizacja powinna byæ wczeœniej.
 
 @param[in] game_play Obiekt do wczytania, jako pocz¹tek gry.
 @see IGamePlay*/
-void Engine::SetEntryPoint( IGamePlay* game_play )
+void			Engine::SetEntryPoint( IGamePlay* game_play )
 {
 	if( Context->engineReady )
 	{
@@ -463,27 +345,6 @@ void Engine::SetEntryPoint( IGamePlay* game_play )
 	}
 }
 
-#ifndef __UNUSED
-///@brief Nie bêdzie wczytywania z bibliotek DLL. Maj¹ one ddzieln¹ stertê i powoduje to problemy ze zwalnianiem
-///pamiêci. Poza tym taka architektura nie nadaje siê do przeci¹¿ania operatorów new i delete.
-void Engine::SetEntryPoint( const std::wstring dll_name )
-{
-	HINSTANCE dll_entry_point;
-	dll_entry_point = LoadLibrary( dll_name.c_str() );
-
-	if( dll_entry_point != NULL )
-	{
-		IGamePlay* game_play;
-
-
-		if( directX_ready )
-		{
-			fableEngine->set_game_play( game_play );
-			game_play->LoadLevel();
-		}
-}
-}
-#endif
 
 }	// sw
 

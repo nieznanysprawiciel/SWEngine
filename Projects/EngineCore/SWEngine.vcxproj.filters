@@ -179,9 +179,6 @@
     <ClInclude Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.h">
       <Filter>EngineCore\EngineHelpers</Filter>
     </ClInclude>
-    <ClInclude Include="$(EngineCoreSourceDir)SW_engine.h">
-      <Filter>EngineCore\MainEngine</Filter>
-    </ClInclude>
     <ClInclude Include="$(EngineCoreSourceDir)PhysicEngine\PhysicEngine.h">
       <Filter>EngineCore\PhysicEngine</Filter>
     </ClInclude>
@@ -585,9 +582,6 @@
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkyDome.cpp">
       <Filter>EngineCore\Features\HosekSkylightModel</Filter>
-    </ClCompile>
-    <ClCompile Include="$(EngineCoreSourceDir)SW_engine.cpp">
-      <Filter>EngineCore\MainEngine</Filter>
     </ClCompile>
     <ClCompile Include="$(EngineCoreSourceDir)MainEngine\TimeManager.cpp">
       <Filter>EngineCore\MainEngine</Filter>

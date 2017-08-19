@@ -7,18 +7,9 @@
 
 
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>		///< @todo Delete in future
-
-#undef min
-#undef max
-#undef CreateWindow
-#undef XBUTTON1
-#undef XBUTTON2
-
 #include "EngineCore/MainEngine/MacrosSwitches.h"
 
-#include "EngineCore/SW_engine.h"
+
 #include "EngineCore/MainEngine/EngineInterface.h"
 #include "swInputLibrary/InputCore/IInput.h"
 #include "swGUI/Core/System/GUISystem.h"
@@ -77,18 +68,9 @@ private:
 
 	///@}
 
-private:
-	/**@name Funkcje do obs³ugi okna aplikacji*/
-	///@{
-	ATOM		EngineRegisterClass		();						///<Rejestruje klasê okna aplikacji.
-	BOOL		InitInstance			( int nCmdShow );		///<Inicjuje okno aplikacji.
 public:
 
-	void		ShowAppWindow			( int showFlags );		///<Pokazuje okno aplikacji na ekranie.
-	void		HideAppWindow			();						///<Chowa okno aplikacji.
 	void		EndAplication			();
-	//int			MainLoop				();
-	///@}
 
 public:
 
@@ -108,31 +90,24 @@ public:
 	///@}
 
 
-#ifndef __UNUSED
-	//render thread joining
-	bool join_render_thread;
-#endif
+public:
 
 	Engine( const Engine& ) = delete;		///<Konstruktor kopiuj¹cy usuniêty.
+
 public:
 
 	explicit				Engine	();
 	explicit				Engine	( int argc, char** argv, sw::gui::INativeGUI* gui );
-	explicit				Engine	( HINSTANCE instanceHandle );
+	explicit				Engine	( AppInstanceHandle instanceHandle );
 							~Engine	();
-
-	bool	InitEngine				( int nCmdShow );
-	int		InitEngine				( int width, int height, bool fullscreen, int nCmdShow );
 
 private:
 	///@name Engine modules initialization functions.
 	///@{
-	void	InternalInit			( HINSTANCE instanceHandle );
+	void	InternalInit			();
 
-	BOOL	InitWindow				( int width, int height, BOOL fullscreen, int nCmdShow );
 	bool	InitEngineGraphicAPI	();
 	bool	InitEngineInputModule	();
-	bool	InitInputModule			();
 	bool	InitSoundModule			();
 
 	bool	InitDefaultAssets		();
@@ -141,19 +116,6 @@ private:
 	bool	InitGUIConfiguration	();
 	///@}
 public:
-#ifndef __UNUSED
-	//threads
-	void render_thread();
-	unsigned int get_efficient_threads_count();
-	void wait_for_threads();
-#endif
-
-
-	//Engine functions
-#ifndef __UNUSED
-	void time_controller( float& time_interval );
-#endif
-
 
 	///@name Obs³uga eventów
 	///@{
@@ -163,7 +125,6 @@ public:
 	///@name Interfejs do ustawiania GamePlaya
 	///@{
 	void							SetEntryPoint			( IGamePlay* game_play );
-	void							SetEntryPoint			( const std::wstring dll_name );
 	///@}
 
 #ifdef __TEST

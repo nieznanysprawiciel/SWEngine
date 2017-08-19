@@ -37,7 +37,7 @@ void		TestBufferObject	( const ResourcePtr< BufferObject >& buffer, uint32 expNu
 TEST_CASE( "Loading assets", "[FBXLoader]" )
 {
 	sw::Engine* engine = new sw::Engine();
-	REQUIRE( engine->InitEngine( WINDOW_WIDTH, WINDOW_HEIGHT, false, 0 ) == 1 );
+	REQUIRE( engine->Init() );
 
 	EntryPointGamePlay* entryPoint = new EntryPointGamePlay();
 	engine->SetEntryPoint( entryPoint );
