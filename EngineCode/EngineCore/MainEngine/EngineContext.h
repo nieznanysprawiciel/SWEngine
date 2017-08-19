@@ -73,10 +73,10 @@ struct EngineContext
 	bool						engineReady;			///<Je¿eli zmienna jest niepoprawna, nie renderujemy
 
 	bool						fullScreen;				///<Pe³ny ekran lub renderowanie w oknie
-	WindowHandle				windowHandler;			///<Uchwyt okna aplikacji
-	AppInstanceHandle			instanceHandler;		///<Uchwyt instancji procesu
-	int							windowWidth;			///<Szerokoœæ okna/ekranu
-	int							windowHeight;			///<Wysokoœæ okna/ekranu
+	WindowHandle				windowHandler;			///<Uchwyt okna aplikacji. @deprecated Get from native window instead.
+	AppInstanceHandle			instanceHandler;		///<Uchwyt instancji procesu. @deprecated Get from native window instead.
+	int							windowWidth;			///<Szerokoœæ okna/ekranu. @deprecated Get from native window instead.
+	int							windowHeight;			///<Wysokoœæ okna/ekranu. @deprecated Get from native window instead.
 
 	Config*						config;					///< Engine start configuration.
 

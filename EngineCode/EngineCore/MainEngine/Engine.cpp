@@ -190,6 +190,9 @@ bool		Engine::InitGUIConfiguration()
 	m_guiConfig.UseBlockingMode = false;
 	m_guiConfig.UseVSync = true;
 
+	Context->windowWidth = m_windows[ 0 ]->GetNativeWindow()->GetClientWidth();
+	Context->windowHeight = m_windows[ 0 ]->GetNativeWindow()->GetClientHeight();
+
 	return true;
 }
 
