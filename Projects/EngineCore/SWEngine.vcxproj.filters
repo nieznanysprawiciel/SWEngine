@@ -601,9 +601,6 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\ModelsManager\DefaultAssets.cpp">
       <Filter>EngineCore\ModelsManager</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\EngineWindowFunctions.cpp">
-      <Filter>EngineCore\MainEngine</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\EngineInterface.cpp">
       <Filter>EngineCore\MainEngine</Filter>
     </ClCompile>

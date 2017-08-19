@@ -349,7 +349,6 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\Engine.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)EngineHelpers\PerformanceCheck.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\EngineInterface.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineCore\MainEngine\EngineWindowFunctions.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\EventsManager\Event.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\GamePlay\FableEngine.cpp" />
     <ClCompile Include="$(EngineCoreSourceDir)Features\HosekSkylightModel\HosekSkyDome.cpp" />
