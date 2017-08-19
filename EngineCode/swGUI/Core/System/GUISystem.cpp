@@ -82,8 +82,7 @@ bool				GUISystem::MainLoopCore()
 
 	// @todo How should it be done ??
 	OnIdle();
-	if( m_focusedWindow )
-		m_focusedWindow->GetSwapChain()->Present( GetSyncInterval() );
+	RenderGUI();
 
 	return false;
 }
@@ -106,6 +105,20 @@ void				GUISystem::HandleEvents()
 
 		for( auto& device : m_input->GetJoystickDevice() )
 			device->ApplyAllEvents();
+	}
+}
+
+// ================================ //
+//
+void				GUISystem::RenderGUI()
+{
+	if( m_guiConfig.RedrawOnlyFocused && m_focusedWindow )
+		m_focusedWindow->GetSwapChain()->Present( GetSyncInterval() );
+
+	if( !m_guiConfig.RedrawOnlyFocused )
+	{
+		for( auto window : m_windows )
+			window->GetSwapChain()->Present( GetSyncInterval() );
 	}
 }
 

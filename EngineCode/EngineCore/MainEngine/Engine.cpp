@@ -189,6 +189,7 @@ bool		Engine::InitGUIConfiguration()
 {
 	m_guiConfig.UseBlockingMode = false;
 	m_guiConfig.UseVSync = true;
+	m_guiConfig.RedrawOnlyFocused = false;
 
 	Context->windowWidth = m_windows[ 0 ]->GetNativeWindow()->GetClientWidth();
 	Context->windowHeight = m_windows[ 0 ]->GetNativeWindow()->GetClientHeight();

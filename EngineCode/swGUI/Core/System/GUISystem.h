@@ -305,6 +305,7 @@ public:
 	int				MainLoop		();
 	bool			MainLoopCore	();
 	void			HandleEvents	();
+	void			RenderGUI		();
 	///@}
 
 public:
