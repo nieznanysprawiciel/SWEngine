@@ -60,6 +60,7 @@ PS_INPUT vertex_shader( VS_INPUT input )
 	output.Pos = mul( output.Pos, World );
 	output.Pos = mul( output.Pos, ProjectionMatrix );
 	//output.Pos.z = 1.0;//output.Pos.w;		// After division by w this should be 1.0f.
+	//output.Pos.z = 0.5f;	//output.Pos.w;
 	output.Color = input.Color;
 	
     return output;

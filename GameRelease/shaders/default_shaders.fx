@@ -107,7 +107,7 @@ PS_INPUT vertex_shader( VS_INPUT input )
 //--------------------------------------------------------------------------------------
 // Pixel Shader
 //--------------------------------------------------------------------------------------
-float4 pixel_shader( PS_INPUT input) : SV_Target
+float4 pixel_shader( PS_INPUT input) : SV_TARGET
 {
 	float3 normal = normalize( input.Norm );
 	float3 viewDir = normalize( input.WorldPosition - CameraPosition );
@@ -229,7 +229,7 @@ PhongResult		ComputeLightPhong( float3 worldPosition, float3 normal, float3 view
 {
 	PhongResult resultColor;
 	
-	for( int i = 0; i < NumLights; ++i )
+	for( unsigned int i = 0; i < NumLights; ++i )
 	{
 		PhongResult phongColor;
 	
@@ -277,7 +277,7 @@ float4	ComputePhongLightResultColor( float3 worldPosition, float3 normal, float3
 
 	PhongResult phongResult = ComputeLightPhong( worldPosition, normal, viewDir );
 	
-	resultColor.xyz += phongResult.Diffuse * Diffuse;
+	resultColor.xyz += phongResult.Diffuse.xyz * Diffuse.xyz;
 	resultColor.xyz += phongResult.Specular * Specular;
 	
 	return resultColor;

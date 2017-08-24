@@ -68,8 +68,8 @@ void HosekSkyDome::InitSkyDome( XMVECTOR sun_direction,
 	GenerateSphere( vertical_vert, horizontal_vert, radius );
 
 	// Zak³adamy, ¿e tablice jeszcze nie istania³y. Obliczamy rozmiary tablic ( w liczbie elementów )
-	int vert_buff_elements = ( vertical_vert - 2 ) * horizontal_vert + 2;		// W pionie bêdzie vertical-2 pasów wierzcho³ków + musimy dopisaæ dwa wierzcho³ki skrajne
-	int ind_buff_elements = 2 * 3 * ( vertical_vert - 2 ) * horizontal_vert;	// Liczba pasów czworok¹tów, razy dwa (¿eby zrobiæ trój¹ty) razy 3, ¿eby przeliczyæ na liczbê wierzcho³ków
+	uint32 vert_buff_elements = ( vertical_vert - 2 ) * horizontal_vert + 2;		// W pionie bêdzie vertical-2 pasów wierzcho³ków + musimy dopisaæ dwa wierzcho³ki skrajne
+	uint32 ind_buff_elements = 2 * 3 * ( vertical_vert - 2 ) * horizontal_vert;		// Liczba pasów czworok¹tów, razy dwa (¿eby zrobiæ trój¹ty) razy 3, ¿eby przeliczyæ na liczbê wierzcho³ków
 
 	auto engine = GetEngineInterface();
 
@@ -81,7 +81,7 @@ void HosekSkyDome::InitSkyDome( XMVECTOR sun_direction,
 
 	MeshCreateData meshInfo;
 	meshInfo.VertexBuffer = engine->Assets.Buffers.CreateVertexBufferSync( L"::HosekWilkieModel_VertexBuffer", (uint8*)m_backVertexBuffer, vert_buff_elements, sizeof( SkyDomeVertex ) );
-	meshInfo.IndexBuffer = engine->Assets.Buffers.CreateVertexBufferSync( L"::HosekWilkieModel_IndexBuffer", (uint8*)m_backIdxBuffer, ind_buff_elements, sizeof( Index32 ) );
+	meshInfo.IndexBuffer = engine->Assets.Buffers.CreateIndexBufferSync( L"::HosekWilkieModel_IndexBuffer", (uint8*)m_backIdxBuffer, ind_buff_elements, sizeof( Index32 ) );
 	meshInfo.VertexLayout = layout;
 
 	meshInfo.MeshSegments.resize( 1 );
@@ -90,8 +90,10 @@ void HosekSkyDome::InitSkyDome( XMVECTOR sun_direction,
 	meshInfo.MeshSegments[ 0 ].BufferOffset = 0;
 	meshInfo.MeshSegments[ 0 ].NumVertices = ind_buff_elements;
 	meshInfo.MeshSegments[ 0 ].Topology = PrimitiveTopology::PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+	meshInfo.MeshSegments[ 0 ].Flags = MeshPartFlags::Use4BytesIndex;
 
 	SetModel( engine->Assets.Meshes.CreateMeshSync( L"::HosekWilkieModel_Mesh", std::move( meshInfo ) ) );
+	SetScale( 1000 );
 
 	UpdateSkyDome( sun_direction, turbidity, albedo, sky_intensity, sun_intensity );
 }
