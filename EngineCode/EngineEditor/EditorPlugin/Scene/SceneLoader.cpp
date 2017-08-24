@@ -3,7 +3,7 @@
 #include "SceneLoader.h"
 
 #include "EngineEditor/EditorPlugin/Native/SceneHelpers.h"
-#include "EngineEditor/EditorPlugin/EnginePointerProvider.h"
+#include "EngineEditor/EditorPlugin/EngineInterfaceProvider.h"
 #include "EngineCore/Actors/ActorsManager.h"
 
 
@@ -28,7 +28,7 @@ SceneLoader::SceneLoader()
 /**@brief */
 bool SceneLoader::LoadScene( System::String^ fileName )
 {
-	auto engine = EnginePointerProvider::GetEngine();
+	auto engine = EngineInterfaceProvider::GetEngine();
 	std::string filePath = msclr::interop::marshal_as< std::string >( fileName );
 
 	Api::LevelApi::EditorLoadResult result = engine->Level.EditorLoadLevelSync( filePath );
@@ -42,7 +42,7 @@ bool SceneLoader::LoadScene( System::String^ fileName )
 /**@brief */
 ObservableCollection<ActorWrapper^>^ SceneLoader::CreateActorsList( Api::LevelApi::EditorLoadResult& result )
 {
-	auto engine = EnginePointerProvider::GetEngine();
+	auto engine = EngineInterfaceProvider::GetEngine();
 
 	ObservableCollection< ActorWrapper^ >^ actorsList = gcnew ObservableCollection< ActorWrapper^ >();
 	auto& newActors = result.Actors;

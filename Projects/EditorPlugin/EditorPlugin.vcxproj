@@ -60,6 +60,7 @@
       <FileType>CppHeader</FileType>
     </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorPlugin.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EngineInterfaceProvider.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EnginePointerProvider.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\IncludeWindows.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Native\SceneHelpers.h" />

@@ -119,6 +119,9 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\stdafx.h">
       <Filter>PrecompiledHeader</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EngineInterfaceProvider.h">
+      <Filter>EditorPlugin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\EngineCode\EngineEditor\EditorPlugin\SW_engine.aps">

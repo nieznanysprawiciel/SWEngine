@@ -15,13 +15,12 @@
 
 #include "EngineCore/MainEngine/MacrosSwitches.h"
 
-#include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/Actors/ActorObjects.h"
 
 #include "EngineCore/EngineHelpers/Intersections.h"
 
 
-#include "EngineEditor/EditorPlugin/EnginePointerProvider.h"
+#include "EngineEditor/EditorPlugin/EngineInterfaceProvider.h"
 
 
 
@@ -33,7 +32,7 @@ namespace sw
 //
 void		SceneHelpers::SetActorInitialPosition		( StaticActor* actor, double mouseX, double mouseY )
 {
-	auto engine = EnginePointerProvider::GetEngine();
+	auto engine = EngineInterfaceProvider::GetEngine();
 
 	auto& camera = engine->GetMainCamera();
 	DirectX::XMVECTOR position = DirectX::XMLoadFloat3( &camera.Position );

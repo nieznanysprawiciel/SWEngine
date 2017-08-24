@@ -22,6 +22,8 @@
 
 #include "EngineEditor/EditorPlugin/Native/SceneHelpers.h"
 
+#include "EngineInterfaceProvider.h"
+
 #include <msclr/marshal_cppstd.h>
 
 
@@ -29,7 +31,8 @@ namespace sw
 {
 
 
-Engine*		EnginePointerProvider::engine = nullptr;
+Engine*				EnginePointerProvider::engine = nullptr;
+EngineInterface*	EngineInterfaceProvider::engine = nullptr;
 
 //extern 	HINSTANCE moduleHandle;
 
@@ -43,6 +46,8 @@ const int window_width = 700;
 const int window_height = 1300;
 
 
+// ================================ //
+//
 EngineWrapper::EngineWrapper()
 	: m_engine( nullptr )
 	, m_inputWPF( nullptr )
@@ -52,7 +57,7 @@ EngineWrapper::EngineWrapper()
 
 /**@brief Tworzy obiekt silnika i inicjuje go.
 @return Zwraca true, je¿eli inicjowanie powid³o siê.*/
-bool EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
+bool			EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
 {
 
 	//if( 0 == GetModuleHandleEx( GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, NULL, &moduleHandle ) )
@@ -68,6 +73,7 @@ bool EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
 	}
 
 	EnginePointerProvider::engine = m_engine;
+	EngineInterfaceProvider::engine = m_engine;
 
 	// Zmieniamy modu³ wejœcia (klawiatury) na proxy WPFowe
 	input::WPFInputProxy* proxyInput = new input::WPFInputProxy();
@@ -86,19 +92,19 @@ bool EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
 }
 
 /**@brief Zwalnia zasoby silnika.*/
-void EngineWrapper::ReleaseEngine()
+void			EngineWrapper::ReleaseEngine()
 {
 	EnginePointerProvider::engine = nullptr;
 	delete m_engine;
 }
 
-System::IntPtr EngineWrapper::GetRenderTarget( System::UInt16 width, System::UInt16 height )
+System::IntPtr	EngineWrapper::GetRenderTarget( System::UInt16 width, System::UInt16 height )
 {
 	return System::IntPtr( m_engine->GetRenderTargetHandle( width, height ) );
 }
 
 /**@brief Wywo³uje funkcje odpowiedzialne za przeliczanie po³o¿enia obiektów.*/
-void EngineWrapper::UpdateScene()
+void			EngineWrapper::UpdateScene()
 {
 	float lag = FIXED_MOVE_UPDATE_INTERVAL;
 	m_engine->UpdateScene( lag, 0 );
@@ -114,7 +120,7 @@ void EngineWrapper::UpdateScene()
 Przed wywo³aniem sceny nale¿y wywo³aæ funkcjê EngineWrapper::UpdateScene,
 ¿eby zaktualizowaæ po³o¿enia obiektów.
 */
-void EngineWrapper::RenderScene()
+void			EngineWrapper::RenderScene()
 {
 	float lag = FIXED_MOVE_UPDATE_INTERVAL;
 	m_engine->RenderScene( lag, 0 );
@@ -364,7 +370,7 @@ void		EngineWrapper::MousePositionChange	( double X, double Y )
 }
 
 /**@brief */
-void EngineWrapper::MouseWheelChange( double delta )
+void		EngineWrapper::MouseWheelChange( double delta )
 {
 	m_inputWPF->MouseWheelChange( delta );
 }

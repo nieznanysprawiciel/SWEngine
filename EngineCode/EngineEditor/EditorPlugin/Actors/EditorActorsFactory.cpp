@@ -3,8 +3,7 @@
 
 #include "EditorActorsFactory.h"
 
-#include "EngineEditor/EditorPlugin/EnginePointerProvider.h"
-#include "EngineCore/MainEngine/Engine.h"
+#include "EngineEditor/EditorPlugin/EngineInterfaceProvider.h"
 
 #include "EngineCore/UIEngine/InputAbstractionLayer.h"
 #include "EngineCore/Actors/BasicActors/DynamicActor.h"
@@ -24,7 +23,7 @@ namespace EditorPlugin
 /**@brief */
 GizmoActorWrapper^	EditorActorsFactory::CreateGizmoActor( System::String^ translateMesh, System::String^ rotateMesh, System::String^ scaleMesh )
 {
-	auto engine = EnginePointerProvider::GetEngine();
+	auto engine = EngineInterfaceProvider::GetEngine();
 
 	DynamicActor* actor = static_cast<DynamicActor*>( engine->Actors.CreateActor( rttr::type::get< DynamicActor >() ) );
 	engine->Actors.AddToModules( actor, ActorInfoFlag::EnablePreController | ActorInfoFlag::EnablePostController | ActorInfoFlag::EnableDisplay );
@@ -53,7 +52,7 @@ GizmoActorWrapper^	EditorActorsFactory::CreateGizmoActor( System::String^ transl
 /**@brief */
 ActorWrapper^		EditorActorsFactory::CreateDefaultCamera( bool setAsCurrent )
 {
-	auto engine = EnginePointerProvider::GetEngine();
+	auto engine = EngineInterfaceProvider::GetEngine();
 
 	CameraActor* camera = static_cast<CameraActor*>( engine->Actors.CreateActor( rttr::type::get< CameraActor >() ) );
 	engine->Actors.AddToModules( camera, ActorInfoFlag::EnableMovement | ActorInfoFlag::EnablePreController | ActorInfoFlag::AsCamera );

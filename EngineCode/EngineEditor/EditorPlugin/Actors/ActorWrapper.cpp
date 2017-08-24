@@ -10,9 +10,8 @@
 #include "EngineCore/Actors/ActorObjects.h"
 #include "swCommonLib/Common/EngineObject.h"
 
-#include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/Actors/BasicActors/StaticActor.h"
-#include "EngineEditor/EditorPlugin/EnginePointerProvider.h"
+#include "EngineEditor/EditorPlugin/EngineInterfaceProvider.h"
 
 #include <msclr/marshal_cppstd.h>
 
@@ -41,7 +40,7 @@ ActorBase*			ActorWrapper::Ptr()
 /**@brief Wczytuje mesha z podanej œcie¿ki i przypisuje aktorowi.*/
 bool				ActorWrapper::LoadMesh	( System::String^ meshPath )
 {
-	auto engine = EnginePointerProvider::GetEngine();
+	auto engine = EngineInterfaceProvider::GetEngine();
 
 	auto model = engine->Assets.Meshes.LoadSync( msclr::interop::marshal_as< std::wstring >( meshPath ) );
 	auto meshActor = rttr::rttr_cast<StaticActor*>( m_actorPtr );

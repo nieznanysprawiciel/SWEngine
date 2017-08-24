@@ -4,7 +4,7 @@
 #include "SceneSaver.h"
 
 #include "EngineEditor/EditorPlugin/Native/SceneHelpers.h"
-#include "EngineEditor/EditorPlugin/EnginePointerProvider.h"
+#include "EngineEditor/EditorPlugin/EngineInterfaceProvider.h"
 #include "EngineCore/Actors/ActorsManager.h"
 
 #include "swCommonLib/Serialization/Serializer.h"
@@ -29,7 +29,7 @@ void		SceneSaver::ActorsToSave( ObservableCollection<ActorWrapper^>^ actors )
 /**@brief */
 bool		SceneSaver::SaveScene( System::String^ fileName )
 {
-	auto engine = EnginePointerProvider::GetEngine();
+	auto engine = EngineInterfaceProvider::GetEngine();
 	std::string filePath = msclr::interop::marshal_as< std::string >( fileName );
 
 	auto ser = SceneHelpers::CreateSerializerWithContext();
@@ -45,7 +45,7 @@ bool		SceneSaver::SaveScene( System::String^ fileName )
 /**@brief */
 void		SceneSaver::SerializeActors( ISerializer* ser )
 {
-	auto engine = EnginePointerProvider::GetEngine();
+	auto engine = EngineInterfaceProvider::GetEngine();
 
 	ser->EnterArray( Api::LevelApi::ACTORS_ARRAY_STRING );
 
