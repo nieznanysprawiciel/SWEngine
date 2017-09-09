@@ -68,8 +68,9 @@ public:
 	///@name Test functions
 	///@brief Test functions to create default scene and so on.
 	///@{
-
-
+	static void					Test				();
+	static void					SetSkydomeAndCamera	();
+	static void					CreateDefaultScene	();
 	///@}
 };
 

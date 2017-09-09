@@ -70,8 +70,6 @@ public:
 	void				UpdateScene					();
 	void				RenderScene					();
 
-	void				ShowWindow					();
-
 	void				TestScene					();
 	void				BasicScene					();
 	void				EnableInput					( bool val );

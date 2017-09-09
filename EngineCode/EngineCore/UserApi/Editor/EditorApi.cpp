@@ -27,7 +27,12 @@ EngineInterface*		EditorApi::CreateEngine			()
 //
 void					EditorApi::ReleaseEngine		()
 {
-	delete static_cast< sw::Engine* >( Engine );
+	sw::Engine* engine = static_cast<sw::Engine*>( Engine );
+	
+	// We must call close logic manually, because editor uses MainLoopCore to make main loop step.
+	// MainLoopCore doesn't call CloseLogic.
+	engine->CloseLogic();
+	delete engine;
 
 	Engine = nullptr;
 	Context = nullptr;
@@ -100,6 +105,32 @@ void					EditorApi::UpdateScene			( float& lag, float timeInterval )
 void					EditorApi::RenderScene			( float lag, float timeInterval )
 {
 	static_cast< sw::Engine* >( Engine )->RenderScene( lag, timeInterval );
+}
+
+
+//====================================================================================//
+//			Test functions hopefully temporary	
+//====================================================================================//
+
+// ================================ //
+//
+void					EditorApi::Test					()
+{
+	static_cast< sw::Engine* >( Engine )->test();
+}
+
+// ================================ //
+//
+void EditorApi::SetSkydomeAndCamera()
+{
+	static_cast< sw::Engine* >( Engine )->SetSkydomeAndCamera();
+}
+
+// ================================ //
+//
+void					EditorApi::CreateDefaultScene	()
+{
+	static_cast< sw::Engine* >( Engine )->CreateDefaultScene();
 }
 
 

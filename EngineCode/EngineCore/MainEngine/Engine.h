@@ -105,9 +105,9 @@ public:
 	void							SendEvent				( Event* newEvent );
 	///@}
 
-	///@name Interfejs do ustawiania GamePlaya
+	///@name GamePlay managing interface.
 	///@{
-	void							SetEntryPoint			( IGamePlay* game_play );
+	void							SetEntryPoint			( IGamePlay* gamePlay );
 	///@}
 
 #ifdef __TEST
@@ -119,7 +119,7 @@ public:
 	void		CreateDefaultScene	();
 #endif
 
-	///@name Parametry okna
+	///@name Window parameters
 	///@{
 	AppInstanceHandle		GetInstanceHandler();
 	WindowHandle			GetWindowHandler();

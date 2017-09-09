@@ -62,12 +62,11 @@ bool			EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
 	//if( 0 == GetModuleHandleEx( GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, NULL, &moduleHandle ) )
 	//	return false;
 	HINSTANCE handle = (HINSTANCE)moduleHandle.ToPointer();
-	m_engine = new Engine( handle );
-	int result = m_engine->InitEngine( window_width, window_height, false, SW_HIDE );
-	if( !result )
+	m_engine = Api::EditorApi::CreateEngine();
+	//int result = m_engine->InitEngine( window_width, window_height, false, SW_HIDE );
+	if( !m_engine )
 	{
-		EngineInterfaceProvider::engine = nullptr;
-		delete m_engine;
+		ReleaseEngine();
 		return false;
 	}
 
@@ -126,22 +125,17 @@ void			EngineWrapper::RenderScene()
 	Api::EditorApi::RenderScene( lag, 0 );
 }
 
-/**@brief Pokazuje okno aplikacji stworzone w EngineCore.*/
-void			EngineWrapper::ShowWindow()
-{
-	m_engine->ShowAppWindow( SW_SHOW );
-}
 
 /**@brief Wywo³uje funkcje wczytuj¹ce obiekty testowe silnika.*/
 void			EngineWrapper::TestScene()
 {
-	m_engine->test();
+	Api::EditorApi::Test();
 }
 
 /**@brief Ustawia domyœln¹ kamerê oraz niebo.*/
 void			EngineWrapper::BasicScene()
 {
-	m_engine->SetSkydomeAndCamera();
+	Api::EditorApi::SetSkydomeAndCamera();
 }
 
 /**@brief W³¹cza/Wy³¹cza przychwytywanie inputu.*/

@@ -4,10 +4,10 @@
 @copyright File is part of Sleeping Wombat Libraries.
 */
 
-
+#pragma unmanaged
 
 #pragma warning(disable : 4561)	// DirectXMath converting fastcall to stdcall
-#pragma warning(disable: 4793) // methods are compiled as native (clr warning)
+#pragma warning(disable: 4793) // methods are compiled as native (clr warning). Note: this warning is disabled through project properties. This line didn't work.
 
 
 
@@ -27,7 +27,7 @@
 
 
 
-#pragma unmanaged
+
 
 
 
@@ -39,12 +39,10 @@ namespace sw
 //
 void		SceneHelpers::SetActorInitialPosition		( StaticActor* actor, double mouseX, double mouseY )
 {
-	Api::EditorApi engineApi;
-
-	auto& camera = engineApi.GetMainCamera();
+	auto& camera = Api::EditorApi::GetMainCamera();
 	DirectX::XMVECTOR position = camera.GetPosition();
 
-	DirectX::XMVECTOR rayDir = Intersections::ComputeMouseRayDirection( engineApi.GetEngine(), camera, (float)mouseX, (float)mouseY );
+	DirectX::XMVECTOR rayDir = Intersections::ComputeMouseRayDirection( Api::EditorApi::GetEngine(), camera, (float)mouseX, (float)mouseY );
 	DirectX::XMVECTOR intersection = Intersections::PlaneXZIntersection( rayDir, position, 0.f );
 
 	actor->Teleport( intersection );

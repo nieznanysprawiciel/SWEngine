@@ -29,7 +29,12 @@
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\EditorPlugin.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</CompileAsManaged>
     </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Native\SceneHelpers.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Native\SceneHelpers.cpp">
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4793</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4793</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4793</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4793</DisableSpecificWarnings>
+    </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\EditorPlugin\Native\SceneHelpersNoClr.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
