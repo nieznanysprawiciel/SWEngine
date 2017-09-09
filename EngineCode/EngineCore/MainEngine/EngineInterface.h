@@ -22,12 +22,12 @@ class Engine;
 
 
 /**
-@defgroup UserAPI API dla u퓓tkownika silnika.
+@defgroup UserAPI API for engine user (game creator).
 */
 
 
 
-/**@brief Klasa jest interfejsem dla u퓓tkownika u퓓tkuj퉏ego silnik.
+/**@brief This class is interface for game creator user.
 @ingroup EngineCore
 @ingroup UserAPI
 
@@ -57,11 +57,11 @@ protected:
 
 
 public:
-	Api::AssetsApi			Assets;		///<Funkcje do zarz퉐zania assetami.
-	Api::ActorsApi			Actors;		///<Funkcje do zarz퉐zania aktorami.
-	Api::RenderingApi		Rendering;	///<Funkcje do zarzadzania renderowaniem.
-	Api::InputApi			Input;		///<Funkcje do zarz퉐zania wej쐁iem od u퓓tkownika.
-	Api::LevelApi			Level;		///<Funkcje do zarz퉐zania levelami.
+	Api::AssetsApi			Assets;		///< Assets managing functions.
+	Api::ActorsApi			Actors;		///< Actors managing functions.
+	Api::RenderingApi		Rendering;	///< Rendering managing functions.
+	Api::InputApi			Input;		///< User input managing functions.
+	Api::LevelApi			Level;		///< Levels managing functions.
 
 };
 

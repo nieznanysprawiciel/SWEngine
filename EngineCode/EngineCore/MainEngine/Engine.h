@@ -42,18 +42,9 @@ struct CameraData;
 @ingroup EngineCore
 @copybrief
 
-W tej klasie powinny byæ umieszczane wszystkie funkcje, które nie powinny byæ dostêpne
-dla modu³ów logiki gry oraz aktorów. Stanowi¹ one interfejs dla funkcji main oraz
-ewentualnie dla edytora.
-@todo Zastanowiæ siê czy edytor nie powinien siê komunikowaæ z silnikiem za pomoc¹ zwyk³ego API.
-
-W aplikacji powinien istnieæ tylko jeden obiekt podanego typu. O tym, jak siê inicjuje dzia³anie silnika,
-mo¿na przeczytaæ w temacie @ref EngineInit.
-
-Interfejsem dla u¿ytkownika jest klasa @ref EngineInterface i tam nale¿y umieszczaæ
-wszystkie funkcje, które maj¹ byæ dostêpne dla logiki gry. Nie nale¿y w tej klasie umieszczaæ zmiennych,
-które mog¹ byæ przydatne klasie EngineInterface.
-*/
+This class implements engine initialization of GUISystem and main loop functions.
+Editor should use EditorApi class to comunicate with Engine.
+Game creators shouldn't touch this class. They can use @ref EngineInterface which provides API functions.*/
 class Engine : public EngineInterface, public gui::GUISystem
 {
 private:
@@ -74,21 +65,13 @@ public:
 
 public:
 
-	///@name Funkcje zwi¹zane z renderowaniem
+	///@name Functions connected to rendering and main loop pipeline.
 	///@{
 	void		RenderFrame					();
 	void		UpdateScene					( float& lag, float timeInterval );
 	void		SingleThreadedUpdatePhase	( float& lag, float timeInterval );
 	void		RenderScene					( float lag, float timeInterval );
 	///@}
-
-	///@name Funkcje dla EditorPlugin
-	///@brief Funkcje mog¹ byæ niebezpieczne w u¿ytku, jak siê nie wie co siê robi. U¿ywaæ ostro¿nie!
-	///@{
-	void*		GetRenderTargetHandle		( uint16 width, uint16 height );
-	CameraData&	GetMainCamera				();
-	///@}
-
 
 public:
 
@@ -143,12 +126,6 @@ public:
 
 	int						GetWindowWidth();
 	int						GetWindowHeight();
-	///@}
-
-	///@name Input
-	///@{
-	void					EnableInput			( bool val );
-	input::IInput*			ChangeInputModule	( input::IInput* newModule );
 	///@}
 
 	///@name For unit tests

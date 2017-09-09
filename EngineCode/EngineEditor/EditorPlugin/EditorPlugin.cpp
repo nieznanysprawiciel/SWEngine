@@ -13,7 +13,6 @@
 
 #include "EngineEditor/PropertyWrapperRTTR/Build/IncludeRTTR.h"
 
-#include "EngineCore/MainEngine/Engine.h"
 #include "EngineCore/MainEngine/MacrosSwitches.h"
 #include "EngineCore/Actors/ActorObjects.h"
 
@@ -23,6 +22,7 @@
 #include "EngineEditor/EditorPlugin/Native/SceneHelpers.h"
 
 #include "EngineInterfaceProvider.h"
+#include "EngineCore/UserApi/Editor/EditorApi.h"
 
 #include <msclr/marshal_cppstd.h>
 
@@ -31,7 +31,6 @@ namespace sw
 {
 
 
-Engine*				EnginePointerProvider::engine = nullptr;
 EngineInterface*	EngineInterfaceProvider::engine = nullptr;
 
 //extern 	HINSTANCE moduleHandle;
@@ -67,12 +66,11 @@ bool			EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
 	int result = m_engine->InitEngine( window_width, window_height, false, SW_HIDE );
 	if( !result )
 	{
-		EnginePointerProvider::engine = nullptr;
+		EngineInterfaceProvider::engine = nullptr;
 		delete m_engine;
 		return false;
 	}
 
-	EnginePointerProvider::engine = m_engine;
 	EngineInterfaceProvider::engine = m_engine;
 
 	// Zmieniamy modu³ wejœcia (klawiatury) na proxy WPFowe
@@ -85,7 +83,7 @@ bool			EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
 	bool result2 = proxyInput->Init( initInfo );
 	assert( result2 );
 
-	m_directInput = m_engine->ChangeInputModule( proxyInput );
+	m_directInput = Api::EditorApi::ChangeInputModule( proxyInput );
 	m_inputWPF = proxyInput;
 
 	return result2;
@@ -94,20 +92,22 @@ bool			EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
 /**@brief Zwalnia zasoby silnika.*/
 void			EngineWrapper::ReleaseEngine()
 {
-	EnginePointerProvider::engine = nullptr;
-	delete m_engine;
+	EngineInterfaceProvider::engine = nullptr;
+	Api::EditorApi::ReleaseEngine();
 }
 
+// ================================ //
+//
 System::IntPtr	EngineWrapper::GetRenderTarget( System::UInt16 width, System::UInt16 height )
 {
-	return System::IntPtr( m_engine->GetRenderTargetHandle( width, height ) );
+	return System::IntPtr( Api::EditorApi::GetRenderTargetHandle( width, height ) );
 }
 
 /**@brief Wywo³uje funkcje odpowiedzialne za przeliczanie po³o¿enia obiektów.*/
 void			EngineWrapper::UpdateScene()
 {
 	float lag = FIXED_MOVE_UPDATE_INTERVAL;
-	m_engine->UpdateScene( lag, 0 );
+	Api::EditorApi::UpdateScene( lag, 0 );
 
 	// Poniewa¿ nie dostajemy eventów kiedy kó³ko myszy siê nie rusza, to trzeba zerowaæ za ka¿dym razem.
 	// Poza tym trzeba wyczyœciæ eventy wciœniêcia i puszczenia przycisków.
@@ -123,31 +123,31 @@ Przed wywo³aniem sceny nale¿y wywo³aæ funkcjê EngineWrapper::UpdateScene,
 void			EngineWrapper::RenderScene()
 {
 	float lag = FIXED_MOVE_UPDATE_INTERVAL;
-	m_engine->RenderScene( lag, 0 );
+	Api::EditorApi::RenderScene( lag, 0 );
 }
 
 /**@brief Pokazuje okno aplikacji stworzone w EngineCore.*/
-void EngineWrapper::ShowWindow()
+void			EngineWrapper::ShowWindow()
 {
 	m_engine->ShowAppWindow( SW_SHOW );
 }
 
 /**@brief Wywo³uje funkcje wczytuj¹ce obiekty testowe silnika.*/
-void EngineWrapper::TestScene()
+void			EngineWrapper::TestScene()
 {
 	m_engine->test();
 }
 
 /**@brief Ustawia domyœln¹ kamerê oraz niebo.*/
-void EngineWrapper::BasicScene()
+void			EngineWrapper::BasicScene()
 {
 	m_engine->SetSkydomeAndCamera();
 }
 
 /**@brief W³¹cza/Wy³¹cza przychwytywanie inputu.*/
-void EngineWrapper::EnableInput( bool val )
+void			EngineWrapper::EnableInput			( bool val )
 {
-	m_engine->EnableInput( val );
+	Api::EditorApi::EnableInput( val );
 }
 
 

@@ -31,7 +31,6 @@ napisanego w C#.
 
 
 #include "EngineEditor/EditorPlugin/Actors/ActorClassMetaInfo.h"
-#include "EngineEditor/EditorPlugin/EnginePointerProvider.h"
 #include "swInputLibrary/InputWPF/WPFInputProxy.h"
 
 #include "Actors/ActorWrapper.h"
@@ -42,7 +41,7 @@ namespace sw
 {
 
 
-class Engine;
+class EngineInterface;
 ref class ActorClassMetaInfo;
 ref class ActorWrapper;
 
@@ -52,12 +51,13 @@ namespace EditorPlugin
 using namespace System::Collections::Generic;
 using namespace System::Collections::ObjectModel;
 
-	/**@brief Klasa wrapera do inicjowania silnika i renderowania po stronie kodu zarz¹dzanego.
-	@ingroup EditorPlugin*/
+/**@brief Wrapper class for engine in managed code.
+@ingroup EditorPlugin*/
 public ref class EngineWrapper
 {
 private:
-	Engine*						m_engine;
+
+	EngineInterface*			m_engine;
 	input::WPFInputProxy*		m_inputWPF;		///< Modu³ wejœcia u¿ywany domyœlnie przez edytor.
 	input::IInput*				m_directInput;	///< Modu³ u¿ywany w trybie grania w osobnym oknie.
 

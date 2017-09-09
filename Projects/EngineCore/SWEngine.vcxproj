@@ -181,6 +181,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorPreset.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\ActorsManager.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\CameraActor.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\CameraData.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\ComplexActor.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DirectionalLight.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\DynamicActor.h" />
@@ -289,6 +290,7 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\RenderTargets.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Shaders.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Assets\Textures.h" />
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Editor\EditorApi.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Input\InputApi.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Level\LevelApi.h" />
     <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Level\SerializationApi.h" />
@@ -422,6 +424,7 @@
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\RenderTargets.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Shaders.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Assets\Textures.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Editor\EditorApi.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Input\InputApi.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Level\LevelApi.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Level\SerializationApi.cpp" />

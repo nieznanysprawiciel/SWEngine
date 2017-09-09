@@ -12,13 +12,22 @@ using namespace DirectX;
 namespace sw
 {
 
-/**@brief Wylicza wektor kierunku promienia wyznaczanego przez klikniêcie mysz¹.
+/**@brief Computes mouse click ray direction in world space.
 
-@return Zwracany wektor jest ju¿ znormalizowany.*/
-XMVECTOR		Intersections::ComputeMouseRayDirection		( EngineInterface* engine, CameraData& camera, float mouseX, float mouseY )
+@return Normalized mouse ray direction.*/
+XMVECTOR		Intersections::ComputeMouseRayDirection			( EngineInterface* engine, CameraData& camera, float mouseX, float mouseY )
 {
-	float halfWindowX = (float)engine->Rendering.GetWindowWidth() / 2.0f;
-	float halfWindowY = (float)engine->Rendering.GetWindowHeight() / 2.0f;
+	float windowX = (float)engine->Rendering.GetWindowWidth();
+	float windowY = (float)engine->Rendering.GetWindowHeight();
+
+	return ComputeMouseRayDirection( windowX, windowY, camera, mouseX, mouseY );
+}
+
+/**@copydoc ComputeMouseRayDirection.*/
+XMVECTOR		Intersections::ComputeMouseRayDirection			( float windowWidth, float windowHeight, CameraData& camera, float mouseX, float mouseY )
+{
+	float halfWindowX = windowWidth / 2.0f;
+	float halfWindowY = windowHeight / 2.0f;
 
 	float depth = static_cast<float>( halfWindowY / tan( DirectX::XMConvertToRadians( camera.Fov ) / 2.0f ) );
 

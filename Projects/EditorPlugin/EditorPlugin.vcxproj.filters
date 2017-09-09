@@ -83,9 +83,6 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorClassMetaInfo.h">
       <Filter>EditorPlugin\Actors</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\EnginePointerProvider.h">
-      <Filter>EditorPlugin</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\EditorPlugin\Actors\ActorWrapper.h">
       <Filter>EditorPlugin\Actors</Filter>
     </ClInclude>

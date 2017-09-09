@@ -307,42 +307,6 @@ void		Engine::RenderScene( float lag, float timeInterval )
 }
 
 
-/**
-@brief Zwraca wskaŸnik na g³ówny render target. Render target jest tworzony w tej funkcji.
-
-Funkcja stworzona dla edytora, który zamierza wyœwietlaæ zawartoœæ render targetu w swoim oknie.
-U¿ywaæ rozs¹dnie.
-
-@return WskaŸnik na render target.
-*/
-void*		Engine::GetRenderTargetHandle( uint16 width, uint16 height )
-{
-	RenderTargetDescriptor descriptor;
-	descriptor.AllowShareResource = 1;
-	descriptor.TextureWidth = width;
-	descriptor.TextureHeight = height;
-	descriptor.ColorBuffFormat = ResourceFormat::RESOURCE_FORMAT_B8G8R8A8_UNORM;
-	descriptor.TextureType = TextureType::TEXTURE_TYPE_TEXTURE2D;
-	descriptor.DepthStencilFormat = DepthStencilFormat::DEPTH_STENCIL_FORMAT_D24_UNORM_S8_UINT;
-	descriptor.Usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
-
-	RenderTargetObject* renderTarget = Context->modelsManager->CreateRenderTarget( DefaultAssets::EDITOR_RENDERTARGET_STRING, descriptor );
-	Context->displayEngine->SetMainRenderTarget( renderTarget );
-
-	Context->windowHeight = height;
-	Context->windowWidth = width;
-
-	return Context->graphicInitializer->GetRenderTargetHandle( renderTarget );
-}
-
-/**@brief Zwraca strukturê EngineContext.
-@attention Dziêki temu mo¿na zrobiæ w zasadzie wszystko i to du¿o u³atwia, ale mo¿na siê skrzywdziæ.*/
-CameraData&		Engine::GetMainCamera()
-{
-	return Context->controllersEngine->GetGlobalState()->Camera;;
-}
-
-
 
 //----------------------------------------------------------------------------------------------//
 //								funkcje pomocnicze												//
@@ -365,9 +329,6 @@ WindowHandle			Engine::GetWindowHandler	()				{ return Context->windowHandler; }
 
 int						Engine::GetWindowWidth		()				{ return Context->windowWidth; }
 int						Engine::GetWindowHeight		()				{ return Context->windowHeight; }
-void					Engine::EnableInput			( bool val )	{ Context->ui_engine->EnableInput( val ); }
-
-input::IInput*			Engine::ChangeInputModule	( input::IInput* newModule )	{ return Context->ui_engine->ChangeInputModule( newModule ); }
 
 AssetsManager *			Engine::GetAssetsManager	()				{ return Context->modelsManager; }
 

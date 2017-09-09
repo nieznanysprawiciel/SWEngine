@@ -153,6 +153,9 @@
     <Filter Include="EngineCore\Actors\Extended">
       <UniqueIdentifier>{c31dda04-50c1-4bf8-b83c-119a415a220b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineCore\UserApi\Editor">
+      <UniqueIdentifier>{c59dc3c3-921b-4307-b28d-19308d9f75d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.h">
@@ -569,6 +572,12 @@
     <ClInclude Include="..\..\EngineCode\EngineCore\UIEngine\UIEngine.h">
       <Filter>EngineCore\UIEngine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\UserApi\Editor\EditorApi.h">
+      <Filter>EngineCore\UserApi\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineCore\Actors\BasicActors\CameraData.h">
+      <Filter>EngineCore\Actors\BasicActors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(EngineCoreSourceDir)SoundEngine\SoundEngine.cpp">
@@ -849,6 +858,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineCore\UIEngine\UIEngineAbstractionLayers.cpp">
       <Filter>EngineCore\UIEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineCore\UserApi\Editor\EditorApi.cpp">
+      <Filter>EngineCore\UserApi\Editor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
