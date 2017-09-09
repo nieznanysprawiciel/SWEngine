@@ -63,7 +63,7 @@ int					GUISystem::MainLoop()
 		if( end ) break;
 	}
 
-	OnClosing();
+	CloseLogic();
 
 	return 0;
 }
@@ -120,6 +120,13 @@ void				GUISystem::RenderGUI()
 		for( auto window : m_windows )
 			window->GetSwapChain()->Present( GetSyncInterval() );
 	}
+}
+
+// ================================ //
+//
+void				GUISystem::CloseLogic()
+{
+	OnClosing();
 }
 
 

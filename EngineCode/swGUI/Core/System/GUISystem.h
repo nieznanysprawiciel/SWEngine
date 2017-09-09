@@ -306,6 +306,7 @@ public:
 	bool			MainLoopCore	();
 	void			HandleEvents	();
 	void			RenderGUI		();
+	void			CloseLogic		();
 	///@}
 
 public:
