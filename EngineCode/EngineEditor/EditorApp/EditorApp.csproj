@@ -442,7 +442,7 @@
     <FBXLibsDirectory>$(ExternalDir)FBX_SDK\lib\$(VisualVersionDir)\$(PlatformTarget)\$(ConfigTypeSmallString)\</FBXLibsDirectory>
     <ToolsetNativeProjects>v140</ToolsetNativeProjects>
     <!-- <ToolsetNativeProjects>v120</ToolsetNativeProjects> -->
-    <ReflectionDLLDir>$(EngineLibDir)Reflection\$(ToolsetNativeProjects)\$(PlatformTarget)\$(ConfigTypeSmallString)</ReflectionDLLDir>
+    <ReflectionDLLDir>$(swguiSourceInclude)swCommonLib\Projects\ReleaseDir\LibDir\$(ReflectionName)\$(ToolsetNativeProjects)\$(PlatformTarget)\$(Configuration)\</ReflectionDLLDir>
   </PropertyGroup>
   <Target Name="AfterBuild">
     <Message Text="Copy Reflection.dll and libfbxsdk.dll to $(OutputPath)" />
