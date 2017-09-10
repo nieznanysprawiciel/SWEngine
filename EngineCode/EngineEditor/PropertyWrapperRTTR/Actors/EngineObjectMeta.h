@@ -38,9 +38,10 @@ protected:
 	HierarchicalPropertyWrapper^		m_properties;	///< Hierarchy of properties for wrapped object.
 
 public:
-	EngineObjectMeta( EngineObjectWrapper^ objectPtr );
 
-
+	explicit	EngineObjectMeta( EngineObjectWrapper^ objectPtr );
+	explicit	EngineObjectMeta( const TypeID& classType );
+	
 
 	virtual void		ResetActor		( EngineObjectWrapper^ objectPtr );
 

@@ -36,6 +36,15 @@ EngineObjectMeta::EngineObjectMeta( EngineObjectWrapper^ objectPtr )
 	BuildHierarchy( objectPtr, m_actorPtr->GetTypeID() );
 }
 
+// ================================ //
+//
+EngineObjectMeta::EngineObjectMeta( const TypeID& classType )
+	:	m_actorPtr( nullptr )
+	,	m_properties( nullptr )
+{
+	m_actorClassName = gcnew System::String( classType.get_name().to_string().c_str() );
+}
+
 /**@brief */
 void						EngineObjectMeta::ResetActor		( EngineObjectWrapper^ objectPtr )
 {

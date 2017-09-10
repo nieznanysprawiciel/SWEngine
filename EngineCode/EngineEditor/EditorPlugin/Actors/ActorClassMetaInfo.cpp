@@ -13,8 +13,8 @@ namespace EditorPlugin
 /**@brief Creates actor meta info class but doesn't build properties hierarchy.
 
 You can use ResetActor to build actor info with all properties.*/
-ActorClassMetaInfo::ActorClassMetaInfo			( rttr::type classType )
-	:	EngineObjectMeta( nullptr )
+ActorClassMetaInfo::ActorClassMetaInfo			( TypeID classType )
+	:	EngineObjectMeta( classType )
 {
 	m_type = classType.get_id();
 	m_actorClassName = gcnew System::String( classType.get_name().to_string().c_str() );

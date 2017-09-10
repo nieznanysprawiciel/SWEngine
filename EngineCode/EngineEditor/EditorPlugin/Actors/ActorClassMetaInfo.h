@@ -34,7 +34,7 @@ private:
 
 public:
 
-	explicit	ActorClassMetaInfo	( rttr::type classType );
+	explicit	ActorClassMetaInfo	( TypeID classType );
 	explicit	ActorClassMetaInfo	( ActorWrapper^ actor );
 
 

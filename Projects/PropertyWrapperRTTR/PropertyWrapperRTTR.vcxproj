@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Actors\EngineObjectMeta.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Actors\EngineObjectWrapper.h" />
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Actors\TypeMetaInfo.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Build\BuildContext.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Build\CutomPropertyEntry.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Build\IncludeRTTR.h" />
@@ -166,6 +167,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Actors\EngineObjectMeta.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Actors\EngineObjectWrapper.cpp" />
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Actors\TypeMetaInfo.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayElementPropertyWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayPropertyWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Base\PropertyHelper.cpp" />

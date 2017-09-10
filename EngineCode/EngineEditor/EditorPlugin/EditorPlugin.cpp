@@ -208,7 +208,7 @@ void EngineWrapper::DeleteActor( ActorWrapper^ actor )
 }
 
 /**@brief Tworzy listê typów zarejestrowanych aktorów.*/
-List< ActorClassMetaInfo^ >^		EngineWrapper::CreateActorsMetadata		()
+List< ActorClassMetaInfo^ >^				EngineWrapper::CreateActorsMetadata		()
 {
 	auto& registeredClasses = m_engine->Actors.GetRegisteredClasses();
 	List< ActorClassMetaInfo^ >^ actorsList = gcnew List< ActorClassMetaInfo^ >();
