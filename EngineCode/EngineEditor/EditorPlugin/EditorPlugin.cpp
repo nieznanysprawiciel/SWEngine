@@ -24,6 +24,8 @@
 #include "EngineInterfaceProvider.h"
 #include "EngineCore/UserApi/Editor/EditorApi.h"
 
+#include "swGUI/Native/WinAPI/WinAPIGUI.h"
+
 #include <msclr/marshal_cppstd.h>
 
 
@@ -58,12 +60,9 @@ EngineWrapper::EngineWrapper()
 @return Zwraca true, je¿eli inicjowanie powid³o siê.*/
 bool			EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
 {
-
-	//if( 0 == GetModuleHandleEx( GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, NULL, &moduleHandle ) )
-	//	return false;
 	HINSTANCE handle = (HINSTANCE)moduleHandle.ToPointer();
-	m_engine = Api::EditorApi::CreateEngine();
-	//int result = m_engine->InitEngine( window_width, window_height, false, SW_HIDE );
+
+	m_engine = Api::EditorApi::CreateEngine( new gui::WinAPIGUI() );
 	if( !m_engine )
 	{
 		ReleaseEngine();

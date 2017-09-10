@@ -86,11 +86,14 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\EngineCode\swCommonLib\Projects\Visual2015\Reflection\Reflection.vcxproj">
+      <Project>{59fa8028-2346-4246-854f-14dcfab6ab56}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\EngineCode\swGraphicAPI\ProjectsDir\Visual2015\DX11API\DX11API.vcxproj">
       <Project>{44643d7f-1c71-41c1-b452-b2dc5e088a58}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\EngineCode\swInputLibrary\ProjectsDir\Visual2015\DirectInput\DirectInput.vcxproj">
-      <Project>{d1075b79-925a-436f-8c53-09bd4d5787e4}</Project>
+    <ProjectReference Include="..\..\EngineCode\swGUI\ProjectDir\Visual2015\Win32NativeGUI\Win32NativeGUI.vcxproj">
+      <Project>{267292a0-c262-43e7-afb1-1f63439fd465}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\EngineCode\swInputLibrary\ProjectsDir\Visual2015\WPFInputProxy\WPFInputProxy.vcxproj">
       <Project>{364e3cfb-ccaa-4aaf-aa03-d6e2d9749228}</Project>

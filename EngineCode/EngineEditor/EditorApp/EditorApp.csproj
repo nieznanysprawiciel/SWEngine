@@ -358,7 +358,6 @@
     <ProjectReference Include="..\..\..\Projects\EditorPlugin\EditorPlugin.vcxproj">
       <Project>{d6d5f6ef-4b74-4ebe-8d8d-e76c7c423d05}</Project>
       <Name>EditorPlugin</Name>
-      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Projects\Interop.D3DImageEx\Interop.D3DImageEx.vcxproj">
       <Project>{2953f688-1281-443a-886f-95b25002c7b7}</Project>

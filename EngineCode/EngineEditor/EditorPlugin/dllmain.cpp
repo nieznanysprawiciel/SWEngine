@@ -1,3 +1,4 @@
+#include "EngineEditor/EditorPlugin/stdafx.h"
 // dllmain.cpp : Defines the entry point for the DLL application.
 
 #define WIN32_LEAN_AND_MEAN

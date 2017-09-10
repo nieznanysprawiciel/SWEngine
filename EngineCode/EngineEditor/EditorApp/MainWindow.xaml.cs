@@ -15,8 +15,11 @@ namespace EditorApp
 
 		public MainWindow()
         {
-            System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo("en-US");
-            InitializeComponent();
+            System.Globalization.CultureInfo.DefaultThreadCurrentCulture = System.Globalization.CultureInfo.GetCultureInfo("en-US");
+			System.Globalization.CultureInfo.DefaultThreadCurrentCulture = System.Globalization.CultureInfo.GetCultureInfo( "en-US" );
+
+			InitializeComponent();
+
             Loaded += MainWindowLoaded;
             Closed += MainWindowClosed;
         }

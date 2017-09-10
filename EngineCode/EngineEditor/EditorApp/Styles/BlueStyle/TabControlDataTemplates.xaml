@@ -5,8 +5,7 @@
 					xmlns:content="clr-namespace:EditorApp.Editor.Project.Content;assembly="
 					xmlns:proj="clr-namespace:EditorApp.Project;assembly="
 					xmlns:actors="clr-namespace:EditorApp.Editor.Project.Actors;assembly="
-					xmlns:engine="clr-namespace:EditorApp.Engine;assembly="
-                    xmlns:local="clr-namespace:EditorApp.Styles.BlueStyle">
+					xmlns:displayer="clr-namespace:EditorApp.Engine;assembly=">
 
 	<DataTemplate DataType="{x:Type content:ContentManager}" >
 		<gui:ContentBrowser />
@@ -19,8 +18,8 @@
 	<DataTemplate DataType="{x:Type actors:ActorsCreatorView}" >
 		<gui:ActorsCreator />
 	</DataTemplate>
-	
-	<DataTemplate DataType="{x:Type engine:MainDisplayView}" >
+
+	<DataTemplate DataType="{x:Type displayer:MainDisplayView}" >
 		<gui:RendererPreview />
 	</DataTemplate>
 

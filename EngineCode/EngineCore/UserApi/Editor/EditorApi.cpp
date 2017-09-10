@@ -18,8 +18,16 @@ namespace Api
 
 // ================================ //
 //
-EngineInterface*		EditorApi::CreateEngine			()
+EngineInterface*		EditorApi::CreateEngine			( gui::INativeGUI* gui )
 {
+	sw::Engine* engine = new sw::Engine( 0, nullptr, gui );
+	if( engine->Init() )
+	{
+
+
+		return engine;
+	}
+
 	return nullptr;
 }
 
@@ -27,7 +35,7 @@ EngineInterface*		EditorApi::CreateEngine			()
 //
 void					EditorApi::ReleaseEngine		()
 {
-	sw::Engine* engine = static_cast<sw::Engine*>( Engine );
+	sw::Engine* engine = static_cast< sw::Engine* >( Engine );
 	
 	// We must call close logic manually, because editor uses MainLoopCore to make main loop step.
 	// MainLoopCore doesn't call CloseLogic.

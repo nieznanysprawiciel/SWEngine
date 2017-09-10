@@ -10,6 +10,7 @@
 
 // Use only includes which compile under clr.
 #include "swInputLibrary/InputCore/IInput.h"
+#include "swGUI/Native/INativeGUI.h"
 
 
 namespace sw
@@ -38,7 +39,7 @@ protected:
 public:
 
 	/**@brief Creates engine object.*/
-	static EngineInterface*		CreateEngine				();
+	static EngineInterface*		CreateEngine				( gui::INativeGUI* gui );
 
 	/**@brief Destroy engine object.*/
 	static void					ReleaseEngine				();
