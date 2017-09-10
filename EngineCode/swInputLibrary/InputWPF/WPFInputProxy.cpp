@@ -124,6 +124,11 @@ bool WPFInputProxy::UpdateDevices()
 //			WPF API	
 //====================================================================================//
 
+
+namespace
+{
+
+
 #define NUM_WPF_MOUSE_BUTTONS 5
 
 /**@brief Tablica mapowania przycisków myszy WPFa na wartoœci silnikowe.
@@ -327,6 +332,8 @@ Keyboard::PhysicalKeys KEYBOARD_BUTTONS_MAPPING[ NUM_WPF_KEYBOARD_BUTTONS ] =
 	Keyboard::PhysicalKeys::KEY_NONE,
 	Keyboard::PhysicalKeys::KEY_NONE
 };
+
+}
 
 
 /**@brief Ustawia nowy stan przycisku na klawiaturze.

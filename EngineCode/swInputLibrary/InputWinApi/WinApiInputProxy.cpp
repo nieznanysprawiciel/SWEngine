@@ -113,6 +113,9 @@ bool		WinApiInputProxy::UpdateDevices()
 //			WPF API	
 //====================================================================================//
 
+namespace
+{
+
 #define NUM_WINAPI_MOUSE_BUTTONS 7
 
 /**@brief Tablica mapowania przycisków myszy WinApi na wartoœci silnikowe.*/
@@ -248,6 +251,8 @@ bool ArrayStaticInitializerFun()
 }
 static bool arrayStaticInitializer = ArrayStaticInitializerFun();
 
+
+}
 
 
 /**@brief Ustawia nowy stan przycisku na klawiaturze.
