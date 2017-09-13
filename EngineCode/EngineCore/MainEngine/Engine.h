@@ -49,6 +49,10 @@ class Engine : public EngineInterface, public gui::GUISystem
 {
 private:
 
+	bool			m_showWindowOnStart : 1;
+
+private:
+
 	///@name GUISystem functions overrides.
 	///@{
 
@@ -83,6 +87,8 @@ public:
 	explicit				Engine	( int argc, char** argv, sw::gui::INativeGUI* gui );
 	explicit				Engine	( AppInstanceHandle instanceHandle );
 							~Engine	();
+
+	void					StartEditorMode		();
 
 private:
 	///@name Engine modules initialization functions.

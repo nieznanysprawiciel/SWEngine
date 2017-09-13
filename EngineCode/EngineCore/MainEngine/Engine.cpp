@@ -85,6 +85,9 @@ void	Engine::InternalInit			()
 
 	// Initialize frames counter.
 	Context->pause = false;
+
+	// Editor/Engine mode initialization variables.
+	m_showWindowOnStart = true;
 }
 
 // ================================ //
@@ -114,6 +117,13 @@ Engine::~Engine()
 	delete Context->config;
 }
 
+// ================================ //
+//
+void			Engine::StartEditorMode				()
+{
+	m_showWindowOnStart = false;
+}
+
 
 //----------------------------------------------------------------------------------------------//
 //								inicjalizacja okna i modu³ów zewnêtrznych						//
@@ -138,7 +148,7 @@ bool			Engine::Initialize					()
 	result = result && DefaultInitNativeGUI();
 	result = result && DefaultInitRenderingSystem();
 
-	result = result && DefaultInitFirstWindow( Context->config->ScreenWidth(), Context->config->ScreenHeight(), "Sleeping Wombat Engine (DirectX 11)", true );
+	result = result && DefaultInitFirstWindow( Context->config->ScreenWidth(), Context->config->ScreenHeight(), "Sleeping Wombat Engine (DirectX 11)", m_showWindowOnStart );
 
 	return result;
 }
