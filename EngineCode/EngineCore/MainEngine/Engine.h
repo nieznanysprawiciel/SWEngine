@@ -127,9 +127,6 @@ public:
 
 	///@name Window parameters
 	///@{
-	AppInstanceHandle		GetInstanceHandler();
-	WindowHandle			GetWindowHandler();
-
 	int						GetWindowWidth();
 	int						GetWindowHeight();
 	///@}

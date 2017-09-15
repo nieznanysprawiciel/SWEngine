@@ -64,7 +64,6 @@ void	Engine::InternalInit			()
 	// Dziêki tej zmiennej bêdzie mo¿na wysy³aæ eventy
 	ActorBase::SetEngine( this );
 
-	Context->fullScreen = false;			//inicjalizacja jako false potrzebna w funkcji init_window
 	Context->engineReady = false;			//jeszcze nie zainicjowaliœmy
 
 	Context->config					= new Config( "configs/StartConfig.config" );
@@ -333,9 +332,6 @@ void			Engine::SendEvent( Event* newEvent )
 	Context->eventsManager->SendEvent( newEvent );
 }
 
-
-AppInstanceHandle		Engine::GetInstanceHandler	()				{ return Context->instanceHandler; }
-WindowHandle			Engine::GetWindowHandler	()				{ return Context->windowHandler; }
 
 int						Engine::GetWindowWidth		()				{ return Context->windowWidth; }
 int						Engine::GetWindowHeight		()				{ return Context->windowHeight; }
