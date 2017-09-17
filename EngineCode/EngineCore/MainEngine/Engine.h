@@ -8,6 +8,7 @@
 
 
 #include "EngineCore/MainEngine/MacrosSwitches.h"
+#include "Types.h"
 
 
 #include "EngineCore/MainEngine/EngineInterface.h"
@@ -59,7 +60,7 @@ private:
 	virtual	bool			Initialize		() override;
 	virtual bool			OnInitialized	() override;
 	virtual void			OnClosing		() override;
-	virtual void			OnIdle			() override;
+	virtual void			OnIdle			( const gui::FrameTime& frameTime ) override;
 
 	///@}
 
@@ -71,10 +72,10 @@ public:
 
 	///@name Functions connected to rendering and main loop pipeline.
 	///@{
-	void		RenderFrame					();
-	void		UpdateScene					( float& lag, float timeInterval );
-	void		SingleThreadedUpdatePhase	( float& lag, float timeInterval );
-	void		RenderScene					( float lag, float timeInterval );
+	void		RenderFrame					( TimeType time, TimeDiff elapsed );
+	void		UpdateScene					( TimeType time, TimeDiff elapsed );
+	void		SingleThreadedUpdatePhase	( TimeType time, TimeDiff elapsed );
+	void		RenderScene					( TimeType time, TimeDiff elapsed );
 	///@}
 
 public:

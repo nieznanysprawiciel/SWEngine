@@ -1,4 +1,12 @@
 #pragma once
+/**
+@file GUISystem.h
+@author nieznanysprawiciel
+@copyright File is part of Sleeping Wombat Libraries.
+*/
+
+
+
 
 #include "swCommonLib/Common/EngineObject.h"
 #include "swGraphicAPI/Rendering/IGraphicAPIInitializer.h"
@@ -6,6 +14,7 @@
 #include "Events/EventsSystem.h"
 #include "swGUI/Core/System/Rendering/RenderingSystem.h"
 #include "swGUI/Core/System/Config/GUISystemConfig.h"
+#include "swGUI/Core/System/Time/Clock.h"
 
 #include "HostWindow.h"
 
@@ -262,6 +271,8 @@ protected:
 	std::vector< HostWindow* >	m_windows;
 	HostWindow*					m_focusedWindow;	///< Only one window can have focus and only this will be processed.
 
+	Clock						m_clock;			///< Application time manager.
+
 	CommandLineArgs				m_cmdArgs;
 
 public:
@@ -280,7 +291,7 @@ protected:
 	virtual	bool	Initialize		();
 	virtual bool	OnInitialized	() = 0;
 	virtual void	OnClosing		() = 0;
-	virtual void	OnIdle			() = 0;
+	virtual void	OnIdle			( const FrameTime& frameTime ) = 0;
 	///@}
 
 	///@name Default initialization functions
@@ -304,8 +315,8 @@ public:
 	bool			Init			();
 	int				MainLoop		();
 	bool			MainLoopCore	();
-	void			HandleEvents	();
-	void			RenderGUI		();
+	void			HandleEvents	( const FrameTime& frameTime );
+	void			RenderGUI		( const FrameTime& frameTime );
 	void			CloseLogic		();
 	///@}
 

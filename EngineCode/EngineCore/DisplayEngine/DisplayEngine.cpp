@@ -197,11 +197,11 @@ i wynosi tyle ile wartoœæ sta³ej FIXED_MOVE_UPDATE_INTERVAL.
 @param[in] timeLag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
 Zakres [0,1].
 */
-void DisplayEngine::DisplayScene( float timeInterval, float timeLag )
+void			DisplayEngine::DisplayScene				( TimeType time, TimeDiff elapsed, TimeRatio timeLag )
 {
 	IRenderer* renderer = m_renderers[ 0 ];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
 
-	ProcessMainPass( timeInterval, timeLag );
+	ProcessMainPass( (float)elapsed, (float)timeLag );
 }
 
 /**@brief Renders scene using @ref m_mainPass.*/
@@ -452,12 +452,12 @@ odpowiada indeksom w tablicy meshes.
 
 @param[in] time_lag U³amek czasu jaki up³yn¹³ miêdzy ostani¹ klatk¹ a nastêpn¹.
 Zakres [0,1].*/
-void				DisplayEngine::InterpolatePositions				( float time_lag )
+void				DisplayEngine::InterpolatePositions				( TimeRatio timeLag )
 {
 	for( unsigned int i = 0; i < meshes.size(); ++i )
 	{
 		StaticActor* object = meshes[ i ];
-		interpolate_object2( time_lag, object, &( m_interpolatedMatricies[ i ] ) );
+		interpolate_object2( (float)timeLag, object, &( m_interpolatedMatricies[ i ] ) );
 	}
 }
 

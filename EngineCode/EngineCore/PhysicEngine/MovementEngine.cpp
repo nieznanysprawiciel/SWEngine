@@ -30,12 +30,12 @@ MovementEngine::~MovementEngine()
 {}
 
 /**@brief Przemieszcza obiekty na podstawie ich prêdkoœci.*/
-void MovementEngine::ProceedMovement( float timeInterval )
+void MovementEngine::ProceedMovement( TimeType time, TimeDiff elapsed )
 {
 	for( unsigned int i = 0; i < m_dynamicObjects.size(); ++i )
 	{
 		DynamicActor* object = m_dynamicObjects[ i ];
-		object->Move( timeInterval );
+		object->Move( (float)elapsed );
 		object->Swap();		// Zamieniamy bufory wewn¹trz obiektu
 	}
 }

@@ -6,9 +6,10 @@
 */
 
 
-#include "EngineCore/stdafx.h"
 #include "EngineCore/Actors/ActorObjects.h"
 #include "BaseClasses/IController.h"
+
+#include "EngineCore/MainEngine/Types.h"
 
 
 namespace sw
@@ -35,10 +36,10 @@ public:
 	explicit	ControllersEngine				( Engine* parent );
 	~ControllersEngine				();
 
-	void		ProceedControllersPre			( float timeInterval );
-	void		ProceedControllersPost			( float timeInterval );
+	void		ProceedControllersPre			( TimeType time, TimeDiff elapsed );
+	void		ProceedControllersPost			( TimeType time, TimeDiff elapsed );
 
-	void		SingleThreadedUpdatePhase		( float timeInterval );
+	void		SingleThreadedUpdatePhase		( TimeType time, TimeDiff elapsed );
 
 	bool		AddPreControlled				( DynamicActor* actor );
 	bool		AddPostControlled				( DynamicActor* actor );
@@ -52,7 +53,7 @@ public:
 	IControllersState*		GetGlobalState		();
 
 private:
-	void		UpdateGlobalState				( float timeInterval );
+	void		UpdateGlobalState				( TimeType time, TimeDiff elapsed );
 };
 
 }	// sw

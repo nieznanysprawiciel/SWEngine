@@ -76,7 +76,7 @@ void					UIEngine::EnableInput						( bool val )
 
 
 /**@brief Called by engine in main loop each frame.*/
-void					UIEngine::ProceedInput						( float timeInterval )
+void					UIEngine::ProceedInput						( TimeType time, TimeDiff elapsed )
 {
 	START_PERFORMANCE_CHECK( INPUT_PROCESSING );
 
@@ -123,7 +123,7 @@ Jest wywo³ywana zaraz po wszystkich procedurach rysuj¹cych obiekty na scenie.
 
 @param[in] time_interval Parametrem jest czas który up³yn¹³ od ostatniego wywo³ania.
  */
-void					UIEngine::DrawGUI							( float time_interval, float time_lag )
+void					UIEngine::DrawGUI							( TimeType time, TimeDiff elpased )
 {
 
 }

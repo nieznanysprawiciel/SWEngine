@@ -181,9 +181,9 @@ void			Engine::OnClosing					()
 
 // ================================ //
 //
-void			Engine::OnIdle						()
+void			Engine::OnIdle						( const gui::FrameTime& frameTime )
 {
-	RenderFrame();
+	RenderFrame( frameTime.Time, frameTime.Elapsed );
 }
 
 
@@ -191,7 +191,7 @@ void			Engine::OnIdle						()
 
 // ================================ //
 //
-bool		Engine::InitGUIConfiguration()
+bool		Engine::InitGUIConfiguration			()
 {
 	m_guiConfig.UseBlockingMode = false;
 	m_guiConfig.UseVSync = true;
@@ -200,12 +200,14 @@ bool		Engine::InitGUIConfiguration()
 	Context->windowWidth = m_windows[ 0 ]->GetNativeWindow()->GetClientWidth();
 	Context->windowHeight = m_windows[ 0 ]->GetNativeWindow()->GetClientHeight();
 
+	m_clock.SetFixedStep( (TimeDiff)FIXED_MOVE_UPDATE_INTERVAL );
+
 	return true;
 }
 
 /**@brief Engine side graphicAPI initialization.
 GraphicAPI was created by GUI before. Now we only initialize engine modules with it.*/
-bool		Engine::InitEngineGraphicAPI()
+bool		Engine::InitEngineGraphicAPI			()
 {
 	Context->graphicInitializer = m_graphicApi;
 
@@ -215,7 +217,7 @@ bool		Engine::InitEngineGraphicAPI()
 
 // ================================ //
 //
-bool		Engine::InitEngineInputModule()
+bool		Engine::InitEngineInputModule			()
 {
 	// Normally we must delete lastModule. In this case we know that it is nullptr.
 	auto lastModule = Context->ui_engine->ChangeInputModule( m_input );
@@ -225,7 +227,7 @@ bool		Engine::InitEngineInputModule()
 }
 
 /**@brief */
-bool		Engine::InitSoundModule		()
+bool		Engine::InitSoundModule					()
 {
 	return true;
 }
@@ -236,13 +238,13 @@ bool		Engine::InitSoundModule		()
 //----------------------------------------------------------------------------------------------//
 
 /**@brief Main function called per frame.*/
-void		Engine::RenderFrame()
+void		Engine::RenderFrame						( TimeType time, TimeDiff elapsed )
 {
 	float timeInterval = Context->timeManager.onStartRenderFrame();
 	float lag = Context->timeManager.GetFrameLag();
 
-	UpdateScene( lag, timeInterval );
-	RenderScene( lag, timeInterval );
+	UpdateScene( time, elapsed );
+	RenderScene( time, elapsed );
 }
 
 /**@brief W tej funkcji wywo³ywane s¹ wszystkie funkcje, które aktualizuj¹ stan silnika
@@ -252,47 +254,48 @@ Stan silnika jest w czasie trwania klatki niezmienny. Jest tak dlatego, ¿e logik
 jest (bêdzie) wykonywana wielow¹tkowo i aktorzy odpytuj¹cy o stan powinni dostaæ informacjê
 o tym co by³o w ostaniej klatce, a nie co jest w danym momencie, poniewa¿ taki tymczasowy
 stan w zasadzie niewiele mówi.*/
-void		Engine::SingleThreadedUpdatePhase( float& lag, float timeInterval )
+void		Engine::SingleThreadedUpdatePhase		( TimeType time, TimeDiff elapsed )
 {
-	Context->controllersEngine->SingleThreadedUpdatePhase( timeInterval );
+	Context->controllersEngine->SingleThreadedUpdatePhase( time, elapsed );
 }
 
 
 /**@brief Updates input, physics, AI, events and alll connected to game logic.*/
-void		Engine::UpdateScene( float& lag, float timeInterval )
+void		Engine::UpdateScene						( TimeType time, TimeDiff elapsed )
 {
-	// Process input only once. Since we don't call native loop, there shouldn't be any new events to process.
-	Context->ui_engine->ProceedInput( FIXED_MOVE_UPDATE_INTERVAL );
+	TimeType frameTime = time - elapsed + FIXED_MOVE_UPDATE_INTERVAL;
+	TimeDiff frameElapsed = elapsed;
 
-	while( lag >= FIXED_MOVE_UPDATE_INTERVAL )
+	// Process input only once. Since we don't call native loop, there shouldn't be any new events to process.
+	Context->ui_engine->ProceedInput( time, frameElapsed );
+
+	// If to much time elapsed, we must process a few frames at once. This way logic updates are independent from frame rate.
+	while( frameElapsed >= FIXED_MOVE_UPDATE_INTERVAL )
 	{
 		START_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
 
-		Context->physicEngine->ProceedPhysic( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->controllersEngine->ProceedControllersPre( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->movementEngine->ProceedMovement( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->controllersEngine->ProceedControllersPost( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->collisionEngine->ProceedCollisions( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->fableEngine->ProceedFable( FIXED_MOVE_UPDATE_INTERVAL );
-		Context->eventsManager->ProcessEvents( FIXED_MOVE_UPDATE_INTERVAL );
+		Context->physicEngine->ProceedPhysic					( frameTime, FIXED_MOVE_UPDATE_INTERVAL );
+		Context->controllersEngine->ProceedControllersPre		( frameTime, FIXED_MOVE_UPDATE_INTERVAL );
+		Context->movementEngine->ProceedMovement				( frameTime, FIXED_MOVE_UPDATE_INTERVAL );
+		Context->controllersEngine->ProceedControllersPost		( frameTime, FIXED_MOVE_UPDATE_INTERVAL );
+		Context->collisionEngine->ProceedCollisions				( frameTime, FIXED_MOVE_UPDATE_INTERVAL );
+		Context->fableEngine->ProceedFable						( frameTime, FIXED_MOVE_UPDATE_INTERVAL );
+		Context->eventsManager->ProcessEvents					( frameTime, FIXED_MOVE_UPDATE_INTERVAL );
 
-		SingleThreadedUpdatePhase( lag, timeInterval );
-
-		lag -= FIXED_MOVE_UPDATE_INTERVAL;
-		Context->timeManager.UpdateTimeLag( lag );
-
-		timeInterval = Context->timeManager.onStartRenderFrame();
-		lag = Context->timeManager.GetFrameLag();
+		SingleThreadedUpdatePhase								( frameTime, FIXED_MOVE_UPDATE_INTERVAL );
 
 		END_PERFORMANCE_CHECK( FRAME_COMPUTING_TIME )
+
+		frameElapsed -= FIXED_MOVE_UPDATE_INTERVAL;
+		frameTime += FIXED_MOVE_UPDATE_INTERVAL;
 	}
 }
 
 
 /**@brief Renders scene and interpolates objects.*/
-void		Engine::RenderScene( float lag, float timeInterval )
+void		Engine::RenderScene						( TimeType time, TimeDiff elapsed )
 {
-	float framePercent = lag / FIXED_MOVE_UPDATE_INTERVAL;
+	float framePercent = (float)m_clock.GetFrameFraction();
 
 #ifdef _INTERPOLATE_POSITIONS
 	START_PERFORMANCE_CHECK( INTERPOLATION_TIME )
@@ -307,8 +310,8 @@ void		Engine::RenderScene( float lag, float timeInterval )
 		//Renderujemy scenê oraz interfejs u¿ytkownika
 	Context->displayEngine->BeginScene();
 
-	Context->displayEngine->DisplayScene( timeInterval, framePercent );
-	Context->ui_engine->DrawGUI( timeInterval, framePercent );
+	Context->displayEngine->DisplayScene( time, elapsed, framePercent );
+	Context->ui_engine->DrawGUI( time, elapsed );
 
 	END_PERFORMANCE_CHECK( RENDERING_TIME )		///< Ze wzglêdu na V-sync test wykonujemy przed wywyo³aniem funkcji present.
 
@@ -327,7 +330,7 @@ void		Engine::RenderScene( float lag, float timeInterval )
 @deprecated Use internal api for that.
 @see Events
 @param[in] new_event Event do wys³ania.*/
-void			Engine::SendEvent( Event* newEvent )
+void			Engine::SendEvent					( Event* newEvent )
 {
 	Context->eventsManager->SendEvent( newEvent );
 }

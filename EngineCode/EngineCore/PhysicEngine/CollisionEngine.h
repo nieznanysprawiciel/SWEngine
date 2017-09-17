@@ -36,7 +36,7 @@ public:
 	CollisionEngine						( Engine* engine );
 	~CollisionEngine					();
 
-	void		ProceedCollisions		( float timeInterval );
+	void		ProceedCollisions		( TimeType time, TimeDiff elapsed );
 
 	void		RemoveActor				( ActorBase* actor );
 	void		RemoveAllActors			();

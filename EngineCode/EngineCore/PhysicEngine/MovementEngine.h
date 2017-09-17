@@ -6,9 +6,9 @@
 */
 
 
-#include "EngineCore/stdafx.h"
 #include "EngineCore/Actors/ActorObjects.h"
 
+#include "EngineCore/MainEngine/Types.h"
 
 
 
@@ -33,7 +33,7 @@ public:
 	MovementEngine( Engine* engine );
 	~MovementEngine();
 
-	void		ProceedMovement			( float timeInterval );
+	void		ProceedMovement			( TimeType time, TimeDiff elapsed );
 	Size		AddMoveableObject		( DynamicActor* dynObject );
 
 	void		RemoveActor				( ActorBase* actor );

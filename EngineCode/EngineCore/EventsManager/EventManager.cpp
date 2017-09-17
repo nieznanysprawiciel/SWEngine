@@ -26,7 +26,7 @@ EventManager::EventManager( Engine* engine )
 {}
 
 /**@brief G³ówna funkcja do rozsy³ania eventów.*/
-void			EventManager::ProcessEvents	( float timeInterval )
+void			EventManager::ProcessEvents	( TimeType time, TimeDiff elapsed )
 {
 	// W funkcji obs³ugi sygna³u lub eventu ktoœ mo¿e wys³aæ kolejny event,
 	// dlatego trzeba zrobiæ tak¹ pêtlê.

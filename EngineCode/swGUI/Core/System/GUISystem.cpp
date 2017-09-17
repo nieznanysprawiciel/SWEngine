@@ -76,22 +76,24 @@ bool				GUISystem::MainLoopCore()
 {
 	// Process native events.
 	bool end = m_nativeGUI->MainLoop( m_guiConfig.UseBlockingMode );
-	if( end ) return true;;
+	if( end ) return true;
 
-	HandleEvents();
+	auto frameTime = m_clock.AdvanceFrame();
+
+	HandleEvents( frameTime );
 
 	// @todo How should it be done ??
-	OnIdle();
-	RenderGUI();
+	OnIdle( frameTime );
+	RenderGUI( frameTime );
 
 	return false;
 }
 
 /**@brief Processes messages and passes them to focused window.*/
-void				GUISystem::HandleEvents()
+void				GUISystem::HandleEvents		( const FrameTime& frameTime )
 {
 	// @todo We should pass correct time in parameter.
-	m_input->Update( 0.0 );
+	m_input->Update( (float)frameTime.Elapsed );
 
 	if( m_focusedWindow )
 		m_focusedWindow->HandleInput();
@@ -110,7 +112,7 @@ void				GUISystem::HandleEvents()
 
 // ================================ //
 //
-void				GUISystem::RenderGUI()
+void				GUISystem::RenderGUI		( const FrameTime& frameTime )
 {
 	if( m_guiConfig.RedrawOnlyFocused && m_focusedWindow )
 		m_focusedWindow->GetSwapChain()->Present( GetSyncInterval() );
@@ -124,7 +126,7 @@ void				GUISystem::RenderGUI()
 
 // ================================ //
 //
-void				GUISystem::CloseLogic()
+void				GUISystem::CloseLogic		()
 {
 	OnClosing();
 }
@@ -141,6 +143,8 @@ bool				GUISystem::Init()
 
 	result = result && Initialize();		// Initialize subsystems.
 	result = result && OnInitialized();		// User initialization.
+
+	m_clock.Start();	// Start clock as last in initialization.
 
 	return result;
 }

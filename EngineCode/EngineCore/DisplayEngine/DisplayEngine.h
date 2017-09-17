@@ -97,9 +97,9 @@ public:
 	void			SetMainRenderTarget				( RenderTargetObject* renderTarget );					///<@todo Hack. Zrobiæ docelowy sposób ustawiania render targetów.
 
 	// G³ówna funkcja do wyœwietlania sceny
-	void			DisplayScene					( float time_interval, float time_lag );
+	void			DisplayScene					( TimeType time, TimeDiff elapsed, TimeRatio timeLag );
 	// Funkcja do interpolacji pozycji obiektów
-	void			InterpolatePositions			( float time_lag );
+	void			InterpolatePositions			( TimeRatio timeLag );
 
 	// Zarz¹dzanie meshami
 	void			AddMeshObject					( StaticActor* object );

@@ -5,6 +5,7 @@
 @copyright File is part of Sleeping Wombat Libraries.
 */
 
+#include "EngineCore/MainEngine/Types.h"
 
 class Engine;
 class ActorBase;
@@ -24,7 +25,7 @@ public:
 	PhysicEngine( Engine* engine );
 	~PhysicEngine();
 
-	void		ProceedPhysic			( float timeInterval );
+	void		ProceedPhysic			( TimeType time, TimeDiff elapsed );
 
 	void		RemoveActor				( ActorBase* actor );
 	void		RemoveAllActors			();

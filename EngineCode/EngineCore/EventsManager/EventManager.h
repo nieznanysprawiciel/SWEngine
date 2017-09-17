@@ -34,6 +34,7 @@ Inni aktorzy mog¹ rejestrowaæ funkcje obs³ugi konkretnych eventów.
 
 #include "EngineCore/EventsManager/Signal.h"
 #include "swCommonLib/Common/Multithreading/SpinLockedQueue.h"
+#include "EngineCore/MainEngine/Types.h"
 
 #include <vector>
 #include <unordered_map>
@@ -83,7 +84,7 @@ public:
 	EventManager	( Engine* engine );
 	~EventManager	() = default;
 
-	void			ProcessEvents	( float timeInterval );
+	void			ProcessEvents	( TimeType time, TimeDiff elapsed );
 
 
 	void			SendSignal		( const Signal& signal );

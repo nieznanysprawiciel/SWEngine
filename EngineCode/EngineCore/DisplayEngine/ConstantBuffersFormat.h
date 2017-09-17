@@ -9,6 +9,8 @@
 
 #include "DirectXMath.h"
 
+#include "EngineCore/MainEngine/MacrosSwitches.h"
+
 
 namespace sw
 {

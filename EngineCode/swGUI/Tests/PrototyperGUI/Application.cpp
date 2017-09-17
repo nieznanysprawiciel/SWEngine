@@ -55,5 +55,5 @@ void		Application::OnClosing()
 { }
 
 /**@brief */
-void		Application::OnIdle()
+void		Application::OnIdle( const sw::gui::FrameTime& frameTime )
 { }

@@ -10,7 +10,7 @@
 #include "swInputLibrary/InputCore/IInput.h"
 #include "InputAbstractionLayer.h"
 
-
+#include "EngineCore/MainEngine/Types.h"
 
 
 
@@ -50,8 +50,8 @@ public:
 	input::IInput*		GetInputModule					();
 
 	//called by Engine in main loop
-	void		ProceedInput					( float time_interval );
-	void		DrawGUI							( float time_interval, float time_lag );
+	void		ProceedInput					( TimeType time, TimeDiff elapsed );
+	void		DrawGUI							( TimeType time, TimeDiff elapsed );
 
 	//abstraction layers
 	int			ChangeAbstractionLayer			( InputAbstractionLayer* next_layer );

@@ -36,19 +36,19 @@ FableEngine::~FableEngine()
 
 // ================================ //
 //
-void FableEngine::ProceedFable( float timeInterval )
+void FableEngine::ProceedFable( TimeType time, TimeDiff elapsed )
 {
-	ProceedEvents( timeInterval );
+	ProceedEvents( time, elapsed );
 	//na koñcu po wykonaniu obs³ugi wszystkich eventów
 	//wywo³ujemy funkcjê g³ówn¹ GamePlaya
 	if( m_gamePlay != nullptr )
-		m_gamePlay->ProceedGameLogic( timeInterval );
+		m_gamePlay->ProceedGameLogic( (float)elapsed );
 }
 
 
 // ================================ //
 //
-void FableEngine::ProceedEvents( float timeInterval )
+void FableEngine::ProceedEvents( TimeType time, TimeDiff elapsed )
 {}
 
 }	// sw

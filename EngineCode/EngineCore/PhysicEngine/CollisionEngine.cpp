@@ -33,7 +33,7 @@ CollisionEngine::~CollisionEngine()
 
 // ================================ //
 //
-void CollisionEngine::ProceedCollisions( float time_interval )
+void CollisionEngine::ProceedCollisions( TimeType time, TimeDiff elapsed )
 {
 
 }
