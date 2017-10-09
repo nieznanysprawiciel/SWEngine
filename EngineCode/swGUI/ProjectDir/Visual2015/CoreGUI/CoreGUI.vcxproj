@@ -211,6 +211,9 @@
     <ProjectReference Include="..\..\..\..\swGraphicAPI\ProjectsDir\Visual2015\ResourceManager\ResourceManager.vcxproj">
       <Project>{9f71f0da-1d72-4e96-93b7-5ac2c9cb6ede}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\MockNativeGUI\MockNativeGUI.vcxproj">
+      <Project>{2800312a-1970-47fb-87b3-dd7e96405d85}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Core\System\Events\EventsSystem.inl" />

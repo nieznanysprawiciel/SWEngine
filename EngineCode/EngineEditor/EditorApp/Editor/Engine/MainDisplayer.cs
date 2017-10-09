@@ -54,7 +54,7 @@ namespace EditorApp.Engine
 			m_engineWrapper = new EngineWrapper();
 			IntPtr handle = Marshal.GetHINSTANCE( m_engineWrapper.GetType().Module );
 
-			if( m_engineWrapper.InitializeEngine( handle ) )
+			if( m_engineWrapper.InitializeEngine( handle, (ushort)Width, (ushort)Height ) )
 				m_editorReady = true;
 			else
 				return false;
@@ -63,7 +63,7 @@ namespace EditorApp.Engine
 			m_engineWrapper.BasicScene();
 			//m_engineWrapper.TestScene();
 
-			ViewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, EngineWrapper.GetRenderTarget( (ushort)Width, (ushort)Height ) );
+			ViewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, EngineWrapper.GetMainRenderTarget() );
 
 			return true;
 		}

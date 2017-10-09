@@ -47,6 +47,9 @@ private:
 
 protected:
 public:
+		
+	/**@brief Initialize image window (without native window).*/
+	explicit		HostWindow	( input::IInput* input, ResourceManager* resourceManager, RenderTargetObject* rt );
 	explicit		HostWindow	( INativeWindow* nativeWindow, input::IInput* input, ResourceManager* resourceManager, IGraphicAPIInitializer* graphicApi );
 	virtual			~HostWindow	();
 

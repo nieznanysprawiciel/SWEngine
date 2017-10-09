@@ -18,15 +18,16 @@ namespace Api
 
 // ================================ //
 //
-EngineInterface*		EditorApi::CreateEngine			( gui::INativeGUI* gui )
+EngineInterface*		EditorApi::CreateEngine			( gui::INativeGUI* gui, input::IInput* input, uint16 width, uint16 height )
 {
-	sw::Engine* engine = new sw::Engine( 0, nullptr, gui );
+	sw::Engine* engine = new sw::Engine( gui );
 
 	engine->StartEditorMode();
 
 	if( engine->Init() )
 	{
-		return engine;
+		if( engine->InitEditorWindow( input, width, height ) )
+			return engine;
 	}
 
 	return nullptr;
@@ -49,24 +50,13 @@ void					EditorApi::ReleaseEngine		()
 
 // ================================ //
 //
-void*					EditorApi::GetRenderTargetHandle( uint16 width, uint16 height )
+void*					EditorApi::GetMainRenderTargetHandle()
 {
-	RenderTargetDescriptor descriptor;
-	descriptor.AllowShareResource = 1;
-	descriptor.TextureWidth = width;
-	descriptor.TextureHeight = height;
-	descriptor.ColorBuffFormat = ResourceFormat::RESOURCE_FORMAT_B8G8R8A8_UNORM;
-	descriptor.TextureType = TextureType::TEXTURE_TYPE_TEXTURE2D;
-	descriptor.DepthStencilFormat = DepthStencilFormat::DEPTH_STENCIL_FORMAT_D24_UNORM_S8_UINT;
-	descriptor.Usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
+	RenderTargetObject* renderTarget = Context->modelsManager->GetRenderTarget( DefaultAssets::EDITOR_RENDERTARGET_STRING );
 
-	RenderTargetObject* renderTarget = Context->modelsManager->CreateRenderTarget( DefaultAssets::EDITOR_RENDERTARGET_STRING, descriptor );
-	Context->displayEngine->SetMainRenderTarget( renderTarget );
-
-	Context->windowHeight = height;
-	Context->windowWidth = width;
-
-	return Context->graphicInitializer->GetRenderTargetHandle( renderTarget );
+	if( renderTarget )
+		return Context->graphicInitializer->GetRenderTargetHandle( renderTarget );
+	return nullptr;
 }
 
 // ================================ //

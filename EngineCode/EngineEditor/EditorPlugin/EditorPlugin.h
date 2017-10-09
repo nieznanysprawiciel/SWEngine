@@ -63,9 +63,9 @@ private:
 
 protected:
 public:
-	bool				InitializeEngine			( System::IntPtr moduleHandle );
+	bool				InitializeEngine			( System::IntPtr moduleHandle, System::UInt16 width, System::UInt16 height );
 	void				ReleaseEngine				();
-	System::IntPtr		GetRenderTarget				( System::UInt16 width, System::UInt16 height );
+	System::IntPtr		GetMainRenderTarget			();
 
 	void				UpdateScene					();
 	void				RenderScene					();

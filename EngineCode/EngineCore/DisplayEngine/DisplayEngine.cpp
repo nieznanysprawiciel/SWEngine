@@ -199,9 +199,12 @@ Zakres [0,1].
 */
 void			DisplayEngine::DisplayScene				( TimeType time, TimeDiff elapsed, TimeRatio timeLag )
 {
-	IRenderer* renderer = m_renderers[ 0 ];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
+	if( m_mainRenderTarget )
+	{
+		IRenderer* renderer = m_renderers[ 0 ];		///<@todo Docelowo ma to dzia³aæ wielow¹tkowo i wybieraæ jeden z rendererów.
 
-	ProcessMainPass( (float)elapsed, (float)timeLag );
+		ProcessMainPass( (float)elapsed, (float)timeLag );
+	}
 }
 
 /**@brief Renders scene using @ref m_mainPass.*/

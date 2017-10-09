@@ -39,13 +39,13 @@ protected:
 public:
 
 	/**@brief Creates engine object.*/
-	static EngineInterface*		CreateEngine				( gui::INativeGUI* gui );
+	static EngineInterface*		CreateEngine				( gui::INativeGUI* gui, input::IInput* input, uint16 width, uint16 height );
 
 	/**@brief Destroy engine object.*/
 	static void					ReleaseEngine				();
 
 	/**@brief Gets editor preview render target handle.*/
-	static void*				GetRenderTargetHandle		( uint16 width, uint16 height );
+	static void*				GetMainRenderTargetHandle	();
 
 	/**@brief Gets currently set main camera info.*/
 	static CameraData&			GetMainCamera				();

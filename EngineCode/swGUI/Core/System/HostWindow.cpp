@@ -7,6 +7,9 @@
 
 #include "swInputLibrary/InputCore/Helpers/InputDispatcher.h"
 
+#include "swGUI/Native/MockNativeGUI/MockWindow.h"
+#include "swGUI/Native/MockNativeGUI/MockGUI.h"
+
 #include "CommonTypes/CommonTypes.h"
 
 
@@ -27,6 +30,36 @@ namespace gui
 {
 
 
+// ================================ //
+//
+HostWindow::HostWindow( input::IInput* input, ResourceManager* resourceManager, RenderTargetObject* rt )
+	:	m_input( input )
+	,	m_resourceManager( resourceManager )
+	,	m_hostLogic( this )
+	,	m_renderTarget( rt )
+{
+	NativeWindowDescriptor desc;
+
+	if( rt->GetColorBuffer() )
+	{
+		desc.Height = rt->GetColorBuffer()->GetDescriptor().TextureHeight;
+		desc.Width = rt->GetColorBuffer()->GetDescriptor().TextureWidth;
+	}
+	else if( rt->GetDepthBuffer() )
+	{
+		desc.Height = rt->GetDepthBuffer()->GetDescriptor().TextureHeight;
+		desc.Width = rt->GetDepthBuffer()->GetDescriptor().TextureWidth;
+	}
+	else
+	{
+		assert( rt->GetStencilBuffer() );
+		desc.Height = rt->GetStencilBuffer()->GetDescriptor().TextureHeight;
+		desc.Width = rt->GetStencilBuffer()->GetDescriptor().TextureWidth;
+	}
+
+	MockGUI mockGUI;
+	m_nativeWindow = mockGUI.CreateWindow( desc );
+}
 
 // ================================ //
 //
@@ -55,11 +88,14 @@ HostWindow::HostWindow( INativeWindow* nativeWindow, input::IInput* input, Resou
 //
 HostWindow::~HostWindow()
 {
-	m_swapChain->DeleteObjectReference();
-	if( m_swapChain->CanDelete() )
+	if( m_swapChain )
 	{
-		delete m_swapChain.Ptr();
-		m_swapChain = nullptr;
+		m_swapChain->DeleteObjectReference();
+		if( m_swapChain->CanDelete() )
+		{
+			delete m_swapChain.Ptr();
+			m_swapChain = nullptr;
+		}
 	}
 }
 

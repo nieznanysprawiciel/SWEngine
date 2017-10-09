@@ -58,11 +58,25 @@ EngineWrapper::EngineWrapper()
 
 /**@brief Tworzy obiekt silnika i inicjuje go.
 @return Zwraca true, je¿eli inicjowanie powid³o siê.*/
-bool			EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
+bool			EngineWrapper::InitializeEngine( System::IntPtr moduleHandle, System::UInt16 width, System::UInt16 height )
 {
 	HINSTANCE handle = (HINSTANCE)moduleHandle.ToPointer();
 
-	m_engine = Api::EditorApi::CreateEngine( new gui::WinAPIGUI() );
+	// Create input proxy from wpf events to engine events.
+	input::WPFInputProxy* proxyInput = new input::WPFInputProxy();
+
+	input::InputInitInfo initInfo;
+	initInfo.AppInstance = handle;
+	initInfo.WndHandle = nullptr;
+
+	bool result = proxyInput->Init( initInfo );
+	assert( result );
+
+	if( !result )
+		return false;
+
+	// Create engine instance and initialize WPF proxy window.
+	m_engine = Api::EditorApi::CreateEngine( new gui::WinAPIGUI(), proxyInput, width, height );
 	if( !m_engine )
 	{
 		ReleaseEngine();
@@ -71,20 +85,11 @@ bool			EngineWrapper::InitializeEngine( System::IntPtr moduleHandle )
 
 	EngineInterfaceProvider::engine = m_engine;
 
-	// Zmieniamy modu³ wejœcia (klawiatury) na proxy WPFowe
-	input::WPFInputProxy* proxyInput = new input::WPFInputProxy();
-
-	input::InputInitInfo initInfo;
-	initInfo.AppInstance = handle;
-	initInfo.WndHandle = nullptr;
-
-	bool result2 = proxyInput->Init( initInfo );
-	assert( result2 );
-
+	// Use WPF proxy input in whole application.
 	m_directInput = Api::EditorApi::ChangeInputModule( proxyInput );
 	m_inputWPF = proxyInput;
 
-	return result2;
+	return result;
 }
 
 /**@brief Zwalnia zasoby silnika.*/
@@ -96,9 +101,9 @@ void			EngineWrapper::ReleaseEngine()
 
 // ================================ //
 //
-System::IntPtr	EngineWrapper::GetRenderTarget( System::UInt16 width, System::UInt16 height )
+System::IntPtr	EngineWrapper::GetMainRenderTarget()
 {
-	return System::IntPtr( Api::EditorApi::GetRenderTargetHandle( width, height ) );
+	return System::IntPtr( Api::EditorApi::GetMainRenderTargetHandle() );
 }
 
 /**@brief Wywo³uje funkcje odpowiedzialne za przeliczanie po³o¿enia obiektów.*/

@@ -50,6 +50,7 @@ class Engine : public EngineInterface, public gui::GUISystem
 {
 private:
 
+	bool			m_editorMode : 1;
 	bool			m_showWindowOnStart : 1;
 
 private:
@@ -86,10 +87,12 @@ public:
 
 	explicit				Engine	();
 	explicit				Engine	( int argc, char** argv, sw::gui::INativeGUI* gui );
+	explicit				Engine	( sw::gui::INativeGUI* gui );
 	explicit				Engine	( AppInstanceHandle instanceHandle );
 							~Engine	();
 
 	void					StartEditorMode		();
+	bool					InitEditorWindow	( input::IInput* input, uint16 width, uint16 height );
 
 private:
 	///@name Engine modules initialization functions.

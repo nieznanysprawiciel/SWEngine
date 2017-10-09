@@ -58,6 +58,14 @@ Engine::Engine( int argc, char** argv, sw::gui::INativeGUI* gui )
 	InternalInit();
 }
 
+// ================================ //
+//
+Engine::Engine( sw::gui::INativeGUI* gui )
+	:	sw::gui::GUISystem( 0, nullptr, gui )
+{
+	InternalInit();
+}
+
 /**@brief Contructor helper. Creates all modules without initialization logic.*/
 void	Engine::InternalInit			()
 {
@@ -81,6 +89,9 @@ void	Engine::InternalInit			()
 	Context->ui_engine				= new UIEngine( this );
 	Context->actorsManager			= new ActorsManager( this );
 	Context->eventsManager			= new EventManager( this );
+
+	Context->windowHeight			= Context->config->ScreenHeight();
+	Context->windowWidth			= Context->config->ScreenWidth();
 
 	// Initialize frames counter.
 	Context->pause = false;
@@ -120,7 +131,30 @@ Engine::~Engine()
 //
 void			Engine::StartEditorMode				()
 {
+	m_editorMode = true;
 	m_showWindowOnStart = false;
+}
+
+// ================================ //
+//
+bool			Engine::InitEditorWindow			( input::IInput* input, uint16 width, uint16 height )
+{
+	RenderTargetDescriptor descriptor;
+	descriptor.AllowShareResource = 1;
+	descriptor.TextureWidth = width;
+	descriptor.TextureHeight = height;
+	descriptor.ColorBuffFormat = ResourceFormat::RESOURCE_FORMAT_B8G8R8A8_UNORM;
+	descriptor.TextureType = TextureType::TEXTURE_TYPE_TEXTURE2D;
+	descriptor.DepthStencilFormat = DepthStencilFormat::DEPTH_STENCIL_FORMAT_D24_UNORM_S8_UINT;
+	descriptor.Usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
+
+	RenderTargetObject* renderTarget = Context->modelsManager->CreateRenderTarget( DefaultAssets::EDITOR_RENDERTARGET_STRING, descriptor );
+	Context->displayEngine->SetMainRenderTarget( renderTarget );
+
+	Context->windowHeight = height;
+	Context->windowWidth = width;
+
+	return true;
 }
 
 
@@ -147,7 +181,8 @@ bool			Engine::Initialize					()
 	result = result && DefaultInitNativeGUI();
 	result = result && DefaultInitRenderingSystem();
 
-	result = result && DefaultInitFirstWindow( Context->config->ScreenWidth(), Context->config->ScreenHeight(), "Sleeping Wombat Engine (DirectX 11)", m_showWindowOnStart );
+	if( !m_editorMode )
+		result = result && DefaultInitFirstWindow( Context->config->ScreenWidth(), Context->config->ScreenHeight(), "Sleeping Wombat Engine (DirectX 11)", m_showWindowOnStart );
 
 	return result;
 }
@@ -197,8 +232,11 @@ bool		Engine::InitGUIConfiguration			()
 	m_guiConfig.UseVSync = true;
 	m_guiConfig.RedrawOnlyFocused = false;
 
-	Context->windowWidth = m_windows[ 0 ]->GetNativeWindow()->GetClientWidth();
-	Context->windowHeight = m_windows[ 0 ]->GetNativeWindow()->GetClientHeight();
+	if( m_windows.size() )
+	{
+		Context->windowWidth = m_windows[ 0 ]->GetNativeWindow()->GetClientWidth();
+		Context->windowHeight = m_windows[ 0 ]->GetNativeWindow()->GetClientHeight();
+	}
 
 	m_clock.SetFixedStep( (TimeDiff)FIXED_MOVE_UPDATE_INTERVAL );
 
@@ -383,66 +421,5 @@ void			Engine::SetEntryPoint( IGamePlay* game_play )
 
 }	// sw
 
-
-/**
-@page MainLoop Pêtla g³ówna silnika
-
-@section Contents Spis Treœci
-- @ref Code
-- @ref Description
-
-
-@subsection Code Kod
-@code
-int Engine::MainLoop()
-{
-	MSG msg;
-
-#ifndef __UNUSED
-	//w³¹czamy g³ówny w¹tek do renderingu
-	std::thread main_thread(main_thread_function, this);
-#endif
-
-	// Main message loop:
-	while (TRUE)
-	{
-		if ( engineReady )
-			RenderFrame();
-
-		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-		//while (GetMessage(&msg, NULL, 0, 0))
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-
-		if (msg.message == WM_QUIT)
-		{
-#ifndef __UNUSED
-			join_render_thread = true;	//to jest jedyne miejsce, w którym ta zmienna mo¿e zostac ustawiona
-										//dlatego mo¿emy to zrobiæ bez synchronizacji
-			main_thread.join();
-#endif
-			break;
-		}
-	}
-
-	return (int)msg.wParam;
-}
-@endcode
-@subsection Description Opis
-Pêtla g³ówna silnika zastêpuje Windowsowsk¹ pêtlê komunikatów, wywo³uj¹c jednoczeœnie pêtlê g³ówn¹ silnika (zobacz temat: Potok przetwarzania obiektów).
-Musimy obs³ugiwaæ komunikaty windowsa, poniewa¿ w przeciwnym razie móg³by on uznaæ, ¿e nasz program siê zawiesi³, i spróbowaæ zabiæ nasz proces.
-Dlatego pobieramy wiadomoœci z kolejki komunikatów i przekazujemy do dalszego przetwarzania.
-Do pobierania komunikatów u¿ywamy nieblokuj¹cej funkcji PeekMessage (nie GetMessage).
-
-Jako pêtla g³ówna silnika s³u¿y funkcja render_frame. Jest ona wywo³ywana tylko pod warunkiem, ¿e wczeœniejsza inicjalizacja
-directXa w pe³ni powiod³a siê. Wa¿nym punktem jest inicjacja zmiennej time_previous. Niezainicjowanie tej zmiennej, mog³oby
-spowodowaæ, ¿e w pierwszej klatce nast¹pi³aby nieprzewidywalna zmiana po³o¿eñ i orientacji wszystkich obiektów na scenie.
-
-Wyjœcie z aplikacji nastêpuje kiedy w kolejce komunikatów windowsa znajdzie siê komunikat WM_QUIT. Z wnêtrza silnika mo¿na to osi¹gn¹æ przez wywo³anie funkcji Engine::EndAplication.
-
-Definicja: "Engine.cpp"
-*/
 
 

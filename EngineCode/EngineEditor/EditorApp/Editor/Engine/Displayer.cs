@@ -27,7 +27,7 @@ namespace EditorApp.Engine
 			Width = 1000;
 
 			m_viewportSurface = new D3DImageEx();
-			ViewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, engine.GetRenderTarget( (ushort)Width, (ushort)Height ) );
+			ViewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, engine.GetMainRenderTarget() );
 		}
 
 
