@@ -143,6 +143,7 @@
     <ClInclude Include="..\..\..\DX11API\DX11Initializer\DX11APIObjects.h" />
     <ClInclude Include="..\..\..\DX11API\DX11Initializer\DX11ConstantsMapper.h" />
     <ClInclude Include="..\..\..\DX11API\DX11Initializer\DX11Initializer.h" />
+    <ClInclude Include="..\..\..\DX11API\DX11Initializer\DX11Utils.h" />
     <ClInclude Include="..\..\..\DX11API\DX11Renderer\DX11Renderer.h" />
     <ClInclude Include="..\..\..\DX11API\DX11Resources\DX11Buffer.h" />
     <ClInclude Include="..\..\..\DX11API\DX11Resources\DX11ComputeShader.h" />
@@ -160,6 +161,7 @@
     <ClCompile Include="..\..\..\DX11API\DX11Initializer\DX11APIObjects.cpp" />
     <ClCompile Include="..\..\..\DX11API\DX11Initializer\DX11ConstantsMapper.cpp" />
     <ClCompile Include="..\..\..\DX11API\DX11Initializer\DX11Initializer.cpp" />
+    <ClCompile Include="..\..\..\DX11API\DX11Initializer\DX11Utils.cpp" />
     <ClCompile Include="..\..\..\DX11API\DX11Renderer\DX11Renderer.cpp" />
     <ClCompile Include="..\..\..\DX11API\DX11Resources\DX11Buffer.cpp" />
     <ClCompile Include="..\..\..\DX11API\DX11Resources\DX11ComputeShader.cpp" />

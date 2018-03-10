@@ -13,16 +13,16 @@
 
 
 /**@defgroup DX11API
-@brief Implementacja renderera, initializera i obiektów zasobów w DirectX 11.
+@brief Implements renderer, initializer and resource objects in DirectX 11.
 @ingroup GraphicAPI
 */
 
 
-/**@brief Klasa implementuj¹ca IGraphicAPIInitializer w DirectX 11.
+/**@brief Class implements IGraphicAPIInitializer in DirectX 11.
 @ingroup DX11API
 
 Jako klasa pomocnicza do inicjalizacji jest u¿ywana klasa @ref DX11AuxiliaryObjects
-(dziedziczy po @ref DX11APIObjects).
+(inherits @ref DX11APIObjects).
 */
 class DX11Initializer : public IGraphicAPIInitializer, public DX11AuxiliaryObjects
 {
