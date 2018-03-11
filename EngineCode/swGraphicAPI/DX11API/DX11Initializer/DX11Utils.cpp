@@ -77,6 +77,42 @@ ComPtr< IDXGIAdapter >			DX11Utils::GetDXGIAdapter			()
 
 // ================================ //
 //
+ComPtr< IDXGISwapChain >		DX11Utils::CreateWindowSwapChain		( const SwapChainInitData & swapChainData )
+{
+	DXGI_SWAP_CHAIN_DESC desc = DX11Utils::CreateSwapChainDesc( swapChainData );
+
+	ComPtr< IDXGIFactory > dxgiFactory = DX11Utils::GetDXGIFactory();
+	if( !dxgiFactory )
+		return nullptr;
+
+// Swap chain
+	ComPtr< IDXGISwapChain > swapChain;
+	HRESULT result = dxgiFactory->CreateSwapChain( device, &desc, &swapChain );
+	assert( SUCCEEDED( result ) );
+
+	return swapChain;
+}
+
+// ================================ //
+//
+ComPtr< IDXGISwapChain >		DX11Utils::CreateCompositionSwapChain	( const SwapChainInitData & swapChainData )
+{
+	DXGI_SWAP_CHAIN_DESC1 desc = DX11Utils::CreateSwapChainDesc1( swapChainData );
+
+	ComPtr< IDXGIFactory2 > dxgiFactory = DX11Utils::GetDXGIFactory2();
+	if( !dxgiFactory )
+		return nullptr;
+
+// Swap chain
+	ComPtr< IDXGISwapChain1 > swapChain;
+	HRESULT result = dxgiFactory->CreateSwapChainForComposition( device, &desc, nullptr, swapChain.GetAddressOf() );
+	assert( SUCCEEDED( result ) );
+
+	return swapChain;
+}
+
+// ================================ //
+//
 ComPtr< IDXGIFactory >			DX11Utils::GetDXGIFactory			()
 {
 	return GetFactory< IDXGIFactory >();

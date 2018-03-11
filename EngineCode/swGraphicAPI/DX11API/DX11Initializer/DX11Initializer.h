@@ -41,6 +41,10 @@ public:
 	virtual void*			GetRenderTargetHandle	( RenderTargetObject* renderTarget ) override;
 
 private:
+
 	Nullable< bool >		InitDevices				( const GraphicAPIInitData& initData );
+
+	SwapChain*				CreateWindowSwapChain		( const SwapChainInitData& swapChainData );
+	SwapChain*				CreateCompositionSwapChain	( const SwapChainInitData& swapChainData );
 };
 

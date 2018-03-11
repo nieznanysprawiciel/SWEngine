@@ -27,6 +27,9 @@ public:
 	static ComPtr< IDXGIFactory2 >				GetDXGIFactory2			();
 	static ComPtr< IDXGIAdapter >				GetDXGIAdapter			();
 
+	static ComPtr< IDXGISwapChain >			CreateWindowSwapChain		( const SwapChainInitData& swapChainData );
+	static ComPtr< IDXGISwapChain >			CreateCompositionSwapChain	( const SwapChainInitData& swapChainData );
+
 private:
 
 	template< typename FactoryType >

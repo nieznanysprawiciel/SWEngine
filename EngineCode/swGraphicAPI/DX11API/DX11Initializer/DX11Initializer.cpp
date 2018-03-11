@@ -53,10 +53,13 @@ SwapChain*			DX11Initializer::CreateSwapChain		( const SwapChainInitData& swapCh
 
 // Swap chain
 	ComPtr< IDXGISwapChain > swapChain;
-	result = dxgiFactory->CreateSwapChain( device, &desc, &swapChain );
-	assert( SUCCEEDED( result ) );
+	if( swapChainData.WindowHandle )
+		swapChain = DX11Utils::CreateWindowSwapChain( swapChainData );
+	else
+		swapChain = DX11Utils::CreateCompositionSwapChain( swapChainData );
 
-	if( FAILED( result ) )	return nullptr;
+	if( !swapChain )
+		return nullptr;
 
 // Render target
 	ComPtr< ID3D11Texture2D > backBuffer = nullptr;
@@ -98,6 +101,20 @@ SwapChain*			DX11Initializer::CreateSwapChain		( const SwapChainInitData& swapCh
 
 	DX11SwapChain* newSwapChain = new DX11SwapChain( swapChain.Detach(), renderTargetObject );
 	return newSwapChain;
+}
+
+// ================================ //
+//
+SwapChain*			DX11Initializer::CreateWindowSwapChain		( const SwapChainInitData& swapChainData )
+{
+	return nullptr;
+}
+
+// ================================ //
+//
+SwapChain*			DX11Initializer::CreateCompositionSwapChain	( const SwapChainInitData& swapChainData )
+{
+	return nullptr;
 }
 
 /**@brief Initializes graphic API.
@@ -233,3 +250,5 @@ Nullable< bool >	DX11Initializer::InitDevices	( const GraphicAPIInitData& initDa
 
 	return true;
 }
+
+
