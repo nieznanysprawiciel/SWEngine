@@ -12,10 +12,10 @@ Plik pochodzi ze strony http://jmorrill.hjtcentral.com/Home/tabid/428/EntryId/43
 #pragma warning ( disable : 4005 )
 
 #include "d3d9.h"
-#include "d3dx9.h"
+//#include "d3dx9.h"
 #include "D3D10_1.h"
 #include <D3D11.h>
-#include "d3dx10.h"
+//#include "d3dx10.h"
 
 #pragma warning ( pop )
 
