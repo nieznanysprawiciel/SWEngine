@@ -355,6 +355,19 @@ HostWindow*			GUISystem::CreateNativeHostWindow	( NativeWindowDescriptor& window
 	return hostWindow;
 }
 
+// ================================ //
+//
+HostWindow*			GUISystem::CreateVirtualWindow		( SwapChainInitData& windowDesc )
+{
+	windowDesc.WindowHandle = nullptr;
+
+	HostWindow* hostWindow = new HostWindow( m_input, m_resourceManager, m_graphicApi, windowDesc );
+	m_windows.push_back( hostWindow );
+
+	return hostWindow;
+}
+
+
 //====================================================================================//
 //				Other functions
 //====================================================================================//

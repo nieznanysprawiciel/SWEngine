@@ -16,7 +16,7 @@
 #include <map>
 
 class IGraphicAPIInitializer;
-
+struct SwapChainInitData;
 
 
 namespace sw {
@@ -50,6 +50,7 @@ public:
 		
 	/**@brief Initialize image window (without native window).*/
 	explicit		HostWindow	( input::IInput* input, ResourceManager* resourceManager, RenderTargetObject* rt );
+	explicit		HostWindow	( input::IInput* input, ResourceManager* resourceManager, IGraphicAPIInitializer* graphicApi, const SwapChainInitData& chainInfo );
 	explicit		HostWindow	( INativeWindow* nativeWindow, input::IInput* input, ResourceManager* resourceManager, IGraphicAPIInitializer* graphicApi );
 	virtual			~HostWindow	();
 
@@ -94,7 +95,9 @@ public:
 	virtual UIElement*	GetUIChild		( Size idx ) const				override;
 	virtual bool		AddChild		( UIElementOPtr&& child )		override;
 
+private:
 
+	void				InitMockWindow	( RenderTargetObject* rt );
 };
 
 DEFINE_OPTR_TYPE( HostWindow );

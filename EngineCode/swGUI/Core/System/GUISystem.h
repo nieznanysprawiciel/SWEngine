@@ -335,6 +335,10 @@ public:
 	@note windowDesc can change. For instance: if you set AdjustSize to true, function will return real window size.*/
 	HostWindow*		CreateNativeHostWindow		( NativeWindowDescriptor& windowDesc );
 
+	/**@brief Creates non native window.
+	Such window has it's own render target and swap chain. You can render to this render target
+	and use results in further processing.*/
+	HostWindow*		CreateVirtualWindow			( SwapChainInitData& windowDesc );
 
 private:
 

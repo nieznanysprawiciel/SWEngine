@@ -42,7 +42,7 @@ IRenderer*			DX11Initializer::CreateRenderer			( RendererUsage usage )
 }
 
 /**@brief Creates new SwapChain.*/
-SwapChain*			DX11Initializer::CreateSwapChain		( SwapChainInitData& swapChainData )
+SwapChain*			DX11Initializer::CreateSwapChain		( const SwapChainInitData& swapChainData )
 {
 	HRESULT result;
 	DXGI_SWAP_CHAIN_DESC desc = DX11Utils::CreateSwapChainDesc( swapChainData );
@@ -104,7 +104,7 @@ SwapChain*			DX11Initializer::CreateSwapChain		( SwapChainInitData& swapChainDat
 
 @param[in] initData Dane u¿ywane do inicjalizacji.
 @return Zwraca true, je¿eli inicjalizacja siê uda.*/
-bool				DX11Initializer::InitAPI		( GraphicAPIInitData& initData )
+bool				DX11Initializer::InitAPI		( const GraphicAPIInitData& initData )
 {
 	set_depth_stencil_format( DX11ConstantsMapper::Get( initData.SwapChain.DepthStencilFormat ) );
 
@@ -207,7 +207,7 @@ void*				DX11Initializer::GetRenderTargetHandle( RenderTargetObject* renderTarge
 }
 
 /**@brief Creates only device and device context.*/
-Nullable< bool >	DX11Initializer::InitDevices	( GraphicAPIInitData& initData )
+Nullable< bool >	DX11Initializer::InitDevices	( const GraphicAPIInitData& initData )
 {
 	UINT createDeviceFlags = 0;
 

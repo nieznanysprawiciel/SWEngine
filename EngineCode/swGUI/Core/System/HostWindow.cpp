@@ -38,27 +38,25 @@ HostWindow::HostWindow( input::IInput* input, ResourceManager* resourceManager, 
 	,	m_hostLogic( this )
 	,	m_renderTarget( rt )
 {
-	NativeWindowDescriptor desc;
+	InitMockWindow( rt );
+}
 
-	if( rt->GetColorBuffer() )
-	{
-		desc.Height = rt->GetColorBuffer()->GetDescriptor().TextureHeight;
-		desc.Width = rt->GetColorBuffer()->GetDescriptor().TextureWidth;
-	}
-	else if( rt->GetDepthBuffer() )
-	{
-		desc.Height = rt->GetDepthBuffer()->GetDescriptor().TextureHeight;
-		desc.Width = rt->GetDepthBuffer()->GetDescriptor().TextureWidth;
-	}
-	else
-	{
-		assert( rt->GetStencilBuffer() );
-		desc.Height = rt->GetStencilBuffer()->GetDescriptor().TextureHeight;
-		desc.Width = rt->GetStencilBuffer()->GetDescriptor().TextureWidth;
-	}
+// ================================ //
+//
+HostWindow::HostWindow( input::IInput* input, ResourceManager* resourceManager, IGraphicAPIInitializer* graphicApi, const SwapChainInitData& chainInfo )
+	:	m_input( input )
+	,	m_resourceManager( resourceManager )
+	,	m_hostLogic( this )
+{
+	assert( chainInfo.WindowHandle == nullptr );
 
-	MockGUI mockGUI;
-	m_nativeWindow = mockGUI.CreateWindow( desc );
+	m_swapChain = graphicApi->CreateSwapChain( chainInfo );
+	assert( m_swapChain.Ptr() );
+
+	m_renderTarget = m_swapChain->GetRenderTarget();
+	assert( m_renderTarget.Ptr() );
+
+	InitMockWindow( m_swapChain->GetRenderTarget().Ptr() );
 }
 
 // ================================ //
@@ -82,6 +80,33 @@ HostWindow::HostWindow( INativeWindow* nativeWindow, input::IInput* input, Resou
 	assert( m_renderTarget.Ptr() );
 
 	resourceManager->AddRenderTarget( m_renderTarget.Ptr(), Convert::FromString< std::wstring >( "::" + m_nativeWindow->GetTitle(), L"" ) );
+}
+
+// ================================ //
+//
+void		HostWindow::InitMockWindow		( RenderTargetObject* rt )
+{
+	NativeWindowDescriptor desc;
+
+	if( rt->GetColorBuffer() )
+	{
+		desc.Height = rt->GetColorBuffer()->GetDescriptor().TextureHeight;
+		desc.Width = rt->GetColorBuffer()->GetDescriptor().TextureWidth;
+	}
+	else if( rt->GetDepthBuffer() )
+	{
+		desc.Height = rt->GetDepthBuffer()->GetDescriptor().TextureHeight;
+		desc.Width = rt->GetDepthBuffer()->GetDescriptor().TextureWidth;
+	}
+	else
+	{
+		assert( rt->GetStencilBuffer() );
+		desc.Height = rt->GetStencilBuffer()->GetDescriptor().TextureHeight;
+		desc.Width = rt->GetStencilBuffer()->GetDescriptor().TextureWidth;
+	}
+
+	MockGUI mockGUI;
+	m_nativeWindow = mockGUI.CreateWindow( desc );
 }
 
 // ================================ //
@@ -290,6 +315,7 @@ bool				HostWindow::AddChild			( UIElementOPtr&& child )
 {
 	return false;
 }
+
 
 
 
