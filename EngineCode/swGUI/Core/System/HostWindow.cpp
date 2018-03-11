@@ -38,12 +38,12 @@ HostWindow::HostWindow( input::IInput* input, ResourceManager* resourceManager, 
 	,	m_hostLogic( this )
 	,	m_renderTarget( rt )
 {
-	InitMockWindow( rt );
+	InitMockWindow( "MockWindow", rt );
 }
 
 // ================================ //
 //
-HostWindow::HostWindow( input::IInput* input, ResourceManager* resourceManager, IGraphicAPIInitializer* graphicApi, const SwapChainInitData& chainInfo )
+HostWindow::HostWindow( const std::string& windowTitle, input::IInput* input, ResourceManager* resourceManager, IGraphicAPIInitializer* graphicApi, const SwapChainInitData& chainInfo )
 	:	m_input( input )
 	,	m_resourceManager( resourceManager )
 	,	m_hostLogic( this )
@@ -56,7 +56,9 @@ HostWindow::HostWindow( input::IInput* input, ResourceManager* resourceManager, 
 	m_renderTarget = m_swapChain->GetRenderTarget();
 	assert( m_renderTarget.Ptr() );
 
-	InitMockWindow( m_swapChain->GetRenderTarget().Ptr() );
+	InitMockWindow( windowTitle, m_swapChain->GetRenderTarget().Ptr() );
+
+	resourceManager->AddRenderTarget( m_renderTarget.Ptr(), Convert::FromString< std::wstring >( windowTitle, L"" ) );
 }
 
 // ================================ //
@@ -84,9 +86,10 @@ HostWindow::HostWindow( INativeWindow* nativeWindow, input::IInput* input, Resou
 
 // ================================ //
 //
-void		HostWindow::InitMockWindow		( RenderTargetObject* rt )
+void		HostWindow::InitMockWindow		( const std::string& windowTitle, RenderTargetObject* rt )
 {
 	NativeWindowDescriptor desc;
+	desc.WindowTitle = windowTitle;
 
 	if( rt->GetColorBuffer() )
 	{

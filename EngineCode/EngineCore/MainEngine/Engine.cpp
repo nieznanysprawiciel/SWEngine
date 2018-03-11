@@ -139,17 +139,15 @@ void			Engine::StartEditorMode				()
 //
 bool			Engine::InitEditorWindow			( input::IInput* input, uint16 width, uint16 height )
 {
-	RenderTargetDescriptor descriptor;
-	descriptor.AllowShareResource = 1;
-	descriptor.TextureWidth = width;
-	descriptor.TextureHeight = height;
-	descriptor.ColorBuffFormat = ResourceFormat::RESOURCE_FORMAT_B8G8R8A8_UNORM;
-	descriptor.TextureType = TextureType::TEXTURE_TYPE_TEXTURE2D;
-	descriptor.DepthStencilFormat = DepthStencilFormat::DEPTH_STENCIL_FORMAT_D24_UNORM_S8_UINT;
-	descriptor.Usage = ResourceUsage::RESOURCE_USAGE_DEFAULT;
+	SwapChainInitData swapChainDesc;
+	swapChainDesc.BackBufferFormat = ResourceFormat::RESOURCE_FORMAT_B8G8R8A8_UNORM;
+	swapChainDesc.DepthStencilFormat = DepthStencilFormat::DEPTH_STENCIL_FORMAT_D24_UNORM_S8_UINT;
+	swapChainDesc.WindowWidth = width;
+	swapChainDesc.WindowHeight = height;
 
-	RenderTargetObject* renderTarget = Context->modelsManager->CreateRenderTarget( DefaultAssets::EDITOR_RENDERTARGET_STRING, descriptor );
-	Context->displayEngine->SetMainRenderTarget( renderTarget );
+	auto editorViewport = CreateVirtualWindow( Convert::ToString( std::wstring( DefaultAssets::EDITOR_RENDERTARGET_STRING ) ), swapChainDesc );
+
+	Context->displayEngine->SetMainRenderTarget( editorViewport->GetRenderTarget().Ptr() );
 
 	Context->windowHeight = height;
 	Context->windowWidth = width;

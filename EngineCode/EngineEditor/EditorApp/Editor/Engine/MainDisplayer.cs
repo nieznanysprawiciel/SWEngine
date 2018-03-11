@@ -26,7 +26,7 @@ namespace EditorApp.Engine
 
 		private Logic                           m_logicRef; /// Wolałbym, żeby ta referencja nie była potrzebna.
 		private GizmoActorWrapper               m_gizmo;
-
+		private IntPtr                          m_renderTarget;
 
 
 		public MainDisplayer( Logic appLogic )
@@ -41,6 +41,7 @@ namespace EditorApp.Engine
 			m_logicRef = appLogic;
 			//Gizmo = m_logicRef.ProjectManager.ActorsLogic.
 			Gizmo = null;
+			m_renderTarget = IntPtr.Zero;
 
 			m_dropableTypes = new List<Type>();
 			m_dropableTypes.Add( typeof( ActorClassMetaInfo ) );
@@ -63,7 +64,9 @@ namespace EditorApp.Engine
 			m_engineWrapper.BasicScene();
 			//m_engineWrapper.TestScene();
 
-			ViewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, EngineWrapper.GetMainRenderTarget() );
+			m_renderTarget = EngineWrapper.GetMainRenderTarget();
+
+			ViewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, m_renderTarget );
 
 			return true;
 		}
@@ -131,6 +134,9 @@ namespace EditorApp.Engine
 		private void InvalidateD3DImage()
 		{
 			m_viewportSurface.Lock();
+
+			m_viewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, m_renderTarget );
+
 			m_viewportSurface.AddDirtyRect( new Int32Rect()
 			{
 				X = 0,

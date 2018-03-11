@@ -57,7 +57,6 @@ namespace EditorApp
 			LeftPanelView.Insert( 0, ProjectManager.ContentManager );
 			RightPanelView.Add( ProjectManager.ActorsLogic );
 			RightPanelView.Add( ProjectManager.ProjectView );
-			MainPanelView.Add( new Engine.MainDisplayView( Displayer, ProjectManager.ActorsLogic ) );
 
 			LoadCommand = new RelayCommand( LoadClick );
 			SaveCommand = new RelayCommand( SaveClick );
@@ -75,6 +74,8 @@ namespace EditorApp
 
 			if( !Displayer.InitRenderer() )
 				return false;
+
+			MainPanelView.Add( new Engine.MainDisplayView( Displayer, ProjectManager.ActorsLogic ) );
 
 			string projectPath = ParseCmdLineProject( cmdArgs );
 			if( projectPath != null )

@@ -54,6 +54,7 @@ struct SwapChainInitData
 	{
 		WindowWidth = 1024;
 		WindowHeight = 768;
+		WindowHandle = nullptr;
 		FullScreen = false;
 		NumBuffers = 1;
 		SamplesCount = 1;

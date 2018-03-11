@@ -357,11 +357,11 @@ HostWindow*			GUISystem::CreateNativeHostWindow	( NativeWindowDescriptor& window
 
 // ================================ //
 //
-HostWindow*			GUISystem::CreateVirtualWindow		( SwapChainInitData& windowDesc )
+HostWindow*			GUISystem::CreateVirtualWindow		( const std::string& windowTitle, SwapChainInitData& windowDesc )
 {
 	windowDesc.WindowHandle = nullptr;
 
-	HostWindow* hostWindow = new HostWindow( m_input, m_resourceManager, m_graphicApi, windowDesc );
+	HostWindow* hostWindow = new HostWindow( windowTitle, m_input, m_resourceManager, m_graphicApi, windowDesc );
 	m_windows.push_back( hostWindow );
 
 	return hostWindow;

@@ -338,7 +338,7 @@ public:
 	/**@brief Creates non native window.
 	Such window has it's own render target and swap chain. You can render to this render target
 	and use results in further processing.*/
-	HostWindow*		CreateVirtualWindow			( SwapChainInitData& windowDesc );
+	HostWindow*		CreateVirtualWindow			( const std::string& windowTitle, SwapChainInitData& windowDesc );
 
 private:
 
