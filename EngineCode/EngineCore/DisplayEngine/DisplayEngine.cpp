@@ -148,6 +148,13 @@ void			DisplayEngine::EndScene()
 
 // ================================ //
 //
+void			DisplayEngine::FlushCommands		()
+{
+	m_renderers[ 0 ]->FlushCommands();
+}
+
+// ================================ //
+//
 void			DisplayEngine::SetMainRenderTarget( RenderTargetObject* renderTarget )
 {
 	m_mainRenderTarget = renderTarget;

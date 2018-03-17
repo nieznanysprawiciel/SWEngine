@@ -64,6 +64,8 @@ public:
 	///@{
 	static void					UpdateScene			( float& lag, float timeInterval );
 	static void					RenderScene			( float lag, float timeInterval );
+
+	static void					Flush				();
 	///@}
 
 	///@name Test functions

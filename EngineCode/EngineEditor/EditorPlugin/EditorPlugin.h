@@ -69,6 +69,7 @@ public:
 
 	void				UpdateScene					();
 	void				RenderScene					();
+	void				FlushCommands				();
 
 	void				TestScene					();
 	void				BasicScene					();

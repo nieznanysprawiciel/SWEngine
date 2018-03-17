@@ -92,6 +92,7 @@ public:
 	void			InitDisplayer					( AssetsManager* assetsManager, RenderTargetObject* mainRT );
 	void			BeginScene						();
 	void			EndScene						();
+	void			FlushCommands					();
 
 	void			SetLayout						( ShaderInputLayout* layout ) { defaultLayout = layout; }	///<@todo Hack. Zlikwidowaæ i zrobiæ docelowy sposób obs³ugi layotów.
 	void			SetMainRenderTarget				( RenderTargetObject* renderTarget );					///<@todo Hack. Zrobiæ docelowy sposób ustawiania render targetów.

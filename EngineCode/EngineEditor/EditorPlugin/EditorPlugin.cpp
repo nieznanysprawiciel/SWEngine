@@ -129,6 +129,12 @@ void			EngineWrapper::RenderScene()
 	Api::EditorApi::RenderScene( lag, 0 );
 }
 
+/**@brief Sends command to GPU.*/
+void			EngineWrapper::FlushCommands()
+{
+	Api::EditorApi::Flush();
+}
+
 
 /**@brief Wywo³uje funkcje wczytuj¹ce obiekty testowe silnika.*/
 void			EngineWrapper::TestScene()

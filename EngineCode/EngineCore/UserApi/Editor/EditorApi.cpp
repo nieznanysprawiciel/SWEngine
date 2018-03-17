@@ -106,6 +106,13 @@ void					EditorApi::RenderScene			( float lag, float timeInterval )
 	static_cast< sw::Engine* >( Engine )->RenderScene( lag, timeInterval );
 }
 
+// ================================ //
+//
+void					EditorApi::Flush				()
+{
+	Context->displayEngine->FlushCommands();
+}
+
 
 //====================================================================================//
 //			Test functions hopefully temporary	

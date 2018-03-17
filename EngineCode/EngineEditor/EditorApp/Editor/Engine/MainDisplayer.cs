@@ -135,6 +135,8 @@ namespace EditorApp.Engine
 		{
 			m_viewportSurface.Lock();
 
+			m_engineWrapper.FlushCommands();
+
 			m_viewportSurface.SetBackBufferEx( D3DResourceTypeEx.ID3D11Texture2D, m_renderTarget );
 
 			m_viewportSurface.AddDirtyRect( new Int32Rect()
