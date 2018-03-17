@@ -414,6 +414,13 @@ void	DX11Renderer::CopyTexture		( const CopyTextureCommand& command )
 	device_context->CopyResource( destination->GetTex(), source->GetTex() );
 }
 
+// ================================ //
+//
+void	DX11Renderer::FlushCommands		()
+{
+	device_context->Flush();
+}
+
 
 //====================================================================================//
 //			Internal Helpers	

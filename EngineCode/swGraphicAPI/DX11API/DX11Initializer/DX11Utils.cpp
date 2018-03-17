@@ -47,7 +47,7 @@ DXGI_SWAP_CHAIN_DESC1			DX11Utils::CreateSwapChainDesc1		( const SwapChainInitDa
 	desc.Stereo = false;
 	desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
     desc.Scaling = DXGI_SCALING_STRETCH;
-    desc.SwapEffect = DXGI_SWAP_EFFECT::DXGI_SWAP_EFFECT_DISCARD;
+    desc.SwapEffect = DXGI_SWAP_EFFECT::DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
 	desc.AlphaMode = DXGI_ALPHA_MODE_IGNORE;
     desc.Flags = 0;
 
