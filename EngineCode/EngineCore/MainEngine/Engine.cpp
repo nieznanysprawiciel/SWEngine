@@ -139,6 +139,9 @@ void			Engine::StartEditorMode				()
 //
 bool			Engine::InitEditorWindow			( input::IInput* input, uint16 width, uint16 height )
 {
+	// Set input proxy as default input. This input will be set in virtual window.
+	m_input = input;
+
     RenderTargetDescriptor descriptor;
     descriptor.AllowShareResource = 1;
     descriptor.TextureWidth = width;
@@ -150,6 +153,10 @@ bool			Engine::InitEditorWindow			( input::IInput* input, uint16 width, uint16 h
 
     RenderTargetObject* renderTarget = Context->modelsManager->CreateRenderTarget( DefaultAssets::EDITOR_RENDERTARGET_STRING, descriptor );
     Context->displayEngine->SetMainRenderTarget( renderTarget );
+
+	/// @todo Ensure this is only window in system. Maybe native window can have focus at this moment ??
+	auto window = CreateVirtualWindow( Convert::ToString( std::wstring( DefaultAssets::EDITOR_RENDERTARGET_STRING ) ), renderTarget );
+	OnFocusChanged( window->GetNativeWindow(), true );
 
 	Context->windowHeight = height;
 	Context->windowWidth = width;
@@ -298,7 +305,9 @@ void		Engine::SingleThreadedUpdatePhase		( TimeType time, TimeDiff elapsed )
 }
 
 
-/**@brief Updates input, physics, AI, events and alll connected to game logic.*/
+/**@brief Updates input, physics, AI, events and alll connected to game logic.
+
+@todo Repair computing frameTime. Previous frame time didn't have to be multiplication of FIXED_MOVE_UPDATE_INTERVAL.*/
 void		Engine::UpdateScene						( TimeType time, TimeDiff elapsed )
 {
 	TimeType frameTime = time - elapsed + FIXED_MOVE_UPDATE_INTERVAL;

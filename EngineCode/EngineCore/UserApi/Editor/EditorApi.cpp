@@ -96,14 +96,15 @@ input::IInput*			EditorApi::ChangeInputModule	( input::IInput* newModule )
 //
 void					EditorApi::UpdateScene			( float& lag, float timeInterval )
 {
-	static_cast< sw::Engine* >( Engine )->UpdateScene( lag, timeInterval );
+	//static_cast< sw::Engine* >( Engine )->UpdateScene( lag, timeInterval );
 }
 
 // ================================ //
 //
 void					EditorApi::RenderScene			( float lag, float timeInterval )
 {
-	static_cast< sw::Engine* >( Engine )->RenderScene( lag, timeInterval );
+	//static_cast< sw::Engine* >( Engine )->RenderScene( lag, timeInterval );
+	static_cast< sw::Engine* >( Engine )->MainLoopCore();
 }
 
 // ================================ //
@@ -127,7 +128,7 @@ void					EditorApi::Test					()
 
 // ================================ //
 //
-void EditorApi::SetSkydomeAndCamera()
+void					EditorApi::SetSkydomeAndCamera	()
 {
 	static_cast< sw::Engine* >( Engine )->SetSkydomeAndCamera();
 }

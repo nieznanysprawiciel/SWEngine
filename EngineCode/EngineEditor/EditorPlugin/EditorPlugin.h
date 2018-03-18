@@ -58,8 +58,8 @@ public ref class EngineWrapper
 private:
 
 	EngineInterface*			m_engine;
-	input::WPFInputProxy*		m_inputWPF;		///< Modu³ wejœcia u¿ywany domyœlnie przez edytor.
-	input::IInput*				m_directInput;	///< Modu³ u¿ywany w trybie grania w osobnym oknie.
+	input::WPFInputProxy*		m_inputWPF;		///< Input api used by editor to forward events to engine.
+	input::IInput*				m_directInput;	///< Native input api used by engine.
 
 protected:
 public:
