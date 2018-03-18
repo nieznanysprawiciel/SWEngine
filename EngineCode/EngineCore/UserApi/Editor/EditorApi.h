@@ -62,8 +62,7 @@ public:
 
 	///@name Main loop functions
 	///@{
-	static void					UpdateScene			( float& lag, float timeInterval );
-	static void					RenderScene			( float lag, float timeInterval );
+	static void					MainLoopStep		();
 
 	static void					Flush				();
 	///@}

@@ -106,27 +106,14 @@ System::IntPtr	EngineWrapper::GetMainRenderTarget()
 	return System::IntPtr( Api::EditorApi::GetMainRenderTargetHandle() );
 }
 
-/**@brief Wywo³uje funkcje odpowiedzialne za przeliczanie po³o¿enia obiektów.*/
-void			EngineWrapper::UpdateScene()
+// ================================ //
+//
+void			EngineWrapper::MainLoopStep()
 {
-	float lag = FIXED_MOVE_UPDATE_INTERVAL;
-	Api::EditorApi::UpdateScene( lag, 0 );
-
-	// Poniewa¿ nie dostajemy eventów kiedy kó³ko myszy siê nie rusza, to trzeba zerowaæ za ka¿dym razem.
-	// Poza tym trzeba wyczyœciæ eventy wciœniêcia i puszczenia przycisków.
+	Api::EditorApi::MainLoopStep();
+	
+	/// @todo Check if it's necessary. Maybe we could move this code to input Update function.
 	m_inputWPF->PostUpdate();
-}
-
-
-/**@brief Renderuje scenê.
-
-Przed wywo³aniem sceny nale¿y wywo³aæ funkcjê EngineWrapper::UpdateScene,
-¿eby zaktualizowaæ po³o¿enia obiektów.
-*/
-void			EngineWrapper::RenderScene()
-{
-	float lag = FIXED_MOVE_UPDATE_INTERVAL;
-	Api::EditorApi::RenderScene( lag, 0 );
 }
 
 /**@brief Sends command to GPU.*/

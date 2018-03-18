@@ -1,5 +1,5 @@
 1. Repair computing frameTime in Engine::UpdateScene. Previous frame time didn't have to be multiplication of FIXED_MOVE_UPDATE_INTERVAL.
-2. Editor Engine::UpdateScene doesn't execute code in engine main loop. Time values are incorrect.
+2. [ok] Editor Engine::UpdateScene doesn't execute code in engine main loop. Time values are incorrect.
 3. Scene serialization and deserialization.
 4. Properties work with engine objects.
 5. [ok] Capturing input from MainDisplay window.

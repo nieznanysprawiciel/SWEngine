@@ -81,8 +81,7 @@ namespace EditorApp.Engine
 		{
 			if( m_editorReady )
 			{
-				m_engineWrapper.UpdateScene();
-				m_engineWrapper.RenderScene();
+				m_engineWrapper.MainLoopStep();
 
 				InvalidateD3DImage();
 			}

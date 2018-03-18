@@ -67,8 +67,7 @@ public:
 	void				ReleaseEngine				();
 	System::IntPtr		GetMainRenderTarget			();
 
-	void				UpdateScene					();
-	void				RenderScene					();
+	void				MainLoopStep				();
 	void				FlushCommands				();
 
 	void				TestScene					();
