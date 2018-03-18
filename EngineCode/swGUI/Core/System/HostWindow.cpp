@@ -10,6 +10,8 @@
 #include "swGUI/Native/MockNativeGUI/MockWindow.h"
 #include "swGUI/Native/MockNativeGUI/MockGUI.h"
 
+#include "swGUI/Core/System/Rendering/VirtualSwapChain.h"
+
 #include "CommonTypes/CommonTypes.h"
 
 
@@ -32,13 +34,15 @@ namespace gui
 
 // ================================ //
 //
-HostWindow::HostWindow( input::IInput* input, ResourceManager* resourceManager, RenderTargetObject* rt )
+HostWindow::HostWindow( const std::string& windowTitle, input::IInput* input, ResourceManager* resourceManager, RenderTargetObject* rt )
 	:	m_input( input )
 	,	m_resourceManager( resourceManager )
 	,	m_hostLogic( this )
 	,	m_renderTarget( rt )
 {
-	InitMockWindow( "MockWindow", rt );
+	m_swapChain = VirtualSwapChain::CreateVirtualSwapChain( rt );
+
+	InitMockWindow( windowTitle, rt );
 }
 
 // ================================ //

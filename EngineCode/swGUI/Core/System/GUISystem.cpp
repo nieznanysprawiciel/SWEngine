@@ -367,6 +367,16 @@ HostWindow*			GUISystem::CreateVirtualWindow		( const std::string& windowTitle, 
 	return hostWindow;
 }
 
+// ================================ //
+//
+HostWindow *		GUISystem::CreateVirtualWindow		( const std::string& windowTitle, ResourcePtr< RenderTargetObject > rt )
+{
+	HostWindow* hostWindow = new HostWindow( windowTitle, m_input, m_resourceManager, rt.Ptr() );
+	m_windows.push_back( hostWindow );
+
+	return hostWindow;
+}
+
 
 //====================================================================================//
 //				Other functions

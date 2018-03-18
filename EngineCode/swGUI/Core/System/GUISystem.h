@@ -340,6 +340,9 @@ public:
 	and use results in further processing.*/
 	HostWindow*		CreateVirtualWindow			( const std::string& windowTitle, SwapChainInitData& windowDesc );
 
+	/**@brief Creates non native window with provided render target.*/
+	HostWindow*		CreateVirtualWindow			( const std::string& windowTitle, ResourcePtr< RenderTargetObject > rt );
+
 private:
 
 	int				GetSyncInterval				() const;

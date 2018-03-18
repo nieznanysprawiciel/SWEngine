@@ -176,6 +176,7 @@
     <ClInclude Include="..\..\..\Core\System\HostWindow.h" />
     <ClInclude Include="..\..\..\Core\System\Rendering\DrawingContext.h" />
     <ClInclude Include="..\..\..\Core\System\Rendering\RenderingSystem.h" />
+    <ClInclude Include="..\..\..\Core\System\Rendering\VirtualSwapChain.h" />
     <ClInclude Include="..\..\..\Core\System\Time\Clock.h" />
     <ClInclude Include="..\..\..\Core\System\Time\FrameTime.h" />
     <ClInclude Include="..\..\..\Native\INativeGUI.h" />
@@ -205,6 +206,7 @@
     <ClCompile Include="..\..\..\Core\System\HostWindow.cpp" />
     <ClCompile Include="..\..\..\Core\System\Initializers.cpp" />
     <ClCompile Include="..\..\..\Core\System\Rendering\RenderingSystem.cpp" />
+    <ClCompile Include="..\..\..\Core\System\Rendering\VirtualSwapChain.cpp" />
     <ClCompile Include="..\..\..\Core\System\Time\Clock.cpp" />
   </ItemGroup>
   <ItemGroup>
