@@ -2,4 +2,4 @@
 2. Editor Engine::UpdateScene doesn't execute code in engine main loop. Time values are incorrect.
 3. Scene serialization and deserialization.
 4. Properties work with engine objects.
-5. Capturing input from MainDisplay window.
+5. [ok] Capturing input from MainDisplay window.

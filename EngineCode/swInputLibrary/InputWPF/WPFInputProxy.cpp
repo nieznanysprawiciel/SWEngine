@@ -95,27 +95,23 @@ std::vector< const InputDeviceInfo* >	WPFInputProxy::GetDevicesInfo		() const
 
 /**@copydoc IInput::Update
 
-Funkcja zapisuje pozycjê myszy z ostatniej klatki, ¿eby j¹ przerobiæ na informacjê o zmianach na osiach myszy.
-WPF dostarcza tylko informacjê o po³o¿eniu myszy wzglêdem okna podgl¹du renderowania. Z tego przesuniêcie na osiach
-trzeba sobie stworzyæ samemu.*/
-void WPFInputProxy::Update( float timeInterval )
+Remove events Pressed/Unpressed from devices state. This function doesn't removes
+unprocessed events.*/
+void			WPFInputProxy::Update( float timeInterval )
 {
 	m_eventNum = 0;
 
-	//auto& mouse = m_mouses[ 0 ];
-	//auto axes = mouse->GetAxesState();
+	for( auto& keyboard : m_keyboards )
+		keyboard->RemoveEvents();
 
-	//axes[ Mouse::PhysicalAxes::X_AXIS ] = static_cast<float>( mouse->GetPositionX() - m_lastX );
-	//axes[ Mouse::PhysicalAxes::Y_AXIS ] = static_cast<float>( mouse->GetPositionY() - m_lastY );
-
-	//m_lastX = mouse->GetPositionX();
-	//m_lastY = mouse->GetPositionY();
+	for( auto& mouse : m_mouses )
+		mouse->RemoveEvents();
 }
 
 /**@copydoc IInput::UpdateDevices
 
 Urz¹dzenie jest zawsze aktualne.*/
-bool WPFInputProxy::UpdateDevices()
+bool			WPFInputProxy::UpdateDevices()
 {
 	return true;
 }
@@ -343,16 +339,6 @@ i przytrzyma³ przez jakiœ czas klawisz. W takiej sytuacji te eventy s¹ równie¿
 dostêpne.*/
 void			WPFInputProxy::KeyboardChange		( int keyId, bool pressed )
 {
-	//auto& keyboard = m_keyboards[ 0 ];
-	//auto state = keyboard->KeysState();
-
-	//// Nie u¿ywamy przeci¹¿onego operatora=, poniewa¿ wtedy nie moglibyœmy wy³apywaæ
-	//// wielokrotnych wciœnieæ (keystrokes??)
-	//if( pressed )
-	//	state[ KEYBOARD_BUTTONS_MAPPING[ keyId ] ].Press();
-	//else
-	//	state[ KEYBOARD_BUTTONS_MAPPING[ keyId ] ].UnPress();
-
 	KeyEvent keyEvent;
 	keyEvent.Key = KEYBOARD_BUTTONS_MAPPING[ keyId ];
 	keyEvent.State = pressed;
@@ -366,13 +352,6 @@ void			WPFInputProxy::KeyboardChange		( int keyId, bool pressed )
 Móg³by to byæ np któryæ bit ustawiony na 1 czy coœ.*/
 void			WPFInputProxy::MouseButtonChange		( int button, bool pressed )
 {
-	//auto& mouse = m_mouses[ 0 ];
-	//auto buttonsState = mouse->GetButtonsState();
-	//if( pressed )
-	//	buttonsState[ MOUSE_BUTTONS_MAPPING[ button ] ].Press();
-	//else
-	//	buttonsState[ MOUSE_BUTTONS_MAPPING[ button ] ].UnPress();
-
 	ButtonEvent mouseButtonEvt;
 	mouseButtonEvt.Button = MOUSE_BUTTONS_MAPPING[ button ];
 	mouseButtonEvt.State = pressed;
@@ -383,9 +362,6 @@ void			WPFInputProxy::MouseButtonChange		( int button, bool pressed )
 /**@brief Ustawia now¹ pozycjê myszy.*/
 void			WPFInputProxy::MousePositionChange		( double X, double Y )
 {
-	//auto& mouse = m_mouses[ 0 ];
-	//mouse->SetPosition( (short)X, (short)Y );
-
 	auto& mouse = m_mousesStates[ 0 ];
 	
 	CursorEvent cursorEvent;
@@ -415,9 +391,6 @@ void			WPFInputProxy::MousePositionChange		( double X, double Y )
 /**@brief Ustawia przesuniêcie kó³ka myszy.*/
 void			WPFInputProxy::MouseWheelChange			( double delta )
 {
-	//auto& mouse = m_mouses[ 0 ];
-	//mouse->GetAxesState()[ Mouse::PhysicalAxes::WHEEL ] = (float)delta;
-
 	AxisEvent wheel;
 	wheel.Delta = (float)delta;
 	wheel.Axis = Mouse::PhysicalAxes::WHEEL;
@@ -436,8 +409,6 @@ void			WPFInputProxy::LostFocus()
 /**@brief Funkcja powinna zostaæ wywo³ana po zakoñczeniu przetwarzania inputu przez aplikacjê.*/
 void			WPFInputProxy::PostUpdate()
 {
-	//MouseWheelChange( 0.0 );
-
 	auto& mouse = m_mouses[ 0 ];
 	
 	// Zero wheel.
@@ -446,12 +417,6 @@ void			WPFInputProxy::PostUpdate()
 	wheel.Axis = Mouse::PhysicalAxes::WHEEL;
 
 	m_mouses[ 0 ]->AddEvent( DeviceEvent( wheel, m_eventNum++ ) );
-
-	//for( auto& keyboard : m_keyboards )
-	//	keyboard->RemoveEvents();
-
-	//for( auto& mouse : m_mouses )
-	//	mouse->RemoveEvents();
 }
 
 
