@@ -59,7 +59,7 @@ public:
 	~HierarchicalPropertyWrapper();
 
 
-	virtual void			BuildHierarchy		( const rttr::instance& objectPtr, rttr::type classType, BuildContext& context );
+	virtual void			BuildHierarchy		( rttr::type classType, BuildContext& context );
 	void					BuildHierarchy		( BuildContext& context );
 
 	const rttr::instance&	GetWrappedObject	() { return *m_wrappedObject; }

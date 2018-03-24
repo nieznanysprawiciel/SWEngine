@@ -2,4 +2,7 @@
 2. [ok] Editor Engine::UpdateScene doesn't execute code in engine main loop. Time values are incorrect.
 3. Scene serialization and deserialization.
 4. Properties work with engine objects.
+	- MeshAsset property
+	- Arrays properties
 5. [ok] Capturing input from MainDisplay window.
+6. Zmiena pozycji obiektu z edytora powoduje, że zaczyna on latać w tę i z powrotem.

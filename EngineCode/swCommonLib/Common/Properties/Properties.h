@@ -20,11 +20,14 @@ public:
 	static std::pair< rttr::variant, rttr::property >		GetProperty		( EngineObject* object, const std::vector< rttr::property >& propertyPath );
 	
 	template< typename Type >
-	static Type						GetValue		( EngineObject* object, const std::vector< rttr::property >& propertyPath );
+	static Type						GetValue				( EngineObject* object, const std::vector< rttr::property >& propertyPath );
 
-	static rttr::property			EmptyProperty	();
-	static TypeID					GetRealType		( rttr::variant& object );
-	static TypeID					GetRealType		( EngineObject* object );
+	static rttr::property			EmptyProperty			();
+	static TypeID					GetRealType				( rttr::variant& object );
+	static TypeID					GetRealWrappedType		( rttr::instance& object );
+	static TypeID					GetRealType				( EngineObject* object );
+
+	static bool						IsNullptr				( const rttr::instance& object );
 };
 
 //====================================================================================//

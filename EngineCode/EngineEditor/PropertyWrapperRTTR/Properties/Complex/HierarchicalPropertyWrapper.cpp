@@ -18,6 +18,8 @@
 #include "EngineEditor/PropertyWrapperRTTR/Properties/Complex/ObjectPropertyWrapper.h"
 #include "EngineEditor/PropertyWrapperRTTR/Properties/XMFloatPropertyWrapper.h"
 
+#include "swCommonLib/Common/Properties/Properties.h"
+
 // Remove in future and create proper mechanism
 #include "EngineEditor/PropertyWrapperRTTR/Properties/ResourcePropertyWrapper.h"
 #include "swGraphicAPI/Resources/ResourceObject.h"
@@ -38,7 +40,7 @@ HierarchicalPropertyWrapper::~HierarchicalPropertyWrapper()
 
 // ================================ //
 //
-void					HierarchicalPropertyWrapper::BuildHierarchy		( const rttr::instance& parent, rttr::type classType, BuildContext& context )
+void					HierarchicalPropertyWrapper::BuildHierarchy		( rttr::type classType, BuildContext& context )
 {
 	classType = classType.get_raw_type();
 	auto properties = classType.get_properties();
@@ -69,12 +71,12 @@ void					HierarchicalPropertyWrapper::BuildHierarchy		( BuildContext& context )
 
 	rttr::instance thisInstance = thisVariant.is_valid() ? rttr::instance( thisVariant ) : GetWrappedObject();
 
-	if( thisInstance.is_valid() )
+	if( !::Properties::IsNullptr( thisInstance ) )
 	{
-		rttr::type realType = thisInstance.get_derived_type();
+		rttr::type realType = ::Properties::GetRealWrappedType( thisInstance );
 		
 		SetWrappedObject( thisInstance );
-		BuildHierarchy( thisInstance, realType, context );
+		BuildHierarchy( realType, context );
 	}
 }
 

@@ -20,6 +20,7 @@ ResourcePropertyWrapper::ResourcePropertyWrapper( HierarchicalPropertyWrapper^ p
 	: HierarchicalPropertyWrapper( parent, PropertyType::PropertyResource, prop, prop.get_name().to_string().c_str() )
 {
 	auto type = rttr::type::get( prop );
+	type = type.is_wrapper() ? type.get_wrapped_type() : type;
 
 	if( type.is_derived_from< MeshAsset >() )
 		m_resourceType = ResourcePropertyType::Mesh;

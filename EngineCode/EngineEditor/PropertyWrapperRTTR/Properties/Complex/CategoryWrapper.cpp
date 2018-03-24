@@ -24,7 +24,7 @@ namespace EditorPlugin
 
 // ================================ //
 //
-void				CategoryWrapper::BuildHierarchy			( const rttr::instance& parentPtr, rttr::type classType, BuildContext& context )
+void				CategoryWrapper::BuildHierarchy			( rttr::type classType, BuildContext& context )
 {
 	//// Note: We don't wrapp any real object here so we can set WrappedObject to parent pointer.
 	//SetWrappedObject( parentPtr );

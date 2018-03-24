@@ -42,7 +42,7 @@ public:
 
 public:
 
-	void					BuildHierarchy	( const rttr::instance& parent, rttr::type classType, BuildContext& context ) override;
+	void					BuildHierarchy	( rttr::type classType, BuildContext& context ) override;
 };
 
 

@@ -38,7 +38,7 @@ public:
 
 
 
-	virtual void			BuildHierarchy	( const rttr::instance& objectPtr, rttr::type classType, BuildContext& context ) override;
+	virtual void			BuildHierarchy	( rttr::type classType, BuildContext& context ) override;
 
 };
 

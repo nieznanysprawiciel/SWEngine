@@ -23,6 +23,8 @@ ArrayPropertyWrapper::ArrayPropertyWrapper( HierarchicalPropertyWrapper^ parent,
 	auto parentInstance = parent->GetWrappedObject();
 	rttr::variant arrayVariant = prop.get_value( parentInstance );
 
+	bool isValid = arrayVariant.is_valid();
+
 	auto array = arrayVariant.create_array_view();
 	m_arraySize = (uint32)array.get_size();
 	m_isDynamic = array.is_dynamic();
@@ -34,10 +36,10 @@ ArrayPropertyWrapper::ArrayPropertyWrapper( HierarchicalPropertyWrapper^ parent,
 
 // ================================ //
 //
-void				ArrayPropertyWrapper::BuildHierarchy		( const rttr::instance& parent, rttr::type classType, BuildContext& context )
+void				ArrayPropertyWrapper::BuildHierarchy		( rttr::type classType, BuildContext& context )
 {
 	rttr::property prop = RTTRPropertyRapist::MakeProperty( m_metaProperty );
-	rttr::variant arrayVariant = prop.get_value( parent );
+	rttr::variant arrayVariant = prop.get_value( m_parent->GetWrappedObject() );
 
 	SetWrappedObject( arrayVariant );
 	auto array = arrayVariant.create_array_view();

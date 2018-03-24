@@ -127,9 +127,27 @@ TypeID					Properties::GetRealType		( rttr::variant& object )
 	return realObject.get_derived_type();
 }
 
+// ================================ //
+//
+TypeID					Properties::GetRealWrappedType		( rttr::instance& object )
+{
+	auto type = object.get_derived_type();
+	return type.is_wrapper() ? type.get_wrapped_type() : type;
+}
+
 /**@brief Gets real type of object.
 If class inherited EngineObject, we can check it's real type.*/
 TypeID					Properties::GetRealType		( EngineObject* object )
 {
 	return object->GetType();
+}
+
+// ================================ //
+//
+bool					Properties::IsNullptr		( const rttr::instance& object )
+{
+	if( object.get_type().get_raw_type().is_wrapper() )
+		return !object.get_wrapped_instance().is_valid();
+
+	return !object.is_valid();
 }
