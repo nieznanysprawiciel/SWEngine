@@ -63,6 +63,7 @@ public:
 		m_name = gcnew System::String( name );
 	}
 
+	virtual ~PropertyWrapper();
 
 public:
 
@@ -123,6 +124,7 @@ inline void				PropertyWrapper::SetTypedValue		( PropertyType value )
 	{
 		auto instance = m_parent->GetWrappedObject();
 		SetPropertyValue< PropertyType >( m_metaProperty, instance, value );
+		SetGenericValue( value );
 	}
 	else if( m_boundAsReference && GetGenericValue() != nullptr )
 	{

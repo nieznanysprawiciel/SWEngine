@@ -16,6 +16,13 @@ namespace sw {
 namespace EditorPlugin
 {
 
+// ================================ //
+//
+PropertyWrapper::~PropertyWrapper()
+{
+	if( m_propertyValue )
+		delete m_propertyValue;
+}
 
 // ================================ //
 //
