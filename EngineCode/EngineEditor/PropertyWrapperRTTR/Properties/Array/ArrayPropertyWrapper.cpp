@@ -8,6 +8,8 @@
 #include "ArrayPropertyWrapper.h"
 #include "ArrayElementPropertyWrapper.h"
 
+#include "swCommonLib/Common/Properties/Properties.h"
+
 
 namespace sw {
 namespace EditorPlugin
@@ -41,7 +43,7 @@ void				ArrayPropertyWrapper::BuildHierarchy		( rttr::type classType, BuildConte
 	rttr::property prop = RTTRPropertyRapist::MakeProperty( m_metaProperty );
 	rttr::variant arrayVariant = prop.get_value( m_parent->GetWrappedObject() );
 
-	SetWrappedObject( arrayVariant );
+	SetGenericValue( arrayVariant );
 	auto array = arrayVariant.create_array_view();
 
 	assert( array.get_size() == m_arraySize );
@@ -49,10 +51,11 @@ void				ArrayPropertyWrapper::BuildHierarchy		( rttr::type classType, BuildConte
 	for( uint32 i = 0; i < m_arraySize; ++i )
 	{
 		rttr::variant valueRef = array.get_value_as_ref( i );
+		rttr::instance valueInstance = valueRef;
 		assert( valueRef.is_valid() );
 
 		ArrayElementPropertyWrapper^ arrayElement = gcnew ArrayElementPropertyWrapper( this, prop.get_name().to_string() + "[ " + std::to_string( i ) + " ]" );
-		arrayElement->BuildHierarchy( valueRef.get_type(), context );
+		arrayElement->BuildHierarchy( ::Properties::GetRealWrappedType( valueInstance ), context );
 		AddPropertyChild( arrayElement );
 	}
 }

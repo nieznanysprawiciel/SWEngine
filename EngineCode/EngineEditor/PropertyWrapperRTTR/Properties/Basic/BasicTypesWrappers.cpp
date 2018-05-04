@@ -25,16 +25,14 @@ namespace EditorPlugin
 //
 int			IntPropertyWrapper::Value::get		()
 {
-	auto value = GetPropertyValue< int >( m_metaProperty, m_parent->GetWrappedObject() );
-	return value;
+	return GetTypedValue< int >();
 }
 
 // ================================ //
 //
 void		IntPropertyWrapper::Value::set		( int newValue )
 {
-	auto instance = m_parent->GetWrappedObject();
-	SetPropertyValue< int >( m_metaProperty, instance, newValue );
+	SetTypedValue< int >( newValue );
 }
 
 
@@ -47,16 +45,14 @@ void		IntPropertyWrapper::Value::set		( int newValue )
 //
 uint32		UIntPropertyWrapper::Value::get		()
 {
-	auto value = GetPropertyValue< uint32 >( m_metaProperty, m_parent->GetWrappedObject() );
-	return value;
+	return GetTypedValue< uint32 >();
 }
 
 // ================================ //
 //
 void		UIntPropertyWrapper::Value::set		( uint32 newValue )
 {
-	auto instance = m_parent->GetWrappedObject();
-	SetPropertyValue< uint32 >( m_metaProperty, instance, newValue );
+	SetTypedValue< uint32 >( newValue );
 }
 
 
@@ -70,16 +66,14 @@ void		UIntPropertyWrapper::Value::set		( uint32 newValue )
 //
 bool		BoolPropertyWrapper::Value::get		()
 {
-	auto value = GetPropertyValue< bool >( m_metaProperty, m_parent->GetWrappedObject() );
-	return value;
+	return GetTypedValue< bool >();
 }
 
 // ================================ //
 //
 void		BoolPropertyWrapper::Value::set		( bool newValue )
 {
-	auto instance = m_parent->GetWrappedObject();
-	SetPropertyValue< bool >( m_metaProperty, instance, newValue );
+	SetTypedValue< bool >( newValue );
 }
 
 
@@ -93,16 +87,14 @@ void		BoolPropertyWrapper::Value::set		( bool newValue )
 //
 float		FloatPropertyWrapper::Value::get		()
 {
-	auto value = GetPropertyValue< float >( m_metaProperty, m_parent->GetWrappedObject() );
-	return value;
+	return GetTypedValue< float >();
 }
 
 // ================================ //
 //
 void		FloatPropertyWrapper::Value::set		( float newValue )
 {
-	auto instance = m_parent->GetWrappedObject();
-	SetPropertyValue< float >( m_metaProperty, instance, newValue );
+	SetTypedValue< float >( newValue );
 }
 
 
@@ -116,16 +108,14 @@ void		FloatPropertyWrapper::Value::set		( float newValue )
 //
 double		DoublePropertyWrapper::Value::get		()
 {
-	auto value = GetPropertyValue< double >( m_metaProperty, m_parent->GetWrappedObject() );
-	return value;
+	return GetTypedValue< double >();
 }
 
 // ================================ //
 //
 void		DoublePropertyWrapper::Value::set		( double newValue )
 {
-	auto instance = m_parent->GetWrappedObject();
-	SetPropertyValue< double >( m_metaProperty, instance, newValue );
+	SetTypedValue< double >( newValue );
 }
 
 

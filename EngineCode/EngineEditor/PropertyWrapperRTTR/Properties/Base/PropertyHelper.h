@@ -41,10 +41,13 @@ public enum PropertyType
 
 
 template< typename PropertyType >
-PropertyType		GetPropertyValue( const rttr::detail::property_wrapper_base* metaProperty, const rttr::instance& refObject );
+PropertyType		GetPropertyValue		( const rttr::detail::property_wrapper_base* metaProperty, const rttr::instance& refObject );
 
 template< typename PropertyType >
-void				SetPropertyValue( const rttr::detail::property_wrapper_base* metaProperty, rttr::instance& refObject, PropertyType newValue );
+PropertyType		GetPropertyValue		( const rttr::variant* value );
+
+template< typename PropertyType >
+void				SetPropertyValue		( const rttr::detail::property_wrapper_base* metaProperty, rttr::instance& refObject, PropertyType newValue );
 
 /**@brief Helper class to extract private property_wrapper_base from rttr::property.*/
 public class RTTRPropertyRapist
@@ -121,6 +124,16 @@ template<>
 inline std::wstring		InvalidValue				() { return L""; }
 
 
+// ================================ //
+//
+template< typename PropertyType >
+PropertyType	GetPropertyValue			( const rttr::variant* value )
+{
+	if( value )
+		return value->get_value< PropertyType >();
+
+	return InvalidValue< PropertyType >();
+}
 
 // ================================ //
 //

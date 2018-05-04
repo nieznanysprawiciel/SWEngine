@@ -5,6 +5,8 @@
 #include "swCommonLib/Common/EngineObject.h"
 #include "swGraphicAPI/Resources/ResourceObject.h"
 
+#include "PropertyHelper.h"
+
 #include <msclr/marshal_cppstd.h>
 
 
@@ -45,6 +47,45 @@ PropertyType		PropertyWrapper::GetPropertyType		( rttr::property prop )
 		return PropertyType::PropertyWString;
 	else
 		return PropertyType::PropertyUnknown;
+}
+
+// ================================ //
+//
+void				PropertyWrapper::RebuildProperty		( rttr::variant& parent, BuildContext& context )
+{
+	if( m_metaProperty )
+	{
+		if( parent.is_valid() )
+		{
+			rttr::property prop = RTTRPropertyRapist::MakeProperty( m_metaProperty );
+			SetGenericValue( prop.get_value( parent ) );
+		}
+		else
+		{
+			throw gcnew System::ArgumentException( gcnew System::String( "Property: [" ) + m_name + gcnew System::String( "] has nullptr parent." ) );
+		}
+	}
+	else
+	{
+		throw gcnew System::ArgumentException( gcnew System::String( "Property: [" ) + m_name + gcnew System::String( "] has nullptr m_metaProperty field." ) );
+	}
+}
+
+// ================================ //
+//
+void				PropertyWrapper::SetGenericValue		( const rttr::variant& value )
+{
+	if( m_propertyValue )
+		delete m_propertyValue;
+
+	m_propertyValue = new rttr::variant( value );
+}
+
+// ================================ //
+//
+rttr::variant*		PropertyWrapper::GetGenericValue		()
+{
+	return m_propertyValue;
 }
 
 }

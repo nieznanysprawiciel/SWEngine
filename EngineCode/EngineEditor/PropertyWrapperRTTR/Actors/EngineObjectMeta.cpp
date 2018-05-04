@@ -58,7 +58,7 @@ void						EngineObjectMeta::ResetActor		( EngineObjectWrapper^ objectPtr )
 /**@brief */
 void						EngineObjectMeta::BuildHierarchy	( EngineObjectWrapper^ objectPtr, rttr::type classType )
 {
-	rttr::instance instance = objectPtr->GetPtr();
+	rttr::variant instance = objectPtr->GetPtr();
 
 	HierarchicalPropertyWrapper^ actorClassMetaData = gcnew HierarchicalPropertyWrapper( instance, "" );
 
