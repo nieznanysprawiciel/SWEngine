@@ -27,6 +27,10 @@ public:
 		: PropertyWrapper( parent, PropertyType::PropertyString, prop, prop.get_name().to_string().c_str() )
 	{}
 
+	StringPropertyWrapper( HierarchicalPropertyWrapper^ parent, rttr::property prop, const char* name )
+		: PropertyWrapper( parent, PropertyType::PropertyString, prop, name )
+	{}
+
 public:
 	property System::String^		Value
 	{
@@ -49,6 +53,10 @@ public ref class WStringPropertyWrapper : PropertyWrapper
 public:
 	WStringPropertyWrapper( HierarchicalPropertyWrapper^ parent, rttr::property prop )
 		: PropertyWrapper( parent, PropertyType::PropertyWString, prop, prop.get_name().to_string().c_str() )
+	{}
+
+	WStringPropertyWrapper( HierarchicalPropertyWrapper^ parent, rttr::property prop, const char* name )
+		: PropertyWrapper( parent, PropertyType::PropertyWString, prop, name )
 	{}
 
 public:

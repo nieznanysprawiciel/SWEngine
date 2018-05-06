@@ -19,6 +19,21 @@ namespace EditorPlugin
 ResourcePropertyWrapper::ResourcePropertyWrapper( HierarchicalPropertyWrapper^ parent, rttr::property prop )
 	: HierarchicalPropertyWrapper( parent, PropertyType::PropertyResource, prop, prop.get_name().to_string().c_str() )
 {
+	Init( prop );
+}
+
+// ================================ //
+//
+ResourcePropertyWrapper::ResourcePropertyWrapper( HierarchicalPropertyWrapper^ parent, rttr::property prop, const char* name )
+	: HierarchicalPropertyWrapper( parent, PropertyType::PropertyResource, prop, name )
+{
+	Init( prop );
+}
+
+// ================================ //
+//
+void			ResourcePropertyWrapper::Init		( rttr::property prop )
+{
 	auto type = rttr::type::get( prop );
 	type = type.is_wrapper() ? type.get_wrapped_type() : type;
 

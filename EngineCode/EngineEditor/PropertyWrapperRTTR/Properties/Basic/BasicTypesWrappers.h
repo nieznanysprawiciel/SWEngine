@@ -27,6 +27,11 @@ public:
 		: PropertyWrapper( parent, PropertyType::PropertyInt, prop, prop.get_name().to_string().c_str() )
 	{}
 
+	IntPropertyWrapper( HierarchicalPropertyWrapper^ parent, rttr::property prop, const char* name )
+		: PropertyWrapper( parent, PropertyType::PropertyInt, prop, name )
+	{}
+
+public:
 
 	property int		Value
 	{
@@ -49,6 +54,12 @@ public:
 	UIntPropertyWrapper( HierarchicalPropertyWrapper^ parent, rttr::property prop )
 		: PropertyWrapper( parent, PropertyType::PropertyUInt, prop, prop.get_name().to_string().c_str() )
 	{}
+
+	UIntPropertyWrapper( HierarchicalPropertyWrapper^ parent, rttr::property prop, const char* name )
+		: PropertyWrapper( parent, PropertyType::PropertyUInt, prop, name )
+	{}
+
+public:
 
 
 	property uint32		Value
@@ -74,6 +85,13 @@ public:
 		: PropertyWrapper( parent, PropertyType::PropertyBool, prop, prop.get_name().to_string().c_str() )
 	{}
 
+	BoolPropertyWrapper( HierarchicalPropertyWrapper^ parent, rttr::property prop, const char* name )
+		: PropertyWrapper( parent, PropertyType::PropertyBool, prop, name )
+	{}
+
+public:
+
+
 	property bool		Value
 	{
 		bool		get ();
@@ -95,6 +113,12 @@ public:
 		: PropertyWrapper( parent, PropertyType::PropertyFloat, prop, prop.get_name().to_string().c_str() )
 	{}
 
+	FloatPropertyWrapper( HierarchicalPropertyWrapper^ parent, rttr::property prop, const char* name )
+		: PropertyWrapper( parent, PropertyType::PropertyFloat, prop, name )
+	{}
+
+public:
+
 	property float		Value
 	{
 		float		get ();
@@ -115,6 +139,10 @@ public ref class DoublePropertyWrapper : PropertyWrapper
 public:
 	DoublePropertyWrapper( HierarchicalPropertyWrapper^ parent, rttr::property prop )
 		: PropertyWrapper( parent, PropertyType::PropertyDouble, prop, prop.get_name().to_string().c_str() )
+	{}
+
+	DoublePropertyWrapper( HierarchicalPropertyWrapper^ parent, rttr::property prop, const char* name )
+		: PropertyWrapper( parent, PropertyType::PropertyDouble, prop, name )
 	{}
 
 public:

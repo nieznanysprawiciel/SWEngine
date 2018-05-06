@@ -24,7 +24,9 @@ protected:
 	List< System::String^ >^		m_enumStrings;
 
 public:
-	EnumPropertyWrapper( HierarchicalPropertyWrapper^ parent, rttr::property prop );
+
+	EnumPropertyWrapper		( HierarchicalPropertyWrapper^ parent, rttr::property prop );
+	EnumPropertyWrapper		( HierarchicalPropertyWrapper^ parent, rttr::property prop, const char* name );
 
 public:
 	property System::String^		Value
@@ -45,6 +47,8 @@ private:
 
 	System::String^		GetValue		( const rttr::instance& refObject );
 	void				SetValue		( rttr::instance& refObject, System::String^ newValue );
+
+	void				Init			( rttr::property& prop );
 };
 
 

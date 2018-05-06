@@ -94,11 +94,13 @@ public:
 		void				set	( bool value ) { m_expandProperty = value; }
 	}
 
+public:
+
+	rttr::variant*			GetGenericValue			();
 
 protected:
 
 	void					SetGenericValue			( const rttr::variant& value );
-	rttr::variant*			GetGenericValue			();
 
 	template< typename PropertyType >
 	void					SetTypedValue			( PropertyType value );

@@ -27,8 +27,11 @@ protected:
 	uint32		m_arraySize;
 
 public:
-	ArrayPropertyWrapper		( HierarchicalPropertyWrapper^ parent, rttr::property prop );
 
+	ArrayPropertyWrapper		( HierarchicalPropertyWrapper^ parent, rttr::property prop );
+	ArrayPropertyWrapper		( HierarchicalPropertyWrapper^ parent, rttr::property prop, const char* name );
+
+public:
 
 	property bool			IsDynamic
 	{
@@ -42,7 +45,13 @@ public:
 
 public:
 
-	void					BuildHierarchy	( rttr::type classType, BuildContext& context ) override;
+	virtual void			BuildProperties		( rttr::type classType, BuildContext& context ) override;
+	virtual void			RebuildProperties	( rttr::variant& arrayVariant, BuildContext& context ) override;
+	void					RebuildProperty		( rttr::variant& parent, BuildContext& context ) override;
+
+private:
+
+	void					Init				( HierarchicalPropertyWrapper^ parent, rttr::property prop );
 };
 
 

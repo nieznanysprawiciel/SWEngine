@@ -35,7 +35,11 @@ protected:
 	ResourcePropertyType			m_resourceType;
 
 public:
+
 	ResourcePropertyWrapper			( HierarchicalPropertyWrapper^ parent, rttr::property prop );
+	ResourcePropertyWrapper			( HierarchicalPropertyWrapper^ parent, rttr::property prop, const char* name );
+
+public:
 
 	property ResourcePropertyType	ResourceType
 	{
@@ -49,6 +53,10 @@ public:
 			m_resourceType = type;
 		}
 	}
+
+private:
+
+	void			Init			( rttr::property prop );
 
 };
 

@@ -90,6 +90,9 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Actors\TypeMetaInfo.h">
       <Filter>PropertyWrapperRTTR\Actors</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Build\PropertyBuilder.h">
+      <Filter>PropertyWrapperRTTR\Build</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\ResourcePropertyWrapper.cpp">
@@ -133,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Actors\TypeMetaInfo.cpp">
       <Filter>PropertyWrapperRTTR\Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Build\PropertyBuilder.cpp">
+      <Filter>PropertyWrapperRTTR\Build</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -52,6 +52,7 @@ void				SetPropertyValue		( const rttr::detail::property_wrapper_base* metaPrope
 /**@brief Helper class to extract private property_wrapper_base from rttr::property.*/
 public class RTTRPropertyRapist
 {
+	friend class PropertyBuilder;
 	friend ref class PropertyWrapper;
 	friend ref class FloatPropertyWrapper;
 	friend ref class Float2PropertyWrapper;

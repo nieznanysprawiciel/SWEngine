@@ -24,7 +24,7 @@ using namespace System::Collections::Generic;
 */
 public ref class HierarchicalPropertyWrapper : PropertyWrapper
 {
-private:
+protected:
 
 	List< PropertyWrapper^ >^		m_properties;
 
@@ -54,7 +54,8 @@ public:
 
 
 	virtual void			RebuildProperty		( rttr::variant& parent, BuildContext& context ) override;
-	virtual void			BuildHierarchy		( rttr::type classType, BuildContext& context );
+	virtual void			RebuildProperties	( rttr::variant& thisVariant, BuildContext& context );
+	virtual void			BuildProperties		( rttr::type classType, BuildContext& context );
 	void					BuildHierarchy		( rttr::instance& parent, BuildContext& context );
 	void					BuildHierarchy		( BuildContext& context );
 
@@ -64,9 +65,6 @@ public:
 	rttr::variant			RecomputeObject		( rttr::instance& parent );
 
 protected:
-
-	PropertyWrapper^		BuildProperty				( HierarchicalPropertyWrapper^ parent, rttr::property property, BuildContext& context );
-	PropertyWrapper^		TryBuildArithmeticProperty	( HierarchicalPropertyWrapper^ parent, rttr::property property, BuildContext& context );
 
 	void					AddPropertyChild			( PropertyWrapper^ child );
 

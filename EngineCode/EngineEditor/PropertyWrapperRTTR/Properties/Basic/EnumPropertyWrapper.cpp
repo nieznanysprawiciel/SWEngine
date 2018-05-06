@@ -19,8 +19,23 @@ namespace EditorPlugin
 
 // ================================ //
 //
-EnumPropertyWrapper::EnumPropertyWrapper( HierarchicalPropertyWrapper^ parent, rttr::property prop )
+EnumPropertyWrapper::EnumPropertyWrapper		( HierarchicalPropertyWrapper^ parent, rttr::property prop )
 	: PropertyWrapper( parent, PropertyType::PropertyEnum, prop, prop.get_name().to_string().c_str() )
+{
+	Init( prop );
+}
+
+// ================================ //
+//
+EnumPropertyWrapper::EnumPropertyWrapper		( HierarchicalPropertyWrapper ^ parent, rttr::property prop, const char * name )
+	: PropertyWrapper( parent, PropertyType::PropertyEnum, prop, name )
+{
+	Init( prop );
+}
+
+// ================================ //
+//
+void				EnumPropertyWrapper::Init				( rttr::property& prop )
 {
 	auto enumeration = prop.get_enumeration();
 	auto enumStrings = enumeration.get_names();
@@ -31,6 +46,7 @@ EnumPropertyWrapper::EnumPropertyWrapper( HierarchicalPropertyWrapper^ parent, r
 		m_enumStrings->Add( gcnew System::String( string.to_string().c_str() ) );
 	}
 }
+
 
 // ================================ //
 //
@@ -71,6 +87,8 @@ void				EnumPropertyWrapper::SetValue			( rttr::instance& refObject, System::Str
 
 	prop.set_value( refObject, enumValue );
 }
+
+
 
 }
 }

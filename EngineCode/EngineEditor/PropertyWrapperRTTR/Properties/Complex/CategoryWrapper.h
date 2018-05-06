@@ -38,7 +38,7 @@ public:
 
 
 
-	virtual void			BuildHierarchy	( rttr::type classType, BuildContext& context ) override;
+	virtual void			BuildProperties	( rttr::type classType, BuildContext& context ) override;
 
 };
 
