@@ -45,7 +45,6 @@ public:
 
 public:
 
-	virtual void			BuildProperties		( rttr::type classType, BuildContext& context ) override;
 	virtual void			RebuildProperties	( rttr::variant& arrayVariant, BuildContext& context ) override;
 	void					RebuildProperty		( rttr::variant& parent, BuildContext& context ) override;
 

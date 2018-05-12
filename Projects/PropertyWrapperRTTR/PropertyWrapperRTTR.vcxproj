@@ -150,7 +150,6 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Build\CutomPropertyEntry.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Build\IncludeRTTR.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Build\PropertyBuilder.h" />
-    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayElementPropertyWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayPropertyWrapper.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Base\AccessPrivateIdiom.h" />
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Base\PropertyHelper.h" />
@@ -170,7 +169,6 @@
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Actors\EngineObjectWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Actors\TypeMetaInfo.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Build\PropertyBuilder.cpp" />
-    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayElementPropertyWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayPropertyWrapper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Base\PropertyHelper.cpp" />
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Base\PropertyWrapper.cpp" />

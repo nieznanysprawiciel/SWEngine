@@ -11,7 +11,6 @@
 #include "EngineEditor/PropertyWrapperRTTR/Properties/Basic/StringPropertyWrapper.h"
 
 #include "EngineEditor/PropertyWrapperRTTR/Properties/Array/ArrayPropertyWrapper.h"
-#include "EngineEditor/PropertyWrapperRTTR/Properties/Array/ArrayElementPropertyWrapper.h"
 
 // Remove in future and create proper mechanism
 #include "EngineEditor/PropertyWrapperRTTR/Properties/ResourcePropertyWrapper.h"

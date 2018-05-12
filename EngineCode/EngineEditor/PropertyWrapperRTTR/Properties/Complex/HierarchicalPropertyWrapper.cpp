@@ -9,22 +9,8 @@
 #include "EngineEditor/PropertyWrapperRTTR/Build/PropertyBuilder.h"
 
 
-#include "EngineEditor/PropertyWrapperRTTR/Properties/Basic/BasicTypesWrappers.h"
-#include "EngineEditor/PropertyWrapperRTTR/Properties/Basic/EnumPropertyWrapper.h"
-#include "EngineEditor/PropertyWrapperRTTR/Properties/Basic/StringPropertyWrapper.h"
-
-#include "EngineEditor/PropertyWrapperRTTR/Properties/Array/ArrayPropertyWrapper.h"
-#include "EngineEditor/PropertyWrapperRTTR/Properties/Array/ArrayElementPropertyWrapper.h"
-
-#include "EngineEditor/PropertyWrapperRTTR/Properties/Complex/CategoryWrapper.h"
-#include "EngineEditor/PropertyWrapperRTTR/Properties/Complex/ObjectPropertyWrapper.h"
-#include "EngineEditor/PropertyWrapperRTTR/Properties/XMFloatPropertyWrapper.h"
-
 #include "swCommonLib/Common/Properties/Properties.h"
 
-// Remove in future and create proper mechanism
-#include "EngineEditor/PropertyWrapperRTTR/Properties/ResourcePropertyWrapper.h"
-#include "swGraphicAPI/Resources/ResourceObject.h"
 
 
 namespace sw {

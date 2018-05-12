@@ -45,9 +45,6 @@
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Base\PropertyWrapper.h">
       <Filter>PropertyWrapperRTTR\Properties\Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayElementPropertyWrapper.h">
-      <Filter>PropertyWrapperRTTR\Properties\Array</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayPropertyWrapper.h">
       <Filter>PropertyWrapperRTTR\Properties\Array</Filter>
     </ClInclude>
@@ -106,9 +103,6 @@
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Base\PropertyWrapper.cpp">
       <Filter>PropertyWrapperRTTR\Properties\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayElementPropertyWrapper.cpp">
-      <Filter>PropertyWrapperRTTR\Properties\Array</Filter>
     </ClCompile>
     <ClCompile Include="..\..\EngineCode\EngineEditor\PropertyWrapperRTTR\Properties\Array\ArrayPropertyWrapper.cpp">
       <Filter>PropertyWrapperRTTR\Properties\Array</Filter>

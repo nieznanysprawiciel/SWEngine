@@ -6,10 +6,14 @@
 #include "EngineEditor/PropertyWrapperRTTR/stdafx.h"
 
 #include "ArrayPropertyWrapper.h"
-#include "ArrayElementPropertyWrapper.h"
 
 #include "EngineEditor/PropertyWrapperRTTR/Build/PropertyBuilder.h"
 #include "swCommonLib/Common/Properties/Properties.h"
+
+#include <msclr/marshal_cppstd.h>
+
+
+
 
 
 namespace sw {
@@ -54,30 +58,6 @@ void				ArrayPropertyWrapper::Init					( HierarchicalPropertyWrapper^ parent, rt
 
 // ================================ //
 //
-void				ArrayPropertyWrapper::BuildProperties		( rttr::type classType, BuildContext& context )
-{
-	rttr::property prop = RTTRPropertyRapist::MakeProperty( m_metaProperty );
-	rttr::variant arrayVariant = prop.get_value( m_parent->GetWrappedObject() );
-
-	SetGenericValue( arrayVariant );
-	auto array = arrayVariant.create_array_view();
-
-	assert( array.get_size() == m_arraySize );
-
-	for( uint32 i = 0; i < m_arraySize; ++i )
-	{
-		rttr::variant valueRef = array.get_value_as_ref( i );
-		rttr::instance valueInstance = valueRef;
-		assert( valueRef.is_valid() );
-
-		ArrayElementPropertyWrapper^ arrayElement = gcnew ArrayElementPropertyWrapper( this, prop.get_name().to_string() + "[ " + std::to_string( i ) + " ]" );
-		arrayElement->BuildProperties( ::Properties::GetRealWrappedType( valueInstance ), context );
-		AddPropertyChild( arrayElement );
-	}
-}
-
-// ================================ //
-//
 void				ArrayPropertyWrapper::RebuildProperty		( rttr::variant& parent, BuildContext& context )
 {
 	rttr::variant thisVariant = RecomputeObject( parent );
@@ -98,28 +78,18 @@ void				ArrayPropertyWrapper::RebuildProperties		( rttr::variant& arrayVariant, 
 
 	m_properties->Clear();
 
-	//for( uint32 i = 0; i < prevSize; ++i )
-	//{
-	//	rttr::variant valueRef = array.get_value_as_ref( i );
-	//	rttr::instance valueInstance = valueRef;
-	//	assert( valueRef.is_valid() );
+	/// @todo Not all elements should be updated on RebuildProperties call.
 
-	//	std::string elementName = "Element[ " + std::to_string( i ) + " ]";
+	std::string arrayName = msclr::interop::marshal_as< std::string >( PropertyName );
 
-	//	PropertyWrapper^ element = PropertyBuilder::BuildProperty( this, RTTRPropertyRapist::MakeProperty( nullptr ), elementName, context );
-
-	//	//m_properties[]
-
-	//}
-
-	for( uint32 i = prevSize; i < m_arraySize; ++i )
+	for( uint32 i = 0; i < m_arraySize; ++i )
 	{
 		rttr::variant valueRef = array.get_value_as_ref( i );
 		rttr::instance valueInstance = valueRef;
 		assert( valueRef.is_valid() );
 
-		TypeID elementType = ::Properties::GetRealWrappedType( valueInstance );
-		std::string elementName = "Element[ " + std::to_string( i ) + " ]";
+		
+		std::string elementName = arrayName + "[ " + std::to_string( i ) + " ]";
 
 		PropertyWrapper^ element = PropertyBuilder::BuildProperty( this, valueRef, elementName, context );
 
