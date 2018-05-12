@@ -90,6 +90,15 @@ void				PropertyWrapper::SetGenericValue		( const rttr::variant& value )
 
 // ================================ //
 //
+void				PropertyWrapper::MakeReferenceProperty	( const rttr::variant& value )
+{
+	m_boundAsReference = true;
+
+	SetGenericValue( value );
+}
+
+// ================================ //
+//
 rttr::variant*		PropertyWrapper::GetGenericValue		()
 {
 	return m_propertyValue;

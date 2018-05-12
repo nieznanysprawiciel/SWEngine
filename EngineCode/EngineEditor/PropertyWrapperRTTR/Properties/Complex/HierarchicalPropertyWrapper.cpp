@@ -48,7 +48,7 @@ void					HierarchicalPropertyWrapper::RebuildProperty	( rttr::variant& parent, B
 
 	if( !::Properties::IsNullptr( thisVariant ) )
 	{
-		if( prevType != thisType )
+		if( prevType != thisType || m_boundAsReference )
 		{
 			// Recreate all properties if type changed. Note that we could check if types aren't derived
 			// from each other and save part of propeties.

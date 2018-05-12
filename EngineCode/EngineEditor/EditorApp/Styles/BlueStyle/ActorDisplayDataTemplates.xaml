@@ -32,6 +32,18 @@
 		</Expander>
 	</HierarchicalDataTemplate>
 
+	<!--ArrayPropertyWrapper-->
+	<HierarchicalDataTemplate DataType="{x:Type engine:ArrayPropertyWrapper}" ItemsSource="{Binding Properties}" >
+		<Expander IsExpanded="{Binding ExpandProperty}" Margin="20, 0, 0, 0">
+			<Expander.Header>
+				<BulletDecorator>
+					<TextBlock Text="{Binding PropertyName}" Style="{StaticResource TextBlockObjectStyle}" />
+				</BulletDecorator>
+			</Expander.Header>
+			<ItemsControl ItemsSource="{Binding Properties}" Margin="0, 5, 0, 0"/>
+		</Expander>
+	</HierarchicalDataTemplate>
+
 	<!--CategoryPropertyWrapper-->
 	<HierarchicalDataTemplate DataType="{x:Type engine:CategoryWrapper}" ItemsSource="{Binding Properties}" >
 		<Expander IsExpanded="{Binding ExpandProperty}" Margin="20, 0, 0, 0">

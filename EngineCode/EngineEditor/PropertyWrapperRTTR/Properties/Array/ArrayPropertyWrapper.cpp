@@ -121,7 +121,7 @@ void				ArrayPropertyWrapper::RebuildProperties		( rttr::variant& arrayVariant, 
 		TypeID elementType = ::Properties::GetRealWrappedType( valueInstance );
 		std::string elementName = "Element[ " + std::to_string( i ) + " ]";
 
-		PropertyWrapper^ element = PropertyBuilder::BuildProperty( this, elementType, elementName, context );
+		PropertyWrapper^ element = PropertyBuilder::BuildProperty( this, valueRef, elementName, context );
 
 		AddPropertyChild( element );
 	}

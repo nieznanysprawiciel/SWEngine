@@ -27,7 +27,7 @@ RTTR_REGISTRATION
 
 	rttr::registration::class_< sw::MeshAsset >( "MeshAsset" )
 		.property_readonly( "FileName", &sw::MeshAsset::m_filePath )
-		.property( "Segments", &sw::MeshAsset::m_segments ) BIND_AS_PTR
+		.property( "Segments", &sw::MeshAsset::m_segments ) BIND_AS_REF
 		.property( "IndexBuffer", &sw::MeshAsset::m_indexBuffer )
 		.property( "VertexBuffer", &sw::MeshAsset::m_vertexBuffer )
 		.property( "Layout", &sw::MeshAsset::m_layout );

@@ -110,6 +110,10 @@ protected:
 
 	template< typename PropertyType >
 	void					SetBoundByReference		( TypeID type );
+
+public:
+	// This should be private, but ref classes can't be friends.
+	void					MakeReferenceProperty	( const rttr::variant& value );
 };
 
 
