@@ -2,13 +2,16 @@
 /**
 @file DefaultAssets.cpp
 @author nieznanysprawiciel
-@copyright Plik jest czêœci¹ silnika graficznego SWEngine.
+@copyright File is part of Sleeping Wombat Libraries.
 */
+
 
 #include "DefaultAssets.h"
 #include "swGraphicAPI/Resources/ResourcesFactory.h"
 
-#include "swCommonLib/Common/MemoryLeaks.h"
+#include <tuple>
+
+
 
 namespace sw
 {
@@ -100,78 +103,39 @@ namespace DirectX
 
 // ================================ //
 //
-bool		operator==( const DirectX::XMFLOAT2& vertex1, const DirectX::XMFLOAT2& vertex2 )
+bool		operator==			( const DirectX::XMFLOAT2& vertex1, const DirectX::XMFLOAT2& vertex2 )
 {
-	if( vertex1.x == vertex2.x &&
-		vertex1.y == vertex2.y )
-		return true;
-	return false;
+	return std::tie( vertex1.x, vertex1.y ) == std::tie( vertex2.x, vertex2.y );
 }
 
 // ================================ //
 //
-bool		operator==( const DirectX::XMFLOAT3& vertex1, const DirectX::XMFLOAT3& vertex2 )
+bool		operator==			( const DirectX::XMFLOAT3& vertex1, const DirectX::XMFLOAT3& vertex2 )
 {
-	if( vertex1.x == vertex2.x &&
-		vertex1.y == vertex2.y &&
-		vertex1.z == vertex2.z )
-		return true;
-	return false;
+	return std::tie( vertex1.x, vertex1.y, vertex1.z ) == std::tie( vertex2.x, vertex2.y, vertex2.z );
 }
 
 // ================================ //
 //
-bool		operator<( const DirectX::XMFLOAT2& vertex1, const DirectX::XMFLOAT2& vertex2 )
+bool		operator<			( const DirectX::XMFLOAT2& vertex1, const DirectX::XMFLOAT2& vertex2 )
 {
-	if( vertex1.x < vertex2.x )
-		return true;
-	if( vertex1.x > vertex2.x )
-		return false;
-
-	if( vertex1.y < vertex2.y )
-		return true;
-	return false;
+	return std::tie( vertex1.x, vertex1.y ) < std::tie( vertex2.x, vertex2.y );
 }
 
 // ================================ //
 //
-bool		operator<( const DirectX::XMFLOAT3& vertex1, const DirectX::XMFLOAT3& vertex2 )
+bool		operator<			( const DirectX::XMFLOAT3& vertex1, const DirectX::XMFLOAT3& vertex2 )
 {
-	if( vertex1.x < vertex2.x )
-		return true;
-	if( vertex1.x > vertex2.x )
-		return false;
-
-	if( vertex1.y < vertex2.y )
-		return true;
-	if( vertex1.y > vertex2.y )
-		return false;
-
-	if( vertex1.z < vertex2.z )
-		return true;
-	return false;
+	return std::tie( vertex1.x, vertex1.y, vertex1.z ) < std::tie( vertex2.x, vertex2.y, vertex2.z );
 }
 
 }	// DirectX
 
 // ================================ //
 //
-bool		operator<( const sw::VertexNormalTexCoord& vertex1, const sw::VertexNormalTexCoord& vertex2 )
+bool		operator<			( const sw::VertexNormalTexCoord& vertex1, const sw::VertexNormalTexCoord& vertex2 )
 {
-	if( vertex1.Position < vertex2.Position )
-		return true;
-	if( vertex1.Position == vertex2.Position )
-	{
-		if( vertex1.Normal < vertex2.Normal )
-			return true;
-		if( vertex1.Normal == vertex2.Normal )
-		{
-			if( vertex1.TexCoord < vertex2.TexCoord )
-				return true;
-		}
-	}
-
-	return false;
+	return std::tie( vertex1.Position, vertex1.Normal, vertex1.TexCoord ) < std::tie( vertex2.Position, vertex2.Normal, vertex2.TexCoord );
 }
 
 
